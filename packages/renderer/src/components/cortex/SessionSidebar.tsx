@@ -1,6 +1,17 @@
 import * as React from 'react';
 import type { ReactNode } from 'react';
-import { Filter, GitBranch, HelpCircle, Info, List, Plus, Search, Sun } from 'lucide-react';
+import {
+  BookOpen,
+  GitBranch,
+  HelpCircle,
+  Inbox,
+  Info,
+  Link2,
+  Plus,
+  Search,
+  SlidersHorizontal,
+  Sun,
+} from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { SessionRow } from './use-session-agent';
 import { useWorkbench } from '../../contexts/WorkbenchContext';
@@ -46,13 +57,19 @@ export function SessionSidebar({
           <Plus className="w-3.5 h-3.5 flex-shrink-0" />
           New session
         </button>
+        {/* Paper: two icon clusters — surfaces on the left, search/filter right. */}
         <div className="h-[30px] flex items-center justify-between px-2 text-text-tertiary">
+          <div className="flex items-center gap-3">
+            <GitBranch className="w-3.5 h-3.5" />
+            <BookOpen className="w-3.5 h-3.5" />
+            <Link2 className="w-3.5 h-3.5" />
+            <Inbox className="w-3.5 h-3.5" />
+          </div>
           <div className="flex items-center gap-3">
             <button type="button" onClick={onSearch} aria-label="Search sessions">
               <Search className="w-3.5 h-3.5" />
             </button>
-            <Filter className="w-3.5 h-3.5" />
-            <List className="w-3.5 h-3.5" />
+            <SlidersHorizontal className="w-3.5 h-3.5" />
           </div>
         </div>
       </div>
@@ -93,8 +110,10 @@ export function SessionSidebar({
         {branches.map((item) => (
           <div key={item.name} className="h-[26px] px-2 flex items-center gap-2 text-[12px]">
             <GitBranch className="w-3 h-3 text-text-tertiary flex-shrink-0" />
-            <span className="font-mono truncate">{item.name}</span>
-            {item.pr ? <span className="text-text-tertiary">{item.pr}</span> : null}
+            <span className="font-mono truncate flex-1">{item.name}</span>
+            {item.pr ? (
+              <span className="text-text-tertiary flex-shrink-0">{item.pr}</span>
+            ) : null}
           </div>
         ))}
       </div>
@@ -148,7 +167,7 @@ function SessionRowButton({
   }
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="group flex items-center gap-1">
       <button
         type="button"
         onClick={onClick}
@@ -160,10 +179,11 @@ function SessionRowButton({
         {title}
       </button>
       {onDelete ? (
+        // Paper keeps rows quiet: the delete affordance appears on hover only.
         <button
           type="button"
           aria-label="Delete session"
-          className="h-7 w-7 text-text-tertiary hover:text-red"
+          className="h-7 w-7 text-text-tertiary hover:text-red opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
           onClick={() => setConfirming(true)}
         >
           ×

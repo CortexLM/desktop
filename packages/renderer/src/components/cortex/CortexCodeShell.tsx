@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Activity, ChevronDown, Server } from 'lucide-react';
+import { Activity, ChevronDown, PanelLeft, Server } from 'lucide-react';
 import { WorkspaceSwitcher } from '../workspace/WorkspaceSwitcher';
 import { SessionSidebar } from './SessionSidebar';
 import { SessionCenter } from './SessionCenter';
@@ -26,6 +26,7 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
   const agent = useSessionAgent(workspacePath);
   const [surface, setSurface] = React.useState<SessionSurface>('git');
   const [modelOpen, setModelOpen] = React.useState(false);
+  const [sidebarHidden, setSidebarHidden] = React.useState(false);
   const [shortcutsOpen, setShortcutsOpen] = React.useState(false);
   const [checkpointsOpen, setCheckpointsOpen] = React.useState(false);
   const [offline, setOffline] = React.useState(!navigator.onLine);
@@ -114,6 +115,15 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
         className="h-[52px] flex-shrink-0 flex items-center gap-3 pl-[var(--traffic-light-inset)] pr-3 border-b border-border bg-page"
         data-testid="cortex-topbar"
       >
+        <button
+          type="button"
+          aria-label={sidebarHidden ? 'Show sessions' : 'Hide sessions'}
+          className="flex-shrink-0 text-text-tertiary hover:text-text"
+          onClick={() => setSidebarHidden((prev) => !prev)}
+          data-testid="toggle-session-sidebar"
+        >
+          <PanelLeft className="w-4 h-4" strokeWidth={1.5} />
+        </button>
         <div className="w-[240px] flex-shrink-0 min-w-0">
           <div className="text-[13px] font-medium truncate leading-4">
             {agent.sessionTitle}
@@ -164,17 +174,19 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
       />
 
       <div className="flex-1 flex min-h-0">
-        <SessionSidebar
-          sessions={agent.sessions}
-          activeId={agent.sessionId}
-          projectName={project}
-          branches={agent.worktrees}
-          onNewSession={() => void agent.newSession()}
-          onSelect={agent.selectSession}
-          onDelete={agent.deleteSession}
-          onSearch={onOpenCommandPalette}
-          onOpenCheckpoints={() => setCheckpointsOpen(true)}
-        />
+        {!sidebarHidden && (
+          <SessionSidebar
+            sessions={agent.sessions}
+            activeId={agent.sessionId}
+            projectName={project}
+            branches={agent.worktrees}
+            onNewSession={() => void agent.newSession()}
+            onSelect={agent.selectSession}
+            onDelete={agent.deleteSession}
+            onSearch={onOpenCommandPalette}
+            onOpenCheckpoints={() => setCheckpointsOpen(true)}
+          />
+        )}
 
         <SessionCenter
           agent={agent}
