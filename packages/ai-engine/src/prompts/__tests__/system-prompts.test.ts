@@ -5,7 +5,6 @@ import {
   REFACTORING_LONG_CONTEXT,
   REASONING_LONG_CONTEXT,
   SYSTEM_PROMPTS,
-  type SystemPromptType,
   type SystemPromptConfig,
 } from '../system-prompts';
 

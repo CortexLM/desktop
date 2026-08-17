@@ -10,7 +10,24 @@ import type { MCPServer, MCPTool } from '@cortex-ide/shared';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
-import { AIProviderRegistry, type RegistryConfig } from '@cortex-ide/ai-engine';
+import {
+  AIProviderRegistry,
+  CheckpointStore,
+  CODING_TOOLS,
+  composeSystemPrompt,
+  InMemoryPermissionGate,
+  loadDroidsFromWorkspace,
+  loadSkillsFromWorkspace,
+  readProjectConventions,
+  runAgentTurn,
+  WorkspaceToolExecutor,
+  type AgentEvent,
+  type AgentMessage,
+  type AgentMode,
+  type PermissionDecision,
+  type RegistryConfig,
+} from '@cortex-ide/ai-engine';
+import type { StreamChunk as IpcStreamChunk } from '@cortex-ide/shared';
 
 // Local type definitions
 interface Message {
@@ -108,6 +125,8 @@ export class AIService extends EventEmitter {
   private registry: AIProviderRegistry;
   private sessions = new Map<string, AISession>();
   private mcpService?: MCPServiceLike;
+  private permissionGates = new Map<string, InMemoryPermissionGate>();
+  private checkpoints = new CheckpointStore();
 
   constructor(registry?: AIProviderRegistry, mcpService?: MCPServiceLike) {
     super();
@@ -413,10 +432,32 @@ export class AIService extends EventEmitter {
   /**
    * Envoie un message en mode streaming
    */
+  resolvePermission(sessionId: string, requestId: string, decision: PermissionDecision): void {
+    this.permissionGates.get(sessionId)?.resolve(requestId, decision);
+  }
+
+  listCheckpoints() {
+    return this.checkpoints.list();
+  }
+
+  restoreCheckpoint(sessionId: string, checkpointId: string): void {
+    const session = this.sessions.get(sessionId);
+    if (!session) throw new Error(`Session "${sessionId}" not found`);
+    const messages = this.checkpoints.restore(checkpointId);
+    session.messages = messages
+      .filter((message) => message.role !== 'tool')
+      .map((message) => ({
+        role: message.role as Message['role'],
+        content: message.content,
+      }));
+    session.updatedAt = Date.now();
+  }
+
   async *streamMessage(
     sessionId: string,
     content: string,
-    options?: ChatOptions
+    options?: ChatOptions,
+    agent?: { workspacePath?: string; mode?: AgentMode }
   ): AsyncIterableIterator<StreamChunk> {
     const session = this.sessions.get(sessionId);
     if (!session) {
@@ -434,6 +475,14 @@ export class AIService extends EventEmitter {
     session.updatedAt = Date.now();
 
     this.emit('message:sent', { sessionId, message: userMessage });
+
+    if (agent?.workspacePath) {
+      yield* this.streamAgentTurn(session, provider, content, options, {
+        workspacePath: agent.workspacePath,
+        mode: agent.mode,
+      });
+      return;
+    }
 
     // Accumulation dans un tableau puis join() : la concaténation de string
     // dans la boucle était en O(n²) sur les réponses longues.
@@ -562,6 +611,111 @@ export class AIService extends EventEmitter {
     this.emit('session:cleared', sessionId);
   }
 
+  private async *streamAgentTurn(
+    session: AISession,
+    provider: NonNullable<ReturnType<AIProviderRegistry['getProvider']>>,
+    _userText: string,
+    options: ChatOptions | undefined,
+    agent: { workspacePath: string; mode?: AgentMode }
+  ): AsyncIterableIterator<StreamChunk> {
+    const workspaceRoot = agent.workspacePath;
+    const [conventions, droids, skills] = await Promise.all([
+      readProjectConventions(workspaceRoot),
+      loadDroidsFromWorkspace(workspaceRoot),
+      loadSkillsFromWorkspace(workspaceRoot),
+    ]);
+
+    const systemPrompt = composeSystemPrompt({
+      mode: agent.mode ?? 'agent',
+      workspaceRoot,
+      projectConventions: conventions,
+      skills,
+      tools: CODING_TOOLS,
+    });
+
+    const gate = new InMemoryPermissionGate({
+      autoAllowSafe: true,
+      onRequest: (request) => {
+        const ipcChunk: IpcStreamChunk = {
+          type: 'permission',
+          permission: request,
+        };
+        this.emit('stream:chunk', {
+          sessionId: session.id,
+          chunk: { content: '', done: false, ipc: ipcChunk },
+        });
+      },
+    });
+    this.permissionGates.set(session.id, gate);
+
+    const executor = new WorkspaceToolExecutor({
+      workspaceRoot,
+      droids,
+      runDroid: async (droid, prompt) => {
+        const result = await provider.chat(
+          [
+            { role: 'system', content: droid.systemPrompt },
+            { role: 'user', content: prompt },
+          ],
+          { ...options, model: droid.model ?? session.model }
+        );
+        return result.content;
+      },
+    });
+
+    const history: AgentMessage[] = session.messages.map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
+
+    this.checkpoints.create(history, 'before turn');
+
+    const visible: string[] = [];
+
+    try {
+      for await (const event of runAgentTurn({
+        messages: history,
+        chat: async (messages) => {
+          const mapped: Message[] = messages.map((message) => ({
+            role: message.role === 'tool' ? 'user' : message.role,
+            content:
+              message.role === 'tool'
+                ? `Tool ${message.name ?? 'unknown'} result:\n${message.content}`
+                : message.content,
+          }));
+          const response = await provider.chat(mapped, { ...options, model: session.model });
+          return { content: response.content };
+        },
+        tools: CODING_TOOLS,
+        executor,
+        permissions: gate,
+        systemPrompt,
+        mode: agent.mode,
+      })) {
+        const ipc = agentEventToIpc(event);
+        this.emit('stream:chunk', {
+          sessionId: session.id,
+          chunk: { content: ipc.content ?? '', done: ipc.type === 'done', ipc },
+        });
+        if (event.type === 'text') visible.push(event.text);
+        yield { content: ipc.content ?? '', done: ipc.type === 'done' };
+      }
+
+      session.messages.push({
+        role: 'assistant',
+        content: visible.join('\n') || '(agent turn)',
+      });
+      session.updatedAt = Date.now();
+    } catch (error) {
+      session.messages.pop();
+      this.emit('error', {
+        sessionId: session.id,
+        error: error instanceof Error ? error : new Error(String(error)),
+      });
+      throw error;
+    }
+  }
+
   /**
    * Génère un ID unique pour les sessions
    */
@@ -594,6 +748,56 @@ export function getAIService(): AIService {
 /**
  * Réinitialise l'instance du service AI
  */
+function agentEventToIpc(event: AgentEvent): IpcStreamChunk {
+  switch (event.type) {
+    case 'thinking':
+      return { type: 'thinking', content: event.text };
+    case 'text':
+      return { type: 'chunk', content: event.text };
+    case 'tool_start':
+      return {
+        type: 'tool',
+        tool: {
+          id: event.id,
+          name: event.name,
+          title: event.title,
+          status: 'running',
+          detail: event.detail,
+        },
+      };
+    case 'tool_end':
+      return {
+        type: 'tool',
+        content: event.output,
+        tool: {
+          id: event.id,
+          name: event.name,
+          status: event.ok ? 'done' : 'error',
+          additions: event.additions,
+          deletions: event.deletions,
+          durationMs: event.durationMs,
+        },
+      };
+    case 'permission':
+      return { type: 'permission', permission: event.request };
+    case 'plan':
+      return { type: 'plan', plan: event.plan };
+    case 'context_full':
+      return {
+        type: 'context_full',
+        usage: {
+          promptTokens: event.tokens,
+          completionTokens: 0,
+          totalTokens: event.tokens,
+        },
+      };
+    case 'error':
+      return { type: 'error', error: event.message };
+    case 'done':
+      return { type: 'done' };
+  }
+}
+
 export function resetAIService(): void {
   if (aiServiceInstance) {
     aiServiceInstance.cleanup();

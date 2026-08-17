@@ -21,8 +21,8 @@ const tutorialSteps: TutorialStep[] = [
     content: (
       <div className="space-y-4">
         <p className="text-text-secondary">
-          Cortex IDE is different from traditional code editors. Instead of focusing on autocomplete, 
-          we specialize in orchestrating AI agents for complex, multi-step coding missions.
+          Cortex Code is a coding-agent desktop: sessions, a tool-using loop, git, terminal, and MCP.
+          Mission mode exists for long tasks. Provider benchmarking is a CLI harness, not an in-app screen.
         </p>
         <div className="p-4 bg-accent/10 border border-accent/30 rounded-lg">
           <p className="text-sm text-text">
@@ -56,7 +56,7 @@ const tutorialSteps: TutorialStep[] = [
           </li>
           <li className="flex items-start gap-2">
             <span className="text-accent">•</span>
-            Run benchmarks to compare AI providers
+            Compare providers from the CLI harness (not a Benchmarks screen)
           </li>
         </ul>
         <div className="p-3 bg-surface border border-border rounded font-mono text-xs">

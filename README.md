@@ -1,53 +1,45 @@
-# Cortex IDE
+# Cortex Code
 
-**L'orchestrateur d'agents IA pour missions complexes avec benchmarking intégré**
+**A local coding-agent desktop (Electron + Bun + React), designed from the Paper file Cortex V3.**
 
-Cortex IDE est un outil de développement focalisé sur l'orchestration d'agents IA multi-providers pour des tâches de coding complexes et long-running. Contrairement aux IDE traditionnels avec autocomplete, Cortex se spécialise dans la gestion de missions multi-étapes, l'optimisation de contexte 300k+ tokens, et le benchmarking de providers IA.
+Cortex Code is a session-first workbench: left session list, center agent transcript + composer, right Git panel. It is not a VS Code clone and it does not claim an in-app Benchmarks screen.
 
 ## 🎯 Pourquoi Cortex est différent
 
 Cortex n'est **pas** un concurrent de Cursor ou VSCode sur l'édition de code. C'est l'orchestrateur d'agents que vous utilisez **avec** votre IDE préféré pour gérer des missions complexes qui nécessitent:
 
-- 📊 **Benchmarking de providers** - harnais CLI mesurant latence, tokens et coût
-- 🧠 **Découpage sémantique** - couper de gros fichiers aux frontières de déclarations
-- 🔌 **Extensions MCP** - découvrir, installer et invoquer des serveurs MCP
+- 🤖 **Boucle d'agent** — outils, permissions, plan/mission, droids markdown
+- 🧠 **Découpage sémantique** — couper de gros fichiers aux frontières de déclarations
+- 🔌 **Extensions MCP** — découvrir, installer et invoquer des serveurs MCP
+- 📊 **Harness CLI de providers** — latence, tokens, coût (pas d'UI Benchmarks)
 
-### Ce que Cortex fait aujourd'hui
+### What ships in the app
 
-Vérifié le 17/08/2026 en lisant le code, pas la documentation :
+Verified in code:
 
-✅ **Benchmarker des providers** (GPT, Claude, Grok, Ollama, OpenRouter) —
-  harnais `packages/test-harness`, en ligne de commande, avec rapports JSON /
-  Markdown / HTML. Mesure latence, tokens et coût. **Ne mesure pas la qualité**
-  des réponses : aucun juge n'est embarqué.
-✅ **Suivre l'usage réel** — tokens et coûts par provider et par modèle, lus
-  depuis la base SQLite locale (`views/agents/UsageTracking.tsx`).
-✅ **Extensions MCP** — 12 canaux IPC enregistrés, 4 vues (marketplace, liste,
-  outils, configuration).
-✅ **Multi-workspace** — ajout, retrait, bascule, avec contexte isolé et
-  restauration.
-✅ **Édition, terminal et Git** — Monaco, PTY réels via node-pty, et un panneau
-  Git (status, diff, stage/unstage, commit, push, pull, stash).
-✅ **Découpage sémantique** de fichiers (`SemanticChunker`), avec la seule mesure
-  reproductible du dépôt.
+✅ **Coding-agent loop** — `packages/ai-engine/src/agent` runs tool-using turns
+  (read, edit, write, grep, glob, bash, git, task/droid) with a real system
+  prompt, permissions (allow once / always / deny), plan mode, checkpoints,
+  AGENTS.md conventions, markdown droids/skills.
+✅ **Paper chrome** — empty session (“Hey, what should we build?”), running
+  agent (thinking + tool cards), composer (`@` `/` `!` `#`), session sidebar,
+  Git context panel, surface rail. Dark default, light supported.
+✅ **Git** — status, stage, commit, sync, and the previously unmounted stash UI.
+✅ **Workspace switcher, chat export, command palette, model picker** — mounted
+  on the workbench, not dead components.
+✅ **MCP** — 12 IPC channels, marketplace / list / tools / config views.
+✅ **Missions** — `MissionOrchestrator` + `mission:*` IPC + SQLite `missions`
+  table (planning → running → paused → completed).
+✅ **Usage tracking** — tokens and cost in `UsageTracking`.
+✅ **Provider benchmark harness** — CLI only (`packages/test-harness`). Measures
+  latency, tokens, and cost. **No quality judge. No Benchmarks screen.**
+✅ **Semantic chunking** — `SemanticChunker` (regex/brace boundaries, not AST).
 
-### Ce que Cortex ne fait pas
+### What it does not do
 
-❌ **Mission orchestration** — il n'existe aucune classe `MissionOrchestrator`,
-  aucun canal IPC `mission:*` et aucune vue Missions. Seule une table `missions`
-  et son repository existent, sans appelant. La state machine
-  `planning → running → paused → completed`, le handoff protocol et le progress
-  log JSONL n'ont pas d'implémentation. Voir `DIFFERENTIATION.md` §1.
-❌ **Orchestration parallèle d'agents** — le worker pool a été supprimé
-  (0 instanciation, aucun gain mesuré sur des tâches I/O-bound). Les 7 classes
-  d'orchestration de `ai-engine/src/orchestration/` existent et sont testées mais
-  ne sont instanciées par aucun processus de l'application.
-❌ **Missions longues avec pause/resume** — dépend du point ci-dessus.
-❌ **UI de benchmarking** — le harnais est en CLI uniquement ; il n'y a pas de vue
-  Benchmarks dans l'application, malgré ce qu'annoncent l'écran d'accueil et le
-  tutoriel interactif.
-❌ **Autocomplete inline** (utilisez Cursor/Copilot pour ça)
-❌ **Remplacer votre IDE actuel**
+❌ **In-app Benchmarks UI** — do not look for a Benchmarks view; use the CLI.
+❌ **Inline autocomplete** — use your editor of choice for that.
+❌ **Silent dangerous tools** — writes and shell go through the permission overlay.
 
 ## 🚀 Quick Start
 

@@ -365,6 +365,10 @@ export function SettingsView() {
               <TabsTrigger value="providers">AI Providers</TabsTrigger>
               <TabsTrigger value="editor">Editor</TabsTrigger>
               <TabsTrigger value="shortcuts">Keyboard Shortcuts</TabsTrigger>
+              <TabsTrigger value="rules">Rules & Memories</TabsTrigger>
+              <TabsTrigger value="privacy">Indexing & Privacy</TabsTrigger>
+              <TabsTrigger value="notifications">Notifications</TabsTrigger>
+              <TabsTrigger value="extensions">Extensions</TabsTrigger>
             </TabsList>
 
             {/* General Settings */}
@@ -617,6 +621,46 @@ export function SettingsView() {
                     />
                   </SettingItem>
                 ))}
+              </SettingSection>
+            </TabsContent>
+
+            <TabsContent value="rules" className="space-y-6 mt-6">
+              <SettingSection title="Rules & Memories">
+                <SettingItem label="User rules" description="Appended to every agent system prompt.">
+                  <p className="text-xs text-text-secondary">
+                    Stored as markdown in Settings. The agent loop reads AGENTS.md from the workspace automatically.
+                  </p>
+                </SettingItem>
+              </SettingSection>
+            </TabsContent>
+
+            <TabsContent value="privacy" className="space-y-6 mt-6">
+              <SettingSection title="Indexing, Privacy & Secrets">
+                <SettingItem label="Workspace index" description="Used by Quick Open. Never uploaded.">
+                  <p className="text-xs text-text-secondary">Indexing stays on this machine.</p>
+                </SettingItem>
+                <SettingItem label="Secrets" description="API keys live in the main process, not localStorage.">
+                  <p className="text-xs text-text-secondary">Use the AI Providers tab to set keys.</p>
+                </SettingItem>
+              </SettingSection>
+            </TabsContent>
+
+            <TabsContent value="notifications" className="space-y-6 mt-6">
+              <SettingSection title="Notifications">
+                <SettingItem label="Agent finished" description="Toast when a turn completes.">
+                  <span className="text-xs">On</span>
+                </SettingItem>
+                <SettingItem label="Update ready" description="Shown by the existing update banner.">
+                  <span className="text-xs">On</span>
+                </SettingItem>
+              </SettingSection>
+            </TabsContent>
+
+            <TabsContent value="extensions" className="space-y-6 mt-6">
+              <SettingSection title="Extensions">
+                <SettingItem label="MCP marketplace" description="Open the Extensions view for install and tools.">
+                  <p className="text-xs text-text-secondary">12 IPC channels, 4 MCP views.</p>
+                </SettingItem>
               </SettingSection>
             </TabsContent>
           </Tabs>

@@ -13,11 +13,12 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@cortex-ide/shared": "workspace:*",
     "@cortex-ide/ai-engine": "workspace:*",
+    "@cortex-ide/shared": "workspace:*",
     "better-sqlite3": "11.5.0",
     "electron": "^32.2.7",
     "electron-updater": "^6.3.9",
+    "glob": "^13.0.6",
     "node-pty": "^1.1.0",
     "prettier": "3.6.2"
   },

@@ -30,6 +30,7 @@ import { cn } from '../../lib/utils';
 import { BranchSelector } from './BranchSelector';
 import { CommitDialog } from './CommitDialog';
 import { DiffViewer } from './DiffViewer';
+import { GitStashPanel } from '../../components/git/GitStashPanel';
 
 interface GitPanelProps {
   repoPath: string;
@@ -499,6 +500,10 @@ export function GitPanel({ repoPath, className }: GitPanelProps) {
           }}
         />
       )}
+
+      <div className="border-t border-border max-h-64 overflow-auto">
+        <GitStashPanel repoPath={repoPath} />
+      </div>
 
       {/* Diff Viewer */}
       {showDiff && selectedFile && (

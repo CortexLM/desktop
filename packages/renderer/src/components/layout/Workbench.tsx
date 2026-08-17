@@ -21,6 +21,7 @@ import {
   Search as SearchIcon,
 } from 'lucide-react';
 import { AppShell } from './AppShell';
+import { CortexCodeShell } from '../cortex/CortexCodeShell';
 import { VIEW_BY_ID, lazyNamed } from './views';
 import { EmptyState, ErrorState } from '../EmptyState';
 import { Spinner } from '../ui/spinner';
@@ -65,6 +66,9 @@ const LogsViewer = lazyNamed(
 );
 const SettingsView = lazyNamed(() => import('../../views/settings/SettingsView'), 'SettingsView');
 const DebugPanel = lazyNamed(() => import('../../views/debug/DebugPanel'), 'DebugPanel');
+const SecurityView = lazyNamed(() => import('../../views/security/SecurityView'), 'SecurityView');
+const ReviewView = lazyNamed(() => import('../../views/review/ReviewView'), 'ReviewView');
+const KnowledgeView = lazyNamed(() => import('../../views/knowledge/KnowledgeView'), 'KnowledgeView');
 
 /** Views that render into the sidebar rather than taking over the main area. */
 const SIDEBAR_VIEWS = new Set<WorkbenchView>(['explorer', 'search', 'git']);
@@ -97,6 +101,10 @@ export function Workbench({ onOpenCommandPalette }: WorkbenchProps) {
   }, [activeView]);
 
   const sidebarView = SIDEBAR_VIEWS.has(activeView) ? activeView : lastSidebarView;
+
+  if (activeView === 'session') {
+    return <CortexCodeShell onOpenCommandPalette={onOpenCommandPalette} />;
+  }
 
   return (
     <AppShell
@@ -266,6 +274,27 @@ function MainArea({
       return (
         <div className="h-full overflow-auto">
           <SettingsView />
+        </div>
+      );
+
+    case 'security':
+      return (
+        <div className="h-full overflow-auto">
+          <SecurityView />
+        </div>
+      );
+
+    case 'review':
+      return (
+        <div className="h-full overflow-auto">
+          <ReviewView workspacePath={workspacePath} />
+        </div>
+      );
+
+    case 'knowledge':
+      return (
+        <div className="h-full overflow-auto">
+          <KnowledgeView workspacePath={workspacePath} />
         </div>
       );
 

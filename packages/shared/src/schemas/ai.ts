@@ -22,6 +22,8 @@ export const SendMessageRequestSchema = z.object({
       end: z.number(),
     }).optional(),
   }).optional(),
+  workspacePath: z.string().optional(),
+  mode: z.enum(['agent', 'plan', 'mission', 'ask']).optional(),
 });
 
 export const StreamResponseRequestSchema = SendMessageRequestSchema;

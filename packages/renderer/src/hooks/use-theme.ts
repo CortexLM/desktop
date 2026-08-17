@@ -6,10 +6,10 @@ export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     // Read from localStorage or default to system
     const stored = localStorage.getItem('cortex-theme') as Theme;
-    return stored || 'system';
+    return stored || 'dark';
   });
 
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     const root = window.document.documentElement;

@@ -33,6 +33,14 @@ export const IPC_CHANNELS = {
   AI_SEND_MESSAGE: 'ai:send-message',
   AI_STREAM_RESPONSE: 'ai:stream-response',
   AI_STOP_STREAM: 'ai:stop-stream',
+  AI_RESOLVE_PERMISSION: 'ai:resolve-permission',
+  AI_LIST_CHECKPOINTS: 'ai:list-checkpoints',
+  AI_RESTORE_CHECKPOINT: 'ai:restore-checkpoint',
+  MISSION_LIST: 'mission:list',
+  MISSION_CREATE: 'mission:create',
+  MISSION_START: 'mission:start',
+  MISSION_PAUSE: 'mission:pause',
+  MISSION_RESUME: 'mission:resume',
 
   // MCP
   MCP_LIST_SERVERS: 'mcp:list-servers',

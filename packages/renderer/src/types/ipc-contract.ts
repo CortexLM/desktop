@@ -236,6 +236,19 @@ export interface IPCChannelMap {
     request: SetProviderRequest;
     response: SetProviderResponse;
   };
+
+  'ai:list-checkpoints': {
+    request: undefined;
+    response: { checkpoints: Array<{ id: string; label: string; createdAt: number }> };
+  };
+  'ai:restore-checkpoint': {
+    request: { sessionId: string; checkpointId: string };
+    response: { checkpointId: string };
+  };
+  'mission:list': {
+    request: { workspaceId?: string };
+    response: { missions: Array<{ id: string; name: string; status: string }> };
+  };
 }
 
 export type IPCChannel = keyof IPCChannelMap;

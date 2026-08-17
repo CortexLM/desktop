@@ -18,7 +18,6 @@
  * actually supposed to have today.
  */
 
-import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { ProfileView } from '../ProfileView';
@@ -98,7 +97,7 @@ describe('account views', () => {
     ['ProfileView', ProfileView],
     ['TeamView', TeamView],
     ['BillingView', BillingView],
-  ] as const)('%s', (name, View) => {
+  ] as const)('%s', (_name, View) => {
     it('presents no fabricated account data as the user\'s own', () => {
       const { container } = render(<View />);
       const text = container.textContent ?? '';

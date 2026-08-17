@@ -8,6 +8,7 @@
 
 import * as React from 'react';
 import {
+  BookOpen,
   Bot,
   Boxes,
   CreditCard,
@@ -18,8 +19,10 @@ import {
   ListChecks,
   type LucideIcon,
   MessageSquare,
+  ScanSearch,
   Search,
   Settings,
+  Shield,
   SquareTerminal,
   Zap,
 } from 'lucide-react';
@@ -40,6 +43,15 @@ export interface ViewDefinition {
 }
 
 export const VIEWS: ViewDefinition[] = [
+  {
+    id: 'session',
+    label: 'Session',
+    icon: MessageSquare,
+    shortcut: 'Cmd+N',
+    testId: 'sidebar-session',
+    panelTestId: 'session-center',
+    group: 'primary',
+  },
   {
     id: 'explorer',
     label: 'Explorer',
@@ -141,6 +153,30 @@ export const VIEWS: ViewDefinition[] = [
     shortcut: 'Cmd+,',
     testId: 'sidebar-settings',
     panelTestId: 'settings-panel',
+    group: 'secondary',
+  },
+  {
+    id: 'security',
+    label: 'Security',
+    icon: Shield,
+    testId: 'sidebar-security',
+    panelTestId: 'security-panel',
+    group: 'secondary',
+  },
+  {
+    id: 'review',
+    label: 'Review',
+    icon: ScanSearch,
+    testId: 'sidebar-review',
+    panelTestId: 'review-panel',
+    group: 'secondary',
+  },
+  {
+    id: 'knowledge',
+    label: 'Knowledge',
+    icon: BookOpen,
+    testId: 'sidebar-knowledge',
+    panelTestId: 'knowledge-panel',
     group: 'secondary',
   },
 ];
