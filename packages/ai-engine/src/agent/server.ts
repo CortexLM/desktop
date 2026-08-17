@@ -2,6 +2,7 @@ import { CheckpointStore } from './checkpoints';
 import { composeSystemPrompt } from './system-prompt';
 import { runAgentTurn } from './loop';
 import { InMemoryPermissionGate } from './permissions';
+import { resolveAutonomy } from './autonomy';
 import { CODING_TOOLS, toolsForMode } from './tools';
 import type {
   AgentEvent,
@@ -58,6 +59,8 @@ export class AgentServer {
     title?: string;
     mode?: AgentMode;
     agentName?: string;
+    autonomy?: AgentSessionRecord['autonomy'];
+    runtime?: AgentSessionRecord['runtime'];
   }): AgentSessionRecord {
     const session: AgentSessionRecord = {
       id: input.id ?? `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`,
@@ -67,6 +70,8 @@ export class AgentServer {
       model: input.model,
       workspacePath: input.workspacePath,
       mode: input.mode ?? 'agent',
+      autonomy: input.autonomy,
+      runtime: input.runtime ?? 'interactive',
       agentName: input.agentName,
       messages: [],
       todos: [],
@@ -201,7 +206,8 @@ export class AgentServer {
     session.updatedAt = Date.now();
     void this.persist?.saveMessage?.(session.id, 'user', userText);
 
-    const tools = toolsForMode(session.mode, [...CODING_TOOLS, ...(context.extraTools ?? [])]);
+    const autonomy = resolveAutonomy(session.runtime, session.autonomy);
+    const tools = toolsForMode(session.mode, [...CODING_TOOLS, ...(context.extraTools ?? [])], autonomy);
     const snapshots: FileSnapshot[] = [];
     this.checkpoints.create(session.messages, 'before turn', snapshots);
 
@@ -226,6 +232,8 @@ export class AgentServer {
       projectConventions: context.conventions,
       skills: context.skills,
       tools,
+      autonomy,
+      runtime: session.runtime,
       droid: session.agentName
         ? { name: session.agentName, description: '', systemPrompt: `You are the ${session.agentName} agent.` }
         : undefined,
@@ -242,7 +250,10 @@ export class AgentServer {
         questions,
         systemPrompt,
         mode: session.mode,
+        autonomy,
+        runtime: session.runtime,
         agentName: session.agentName,
+        delegationDepth: session.parentId ? 1 : 0,
         onMessages: (transcript) => {
           session.messages = transcript.filter(
             (message, index) => !(index === 0 && message.role === 'system')

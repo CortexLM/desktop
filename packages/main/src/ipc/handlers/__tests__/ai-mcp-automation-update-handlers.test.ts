@@ -271,7 +271,7 @@ describe('ai handlers', () => {
       const prompt = String(
         (aiServiceMock.addSystemMessage.mock.calls[0] as unknown as [string, string])[1]
       );
-      expect(prompt).toContain('Cortex Code');
+      expect(prompt).toContain('You are Cortex, an AI software engineering agent.');
     });
 
     it('accepts an optional workspaceId', async () => {

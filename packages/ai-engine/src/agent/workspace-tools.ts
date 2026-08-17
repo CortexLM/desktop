@@ -2,7 +2,18 @@ import { execFile } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { promisify } from 'node:util';
-import type { DroidDefinition, TodoItem, ToolCall, ToolExecutor, ToolResult } from './types';
+import { autonomyAllowsExecute, isForbiddenShellWrite } from './autonomy';
+import { builtinSubagent, toDroid } from './builtin-subagents';
+import { canonicalToolName } from './tool-names';
+import type {
+  AutonomyLevel,
+  DroidDefinition,
+  SkillDefinition,
+  TodoItem,
+  ToolCall,
+  ToolExecutor,
+  ToolResult,
+} from './types';
 
 const execFileAsync = promisify(execFile);
 
@@ -14,6 +25,9 @@ export interface WorkspaceToolHostOptions {
   onBeforeWrite?: (relativePath: string, previous: string) => void;
   onTodos?: (todos: TodoItem[], merge: boolean) => TodoItem[];
   fetchImpl?: typeof fetch;
+  skills?: SkillDefinition[];
+  autonomy?: AutonomyLevel;
+  delegationDepth?: number;
 }
 
 export class WorkspaceToolExecutor implements ToolExecutor {
@@ -21,31 +35,40 @@ export class WorkspaceToolExecutor implements ToolExecutor {
 
   async execute(call: ToolCall): Promise<ToolResult> {
     try {
-      switch (call.name) {
-        case 'read':
+      const name = canonicalToolName(call.name);
+      switch (name) {
+        case 'Read':
           return await this.read(call.arguments);
-        case 'write':
+        case 'Create':
           return await this.write(call.arguments);
-        case 'edit':
+        case 'Edit':
           return await this.edit(call.arguments);
-        case 'apply_patch':
+        case 'ApplyPatch':
           return await this.applyPatch(call.arguments);
-        case 'todowrite':
+        case 'TodoWrite':
           return this.todoWrite(call.arguments);
-        case 'question':
+        case 'AskUser':
           return { ok: true, output: String(call.arguments.prompt ?? '') };
-        case 'webfetch':
+        case 'FetchUrl':
           return await this.webfetch(call.arguments);
-        case 'grep':
+        case 'WebSearch':
+          return await this.webSearch(call.arguments);
+        case 'Grep':
           return await this.grep(call.arguments);
-        case 'glob':
+        case 'Glob':
           return await this.glob(call.arguments);
-        case 'bash':
+        case 'LS':
+          return await this.ls(call.arguments);
+        case 'Execute':
           return await this.bash(call.arguments);
-        case 'git':
+        case 'Git':
           return await this.git(call.arguments);
-        case 'task':
+        case 'Task':
           return await this.task(call.arguments);
+        case 'Skill':
+          return this.skill(call.arguments);
+        case 'ExitSpecMode':
+          return this.exitSpecMode(call.arguments);
         default:
           return { ok: false, output: `Unknown tool: ${call.name}` };
       }
@@ -59,8 +82,9 @@ export class WorkspaceToolExecutor implements ToolExecutor {
 
   private resolve(rel: string): string {
     const root = path.resolve(this.options.workspaceRoot);
-    const target = path.resolve(root, rel);
-    if (!target.startsWith(root)) {
+    const raw = String(rel ?? '');
+    const target = path.isAbsolute(raw) ? path.resolve(raw) : path.resolve(root, raw);
+    if (target !== root && !target.startsWith(root + path.sep)) {
       throw new Error('Path escapes the workspace');
     }
     return target;
@@ -148,8 +172,30 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     return { ok: true, output: files.slice(0, 500).join('\n') || 'No files' };
   }
 
+  private async ls(args: Record<string, unknown>): Promise<ToolResult> {
+    const dir = this.resolve(String(args.path ?? this.options.workspaceRoot));
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const lines = entries
+      .filter((entry) => entry.name !== 'node_modules' && entry.name !== '.git')
+      .map((entry) => (entry.isDirectory() ? `${entry.name}/` : entry.name));
+    return { ok: true, output: lines.join('\n') || '(empty)' };
+  }
+
   private async bash(args: Record<string, unknown>): Promise<ToolResult> {
     const command = String(args.command ?? '');
+    if (isForbiddenShellWrite(command)) {
+      return {
+        ok: false,
+        output: 'Execute cannot write files. Use Create, Edit, or ApplyPatch.',
+      };
+    }
+    const autonomy = this.options.autonomy ?? 'medium';
+    if (!autonomyAllowsExecute(autonomy, command)) {
+      return {
+        ok: false,
+        output: `Execute blocked by autonomy=${autonomy} or the never-run blocklist.`,
+      };
+    }
     const cwd = typeof args.cwd === 'string' ? this.resolve(args.cwd) : this.options.workspaceRoot;
     if (this.options.runBash) {
       const result = await this.options.runBash(command, cwd);
@@ -168,17 +214,50 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     const extra = typeof args.args === 'string' ? args.args : '';
     const allowed = new Set(['status', 'diff', 'log', 'branch']);
     if (!allowed.has(sub)) {
-      return { ok: false, output: `git ${sub} is not a read-only helper; use bash after permission` };
+      return { ok: false, output: `git ${sub} is not a read-only helper; use Execute after permission` };
     }
     return this.bash({ command: `git ${sub} ${extra}`.trim() });
   }
 
+  private skill(args: Record<string, unknown>): ToolResult {
+    const name = String(args.name ?? '').replace(/^\//, '');
+    const skill = this.options.skills?.find((item) => item.name === name);
+    if (!skill) {
+      return { ok: false, output: `Unknown skill "${name}"` };
+    }
+    return { ok: true, output: `# /${skill.name}\n${skill.description}\n\n${skill.body}` };
+  }
+
+  private exitSpecMode(args: Record<string, unknown>): ToolResult {
+    if (hasUnresolvedOptions(args)) {
+      return {
+        ok: false,
+        output: 'Do not ExitSpecMode with unresolved Option A/B. Use AskUser first.',
+      };
+    }
+    return {
+      ok: true,
+      output: JSON.stringify({
+        title: String(args.title ?? 'Plan'),
+        rationale: String(args.rationale ?? ''),
+        steps: args.steps,
+      }),
+    };
+  }
+
   private async task(args: Record<string, unknown>): Promise<ToolResult> {
-    const name = String(args.droid ?? '');
+    if ((this.options.delegationDepth ?? 0) > 0) {
+      return { ok: false, output: 'No nested Task. Complete the handoff on this thread.' };
+    }
     const prompt = String(args.prompt ?? '');
-    const droid = this.options.droids?.find((item) => item.name === name);
+    const subagentName = String(args.subagent ?? args.droid ?? '');
+    const builtin = builtinSubagent(subagentName);
+    const droid =
+      builtin != null
+        ? toDroid(builtin)
+        : this.options.droids?.find((item) => item.name === subagentName);
     if (!droid) {
-      return { ok: false, output: `Unknown droid "${name}"` };
+      return { ok: false, output: `Unknown droid or subagent "${subagentName}"` };
     }
     if (!this.options.runDroid) {
       return {
@@ -197,7 +276,7 @@ export class WorkspaceToolExecutor implements ToolExecutor {
       const raw = typeof args.todos === 'string' ? args.todos : JSON.stringify(args.todos ?? []);
       parsed = JSON.parse(raw) as TodoItem[];
     } catch {
-      return { ok: false, output: 'todowrite expects JSON todos' };
+      return { ok: false, output: 'TodoWrite expects JSON todos' };
     }
     const next = this.options.onTodos?.(parsed, merge) ?? parsed;
     return { ok: true, output: JSON.stringify(next) };
@@ -218,6 +297,25 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     const response = await fetchFn(parsed, { redirect: 'follow' });
     const text = await response.text();
     return { ok: response.ok, output: text.slice(0, 80_000) };
+  }
+
+  private async webSearch(args: Record<string, unknown>): Promise<ToolResult> {
+    const query = String(args.query ?? '').trim();
+    if (!query) return { ok: false, output: 'WebSearch requires query' };
+    const fetchFn = this.options.fetchImpl ?? fetch;
+    const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+    const response = await fetchFn(url, { redirect: 'follow' });
+    const html = await response.text();
+    const hits: string[] = [];
+    const link = /uddg=([^&"]+)[^>]*>([^<]+)/g;
+    let match: RegExpExecArray | null;
+    while ((match = link.exec(html)) !== null && hits.length < 8) {
+      hits.push(`- ${decodeURIComponent(match[2] ?? '')}: ${decodeURIComponent(match[1] ?? '')}`);
+    }
+    return {
+      ok: response.ok,
+      output: hits.join('\n') || html.replace(/<[^>]+>/g, ' ').slice(0, 4_000),
+    };
   }
 
   private async applyPatch(args: Record<string, unknown>): Promise<ToolResult> {
@@ -319,6 +417,23 @@ async function walk(dir: string, visit: (file: string) => Promise<void>): Promis
 
 function rel(root: string, file: string): string {
   return path.relative(root, file).split(path.sep).join('/');
+}
+
+export function hasUnresolvedOptions(args: Record<string, unknown>): boolean {
+  if (args.unresolved_choices === true) return true;
+  const text = `${args.title ?? ''} ${args.rationale ?? ''} ${stringify(args.steps)}`;
+  const hasPair = /\bOption A\b/i.test(text) && /\bOption B\b/i.test(text);
+  const resolved = /\b(chose|choose|chosen|selected|picking|picked)\b/i.test(text);
+  return hasPair && !resolved;
+}
+
+function stringify(value: unknown): string {
+  if (typeof value === 'string') return value;
+  try {
+    return JSON.stringify(value ?? '');
+  } catch {
+    return '';
+  }
 }
 
 function matchGlob(file: string, pattern: string): boolean {
