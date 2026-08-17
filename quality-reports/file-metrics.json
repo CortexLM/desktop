@@ -1,0 +1,1059 @@
+[
+  {
+    "path": "packages/main/src/database/adapter.ts",
+    "lines": 127,
+    "functions": 10,
+    "complexity": 11,
+    "comments": 13
+  },
+  {
+    "path": "packages/main/src/database/db.ts",
+    "lines": 9,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/main/src/database/errors.ts",
+    "lines": 183,
+    "functions": 14,
+    "complexity": 23,
+    "comments": 22
+  },
+  {
+    "path": "packages/main/src/database/example.ts",
+    "lines": 181,
+    "functions": 3,
+    "complexity": 2,
+    "comments": 14
+  },
+  {
+    "path": "packages/main/src/database/index.ts",
+    "lines": 513,
+    "functions": 6,
+    "complexity": 45,
+    "comments": 34
+  },
+  {
+    "path": "packages/main/src/database/migration-manager.ts",
+    "lines": 159,
+    "functions": 10,
+    "complexity": 17,
+    "comments": 18
+  },
+  {
+    "path": "packages/main/src/database/migrations/001_initial_schema.ts",
+    "lines": 134,
+    "functions": 2,
+    "complexity": 3,
+    "comments": 10
+  },
+  {
+    "path": "packages/main/src/database/migrations/002_add_tasks_table.ts",
+    "lines": 33,
+    "functions": 2,
+    "complexity": 2,
+    "comments": 3
+  },
+  {
+    "path": "packages/main/src/database/migrations/003_add_mcp_tables.ts",
+    "lines": 44,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/main/src/database/test-db.ts",
+    "lines": 235,
+    "functions": 2,
+    "complexity": 8,
+    "comments": 23
+  },
+  {
+    "path": "packages/main/src/database/types.ts",
+    "lines": 189,
+    "functions": 0,
+    "complexity": 3,
+    "comments": 4
+  },
+  {
+    "path": "packages/main/src/debug.ts",
+    "lines": 4,
+    "functions": 0,
+    "complexity": 2,
+    "comments": 1
+  },
+  {
+    "path": "packages/main/src/index.ts",
+    "lines": 122,
+    "functions": 13,
+    "complexity": 29,
+    "comments": 18
+  },
+  {
+    "path": "packages/main/src/ipc/handlers/ai-stream-handler.ts",
+    "lines": 118,
+    "functions": 8,
+    "complexity": 12,
+    "comments": 15
+  },
+  {
+    "path": "packages/main/src/ipc/handlers/terminal-handlers.ts",
+    "lines": 146,
+    "functions": 14,
+    "complexity": 6,
+    "comments": 13
+  },
+  {
+    "path": "packages/main/src/ipc/handlers.ts",
+    "lines": 744,
+    "functions": 87,
+    "complexity": 44,
+    "comments": 79
+  },
+  {
+    "path": "packages/main/src/performance/database-optimizer.ts",
+    "lines": 174,
+    "functions": 5,
+    "complexity": 17,
+    "comments": 36
+  },
+  {
+    "path": "packages/main/src/performance/index.ts",
+    "lines": 87,
+    "functions": 3,
+    "complexity": 25,
+    "comments": 13
+  },
+  {
+    "path": "packages/main/src/performance/ipc-optimizer.ts",
+    "lines": 177,
+    "functions": 3,
+    "complexity": 17,
+    "comments": 32
+  },
+  {
+    "path": "packages/main/src/performance/memory-manager.ts",
+    "lines": 178,
+    "functions": 9,
+    "complexity": 18,
+    "comments": 38
+  },
+  {
+    "path": "packages/main/src/performance/profiler.ts",
+    "lines": 256,
+    "functions": 16,
+    "complexity": 47,
+    "comments": 32
+  },
+  {
+    "path": "packages/main/src/performance/v8-cache.ts",
+    "lines": 169,
+    "functions": 3,
+    "complexity": 20,
+    "comments": 24
+  },
+  {
+    "path": "packages/main/src/security.ts",
+    "lines": 104,
+    "functions": 9,
+    "complexity": 13,
+    "comments": 20
+  },
+  {
+    "path": "packages/main/src/services/ai-service.ts",
+    "lines": 430,
+    "functions": 7,
+    "complexity": 48,
+    "comments": 59
+  },
+  {
+    "path": "packages/main/src/services/automation-service.ts",
+    "lines": 485,
+    "functions": 10,
+    "complexity": 55,
+    "comments": 73
+  },
+  {
+    "path": "packages/main/src/services/git-service.ts",
+    "lines": 267,
+    "functions": 7,
+    "complexity": 87,
+    "comments": 46
+  },
+  {
+    "path": "packages/main/src/services/mcp-service.ts",
+    "lines": 548,
+    "functions": 15,
+    "complexity": 56,
+    "comments": 85
+  },
+  {
+    "path": "packages/main/src/services/terminal-service.ts",
+    "lines": 144,
+    "functions": 4,
+    "complexity": 17,
+    "comments": 26
+  },
+  {
+    "path": "packages/main/src/test-db.ts",
+    "lines": 58,
+    "functions": 0,
+    "complexity": 4,
+    "comments": 6
+  },
+  {
+    "path": "packages/main/src/updater.ts",
+    "lines": 183,
+    "functions": 10,
+    "complexity": 20,
+    "comments": 33
+  },
+  {
+    "path": "packages/main/src/window-manager.ts",
+    "lines": 35,
+    "functions": 2,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/App.tsx",
+    "lines": 95,
+    "functions": 8,
+    "complexity": 16,
+    "comments": 17
+  },
+  {
+    "path": "packages/renderer/src/components/ErrorBoundary.tsx",
+    "lines": 155,
+    "functions": 4,
+    "complexity": 10,
+    "comments": 13
+  },
+  {
+    "path": "packages/renderer/src/components/UpdateNotification.tsx",
+    "lines": 193,
+    "functions": 19,
+    "complexity": 30,
+    "comments": 6
+  },
+  {
+    "path": "packages/renderer/src/components/accessibility/accessibility-fixes.tsx",
+    "lines": 340,
+    "functions": 13,
+    "complexity": 18,
+    "comments": 81
+  },
+  {
+    "path": "packages/renderer/src/components/ai/ModelSelector.tsx",
+    "lines": 157,
+    "functions": 12,
+    "complexity": 22,
+    "comments": 4
+  },
+  {
+    "path": "packages/renderer/src/components/ui/accordion.tsx",
+    "lines": 50,
+    "functions": 3,
+    "complexity": 5,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/avatar.tsx",
+    "lines": 43,
+    "functions": 3,
+    "complexity": 4,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/badge.tsx",
+    "lines": 35,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/button.tsx",
+    "lines": 54,
+    "functions": 1,
+    "complexity": 3,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/checkbox.tsx",
+    "lines": 26,
+    "functions": 1,
+    "complexity": 3,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/dialog.tsx",
+    "lines": 102,
+    "functions": 6,
+    "complexity": 5,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/index.ts",
+    "lines": 52,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 1
+  },
+  {
+    "path": "packages/renderer/src/components/ui/input.tsx",
+    "lines": 24,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/popover.tsx",
+    "lines": 25,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/progress.tsx",
+    "lines": 23,
+    "functions": 1,
+    "complexity": 3,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/select.tsx",
+    "lines": 144,
+    "functions": 7,
+    "complexity": 13,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/spinner.tsx",
+    "lines": 32,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/tabs.tsx",
+    "lines": 50,
+    "functions": 3,
+    "complexity": 5,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/textarea.tsx",
+    "lines": 24,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/theme-switcher.tsx",
+    "lines": 92,
+    "functions": 5,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/components/ui/tooltip.tsx",
+    "lines": 23,
+    "functions": 1,
+    "complexity": 2,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/contexts/DebugContext.tsx",
+    "lines": 75,
+    "functions": 14,
+    "complexity": 7,
+    "comments": 4
+  },
+  {
+    "path": "packages/renderer/src/global.d.ts",
+    "lines": 7,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/hooks/use-keyboard-shortcuts.ts",
+    "lines": 42,
+    "functions": 4,
+    "complexity": 13,
+    "comments": 5
+  },
+  {
+    "path": "packages/renderer/src/hooks/use-performance.ts",
+    "lines": 272,
+    "functions": 56,
+    "complexity": 14,
+    "comments": 26
+  },
+  {
+    "path": "packages/renderer/src/hooks/use-theme.ts",
+    "lines": 45,
+    "functions": 6,
+    "complexity": 5,
+    "comments": 7
+  },
+  {
+    "path": "packages/renderer/src/index.ts",
+    "lines": 8,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 4
+  },
+  {
+    "path": "packages/renderer/src/lib/api-examples.ts",
+    "lines": 98,
+    "functions": 9,
+    "complexity": 7,
+    "comments": 18
+  },
+  {
+    "path": "packages/renderer/src/lib/api.ts",
+    "lines": 605,
+    "functions": 29,
+    "complexity": 14,
+    "comments": 149
+  },
+  {
+    "path": "packages/renderer/src/lib/ipc.ts",
+    "lines": 111,
+    "functions": 19,
+    "complexity": 8,
+    "comments": 11
+  },
+  {
+    "path": "packages/renderer/src/lib/language-detect.ts",
+    "lines": 105,
+    "functions": 2,
+    "complexity": 12,
+    "comments": 20
+  },
+  {
+    "path": "packages/renderer/src/lib/utils.ts",
+    "lines": 8,
+    "functions": 1,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/main.tsx",
+    "lines": 21,
+    "functions": 0,
+    "complexity": 1,
+    "comments": 0
+  },
+  {
+    "path": "packages/renderer/src/store/editor-store.ts",
+    "lines": 160,
+    "functions": 50,
+    "complexity": 9,
+    "comments": 7
+  },
+  {
+    "path": "packages/renderer/src/types/global.d.ts",
+    "lines": 14,
+    "functions": 2,
+    "complexity": 2,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/utils/error-handlers.ts",
+    "lines": 80,
+    "functions": 4,
+    "complexity": 4,
+    "comments": 10
+  },
+  {
+    "path": "packages/renderer/src/views/account/BillingView.tsx",
+    "lines": 518,
+    "functions": 21,
+    "complexity": 30,
+    "comments": 22
+  },
+  {
+    "path": "packages/renderer/src/views/account/PlansView.tsx",
+    "lines": 481,
+    "functions": 10,
+    "complexity": 17,
+    "comments": 27
+  },
+  {
+    "path": "packages/renderer/src/views/account/ProfileView.tsx",
+    "lines": 304,
+    "functions": 12,
+    "complexity": 11,
+    "comments": 26
+  },
+  {
+    "path": "packages/renderer/src/views/account/TeamView.tsx",
+    "lines": 403,
+    "functions": 15,
+    "complexity": 35,
+    "comments": 18
+  },
+  {
+    "path": "packages/renderer/src/views/account/index.ts",
+    "lines": 8,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/agents/AgentDetail.tsx",
+    "lines": 359,
+    "functions": 10,
+    "complexity": 44,
+    "comments": 19
+  },
+  {
+    "path": "packages/renderer/src/views/agents/ChatView.tsx",
+    "lines": 352,
+    "functions": 26,
+    "complexity": 42,
+    "comments": 29
+  },
+  {
+    "path": "packages/renderer/src/views/agents/SessionList.tsx",
+    "lines": 365,
+    "functions": 32,
+    "complexity": 60,
+    "comments": 26
+  },
+  {
+    "path": "packages/renderer/src/views/agents/UsageTracking.tsx",
+    "lines": 476,
+    "functions": 18,
+    "complexity": 37,
+    "comments": 25
+  },
+  {
+    "path": "packages/renderer/src/views/agents/background/BackgroundAgentDetail.tsx",
+    "lines": 445,
+    "functions": 19,
+    "complexity": 27,
+    "comments": 24
+  },
+  {
+    "path": "packages/renderer/src/views/agents/background/BackgroundAgentList.tsx",
+    "lines": 325,
+    "functions": 25,
+    "complexity": 26,
+    "comments": 20
+  },
+  {
+    "path": "packages/renderer/src/views/agents/background/QueueViewer.tsx",
+    "lines": 299,
+    "functions": 28,
+    "complexity": 16,
+    "comments": 14
+  },
+  {
+    "path": "packages/renderer/src/views/agents/background/ResourceMonitor.tsx",
+    "lines": 385,
+    "functions": 17,
+    "complexity": 22,
+    "comments": 24
+  },
+  {
+    "path": "packages/renderer/src/views/agents/background/index.ts",
+    "lines": 7,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/agents/index.ts",
+    "lines": 7,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/automations/ActionConfig.tsx",
+    "lines": 377,
+    "functions": 21,
+    "complexity": 42,
+    "comments": 18
+  },
+  {
+    "path": "packages/renderer/src/views/automations/AutomationEditor.tsx",
+    "lines": 163,
+    "functions": 14,
+    "complexity": 13,
+    "comments": 12
+  },
+  {
+    "path": "packages/renderer/src/views/automations/AutomationList.tsx",
+    "lines": 272,
+    "functions": 37,
+    "complexity": 41,
+    "comments": 29
+  },
+  {
+    "path": "packages/renderer/src/views/automations/LogsViewer.tsx",
+    "lines": 205,
+    "functions": 13,
+    "complexity": 32,
+    "comments": 14
+  },
+  {
+    "path": "packages/renderer/src/views/automations/TriggerConfig.tsx",
+    "lines": 214,
+    "functions": 14,
+    "complexity": 13,
+    "comments": 18
+  },
+  {
+    "path": "packages/renderer/src/views/automations/index.ts",
+    "lines": 9,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/debug/ConsolePanel.tsx",
+    "lines": 176,
+    "functions": 17,
+    "complexity": 27,
+    "comments": 10
+  },
+  {
+    "path": "packages/renderer/src/views/debug/DebugPanel.tsx",
+    "lines": 96,
+    "functions": 4,
+    "complexity": 11,
+    "comments": 6
+  },
+  {
+    "path": "packages/renderer/src/views/debug/IPCInspector.tsx",
+    "lines": 184,
+    "functions": 19,
+    "complexity": 15,
+    "comments": 12
+  },
+  {
+    "path": "packages/renderer/src/views/debug/MemoryPanel.tsx",
+    "lines": 214,
+    "functions": 13,
+    "complexity": 20,
+    "comments": 10
+  },
+  {
+    "path": "packages/renderer/src/views/debug/PerformancePanel.tsx",
+    "lines": 184,
+    "functions": 19,
+    "complexity": 22,
+    "comments": 13
+  },
+  {
+    "path": "packages/renderer/src/views/debug/SettingsPanel.tsx",
+    "lines": 206,
+    "functions": 15,
+    "complexity": 14,
+    "comments": 12
+  },
+  {
+    "path": "packages/renderer/src/views/editor/AutocompleteWidget.tsx",
+    "lines": 68,
+    "functions": 5,
+    "complexity": 11,
+    "comments": 9
+  },
+  {
+    "path": "packages/renderer/src/views/editor/EditorView.tsx",
+    "lines": 218,
+    "functions": 14,
+    "complexity": 28,
+    "comments": 22
+  },
+  {
+    "path": "packages/renderer/src/views/editor/FileExplorer.tsx",
+    "lines": 187,
+    "functions": 12,
+    "complexity": 32,
+    "comments": 22
+  },
+  {
+    "path": "packages/renderer/src/views/editor/TabManager.tsx",
+    "lines": 81,
+    "functions": 11,
+    "complexity": 7,
+    "comments": 10
+  },
+  {
+    "path": "packages/renderer/src/views/editor/index.ts",
+    "lines": 7,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/MCPConfig.tsx",
+    "lines": 201,
+    "functions": 19,
+    "complexity": 35,
+    "comments": 11
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/MCPExtensionList.tsx",
+    "lines": 201,
+    "functions": 26,
+    "complexity": 42,
+    "comments": 3
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/MCPExtensions.tsx",
+    "lines": 89,
+    "functions": 8,
+    "complexity": 15,
+    "comments": 6
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/MCPMarketplace.tsx",
+    "lines": 216,
+    "functions": 9,
+    "complexity": 25,
+    "comments": 15
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/MCPToolsView.tsx",
+    "lines": 221,
+    "functions": 18,
+    "complexity": 44,
+    "comments": 18
+  },
+  {
+    "path": "packages/renderer/src/views/extensions/index.ts",
+    "lines": 8,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/BranchSelector.tsx",
+    "lines": 180,
+    "functions": 14,
+    "complexity": 13,
+    "comments": 12
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/BrowserView.tsx",
+    "lines": 310,
+    "functions": 20,
+    "complexity": 26,
+    "comments": 33
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/CommitDialog.tsx",
+    "lines": 142,
+    "functions": 9,
+    "complexity": 16,
+    "comments": 14
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/DiffViewer.tsx",
+    "lines": 121,
+    "functions": 9,
+    "complexity": 45,
+    "comments": 9
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/DocumentationViewer.tsx",
+    "lines": 360,
+    "functions": 27,
+    "complexity": 17,
+    "comments": 33
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/GitPanel.tsx",
+    "lines": 307,
+    "functions": 30,
+    "complexity": 50,
+    "comments": 30
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/NotesView.tsx",
+    "lines": 371,
+    "functions": 39,
+    "complexity": 31,
+    "comments": 32
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/PlansView.tsx",
+    "lines": 463,
+    "functions": 58,
+    "complexity": 26,
+    "comments": 38
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/TerminalGrid.tsx",
+    "lines": 249,
+    "functions": 25,
+    "complexity": 49,
+    "comments": 22
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/TerminalTab.tsx",
+    "lines": 206,
+    "functions": 19,
+    "complexity": 19,
+    "comments": 20
+  },
+  {
+    "path": "packages/renderer/src/views/workspace/index.ts",
+    "lines": 15,
+    "functions": 0,
+    "complexity": 3,
+    "comments": 2
+  },
+  {
+    "path": "packages/ai-engine/src/compaction/index.ts",
+    "lines": 5,
+    "functions": 0,
+    "complexity": 5,
+    "comments": 2
+  },
+  {
+    "path": "packages/ai-engine/src/compaction/simple-minifier.ts",
+    "lines": 72,
+    "functions": 5,
+    "complexity": 19,
+    "comments": 18
+  },
+  {
+    "path": "packages/ai-engine/src/context/chunking/semantic-chunker.ts",
+    "lines": 459,
+    "functions": 25,
+    "complexity": 87,
+    "comments": 18
+  },
+  {
+    "path": "packages/ai-engine/src/context/index.ts",
+    "lines": 4,
+    "functions": 0,
+    "complexity": 2,
+    "comments": 1
+  },
+  {
+    "path": "packages/ai-engine/src/context/simple-minifier.ts",
+    "lines": 21,
+    "functions": 2,
+    "complexity": 6,
+    "comments": 6
+  },
+  {
+    "path": "packages/ai-engine/src/context/types.ts",
+    "lines": 25,
+    "functions": 1,
+    "complexity": 1,
+    "comments": 1
+  },
+  {
+    "path": "packages/ai-engine/src/examples/compaction-demo.ts",
+    "lines": 56,
+    "functions": 2,
+    "complexity": 18,
+    "comments": 12
+  },
+  {
+    "path": "packages/ai-engine/src/examples/simple-agent-basic.ts",
+    "lines": 50,
+    "functions": 1,
+    "complexity": 3,
+    "comments": 9
+  },
+  {
+    "path": "packages/ai-engine/src/examples/simple-agent-concurrent.ts",
+    "lines": 80,
+    "functions": 7,
+    "complexity": 8,
+    "comments": 10
+  },
+  {
+    "path": "packages/ai-engine/src/examples/simple-agent-integration.ts",
+    "lines": 124,
+    "functions": 7,
+    "complexity": 6,
+    "comments": 14
+  },
+  {
+    "path": "packages/ai-engine/src/index.ts",
+    "lines": 16,
+    "functions": 0,
+    "complexity": 1,
+    "comments": 5
+  },
+  {
+    "path": "packages/ai-engine/src/model-presets.ts",
+    "lines": 191,
+    "functions": 6,
+    "complexity": 5,
+    "comments": 14
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/composer.ts",
+    "lines": 427,
+    "functions": 12,
+    "complexity": 48,
+    "comments": 60
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/compression.ts",
+    "lines": 326,
+    "functions": 28,
+    "complexity": 77,
+    "comments": 60
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/examples.ts",
+    "lines": 317,
+    "functions": 38,
+    "complexity": 33,
+    "comments": 19
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/index.ts",
+    "lines": 40,
+    "functions": 1,
+    "complexity": 3,
+    "comments": 4
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/system-prompts.ts",
+    "lines": 210,
+    "functions": 5,
+    "complexity": 54,
+    "comments": 12
+  },
+  {
+    "path": "packages/ai-engine/src/prompts/tool-prompts.ts",
+    "lines": 294,
+    "functions": 9,
+    "complexity": 39,
+    "comments": 41
+  },
+  {
+    "path": "packages/ai-engine/src/providers/anthropic-provider.ts",
+    "lines": 127,
+    "functions": 7,
+    "complexity": 26,
+    "comments": 12
+  },
+  {
+    "path": "packages/ai-engine/src/providers/base.ts",
+    "lines": 72,
+    "functions": 0,
+    "complexity": 3,
+    "comments": 1
+  },
+  {
+    "path": "packages/ai-engine/src/providers/grok-provider.ts",
+    "lines": 179,
+    "functions": 4,
+    "complexity": 40,
+    "comments": 4
+  },
+  {
+    "path": "packages/ai-engine/src/providers/ollama-provider.ts",
+    "lines": 133,
+    "functions": 2,
+    "complexity": 30,
+    "comments": 2
+  },
+  {
+    "path": "packages/ai-engine/src/providers/openai-provider.ts",
+    "lines": 98,
+    "functions": 0,
+    "complexity": 26,
+    "comments": 10
+  },
+  {
+    "path": "packages/ai-engine/src/providers/openrouter-provider.ts",
+    "lines": 156,
+    "functions": 2,
+    "complexity": 33,
+    "comments": 4
+  },
+  {
+    "path": "packages/ai-engine/src/registry.ts",
+    "lines": 227,
+    "functions": 3,
+    "complexity": 34,
+    "comments": 44
+  },
+  {
+    "path": "packages/ai-engine/src/simple-agent-manager.ts",
+    "lines": 362,
+    "functions": 2,
+    "complexity": 32,
+    "comments": 62
+  },
+  {
+    "path": "packages/ai-engine/src/tokens/index.ts",
+    "lines": 13,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  },
+  {
+    "path": "packages/ai-engine/src/tokens/token-counter.ts",
+    "lines": 190,
+    "functions": 1,
+    "complexity": 38,
+    "comments": 49
+  },
+  {
+    "path": "packages/shared/src/constants/index.ts",
+    "lines": 48,
+    "functions": 0,
+    "complexity": 2,
+    "comments": 10
+  },
+  {
+    "path": "packages/shared/src/index.ts",
+    "lines": 74,
+    "functions": 0,
+    "complexity": 1,
+    "comments": 4
+  },
+  {
+    "path": "packages/shared/src/logger.ts",
+    "lines": 103,
+    "functions": 6,
+    "complexity": 18,
+    "comments": 16
+  },
+  {
+    "path": "packages/shared/src/schemas/workspace.ts",
+    "lines": 58,
+    "functions": 0,
+    "complexity": 1,
+    "comments": 5
+  },
+  {
+    "path": "packages/shared/src/types/debug.ts",
+    "lines": 68,
+    "functions": 0,
+    "complexity": 2,
+    "comments": 2
+  },
+  {
+    "path": "packages/shared/src/types/index.ts",
+    "lines": 65,
+    "functions": 0,
+    "complexity": 1,
+    "comments": 2
+  },
+  {
+    "path": "packages/shared/src/types.ts",
+    "lines": 5,
+    "functions": 0,
+    "complexity": 0,
+    "comments": 2
+  }
+]

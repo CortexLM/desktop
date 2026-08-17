@@ -1,0 +1,1473 @@
+{
+  "duplicates": [
+    {
+      "firstFile": {
+        "end": 70,
+        "endLoc": {
+          "column": 41,
+          "line": 70,
+          "position": 1831
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 61,
+        "startLoc": {
+          "column": 25,
+          "line": 61,
+          "position": 1554
+        }
+      },
+      "format": "typescript",
+      "fragment": "  private chunkTypeScript(\n    content: string,\n    filePath: string\n  ): ContextChunk[] {\n    const chunks: ContextChunk[] = [];\n    const lines = content.split('\\n');\n    let currentChunk: string[] = [];\n    let currentStartLine = 0;\n    let inBlock = false;\n    let blockType: 'function' | 'class' | 'interface' | 'type' | null = null;",
+      "lines": 10,
+      "secondFile": {
+        "end": 181,
+        "endLoc": {
+          "column": 41,
+          "line": 181,
+          "position": 5459
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 175,
+        "startLoc": {
+          "column": 21,
+          "line": 175,
+          "position": 5194
+        }
+      },
+      "tokens": 61
+    },
+    {
+      "firstFile": {
+        "end": 70,
+        "endLoc": {
+          "column": 7,
+          "line": 70,
+          "position": 1797
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 61,
+        "startLoc": {
+          "column": 25,
+          "line": 61,
+          "position": 1554
+        }
+      },
+      "format": "typescript",
+      "fragment": "  private chunkTypeScript(\n    content: string,\n    filePath: string\n  ): ContextChunk[] {\n    const chunks: ContextChunk[] = [];\n    const lines = content.split('\\n');\n    let currentChunk: string[] = [];\n    let currentStartLine = 0;\n    let inBlock = false;\n    let blockType: 'function' | 'class' | 'interface' | 'type' | null = null;",
+      "lines": 10,
+      "secondFile": {
+        "end": 250,
+        "endLoc": {
+          "column": 7,
+          "line": 250,
+          "position": 7713
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 244,
+        "startLoc": {
+          "column": 19,
+          "line": 244,
+          "position": 7482
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 80,
+        "endLoc": {
+          "column": 13,
+          "line": 80,
+          "position": 2117
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 70,
+        "startLoc": {
+          "column": 76,
+          "line": 70,
+          "position": 1866
+        }
+      },
+      "format": "typescript",
+      "fragment": "    let blockType: 'function' | 'class' | 'interface' | 'type' | null = null;\n    let blockName: string | null = null;\n    let braceCount = 0;\n\n    for (let i = 0; i < lines.length; i++) {\n      const line = lines[i];\n      const trimmed = line.trim();\n\n      // Détecte le début d'un bloc\n      if (!inBlock) {\n        const functionMatch = trimmed.match(",
+      "lines": 11,
+      "secondFile": {
+        "end": 258,
+        "endLoc": {
+          "column": 13,
+          "line": 258,
+          "position": 7917
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 249,
+        "startLoc": {
+          "column": 23,
+          "line": 249,
+          "position": 7704
+        }
+      },
+      "tokens": 56
+    },
+    {
+      "firstFile": {
+        "end": 80,
+        "endLoc": {
+          "column": 44,
+          "line": 80,
+          "position": 2148
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 72,
+        "startLoc": {
+          "column": 19,
+          "line": 72,
+          "position": 1928
+        }
+      },
+      "format": "typescript",
+      "fragment": "    let braceCount = 0;\n\n    for (let i = 0; i < lines.length; i++) {\n      const line = lines[i];\n      const trimmed = line.trim();\n\n      // Détecte le début d'un bloc\n      if (!inBlock) {\n        const functionMatch = trimmed.match(",
+      "lines": 9,
+      "secondFile": {
+        "end": 191,
+        "endLoc": {
+          "column": 44,
+          "line": 191,
+          "position": 5754
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 183,
+        "startLoc": {
+          "column": 20,
+          "line": 183,
+          "position": 5534
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 97,
+        "endLoc": {
+          "column": 25,
+          "line": 97,
+          "position": 2791
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 87,
+        "startLoc": {
+          "column": 68,
+          "line": 87,
+          "position": 2458
+        }
+      },
+      "format": "typescript",
+      "fragment": "        const typeMatch = trimmed.match(/(?:export\\s+)?type\\s+(\\w+)/);\n\n        if (functionMatch) {\n          if (currentChunk.length > 0) {\n            chunks.push(this.createChunk(currentChunk, currentStartLine, filePath));\n            currentChunk = [];\n          }\n          blockType = 'function';\n          blockName = functionMatch[1];\n          currentStartLine = i;\n          inBlock = true;",
+      "lines": 11,
+      "secondFile": {
+        "end": 202,
+        "endLoc": {
+          "column": 25,
+          "line": 202,
+          "position": 6161
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 192,
+        "startLoc": {
+          "column": 57,
+          "line": 192,
+          "position": 5828
+        }
+      },
+      "tokens": 57
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 25,
+          "line": 106,
+          "position": 3119
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 97,
+        "startLoc": {
+          "column": 24,
+          "line": 97,
+          "position": 2790
+        }
+      },
+      "format": "typescript",
+      "fragment": "          inBlock = true;\n        } else if (classMatch) {\n          if (currentChunk.length > 0) {\n            chunks.push(this.createChunk(currentChunk, currentStartLine, filePath));\n            currentChunk = [];\n          }\n          blockType = 'class';\n          blockName = classMatch[1];\n          currentStartLine = i;\n          inBlock = true;",
+      "lines": 10,
+      "secondFile": {
+        "end": 212,
+        "endLoc": {
+          "column": 25,
+          "line": 212,
+          "position": 6532
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 203,
+        "startLoc": {
+          "column": 41,
+          "line": 203,
+          "position": 6203
+        }
+      },
+      "tokens": 58
+    },
+    {
+      "firstFile": {
+        "end": 141,
+        "endLoc": {
+          "column": 27,
+          "line": 141,
+          "position": 4252
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 122,
+        "startLoc": {
+          "column": 31,
+          "line": 122,
+          "position": 3722
+        }
+      },
+      "format": "typescript",
+      "fragment": "          blockName = typeMatch[1];\n          currentStartLine = i;\n          inBlock = true;\n        }\n      }\n\n      currentChunk.push(line);\n\n      // Compte les accolades pour détecter la fin du bloc\n      if (inBlock) {\n        for (const char of line) {\n          if (char === '{') braceCount++;\n          if (char === '}') braceCount--;\n        }\n\n        if (braceCount === 0 && trimmed.includes('}')) {\n          // Fin du bloc\n          chunks.push(\n            this.createChunk(currentChunk, currentStartLine, filePath, {\n              functionName: blockType === 'function' ? blockName : undefined,",
+      "lines": 20,
+      "secondFile": {
+        "end": 284,
+        "endLoc": {
+          "column": 27,
+          "line": 284,
+          "position": 8835
+        },
+        "name": "ai-engine/src/context/chunking/semantic-chunker.ts",
+        "start": 267,
+        "startLoc": {
+          "column": 60,
+          "line": 267,
+          "position": 8390
+        }
+      },
+      "tokens": 84
+    },
+    {
+      "firstFile": {
+        "end": 71,
+        "endLoc": {
+          "column": 11,
+          "line": 71,
+          "position": 2247
+        },
+        "name": "ai-engine/src/providers/anthropic-provider.ts",
+        "start": 31,
+        "startLoc": {
+          "column": 87,
+          "line": 31,
+          "position": 980
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async chat(messages: Message[], options?: AnthropicChatOptions): Promise<ChatResponse> {\n    try {\n      // Separate system message\n      const systemMessage = messages.find(m => m.role === 'system');\n      const conversationMessages = messages.filter(m => m.role !== 'system');\n\n      // Build system prompt with caching\n      let system: string | Array<any> = systemMessage?.content || '';\n      \n      if (options?.useCache && this.cacheManager && systemMessage) {\n        // Use cache_control for system prompt\n        system = [\n          {\n            type: 'text',\n            text: systemMessage.content,\n            cache_control: { type: 'ephemeral' },\n          },\n        ];\n      }\n\n      const requestParams: any = {\n        model: options?.model || this.config.defaultModel || 'claude-opus-4.8',\n        max_tokens: options?.maxTokens || 4096,\n        temperature: options?.temperature,\n        top_p: options?.topP,\n        system,\n        messages: conversationMessages.map(m => ({\n          role: m.role as 'user' | 'assistant',\n          content: m.content,\n        })),\n      };\n\n      // Enable extended thinking if requested\n      if (options?.extendedThinking) {\n        requestParams.metadata = {\n          ...requestParams.metadata,\n          thinking: { type: 'enabled', budget_tokens: 10000 },\n        };\n      }\n\n      const response = await this.client.messages.create(requestParams);",
+      "lines": 41,
+      "secondFile": {
+        "end": 138,
+        "endLoc": {
+          "column": 11,
+          "line": 138,
+          "position": 4535
+        },
+        "name": "ai-engine/src/providers/anthropic-provider.ts",
+        "start": 101,
+        "startLoc": {
+          "column": 103,
+          "line": 101,
+          "position": 3395
+        }
+      },
+      "tokens": 199
+    },
+    {
+      "firstFile": {
+        "end": 25,
+        "endLoc": {
+          "column": 9,
+          "line": 25,
+          "position": 482
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 8,
+        "startLoc": {
+          "column": 23,
+          "line": 8,
+          "position": 213
+        }
+      },
+      "format": "typescript",
+      "fragment": "interface GrokResponse {\n  id: string;\n  model: string;\n  choices: Array<{\n    message: {\n      role: string;\n      content: string;\n    };\n    finish_reason: string | null;\n  }>;\n  usage: {\n    prompt_tokens: number;\n    completion_tokens: number;\n    total_tokens: number;\n  };\n}\n\ninterface GrokStreamChunk {",
+      "lines": 18,
+      "secondFile": {
+        "end": 25,
+        "endLoc": {
+          "column": 9,
+          "line": 25,
+          "position": 494
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 8,
+        "startLoc": {
+          "column": 29,
+          "line": 8,
+          "position": 225
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 65,
+        "endLoc": {
+          "column": 12,
+          "line": 65,
+          "position": 1707
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 59,
+        "startLoc": {
+          "column": 65,
+          "line": 59,
+          "position": 1433
+        }
+      },
+      "format": "typescript",
+      "fragment": "      if ((response.status >= 500 || response.status === 429) && attempt < this.maxRetries) {\n        const delay = this.retryDelay * Math.pow(2, attempt - 1); // Exponential backoff\n        await new Promise(resolve => setTimeout(resolve, delay));\n        return this.fetchWithRetry(url, options, attempt + 1);\n      }\n      \n      return response;",
+      "lines": 7,
+      "secondFile": {
+        "end": 72,
+        "endLoc": {
+          "column": 11,
+          "line": 72,
+          "position": 1993
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 67,
+        "startLoc": {
+          "column": 10,
+          "line": 67,
+          "position": 1750
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
+        "end": 90,
+        "endLoc": {
+          "column": 30,
+          "line": 90,
+          "position": 2664
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 76,
+        "startLoc": {
+          "column": 78,
+          "line": 76,
+          "position": 2090
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {\n    try {\n      const response = await this.fetchWithRetry(`${this.baseUrl}/chat/completions`, {\n        method: 'POST',\n        headers: {\n          'Authorization': `Bearer ${this.config.apiKey}`,\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify({\n          model: options?.model || this.config.defaultModel || 'claude-opus-5:stable',\n          messages: messages as GrokMessage[],\n          temperature: options?.temperature,\n          max_tokens: options?.maxTokens,\n          top_p: options?.topP,\n          stop: options?.stop,",
+      "lines": 15,
+      "secondFile": {
+        "end": 133,
+        "endLoc": {
+          "column": 30,
+          "line": 133,
+          "position": 4126
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 119,
+        "startLoc": {
+          "column": 94,
+          "line": 119,
+          "position": 3552
+        }
+      },
+      "tokens": 95
+    },
+    {
+      "firstFile": {
+        "end": 96,
+        "endLoc": {
+          "column": 16,
+          "line": 96,
+          "position": 2795
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 86,
+        "startLoc": {
+          "column": 43,
+          "line": 86,
+          "position": 2511
+        }
+      },
+      "format": "typescript",
+      "fragment": "          messages: messages as GrokMessage[],\n          temperature: options?.temperature,\n          max_tokens: options?.maxTokens,\n          top_p: options?.topP,\n          stop: options?.stop,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ \n          error: { message: response.statusText } ",
+      "lines": 11,
+      "secondFile": {
+        "end": 71,
+        "endLoc": {
+          "column": 70,
+          "line": 71,
+          "position": 1903
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 62,
+        "startLoc": {
+          "column": 49,
+          "line": 62,
+          "position": 1630
+        }
+      },
+      "tokens": 62
+    },
+    {
+      "firstFile": {
+        "end": 99,
+        "endLoc": {
+          "column": 7,
+          "line": 99,
+          "position": 2932
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 90,
+        "startLoc": {
+          "column": 29,
+          "line": 90,
+          "position": 2663
+        }
+      },
+      "format": "typescript",
+      "fragment": "          stop: options?.stop,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ \n          error: { message: response.statusText } \n        }));\n        throw new Error(error.error?.message || error.error || 'Request failed');\n      }",
+      "lines": 10,
+      "secondFile": {
+        "end": 143,
+        "endLoc": {
+          "column": 7,
+          "line": 143,
+          "position": 4418
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 134,
+        "startLoc": {
+          "column": 22,
+          "line": 134,
+          "position": 4149
+        }
+      },
+      "tokens": 65
+    },
+    {
+      "firstFile": {
+        "end": 121,
+        "endLoc": {
+          "column": 28,
+          "line": 121,
+          "position": 3594
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 101,
+        "startLoc": {
+          "column": 70,
+          "line": 101,
+          "position": 3004
+        }
+      },
+      "format": "typescript",
+      "fragment": "      const data: GrokResponse = await response.json() as GrokResponse;\n      const choice = data.choices[0];\n\n      return {\n        content: choice.message.content || '',\n        model: data.model,\n        usage: {\n          inputTokens: data.usage.prompt_tokens,\n          outputTokens: data.usage.completion_tokens,\n          totalTokens: data.usage.total_tokens,\n        },\n        finishReason: choice.finish_reason || undefined,\n      };\n    } catch (error) {\n      this.handleError(error, 'chat failed');\n    }\n  }\n\n  async *stream(messages: Message[], options?: ChatOptions): AsyncIterableIterator<StreamChunk> {\n    try {\n      const response = await this.fetchWithRetry(`${this.baseUrl}/chat/completions`, {",
+      "lines": 21,
+      "secondFile": {
+        "end": 95,
+        "endLoc": {
+          "column": 28,
+          "line": 95,
+          "position": 2692
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 75,
+        "startLoc": {
+          "column": 82,
+          "line": 75,
+          "position": 2102
+        }
+      },
+      "tokens": 112
+    },
+    {
+      "firstFile": {
+        "end": 140,
+        "endLoc": {
+          "column": 16,
+          "line": 140,
+          "position": 4281
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 129,
+        "startLoc": {
+          "column": 43,
+          "line": 129,
+          "position": 3973
+        }
+      },
+      "format": "typescript",
+      "fragment": "          messages: messages as GrokMessage[],\n          temperature: options?.temperature,\n          max_tokens: options?.maxTokens,\n          top_p: options?.topP,\n          stop: options?.stop,\n          stream: true,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ \n          error: { message: response.statusText } ",
+      "lines": 12,
+      "secondFile": {
+        "end": 115,
+        "endLoc": {
+          "column": 70,
+          "line": 115,
+          "position": 3457
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 105,
+        "startLoc": {
+          "column": 49,
+          "line": 105,
+          "position": 3160
+        }
+      },
+      "tokens": 66
+    },
+    {
+      "firstFile": {
+        "end": 170,
+        "endLoc": {
+          "column": 27,
+          "line": 170,
+          "position": 5145
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 141,
+        "startLoc": {
+          "column": 8,
+          "line": 141,
+          "position": 4324
+        }
+      },
+      "format": "typescript",
+      "fragment": "        }));\n        throw new Error(error.error?.message || error.error || 'Request failed');\n      }\n\n      if (!response.body) {\n        throw new Error('Response body is null');\n      }\n\n      const reader = response.body.getReader();\n      const decoder = new TextDecoder();\n      let buffer = '';\n\n      while (true) {\n        const { done, value } = await reader.read();\n        if (done) break;\n\n        buffer += decoder.decode(value, { stream: true });\n        const lines = buffer.split('\\n');\n        buffer = lines.pop() || '';\n\n        for (const line of lines) {\n          if (line.startsWith('data: ')) {\n            const data = line.slice(6);\n            if (data === '[DONE]') {\n              yield { content: '', done: true };\n              return;\n            }\n\n            try {\n              const parsed: GrokStreamChunk = JSON.parse(data);",
+      "lines": 30,
+      "secondFile": {
+        "end": 144,
+        "endLoc": {
+          "column": 27,
+          "line": 144,
+          "position": 4299
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 115,
+        "startLoc": {
+          "column": 91,
+          "line": 115,
+          "position": 3478
+        }
+      },
+      "tokens": 176
+    },
+    {
+      "firstFile": {
+        "end": 162,
+        "endLoc": {
+          "column": 19,
+          "line": 162,
+          "position": 4913
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 142,
+        "startLoc": {
+          "column": 48,
+          "line": 142,
+          "position": 4377
+        }
+      },
+      "format": "typescript",
+      "fragment": "        throw new Error(error.error?.message || error.error || 'Request failed');\n      }\n\n      if (!response.body) {\n        throw new Error('Response body is null');\n      }\n\n      const reader = response.body.getReader();\n      const decoder = new TextDecoder();\n      let buffer = '';\n\n      while (true) {\n        const { done, value } = await reader.read();\n        if (done) break;\n\n        buffer += decoder.decode(value, { stream: true });\n        const lines = buffer.split('\\n');\n        buffer = lines.pop() || '';\n\n        for (const line of lines) {\n          if (line.startsWith('data: ')) {",
+      "lines": 21,
+      "secondFile": {
+        "end": 123,
+        "endLoc": {
+          "column": 19,
+          "line": 123,
+          "position": 3473
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 103,
+        "startLoc": {
+          "column": 24,
+          "line": 103,
+          "position": 2937
+        }
+      },
+      "tokens": 120
+    },
+    {
+      "firstFile": {
+        "end": 201,
+        "endLoc": {
+          "column": 1,
+          "line": 201,
+          "position": 5948
+        },
+        "name": "ai-engine/src/providers/grok-provider.ts",
+        "start": 170,
+        "startLoc": {
+          "column": 44,
+          "line": 170,
+          "position": 5162
+        }
+      },
+      "format": "typescript",
+      "fragment": "              const parsed: GrokStreamChunk = JSON.parse(data);\n              const delta = parsed.choices[0]?.delta;\n              const content = delta?.content || '';\n              const done = parsed.choices[0]?.finish_reason !== null;\n              \n              if (content || done) {\n                yield { content, done };\n              }\n            } catch {\n              // Ignorer les lignes mal formées\n            }\n          }\n        }\n      }\n    } catch (error) {\n      this.handleError(error, 'stream failed');\n    }\n  }\n\n  async isAvailable(): Promise<boolean> {\n    try {\n      const response = await fetch(`${this.baseUrl}/models`, {\n        headers: {\n          'Authorization': `Bearer ${this.config.apiKey}`,\n        },\n      });\n      return response.ok;\n    } catch {\n      return false;\n    }\n  }\n}",
+      "lines": 32,
+      "secondFile": {
+        "end": 175,
+        "endLoc": {
+          "column": 1,
+          "line": 175,
+          "position": 5108
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 144,
+        "startLoc": {
+          "column": 50,
+          "line": 144,
+          "position": 4322
+        }
+      },
+      "tokens": 139
+    },
+    {
+      "firstFile": {
+        "end": 55,
+        "endLoc": {
+          "column": 17,
+          "line": 55,
+          "position": 1398
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 39,
+        "startLoc": {
+          "column": 78,
+          "line": 39,
+          "position": 854
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {\n    try {\n      const response = await fetch(`${this.baseUrl}/api/chat`, {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify({\n          model: options?.model || this.config.defaultModel || 'llama3.1',\n          messages: messages as OllamaMessage[],\n          options: {\n            temperature: options?.temperature,\n            num_predict: options?.maxTokens,\n            top_p: options?.topP,\n            stop: options?.stop,\n          },\n          stream: false,",
+      "lines": 17,
+      "secondFile": {
+        "end": 97,
+        "endLoc": {
+          "column": 17,
+          "line": 97,
+          "position": 2761
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 81,
+        "startLoc": {
+          "column": 94,
+          "line": 81,
+          "position": 2217
+        }
+      },
+      "tokens": 90
+    },
+    {
+      "firstFile": {
+        "end": 62,
+        "endLoc": {
+          "column": 7,
+          "line": 62,
+          "position": 1616
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 55,
+        "startLoc": {
+          "column": 23,
+          "line": 55,
+          "position": 1404
+        }
+      },
+      "format": "typescript",
+      "fragment": "          stream: false,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ error: response.statusText }));\n        throw new Error(error.error || 'Request failed');\n      }",
+      "lines": 8,
+      "secondFile": {
+        "end": 104,
+        "endLoc": {
+          "column": 7,
+          "line": 104,
+          "position": 2978
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 97,
+        "startLoc": {
+          "column": 22,
+          "line": 97,
+          "position": 2766
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 61,
+        "endLoc": {
+          "column": 35,
+          "line": 61,
+          "position": 1586
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 55,
+        "startLoc": {
+          "column": 23,
+          "line": 55,
+          "position": 1404
+        }
+      },
+      "format": "typescript",
+      "fragment": "          stream: false,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ error: response.statusText }));\n        throw new Error(error.error || 'Request failed');",
+      "lines": 7,
+      "secondFile": {
+        "end": 72,
+        "endLoc": {
+          "column": 35,
+          "line": 72,
+          "position": 1964
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 66,
+        "startLoc": {
+          "column": 29,
+          "line": 66,
+          "position": 1782
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 83,
+        "endLoc": {
+          "column": 50,
+          "line": 83,
+          "position": 2281
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 74,
+        "startLoc": {
+          "column": 43,
+          "line": 74,
+          "position": 2024
+        }
+      },
+      "format": "typescript",
+      "fragment": "        finishReason: data.done ? 'stop' : undefined,\n      };\n    } catch (error) {\n      this.handleError(error, 'chat failed');\n    }\n  }\n\n  async *stream(messages: Message[], options?: ChatOptions): AsyncIterableIterator<StreamChunk> {\n    try {\n      const response = await fetch(`${this.baseUrl}/api/chat`, {",
+      "lines": 10,
+      "secondFile": {
+        "end": 95,
+        "endLoc": {
+          "column": 50,
+          "line": 95,
+          "position": 2714
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 86,
+        "startLoc": {
+          "column": 46,
+          "line": 86,
+          "position": 2457
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 24,
+          "line": 106,
+          "position": 3004
+        },
+        "name": "ai-engine/src/providers/ollama-provider.ts",
+        "start": 96,
+        "startLoc": {
+          "column": 11,
+          "line": 96,
+          "position": 2742
+        }
+      },
+      "format": "typescript",
+      "fragment": "          },\n          stream: true,\n        }),\n      });\n\n      if (!response.ok) {\n        const error: any = await response.json().catch(() => ({ error: response.statusText }));\n        throw new Error(error.error || 'Request failed');\n      }\n\n      if (!response.body) {",
+      "lines": 11,
+      "secondFile": {
+        "end": 117,
+        "endLoc": {
+          "column": 7,
+          "line": 117,
+          "position": 3572
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 109,
+        "startLoc": {
+          "column": 29,
+          "line": 109,
+          "position": 3312
+        }
+      },
+      "tokens": 65
+    },
+    {
+      "firstFile": {
+        "end": 41,
+        "endLoc": {
+          "column": 28,
+          "line": 41,
+          "position": 1332
+        },
+        "name": "ai-engine/src/providers/openai-provider.ts",
+        "start": 33,
+        "startLoc": {
+          "column": 84,
+          "line": 33,
+          "position": 992
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async chat(messages: Message[], options?: OpenAIChatOptions): Promise<ChatResponse> {\n    try {\n      const requestParams: any = {\n        model: options?.model || this.config.defaultModel || 'gpt-4.5-turbo',\n        messages: messages as OpenAI.Chat.ChatCompletionMessageParam[],\n        temperature: options?.temperature,\n        max_tokens: options?.maxTokens,\n        top_p: options?.topP,\n        stop: options?.stop,",
+      "lines": 9,
+      "secondFile": {
+        "end": 80,
+        "endLoc": {
+          "column": 28,
+          "line": 80,
+          "position": 2778
+        },
+        "name": "ai-engine/src/providers/openai-provider.ts",
+        "start": 72,
+        "startLoc": {
+          "column": 100,
+          "line": 72,
+          "position": 2438
+        }
+      },
+      "tokens": 60
+    },
+    {
+      "firstFile": {
+        "end": 66,
+        "endLoc": {
+          "column": 30,
+          "line": 66,
+          "position": 1783
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 50,
+        "startLoc": {
+          "column": 78,
+          "line": 50,
+          "position": 1120
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {\n    try {\n      const response = await fetch(`${this.baseUrl}/chat/completions`, {\n        method: 'POST',\n        headers: {\n          'Authorization': `Bearer ${this.config.apiKey}`,\n          'Content-Type': 'application/json',\n          'HTTP-Referer': 'https://cortex-ide.com',\n          'X-Title': 'Cortex IDE',\n        },\n        body: JSON.stringify({\n          model: options?.model || this.config.defaultModel || 'anthropic/claude-opus-4.8-fast',\n          messages: messages as OpenRouterMessage[],\n          temperature: options?.temperature,\n          max_tokens: options?.maxTokens,\n          top_p: options?.topP,\n          stop: options?.stop,",
+      "lines": 17,
+      "secondFile": {
+        "end": 109,
+        "endLoc": {
+          "column": 30,
+          "line": 109,
+          "position": 3313
+        },
+        "name": "ai-engine/src/providers/openrouter-provider.ts",
+        "start": 93,
+        "startLoc": {
+          "column": 94,
+          "line": 93,
+          "position": 2650
+        }
+      },
+      "tokens": 101
+    },
+    {
+      "firstFile": {
+        "end": 68,
+        "endLoc": {
+          "column": 60,
+          "line": 68,
+          "position": 1878
+        },
+        "name": "main/src/database/adapter.ts",
+        "start": 55,
+        "startLoc": {
+          "column": 11,
+          "line": 55,
+          "position": 1576
+        }
+      },
+      "format": "typescript",
+      "fragment": "          };\n        },\n        get(...params: any[]) {\n          return stmt.get(...params);\n        },\n        all(...params: any[]) {\n          return stmt.all(...params);\n        },\n      };\n    },\n    exec(sql: string) {\n      db.exec(sql);\n    },\n    pragma(pragma: string, options?: { simple?: boolean }) {",
+      "lines": 14,
+      "secondFile": {
+        "end": 120,
+        "endLoc": {
+          "column": 60,
+          "line": 120,
+          "position": 3120
+        },
+        "name": "main/src/database/adapter.ts",
+        "start": 107,
+        "startLoc": {
+          "column": 36,
+          "line": 107,
+          "position": 2818
+        }
+      },
+      "tokens": 82
+    },
+    {
+      "firstFile": {
+        "end": 146,
+        "endLoc": {
+          "column": 14,
+          "line": 146,
+          "position": 3811
+        },
+        "name": "main/src/database/example.ts",
+        "start": 128,
+        "startLoc": {
+          "column": 40,
+          "line": 128,
+          "position": 3511
+        }
+      },
+      "format": "typescript",
+      "fragment": "    name: 'Auto-format TypeScript files',\n    enabled: true,\n    trigger: {\n      type: 'file_watch',\n      config: {\n        pattern: '**/*.ts',\n        event: 'save',\n      },\n    },\n    actions: [\n      {\n        type: 'run_script',\n        config: {\n          command: 'prettier --write',\n        },\n      },\n    ],\n  });\n  console.log(`   ✓ Automation created: ${automation.name}`);",
+      "lines": 19,
+      "secondFile": {
+        "end": 167,
+        "endLoc": {
+          "column": 16,
+          "line": 167,
+          "position": 5255
+        },
+        "name": "main/src/database/test-db.ts",
+        "start": 149,
+        "startLoc": {
+          "column": 33,
+          "line": 149,
+          "position": 4919
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 139,
+        "endLoc": {
+          "column": 13,
+          "line": 139,
+          "position": 3450
+        },
+        "name": "main/src/database/index.ts",
+        "start": 131,
+        "startLoc": {
+          "column": 58,
+          "line": 131,
+          "position": 3236
+        }
+      },
+      "format": "typescript",
+      "fragment": "  updateWorkspace(id: string, data: Partial<Omit<Workspace, 'id' | 'created_at'>>): void {\n    const updates: string[] = [];\n    const values: any[] = [];\n\n    if (data.name !== undefined) {\n      updates.push('name = ?');\n      values.push(data.name);\n    }\n    if (data.path !== undefined) {",
+      "lines": 9,
+      "secondFile": {
+        "end": 549,
+        "endLoc": {
+          "column": 13,
+          "line": 549,
+          "position": 14594
+        },
+        "name": "main/src/database/index.ts",
+        "start": 541,
+        "startLoc": {
+          "column": 60,
+          "line": 541,
+          "position": 14380
+        }
+      },
+      "tokens": 60
+    },
+    {
+      "firstFile": {
+        "end": 51,
+        "endLoc": {
+          "column": 8,
+          "line": 51,
+          "position": 1064
+        },
+        "name": "main/src/ipc/handlers.ts",
+        "start": 20,
+        "startLoc": {
+          "column": 11,
+          "line": 20,
+          "position": 430
+        }
+      },
+      "format": "typescript",
+      "fragment": "  FileEntry,\n  OpenFileRequest,\n  OpenFileResponse,\n  SaveFileRequest,\n  SaveFileResponse,\n  FormatDocumentRequest,\n  FormatDocumentResponse,\n  GitStatusRequest,\n  GitStatusResponse,\n  GitCommitRequest,\n  GitCommitResponse,\n  GitPushRequest,\n  GitPushResponse,\n  GitPullRequest,\n  GitPullResponse,\n  GitDiffRequest,\n  GitDiffResponse,\n  CreateSessionRequest,\n  CreateSessionResponse,\n  SendMessageRequest,\n  SendMessageResponse,\n  CreateTerminalRequest,\n  CreateTerminalResponse,\n  TerminalInputRequest,\n  TerminalResizeRequest,\n  DBQueryRequest,\n  DBQueryResponse,\n  DBExecuteRequest,\n  DBExecuteResponse,\n} from '@cortex-ide/shared';\n\nimport {",
+      "lines": 32,
+      "secondFile": {
+        "end": 42,
+        "endLoc": {
+          "column": 8,
+          "line": 42,
+          "position": 853
+        },
+        "name": "renderer/src/lib/ipc.ts",
+        "start": 12,
+        "startLoc": {
+          "column": 17,
+          "line": 12,
+          "position": 220
+        }
+      },
+      "tokens": 63
+    },
+    {
+      "firstFile": {
+        "end": 300,
+        "endLoc": {
+          "column": 35,
+          "line": 300,
+          "position": 7770
+        },
+        "name": "main/src/services/ai-service.ts",
+        "start": 286,
+        "startLoc": {
+          "column": 25,
+          "line": 286,
+          "position": 7292
+        }
+      },
+      "format": "typescript",
+      "fragment": "  ): Promise<ChatResponse> {\n    const session = this.sessions.get(sessionId);\n    if (!session) {\n      throw new Error(`Session \"${sessionId}\" not found`);\n    }\n\n    const provider = this.registry.getProvider(session.providerId);\n    if (!provider) {\n      throw new Error(`Provider \"${session.providerId}\" not found`);\n    }\n\n    // Ajouter le message utilisateur\n    const userMessage: Message = { role: 'user', content };\n    session.messages.push(userMessage);\n    session.updatedAt = Date.now();",
+      "lines": 15,
+      "secondFile": {
+        "end": 357,
+        "endLoc": {
+          "column": 35,
+          "line": 357,
+          "position": 9510
+        },
+        "name": "main/src/services/ai-service.ts",
+        "start": 343,
+        "startLoc": {
+          "column": 38,
+          "line": 343,
+          "position": 9032
+        }
+      },
+      "tokens": 94
+    },
+    {
+      "firstFile": {
+        "end": 57,
+        "endLoc": {
+          "column": 60,
+          "line": 57,
+          "position": 1556
+        },
+        "name": "main/src/services/automation-service.ts",
+        "start": 16,
+        "startLoc": {
+          "column": 0,
+          "line": 16,
+          "position": 515
+        }
+      },
+      "format": "typescript",
+      "fragment": "export type TriggerType = 'file_watch' | 'git_hook' | 'schedule' | 'manual';\nexport type ActionType = 'run_script' | 'ai_task' | 'git_operation' | 'notification';\nexport type AutomationStatus = 'idle' | 'running' | 'success' | 'error';\n\nexport interface FileTrigger {\n  type: 'file_watch';\n  patterns: string[];\n  events: ('add' | 'change' | 'unlink')[];\n  workspacePath: string;\n}\n\nexport interface GitTrigger {\n  type: 'git_hook';\n  hook: 'pre-commit' | 'post-commit' | 'pre-push' | 'post-merge';\n  repoPath: string;\n}\n\nexport interface ScheduleTrigger {\n  type: 'schedule';\n  cron: string;\n  timezone?: string;\n}\n\nexport interface ManualTrigger {\n  type: 'manual';\n}\n\nexport type Trigger = FileTrigger | GitTrigger | ScheduleTrigger | ManualTrigger;\n\nexport interface ScriptAction {\n  type: 'run_script';\n  script: string;\n  shell?: string;\n  cwd?: string;\n  env?: Record<string, string>;\n}\n\nexport interface AITaskAction {\n  type: 'ai_task';\n  prompt: string;\n  model: string;\n  provider: 'openai' | 'anthropic' | 'openrouter' | 'ollama';",
+      "lines": 42,
+      "secondFile": {
+        "end": 367,
+        "endLoc": {
+          "column": 60,
+          "line": 367,
+          "position": 7446
+        },
+        "name": "shared/types/ipc.ts",
+        "start": 326,
+        "startLoc": {
+          "column": 0,
+          "line": 326,
+          "position": 6405
+        }
+      },
+      "tokens": 187
+    },
+    {
+      "firstFile": {
+        "end": 112,
+        "endLoc": {
+          "column": 6,
+          "line": 112,
+          "position": 2758
+        },
+        "name": "main/src/services/automation-service.ts",
+        "start": 57,
+        "startLoc": {
+          "column": 60,
+          "line": 57,
+          "position": 1556
+        }
+      },
+      "format": "typescript",
+      "fragment": "  provider: 'openai' | 'anthropic' | 'openrouter' | 'ollama';\n  context?: {\n    files?: string[];\n    workspacePath?: string;\n  };\n}\n\nexport interface GitOperationAction {\n  type: 'git_operation';\n  operation: 'commit' | 'push' | 'pull' | 'branch';\n  repoPath: string;\n  params?: Record<string, unknown>;\n}\n\nexport interface NotificationAction {\n  type: 'notification';\n  title: string;\n  message: string;\n  level: 'info' | 'warning' | 'error' | 'success';\n}\n\nexport type Action = ScriptAction | AITaskAction | GitOperationAction | NotificationAction;\n\nexport interface Automation {\n  id: string;\n  workspaceId: string;\n  name: string;\n  enabled: boolean;\n  trigger: Trigger;\n  actions: Action[];\n  createdAt: number;\n  updatedAt: number;\n}\n\nexport interface AutomationLog {\n  id: string;\n  automationId: string;\n  status: AutomationStatus;\n  startedAt: number;\n  completedAt?: number;\n  error?: string;\n  output?: string;\n  actionResults: Array<{\n    action: Action;\n    status: 'success' | 'error';\n    output?: string;\n    error?: string;\n    duration: number;\n  }>;\n}\n\n// ============================================================================\n// Automation Service\n// ============================================================================\n\nexport class AutomationService extends EventEmitter {",
+      "lines": 56,
+      "secondFile": {
+        "end": 418,
+        "endLoc": {
+          "column": 6,
+          "line": 418,
+          "position": 8474
+        },
+        "name": "shared/types/ipc.ts",
+        "start": 367,
+        "startLoc": {
+          "column": 69,
+          "line": 367,
+          "position": 7455
+        }
+      },
+      "tokens": 200
+    },
+    {
+      "firstFile": {
+        "end": 46,
+        "endLoc": {
+          "column": 16,
+          "line": 46,
+          "position": 1159
+        },
+        "name": "main/src/services/mcp-service.ts",
+        "start": 17,
+        "startLoc": {
+          "column": 0,
+          "line": 17,
+          "position": 537
+        }
+      },
+      "format": "typescript",
+      "fragment": "export type MCPServerStatus = 'installed' | 'available' | 'running' | 'error' | 'stopped';\n\nexport interface MCPServer {\n  id: string;\n  name: string;\n  description: string;\n  version?: string;\n  author?: string;\n  homepage?: string;\n  status: MCPServerStatus;\n  command?: string;\n  args?: string[];\n  env?: Record<string, string>;\n  transport: 'stdio' | 'http';\n  tools?: MCPTool[];\n  installedAt?: number;\n  lastError?: string;\n}\n\nexport interface MCPTool {\n  name: string;\n  description: string;\n  inputSchema: {\n    type: 'object';\n    properties: Record<string, any>;\n    required?: string[];\n  };\n}\n\nexport interface MCPToolInvocation {",
+      "lines": 30,
+      "secondFile": {
+        "end": 42,
+        "endLoc": {
+          "column": 16,
+          "line": 42,
+          "position": 1062
+        },
+        "name": "shared/types/mcp.ts",
+        "start": 9,
+        "startLoc": {
+          "column": 0,
+          "line": 9,
+          "position": 245
+        }
+      },
+      "tokens": 135
+    },
+    {
+      "firstFile": {
+        "end": 513,
+        "endLoc": {
+          "column": 3,
+          "line": 513,
+          "position": 13492
+        },
+        "name": "renderer/src/lib/api.ts",
+        "start": 502,
+        "startLoc": {
+          "column": 31,
+          "line": 502,
+          "position": 13252
+        }
+      },
+      "format": "typescript",
+      "fragment": "  async installServer(request: {\n    id: string;\n    name: string;\n    description: string;\n    command: string;\n    args?: string[];\n    env?: Record<string, string>;\n    transport?: 'stdio' | 'http';\n    version?: string;\n    author?: string;\n    homepage?: string;\n  }): Promise<{ server: any }> {",
+      "lines": 12,
+      "secondFile": {
+        "end": 69,
+        "endLoc": {
+          "column": 1,
+          "line": 69,
+          "position": 1572
+        },
+        "name": "shared/types/mcp.ts",
+        "start": 58,
+        "startLoc": {
+          "column": 41,
+          "line": 58,
+          "position": 1354
+        }
+      },
+      "tokens": 57
+    },
+    {
+      "firstFile": {
+        "end": 23,
+        "endLoc": {
+          "column": 12,
+          "line": 23,
+          "position": 599
+        },
+        "name": "shared/schemas/git.ts",
+        "start": 17,
+        "startLoc": {
+          "column": 34,
+          "line": 17,
+          "position": 423
+        }
+      },
+      "format": "typescript",
+      "fragment": "export const GitPushRequestSchema = z.object({\n  repoPath: z.string().min(1, 'Repository path is required'),\n  remote: z.string().optional().default('origin'),\n  branch: z.string().optional(),\n});\n\nexport const GitPullRequestSchema = z.object({",
+      "lines": 7,
+      "secondFile": {
+        "end": 29,
+        "endLoc": {
+          "column": 12,
+          "line": 29,
+          "position": 797
+        },
+        "name": "shared/schemas/git.ts",
+        "start": 23,
+        "startLoc": {
+          "column": 34,
+          "line": 23,
+          "position": 621
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 311,
+        "endLoc": {
+          "column": 60,
+          "line": 311,
+          "position": 9288
+        },
+        "name": "test-harness/benchmarks/terminal-bench/multi-agent/coordinator.ts",
+        "start": 306,
+        "startLoc": {
+          "column": 50,
+          "line": 306,
+          "position": 9006
+        }
+      },
+      "format": "typescript",
+      "fragment": "          phase.subtasks.map(async (subtaskId) => {\n            const subtask = decomposition.subtasks.find((t) => t.id === subtaskId)!;\n            const agent = this.assignAgent(subtaskId);\n            \n            const context = this.prepareContext(subtask, results);\n            const result = await executor(subtask, context);",
+      "lines": 6,
+      "secondFile": {
+        "end": 328,
+        "endLoc": {
+          "column": 58,
+          "line": 328,
+          "position": 9903
+        },
+        "name": "test-harness/benchmarks/terminal-bench/multi-agent/coordinator.ts",
+        "start": 323,
+        "startLoc": {
+          "column": 48,
+          "line": 323,
+          "position": 9631
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 31,
+        "endLoc": {
+          "column": 13,
+          "line": 31,
+          "position": 840
+        },
+        "name": "test-harness/src/providers/anthropic.ts",
+        "start": 19,
+        "startLoc": {
+          "column": 22,
+          "line": 19,
+          "position": 572
+        }
+      },
+      "format": "typescript",
+      "fragment": "    return 'anthropic';\n  }\n  \n  get model(): string {\n    return this.config.model;\n  }\n  \n  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {\n    const startTime = Date.now();\n    \n    return this.withTimeout(\n      this.withRetry(async () => {\n        const { systemPrompt, userMessages } = this.convertMessages(messages, options?.systemPrompt);",
+      "lines": 13,
+      "secondFile": {
+        "end": 38,
+        "endLoc": {
+          "column": 13,
+          "line": 38,
+          "position": 984
+        },
+        "name": "test-harness/src/providers/grok.ts",
+        "start": 26,
+        "startLoc": {
+          "column": 17,
+          "line": 26,
+          "position": 716
+        }
+      },
+      "tokens": 61
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 15,
+          "line": 106,
+          "position": 3315
+        },
+        "name": "test-harness/src/providers/anthropic.ts",
+        "start": 19,
+        "startLoc": {
+          "column": 22,
+          "line": 19,
+          "position": 572
+        }
+      },
+      "format": "typescript",
+      "fragment": "    return 'anthropic';\n  }\n  \n  get model(): string {\n    return this.config.model;\n  }\n  \n  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {\n    const startTime = Date.now();\n    \n    return this.withTimeout(\n      this.withRetry(async () => {\n        const { systemPrompt, userMessages } = this.convertMessages(messages, options?.systemPrompt);\n        \n        const response = await this.client.messages.create({\n          model: this.config.model,\n          max_tokens: options?.maxTokens ?? 4096,\n          temperature: options?.temperature ?? 0.7,\n          system: systemPrompt,\n          messages: userMessages,\n          tools: options?.tools?.map(t => ({\n            name: t.name,\n            description: t.description,\n            input_schema: {\n              type: 'object',\n              ...(t.parameters as Record<string, unknown>),\n            },\n          })),\n        });\n        \n        const latency = Date.now() - startTime;\n        \n        const tokensUsed = {\n          prompt: response.usage.input_tokens,\n          completion: response.usage.output_tokens,\n          total: response.usage.input_tokens + response.usage.output_tokens,\n        };\n        \n        const textContent = response.content\n          .filter(c => c.type === 'text')\n          .map(c => (c as Anthropic.TextBlock).text)\n          .join('');\n        \n        const toolUseBlocks = response.content.filter(\n          c => c.type === 'tool_use'\n        ) as Anthropic.ToolUseBlock[];\n        \n        return {\n          content: textContent,\n          tokensUsed,\n          toolCalls: toolUseBlocks.map(tc => ({\n            id: tc.id,\n            name: tc.name,\n            arguments: tc.input as Record<string, unknown>,\n            timestamp: Date.now(),\n          })),\n          finishReason: response.stop_reason ?? 'end_turn',\n          latency,\n          cost: this.calculateCost(tokensUsed),\n        };\n      })\n    );\n  }\n  \n  async *streamChat(messages: Message[], options?: ChatOptions): AsyncGenerator<ChatStreamChunk> {\n    const { systemPrompt, userMessages } = this.convertMessages(messages, options?.systemPrompt);\n    \n    const stream = await this.client.messages.create({\n      model: this.config.model,\n      max_tokens: options?.maxTokens ?? 4096,\n      temperature: options?.temperature ?? 0.7,\n      system: systemPrompt,\n      messages: userMessages,\n      stream: true,\n    });\n    \n    for await (const event of stream) {\n      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {\n        yield {\n          content: event.delta.text,\n          done: false,\n        };\n      }\n      \n      if (event.type === 'message_stop') {\n        yield {\n          content: '',\n          done: true,",
+      "lines": 88,
+      "secondFile": {
+        "end": 107,
+        "endLoc": {
+          "column": 51,
+          "line": 107,
+          "position": 3265
+        },
+        "name": "test-harness/src/providers/openai.ts",
+        "start": 19,
+        "startLoc": {
+          "column": 19,
+          "line": 19,
+          "position": 546
+        }
+      },
+      "tokens": 518
+    },
+    {
+      "firstFile": {
+        "end": 119,
+        "endLoc": {
+          "column": 70,
+          "line": 119,
+          "position": 3731
+        },
+        "name": "test-harness/src/providers/anthropic.ts",
+        "start": 106,
+        "startLoc": {
+          "column": 20,
+          "line": 106,
+          "position": 3320
+        }
+      },
+      "format": "typescript",
+      "fragment": "          done: true,\n        };\n      }\n    }\n  }\n  \n  protected calculateCost(tokensUsed: { prompt: number; completion: number }): number {\n    // Claude Opus pricing (adjust as needed)\n    const promptCost = (tokensUsed.prompt / 1000) * 0.015;\n    const completionCost = (tokensUsed.completion / 1000) * 0.075;\n    return promptCost + completionCost;\n  }\n  \n  private convertMessages(messages: Message[], systemPrompt?: string): {",
+      "lines": 14,
+      "secondFile": {
+        "end": 119,
+        "endLoc": {
+          "column": 70,
+          "line": 119,
+          "position": 3643
+        },
+        "name": "test-harness/src/providers/grok.ts",
+        "start": 106,
+        "startLoc": {
+          "column": 23,
+          "line": 106,
+          "position": 3222
+        }
+      },
+      "tokens": 71
+    },
+    {
+      "firstFile": {
+        "end": 134,
+        "endLoc": {
+          "column": 1,
+          "line": 134,
+          "position": 4070
+        },
+        "name": "test-harness/src/providers/grok.ts",
+        "start": 115,
+        "startLoc": {
+          "column": 65,
+          "line": 115,
+          "position": 3524
+        }
+      },
+      "format": "typescript",
+      "fragment": "    const completionCost = (tokensUsed.completion / 1000) * 0.075;\n    return promptCost + completionCost;\n  }\n  \n  private convertMessages(messages: Message[], systemPrompt?: string): OpenAI.ChatCompletionMessageParam[] {\n    const result: OpenAI.ChatCompletionMessageParam[] = [];\n    \n    if (systemPrompt) {\n      result.push({ role: 'system', content: systemPrompt });\n    }\n    \n    for (const msg of messages) {\n      if (msg.role === 'system' || msg.role === 'user' || msg.role === 'assistant') {\n        result.push({ role: msg.role, content: msg.content });\n      }\n    }\n    \n    return result;\n  }\n}",
+      "lines": 20,
+      "secondFile": {
+        "end": 127,
+        "endLoc": {
+          "column": 1,
+          "line": 127,
+          "position": 3882
+        },
+        "name": "test-harness/src/providers/openai.ts",
+        "start": 108,
+        "startLoc": {
+          "column": 64,
+          "line": 108,
+          "position": 3336
+        }
+      },
+      "tokens": 116
+    }
+  ],
+  "statistics": {
+    "detectionDate": "2026-08-16T16:23:34.827Z",
+    "formats": {
+      "typescript": {
+        "clones": 40,
+        "duplicatedLines": 715,
+        "duplicatedTokens": 3848,
+        "lines": 24500,
+        "newClones": 0,
+        "newDuplicatedLines": 0,
+        "percentage": 2.9183673469387754,
+        "percentageTokens": 3.572058482246461,
+        "sources": 126,
+        "tokens": 107725
+      }
+    },
+    "total": {
+      "clones": 40,
+      "duplicatedLines": 715,
+      "duplicatedTokens": 3848,
+      "lines": 24500,
+      "newClones": 0,
+      "newDuplicatedLines": 0,
+      "percentage": 2.9183673469387754,
+      "percentageTokens": 3.572058482246461,
+      "sources": 126,
+      "tokens": 107725
+    }
+  }
+}

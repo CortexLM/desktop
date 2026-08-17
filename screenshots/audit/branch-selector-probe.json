@@ -1,0 +1,24 @@
+{
+  "before": {
+    "branchListCount": 0,
+    "dialogCount": 0
+  },
+  "after": {
+    "branchListPresent": true,
+    "branchListText": "main main develop feature/test",
+    "branchEntries": [
+      "main",
+      "main",
+      "develop",
+      "feature/test"
+    ],
+    "dialogCount": 1,
+    "dialogRoles": [
+      "z-popover rounded-sm border border-border bg-elevated text-t"
+    ]
+  },
+  "checkoutEffect": {
+    "branchLabelAfterCheckout": "main",
+    "note": "BranchSelector.handleCheckout only console.logs; label should stay unchanged"
+  }
+}

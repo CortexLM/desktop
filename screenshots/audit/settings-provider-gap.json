@@ -1,0 +1,20 @@
+{
+  "providersBefore": "ai.getProviders not exposed on the bridge",
+  "afterSave": {
+    "storedSettings": "{\"theme\":\"dark\",\"fontSize\":14,\"providers\":{\"openai\":{\"enabled\":false,\"apiKey\":\"\"},\"anthropic\":{\"enabled\":true,\"apiKey\":\"sk-ant-audit-probe-key\"}}}",
+    "createSessionResult": {
+      "success": false,
+      "error": {
+        "code": "FILE_NOT_FOUND",
+        "message": "Provider \"anthropic\" not found",
+        "details": {
+          "stack": "Error: Provider \"anthropic\" not found\n    at AIService.createSession (file:///root/projects/cortex-ide/packages/main/dist/index.js:15012:13)\n    at file:///root/projects/cortex-ide/packages/main/dist/index.js:15330:38\n    at file:///root/projects/cortex-ide/packages/main/dist/index.js:4379:26\n    at file:///root/projects/cortex-ide/packages/main/dist/index.js:22972:28\n    at WebContents.<anonymous> (node:electron/js2c/browser_init:2:86178)\n    at WebContents.emit (node:events:518:28)"
+        }
+      }
+    }
+  },
+  "uiOutcome": {
+    "stillEmpty": true,
+    "toast": "Could not start chat Provider \"anthropic\" not found Retry"
+  }
+}

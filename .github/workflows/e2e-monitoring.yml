@@ -1,0 +1,138 @@
+name: E2E Monitoring
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Toutes les heures
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps chromium
+
+      - name: Build application
+        run: bun run build
+
+      - name: Run E2E tests
+        id: e2e
+        run: |
+          echo "Running E2E tests..."
+          bun run test:e2e
+          echo "status=success" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results-${{ github.run_number }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_number }}
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Generate E2E report
+        if: always()
+        run: |
+          TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
+          STATUS="${{ steps.e2e.outputs.status }}"
+          
+          if [ ! -f E2E_MONITORING_LOG.md ]; then
+            echo "# Cortex IDE - E2E Test Monitoring" > E2E_MONITORING_LOG.md
+            echo "" >> E2E_MONITORING_LOG.md
+            echo "Automated E2E tests run every hour." >> E2E_MONITORING_LOG.md
+            echo "" >> E2E_MONITORING_LOG.md
+            echo "| Timestamp | Status | Run # | Report |" >> E2E_MONITORING_LOG.md
+            echo "|-----------|--------|-------|--------|" >> E2E_MONITORING_LOG.md
+          fi
+          
+          STATUS_EMOJI=$([ "$STATUS" = "success" ] && echo "✅" || echo "❌")
+          REPORT_LINK="[View Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          
+          echo "| $TIMESTAMP | $STATUS_EMOJI | ${{ github.run_number }} | $REPORT_LINK |" >> E2E_MONITORING_LOG.md
+
+      - name: Commit E2E log
+        if: always()
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add E2E_MONITORING_LOG.md
+          git diff --staged --quiet || git commit -m "chore: update E2E monitoring log [skip ci]"
+          git push || true
+        continue-on-error: true
+
+      - name: Notify on failure
+        if: steps.e2e.outputs.status != 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🧪 E2E Tests Failed';
+            const body = `
+            ## E2E Test Failure
+            
+            **Timestamp:** ${new Date().toISOString()}
+            **Run:** #${context.runNumber}
+            
+            One or more E2E tests have failed. Please review the test results.
+            
+            [View test report](${context.payload.repository.html_url}/actions/runs/${context.runId})
+            [Download artifacts](${context.payload.repository.html_url}/actions/runs/${context.runId}#artifacts)
+            `;
+            
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'e2e-failure'
+            });
+            
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['e2e-failure', 'automated', 'testing']
+              });
+            }
+
+      - name: Comment on PR if applicable
+        if: github.event_name == 'pull_request' && steps.e2e.outputs.status != 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ E2E tests failed. Please check the [test report](${context.payload.repository.html_url}/actions/runs/${context.runId}).'
+            })

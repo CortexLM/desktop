@@ -1,0 +1,236 @@
+[
+  {
+    "name": "branch-selector-open",
+    "screenshot": "screenshots/audit/states/branch-selector-open.png",
+    "present": true,
+    "text": "C Cortex IDE cortex-e2e-ws-7eVfRK Search files and commands Ctrl+P Ask AI SOURCE CONTROL Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Source Control /tmp/cortex-e2e-ws-7eVfRK Branches + New main main develop feature/test",
+    "textLength": 396,
+    "testIds": [
+      "app-header",
+      "toggle-sidebar",
+      "command-palette-trigger",
+      "ask-ai",
+      "theme-switcher",
+      "open-settings",
+      "toggle-debug",
+      "sidebar",
+      "sidebar-explorer",
+      "sidebar-search",
+      "sidebar-git",
+      "sidebar-terminal",
+      "sidebar-ai-chat",
+      "sidebar-extensions",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-browser",
+      "sidebar-automations",
+      "sidebar-account",
+      "sidebar-settings",
+      "sidebar-panel",
+      "git-panel",
+      "branch-selector",
+      "git-refresh",
+      "commit-button",
+      "stage-all-button",
+      "discard-all-button",
+      "push-button",
+      "pull-button",
+      "changed-file",
+      "stage-file",
+      "discard-file",
+      "changed-file",
+      "stage-file",
+      "delete-file",
+      "content-area",
+      "editor-area",
+      "editor-empty-state",
+      "status-bar",
+      "status-open-tabs",
+      "toast-container",
+      "branch-list",
+      "branch-item",
+      "branch-item",
+      "branch-item",
+      "branch-item"
+    ],
+    "buttons": [
+      {
+        "label": "Hide sidebar",
+        "disabled": false
+      },
+      {
+        "label": "Search files and commandsCtrl+P",
+        "disabled": false
+      },
+      {
+        "label": "Ask AI",
+        "disabled": false
+      },
+      {
+        "label": "Switch to light theme",
+        "disabled": false
+      },
+      {
+        "label": "Open settings",
+        "disabled": false
+      },
+      {
+        "label": "Enable debug mode",
+        "disabled": false
+      },
+      {
+        "label": "Explorer",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "Source Control",
+        "disabled": false
+      },
+      {
+        "label": "Terminal",
+        "disabled": false
+      },
+      {
+        "label": "AI Chat",
+        "disabled": false
+      },
+      {
+        "label": "Extensions",
+        "disabled": false
+      },
+      {
+        "label": "Notes",
+        "disabled": false
+      },
+      {
+        "label": "Plans",
+        "disabled": false
+      },
+      {
+        "label": "Browser",
+        "disabled": false
+      },
+      {
+        "label": "Automations",
+        "disabled": false
+      },
+      {
+        "label": "Account",
+        "disabled": false
+      },
+      {
+        "label": "Settings",
+        "disabled": false
+      },
+      {
+        "label": "main",
+        "disabled": false
+      },
+      {
+        "label": "Refresh Git status",
+        "disabled": false
+      },
+      {
+        "label": "Commit",
+        "disabled": true
+      },
+      {
+        "label": "Stage All",
+        "disabled": false
+      },
+      {
+        "label": "Discard All",
+        "disabled": false
+      },
+      {
+        "label": "Push",
+        "disabled": true
+      },
+      {
+        "label": "Pull",
+        "disabled": false
+      },
+      {
+        "label": "Stage README.md",
+        "disabled": false
+      },
+      {
+        "label": "View changes in README.md",
+        "disabled": false
+      },
+      {
+        "label": "View diff for README.md",
+        "disabled": false
+      },
+      {
+        "label": "Discard changes to README.md",
+        "disabled": false
+      },
+      {
+        "label": "Stage untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "Delete untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "Browse files",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "Open source control",
+        "disabled": false
+      },
+      {
+        "label": "+ New",
+        "disabled": false
+      },
+      {
+        "label": "main",
+        "disabled": false
+      },
+      {
+        "label": "main",
+        "disabled": false
+      },
+      {
+        "label": "develop",
+        "disabled": false
+      },
+      {
+        "label": "feature/test",
+        "disabled": false
+      }
+    ],
+    "inputs": 0,
+    "emptyMessages": [
+      "No files open",
+      "No files open"
+    ],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "branchLabelText": "main",
+      "openMenusBeforeClick": 0,
+      "openMenusAfterClick": 0
+    }
+  }
+]

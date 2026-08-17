@@ -1,0 +1,324 @@
+[
+  {
+    "name": "git-after-stage-all",
+    "screenshot": "screenshots/audit/states/git-after-stage-all.png",
+    "present": true,
+    "text": "Git main Commit Stage All Discard All Push Pull Staged Changes (3) M README.md M untracked.txt A untracked.txt",
+    "textLength": 110,
+    "testIds": [
+      "branch-selector",
+      "git-refresh",
+      "commit-button",
+      "stage-all-button",
+      "discard-all-button",
+      "push-button",
+      "pull-button",
+      "staged-file",
+      "unstage-file",
+      "staged-file",
+      "unstage-file",
+      "staged-file",
+      "unstage-file"
+    ],
+    "buttons": [
+      {
+        "label": "main",
+        "disabled": false
+      },
+      {
+        "label": "Refresh Git status",
+        "disabled": false
+      },
+      {
+        "label": "Commit",
+        "disabled": false
+      },
+      {
+        "label": "Stage All",
+        "disabled": true
+      },
+      {
+        "label": "Discard All",
+        "disabled": true
+      },
+      {
+        "label": "Push",
+        "disabled": true
+      },
+      {
+        "label": "Pull",
+        "disabled": false
+      },
+      {
+        "label": "Unstage README.md",
+        "disabled": false
+      },
+      {
+        "label": "View changes in README.md",
+        "disabled": false
+      },
+      {
+        "label": "View diff for README.md",
+        "disabled": false
+      },
+      {
+        "label": "Unstage untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "Unstage untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false
+      }
+    ],
+    "inputs": 0,
+    "emptyMessages": [],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "commitDisabledBeforeStaging": true,
+      "commitDisabledAfterStaging": false
+    }
+  },
+  {
+    "name": "commit-dialog",
+    "screenshot": "screenshots/audit/states/commit-dialog.png",
+    "present": true,
+    "text": "C Cortex IDE cortex-e2e-ws-Lo1UTP Search files and commands Ctrl+P Ask AI SOURCE CONTROL Git main Commit Stage All Discard All Push Pull Staged Changes (3) M README.md M untracked.txt A untracked.txt Commit Changes ✕ 3 files staged M README.md M untracked.txt A untracked.txt Commit message Press Ctrl+Enter to commit Cancel Commit No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Source Control /tmp/cortex-e2e-ws-Lo1UTP",
+    "textLength": 505,
+    "testIds": [
+      "app-header",
+      "toggle-sidebar",
+      "command-palette-trigger",
+      "ask-ai",
+      "theme-switcher",
+      "open-settings",
+      "toggle-debug",
+      "sidebar",
+      "sidebar-explorer",
+      "sidebar-search",
+      "sidebar-git",
+      "sidebar-terminal",
+      "sidebar-ai-chat",
+      "sidebar-extensions",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-browser",
+      "sidebar-automations",
+      "sidebar-account",
+      "sidebar-settings",
+      "sidebar-panel",
+      "git-panel",
+      "branch-selector",
+      "git-refresh",
+      "commit-button",
+      "stage-all-button",
+      "discard-all-button",
+      "push-button",
+      "pull-button",
+      "staged-file",
+      "unstage-file",
+      "staged-file",
+      "unstage-file",
+      "staged-file",
+      "unstage-file",
+      "commit-dialog",
+      "commit-message",
+      "content-area",
+      "editor-area",
+      "editor-empty-state",
+      "status-bar",
+      "status-open-tabs",
+      "toast-container"
+    ],
+    "buttons": [
+      {
+        "label": "Hide sidebar",
+        "disabled": false
+      },
+      {
+        "label": "Search files and commandsCtrl+P",
+        "disabled": false
+      },
+      {
+        "label": "Ask AI",
+        "disabled": false
+      },
+      {
+        "label": "Switch to light theme",
+        "disabled": false
+      },
+      {
+        "label": "Open settings",
+        "disabled": false
+      },
+      {
+        "label": "Enable debug mode",
+        "disabled": false
+      },
+      {
+        "label": "Explorer",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "Source Control",
+        "disabled": false
+      },
+      {
+        "label": "Terminal",
+        "disabled": false
+      },
+      {
+        "label": "AI Chat",
+        "disabled": false
+      },
+      {
+        "label": "Extensions",
+        "disabled": false
+      },
+      {
+        "label": "Notes",
+        "disabled": false
+      },
+      {
+        "label": "Plans",
+        "disabled": false
+      },
+      {
+        "label": "Browser",
+        "disabled": false
+      },
+      {
+        "label": "Automations",
+        "disabled": false
+      },
+      {
+        "label": "Account",
+        "disabled": false
+      },
+      {
+        "label": "Settings",
+        "disabled": false
+      },
+      {
+        "label": "main",
+        "disabled": false
+      },
+      {
+        "label": "Refresh Git status",
+        "disabled": false
+      },
+      {
+        "label": "Commit",
+        "disabled": false
+      },
+      {
+        "label": "Stage All",
+        "disabled": true
+      },
+      {
+        "label": "Discard All",
+        "disabled": true
+      },
+      {
+        "label": "Push",
+        "disabled": true
+      },
+      {
+        "label": "Pull",
+        "disabled": false
+      },
+      {
+        "label": "Unstage README.md",
+        "disabled": false
+      },
+      {
+        "label": "View changes in README.md",
+        "disabled": false
+      },
+      {
+        "label": "View diff for README.md",
+        "disabled": false
+      },
+      {
+        "label": "Unstage untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "Unstage untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false
+      },
+      {
+        "label": "✕",
+        "disabled": false
+      },
+      {
+        "label": "Cancel",
+        "disabled": false
+      },
+      {
+        "label": "Commit",
+        "disabled": true
+      },
+      {
+        "label": "Browse files",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "Open source control",
+        "disabled": false
+      }
+    ],
+    "inputs": 1,
+    "emptyMessages": [
+      "No files open",
+      "No files open"
+    ],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "openedFrom": "commit-button"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "name": "@cortex-ide/test-harness",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Test harness for AI provider benchmarking and agent trace collection",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "cortex-test": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'Linting test-harness...'",
+    "test": "vitest run",
+    "benchmark:provider": "node ./benchmarks/provider-benchmark/examples/run-benchmark.js",
+    "examples:context": "node ./benchmarks/provider-benchmark/examples/context-optimization-examples.js",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "openai": "^4.104.0",
+    "@anthropic-ai/sdk": "^0.32.1",
+    "zod": "^3.24.1",
+    "commander": "^12.1.0",
+    "chalk": "^5.4.1",
+    "ora": "^8.1.1",
+    "table": "^6.9.0",
+    "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "typescript": "^5.7.3"
+  }
+}

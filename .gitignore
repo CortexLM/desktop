@@ -1,0 +1,40 @@
+# Add Playwright test results to gitignore
+test-results/
+playwright-report/
+*.webm
+*.mp4
+# Auto-generated - Do not commit
+.learnings
+*.learnings
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test outputs
+coverage/
+.nyc_output/
+test-results/
+tests/visual-regression/current/
+tests/visual-regression/diff/
+tests/performance/results/
+*.test-results/
+
+# Vitest
+.vitest/

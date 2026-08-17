@@ -1,0 +1,510 @@
+[
+  {
+    "name": "debug-entry-points",
+    "screenshot": "screenshots/audit/states/debug-entry-points.png",
+    "present": true,
+    "text": "C Cortex IDE cortex-e2e-ws-lNLWgV Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-lNLWgV .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Debug Panel Console IPC Inspector Performance Memory All Levels Debug Info Warn Error All Sources Main Renderer Auto-scroll 6:17:56 AM INFO [ipc-monitor] main IPC monitor initialized 6:17:56 AM INFO [debug] main Debug service initialized 6:17:56 AM INFO [debug] main Debug settings updated { \"logLevel\": \"info\", \"enableIpcMonitoring\": true, \"enablePerformanceMonitoring\": true, \"maxLogSize\": 10000 } 3 logs 3 total Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-lNLWgV",
+    "textLength": 829,
+    "testIds": [
+      "app-header",
+      "toggle-sidebar",
+      "command-palette-trigger",
+      "ask-ai",
+      "theme-switcher",
+      "open-settings",
+      "toggle-debug",
+      "sidebar",
+      "sidebar-explorer",
+      "sidebar-search",
+      "sidebar-git",
+      "sidebar-terminal",
+      "sidebar-ai-chat",
+      "sidebar-extensions",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-browser",
+      "sidebar-automations",
+      "sidebar-account",
+      "sidebar-settings",
+      "sidebar-panel",
+      "file-explorer",
+      "directory-item",
+      "directory-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "content-area",
+      "editor-area",
+      "editor-empty-state",
+      "debug-panel",
+      "status-bar",
+      "status-open-tabs",
+      "toast-container"
+    ],
+    "buttons": [
+      {
+        "label": "Hide sidebar",
+        "disabled": false
+      },
+      {
+        "label": "Search files and commandsCtrl+P",
+        "disabled": false
+      },
+      {
+        "label": "Ask AI",
+        "disabled": false
+      },
+      {
+        "label": "Switch to light theme",
+        "disabled": false
+      },
+      {
+        "label": "Open settings",
+        "disabled": false
+      },
+      {
+        "label": "Disable debug mode",
+        "disabled": false
+      },
+      {
+        "label": "Explorer",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "Source Control",
+        "disabled": false
+      },
+      {
+        "label": "Terminal",
+        "disabled": false
+      },
+      {
+        "label": "AI Chat",
+        "disabled": false
+      },
+      {
+        "label": "Extensions",
+        "disabled": false
+      },
+      {
+        "label": "Notes",
+        "disabled": false
+      },
+      {
+        "label": "Plans",
+        "disabled": false
+      },
+      {
+        "label": "Browser",
+        "disabled": false
+      },
+      {
+        "label": "Automations",
+        "disabled": false
+      },
+      {
+        "label": "Account",
+        "disabled": false
+      },
+      {
+        "label": "Settings",
+        "disabled": false
+      },
+      {
+        "label": "Refresh file tree",
+        "disabled": false
+      },
+      {
+        "label": "Browse files",
+        "disabled": false
+      },
+      {
+        "label": "Search",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Open source control",
+        "disabled": false
+      }
+    ],
+    "inputs": 4,
+    "emptyMessages": [
+      "No files open",
+      "No files open"
+    ],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "panelCountAfterBugButton": 0,
+      "bugButtonAriaLabelAfterClick": "Disable debug mode",
+      "panelCountAfterCmdShiftD": 1
+    }
+  },
+  {
+    "name": "debug-panel-open",
+    "screenshot": "screenshots/audit/states/debug-panel-open.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory All Levels Debug Info Warn Error All Sources Main Renderer Auto-scroll 6:17:56 AM INFO [ipc-monitor] main IPC monitor initialized 6:17:56 AM INFO [debug] main Debug service initialized 6:17:56 AM INFO [debug] main Debug settings updated { \"logLevel\": \"info\", \"enableIpcMonitoring\": true, \"enablePerformanceMonitoring\": true, \"maxLogSize\": 10000 } 3 logs 3 total",
+    "textLength": 414,
+    "testIds": [],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "inputs": 4,
+    "emptyMessages": [],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabCount": 5,
+      "tabNames": [
+        "Console",
+        "IPC Inspector",
+        "Performance",
+        "Memory",
+        ""
+      ]
+    }
+  },
+  {
+    "name": "debug-tab-0-console",
+    "screenshot": "screenshots/audit/states/debug-tab-0-console.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory All Levels Debug Info Warn Error All Sources Main Renderer Auto-scroll 6:17:56 AM INFO [ipc-monitor] main IPC monitor initialized 6:17:56 AM INFO [debug] main Debug service initialized 6:17:56 AM INFO [debug] main Debug settings updated { \"logLevel\": \"info\", \"enableIpcMonitoring\": true, \"enablePerformanceMonitoring\": true, \"maxLogSize\": 10000 } 3 logs 3 total",
+    "textLength": 414,
+    "testIds": [],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "inputs": 4,
+    "emptyMessages": [],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabIndex": 0,
+      "tabLabel": "Console"
+    }
+  },
+  {
+    "name": "debug-tab-1-ipc-inspector",
+    "screenshot": "screenshots/audit/states/debug-tab-1-ipc-inspector.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory All Directions Renderer → Main Main → Renderer 6:17:56 AM → fs:read-dir 2.7ms 6:17:56 AM → fs:read-dir 0.6ms 2 messages Channel Statistics Channel Count Avg (ms) fs:read-dir 2 1.7",
+    "textLength": 232,
+    "testIds": [],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "inputs": 2,
+    "emptyMessages": [],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabIndex": 1,
+      "tabLabel": "IPC Inspector"
+    }
+  },
+  {
+    "name": "debug-tab-2-performance",
+    "screenshot": "screenshots/audit/states/debug-tab-2-performance.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory Category: No categories No performance data Statistics",
+    "textLength": 107,
+    "testIds": [
+      "metric-category",
+      "performance-empty"
+    ],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "inputs": 1,
+    "emptyMessages": [
+      "No categories",
+      "No performance data"
+    ],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabIndex": 2,
+      "tabLabel": "Performance"
+    }
+  },
+  {
+    "name": "debug-tab-3-memory",
+    "screenshot": "screenshots/audit/states/debug-tab-3-memory.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory Memory Usage No memory data Current Memory System Info Platform: linux Arch: x64 Electron: 32.3.3 Chrome: 128.0.6613.186 Node: 20.18.1 V8: 12.8.374.38-electron.0",
+    "textLength": 214,
+    "testIds": [],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      }
+    ],
+    "inputs": 0,
+    "emptyMessages": [
+      "No memory data"
+    ],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabIndex": 3,
+      "tabLabel": "Memory"
+    }
+  },
+  {
+    "name": "debug-tab-4-tab-4",
+    "screenshot": "screenshots/audit/states/debug-tab-4-tab-4.png",
+    "present": true,
+    "text": "Debug Panel Console IPC Inspector Performance Memory Debug Settings Reset Save General Enable Debug Mode Collect and display debug information Log Level Debug (All messages) Info (Info and above) Warn (Warnings and errors) Error (Errors only) Max Log Size (MB) Log Rotation Automatically rotate log files (keep last 10 files) Log Categories Ipc Performance Network Database Ai Git System Information Version 32.3.3 Platform linux (x64) Electron 32.3.3 Chrome 128.0.6613.186 Node 20.18.1 V8 12.8.374.38-electron.0 App Path /root/projects/cortex-ide/packages/main/dist User Data /tmp/cortex-e2e-udd-eTg52C Logs Directory /tmp/cortex-e2e-udd-eTg52C/logs Developer Tools Open DevTools F12 or Cmd+Option+I Press F12 to open Chrome DevTools for advanced debugging",
+    "textLength": 757,
+    "testIds": [],
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Console",
+        "disabled": false
+      },
+      {
+        "label": "IPC Inspector",
+        "disabled": false
+      },
+      {
+        "label": "Performance",
+        "disabled": false
+      },
+      {
+        "label": "Memory",
+        "disabled": false
+      },
+      {
+        "label": "",
+        "disabled": false
+      },
+      {
+        "label": "Reset",
+        "disabled": false
+      },
+      {
+        "label": "Save",
+        "disabled": false
+      }
+    ],
+    "inputs": 10,
+    "emptyMessages": [],
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. "
+    ],
+    "notes": {
+      "tabIndex": 4,
+      "tabLabel": "tab-4"
+    }
+  }
+]

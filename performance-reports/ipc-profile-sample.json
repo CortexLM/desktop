@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-08-16T17:23:51.010Z",
+  "channels": [
+    {
+      "name": "db:query",
+      "avgLatency": 5.2,
+      "minLatency": 2.1,
+      "maxLatency": 15.8,
+      "callCount": 150,
+      "totalTime": 780
+    },
+    {
+      "name": "ai:stream",
+      "avgLatency": 120.5,
+      "minLatency": 80,
+      "maxLatency": 250,
+      "callCount": 25,
+      "totalTime": 3012.5
+    },
+    {
+      "name": "git:status",
+      "avgLatency": 45.3,
+      "minLatency": 30,
+      "maxLatency": 120,
+      "callCount": 40,
+      "totalTime": 1812
+    },
+    {
+      "name": "terminal:create",
+      "avgLatency": 35,
+      "minLatency": 25,
+      "maxLatency": 60,
+      "callCount": 10,
+      "totalTime": 350
+    }
+  ],
+  "statistics": {
+    "totalChannels": 4,
+    "avgLatency": 26.464444444444446,
+    "maxLatency": 250,
+    "slowChannels": 1
+  },
+  "recommendations": [
+    {
+      "severity": "high",
+      "area": "IPC Latency",
+      "issue": "1 channels exceed 50ms average latency",
+      "channels": [
+        "ai:stream"
+      ],
+      "suggestion": "Optimize slow IPC handlers, implement caching, or batch requests"
+    },
+    {
+      "severity": "medium",
+      "area": "IPC Frequency",
+      "issue": "1 channels called > 100 times",
+      "channels": [
+        "db:query"
+      ],
+      "suggestion": "Consider implementing a caching layer or reducing call frequency"
+    },
+    {
+      "severity": "medium",
+      "area": "IPC Consistency",
+      "issue": "1 channels have high latency variance",
+      "channels": [
+        "db:query"
+      ],
+      "suggestion": "Investigate intermittent slowdowns, possible resource contention"
+    }
+  ]
+}

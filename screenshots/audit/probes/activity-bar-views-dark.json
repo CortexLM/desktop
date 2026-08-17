@@ -1,0 +1,1018 @@
+[
+  {
+    "name": "00-shell",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/00-shell.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "C Cortex IDE cortex-e2e-ws-84zYRH Search files and commands Ctrl+P Ask AI",
+    "textLength": 73,
+    "buttons": [
+      {
+        "label": "Hide sidebar",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search files and commandsCtrl+P",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Ask AI",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Switch to light theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open settings",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Enable debug mode",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "toggle-sidebar",
+      "command-palette-trigger",
+      "ask-ai",
+      "theme-switcher",
+      "open-settings",
+      "toggle-debug"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgb(28, 28, 29)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1400,
+        "height": 48
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "01-explorer",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/01-explorer.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "/tmp/cortex-e2e-ws-84zYRH .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt",
+    "textLength": 142,
+    "buttons": [
+      {
+        "label": "Refresh file tree",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "directory-item",
+      "directory-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 48,
+        "y": 84,
+        "width": 320,
+        "height": 765
+      },
+      "overflowingChildren": 3,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": false,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "02-search",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/02-search.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Advanced Search Regex Case Word Search Enter a search query to begin",
+    "textLength": 68,
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 6,
+    "testIds": [],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 48,
+        "y": 84,
+        "width": 320,
+        "height": 765
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "03-git",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/03-git.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt",
+    "textLength": 87,
+    "buttons": [
+      {
+        "label": "main",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Refresh Git status",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Commit",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Stage All",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Discard All",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Push",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Pull",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Stage README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "View changes in README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "View diff for README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Discard changes to README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Stage untracked.txt",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "View changes in untracked.txt",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "View diff for untracked.txt",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete untracked.txt",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "branch-selector",
+      "git-refresh",
+      "commit-button",
+      "stage-all-button",
+      "discard-all-button",
+      "push-button",
+      "pull-button",
+      "changed-file",
+      "stage-file",
+      "discard-file",
+      "changed-file",
+      "stage-file",
+      "delete-file"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 48,
+        "y": 84,
+        "width": 320,
+        "height": 765
+      },
+      "overflowingChildren": 1,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "04-terminal",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/04-terminal.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Terminal $_ No terminal open New Terminal Press Ctrl+` to open a terminal",
+    "textLength": 73,
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New Terminal",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "terminal-grid",
+      "new-terminal",
+      "split-terminal"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "05-ai-chat",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/05-ai-chat.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Sessions New Chat All Today Week Month No sessions found 0 sessions Start an AI chat Ask about this codebase, generate code, or work through a problem. New chat session",
+    "textLength": 168,
+    "buttons": [
+      {
+        "label": "New Chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "All",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Today",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Week",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Month",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New chat session",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 1,
+    "testIds": [
+      "new-session",
+      "ai-chat-empty-state"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "ai-chat-empty-state"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "06-extensions",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/06-extensions.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Installed Marketplace No MCP extensions installed Browse Marketplace",
+    "textLength": 68,
+    "buttons": [
+      {
+        "label": "Installed",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Marketplace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browse Marketplace",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "extensions-installed-tab",
+      "extensions-marketplace-tab"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": false,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "07-notes",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/07-notes.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Notes New Open Save H1 H2 H3 </> Edit Split Preview No content",
+    "textLength": 62,
+    "buttons": [
+      {
+        "label": "New",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Save",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H1",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H2",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H3",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "</>",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Edit",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Split",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "08-plans",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/08-plans.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Plans 0 total 0 done ↻ All (0) Pending (0) In Progress (0) Completed (0) Add No tasks yet",
+    "textLength": 89,
+    "buttons": [
+      {
+        "label": "↻",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "All (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Pending (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "In Progress (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Completed (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Add",
+        "disabled": true,
+        "visible": true
+      }
+    ],
+    "inputs": 1,
+    "testIds": [
+      "new-task-input",
+      "add-task"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "09-browser",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/09-browser.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Browser Go",
+    "textLength": 10,
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Go",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 1,
+    "testIds": [],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "10-automations",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/10-automations.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Automations New Automation No automations yet Create your first automation",
+    "textLength": 74,
+    "buttons": [
+      {
+        "label": "New Automation",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create your first automation",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "new-automation"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "11-account",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/11-account.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Profile Team Billing Profile Not functional Cortex has no accounts or sign-in. This screen is an unfinished interface, not a view of your account, and nothing here is connected to a real service. Identity There is no profile to edit. Cortex runs locally and has no account system, so there is no name, email or avatar stored for you anywhere. Preferences Theme, language, and keyboard shortcuts are configured in Settings, which is where they are actually saved. This screen previously showed a second copy of those controls that looked identical but discarded every change.",
+    "textLength": 574,
+    "buttons": [
+      {
+        "label": "Profile",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Team",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Billing",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "profile-tab",
+      "team-tab",
+      "billing-tab",
+      "demo-notice",
+      "identity-empty",
+      "preferences-pointer"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "identity-empty"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "12-settings",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/12-settings.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Settings Reset Save General AI Providers Editor Keyboard Shortcuts APPEARANCE Theme Choose your color scheme Dark AUTO SAVE Enable Auto Save Automatically save files Auto Save Delay (ms) Delay before auto-saving",
+    "textLength": 211,
+    "buttons": [
+      {
+        "label": "Reset",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Save",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "General",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "AI Providers",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Editor",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Keyboard Shortcuts",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Dark",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  }
+]

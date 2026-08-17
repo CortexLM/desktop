@@ -1,0 +1,165 @@
+[
+  {
+    "name": "editor-empty",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/editor-empty.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search",
+    "textLength": 103,
+    "buttons": [
+      {
+        "label": "Browse files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "editor-empty-state"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "editor-empty-state"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "editor-file-open",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/editor-file-open.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "file1.ts 1 2 export const one = 1; TYPESCRIPT",
+    "textLength": 45,
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 1,
+    "testIds": [
+      "editor-tab",
+      "tab-close"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 48,
+        "width": 1032,
+        "height": 801
+      },
+      "overflowingChildren": 2,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": false,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "editor-sidebar-collapsed",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/editor-sidebar-collapsed.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "file1.ts 1 2 export const one = 1; TYPESCRIPT",
+    "textLength": 45,
+    "buttons": [
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 1,
+    "testIds": [
+      "editor-area",
+      "editor-tab",
+      "tab-close"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgb(13, 13, 14)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 48,
+        "y": 48,
+        "width": 1352,
+        "height": 801
+      },
+      "overflowingChildren": 2,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": false,
+      "hasDescription": false,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  }
+]

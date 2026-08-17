@@ -1,0 +1,111 @@
+appId: com.cortex.ide
+productName: Cortex IDE
+copyright: Copyright © 2026 Cortex IDE Team
+asar: true
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - packages/main/dist/**/*
+  - packages/renderer/dist/**/*
+  - packages/preload/dist/**/*
+  - node_modules/**/*
+  - package.json
+
+extraMetadata:
+  main: packages/main/dist/index.js
+
+# macOS configuration
+mac:
+  category: public.app-category.developer-tools
+  icon: build/icon.icns
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+    - target: zip
+      arch:
+        - x64
+        - arm64
+
+dmg:
+  sign: false
+  contents:
+    - x: 410
+      y: 150
+      type: link
+      path: /Applications
+    - x: 130
+      y: 150
+      type: file
+
+# Windows configuration
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+    - target: portable
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Cortex IDE
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+
+# Linux configuration
+linux:
+  icon: build/icon.png
+  category: Development
+  target:
+    - target: AppImage
+      arch:
+        - x64
+        - arm64
+    - target: deb
+      arch:
+        - x64
+        - arm64
+  maintainer: Cortex IDE Team
+  desktop:
+    Name: Cortex IDE
+    Comment: Professional IDE with AI orchestration
+    Terminal: false
+    Type: Application
+    Categories: Development;IDE;
+
+appImage:
+  license: LICENSE
+
+deb:
+  depends:
+    - gconf2
+    - gconf-service
+    - libnotify4
+    - libappindicator1
+    - libxtst6
+    - libnss3
+
+# Auto-update configuration
+publish:
+  provider: generic
+  url: https://releases.cortex-ide.com/
+  channel: latest
+
+# Code signing (for production, use environment variables)
+# afterSign: scripts/notarize.js  # Uncomment for macOS notarization

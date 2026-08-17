@@ -1,0 +1,166 @@
+/**
+ * Syntax highlighting theme, driven by design tokens.
+ *
+ * Replaces Prism's shipped themes (e.g. `prism-tomorrow`), which hardcode a
+ * dark palette and therefore washed out in light mode. Colours here resolve
+ * from tokens.css, so a single stylesheet covers both themes and follows the
+ * `.dark` class like the rest of the UI.
+ *
+ * Loaded lazily by lib/syntax-highlight.ts alongside the first grammar, so it
+ * costs nothing until a code block is actually rendered.
+ *
+ * Only token colours and code-level text metrics live here. Block layout
+ * (background, padding, radius, overflow) stays in the components' Tailwind
+ * classes so the plain-text fallback is already styled before this arrives.
+ */
+
+:root {
+  /* Light mode: dark-on-light, tuned against --color-elevated. */
+  --syntax-text: var(--color-text);
+  --syntax-comment: var(--color-text-tertiary);
+  --syntax-punctuation: var(--color-text-secondary);
+  --syntax-keyword: #8250df;
+  --syntax-string: #0a7c42;
+  --syntax-number: #953800;
+  --syntax-function: #0550ae;
+  --syntax-class: #953800;
+  --syntax-variable: #0550ae;
+  --syntax-tag: #b5484d;
+  --syntax-operator: #0550ae;
+  --syntax-deleted: var(--color-red);
+  --syntax-inserted: var(--color-green);
+}
+
+.dark {
+  /* Dark mode: desaturated to match the muted token palette. */
+  --syntax-text: var(--color-text);
+  --syntax-comment: var(--color-text-tertiary);
+  --syntax-punctuation: var(--color-text-secondary);
+  --syntax-keyword: #c9a2e8;
+  --syntax-string: #8fce9f;
+  --syntax-number: #e0a878;
+  --syntax-function: #86b6f0;
+  --syntax-class: #e8c583;
+  --syntax-variable: #9ecbff;
+  --syntax-tag: #e896a0;
+  --syntax-operator: #7ecfd0;
+  --syntax-deleted: var(--color-red);
+  --syntax-inserted: var(--color-green);
+}
+
+/* Base text rendering for highlighted code. Inherits the block's font from
+   globals.css; only whitespace/tab behaviour and colour are set here. */
+code[class*='language-'],
+pre[class*='language-'] {
+  color: var(--syntax-text);
+  background: none;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* === Token colours === */
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--syntax-comment);
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: var(--syntax-punctuation);
+}
+
+.token.keyword,
+.token.selector,
+.token.atrule,
+.token.rule,
+.token.important,
+.token.builtin {
+  color: var(--syntax-keyword);
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.url {
+  color: var(--syntax-string);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol {
+  color: var(--syntax-number);
+}
+
+.token.function,
+.token.function-name,
+.token.method {
+  color: var(--syntax-function);
+}
+
+.token.class-name,
+.token.maybe-class-name,
+.token.namespace {
+  color: var(--syntax-class);
+}
+
+.token.property,
+.token.variable,
+.token.parameter,
+.token.property-access {
+  color: var(--syntax-variable);
+}
+
+.token.tag,
+.token.attr-name {
+  color: var(--syntax-tag);
+}
+
+.token.operator,
+.token.entity {
+  color: var(--syntax-operator);
+}
+
+.token.deleted {
+  color: var(--syntax-deleted);
+}
+
+.token.inserted {
+  color: var(--syntax-inserted);
+}
+
+/* === Emphasis === */
+
+.token.important,
+.token.bold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* Prism marks unmatched text as `.namespace` with reduced opacity in some
+   grammars; keep it legible rather than near-invisible. */
+.token.namespace {
+  opacity: 0.85;
+}

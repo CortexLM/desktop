@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    // No `rootDir`: the build is done by Vite (`vite build`), so this config is
+    // typecheck-only (`tsc --noEmit`). Setting `rootDir: "src"` only made tsc
+    // reject the shared test helpers under `<repo>/test/` that the suites here
+    // import, without affecting any emitted output.
+    "module": "ESNext",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "types": ["node", "bun-types", "vitest/globals"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,11 @@
+# Ignore SQLite database files
+*.db
+*.db-wal
+*.db-shm
+
+# Ignore compiled JavaScript files
+*.js
+*.js.map
+
+# Keep TypeScript source files
+!*.ts

@@ -1,0 +1,78 @@
+{
+  // ==========================================================================
+  // CONFIG DE BASE — NE TYPECHECKE RIEN PAR ELLE-MÊME. C'EST VOULU.
+  // ==========================================================================
+  //
+  // Portail réel :  bun run typecheck        (délègue aux 7 packages)
+  // Un package :    cd packages/<nom> && bun run typecheck
+  //
+  // --------------------------------------------------------------------------
+  // Pourquoi ce fichier ne vérifie rien
+  // --------------------------------------------------------------------------
+  // Il n'y a pas de programme unique cohérent à la racine de ce dépôt. Les
+  // packages ont des options *incompatibles* :
+  //   * `jsx: "react-jsx"` n'existe que dans `renderer` ;
+  //   * `lib` contient `DOM` dans `renderer`, pas dans `main` ni `preload` ;
+  //   * `types` vaut `["node"]` ici, `["vite/client", "node", ...]` là.
+  // Mesuré : un `include` unifié sur `packages/*/src/**/*` produit 4710 erreurs
+  // (2957 TS17004 « Cannot use JSX unless the '--jsx' flag is provided »,
+  // 873 TS2304 sur les globales de test) contre 42 erreurs réelles mesurées
+  // package par package. Un typecheck racine unifié ne mesurerait donc pas la
+  // santé du dépôt, il mesurerait le conflit entre ses configs.
+  //
+  // --------------------------------------------------------------------------
+  // Pourquoi il ÉCHOUE au lieu de passer silencieusement
+  // --------------------------------------------------------------------------
+  // Avant, ce fichier n'avait pas d'`include` : il ramassait tout via `**/*`, et
+  // son `exclude: ["dist"]` ne matchait que le `dist` racine — pas
+  // `packages/*/dist`. Avec `allowJs: true`, `tsc` avalait les 173 chunks Vite
+  // de `packages/renderer/dist/assets/` (737 fichiers dans le programme) et
+  // mourait sur un `RangeError: Maximum call stack size exceeded` en signalant
+  // **0 erreur de type**. C'est ce qui a fait circuler des comptes faux.
+  //
+  // Le pire état pour un typecheck est de sortir en succès sans avoir vérifié.
+  // L'`include` ci-dessous ne matche donc aucun fichier, ce qui fait échouer
+  // `tsc -p .` avec TS18003 et un code de sortie non nul, en affichant le chemin
+  // à suivre dans le message d'erreur lui-même.
+  //
+  // `exclude` couvre malgré tout `packages/*/dist` : ceinture et bretelles, pour
+  // qu'aucune invocation dérivée de ce fichier ne puisse réabsorber un `dist`
+  // périmé.
+  "include": ["./__RUN-bun-run-typecheck-INSTEAD__this-is-a-base-config-only__"],
+  "exclude": [
+    "node_modules",
+    "**/node_modules",
+    "dist",
+    "build",
+    "**/dist",
+    "packages/*/dist",
+    "coverage",
+    "test-results",
+    "docs-site"
+  ],
+
+  // --------------------------------------------------------------------------
+  // Options héritées par les packages via `"extends": "../../tsconfig.json"`.
+  // Chaque package redéclare son propre `include`, qui remplace celui ci-dessus.
+  // --------------------------------------------------------------------------
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022"],
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  }
+}

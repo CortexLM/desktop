@@ -1,0 +1,198 @@
+[
+  {
+    "name": "debug-00-after-toggle",
+    "theme": "dark",
+    "screenshot": "screenshots/audit/dark/debug-00-after-toggle.png",
+    "rootClasses": "dark",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "C Cortex IDE cortex-e2e-ws-8IqWDx Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-8IqWDx .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-8IqWDx",
+    "textLength": 414,
+    "buttons": [
+      {
+        "label": "Hide sidebar",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search files and commandsCtrl+P",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Ask AI",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Switch to light theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open settings",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Disable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explorer",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Source Control",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "AI Chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Extensions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Automations",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Account",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Settings",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Refresh file tree",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browse files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open source control",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "app-header",
+      "toggle-sidebar",
+      "command-palette-trigger",
+      "ask-ai",
+      "theme-switcher",
+      "open-settings",
+      "toggle-debug",
+      "sidebar",
+      "sidebar-explorer",
+      "sidebar-search",
+      "sidebar-git",
+      "sidebar-terminal",
+      "sidebar-ai-chat",
+      "sidebar-extensions",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-browser",
+      "sidebar-automations",
+      "sidebar-account",
+      "sidebar-settings",
+      "sidebar-panel",
+      "file-explorer",
+      "directory-item",
+      "directory-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "content-area",
+      "editor-area",
+      "editor-empty-state",
+      "status-bar",
+      "status-open-tabs",
+      "toast-container"
+    ],
+    "styles": {
+      "bodyBg": "rgb(13, 13, 14)",
+      "bodyColor": "rgb(245, 245, 245)",
+      "containerBg": "rgb(13, 13, 14)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "48px"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1400,
+        "height": 873
+      },
+      "overflowingChildren": 3,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "editor-empty-state"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  }
+]

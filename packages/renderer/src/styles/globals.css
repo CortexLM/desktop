@@ -1,0 +1,78 @@
+/**
+ * Global stylesheet - the single CSS entry point for the renderer.
+ *
+ * Order matters:
+ *  1. tokens.css defines the design-token custom properties that
+ *     tailwind.config.js resolves (`bg-page` -> `var(--color-page)`).
+ *     It must be loaded before the utilities that reference it.
+ *  2. Tailwind's layers generate the utility classes the whole UI is
+ *     written in.
+ *  3. Anything below `@tailwind utilities` are app-level overrides.
+ */
+
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Preflight resets `background`/`color` to browser defaults; re-apply the
+     themed values from tokens.css so the app respects light/dark. */
+  body {
+    background-color: var(--color-page);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    overflow: hidden;
+  }
+
+  #root {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  /* Thin scrollbar variant for dense panels (file tree, lists) that would
+     look heavy with the 14px default. */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-strong);
+    border-radius: var(--radius-xs);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-tertiary);
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "timestamp": "2026-08-16T17:11:08.883Z",
+  "totalSize": 1418485,
+  "totalGzipSize": 378368,
+  "files": [
+    {
+      "name": "index.html",
+      "path": "packages/renderer/dist/index.html",
+      "size": 695,
+      "gzipSize": 380,
+      "type": "other"
+    },
+    {
+      "name": "index-BIoa5eUk.js",
+      "path": "packages/renderer/dist/assets/index-BIoa5eUk.js",
+      "size": 709874,
+      "gzipSize": 208786,
+      "type": "js"
+    },
+    {
+      "name": "vendor-ui-DBNHwJPf.js",
+      "path": "packages/renderer/dist/assets/vendor-ui-DBNHwJPf.js",
+      "size": 36901,
+      "gzipSize": 12589,
+      "type": "js"
+    },
+    {
+      "name": "index-CIjyzAso.css",
+      "path": "packages/renderer/dist/assets/index-CIjyzAso.css",
+      "size": 5583,
+      "gzipSize": 1343,
+      "type": "css"
+    },
+    {
+      "name": "vendor-react-K3XPfo89.js",
+      "path": "packages/renderer/dist/assets/vendor-react-K3XPfo89.js",
+      "size": 134172,
+      "gzipSize": 43603,
+      "type": "js"
+    },
+    {
+      "name": "index.js",
+      "path": "packages/main/dist/index.js",
+      "size": 270125,
+      "gzipSize": 53658,
+      "type": "js"
+    },
+    {
+      "name": "index-DclUVsr1.js",
+      "path": "packages/main/dist/index-DclUVsr1.js",
+      "size": 32323,
+      "gzipSize": 7860,
+      "type": "js"
+    },
+    {
+      "name": "standalone-4MMvPysh.js",
+      "path": "packages/main/dist/standalone-4MMvPysh.js",
+      "size": 99671,
+      "gzipSize": 28893,
+      "type": "js"
+    },
+    {
+      "name": "index.cjs",
+      "path": "packages/preload/dist/index.cjs",
+      "size": 129141,
+      "gzipSize": 21256,
+      "type": "js"
+    }
+  ],
+  "breakdown": {
+    "js": 1412207,
+    "css": 5583,
+    "assets": 0,
+    "other": 695
+  },
+  "largestFiles": [
+    {
+      "name": "index-BIoa5eUk.js",
+      "path": "packages/renderer/dist/assets/index-BIoa5eUk.js",
+      "size": 709874,
+      "gzipSize": 208786,
+      "type": "js"
+    },
+    {
+      "name": "index.js",
+      "path": "packages/main/dist/index.js",
+      "size": 270125,
+      "gzipSize": 53658,
+      "type": "js"
+    },
+    {
+      "name": "vendor-react-K3XPfo89.js",
+      "path": "packages/renderer/dist/assets/vendor-react-K3XPfo89.js",
+      "size": 134172,
+      "gzipSize": 43603,
+      "type": "js"
+    },
+    {
+      "name": "index.cjs",
+      "path": "packages/preload/dist/index.cjs",
+      "size": 129141,
+      "gzipSize": 21256,
+      "type": "js"
+    },
+    {
+      "name": "standalone-4MMvPysh.js",
+      "path": "packages/main/dist/standalone-4MMvPysh.js",
+      "size": 99671,
+      "gzipSize": 28893,
+      "type": "js"
+    },
+    {
+      "name": "vendor-ui-DBNHwJPf.js",
+      "path": "packages/renderer/dist/assets/vendor-ui-DBNHwJPf.js",
+      "size": 36901,
+      "gzipSize": 12589,
+      "type": "js"
+    },
+    {
+      "name": "index-DclUVsr1.js",
+      "path": "packages/main/dist/index-DclUVsr1.js",
+      "size": 32323,
+      "gzipSize": 7860,
+      "type": "js"
+    },
+    {
+      "name": "index-CIjyzAso.css",
+      "path": "packages/renderer/dist/assets/index-CIjyzAso.css",
+      "size": 5583,
+      "gzipSize": 1343,
+      "type": "css"
+    },
+    {
+      "name": "index.html",
+      "path": "packages/renderer/dist/index.html",
+      "size": 695,
+      "gzipSize": 380,
+      "type": "other"
+    }
+  ],
+  "recommendations": [
+    {
+      "severity": "high",
+      "area": "JavaScript Bundle",
+      "issue": "1 JS file(s) exceed 500KB",
+      "files": [
+        {
+          "name": "index-BIoa5eUk.js",
+          "size": "693.24 KB"
+        }
+      ],
+      "suggestion": "Implement code splitting, lazy loading, or tree shaking"
+    }
+  ]
+}

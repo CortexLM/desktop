@@ -1,0 +1,54 @@
+{
+  "renderedBeforeStage": [
+    "M README.md",
+    "U untracked.txt"
+  ],
+  "renderedAfterStage": [],
+  "rawStatusBefore": {
+    "success": true,
+    "data": {
+      "branch": "main",
+      "ahead": 0,
+      "behind": 0,
+      "files": [
+        {
+          "path": "README.md",
+          "status": "modified",
+          "staged": false
+        },
+        {
+          "path": "untracked.txt",
+          "status": "untracked",
+          "staged": false
+        }
+      ],
+      "isClean": false
+    }
+  },
+  "rawStatusAfter": {
+    "success": true,
+    "data": {
+      "branch": "main",
+      "ahead": 0,
+      "behind": 0,
+      "files": [
+        {
+          "path": "README.md",
+          "status": "modified",
+          "staged": true
+        },
+        {
+          "path": "untracked.txt",
+          "status": "modified",
+          "staged": true
+        },
+        {
+          "path": "untracked.txt",
+          "status": "added",
+          "staged": true
+        }
+      ],
+      "isClean": false
+    }
+  }
+}

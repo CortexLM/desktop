@@ -1,0 +1,352 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+# Cancel in-progress runs for the same PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: Unit Tests (parallelized by package)
+  unit-tests:
+    name: Unit Tests - ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Names must match the `name` field in each package.json — `bun run
+        # --filter` prints "No packages matched the filter" for anything else,
+        # and a package silently absent from CI is the failure mode this suite
+        # is meant to catch. `shared`, `test-harness` and `test-utils` are
+        # scoped, so their full names are required.
+        package:
+          - '@cortex-ide/ai-engine'
+          - main
+          - renderer
+          - '@cortex-ide/shared'
+          - preload
+          - '@cortex-ide/test-harness'
+          - '@cortex-ide/test-utils'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+      
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      
+      # `bun run --filter <name>` prints "No packages matched the filter" on a
+      # name typo. Guard explicitly so a mistyped matrix entry can never look
+      # like a package with nothing to run.
+      - name: Verify package filter matches
+        run: |
+          set -euo pipefail
+          if bun run --filter '${{ matrix.package }}' test:coverage --help 2>&1 \
+              | grep -q 'No packages matched the filter'; then
+            echo "::error::No package matches '${{ matrix.package }}'. Check the name field in its package.json."
+            exit 1
+          fi
+
+      # `id` + `continue-on-error` so the coverage upload below still runs on a
+      # red suite, and the job is failed explicitly at the end instead. Without
+      # this the step's failure aborts the job immediately and every step after
+      # it is skipped — including the upload — so a failed run published no
+      # coverage at all. `coverage.reportOnFailure` (vitest configs) is what
+      # keeps the report on disk to be uploaded; this is what still gets there.
+      - name: Run unit tests
+        id: unit
+        continue-on-error: true
+        run: bun run --filter '${{ matrix.package }}' test:coverage
+        
+      # The matrix carries package *names*, which for the scoped ones
+      # (`@cortex-ide/shared`) are not their directory names (`packages/shared`).
+      # Interpolating the name straight into the path pointed at
+      # `packages/@cortex-ide/shared/coverage/...`, which never exists — the
+      # upload silently found no file. Strip the scope to get the directory.
+      - name: Resolve coverage path
+        id: cov
+        if: always()
+        run: |
+          set -euo pipefail
+          # `slug` as well as `dir`: an upload-artifact name may not contain
+          # `/`, so `@cortex-ide/shared` cannot be used verbatim.
+          echo "dir=packages/${PKG##*/}" >> "$GITHUB_OUTPUT"
+          echo "slug=${PKG##*/}" >> "$GITHUB_OUTPUT"
+        env:
+          PKG: ${{ matrix.package }}
+
+      # Fails the step when the report is missing instead of letting the upload
+      # find nothing in silence — the failure mode that hid the scoped-path bug
+      # above. A red suite must still leave a report here (reportOnFailure);
+      # if it does not, that is a regression in the coverage config itself.
+      - name: Verify coverage report exists
+        if: always()
+        run: |
+          set -euo pipefail
+          report="./${{ steps.cov.outputs.dir }}/coverage/coverage-final.json"
+          if [ ! -s "$report" ]; then
+            echo "::error::No coverage report at $report (tests outcome: ${{ steps.unit.outcome }}). Check coverage.reportOnFailure in the package's vitest config."
+            exit 1
+          fi
+          echo "Found $report ($(wc -c < "$report") bytes)"
+
+      # `if: always()` so coverage from a *failed* run is still published. That
+      # run is the one you need the number from: without it you cannot tell a
+      # coverage regression from an unrelated broken test.
+      - name: Upload coverage
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./${{ steps.cov.outputs.dir }}/coverage/coverage-final.json
+          flags: ${{ matrix.package }}
+          name: ${{ matrix.package }}-coverage
+
+      # Also kept as a build artifact: Codecov uploads can be dropped (rate
+      # limits, fork PRs without a token) and then a red run leaves no coverage
+      # anywhere at all.
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ steps.cov.outputs.slug }}
+          path: ${{ steps.cov.outputs.dir }}/coverage/
+          retention-days: 7
+
+      # The suite's real verdict, asserted after the artifacts are safe.
+      - name: Fail if unit tests failed
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.unit.outcome }}" != "success" ]; then
+            echo "::error::Unit tests failed for ${{ matrix.package }} (outcome: ${{ steps.unit.outcome }})."
+            exit 1
+          fi
+
+  # Job 2: Integration Tests
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+      
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      
+      - name: Run integration tests
+        run: bun run test:integration
+
+  # Job 3: E2E Tests (sharded for speed)
+  e2e-tests:
+    name: E2E Tests - Shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/bun.lock') }}
+      
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      
+      - name: Install Playwright
+        run: bunx playwright install chromium --with-deps
+      
+      - name: Build application
+        run: bun run build
+      
+      - name: Run E2E tests (shard ${{ matrix.shard }})
+        run: bun run test:e2e --shard=${{ matrix.shard }}/4
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results-shard-${{ matrix.shard }}
+          path: test-results/
+          retention-days: 7
+
+  # Job 4: Performance Tests
+  performance-tests:
+    name: Performance Benchmarks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      
+      # `vitest bench --run` exited 1 with "No benchmark files found": there is
+      # no `*.bench.ts` in the repo. The perf suites under tests/performance are
+      # ordinary vitest tests driven by tests/performance/bench-harness.ts, which
+      # times each body and asserts a per-benchmark `maxMeanMs` budget. Running
+      # them as tests is what actually exercises and gates them.
+      #
+      # Single step, not two: check-budgets.ts scores the JSON that this run
+      # writes to tests/performance/results/. Splitting them would let the
+      # checker score whatever happened to be on disk — the failure mode it was
+      # rewritten to eliminate. `test:performance:budgets` clears the results
+      # directory, runs the benches, then scores them, and fails if a budget has
+      # no measurement (renamed or deleted benchmark), if the results are stale,
+      # or if a measurement is over budget.
+      #
+      # It previously scored a hardcoded `mockResults` array and so returned the
+      # same verdict regardless of measured performance.
+      - name: Run performance benchmarks and check budgets
+        run: bun run test:performance:budgets
+      
+      # `if: always()` so the timings survive a budget failure — that is the run
+      # whose numbers you actually need. Without it the artifact only ever
+      # existed for green runs. (Before the step above wrote anything, this
+      # uploaded a directory that did not exist at all.)
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: tests/performance/results/
+
+  # Job 5: Visual Regression Tests
+  visual-regression:
+    name: Visual Regression
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      
+      - name: Run visual regression tests
+        run: bun run test:visual-regression
+      
+      - name: Upload visual diffs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diffs
+          path: tests/visual-regression/diff/
+
+  # Job 6: Test discovery guard
+  #
+  # Fails when a test file exists on disk but no runner project loads it, or
+  # when a claimed suite throws while loading. Without this, a suite can drop
+  # out of the run and CI still reports green — which is worse than red,
+  # because it reports confidence it has not earned.
+  test-discovery:
+    name: Test Discovery Guard
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify every test file is claimed and loadable
+        run: bun run test:discovery
+
+  # Job 7: Aggregate Results
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, e2e-tests, performance-tests, visual-regression, test-discovery]
+    if: always()
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+      
+      # Reports each job's real result. This step used to print a hardcoded "✅
+      # Complete" for every job regardless of outcome, so the summary read green
+      # even when a job had failed.
+      - name: Generate test summary
+        run: |
+          echo "# Test Suite Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Unit Tests | ${{ needs.unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Integration Tests | ${{ needs.integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| E2E Tests | ${{ needs.e2e-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Performance Tests | ${{ needs.performance-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Visual Regression | ${{ needs.visual-regression.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Discovery Guard | ${{ needs.test-discovery.result }} |" >> $GITHUB_STEP_SUMMARY
+
+      # `needs` alone does not fail this job when a dependency fails while
+      # `if: always()` is set, so the results are asserted explicitly.
+      - name: Fail if any job failed
+        run: |
+          set -euo pipefail
+          failed=0
+          for result in \
+            '${{ needs.unit-tests.result }}' \
+            '${{ needs.integration-tests.result }}' \
+            '${{ needs.e2e-tests.result }}' \
+            '${{ needs.performance-tests.result }}' \
+            '${{ needs.visual-regression.result }}' \
+            '${{ needs.test-discovery.result }}'; do
+            if [ "$result" != "success" ]; then failed=1; fi
+          done
+          if [ "$failed" -ne 0 ]; then
+            echo "::error::At least one test job did not succeed."
+            exit 1
+          fi

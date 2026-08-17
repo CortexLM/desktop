@@ -1,0 +1,18 @@
+# Gitignore for screenshots directory
+# All generated files should be ignored
+
+# All screenshots
+*.png
+*.jpg
+*.jpeg
+
+# HTML reports
+index.html
+comparison-report.html
+
+# Keep directory structure
+!.gitkeep
+!README.md
+
+# Baseline (if stored locally)
+screenshots-baseline/
