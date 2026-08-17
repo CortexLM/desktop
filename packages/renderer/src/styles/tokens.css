@@ -1,86 +1,81 @@
 /**
- * Design Tokens - Cortex V3
- * 
- * Tokens exacts extraits du fichier Paper Cortex V3
- * https://app.paper.design/file/01KZTAQN08GVBQGXVPPQ76BJND
+ * Cortex Foundations — visual source of truth.
+ * Prefer these values over older duplicate CSS-variable dumps.
  */
 
 :root {
-  /* === COLORS - LIGHT MODE === */
-  
-  /* Page & Surfaces */
+  /* Light */
   --color-page: #FCFCFC;
-  --color-wash: #F6F6F6;
+  --color-wash: #F8F8F8;
   --color-elevated: #FFFFFF;
-  
-  /* Text */
-  --color-text: #262626;
-  --color-text-secondary: rgb(38 38 38 / 60%);
-  --color-text-tertiary: rgb(38 38 38 / 40%);
-  
-  /* Borders */
-  --color-border: rgb(38 38 38 / 7%);
-  --color-border-soft: rgb(38 38 38 / 5%);
-  --color-border-strong: rgb(38 38 38 / 9%);
-  
-  /* Interactive fills */
-  --color-tint: rgb(38 38 38 / 4%);
-  --color-tint-strong: rgb(38 38 38 / 7%);
-  
-  /* Accent / Primary */
-  --color-accent: #526FFF;
-  --color-accent-soft: rgb(82 111 255 / 10%);
-  
-  /* Button system */
-  --color-primary: #262626;
+
+  --color-text: #191919;
+  --color-text-secondary: rgb(25 25 25 / 56%);
+  --color-text-tertiary: rgb(25 25 25 / 40%);
+
+  --color-border: rgb(25 25 25 / 7%);
+  --color-border-soft: rgb(25 25 25 / 5%);
+  --color-border-strong: rgb(25 25 25 / 9%);
+
+  --color-tint: rgb(25 25 25 / 4%);
+  --color-tint-strong: rgb(25 25 25 / 8%);
+
+  --color-accent: #317CFF;
+  --color-accent-text: #317CFF;
+  --color-accent-soft: rgb(21 107 255 / 20%);
+  --color-accent-strong: #156BFF;
+
+  --color-primary: #191919;
   --color-primary-foreground: #FCFCFC;
-  --color-secondary: rgb(38 38 38 / 4%);
-  
-  /* Focus ring */
-  --color-ring: #526FFF;
-  
-  /* Semantic colors */
-  --color-green: #3E7D53;
-  --color-green-soft: rgb(62 125 83 / 8%);
-  --color-red: #B5484D;
-  --color-red-soft: rgb(181 72 77 / 8%);
-  --color-orange: #9A6B3F;
-  --color-amber: #9A6B3F;
-  --color-amber-soft: rgb(154 107 63 / 8%);
-  --color-purple: #6E5A93;
-  
-  /* === TYPOGRAPHY === */
-  
-  /* Font Families */
+  --color-secondary: rgb(25 25 25 / 4%);
+  --color-ring: #317CFF;
+
+  --color-green: #00A558;
+  --color-green-soft: rgb(0 165 88 / 10%);
+  --color-red: #ED3434;
+  --color-red-soft: rgb(237 52 52 / 10%);
+  --color-orange: #F58E3A;
+  --color-amber: #F58E3A;
+  --color-amber-soft: rgb(245 142 58 / 12%);
+  --color-purple: #956CDE;
+
+  --color-git-add: #00A558;
+  --color-git-del: #ED3434;
+  --color-git-mod: #F58E3A;
+
   --font-sans: Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-chrome: Geist, Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-chrome: Figtree, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
-  
-  /* Font Sizes */
-  --text-xs: 12px;
-  --text-sm: 13px;
-  --text-base: 14px;
-  --text-lg: 16px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  
-  /* Font Weights */
+
+  --text-display: 24px;
+  --text-title: 20px;
+  --text-emphasis: 16px;
+  --text-body: 14px;
+  --text-ui: 13px;
+  --text-caption: 12px;
+
+  --text-2xl: var(--text-display);
+  --text-xl: var(--text-title);
+  --text-lg: var(--text-emphasis);
+  --text-base: var(--text-body);
+  --text-sm: var(--text-ui);
+  --text-xs: var(--text-caption);
+
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  
-  /* Letter Spacing */
+  --font-weight-display: 600;
+  --font-weight-title: 600;
+  --font-weight-emphasis: 500;
+  --font-weight-caption: 500;
+
   --tracking-normal: 0em;
   --tracking-tight: -0.01em;
-  
-  /* Line Heights */
   --leading-xs: 16px;
   --leading-sm: 18px;
   --leading-base: 20px;
-  
-  /* === SPACING === */
-  
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -91,44 +86,40 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
-  
-  /* === BORDER RADIUS === */
-  
+
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 9999px;
-  
-  /* === LAYOUT CONTAINERS === */
-  
+
   --container-sidebar: 378px;
   --container-content: 684px;
   --sidebar-workspace: 240px;
   --panel-context: 320px;
   --panel-artifact: 400px;
-  
-  /* === SHADOWS === */
-  
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  
-  /* === TRANSITIONS === */
+  --topbar-workspace: 40px;
+  --topbar-session: 52px;
+  --icon-rail: 36px;
+  --icon-size: 16px;
+  --icon-stroke: 1.5px;
+  --traffic-light: 12px;
+  --traffic-light-inset: 30px;
+  --tooltip-delay: 400ms;
+  --toast-duration: 4000ms;
 
-  /* Shorthand (duration + easing), for use in plain CSS `transition` rules. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 12%);
+  --shadow-overlay: 0 12px 32px rgb(0 0 0 / 12%);
+
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Individual parts, for use in `transition-duration` / `transition-timing-function`.
-     Tailwind's duration-* / ease-* utilities need these, not the shorthand above. */
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --duration-slow: 300ms;
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* === Z-INDEX === */
-  
+
   --z-dropdown: 1000;
   --z-sticky: 1020;
   --z-modal-backdrop: 1040;
@@ -137,56 +128,50 @@
   --z-tooltip: 1070;
 }
 
-/* === DARK MODE === */
-
 .dark {
-  /* Page & Surfaces */
   --color-page: #0D0D0E;
   --color-wash: #141415;
   --color-elevated: #1C1C1D;
-  
-  /* Text */
-  --color-text: #F5F5F5;
-  --color-text-secondary: rgb(245 245 245 / 58%);
-  --color-text-tertiary: rgb(245 245 245 / 33%);
-  
-  /* Borders - SOLID in dark mode */
+
+  --color-text: rgb(255 255 255 / 90%);
+  --color-text-secondary: rgb(255 255 255 / 52%);
+  --color-text-tertiary: rgb(255 255 255 / 40%);
+
   --color-border: #252628;
   --color-border-soft: #1F2022;
   --color-border-strong: #2E2F31;
-  
-  /* Interactive fills */
-  --color-tint: rgb(255 255 255 / 4%);
-  --color-tint-strong: rgb(255 255 255 / 8%);
-  
-  /* Accent / Primary - desaturated for dark mode */
-  --color-accent: #7F8ED6;
-  --color-accent-soft: rgb(127 142 214 / 14%);
-  --color-accent-strong: #6B7ABF;
-  
-  /* Button system */
-  --color-primary: #F5F5F5;
+
+  --color-tint: rgb(252 252 252 / 8%);
+  --color-tint-strong: rgb(252 252 252 / 12%);
+
+  --color-accent: #4489FF;
+  --color-accent-text: #66BFFF;
+  --color-accent-soft: rgb(68 137 255 / 16%);
+  --color-accent-strong: #317CFF;
+
+  --color-primary: rgb(255 255 255 / 90%);
   --color-primary-foreground: #0D0D0E;
-  --color-secondary: rgb(245 245 245 / 3%);
-  
-  /* Focus ring */
-  --color-ring: rgb(127 142 214 / 63%);
-  
-  /* Semantic colors - muted for dark mode */
-  --color-green: #7DAF8A;
-  --color-green-soft: rgb(125 175 138 / 16%);
+  --color-secondary: rgb(252 252 252 / 6%);
+  --color-ring: #4489FF;
+
+  --color-green: #8EFF96;
+  --color-green-soft: rgb(142 255 150 / 14%);
   --color-red: #C97070;
   --color-red-soft: rgb(201 112 112 / 16%);
+  --color-orange: #C09468;
   --color-amber: #C09468;
   --color-amber-soft: rgb(192 148 104 / 16%);
-  
-  /* Shadows - stronger for dark mode */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
-}
+  --color-purple: #956CDE;
 
-/* === GLOBAL STYLES === */
+  --color-git-add: #7DAF8A;
+  --color-git-del: #C97070;
+  --color-git-mod: #C09468;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 45%);
+  --shadow-overlay: 0 12px 32px rgb(0 0 0 / 45%);
+}
 
 * {
   box-sizing: border-box;
@@ -196,7 +181,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-sans);
-  font-size: var(--text-base);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-regular);
   line-height: var(--leading-base);
   color: var(--color-text);
   background-color: var(--color-page);
@@ -211,19 +197,16 @@ samp {
   font-family: var(--font-mono);
 }
 
-/* Focus visible (keyboard only) */
 *:focus-visible {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
 }
 
-/* Selection */
 ::selection {
   background-color: var(--color-accent-soft);
   color: var(--color-text);
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;

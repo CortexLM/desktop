@@ -16,6 +16,8 @@ import { ThemeToggle } from '../ui/theme-switcher';
 import { useWorkbench } from '../../contexts/WorkbenchContext';
 import { useDebug } from '../../contexts/DebugContext';
 import { VIEW_BY_ID, VIEWS, formatShortcut } from './views';
+import { BannerHost } from '../chrome/BannerHost';
+import { UpdateNotification, useAppUpdate } from '../UpdateNotification';
 
 export interface AppShellProps {
   /** Panel rendered inside the sidebar, beside the activity bar. */
@@ -35,6 +37,7 @@ export function AppShell({
   onOpenCommandPalette,
 }: AppShellProps) {
   const { sidebarCollapsed, toggleSidebar } = useWorkbench();
+  const update = useAppUpdate();
 
   // Cmd/Ctrl+B toggles the sidebar, matching the convention in every other
   // editor. Registered here because the shell owns the sidebar's visibility.
@@ -53,6 +56,11 @@ export function AppShell({
   return (
     <div className="h-screen w-screen flex flex-col bg-page text-text overflow-hidden">
       <AppHeader onOpenCommandPalette={onOpenCommandPalette} />
+      <BannerHost
+        banners={{
+          update: update.visible ? <UpdateNotification compact /> : null,
+        }}
+      />
 
       <div className="flex-1 flex min-h-0">
         <ActivityBar />
@@ -188,7 +196,7 @@ function AppHeader({ onOpenCommandPalette }: { onOpenCommandPalette?: () => void
 
   return (
     <header
-      className="h-12 flex-shrink-0 border-b border-border bg-elevated flex items-center gap-3 px-3"
+      className="h-10 flex-shrink-0 border-b border-border bg-page flex items-center gap-3 pl-[var(--traffic-light-inset)] pr-3"
       role="banner"
       data-testid="app-header"
     >

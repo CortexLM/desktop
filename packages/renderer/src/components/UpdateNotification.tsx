@@ -22,32 +22,34 @@ type UpdateState =
   | { type: 'downloaded'; info: UpdateInfo }
   | { type: 'error'; message: string };
 
-export function UpdateNotification() {
+export function useAppUpdate() {
   const [updateState, setUpdateState] = useState<UpdateState>({ type: 'idle' });
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     // Each `on*` helper returns its own unsubscribe function.
+    const update = window.cortex?.update;
+    if (!update) return undefined;
     const unsubscribers = [
-      window.cortex.update.onChecking(() => {
+      update.onChecking(() => {
         setUpdateState({ type: 'checking' });
         setDismissed(false);
       }),
-      window.cortex.update.onAvailable((info) => {
+      update.onAvailable((info) => {
         setUpdateState({ type: 'available', info });
         setDismissed(false);
       }),
-      window.cortex.update.onNotAvailable(() => {
+      update.onNotAvailable(() => {
         setUpdateState({ type: 'idle' });
       }),
-      window.cortex.update.onDownloadProgress((progress) => {
+      update.onDownloadProgress((progress) => {
         setUpdateState({ type: 'downloading', progress });
       }),
-      window.cortex.update.onDownloaded((info) => {
+      update.onDownloaded((info) => {
         setUpdateState({ type: 'downloaded', info });
         setDismissed(false);
       }),
-      window.cortex.update.onError((error) => {
+      update.onError((error) => {
         setUpdateState({ type: 'error', message: error.message });
       }),
     ];
@@ -81,9 +83,45 @@ export function UpdateNotification() {
     return `${formatBytes(bytesPerSecond)}/s`;
   };
 
-  // Don't show if dismissed or idle
-  if (dismissed || updateState.type === 'idle') {
+  const visible = !dismissed && updateState.type !== 'idle';
+  return { updateState, visible, setDismissed, handleCheckForUpdates, handleDownload, handleInstall, formatBytes, formatSpeed };
+}
+
+export function UpdateNotification({ compact = false }: { compact?: boolean }) {
+  const {
+    updateState,
+    visible,
+    setDismissed,
+    handleCheckForUpdates,
+    handleDownload,
+    handleInstall,
+    formatBytes,
+    formatSpeed,
+  } = useAppUpdate();
+
+  if (!visible) {
     return null;
+  }
+
+  if (compact) {
+    const label =
+      updateState.type === 'available'
+        ? `Update ${updateState.info.version} available`
+        : updateState.type === 'downloading'
+          ? `Downloading update ${updateState.progress.percent}%`
+          : updateState.type === 'downloaded'
+            ? `Update ${updateState.info.version} ready`
+            : updateState.type === 'checking'
+              ? 'Checking for updates…'
+              : 'Update error';
+    return (
+      <div className="h-9 px-4 flex items-center justify-between bg-wash text-[12px]" data-testid="update-banner">
+        <span>{label}</span>
+        <button type="button" className="underline" onClick={() => setDismissed(true)}>
+          Dismiss
+        </button>
+      </div>
+    );
   }
 
   return (

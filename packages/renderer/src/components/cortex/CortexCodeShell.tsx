@@ -9,8 +9,11 @@ import { ModelPickerOverlay } from './overlays/ModelPickerOverlay';
 import { PlanOverlay } from './overlays/PlanOverlay';
 import { ContextFullBanner, OfflineBanner, ProviderErrorBanner } from './overlays/ContextFullBanner';
 import { CheckpointOverlay, ShortcutsOverlay } from './overlays/CheckpointOverlay';
+import { BannerHost } from '../chrome/BannerHost';
+import { UpdateNotification, useAppUpdate } from '../UpdateNotification';
 import { useSessionAgent } from './use-session-agent';
 import { useWorkbench } from '../../contexts/WorkbenchContext';
+import { isEditorTarget, surfaceForDigit } from '../../lib/foundations-keys';
 import type { SessionSurface } from './session-surfaces';
 
 export interface CortexCodeShellProps {
@@ -50,7 +53,8 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
         event.preventDefault();
         void agent.interrupt();
       }
-      if (modifier && event.key.toLowerCase() === 'k') {
+      if (modifier && event.key.toLowerCase() === 'k' && !event.shiftKey) {
+        if (isEditorTarget(event.target)) return;
         event.preventDefault();
         onOpenCommandPalette?.();
       }
@@ -71,11 +75,27 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
         setPickerAnchor(composerModelRef);
         setModelOpen(true);
       }
+      if (modifier && event.shiftKey && event.key.toLowerCase() === 'r') {
+        event.preventDefault();
+        setCheckpointsOpen(true);
+      }
+      if (modifier && (event.key === '[' || event.key === ']')) {
+        event.preventDefault();
+        agent.cycleSession(event.key === ']' ? 1 : -1);
+      }
+      if (modifier && /^[1-9]$/.test(event.key)) {
+        const next = surfaceForDigit(event.key);
+        if (next) {
+          event.preventDefault();
+          setSurface(next);
+        }
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [agent, onOpenCommandPalette]);
 
+  const update = useAppUpdate();
   const project = workspacePath?.split(/[\\/]/).filter(Boolean).at(-1) ?? 'workspace';
 
   const openModelPicker = (anchor: React.RefObject<HTMLElement>) => {
@@ -85,13 +105,13 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
 
   return (
     <div
-      className="h-screen w-screen flex flex-col bg-page text-text overflow-hidden font-[family-name:var(--font-chrome)]"
+      className="h-screen w-screen flex flex-col bg-page text-text overflow-hidden font-sans"
       data-testid="cortex-code-shell"
       data-theme-chrome="paper-v3"
       data-session-chrome="240-320-36"
     >
       <header
-        className="h-10 flex-shrink-0 flex items-center gap-3 px-3 border-b border-border bg-page"
+        className="h-[52px] flex-shrink-0 flex items-center gap-3 pl-[var(--traffic-light-inset)] pr-3 border-b border-border bg-page"
         data-testid="cortex-topbar"
       >
         <div className="w-[240px] flex-shrink-0 min-w-0">
@@ -128,11 +148,20 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
         </div>
       </header>
 
-      {offline && <OfflineBanner />}
-      {agent.providerError && (
-        <ProviderErrorBanner message={agent.providerError} onDismiss={agent.clearProviderError} />
-      )}
-      {agent.contextFull && <ContextFullBanner onCompact={agent.compactContext} />}
+      <BannerHost
+        banners={{
+          blocking: agent.providerError ? (
+            <ProviderErrorBanner message={agent.providerError} onDismiss={agent.clearProviderError} />
+          ) : agent.permission ? (
+            <div className="h-9 px-4 flex items-center bg-amber-soft text-[12px]" data-testid="blocking-banner">
+              Permission needed — the agent is paused until you decide. Nothing is blocked silently.
+            </div>
+          ) : null,
+          offline: offline ? <OfflineBanner /> : null,
+          usage: agent.contextFull ? <ContextFullBanner onCompact={agent.compactContext} /> : null,
+          update: update.visible ? <UpdateNotification compact /> : null,
+        }}
+      />
 
       <div className="flex-1 flex min-h-0">
         <SessionSidebar
@@ -142,6 +171,7 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
           branches={agent.worktrees}
           onNewSession={() => void agent.newSession()}
           onSelect={agent.selectSession}
+          onDelete={agent.deleteSession}
           onSearch={onOpenCommandPalette}
           onOpenCheckpoints={() => setCheckpointsOpen(true)}
         />
@@ -162,7 +192,7 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
           value={agent.model}
           anchorRef={pickerAnchor}
           onChange={(model, provider) => {
-            agent.setModel(model, provider);
+            agent.proposeModel(model, provider);
             setModelOpen(false);
           }}
           onClose={() => setModelOpen(false)}

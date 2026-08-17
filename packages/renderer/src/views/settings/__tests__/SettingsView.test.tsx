@@ -335,9 +335,23 @@ describe('SettingsView', () => {
 
       await waitFor(() => expect(screen.getByText(/saved successfully/i)).toBeInTheDocument());
 
-      // Every field survives the no-op Save, including the ones no tab showed:
-      // theme, tabSize and fontFamily are on tabs that were never opened.
-      expect(stored()).toEqual(saved);
+      // User-visible fields survive the no-op Save, including ones no tab showed.
+      // New default shortcut keys may be filled in; stored bindings stay verbatim.
+      expect(stored()).toMatchObject({
+        theme: 'light',
+        fontSize: 17,
+        fontFamily: 'Fira Code, monospace',
+        tabSize: 4,
+        autoSave: false,
+        autoSaveDelay: 2500,
+        shortcuts: {
+          'toggle-sidebar': 'Ctrl+B',
+          'toggle-terminal': 'Cmd+J',
+          'new-chat': 'Cmd+N',
+          'save-file': 'Cmd+S',
+          'open-command-palette': 'Cmd+P',
+        },
+      });
     });
 
     it('fills in a missing key from defaults without touching the stored ones', async () => {

@@ -125,6 +125,31 @@ export const EditorView: React.FC = () => {
       }
     );
 
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyL, () => {
+      window.dispatchEvent(new CustomEvent('cortex:add-to-chat'));
+    });
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyK, () => {
+      window.dispatchEvent(new CustomEvent('cortex:inline-edit'));
+    });
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyY, () => {
+      window.dispatchEvent(new CustomEvent('cortex:accept-hunk'));
+    });
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyN, () => {
+      window.dispatchEvent(new CustomEvent('cortex:reject-hunk'));
+    });
+    editor.addCommand(
+      monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyY,
+      () => {
+        window.dispatchEvent(new CustomEvent('cortex:accept-file'));
+      }
+    );
+    editor.addCommand(monaco.KeyCode.F7, () => {
+      window.dispatchEvent(new CustomEvent('cortex:next-hunk'));
+    });
+    editor.addCommand(monaco.KeyCode.F8, () => {
+      window.dispatchEvent(new CustomEvent('cortex:next-conflict'));
+    });
+
     // Focus editor
     editor.focus();
   };

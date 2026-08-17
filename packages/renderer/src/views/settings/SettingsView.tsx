@@ -68,7 +68,11 @@ const defaultSettings: AppSettings = {
     'toggle-terminal': 'Cmd+J',
     'new-chat': 'Cmd+N',
     'save-file': 'Cmd+S',
-    'open-command-palette': 'Cmd+P',
+    'open-command-palette': 'Cmd+K',
+    'quick-open': 'Cmd+P',
+    'switch-model': 'Cmd+M',
+    'open-changes': 'Cmd+D',
+    'rewind': 'Cmd+Shift+R',
   },
 };
 

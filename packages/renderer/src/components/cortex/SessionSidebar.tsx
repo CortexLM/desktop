@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { ReactNode } from 'react';
 import { Filter, GitBranch, HelpCircle, Info, List, Plus, Search, Sun } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -11,6 +12,7 @@ export function SessionSidebar({
   branches,
   onNewSession,
   onSelect,
+  onDelete,
   onSearch,
   onOpenCheckpoints,
 }: {
@@ -20,6 +22,7 @@ export function SessionSidebar({
   branches: Array<{ name: string; pr: string }>;
   onNewSession: () => void;
   onSelect: (id: string) => void;
+  onDelete?: (id: string) => void;
   onSearch?: () => void;
   onOpenCheckpoints?: () => void;
 }) {
@@ -68,6 +71,7 @@ export function SessionSidebar({
               title={row.title}
               active={row.id === activeId}
               onClick={() => onSelect(row.id)}
+              onDelete={onDelete ? () => onDelete(row.id) : undefined}
             />
           )
         )}
@@ -82,6 +86,7 @@ export function SessionSidebar({
             title={row.title}
             active={row.id === activeId}
             onClick={() => onSelect(row.id)}
+            onDelete={onDelete ? () => onDelete(row.id) : undefined}
           />
         ))}
 
@@ -119,21 +124,51 @@ function SessionRowButton({
   title,
   active,
   onClick,
+  onDelete,
 }: {
   title: string;
   active: boolean;
   onClick: () => void;
+  onDelete?: () => void;
 }) {
+  const [confirming, setConfirming] = React.useState(false);
+
+  if (confirming) {
+    return (
+      <div className="h-7 w-full px-2 rounded-md bg-red-soft flex items-center gap-2 text-[12px]" data-testid="delete-session-confirm">
+        <span className="flex-1 truncate">Delete session?</span>
+        <button type="button" className="text-red" onClick={onDelete}>
+          Delete
+        </button>
+        <button type="button" className="text-text-tertiary" onClick={() => setConfirming(false)}>
+          Cancel
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        'h-7 w-full px-2 rounded-md text-left text-[13px] truncate',
-        active ? 'bg-tint-strong text-text' : 'text-text-secondary hover:bg-tint'
-      )}
-    >
-      {title}
-    </button>
+    <div className="flex items-center gap-1">
+      <button
+        type="button"
+        onClick={onClick}
+        className={cn(
+          'h-7 flex-1 px-2 rounded-md text-left text-[13px] truncate',
+          active ? 'bg-tint-strong text-text' : 'text-text-secondary hover:bg-tint'
+        )}
+      >
+        {title}
+      </button>
+      {onDelete ? (
+        <button
+          type="button"
+          aria-label="Delete session"
+          className="h-7 w-7 text-text-tertiary hover:text-red"
+          onClick={() => setConfirming(true)}
+        >
+          ×
+        </button>
+      ) : null}
+    </div>
   );
 }

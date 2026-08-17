@@ -42,7 +42,8 @@ You work in the user environment. You are direct, plain-spoken, and precise.`);
 - Use dedicated file and search tools. Execute only when no dedicated tool covers the work.
 - Pass absolute paths to every tool that takes a path.
 - Issue independent calls in one block so they can run in parallel. Never batch a call whose input depends on an earlier result. Never edit one file from two calls at once.
-- Follow AGENTS.md. More specific instructions take precedence.`);
+- Follow AGENTS.md. More specific instructions take precedence.
+- You may be told secret NAMES (ANTHROPIC_API_KEY, OPENAI_API_KEY). Never request, store, or echo secret values.`);
 
   sections.push(`# Working in repositories
 - Explanations, reviews, and diagnosis: inspect and report. Do not change files unless asked to implement.

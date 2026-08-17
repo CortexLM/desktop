@@ -1,6 +1,7 @@
 export * from './types';
 export * from './system-prompt';
 export * from './system-reminder';
+export * from './secrets';
 export * from './parse-tool-calls';
 export * from './permissions';
 export * from './tool-names';

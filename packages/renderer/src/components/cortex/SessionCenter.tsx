@@ -59,6 +59,22 @@ export function SessionCenter({
 
       <div className="flex-shrink-0 px-6 pb-4">
         <div className="max-w-[796px] mx-auto flex flex-col gap-2">
+          {agent.pendingModel && (
+            <div
+              className="h-[34px] px-3 rounded-[10px] border border-border bg-elevated flex items-center gap-2 text-[13px]"
+              data-testid="model-switch-proposal"
+            >
+              <span className="flex-1">
+                Switch to {agent.pendingModel.model}? Model switches are never silent.
+              </span>
+              <button type="button" className="text-accent-text" onClick={agent.applyPendingModel}>
+                Apply
+              </button>
+              <button type="button" className="text-text-tertiary" onClick={agent.dismissPendingModel}>
+                Keep
+              </button>
+            </div>
+          )}
           {agent.filesChanging && (
             <div className="h-[34px] px-3 rounded-[10px] border border-border-soft bg-elevated flex items-center gap-2 text-[13px]">
               <FileText className="w-3.5 h-3.5 text-text-tertiary flex-shrink-0" />
@@ -148,7 +164,7 @@ function EmptySession({ onPick }: { onPick: (text: string) => void }) {
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" fill="#FCFCFC">
         <path d="M11 1h4v9h9v4h-9v9h-4v-9H2v-4h9V1z" />
       </svg>
-      <h1 className="text-[24px] font-medium leading-[30px] tracking-tight">
+      <h1 className="text-[24px] font-semibold leading-[30px] tracking-tight">
         <span className="text-text-secondary">Hey,</span>{' '}
         <span className="text-text">what should we build?</span>
       </h1>

@@ -31,6 +31,10 @@ export function useSessionAgent(workspacePath: string | null) {
   const [providerError, setProviderError] = React.useState<string | null>(null);
   const [model, setModelState] = React.useState('claude-sonnet-4');
   const [provider, setProvider] = React.useState<'openai' | 'anthropic' | 'openrouter' | 'ollama'>('anthropic');
+  const [pendingModel, setPendingModel] = React.useState<{
+    model: string;
+    provider: 'openai' | 'anthropic' | 'openrouter' | 'ollama';
+  } | null>(null);
   const [mode, setMode] = React.useState<'agent' | 'plan' | 'mission' | 'ask'>('agent');
   const [branch, setBranch] = React.useState('main');
   const [filesChanging, setFilesChanging] = React.useState<string | null>(null);
@@ -224,9 +228,33 @@ export function useSessionAgent(workspacePath: string | null) {
     send,
     interrupt,
     decidePermission,
-    setModel: (next: string, nextProvider?: typeof provider) => {
-      setModelState(next);
-      if (nextProvider) setProvider(nextProvider);
+    pendingModel,
+    proposeModel: (next: string, nextProvider?: typeof provider) => {
+      setPendingModel({ model: next, provider: nextProvider ?? provider });
+    },
+    applyPendingModel: () => {
+      if (!pendingModel) return;
+      setModelState(pendingModel.model);
+      setProvider(pendingModel.provider);
+      setPendingModel(null);
+    },
+    dismissPendingModel: () => setPendingModel(null),
+    deleteSession: (id: string) => {
+      setSessions((prev) => prev.filter((row) => row.id !== id));
+      if (sessionId === id) {
+        setSessionId(null);
+        setTranscript([]);
+        setSessionTitle('New session');
+      }
+    },
+    cycleSession: (direction: 1 | -1) => {
+      if (sessions.length === 0) return;
+      const index = Math.max(0, sessions.findIndex((row) => row.id === sessionId));
+      const next = sessions[(index + direction + sessions.length) % sessions.length];
+      if (next) {
+        setSessionId(next.id);
+        setSessionTitle(next.title);
+      }
     },
     setMode,
     setBranch,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FOUNDATIONS_SHORTCUTS } from '../../../lib/foundations-keys';
 
 export function CheckpointOverlay({
   onClose,
@@ -50,13 +51,7 @@ export function CheckpointOverlay({
 }
 
 export function ShortcutsOverlay({ onClose }: { onClose: () => void }) {
-  const rows = [
-    ['⌘K / ⌘P', 'Command palette / Quick open'],
-    ['⌘J', 'Terminal'],
-    ['Esc', 'Interrupt agent'],
-    ['⌘B', 'Toggle sidebar'],
-    ['⌘,', 'Settings'],
-  ];
+  const rows = FOUNDATIONS_SHORTCUTS;
   return (
     <div className="fixed inset-0 z-[1050] flex items-center justify-center bg-black/40" data-testid="shortcuts-overlay">
       <div className="w-[420px] rounded-[10px] border border-border bg-elevated p-4">

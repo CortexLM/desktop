@@ -49,10 +49,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     const newToast: Toast = {
       ...toast,
       id,
-      duration: toast.duration ?? 5000,
+      duration: toast.duration ?? 4000,
     };
 
-    setToasts((prev) => [...prev, newToast]);
+    setToasts((prev) => [...prev, newToast].slice(-3));
 
     // Auto-remove after duration
     if (newToast.duration && newToast.duration > 0) {
@@ -137,7 +137,7 @@ function ToastContainer() {
 
   return (
     <div
-      className="fixed top-6 right-6 z-[100] flex flex-col gap-2 max-w-md pointer-events-none"
+      className="fixed bottom-6 right-6 z-[100] flex flex-col-reverse gap-2 max-w-md pointer-events-none"
       // Screen readers announce arriving toasts without stealing focus.
       role="region"
       aria-label="Notifications"
@@ -197,7 +197,7 @@ function ToastItem({ toast }: { toast: Toast }) {
         pointer-events-auto
         bg-background/95 backdrop-blur-sm
         border ${getBorderColor()}
-        rounded-lg shadow-lg
+        rounded-md shadow-overlay
         p-4 pr-12
         transform transition-all duration-200
         ${isExiting ? 'opacity-0 translate-x-8' : 'opacity-100 translate-x-0'}

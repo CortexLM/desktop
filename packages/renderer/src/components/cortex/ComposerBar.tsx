@@ -41,6 +41,11 @@ export function ComposerBar({
         value={value}
         onChange={(event) => setValue(event.target.value)}
         onKeyDown={(event) => {
+          if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+            event.preventDefault();
+            submit();
+            return;
+          }
           if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
             submit();
