@@ -13,6 +13,12 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import * as React from 'react';
 
+const sessionRail = vi.hoisted(() => ({
+  setActiveView: (_view: string) => {
+    /* assigned after WorkbenchProvider mounts */
+  },
+}));
+
 // --- Lazy view stubs ---------------------------------------------------------
 // Paths mirror the specifiers in Workbench.tsx, resolved from this directory.
 
@@ -81,16 +87,19 @@ vi.mock('../../../views/settings/SettingsView', () => ({
   SettingsView: () => <p>settings view</p>,
 }));
 vi.mock('../../cortex/CortexCodeShell', () => ({
-  CortexCodeShell: () => {
-    const { useWorkbench } = require('../../../contexts/WorkbenchContext') as typeof import('../../../contexts/WorkbenchContext');
-    const { setActiveView } = useWorkbench();
+  CortexCodeShell: function MockCortexCodeShell() {
     return (
       <div data-testid="cortex-code-shell">
         <div data-testid="sidebar-panel">No folder open. Open a folder to start.</div>
         <nav data-testid="sidebar">
           {['explorer', 'search', 'git', 'terminal', 'extensions', 'notes', 'plans', 'browser', 'settings', 'ai-chat', 'account', 'automations', 'security', 'review', 'knowledge', 'session'].map(
             (id) => (
-              <button key={id} type="button" data-testid={`sidebar-${id}`} onClick={() => setActiveView(id as never)}>
+              <button
+                key={id}
+                type="button"
+                data-testid={`sidebar-${id}`}
+                onClick={() => sessionRail.setActiveView(id)}
+              >
                 {id}
               </button>
             )
@@ -129,6 +138,7 @@ let workbench: ReturnType<typeof useWorkbench>;
 
 function ContextProbe() {
   workbench = useWorkbench();
+  sessionRail.setActiveView = (view) => workbench.setActiveView(view as typeof workbench.activeView);
   return null;
 }
 
@@ -168,6 +178,9 @@ function renderWorkbench(options: { workspacePath?: string } = {}) {
 }
 
 const goTo = (viewId: string) => fireEvent.click(screen.getByTestId(`sidebar-${viewId}`));
+
+/** Session is the default chrome; AppShell tests need an IDE view first. */
+const enterIdeShell = () => goTo('explorer');
 
 describe('Workbench routing', () => {
   describe('main-area testid', () => {
@@ -265,6 +278,7 @@ describe('Workbench routing', () => {
   describe('editor area', () => {
     it('shows the empty state, not the editor, when no file is open', async () => {
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
 
       expect(screen.getByTestId('editor-empty-state')).toBeInTheDocument();
       expect(screen.queryByText('editor view')).not.toBeInTheDocument();
@@ -272,6 +286,7 @@ describe('Workbench routing', () => {
 
     it('renders the editor once a tab exists', async () => {
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
 
       useEditorStore.getState().openTab('/repo/a.ts', 'x', 'typescript');
 
@@ -281,6 +296,7 @@ describe('Workbench routing', () => {
 
     it('routes the empty state\'s actions to the explorer and to search', async () => {
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
 
       // Scoped to the empty state: the activity bar also has a "Search" button.
       const emptyState = screen.getByTestId('editor-empty-state');
@@ -304,6 +320,7 @@ describe('Workbench routing', () => {
       // where the tab strip is unmounted; the E2E suite reads it to check tabs
       // survive a view switch.
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
       expect(screen.getByTestId('status-open-tabs').textContent).toBe('No files open');
 
       useEditorStore.getState().openTab('/repo/a.ts', 'x', 'typescript');
@@ -329,6 +346,7 @@ describe('Workbench routing', () => {
 
     it('links the status bar to source control', () => {
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
 
       fireEvent.click(screen.getByRole('button', { name: 'Open source control' }));
 
@@ -564,6 +582,7 @@ describe('Workbench routing', () => {
     it('docks under the active view and closes from its own control', async () => {
       window.localStorage.setItem('debug:panel-visible', 'true');
       renderWorkbench({ workspacePath: '/repo' });
+      enterIdeShell();
 
       await waitFor(() => expect(screen.getByTestId('debug-panel')).toBeInTheDocument());
       // The view it docks under is still mounted.

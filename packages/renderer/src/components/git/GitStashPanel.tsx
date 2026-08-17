@@ -35,7 +35,7 @@ export function GitStashPanel({ className = '', repoPath }: GitStashPanelProps) 
     try {
       const response = await window.ipc.invoke('git:stash-list', { repoPath });
       if (response.success) {
-        setStashes(response.data.stashes);
+        setStashes(response.data?.stashes ?? []);
       }
     } catch (error) {
       console.error('Failed to load stashes:', error);

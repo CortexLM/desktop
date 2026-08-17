@@ -72,7 +72,7 @@ function inferTools(description: string): string[] {
     tools.add('edit');
     tools.add('write');
   }
-  if (/\b(test|lint|build|run|shell)\b/.test(text)) {
+  if (/\b(test|tests|lint|build|run|shell)\b/.test(text)) {
     tools.add('bash');
   }
   if (/\bgit\b/.test(text)) {
