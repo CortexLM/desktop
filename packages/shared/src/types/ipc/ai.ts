@@ -24,6 +24,7 @@ export interface MessageContext {
 
 export interface CreateSessionRequest {
   workspaceId?: string;
+  workspacePath?: string;
   model: string;
   provider: AIProviderId;
   systemPrompt?: string;
@@ -40,6 +41,8 @@ export interface SendMessageRequest {
   sessionId: string;
   message: string;
   context?: MessageContext;
+  workspacePath?: string;
+  mode?: 'agent' | 'plan' | 'mission' | 'ask';
 }
 
 export interface SendMessageResponse {

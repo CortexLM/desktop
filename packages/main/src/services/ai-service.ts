@@ -7,6 +7,7 @@
 import { EventEmitter } from 'events';
 import type { MCPToolInvocation, MCPToolResult } from './mcp-service';
 import type { MCPServer, MCPTool } from '@cortex-ide/shared';
+import { getDatabaseService } from './database-service';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
@@ -26,6 +27,9 @@ import {
   type AgentMode,
   type PermissionDecision,
   type RegistryConfig,
+  type ToolCall as AgentToolCall,
+  type ToolDefinition as AgentToolDefinition,
+  type ToolResult,
 } from '@cortex-ide/ai-engine';
 import type { StreamChunk as IpcStreamChunk } from '@cortex-ide/shared';
 
@@ -103,7 +107,6 @@ export interface MCPServiceLike {
   invokeTool(invocation: MCPToolInvocation): Promise<MCPToolResult>;
 }
 
-class AIProviderError extends Error {}
 
 export interface AISession {
   id: string;
@@ -112,6 +115,7 @@ export interface AISession {
   messages: Message[];
   createdAt: number;
   updatedAt: number;
+  workspacePath?: string;
   mcpEnabled?: boolean;
   availableTools?: ToolDefinition[];
 }
@@ -155,7 +159,7 @@ export class AIService extends EventEmitter {
     }
 
     if (!this.mcpService) {
-      throw new Error('MCP service not configured');
+      return;
     }
 
     // Récupérer les tools disponibles depuis les serveurs MCP
@@ -316,7 +320,11 @@ export class AIService extends EventEmitter {
   /**
    * Crée une nouvelle session
    */
-  async createSession(providerId?: string, model?: string): Promise<AISession> {
+  async createSession(
+    providerId?: string,
+    model?: string,
+    extras?: { workspacePath?: string; workspaceId?: string }
+  ): Promise<AISession> {
     const provider = providerId
       ? this.registry.getProvider(providerId)
       : this.registry.getProviderIds().length > 0 
@@ -344,10 +352,12 @@ export class AIService extends EventEmitter {
       messages: [],
       createdAt: Date.now(),
       updatedAt: Date.now(),
+      workspacePath: extras?.workspacePath,
     };
 
     this.sessions.set(session.id, session);
     this.emit('session:created', session);
+    void this.persistSessionRow(session, extras?.workspaceId);
 
     return session;
   }
@@ -395,38 +405,18 @@ export class AIService extends EventEmitter {
       throw new Error(`Provider "${session.providerId}" not found`);
     }
 
-    // Ajouter le message utilisateur
-    const userMessage: Message = { role: 'user', content };
-    session.messages.push(userMessage);
-    session.updatedAt = Date.now();
-
-    try {
-      // Envoyer au provider avec les options
-      const response = await provider.chat(session.messages, options);
-
-      // Ajouter la réponse de l'assistant
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: response.content,
-      };
-      session.messages.push(assistantMessage);
-      session.updatedAt = Date.now();
-
-      this.emit('message:sent', { sessionId, message: userMessage });
-      this.emit('message:received', { sessionId, message: assistantMessage, response });
-
-      return response;
-    } catch (error) {
-      // Retirer le message utilisateur en cas d'erreur
-      session.messages.pop();
-      
-      if (error instanceof AIProviderError) {
-        this.emit('error', { sessionId, error });
-        throw error;
-      }
-      
-      throw new Error(`Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    const chunks: string[] = [];
+    for await (const chunk of this.streamMessage(sessionId, content, options, {
+      workspacePath: session.workspacePath,
+    })) {
+      if (chunk.content) chunks.push(chunk.content);
     }
+
+    return {
+      content: chunks.join(''),
+      model: session.model ?? provider.id,
+      usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+    };
   }
 
   /**
@@ -475,51 +465,16 @@ export class AIService extends EventEmitter {
     session.updatedAt = Date.now();
 
     this.emit('message:sent', { sessionId, message: userMessage });
+    void this.persistMessage(session.id, 'user', content);
 
-    if (agent?.workspacePath) {
-      yield* this.streamAgentTurn(session, provider, content, options, {
-        workspacePath: agent.workspacePath,
-        mode: agent.mode,
-      });
-      return;
+    if (agent?.workspacePath && !session.workspacePath) {
+      session.workspacePath = agent.workspacePath;
     }
 
-    // Accumulation dans un tableau puis join() : la concaténation de string
-    // dans la boucle était en O(n²) sur les réponses longues.
-    const chunks: string[] = [];
-
-    try {
-      // Stream depuis le provider avec le modèle de la session si défini
-
-      for await (const chunk of provider.stream(session.messages, options)) {
-        chunks.push(chunk.content);
-        
-        // Émettre l'événement pour l'IPC
-        this.emit('stream:chunk', { sessionId, chunk });
-        
-        yield chunk;
-      }
-
-      // Ajouter la réponse complète de l'assistant
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: chunks.join(''),
-      };
-      session.messages.push(assistantMessage);
-      session.updatedAt = Date.now();
-
-      this.emit('message:received', { sessionId, message: assistantMessage });
-    } catch (error) {
-      // Retirer le message utilisateur en cas d'erreur
-      session.messages.pop();
-      
-      if (error instanceof AIProviderError) {
-        this.emit('error', { sessionId, error });
-        throw error;
-      }
-      
-      throw new Error(`Failed to stream message: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
+    yield* this.streamAgentTurn(session, provider, content, options, {
+      workspacePath: agent?.workspacePath ?? session.workspacePath ?? process.cwd(),
+      mode: agent?.mode,
+    });
   }
 
   /**
@@ -536,6 +491,7 @@ export class AIService extends EventEmitter {
     session.updatedAt = Date.now();
 
     this.emit('message:added', { sessionId, message: systemMessage });
+    void this.persistMessage(sessionId, 'system', content);
   }
 
   /**
@@ -625,12 +581,19 @@ export class AIService extends EventEmitter {
       loadSkillsFromWorkspace(workspaceRoot),
     ]);
 
+    if (this.mcpService) {
+      await this.enableMCPForSession(session.id);
+    }
+
+    const mcpTools = this.toAgentMcpTools(session);
+    const tools: AgentToolDefinition[] = [...CODING_TOOLS, ...mcpTools];
+
     const systemPrompt = composeSystemPrompt({
       mode: agent.mode ?? 'agent',
       workspaceRoot,
       projectConventions: conventions,
       skills,
-      tools: CODING_TOOLS,
+      tools,
     });
 
     const gate = new InMemoryPermissionGate({
@@ -648,7 +611,7 @@ export class AIService extends EventEmitter {
     });
     this.permissionGates.set(session.id, gate);
 
-    const executor = new WorkspaceToolExecutor({
+    const workspaceExecutor = new WorkspaceToolExecutor({
       workspaceRoot,
       droids,
       runDroid: async (droid, prompt) => {
@@ -662,6 +625,25 @@ export class AIService extends EventEmitter {
         return result.content;
       },
     });
+    const executor = {
+      execute: async (call: AgentToolCall): Promise<ToolResult> => {
+        if (call.name.startsWith('mcp__')) {
+          const [, serverId, toolName] = call.name.split('__');
+          const results = await this.processToolCalls(session.id, [
+            {
+              id: call.id,
+              type: 'mcp_tool',
+              serverId,
+              toolName,
+              arguments: call.arguments,
+            },
+          ]);
+          const payload = results[0]?.content ?? '';
+          return { ok: !payload.includes('"isError":true'), output: payload };
+        }
+        return workspaceExecutor.execute(call);
+      },
+    };
 
     const history: AgentMessage[] = session.messages.map((message) => ({
       role: message.role,
@@ -683,10 +665,18 @@ export class AIService extends EventEmitter {
                 ? `Tool ${message.name ?? 'unknown'} result:\n${message.content}`
                 : message.content,
           }));
-          const response = await provider.chat(mapped, { ...options, model: session.model });
-          return { content: response.content };
+          const response = await provider.chat(mapped, {
+            ...options,
+            model: session.model,
+            tools: tools.map((tool) => ({
+              name: tool.name,
+              description: tool.description,
+              parameters: tool.parameters as unknown as Record<string, unknown>,
+            })),
+          });
+          return { content: response.content, toolCalls: response.toolCalls };
         },
-        tools: CODING_TOOLS,
+        tools,
         executor,
         permissions: gate,
         systemPrompt,
@@ -701,11 +691,13 @@ export class AIService extends EventEmitter {
         yield { content: ipc.content ?? '', done: ipc.type === 'done' };
       }
 
+      const assistantText = visible.join('\n') || '(agent turn)';
       session.messages.push({
         role: 'assistant',
-        content: visible.join('\n') || '(agent turn)',
+        content: assistantText,
       });
       session.updatedAt = Date.now();
+      void this.persistMessage(session.id, 'assistant', assistantText);
     } catch (error) {
       session.messages.pop();
       this.emit('error', {
@@ -719,6 +711,56 @@ export class AIService extends EventEmitter {
   /**
    * Génère un ID unique pour les sessions
    */
+  private toAgentMcpTools(session: AISession): AgentToolDefinition[] {
+    return (session.availableTools ?? []).map((tool) => ({
+      name: `mcp__${tool.serverId}__${tool.toolName}`,
+      description: `${tool.description} (MCP ${tool.serverId})`,
+      risk: 'write' as const,
+      parameters: {
+        type: 'object' as const,
+        properties: (tool.inputSchema?.properties ?? {}) as AgentToolDefinition['parameters']['properties'],
+        required: tool.inputSchema?.required,
+      },
+    }));
+  }
+
+  private async persistSessionRow(session: AISession, workspaceId?: string): Promise<void> {
+    try {
+      const manager = await getDatabaseService().getManager();
+      if (manager.getSession(session.id)) return;
+      manager.createSession({
+        id: session.id,
+        workspace_id: workspaceId ?? null,
+        title: 'New session',
+        model: session.model ?? null,
+        metadata: {
+          provider: session.providerId,
+          workspacePath: session.workspacePath ?? null,
+        },
+      });
+    } catch {
+      // Tests and early boot may not have SQLite ready.
+    }
+  }
+
+  private async persistMessage(
+    sessionId: string,
+    role: 'user' | 'assistant' | 'system',
+    content: string
+  ): Promise<void> {
+    try {
+      const manager = await getDatabaseService().getManager();
+      if (!manager.getSession(sessionId)) return;
+      manager.createMessage({
+        session_id: sessionId,
+        role,
+        content,
+      });
+    } catch {
+      // Same as persistSessionRow: persistence is best-effort.
+    }
+  }
+
   private generateSessionId(): string {
     return `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
   }

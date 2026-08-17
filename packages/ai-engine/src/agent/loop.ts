@@ -62,7 +62,10 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       }
     }
 
-    const calls = parseToolCalls(content);
+    const calls =
+      completion.toolCalls && completion.toolCalls.length > 0
+        ? completion.toolCalls
+        : parseToolCalls(content);
     const visible = stripToolMarkup(content);
     if (visible) {
       yield { type: 'text', text: visible };

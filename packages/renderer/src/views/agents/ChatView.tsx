@@ -8,7 +8,9 @@ import { cn } from '../../lib/utils';
 import { Button } from '../../components/ui/button';
 import { Textarea } from '../../components/ui/textarea';
 import { Spinner } from '../../components/ui/spinner';
-import { StopCircle, Send, User, Sparkles, TriangleAlert } from 'lucide-react';
+import { Check, StopCircle, Send, User, Sparkles, TriangleAlert } from 'lucide-react';
+import { PermissionOverlay } from '../../components/cortex/overlays/PermissionOverlay';
+import type { StreamPermissionPayload, StreamToolPayload } from '@cortex-ide/shared';
 import { useErrorHandler, retryWithBackoff, toErrorMessage } from '../../hooks/use-error-handler';
 // Prism and DOMPurify are intentionally NOT imported here. CodeBlock loads them
 // on demand the first time a fenced code block is rendered, keeping ~120KB of
@@ -26,10 +28,11 @@ interface Message {
 interface ChatViewProps {
   sessionId: string;
   model: string;
+  workspacePath?: string | null;
   onClose?: () => void;
 }
 
-export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose }) => {
+export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, workspacePath, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
@@ -38,6 +41,9 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const { handleError } = useErrorHandler();
+  const [permission, setPermission] = useState<StreamPermissionPayload | null>(null);
+  const [toolCards, setToolCards] = useState<StreamToolPayload[]>([]);
+  const [pendingDiff, setPendingDiff] = useState<StreamToolPayload | null>(null);
 
   // Auto-scroll to bottom
   const scrollToBottom = useCallback(() => {
@@ -145,6 +151,8 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
             {
               sessionId,
               message: userMessage.content,
+              workspacePath: workspacePath ?? undefined,
+              mode: 'agent',
             },
             (chunk) => {
               if (chunk.type === 'chunk' && chunk.content) {
@@ -155,6 +163,26 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
                       : msg
                   )
                 );
+              }
+              if (chunk.type === 'tool' && chunk.tool) {
+                setToolCards((prev) => {
+                  const index = prev.findIndex((card) => card.id === chunk.tool!.id);
+                  if (index >= 0) {
+                    const next = [...prev];
+                    next[index] = chunk.tool!;
+                    return next;
+                  }
+                  return [...prev, chunk.tool!];
+                });
+                if (
+                  chunk.tool.status === 'done' &&
+                  (chunk.tool.name === 'edit' || chunk.tool.name === 'write')
+                ) {
+                  setPendingDiff(chunk.tool);
+                }
+              }
+              if (chunk.type === 'permission' && chunk.permission) {
+                setPermission(chunk.permission);
               }
             }
           ),
@@ -217,7 +245,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
     }
     // handleSend is referenced in its own retry callback.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [input, isStreaming, sessionId, handleError]);
+  }, [input, isStreaming, sessionId, workspacePath, handleError]);
 
   // Handle stop generation
   const handleStop = useCallback(async () => {
@@ -299,6 +327,45 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
         aria-label="Conversation"
         data-testid="message-list"
       >
+        {toolCards.length > 0 && (
+          <div className="space-y-2" data-testid="tool-cards">
+            {toolCards.map((card) => (
+              <div
+                key={card.id}
+                className="rounded-[10px] border border-border-soft bg-elevated px-3 py-2 font-mono text-[12px]"
+                data-testid="tool-card"
+              >
+                <div className="flex items-center gap-2">
+                  {card.status === 'done' && <Check className="w-3.5 h-3.5 text-green" />}
+                  <span>{card.title ?? card.name}</span>
+                  {card.detail && <span className="text-text-secondary truncate">{card.detail}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {pendingDiff && (
+          <div
+            className="rounded-[10px] border border-border-soft bg-elevated px-3 py-2 space-y-2"
+            data-testid="apply-diff"
+          >
+            <div className="text-[13px] font-medium">Apply diff</div>
+            <p className="text-[12px] text-text-secondary">
+              {pendingDiff.title ?? pendingDiff.name} already wrote the workspace after approval.
+            </p>
+            <div className="font-mono text-[10px]">
+              <span className="text-green">+{pendingDiff.additions ?? 0}</span>{' '}
+              <span className="text-red">−{pendingDiff.deletions ?? 0}</span>
+            </div>
+            <button
+              type="button"
+              className="h-7 px-2 rounded-[6px] border border-border text-[12px]"
+              onClick={() => setPendingDiff(null)}
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center space-y-2">
@@ -367,6 +434,19 @@ export const ChatView: React.FC<ChatViewProps> = ({ sessionId, model, onClose })
           Press Enter to send • Shift+Enter for new line
         </p>
       </div>
+      {permission && (
+        <PermissionOverlay
+          request={permission}
+          onDecide={(decision) => {
+            void window.cortex.ai.resolvePermission?.({
+              sessionId,
+              requestId: permission.id,
+              decision,
+            });
+            setPermission(null);
+          }}
+        />
+      )}
     </div>
   );
 };

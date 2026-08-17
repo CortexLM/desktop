@@ -245,7 +245,10 @@ describe('ai handlers', () => {
         createdAt: number;
       }>(handleCreateSession as Handler, { provider: 'openai', model: 'gpt-4' });
 
-      expect(aiServiceMock.createSession).toHaveBeenCalledWith('openai', 'gpt-4');
+      expect(aiServiceMock.createSession).toHaveBeenCalledWith('openai', 'gpt-4', {
+        workspacePath: undefined,
+        workspaceId: undefined,
+      });
       expect(data.sessionId).toBe('session-1');
       expect(data.providerId).toBe('openai');
       expect(data.createdAt).toBe(1_700_000_000);
@@ -261,10 +264,14 @@ describe('ai handlers', () => {
       expect(aiServiceMock.addSystemMessage).toHaveBeenCalledWith('session-1', 'Be terse.');
     });
 
-    it('skips the system prompt when absent', async () => {
+    it('attaches a coding-agent system prompt when none is supplied', async () => {
       await ok(handleCreateSession as Handler, { provider: 'openai', model: 'gpt-4' });
 
-      expect(aiServiceMock.addSystemMessage).not.toHaveBeenCalled();
+      expect(aiServiceMock.addSystemMessage).toHaveBeenCalled();
+      const prompt = String(
+        (aiServiceMock.addSystemMessage.mock.calls[0] as unknown as [string, string])[1]
+      );
+      expect(prompt).toContain('Cortex Code');
     });
 
     it('accepts an optional workspaceId', async () => {
@@ -274,7 +281,10 @@ describe('ai handlers', () => {
         workspaceId: 'ws-1',
       });
 
-      expect(aiServiceMock.createSession).toHaveBeenCalledWith('ollama', 'llama3');
+      expect(aiServiceMock.createSession).toHaveBeenCalledWith('ollama', 'llama3', {
+        workspacePath: undefined,
+        workspaceId: 'ws-1',
+      });
     });
 
     it.each(['openai', 'anthropic', 'openrouter', 'ollama'])('accepts the %s provider', async (provider) => {

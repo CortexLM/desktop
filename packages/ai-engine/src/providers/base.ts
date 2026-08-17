@@ -5,6 +5,19 @@ export interface Message {
   content: string;
 }
 
+/** JSON-schema tool the model may call. Independent of the agent-loop types. */
+export interface ProviderTool {
+  name: string;
+  description: string;
+  parameters: Record<string, unknown>;
+}
+
+export interface ProviderToolCall {
+  id: string;
+  name: string;
+  arguments: Record<string, unknown>;
+}
+
 export interface ChatOptions {
   model?: string;
   temperature?: number;
@@ -12,6 +25,7 @@ export interface ChatOptions {
   topP?: number;
   stop?: string[];
   stream?: boolean;
+  tools?: ProviderTool[];
 }
 
 export interface ProviderTokenUsage {
@@ -36,11 +50,13 @@ export interface ChatResponse {
   model: string;
   usage: ProviderTokenUsage;
   finishReason?: string;
+  toolCalls?: ProviderToolCall[];
 }
 
 export interface StreamChunk {
   content: string;
   done: boolean;
+  toolCalls?: ProviderToolCall[];
 }
 
 export interface ProviderConfig {

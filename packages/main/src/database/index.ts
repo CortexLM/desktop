@@ -127,7 +127,7 @@ export class DatabaseManager {
   // SESSION METHODS
   // ============================================================================
 
-  createSession(data: Omit<Session, 'id' | 'created_at' | 'updated_at'>): Session {
+  createSession(data: Omit<Session, 'id' | 'created_at' | 'updated_at'> & { id?: string }): Session {
     return this.sessions.create(data);
   }
 

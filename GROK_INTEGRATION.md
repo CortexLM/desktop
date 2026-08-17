@@ -6,7 +6,7 @@
 - ✅ Classe `GrokProvider` conforme à l'interface `AIProvider`
 - ✅ Endpoint: `https://api.openlux.ai/v1/chat/completions`
 - ✅ Modèle par défaut: `claude-opus-5:stable`
-- ✅ API Key: `sk-O1XOv8M7uO9MhEx0js7kkdWe0GfZVwne9WojDnyT0byKqsVj`
+- ✅ API Key: set `GROK_API_KEY` (never commit a live key)
 - ✅ Support streaming et non-streaming
 - ✅ Error handling avec `AIProviderError`
 - ✅ Retry logic avec backoff exponentiel (3 tentatives par défaut)
@@ -69,7 +69,7 @@ const response = await grok.chat([
 import { GrokProvider } from 'ai-engine';
 
 const provider = new GrokProvider({
-  apiKey: 'sk-O1XOv8M7uO9MhEx0js7kkdWe0GfZVwne9WojDnyT0byKqsVj',
+  apiKey: process.env.GROK_API_KEY,
   defaultModel: 'claude-opus-5:stable',
 });
 ```
@@ -77,7 +77,7 @@ const provider = new GrokProvider({
 ### Variables d'environnement
 
 ```bash
-GROK_API_KEY=sk-O1XOv8M7uO9MhEx0js7kkdWe0GfZVwne9WojDnyT0byKqsVj
+GROK_API_KEY=your-grok-api-key
 GROK_BASE_URL=https://api.openlux.ai/v1  # Optionnel
 GROK_DEFAULT_MODEL=claude-opus-5:stable   # Optionnel
 ```

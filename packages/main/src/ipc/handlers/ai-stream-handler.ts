@@ -121,12 +121,10 @@ async function handleStreamResponse(
     // Démarrer le streaming en arrière-plan
     (async () => {
       try {
-        for await (const _chunk of aiService.streamMessage(
-          sessionId,
-          message,
-          undefined,
-          workspacePath ? { workspacePath, mode } : undefined
-        )) {
+        for await (const _chunk of aiService.streamMessage(sessionId, message, undefined, {
+          workspacePath,
+          mode,
+        })) {
           const stream = activeStreams.get(sessionId);
           if (!stream || stream.aborted) {
             break;
