@@ -14,7 +14,7 @@
  */
 
 import * as React from 'react';
-import { ArrowRight, CornerDownLeft, File, Terminal } from 'lucide-react';
+import { ArrowRight, File, Terminal } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { Spinner } from './ui/spinner';
 import { cn } from '../lib/utils';
@@ -188,7 +188,9 @@ export function CommandPalette({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-2xl p-0 gap-0 overflow-hidden top-[15%] translate-y-0"
+        hideClose
+        overlayClassName="bg-black/45 backdrop-blur-none"
+        className="w-[560px] max-w-[560px] p-0 gap-0 overflow-hidden top-[170px] translate-y-0 rounded-[12px]"
         data-testid="command-palette"
         aria-label={effectiveMode === 'files' ? 'Search files' : 'Search commands'}
       >
@@ -197,7 +199,7 @@ export function CommandPalette({
           {effectiveMode === 'files' ? 'Search files' : 'Search commands'}
         </DialogTitle>
 
-        <div className="flex items-center gap-2 px-4 h-12 border-b border-border">
+        <div className="flex items-center gap-2 px-4 h-11 border-b border-border">
           {effectiveMode === 'files' ? (
             <File className="w-4 h-4 text-text-tertiary flex-shrink-0" aria-hidden="true" />
           ) : (
@@ -278,12 +280,10 @@ export function CommandPalette({
           )}
         </div>
 
-        <div className="h-9 px-4 flex items-center justify-between border-t border-border bg-wash text-xs text-text-tertiary">
+        <div className="h-8 px-3 flex items-center justify-between border-t border-border bg-wash text-[12px] text-text-tertiary">
           <div className="flex items-center gap-3">
-            <Legend keys="↑↓" label="Navigate" />
-            <Legend icon={<CornerDownLeft className="w-3 h-3" />} label="Open" />
+            <span>↑↓ navigate · ↵ select · esc close</span>
             <Legend keys="Tab" label="Switch mode" />
-            <Legend keys="Esc" label="Close" />
           </div>
 
           <span>
@@ -452,7 +452,7 @@ function Row({
       onMouseMove={onHover}
       onClick={onSelect}
       className={cn(
-        'mx-1 px-3 h-11 rounded-sm flex items-center gap-3 cursor-pointer transition-colors',
+        'mx-1 px-3 h-8 rounded-sm flex items-center gap-3 cursor-pointer transition-colors',
         isActive ? 'bg-accent-soft' : 'hover:bg-tint'
       )}
     >

@@ -42,7 +42,7 @@ export default function App() {
 }
 
 function AppContent() {
-  const { workspacePath, openWorkspace, setActiveView, toggleSidebar } = useWorkbench();
+  const { workspacePath, openWorkspace, activeView, setActiveView, toggleSidebar } = useWorkbench();
   const { toggleDebugMode, showDebugPanel, setShowDebugPanel } = useDebug();
   const { resolvedTheme, setTheme } = useTheme();
   const { handleError } = useErrorHandler();
@@ -110,6 +110,46 @@ function AppContent() {
         icon: <view.icon className="w-4 h-4" aria-hidden="true" />,
         action: () => setActiveView(view.id),
       })),
+      {
+        id: 'session.new',
+        label: 'New session',
+        description: 'Session',
+        keywords: ['session', 'new', 'chat'],
+        shortcut: formatShortcut('Cmd+N'),
+        action: () => setActiveView('session'),
+      },
+      {
+        id: 'session.terminal',
+        label: 'Toggle terminal',
+        description: 'Session',
+        keywords: ['terminal'],
+        shortcut: formatShortcut('Cmd+J'),
+        action: () => setActiveView('terminal'),
+      },
+      {
+        id: 'session.changes',
+        label: 'Open changes',
+        description: 'Session',
+        keywords: ['git', 'diff', 'changes'],
+        shortcut: formatShortcut('Cmd+D'),
+        action: () => setActiveView('git'),
+      },
+      {
+        id: 'session.model',
+        label: 'Switch model',
+        description: 'Session',
+        keywords: ['model', 'claude', 'provider'],
+        shortcut: formatShortcut('Cmd+M'),
+        action: () => setActiveView('session'),
+      },
+      {
+        id: 'session.attach',
+        label: 'Attach file',
+        description: 'Session',
+        keywords: ['attach', 'file', 'context'],
+        shortcut: formatShortcut('Cmd+Shift+A'),
+        action: () => setActiveView('explorer'),
+      },
       {
         id: 'workbench.toggleSidebar',
         label: 'Toggle sidebar',
@@ -198,7 +238,11 @@ function AppContent() {
 
       if (key === 'j') {
         event.preventDefault();
-        setActiveView('terminal');
+        // Live session keeps ⌘J on the 320 terminal surface; IDE chrome still
+        // routes to the full terminal view.
+        if (activeView !== 'session') {
+          setActiveView('terminal');
+        }
         return;
       }
 
@@ -227,7 +271,7 @@ function AppContent() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [openPalette, setActiveView, setShowDebugPanel, showDebugPanel]);
+  }, [activeView, openPalette, setActiveView, setShowDebugPanel, showDebugPanel]);
 
   // Ctrl+` for the terminal, kept separate because it carries no shift/meta
   // combination and `key` is a backtick rather than a letter.

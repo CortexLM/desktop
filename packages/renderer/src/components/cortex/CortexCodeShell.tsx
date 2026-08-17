@@ -3,15 +3,15 @@ import { Activity, ChevronDown, Server } from 'lucide-react';
 import { WorkspaceSwitcher } from '../workspace/WorkspaceSwitcher';
 import { SessionSidebar } from './SessionSidebar';
 import { SessionCenter } from './SessionCenter';
-import { GitContextPanel } from './GitContextPanel';
+import { ContextSurface } from './ContextSurface';
 import { SurfaceRail } from './SurfaceRail';
-import { PermissionOverlay } from './overlays/PermissionOverlay';
 import { ModelPickerOverlay } from './overlays/ModelPickerOverlay';
 import { PlanOverlay } from './overlays/PlanOverlay';
 import { ContextFullBanner, OfflineBanner, ProviderErrorBanner } from './overlays/ContextFullBanner';
 import { CheckpointOverlay, ShortcutsOverlay } from './overlays/CheckpointOverlay';
 import { useSessionAgent } from './use-session-agent';
 import { useWorkbench } from '../../contexts/WorkbenchContext';
+import type { SessionSurface } from './session-surfaces';
 
 export interface CortexCodeShellProps {
   onOpenCommandPalette?: () => void;
@@ -19,12 +19,18 @@ export interface CortexCodeShellProps {
 }
 
 export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) {
-  const { workspacePath } = useWorkbench();
+  const { workspacePath, setActiveView } = useWorkbench();
   const agent = useSessionAgent(workspacePath);
+  const [surface, setSurface] = React.useState<SessionSurface>('git');
   const [modelOpen, setModelOpen] = React.useState(false);
   const [shortcutsOpen, setShortcutsOpen] = React.useState(false);
   const [checkpointsOpen, setCheckpointsOpen] = React.useState(false);
   const [offline, setOffline] = React.useState(!navigator.onLine);
+  const composerModelRef = React.useRef<HTMLButtonElement>(null);
+  const topbarModelRef = React.useRef<HTMLButtonElement>(null);
+  const [pickerAnchor, setPickerAnchor] = React.useState<React.RefObject<HTMLElement>>(
+    composerModelRef
+  );
 
   React.useEffect(() => {
     const on = () => setOffline(false);
@@ -39,17 +45,31 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
 
   React.useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && agent.running) {
+      const modifier = event.metaKey || event.ctrlKey;
+      if (event.key === 'Escape' && agent.running && !agent.permission) {
         event.preventDefault();
         void agent.interrupt();
       }
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      if (modifier && event.key.toLowerCase() === 'k') {
         event.preventDefault();
         onOpenCommandPalette?.();
       }
-      if ((event.metaKey || event.ctrlKey) && event.key === '/') {
+      if (modifier && event.key === '/') {
         event.preventDefault();
         setShortcutsOpen(true);
+      }
+      if (modifier && event.key.toLowerCase() === 'j') {
+        event.preventDefault();
+        setSurface('terminal');
+      }
+      if (modifier && event.key.toLowerCase() === 'd' && !event.shiftKey) {
+        event.preventDefault();
+        setSurface('git');
+      }
+      if (modifier && event.key.toLowerCase() === 'm') {
+        event.preventDefault();
+        setPickerAnchor(composerModelRef);
+        setModelOpen(true);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -58,11 +78,17 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
 
   const project = workspacePath?.split(/[\\/]/).filter(Boolean).at(-1) ?? 'workspace';
 
+  const openModelPicker = (anchor: React.RefObject<HTMLElement>) => {
+    setPickerAnchor(anchor);
+    setModelOpen(true);
+  };
+
   return (
     <div
-      className="h-screen w-screen flex flex-col bg-page text-text overflow-hidden"
+      className="h-screen w-screen flex flex-col bg-page text-text overflow-hidden font-[family-name:var(--font-chrome)]"
       data-testid="cortex-code-shell"
       data-theme-chrome="paper-v3"
+      data-session-chrome="240-320-36"
     >
       <header
         className="h-10 flex-shrink-0 flex items-center gap-3 px-3 border-b border-border bg-page"
@@ -84,8 +110,9 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
           <span className="text-[12px] text-text-secondary">{agent.cpuLabel}</span>
           <button
             type="button"
+            ref={topbarModelRef}
             className="h-[26px] px-2 rounded-md border border-border bg-elevated text-[12px] flex items-center gap-1"
-            onClick={() => setModelOpen(true)}
+            onClick={() => openModelPicker(topbarModelRef)}
             data-testid="model-picker-trigger"
           >
             {agent.modelLabel}
@@ -119,27 +146,30 @@ export function CortexCodeShell({ onOpenCommandPalette }: CortexCodeShellProps) 
           onOpenCheckpoints={() => setCheckpointsOpen(true)}
         />
 
-        <SessionCenter agent={agent} onOpenCommandPalette={onOpenCommandPalette} />
+        <SessionCenter
+          agent={agent}
+          modelButtonRef={composerModelRef}
+          onOpenModelPicker={() => openModelPicker(composerModelRef)}
+        />
 
-        <GitContextPanel repoPath={workspacePath} />
+        <ContextSurface surface={surface} repoPath={workspacePath} />
 
-        <SurfaceRail />
+        <SurfaceRail surface={surface} onSurfaceChange={setSurface} />
       </div>
 
-      {agent.permission && (
-        <PermissionOverlay
-          request={agent.permission}
-          onDecide={(decision) => void agent.decidePermission(decision)}
-        />
-      )}
       {modelOpen && (
         <ModelPickerOverlay
           value={agent.model}
+          anchorRef={pickerAnchor}
           onChange={(model, provider) => {
             agent.setModel(model, provider);
             setModelOpen(false);
           }}
           onClose={() => setModelOpen(false)}
+          onManage={() => {
+            setModelOpen(false);
+            setActiveView('settings');
+          }}
         />
       )}
       {agent.plan && !agent.plan.approved && (

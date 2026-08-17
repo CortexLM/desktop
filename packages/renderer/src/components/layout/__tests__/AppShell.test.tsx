@@ -46,6 +46,11 @@ function ContextProbe() {
   return null;
 }
 
+/** Session is the default workbench view; AppShell tests start from Explorer. */
+function enterIdeShell() {
+  fireEvent.click(screen.getByTestId('sidebar-explorer'));
+}
+
 function renderShell(props: Partial<React.ComponentProps<typeof AppShell>> = {}) {
   return render(
     <WorkbenchProvider>
@@ -121,6 +126,7 @@ describe('AppShell', () => {
       // aria-current is how a screen-reader user knows which view is showing;
       // the colour change alone does not convey it.
       renderShell();
+      enterIdeShell();
 
       const active = VIEWS.filter(
         (view) => screen.getByTestId(view.testId).getAttribute('aria-current') === 'page'
@@ -150,6 +156,7 @@ describe('AppShell', () => {
 
     it('toggles the sidebar when the already-active icon is clicked, keeping the view', () => {
       renderShell();
+      enterIdeShell();
       expect(workbench.activeView).toBe('explorer');
 
       fireEvent.click(screen.getByTestId('sidebar-explorer'));
@@ -367,6 +374,7 @@ describe('AppShell', () => {
   describe('status bar', () => {
     it('names the active view and follows a view switch', () => {
       renderShell();
+      enterIdeShell();
       const statusBar = screen.getByTestId('status-bar');
       expect(statusBar.textContent).toContain('Explorer');
 

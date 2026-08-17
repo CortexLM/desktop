@@ -1,13 +1,17 @@
-import { Brain, Check, ChevronRight, FileText, GitBranch, ListChecks, Maximize2, Plus, Square, ArrowUp } from 'lucide-react';
+import * as React from 'react';
+import { Brain, Check, ChevronRight, FileText, GitBranch, ListChecks } from 'lucide-react';
 import { ComposerBar } from './ComposerBar';
+import { PermissionOverlay } from './overlays/PermissionOverlay';
 import type { SessionAgent, TranscriptItem } from './use-session-agent';
 
 export function SessionCenter({
   agent,
-  onOpenCommandPalette,
+  modelButtonRef,
+  onOpenModelPicker,
 }: {
   agent: SessionAgent;
-  onOpenCommandPalette?: () => void;
+  modelButtonRef?: React.Ref<HTMLButtonElement>;
+  onOpenModelPicker?: () => void;
 }) {
   const empty = agent.transcript.length === 0 && !agent.running;
 
@@ -34,7 +38,13 @@ export function SessionCenter({
             {agent.transcript.map((item) => (
               <TranscriptRow key={item.id} item={item} />
             ))}
-            {agent.running && (
+            {agent.permission && (
+              <PermissionOverlay
+                request={agent.permission}
+                onDecide={(decision) => void agent.decidePermission(decision)}
+              />
+            )}
+            {agent.running && !agent.permission && (
               <div className="flex items-center gap-2" data-testid="working-indicator">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-soft flex-shrink-0" />
                 <span className="text-[12px] text-text-secondary">Working</span>
@@ -62,10 +72,11 @@ export function SessionCenter({
             running={agent.running}
             mode={agent.mode}
             modelLabel={agent.modelLabel}
+            modelButtonRef={modelButtonRef}
             onModeChange={agent.setMode}
             onSubmit={(text) => void agent.send(text)}
             onStop={() => void agent.interrupt()}
-            onOpenPalette={onOpenCommandPalette}
+            onOpenModelPicker={onOpenModelPicker}
           />
         </div>
       </div>
@@ -159,13 +170,3 @@ function EmptySession({ onPick }: { onPick: (text: string) => void }) {
   );
 }
 
-export function ComposerIcons() {
-  return (
-    <>
-      <Plus className="w-4 h-4" />
-      <Maximize2 className="w-4 h-4" />
-      <Square className="w-4 h-4" />
-      <ArrowUp className="w-4 h-4" />
-    </>
-  );
-}
