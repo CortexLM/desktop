@@ -2,8 +2,7 @@ import { execFile } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { promisify } from 'node:util';
-import type { ToolCall, ToolExecutor, ToolResult } from './types';
-import type { DroidDefinition } from './types';
+import type { DroidDefinition, TodoItem, ToolCall, ToolExecutor, ToolResult } from './types';
 
 const execFileAsync = promisify(execFile);
 
@@ -12,6 +11,9 @@ export interface WorkspaceToolHostOptions {
   droids?: DroidDefinition[];
   runDroid?: (droid: DroidDefinition, prompt: string) => Promise<string>;
   runBash?: (command: string, cwd: string) => Promise<{ stdout: string; stderr: string }>;
+  onBeforeWrite?: (relativePath: string, previous: string) => void;
+  onTodos?: (todos: TodoItem[], merge: boolean) => TodoItem[];
+  fetchImpl?: typeof fetch;
 }
 
 export class WorkspaceToolExecutor implements ToolExecutor {
@@ -26,6 +28,14 @@ export class WorkspaceToolExecutor implements ToolExecutor {
           return await this.write(call.arguments);
         case 'edit':
           return await this.edit(call.arguments);
+        case 'apply_patch':
+          return await this.applyPatch(call.arguments);
+        case 'todowrite':
+          return this.todoWrite(call.arguments);
+        case 'question':
+          return { ok: true, output: String(call.arguments.prompt ?? '') };
+        case 'webfetch':
+          return await this.webfetch(call.arguments);
         case 'grep':
           return await this.grep(call.arguments);
         case 'glob':
@@ -77,6 +87,7 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     } catch {
       previous = '';
     }
+    this.options.onBeforeWrite?.(String(args.path ?? ''), previous);
     await fs.writeFile(filePath, contents, 'utf8');
     return {
       ok: true,
@@ -91,6 +102,7 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     const oldString = String(args.old_string ?? '');
     const newString = String(args.new_string ?? '');
     const current = await fs.readFile(filePath, 'utf8');
+    this.options.onBeforeWrite?.(String(args.path ?? ''), current);
     const count = current.split(oldString).length - 1;
     if (count !== 1) {
       return {
@@ -177,6 +189,119 @@ export class WorkspaceToolExecutor implements ToolExecutor {
     const output = await this.options.runDroid(droid, prompt);
     return { ok: true, output };
   }
+
+  private todoWrite(args: Record<string, unknown>): ToolResult {
+    const merge = args.merge === true;
+    let parsed: TodoItem[] = [];
+    try {
+      const raw = typeof args.todos === 'string' ? args.todos : JSON.stringify(args.todos ?? []);
+      parsed = JSON.parse(raw) as TodoItem[];
+    } catch {
+      return { ok: false, output: 'todowrite expects JSON todos' };
+    }
+    const next = this.options.onTodos?.(parsed, merge) ?? parsed;
+    return { ok: true, output: JSON.stringify(next) };
+  }
+
+  private async webfetch(args: Record<string, unknown>): Promise<ToolResult> {
+    const url = String(args.url ?? '');
+    let parsed: URL;
+    try {
+      parsed = new URL(url);
+    } catch {
+      return { ok: false, output: 'Invalid URL' };
+    }
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      return { ok: false, output: 'Only http(s) URLs are allowed' };
+    }
+    const fetchFn = this.options.fetchImpl ?? fetch;
+    const response = await fetchFn(parsed, { redirect: 'follow' });
+    const text = await response.text();
+    return { ok: response.ok, output: text.slice(0, 80_000) };
+  }
+
+  private async applyPatch(args: Record<string, unknown>): Promise<ToolResult> {
+    const patch = String(args.patch ?? '');
+    const files = parsePatchFiles(patch);
+    if (files.length === 0) {
+      return { ok: false, output: 'apply_patch: no file hunks found' };
+    }
+    const results: string[] = [];
+    let additions = 0;
+    let deletions = 0;
+    for (const file of files) {
+      const filePath = this.resolve(file.path);
+      let current = '';
+      try {
+        current = await fs.readFile(filePath, 'utf8');
+      } catch {
+        current = '';
+      }
+      this.options.onBeforeWrite?.(file.path, current);
+      const next = applyHunks(current, file.hunks);
+      if (next == null) {
+        return { ok: false, output: `apply_patch failed to match hunks in ${file.path}` };
+      }
+      await fs.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.writeFile(filePath, next, 'utf8');
+      additions += Math.max(0, next.split('\n').length - current.split('\n').length);
+      deletions += Math.max(0, current.split('\n').length - next.split('\n').length);
+      results.push(`patched ${file.path}`);
+    }
+    return { ok: true, output: results.join('\n'), additions, deletions };
+  }
+}
+
+interface PatchFile {
+  path: string;
+  hunks: Array<{ minus: string[]; plus: string[] }>;
+}
+
+function parsePatchFiles(patch: string): PatchFile[] {
+  const files: PatchFile[] = [];
+  const begin = /\*\*\* (?:Update|Add) File: (.+)$/gm;
+  let match: RegExpExecArray | null;
+  const markers: Array<{ path: string; index: number }> = [];
+  while ((match = begin.exec(patch)) !== null) {
+    markers.push({ path: match[1].trim(), index: match.index + match[0].length });
+  }
+  if (markers.length > 0) {
+    for (let i = 0; i < markers.length; i += 1) {
+      const end = i + 1 < markers.length ? markers[i + 1].index : patch.length;
+      files.push({ path: markers[i].path, hunks: hunksFrom(patch.slice(markers[i].index, end)) });
+    }
+    return files;
+  }
+  const unified = /^--- (?:a\/)?(.+)$/m.exec(patch);
+  const plus = /^\+\+\+ (?:b\/)?(.+)$/m.exec(patch);
+  if (unified || plus) {
+    files.push({ path: (plus?.[1] ?? unified?.[1] ?? '').trim(), hunks: hunksFrom(patch) });
+  }
+  return files.filter((file) => file.path && file.path !== '/dev/null');
+}
+
+function hunksFrom(text: string): Array<{ minus: string[]; plus: string[] }> {
+  const minus: string[] = [];
+  const plus: string[] = [];
+  for (const line of text.split('\n')) {
+    if (line.startsWith('+') && !line.startsWith('+++')) plus.push(line.slice(1));
+    else if (line.startsWith('-') && !line.startsWith('---')) minus.push(line.slice(1));
+  }
+  return minus.length || plus.length ? [{ minus, plus }] : [];
+}
+
+function applyHunks(current: string, hunks: Array<{ minus: string[]; plus: string[] }>): string | null {
+  let next = current;
+  for (const hunk of hunks) {
+    if (hunk.minus.length === 0) {
+      next = next.endsWith('\n') || next.length === 0 ? `${next}${hunk.plus.join('\n')}\n` : `${next}\n${hunk.plus.join('\n')}\n`;
+      continue;
+    }
+    const needle = hunk.minus.join('\n');
+    if (!next.includes(needle)) return null;
+    next = next.replace(needle, hunk.plus.join('\n'));
+  }
+  return next;
 }
 
 async function walk(dir: string, visit: (file: string) => Promise<void>): Promise<void> {

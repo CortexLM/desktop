@@ -12,18 +12,16 @@ import { getDatabaseService } from './database-service';
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
 import {
+  AgentServer,
   AIProviderRegistry,
   CheckpointStore,
   CODING_TOOLS,
-  composeSystemPrompt,
   InMemoryPermissionGate,
   loadDroidsFromWorkspace,
   loadSkillsFromWorkspace,
   readProjectConventions,
-  runAgentTurn,
   WorkspaceToolExecutor,
   type AgentEvent,
-  type AgentMessage,
   type AgentMode,
   type PermissionDecision,
   type RegistryConfig,
@@ -131,6 +129,7 @@ export class AIService extends EventEmitter {
   private mcpService?: MCPServiceLike;
   private permissionGates = new Map<string, InMemoryPermissionGate>();
   private checkpoints = new CheckpointStore();
+  readonly agentServer: AgentServer;
 
   constructor(registry?: AIProviderRegistry, mcpService?: MCPServiceLike) {
     super();
@@ -139,6 +138,28 @@ export class AIService extends EventEmitter {
     // `validateRegistry()` below warns about the same env vars `fromEnv()` reads.
     this.registry = registry || AIProviderRegistry.fromEnv();
     this.mcpService = mcpService;
+    this.agentServer = new AgentServer({
+      persist: {
+        save: (record) => {
+          void this.persistSessionRow(
+            {
+              id: record.id,
+              providerId: record.providerId,
+              model: record.model,
+              messages: [],
+              createdAt: record.createdAt,
+              updatedAt: record.updatedAt,
+              workspacePath: record.workspacePath,
+            },
+            undefined
+          );
+        },
+        saveMessage: (sessionId, role, content) => {
+          if (role === 'tool') return;
+          void this.persistMessage(sessionId, role, content);
+        },
+      },
+    });
     this.validateRegistry();
   }
 
@@ -356,6 +377,12 @@ export class AIService extends EventEmitter {
     };
 
     this.sessions.set(session.id, session);
+    this.agentServer.createSession({
+      id: session.id,
+      providerId: session.providerId,
+      model: session.model,
+      workspacePath: session.workspacePath,
+    });
     this.emit('session:created', session);
     void this.persistSessionRow(session, extras?.workspaceId);
 
@@ -424,6 +451,30 @@ export class AIService extends EventEmitter {
    */
   resolvePermission(sessionId: string, requestId: string, decision: PermissionDecision): void {
     this.permissionGates.get(sessionId)?.resolve(requestId, decision);
+    this.agentServer.resolvePermission(sessionId, requestId, decision);
+  }
+
+  forkSession(sessionId: string) {
+    return this.agentServer.forkSession(sessionId);
+  }
+
+  compactSession(sessionId: string) {
+    return this.agentServer.compactSession(sessionId);
+  }
+
+  revertLastTurn(sessionId: string) {
+    const record = this.agentServer.revertLastTurn(sessionId);
+    const session = this.sessions.get(sessionId);
+    if (session) {
+      session.messages = record.messages
+        .filter((message) => message.role !== 'tool')
+        .map((message) => ({ role: message.role as Message['role'], content: message.content }));
+    }
+    return record;
+  }
+
+  switchSessionModel(sessionId: string, providerId: string, model?: string) {
+    return this.agentServer.switchModel(sessionId, providerId, model);
   }
 
   listCheckpoints() {
@@ -588,33 +639,12 @@ export class AIService extends EventEmitter {
     const mcpTools = this.toAgentMcpTools(session);
     const tools: AgentToolDefinition[] = [...CODING_TOOLS, ...mcpTools];
 
-    const systemPrompt = composeSystemPrompt({
-      mode: agent.mode ?? 'agent',
-      workspaceRoot,
-      projectConventions: conventions,
-      skills,
-      tools,
-    });
-
-    const gate = new InMemoryPermissionGate({
-      autoAllowSafe: true,
-      onRequest: (request) => {
-        const ipcChunk: IpcStreamChunk = {
-          type: 'permission',
-          permission: request,
-        };
-        this.emit('stream:chunk', {
-          sessionId: session.id,
-          chunk: { content: '', done: false, ipc: ipcChunk },
-        });
-      },
-    });
-    this.permissionGates.set(session.id, gate);
-
     const workspaceExecutor = new WorkspaceToolExecutor({
       workspaceRoot,
       droids,
+      onTodos: (todos, merge) => this.agentServer.mergeTodos(session.id, todos, merge),
       runDroid: async (droid, prompt) => {
+        const child = this.agentServer.createChildSession(session.id, droid.name);
         const result = await provider.chat(
           [
             { role: 'system', content: droid.systemPrompt },
@@ -622,6 +652,7 @@ export class AIService extends EventEmitter {
           ],
           { ...options, model: droid.model ?? session.model }
         );
+        child.messages.push({ role: 'user', content: prompt }, { role: 'assistant', content: result.content });
         return result.content;
       },
     });
@@ -645,18 +676,32 @@ export class AIService extends EventEmitter {
       },
     };
 
-    const history: AgentMessage[] = session.messages.map((message) => ({
+    if (!this.agentServer.getSession(session.id)) {
+      this.agentServer.createSession({
+        id: session.id,
+        providerId: session.providerId,
+        model: session.model,
+        workspacePath: workspaceRoot,
+        mode: agent.mode,
+      });
+    }
+    const hosted = this.agentServer.getSession(session.id)!;
+    hosted.messages = session.messages.map((message) => ({
       role: message.role,
       content: message.content,
     }));
-
-    this.checkpoints.create(history, 'before turn');
+    hosted.mode = agent.mode ?? hosted.mode;
+    hosted.workspacePath = workspaceRoot;
+    this.agentServer.setMode(session.id, hosted.mode);
 
     const visible: string[] = [];
 
     try {
-      for await (const event of runAgentTurn({
-        messages: history,
+      for await (const event of this.agentServer.runTurn(session.id, _userText, {
+        extraTools: mcpTools,
+        conventions,
+        skills,
+        executor,
         chat: async (messages) => {
           const mapped: Message[] = messages.map((message) => ({
             role: message.role === 'tool' ? 'user' : message.role,
@@ -676,11 +721,6 @@ export class AIService extends EventEmitter {
           });
           return { content: response.content, toolCalls: response.toolCalls };
         },
-        tools,
-        executor,
-        permissions: gate,
-        systemPrompt,
-        mode: agent.mode,
       })) {
         const ipc = agentEventToIpc(event);
         this.emit('stream:chunk', {
@@ -697,7 +737,6 @@ export class AIService extends EventEmitter {
         content: assistantText,
       });
       session.updatedAt = Date.now();
-      void this.persistMessage(session.id, 'assistant', assistantText);
     } catch (error) {
       session.messages.pop();
       this.emit('error', {
@@ -822,6 +861,8 @@ function agentEventToIpc(event: AgentEvent): IpcStreamChunk {
       };
     case 'permission':
       return { type: 'permission', permission: event.request };
+    case 'question':
+      return { type: 'question', question: { id: event.id, prompt: event.prompt, options: event.options } };
     case 'plan':
       return { type: 'plan', plan: event.plan };
     case 'context_full':

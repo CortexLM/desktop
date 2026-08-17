@@ -98,6 +98,7 @@ export interface StreamChunk {
     | 'thinking'
     | 'tool'
     | 'permission'
+    | 'question'
     | 'plan'
     | 'context_full';
   content?: string;
@@ -109,5 +110,6 @@ export interface StreamChunk {
   error?: string;
   tool?: StreamToolPayload;
   permission?: StreamPermissionPayload;
+  question?: { id: string; prompt: string; options?: string[] };
   plan?: StreamPlanPayload;
 }

@@ -6,7 +6,8 @@ import { CheckpointStore } from '../checkpoints';
 import { generateDroidFromDescription, parseDroidMarkdown } from '../droids';
 import { runAgentTurn } from '../loop';
 import { MissionOrchestrator, type MissionRecord } from '../mission-orchestrator';
-import { InMemoryPermissionGate } from '../permissions';
+import { InMemoryPermissionGate, matchRules } from '../permissions';
+import { AgentServer } from '../server';
 import { parseComposerPrefixes, parseSkillMarkdown } from '../skills';
 import { composeSystemPrompt } from '../system-prompt';
 import { CODING_TOOLS } from '../tools';
@@ -185,6 +186,106 @@ describe('workspace tools', () => {
     });
     expect(result.ok).toBe(true);
     expect(await readFile(file, 'utf8')).toBe('const x = 2;\n');
+  });
+
+  it('applies a unified patch', async () => {
+    const root = await mkdtemp(path.join(tmpdir(), 'cortex-patch-'));
+    const file = path.join(root, 'a.ts');
+    await writeFile(file, 'const x = 1;\n', 'utf8');
+    const executor = new WorkspaceToolExecutor({ workspaceRoot: root });
+    const result = await executor.execute({
+      id: '1',
+      name: 'apply_patch',
+      arguments: {
+        patch: `--- a/a.ts\n+++ b/a.ts\n@@\n-const x = 1;\n+const x = 2;\n`,
+      },
+    });
+    expect(result.ok).toBe(true);
+    expect(await readFile(file, 'utf8')).toBe('const x = 2;\n');
+  });
+
+  it('rejects file:// webfetch', async () => {
+    const executor = new WorkspaceToolExecutor({ workspaceRoot: tmpdir() });
+    const result = await executor.execute({
+      id: '1',
+      name: 'webfetch',
+      arguments: { url: 'file:///etc/passwd' },
+    });
+    expect(result.ok).toBe(false);
+  });
+});
+
+describe('plan mode and permissions', () => {
+  it('refuses write tools in plan mode', async () => {
+    const events: AgentEvent[] = [];
+    for await (const event of runAgentTurn({
+      messages: [{ role: 'user', content: 'plan' }],
+      chat: async () => ({
+        content: '<tool name="write">{"path":"x.ts","contents":"nope"}</tool>',
+      }),
+      tools: CODING_TOOLS,
+      executor: { execute: async () => ({ ok: true, output: 'wrote' }) },
+      permissions: new InMemoryPermissionGate({ autoAllowSafe: true }),
+      systemPrompt: 'test',
+      mode: 'plan',
+      maxIterations: 2,
+    })) {
+      events.push(event);
+    }
+    const end = events.find((event) => event.type === 'tool_end');
+    expect(end && end.type === 'tool_end' && end.ok).toBe(false);
+    expect(end && end.type === 'tool_end' && end.output).toMatch(/Plan\/ask mode/);
+  });
+
+  it('matches pattern-scoped deny rules', () => {
+    expect(
+      matchRules([{ action: 'deny', tool: 'bash', pattern: 'rm *' }], 'bash', 'rm -rf /')
+    ).toBe('deny');
+    expect(matchRules([{ action: 'allow', tool: 'read', pattern: 'src/**' }], 'read', 'src/a.ts')).toBe(
+      'allow'
+    );
+  });
+});
+
+describe('AgentServer', () => {
+  it('forks, compacts, and reverts without calling a provider from a view', async () => {
+    const server = new AgentServer();
+    const session = server.createSession({ providerId: 'mock', model: 'm' });
+    for (let i = 0; i < 12; i += 1) {
+      session.messages.push({ role: 'user', content: `u${i}` }, { role: 'assistant', content: `a${i}` });
+    }
+    const compacted = server.compactSession(session.id, 4);
+    expect(compacted.messages.some((message) => message.content.startsWith('Compacted'))).toBe(true);
+    expect(compacted.messages.filter((message) => message.role === 'user').length).toBeLessThan(12);
+
+    const fork = server.forkSession(session.id);
+    expect(fork.id).not.toBe(session.id);
+    expect(fork.parentId).toBe(session.id);
+    expect(fork.messages.length).toBe(compacted.messages.length);
+
+    const child = server.createChildSession(session.id, 'reviewer');
+    expect(child.parentId).toBe(session.id);
+
+    session.messages.push({ role: 'user', content: 'undo me' }, { role: 'assistant', content: 'ok' });
+    server.revertLastTurn(session.id);
+    expect(session.messages.at(-1)?.content).not.toBe('undo me');
+
+    server.switchModel(session.id, 'anthropic', 'claude-sonnet-4');
+    expect(server.getSession(session.id)?.providerId).toBe('anthropic');
+  });
+
+  it('runs a turn through the session API', async () => {
+    const server = new AgentServer();
+    const session = server.createSession({ providerId: 'mock', workspacePath: tmpdir() });
+    const events: AgentEvent[] = [];
+    for await (const event of server.runTurn(session.id, 'hi', {
+      chat: async () => ({ content: 'hello' }),
+      executor: { execute: async () => ({ ok: true, output: '' }) },
+    })) {
+      events.push(event);
+    }
+    expect(events.some((event) => event.type === 'text' && event.text === 'hello')).toBe(true);
+    expect(server.getSession(session.id)?.messages.some((message) => message.role === 'user')).toBe(true);
   });
 });
 

@@ -1,4 +1,4 @@
-import type { ToolDefinition } from './types';
+import type { AgentMode, ToolDefinition } from './types';
 
 export const CODING_TOOLS: ToolDefinition[] = [
   {
@@ -40,6 +40,18 @@ export const CODING_TOOLS: ToolDefinition[] = [
         new_string: { type: 'string' },
       },
       required: ['path', 'old_string', 'new_string'],
+    },
+  },
+  {
+    name: 'apply_patch',
+    description: 'Apply a unified diff or *** Begin Patch *** block to workspace files.',
+    risk: 'write',
+    parameters: {
+      type: 'object',
+      properties: {
+        patch: { type: 'string', description: 'Unified diff or Begin Patch document' },
+      },
+      required: ['patch'],
     },
   },
   {
@@ -95,8 +107,46 @@ export const CODING_TOOLS: ToolDefinition[] = [
     },
   },
   {
+    name: 'todowrite',
+    description: 'Replace or merge the session todo list.',
+    risk: 'safe',
+    parameters: {
+      type: 'object',
+      properties: {
+        merge: { type: 'boolean', description: 'If true, merge by id instead of replacing' },
+        todos: { type: 'string', description: 'JSON array of {id,content,status}' },
+      },
+      required: ['todos'],
+    },
+  },
+  {
+    name: 'question',
+    description: 'Ask the user a blocking question before continuing.',
+    risk: 'safe',
+    parameters: {
+      type: 'object',
+      properties: {
+        prompt: { type: 'string' },
+        options: { type: 'string', description: 'Optional JSON string array of choices' },
+      },
+      required: ['prompt'],
+    },
+  },
+  {
+    name: 'webfetch',
+    description: 'Fetch an http(s) URL and return text. Not for file:// or secrets.',
+    risk: 'safe',
+    parameters: {
+      type: 'object',
+      properties: {
+        url: { type: 'string' },
+      },
+      required: ['url'],
+    },
+  },
+  {
     name: 'task',
-    description: 'Delegate a focused subtask to a named droid with a fresh context.',
+    description: 'Delegate a focused subtask to a named droid / child session.',
     risk: 'safe',
     parameters: {
       type: 'object',
@@ -109,8 +159,26 @@ export const CODING_TOOLS: ToolDefinition[] = [
   },
 ];
 
+/** Tools allowed in plan / ask modes — no silent writes or shell. */
+export const PLAN_SAFE_TOOLS = new Set([
+  'read',
+  'grep',
+  'glob',
+  'git',
+  'todowrite',
+  'question',
+  'webfetch',
+]);
+
 export function filterTools(names?: string[]): ToolDefinition[] {
   if (!names || names.length === 0) return CODING_TOOLS;
   const allow = new Set(names);
   return CODING_TOOLS.filter((tool) => allow.has(tool.name));
+}
+
+export function toolsForMode(mode: AgentMode | undefined, tools: ToolDefinition[] = CODING_TOOLS): ToolDefinition[] {
+  if (mode === 'plan' || mode === 'ask') {
+    return tools.filter((tool) => PLAN_SAFE_TOOLS.has(tool.name) || tool.risk === 'safe');
+  }
+  return tools;
 }
