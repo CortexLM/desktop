@@ -70,6 +70,36 @@ describe('runAgentTurn', () => {
     expect(end && end.type === 'tool_end' && end.output).toContain('hello from workspace');
   });
 
+  it('uses native provider tool_calls when the chat function returns them', async () => {
+    const root = await mkdtemp(path.join(tmpdir(), 'cortex-native-'));
+    await writeFile(path.join(root, 'notes.txt'), 'native', 'utf8');
+    const executor = new WorkspaceToolExecutor({ workspaceRoot: root });
+    const chat: ChatFn = async (messages) => {
+      const last = messages.at(-1);
+      if (last?.role === 'tool') {
+        return { content: `Read ${last.content}` };
+      }
+      return {
+        content: '',
+        toolCalls: [{ id: 't1', name: 'read', arguments: { path: 'notes.txt' } }],
+      };
+    };
+    const events: AgentEvent[] = [];
+    for await (const event of runAgentTurn({
+      messages: [{ role: 'user', content: 'read notes' }],
+      chat,
+      tools: CODING_TOOLS,
+      executor,
+      permissions: new InMemoryPermissionGate({ autoAllowSafe: true }),
+      systemPrompt: 'test',
+    })) {
+      events.push(event);
+    }
+    const end = events.find((event) => event.type === 'tool_end');
+    expect(end && end.type === 'tool_end' && end.ok).toBe(true);
+    expect(end && end.type === 'tool_end' && end.output).toContain('native');
+  });
+
   it('denies a write when the permission gate says deny', async () => {
     const executor = {
       async execute(_call: ToolCall): Promise<ToolResult> {

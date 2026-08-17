@@ -89,6 +89,7 @@ export interface ToolExecutor {
 
 export interface ChatCompletion {
   content: string;
+  toolCalls?: ToolCall[];
 }
 
 export type ChatFn = (messages: AgentMessage[]) => Promise<ChatCompletion>;

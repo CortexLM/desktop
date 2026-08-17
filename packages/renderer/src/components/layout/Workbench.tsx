@@ -351,6 +351,7 @@ function AIChatPanel() {
   const [sessionId, setSessionId] = React.useState<string | null>(null);
   const [isCreating, setIsCreating] = React.useState(false);
   const { handleError } = useErrorHandler();
+  const { workspacePath } = useWorkbench();
 
   const createSession = React.useCallback(async () => {
     setIsCreating(true);
@@ -358,6 +359,7 @@ function AIChatPanel() {
       const response = await window.cortex.ai.createSession({
         provider: DEFAULT_PROVIDER,
         model: DEFAULT_MODEL,
+        workspacePath: workspacePath ?? undefined,
       });
 
       if (!response?.success) {
@@ -373,7 +375,7 @@ function AIChatPanel() {
     } finally {
       setIsCreating(false);
     }
-  }, [handleError]);
+  }, [handleError, workspacePath]);
 
   return (
     <div className="h-full flex">
@@ -389,7 +391,7 @@ function AIChatPanel() {
 
       <div className="flex-1 min-w-0">
         {sessionId ? (
-          <ChatView sessionId={sessionId} model={DEFAULT_MODEL} />
+          <ChatView sessionId={sessionId} model={DEFAULT_MODEL} workspacePath={workspacePath} />
         ) : (
           <EmptyState
             data-testid="ai-chat-empty-state"

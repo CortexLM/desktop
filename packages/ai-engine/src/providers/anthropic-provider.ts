@@ -79,6 +79,15 @@ export class AnthropicProvider extends AIProvider {
           role: m.role as 'user' | 'assistant',
           content: m.content,
         })),
+        ...(options?.tools?.length
+          ? {
+              tools: options.tools.map((tool) => ({
+                name: tool.name,
+                description: tool.description,
+                input_schema: tool.parameters as Anthropic.Tool['input_schema'],
+              })),
+            }
+          : {}),
       };
 
       // Enable extended thinking if requested
@@ -109,11 +118,20 @@ export class AnthropicProvider extends AIProvider {
         usage.cacheReadInputTokens = rawUsage.cache_read_input_tokens;
       }
 
+      const toolCalls = response.content
+        .filter((block): block is Anthropic.ToolUseBlock => block.type === 'tool_use')
+        .map((block) => ({
+          id: block.id,
+          name: block.name,
+          arguments: (block.input ?? {}) as Record<string, unknown>,
+        }));
+
       return {
         content: textContent?.type === 'text' ? textContent.text : '',
         model: response.model,
         usage,
         finishReason: response.stop_reason || undefined,
+        toolCalls: toolCalls.length ? toolCalls : undefined,
       };
     } catch (error) {
       this.handleError(error, 'chat failed');

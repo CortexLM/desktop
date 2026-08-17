@@ -386,9 +386,21 @@ describe('ChatView sending', () => {
     const request = cortex.ai.streamResponse.mock.calls[0][0] as {
       sessionId: string;
       message: string;
+      workspacePath?: string;
+      mode?: string;
     };
     expect(request.sessionId).toBe('session-7');
     expect(request.message).toBe('padded');
+    expect(request.mode).toBe('agent');
+  });
+
+  it('forwards the workspace path so the main process can run tools', async () => {
+    await renderChat({ sessionId: 'session-7', workspacePath: '/repo' });
+
+    await send('read notes');
+
+    const request = cortex.ai.streamResponse.mock.calls[0][0] as { workspacePath?: string };
+    expect(request.workspacePath).toBe('/repo');
   });
 
   it('renders the streamed assistant reply', async () => {
