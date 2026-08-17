@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Brain, Check, ChevronRight, FileText, GitBranch, ListChecks } from 'lucide-react';
+import { Check, ChevronRight, FileText, GitBranch, Info, ListChecks } from 'lucide-react';
 import { ComposerBar } from './ComposerBar';
 import { PermissionOverlay } from './overlays/PermissionOverlay';
 import type { SessionAgent, TranscriptItem } from './use-session-agent';
@@ -21,15 +21,6 @@ export function SessionCenter({
       data-testid="session-center"
       aria-label="Session"
     >
-      {agent.goal && (
-        <div
-          className="absolute top-3 right-4 z-10 h-7 px-3 rounded-full bg-elevated border border-border-soft text-[12px] text-text-secondary max-w-[360px] truncate"
-          data-testid="goal-chip"
-        >
-          {agent.goal}
-        </div>
-      )}
-
       <div className="flex-1 min-h-0 overflow-auto px-6 py-8">
         {empty ? (
           <EmptySession onPick={(text) => void agent.send(text)} />
@@ -46,7 +37,7 @@ export function SessionCenter({
             )}
             {agent.running && !agent.permission && (
               <div className="flex items-center gap-2" data-testid="working-indicator">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-soft flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary flex-shrink-0" />
                 <span className="text-[12px] text-text-secondary">Working</span>
                 <span className="font-mono text-[10px] text-text-tertiary">
                   {agent.elapsed}s · esc to interrupt
@@ -76,11 +67,16 @@ export function SessionCenter({
             </div>
           )}
           {agent.filesChanging && (
-            <div className="h-[34px] px-3 rounded-[10px] border border-border-soft bg-elevated flex items-center gap-2 text-[13px]">
+            <div
+              className="h-[34px] px-3 rounded-[10px] border border-border-soft bg-elevated flex items-center gap-2 text-[13px]"
+              data-testid="files-changing"
+            >
               <FileText className="w-3.5 h-3.5 text-text-tertiary flex-shrink-0" />
-              <span className="flex-1">{agent.filesChanging.replace(/\s\+.*$/, '')}</span>
-              <span className="font-mono text-[12px] text-green">+</span>
-              <span className="font-mono text-[12px] text-red">−</span>
+              <span className="flex-1">
+                {agent.filesChanging.files} file{agent.filesChanging.files === 1 ? '' : 's'} changing
+              </span>
+              <span className="font-mono text-[12px] text-green">+{agent.filesChanging.additions}</span>
+              <span className="font-mono text-[12px] text-red">−{agent.filesChanging.deletions}</span>
               <ChevronRight className="w-3.5 h-3.5 text-text-tertiary" />
             </div>
           )}
@@ -113,7 +109,7 @@ function TranscriptRow({ item }: { item: TranscriptItem }) {
   if (item.kind === 'thinking') {
     return (
       <div className="flex items-start gap-2">
-        <Brain className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-accent" />
+        <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-accent" />
         <span className="text-[12px]">
           <span className="font-medium text-text-secondary">Thinking</span>{' '}
           <span className="text-text-tertiary">{item.text}</span>
@@ -123,7 +119,8 @@ function TranscriptRow({ item }: { item: TranscriptItem }) {
   }
   if (item.kind === 'tool' && item.tool) {
     const running = item.tool.status === 'running';
-    const title = [item.tool.title ?? item.tool.name, item.tool.detail].filter(Boolean).join(' ');
+    const title = item.tool.title ?? item.tool.name;
+    const hasDiff = item.tool.additions != null || item.tool.deletions != null;
     const duration =
       item.tool.durationMs != null ? `${(item.tool.durationMs / 1000).toFixed(1)}s` : null;
     return (
@@ -139,10 +136,18 @@ function TranscriptRow({ item }: { item: TranscriptItem }) {
             <span className="ml-auto font-mono text-[10px] text-text-tertiary">{duration}</span>
           )}
         </div>
-        {(item.tool.additions != null || item.tool.deletions != null) && (
-          <div className="pl-5 mt-1 font-mono text-[10px]">
-            <span className="text-green">+{item.tool.additions ?? 0}</span>{' '}
-            <span className="text-red">−{item.tool.deletions ?? 0}</span>
+        {/* Paper: diff counts and the tool's description share the second line. */}
+        {(hasDiff || item.tool.detail) && (
+          <div className={`${running ? '' : 'pl-5 '}mt-1 text-[11px] flex items-baseline gap-1.5`}>
+            {hasDiff && (
+              <span className="font-mono">
+                <span className="text-green">+{item.tool.additions ?? 0}</span>{' '}
+                <span className="text-red">−{item.tool.deletions ?? 0}</span>
+              </span>
+            )}
+            {item.tool.detail && (
+              <span className="text-text-tertiary truncate">{item.tool.detail}</span>
+            )}
           </div>
         )}
       </div>

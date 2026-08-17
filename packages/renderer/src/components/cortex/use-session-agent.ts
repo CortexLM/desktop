@@ -37,7 +37,11 @@ export function useSessionAgent(workspacePath: string | null) {
   } | null>(null);
   const [mode, setMode] = React.useState<'agent' | 'plan' | 'mission' | 'ask'>('agent');
   const [branch, setBranch] = React.useState('main');
-  const [filesChanging, setFilesChanging] = React.useState<string | null>(null);
+  const [filesChanging, setFilesChanging] = React.useState<{
+    files: number;
+    additions: number;
+    deletions: number;
+  } | null>(null);
   const startedAt = React.useRef<number | null>(null);
 
   React.useEffect(() => {
@@ -109,9 +113,11 @@ export function useSessionAgent(workspacePath: string | null) {
         return [...prev, { id: chunk.tool!.id, kind: 'tool', tool: chunk.tool }];
       });
       if (chunk.tool.additions != null || chunk.tool.deletions != null) {
-        setFilesChanging(
-          `1 file changing +${chunk.tool.additions ?? 0} -${chunk.tool.deletions ?? 0}`
-        );
+        setFilesChanging({
+          files: 1,
+          additions: chunk.tool.additions ?? 0,
+          deletions: chunk.tool.deletions ?? 0,
+        });
       }
     }
     if (chunk.type === 'permission' && chunk.permission) {

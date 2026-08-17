@@ -132,8 +132,10 @@ describe('CortexCodeShell', () => {
       target: { value: 'Review my changes' },
     });
     fireEvent.click(screen.getByTestId('composer-send'));
+    // Paper shows the user message as a right-aligned bubble in the transcript,
+    // not a separate floating goal chip.
     await waitFor(() =>
-      expect(screen.getByTestId('goal-chip')).toHaveTextContent('Review my changes')
+      expect(screen.getByTestId('agent-transcript')).toHaveTextContent('Review my changes')
     );
   });
 });

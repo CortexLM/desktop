@@ -67,7 +67,7 @@ export function SurfaceRail({
               active ? 'bg-tint-strong text-accent' : 'text-text-tertiary hover:text-text'
             )}
           >
-            <Icon className="w-3.5 h-3.5" />
+            <Icon className="w-4 h-4" strokeWidth={1.5} />
           </button>
         );
       })}
