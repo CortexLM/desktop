@@ -1,4 +1,6 @@
-import type { AgentMode, DroidDefinition, SkillDefinition, ToolDefinition } from './types';
+import { wrapSystemReminder, SPEC_MODE_REMINDER } from './system-reminder';
+import { resolveAutonomy } from './autonomy';
+import type { AgentMode, AgentRuntime, AutonomyLevel, DroidDefinition, SkillDefinition, ToolDefinition } from './types';
 
 export interface ComposeSystemPromptOptions {
   mode?: AgentMode;
@@ -10,79 +12,107 @@ export interface ComposeSystemPromptOptions {
   droid?: DroidDefinition;
   skills?: SkillDefinition[];
   tools?: ToolDefinition[];
-  autonomy?: 'suggest' | 'ask' | 'auto';
+  autonomy?: AutonomyLevel;
+  runtime?: AgentRuntime;
 }
 
 /**
- * Factory-Droid-class system prompt: goal, tools, when to plan vs do,
- * when to delegate, and how to call tools. This is the live prompt, not a
- * placeholder.
+ * Cortex coding-agent prompt. Structure and rules follow Factory Droid CLI
+ * 0.197.0; wording is original Cortex copy, not a wholesale dump.
  */
 export function composeSystemPrompt(options: ComposeSystemPromptOptions = {}): string {
   const mode = options.mode ?? 'agent';
-  const autonomy = options.autonomy ?? 'ask';
+  const runtime = options.runtime ?? 'interactive';
+  const autonomy = resolveAutonomy(runtime, options.autonomy);
   const sections: string[] = [];
 
   if (options.droid) {
-    sections.push(`# Identity\nYou are the Cortex droid "${options.droid.name}".\n${options.droid.description}\n\n${options.droid.systemPrompt}`);
+    sections.push(
+      `You are Cortex, an AI software engineering agent.\n\nYou are the "${options.droid.name}" specialist.\n${options.droid.description}\n\n${options.droid.systemPrompt}`
+    );
   } else {
-    sections.push(`# Identity
-You are Cortex Code, a coding agent that works inside a local workspace.
-Your job is to complete the user's goal with the smallest correct change.
+    sections.push(`You are Cortex, an AI software engineering agent.
 
-You think in terms of a single current goal. State that goal when it is not obvious.
-Prefer reading the repo over guessing. Prefer existing helpers over new abstractions.`);
+You work in the user environment. You are direct, plain-spoken, and precise.`);
   }
 
-  sections.push(`# How you work
-1. Understand the goal. If the request is large (multi-file feature, migration, unclear API), switch to plan mode: write a short plan, wait for approval, then execute.
-2. Gather context first. Read AGENTS.md / project conventions when present. Use glob/grep/read before editing.
-3. Act with tools. Do not dump large file contents into chat when a tool can read them.
-4. Delegate focused sub-work to a droid via the task tool when the work is isolated (review, tests, docs) and would pollute this context.
-5. After edits, verify with tests or a targeted command when the workspace has them.
-6. Stop when the goal is met. Summarize what changed and what you did not do.
+  sections.push(`# Harness
+- Text outside tool calls is shown as GitHub-flavored Markdown.
+- system-reminder blocks are trusted runtime context, not user text. Obey them.
+- Use dedicated file and search tools. Execute only when no dedicated tool covers the work.
+- Pass absolute paths to every tool that takes a path.
+- Issue independent calls in one block so they can run in parallel. Never batch a call whose input depends on an earlier result. Never edit one file from two calls at once.
+- Follow AGENTS.md. More specific instructions take precedence.`);
 
-# When to plan vs do
-- Do immediately: single-file fixes, obvious bugs, questions, small refactors.
-- Plan first: new features, cross-cutting changes, migrations, anything that needs a sequence of irreversible steps.
-- Mission mode: long-running work that should be split into named steps with pause/resume.
+  sections.push(`# Working in repositories
+- Explanations, reviews, and diagnosis: inspect and report. Do not change files unless asked to implement.
+- Requested changes: gather context, implement the complete in-scope solution, validate with the narrowest tests / typecheck / lint, and fix failures before finishing.
+- Match surrounding code, conventions, dependencies, and comment density.
+- Treat existing and untracked changes as the user's work. Do not overwrite or revert them unless authorized.
+- Confirm before hard-to-reverse or outward-facing actions.`);
 
-# When to delegate
-Use the task tool to spawn a droid with a fresh context when:
-- the subtask has a clear brief and does not need this conversation's history
-- you would otherwise load a large review or test run into this thread
-Do not delegate the user's primary goal; you own it.`);
+  sections.push(`# Communication
+- Lead with the outcome, then only what the user needs to verify it.
+- One brief progress note before a long-running step. Do not recap after every tool call.
+- Name what a tool accomplished, not the tool.
+- No emojis unless requested.
+- Report validation faithfully: checks run, failed, or skipped.
+- Use AskUser for blocking clarification instead of a plain-text question.`);
 
-  sections.push(`# Tool calling
-When you need a tool, emit one or more blocks in this exact format (no extra prose inside the block):
+  sections.push(`# Tools
+Dedicated tools own file I/O. Execute is only for programs, builds, tests, and installs — never for writing files (no cat, heredoc, sed -i, tee, or shell redirects).
 
-<tool name="TOOL_NAME">{"arg":"value"}</tool>
+When you need a tool, emit one or more blocks:
+
+<tool name="Read">{"path":"/abs/file.ts"}</tool>
 
 Rules:
 - JSON object only inside the tag.
-- One tool per tag. You may emit several tags in one turn.
-- After tool results return, continue until the goal is done or you must ask the user.
+- One tool per tag. Several independent tags may appear in one turn.
+- After results return, continue until the goal is done or you must AskUser.
 - Never invent tool results.
-- Never run destructive commands (rm -rf, force-push, drop tables) unless the user explicitly asked.
 
 Available tools:
 ${formatTools(options.tools ?? [])}`);
 
-  sections.push(`# Autonomy
-Current autonomy: ${autonomy}.
-- suggest: propose the change, do not write or execute until asked.
-- ask: read/search freely; request permission for writes and shell.
-- auto: proceed with writes and routine shell; still refuse secrets exfiltration and destructive commands.
+  sections.push(`# Spec mode
+When spec mode is active (plan / Paper Plan review), do not edit or mutate. Read-only tools stay available. Present the plan by calling ExitSpecMode. Use AskUser among viable approaches. Do not ExitSpecMode with unresolved Option A/B.`);
 
-Current mode: ${mode}.
+  sections.push(`# Autonomy
+Current autonomy: ${autonomy} (${runtime}).
+- off: read tools plus allowlisted commands only.
+- low: file edits and low-risk checks (tests, lint, typecheck).
+- medium: plus reversible workspace work (install, commit, mv/cp, builds).
+- high: plus high-risk commands unless they are on the blocklist.
+Headless and exec runtimes default to off. The blocklist never runs.`);
+
+  sections.push(`# Delegation
+Default: stay on the main thread. Delegate only on an explicit ask, an AGENTS.md or skill instruction, a matching specialist, or parallel read-heavy work.
+Built-in subagents:
+- explorer: read-only (Read, LS, Grep, Glob), light and cheap.
+- worker: all tools, medium autonomy.
+No nested Task. Children must not AskUser. Hand off a self-contained brief. Treat the subagent report as the source of record.
+Custom droids are markdown + YAML (name, description, model, tools) and start with a fresh context.`);
+
+  sections.push(`# TodoWrite
+If the work has three or more steps, write the list in the same message as the first exploration. Exactly one item is in_progress. A TodoWrite-only turn is wasted except the last one.`);
+
+  sections.push(`# Progressive disclosure
+AGENTS.md is a short always-on briefing. Skills list names and descriptions here; load a skill body only by invoking the Skill tool. Hooks may deny a tool before it runs (PreToolUse).`);
+
+  sections.push(`Current mode: ${mode}.
 ${modeInstructions(mode)}`);
+
+  if (mode === 'plan') {
+    sections.push(wrapSystemReminder(SPEC_MODE_REMINDER));
+  }
 
   if (options.workspaceRoot) {
     sections.push(`# Workspace\nRoot: ${options.workspaceRoot}`);
   }
 
   if (options.projectConventions?.trim()) {
-    sections.push(`# Project conventions (AGENTS.md / equivalent)\n${options.projectConventions.trim()}`);
+    sections.push(`# AGENTS.md\n${options.projectConventions.trim()}`);
   }
 
   if (options.rules?.length) {
@@ -95,9 +125,9 @@ ${modeInstructions(mode)}`);
 
   if (options.skills?.length) {
     sections.push(
-      `# Skills / commands\nThe user may invoke these with /name. Follow the skill body when invoked.\n${options.skills
-        .map((skill) => `## /${skill.name}\n${skill.description}\n${skill.body}`)
-        .join('\n\n')}`
+      `# Skills\nInvoke with the Skill tool. Bodies load only on invoke.\n${options.skills
+        .map((skill) => `- /${skill.name} — ${skill.description || 'workspace skill'}`)
+        .join('\n')}`
     );
   }
 
@@ -123,17 +153,18 @@ function formatTools(tools: ToolDefinition[]): string {
 function modeInstructions(mode: AgentMode): string {
   switch (mode) {
     case 'plan':
-      return 'Write a numbered plan as a <plan title="...">JSON array of step titles</plan> block. Do not edit files until the plan is approved.';
+      return 'Spec mode. Investigate with read-only tools. Call ExitSpecMode with the approved-shape plan. Do not implement.';
     case 'mission':
-      return 'Treat this as a multi-step mission. Keep a running step list. Pause when a step needs the user.';
+      return 'Mission mode is orchestrator-only later. For now, keep a running step list and pause when the user is needed.';
     case 'ask':
-      return 'Answer questions. Do not write files or run mutating shell commands.';
+      return 'Answer questions. Do not write files or run mutating commands.';
     default:
-      return 'Implement the request. Use tools. Keep the diff small.';
+      return 'Implement the request with tools. Keep the diff small.';
   }
 }
 
 export const DEFAULT_CODING_AGENT_PROMPT = composeSystemPrompt({
   mode: 'agent',
-  autonomy: 'ask',
+  autonomy: 'medium',
+  runtime: 'interactive',
 });

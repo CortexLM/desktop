@@ -2,6 +2,10 @@
 
 export type AgentMode = 'agent' | 'plan' | 'mission' | 'ask';
 
+export type AutonomyLevel = 'off' | 'low' | 'medium' | 'high';
+
+export type AgentRuntime = 'interactive' | 'headless';
+
 export type ToolRisk = 'safe' | 'write' | 'exec';
 
 export type PermissionDecision = 'allow-once' | 'allow-always' | 'deny';
@@ -127,7 +131,10 @@ export interface RunAgentTurnOptions {
   permissions: PermissionGate;
   systemPrompt: string;
   mode?: AgentMode;
+  autonomy?: AutonomyLevel;
+  runtime?: AgentRuntime;
   agentName?: string;
+  delegationDepth?: number;
   questions?: QuestionGate;
   abortSignal?: AbortSignal;
   maxIterations?: number;
@@ -171,6 +178,8 @@ export interface AgentSessionRecord {
   model?: string;
   workspacePath?: string;
   mode: AgentMode;
+  autonomy?: AutonomyLevel;
+  runtime?: AgentRuntime;
   agentName?: string;
   messages: AgentMessage[];
   todos: TodoItem[];

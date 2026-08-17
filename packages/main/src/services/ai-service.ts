@@ -642,6 +642,9 @@ export class AIService extends EventEmitter {
     const workspaceExecutor = new WorkspaceToolExecutor({
       workspaceRoot,
       droids,
+      skills,
+      autonomy: this.agentServer.getSession(session.id)?.autonomy ?? 'medium',
+      delegationDepth: this.agentServer.getSession(session.id)?.parentId ? 1 : 0,
       onTodos: (todos, merge) => this.agentServer.mergeTodos(session.id, todos, merge),
       runDroid: async (droid, prompt) => {
         const child = this.agentServer.createChildSession(session.id, droid.name);

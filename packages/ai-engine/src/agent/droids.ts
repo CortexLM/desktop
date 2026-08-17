@@ -67,16 +67,16 @@ export async function loadDroidsFromWorkspace(workspaceRoot: string): Promise<Dr
 
 function inferTools(description: string): string[] {
   const text = description.toLowerCase();
-  const tools = new Set<string>(['read', 'grep', 'glob']);
+  const tools = new Set<string>(['Read', 'Grep', 'Glob', 'LS']);
   if (/\b(edit|fix|implement|write|refactor)\b/.test(text)) {
-    tools.add('edit');
-    tools.add('write');
+    tools.add('Edit');
+    tools.add('Create');
   }
   if (/\b(test|tests|lint|build|run|shell)\b/.test(text)) {
-    tools.add('bash');
+    tools.add('Execute');
   }
   if (/\bgit\b/.test(text)) {
-    tools.add('git');
+    tools.add('Git');
   }
   return [...tools];
 }

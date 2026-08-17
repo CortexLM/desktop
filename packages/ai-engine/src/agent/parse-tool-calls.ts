@@ -1,3 +1,4 @@
+import { canonicalToolName } from './tool-names';
 import type { AgentPlan, ToolCall } from './types';
 
 const TOOL_RE = /<tool\s+name="([^"]+)">([\s\S]*?)<\/tool>/g;
@@ -24,7 +25,7 @@ export function parseToolCalls(content: string): ToolCall[] {
     }
     calls.push({
       id: `tool-${index + 1}-${name}`,
-      name,
+      name: canonicalToolName(name),
       arguments: args,
     });
     index += 1;

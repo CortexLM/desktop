@@ -39,7 +39,14 @@ export const handleCreateSession = createHandler<CreateSessionRequest, CreateSes
 
     aiService.addSystemMessage(
       session.id,
-      request.systemPrompt ?? composeSystemPrompt({ tools: CODING_TOOLS, mode: 'agent' })
+      request.systemPrompt ??
+        composeSystemPrompt({
+          tools: CODING_TOOLS,
+          mode: 'agent',
+          autonomy: 'medium',
+          runtime: 'interactive',
+          workspaceRoot: request.workspacePath,
+        })
     );
 
     return {

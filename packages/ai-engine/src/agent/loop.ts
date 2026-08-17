@@ -1,9 +1,13 @@
+import { autonomyAllowsExecute } from './autonomy';
 import { extractThinking, parsePlan, parseToolCalls, stripToolMarkup } from './parse-tool-calls';
 import { riskForTool, summarizeCall, targetForCall } from './permissions';
-import { PLAN_SAFE_TOOLS } from './tools';
+import { SPEC_MODE_REMINDER, wrapSystemReminder } from './system-reminder';
+import { canonicalToolName, MUTATE_TOOLS, SPEC_SAFE_TOOLS } from './tool-names';
+import { hasUnresolvedOptions } from './workspace-tools';
 import type {
   AgentEvent,
   AgentMessage,
+  AgentPlan,
   PermissionRequest,
   RunAgentTurnOptions,
   ToolDefinition,
@@ -18,6 +22,9 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
     { role: 'system', content: options.systemPrompt },
     ...options.messages,
   ];
+  if (options.mode === 'plan' && !options.systemPrompt.includes('Spec mode is active')) {
+    messages.splice(1, 0, { role: 'system', content: wrapSystemReminder(SPEC_MODE_REMINDER) });
+  }
 
   if (options.contextTokens != null && options.contextLimit != null) {
     if (options.contextTokens >= options.contextLimit) {
@@ -64,10 +71,11 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       }
     }
 
-    const calls =
+    const calls = (
       completion.toolCalls && completion.toolCalls.length > 0
         ? completion.toolCalls
-        : parseToolCalls(content);
+        : parseToolCalls(content)
+    ).map((call) => ({ ...call, name: canonicalToolName(call.name) }));
     const visible = stripToolMarkup(content);
     if (visible) {
       yield { type: 'text', text: visible };
@@ -82,18 +90,41 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
 
     messages.push({ role: 'assistant', content });
 
+    const writePaths = new Set<string>();
+    const skipped = new Set<string>();
     for (const call of calls) {
+      const writePath = writeTarget(call.name, call.arguments);
+      if (writePath) {
+        if (writePaths.has(writePath)) {
+          const denied = `Never edit one file from two calls at once: ${writePath}`;
+          messages.push({ role: 'tool', name: call.name, content: denied });
+          yield {
+            type: 'tool_end',
+            id: call.id,
+            name: call.name,
+            ok: false,
+            output: denied,
+            durationMs: 0,
+          };
+          skipped.add(call.id);
+        }
+        writePaths.add(writePath);
+      }
+    }
+
+    for (const call of calls) {
+      if (skipped.has(call.id)) continue;
       if (options.abortSignal?.aborted) {
         yield { type: 'done', finishReason: 'aborted' };
         return;
       }
 
-      const definition = tools.find((tool) => tool.name === call.name);
-      const restricted =
+      const definition = tools.find((tool) => canonicalToolName(tool.name) === call.name);
+      const specLocked =
         (options.mode === 'plan' || options.mode === 'ask') &&
-        !PLAN_SAFE_TOOLS.has(call.name) &&
-        definition?.risk !== 'safe';
-      if (restricted) {
+        !SPEC_SAFE_TOOLS.has(call.name) &&
+        (MUTATE_TOOLS.has(call.name) || definition?.risk !== 'safe');
+      if (specLocked) {
         const denied = `Plan/ask mode forbids ${call.name}`;
         messages.push({ role: 'tool', name: call.name, content: denied });
         yield {
@@ -107,7 +138,20 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         continue;
       }
 
-      if (call.name === 'question') {
+      if (call.name === 'AskUser') {
+        if ((options.delegationDepth ?? 0) > 0) {
+          const denied = 'Children must not AskUser. Return a self-contained report.';
+          messages.push({ role: 'tool', name: call.name, content: denied });
+          yield {
+            type: 'tool_end',
+            id: call.id,
+            name: call.name,
+            ok: false,
+            output: denied,
+            durationMs: 0,
+          };
+          continue;
+        }
         const prompt = String(call.arguments.prompt ?? '');
         let choices: string[] | undefined;
         try {
@@ -121,16 +165,69 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         const answer = options.questions
           ? await options.questions.ask(call.id, prompt, choices)
           : '';
-        messages.push({ role: 'tool', name: 'question', content: answer || '(no answer)' });
+        messages.push({ role: 'tool', name: 'AskUser', content: answer || '(no answer)' });
         yield {
           type: 'tool_end',
           id: call.id,
-          name: 'question',
+          name: 'AskUser',
           ok: true,
           output: answer || '(no answer)',
           durationMs: 0,
         };
         continue;
+      }
+
+      if (call.name === 'Task' && (options.delegationDepth ?? 0) > 0) {
+        const denied = 'No nested Task.';
+        messages.push({ role: 'tool', name: call.name, content: denied });
+        yield {
+          type: 'tool_end',
+          id: call.id,
+          name: call.name,
+          ok: false,
+          output: denied,
+          durationMs: 0,
+        };
+        continue;
+      }
+
+      if (call.name === 'ExitSpecMode') {
+        if (hasUnresolvedOptions(call.arguments)) {
+          const denied = 'Do not ExitSpecMode with unresolved Option A/B. Use AskUser first.';
+          messages.push({ role: 'tool', name: call.name, content: denied });
+          yield {
+            type: 'tool_end',
+            id: call.id,
+            name: call.name,
+            ok: false,
+            output: denied,
+            durationMs: 0,
+          };
+          continue;
+        }
+        const plan = planFromExit(call.arguments);
+        yield { type: 'plan', plan };
+        messages.push({ role: 'tool', name: call.name, content: JSON.stringify(plan) });
+        options.onMessages?.(messages);
+        yield { type: 'done', finishReason: 'plan' };
+        return;
+      }
+
+      if (call.name === 'Execute') {
+        const command = String(call.arguments.command ?? '');
+        if (!autonomyAllowsExecute(options.autonomy ?? 'medium', command)) {
+          const denied = `Execute blocked by autonomy=${options.autonomy ?? 'medium'} or the blocklist.`;
+          messages.push({ role: 'tool', name: call.name, content: denied });
+          yield {
+            type: 'tool_end',
+            id: call.id,
+            name: call.name,
+            ok: false,
+            output: denied,
+            durationMs: 0,
+          };
+          continue;
+        }
       }
 
       const request: PermissionRequest = {
@@ -194,19 +291,39 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
 }
 
 function toolTitle(definition: ToolDefinition | undefined, name: string): string {
-  const labels: Record<string, string> = {
-    read: 'Read',
-    write: 'Write',
-    edit: 'Editing',
-    apply_patch: 'Patch',
-    todowrite: 'Todos',
-    question: 'Question',
-    webfetch: 'Fetch',
-    grep: 'Grep',
-    glob: 'Glob',
-    bash: 'Terminal',
-    git: 'Git',
-    task: 'Task',
+  return definition?.name ?? name;
+}
+
+function writeTarget(name: string, args: Record<string, unknown>): string | undefined {
+  if (name === 'Create' || name === 'Edit') {
+    return typeof args.path === 'string' ? args.path : undefined;
+  }
+  if (name === 'ApplyPatch' && typeof args.patch === 'string') {
+    const match = /\+\+\+ (?:b\/)?(\S+)/.exec(args.patch) ?? /\*\*\* (?:Update|Add) File: (.+)$/m.exec(args.patch);
+    return match?.[1];
+  }
+  return undefined;
+}
+
+function planFromExit(args: Record<string, unknown>): AgentPlan {
+  let steps: string[] = [];
+  try {
+    const parsed = typeof args.steps === 'string' ? JSON.parse(args.steps) : args.steps;
+    if (Array.isArray(parsed)) steps = parsed.map(String);
+  } catch {
+    steps = String(args.steps ?? '')
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean);
+  }
+  return {
+    title: String(args.title ?? 'Plan'),
+    rationale: String(args.rationale ?? ''),
+    approved: false,
+    steps: steps.map((title, index) => ({
+      id: `step-${index + 1}`,
+      title,
+      status: index === 0 ? 'active' : 'pending',
+    })),
   };
-  return labels[name] ?? definition?.name ?? name;
 }
