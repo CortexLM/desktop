@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GitBranch, Pencil, RefreshCw, RotateCcw } from 'lucide-react';
+import { ChevronDown, FileText, GitBranch, Globe, MoreHorizontal, Pencil, RefreshCw, RotateCcw } from 'lucide-react';
 import { ipc } from '../../lib/ipc';
 import type { GitFileStatus, GitStatusResponse } from '@cortex-ide/shared';
 import { GitStashPanel } from '../git/GitStashPanel';
@@ -49,10 +49,10 @@ export function GitContextPanel({ repoPath }: { repoPath: string | null }) {
       aria-label="Git"
     >
       <div className="h-10 px-3 flex items-center justify-between border-b border-border">
-        <div className="flex items-center gap-2 text-[13px] font-medium">
-          Git
+        <div className="text-[13px] font-medium">Git</div>
+        <div className="flex items-center gap-2 text-text-tertiary">
           <button type="button" onClick={() => void load()} aria-label="Refresh git">
-            <RefreshCw className="w-3.5 h-3.5 text-text-tertiary" />
+            <RefreshCw className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
@@ -63,13 +63,22 @@ export function GitContextPanel({ repoPath }: { repoPath: string | null }) {
           <span className="font-mono truncate">{status?.branch ?? 'main'}</span>
           <Pencil className="w-3 h-3 text-text-tertiary flex-shrink-0" />
         </div>
+        <div className="flex items-center gap-1 text-text-tertiary">
+          <Globe className="w-3.5 h-3.5" />
+          <ChevronDown className="w-3 h-3" />
+        </div>
+      </div>
+
+      <div className="h-[30px] px-3 flex items-center justify-between">
+        <MoreHorizontal className="w-3.5 h-3.5 text-text-tertiary" />
         <button
           type="button"
-          className="h-6 px-2 rounded-md border border-border text-[12px] flex items-center gap-1"
+          className="h-6 px-2 rounded-[6px] border border-border text-[12px] flex items-center gap-1"
           onClick={() => repoPath && void ipc.git.pull({ repoPath }).then(load)}
         >
           <RotateCcw className="w-3 h-3" />
           sync
+          <ChevronDown className="w-2.5 h-2.5 text-text-tertiary" />
         </button>
       </div>
 
@@ -83,7 +92,7 @@ export function GitContextPanel({ repoPath }: { repoPath: string | null }) {
             <FileGroup title="Staged" count={staged.length} files={staged} />
             <FileGroup title="Changes" count={unstaged.length} files={unstaged} />
             {staged.length > 0 && (
-              <button type="button" className="text-[12px] text-red py-2">
+              <button type="button" className="w-full text-right text-[12px] text-red py-2">
                 revert all
               </button>
             )}
@@ -93,26 +102,31 @@ export function GitContextPanel({ repoPath }: { repoPath: string | null }) {
       </div>
 
       <div className="flex-shrink-0 border-t border-border p-3 flex flex-col gap-2">
-        <div className="text-[13px] font-medium">Commit</div>
-        <div className="rounded-[10px] border border-border bg-elevated p-2 text-[12px] text-text-secondary space-y-1">
-          <div className="text-text-tertiary">Highlights</div>
-          <p>Adds a shared sanitize helper and updates presign, queue, and upload surfaces.</p>
+        <div className="flex items-center justify-between">
+          <div className="text-[12px] font-medium text-text-secondary">Highlights</div>
+          <ChevronDown className="w-3 h-3 text-text-tertiary" />
+        </div>
+        <div className="rounded-[10px] border border-border-soft bg-elevated p-2 text-[12px] text-text space-y-1">
+          <p>Shared sanitize helper for upload surfaces.</p>
+          <p>Presign and queue paths updated together.</p>
+          <p>Validation covers empty and oversized files.</p>
         </div>
         <input
           value={message}
           onChange={(event) => setMessage(event.target.value)}
-          className="h-[30px] px-2 rounded-md border border-border bg-page text-[12px] font-mono"
+          className="h-[30px] px-2 rounded-md border border-border bg-elevated text-[12px] font-mono text-text"
           aria-label="Commit message"
         />
         <div className="flex items-center gap-2">
-          <button type="button" className="h-7 px-2 rounded-md border border-border text-[12px]">
+          <button type="button" className="h-7 px-2 rounded-[6px] border border-border text-[12px] flex items-center gap-1">
+            <RefreshCw className="w-3 h-3" />
             generate
           </button>
           <button
             type="button"
             disabled={busy || staged.length === 0}
             onClick={() => void commit(false)}
-            className="h-7 px-2 rounded-md border border-border text-[12px]"
+            className="h-7 px-2 rounded-[6px] border border-border text-[12px]"
           >
             commit
           </button>
@@ -120,7 +134,7 @@ export function GitContextPanel({ repoPath }: { repoPath: string | null }) {
             type="button"
             disabled={busy || staged.length === 0}
             onClick={() => void commit(true)}
-            className="h-7 px-2 rounded-md bg-accent text-page text-[12px]"
+            className="h-7 px-2 rounded-[6px] border border-border text-[12px] font-medium flex-1 flex items-center justify-center gap-1"
           >
             commit & sync
           </button>
@@ -148,12 +162,26 @@ function FileGroup({
       </div>
       {files.map((file) => (
         <div key={file.path} className="h-[26px] flex items-center gap-2 text-[12px]">
+          <span className={`w-3 flex-shrink-0 font-medium ${statusColor(file.status)}`}>
+            {statusLetter(file.status)}
+          </span>
+          <FileText className="w-3 h-3 text-text-tertiary flex-shrink-0" />
           <span className="font-mono truncate flex-1">{file.path}</span>
-          <span className="w-4 flex-shrink-0 text-text-tertiary uppercase">{file.status[0]}</span>
-          <span className="font-mono flex-shrink-0 text-green">+</span>
-          <span className="font-mono flex-shrink-0 text-red">-</span>
         </div>
       ))}
     </div>
   );
+}
+
+function statusLetter(status: GitFileStatus['status']): string {
+  if (status === 'added' || status === 'untracked') return 'A';
+  if (status === 'deleted') return 'D';
+  if (status === 'renamed') return 'R';
+  return 'M';
+}
+
+function statusColor(status: GitFileStatus['status']): string {
+  if (status === 'added' || status === 'untracked') return 'text-green';
+  if (status === 'deleted') return 'text-red';
+  return 'text-amber';
 }

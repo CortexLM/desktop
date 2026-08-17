@@ -47,7 +47,7 @@ describe('CortexCodeShell', () => {
   it('renders the empty session chrome from Paper', () => {
     renderShell();
     expect(screen.getByTestId('cortex-code-shell')).toBeInTheDocument();
-    expect(screen.getByText('Hey, what should we build?')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Hey,\s+what should we build\?/ })).toBeInTheDocument();
     expect(screen.getByText('Fix a failing test')).toBeInTheDocument();
     expect(screen.getByTestId('composer')).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/@ for files and agents/)).toBeInTheDocument();

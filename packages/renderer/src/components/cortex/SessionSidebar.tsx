@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Filter, HelpCircle, Info, List, Plus, Search, Settings } from 'lucide-react';
+import { Filter, GitBranch, HelpCircle, Info, List, Plus, Search, Sun } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { SessionRow } from './use-session-agent';
 import { useWorkbench } from '../../contexts/WorkbenchContext';
@@ -85,9 +85,9 @@ export function SessionSidebar({
           />
         ))}
 
-        <SectionLabel>worktrees</SectionLabel>
         {branches.map((item) => (
-          <div key={item.name} className="h-[26px] px-2 flex items-center justify-between text-[12px]">
+          <div key={item.name} className="h-[26px] px-2 flex items-center gap-2 text-[12px]">
+            <GitBranch className="w-3 h-3 text-text-tertiary flex-shrink-0" />
             <span className="font-mono truncate">{item.name}</span>
             {item.pr ? <span className="text-text-tertiary">{item.pr}</span> : null}
           </div>
@@ -95,8 +95,8 @@ export function SessionSidebar({
       </div>
 
       <div className="h-[30px] flex-shrink-0 flex items-center gap-3 px-3 border-t border-border text-text-tertiary">
-        <button type="button" aria-label="Settings" onClick={() => setActiveView('settings')}>
-          <Settings className="w-3.5 h-3.5" />
+        <button type="button" aria-label="Theme" onClick={() => setActiveView('settings')}>
+          <Sun className="w-3.5 h-3.5" />
         </button>
         <button type="button" aria-label="Help" onClick={onOpenCheckpoints}>
           <HelpCircle className="w-3.5 h-3.5" />
@@ -109,7 +109,7 @@ export function SessionSidebar({
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="h-6 px-2 flex items-center text-[11px] uppercase tracking-wide text-text-tertiary">
+    <div className="h-6 px-2 flex items-center text-[11px] text-text-tertiary">
       {children}
     </div>
   );

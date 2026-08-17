@@ -1,7 +1,6 @@
-import { Check, Info, Maximize2, Plus, Square, ArrowUp } from 'lucide-react';
-import { ChatExportButton } from '../chat/ChatExportButton';
+import { Brain, Check, ChevronRight, FileText, GitBranch, ListChecks, Maximize2, Plus, Square, ArrowUp } from 'lucide-react';
 import { ComposerBar } from './ComposerBar';
-import type { SessionAgent } from './use-session-agent';
+import type { SessionAgent, TranscriptItem } from './use-session-agent';
 
 export function SessionCenter({
   agent,
@@ -20,7 +19,7 @@ export function SessionCenter({
     >
       {agent.goal && (
         <div
-          className="absolute top-3 right-4 z-10 h-7 px-3 rounded-full bg-elevated border border-border text-[12px] text-text-secondary max-w-[360px] truncate"
+          className="absolute top-3 right-4 z-10 h-7 px-3 rounded-full bg-elevated border border-border-soft text-[12px] text-text-secondary max-w-[360px] truncate"
           data-testid="goal-chip"
         >
           {agent.goal}
@@ -32,65 +31,16 @@ export function SessionCenter({
           <EmptySession onPick={(text) => void agent.send(text)} />
         ) : (
           <div className="max-w-[796px] mx-auto flex flex-col gap-3" data-testid="agent-transcript">
-            {agent.transcript.map((item) => {
-              if (item.kind === 'user') {
-                return (
-                  <div key={item.id} className="text-[14px] text-text">
-                    {item.text}
-                  </div>
-                );
-              }
-              if (item.kind === 'thinking') {
-                return (
-                  <div key={item.id} className="flex items-start gap-2 text-[13px] text-text-secondary">
-                    <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                    <span>
-                      <span className="text-text">Thinking</span> {item.text}
-                    </span>
-                  </div>
-                );
-              }
-              if (item.kind === 'tool' && item.tool) {
-                const running = item.tool.status === 'running';
-                return (
-                  <div
-                    key={item.id}
-                    className="rounded-[10px] border border-border bg-elevated px-3 py-2"
-                    data-testid="tool-card"
-                    data-tool={item.tool.name}
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="text-[13px]">
-                        {item.tool.title ?? item.tool.name}{' '}
-                        <span className="font-mono text-text-secondary">{item.tool.detail}</span>
-                      </div>
-                      {running ? (
-                        <span className="text-[11px] text-text-tertiary">working</span>
-                      ) : (
-                        <Check className="w-3.5 h-3.5 text-green flex-shrink-0" />
-                      )}
-                    </div>
-                    {(item.tool.additions != null || item.tool.deletions != null) && (
-                      <div className="text-[12px] font-mono mt-1">
-                        <span className="text-green">+{item.tool.additions ?? 0}</span>{' '}
-                        <span className="text-red">-{item.tool.deletions ?? 0}</span>
-                        {item.tool.durationMs != null && (
-                          <span className="text-text-tertiary"> · {(item.tool.durationMs / 1000).toFixed(1)}s</span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-              return (
-                <div key={item.id} className="text-[14px] text-text-secondary whitespace-pre-wrap">
-                  {item.text}
-                </div>
-              );
-            })}
+            {agent.transcript.map((item) => (
+              <TranscriptRow key={item.id} item={item} />
+            ))}
             {agent.running && (
-              <div className="text-[12px] text-text-tertiary" data-testid="working-indicator">
-                Working {agent.elapsed}s · esc to interrupt
+              <div className="flex items-center gap-2" data-testid="working-indicator">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-soft flex-shrink-0" />
+                <span className="text-[12px] text-text-secondary">Working</span>
+                <span className="font-mono text-[10px] text-text-tertiary">
+                  {agent.elapsed}s · esc to interrupt
+                </span>
               </div>
             )}
           </div>
@@ -98,11 +48,14 @@ export function SessionCenter({
       </div>
 
       <div className="flex-shrink-0 px-6 pb-4">
-        <div className="max-w-[796px] mx-auto">
+        <div className="max-w-[796px] mx-auto flex flex-col gap-2">
           {agent.filesChanging && (
-            <div className="h-[34px] flex items-center justify-between text-[12px] text-text-secondary px-1">
-              <span>{agent.filesChanging}</span>
-              {agent.sessionId && <ChatExportButton sessionId={agent.sessionId} sessionTitle={agent.sessionTitle} />}
+            <div className="h-[34px] px-3 rounded-[10px] border border-border-soft bg-elevated flex items-center gap-2 text-[13px]">
+              <FileText className="w-3.5 h-3.5 text-text-tertiary flex-shrink-0" />
+              <span className="flex-1">{agent.filesChanging.replace(/\s\+.*$/, '')}</span>
+              <span className="font-mono text-[12px] text-green">+</span>
+              <span className="font-mono text-[12px] text-red">−</span>
+              <ChevronRight className="w-3.5 h-3.5 text-text-tertiary" />
             </div>
           )}
           <ComposerBar
@@ -120,29 +73,88 @@ export function SessionCenter({
   );
 }
 
-function EmptySession({ onPick }: { onPick: (text: string) => void }) {
+function TranscriptRow({ item }: { item: TranscriptItem }) {
+  if (item.kind === 'user') {
+    return (
+      <div className="flex justify-end">
+        <div className="max-w-[420px] bg-elevated border border-border-soft px-3 py-2 text-[13px] text-text rounded-[12px] [border-bottom-right-radius:4px]">
+          {item.text}
+        </div>
+      </div>
+    );
+  }
+  if (item.kind === 'thinking') {
+    return (
+      <div className="flex items-start gap-2">
+        <Brain className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-accent" />
+        <span className="text-[12px]">
+          <span className="font-medium text-text-secondary">Thinking</span>{' '}
+          <span className="text-text-tertiary">{item.text}</span>
+        </span>
+      </div>
+    );
+  }
+  if (item.kind === 'tool' && item.tool) {
+    const running = item.tool.status === 'running';
+    const title = [item.tool.title ?? item.tool.name, item.tool.detail].filter(Boolean).join(' ');
+    const duration =
+      item.tool.durationMs != null ? `${(item.tool.durationMs / 1000).toFixed(1)}s` : null;
+    return (
+      <div
+        className="rounded-[10px] border border-border-soft bg-elevated px-[13px] py-[11px]"
+        data-testid="tool-card"
+        data-tool={item.tool.name}
+      >
+        <div className="flex items-center gap-2">
+          {!running && <Check className="w-3.5 h-3.5 text-green flex-shrink-0" />}
+          <div className="font-mono text-[12px] text-text min-w-0 truncate">{title}</div>
+          {duration && !running && (
+            <span className="ml-auto font-mono text-[10px] text-text-tertiary">{duration}</span>
+          )}
+        </div>
+        {(item.tool.additions != null || item.tool.deletions != null) && (
+          <div className="pl-5 mt-1 font-mono text-[10px]">
+            <span className="text-green">+{item.tool.additions ?? 0}</span>{' '}
+            <span className="text-red">−{item.tool.deletions ?? 0}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-4" data-testid="empty-session">
-      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
-        <rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor" className="text-text" />
-        <rect x="15" y="1" width="10" height="10" rx="2" fill="currentColor" className="text-text-tertiary" />
-        <rect x="1" y="15" width="10" height="10" rx="2" fill="currentColor" className="text-text-tertiary" />
-        <rect x="15" y="15" width="10" height="10" rx="2" fill="currentColor" className="text-accent" />
+    <div className="text-[13px] text-text-secondary whitespace-pre-wrap">{item.text}</div>
+  );
+}
+
+function EmptySession({ onPick }: { onPick: (text: string) => void }) {
+  const chips = [
+    { label: 'Fix a failing test', icon: ListChecks },
+    { label: 'Review my changes', icon: GitBranch },
+    { label: 'Explain this codebase', icon: FileText },
+  ];
+  return (
+    <div className="h-full flex flex-col items-center justify-center gap-[18px]" data-testid="empty-session">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" fill="#FCFCFC">
+        <path d="M11 1h4v9h9v4h-9v9h-4v-9H2v-4h9V1z" />
       </svg>
-      <h1 className="text-[24px] font-medium tracking-tight">Hey, what should we build?</h1>
+      <h1 className="text-[24px] font-medium leading-[30px] tracking-tight">
+        <span className="text-text-secondary">Hey,</span>{' '}
+        <span className="text-text">what should we build?</span>
+      </h1>
       <div className="flex items-center gap-2">
-        {['Fix a failing test', 'Review my changes', 'Explain this codebase'].map((chip) => (
+        {chips.map((chip) => (
           <button
-            key={chip}
+            key={chip.label}
             type="button"
-            onClick={() => onPick(chip)}
-            className="h-7 px-3 rounded-full border border-border bg-elevated text-[13px] text-text-secondary hover:text-text"
+            onClick={() => onPick(chip.label)}
+            className="h-7 px-3 rounded-full border border-border bg-transparent text-[12px] text-text flex items-center gap-1.5"
           >
-            {chip}
+            <chip.icon className="w-[11px] h-[11px] text-text-secondary" />
+            {chip.label}
           </button>
         ))}
       </div>
-      <p className="text-[12px] text-text-tertiary">⌘K commands · ⌘J terminal · @ context</p>
+      <p className="font-mono text-[10px] text-text-tertiary">⌘K commands · ⌘J terminal · @ context</p>
     </div>
   );
 }
