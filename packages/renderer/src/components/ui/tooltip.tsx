@@ -43,7 +43,7 @@ export interface HintProps {
  * Note this is deliberately *not* named `Tooltip`: that name is already the
  * Radix root, and several views compose the primitives directly.
  */
-export function Hint({ content, children, side = 'top', delayDuration = 300 }: HintProps) {
+export function Hint({ content, children, side = 'top', delayDuration = 400 }: HintProps) {
   if (!content) return children;
 
   return (

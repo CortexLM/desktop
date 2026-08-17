@@ -31,6 +31,7 @@ export default {
         
         accent: {
           DEFAULT: 'var(--color-accent)',
+          text: 'var(--color-accent-text)',
           soft: 'var(--color-accent-soft)',
           strong: 'var(--color-accent-strong)',
         },
@@ -69,6 +70,13 @@ export default {
         amber: {
           DEFAULT: 'var(--color-amber)',
           soft: 'var(--color-amber-soft)',
+        },
+
+        orange: 'var(--color-orange)',
+        git: {
+          add: 'var(--color-git-add)',
+          del: 'var(--color-git-del)',
+          mod: 'var(--color-git-mod)',
         },
       },
       
@@ -129,6 +137,7 @@ export default {
         sm: 'var(--shadow-sm)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
+        overlay: 'var(--shadow-overlay)',
       },
       
       // 200ms is the single default for every `transition-*` utility, so

@@ -1,4 +1,5 @@
 import { autonomyAllowsExecute } from './autonomy';
+import { redactSecretValues } from './secrets';
 import { extractThinking, parsePlan, parseToolCalls, stripToolMarkup } from './parse-tool-calls';
 import { riskForTool, summarizeCall, targetForCall } from './permissions';
 import { SPEC_MODE_REMINDER, wrapSystemReminder } from './system-reminder';
@@ -267,11 +268,12 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       const started = Date.now();
       const result = await options.executor.execute(call);
       const durationMs = Date.now() - started;
+      const output = redactSecretValues(result.output);
 
       messages.push({
         role: 'tool',
         name: call.name,
-        content: result.output,
+        content: output,
       });
 
       yield {
@@ -279,7 +281,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         id: call.id,
         name: call.name,
         ok: result.ok,
-        output: result.output,
+        output,
         additions: result.additions,
         deletions: result.deletions,
         durationMs,

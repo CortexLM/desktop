@@ -99,6 +99,32 @@ describe('CortexCodeShell', () => {
     expect(screen.getByText('Manage models…')).toBeInTheDocument();
   });
 
+  it('proposes a model switch instead of applying it silently', () => {
+    renderShell();
+    expect(screen.getByTestId('composer-model')).toHaveTextContent('Claude Sonnet 4');
+    fireEvent.click(screen.getByTestId('composer-model'));
+    fireEvent.click(screen.getByText('Claude Opus 4.8'));
+    expect(screen.queryByTestId('model-picker')).not.toBeInTheDocument();
+    expect(screen.getByTestId('model-switch-proposal')).toHaveTextContent('claude-opus-4.8');
+    expect(screen.getByTestId('composer-model')).toHaveTextContent('Claude Sonnet 4');
+    fireEvent.click(screen.getByRole('button', { name: 'Apply' }));
+    expect(screen.queryByTestId('model-switch-proposal')).not.toBeInTheDocument();
+    expect(screen.getByTestId('composer-model')).toHaveTextContent(/Opus/i);
+  });
+
+  it('requires confirmation before deleting a session', () => {
+    renderShell();
+    fireEvent.click(screen.getByLabelText('Delete session'));
+    expect(screen.getByTestId('delete-session-confirm')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByTestId('delete-session-confirm')).not.toBeInTheDocument();
+  });
+
+  it('uses a 52px session top bar', () => {
+    renderShell();
+    expect(screen.getByTestId('cortex-topbar').className).toContain('h-[52px]');
+  });
+
   it('queues composer text and exposes agent / plan modes', async () => {
     renderShell();
     expect(screen.getByTestId('agent-picker')).toBeInTheDocument();

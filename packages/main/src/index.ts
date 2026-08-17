@@ -28,9 +28,9 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 600,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#0D0D0E',
     titleBarStyle: 'hiddenInset',
-    trafficLightPosition: { x: 16, y: 16 },
+    trafficLightPosition: { x: 30, y: 14 },
     webPreferences: {
       // Must match the preload build output. Vite emits CommonJS as `.cjs`
       // (see packages/preload/vite.config.ts + its package.json "main"), and a

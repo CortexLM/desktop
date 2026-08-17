@@ -55,7 +55,7 @@ export function ModelPickerOverlay({
 
   return (
     <div
-      className="fixed z-[1060] w-[310px] rounded-[10px] border border-border bg-elevated shadow-lg overflow-hidden"
+      className="fixed z-[1060] w-[310px] rounded-[10px] border border-border bg-elevated shadow-overlay overflow-hidden"
       style={{ top: pos.top, left: pos.left }}
       data-testid="model-picker"
       role="dialog"

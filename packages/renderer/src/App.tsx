@@ -14,7 +14,6 @@ import { WorkbenchProvider, useWorkbench } from './contexts/WorkbenchContext';
 import { Workbench } from './components/layout/Workbench';
 import { WorkspaceSelector } from './components/WorkspaceSelector';
 import { CommandPalette, type Command, type PaletteMode } from './components/CommandPalette';
-import { UpdateNotification } from './components/UpdateNotification';
 import { InteractiveTutorial, WelcomeScreen } from './components/onboarding';
 import { useOnboarding } from './hooks/use-onboarding';
 import { useWorkspaceFiles, type IndexedFile } from './hooks/use-workspace-files';
@@ -217,6 +216,12 @@ function AppContent() {
 
       const key = event.key.toLowerCase();
 
+      if (key === 'k' && !event.shiftKey) {
+        event.preventDefault();
+        openPalette('commands');
+        return;
+      }
+
       if (key === 'p') {
         event.preventDefault();
         openPalette(event.shiftKey ? 'commands' : 'files');
@@ -246,6 +251,12 @@ function AppContent() {
         return;
       }
 
+      if (key === 'b') {
+        event.preventDefault();
+        toggleSidebar();
+        return;
+      }
+
       if (key === ',') {
         event.preventDefault();
         setActiveView('settings');
@@ -271,7 +282,7 @@ function AppContent() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeView, openPalette, setActiveView, setShowDebugPanel, showDebugPanel]);
+  }, [activeView, openPalette, setActiveView, setShowDebugPanel, showDebugPanel, toggleSidebar]);
 
   // Ctrl+` for the terminal, kept separate because it carries no shift/meta
   // combination and `key` is a backtick rather than a letter.
@@ -293,7 +304,7 @@ function AppContent() {
 
   return (
     <>
-      <Workbench onOpenCommandPalette={() => openPalette('files')} />
+      <Workbench onOpenCommandPalette={() => openPalette('commands')} />
 
       <CommandPalette
         open={paletteOpen}
@@ -306,8 +317,6 @@ function AppContent() {
         filesTruncated={filesTruncated}
         onSelectFile={(file) => void openFile(file)}
       />
-
-      <UpdateNotification />
 
       {shouldShowWelcome && (
         <WelcomeScreen

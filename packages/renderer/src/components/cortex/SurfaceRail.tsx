@@ -45,7 +45,7 @@ export function SurfaceRail({
 }) {
   return (
     <nav
-      className="w-9 flex-shrink-0 border-l border-border bg-wash flex flex-col items-center py-2 gap-1 font-[family-name:var(--font-chrome)]"
+      className="w-9 flex-shrink-0 border-l border-border bg-wash flex flex-col items-center py-2 gap-1"
       aria-label="Surfaces"
       data-testid="sidebar"
       data-rail-count={SESSION_SURFACES.length}
