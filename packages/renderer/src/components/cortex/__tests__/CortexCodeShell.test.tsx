@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { CortexCodeShell } from '../CortexCodeShell';
 import { WorkbenchProvider } from '../../../contexts/WorkbenchContext';
 import { DebugProvider } from '../../../contexts/DebugContext';
@@ -17,7 +17,12 @@ beforeEach(() => {
     mcp: { listPermissions: vi.fn(async () => ({ success: true, data: { permissions: [] } })) },
   };
   (window as unknown as { ipc: unknown }).ipc = {
-    invoke: vi.fn(async () => ({ success: true, data: {} })),
+    invoke: vi.fn(async (channel: string) => {
+      if (channel === 'git:stash-list') {
+        return { success: true, data: { stashes: [] } };
+      }
+      return { success: true, data: {} };
+    }),
     on: vi.fn(() => () => undefined),
   };
   (window as unknown as { electron: unknown }).electron = {
@@ -50,13 +55,15 @@ describe('CortexCodeShell', () => {
     expect(screen.getByTestId('new-session')).toBeInTheDocument();
   });
 
-  it('queues composer text and exposes agent / plan modes', () => {
+  it('queues composer text and exposes agent / plan modes', async () => {
     renderShell();
     expect(screen.getByTestId('agent-picker')).toBeInTheDocument();
     fireEvent.change(screen.getByTestId('composer-input'), {
       target: { value: 'Review my changes' },
     });
     fireEvent.click(screen.getByTestId('composer-send'));
-    expect(screen.getByTestId('goal-chip')).toHaveTextContent('Review my changes');
+    await waitFor(() =>
+      expect(screen.getByTestId('goal-chip')).toHaveTextContent('Review my changes')
+    );
   });
 });
