@@ -6,6 +6,24 @@ export type ToolRisk = 'safe' | 'write' | 'exec';
 
 export type PermissionDecision = 'allow-once' | 'allow-always' | 'deny';
 
+export type PermissionAction = 'allow' | 'ask' | 'deny';
+
+export interface PermissionRule {
+  action: PermissionAction;
+  /** Tool name or `*`. */
+  tool: string;
+  /** Glob matched against path or command. */
+  pattern?: string;
+  /** Optional agent / droid name this rule applies to. */
+  agent?: string;
+}
+
+export interface TodoItem {
+  id: string;
+  content: string;
+  status: 'pending' | 'in_progress' | 'completed';
+}
+
 export interface AgentMessage {
   role: 'user' | 'assistant' | 'system' | 'tool';
   content: string;
@@ -44,6 +62,8 @@ export interface PermissionRequest {
   risk: ToolRisk;
   summary: string;
   detail?: string;
+  path?: string;
+  agent?: string;
 }
 
 export interface PlanStep {
@@ -74,6 +94,7 @@ export type AgentEvent =
       durationMs: number;
     }
   | { type: 'permission'; request: PermissionRequest }
+  | { type: 'question'; id: string; prompt: string; options?: string[] }
   | { type: 'plan'; plan: AgentPlan }
   | { type: 'context_full'; tokens: number; limit: number }
   | { type: 'done'; finishReason?: string }
@@ -81,6 +102,10 @@ export type AgentEvent =
 
 export interface PermissionGate {
   decide(request: PermissionRequest): Promise<PermissionDecision>;
+}
+
+export interface QuestionGate {
+  ask(id: string, prompt: string, options?: string[]): Promise<string>;
 }
 
 export interface ToolExecutor {
@@ -102,10 +127,13 @@ export interface RunAgentTurnOptions {
   permissions: PermissionGate;
   systemPrompt: string;
   mode?: AgentMode;
+  agentName?: string;
+  questions?: QuestionGate;
   abortSignal?: AbortSignal;
   maxIterations?: number;
   contextTokens?: number;
   contextLimit?: number;
+  onMessages?: (messages: AgentMessage[]) => void;
 }
 
 export interface DroidDefinition {
@@ -122,9 +150,30 @@ export interface SkillDefinition {
   body: string;
 }
 
+export interface FileSnapshot {
+  path: string;
+  content: string;
+}
+
 export interface Checkpoint {
   id: string;
   createdAt: number;
   label: string;
   messages: AgentMessage[];
+  files?: FileSnapshot[];
+}
+
+export interface AgentSessionRecord {
+  id: string;
+  parentId?: string;
+  title: string;
+  providerId: string;
+  model?: string;
+  workspacePath?: string;
+  mode: AgentMode;
+  agentName?: string;
+  messages: AgentMessage[];
+  todos: TodoItem[];
+  createdAt: number;
+  updatedAt: number;
 }

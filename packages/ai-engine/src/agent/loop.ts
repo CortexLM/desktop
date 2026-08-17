@@ -1,5 +1,6 @@
 import { extractThinking, parsePlan, parseToolCalls, stripToolMarkup } from './parse-tool-calls';
-import { riskForTool, summarizeCall } from './permissions';
+import { riskForTool, summarizeCall, targetForCall } from './permissions';
+import { PLAN_SAFE_TOOLS } from './tools';
 import type {
   AgentEvent,
   AgentMessage,
@@ -57,6 +58,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       if (options.mode === 'plan' && !plan.approved) {
         const visible = stripToolMarkup(content);
         if (visible) yield { type: 'text', text: visible };
+        options.onMessages?.(messages);
         yield { type: 'done', finishReason: 'plan' };
         return;
       }
@@ -73,6 +75,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
 
     if (calls.length === 0) {
       messages.push({ role: 'assistant', content });
+      options.onMessages?.(messages);
       yield { type: 'done', finishReason: 'stop' };
       return;
     }
@@ -86,12 +89,58 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       }
 
       const definition = tools.find((tool) => tool.name === call.name);
+      const restricted =
+        (options.mode === 'plan' || options.mode === 'ask') &&
+        !PLAN_SAFE_TOOLS.has(call.name) &&
+        definition?.risk !== 'safe';
+      if (restricted) {
+        const denied = `Plan/ask mode forbids ${call.name}`;
+        messages.push({ role: 'tool', name: call.name, content: denied });
+        yield {
+          type: 'tool_end',
+          id: call.id,
+          name: call.name,
+          ok: false,
+          output: denied,
+          durationMs: 0,
+        };
+        continue;
+      }
+
+      if (call.name === 'question') {
+        const prompt = String(call.arguments.prompt ?? '');
+        let choices: string[] | undefined;
+        try {
+          if (typeof call.arguments.options === 'string') {
+            choices = JSON.parse(call.arguments.options) as string[];
+          }
+        } catch {
+          choices = undefined;
+        }
+        yield { type: 'question', id: call.id, prompt, options: choices };
+        const answer = options.questions
+          ? await options.questions.ask(call.id, prompt, choices)
+          : '';
+        messages.push({ role: 'tool', name: 'question', content: answer || '(no answer)' });
+        yield {
+          type: 'tool_end',
+          id: call.id,
+          name: 'question',
+          ok: true,
+          output: answer || '(no answer)',
+          durationMs: 0,
+        };
+        continue;
+      }
+
       const request: PermissionRequest = {
         id: `perm-${call.id}`,
         tool: call.name,
         risk: riskForTool(definition),
         summary: summarizeCall(call.name, call.arguments),
         detail: JSON.stringify(call.arguments),
+        path: targetForCall(call.arguments),
+        agent: options.agentName,
       };
 
       yield { type: 'permission', request };
@@ -149,6 +198,10 @@ function toolTitle(definition: ToolDefinition | undefined, name: string): string
     read: 'Read',
     write: 'Write',
     edit: 'Editing',
+    apply_patch: 'Patch',
+    todowrite: 'Todos',
+    question: 'Question',
+    webfetch: 'Fetch',
     grep: 'Grep',
     glob: 'Glob',
     bash: 'Terminal',

@@ -10,3 +10,4 @@ export * from './skills';
 export * from './conventions';
 export * from './checkpoints';
 export * from './mission-orchestrator';
+export * from './server';
