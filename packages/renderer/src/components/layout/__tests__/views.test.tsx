@@ -31,6 +31,7 @@ import type { WorkbenchView } from '../../../contexts/WorkbenchContext';
  * stop covering new members.
  */
 const ALL_VIEWS: Record<WorkbenchView, true> = {
+  session: true,
   explorer: true,
   search: true,
   git: true,
@@ -43,6 +44,9 @@ const ALL_VIEWS: Record<WorkbenchView, true> = {
   account: true,
   automations: true,
   settings: true,
+  security: true,
+  review: true,
+  knowledge: true,
 };
 
 const ALL_VIEW_IDS = Object.keys(ALL_VIEWS) as WorkbenchView[];

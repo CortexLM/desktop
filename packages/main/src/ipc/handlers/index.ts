@@ -21,6 +21,7 @@ import { registerWorkspaceHandlers, unregisterWorkspaceHandlers } from './worksp
 import { registerChatHandlers, unregisterChatHandlers } from './chat-handlers';
 import { registerDebugHandlers, unregisterDebugHandlers } from './debug-handlers';
 import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings-handlers';
+import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
 /**
@@ -79,6 +80,11 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     register: registerSettingsHandlers,
     unregister: unregisterSettingsHandlers,
   },
+  {
+    name: 'mission',
+    register: registerMissionHandlers,
+    unregister: unregisterMissionHandlers,
+  },
 ];
 
 /**
@@ -87,7 +93,7 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
  * L'enregistrement passe par `withIpcInstrumentation` : chaque handler est
  * enveloppé pour alimenter `ipcMonitor` et `performanceMonitor` (canal,
  * direction, durée, succès/échec — jamais les payloads). C'est le seul point
- * d'instrumentation, ce qui couvre les 14 domaines y compris ceux qui
+ * d'instrumentation, ce qui couvre tous les domaines y compris ceux qui
  * n'utilisent pas `createHandler`.
  */
 export function registerIPCHandlers(): void {

@@ -12,8 +12,11 @@ export * from './providers/grok-provider';
 export * from './registry';
 export * from './model-presets';
 
-// Simple Agent Manager (replacement for mission orchestrator)
+// Simple Agent Manager (in-memory sessions)
 export * from './simple-agent-manager';
+
+// Coding-agent loop, droids, skills, missions
+export * from './agent';
 
 // Token counting and budget management.
 // `src/tokens/index.ts` existed but was never re-exported here, so

@@ -11,6 +11,7 @@ import * as React from 'react';
 
 /** Views reachable from the activity bar. */
 export type WorkbenchView =
+  | 'session'
   | 'explorer'
   | 'search'
   | 'git'
@@ -22,7 +23,10 @@ export type WorkbenchView =
   | 'browser'
   | 'account'
   | 'automations'
-  | 'settings';
+  | 'settings'
+  | 'security'
+  | 'review'
+  | 'knowledge';
 
 const WORKSPACE_STORAGE_KEY = 'cortex:workspace-path';
 const SIDEBAR_STORAGE_KEY = 'cortex:sidebar-collapsed';
@@ -44,7 +48,7 @@ interface WorkbenchContextValue {
 const WorkbenchContext = React.createContext<WorkbenchContextValue | null>(null);
 
 export function WorkbenchProvider({ children }: { children: React.ReactNode }) {
-  const [activeView, setActiveView] = React.useState<WorkbenchView>('explorer');
+  const [activeView, setActiveView] = React.useState<WorkbenchView>('session');
 
   // Read persisted state during the first render so there's no flash of the
   // welcome screen for users who already have a folder open.

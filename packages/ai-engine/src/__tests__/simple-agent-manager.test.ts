@@ -2,7 +2,7 @@
  * Tests for SimpleAgentManager
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { SimpleAgentManager, AgentManagerError } from '../simple-agent-manager';
 import { AIProviderRegistry } from '../registry';
 import { AIProvider, Message, ChatOptions, StreamChunk } from '../providers/base';
@@ -15,7 +15,7 @@ class MockProvider extends AIProvider {
   private shouldFail = false;
   private streamDelay = 10;
 
-  async chat(messages: Message[], options?: ChatOptions) {
+  async chat(_messages: Message[], options?: ChatOptions) {
     if (this.shouldFail) {
       throw new Error('Mock provider error');
     }
@@ -32,7 +32,7 @@ class MockProvider extends AIProvider {
     };
   }
 
-  async *stream(messages: Message[], options?: ChatOptions): AsyncIterableIterator<StreamChunk> {
+  async *stream(_messages: Message[], _options?: ChatOptions): AsyncIterableIterator<StreamChunk> {
     if (this.shouldFail) {
       throw new Error('Mock provider error');
     }
@@ -345,7 +345,7 @@ describe('SimpleAgentManager', () => {
       await new Promise((resolve) => setTimeout(resolve, 30));
       await manager.pauseSession(session.id);
 
-      const chunks = await streamPromise;
+      await streamPromise;
       const updatedSession = manager.getSession(session.id);
       expect(updatedSession?.status).toBe('paused');
     });
@@ -669,7 +669,7 @@ describe('SimpleAgentManager', () => {
     });
 
     it('should include session ID in errors when available', async () => {
-      const session = await manager.createSession({ provider: 'mock', model: 'model' });
+      await manager.createSession({ provider: 'mock', model: 'model' });
 
       try {
         const gen = manager.sendMessage('wrong-id', 'Hello');

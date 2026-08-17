@@ -30,7 +30,7 @@ export function WelcomeScreen({ onClose, onStartTutorial }: WelcomeScreenProps) 
             Welcome to <span className="text-accent">Cortex IDE</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            The AI agent orchestrator for complex coding missions
+            A local coding-agent workbench: sessions, tools, git, and MCP.
           </p>
         </div>
 
@@ -40,18 +40,18 @@ export function WelcomeScreen({ onClose, onStartTutorial }: WelcomeScreenProps) 
           <div className="grid md:grid-cols-3 gap-4">
             <FeatureCard
               icon="🎯"
-              title="Mission Orchestration"
-              description="Multi-agent workflows with intelligent task distribution"
+              title="Agent loop"
+              description="Streaming turns with read/edit/bash tools, permissions, and plan mode"
             />
             <FeatureCard
               icon="📊"
-              title="Benchmarking"
-              description="Compare AI providers on cost, speed, and quality"
+              title="Usage tracking"
+              description="Tokens and cost in the app. Provider latency benches stay CLI-only"
             />
             <FeatureCard
               icon="🧠"
-              title="Smart Context"
-              description="Handle 300k+ token codebases efficiently"
+              title="Project context"
+              description="AGENTS.md, rules, memories, and semantic chunking of large files"
             />
           </div>
 

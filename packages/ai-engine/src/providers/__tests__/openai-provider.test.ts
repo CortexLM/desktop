@@ -368,7 +368,7 @@ describe('OpenAIProvider', () => {
       const provider = new OpenAIProvider({ apiKey: 'test-key' });
       const messages: Message[] = [{ role: 'user', content: 'Test' }];
 
-      for await (const chunk of provider.stream(messages, {
+      for await (const _chunk of provider.stream(messages, {
         model: 'gpt-4o',
         temperature: 0.5,
       })) {

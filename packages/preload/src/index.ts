@@ -149,6 +149,11 @@ export interface CortexAPI {
     sendMessage: (request: SendMessageRequest) => Promise<IPCResponse<SendMessageResponse>>;
     streamResponse: (request: StreamResponseRequest, onChunk: (chunk: StreamChunk) => void) => Promise<void>;
     stopStream: (sessionId: string) => Promise<void>;
+    resolvePermission: (request: {
+      sessionId: string;
+      requestId: string;
+      decision: 'allow-once' | 'allow-always' | 'deny';
+    }) => Promise<IPCResponse<{ requestId: string }>>;
   };
 
   // MCP
@@ -367,6 +372,7 @@ const cortexAPI: CortexAPI = {
     stopStream: async (sessionId) => {
       await ipcRenderer.invoke(IPC_CHANNELS.AI_STOP_STREAM, sessionId);
     },
+    resolvePermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.AI_RESOLVE_PERMISSION, request),
   },
 
   // MCP

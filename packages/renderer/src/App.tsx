@@ -192,7 +192,13 @@ function AppContent() {
 
       if (key === 'l') {
         event.preventDefault();
-        setActiveView('ai-chat');
+        setActiveView('session');
+        return;
+      }
+
+      if (key === 'j') {
+        event.preventDefault();
+        setActiveView('terminal');
         return;
       }
 

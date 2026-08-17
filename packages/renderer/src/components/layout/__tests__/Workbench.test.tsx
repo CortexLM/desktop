@@ -80,6 +80,35 @@ vi.mock('../../../views/automations/LogsViewer', () => ({ LogsViewer: () => <p>l
 vi.mock('../../../views/settings/SettingsView', () => ({
   SettingsView: () => <p>settings view</p>,
 }));
+vi.mock('../../cortex/CortexCodeShell', () => ({
+  CortexCodeShell: () => {
+    const { useWorkbench } = require('../../../contexts/WorkbenchContext') as typeof import('../../../contexts/WorkbenchContext');
+    const { setActiveView } = useWorkbench();
+    return (
+      <div data-testid="cortex-code-shell">
+        <div data-testid="sidebar-panel">No folder open. Open a folder to start.</div>
+        <nav data-testid="sidebar">
+          {['explorer', 'search', 'git', 'terminal', 'extensions', 'notes', 'plans', 'browser', 'settings', 'ai-chat', 'account', 'automations', 'security', 'review', 'knowledge', 'session'].map(
+            (id) => (
+              <button key={id} type="button" data-testid={`sidebar-${id}`} onClick={() => setActiveView(id as never)}>
+                {id}
+              </button>
+            )
+          )}
+        </nav>
+      </div>
+    );
+  },
+}));
+vi.mock('../../../views/security/SecurityView', () => ({
+  SecurityView: () => <p>security view</p>,
+}));
+vi.mock('../../../views/review/ReviewView', () => ({
+  ReviewView: () => <p>review view</p>,
+}));
+vi.mock('../../../views/knowledge/KnowledgeView', () => ({
+  KnowledgeView: () => <p>knowledge view</p>,
+}));
 vi.mock('../../../views/debug/DebugPanel', () => ({
   DebugPanel: ({ onClose }: { onClose: () => void }) => (
     <button type="button" onClick={onClose}>
