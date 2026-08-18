@@ -20,8 +20,8 @@ describe('setupMCPEvents', () => {
   it('forwards every MCP service event onto the matching renderer channel', () => {
     const send = vi.fn();
     BrowserWindowMock.getAllWindows.mockReturnValue([
-      { isDestroyed: () => false, webContents: { send } },
-    ]);
+      { isDestroyed: vi.fn(() => false), webContents: { send, on: vi.fn() } },
+    ] as unknown as InstanceType<typeof BrowserWindowMock>[]);
 
     const stop = setupMCPEvents();
 

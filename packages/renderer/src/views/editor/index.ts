@@ -5,4 +5,3 @@
 export { EditorView } from './EditorView';
 export { FileExplorer } from './FileExplorer';
 export { TabManager } from './TabManager';
-export { AutocompleteWidget } from './AutocompleteWidget';
