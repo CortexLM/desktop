@@ -156,6 +156,30 @@ export interface CortexAPI {
     }) => Promise<IPCResponse<{ requestId: string }>>;
   };
 
+  mission: {
+    list: (request: { workspaceId?: string }) => Promise<
+      IPCResponse<{
+        missions: Array<{
+          id: string;
+          name: string;
+          status: string;
+          description: string;
+          steps: Array<{ id: string; name: string; status: string; result?: string; error?: string }>;
+          currentStep: number;
+        }>;
+      }>
+    >;
+    create: (request: {
+      workspaceId?: string;
+      name?: string;
+      description?: string;
+      steps?: string[];
+    }) => Promise<IPCResponse<{ mission: { id: string; name: string; status: string } }>>;
+    start: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+    pause: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+    resume: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+  };
+
   // MCP
   mcp: {
     listServers: (request: ListMCPServersRequest) => Promise<IPCResponse<ListMCPServersResponse>>;
@@ -375,6 +399,14 @@ const cortexAPI: CortexAPI = {
     resolvePermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.AI_RESOLVE_PERMISSION, request),
   },
 
+  mission: {
+    list: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_LIST, request),
+    create: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_CREATE, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_START, request),
+    pause: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_PAUSE, request),
+    resume: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_RESUME, request),
+  },
+
   // MCP
   mcp: {
     listServers: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_LIST_SERVERS, request),
@@ -389,18 +421,8 @@ const cortexAPI: CortexAPI = {
     grantPermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_GRANT_PERMISSION, request),
     revokePermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_REVOKE_PERMISSION, request),
     checkPermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_CHECK_PERMISSION, request),
-    // NOT YET WIRED (verified 2026-08-17): none of the six `event:mcp-*`
-    // channels below is ever sent from main — grep for `EVENT_MCP` under
-    // `packages/main/src` returns zero non-test hits. The `mcp:*` invoke
-    // handlers above are all real and registered; only these push
-    // notifications are missing their emitter.
-    //
-    // Consequence today: `MCPExtensionList.tsx` subscribes to
-    // `onServerStarted` / `onServerStopped` / `onServerError` to refresh its
-    // list, and that refresh never fires — the list only updates on the
-    // explicit reload the component does after its own start/stop call.
-    // Subscribing is inert, not broken; do not document these as working
-    // events.
+    // Bridged from MCPService EventEmitter events in mcp-handlers.ts
+    // (`setupMCPEvents`). MCPExtensionList refreshes on start/stop/error.
     onServerStarted: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_STARTED),
     onServerStopped: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_STOPPED),
     onServerError: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_ERROR),
@@ -513,6 +535,11 @@ const IPC_ALLOWED_CHANNELS = [
   // `electron` n'en a besoin, et les deux listes restent indépendantes.
   'settings:get-providers',
   'settings:set-provider',
+  'mission:list',
+  'mission:create',
+  'mission:start',
+  'mission:pause',
+  'mission:resume',
 ] as const;
 
 const IPC_ALLOWED_EVENT_CHANNELS = [
@@ -528,8 +555,8 @@ const IPC_ALLOWED_EVENT_CHANNELS = [
   // `workspace-handlers.ts` DOES relay WorkspaceManager's internal
   // 'workspace-switched' EventEmitter event to every window as
   // `event:workspace-switched` (see the `switchedListener` registered in
-  // `manager()`), so the emitter side is real — unlike the `event:mcp-*` family
-  // above.
+  // `manager()`), so the emitter side is real — same as the `event:mcp-*`
+  // family, which `setupMCPEvents` now forwards from MCPService.
   //
   // But (verified 2026-08-17) the only renderer subscriber is
   // `components/workspace/WorkspaceSwitcher.tsx`, which no file imports and

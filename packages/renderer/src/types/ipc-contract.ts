@@ -247,7 +247,32 @@ export interface IPCChannelMap {
   };
   'mission:list': {
     request: { workspaceId?: string };
-    response: { missions: Array<{ id: string; name: string; status: string }> };
+    response: {
+      missions: Array<{
+        id: string;
+        name: string;
+        status: string;
+        description: string;
+        currentStep: number;
+        steps: Array<{ id: string; name: string; status: string }>;
+      }>;
+    };
+  };
+  'mission:create': {
+    request: { workspaceId?: string; name?: string; description?: string; steps?: string[] };
+    response: { mission: { id: string; name: string; status: string } };
+  };
+  'mission:start': {
+    request: { id: string };
+    response: { mission: { id: string; status: string } };
+  };
+  'mission:pause': {
+    request: { id: string };
+    response: { mission: { id: string; status: string } };
+  };
+  'mission:resume': {
+    request: { id: string };
+    response: { mission: { id: string; status: string } };
   };
 }
 

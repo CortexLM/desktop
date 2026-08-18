@@ -9,9 +9,10 @@ import { FiPlay, FiBook, FiSettings, FiX } from 'react-icons/fi';
 interface WelcomeScreenProps {
   onClose: () => void;
   onStartTutorial: () => void;
+  onOpenSettings?: () => void;
 }
 
-export function WelcomeScreen({ onClose, onStartTutorial }: WelcomeScreenProps) {
+export function WelcomeScreen({ onClose, onStartTutorial, onOpenSettings }: WelcomeScreenProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="relative bg-background border border-border rounded-lg shadow-2xl max-w-3xl w-full mx-4 overflow-hidden">
@@ -80,7 +81,7 @@ export function WelcomeScreen({ onClose, onStartTutorial }: WelcomeScreenProps) 
                 description="Set up OpenAI, Claude, Grok, or local models"
                 onClick={() => {
                   onClose();
-                  // TODO: Navigate to settings
+                  onOpenSettings?.();
                 }}
               />
             </div>

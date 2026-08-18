@@ -24,6 +24,7 @@ import {
   Settings,
   Shield,
   SquareTerminal,
+  Target,
   Zap,
 } from 'lucide-react';
 import type { WorkbenchView } from '../../contexts/WorkbenchContext';
@@ -178,6 +179,14 @@ export const VIEWS: ViewDefinition[] = [
     testId: 'sidebar-knowledge',
     panelTestId: 'knowledge-panel',
     group: 'secondary',
+  },
+  {
+    id: 'missions',
+    label: 'Missions',
+    icon: Target,
+    testId: 'sidebar-missions',
+    panelTestId: 'missions-panel',
+    group: 'primary',
   },
 ];
 

@@ -325,6 +325,10 @@ function AppContent() {
             markWelcomeSeen();
             setShowTutorial(true);
           }}
+          onOpenSettings={() => {
+            markWelcomeSeen();
+            setActiveView('settings');
+          }}
         />
       )}
 

@@ -47,6 +47,7 @@ const ALL_VIEWS: Record<WorkbenchView, true> = {
   security: true,
   review: true,
   knowledge: true,
+  missions: true,
 };
 
 const ALL_VIEW_IDS = Object.keys(ALL_VIEWS) as WorkbenchView[];

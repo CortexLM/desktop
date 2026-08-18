@@ -26,7 +26,8 @@ export type WorkbenchView =
   | 'settings'
   | 'security'
   | 'review'
-  | 'knowledge';
+  | 'knowledge'
+  | 'missions';
 
 const WORKSPACE_STORAGE_KEY = 'cortex:workspace-path';
 const SIDEBAR_STORAGE_KEY = 'cortex:sidebar-collapsed';

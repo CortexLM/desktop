@@ -1,5 +1,28 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+
+vi.mock('../../../views/editor/FileExplorer', () => ({
+  FileExplorer: () => <p>explorer surface</p>,
+}));
+vi.mock('../../../views/workspace/TerminalGrid', () => ({
+  TerminalGrid: () => <p>terminal surface</p>,
+}));
+vi.mock('../../../views/workspace/NotesView', () => ({
+  NotesView: () => <p>notes surface</p>,
+}));
+vi.mock('../../../views/workspace/PlansView', () => ({
+  PlansView: () => <p>plans surface</p>,
+}));
+vi.mock('../../../views/workspace/BrowserView', () => ({
+  BrowserView: () => <p>browser surface</p>,
+}));
+vi.mock('../../../views/agents/SessionList', () => ({
+  SessionList: () => <p>sessions surface</p>,
+}));
+vi.mock('../../../views/review/ReviewView', () => ({
+  ReviewView: () => <p>review surface</p>,
+}));
+
 import { CortexCodeShell } from '../CortexCodeShell';
 import { WorkbenchProvider } from '../../../contexts/WorkbenchContext';
 import { DebugProvider } from '../../../contexts/DebugContext';
@@ -83,8 +106,13 @@ describe('CortexCodeShell', () => {
 
     fireEvent.click(screen.getByTestId('sidebar-terminal'));
     expect(screen.getByTestId('terminal-context-panel')).toBeInTheDocument();
+    expect(screen.getByText('terminal surface')).toBeInTheDocument();
     expect(screen.queryByTestId('git-context-panel')).not.toBeInTheDocument();
     expect(screen.getByTestId('cortex-code-shell')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('sidebar-explorer'));
+    expect(screen.getByTestId('explorer-context-panel')).toBeInTheDocument();
+    expect(screen.getByText('explorer surface')).toBeInTheDocument();
 
     fireEvent.click(screen.getByTestId('sidebar-git'));
     expect(screen.getByTestId('git-context-panel')).toBeInTheDocument();

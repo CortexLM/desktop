@@ -92,7 +92,7 @@ vi.mock('../../cortex/CortexCodeShell', () => ({
       <div data-testid="cortex-code-shell">
         <div data-testid="sidebar-panel">No folder open. Open a folder to start.</div>
         <nav data-testid="sidebar">
-          {['explorer', 'search', 'git', 'terminal', 'extensions', 'notes', 'plans', 'browser', 'settings', 'ai-chat', 'account', 'automations', 'security', 'review', 'knowledge', 'session'].map(
+          {['explorer', 'search', 'git', 'terminal', 'extensions', 'notes', 'plans', 'browser', 'settings', 'ai-chat', 'account', 'automations', 'security', 'review', 'knowledge', 'missions', 'session'].map(
             (id) => (
               <button
                 key={id}
@@ -117,6 +117,9 @@ vi.mock('../../../views/review/ReviewView', () => ({
 }));
 vi.mock('../../../views/knowledge/KnowledgeView', () => ({
   KnowledgeView: () => <p>knowledge view</p>,
+}));
+vi.mock('../../../views/missions/MissionsView', () => ({
+  MissionsView: () => <p>missions view</p>,
 }));
 vi.mock('../../../views/debug/DebugPanel', () => ({
   DebugPanel: ({ onClose }: { onClose: () => void }) => (
@@ -201,7 +204,7 @@ describe('Workbench routing', () => {
       // the error boundary so the panel stays identifiable when the view throws.
       renderWorkbench({ workspacePath: '/repo' });
 
-      for (const viewId of ['terminal', 'extensions', 'notes', 'plans', 'browser', 'settings']) {
+      for (const viewId of ['terminal', 'extensions', 'notes', 'plans', 'browser', 'settings', 'missions']) {
         goTo(viewId);
         if (workbench.activeView !== viewId) goTo(viewId);
         const expected = VIEW_BY_ID[viewId as 'notes'].panelTestId;
