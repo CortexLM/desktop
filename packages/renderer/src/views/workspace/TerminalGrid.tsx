@@ -254,6 +254,7 @@ export function TerminalGrid({ className = '' }: TerminalGridProps) {
           <button
             onClick={() => createTerminal()}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md transition-colors flex items-center gap-2"
+            data-testid="new-terminal-empty"
           >
             <Plus className="w-4 h-4" />
             New Terminal

@@ -14,7 +14,7 @@ interface WelcomeScreenProps {
 
 export function WelcomeScreen({ onClose, onStartTutorial, onOpenSettings }: WelcomeScreenProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" data-testid="welcome-screen">
       <div className="relative bg-background border border-border rounded-lg shadow-2xl max-w-3xl w-full mx-4 overflow-hidden">
         {/* Close button */}
         <button
