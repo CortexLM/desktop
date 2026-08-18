@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RECOMMENDED_MODELS } from '@cortex-ide/ai-engine';
+import { RECOMMENDED_MODELS } from '@cortex-ide/ai-engine/model-presets';
 
 const PROVIDERS = ['anthropic', 'openai', 'openrouter', 'ollama'] as const;
 

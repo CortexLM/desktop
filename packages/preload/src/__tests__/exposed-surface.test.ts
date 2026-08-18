@@ -141,6 +141,7 @@ const EXPECTED_NAMESPACES = [
   'cortex.editor',
   'cortex.git',
   'cortex.ai',
+  'cortex.mission',
   'cortex.mcp',
   'cortex.terminal',
   'cortex.db',

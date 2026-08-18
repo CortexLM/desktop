@@ -126,6 +126,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['git', 'discard', 'git:discard'],
   ['ai', 'createSession', 'ai:create-session'],
   ['ai', 'sendMessage', 'ai:send-message'],
+  ['ai', 'resolvePermission', 'ai:resolve-permission'],
   ['mission', 'list', 'mission:list'],
   ['mission', 'create', 'mission:create'],
   ['mission', 'start', 'mission:start'],

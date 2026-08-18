@@ -7,8 +7,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt",
-    "textLength": 87,
+    "text": "Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt Git Stashes No stashes Create one Select a stash to view details",
+    "textLength": 152,
     "buttons": [
       {
         "label": "main",
@@ -84,6 +84,21 @@
         "label": "Delete untracked.txt",
         "disabled": false,
         "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create one",
+        "disabled": false,
+        "visible": true
       }
     ],
     "inputs": 0,
@@ -104,17 +119,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 48,
-        "y": 84,
+        "y": 76,
         "width": 320,
-        "height": 765
+        "height": 774
       },
       "overflowingChildren": 1,
       "collapsedWithText": 0
@@ -123,11 +138,10 @@
       "looksEmpty": false,
       "emptyStateTestIds": [],
       "hasHeading": true,
-      "hasDescription": false,
+      "hasDescription": true,
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -140,8 +154,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-x2wpBI Search files and commands Ctrl+P Ask AI SOURCE CONTROL Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Source Control /tmp/cortex-e2e-ws-x2wpBI",
-    "textLength": 350,
+    "text": "C Cortex IDE cortex-e2e-ws-buSlWN Search files and commands Ctrl+P Ask AI SOURCE CONTROL Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt Git Stashes No stashes Create one Select a stash to view details No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Source Control /tmp/cortex-e2e-ws-buSlWN",
+    "textLength": 415,
     "buttons": [
       {
         "label": "Hide sidebar",
@@ -170,6 +184,11 @@
       },
       {
         "label": "Enable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Session",
         "disabled": false,
         "visible": true
       },
@@ -204,6 +223,11 @@
         "visible": true
       },
       {
+        "label": "Missions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Notes",
         "disabled": false,
         "visible": true
@@ -230,6 +254,21 @@
       },
       {
         "label": "Settings",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Security",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Knowledge",
         "disabled": false,
         "visible": true
       },
@@ -309,6 +348,21 @@
         "visible": true
       },
       {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create one",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Browse files",
         "disabled": false,
         "visible": true
@@ -334,18 +388,23 @@
       "open-settings",
       "toggle-debug",
       "sidebar",
+      "sidebar-session",
       "sidebar-explorer",
       "sidebar-search",
       "sidebar-git",
       "sidebar-terminal",
       "sidebar-ai-chat",
       "sidebar-extensions",
+      "sidebar-missions",
       "sidebar-notes",
       "sidebar-plans",
       "sidebar-browser",
       "sidebar-automations",
       "sidebar-account",
       "sidebar-settings",
+      "sidebar-security",
+      "sidebar-review",
+      "sidebar-knowledge",
       "sidebar-panel",
       "git-panel",
       "branch-selector",
@@ -370,17 +429,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgb(13, 13, 14)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 873
+        "width": 1402,
+        "height": 874
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -395,7 +454,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []

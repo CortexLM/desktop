@@ -82,6 +82,8 @@ describe('MissionsView', () => {
     await waitFor(() => expect(screen.getByText('Existing')).toBeInTheDocument());
     fireEvent.click(screen.getByTestId('mission-start-mission-2'));
     await waitFor(() => expect(mission.start).toHaveBeenCalledWith({ id: 'mission-2' }));
-    await waitFor(() => expect(screen.getByText('running')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByTestId('mission-mission-2')).toHaveTextContent('running')
+    );
   });
 });

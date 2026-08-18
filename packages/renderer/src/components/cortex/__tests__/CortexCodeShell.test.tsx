@@ -85,7 +85,7 @@ describe('CortexCodeShell', () => {
     expect(screen.getByTestId('composer-send')).toBeInTheDocument();
   });
 
-  it('keeps the live-session rail to the Paper order and swaps the 320 panel', () => {
+  it('keeps the live-session rail to the Paper order and swaps the 320 panel', async () => {
     renderShell();
     const rail = screen.getByTestId('sidebar');
     expect(rail).toHaveAttribute('data-rail-count', '9');
@@ -106,13 +106,13 @@ describe('CortexCodeShell', () => {
 
     fireEvent.click(screen.getByTestId('sidebar-terminal'));
     expect(screen.getByTestId('terminal-context-panel')).toBeInTheDocument();
-    expect(screen.getByText('terminal surface')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('terminal surface')).toBeInTheDocument());
     expect(screen.queryByTestId('git-context-panel')).not.toBeInTheDocument();
     expect(screen.getByTestId('cortex-code-shell')).toBeInTheDocument();
 
     fireEvent.click(screen.getByTestId('sidebar-explorer'));
     expect(screen.getByTestId('explorer-context-panel')).toBeInTheDocument();
-    expect(screen.getByText('explorer surface')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('explorer surface')).toBeInTheDocument());
 
     fireEvent.click(screen.getByTestId('sidebar-git'));
     expect(screen.getByTestId('git-context-panel')).toBeInTheDocument();

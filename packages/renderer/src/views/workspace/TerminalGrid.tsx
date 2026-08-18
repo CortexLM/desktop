@@ -247,10 +247,10 @@ export function TerminalGrid({ className = '' }: TerminalGridProps) {
   const renderTerminals = () => {
     if (terminals.length === 0) {
       return (
-        <div className="flex flex-col items-center justify-center h-full text-text-secondary" data-testid="terminal-disconnected">
+        <div className="flex flex-col items-center justify-center h-full text-text-secondary" data-testid="terminal-empty">
           <div className="text-6xl mb-4">$_</div>
-          <p className="text-sm mb-2">Terminal disconnected</p>
-          <p className="text-sm mb-4 text-text-tertiary">No PTY is attached. Reconnect to start a shell.</p>
+          <p className="text-sm mb-2">No terminal open</p>
+          <p className="text-sm mb-4 text-text-tertiary">Start a shell in this workspace.</p>
           <button
             onClick={() => createTerminal()}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md transition-colors flex items-center gap-2"

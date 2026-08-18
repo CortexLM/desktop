@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Badge } from '../ui/badge';
-import { RECOMMENDED_MODELS, ModelInfo } from '@cortex-ide/ai-engine';
+import { RECOMMENDED_MODELS, ModelInfo } from '@cortex-ide/ai-engine/model-presets';
 
 interface ModelSelectorProps {
   provider: string;

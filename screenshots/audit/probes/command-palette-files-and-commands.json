@@ -7,8 +7,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-AkDVLu Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-AkDVLu .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-AkDVLu Search files README.md README.md file1.ts file1.ts file2.ts file2.ts file3.ts file3.ts persistence-test.ts persistence-test.ts test-file.ts test-file.ts test.ts test.ts tracked-file.ts tracked-file.ts untracked.txt untracked.txt index.ts src/index.ts ↑↓ Navigate Open Tab Switch mode Esc Close 10 results Close",
-    "textLength": 725,
+    "text": "C Cortex IDE cortex-e2e-ws-O1thbV Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-O1thbV .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-O1thbV Search files README.md README.md file1.ts file1.ts file2.ts file2.ts file3.ts file3.ts persistence-test.ts persistence-test.ts test-file.ts test-file.ts test.ts test.ts tracked-file.ts tracked-file.ts untracked.txt untracked.txt index.ts src/index.ts ↑↓ navigate · ↵ select · esc close Tab Switch mode 10 results",
+    "textLength": 727,
     "buttons": [
       {
         "label": "Hide sidebar",
@@ -37,6 +37,11 @@
       },
       {
         "label": "Enable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Session",
         "disabled": false,
         "visible": true
       },
@@ -71,6 +76,11 @@
         "visible": true
       },
       {
+        "label": "Missions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Notes",
         "disabled": false,
         "visible": true
@@ -101,6 +111,21 @@
         "visible": true
       },
       {
+        "label": "Security",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Knowledge",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Refresh file tree",
         "disabled": false,
         "visible": true
@@ -119,11 +144,6 @@
         "label": "Open source control",
         "disabled": false,
         "visible": true
-      },
-      {
-        "label": "Close",
-        "disabled": false,
-        "visible": true
       }
     ],
     "inputs": 1,
@@ -136,18 +156,23 @@
       "open-settings",
       "toggle-debug",
       "sidebar",
+      "sidebar-session",
       "sidebar-explorer",
       "sidebar-search",
       "sidebar-git",
       "sidebar-terminal",
       "sidebar-ai-chat",
       "sidebar-extensions",
+      "sidebar-missions",
       "sidebar-notes",
       "sidebar-plans",
       "sidebar-browser",
       "sidebar-automations",
       "sidebar-account",
       "sidebar-settings",
+      "sidebar-security",
+      "sidebar-review",
+      "sidebar-knowledge",
       "sidebar-panel",
       "file-explorer",
       "directory-item",
@@ -172,17 +197,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgb(13, 13, 14)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 873
+        "width": 1402,
+        "height": 874
       },
       "overflowingChildren": 3,
       "collapsedWithText": 0
@@ -197,7 +222,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -210,8 +234,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-AkDVLu Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-AkDVLu .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-AkDVLu Search commands Go to Explorer View Ctrl+Shift+E Go to Search View Ctrl+Shift+F Go to Source Control View Ctrl+Shift+G Go to Terminal View Ctrl+` Go to AI Chat View Ctrl+L Go to Extensions View Ctrl+Shift+X Go to Notes View Go to Plans View Go to Browser View Go to Automations View Go to Account View Go to Settings View Ctrl+, Toggle sidebar View Ctrl+B Switch to light theme Preferences Toggle debug mode Developer Show debug panel Developer Ctrl+Shift+D Close folder Workspace ↑↓ Navigate Open Tab Switch mode Esc Close 17 results Close",
-    "textLength": 955,
+    "text": "C Cortex IDE cortex-e2e-ws-O1thbV Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-O1thbV .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-O1thbV Search commands Go to Session View Ctrl+N Go to Explorer View Ctrl+Shift+E Go to Search View Ctrl+Shift+F Go to Source Control View Ctrl+Shift+G Go to Terminal View Ctrl+` Go to AI Chat View Ctrl+L Go to Extensions View Ctrl+Shift+X Go to Notes View Go to Plans View Go to Browser View Go to Automations View Go to Account View Go to Settings View Ctrl+, Go to Security View Go to Review View Go to Knowledge View Go to Missions View New session Session Ctrl+N Toggle terminal Session Ctrl+J Open changes Session Ctrl+D Switch model Session Ctrl+M Attach file Session Ctrl+Shift+A Toggle sidebar View Ctrl+B Switch to light theme Preferences Toggle debug mode Developer Show debug panel Developer Ctrl+Shift+D Close folder Workspace ↑↓ navigate · ↵ select · esc close Tab Switch mode 2",
+    "textLength": 1209,
     "buttons": [
       {
         "label": "Hide sidebar",
@@ -240,6 +264,11 @@
       },
       {
         "label": "Enable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Session",
         "disabled": false,
         "visible": true
       },
@@ -274,6 +303,11 @@
         "visible": true
       },
       {
+        "label": "Missions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Notes",
         "disabled": false,
         "visible": true
@@ -304,6 +338,21 @@
         "visible": true
       },
       {
+        "label": "Security",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Knowledge",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Refresh file tree",
         "disabled": false,
         "visible": true
@@ -322,11 +371,6 @@
         "label": "Open source control",
         "disabled": false,
         "visible": true
-      },
-      {
-        "label": "Close",
-        "disabled": false,
-        "visible": true
       }
     ],
     "inputs": 1,
@@ -339,18 +383,23 @@
       "open-settings",
       "toggle-debug",
       "sidebar",
+      "sidebar-session",
       "sidebar-explorer",
       "sidebar-search",
       "sidebar-git",
       "sidebar-terminal",
       "sidebar-ai-chat",
       "sidebar-extensions",
+      "sidebar-missions",
       "sidebar-notes",
       "sidebar-plans",
       "sidebar-browser",
       "sidebar-automations",
       "sidebar-account",
       "sidebar-settings",
+      "sidebar-security",
+      "sidebar-review",
+      "sidebar-knowledge",
       "sidebar-panel",
       "file-explorer",
       "directory-item",
@@ -375,19 +424,19 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgb(13, 13, 14)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 873
+        "width": 1402,
+        "height": 874
       },
-      "overflowingChildren": 17,
+      "overflowingChildren": 95,
       "collapsedWithText": 0
     },
     "emptiness": {
@@ -400,7 +449,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -413,8 +461,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-AkDVLu Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-AkDVLu .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-AkDVLu Search files README.md README.md file1.ts file1.ts file2.ts file2.ts file3.ts file3.ts persistence-test.ts persistence-test.ts test-file.ts test-file.ts test.ts test.ts tracked-file.ts tracked-file.ts untracked.txt untracked.txt index.ts src/index.ts ↑↓ Navigate Open Tab Switch mode Esc Close 10 results Close",
-    "textLength": 725,
+    "text": "C Cortex IDE cortex-e2e-ws-O1thbV Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-O1thbV .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-O1thbV Search commands Go to Session View Ctrl+N Go to Explorer View Ctrl+Shift+E Go to Search View Ctrl+Shift+F Go to Source Control View Ctrl+Shift+G Go to Terminal View Ctrl+` Go to AI Chat View Ctrl+L Go to Extensions View Ctrl+Shift+X Go to Notes View Go to Plans View Go to Browser View Go to Automations View Go to Account View Go to Settings View Ctrl+, Go to Security View Go to Review View Go to Knowledge View Go to Missions View New session Session Ctrl+N Toggle terminal Session Ctrl+J Open changes Session Ctrl+D Switch model Session Ctrl+M Attach file Session Ctrl+Shift+A Toggle sidebar View Ctrl+B Switch to light theme Preferences Toggle debug mode Developer Show debug panel Developer Ctrl+Shift+D Close folder Workspace ↑↓ navigate · ↵ select · esc close Tab Switch mode 2",
+    "textLength": 1209,
     "buttons": [
       {
         "label": "Hide sidebar",
@@ -443,6 +491,11 @@
       },
       {
         "label": "Enable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Session",
         "disabled": false,
         "visible": true
       },
@@ -477,6 +530,11 @@
         "visible": true
       },
       {
+        "label": "Missions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Notes",
         "disabled": false,
         "visible": true
@@ -507,6 +565,21 @@
         "visible": true
       },
       {
+        "label": "Security",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Knowledge",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Refresh file tree",
         "disabled": false,
         "visible": true
@@ -525,11 +598,6 @@
         "label": "Open source control",
         "disabled": false,
         "visible": true
-      },
-      {
-        "label": "Close",
-        "disabled": false,
-        "visible": true
       }
     ],
     "inputs": 1,
@@ -542,18 +610,23 @@
       "open-settings",
       "toggle-debug",
       "sidebar",
+      "sidebar-session",
       "sidebar-explorer",
       "sidebar-search",
       "sidebar-git",
       "sidebar-terminal",
       "sidebar-ai-chat",
       "sidebar-extensions",
+      "sidebar-missions",
       "sidebar-notes",
       "sidebar-plans",
       "sidebar-browser",
       "sidebar-automations",
       "sidebar-account",
       "sidebar-settings",
+      "sidebar-security",
+      "sidebar-review",
+      "sidebar-knowledge",
       "sidebar-panel",
       "file-explorer",
       "directory-item",
@@ -578,19 +651,19 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgb(13, 13, 14)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 873
+        "width": 1402,
+        "height": 874
       },
-      "overflowingChildren": 3,
+      "overflowingChildren": 95,
       "collapsedWithText": 0
     },
     "emptiness": {
@@ -603,7 +676,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []

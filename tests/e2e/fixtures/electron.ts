@@ -54,6 +54,7 @@ export const test = base.extend<ElectronFixtures>({
     // root, hence the flag — but it lives here, in the test launcher, and never
     // in the app itself. Real users keep their sandbox.
     const runningAsRoot = typeof process.getuid === 'function' && process.getuid() === 0;
+    // Headless Cloud VMs need this even when not root (no user namespace).
 
     // `--user-data-dir` is what makes this launch's state private. Verified by
     // probe rather than assumed: with the flag, `app.getPath('userData')`
@@ -64,7 +65,7 @@ export const test = base.extend<ElectronFixtures>({
     // argument as the app path and passes everything after it to the app.
     const launchArgs = [
       `--user-data-dir=${userDataDir}`,
-      ...(runningAsRoot ? ['--no-sandbox'] : []),
+      ...(runningAsRoot || process.env.DISPLAY ? ['--no-sandbox'] : []),
       mainPath,
     ];
 
