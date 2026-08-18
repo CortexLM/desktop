@@ -1,5 +1,2316 @@
 [
   {
+    "name": "00-session",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Git main -- sync Changes 2 M README.md +2 -0 A untracked.txt Git Stashes No stashes Create one Select a stash to view details Commit Highlights Shared sanitize helper for upload surfaces. Presign and queue paths updated together. Validation covers empty and oversized files. generate commit commit & sync",
+    "textLength": 638,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Refresh git",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "sync",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create one",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "generate",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "commit",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "commit & sync",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "git-context-panel",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-01-git",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-01-git.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Git main -- sync Changes 2 M README.md +2 -0 A untracked.txt Git Stashes No stashes Create one Select a stash to view details Commit Highlights Shared sanitize helper for upload surfaces. Presign and queue paths updated together. Validation covers empty and oversized files. generate commit commit & sync",
+    "textLength": 638,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Refresh git",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "sync",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create one",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "generate",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "commit",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "commit & sync",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "git-context-panel",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-02-prs",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-02-prs.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 PRs Open review Local review. Hosted pull-request sync is not wired — use Review or gh in the terminal. Branch · main Review README.md untracked.txt Pick a changed file.",
+    "textLength": 503,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "untracked.txt",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "prs-context-panel",
+      "prs-local-panel",
+      "review-view",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-03-explorer",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-03-explorer.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Files Open editor /tmp/cortex-e2e-ws-iMZUrP .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt",
+    "textLength": 494,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open editor",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Refresh file tree",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "explorer-context-panel",
+      "directory-item",
+      "directory-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "file-item",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 3,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-04-terminal",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-04-terminal.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Terminal Open terminal Terminal $_ No terminal open Start a shell in this workspace. New Terminal Press Ctrl+` to open a terminal",
+    "textLength": 463,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "terminal-context-panel",
+      "terminal-grid",
+      "new-terminal",
+      "split-terminal",
+      "terminal-empty",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session",
+        "terminal-empty"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-05-notes",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-05-notes.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Notes Open notes Notes New Open Save H1 H2 H3 </> Edit Split Preview No content",
+    "textLength": 413,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Save",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H1",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H2",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "H3",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "</>",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Edit",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Split",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 4,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "notes-context-panel",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 7,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-06-plans",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-06-plans.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Plans Open plans Plans 0 total 0 done ↻ All (0) Pending (0) In Progress (0) Completed (0) Add No tasks yet",
+    "textLength": 440,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "↻",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "All (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Pending (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "In Progress (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Completed (0)",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Add",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "plans-context-panel",
+      "new-task-input",
+      "add-task",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-07-preview",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-07-preview.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Preview Open browser Browser Go",
+    "textLength": 365,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open browser",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Go",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "preview-context-panel",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-08-ai-chat",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-08-ai-chat.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Side chat Open chat Sessions New Chat All Today Week Month No sessions found 0 sessions",
+    "textLength": 421,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New Chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "All",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Today",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Week",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Month",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "ai-chat-context-panel",
+      "side-chat-panel",
+      "new-session",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 12,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "00-session-09-browser",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/00-session-09-browser.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "New session cortex-e2e-ws-iMZUrP · main No workspace 5.3% Claude Sonnet 4 Local C New session recent New session × Show more sessions cortex-e2e-ws-iMZUrP main Hey, what should we build? Fix a failing test Review my changes Explain this codebase ⌘K commands · ⌘J terminal · @ context Agent mode Agent Plan Ask Mission Claude Sonnet 4 Browser Open browser Browser Go",
+    "textLength": 365,
+    "buttons": [
+      {
+        "label": "Hide sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "No workspace",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Search sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "New session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Delete session",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Show more sessions",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Theme",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Help",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Fix a failing test",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review my changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Explain this codebase",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Attach",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Claude Sonnet 4",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Send",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Open browser",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": true,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Go",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Changes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "PRs",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Files",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Terminal",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notes",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Plans",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Preview",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Side chat",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Browser",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 3,
+    "testIds": [
+      "cortex-topbar",
+      "toggle-session-sidebar",
+      "model-picker-trigger",
+      "sidebar-panel",
+      "new-session",
+      "session-center",
+      "empty-session",
+      "composer",
+      "composer-input",
+      "composer-attach",
+      "agent-picker",
+      "composer-model",
+      "composer-send",
+      "browser-context-panel",
+      "sidebar",
+      "sidebar-git",
+      "sidebar-prs",
+      "sidebar-explorer",
+      "sidebar-terminal",
+      "sidebar-notes",
+      "sidebar-plans",
+      "sidebar-preview",
+      "sidebar-ai-chat",
+      "sidebar-browser"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "no-header"
+    },
+    "geometry": {
+      "container": {
+        "x": 0,
+        "y": 0,
+        "width": 1402,
+        "height": 874
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 4
+    },
+    "emptiness": {
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "empty-session"
+      ],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
     "name": "00-shell",
     "theme": "light",
     "screenshot": "screenshots/audit/light/00-shell.png",
@@ -7,7 +2318,7 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-SktsB0 Search files and commands Ctrl+P Ask AI",
+    "text": "C Cortex IDE cortex-e2e-ws-iMZUrP Search files and commands Ctrl+P Ask AI",
     "textLength": 73,
     "buttons": [
       {
@@ -52,17 +2363,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
-      "containerBg": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgb(252, 252, 252)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 48
+        "width": 1402,
+        "height": 40
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -75,7 +2386,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -88,7 +2398,7 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "/tmp/cortex-e2e-ws-SktsB0 .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt",
+    "text": "/tmp/cortex-e2e-ws-iMZUrP .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt",
     "textLength": 142,
     "buttons": [
       {
@@ -113,17 +2423,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 48,
-        "y": 84,
+        "y": 76,
         "width": 320,
-        "height": 765
+        "height": 774
       },
       "overflowingChildren": 3,
       "collapsedWithText": 0
@@ -136,7 +2446,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -172,17 +2481,17 @@
     "testIds": [],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 48,
-        "y": 84,
+        "y": 76,
         "width": 320,
-        "height": 765
+        "height": 774
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -195,7 +2504,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -208,8 +2516,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt",
-    "textLength": 87,
+    "text": "Git main Commit Stage All Discard All Push Pull Changes (2) M README.md U untracked.txt Git Stashes No stashes Create one Select a stash to view details",
+    "textLength": 152,
     "buttons": [
       {
         "label": "main",
@@ -285,6 +2593,21 @@
         "label": "Delete untracked.txt",
         "disabled": false,
         "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Create one",
+        "disabled": false,
+        "visible": true
       }
     ],
     "inputs": 0,
@@ -305,17 +2628,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 48,
-        "y": 84,
+        "y": 76,
         "width": 320,
-        "height": 765
+        "height": 774
       },
       "overflowingChildren": 1,
       "collapsedWithText": 0
@@ -324,11 +2647,10 @@
       "looksEmpty": false,
       "emptyStateTestIds": [],
       "hasHeading": true,
-      "hasDescription": false,
+      "hasDescription": true,
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -341,8 +2663,8 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "Terminal $_ No terminal open New Terminal Press Ctrl+` to open a terminal",
-    "textLength": 73,
+    "text": "Terminal $_ No terminal open Start a shell in this workspace. New Terminal Press Ctrl+` to open a terminal",
+    "textLength": 106,
     "buttons": [
       {
         "label": "",
@@ -364,34 +2686,36 @@
     "testIds": [
       "terminal-grid",
       "new-terminal",
-      "split-terminal"
+      "split-terminal",
+      "terminal-empty"
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
     },
     "emptiness": {
-      "looksEmpty": false,
-      "emptyStateTestIds": [],
+      "looksEmpty": true,
+      "emptyStateTestIds": [
+        "terminal-empty"
+      ],
       "hasHeading": true,
       "hasDescription": true,
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -445,17 +2769,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -470,7 +2794,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
@@ -509,17 +2832,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -532,15 +2855,69 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "07-notes",
+    "name": "07-missions",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/07-notes.png",
+    "screenshot": "screenshots/audit/light/07-missions.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Missions Long-running work: planning → running → paused → completed. Start a mission from here, or pick Mission mode in the session composer. New mission Create No missions yet Create a mission to track a multi-step agent task.",
+    "textLength": 227,
+    "buttons": [
+      {
+        "label": "Create",
+        "disabled": true,
+        "visible": true
+      }
+    ],
+    "inputs": 2,
+    "testIds": [
+      "missions-view",
+      "mission-create",
+      "mission-name",
+      "mission-description",
+      "mission-create-submit",
+      "mission-list"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "40px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 40,
+        "width": 1034,
+        "height": 810
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": false
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "08-notes",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/08-notes.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
@@ -633,17 +3010,17 @@
     "testIds": [],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -656,15 +3033,14 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "08-plans",
+    "name": "09-plans",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/08-plans.png",
+    "screenshot": "screenshots/audit/light/09-plans.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
@@ -710,17 +3086,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -733,15 +3109,14 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "09-browser",
+    "name": "10-browser",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/09-browser.png",
+    "screenshot": "screenshots/audit/light/10-browser.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
@@ -784,17 +3159,17 @@
     "testIds": [],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -807,15 +3182,14 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "10-automations",
+    "name": "11-automations",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/10-automations.png",
+    "screenshot": "screenshots/audit/light/11-automations.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
@@ -840,17 +3214,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -863,15 +3237,14 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "11-account",
+    "name": "12-account",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/11-account.png",
+    "screenshot": "screenshots/audit/light/12-account.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
@@ -906,17 +3279,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -931,21 +3304,20 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []
   },
   {
-    "name": "12-settings",
+    "name": "13-settings",
     "theme": "light",
-    "screenshot": "screenshots/audit/light/12-settings.png",
+    "screenshot": "screenshots/audit/light/13-settings.png",
     "rootClasses": "light",
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "Settings Reset Save General AI Providers Editor Keyboard Shortcuts APPEARANCE Theme Choose your color scheme Dark AUTO SAVE Enable Auto Save Automatically save files Auto Save Delay (ms) Delay before auto-saving",
-    "textLength": 211,
+    "text": "Settings Reset Save General AI Providers Editor Keyboard Shortcuts Rules & Memories Indexing & Privacy Notifications Extensions APPEARANCE Theme Choose your color scheme Dark AUTO SAVE Enable Auto Save Automatically save files Auto Save Delay (ms) Delay before auto-saving",
+    "textLength": 272,
     "buttons": [
       {
         "label": "Reset",
@@ -978,6 +3350,26 @@
         "visible": true
       },
       {
+        "label": "Rules & Memories",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Indexing & Privacy",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Notifications",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Extensions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Dark",
         "disabled": false,
         "visible": true
@@ -987,17 +3379,17 @@
     "testIds": [],
     "styles": {
       "bodyBg": "rgb(252, 252, 252)",
-      "bodyColor": "rgb(38, 38, 38)",
+      "bodyColor": "rgb(25, 25, 25)",
       "containerBg": "rgba(0, 0, 0, 0)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 368,
-        "y": 48,
-        "width": 1032,
-        "height": 801
+        "y": 40,
+        "width": 1034,
+        "height": 810
       },
       "overflowingChildren": 0,
       "collapsedWithText": 0
@@ -1010,7 +3402,165 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "14-security",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/14-security.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Security Tool permissions, secret redaction, and workspace trust. Dangerous tools always go through the permission overlay. Granted MCP tools No standing grants yet.",
+    "textLength": 165,
+    "buttons": [],
+    "inputs": 0,
+    "testIds": [
+      "security-view"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "40px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 40,
+        "width": 1034,
+        "height": 810
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": false
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "15-review",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/15-review.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Review README.md untracked.txt Pick a changed file.",
+    "textLength": 51,
+    "buttons": [
+      {
+        "label": "README.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "untracked.txt",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "review-view"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "40px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 40,
+        "width": 1034,
+        "height": 810
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
+      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
+    ],
+    "pageErrors": []
+  },
+  {
+    "name": "16-knowledge",
+    "theme": "light",
+    "screenshot": "screenshots/audit/light/16-knowledge.png",
+    "rootClasses": "light",
+    "errorBoundaryVisible": false,
+    "errorBoundaryText": null,
+    "stillLoading": false,
+    "text": "Wiki / Knowledge AGENTS.md Droids Skills /tmp/cortex-e2e-ws-iMZUrP AGENTS.md Project conventions auto-read into the agent system prompt.",
+    "textLength": 136,
+    "buttons": [
+      {
+        "label": "AGENTS.md",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Droids",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Skills",
+        "disabled": false,
+        "visible": true
+      }
+    ],
+    "inputs": 0,
+    "testIds": [
+      "knowledge-view"
+    ],
+    "styles": {
+      "bodyBg": "rgb(252, 252, 252)",
+      "bodyColor": "rgb(25, 25, 25)",
+      "containerBg": "rgba(0, 0, 0, 0)",
+      "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "headerHeight": "40px"
+    },
+    "geometry": {
+      "container": {
+        "x": 368,
+        "y": 40,
+        "width": 1034,
+        "height": 810
+      },
+      "overflowingChildren": 0,
+      "collapsedWithText": 0
+    },
+    "emptiness": {
+      "looksEmpty": false,
+      "emptyStateTestIds": [],
+      "hasHeading": true,
+      "hasDescription": true,
+      "hasAction": true
+    },
+    "consoleErrors": [
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []

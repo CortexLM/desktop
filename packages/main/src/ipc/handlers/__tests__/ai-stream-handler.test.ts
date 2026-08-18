@@ -153,7 +153,12 @@ describe('stream response handler', () => {
 
     expect(result.success).toBe(true);
     expect((result as { streamId: string }).streamId).toBe('session-1');
-    expect(aiService.streamMessage).toHaveBeenCalledWith('session-1', 'Hello');
+    expect(aiService.streamMessage).toHaveBeenCalledWith(
+      'session-1',
+      'Hello',
+      undefined,
+      { mode: undefined, workspacePath: undefined }
+    );
   });
 
   it('rejects a missing sessionId', async () => {

@@ -7,7 +7,7 @@
     "errorBoundaryVisible": false,
     "errorBoundaryText": null,
     "stillLoading": false,
-    "text": "C Cortex IDE cortex-e2e-ws-8IqWDx Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-8IqWDx .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-8IqWDx",
+    "text": "C Cortex IDE cortex-e2e-ws-kDGXw5 Search files and commands Ctrl+P Ask AI EXPLORER /tmp/cortex-e2e-ws-kDGXw5 .git src file1.ts file2.ts file3.ts persistence-test.ts README.md test-file.ts test.ts tracked-file.ts untracked.txt No files open Pick a file in the Explorer, or search across the folder to find one. Browse files Search Source control No files open Cmd+P to open a file Explorer /tmp/cortex-e2e-ws-kDGXw5",
     "textLength": 414,
     "buttons": [
       {
@@ -37,6 +37,11 @@
       },
       {
         "label": "Disable debug mode",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Session",
         "disabled": false,
         "visible": true
       },
@@ -71,6 +76,11 @@
         "visible": true
       },
       {
+        "label": "Missions",
+        "disabled": false,
+        "visible": true
+      },
+      {
         "label": "Notes",
         "disabled": false,
         "visible": true
@@ -97,6 +107,21 @@
       },
       {
         "label": "Settings",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Security",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Review",
+        "disabled": false,
+        "visible": true
+      },
+      {
+        "label": "Knowledge",
         "disabled": false,
         "visible": true
       },
@@ -131,18 +156,23 @@
       "open-settings",
       "toggle-debug",
       "sidebar",
+      "sidebar-session",
       "sidebar-explorer",
       "sidebar-search",
       "sidebar-git",
       "sidebar-terminal",
       "sidebar-ai-chat",
       "sidebar-extensions",
+      "sidebar-missions",
       "sidebar-notes",
       "sidebar-plans",
       "sidebar-browser",
       "sidebar-automations",
       "sidebar-account",
       "sidebar-settings",
+      "sidebar-security",
+      "sidebar-review",
+      "sidebar-knowledge",
       "sidebar-panel",
       "file-explorer",
       "directory-item",
@@ -165,17 +195,17 @@
     ],
     "styles": {
       "bodyBg": "rgb(13, 13, 14)",
-      "bodyColor": "rgb(245, 245, 245)",
+      "bodyColor": "rgba(255, 255, 255, 0.9)",
       "containerBg": "rgb(13, 13, 14)",
       "fontFamily": "Figtree, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-      "headerHeight": "48px"
+      "headerHeight": "40px"
     },
     "geometry": {
       "container": {
         "x": 0,
         "y": 0,
-        "width": 1400,
-        "height": 873
+        "width": 1402,
+        "height": 874
       },
       "overflowingChildren": 3,
       "collapsedWithText": 0
@@ -190,7 +220,6 @@
       "hasAction": true
     },
     "consoleErrors": [
-      "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback.",
       "Refused to load the image 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' because it violates the following Content Security Policy directive: \"default-src 'self'\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback."
     ],
     "pageErrors": []

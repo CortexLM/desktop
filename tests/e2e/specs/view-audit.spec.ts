@@ -97,7 +97,10 @@ async function setTheme(page: Page, theme: 'light' | 'dark') {
     window.localStorage.setItem('cortex-theme', value);
   }, theme);
   await page.reload({ waitUntil: 'domcontentloaded', timeout: 60000 });
-  await page.waitForSelector('[data-testid="sidebar"]', { timeout: 60000 });
+  await page.waitForSelector(
+    '[data-testid="sidebar"], [data-testid="cortex-code-shell"]',
+    { timeout: 60000 }
+  );
   await page.waitForFunction(
     (value) => document.documentElement.classList.contains(value),
     theme,
@@ -256,13 +259,37 @@ const ACTIVITY_VIEWS: { id: string; testId: string; panel: string; sidebar: bool
   { id: 'terminal', testId: 'sidebar-terminal', panel: 'terminal-panel', sidebar: false },
   { id: 'ai-chat', testId: 'sidebar-ai-chat', panel: 'ai-chat-panel', sidebar: false },
   { id: 'extensions', testId: 'sidebar-extensions', panel: 'extensions-panel', sidebar: false },
+  { id: 'missions', testId: 'sidebar-missions', panel: 'missions-panel', sidebar: false },
   { id: 'notes', testId: 'sidebar-notes', panel: 'notes-view', sidebar: false },
   { id: 'plans', testId: 'sidebar-plans', panel: 'plans-view', sidebar: false },
   { id: 'browser', testId: 'sidebar-browser', panel: 'browser-view', sidebar: false },
   { id: 'automations', testId: 'sidebar-automations', panel: 'automation-panel', sidebar: false },
   { id: 'account', testId: 'sidebar-account', panel: 'account-panel', sidebar: false },
   { id: 'settings', testId: 'sidebar-settings', panel: 'settings-panel', sidebar: false },
+  { id: 'security', testId: 'sidebar-security', panel: 'security-panel', sidebar: false },
+  { id: 'review', testId: 'sidebar-review', panel: 'review-panel', sidebar: false },
+  { id: 'knowledge', testId: 'sidebar-knowledge', panel: 'knowledge-panel', sidebar: false },
 ];
+
+const SESSION_SURFACES = [
+  'git',
+  'prs',
+  'explorer',
+  'terminal',
+  'notes',
+  'plans',
+  'preview',
+  'ai-chat',
+  'browser',
+] as const;
+
+async function enterIdeShell(page: Page) {
+  const session = page.locator('[data-testid="cortex-code-shell"]');
+  if (await session.count()) {
+    await page.keyboard.press('Control+Shift+E');
+    await page.waitForSelector('[data-testid="app-header"]', { timeout: 20000 });
+  }
+}
 
 test.describe('View audit', () => {
   let errors: ErrorLog;
@@ -275,12 +302,32 @@ test.describe('View audit', () => {
     page.on('pageerror', (err) => {
       errors.pageErrors.push(squash(`${err.name}: ${err.message}`).slice(0, 400));
     });
-    await page.waitForSelector('[data-testid="sidebar"]', { timeout: 60000 });
+    await page.waitForSelector(
+      '[data-testid="sidebar"], [data-testid="cortex-code-shell"]',
+      { timeout: 60000 }
+    );
   });
 
   for (const theme of ['dark', 'light'] as const) {
     test(`activity bar views - ${theme}`, async ({ page }) => {
       await setTheme(page, theme);
+
+      if (await page.locator('[data-testid="cortex-code-shell"]').count()) {
+        await capture(page, errors, {
+          name: '00-session',
+          theme,
+          selector: '[data-testid="cortex-code-shell"]',
+        });
+        for (const [index, surface] of SESSION_SURFACES.entries()) {
+          await page.locator(`[data-testid="sidebar-${surface}"]`).first().click();
+          await capture(page, errors, {
+            name: `00-session-${String(index + 1).padStart(2, '0')}-${surface}`,
+            theme,
+            selector: '[data-testid="cortex-code-shell"]',
+          });
+        }
+        await enterIdeShell(page);
+      }
 
       // Shell first: chrome is the reference for "styles resolved at all".
       await capture(page, errors, {
@@ -321,6 +368,7 @@ test.describe('View audit', () => {
 
   test('account tabs', async ({ page }) => {
     await setTheme(page, 'dark');
+    await enterIdeShell(page);
     await page.locator('[data-testid="sidebar-account"]').click();
     await page.waitForSelector('[data-testid="account-panel"]', { timeout: 20000 });
 
@@ -336,6 +384,7 @@ test.describe('View audit', () => {
 
   test('command palette - files and commands', async ({ page }) => {
     await setTheme(page, 'dark');
+    await enterIdeShell(page);
 
     // Cmd+P / Ctrl+P — file mode.
     await page.keyboard.press('Control+P');
@@ -370,6 +419,7 @@ test.describe('View audit', () => {
 
   test('debug panel - all tabs', async ({ page }) => {
     await setTheme(page, 'dark');
+    await enterIdeShell(page);
 
     await page.locator('[data-testid="toggle-debug"]').click();
     await page.waitForTimeout(800);
@@ -418,8 +468,8 @@ test.describe('View audit', () => {
 
   test('editor with a file open, and tab close', async ({ page }) => {
     await setTheme(page, 'dark');
-    // Explorer is already the active view on load; clicking its icon would
-    // collapse the sidebar rather than open it.
+    await enterIdeShell(page);
+    // Explorer is the remembered sidebar view after leaving the session shell.
     await page.waitForSelector('[data-testid="file-explorer"]', { timeout: 20000 });
 
     // Empty editor first — this is the state the workbench starts in.
@@ -456,6 +506,7 @@ test.describe('View audit', () => {
 
   test('git panel with changes, and commit affordance', async ({ page }) => {
     await setTheme(page, 'dark');
+    await enterIdeShell(page);
     await page.locator('[data-testid="sidebar-git"]').click();
     await page.waitForSelector('[data-testid="git-panel"]', { timeout: 20000 });
     await page.waitForTimeout(1500);
