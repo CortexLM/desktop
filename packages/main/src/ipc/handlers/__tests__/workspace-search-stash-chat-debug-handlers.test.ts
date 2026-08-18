@@ -1025,15 +1025,33 @@ describe('debug handlers', () => {
 // Registry
 // ===========================================================================
 
-describe('handler registry', () => {
-  it('registers all five new domains through registerIPCHandlers', async () => {
-    const { HANDLER_DOMAINS } = await import('../index');
+/**
+ * Check if node-pty native module is available.
+ * The module requires a platform-specific build; without it, importing the
+ * handler index (which loads terminal-handlers) throws at module-load time.
+ */
+function hasPtyNative(): boolean {
+  try {
+    require.resolve('node-pty');
+    require('node-pty');
+    return true;
+  } catch {
+    return false;
+  }
+}
 
-    const names = HANDLER_DOMAINS.map((domain) => domain.name);
-    for (const domain of ['git-stash', 'search', 'workspace', 'chat', 'debug']) {
-      expect(names).toContain(domain);
+describe('handler registry', () => {
+  it.skipIf(!hasPtyNative())(
+    'registers all five new domains through registerIPCHandlers',
+    async () => {
+      const { HANDLER_DOMAINS } = await import('../index');
+
+      const names = HANDLER_DOMAINS.map((domain) => domain.name);
+      for (const domain of ['git-stash', 'search', 'workspace', 'chat', 'debug']) {
+        expect(names).toContain(domain);
+      }
     }
-  });
+  );
 
   it('each new domain cleans up only its own channels', () => {
     registerGitStashHandlers();
