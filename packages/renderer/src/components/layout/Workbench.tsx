@@ -69,6 +69,7 @@ const DebugPanel = lazyNamed(() => import('../../views/debug/DebugPanel'), 'Debu
 const SecurityView = lazyNamed(() => import('../../views/security/SecurityView'), 'SecurityView');
 const ReviewView = lazyNamed(() => import('../../views/review/ReviewView'), 'ReviewView');
 const KnowledgeView = lazyNamed(() => import('../../views/knowledge/KnowledgeView'), 'KnowledgeView');
+const MissionsView = lazyNamed(() => import('../../views/missions/MissionsView'), 'MissionsView');
 
 /** Views that render into the sidebar rather than taking over the main area. */
 const SIDEBAR_VIEWS = new Set<WorkbenchView>(['explorer', 'search', 'git']);
@@ -295,6 +296,13 @@ function MainArea({
       return (
         <div className="h-full overflow-auto">
           <KnowledgeView workspacePath={workspacePath} />
+        </div>
+      );
+
+    case 'missions':
+      return (
+        <div className="h-full overflow-auto">
+          <MissionsView workspaceId={workspacePath ?? 'default'} />
         </div>
       );
 

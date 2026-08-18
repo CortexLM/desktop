@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { registerIPCHandlers, unregisterIPCHandlers } from './ipc/handlers/index';
+import { startMCPEvents, stopMCPEvents } from './ipc/handlers/mcp-handlers';
 import { updateManager } from './updater';
 import { automationService } from './services/automation-service';
 import { getDatabaseService } from './services/database-service';
@@ -144,6 +145,7 @@ app.whenReady().then(async () => {
 
   await startupStep('IPC handlers', () => registerIPCHandlers());
   await startupStep('Automation events', () => setupAutomationEvents());
+  await startupStep('MCP events', () => startMCPEvents());
 
   // Open the window before touching anything slow or fallible.
   createWindow();
@@ -191,6 +193,7 @@ app.on('before-quit', async () => {
   // (watchers, DB handles, timers) by aborting the sequence.
   await startupStep('Performance cleanup', () => cleanupPerformance());
   await startupStep('IPC cleanup', () => unregisterIPCHandlers());
+  await startupStep('MCP events cleanup', () => stopMCPEvents());
   // Automation service: watchers, schedulers, AI sessions, listeners.
   await startupStep('Automation cleanup', () => automationService.dispose());
   // Close database connection (checkpoint WAL).

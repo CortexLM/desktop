@@ -29,7 +29,8 @@ Verified in code:
   on the workbench, not dead components.
 ✅ **MCP** — 12 IPC channels, marketplace / list / tools / config views.
 ✅ **Missions** — `MissionOrchestrator` + `mission:*` IPC + SQLite `missions`
-  table (planning → running → paused → completed).
+  table (planning → running → paused → completed) + the Missions view in the
+  activity bar.
 ✅ **Usage tracking** — tokens and cost in `UsageTracking`.
 ✅ **Provider benchmark harness** — CLI only (`packages/test-harness`). Measures
   latency, tokens, and cost. **No quality judge. No Benchmarks screen.**
@@ -208,10 +209,10 @@ Marketplace intégré pour découvrir et installer des serveurs Model Context
 Protocol, plus l'invocation d'outils et un système de permissions. 12 canaux IPC
 enregistrés et exposés.
 
-**Réserve** : les 6 événements `event:mcp-*` (server-started/stopped/error,
-tool-invoked, permission-granted/revoked) ne sont jamais émis par le processus
-main. `MCPExtensionList` s'y abonne pour se rafraîchir, ce rafraîchissement ne se
-déclenche donc jamais.
+Les 6 événements `event:mcp-*` (server-started/stopped/error, tool-invoked,
+permission-granted/revoked) sont émis par `setupMCPEvents` à partir du
+`MCPService`. `MCPExtensionList` se rafraîchit quand un serveur démarre ou
+s'arrête.
 
 ## 🗺️ Roadmap
 
@@ -219,9 +220,10 @@ déclenche donc jamais.
 - [x] Phase 2: Refactoring architecture — suppression de sous-systèmes spéculatifs
       (cache multi-niveaux, worker pool background, orchestrateur CLI-style,
       stockage de missions)
-- [ ] Phase 3: Mission orchestrator (backend **et** UI — rien n'existe côté code
-      aujourd'hui, voir « Ce que Cortex ne fait pas »)
-- [ ] Phase 4: Benchmarking UI intégré (le harnais est CLI uniquement)
+- [x] Phase 3: Mission orchestrator (backend **et** UI Missions)
+- [ ] Phase 4: Benchmarking UI intégré — **out of scope on purpose**. The
+      harness stays CLI-only (`packages/test-harness`). There is no Benchmarks
+      button in the app.
 - [ ] Phase 5: Smart chunking avec visualisation
 - [ ] Phase 6: Polish & distribution
 
