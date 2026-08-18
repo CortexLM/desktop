@@ -118,6 +118,32 @@ export const RECOMMENDED_MODELS: Record<string, ModelInfo[]> = {
       contextWindow: 200000,
     },
   ],
+  ollama: [
+    {
+      id: 'llama3.1',
+      name: 'Llama 3.1',
+      provider: 'ollama',
+      description: 'Local default. No API key — point OLLAMA_HOST at a running daemon',
+      tags: ['local', 'recommended'],
+      contextWindow: 128000,
+    },
+    {
+      id: 'qwen2.5-coder',
+      name: 'Qwen 2.5 Coder',
+      provider: 'ollama',
+      description: 'Local coding model',
+      tags: ['local', 'coding'],
+      contextWindow: 128000,
+    },
+    {
+      id: 'mistral',
+      name: 'Mistral',
+      provider: 'ollama',
+      description: 'Local general model',
+      tags: ['local'],
+      contextWindow: 32000,
+    },
+  ],
 };
 
 /**

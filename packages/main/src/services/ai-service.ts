@@ -732,6 +732,9 @@ export class AIService extends EventEmitter {
         });
         if (event.type === 'text') visible.push(event.text);
         yield { content: ipc.content ?? '', done: ipc.type === 'done' };
+        if (event.type === 'error') {
+          throw new Error(event.message);
+        }
       }
 
       const assistantText = visible.join('\n') || '(agent turn)';
