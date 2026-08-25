@@ -1,7 +1,8 @@
 import { render, screen, waitFor } from '@solidjs/testing-library';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { App } from '../app.tsx';
+import { App, slugForPath } from '../app.tsx';
+import { navigableRoutes } from '../routes.ts';
 
 /**
  * Mounts the whole application.
@@ -87,6 +88,27 @@ describe('App', () => {
     });
   });
 
+  it('renders the sign-in screen without the workspace shell', async () => {
+    // A locked navigation rail beside a sign-in form is noise: there is no workspace to
+    // navigate yet.
+    render(() => <App initialPath="/sign-in" />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'Sign in' })).toBeInTheDocument();
+    });
+    expect(screen.queryByRole('navigation', { name: 'Primary' })).toBeNull();
+  });
+
+  it('offers the anonymous route from sign-in', async () => {
+    render(() => <App initialPath="/sign-in" />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: 'Continue without an account' }),
+      ).toBeInTheDocument();
+    });
+  });
+
   it('survives an unreachable model catalogue', async () => {
     // /v1/models is public but the app must come up offline; the picker falls back to the
     // BYO providers, which is the anonymous path anyway.
@@ -100,5 +122,37 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
     });
+  });
+});
+
+describe('slugForPath', () => {
+  it('resolves the root to Home', () => {
+    expect(slugForPath('/')).toBe('home');
+  });
+
+  it('prefers the longest match, so a nested path is not shadowed by its parent', () => {
+    // Sorting the other way round would highlight Settings for /settings/integrations and
+    // Sessions for /sessions/:id.
+    expect(slugForPath('/settings/integrations')).toBe('settings-integrations');
+    expect(slugForPath('/settings')).toBe('settings');
+  });
+
+  it('maps a session detail path to the session detail screen', () => {
+    expect(slugForPath('/sessions/abc123')).toBe('session-detail');
+    expect(slugForPath('/sessions')).toBe('sessions');
+  });
+
+  it('falls back to Home for a path it does not know', () => {
+    expect(slugForPath('/nowhere')).toBe('home');
+  });
+
+  it('resolves every navigable route to a slug', () => {
+    // A route whose own path did not resolve back to its slug would leave the sidebar
+    // highlighting the wrong destination while the user was on it.
+    for (const route of navigableRoutes()) {
+      if (!route.path) continue;
+      const concrete = route.path.replace(/:[^/]+/g, 'x');
+      expect(slugForPath(concrete), route.path).toBe(route.slug);
+    }
   });
 });

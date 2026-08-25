@@ -1,15 +1,36 @@
-import { createMemo, createSignal, type JSX, Show } from 'solid-js';
-import { Navigate, Route, Router, useNavigate } from '@solidjs/router';
+import { createMemo, createSignal, Show, type JSX } from 'solid-js';
+import {
+  createMemoryHistory,
+  MemoryRouter,
+  Navigate,
+  Route,
+  Router,
+  useNavigate,
+  type RouteSectionProps,
+} from '@solidjs/router';
 
 import { ThemeProvider } from '@cortex-ide/ui';
-import type { RuntimeKind } from '@cortex-ide/cortex-api';
 
 import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
 import { Sidebar, type RecentRun } from './shell/sidebar.tsx';
-import { HomeScreen, type SessionDraft } from './screens/home/home-screen.tsx';
-import { SessionsScreen } from './screens/sessions/sessions-screen.tsx';
 import { navigableRoutes, routeBySlug } from './routes.ts';
+import {
+  AutomationsRoute,
+  ConnectGitHubRoute,
+  DeviceCodeRoute,
+  HomeRoute,
+  IntegrationsRoute,
+  ReviewRoute,
+  SecretsRoute,
+  SessionDetailRoute,
+  SessionsRoute,
+  SettingsRoute,
+  SignInRoute,
+  SshConnectRoute,
+  UsageRoute,
+  WorkspaceSetupRoute,
+} from './route-components.tsx';
 
 import '@cortex-ide/ui/styles.css';
 
@@ -38,18 +59,43 @@ const themeStorage = {
   },
 };
 
-/** Maps a pathname back to the slug the sidebar highlights. */
-function slugForPath(pathname: string): string {
-  // Longest path first, so `/sessions/:id` is not shadowed by `/sessions`.
+function segments(path: string): string[] {
+  return path.split('/').filter(Boolean);
+}
+
+/**
+ * Whether a concrete pathname matches a route pattern, treating `:param` as a wildcard.
+ *
+ * Segment-wise rather than by prefix. Truncating a pattern at its first parameter and
+ * prefix-matching that would make `/sessions/:id/focus` match every `/sessions/...` path,
+ * because its usable prefix is just `/sessions`.
+ */
+function matchesPattern(pathname: string, pattern: string): boolean {
+  const actual = segments(pathname);
+  const expected = segments(pattern);
+  if (actual.length !== expected.length) return false;
+
+  return expected.every(
+    (segment, index) => segment.startsWith(':') || segment === actual[index],
+  );
+}
+
+/**
+ * Maps a pathname back to the slug the sidebar highlights.
+ *
+ * Most specific first: a pattern with fewer parameters wins over one with more at the same
+ * depth, so `/sessions/:id/focus` is preferred over a hypothetical `/sessions/:a/:b`.
+ */
+export function slugForPath(pathname: string): string {
+  const parameterCount = (pattern: string) =>
+    segments(pattern).filter((segment) => segment.startsWith(':')).length;
+
   const candidates = [...navigableRoutes()]
     .filter((route) => route.path)
-    .sort((a, b) => (b.path?.length ?? 0) - (a.path?.length ?? 0));
+    .sort((a, b) => parameterCount(a.path!) - parameterCount(b.path!));
 
   for (const route of candidates) {
-    const pattern = route.path!;
-    if (pattern === '/') continue;
-    const base = pattern.split('/:')[0]!;
-    if (pathname === base || pathname.startsWith(`${base}/`)) return route.slug;
+    if (matchesPattern(pathname, route.path!)) return route.slug;
   }
 
   return 'home';
@@ -58,8 +104,8 @@ function slugForPath(pathname: string): string {
 /**
  * The shell around every routed screen.
  *
- * Sidebar state lives here rather than in each screen, because the sidebar is identical on
- * all of them and refetching its recent-runs list per navigation would make it flicker.
+ * The auth and flow screens deliberately render outside it: they have no workspace to show a
+ * sidebar for, and a locked navigation rail beside a sign-in form would be noise.
  */
 function Workspace(props: { children: JSX.Element; pathname: () => string }): JSX.Element {
   const account = useAccount();
@@ -106,85 +152,89 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
   );
 }
 
-function HomeRoute(): JSX.Element {
-  const account = useAccount();
-  const navigate = useNavigate();
+/** Routes that render on a bare page rather than inside the workspace shell. */
+const BARE_PATHS = ['/sign-in', '/onboarding', '/runtimes/ssh'];
 
-  // The runtime defaults to whatever the capabilities allow rather than to 'cloud': signed
-  // out, a draft pointing at a runtime the user cannot reach would fail on send.
-  const [draft, setDraft] = createSignal<SessionDraft>({
-    prompt: '',
-    runtime: account.capabilities().runtimes[0] ?? ('local' as RuntimeKind),
-  });
-
-  return (
-    <HomeScreen
-      capabilities={account.capabilities()}
-      draft={draft()}
-      onDraftChange={setDraft}
-      onStart={() => navigate('/sessions')}
-      recentSessions={[]}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onViewAllSessions={() => navigate('/sessions')}
-    />
-  );
-}
-
-function SessionsRoute(): JSX.Element {
-  const navigate = useNavigate();
-  const [filter, setFilter] = createSignal('all');
-  const [query, setQuery] = createSignal('');
-
-  return (
-    <SessionsScreen
-      sessions={[]}
-      filters={[
-        { id: 'all', label: 'All' },
-        { id: 'mine', label: 'Mine' },
-        { id: 'archived', label: 'Archived' },
-      ]}
-      activeFilter={filter()}
-      onFilterChange={setFilter}
-      query={query()}
-      onQueryChange={setQuery}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onNewSession={() => navigate('/')}
-    />
-  );
+function isBarePath(pathname: string): boolean {
+  return BARE_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
 }
 
 export interface AppProps {
-  /** Injected by tests to start at a given route. */
+  /**
+   * Starts at a given route under an in-memory history.
+   *
+   * Used by tests. A memory router rather than pushing onto `window.history` keeps each test
+   * isolated - a shared history would leak the previous test's location into the next one.
+   */
   initialPath?: string;
 }
 
+/** The route tree, shared by both router flavours. */
+function routes(): JSX.Element {
+  return (
+    <>
+      <Route path="/" component={HomeRoute} />
+      <Route path="/sessions" component={SessionsRoute} />
+      <Route path="/sessions/:sessionId" component={SessionDetailRoute} />
+      <Route path="/sessions/:sessionId/focus" component={SessionDetailRoute} />
+      <Route path="/automations" component={AutomationsRoute} />
+      <Route path="/automations/new" component={AutomationsRoute} />
+      <Route path="/review" component={ReviewRoute} />
+      <Route path="/usage" component={UsageRoute} />
+      <Route path="/settings" component={SettingsRoute} />
+      <Route path="/settings/integrations" component={IntegrationsRoute} />
+      <Route path="/secrets" component={SecretsRoute} />
+      <Route path="/runtimes/ssh" component={SshConnectRoute} />
+      <Route path="/sign-in" component={SignInRoute} />
+      <Route path="/sign-in/device" component={DeviceCodeRoute} />
+      <Route path="/sign-in/github" component={ConnectGitHubRoute} />
+      <Route path="/sign-in/workspace" component={WorkspaceSetupRoute} />
+      <Route path="/onboarding" component={ConnectGitHubRoute} />
+      {/* An unknown path lands on Home rather than a blank pane: a route that resolves to
+          nothing looks like a crash. */}
+      <Route path="*" component={() => <Navigate href="/" />} />
+    </>
+  );
+}
+
 /**
- * The application root.
+ * An in-memory history seeded to a starting path.
  *
- * Screens not yet wired redirect to Home rather than rendering a blank pane. A route that
- * resolves to nothing looks like a crash; a redirect at least leaves the user somewhere
- * usable, and the route table's own suite is what tracks which screens still need wiring.
+ * `createMemoryHistory` always begins at `/`, so the entry is replaced rather than pushed -
+ * pushing would leave `/` behind it and make the first Back go somewhere the test never
+ * visited.
  */
+function seededHistory(initialPath: string) {
+  const history = createMemoryHistory();
+  history.set({ value: initialPath, replace: true });
+  return history;
+}
+
 export function App(props: AppProps): JSX.Element {
   const [pathname, setPathname] = createSignal(props.initialPath ?? '/');
+
+  const root = (routeProps: RouteSectionProps): JSX.Element => {
+    setPathname(routeProps.location.pathname);
+    return isBarePath(routeProps.location.pathname) ? (
+      routeProps.children
+    ) : (
+      <Workspace pathname={pathname}>{routeProps.children}</Workspace>
+    );
+  };
 
   return (
     <ThemeProvider initial="system" storage={themeStorage}>
       <AccountProvider>
-        <Router
-          root={(routeProps) => {
-            setPathname(routeProps.location.pathname);
-            return (
-              <Workspace pathname={pathname}>
-                <Show when={routeProps.children}>{routeProps.children}</Show>
-              </Workspace>
-            );
-          }}
+        <Show
+          when={props.initialPath}
+          fallback={<Router root={root}>{routes()}</Router>}
         >
-          <Route path="/" component={HomeRoute} />
-          <Route path="/sessions" component={SessionsRoute} />
-          <Route path="*" component={() => <Navigate href="/" />} />
-        </Router>
+          {(initialPath) => (
+            <MemoryRouter root={root} history={seededHistory(initialPath())}>
+              {routes()}
+            </MemoryRouter>
+          )}
+        </Show>
       </AccountProvider>
     </ThemeProvider>
   );
