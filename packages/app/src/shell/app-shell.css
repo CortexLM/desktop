@@ -1,0 +1,116 @@
+/*
+ * The two-pane frame every screen sits in: a 240px sidebar and a 1200px main pane, which is
+ * the 1440px artboard split exactly.
+ *
+ * The widths are only the design's reference. `grid-template-columns: auto 1fr` lets the
+ * main pane take whatever the window actually is - the artboard describes a 1440px window,
+ * not a fixed one - while the sidebar keeps its fixed width from its own stylesheet.
+ */
+
+.cx-app {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100vh;
+  overflow: hidden;
+
+  background: var(--color-bg);
+}
+
+.cx-app__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/*
+ * Page header. 52px on the list screens; the session detail uses its own 66px header, which
+ * is taller to fit the PR action.
+ */
+.cx-page-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+
+  height: var(--layout-page-header);
+  padding-inline: 40px;
+}
+
+.cx-page-header__titles {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cx-page-header__title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 30px;
+  color: var(--color-text);
+}
+
+.cx-page-header__subtitle {
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text-muted);
+}
+
+.cx-page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/*
+ * The scrolling body. Padding matches the 40px gutter the artboards use between the pane
+ * edge and their 1120px content column.
+ */
+.cx-page-body {
+  flex-grow: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 40px 40px;
+}
+
+/* Content column widths, taken from the artboards. */
+.cx-page-body--list > * {
+  max-width: var(--layout-list-content);
+}
+
+.cx-page-body--settings > * {
+  max-width: var(--layout-settings-content);
+}
+
+.cx-page-body--usage > * {
+  max-width: var(--layout-usage-content);
+}
+
+/*
+ * Home centres a 760px column. `justify-content: center` rather than `margin: auto` so the
+ * column stays put when its content grows past the viewport and the pane starts scrolling.
+ */
+.cx-page-body--centred {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 40px;
+}
+
+.cx-page-body--centred > * {
+  width: 100%;
+  max-width: var(--layout-home-column);
+}
+
+/*
+ * A full-bleed pane for the screens that own their whole surface: session detail, the auth
+ * screens, onboarding.
+ */
+.cx-page-body--bleed {
+  padding: 0;
+}
