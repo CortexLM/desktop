@@ -152,6 +152,9 @@ const EXPECTED_NAMESPACES = [
   // the CORS check. Carries no token in either direction — see
   // `shared/types/ipc/cortex.ts`.
   'cortex.cortex',
+  // Runs. Distinct from `cortex.ai`, which carries a conversation: this namespace
+  // carries the persisted run — its state, its timeline and its diff.
+  'cortex.session',
   'ipc',
   'electron',
 ];

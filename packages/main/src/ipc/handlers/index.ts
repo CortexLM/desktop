@@ -23,6 +23,7 @@ import { registerDebugHandlers, unregisterDebugHandlers } from './debug-handlers
 import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings-handlers';
 import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
 import { registerCortexHandlers, unregisterCortexHandlers } from './cortex-handlers';
+import { registerSessionHandlers, unregisterSessionHandlers } from './session-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
 /**
@@ -94,6 +95,14 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     name: 'cortex',
     register: registerCortexHandlers,
     unregister: unregisterCortexHandlers,
+  },
+  // Les exécutions. Distinct de `ai`, qui transporte une conversation : ce
+  // domaine porte l'état qu'une inbox trie et la chronologie qu'un écran de
+  // détail affiche, et il persiste les deux.
+  {
+    name: 'session',
+    register: registerSessionHandlers,
+    unregister: unregisterSessionHandlers,
   },
 ];
 

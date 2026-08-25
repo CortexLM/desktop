@@ -12,9 +12,12 @@ import {
 import { ThemeProvider } from '@cortex-ide/ui';
 
 import { AccountProvider, useAccount } from './state/session-context.tsx';
+import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
 import { Sidebar, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, routeBySlug } from './routes.ts';
+import { formatAge } from './state/session-view.ts';
+import type { SessionSummary } from '@cortex-ide/shared';
 import {
   AutomationsRoute,
   ConnectGitHubRoute,
@@ -102,6 +105,26 @@ export function slugForPath(pathname: string): string {
 }
 
 /**
+ * The five most recent runs, for the sidebar.
+ *
+ * Sliced from the store rather than asked of main with a limit: the list is
+ * already held for the inbox, so a second query would be a round trip to learn
+ * something in hand — and the two would disagree for as long as it took to settle.
+ */
+function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
+  return sessions
+    .filter((session) => !session.archived)
+    .slice(0, 5)
+    .map((session) => ({
+      id: session.id,
+      title: session.title,
+      repo: session.repo ?? 'Local folder',
+      age: formatAge(session.updatedAt),
+      running: session.status === 'running' || session.status === 'queued',
+    }));
+}
+
+/**
  * The shell around every routed screen.
  *
  * The auth and flow screens deliberately render outside it: they have no workspace to show a
@@ -111,8 +134,10 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
   const account = useAccount();
   const navigate = useNavigate();
 
-  const [recentRuns] = createSignal<RecentRun[]>([]);
+  const runs = useSessions();
   const activeSlug = createMemo(() => slugForPath(props.pathname()));
+
+  const recentRuns = createMemo(() => toRecentRuns(runs.sessions() ?? []));
 
   const user = createMemo(() => {
     const current = account.user();
@@ -229,6 +254,7 @@ export function App(props: AppProps): JSX.Element {
   return (
     <ThemeProvider initial="system" storage={themeStorage}>
       <AccountProvider>
+        <SessionsProvider>
         {/*
           HashRouter, not the history router. The renderer loads from file:// in Electron,
           where a nested path like /sign-in/device is not a resolvable file - the history
@@ -243,6 +269,7 @@ export function App(props: AppProps): JSX.Element {
             </MemoryRouter>
           )}
         </Show>
+        </SessionsProvider>
       </AccountProvider>
     </ThemeProvider>
   );

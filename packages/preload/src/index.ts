@@ -77,6 +77,19 @@ import type {
   CortexDeviceStartResponse,
   CortexDeviceStatusEvent,
   CortexListModelsResponse,
+  ArchiveSessionRequest,
+  FollowUpSessionRequest,
+  GetSessionRequest,
+  GetSessionResponse,
+  ListRepositoriesResponse,
+  ListSessionsRequest,
+  ListSessionsResponse,
+  ResolveSessionPermissionRequest,
+  SessionIdRequest,
+  SessionProgressEvent,
+  SessionSummary,
+  StartSessionRequest,
+  StartSessionResponse,
 } from '@cortex-ide/shared';
 
 // MCP Types - Import from types/mcp.ts which are properly exported
@@ -206,6 +219,32 @@ export interface CortexAPI {
     signOut: () => Promise<IPCResponse<CortexAccountState>>;
     onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
     onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
+  };
+
+  /**
+   * Runs.
+   *
+   * Separate from `ai`, which carries a conversation. There is no "poll for the
+   * next event" method: a run advances in main at its own pace and the renderer
+   * learns of it through `onProgress`.
+   */
+  session: {
+    list: (request?: ListSessionsRequest) => Promise<IPCResponse<ListSessionsResponse>>;
+    get: (request: GetSessionRequest) => Promise<IPCResponse<GetSessionResponse>>;
+    start: (request: StartSessionRequest) => Promise<IPCResponse<StartSessionResponse>>;
+    followUp: (
+      request: FollowUpSessionRequest
+    ) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    stop: (request: SessionIdRequest) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    archive: (
+      request: ArchiveSessionRequest
+    ) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    remove: (request: SessionIdRequest) => Promise<IPCResponse<{ deleted: true }>>;
+    resolvePermission: (
+      request: ResolveSessionPermissionRequest
+    ) => Promise<IPCResponse<{ resolved: true }>>;
+    listRepositories: () => Promise<IPCResponse<ListRepositoriesResponse>>;
+    onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
   };
 
   // MCP
@@ -448,6 +487,20 @@ const cortexAPI: CortexAPI = {
     onAccountChanged: createEventListener<CortexAccountState>(
       IPC_CHANNELS.EVENT_CORTEX_ACCOUNT_CHANGED,
     ),
+  },
+
+  session: {
+    list: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST, request),
+    get: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_GET, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_START, request),
+    followUp: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_FOLLOW_UP, request),
+    stop: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_STOP, request),
+    archive: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_ARCHIVE, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_DELETE, request),
+    resolvePermission: (request) =>
+      ipcRenderer.invoke(IPC_CHANNELS.SESSION_RESOLVE_PERMISSION, request),
+    listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
+    onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
   },
 
   // MCP
