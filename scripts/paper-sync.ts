@@ -7,6 +7,7 @@
  *   manifest   write the screen manifest (artboard <-> route <-> viewport)
  *   spec       extract lossless geometry + computed styles per artboard
  *   jsx        archive Paper's JSX export for the UI-kit sections
+ *   icons      extract the icon set into packages/ui/src/icons
  *   baselines  capture reference screenshots for visual review
  *   all        tokens + manifest + baselines
  *
@@ -16,6 +17,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
+import { extractIcons, renderIconModule } from './paper/extract-icons.ts';
 import { extractArtboardSpec } from './paper/extract-spec.ts';
 import { generateTokens } from './paper/generate-tokens.ts';
 import { PaperClient, PaperError } from './paper/mcp-client.ts';
@@ -31,6 +33,7 @@ const TOKENS_DIR = join(REPO_ROOT, 'packages/tokens/src');
 const DESIGN_DIR = join(REPO_ROOT, 'design/paper');
 const SPEC_DIR = join(DESIGN_DIR, 'spec');
 const BASELINE_DIR = join(REPO_ROOT, 'tests/visual/paper-baselines');
+const ICONS_PATH = join(REPO_ROOT, 'packages/ui/src/icons/geometry.generated.ts');
 const MANIFEST_PATH = join(DESIGN_DIR, 'screens.json');
 
 const SCREENS_PAGE = 'Screens';
@@ -265,6 +268,25 @@ async function archiveJsx(client: PaperClient, only?: string[]): Promise<void> {
   log(`jsx: archived into ${outputDir}`);
 }
 
+async function syncIcons(client: PaperClient): Promise<void> {
+  const info = await openPage(client, SCREENS_PAGE);
+
+  // Light artboards only: the dark ones carry the same glyphs with different token
+  // bindings, and normalisation would collapse them onto the same keys anyway.
+  const artboards = info.artboards.filter((artboard) => {
+    const parsed = parseArtboardName(artboard.name);
+    return parsed?.theme === 'light';
+  });
+
+  const icons = await extractIcons(client, {
+    artboards,
+    onProgress: (name, found) => log(`  ${name}: ${found} svg nodes`),
+  });
+
+  await writeFileEnsuringDir(ICONS_PATH, renderIconModule(icons));
+  log(`icons: ${icons.length} distinct glyphs from ${artboards.length} artboards`);
+}
+
 function countNodes(node: { children: Array<{ children: unknown[] }> }): number {
   let total = 1;
   for (const child of node.children) {
@@ -300,6 +322,9 @@ async function main(): Promise<void> {
       break;
     case 'jsx':
       await archiveJsx(client, only);
+      break;
+    case 'icons':
+      await syncIcons(client);
       break;
     case 'all':
       await syncTokens(client);
