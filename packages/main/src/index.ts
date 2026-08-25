@@ -25,13 +25,21 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1400,
+    // 1440x900 is the viewport every Paper artboard is drawn at, so the window
+    // opens showing the layout as designed rather than a reflowed approximation.
+    width: 1440,
     height: 900,
     minWidth: 1000,
     minHeight: 600,
-    backgroundColor: '#0D0D0E',
+    // The design's light background. This colour is only visible for the frame or
+    // two before the renderer paints, which is exactly why it matters: #0D0D0E
+    // flashed near-black before a light UI. Light is the default theme, and a
+    // renderer that resolves to dark repaints within the same frame.
+    backgroundColor: '#FCFCFC',
     titleBarStyle: 'hiddenInset',
-    trafficLightPosition: { x: 30, y: 14 },
+    // Matches where the artboards draw the traffic lights, so the sidebar's
+    // reserved chrome row lines up with the real window buttons.
+    trafficLightPosition: { x: 16, y: 16 },
     webPreferences: {
       // Must match the preload build output. Vite emits CommonJS as `.cjs`
       // (see packages/preload/vite.config.ts + its package.json "main"), and a
@@ -48,12 +56,20 @@ function createWindow() {
     }
   });
 
-  // Load renderer
+  // Load the renderer.
+  //
+  // `packages/app` is the SolidJS renderer built against the Paper design.
+  // `packages/renderer` (React) is still in the tree but no longer loaded; it is
+  // removed once nothing references it.
+  //
+  // The renderer routes on the URL hash, which is what makes this work at all: a
+  // path like /sign-in/device is not a resolvable file, so a history router would
+  // 404 on every route but the root under file:// — on first load and on reload.
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(join(__dirname, '../../renderer/dist/index.html'));
+    mainWindow.loadFile(join(__dirname, '../../app/dist/index.html'));
   }
 
   mainWindow.on('closed', () => {
