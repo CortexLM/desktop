@@ -41,6 +41,8 @@ export interface SessionsContextValue {
   stop: (id: string) => Promise<void>;
   archive: (id: string, archived: boolean) => Promise<void>;
   remove: (id: string) => Promise<void>;
+  /** Opens the folder picker. Resolves `false` when the user cancels. */
+  openWorkspace: () => Promise<boolean>;
   refresh: () => void;
   host: SessionHost;
 }
@@ -138,7 +140,10 @@ export function SessionsProvider(props: SessionsProviderProps): JSX.Element {
     () => readList(host, setAvailable),
     { initialValue: [] },
   );
-  const [repositories] = createResource(() => readRepositories(host), { initialValue: [] });
+  const [repositories, { mutate: mutateRepositories }] = createResource(
+    () => readRepositories(host),
+    { initialValue: [] },
+  );
 
   const patch = (session: SessionSummary) => mutate((current = []) => merge(current, session));
 
@@ -165,6 +170,13 @@ export function SessionsProvider(props: SessionsProviderProps): JSX.Element {
         ...createActions(host, patch, (id) =>
           mutate((current = []) => current.filter((entry) => entry.id !== id)),
         ),
+        openWorkspace: async () => {
+          const result = await host.openWorkspace();
+          // Adopted from the response rather than refetched: main already computed
+          // the list while it had the new workspace in hand.
+          mutateRepositories(result.repositories);
+          return !result.cancelled;
+        },
         refresh: () => void refetch(),
         host,
       }}

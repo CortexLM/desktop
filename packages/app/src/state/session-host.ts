@@ -37,6 +37,13 @@ export interface SessionHost {
     decision: 'allow-once' | 'allow-always' | 'deny',
   ): Promise<void>;
   listRepositories(): Promise<RepositoryOption[]>;
+  /**
+   * Opens the native folder picker and adopts the choice as the active workspace.
+   *
+   * Returns the repositories that result, so the composer does not need a second
+   * round trip whose answer is already determined.
+   */
+  openWorkspace(): Promise<{ cancelled: boolean; repositories: RepositoryOption[] }>;
   onProgress(listener: (event: SessionProgressEvent) => void): () => void;
 }
 
@@ -61,6 +68,9 @@ interface SessionBridge {
     decision: string;
   }): Promise<IPCResponse<{ resolved: true }>>;
   listRepositories(): Promise<IPCResponse<{ repositories: RepositoryOption[] }>>;
+  openWorkspace(): Promise<
+    IPCResponse<{ cancelled: boolean; repositories: RepositoryOption[] }>
+  >;
   onProgress(callback: (event: SessionProgressEvent) => void): () => void;
 }
 
@@ -88,6 +98,7 @@ function electronSessionHost(api: SessionBridge): SessionHost {
       unwrap(await api.resolvePermission({ id, requestId, decision }));
     },
     listRepositories: async () => unwrap(await api.listRepositories()).repositories,
+    openWorkspace: async () => unwrap(await api.openWorkspace()),
     onProgress: (listener) => api.onProgress(listener),
   };
 }
@@ -114,6 +125,7 @@ export function detachedSessionHost(): SessionHost {
     remove: async () => {},
     resolvePermission: async () => {},
     listRepositories: async () => [],
+    openWorkspace: async () => ({ cancelled: true, repositories: [] }),
     onProgress: () => () => {},
   };
 }

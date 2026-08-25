@@ -126,6 +126,11 @@ export const IPC_CHANNELS = {
   SESSION_DELETE: 'session:delete',
   SESSION_RESOLVE_PERMISSION: 'session:resolve-permission',
   SESSION_LIST_REPOSITORIES: 'session:list-repositories',
+  // Ouvre le sélecteur de dossier natif et enregistre le résultat comme espace de
+  // travail actif. Deux étapes en un canal : le renderer n'a aucun usage d'un
+  // chemin disque, et lui en faire faire l'aller-retour ne servirait qu'à le lui
+  // faire traverser.
+  SESSION_OPEN_WORKSPACE: 'session:open-workspace',
 
   // Events (main -> renderer)
   EVENT_FILE_CHANGE: 'event:file-change',

@@ -31,10 +31,12 @@
  * qui est la seule autorité sur ce que le disque contient réellement.
  */
 
+import { dialog } from 'electron';
 import { EventEmitter } from 'node:events';
 import { basename } from 'node:path';
 
 import type {
+  RepositoryOption,
   SessionDetail,
   SessionDiffFile,
   SessionEvent,
@@ -47,7 +49,7 @@ import type {
 import { getDatabaseService } from './database-service';
 import { getAIService, type AIService } from './ai-service';
 import { gitService } from './git-service';
-import { getWorkspaceManager } from './workspace-manager';
+import { activeWorkspaceManager, activeWorkspacePath } from './active-workspace';
 
 /** Ce que le renderer peut demander sans qu'on lui donne un chemin disque. */
 interface RepoBinding {
@@ -241,7 +243,7 @@ export class SessionService extends EventEmitter {
   async listRepositories(): Promise<
     Array<{ id: string; name: string; branch?: string; branches: string[]; dirty: boolean }>
   > {
-    const binding = this.activeRepo();
+    const binding = await this.activeRepo();
     if (!binding) return [];
 
     try {
@@ -267,6 +269,31 @@ export class SessionService extends EventEmitter {
     }
   }
 
+  /**
+   * Opens the native folder picker and adopts the choice as the active workspace.
+   *
+   * Both steps in one call. The renderer has no use for a disk path — it addresses
+   * repositories by id — so handing it one just to hand it back would be sending
+   * the user's directory layout through the least-trusted process for nothing.
+   */
+  async openWorkspace(): Promise<{ cancelled: boolean; repositories: RepositoryOption[] }> {
+    const result = await dialog.showOpenDialog({
+      properties: ['openDirectory', 'createDirectory'],
+      title: 'Open a folder to run agents in',
+    });
+
+    const path = result.filePaths[0];
+    if (result.canceled || !path) {
+      return { cancelled: true, repositories: await this.listRepositories() };
+    }
+
+    const manager = await activeWorkspaceManager();
+    const workspace = await manager.addWorkspace(path);
+    await manager.switchWorkspace(workspace.id);
+
+    return { cancelled: false, repositories: await this.listRepositories() };
+  }
+
   // ==========================================================================
   // Writes
   // ==========================================================================
@@ -279,7 +306,7 @@ export class SessionService extends EventEmitter {
    * The turn then runs in the background and reports through `progress`.
    */
   async start(request: StartSessionRequest): Promise<SessionSummary> {
-    const binding = this.activeRepo();
+    const binding = await this.activeRepo();
     const now = Date.now();
 
     // The row is written *before* the provider is resolved, and that ordering is
@@ -676,18 +703,19 @@ export class SessionService extends EventEmitter {
   /**
    * The repository the active workspace points at.
    *
-   * Returns the path for main's own use and an id for the renderer. The path
-   * never crosses IPC: it is main's business, and sending it would leak the
-   * user's directory layout into the process that renders content.
+   * Returns the path for main's own use and an id for the renderer. The path never
+   * crosses IPC: it is main's business, and sending it would leak the user's
+   * directory layout into the process that renders content.
+   *
+   * Goes through `activeWorkspacePath` rather than the manager directly, because
+   * the manager has to be initialised before it will answer — an uninitialised one
+   * reports no active workspace even when a folder is registered, which is how the
+   * composer's repository picker came to be permanently empty.
    */
-  private activeRepo(): RepoBinding | undefined {
-    try {
-      const workspace = getWorkspaceManager(process.cwd()).getActiveWorkspace();
-      if (!workspace) return undefined;
-      return { id: workspace.name || basename(workspace.path), path: workspace.path };
-    } catch {
-      return undefined;
-    }
+  private async activeRepo(): Promise<RepoBinding | undefined> {
+    const path = await activeWorkspacePath();
+    if (!path) return undefined;
+    return { id: basename(path), path };
   }
 
   dispose(): void {
