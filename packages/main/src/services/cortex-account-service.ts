@@ -304,6 +304,52 @@ export class CortexAccountService {
     }
   }
 
+  /**
+   * Les clés d'API du compte.
+   *
+   * Authentifié : la route exige une session. Renvoie une liste vide plutôt que de
+   * lever quand on est déconnecté — l'écran gate déjà la section, et une exception
+   * ferait échouer son chargement pour un état qu'il sait afficher.
+   */
+  async listApiKeys(): Promise<Array<{ id: string; name: string; lastFour?: string }>> {
+    if (!this.user) return [];
+
+    try {
+      const keys = await this.client.listApiKeys();
+      return keys.map((key) => ({
+        id: key.id,
+        name: key.name ?? key.id,
+        ...(key.last_four ? { lastFour: key.last_four } : {}),
+      }));
+    } catch (error) {
+      console.error(
+        '[CortexAccount] Could not list API keys:',
+        error instanceof Error ? error.name : typeof error,
+      );
+      return [];
+    }
+  }
+
+  /**
+   * Crée une clé.
+   *
+   * `key` n'est présent que dans cette réponse : un service qui hache ses clés ne
+   * les montre qu'une fois. C'est au renderer de l'afficher immédiatement, et il
+   * n'aura pas de seconde chance.
+   */
+  async createApiKey(name: string): Promise<{ id: string; name: string; key?: string }> {
+    const created = await this.client.createApiKey(name);
+    return {
+      id: created.id,
+      name: created.name ?? name,
+      ...(created.key ? { key: created.key } : {}),
+    };
+  }
+
+  async revokeApiKey(id: string): Promise<void> {
+    await this.client.revokeApiKey(id);
+  }
+
   // ==========================================================================
   // Flux d'appareil (RFC 8628)
   // ==========================================================================

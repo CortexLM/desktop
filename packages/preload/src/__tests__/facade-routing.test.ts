@@ -169,6 +169,8 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['settings', 'setWorkspace', 'settings:set-workspace'],
   ['secrets', 'create', 'secrets:create'],
   ['secrets', 'remove', 'secrets:delete'],
+  ['cortex', 'createApiKey', 'cortex:create-api-key'],
+  ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
 ];
 
 /**
@@ -186,6 +188,7 @@ const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['settings', 'getWorkspace', 'settings:get-workspace'],
   ['secrets', 'list', 'secrets:list'],
   ['cortex', 'getState', 'cortex:get-state'],
+  ['cortex', 'listApiKeys', 'cortex:list-api-keys'],
   ['cortex', 'listModels', 'cortex:list-models'],
   ['cortex', 'deviceStart', 'cortex:device-start'],
   ['cortex', 'deviceCancel', 'cortex:device-cancel'],

@@ -110,6 +110,10 @@ export const IPC_CHANNELS = {
   // il n'y a rien à valider si rien n'est transmis.
   CORTEX_OPEN_VERIFICATION: 'cortex:open-verification',
   CORTEX_SIGN_OUT: 'cortex:sign-out',
+  // Clés d'API du compte. Authentifié : la route exige une session.
+  CORTEX_LIST_API_KEYS: 'cortex:list-api-keys',
+  CORTEX_CREATE_API_KEY: 'cortex:create-api-key',
+  CORTEX_REVOKE_API_KEY: 'cortex:revoke-api-key',
 
   // Sessions (« runs ») — cf. `types/ipc/session.ts`.
   //

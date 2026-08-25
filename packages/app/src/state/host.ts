@@ -35,6 +35,16 @@ export interface CortexHost {
    */
   openVerificationPage(): Promise<boolean>;
   signOut(): Promise<CortexAccountState>;
+  /** The account's API keys. Empty when signed out — the screen gates the section. */
+  listApiKeys(): Promise<Array<{ id: string; name: string; lastFour?: string }>>;
+  /**
+   * Creates a key.
+   *
+   * `key` comes back only here: a service that hashes its keys shows the value once.
+   * The caller has to display it immediately, because there is no second chance.
+   */
+  createApiKey(name: string): Promise<{ id: string; name: string; key?: string }>;
+  revokeApiKey(id: string): Promise<void>;
   onDeviceStatus(listener: (status: CortexDeviceStatus) => void): () => void;
   onAccountChanged(listener: (state: CortexAccountState) => void): () => void;
 }
@@ -47,6 +57,13 @@ interface CortexBridge {
   deviceCancel(): Promise<IPCResponse<{ cancelled: true }>>;
   openVerification(): Promise<IPCResponse<{ opened: boolean }>>;
   signOut(): Promise<IPCResponse<CortexAccountState>>;
+  listApiKeys(): Promise<
+    IPCResponse<{ keys: Array<{ id: string; name: string; lastFour?: string }> }>
+  >;
+  createApiKey(request: {
+    name: string;
+  }): Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
+  revokeApiKey(request: { id: string }): Promise<IPCResponse<{ revoked: true }>>;
   onDeviceStatus(callback: (event: { status: CortexDeviceStatus }) => void): () => void;
   onAccountChanged(callback: (state: CortexAccountState) => void): () => void;
 }
@@ -82,6 +99,11 @@ function electronHost(api: CortexBridge): CortexHost {
     },
     openVerificationPage: async () => unwrap(await api.openVerification()).opened,
     signOut: async () => unwrap(await api.signOut()),
+    listApiKeys: async () => unwrap(await api.listApiKeys()).keys,
+    createApiKey: async (name) => unwrap(await api.createApiKey({ name })).key,
+    revokeApiKey: async (id) => {
+      unwrap(await api.revokeApiKey({ id }));
+    },
     onDeviceStatus: (listener) => api.onDeviceStatus((event) => listener(event.status)),
     onAccountChanged: (listener) => api.onAccountChanged(listener),
   };
@@ -105,6 +127,9 @@ export function detachedHost(): CortexHost {
     cancelDeviceFlow: async () => {},
     openVerificationPage: async () => false,
     signOut: async () => ({ user: null, reachable: false, credentialsEncrypted: false }),
+    listApiKeys: async () => [],
+    createApiKey: () => Promise.reject(unavailable()),
+    revokeApiKey: () => Promise.reject(unavailable()),
     onDeviceStatus: () => () => {},
     onAccountChanged: () => () => {},
   };

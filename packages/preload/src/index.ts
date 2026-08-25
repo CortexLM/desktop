@@ -225,6 +225,13 @@ export interface CortexAPI {
     /** Opens the approval page. Takes no URL: main uses the flow it started. */
     openVerification: () => Promise<IPCResponse<{ opened: boolean }>>;
     signOut: () => Promise<IPCResponse<CortexAccountState>>;
+    listApiKeys: () => Promise<
+      IPCResponse<{ keys: Array<{ id: string; name: string; lastFour?: string }> }>
+    >;
+    createApiKey: (request: {
+      name: string;
+    }) => Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
+    revokeApiKey: (request: { id: string }) => Promise<IPCResponse<{ revoked: true }>>;
     onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
     onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
   };
@@ -524,6 +531,9 @@ const cortexAPI: CortexAPI = {
     deviceCancel: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_DEVICE_CANCEL),
     openVerification: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION),
     signOut: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_SIGN_OUT),
+    listApiKeys: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_API_KEYS),
+    createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
+    revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
     onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
       IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
     ),

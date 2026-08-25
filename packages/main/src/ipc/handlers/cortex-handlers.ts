@@ -38,6 +38,9 @@ export const CORTEX_CHANNELS = [
   IPC_CHANNELS.CORTEX_DEVICE_CANCEL,
   IPC_CHANNELS.CORTEX_OPEN_VERIFICATION,
   IPC_CHANNELS.CORTEX_SIGN_OUT,
+  IPC_CHANNELS.CORTEX_LIST_API_KEYS,
+  IPC_CHANNELS.CORTEX_CREATE_API_KEY,
+  IPC_CHANNELS.CORTEX_REVOKE_API_KEY,
 ] as const;
 
 /**
@@ -76,6 +79,26 @@ export const handleOpenVerification = createHandler<
   Record<string, never>,
   { opened: boolean }
 >(NoPayloadSchema, async () => getCortexAccountService().openVerificationPage());
+
+export const handleListApiKeys = createHandler<
+  Record<string, never>,
+  { keys: Array<{ id: string; name: string; lastFour?: string }> }
+>(NoPayloadSchema, async () => ({ keys: await getCortexAccountService().listApiKeys() }));
+
+export const handleCreateApiKey = createHandler<
+  { name: string },
+  { key: { id: string; name: string; key?: string } }
+>(z.object({ name: z.string().min(1).max(128) }), async (request) => ({
+  key: await getCortexAccountService().createApiKey(request.name),
+}));
+
+export const handleRevokeApiKey = createHandler<{ id: string }, { revoked: true }>(
+  z.object({ id: z.string().min(1) }),
+  async (request) => {
+    await getCortexAccountService().revokeApiKey(request.id);
+    return { revoked: true };
+  },
+);
 
 export const handleSignOut = createHandler<Record<string, never>, CortexAccountState>(
   NoPayloadSchema,
@@ -119,6 +142,9 @@ export function registerCortexHandlers(): void {
   ipcMain.handle(IPC_CHANNELS.CORTEX_DEVICE_CANCEL, handleDeviceCancel);
   ipcMain.handle(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION, handleOpenVerification);
   ipcMain.handle(IPC_CHANNELS.CORTEX_SIGN_OUT, handleSignOut);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_LIST_API_KEYS, handleListApiKeys);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_CREATE_API_KEY, handleCreateApiKey);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, handleRevokeApiKey);
 
   eventCleanup?.();
   eventCleanup = setupCortexEvents();

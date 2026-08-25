@@ -206,27 +206,111 @@ export function SettingsRoute(): JSX.Element {
   );
 }
 
+/**
+ * GitHub, as it actually stands.
+ *
+ * The description says what is true rather than dangling a Connect button that does
+ * nothing: connecting an account needs a registered OAuth app and a callback the
+ * desktop can receive, and `api.cortex.foundation` exposes neither — the device flow
+ * it does expose signs you into Cortex, not into GitHub. Opening a local repository
+ * is the path that works, and Home offers it.
+ */
+const GITHUB_INTEGRATION = [
+  {
+    id: 'github',
+    name: 'GitHub',
+    description: 'Not available yet — open a local repository from Home instead',
+    icon: 'github' as const,
+    connected: false,
+    requiresAccount: true,
+  },
+];
+
+/** `2026-08-25T…` -> `25 Aug 2026`, or a dash when the service sent nothing. */
+function formatCreated(raw: unknown): string {
+  if (typeof raw === 'number') return new Date(raw).toLocaleDateString();
+  if (typeof raw === 'string') {
+    const parsed = new Date(raw);
+    if (!Number.isNaN(parsed.getTime())) return parsed.toLocaleDateString();
+  }
+  return '\u2014';
+}
+
+function createApiKeyActions(
+  account: ReturnType<typeof useAccount>,
+  refetch: () => void,
+  setMessage: (message: string | undefined) => void,
+) {
+  const report = (error: unknown) =>
+    setMessage(error instanceof Error ? error.message : String(error));
+
+  return {
+    create: async (): Promise<void> => {
+      setMessage(undefined);
+      try {
+        const name = `Key ${new Date().toISOString().slice(0, 10)}`;
+        const created = await account.host.createApiKey(name);
+        // Shown once, right here. The service hashes its keys, so there is no second
+        // chance to read the value — surfacing it in the message slot is blunt, but
+        // it is the only slot the design gives this screen and losing the key is
+        // worse than showing it somewhere unexpected.
+        if (created.key) setMessage(`Copy this now, it is not shown again: ${created.key}`);
+        refetch();
+      } catch (error) {
+        report(error);
+      }
+    },
+
+    revoke: async (id: string): Promise<void> => {
+      setMessage(undefined);
+      try {
+        await account.host.revokeApiKey(id);
+        refetch();
+      } catch (error) {
+        report(error);
+      }
+    },
+  };
+}
+
 export function IntegrationsRoute(): JSX.Element {
   const account = useAccount();
+  const [message, setMessage] = createSignal<string>();
+
+  const [keys, { refetch }] = createResource(
+    () => account.capabilities().authenticated,
+    async (authenticated) => (authenticated ? account.host.listApiKeys() : []),
+    { initialValue: [] as Array<{ id: string; name: string; lastFour?: string }> },
+  );
+
+  const actions = createApiKeyActions(account, () => void refetch(), setMessage);
+
+  const apiKeys = createMemo(() =>
+    keys().map((key) => ({
+      id: key.id,
+      name: key.name,
+      // A dash rather than an invented suffix: the service returns the last four only
+      // on some responses, and fabricating them would make an unidentifiable key look
+      // identifiable.
+      suffix: key.lastFour ?? '\u2014',
+      created: formatCreated((key as { created_at?: unknown }).created_at),
+    })),
+  );
 
   return (
     <IntegrationsScreen
       capabilities={account.capabilities()}
-      integrations={[
-        {
-          id: 'github',
-          name: 'GitHub',
-          description: 'Read repositories and open pull requests',
-          icon: 'github',
-          connected: false,
-          requiresAccount: true,
-        },
-      ]}
-      onConnect={() => undefined}
+      integrations={GITHUB_INTEGRATION}
+      onConnect={() =>
+        setMessage(
+          'Connecting a GitHub account is not available yet. Open a local repository from Home.',
+        )
+      }
       onDisconnect={() => undefined}
-      apiKeys={[]}
-      onCreateKey={() => undefined}
-      onRevokeKey={() => undefined}
+      apiKeys={apiKeys()}
+      onCreateKey={() => void actions.create()}
+      onRevokeKey={(id) => void actions.revoke(id)}
+      {...(message() ? { error: message()! } : {})}
     />
   );
 }
