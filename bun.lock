@@ -60,6 +60,24 @@
         "vitest": "^4.1.10",
       },
     },
+    "packages/app": {
+      "name": "@cortex-ide/app",
+      "version": "0.1.0",
+      "dependencies": {
+        "@cortex-ide/cortex-api": "workspace:*",
+        "@cortex-ide/tokens": "workspace:*",
+        "@cortex-ide/ui": "workspace:*",
+        "@solidjs/router": "^0.15.3",
+        "solid-js": "^1.9.9",
+      },
+      "devDependencies": {
+        "@solidjs/testing-library": "^0.8.10",
+        "@testing-library/jest-dom": "^6.9.1",
+        "jsdom": "^28.1.0",
+        "vite": "^6.3.6",
+        "vite-plugin-solid": "^2.11.9",
+      },
+    },
     "packages/cortex-api": {
       "name": "@cortex-ide/cortex-api",
       "version": "0.1.0",
@@ -293,6 +311,8 @@
     "@bramus/specificity": ["@bramus/specificity@2.4.2", "", { "dependencies": { "css-tree": "^3.0.0" }, "bin": { "specificity": "bin/cli.js" } }, "sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw=="],
 
     "@cortex-ide/ai-engine": ["@cortex-ide/ai-engine@workspace:packages/ai-engine"],
+
+    "@cortex-ide/app": ["@cortex-ide/app@workspace:packages/app"],
 
     "@cortex-ide/cortex-api": ["@cortex-ide/cortex-api@workspace:packages/cortex-api"],
 
@@ -639,6 +659,8 @@
     "@solid-primitives/trigger": ["@solid-primitives/trigger@1.2.4", "", { "dependencies": { "@solid-primitives/utils": "^6.4.1" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-Ju0e+ZOD7hpOp7nptJimvDSZHWFvIvF9iBWMvuwt30smX7c5wmB8Kmc0AdDuv0wOTi06PQ1J5IrP1WJbH2yUBQ=="],
 
     "@solid-primitives/utils": ["@solid-primitives/utils@6.4.1", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-ISSB5QX1qP2ynrheIpYwc4oKR5Ny4siNuUyf1qZniy+Il+p/PtDB0QK1Dnle8noiHpwRD3gpPdubOC3qI/Zamg=="],
+
+    "@solidjs/router": ["@solidjs/router@0.15.4", "", { "peerDependencies": { "solid-js": "^1.8.6" } }, "sha512-WOpgg9a9T638cR+5FGbFi/IV4l2FpmBs1GpIMSPa0Ce9vyJN7Wts+X2PqMf9IYn0zUj2MlSJtm1gp7/HI/n5TQ=="],
 
     "@solidjs/testing-library": ["@solidjs/testing-library@0.8.10", "", { "dependencies": { "@testing-library/dom": "^10.4.0" }, "peerDependencies": { "@solidjs/router": ">=0.9.0", "solid-js": ">=1.0.0" }, "optionalPeers": ["@solidjs/router"] }, "sha512-qdeuIerwyq7oQTIrrKvV0aL9aFeuwTd86VYD3afdq5HYEwoox1OBTJy4y8A3TFZr8oAR0nujYgCzY/8wgHGfeQ=="],
 
