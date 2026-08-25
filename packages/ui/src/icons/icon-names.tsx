@@ -92,11 +92,17 @@ export const icons = {
   lock: { key: 'f6885b53', size: 11, strokeWidth: 1.2 },
   shield: { key: '101ff2d3', size: 13, strokeWidth: 1.2 },
 
-  // Identity providers on the auth screens
+  /*
+   * Identity providers.
+   *
+   * GitHub's mark is a single silhouette, so `currentColor` renders it correctly and it
+   * belongs here. Google's four-colour G does not: the extractor collapsed its fills into one
+   * shape, and nothing at the call site can recover them. Multi-colour brand marks are drawn
+   * by hand in the app instead - see packages/app/src/shell/provider-marks.tsx.
+   */
   github: { key: 'dffea0c6', size: 16 },
   githubSmall: { key: '734654f9', size: 12 },
   google: { key: '5673120d', size: 16 },
-  googleColour: { key: 'd022c5b8', size: 22 },
 
   // Automation card illustrations
   bolt: { key: '9fd7aa7c', size: 18, strokeWidth: 1.5 },

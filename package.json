@@ -46,6 +46,8 @@
     "paper:icons": "bun scripts/paper-sync.ts icons",
     "build:native-dual-abi": "tsx scripts/build-native-dual-abi.ts",
     "verify:native-abi": "tsx scripts/verify-native-abi.ts",
+    "//visual": "Renders every routed screen at its artboard's exact viewport and writes the captures beside the Paper references. Reporting rather than pass/fail: Paper only returns JPEG, so a strict comparison would fail on compression artefacts. Exact-value checking lives in packages/ui's fidelity suite.",
+    "test:visual": "xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' playwright test --config playwright.visual.config.ts",
     "screenshots:visual": "playwright test tests/visual/visual-regression.spec.ts",
     "screenshots:components": "playwright test tests/visual/component-isolation.spec.ts",
     "screenshots:storybook": "playwright test tests/visual/storybook-screenshots.spec.ts",

@@ -3,6 +3,7 @@ import { createSignal, type JSX, Show } from 'solid-js';
 import { Icon } from '@cortex-ide/ui';
 
 import { BrandMark } from '../../shell/brand-mark.tsx';
+import { GoogleMark } from '../../shell/provider-marks.tsx';
 
 import './auth.css';
 
@@ -50,7 +51,7 @@ function ProviderButtons(props: {
         disabled={props.busy}
         onClick={() => props.onGoogle()}
       >
-        <Icon name="googleColour" size={16} />
+        <GoogleMark size={16} />
         Continue with Google
       </button>
     </div>

@@ -1,10 +1,10 @@
 import { createMemo, createSignal, Show, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
+  HashRouter,
   MemoryRouter,
   Navigate,
   Route,
-  Router,
   useNavigate,
   type RouteSectionProps,
 } from '@solidjs/router';
@@ -225,10 +225,14 @@ export function App(props: AppProps): JSX.Element {
   return (
     <ThemeProvider initial="system" storage={themeStorage}>
       <AccountProvider>
-        <Show
-          when={props.initialPath}
-          fallback={<Router root={root}>{routes()}</Router>}
-        >
+        {/*
+          HashRouter, not the history router. The renderer loads from file:// in Electron,
+          where a nested path like /sign-in/device is not a resolvable file - the history
+          router would produce a hard 404 on every route but the root, on first load and on
+          reload alike. A hash keeps the whole route in the fragment, which never reaches the
+          filesystem. It also means the preview server needs no SPA fallback.
+        */}
+        <Show when={props.initialPath} fallback={<HashRouter root={root}>{routes()}</HashRouter>}>
           {(initialPath) => (
             <MemoryRouter root={root} history={seededHistory(initialPath())}>
               {routes()}
