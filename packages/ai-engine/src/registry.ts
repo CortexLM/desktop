@@ -1,9 +1,10 @@
-import { AIProvider, ProviderConfig } from './providers/base';
+import { AIProvider, ProviderConfig, ProviderModel } from './providers/base';
 import { OpenAIProvider } from './providers/openai-provider';
 import { AnthropicProvider } from './providers/anthropic-provider';
 import { OpenRouterProvider } from './providers/openrouter-provider';
 import { OllamaProvider } from './providers/ollama-provider';
 import { GrokProvider } from './providers/grok-provider';
+import { CustomProvider, CustomProviderConfig } from './providers/custom-provider';
 import { ModelPreset, getModelForPreset } from './model-presets';
 
 export interface RegistryConfig {
@@ -12,9 +13,136 @@ export interface RegistryConfig {
   openrouter?: ProviderConfig;
   ollama?: ProviderConfig;
   grok?: ProviderConfig;
+  /**
+   * Endpoints compatibles OpenAI configures par l'utilisateur.
+   *
+   * Une liste et non un objet unique : rien n'empeche d'utiliser en meme temps
+   * une passerelle d'entreprise et un modele local, et un champ unique
+   * obligerait a choisir. Chaque entree porte son propre `id`, sans quoi la
+   * seconde ecraserait la premiere dans la Map du registry.
+   */
+  custom?: CustomProviderConfig[];
   defaultProvider?: string;
   defaultPreset?: ModelPreset;
 }
+
+/** Un modèle avec le provider qui le sert. */
+export interface RegistryModel extends ProviderModel {
+  providerId: string;
+  providerName: string;
+}
+
+/** Clés de `RegistryConfig` portant un provider intégré. */
+type BuiltInKey = 'openai' | 'anthropic' | 'openrouter' | 'ollama' | 'grok';
+
+interface BuiltInProvider {
+  key: BuiltInKey;
+  /**
+   * Ollama tourne en local sans authentification, donc sa présence dans la
+   * configuration suffit ; les autres restent inutilisables sans clé et sont
+   * omis plutôt qu'enregistrés pour échouer au premier appel.
+   */
+  enabled: (config: ProviderConfig) => boolean;
+  create: (config: ProviderConfig) => AIProvider;
+  /** Ce provider est-il activé par l'environnement courant. */
+  envActivated: () => boolean;
+  /**
+   * Configuration lue depuis l'environnement.
+   *
+   * Portée par chaque entrée plutôt que par une boucle générique : Ollama se lit
+   * autrement que les autres (pas de clé, un hôte par défaut), et une boucle qui
+   * connaîtrait cette exception ferait vivre la particularité d'Ollama ailleurs
+   * qu'avec Ollama.
+   */
+  envConfig: () => ProviderConfig;
+}
+
+/** Lecture d'un provider à clé : la clé active, l'URL et le modèle sont optionnels. */
+function keyedEnvConfig(
+  keyVar: string,
+  baseUrlVar: string,
+  modelVar: string,
+  fallbackModel: string,
+): () => ProviderConfig {
+  return () => ({
+    apiKey: process.env[keyVar],
+    baseUrl: process.env[baseUrlVar],
+    defaultModel: process.env[modelVar] || fallbackModel,
+  });
+}
+
+/**
+ * Les providers intégrés, décrits plutôt qu'écrits.
+ *
+ * La liste apparaissait deux fois — une fois pour construire depuis la
+ * configuration, une fois pour lire l'environnement — et deux listes qui
+ * divergent font que l'application annonce une source de clé différente de celle
+ * réellement employée. Une seule table supprime ce risque et retire aussi la
+ * ramification qui faisait dépasser les deux méthodes.
+ */
+const BUILT_IN_PROVIDERS: readonly BuiltInProvider[] = [
+  {
+    key: 'openai',
+    enabled: (config) => Boolean(config.apiKey),
+    create: (config) => new OpenAIProvider(config),
+    envActivated: () => Boolean(process.env.OPENAI_API_KEY),
+    envConfig: keyedEnvConfig(
+      'OPENAI_API_KEY',
+      'OPENAI_BASE_URL',
+      'OPENAI_DEFAULT_MODEL',
+      'gpt-4.5-turbo',
+    ),
+  },
+  {
+    key: 'anthropic',
+    enabled: (config) => Boolean(config.apiKey),
+    create: (config) => new AnthropicProvider(config),
+    envActivated: () => Boolean(process.env.ANTHROPIC_API_KEY),
+    envConfig: keyedEnvConfig(
+      'ANTHROPIC_API_KEY',
+      'ANTHROPIC_BASE_URL',
+      'ANTHROPIC_DEFAULT_MODEL',
+      'claude-opus-4.8',
+    ),
+  },
+  {
+    key: 'openrouter',
+    enabled: (config) => Boolean(config.apiKey),
+    create: (config) => new OpenRouterProvider(config),
+    envActivated: () => Boolean(process.env.OPENROUTER_API_KEY),
+    envConfig: keyedEnvConfig(
+      'OPENROUTER_API_KEY',
+      'OPENROUTER_BASE_URL',
+      'OPENROUTER_DEFAULT_MODEL',
+      'anthropic/claude-opus-4.8-fast',
+    ),
+  },
+  {
+    key: 'ollama',
+    // Tourne en local sans authentification : sa présence dans la configuration
+    // suffit, là où les autres restent inutilisables sans clé.
+    enabled: () => true,
+    create: (config) => new OllamaProvider(config),
+    envActivated: () =>
+      process.env.OLLAMA_HOST !== undefined || process.env.OLLAMA_ENABLED === 'true',
+    envConfig: () => ({
+      baseUrl: process.env.OLLAMA_HOST || 'http://localhost:11434',
+      defaultModel: process.env.OLLAMA_DEFAULT_MODEL || 'llama3.1',
+    }),
+  },
+  {
+    key: 'grok',
+    enabled: (config) => Boolean(config.apiKey),
+    create: (config) => new GrokProvider(config),
+    envActivated: () => Boolean(process.env.GROK_API_KEY),
+    envConfig: keyedEnvConfig(
+      'GROK_API_KEY',
+      'GROK_BASE_URL',
+      'GROK_DEFAULT_MODEL',
+      'claude-opus-5:stable',
+    ),
+  },
+];
 
 export class AIProviderRegistry {
   private providers = new Map<string, AIProvider>();
@@ -55,34 +183,18 @@ export class AIProviderRegistry {
    * Initialise le registry depuis une configuration
    */
   private initializeFromConfig(config: RegistryConfig): void {
-    // OpenAI
-    if (config.openai?.apiKey) {
-      const provider = new OpenAIProvider(config.openai);
-      this.register(provider);
+    for (const entry of BUILT_IN_PROVIDERS) {
+      const settings = config[entry.key];
+      if (!settings || !entry.enabled(settings)) continue;
+      this.register(entry.create(settings));
     }
 
-    // Anthropic
-    if (config.anthropic?.apiKey) {
-      const provider = new AnthropicProvider(config.anthropic);
-      this.register(provider);
-    }
-
-    // OpenRouter
-    if (config.openrouter?.apiKey) {
-      const provider = new OpenRouterProvider(config.openrouter);
-      this.register(provider);
-    }
-
-    // Ollama (pas besoin d'API key)
-    if (config.ollama !== undefined) {
-      const provider = new OllamaProvider(config.ollama);
-      this.register(provider);
-    }
-
-    // Grok
-    if (config.grok?.apiKey) {
-      const provider = new GrokProvider(config.grok);
-      this.register(provider);
+    // Endpoints personnalisés. Enregistrés en dernier pour qu'un `id` réutilisant
+    // celui d'un provider connu soit un remplacement explicite et non un conflit
+    // dont l'issue dépendrait de l'ordre de lecture.
+    for (const custom of config.custom ?? []) {
+      if (!custom.baseUrl) continue;
+      this.register(new CustomProvider(custom));
     }
 
     // Définir le provider par défaut
@@ -117,54 +229,63 @@ export class AIProviderRegistry {
   static configFromEnv(): RegistryConfig {
     const config: RegistryConfig = {};
 
-    // OpenAI
-    if (process.env.OPENAI_API_KEY) {
-      config.openai = {
-        apiKey: process.env.OPENAI_API_KEY,
-        baseUrl: process.env.OPENAI_BASE_URL,
-        defaultModel: process.env.OPENAI_DEFAULT_MODEL || 'gpt-4.5-turbo',
-      };
+    for (const entry of BUILT_IN_PROVIDERS) {
+      if (!entry.envActivated()) continue;
+      config[entry.key] = entry.envConfig();
     }
 
-    // Anthropic
-    if (process.env.ANTHROPIC_API_KEY) {
-      config.anthropic = {
-        apiKey: process.env.ANTHROPIC_API_KEY,
-        baseUrl: process.env.ANTHROPIC_BASE_URL,
-        defaultModel: process.env.ANTHROPIC_DEFAULT_MODEL || 'claude-opus-4.8',
-      };
-    }
-
-    // OpenRouter
-    if (process.env.OPENROUTER_API_KEY) {
-      config.openrouter = {
-        apiKey: process.env.OPENROUTER_API_KEY,
-        baseUrl: process.env.OPENROUTER_BASE_URL,
-        defaultModel: process.env.OPENROUTER_DEFAULT_MODEL || 'anthropic/claude-opus-4.8-fast',
-      };
-    }
-
-    // Ollama (activé par défaut si OLLAMA_HOST est défini ou par défaut localhost)
-    if (process.env.OLLAMA_HOST !== undefined || process.env.OLLAMA_ENABLED === 'true') {
-      config.ollama = {
-        baseUrl: process.env.OLLAMA_HOST || 'http://localhost:11434',
-        defaultModel: process.env.OLLAMA_DEFAULT_MODEL || 'llama3.1',
-      };
-    }
-
-    // Grok
-    if (process.env.GROK_API_KEY) {
-      config.grok = {
-        apiKey: process.env.GROK_API_KEY,
-        baseUrl: process.env.GROK_BASE_URL,
-        defaultModel: process.env.GROK_DEFAULT_MODEL || 'claude-opus-5:stable',
-      };
+    // Endpoint personnalisé.
+    //
+    // Une seule entrée depuis l'environnement, là où les réglages en acceptent
+    // plusieurs : encoder une liste dans une variable demanderait un format à
+    // parser et à documenter, alors que le cas que l'environnement sert — un
+    // développeur ou un job CI qui pointe vers une passerelle — n'en a qu'une.
+    if (process.env.CUSTOM_PROVIDER_BASE_URL) {
+      config.custom = [
+        {
+          id: process.env.CUSTOM_PROVIDER_ID || 'custom',
+          label: process.env.CUSTOM_PROVIDER_LABEL || 'Custom provider',
+          baseUrl: process.env.CUSTOM_PROVIDER_BASE_URL,
+          apiKey: process.env.CUSTOM_PROVIDER_API_KEY,
+          defaultModel: process.env.CUSTOM_PROVIDER_DEFAULT_MODEL,
+        },
+      ];
     }
 
     // Provider par défaut
     config.defaultProvider = process.env.DEFAULT_AI_PROVIDER;
 
     return config;
+  }
+
+  /**
+   * Catalogue agrégé de tous les providers enregistrés.
+   *
+   * Chaque modèle porte l'`id` de son provider : deux providers peuvent exposer
+   * le même identifiant de modèle (une passerelle qui relaie OpenAI, par
+   * exemple), et sans cette attribution le sélecteur ne saurait pas par où
+   * router la requête.
+   *
+   * Les providers sont interrogés en parallèle et un échec n'en annule pas les
+   * autres : une passerelle hors ligne ne doit pas vider tout le sélecteur.
+   */
+  async listModels(): Promise<RegistryModel[]> {
+    const perProvider = await Promise.all(
+      this.getAllProviders().map(async (provider) => {
+        try {
+          const models = await provider.listModels();
+          return models.map((model) => ({
+            ...model,
+            providerId: provider.id,
+            providerName: provider.name,
+          }));
+        } catch {
+          return [];
+        }
+      }),
+    );
+
+    return perProvider.flat();
   }
 
   /**
