@@ -22,6 +22,13 @@ export {
 
 export { layout, layoutCssVariables, type Layout, type LayoutCssVariable } from './layout.ts';
 
+export {
+  semanticProvenance,
+  semanticTokens,
+  semanticValues,
+  type SemanticToken,
+} from './semantic.ts';
+
 /** Attribute the theme is switched with; also the selector the dark palette is scoped to. */
 export const THEME_ATTRIBUTE = 'data-theme';
 

@@ -6,6 +6,7 @@
  *   tokens     regenerate packages/tokens from the Paper design tokens
  *   manifest   write the screen manifest (artboard <-> route <-> viewport)
  *   spec       extract lossless geometry + computed styles per artboard
+ *   jsx        archive Paper's JSX export for the UI-kit sections
  *   baselines  capture reference screenshots for visual review
  *   all        tokens + manifest + baselines
  *
@@ -205,6 +206,65 @@ async function extractSpecs(client: PaperClient, only?: string[]): Promise<void>
   }
 }
 
+/**
+ * The UI-kit sections on the Components page, keyed by the file they are archived to.
+ *
+ * Paper's JSX export resolves every style to either a literal or a `var(--token)`
+ * reference, which makes it the authoritative source for a component's padding, type and
+ * fills. Archiving it means a component's CSS can be reviewed against the design without
+ * a live Paper connection, and a design change shows up as a diff in these files.
+ */
+const UI_KIT_SECTIONS: Record<string, string> = {
+  'button-primary': 'BC-0',
+  'button-secondary': 'BO-0',
+  'button-ghost': 'C0-0',
+  'button-destructive': 'CC-0',
+  'text-field': 'CQ-0',
+  composer: 'CW-0',
+  'nav-item': 'DY-0',
+  'session-card': 'EH-0',
+  badge: 'FM-0',
+  'tabs-toast-menu': 'G7-0',
+  'automation-card': 'PN-0',
+  'card-states': 'V0-0',
+};
+
+interface PaperJsxResponse {
+  jsx?: string;
+  code?: string;
+}
+
+async function archiveJsx(client: PaperClient, only?: string[]): Promise<void> {
+  await openPage(client, COMPONENTS_PAGE);
+  const outputDir = join(DESIGN_DIR, 'jsx');
+
+  for (const [name, nodeId] of Object.entries(UI_KIT_SECTIONS)) {
+    if (only && only.length > 0 && !only.includes(name)) continue;
+
+    const response = await client.callJson<PaperJsxResponse>('get_jsx', {
+      nodeId,
+      format: 'inline-styles',
+    });
+    const jsx = response.jsx ?? response.code;
+    if (!jsx) {
+      log(`  jsx ${name}: Paper returned no JSX for ${nodeId}`);
+      continue;
+    }
+
+    const header = [
+      '// Paper JSX export - reference only, not compiled.',
+      `// Section "${name}" (node ${nodeId}) of the Components page.`,
+      '// Regenerate with: bun run paper:jsx',
+      '',
+    ].join('\n');
+
+    await writeFileEnsuringDir(join(outputDir, `${name}.jsx`), `${header}${jsx}\n`);
+    log(`  jsx ${name}: ${jsx.length} chars`);
+  }
+
+  log(`jsx: archived into ${outputDir}`);
+}
+
 function countNodes(node: { children: Array<{ children: unknown[] }> }): number {
   let total = 1;
   for (const child of node.children) {
@@ -237,6 +297,9 @@ async function main(): Promise<void> {
       break;
     case 'spec':
       await extractSpecs(client, only);
+      break;
+    case 'jsx':
+      await archiveJsx(client, only);
       break;
     case 'all':
       await syncTokens(client);

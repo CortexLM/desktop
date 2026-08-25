@@ -8,7 +8,10 @@
   "//generated": "tokens.generated.ts and tokens.generated.css are produced by `bun run paper:tokens` from the Paper file that owns the design. Edit the Paper tokens, not these files.",
   "exports": {
     ".": "./src/index.ts",
-    "./css": "./src/tokens.generated.css",
+    "./theme.css": "./src/theme.css",
+    "./tokens.css": "./src/tokens.generated.css",
+    "./semantic.css": "./src/semantic.css",
+    "./layout.css": "./src/layout.css",
     "./layout": "./src/layout.ts"
   },
   "sideEffects": [
