@@ -58,65 +58,75 @@ const DEFAULT_PERMISSIONS: WorkspaceRunPermissions = {
 const PULL_REQUEST_MODES = new Set(['draft', 'ready', 'never']);
 const NETWORK_MODES = new Set(['allowlist', 'all', 'none']);
 
-function pickString(raw: unknown, fallback: string): string {
+function asRecord(raw: unknown): Record<string, unknown> {
+  return typeof raw === 'object' && raw !== null ? (raw as Record<string, unknown>) : {};
+}
+
+function asString(raw: unknown, fallback: string): string {
   return typeof raw === 'string' ? raw : fallback;
 }
 
-function pickBoolean(raw: unknown, fallback: boolean): boolean {
+function asBoolean(raw: unknown, fallback: boolean): boolean {
   return typeof raw === 'boolean' ? raw : fallback;
+}
+
+/**
+ * Ramène une valeur à l'un des variants attendus.
+ *
+ * Générique plutôt que deux gardes écrites à la main : c'est là que se joue le
+ * risque — une valeur hors domaine relue depuis le disque — et une seule
+ * implémentation est une seule chose à relire.
+ */
+function asEnum<T extends string>(raw: unknown, allowed: ReadonlySet<string>, fallback: T): T {
+  return typeof raw === 'string' && allowed.has(raw) ? (raw as T) : fallback;
 }
 
 /**
  * Ramène un blob disque quelconque à la forme attendue.
  *
- * Champ par champ, avec un défaut pour chacun : un fichier écrit par une version
- * antérieure, tronqué, ou édité à la main ne doit pas produire un objet dont
- * `permissions` est `undefined` — la lecture suivante planterait sur
- * `permissions.runShellCommands`, et un contrôle d'autorisation qui plante est
- * pire qu'un contrôle absent.
+ * Étalé sur les défauts puis recoercé champ par champ. Le spread seul ne suffit
+ * pas : il accepterait un `runShellCommands: "yes"` venu d'un fichier édité à la
+ * main, et un contrôle d'autorisation dont la valeur est une chaîne serait vrai
+ * par accident. Un fichier tronqué ou écrit par une version antérieure ne doit pas
+ * non plus produire un objet dont `permissions` est `undefined` — la lecture
+ * suivante planterait sur `permissions.runShellCommands`, et un contrôle qui
+ * plante est pire qu'un contrôle absent.
  */
 function normalise(raw: unknown): WorkspaceRunSettings {
-  const source = (typeof raw === 'object' && raw !== null ? raw : {}) as Record<string, unknown>;
-  const defaults = (
-    typeof source.defaults === 'object' && source.defaults !== null ? source.defaults : {}
-  ) as Record<string, unknown>;
-  const permissions = (
-    typeof source.permissions === 'object' && source.permissions !== null
-      ? source.permissions
-      : {}
-  ) as Record<string, unknown>;
-
-  const mode = defaults.createPullRequests;
-  const network = permissions.networkAccess;
+  const source = asRecord(raw);
+  const defaults = { ...DEFAULT_DEFAULTS, ...asRecord(source.defaults) };
+  const permissions = { ...DEFAULT_PERMISSIONS, ...asRecord(source.permissions) };
 
   return {
     defaults: {
-      model: pickString(defaults.model, DEFAULT_DEFAULTS.model),
-      repository: pickString(defaults.repository, DEFAULT_DEFAULTS.repository),
-      baseBranch: pickString(defaults.baseBranch, DEFAULT_DEFAULTS.baseBranch),
-      branchPrefix: pickString(defaults.branchPrefix, DEFAULT_DEFAULTS.branchPrefix),
-      createPullRequests:
-        typeof mode === 'string' && PULL_REQUEST_MODES.has(mode)
-          ? (mode as WorkspaceRunDefaults['createPullRequests'])
-          : DEFAULT_DEFAULTS.createPullRequests,
+      model: asString(defaults.model, DEFAULT_DEFAULTS.model),
+      repository: asString(defaults.repository, DEFAULT_DEFAULTS.repository),
+      baseBranch: asString(defaults.baseBranch, DEFAULT_DEFAULTS.baseBranch),
+      branchPrefix: asString(defaults.branchPrefix, DEFAULT_DEFAULTS.branchPrefix),
+      createPullRequests: asEnum(
+        defaults.createPullRequests,
+        PULL_REQUEST_MODES,
+        DEFAULT_DEFAULTS.createPullRequests
+      ),
     },
     permissions: {
-      runShellCommands: pickBoolean(
+      runShellCommands: asBoolean(
         permissions.runShellCommands,
-        DEFAULT_PERMISSIONS.runShellCommands,
+        DEFAULT_PERMISSIONS.runShellCommands
       ),
-      applyDatabaseMigrations: pickBoolean(
+      applyDatabaseMigrations: asBoolean(
         permissions.applyDatabaseMigrations,
-        DEFAULT_PERMISSIONS.applyDatabaseMigrations,
+        DEFAULT_PERMISSIONS.applyDatabaseMigrations
       ),
-      slackNotifications: pickBoolean(
+      slackNotifications: asBoolean(
         permissions.slackNotifications,
-        DEFAULT_PERMISSIONS.slackNotifications,
+        DEFAULT_PERMISSIONS.slackNotifications
       ),
-      networkAccess:
-        typeof network === 'string' && NETWORK_MODES.has(network)
-          ? (network as WorkspaceRunPermissions['networkAccess'])
-          : DEFAULT_PERMISSIONS.networkAccess,
+      networkAccess: asEnum(
+        permissions.networkAccess,
+        NETWORK_MODES,
+        DEFAULT_PERMISSIONS.networkAccess
+      ),
     },
   };
 }

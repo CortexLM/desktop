@@ -9,7 +9,6 @@ import {
   type FlowStep,
 } from './screens/onboarding/flow-screens.tsx';
 import { ReviewScreen } from './screens/review/review-screen.tsx';
-import { SecretsScreen } from './screens/secrets/secrets-screen.tsx';
 import { UsageScreen } from './screens/usage/usage-screen.tsx';
 import { SignInScreen } from './screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from './screens/auth/device-code-screen.tsx';
@@ -29,19 +28,6 @@ const ONBOARDING_STEPS: readonly FlowStep[] = [
   { id: 'github', label: 'GitHub', done: false },
   { id: 'workspace', label: 'Workspace', done: false },
 ];
-
-export function SecretsRoute(): JSX.Element {
-  const account = useAccount();
-
-  return (
-    <SecretsScreen
-      capabilities={account.capabilities()}
-      secrets={[]}
-      onCreate={() => undefined}
-      onDelete={() => undefined}
-    />
-  );
-}
 
 export function UsageRoute(): JSX.Element {
   const account = useAccount();
@@ -147,3 +133,4 @@ export function SshConnectRoute(): JSX.Element {
 export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-routes.tsx';
 export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';
 export { AutomationsRoute, NewAutomationRoute } from './routes/automation-routes.tsx';
+export { SecretsRoute } from './routes/secrets-routes.tsx';

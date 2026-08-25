@@ -158,6 +158,9 @@ const EXPECTED_NAMESPACES = [
   // Provider credentials and run settings. The one namespace that carries a secret
   // across the boundary, and only in the renderer -> main direction.
   'cortex.settings',
+  // Secrets. No method here reads a value back — the one that returns values is
+  // main-only, called by the agent loop.
+  'cortex.secrets',
   'ipc',
   'electron',
 ];
