@@ -26,6 +26,7 @@ import {
   type WorkbenchTab,
 } from '../screens/session/session-detail-screen.tsx';
 import { createSessionDetail } from '../screens/session/session-detail-state.ts';
+import { ShellView } from '../screens/session/shell-view.tsx';
 
 /**
  * Starts a run from the current draft.
@@ -296,6 +297,18 @@ export function SessionDetailRoute(): JSX.Element {
 
   const detail = createSessionDetail(() => params.sessionId, runs);
 
+  /**
+   * The Shell tab's contents.
+   *
+   * Mounted only while its tab is showing: an xterm instance per visited session,
+   * all live at once, is a lot of canvas for panes nobody is looking at. Main keeps
+   * the PTY alive across the unmount, so reopening the tab reattaches to the same
+   * shell rather than spawning a second one.
+   */
+  const shell = createMemo(() =>
+    tab() === 'shell' ? <ShellView sessionId={params.sessionId} /> : undefined,
+  );
+
   const send = async () => {
     const text = followUp().trim();
     if (!text) return;
@@ -313,6 +326,7 @@ export function SessionDetailRoute(): JSX.Element {
       onSendFollowUp={() => void send()}
       onBack={() => navigate('/sessions')}
       onStop={() => void runs.stop(params.sessionId)}
+      shell={shell()}
     />
   );
 }
