@@ -1,11 +1,10 @@
 import { createSignal, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
-import type { RuntimeKind } from '@cortex-ide/cortex-api';
-
 import { useAccount } from './state/session-context.tsx';
+import { composerDraft, setComposerDraft } from './state/composer-draft.ts';
 import { AutomationsScreen } from './screens/automations/automations-screen.tsx';
-import { HomeScreen, type SessionDraft } from './screens/home/home-screen.tsx';
+import { HomeScreen } from './screens/home/home-screen.tsx';
 import {
   ConnectGitHubScreen,
   SshConnectScreen,
@@ -46,18 +45,24 @@ export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
 
-  // Defaults to whatever the capabilities allow rather than to Cloud: signed out, a draft
-  // pointing at a runtime the user cannot reach would fail on send.
-  const [draft, setDraft] = createSignal<SessionDraft>({
-    prompt: '',
-    runtime: account.capabilities().runtimes[0] ?? ('local' as RuntimeKind),
+  // The draft lives in `state/composer-draft.ts`, not here: a signal owned by this route is
+  // disposed the moment you navigate away, which silently emptied the composer on the way
+  // back. See that module for why it is not persisted to disk either.
+  //
+  // The runtime is still corrected against capabilities on mount rather than defaulting to
+  // Cloud: signed out, a draft pointing at a runtime the user cannot reach would fail on send.
+  onMount(() => {
+    const allowed = account.capabilities().runtimes;
+    if (!allowed.includes(composerDraft().runtime)) {
+      setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'local' }));
+    }
   });
 
   return (
     <HomeScreen
       capabilities={account.capabilities()}
-      draft={draft()}
-      onDraftChange={setDraft}
+      draft={composerDraft()}
+      onDraftChange={setComposerDraft}
       onStart={() => navigate('/sessions')}
       recentSessions={[]}
       onOpenSession={(id) => navigate(`/sessions/${id}`)}
