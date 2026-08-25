@@ -14,6 +14,7 @@ import { ThemeProvider } from '@cortex-ide/ui';
 import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
+import { OverlayHost } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, routeBySlug } from './routes.ts';
 import { formatAge } from './state/session-view.ts';
@@ -140,6 +141,12 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
 
   const recentRuns = createMemo(() => toRecentRuns(runs.sessions() ?? []));
 
+  // The sidebar's unread dot. Driven by runs that finished and have not been opened,
+  // which is the only thing the app currently has to draw attention to.
+  const unread = createMemo(() => ({
+    sessions: runs.awaitingReview().length > 0,
+  }));
+
   const user = createMemo(() => {
     const current = account.user();
     if (!current) return undefined;
@@ -174,10 +181,14 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
           }}
           onOpenRun={(id) => navigate(`/sessions/${id}`)}
           onSignIn={() => navigate('/sign-in')}
+          unread={unread()}
         />
       }
     >
       {props.children}
+      {/* Inside the shell so the overlays can navigate, and above the routes so a
+          palette does not unmount on the navigation it just performed. */}
+      <OverlayHost />
     </AppShell>
   );
 }
