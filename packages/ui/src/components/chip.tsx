@@ -1,4 +1,5 @@
 import { type JSX, Show, splitProps } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
 
 import { Icon, type IconName } from '../icons/icon.tsx';
 import type { IconKey } from '../icons/geometry.generated.ts';
@@ -20,6 +21,71 @@ export interface ChipProps extends JSX.HTMLAttributes<HTMLElement> {
   /** Adds a dismiss control, as on the composer's attachment chips. */
   onDismiss?: (event: MouseEvent) => void;
   dismissLabel?: string;
+}
+
+interface DismissButtonProps {
+  label: string;
+  onDismiss: (event: MouseEvent) => void;
+}
+
+function DismissButton(props: DismissButtonProps): JSX.Element {
+  return (
+    <button
+      type="button"
+      class="cx-chip__dismiss"
+      aria-label={props.label}
+      onClick={(event) => {
+        // Both targets overlap, so without this, removing an attachment would also trigger
+        // the chip it sits inside.
+        event.stopPropagation();
+        props.onDismiss(event);
+      }}
+    >
+      <Icon name="closeSmall" size={9} />
+    </button>
+  );
+}
+
+interface ChipContentProps {
+  icon?: IconName | IconKey;
+  picker?: boolean;
+  onDismiss?: (event: MouseEvent) => void;
+  dismissLabel?: string;
+  children?: JSX.Element;
+}
+
+function ChipContent(props: ChipContentProps): JSX.Element {
+  return (
+    <>
+      <Show when={props.icon}>{(name) => <Icon name={name()} />}</Show>
+      {props.children}
+      <Show when={props.picker}>
+        <Icon name="chevronDownSmall" size={9} />
+      </Show>
+      <Show when={props.onDismiss}>
+        {(dismiss) => (
+          <DismissButton label={props.dismissLabel ?? 'Remove'} onDismiss={dismiss()} />
+        )}
+      </Show>
+    </>
+  );
+}
+
+function chipClasses(options: {
+  variant?: ChipVariant;
+  mono?: boolean;
+  interactive: boolean;
+  extra?: string;
+}): string {
+  return [
+    'cx-chip',
+    `cx-chip--${options.variant ?? 'control'}`,
+    options.mono ? 'cx-chip--mono' : '',
+    options.interactive ? 'cx-chip--interactive' : '',
+    options.extra ?? '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 }
 
 /**
@@ -44,62 +110,34 @@ export function Chip(props: ChipProps): JSX.Element {
   ]);
 
   const classes = () =>
-    [
-      'cx-chip',
-      `cx-chip--${local.variant ?? 'control'}`,
-      local.mono ? 'cx-chip--mono' : '',
-      local.onPress ? 'cx-chip--interactive' : '',
-      local.class ?? '',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    chipClasses({
+      variant: local.variant,
+      mono: local.mono,
+      interactive: Boolean(local.onPress),
+      extra: local.class,
+    });
 
-  const content = () => (
-    <>
-      <Show when={local.icon}>{(name) => <Icon name={name()} />}</Show>
-      {local.children}
-      <Show when={local.picker}>
-        <Icon name="chevronDownSmall" size={9} />
-      </Show>
-      <Show when={local.onDismiss}>
-        {(dismiss) => (
-          <button
-            type="button"
-            class="cx-chip__dismiss"
-            aria-label={local.dismissLabel ?? 'Remove'}
-            onClick={(event) => {
-              // A dismiss inside an interactive chip must not also trigger the chip.
-              event.stopPropagation();
-              dismiss()(event);
-            }}
-          >
-            <Icon name="closeSmall" size={9} />
-          </button>
-        )}
-      </Show>
-    </>
-  );
+  // Dynamic rather than a Show with a fallback: the two branches differ only in the tag and
+  // three attributes, and writing them out twice meant the children were declared twice too.
+  const interactive = () => Boolean(local.onPress);
 
   return (
-    <Show
-      when={local.onPress}
-      fallback={
-        <span class={classes()} {...(rest as JSX.HTMLAttributes<HTMLSpanElement>)}>
-          {content()}
-        </span>
-      }
+    <Dynamic
+      component={interactive() ? 'button' : 'span'}
+      class={classes()}
+      type={interactive() ? 'button' : undefined}
+      disabled={interactive() ? local.disabled : undefined}
+      onClick={local.onPress}
+      {...rest}
     >
-      {(press) => (
-        <button
-          type="button"
-          class={classes()}
-          disabled={local.disabled}
-          onClick={press()}
-          {...(rest as JSX.ButtonHTMLAttributes<HTMLButtonElement>)}
-        >
-          {content()}
-        </button>
-      )}
-    </Show>
+      <ChipContent
+        icon={local.icon}
+        picker={local.picker}
+        onDismiss={local.onDismiss}
+        dismissLabel={local.dismissLabel}
+      >
+        {local.children}
+      </ChipContent>
+    </Dynamic>
   );
 }

@@ -130,31 +130,14 @@ export class CortexApiClient {
   }
 
   /**
-   * Turns a non-2xx response into the right error class.
+   * Turns a parsed error body into the right error class.
    *
    * The two shapes are not interchangeable: a device endpoint returning
    * `{error: "authorization_pending"}` with HTTP 400 is the expected state during a device
    * flow, whereas `{code: "AUTH_REQUIRED"}` is a genuine failure. Discriminating on the
    * body rather than the status is what lets the poll loop tell them apart.
    */
-  private async toError(response: Response, route: string): Promise<Error> {
-    const context: CortexErrorContext = {
-      status: response.status,
-      requestId: response.headers.get(REQUEST_ID_HEADER) ?? undefined,
-      route,
-    };
-
-    let payload: unknown;
-    try {
-      payload = await response.json();
-    } catch {
-      return new CortexApiError(
-        'UNPARSEABLE_ERROR',
-        `${response.status} ${response.statusText || 'error'} with a non-JSON body`,
-        context,
-      );
-    }
-
+  private static classifyError(payload: unknown, context: CortexErrorContext): Error {
     const oauth = oauthErrorSchema.safeParse(payload);
     if (oauth.success && isDeviceFlowErrorCode(oauth.data.error)) {
       return new CortexDeviceFlowError(
@@ -177,36 +160,54 @@ export class CortexApiClient {
       // prefer `code`, so callers can branch on a stable string rather than prose.
       const hybrid = payload as { code?: unknown };
       const code = typeof hybrid.code === 'string' ? hybrid.code : oauth.data.error;
-      const message = oauth.data.error_description ?? oauth.data.error;
-      return new CortexApiError(code, message, context);
+      return new CortexApiError(code, oauth.data.error_description ?? oauth.data.error, context);
     }
 
     return new CortexApiError(
       'UNKNOWN_ERROR',
-      `${response.status} ${response.statusText || 'error'}`,
+      `${context.status} unrecognised error body`,
       context,
     );
   }
 
-  /** Issues a request and validates the response against a schema. */
-  async request<T>(
-    path: string,
-    schema: z.ZodType<T>,
-    options: RequestOptions = {},
-  ): Promise<T> {
-    const method = options.method ?? 'GET';
-    const route = `${method} ${path}`;
+  private errorContext(response: Response, route: string): CortexErrorContext {
+    return {
+      status: response.status,
+      requestId: response.headers.get(REQUEST_ID_HEADER) ?? undefined,
+      route,
+    };
+  }
+
+  /** Reads and classifies a non-2xx response. */
+  private async toError(response: Response, route: string): Promise<Error> {
+    const context = this.errorContext(response, route);
+
+    try {
+      return CortexApiClient.classifyError(await response.json(), context);
+    } catch {
+      return new CortexApiError(
+        'UNPARSEABLE_ERROR',
+        `${response.status} ${response.statusText || 'error'} with a non-JSON body`,
+        context,
+      );
+    }
+  }
+
+  /**
+   * Performs the fetch, translating transport failures into API errors.
+   *
+   * A caller-supplied signal has to compose with the timeout rather than replace it, which
+   * is why both feed one controller.
+   */
+  private async send(path: string, route: string, options: RequestOptions): Promise<Response> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
-
-    // A caller-supplied signal has to compose with the timeout, not replace it.
     const onAbort = () => controller.abort();
     options.signal?.addEventListener('abort', onAbort, { once: true });
 
-    let response: Response;
     try {
-      response = await this.fetchImpl(`${this.baseUrl}${path}`, {
-        method,
+      return await this.fetchImpl(`${this.baseUrl}${path}`, {
+        method: options.method ?? 'GET',
         headers: this.buildHeaders(options),
         body: options.body === undefined ? undefined : JSON.stringify(options.body),
         signal: controller.signal,
@@ -226,10 +227,11 @@ export class CortexApiClient {
       clearTimeout(timer);
       options.signal?.removeEventListener('abort', onAbort);
     }
+  }
 
-    if (!response.ok) throw await this.toError(response, route);
-
-    const requestId = response.headers.get(REQUEST_ID_HEADER) ?? undefined;
+  /** Reads a 2xx body and validates it against a schema. */
+  private async parse<T>(response: Response, schema: z.ZodType<T>, route: string): Promise<T> {
+    const context = this.errorContext(response, route);
 
     let payload: unknown;
     try {
@@ -238,24 +240,31 @@ export class CortexApiClient {
       throw new CortexApiError(
         'UNPARSEABLE_RESPONSE',
         `${route} returned a body that is not JSON: ${String(error)}`,
-        { status: response.status, requestId, route },
+        context,
       );
     }
 
     const parsed = schema.safeParse(payload);
-    if (!parsed.success) {
-      // A schema mismatch means the contract moved. Surfacing the request id makes the
-      // offending call findable in the service's logs.
-      throw new CortexApiError(
-        'SCHEMA_MISMATCH',
-        `${route} returned a payload this client does not understand: ${parsed.error.issues
-          .map((issue) => `${issue.path.join('.') || '<root>'} ${issue.message}`)
-          .join('; ')}`,
-        { status: response.status, requestId, route },
-      );
-    }
+    if (parsed.success) return parsed.data;
 
-    return parsed.data;
+    // A schema mismatch means the contract moved. Surfacing the request id makes the
+    // offending call findable in the service's logs.
+    throw new CortexApiError(
+      'SCHEMA_MISMATCH',
+      `${route} returned a payload this client does not understand: ${parsed.error.issues
+        .map((issue) => `${issue.path.join('.') || '<root>'} ${issue.message}`)
+        .join('; ')}`,
+      context,
+    );
+  }
+
+  /** Issues a request and validates the response against a schema. */
+  async request<T>(path: string, schema: z.ZodType<T>, options: RequestOptions = {}): Promise<T> {
+    const route = `${options.method ?? 'GET'} ${path}`;
+    const response = await this.send(path, route, options);
+
+    if (!response.ok) throw await this.toError(response, route);
+    return this.parse(response, schema, route);
   }
 
   /* ---------------------------------------------------------------------- */
@@ -377,46 +386,61 @@ export class CortexApiClient {
 
     if (!response.ok) throw await this.toError(response, route);
     if (!response.body) {
-      throw new CortexApiError('NO_STREAM_BODY', `${route} returned no readable body`, {
-        status: response.status,
-        requestId: response.headers.get(REQUEST_ID_HEADER) ?? undefined,
-        route,
-      });
+      throw new CortexApiError(
+        'NO_STREAM_BODY',
+        `${route} returned no readable body`,
+        this.errorContext(response, route),
+      );
     }
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = '';
+    yield* readEventStream(response.body);
+  }
+}
+
+/**
+ * Yields the parsed payload of each `data:` line in a server-sent event stream.
+ *
+ * A real socket does not respect frame boundaries, so a partial frame has to survive in the
+ * buffer until the rest of it arrives.
+ */
+async function* readEventStream(
+  body: ReadableStream<Uint8Array>,
+): AsyncGenerator<unknown, void, undefined> {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+
+      let boundary = buffer.indexOf('\n\n');
+      while (boundary !== -1) {
+        const frame = buffer.slice(0, boundary);
+        buffer = buffer.slice(boundary + 2);
+        boundary = buffer.indexOf('\n\n');
+        yield* parseEventFrame(frame);
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+}
+
+function* parseEventFrame(frame: string): Generator<unknown, void, undefined> {
+  for (const line of frame.split('\n')) {
+    if (!line.startsWith('data:')) continue;
+
+    const data = line.slice(5).trim();
+    if (data === '' || data === '[DONE]') continue;
 
     try {
-      for (;;) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-
-        // Frames are separated by a blank line; a partial frame stays in the buffer until
-        // the rest of it arrives.
-        let boundary = buffer.indexOf('\n\n');
-        while (boundary !== -1) {
-          const frame = buffer.slice(0, boundary);
-          buffer = buffer.slice(boundary + 2);
-          boundary = buffer.indexOf('\n\n');
-
-          for (const line of frame.split('\n')) {
-            if (!line.startsWith('data:')) continue;
-            const data = line.slice(5).trim();
-            if (data === '' || data === '[DONE]') continue;
-            try {
-              yield JSON.parse(data);
-            } catch {
-              // A malformed frame is not worth aborting a live stream for; the caller sees
-              // the frames that did parse.
-            }
-          }
-        }
-      }
-    } finally {
-      reader.releaseLock();
+      yield JSON.parse(data);
+    } catch {
+      // A malformed frame is not worth aborting a live stream for; the caller still sees
+      // the frames that did parse.
     }
   }
 }

@@ -22,6 +22,23 @@ export interface TextFieldProps
   containerClass?: string;
 }
 
+interface FieldDescriptionProps {
+  id: string;
+  text: string;
+  isError: boolean;
+}
+
+function FieldDescription(props: FieldDescriptionProps): JSX.Element {
+  return (
+    <p
+      id={props.id}
+      class={props.isError ? 'cx-field__hint cx-field__hint--error' : 'cx-field__hint'}
+    >
+      {props.text}
+    </p>
+  );
+}
+
 /**
  * A labelled text input.
  *
@@ -42,6 +59,8 @@ export function TextField(props: TextFieldProps): JSX.Element {
 
   const id = createUniqueId();
   const describedBy = `${id}-description`;
+  // The error replaces the hint rather than stacking under it: two lines of supporting copy
+  // would push the field taller than the design draws it.
   const description = () => local.error ?? local.hint;
 
   const controlClasses = () =>
@@ -75,12 +94,7 @@ export function TextField(props: TextFieldProps): JSX.Element {
 
       <Show when={description()}>
         {(text) => (
-          <p
-            id={describedBy}
-            class={local.error ? 'cx-field__hint cx-field__hint--error' : 'cx-field__hint'}
-          >
-            {text()}
-          </p>
+          <FieldDescription id={describedBy} text={text()} isError={Boolean(local.error)} />
         )}
       </Show>
     </div>

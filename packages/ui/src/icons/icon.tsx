@@ -55,8 +55,9 @@ export function Icon(props: IconProps): JSX.Element {
       role={local.label ? 'img' : undefined}
       aria-label={local.label}
       aria-hidden={local.label ? undefined : true}
-      // eslint-disable-next-line solid/no-innerhtml -- geometry is generated from the
-      // design file at build time and contains no interpolated runtime input.
+      // Safe despite looking otherwise: the markup comes from geometry.generated.ts, which
+      // is produced from the design file at build time. The only runtime interpolation is a
+      // numeric stroke width, and nothing here is ever caller-supplied HTML.
       innerHTML={body()}
       {...rest}
     />
