@@ -60,6 +60,13 @@
         "vitest": "^4.1.10",
       },
     },
+    "packages/cortex-api": {
+      "name": "@cortex-ide/cortex-api",
+      "version": "0.1.0",
+      "dependencies": {
+        "zod": "^3.24.1",
+      },
+    },
     "packages/main": {
       "name": "main",
       "version": "0.1.0",
@@ -286,6 +293,8 @@
     "@bramus/specificity": ["@bramus/specificity@2.4.2", "", { "dependencies": { "css-tree": "^3.0.0" }, "bin": { "specificity": "bin/cli.js" } }, "sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw=="],
 
     "@cortex-ide/ai-engine": ["@cortex-ide/ai-engine@workspace:packages/ai-engine"],
+
+    "@cortex-ide/cortex-api": ["@cortex-ide/cortex-api@workspace:packages/cortex-api"],
 
     "@cortex-ide/shared": ["@cortex-ide/shared@workspace:packages/shared"],
 
