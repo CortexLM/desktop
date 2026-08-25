@@ -1,4 +1,4 @@
-import { createSignal, onMount, type JSX } from 'solid-js';
+import { onMount, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from './state/session-context.tsx';
@@ -11,12 +11,6 @@ import {
 } from './screens/onboarding/flow-screens.tsx';
 import { ReviewScreen } from './screens/review/review-screen.tsx';
 import { SecretsScreen } from './screens/secrets/secrets-screen.tsx';
-import { IntegrationsScreen } from './screens/settings/integrations-screen.tsx';
-import {
-  SettingsScreen,
-  type WorkspaceDefaults,
-  type WorkspacePermissions,
-} from './screens/settings/settings-screen.tsx';
 import { UsageScreen } from './screens/usage/usage-screen.tsx';
 import { SignInScreen } from './screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from './screens/auth/device-code-screen.tsx';
@@ -36,85 +30,6 @@ const ONBOARDING_STEPS: readonly FlowStep[] = [
   { id: 'github', label: 'GitHub', done: false },
   { id: 'workspace', label: 'Workspace', done: false },
 ];
-
-export function SettingsRoute(): JSX.Element {
-  const account = useAccount();
-
-  const [defaults, setDefaults] = createSignal<WorkspaceDefaults>({
-    model: '',
-    repository: '',
-    baseBranch: '',
-    branchPrefix: 'cortex/',
-    createPullRequests: 'draft',
-  });
-
-  const [permissions, setPermissions] = createSignal<WorkspacePermissions>({
-    runShellCommands: true,
-    applyDatabaseMigrations: false,
-    slackNotifications: false,
-    networkAccess: 'allowlist',
-  });
-
-  // The catalogue loads signed out, so a locked Cortex model still appears in the picker -
-  // which explains what an account adds far better than an empty list would.
-  const modelOptions = () =>
-    account.catalogue().map((entry) => ({
-      value: entry.model.id,
-      label: entry.model.display_name ?? entry.model.id,
-      disabled: !entry.selectable,
-    }));
-
-  return (
-    <SettingsScreen
-      capabilities={account.capabilities()}
-      defaults={defaults()}
-      onDefaultChange={(key, value) => setDefaults((current) => ({ ...current, [key]: value }))}
-      permissions={permissions()}
-      onPermissionChange={(key, value) =>
-        setPermissions((current) => ({ ...current, [key]: value }))
-      }
-      modelOptions={modelOptions()}
-      repositoryOptions={[]}
-      providers={[]}
-      onProviderKeyChange={() => undefined}
-      networkOptions={[
-        { value: 'allowlist', label: 'Allowlist only' },
-        { value: 'all', label: 'All destinations' },
-        { value: 'none', label: 'No network' },
-      ]}
-      pullRequestOptions={[
-        { value: 'draft', label: 'As drafts' },
-        { value: 'ready', label: 'Ready for review' },
-        { value: 'never', label: 'Never' },
-      ]}
-    />
-  );
-}
-
-export function IntegrationsRoute(): JSX.Element {
-  const account = useAccount();
-
-  return (
-    <IntegrationsScreen
-      capabilities={account.capabilities()}
-      integrations={[
-        {
-          id: 'github',
-          name: 'GitHub',
-          description: 'Read repositories and open pull requests',
-          icon: 'github',
-          connected: false,
-          requiresAccount: true,
-        },
-      ]}
-      onConnect={() => undefined}
-      onDisconnect={() => undefined}
-      apiKeys={[]}
-      onCreateKey={() => undefined}
-      onRevokeKey={() => undefined}
-    />
-  );
-}
 
 export function SecretsRoute(): JSX.Element {
   const account = useAccount();
@@ -249,3 +164,4 @@ export function SshConnectRoute(): JSX.Element {
 }
 
 export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-routes.tsx';
+export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';

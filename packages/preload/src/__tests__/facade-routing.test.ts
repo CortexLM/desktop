@@ -165,6 +165,8 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'archive', 'session:archive'],
   ['session', 'remove', 'session:delete'],
   ['session', 'resolvePermission', 'session:resolve-permission'],
+  ['settings', 'setProvider', 'settings:set-provider'],
+  ['settings', 'setWorkspace', 'settings:set-workspace'],
 ];
 
 /**
@@ -177,6 +179,8 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'listRepositories', 'session:list-repositories'],
+  ['settings', 'getProviders', 'settings:get-providers'],
+  ['settings', 'getWorkspace', 'settings:get-workspace'],
   ['cortex', 'getState', 'cortex:get-state'],
   ['cortex', 'listModels', 'cortex:list-models'],
   ['cortex', 'deviceStart', 'cortex:device-start'],

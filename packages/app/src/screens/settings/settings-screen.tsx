@@ -51,6 +51,14 @@ export interface SettingsScreenProps {
   onProviderKeyChange: (id: string, key: string) => void;
   networkOptions: readonly SelectOption[];
   pullRequestOptions: readonly SelectOption[];
+  /**
+   * A save that did not take.
+   *
+   * Shown rather than swallowed: every control on this screen writes through the
+   * main process, so a rejected write leaves the UI showing a value nothing
+   * stored. Without this the toggle would simply spring back with no explanation.
+   */
+  error?: string;
 }
 
 const ACCOUNT_ONLY = 'Sign in to Cortex to change this';
@@ -296,6 +304,16 @@ export function SettingsScreen(props: SettingsScreenProps): JSX.Element {
 
       <PageBody width="settings">
         <div class="cx-settings">
+          {/* `role="alert"` so a failed save is announced: the control it belongs to
+              has already reverted, and a silent revert is indistinguishable from
+              never having clicked. */}
+          <Show when={props.error}>
+            {(message) => (
+              <p class="cx-settings__error" role="alert">
+                {message()}
+              </p>
+            )}
+          </Show>
           <RowGroup label="Defaults" rows={defaultsRows(props)} />
           <RowGroup label="Pull requests" rows={pullRequestRows(props)} />
           <RowGroup label="Permissions & tools" rows={permissionRows(props)} />

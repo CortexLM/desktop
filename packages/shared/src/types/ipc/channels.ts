@@ -88,6 +88,10 @@ export const IPC_CHANNELS = {
   // clés masquées (cf. `types/ipc/settings.ts`).
   SETTINGS_GET_PROVIDERS: 'settings:get-providers',
   SETTINGS_SET_PROVIDER: 'settings:set-provider',
+  // Défauts et permissions appliqués à chaque exécution. Persistés dans
+  // `app_state` : ce sont les préférences de la personne, pas du dossier.
+  SETTINGS_GET_WORKSPACE: 'settings:get-workspace',
+  SETTINGS_SET_WORKSPACE: 'settings:set-workspace',
 
   // Compte Cortex — cf. `types/ipc/cortex.ts` pour le contrat.
   //

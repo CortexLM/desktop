@@ -155,6 +155,9 @@ const EXPECTED_NAMESPACES = [
   // Runs. Distinct from `cortex.ai`, which carries a conversation: this namespace
   // carries the persisted run — its state, its timeline and its diff.
   'cortex.session',
+  // Provider credentials and run settings. The one namespace that carries a secret
+  // across the boundary, and only in the renderer -> main direction.
+  'cortex.settings',
   'ipc',
   'electron',
 ];

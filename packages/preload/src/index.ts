@@ -90,6 +90,12 @@ import type {
   SessionSummary,
   StartSessionRequest,
   StartSessionResponse,
+  GetProviderSettingsResponse,
+  GetWorkspaceRunSettingsResponse,
+  SetProviderRequest,
+  SetProviderResponse,
+  SetWorkspaceRunSettingsRequest,
+  SetWorkspaceRunSettingsResponse,
 } from '@cortex-ide/shared';
 
 // MCP Types - Import from types/mcp.ts which are properly exported
@@ -245,6 +251,23 @@ export interface CortexAPI {
     ) => Promise<IPCResponse<{ resolved: true }>>;
     listRepositories: () => Promise<IPCResponse<ListRepositoriesResponse>>;
     onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
+  };
+
+  /**
+   * Provider credentials and run settings.
+   *
+   * `setProvider` is the one call in the app that carries an API key in plaintext,
+   * and it goes one way only: `getProviders` answers with masks. The run settings
+   * are held by main because they govern what the agent may do — a permission
+   * whose value is read from a store the renderer can write is not a permission.
+   */
+  settings: {
+    getProviders: () => Promise<IPCResponse<GetProviderSettingsResponse>>;
+    setProvider: (request: SetProviderRequest) => Promise<IPCResponse<SetProviderResponse>>;
+    getWorkspace: () => Promise<IPCResponse<GetWorkspaceRunSettingsResponse>>;
+    setWorkspace: (
+      request: SetWorkspaceRunSettingsRequest
+    ) => Promise<IPCResponse<SetWorkspaceRunSettingsResponse>>;
   };
 
   // MCP
@@ -501,6 +524,13 @@ const cortexAPI: CortexAPI = {
       ipcRenderer.invoke(IPC_CHANNELS.SESSION_RESOLVE_PERMISSION, request),
     listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
     onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
+  },
+
+  settings: {
+    getProviders: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET_PROVIDERS),
+    setProvider: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_PROVIDER, request),
+    getWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET_WORKSPACE),
+    setWorkspace: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_WORKSPACE, request),
   },
 
   // MCP
