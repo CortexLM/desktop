@@ -47,6 +47,60 @@ export class DeviceFlowAbortedError extends Error {
   }
 }
 
+/** What the loop should do next after a poll attempt. */
+type PollOutcome =
+  | { kind: 'token'; token: DeviceToken }
+  | { kind: 'pending' }
+  | { kind: 'slow-down' };
+
+/**
+ * Attempts one exchange.
+ *
+ * Returns rather than throws for the two non-failure states, so the loop reads as a state
+ * machine instead of as exception control flow. Anything genuinely terminal still throws.
+ */
+async function attemptRedeem(
+  client: CortexApiClient,
+  code: DeviceCode,
+  emit: (state: DeviceFlowState) => void,
+  signal: AbortSignal | undefined,
+): Promise<PollOutcome> {
+  try {
+    return { kind: 'token', token: await client.redeemDeviceCode(code.device_code, signal) };
+  } catch (error) {
+    if (!isCortexDeviceFlowError(error)) throw error;
+    if (error.isSlowDown) return { kind: 'slow-down' };
+    if (error.isPending) return { kind: 'pending' };
+
+    emit({ status: error.code === 'access_denied' ? 'denied' : 'expired' });
+    throw error;
+  }
+}
+
+function throwIfAborted(signal: AbortSignal | undefined): void {
+  if (signal?.aborted) throw new DeviceFlowAbortedError();
+}
+
+/**
+ * A local expiry check as well as the server's. Without it, a server that kept answering
+ * `authorization_pending` would keep the loop alive on a code that is already dead.
+ */
+function throwIfExpired(
+  code: DeviceCode,
+  expiresAt: number,
+  now: () => number,
+  emit: (state: DeviceFlowState) => void,
+): void {
+  if (now() < expiresAt) return;
+
+  emit({ status: 'expired' });
+  throw new CortexDeviceFlowError(
+    'expired_token',
+    `Device code expired after ${code.expires_in}s without being authorized`,
+    { status: 0 },
+  );
+}
+
 /**
  * Polls until the user approves, declines, or the code expires.
  *
@@ -60,57 +114,40 @@ export async function pollDeviceToken(
 ): Promise<DeviceToken> {
   const sleep = options.sleep ?? defaultSleep;
   const now = options.now ?? Date.now;
-
-  const startedAt = now();
-  const expiresAt = startedAt + code.expires_in * 1000;
-  let intervalSeconds = code.interval ?? DEFAULT_INTERVAL_SECONDS;
-
   const emit = (state: DeviceFlowState) => options.onState?.(state);
+
+  const expiresAt = now() + code.expires_in * 1000;
+  let intervalSeconds = code.interval ?? DEFAULT_INTERVAL_SECONDS;
 
   emit({ status: 'awaiting-authorization', code, secondsRemaining: code.expires_in });
 
   for (;;) {
-    if (options.signal?.aborted) throw new DeviceFlowAbortedError();
+    throwIfAborted(options.signal);
 
     // Waiting before the first poll is intentional: the user cannot possibly have approved
     // in the time it took to render the code, so an immediate poll only burns a request.
     await sleep(intervalSeconds * 1000);
 
-    if (options.signal?.aborted) throw new DeviceFlowAbortedError();
+    throwIfAborted(options.signal);
+    throwIfExpired(code, expiresAt, now, emit);
 
-    if (now() >= expiresAt) {
-      emit({ status: 'expired' });
-      throw new CortexDeviceFlowError(
-        'expired_token',
-        `Device code expired after ${code.expires_in}s without being authorized`,
-        { status: 0 },
-      );
+    const outcome = await attemptRedeem(client, code, emit, options.signal);
+
+    if (outcome.kind === 'token') {
+      emit({ status: 'authorized', token: outcome.token });
+      return outcome.token;
     }
 
-    try {
-      const token = await client.redeemDeviceCode(code.device_code, options.signal);
-      emit({ status: 'authorized', token });
-      return token;
-    } catch (error) {
-      if (!isCortexDeviceFlowError(error)) throw error;
-
-      if (error.isSlowDown) {
-        intervalSeconds += SLOW_DOWN_INCREMENT_SECONDS;
-        continue;
-      }
-
-      if (error.isPending) {
-        emit({
-          status: 'awaiting-authorization',
-          code,
-          secondsRemaining: Math.max(0, Math.ceil((expiresAt - now()) / 1000)),
-        });
-        continue;
-      }
-
-      emit({ status: error.code === 'access_denied' ? 'denied' : 'expired' });
-      throw error;
+    if (outcome.kind === 'slow-down') {
+      intervalSeconds += SLOW_DOWN_INCREMENT_SECONDS;
+      continue;
     }
+
+    emit({
+      status: 'awaiting-authorization',
+      code,
+      secondsRemaining: Math.max(0, Math.ceil((expiresAt - now()) / 1000)),
+    });
   }
 }
 
