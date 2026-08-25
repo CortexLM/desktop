@@ -14,7 +14,7 @@
  * a locally-reconstructed timeline that can drift from what was stored.
  */
 
-import { createMemo, createResource, onCleanup, onMount, type Accessor } from 'solid-js';
+import { createMemo, createResource, type Accessor } from 'solid-js';
 
 import type { SessionDetail, SessionEvent } from '@cortex-ide/shared';
 
@@ -199,6 +199,17 @@ function toView(detail: SessionDetail): DetailView {
   assign(view, 'artifacts', artifactsOf(detail));
   assign(view, 'activity', activityOf(detail));
   assign(view, 'workSummary', workSummaryOf(detail));
+  // The recorded reason, or the last error event when the row has none — a run can
+  // fail mid-turn and be recorded on the timeline before the status catches up.
+  assign(
+    view,
+    'error',
+    detail.error ??
+      [...detail.events]
+        .reverse()
+        .find((event): event is SessionEvent & { kind: 'error' } => event.kind === 'error')
+        ?.message,
+  );
   assign(
     view,
     'pullRequestNumber',
@@ -230,27 +241,32 @@ export function createSessionDetail(
   id: Accessor<string>,
   runs: SessionsContextValue,
 ): SessionDetailState {
-  const [detail, { refetch }] = createResource(
-    id,
-    async (sessionId) => {
+  /**
+   * Refetches whenever the store's row for this run moves.
+   *
+   * Keyed on `updatedAt` rather than on a progress subscription of its own, and that
+   * is the fix for a real bug: a run that failed in the milliseconds between
+   * navigating and mounting emitted its progress before this component existed, so
+   * no event ever arrived and the screen showed it as still running — forever. The
+   * store holds the row either way, so deriving from it cannot miss an update that
+   * happened first.
+   */
+  const revision = createMemo(() => {
+    const summary = (runs.sessions() ?? []).find((session) => session.id === id());
+    return `${id()}:${summary?.updatedAt ?? 0}`;
+  });
+
+  const [detail] = createResource(
+    revision,
+    async () => {
       try {
-        return await runs.host.get(sessionId);
+        return await runs.host.get(id());
       } catch {
         return null;
       }
     },
     { initialValue: null },
   );
-
-  onMount(() => {
-    onCleanup(
-      runs.host.onProgress((event) => {
-        // Only this run: the inbox subscribes to all of them, and refetching a
-        // detail screen because an unrelated session advanced is pure noise.
-        if (event.session.id === id()) void refetch();
-      }),
-    );
-  });
 
   const view = createMemo(() => {
     const current = detail();

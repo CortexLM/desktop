@@ -19,6 +19,7 @@ import {
 } from '../state/composer-draft.ts';
 import { toInboxSession, toRecentRow } from '../state/session-view.ts';
 import { HomeScreen } from '../screens/home/home-screen.tsx';
+import type { ChecklistStep } from '../screens/home/checklist.tsx';
 import { SessionsScreen } from '../screens/sessions/sessions-screen.tsx';
 import {
   SessionDetailScreen,
@@ -89,6 +90,74 @@ function cycleDraftField(field: 'repo' | 'branch', options: readonly string[]): 
   setComposerDraft((draft) => ({ ...draft, [field]: next }));
 }
 
+/**
+ * The get-started checklist, from actual state.
+ *
+ * Returns `undefined` once everything is done, rather than a list of ticks: a
+ * completed checklist is a permanent congratulation occupying the space above the
+ * composer. Dismissing it is not offered for the same reason — it goes away on its
+ * own.
+ */
+function buildChecklist(state: {
+  hasRepository: boolean;
+  hasRun: boolean;
+  signedIn: boolean;
+  hasModel: boolean;
+  openFolder: () => void;
+  openSettings: () => void;
+}): { title: string; steps: ChecklistStep[] } | undefined {
+  const steps: ChecklistStep[] = [
+    {
+      id: 'folder',
+      label: 'Open a folder to work in',
+      done: state.hasRepository,
+      ...(state.hasRepository ? {} : { action: 'Open', onAction: state.openFolder }),
+    },
+    {
+      id: 'model',
+      label: 'Choose a model, or add a provider key',
+      // Signing in grants the Cortex models and a provider key is the other route to
+      // the same place, so either satisfies the step.
+      done: state.signedIn || state.hasModel,
+      ...(state.signedIn ? {} : { action: 'Settings', onAction: state.openSettings }),
+    },
+    { id: 'run', label: 'Start your first session', done: state.hasRun },
+  ];
+
+  return steps.every((step) => step.done) ? undefined : { title: 'Get started', steps };
+}
+
+/**
+ * A failed start, in the design's banner above the composer.
+ *
+ * Not a toast: the prompt is still in the box, and the message explains why it did
+ * not go anywhere — so it belongs next to it, with the action that fixes it.
+ */
+function toLimitNotice(message: string | undefined, openSettings: () => void) {
+  return message
+    ? {
+        kind: 'reached' as const,
+        message,
+        actionLabel: 'Open settings',
+        onAction: openSettings,
+      }
+    : undefined;
+}
+
+/**
+ * Advances the repository, or opens a folder when there is nothing to advance to.
+ *
+ * With an empty list the picker used to cycle nothing, silently. Opening a folder is
+ * the action that actually helps at that point.
+ */
+function pickRepo(names: readonly string[], openFolder: () => void): void {
+  if (names.length === 0) {
+    openFolder();
+    return;
+  }
+  cycleDraftField('repo', names);
+}
+
 export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
@@ -119,6 +188,19 @@ export function HomeRoute(): JSX.Element {
 
   const repositoryNames = createMemo(() => (runs.repositories() ?? []).map((repo) => repo.id));
 
+  const checklist = createMemo(() =>
+    buildChecklist({
+      hasRepository: repositoryNames().length > 0,
+      hasRun: (runs.sessions() ?? []).length > 0,
+      signedIn: account.capabilities().authenticated,
+      hasModel: Boolean(composerDraft().model),
+      openFolder: () => void runs.openWorkspace(),
+      openSettings: () => navigate('/settings'),
+    }),
+  );
+
+  const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/settings')));
+
   return (
     <HomeScreen
       capabilities={account.capabilities()}
@@ -129,18 +211,10 @@ export function HomeRoute(): JSX.Element {
       onOpenSession={(id) => navigate(`/sessions/${id}`)}
       onViewAllSessions={() => navigate('/sessions')}
       onPickModel={() => navigate('/settings')}
-      onPickRepo={() => {
-        // With nothing to choose from, the useful action is to open a folder rather
-        // than to cycle an empty list — which is what the picker did, silently.
-        const names = repositoryNames();
-        if (names.length === 0) {
-          void runs.openWorkspace();
-          return;
-        }
-        cycleDraftField('repo', names);
-      }}
+      onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
-      {...(startError() ? { limit: { kind: 'reached' as const, message: startError()! } } : {})}
+      {...(checklist() ? { checklist: checklist()! } : {})}
+      {...(limit() ? { limit: limit()! } : {})}
     />
   );
 }
