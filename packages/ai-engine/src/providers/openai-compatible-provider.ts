@@ -13,8 +13,22 @@ import {
   ChatResponse,
   StreamChunk,
   ProviderConfig,
+  ProviderModel,
+  ProviderTool,
+  ProviderToolCall,
 } from './base';
-import { parseSSEStream } from './sse';
+import { parseSSEStream, parseToolArguments } from './sse';
+
+/** Appel d'outil au format OpenAI, tel qu'il circule sur le fil. */
+export interface OpenAIToolCall {
+  id: string;
+  type?: string;
+  function: {
+    name: string;
+    /** JSON sérialisé, pas un objet : c'est ce que renvoie l'API. */
+    arguments: string;
+  };
+}
 
 /**
  * Réponse `/chat/completions` (mode non-streaming)
@@ -25,15 +39,115 @@ export interface OpenAICompatibleResponse {
   choices: Array<{
     message: {
       role: string;
-      content: string;
+      /** Nul quand le modèle ne fait qu'appeler des outils. */
+      content: string | null;
+      tool_calls?: OpenAIToolCall[];
     };
     finish_reason: string | null;
   }>;
-  usage: {
-    prompt_tokens: number;
-    completion_tokens: number;
-    total_tokens: number;
+  usage?: {
+    prompt_tokens?: number;
+    completion_tokens?: number;
+    total_tokens?: number;
+    prompt_tokens_details?: { cached_tokens?: number };
   };
+}
+
+/** Entrée de `GET /models`, dans la forme la plus large observée. */
+interface OpenAIModelEntry {
+  id: string;
+  name?: string;
+  context_length?: number;
+  top_provider?: { max_completion_tokens?: number | null };
+  supported_parameters?: string[];
+  architecture?: { input_modalities?: string[] };
+}
+
+/**
+ * Convertit un outil interne au schéma de fonction OpenAI.
+ *
+ * L'enveloppe `{ type: 'function', function: {...} }` est ce que réclament
+ * OpenAI, OpenRouter, Together et Ollama : envoyer l'outil à plat est refusé.
+ */
+function toOpenAITool(tool: ProviderTool): Record<string, unknown> {
+  return {
+    type: 'function',
+    function: {
+      name: tool.name,
+      description: tool.description,
+      parameters: tool.parameters,
+    },
+  };
+}
+
+export function toProviderToolCalls(calls: OpenAIToolCall[] | undefined): ProviderToolCall[] | undefined {
+  if (!calls || calls.length === 0) return undefined;
+
+  return calls.map((call) => ({
+    id: call.id,
+    name: call.function.name,
+    arguments: parseToolArguments(call.function.arguments),
+  }));
+}
+
+/**
+ * Sérialise un message interne au format attendu sur le fil.
+ *
+ * Un message `tool` doit porter `tool_call_id`, et un message assistant doit
+ * renvoyer ses `tool_calls` : sans cet appariement, le provider reçoit un
+ * résultat qui ne correspond à aucune demande et rejette la requête entière.
+ */
+/**
+ * Comptage de tokens depuis une réponse.
+ *
+ * Chaque champ est facultatif, et le bloc entier peut manquer : certaines
+ * passerelles ne le renvoient pas du tout. Le lire sans garde levait une erreur
+ * qui ne disait rien de ce que le provider avait réellement renvoyé.
+ */
+function toTokenUsage(usage: OpenAICompatibleResponse['usage']): ChatResponse['usage'] {
+  return {
+    inputTokens: usage?.prompt_tokens ?? 0,
+    outputTokens: usage?.completion_tokens ?? 0,
+    totalTokens: usage?.total_tokens ?? 0,
+    cacheReadInputTokens: usage?.prompt_tokens_details?.cached_tokens,
+  };
+}
+
+/** Convertit la réponse `/chat/completions` en `ChatResponse`. */
+export function toChatResponse(data: OpenAICompatibleResponse): ChatResponse {
+  const choice = data.choices[0];
+  if (!choice) throw new Error('response contained no choices');
+
+  return {
+    content: choice.message.content ?? '',
+    model: data.model,
+    usage: toTokenUsage(data.usage),
+    finishReason: choice.finish_reason || undefined,
+    toolCalls: toProviderToolCalls(choice.message.tool_calls),
+  };
+}
+
+export function toWireMessage(message: Message): Record<string, unknown> {
+  const wire: Record<string, unknown> = { role: message.role, content: message.content };
+
+  if (message.role === 'tool') {
+    wire.tool_call_id = message.toolCallId;
+    if (message.name) wire.name = message.name;
+    return wire;
+  }
+
+  if (message.toolCalls?.length) {
+    // `content` doit être nul et non vide sur un tour purement outil : certains
+    // providers refusent une chaîne vide accompagnée de tool_calls.
+    wire.content = message.content || null;
+    wire.tool_calls = message.toolCalls.map((call) => ({
+      id: call.id,
+      type: 'function',
+      function: { name: call.name, arguments: JSON.stringify(call.arguments) },
+    }));
+  }
+
+  return wire;
 }
 
 /**
@@ -87,25 +201,42 @@ export abstract class OpenAICompatibleProvider extends AIProvider {
   /**
    * Construit le corps de la requête `/chat/completions`
    */
+  /**
+   * Partie « outils » du corps de requête.
+   *
+   * Renvoie un objet vide quand il n'y a pas d'outil : un `tools: []` explicite
+   * amène certains providers à refuser de répondre en prose. `tool_choice` n'est
+   * jamais transmis seul — sans outils il ne veut rien dire.
+   */
+  private toolSection(options: ChatOptions | undefined): Record<string, unknown> {
+    if (!options?.tools?.length) return {};
+
+    const section: Record<string, unknown> = { tools: options.tools.map(toOpenAITool) };
+    if (options.toolChoice) section.tool_choice = options.toolChoice;
+
+    return section;
+  }
+
   protected buildRequestBody(
     messages: Message[],
     options: ChatOptions | undefined,
     stream: boolean
   ): Record<string, unknown> {
-    const body: Record<string, unknown> = {
+    return {
       model: options?.model || this.config.defaultModel || this.fallbackModel,
-      messages,
+      messages: messages.map(toWireMessage),
       temperature: options?.temperature,
       max_tokens: options?.maxTokens,
       top_p: options?.topP,
       stop: options?.stop,
+      // `tools` était déclaré dans ChatOptions mais jamais transmis : le typage
+      // promettait un appel d'outil que la requête ne demandait pas, donc aucun
+      // provider compatible OpenAI n'en émettait jamais.
+      ...this.toolSection(options),
+      // `include_usage` sans quoi la plupart des providers omettent `usage` en
+      // streaming, et la comptabilisation des tokens d'un flux est perdue.
+      ...(stream ? { stream: true, stream_options: { include_usage: true } } : {}),
     };
-
-    if (stream) {
-      body.stream = true;
-    }
-
-    return body;
   }
 
   /**
@@ -195,18 +326,7 @@ export abstract class OpenAICompatibleProvider extends AIProvider {
     try {
       const response = await this.postChatCompletions(messages, options, false);
       const data = (await response.json()) as OpenAICompatibleResponse;
-      const choice = data.choices[0];
-
-      return {
-        content: choice.message.content || '',
-        model: data.model,
-        usage: {
-          inputTokens: data.usage.prompt_tokens,
-          outputTokens: data.usage.completion_tokens,
-          totalTokens: data.usage.total_tokens,
-        },
-        finishReason: choice.finish_reason || undefined,
-      };
+      return toChatResponse(data);
     } catch (error) {
       this.handleError(error, 'chat failed');
     }
@@ -244,6 +364,44 @@ export abstract class OpenAICompatibleProvider extends AIProvider {
       return response.ok;
     } catch {
       return false;
+    }
+  }
+
+  /**
+   * Catalogue du provider, lu depuis `GET /models`.
+   *
+   * Les capacités viennent de `supported_parameters` quand le provider le
+   * renseigne (OpenRouter le fait) : c'est la seule source qui dise si un modèle
+   * accepte les outils, et un sélecteur qui propose un modèle sans outils pour
+   * une session d'agent envoie l'utilisateur dans un mur.
+   */
+  override async listModels(): Promise<ProviderModel[]> {
+    try {
+      const response = await this.fetchWithRetry(`${this.baseUrl}/models`, {
+        headers: this.buildHeaders(),
+      });
+      if (!response.ok) return [];
+
+      const payload = (await response.json()) as { data?: OpenAIModelEntry[] };
+
+      return (payload.data ?? []).map((entry) => {
+        const parameters = entry.supported_parameters ?? [];
+        const modalities = entry.architecture?.input_modalities ?? [];
+
+        return {
+          id: entry.id,
+          displayName: entry.name ?? entry.id,
+          contextLength: entry.context_length,
+          maxOutputTokens: entry.top_provider?.max_completion_tokens ?? undefined,
+          // Absent `supported_parameters`, on ne prétend rien : `undefined` veut
+          // dire « inconnu », ce qui n'est pas la même chose que « non supporté ».
+          supportsTools: parameters.length > 0 ? parameters.includes('tools') : undefined,
+          supportsStreaming: true,
+          supportsVision: modalities.length > 0 ? modalities.includes('image') : undefined,
+        };
+      });
+    } catch {
+      return [];
     }
   }
 }
