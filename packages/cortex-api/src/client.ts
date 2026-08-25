@@ -13,21 +13,15 @@
 
 import type { z } from 'zod';
 
+import { classifyError } from './classify.ts';
+import { CortexApiError, type CortexErrorContext } from './errors.ts';
 import {
-  CortexApiError,
-  CortexDeviceFlowError,
-  isDeviceFlowErrorCode,
-  type CortexErrorContext,
-} from './errors.ts';
-import {
-  applicationErrorSchema,
   chatCompletionSchema,
   cortexUserSchema,
   deviceCodeSchema,
   deviceTokenSchema,
   healthSchema,
   modelListSchema,
-  oauthErrorSchema,
   organizationSchema,
   upstreamProviderListSchema,
   type ChatCompletion,
@@ -61,30 +55,18 @@ export interface CortexCredentials {
   /**
    * The `access_token` returned by the device flow, sent as the sealed session cookie.
    *
-   * Why a cookie and not `Authorization: Bearer` — the service refuses bearer tokens
-   * outright:
+   * Not `Authorization: Bearer`, because the service refuses bearer tokens outright. It has
+   * to travel as one of the two accepted modes, and it is a session rather than an API key.
+   * The cookie name was established by probing the live service; CONTRACT.md records the
+   * responses that identify it.
    *
-   *   Authorization: Bearer x  ->  {"code":"INVALID_SESSION",
-   *                                 "message":"Bearer JWT session auth is disabled;
-   *                                            use WorkOS sealed session cookie or API key"}
-   *
-   * So the token has to travel as one of the two accepted modes. It is a session, not an
-   * API key, and probing named the cookie: `wos-session` is recognised and rejected on its
-   * *contents* (`{"code":"INVALID_SESSION","message":"invalid_session_cookie"}`), whereas
-   * `workos-session` and any other name fall through to `AUTH_REQUIRED` — i.e. they are not
-   * read at all. Only a recognised name can produce an unseal failure.
-   *
-   * Kept distinct from `sessionCookie` (which carries a full `name=value`) so callers do
-   * not have to know the cookie name to use a token the device flow just handed them.
+   * Kept distinct from `sessionCookie` (a full `name=value`) so callers need not know the
+   * cookie name to use a token the device flow just handed them.
    */
   accessToken?: string;
 }
 
-/**
- * Name of the WorkOS sealed session cookie.
- *
- * Established by probing, not assumed — see `CortexCredentials.accessToken`.
- */
+/** Name of the WorkOS sealed session cookie. Probed, not assumed — see CONTRACT.md. */
 export const SESSION_COOKIE_NAME = 'wos-session';
 
 export interface CortexApiClientOptions {
@@ -165,47 +147,6 @@ export class CortexApiClient {
     return headers;
   }
 
-  /**
-   * Turns a parsed error body into the right error class.
-   *
-   * The two shapes are not interchangeable: a device endpoint returning
-   * `{error: "authorization_pending"}` with HTTP 400 is the expected state during a device
-   * flow, whereas `{code: "AUTH_REQUIRED"}` is a genuine failure. Discriminating on the
-   * body rather than the status is what lets the poll loop tell them apart.
-   */
-  private static classifyError(payload: unknown, context: CortexErrorContext): Error {
-    const oauth = oauthErrorSchema.safeParse(payload);
-    if (oauth.success && isDeviceFlowErrorCode(oauth.data.error)) {
-      return new CortexDeviceFlowError(
-        oauth.data.error,
-        oauth.data.error_description ?? oauth.data.error,
-        context,
-      );
-    }
-
-    const application = applicationErrorSchema.safeParse(payload);
-    if (application.success) {
-      return new CortexApiError(application.data.code, application.data.message, context);
-    }
-
-    if (oauth.success) {
-      // `/auth/callback` returns both keys:
-      //   { "error": "Missing authorization code", "code": "missing_code" }
-      // Here `code` is the machine-readable identifier and `error` is the human message,
-      // which is the opposite of how the device endpoints use them. When both are present,
-      // prefer `code`, so callers can branch on a stable string rather than prose.
-      const hybrid = payload as { code?: unknown };
-      const code = typeof hybrid.code === 'string' ? hybrid.code : oauth.data.error;
-      return new CortexApiError(code, oauth.data.error_description ?? oauth.data.error, context);
-    }
-
-    return new CortexApiError(
-      'UNKNOWN_ERROR',
-      `${context.status} unrecognised error body`,
-      context,
-    );
-  }
-
   private errorContext(response: Response, route: string): CortexErrorContext {
     return {
       status: response.status,
@@ -219,7 +160,7 @@ export class CortexApiClient {
     const context = this.errorContext(response, route);
 
     try {
-      return CortexApiClient.classifyError(await response.json(), context);
+      return classifyError(await response.json(), context);
     } catch {
       return new CortexApiError(
         'UNPARSEABLE_ERROR',

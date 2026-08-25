@@ -30,9 +30,10 @@ Thumbs.db
 # Test outputs
 coverage/
 .nyc_output/
+# Covers the Paper parity output too: captures land in test-results/paper-parity
+# and diffs in test-results/paper-diff. The baselines under
+# tests/visual/paper-baselines are committed; these derived images are not.
 test-results/
-tests/visual-regression/current/
-tests/visual-regression/diff/
 tests/performance/results/
 *.test-results/
 

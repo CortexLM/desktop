@@ -70,7 +70,11 @@ function stubFetch(routes: Record<string, Reply | Reply[]>): {
     ]),
   );
 
-  const fetch = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+  // Typed off `globalThis.fetch` rather than with `RequestInfo`: the `main` package
+  // compiles without the DOM lib, where that name does not exist.
+  type FetchArgs = Parameters<typeof globalThis.fetch>;
+
+  const fetch = vi.fn(async (input: FetchArgs[0], init?: FetchArgs[1]) => {
     const url = typeof input === 'string' ? input : input.toString();
     const headers: Record<string, string> = {};
     new Headers(init?.headers).forEach((value, key) => {

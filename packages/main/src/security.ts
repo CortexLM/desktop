@@ -1,19 +1,18 @@
 /**
- * Security configuration and utilities for Cortex IDE
+ * Security configuration and utilities for Cortex Code
  *
- * The `<webview>` in `packages/renderer/src/views/workspace/BrowserView.tsx` is
- * the reason most of this file exists: it is the one place where arbitrary web
- * content is rendered inside the application. Everything a `<webview>` gets is
- * declared by the *renderer* through HTML attributes, and the renderer is the
- * least-trusted process. `will-attach-webview` is the only point where the main
- * process can overrule those attributes, so that is where the guest's security
- * posture is decided here — not in the JSX.
+ * Most of this file exists because of `<webview>`: the one construct that renders arbitrary
+ * web content inside the application. Everything a `<webview>` gets is declared by the
+ * *renderer* through HTML attributes, and the renderer is the least-trusted process.
+ * `will-attach-webview` is the only point where the main process can overrule those
+ * attributes, so that is where the guest's security posture is decided — not in the markup.
  *
- * This matters because webview attributes are enabled *by presence*, not by
- * value: `nodeintegration="false"` turned Node integration ON in the guest.
- * That attribute has since been removed from the JSX, but a renderer-side fix
- * only holds until the next edit. The handler below removes the whole class of
- * bug by forcing the safe value regardless of what the renderer wrote.
+ * This matters because webview attributes are enabled *by presence*, not by value:
+ * `nodeintegration="false"` turned Node integration ON in the guest. The React renderer that
+ * carried that attribute has been deleted, and the current renderer mounts no `<webview>` at
+ * all — but a renderer-side fix only ever held until the next edit, and the guards below hold
+ * regardless of what any future renderer writes. They are kept for that reason: the class of
+ * bug is closed here, not downstream.
  */
 
 import { app, session } from 'electron';
