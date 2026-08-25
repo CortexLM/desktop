@@ -167,6 +167,8 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'resolvePermission', 'session:resolve-permission'],
   ['settings', 'setProvider', 'settings:set-provider'],
   ['settings', 'setWorkspace', 'settings:set-workspace'],
+  ['secrets', 'create', 'secrets:create'],
+  ['secrets', 'remove', 'secrets:delete'],
 ];
 
 /**
@@ -182,6 +184,7 @@ const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'openWorkspace', 'session:open-workspace'],
   ['settings', 'getProviders', 'settings:get-providers'],
   ['settings', 'getWorkspace', 'settings:get-workspace'],
+  ['secrets', 'list', 'secrets:list'],
   ['cortex', 'getState', 'cortex:get-state'],
   ['cortex', 'listModels', 'cortex:list-models'],
   ['cortex', 'deviceStart', 'cortex:device-start'],

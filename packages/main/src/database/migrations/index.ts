@@ -19,6 +19,7 @@ import * as addTasksTable from './002_add_tasks_table';
 import * as addMcpTables from './003_add_mcp_tables';
 import * as workspaceIdentity from './004_workspace_identity';
 import * as sessionRuns from './005_session_runs';
+import * as secrets from './006_secrets';
 
 export interface Migration {
   version: number;
@@ -69,4 +70,5 @@ export const MIGRATIONS: Migration[] = [
   normalise(addMcpTables as MigrationModule, 3, 'Add MCP tables'),
   normalise(workspaceIdentity as MigrationModule, 4, 'Key workspaces by path'),
   normalise(sessionRuns as MigrationModule, 5, 'Session run state and timeline'),
+  normalise(secrets as MigrationModule, 6, 'Secrets'),
 ].sort((a, b) => a.version - b.version);

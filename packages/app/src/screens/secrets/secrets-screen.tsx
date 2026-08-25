@@ -1,4 +1,4 @@
-import { createSignal, type JSX } from 'solid-js';
+import { createSignal, Show, type JSX } from 'solid-js';
 
 import { Button, Chip, TextField } from '@cortex-ide/ui';
 import type { Capabilities } from '@cortex-ide/cortex-api';
@@ -21,6 +21,14 @@ export interface SecretsScreenProps {
   secrets: readonly Secret[];
   onCreate: (name: string, value: string) => void;
   onDelete: (id: string) => void;
+  /**
+   * A create or delete that did not take.
+   *
+   * Shown rather than swallowed: the name is validated in main as well as here, so
+   * a rejection can arrive for a reason the form did not anticipate — and a silent
+   * one leaves the user staring at a list that never grew.
+   */
+  error?: string;
 }
 
 /** Environment-variable naming: uppercase, digits and underscores, not starting with a digit. */
@@ -150,6 +158,15 @@ export function SecretsScreen(props: SecretsScreenProps): JSX.Element {
 
       <PageBody width="settings">
         <div class="cx-settings">
+          {/* `role="alert"` because the list simply does not change on a rejection,
+              and an unchanged list is indistinguishable from never having clicked. */}
+          <Show when={props.error}>
+            {(message) => (
+              <p class="cx-settings__error" role="alert">
+                {message()}
+              </p>
+            )}
+          </Show>
           <SecretForm
             synced={props.capabilities.syncedSecrets}
             validate={validate}

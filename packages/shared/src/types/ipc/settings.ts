@@ -171,3 +171,25 @@ export interface SetWorkspaceRunSettingsRequest {
 }
 
 export type SetWorkspaceRunSettingsResponse = WorkspaceRunSettings;
+
+/* -------------------------------------------------------------------------- */
+/* Secrets                                                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Un secret, tel que le renderer est autorisé à le voir.
+ *
+ * Pas de champ valeur, et pas même de masque. Contrairement à une clé d'API — où
+ * `sk-…4242` aide à reconnaître *laquelle* est enregistrée — un secret est
+ * identifié par son nom : un masque n'apporterait rien et donnerait quatre
+ * caractères de la valeur.
+ */
+export interface SecretView {
+  id: string;
+  /** Le nom de variable d'environnement que les exécutions référencent. */
+  name: string;
+  /** `local` : sur ce poste. `account` : synchronisé (pas encore disponible). */
+  scope: 'local' | 'account';
+  /** Absent tant que le secret n'a jamais servi. */
+  lastUsedAt?: number;
+}

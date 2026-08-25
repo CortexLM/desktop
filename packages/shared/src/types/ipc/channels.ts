@@ -132,6 +132,15 @@ export const IPC_CHANNELS = {
   // faire traverser.
   SESSION_OPEN_WORKSPACE: 'session:open-workspace',
 
+  // Secrets exposés aux exécutions comme variables d'environnement.
+  //
+  // Il n'y a pas de canal de lecture de valeur, et c'est délibéré : la seule
+  // méthode qui rend les valeurs est réservée au process main, où la boucle
+  // d'agent les injecte. Le renderer voit un nom, une portée et une date.
+  SECRETS_LIST: 'secrets:list',
+  SECRETS_CREATE: 'secrets:create',
+  SECRETS_DELETE: 'secrets:delete',
+
   // Events (main -> renderer)
   EVENT_FILE_CHANGE: 'event:file-change',
   EVENT_TERMINAL_DATA: 'event:terminal-data',

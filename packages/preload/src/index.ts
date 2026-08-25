@@ -97,6 +97,7 @@ import type {
   SetProviderResponse,
   SetWorkspaceRunSettingsRequest,
   SetWorkspaceRunSettingsResponse,
+  SecretView,
 } from '@cortex-ide/shared';
 
 // MCP Types - Import from types/mcp.ts which are properly exported
@@ -271,6 +272,22 @@ export interface CortexAPI {
     setWorkspace: (
       request: SetWorkspaceRunSettingsRequest
     ) => Promise<IPCResponse<SetWorkspaceRunSettingsResponse>>;
+  };
+
+  /**
+   * Secrets exposed to runs as environment variables.
+   *
+   * There is deliberately no method that reads a value back. The one that returns
+   * values is main-process only, called by the agent loop — that the renderer
+   * cannot reach it is the entire point.
+   */
+  secrets: {
+    list: () => Promise<IPCResponse<{ secrets: SecretView[] }>>;
+    create: (request: {
+      name: string;
+      value: string;
+    }) => Promise<IPCResponse<{ secret: SecretView }>>;
+    remove: (request: { id: string }) => Promise<IPCResponse<{ deleted: true }>>;
   };
 
   // MCP
@@ -535,6 +552,12 @@ const cortexAPI: CortexAPI = {
     setProvider: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_PROVIDER, request),
     getWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET_WORKSPACE),
     setWorkspace: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_WORKSPACE, request),
+  },
+
+  secrets: {
+    list: () => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_LIST),
+    create: (request) => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_CREATE, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_DELETE, request),
   },
 
   // MCP

@@ -24,6 +24,7 @@ import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings
 import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
 import { registerCortexHandlers, unregisterCortexHandlers } from './cortex-handlers';
 import { registerSessionHandlers, unregisterSessionHandlers } from './session-handlers';
+import { registerSecretsHandlers, unregisterSecretsHandlers } from './secrets-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
 /**
@@ -103,6 +104,13 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     name: 'session',
     register: registerSessionHandlers,
     unregister: unregisterSessionHandlers,
+  },
+  // Secrets. Domaine à part de `settings` : ce sont des données de l'espace de
+  // travail avec un cycle de vie, pas une configuration de provider.
+  {
+    name: 'secrets',
+    register: registerSecretsHandlers,
+    unregister: unregisterSecretsHandlers,
   },
 ];
 
