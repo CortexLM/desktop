@@ -59,6 +59,23 @@ test.describe('the app Electron loads', () => {
     await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
   });
 
+  test('opens at the viewport the design is drawn at', async ({ page }) => {
+    const size = await page.evaluate(() => ({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    }));
+
+    // Every Paper artboard is 1440x900, and `createWindow` asks for exactly that. A window
+    // that opened narrower would show a reflowed approximation of the layout rather than
+    // the layout, which is the sort of difference nobody files a bug about.
+    //
+    // Asserted as a lower bound: a display smaller than the requested size clamps the
+    // window, and that is the environment's constraint rather than a regression. The point
+    // is that nothing in the app narrows it.
+    expect(size.width).toBeGreaterThanOrEqual(1000);
+    expect(size.height).toBeGreaterThanOrEqual(600);
+  });
+
   test('exposes the preload bridge', async ({ page }) => {
     const namespaces = await page.evaluate(() => {
       const api = (window as unknown as { cortex?: Record<string, unknown> }).cortex;

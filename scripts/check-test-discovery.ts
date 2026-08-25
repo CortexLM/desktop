@@ -8,10 +8,16 @@
  * `projects` glob only matched `packages/*​/vitest.config.ts`, so every suite under the
  * repo-root `tests/` directory went unloaded for weeks.
  *
- * Rather than reimplement Vitest's glob resolution and risk agreeing with a bug, this asks
- * Vitest itself which files it collected (`vitest list --json`) and diffs that against the
- * files actually on disk. Playwright's territory is declared explicitly, so those files are
- * accounted for rather than merely absent.
+ * Rather than reimplement each runner's glob resolution and risk agreeing with a bug, this
+ * asks the runners themselves what they collected — `vitest list --json` and
+ * `playwright test --list` per config — and diffs that against the files on disk.
+ *
+ * Playwright used to be handled by *declaring* which directories it owned. That reproduced
+ * the very failure this script exists to catch, one level up: `tests/accessibility/` was
+ * listed as Playwright territory while no Playwright config had a `testDir` pointing at it,
+ * and `playwright.visual.config.ts` narrowed `testMatch` to a single file. Four specs, ~1500
+ * lines, were reported as "owned by playwright" while no runner ever loaded them. A
+ * directory declaration asserts intent; asking the runner measures reality.
  */
 
 import { spawnSync } from 'node:child_process';
@@ -35,15 +41,12 @@ const SKIP_DIRECTORIES = new Set([
 ]);
 
 /**
- * Suites owned by Playwright rather than Vitest. They import `@playwright/test`, cannot
- * link under Vitest, and run in the `test:e2e` job. Declared here so they are accounted
- * for; a new directory of Playwright specs has to be added, which is the point.
+ * Playwright configs to interrogate.
+ *
+ * A new config has to be added here, which is the point: an unlisted config's specs show up
+ * as unclaimed rather than passing as somebody else's problem.
  */
-const PLAYWRIGHT_DIRECTORIES = [
-  join('tests', 'e2e'),
-  join('tests', 'visual'),
-  join('tests', 'accessibility'),
-];
+const PLAYWRIGHT_CONFIGS = ['playwright.config.ts', 'playwright.visual.config.ts'];
 
 interface CollectedTest {
   name: string;
@@ -67,10 +70,73 @@ function walk(directory: string, found: string[] = []): string[] {
   return found;
 }
 
-function isPlaywrightOwned(relativePath: string): boolean {
-  return PLAYWRIGHT_DIRECTORIES.some(
-    (directory) => relativePath === directory || relativePath.startsWith(`${directory}${sep}`),
-  );
+/**
+ * The spec files Playwright actually collects, across every config.
+ *
+ * `--list --reporter=json` rather than parsing `testDir`/`testMatch` ourselves: those
+ * interact (a narrow `testMatch` silently excludes most of a `testDir`) and reimplementing
+ * the interaction is how a checker ends up agreeing with the bug it is meant to find.
+ */
+function collectFromPlaywright(): Set<string> {
+  const collected = new Set<string>();
+
+  for (const config of PLAYWRIGHT_CONFIGS) {
+    const result = spawnSync(
+      'bunx',
+      ['playwright', 'test', '--config', config, '--list', '--reporter=json'],
+      { cwd: REPO_ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 },
+    );
+
+    if (result.error) {
+      throw new Error(`could not list Playwright specs for ${config}: ${result.error.message}`);
+    }
+
+    const stdout = result.stdout ?? '';
+    const start = stdout.indexOf('{');
+    if (start === -1) {
+      throw new Error(
+        `"playwright test --list" produced no JSON for ${config}.\nstdout:\n${stdout.slice(
+          0,
+          2000,
+        )}\nstderr:\n${(result.stderr ?? '').slice(0, 2000)}`,
+      );
+    }
+
+    const report = JSON.parse(stdout.slice(start)) as {
+      config?: { rootDir?: string };
+    };
+
+    // Reported file paths are relative to `config.rootDir` — the *resolved* testDir, not the
+    // repo root. Joining them onto the repo root instead yields paths that exist nowhere and
+    // match nothing, which reads exactly like "collected but unclaimed".
+    const rootDir = report.config?.rootDir;
+    if (typeof rootDir !== 'string') {
+      throw new Error(`"playwright test --list" for ${config} reported no config.rootDir`);
+    }
+
+    // The report nests specs under `suites[].suites[]…`, each carrying the file it came from.
+    // Only the paths matter, so every `file` key at any depth is collected rather than the
+    // shape being walked.
+    const files = new Set<string>();
+    const visit = (node: unknown): void => {
+      if (Array.isArray(node)) {
+        node.forEach(visit);
+        return;
+      }
+      if (typeof node !== 'object' || node === null) return;
+
+      const record = node as Record<string, unknown>;
+      if (typeof record.file === 'string') files.add(record.file);
+      Object.values(record).forEach(visit);
+    };
+    visit(report);
+
+    for (const file of files) {
+      collected.add(relative(REPO_ROOT, join(rootDir, file)));
+    }
+  }
+
+  return collected;
 }
 
 function collectFromVitest(fast: boolean): Set<string> {
@@ -115,17 +181,19 @@ function main(): void {
   const fast = process.argv.includes('--fast');
 
   const onDisk = walk(REPO_ROOT).map((path) => relative(REPO_ROOT, path));
-  const playwrightOwned = onDisk.filter(isPlaywrightOwned);
-  const vitestCandidates = onDisk.filter((path) => !isPlaywrightOwned(path));
 
-  const claimed = collectFromVitest(fast);
-  const unclaimed = vitestCandidates.filter((path) => !claimed.has(path));
+  const byVitest = collectFromVitest(fast);
+  const byPlaywright = collectFromPlaywright();
+
+  // A file counts as covered when *some* runner reports collecting it. Both sets are
+  // measured, so a file cannot slip through by being nobody's declared territory.
+  const unclaimed = onDisk.filter((path) => !byVitest.has(path) && !byPlaywright.has(path));
 
   process.stdout.write(
     [
       `test files on disk        ${onDisk.length}`,
-      `claimed by vitest         ${claimed.size}`,
-      `owned by playwright       ${playwrightOwned.length}`,
+      `collected by vitest       ${byVitest.size}`,
+      `collected by playwright   ${byPlaywright.size}`,
       `unclaimed                 ${unclaimed.length}`,
       '',
     ].join('\n'),
@@ -145,8 +213,10 @@ function main(): void {
       ...unclaimed.map((path) => `  ${path}`),
       '',
       'Fix by either adding a packages/<name>/vitest.config.ts whose include glob matches',
-      'them, widening an existing config, or - if they belong to Playwright - adding their',
-      'directory to PLAYWRIGHT_DIRECTORIES in this script.',
+      'them, widening an existing config, or - if they belong to Playwright - making sure a',
+      'listed config actually collects them: check its testDir AND its testMatch, since a',
+      'narrow testMatch silently excludes most of a testDir. New Playwright configs go in',
+      'PLAYWRIGHT_CONFIGS in this script.',
       '',
     ].join('\n'),
   );

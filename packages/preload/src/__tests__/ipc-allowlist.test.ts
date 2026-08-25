@@ -64,11 +64,26 @@ beforeEach(() => {
 });
 
 // ---------------------------------------------------------------------------
-// The inventory of channels the renderer actually calls.
+// The inventory of channels the allowlist admits.
 //
-// Sourced from `grep -rn 'window.electron.invoke' packages/renderer/src/`:
-// the `debug:*` family used by DebugPanel and its sub-panels, plus the channels
-// `renderer/src/lib/ipc.ts` routes through the same bridge.
+// PROVENANCE, and it has changed. This list was sourced from
+// `grep -rn 'window.electron.invoke' packages/renderer/src/` — the `debug:*`
+// family used by DebugPanel, plus what the old renderer's `lib/ipc.ts` routed
+// through the same bridge. That renderer has been deleted.
+//
+// MEASURED 2026-08-25: the current renderer (`packages/app`) calls exactly one
+// namespace, `window.cortex.cortex`. Nothing reads `window.electron` or
+// `window.ipc` at all, so every channel below currently has no consumer.
+//
+// These tests are kept, and they are still worth running, because what they
+// assert is a property of the *boundary* rather than of any caller: a channel
+// outside the list must be rejected. That is what stops the generic `invoke`
+// escape hatch from becoming "the renderer can reach any ipcMain handler",
+// which is the state it would drift into the moment a caller reappears.
+//
+// It does mean the surface is currently wider than the app uses. Narrowing it is
+// a deliberate change on its own, not something to do while the session
+// workbench (which needs fs, git and terminal) is still being built.
 // ---------------------------------------------------------------------------
 
 const DEBUG_CHANNELS = [

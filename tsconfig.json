@@ -11,9 +11,10 @@
   // --------------------------------------------------------------------------
   // Il n'y a pas de programme unique cohérent à la racine de ce dépôt. Les
   // packages ont des options *incompatibles* :
-  //   * `jsx: "react-jsx"` n'existe que dans `renderer` ;
-  //   * `lib` contient `DOM` dans `renderer`, pas dans `main` ni `preload` ;
-  //   * `types` vaut `["node"]` ici, `["vite/client", "node", ...]` là.
+  //   * `jsx` n'est défini que dans les packages d'UI (`app`, `ui`), et vaut
+  //     `"preserve"` avec `jsxImportSource: "solid-js"` — pas `"react-jsx"` ;
+  //   * `lib` contient `DOM` dans `app` et `ui`, pas dans `main` ni `preload` ;
+  //   * `types` vaut `["node"]` ici, `["vitest/globals", "node"]` là.
   // Mesuré : un `include` unifié sur `packages/*/src/**/*` produit 4710 erreurs
   // (2957 TS17004 « Cannot use JSX unless the '--jsx' flag is provided »,
   // 873 TS2304 sur les globales de test) contre 42 erreurs réelles mesurées
@@ -26,7 +27,7 @@
   // Avant, ce fichier n'avait pas d'`include` : il ramassait tout via `**/*`, et
   // son `exclude: ["dist"]` ne matchait que le `dist` racine — pas
   // `packages/*/dist`. Avec `allowJs: true`, `tsc` avalait les 173 chunks Vite
-  // de `packages/renderer/dist/assets/` (737 fichiers dans le programme) et
+  // du `dist` du renderer de l'époque (737 fichiers dans le programme) et
   // mourait sur un `RangeError: Maximum call stack size exceeded` en signalant
   // **0 erreur de type**. C'est ce qui a fait circuler des comptes faux.
   //

@@ -57,11 +57,8 @@ function createWindow() {
     }
   });
 
-  // Load the renderer.
-  //
-  // `packages/app` is the SolidJS renderer built against the Paper design.
-  // `packages/renderer` (React) is still in the tree but no longer loaded; it is
-  // removed once nothing references it.
+  // Load the renderer: `packages/app`, the SolidJS UI built against the Paper
+  // design. (The React renderer it replaced has been deleted.)
   //
   // The renderer routes on the URL hash, which is what makes this work at all: a
   // path like /sign-in/device is not a resolvable file, so a history router would

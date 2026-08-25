@@ -54,7 +54,7 @@ export default defineConfig({
       // The glob is passed to tinyglobby as `cwd: root`, so a pattern only
       // matches when it is relative to the root actually in play. A
       // root-relative `packages/*/src/**` matches nothing from
-      // `cwd=packages/renderer`, and a project-relative `src/**` matches
+      // `cwd=packages/app`, and a project-relative `src/**` matches
       // nothing from the repo root (there is no `src/` there). Listing both
       // means whichever root is in play, one pattern matches — and the other is
       // simply inert rather than wrong. `test:unit` uses `--project`, so both
@@ -75,7 +75,6 @@ export default defineConfig({
         '**/*.d.ts',
         'packages/ai-engine/src/model-selection/types.ts',
         'packages/main/src/database/types.ts',
-        'packages/renderer/src/types/ipc-contract.ts',
 
         '**/*.config.*',
 
@@ -94,12 +93,11 @@ export default defineConfig({
         'packages/main/src/test-db.ts',
         'packages/main/src/database/test-db.ts',
         'packages/main/src/database/example.ts',
-        'packages/renderer/src/lib/api-examples.ts',
 
-        // DOM bootstrap entry point: `createRoot(...).render(...)` at module
-        // scope against a real `#root`. Importing it under jsdom executes the
-        // mount rather than testing anything.
-        'packages/renderer/src/main.tsx',
+        // DOM bootstrap entry point: `render(...)` at module scope against a real
+        // `#root`. Importing it under jsdom executes the mount rather than
+        // testing anything.
+        'packages/app/src/main.tsx',
 
         // Test scaffolding, not product code. Measuring the coverage of the
         // helpers that do the covering says nothing about the product; these
@@ -173,13 +171,25 @@ export default defineConfig({
       //   preload    100% on all four
       //   shared     100% on all four
       //   renderer   statements 61.67%  lines 61.92%  funcs 56.74%  branches 60.22%
-      //     <- the whole shortfall still lives here
       //
       // Note the per-package numbers differ from this file's merged run: the
-      // merged lcov attributes cross-package imports differently (renderer
-      // reads 61.93% lines merged vs 61.92% standalone; main 72.47% merged vs
-      // 72.13% standalone). Set each package's gate from its own standalone
-      // run, not from the merged report.
+      // merged lcov attributes cross-package imports differently (main 72.47%
+      // merged vs 72.13% standalone). Set each package's gate from its own
+      // standalone run, not from the merged report.
+      //
+      // ---------------------------------------------------------------------
+      // SUPERSEDED 2026-08-25: `packages/renderer` was deleted
+      // ---------------------------------------------------------------------
+      // Every measurement above includes the retired React renderer, which was
+      // the whole shortfall at ~62%. Deleting it removes ~19 MB of source and
+      // 42 test files from both sides of the ratio.
+      //
+      // This is the mechanical rise the note above warns about, in its largest
+      // form yet: the merged percentage goes UP because the least-covered
+      // package left the denominator, not because anything was tested. The
+      // gates below are re-measured on the current tree for exactly that
+      // reason — leaving them at the old basis would mean the floor sits far
+      // below the real level and a genuine regression would not trip it.
       //
       // The gate is set ~1 point under each measured value. Not to make a run
       // pass: it already passes at the measured value. The margin absorbs
