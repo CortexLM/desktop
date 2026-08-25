@@ -47,6 +47,14 @@
   --shadow-menu: 0 4px 16px #00000014;
   --shadow-toast: 0 4px 12px #00000026;
 
+  /*
+   * The selected segment of a segmented control. Tighter and slightly warmer than
+   * --shadow-raised, because it lifts a chip a couple of pixels off its own track rather
+   * than a card off the page.
+   * Source: Sessions controls row (20X-0).
+   */
+  --shadow-segment: 0 1px 2px #14141414;
+
   /* Disabled fills drop to 40% rather than switching colour. Source: BL-0, CL-0. */
   --opacity-disabled: 0.4;
 }
