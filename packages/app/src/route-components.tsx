@@ -8,8 +8,6 @@ import {
   WorkspaceSetupScreen,
   type FlowStep,
 } from './screens/onboarding/flow-screens.tsx';
-import { ReviewScreen } from './screens/review/review-screen.tsx';
-import { UsageScreen } from './screens/usage/usage-screen.tsx';
 import { SignInScreen } from './screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from './screens/auth/device-code-screen.tsx';
 import { createDeviceFlow } from './screens/auth/device-flow.ts';
@@ -28,35 +26,6 @@ const ONBOARDING_STEPS: readonly FlowStep[] = [
   { id: 'github', label: 'GitHub', done: false },
   { id: 'workspace', label: 'Workspace', done: false },
 ];
-
-export function UsageRoute(): JSX.Element {
-  const account = useAccount();
-  const navigate = useNavigate();
-
-  return (
-    <UsageScreen
-      capabilities={account.capabilities()}
-      period="this month"
-      stats={[]}
-      rows={[]}
-      onSignIn={() => navigate('/sign-in')}
-    />
-  );
-}
-
-export function ReviewRoute(): JSX.Element {
-  const account = useAccount();
-  const navigate = useNavigate();
-
-  return (
-    <ReviewScreen
-      capabilities={account.capabilities()}
-      items={[]}
-      onOpen={(id) => navigate(`/sessions/${id}`)}
-      onSignIn={() => navigate('/sign-in')}
-    />
-  );
-}
 
 export function SignInRoute(): JSX.Element {
   const navigate = useNavigate();
@@ -134,3 +103,4 @@ export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-route
 export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';
 export { AutomationsRoute, NewAutomationRoute } from './routes/automation-routes.tsx';
 export { SecretsRoute } from './routes/secrets-routes.tsx';
+export { ReviewRoute, UsageRoute } from './routes/insight-routes.tsx';
