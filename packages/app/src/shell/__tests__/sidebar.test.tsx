@@ -67,16 +67,20 @@ describe('Sidebar gating', () => {
     // are how the design advertises what an account adds, same as the model picker.
     renderSidebar({ capabilities: ANONYMOUS_CAPABILITIES });
 
-    expect(screen.getByRole('button', { name: 'Automations' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Review' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Usage' })).toBeDisabled();
+    // `aria-disabled` rather than `disabled`: the row stays focusable so a keyboard user can
+    // reach it and read why, which a `disabled` button makes impossible.
+    for (const label of ['Automations', 'Review', 'Usage']) {
+      const row = screen.getByRole('button', { name: label });
+      expect(row).toHaveAttribute('aria-disabled', 'true');
+      expect(row).toHaveAttribute('title', `Sign in to Cortex to use ${label}`);
+    }
   });
 
   it('leaves the surfaces that work signed out enabled', () => {
     renderSidebar({ capabilities: ANONYMOUS_CAPABILITIES });
 
-    expect(screen.getByRole('button', { name: 'Home' })).not.toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Sessions' })).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Home' })).not.toHaveAttribute('aria-disabled');
+    expect(screen.getByRole('button', { name: 'Sessions' })).not.toHaveAttribute('aria-disabled');
   });
 
   it('explains why a locked destination is unavailable', () => {
@@ -168,9 +172,30 @@ describe('Sidebar footer', () => {
     expect(screen.getByText('Pro workspace')).toBeInTheDocument();
   });
 
-  it('omits the user row when nobody is signed in', () => {
-    const { container } = renderSidebar();
-    expect(container.querySelector('.cx-sidebar__user')).toBeNull();
+  it('offers a way in when nobody is signed in', () => {
+    const onSignIn = vi.fn();
+    renderSidebar({ onSignIn });
+
+    // The footer used to render only for a signed-in user, which made anonymous a one-way
+    // door: every other `onSignIn` handler hangs off Usage, Review and Automations, and all
+    // three are locked *because* nobody is signed in.
+    fireEvent.click(screen.getByRole('button', { name: /Sign in/ }));
+    expect(onSignIn).toHaveBeenCalledTimes(1);
+  });
+
+  it('says what signing in adds rather than only that it is possible', () => {
+    renderSidebar();
+    expect(screen.getByText('Unlock Cortex models')).toBeInTheDocument();
+  });
+
+  it('toggles the theme when signed out too', () => {
+    // The toggle lived in the signed-in row, so the dark palette was unreachable without an
+    // account — for a design that draws every screen in it.
+    renderSidebar();
+
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+    fireEvent.click(screen.getByRole('button', { name: 'Toggle theme' }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
   });
 
   it('toggles the theme from the user row', () => {

@@ -224,8 +224,27 @@ describe('NavItem', () => {
     render(() => <NavItem icon="usage" label="Usage" lockedReason="Sign in to see usage" />);
     const button = screen.getByRole('button');
 
-    expect(button).toBeDisabled();
+    // `aria-disabled`, deliberately not `disabled`. A disabled button is skipped by tab order
+    // and suppresses its own tooltip, so the explanation was unreachable for keyboard and
+    // screen-reader users — the very people who cannot see that the row is dimmed.
+    expect(button).toHaveAttribute('aria-disabled', 'true');
+    expect(button).not.toBeDisabled();
     expect(button).toHaveAttribute('title', 'Sign in to see usage');
+  });
+
+  it('keeps a locked destination reachable and out of its own label', () => {
+    render(() => <NavItem icon="usage" label="Usage" lockedReason="Sign in to see usage" />);
+    const button = screen.getByRole('button');
+
+    // Focusable, so the reason can actually be reached.
+    button.focus();
+    expect(document.activeElement).toBe(button);
+
+    // The reason lives in `title`, not inside the button: a hidden span there would make the
+    // row read as "UsageSign in to see usage" to anything walking the DOM, and would join the
+    // accessible name.
+    expect(button.textContent?.trim()).toBe('Usage');
+    expect(screen.getByRole('button', { name: 'Usage' })).toBe(button);
   });
 
   it('does not fire when locked', () => {

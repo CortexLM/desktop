@@ -43,6 +43,8 @@ export interface SidebarProps {
   onOpenRun: (id: string) => void;
   onSwitchWorkspace?: () => void;
   onOpenAccount?: () => void;
+  /** Opens the sign-in flow. The only route to it from inside the workspace. */
+  onSignIn?: () => void;
   onUpgrade?: () => void;
   onToggleSidebar?: () => void;
 }
@@ -105,27 +107,32 @@ function RecentRuns(props: { runs: readonly RecentRun[]; onOpen: (id: string) =>
   );
 }
 
-function UserRow(props: {
-  user: SidebarUser;
+/**
+ * The footer: who you are, or an invitation to say so.
+ *
+ * Rendered in both states, which it did not used to be. It only appeared when a user was
+ * signed in, and the consequences were worse than a missing row:
+ *
+ *   - There was no way to sign in from anywhere in the running app. The only `onSignIn`
+ *     handlers hang off Usage, Review and Automations, and all three are locked precisely
+ *     because you are not signed in. Anonymous was a one-way door.
+ *   - The theme toggle lived here too, so a signed-out user could not reach the dark palette
+ *     at all, despite the design drawing every screen in it.
+ */
+function Footer(props: {
+  user?: SidebarUser;
   onOpenAccount?: () => void;
+  onSignIn?: () => void;
   onToggleTheme: () => void;
 }): JSX.Element {
   return (
     <div class="cx-sidebar__user">
-      <button
-        type="button"
-        class="cx-sidebar__identity"
-        onClick={() => props.onOpenAccount?.()}
-        aria-label={`Account: ${props.user.name}`}
+      <Show
+        when={props.user}
+        fallback={<SignInRow onSignIn={props.onSignIn} />}
       >
-        <span class="cx-sidebar__avatar" aria-hidden="true">
-          {props.user.initials}
-        </span>
-        <span class="cx-sidebar__identity-text">
-          <span class="cx-sidebar__user-name">{props.user.name}</span>
-          <span class="cx-sidebar__user-plan">{props.user.plan}</span>
-        </span>
-      </button>
+        {(user) => <IdentityRow user={user()} onOpenAccount={props.onOpenAccount} />}
+      </Show>
       <button
         type="button"
         class="cx-sidebar__chrome-action"
@@ -135,6 +142,46 @@ function UserRow(props: {
         <Icon name="theme" size={14} />
       </button>
     </div>
+  );
+}
+
+function SignInRow(props: { onSignIn?: () => void }): JSX.Element {
+  return (
+    <button type="button" class="cx-sidebar__identity" onClick={() => props.onSignIn?.()}>
+      <span class="cx-sidebar__avatar" aria-hidden="true">
+        <Icon name="lock" size={11} />
+      </span>
+      <span class="cx-sidebar__identity-text">
+        <span class="cx-sidebar__user-name">Sign in</span>
+        {/*
+          Says what signing in buys, in the slot the plan name occupies when signed in. The
+          locked nav rows above advertise the same thing; this is the row that acts on it.
+        */}
+        <span class="cx-sidebar__user-plan">Unlock Cortex models</span>
+      </span>
+    </button>
+  );
+}
+
+function IdentityRow(props: {
+  user: SidebarUser;
+  onOpenAccount?: () => void;
+}): JSX.Element {
+  return (
+    <button
+      type="button"
+      class="cx-sidebar__identity"
+      onClick={() => props.onOpenAccount?.()}
+      aria-label={`Account: ${props.user.name}`}
+    >
+      <span class="cx-sidebar__avatar" aria-hidden="true">
+        {props.user.initials}
+      </span>
+      <span class="cx-sidebar__identity-text">
+        <span class="cx-sidebar__user-name">{props.user.name}</span>
+        <span class="cx-sidebar__user-plan">{props.user.plan}</span>
+      </span>
+    </button>
   );
 }
 
@@ -243,11 +290,12 @@ export function Sidebar(props: SidebarProps): JSX.Element {
       <Show when={props.plan}>
         {(plan) => <PlanCard plan={plan()} onUpgrade={props.onUpgrade} />}
       </Show>
-      <Show when={props.user}>
-        {(user) => (
-          <UserRow user={user()} onOpenAccount={props.onOpenAccount} onToggleTheme={theme.toggle} />
-        )}
-      </Show>
+      <Footer
+        user={props.user}
+        onOpenAccount={props.onOpenAccount}
+        onSignIn={props.onSignIn}
+        onToggleTheme={theme.toggle}
+      />
     </nav>
   );
 }

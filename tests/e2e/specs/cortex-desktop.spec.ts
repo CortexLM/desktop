@@ -61,17 +61,49 @@ test.describe('the app Electron loads', () => {
 
   test('gates what an account is needed for, and says why', async ({ page }) => {
     // Locked rather than hidden: hiding these would make the signed-out app look like a
-    // smaller product, whereas a locked row advertises what an account adds. The tooltip is
-    // what makes the dead click explicable.
+    // smaller product, whereas a locked row advertises what an account adds.
     for (const label of ['Automations', 'Review', 'Usage']) {
       const item = page.getByRole('button', { name: label });
-      await expect(item).toBeDisabled();
-      await expect(item).toHaveAttribute('title', new RegExp(`Sign in to Cortex to use ${label}`));
+      await expect(item).toHaveAttribute('aria-disabled', 'true');
+      await expect(item).toHaveAttribute('title', `Sign in to Cortex to use ${label}`);
+
+      // Focusable, which `disabled` would have prevented. This is the assertion that matters:
+      // a row nobody can reach cannot advertise anything, and the reason it is locked was
+      // previously unreachable for exactly the users who cannot see that it is dimmed.
+      await item.focus();
+      await expect(item).toBeFocused();
     }
+
+    // Reachable but inert. `force` because Playwright's own actionability check already
+    // refuses to click an `aria-disabled` control — which is itself the confirmation that the
+    // state is expressed properly. Forcing past it proves the click guard, not just the
+    // attribute: `aria-disabled` is advisory and the browser does still fire the event.
+    await page.getByRole('button', { name: 'Usage' }).click({ force: true });
+    await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
 
     // And the destinations that need nothing stay usable.
     await expect(page.getByRole('button', { name: 'Home' })).toBeEnabled();
     await expect(page.getByRole('button', { name: 'Sessions' })).toBeEnabled();
+  });
+
+  test('offers a way to sign in from inside the workspace', async ({ page }) => {
+    // Anonymous used to be a one-way door. The footer only rendered for a signed-in user, and
+    // every other route to sign-in hangs off Usage, Review and Automations — all locked
+    // precisely because nobody is signed in. There was no reachable path at all.
+    await page.getByRole('button', { name: /Sign in/ }).click();
+
+    await expect(page.getByRole('heading', { name: /Sign in|Welcome/i })).toBeVisible();
+    expect(page.url()).toContain('#/sign-in');
+  });
+
+  test('lets a signed-out user reach the dark palette', async ({ page }) => {
+    // The theme toggle lived in the signed-in footer row, so dark mode was unreachable
+    // without an account — for a design that draws every screen in it.
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+
+    await page.getByRole('button', { name: 'Toggle theme' }).click();
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   });
 
   test('keeps a typed prompt when you leave Home and come back', async ({ page }) => {

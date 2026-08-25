@@ -64,8 +64,16 @@ describe('App', () => {
     render(() => <App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Usage' })).toBeDisabled();
-      expect(screen.getByRole('button', { name: 'Review' })).toBeDisabled();
+      // `aria-disabled`, not `disabled` — see NavItem: a disabled button cannot be focused,
+      // so the reason it is locked becomes unreachable for keyboard users.
+      expect(screen.getByRole('button', { name: 'Usage' })).toHaveAttribute(
+        'aria-disabled',
+        'true',
+      );
+      expect(screen.getByRole('button', { name: 'Review' })).toHaveAttribute(
+        'aria-disabled',
+        'true',
+      );
     });
   });
 
