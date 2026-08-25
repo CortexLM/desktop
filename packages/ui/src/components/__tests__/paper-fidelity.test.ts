@@ -223,6 +223,212 @@ describe('text field matches the Paper input', () => {
   });
 });
 
+describe('session card matches the Paper session card', () => {
+  const source = css('session-card');
+  const paper = jsx('session-card');
+
+  it('uses the padding, gap and width Paper exports', () => {
+    expect(paper).toContain("padding: '16px'");
+    expect(paper).toContain("gap: '12px'");
+    expect(paper).toContain("width: '360px'");
+
+    expect(source).toContain('padding: var(--spacing-4);');
+    expect(source).toContain('gap: var(--spacing-3);');
+  });
+
+  it('is a raised surface with a hairline border at radius-md', () => {
+    expect(paper).toContain("borderColor: 'var(--color-border)'");
+    expect(paper).toContain("borderRadius: 'var(--radius-md)'");
+    expect(source).toContain('border: 1px solid var(--color-border);');
+    expect(source).toContain('background: var(--color-surface-raised);');
+  });
+
+  it('sets the title at 14px medium on an 18px line', () => {
+    expect(paper).toContain("fontSize: '14px'");
+    expect(source).toMatch(/\.cx-session-card__title \{[\s\S]*?font-size: var\(--text-base\);/);
+    expect(source).toMatch(/\.cx-session-card__title \{[\s\S]*?line-height: 18px;/);
+  });
+
+  it('grows the title so the badge stays right-aligned', () => {
+    expect(paper).toContain("flexGrow: '1'");
+    expect(source).toMatch(/\.cx-session-card__title \{[\s\S]*?flex-grow: 1;/);
+  });
+
+  it('colours the diff counts from the success and error roles', () => {
+    expect(paper).toContain("color: 'var(--color-success)'");
+    expect(paper).toContain("color: 'var(--color-error)'");
+    expect(source).toMatch(/\.cx-session-card__added \{[\s\S]*?color: var\(--color-success\);/);
+    expect(source).toMatch(/\.cx-session-card__removed \{[\s\S]*?color: var\(--color-error\);/);
+  });
+
+  it('places the age on the faint role', () => {
+    expect(paper).toContain("color: 'var(--color-text-faint)'");
+    expect(source).toMatch(/\.cx-session-card__age \{[\s\S]*?color: var\(--color-text-faint\);/);
+  });
+});
+
+describe('toast matches the Paper toast', () => {
+  const source = css('toast');
+  const paper = jsx('tabs-toast-menu');
+
+  it('uses the padding and gap Paper exports', () => {
+    expect(paper).toContain("paddingBlock: '12px'");
+    expect(paper).toContain("paddingInline: '16px'");
+    expect(source).toContain('padding: 12px 16px;');
+    expect(paper).toContain("gap: '10px'");
+    expect(source).toContain('gap: 10px;');
+  });
+
+  it('stays dark in both themes, from the toast tokens', () => {
+    // The dark kit draws the same #1F1F1F surface, so this is a snackbar rather than a
+    // themed surface.
+    expect(paper).toContain("backgroundColor: '#1F1F1F'");
+    expect(source).toContain('background: var(--color-toast-bg);');
+    expect(source).toContain('color: var(--color-toast-text);');
+  });
+
+  it('carries the toast elevation and radius-md', () => {
+    expect(paper).toContain("boxShadow: '#00000026 0px 4px 12px'");
+    expect(source).toContain('box-shadow: var(--shadow-toast);');
+    expect(source).toContain('border-radius: var(--radius-md);');
+  });
+
+  it('sets the message at 13px medium', () => {
+    expect(source).toContain('font-size: var(--text-sm);');
+    expect(source).toContain('font-weight: var(--font-weight-medium);');
+  });
+});
+
+describe('menu matches the Paper dropdown', () => {
+  const source = css('menu');
+  const paper = jsx('tabs-toast-menu');
+
+  it('uses the padding, gap and width Paper exports', () => {
+    expect(paper).toContain("padding: '6px'");
+    expect(paper).toContain("width: '240px'");
+    expect(source).toContain('padding: 6px;');
+    expect(source).toContain('width: var(--layout-menu-width, 240px);');
+    expect(source).toContain('gap: 2px;');
+  });
+
+  it('is a raised surface with the menu elevation', () => {
+    expect(paper).toContain("boxShadow: '#00000014 0px 4px 16px'");
+    expect(source).toContain('box-shadow: var(--shadow-menu);');
+    expect(source).toContain('background: var(--color-surface-raised);');
+  });
+
+  it('uses the row padding and gap Paper exports', () => {
+    expect(source).toMatch(/\.cx-menu__item \{[\s\S]*?padding: 8px 10px;/);
+    expect(source).toMatch(/\.cx-menu__item \{[\s\S]*?gap: 10px;/);
+  });
+
+  it('hovers a row onto the inset surface', () => {
+    expect(paper).toContain("backgroundColor: 'var(--color-inset)'");
+    expect(source).toContain('background: var(--color-inset);');
+  });
+
+  it('reserves a 20px trailing slot on every row', () => {
+    // Paper renders the empty box on rows without a shortcut, for the same lane reason as
+    // the sidebar's indicator.
+    expect(paper).toContain("width: '20px'");
+    expect(source).toMatch(/\.cx-menu__trailing \{[\s\S]*?width: 20px;/);
+  });
+
+  it('tints a destructive row from the error role', () => {
+    expect(paper).toContain("color: 'var(--color-error)'");
+    expect(source).toMatch(/\.cx-menu__item--destructive \{[\s\S]*?color: var\(--color-error\);/);
+  });
+});
+
+describe('tabs match the Paper tab strip', () => {
+  const source = css('tabs');
+  const paper = jsx('tabs-toast-menu');
+
+  it('uses the spacing Paper exports', () => {
+    expect(paper).toContain("gap: '7px'");
+    expect(paper).toContain("paddingTop: '8px'");
+    expect(source).toContain('gap: 7px;');
+    expect(source).toContain('padding: 8px 4px 0;');
+  });
+
+  it('sets the label at 13px, medium when active and regular otherwise', () => {
+    expect(paper).toContain("fontWeight: 'var(--font-weight-medium)'");
+    expect(paper).toContain("fontWeight: 'var(--font-weight-regular)'");
+    expect(source).toContain('font-weight: var(--font-weight-regular);');
+    expect(source).toMatch(
+      /aria-selected='true'\] \.cx-tabs__label \{[\s\S]*?font-weight: var\(--font-weight-medium\);/,
+    );
+  });
+
+  it('draws the 2px indicator at radius 1px from the text role', () => {
+    expect(paper).toContain("borderRadius: '1px'");
+    expect(source).toMatch(/\.cx-tabs__indicator \{[\s\S]*?height: 2px;[\s\S]*?border-radius: 1px;/);
+    expect(source).toMatch(
+      /aria-selected='true'\] \.cx-tabs__indicator \{[\s\S]*?background: var\(--color-text\);/,
+    );
+  });
+
+  it('keeps the indicator transparent rather than absent when inactive', () => {
+    // Omitting it would change the strip's height as selection moved.
+    expect(source).toMatch(/\.cx-tabs__indicator \{[\s\S]*?background: transparent;/);
+  });
+
+  it('rules the strip with a hairline border', () => {
+    expect(source).toMatch(/\.cx-tabs__rule \{[\s\S]*?background: var\(--color-border\);/);
+  });
+});
+
+describe('composer matches the Paper hero composer', () => {
+  const source = css('composer');
+  const paper = jsx('composer');
+
+  it('uses the padding, gap and radius Paper exports', () => {
+    expect(paper).toContain("padding: '16px'");
+    expect(paper).toContain("gap: '12px'");
+    expect(paper).toContain("borderRadius: 'var(--radius-md)'");
+
+    expect(source).toContain('padding: var(--spacing-4);');
+    expect(source).toContain('gap: var(--spacing-3);');
+    expect(source).toContain('border-radius: var(--radius-md);');
+  });
+
+  it('is a raised surface outlined with border-strong and the raised shadow', () => {
+    expect(paper).toContain("borderColor: 'var(--color-border-strong)'");
+    expect(paper).toContain("boxShadow: '#0000000A 0px 1px 3px'");
+    expect(source).toContain('border: 1px solid var(--color-border-strong);');
+    expect(source).toContain('box-shadow: var(--shadow-raised);');
+    expect(source).toContain('background: var(--color-surface-raised);');
+  });
+
+  it('sets the prompt at 16px on a 24px line', () => {
+    // The only use of --text-md in the design: the one field the user composes prose in.
+    expect(paper).toContain("fontSize: 'var(--text-md)'");
+    expect(paper).toContain("lineHeight: '24px'");
+    expect(source).toMatch(/\.cx-composer__prompt \{[\s\S]*?font-size: var\(--text-md\);/);
+    expect(source).toMatch(/\.cx-composer__prompt \{[\s\S]*?line-height: 24px;/);
+  });
+
+  it('draws the mention chip with the accent tint at 14px medium', () => {
+    expect(paper).toContain("backgroundColor: 'var(--color-primary-tint)'");
+    expect(source).toMatch(/\.cx-composer__mention \{[\s\S]*?background: var\(--color-primary-tint\);/);
+    expect(source).toMatch(/\.cx-composer__mention \{[\s\S]*?padding: 1px 7px;/);
+  });
+
+  it('makes send a 32px accent pill rather than a padded button', () => {
+    expect(paper).toContain("height: '32px'");
+    expect(paper).toContain("borderRadius: 'var(--radius-full)'");
+    expect(source).toMatch(/\.cx-composer__send \{[\s\S]*?width: 32px;[\s\S]*?height: 32px;/);
+    expect(source).toMatch(/\.cx-composer__send \{[\s\S]*?border-radius: var\(--radius-full\);/);
+    expect(source).toMatch(/\.cx-composer__send \{[\s\S]*?background: var\(--color-primary\);/);
+  });
+
+  it('spaces the attachment and control rows by 8px, as Paper does', () => {
+    expect(paper).toContain("gap: '8px'");
+    expect(source).toMatch(/\.cx-composer__attachments \{[\s\S]*?gap: var\(--spacing-2\);/);
+    expect(source).toMatch(/\.cx-composer__controls \{[\s\S]*?gap: var\(--spacing-2\);/);
+  });
+});
+
 describe('chip matches the Paper composer control row', () => {
   const source = css('chip');
   const paper = jsx('composer');
