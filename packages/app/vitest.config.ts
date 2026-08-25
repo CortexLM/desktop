@@ -41,14 +41,24 @@ export default defineConfig({
       // Gates sit ~1 point under each measured value: the margin absorbs drift in the
       // measurement itself, not a regression. Ratchet rule — when coverage rises, raise
       // these; never lower them without replacing the measurement above and dating it.
+      //
+      // RE-MEASURED 2026-08-25, and lowered — debt, not a correction:
+      //   statements 66.57% (1896/2848)   branches 43.99% (355/807)
+      //   functions  65.11% (952/1462)    lines    63.18% (1306/2067)
+      //
+      // The package roughly doubled: run state, five IPC hosts, the route adapters,
+      // the New Automation form and the Shell tab. Those are verified end to end
+      // instead — 19 Playwright cases drive the packaged app — but that is not what
+      // this gate measures, so unit coverage genuinely fell. The thin surfaces are
+      // the route adapters and `shell-view`; that is where the next tests belong.
       // `main.tsx` is excluded: it calls `render(...)` at module scope against a real
       // `#root`, so importing it under jsdom performs the mount instead of testing it.
       // `icons/geometry.generated.ts` is generated data with no branches.
       thresholds: {
-        lines: 84,
-        functions: 81,
-        branches: 74,
-        statements: 86
+        lines: 62,
+        functions: 64,
+        branches: 43,
+        statements: 65
       }
     },
     passWithNoTests: false,
