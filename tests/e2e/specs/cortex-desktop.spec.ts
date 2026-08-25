@@ -234,3 +234,93 @@ test.describe('routing from a file:// origin', () => {
     expect(await code.textContent()).not.toContain('--------');
   });
 });
+
+test.describe('runs', () => {
+  test('starts one, records it, and lists it', async ({ page }) => {
+    // No provider is configured in a fresh userData, and that is the case worth
+    // covering: the old path threw out of `start`, surfaced a raw error and recorded
+    // nothing, so the user had a toast to re-read and no trace of the attempt.
+    await page.getByPlaceholder(/Describe a task/i).fill('Add a hello function');
+    // The submit is a glyph button; its accessible name is what makes it findable.
+    await page.getByRole('button', { name: 'Start session' }).click();
+
+    // Lands on the run's own screen, which means the id existed before navigation.
+    await expect(page).toHaveURL(/#\/sessions\/session_/);
+
+    // The failure is recorded and says what to do about it, rather than being a
+    // generic "something went wrong".
+    await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15000 });
+
+    // And it is in the inbox, which is what persistence buys. Scoped to the main
+    // pane: the title also appears in the sidebar's recent list, and an unscoped
+    // locator matches both.
+    // `exact` because the detail screen's back button is labelled 'Back to sessions',
+    // which a substring match also finds.
+    await page.getByRole('button', { name: 'Sessions', exact: true }).click();
+    await expect(page.getByRole('main').getByText('Add a hello function')).toBeVisible();
+  });
+
+  test('survives a reload, because the run is in the database', async ({ page }) => {
+    await page.getByPlaceholder(/Describe a task/i).fill('Persisted across reload');
+    await page.getByRole('button', { name: 'Start session' }).click();
+    await expect(page).toHaveURL(/#\/sessions\/session_/);
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => {
+      window.location.hash = '#/sessions';
+    });
+
+    // The old in-memory store showed an empty list on every launch while the rows
+    // sat in SQLite unread. Scoped to the main pane, since the sidebar's recent list
+    // carries the same title.
+    await expect(
+      page.getByRole('main').getByText('Persisted across reload'),
+    ).toBeVisible({ timeout: 15000 });
+  });
+});
+
+test.describe('the command palette', () => {
+  test('opens on Cmd/Ctrl+K and marks what needs an account', async ({ page }) => {
+    // It existed as a tested component that nothing rendered, so there was no
+    // shortcut and no way to reach it at all.
+    await page.keyboard.press('Control+k');
+
+    const search = page.getByPlaceholder(/Search sessions and commands/i);
+    await expect(search).toBeVisible();
+
+    await expect(page.getByText('Needs an account').first()).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(search).toBeHidden();
+  });
+
+  test('navigates to what you pick', async ({ page }) => {
+    await page.keyboard.press('Control+k');
+    await page.getByPlaceholder(/Search sessions and commands/i).fill('Settings');
+    await page.keyboard.press('Enter');
+
+    await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
+  });
+});
+
+test.describe('settings', () => {
+  test('persists a run setting through main', async ({ page }) => {
+    await page.evaluate(() => {
+      window.location.hash = '#/settings';
+    });
+    await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
+
+    // Written through IPC and read back from `app_state`, not from localStorage:
+    // these settings gate what the agent may do, so the renderer must not own them.
+    const prefix = page.getByLabel(/Branch prefix/i);
+    await prefix.fill('agent/');
+    await prefix.blur();
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => {
+      window.location.hash = '#/settings';
+    });
+
+    await expect(page.getByLabel(/Branch prefix/i)).toHaveValue('agent/', { timeout: 15000 });
+  });
+});

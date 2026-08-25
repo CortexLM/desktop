@@ -27,6 +27,14 @@ export interface SessionDetailScreenProps extends SessionTimelineProps {
   /** Present once the agent has opened one. */
   pullRequestNumber?: number;
   onBack: () => void;
+  /**
+   * Why the run failed.
+   *
+   * Rendered rather than left in the timeline: the reason is the only thing worth
+   * reading on a failed run, and burying it among the tool calls meant a run whose
+   * cause was recorded still looked like it had silently stopped.
+   */
+  error?: string;
   onStop?: () => void;
   onOpenPullRequest?: () => void;
 }
@@ -110,6 +118,16 @@ export function SessionDetailScreen(props: SessionDetailScreenProps): JSX.Elemen
         onStop={props.onStop}
         onOpenPullRequest={props.onOpenPullRequest}
       />
+
+      {/* `role="alert"` because on a failed run this is the only line worth reading,
+          and the screen is otherwise indistinguishable from one that just stopped. */}
+      <Show when={props.error}>
+        {(message) => (
+          <p class="cx-session__error" role="alert">
+            {message()}
+          </p>
+        )}
+      </Show>
 
       <div class="cx-session__body">
         <div class="cx-session__timeline">

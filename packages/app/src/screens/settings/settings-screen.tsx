@@ -127,6 +127,7 @@ function defaultsRows(props: SettingsScreenProps): RowSpec[] {
       control: (
         <TextField
           label=""
+          aria-label="Branch prefix"
           value={props.defaults.branchPrefix}
           containerClass="cx-provider__field"
           onInput={(event) => props.onDefaultChange('branchPrefix', event.currentTarget.value)}
@@ -259,11 +260,11 @@ function ProviderKeys(props: {
               <span class="cx-provider__name">{provider.name}</span>
               <TextField
                 label=""
+                aria-label={`${provider.name} API key`}
                 type="password"
                 autocomplete="off"
                 placeholder={provider.placeholder ?? 'Paste a key to enable this provider'}
                 containerClass="cx-provider__field"
-                aria-label={`${provider.name} API key`}
                 onInput={(event) => props.onChange(provider.id, event.currentTarget.value)}
               />
               <span
@@ -282,6 +283,16 @@ function ProviderKeys(props: {
     </SettingGroup>
   );
 }
+
+/*
+ * A note on `label="" aria-label="…"` below.
+ *
+ * The design puts the setting's name in the row's left column, as a sibling of the
+ * control rather than a `<label>` wrapping it — so the input had no accessible name
+ * at all, and a screen-reader user heard "edit text, blank". `label=""` keeps the
+ * field from rendering a second visible label the design does not have;
+ * `aria-label` gives it the name the row already shows.
+ */
 
 /**
  * Settings.
