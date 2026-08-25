@@ -10,7 +10,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "//trustedDependencies": "better-sqlite3 ships a native addon. Bun skips postinstall scripts unless the package is trusted, which leaves no compiled binary — or a binary built for a different NODE_MODULE_VERSION. Vitest runs the suite under plain Node, so an unbuilt/stale addon fails every database test at `new Database()`. Keep this list in sync with any native dependency.",
+  "//trustedDependencies": "better-sqlite3 ships a native addon. Bun skips postinstall scripts unless the package is trusted, which leaves no compiled binary \u2014 or a binary built for a different NODE_MODULE_VERSION. Vitest runs the suite under plain Node, so an unbuilt/stale addon fails every database test at `new Database()`. Keep this list in sync with any native dependency.",
   "trustedDependencies": [
     "better-sqlite3"
   ],
@@ -48,6 +48,9 @@
     "verify:native-abi": "tsx scripts/verify-native-abi.ts",
     "//visual": "Renders every routed screen at its artboard's exact viewport and writes the captures beside the Paper references. Reporting rather than pass/fail: Paper only returns JPEG, so a strict comparison would fail on compression artefacts. Exact-value checking lives in packages/ui's fidelity suite.",
     "test:visual": "xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' playwright test --config playwright.visual.config.ts",
+    "//paper:diff": "Pixel-compares the captures against the Paper references. The references are JPEG, so a perfect implementation cannot reach 0% - the numbers are for tracking movement, not for gating.",
+    "paper:diff": "bun scripts/paper-diff.ts",
+    "paper:align": "bun scripts/paper-align.ts",
     "screenshots:visual": "playwright test tests/visual/visual-regression.spec.ts",
     "screenshots:components": "playwright test tests/visual/component-isolation.spec.ts",
     "screenshots:storybook": "playwright test tests/visual/storybook-screenshots.spec.ts",
