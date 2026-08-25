@@ -89,6 +89,24 @@ export const IPC_CHANNELS = {
   SETTINGS_GET_PROVIDERS: 'settings:get-providers',
   SETTINGS_SET_PROVIDER: 'settings:set-provider',
 
+  // Compte Cortex — cf. `types/ipc/cortex.ts` pour le contrat.
+  //
+  // Ces canaux existent parce que le renderer, chargé depuis `file://`, ne peut
+  // pas appeler l'API lui-même : son origine est opaque et le contrôle CORS
+  // rejette la requête avant l'envoi. Le flux d'appareil est mené dans main de
+  // bout en bout, donc il n'y a pas de canal « poll » : le renderer démarre,
+  // puis écoute `EVENT_CORTEX_DEVICE_STATUS`.
+  CORTEX_GET_STATE: 'cortex:get-state',
+  CORTEX_LIST_MODELS: 'cortex:list-models',
+  CORTEX_DEVICE_START: 'cortex:device-start',
+  CORTEX_DEVICE_CANCEL: 'cortex:device-cancel',
+  // Ouvre la page d'approbation dans le navigateur système. Ne prend pas d'URL :
+  // main connaît celle du flux qu'il a lui-même démarré. Un canal « ouvre cette
+  // URL » aurait fait du renderer la source d'une URL à ouvrir hors de l'app —
+  // il n'y a rien à valider si rien n'est transmis.
+  CORTEX_OPEN_VERIFICATION: 'cortex:open-verification',
+  CORTEX_SIGN_OUT: 'cortex:sign-out',
+
   // Events (main -> renderer)
   EVENT_FILE_CHANGE: 'event:file-change',
   EVENT_TERMINAL_DATA: 'event:terminal-data',
@@ -104,6 +122,8 @@ export const IPC_CHANNELS = {
   EVENT_MCP_TOOL_INVOKED: 'event:mcp-tool-invoked',
   EVENT_MCP_PERMISSION_GRANTED: 'event:mcp-permission-granted',
   EVENT_MCP_PERMISSION_REVOKED: 'event:mcp-permission-revoked',
+  EVENT_CORTEX_DEVICE_STATUS: 'event:cortex-device-status',
+  EVENT_CORTEX_ACCOUNT_CHANGED: 'event:cortex-account-changed',
 } as const;
 
 export type IPCChannelName = (typeof IPC_CHANNELS)[keyof typeof IPC_CHANNELS];

@@ -8,6 +8,7 @@
 export {
   CORTEX_API_BASE_URL,
   CortexApiClient,
+  SESSION_COOKIE_NAME,
   type CortexApiClientOptions,
   type CortexCredentials,
   type RequestOptions,

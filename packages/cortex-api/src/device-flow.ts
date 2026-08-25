@@ -23,7 +23,9 @@ export type DeviceFlowState =
   | { status: 'awaiting-authorization'; code: DeviceCode; secondsRemaining: number }
   | { status: 'authorized'; token: DeviceToken }
   | { status: 'denied' }
-  | { status: 'expired' };
+  | { status: 'expired' }
+  /** The service does not recognise the code at all (`invalid_grant`). */
+  | { status: 'invalid'; reason: string };
 
 export interface PollDeviceTokenOptions {
   /** Reports each state change, for driving the screen's countdown and status copy. */
@@ -72,9 +74,22 @@ async function attemptRedeem(
     if (error.isSlowDown) return { kind: 'slow-down' };
     if (error.isPending) return { kind: 'pending' };
 
-    emit({ status: error.code === 'access_denied' ? 'denied' : 'expired' });
+    emit(terminalState(error));
     throw error;
   }
+}
+
+/**
+ * Maps a terminal device-flow code to the state the UI shows.
+ *
+ * Mapping explicitly rather than "denied, else expired": the service also answers
+ * `invalid_grant` for a code it does not recognise, and reporting that as expired
+ * would tell the user to wait for something that already failed.
+ */
+function terminalState(error: { code: string; message: string }): DeviceFlowState {
+  if (error.code === 'access_denied') return { status: 'denied' };
+  if (error.code === 'expired_token') return { status: 'expired' };
+  return { status: 'invalid', reason: error.message };
 }
 
 function throwIfAborted(signal: AbortSignal | undefined): void {

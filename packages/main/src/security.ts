@@ -43,6 +43,10 @@ const SAFE_DOMAINS = [
   'api.github.com',
   'cortex-ide.com',
   'www.cortex-ide.com',
+  // The device flow sends the user to `auth.cortex.foundation/device` to approve
+  // the code, and `api.cortex.foundation` is the API itself. Matched via the
+  // `.endsWith('.' + domain)` rule below, so both subdomains are covered.
+  'cortex.foundation',
 ] as const;
 
 /**

@@ -22,6 +22,7 @@ import { registerChatHandlers, unregisterChatHandlers } from './chat-handlers';
 import { registerDebugHandlers, unregisterDebugHandlers } from './debug-handlers';
 import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings-handlers';
 import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
+import { registerCortexHandlers, unregisterCortexHandlers } from './cortex-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
 /**
@@ -84,6 +85,15 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     name: 'mission',
     register: registerMissionHandlers,
     unregister: unregisterMissionHandlers,
+  },
+  // Compte Cortex. Séparé de `settings` parce qu'il détient un jeton de session
+  // et mène le flux d'appareil — et parce que c'est le seul chemin par lequel le
+  // renderer peut atteindre l'API (son origine `file://` lui interdit d'appeler
+  // directement).
+  {
+    name: 'cortex',
+    register: registerCortexHandlers,
+    unregister: unregisterCortexHandlers,
   },
 ];
 

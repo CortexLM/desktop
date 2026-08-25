@@ -73,6 +73,10 @@ import type {
   AutomationCompletedEvent,
   AutomationFailedEvent,
   AutomationNotificationEvent,
+  CortexAccountState,
+  CortexDeviceStartResponse,
+  CortexDeviceStatusEvent,
+  CortexListModelsResponse,
 } from '@cortex-ide/shared';
 
 // MCP Types - Import from types/mcp.ts which are properly exported
@@ -178,6 +182,30 @@ export interface CortexAPI {
     start: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
     pause: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
     resume: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+  };
+
+  /**
+   * Compte Cortex et catalogue de modèles.
+   *
+   * Le seul chemin par lequel le renderer peut atteindre `api.cortex.foundation` :
+   * chargé depuis `file://`, il a une origine opaque et le contrôle CORS rejette
+   * ses requêtes avant l'envoi. Le contrat est dans `shared/types/ipc/cortex.ts`.
+   *
+   * Aucune méthode ne rend de jeton. `deviceStart` renvoie le code utilisateur et
+   * l'URL de vérification — faits pour être affichés — et l'issue arrive par
+   * `onDeviceStatus`. Le `device_code`, échangeable contre un jeton, ne sort pas
+   * de main.
+   */
+  cortex: {
+    getState: () => Promise<IPCResponse<CortexAccountState>>;
+    listModels: () => Promise<IPCResponse<CortexListModelsResponse>>;
+    deviceStart: () => Promise<IPCResponse<CortexDeviceStartResponse>>;
+    deviceCancel: () => Promise<IPCResponse<{ cancelled: true }>>;
+    /** Opens the approval page. Takes no URL: main uses the flow it started. */
+    openVerification: () => Promise<IPCResponse<{ opened: boolean }>>;
+    signOut: () => Promise<IPCResponse<CortexAccountState>>;
+    onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
+    onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
   };
 
   // MCP
@@ -405,6 +433,21 @@ const cortexAPI: CortexAPI = {
     start: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_START, request),
     pause: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_PAUSE, request),
     resume: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_RESUME, request),
+  },
+
+  cortex: {
+    getState: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_GET_STATE),
+    listModels: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_MODELS),
+    deviceStart: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_DEVICE_START),
+    deviceCancel: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_DEVICE_CANCEL),
+    openVerification: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION),
+    signOut: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_SIGN_OUT),
+    onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
+      IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
+    ),
+    onAccountChanged: createEventListener<CortexAccountState>(
+      IPC_CHANNELS.EVENT_CORTEX_ACCOUNT_CHANGED,
+    ),
   },
 
   // MCP

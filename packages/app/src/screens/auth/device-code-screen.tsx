@@ -6,7 +6,15 @@ import { BrandMark } from '../../shell/brand-mark.tsx';
 
 import './auth.css';
 
-export type DeviceCodeStatus = 'waiting' | 'authorized' | 'denied' | 'expired';
+export type DeviceCodeStatus =
+  /** The flow is being opened; there is no code to show yet. */
+  | 'starting'
+  | 'waiting'
+  | 'authorized'
+  | 'denied'
+  | 'expired'
+  /** The flow could not be started or ran into something unexpected. */
+  | 'error';
 
 export interface DeviceCodeScreenProps {
   /** The short code the user types at the verification URL. */
@@ -15,6 +23,13 @@ export interface DeviceCodeScreenProps {
   status: DeviceCodeStatus;
   /** Seconds left before the code expires. */
   secondsRemaining: number;
+  /**
+   * What went wrong, when `status` is `error`.
+   *
+   * Shown verbatim. A generic "something went wrong" would hide the one useful case —
+   * an unreachable API — behind wording that suggests a bug in the app.
+   */
+  errorMessage?: string;
   onOpenBrowser: () => void;
   onCopyCode: () => void;
   onCancel: () => void;
@@ -29,11 +44,19 @@ function formatRemaining(seconds: number): string {
 }
 
 const STATUS_COPY: Record<DeviceCodeStatus, string> = {
+  starting: 'Requesting a code…',
   waiting: 'Waiting for you to approve this device…',
   authorized: 'Approved. Signing you in…',
   denied: 'That request was declined.',
   expired: 'This code expired before it was approved.',
+  error: 'Sign-in could not be started.',
 };
+
+/** Statuses with no path forward but to start again. */
+const FINISHED: readonly DeviceCodeStatus[] = ['denied', 'expired', 'error'];
+
+/** Statuses during which the app is waiting on something and says so with a spinner. */
+const BUSY: readonly DeviceCodeStatus[] = ['starting', 'waiting'];
 
 /**
  * The action row.
@@ -89,7 +112,7 @@ function DeviceActions(props: {
  * keep. The expiry countdown is the honest number, and it is shown separately.
  */
 export function DeviceCodeScreen(props: DeviceCodeScreenProps): JSX.Element {
-  const finished = () => props.status === 'denied' || props.status === 'expired';
+  const finished = () => FINISHED.includes(props.status);
 
   return (
     <div class="cx-auth">
@@ -114,11 +137,15 @@ export function DeviceCodeScreen(props: DeviceCodeScreenProps): JSX.Element {
           looking at their browser, not at this window, for most of the wait.
         */}
         <p class="cx-device__status" role="status">
-          <Show when={props.status === 'waiting'}>
+          <Show when={BUSY.includes(props.status)}>
             <span class="cx-device__spinner" aria-hidden="true" />
           </Show>
           {STATUS_COPY[props.status]}
         </p>
+
+        <Show when={props.status === 'error' && props.errorMessage}>
+          {(message) => <p class="cx-device__error">{message()}</p>}
+        </Show>
 
         <Show when={props.status === 'waiting'}>
           <p class="cx-device__expiry">Expires in {formatRemaining(props.secondsRemaining)}</p>

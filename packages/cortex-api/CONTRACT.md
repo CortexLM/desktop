@@ -17,6 +17,30 @@ explicitly turned off — sending `Authorization: Bearer <token>` returns:
 
 That is why `CortexApiClient` has no bearer-token mode. An API key goes in `x-api-key`.
 
+### The sealed session cookie is named `wos-session`
+
+Probed rather than assumed, by comparing the *failure* modes on `GET /auth/me`:
+
+| Sent | Response |
+| --- | --- |
+| nothing | `401 {"code":"AUTH_REQUIRED"}` |
+| `Cookie: foo=x` | `401 {"code":"AUTH_REQUIRED"}` |
+| `Cookie: workos-session=x` | `401 {"code":"AUTH_REQUIRED"}` |
+| `Cookie: wos-session=x` | `401 {"code":"INVALID_SESSION","message":"invalid_session_cookie"}` |
+| `x-api-key: x` | `401 {"code":"INVALID_API_KEY","message":"Invalid API key"}` |
+
+Only `wos-session` gets far enough to fail on its *contents*; every other name falls through
+to "no credential presented at all". A name that is not read cannot produce an unseal error,
+so this identifies the cookie.
+
+This is what `CortexCredentials.accessToken` relies on: the device flow yields an
+`access_token`, bearer is refused, and it is a session rather than an API key — so it travels
+as `Cookie: wos-session=<token>`.
+
+**Still unverified:** no device flow has been carried through to a real token (that needs a
+human to approve in a browser), so the *last* step — that the `access_token` unseals as a
+`wos-session` value — is inference from the three facts above, not an observation.
+
 `OPTIONS` on any `/v1` route reports the accepted request headers:
 
 ```
@@ -42,10 +66,16 @@ This is the path the desktop app uses, and what the Auth Device Code screen show
 | --- | --- | --- |
 | POST | `/auth/device/code` | `200 {"user_code":"AWTFR9HR","device_code":"<64 hex>","verification_uri":"https://auth.cortex.foundation/device","expires_in":900,"interval":5}` |
 | POST | `/auth/device/token` | `400 {"error":"authorization_pending","error_description":"User has not yet authorized this device"}` while the user has not approved |
+| POST | `/auth/device/token` | `400 {"error":"invalid_grant","error_description":"Invalid device code"}` for a code the service does not know |
 
 `authorization_pending` is a poll signal, not a failure, even though it arrives as a `400`.
 `slow_down`, `expired_token` and `access_denied` are the other RFC 8628 states; the client
-handles all four but only `authorization_pending` was observed live.
+handles all four, and `authorization_pending` and `invalid_grant` were observed live.
+
+`invalid_grant` is RFC 6749 rather than 8628, and it is treated as a device-flow error
+regardless: without it the poll loop still stopped, but the failure surfaced as a generic
+`CortexApiError`, so a caller could not tell "that code is not valid" from "the service is
+broken".
 
 ### Session
 

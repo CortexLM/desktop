@@ -58,7 +58,34 @@ export interface CortexCredentials {
    * carries this automatically; this is for contexts where it has to be passed explicitly.
    */
   sessionCookie?: string;
+  /**
+   * The `access_token` returned by the device flow, sent as the sealed session cookie.
+   *
+   * Why a cookie and not `Authorization: Bearer` — the service refuses bearer tokens
+   * outright:
+   *
+   *   Authorization: Bearer x  ->  {"code":"INVALID_SESSION",
+   *                                 "message":"Bearer JWT session auth is disabled;
+   *                                            use WorkOS sealed session cookie or API key"}
+   *
+   * So the token has to travel as one of the two accepted modes. It is a session, not an
+   * API key, and probing named the cookie: `wos-session` is recognised and rejected on its
+   * *contents* (`{"code":"INVALID_SESSION","message":"invalid_session_cookie"}`), whereas
+   * `workos-session` and any other name fall through to `AUTH_REQUIRED` — i.e. they are not
+   * read at all. Only a recognised name can produce an unseal failure.
+   *
+   * Kept distinct from `sessionCookie` (which carries a full `name=value`) so callers do
+   * not have to know the cookie name to use a token the device flow just handed them.
+   */
+  accessToken?: string;
 }
+
+/**
+ * Name of the WorkOS sealed session cookie.
+ *
+ * Established by probing, not assumed — see `CortexCredentials.accessToken`.
+ */
+export const SESSION_COOKIE_NAME = 'wos-session';
 
 export interface CortexApiClientOptions {
   baseUrl?: string;
@@ -119,7 +146,16 @@ export class CortexApiClient {
 
     if (!options.anonymous) {
       if (this.credentials.apiKey) headers.set(API_KEY_HEADER, this.credentials.apiKey);
-      if (this.credentials.sessionCookie) headers.set('Cookie', this.credentials.sessionCookie);
+
+      // An explicit `sessionCookie` wins: it carries a full `name=value` the caller chose,
+      // so overriding it with a token we wrapped ourselves would discard their intent.
+      const cookie =
+        this.credentials.sessionCookie ??
+        (this.credentials.accessToken
+          ? `${SESSION_COOKIE_NAME}=${this.credentials.accessToken}`
+          : undefined);
+      if (cookie) headers.set('Cookie', cookie);
+
       if (this.organizationId) headers.set(ORGANIZATION_HEADER, this.organizationId);
     }
 

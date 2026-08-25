@@ -316,6 +316,21 @@
   color: var(--color-text-faint);
 }
 
+/*
+ * The failure reason, under the status line.
+ *
+ * Uses the error role rather than muted text: this is the one line on the screen the user
+ * has to read, and the message it carries is often the difference between "retry" and
+ * "check your network". `word-break` because an API error can carry a long URL or host.
+ */
+.cx-device__error {
+  margin-top: 6px;
+  font-size: var(--text-2xs);
+  line-height: 16px;
+  color: var(--color-error);
+  word-break: break-word;
+}
+
 .cx-device__actions {
   display: flex;
   gap: var(--spacing-2);

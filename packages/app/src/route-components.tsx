@@ -1,4 +1,4 @@
-import { createSignal, type JSX } from 'solid-js';
+import { createSignal, onCleanup, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import type { RuntimeKind } from '@cortex-ide/cortex-api';
@@ -268,20 +268,95 @@ export function SignInRoute(): JSX.Element {
   );
 }
 
+/**
+ * Auth Device Code, driven by the real flow.
+ *
+ * The poll loop lives in main (the renderer cannot reach the API from a `file://` origin),
+ * so this component starts a flow, renders what main hands back, and reacts to the pushed
+ * status. It holds the countdown because that is a display concern: main reports the expiry
+ * once and there is no reason to send a tick over IPC every second.
+ */
 export function DeviceCodeRoute(): JSX.Element {
+  const account = useAccount();
   const navigate = useNavigate();
-  const [status] = createSignal<DeviceCodeStatus>('waiting');
+
+  const [status, setStatus] = createSignal<DeviceCodeStatus>('starting');
+  const [userCode, setUserCode] = createSignal('');
+  const [verificationUri, setVerificationUri] = createSignal('');
+  const [secondsRemaining, setSecondsRemaining] = createSignal(0);
+  const [errorMessage, setErrorMessage] = createSignal<string>();
+
+  const start = async () => {
+    setStatus('starting');
+    setErrorMessage(undefined);
+    try {
+      const flow = await account.host.startDeviceFlow();
+      setUserCode(flow.userCode);
+      setVerificationUri(flow.verificationUri);
+      setSecondsRemaining(flow.expiresIn);
+      setStatus('waiting');
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : String(error));
+      setStatus('error');
+    }
+  };
+
+  onMount(() => {
+    void start();
+
+    onCleanup(
+      account.host.onDeviceStatus((update) => {
+        switch (update.kind) {
+          case 'authorized':
+            setStatus('authorized');
+            // Straight to Home: the account context is updated by the account-changed
+            // event, so the workspace it lands on is already the signed-in one.
+            navigate('/');
+            break;
+          case 'denied':
+            setStatus('denied');
+            break;
+          case 'expired':
+            setStatus('expired');
+            break;
+          case 'error':
+            setErrorMessage(update.message);
+            setStatus('error');
+            break;
+          // `pending` and `slow-down` are the normal steady state of a device flow; the
+          // screen already says it is waiting, so there is nothing to change.
+          default:
+            break;
+        }
+      }),
+    );
+
+    // The countdown is local. It stops at zero rather than going negative and waits for the
+    // service to confirm expiry, so the screen never claims the code is dead before it is.
+    const tick = setInterval(() => {
+      setSecondsRemaining((current) => Math.max(0, current - 1));
+    }, 1000);
+    onCleanup(() => clearInterval(tick));
+
+    // Leaving the screen abandons the flow. Without this the loop would keep polling in main
+    // for up to 15 minutes and could sign the user in from a screen they walked away from.
+    onCleanup(() => void account.host.cancelDeviceFlow());
+  });
 
   return (
     <DeviceCodeScreen
-      userCode="--------"
-      verificationUri="https://auth.cortex.foundation/device"
+      userCode={userCode()}
+      verificationUri={verificationUri()}
       status={status()}
-      secondsRemaining={900}
-      onOpenBrowser={() => undefined}
-      onCopyCode={() => undefined}
-      onCancel={() => navigate('/sign-in')}
-      onRetry={() => undefined}
+      secondsRemaining={secondsRemaining()}
+      errorMessage={errorMessage()}
+      onOpenBrowser={() => void account.host.openVerificationPage()}
+      onCopyCode={() => void navigator.clipboard?.writeText(userCode())}
+      onCancel={() => {
+        void account.host.cancelDeviceFlow();
+        navigate('/sign-in');
+      }}
+      onRetry={() => void start()}
     />
   );
 }
