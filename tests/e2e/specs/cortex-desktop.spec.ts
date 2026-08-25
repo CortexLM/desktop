@@ -324,3 +324,37 @@ test.describe('settings', () => {
     await expect(page.getByLabel(/Branch prefix/i)).toHaveValue('agent/', { timeout: 15000 });
   });
 });
+
+test.describe('the Shell tab', () => {
+  test('runs a real shell', async ({ page }) => {
+    // The tab rendered nothing before: the workbench declared it and passed
+    // `undefined` as its content, so the design's four tabs were three.
+    await page.getByPlaceholder(/Describe a task/i).fill('shell');
+    await page.getByRole('button', { name: 'Start session' }).click();
+    await expect(page).toHaveURL(/#\/sessions\/session_/);
+
+    await page.getByRole('tab', { name: /Shell/ }).click();
+
+    // The PTY lives in main. Its id is assigned there and reported once, at
+    // creation — filtering output on a locally-invented id is what made an earlier
+    // version mount, size itself correctly and stay blank forever.
+    const screen = page.locator('.xterm-screen');
+    await expect(screen).toBeVisible();
+
+    await screen.click();
+    await page.keyboard.type('echo wired-ok');
+    await page.keyboard.press('Enter');
+
+    await expect
+      .poll(
+        async () =>
+          page.evaluate(() =>
+            [...document.querySelectorAll('.xterm-rows > div')]
+              .map((row) => (row.textContent ?? '').replace(/\u00a0/g, ' '))
+              .join('\n'),
+          ),
+        { timeout: 20000 },
+      )
+      .toContain('wired-ok');
+  });
+});

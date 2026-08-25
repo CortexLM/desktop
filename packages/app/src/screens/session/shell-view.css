@@ -1,0 +1,39 @@
+/*
+ * The Shell tab.
+ *
+ * Fills the workbench pane rather than sizing itself: xterm measures its container,
+ * so a surface with intrinsic height would make the terminal decide the layout
+ * instead of the other way round.
+ */
+
+.cx-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.cx-shell__surface {
+  flex: 1;
+  min-height: 0;
+  padding: var(--spacing-2);
+  background: var(--color-surface);
+}
+
+/*
+ * Why there is no terminal.
+ *
+ * Shown instead of an empty dark rectangle, which is indistinguishable from a shell
+ * that has hung.
+ */
+.cx-shell__notice {
+  padding: var(--spacing-3);
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text-faint);
+}
+
+/* xterm sets its own inline background; keep the padding area matching it. */
+.cx-shell .xterm {
+  height: 100%;
+}
