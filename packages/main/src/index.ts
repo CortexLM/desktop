@@ -5,6 +5,7 @@ import { registerIPCHandlers, unregisterIPCHandlers } from './ipc/handlers/index
 import { startMCPEvents, stopMCPEvents } from './ipc/handlers/mcp-handlers';
 import { updateManager } from './updater';
 import { automationService } from './services/automation-service';
+import { getCortexAccountService } from './services/cortex-account-service';
 import { getDatabaseService } from './services/database-service';
 import { debugService } from './services/debug-service';
 import { ipcMonitor } from './services/ipc-monitor';
@@ -189,6 +190,19 @@ app.whenReady().then(async () => {
 
   await startupStep('Debug service', () => debugService.initialize());
 
+  // After the window is open, deliberately: restoring the session verifies the
+  // stored token against `/auth/me`, so it costs a network round trip. Blocking
+  // the window on it would make every cold start as slow as the API is
+  // reachable. The renderer starts anonymous and is corrected by
+  // `event:cortex-account-changed` when this resolves.
+  await startupStep('Cortex account', async () => {
+    const service = getCortexAccountService();
+    const state = await service.restore();
+    if (state.user && mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('event:cortex-account-changed', state);
+    }
+  });
+
   await startupStep('Updater', () => {
     if (mainWindow) {
       updateManager.initialize(mainWindow);
@@ -216,4 +230,7 @@ app.on('before-quit', async () => {
   await startupStep('Database cleanup', () => getDatabaseService().close());
   await startupStep('Updater cleanup', () => updateManager.destroy());
   await startupStep('Debug cleanup', () => debugService.cleanup());
+  // Aborts an in-flight device-flow poll loop, which would otherwise keep a
+  // timer alive and hold the process open past quit.
+  await startupStep('Cortex account cleanup', () => getCortexAccountService().dispose());
 });

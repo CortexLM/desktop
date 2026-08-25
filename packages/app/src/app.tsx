@@ -118,10 +118,13 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
     const current = account.user();
     if (!current) return undefined;
 
-    const name = current.name?.trim() || current.email || 'Signed in';
+    // `displayName` is already reconciled in main, which knows how inconsistently the
+    // upstream identity providers fill in the name fields. Only the last-resort fallback
+    // lives here, for an account with neither a name nor an email.
+    const name = current.displayName ?? current.email ?? 'Signed in';
     return {
       name,
-      plan: current.organization_id ? 'Cortex workspace' : 'Personal',
+      plan: current.organizationId ? 'Cortex workspace' : 'Personal',
       initials: name
         .split(/\s+/)
         .slice(0, 2)

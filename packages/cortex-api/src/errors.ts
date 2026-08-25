@@ -10,12 +10,23 @@
  * distinguish "keep waiting" from "give up".
  */
 
-/** RFC 8628 section 3.5 device-flow error codes. */
+/**
+ * RFC 8628 section 3.5 device-flow error codes, plus `invalid_grant`.
+ *
+ * `invalid_grant` is RFC 6749 rather than 8628, but the device endpoint really
+ * does return it — `POST /auth/device/token` with an unknown code answers
+ * `{"error":"invalid_grant","error_description":"Invalid device code"}`
+ * (observed live). Leaving it out did not break the poll loop, which stops on
+ * any unrecognised error, but it stopped *by accident*: the failure arrived as a
+ * generic `CortexApiError` and the caller could not tell "this code is not
+ * valid" from "the service is broken".
+ */
 export const DEVICE_FLOW_ERRORS = [
   'authorization_pending',
   'slow_down',
   'access_denied',
   'expired_token',
+  'invalid_grant',
 ] as const;
 
 export type DeviceFlowErrorCode = (typeof DEVICE_FLOW_ERRORS)[number];
@@ -99,9 +110,16 @@ export class CortexDeviceFlowError extends Error {
     return this.code === 'slow_down';
   }
 
-  /** The flow is over and cannot recover: the code expired or the user declined. */
+  /**
+   * The flow is over and cannot recover: the code expired, the user declined, or
+   * the code was never valid.
+   */
   get isTerminal(): boolean {
-    return this.code === 'expired_token' || this.code === 'access_denied';
+    return (
+      this.code === 'expired_token' ||
+      this.code === 'access_denied' ||
+      this.code === 'invalid_grant'
+    );
   }
 }
 

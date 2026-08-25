@@ -147,6 +147,11 @@ const EXPECTED_NAMESPACES = [
   'cortex.db',
   'cortex.automation',
   'cortex.update',
+  // Cortex account and model catalogue. The renderer's only route to
+  // `api.cortex.foundation`: its `file://` origin makes its own requests fail
+  // the CORS check. Carries no token in either direction — see
+  // `shared/types/ipc/cortex.ts`.
+  'cortex.cortex',
   'ipc',
   'electron',
 ];

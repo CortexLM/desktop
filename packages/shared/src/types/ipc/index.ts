@@ -15,4 +15,5 @@ export * from './terminal';
 export * from './database';
 export * from './automation';
 export * from './settings';
+export * from './cortex';
 export * from './channels';

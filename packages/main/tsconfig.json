@@ -9,6 +9,9 @@
     "module": "ESNext",
     "target": "ES2022",
     "lib": ["ES2022"],
+    // `@cortex-ide/cortex-api` is consumed from source and imports with explicit
+    // `.ts` specifiers. Safe here because this config never emits (see above).
+    "allowImportingTsExtensions": true,
     "types": ["node", "bun-types", "vitest/globals"]
   },
   "include": ["src/**/*"],
