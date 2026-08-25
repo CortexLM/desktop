@@ -43,6 +43,7 @@
     "paper:baselines": "bun scripts/paper-sync.ts baselines",
     "paper:spec": "bun scripts/paper-sync.ts spec",
     "paper:jsx": "bun scripts/paper-sync.ts jsx",
+    "paper:icons": "bun scripts/paper-sync.ts icons",
     "verify:renderer": "tsx scripts/verify-renderer.ts",
     "build:native-dual-abi": "tsx scripts/build-native-dual-abi.ts",
     "verify:native-abi": "tsx scripts/verify-native-abi.ts",
