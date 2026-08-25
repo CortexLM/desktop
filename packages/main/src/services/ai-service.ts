@@ -341,10 +341,19 @@ export class AIService extends EventEmitter {
   /**
    * Crée une nouvelle session
    */
+  /**
+   * `extras.id` lets a caller that already owns an identifier reuse it.
+   *
+   * `SessionService` needs this: it writes the run's row *before* resolving a
+   * provider, so that a missing key becomes a recorded failure on an existing run
+   * rather than a rejected call with nothing to show. That only works if the
+   * session it later creates carries the same id as the row. `AgentServer` already
+   * accepted an `id`; this was the one link that dropped it.
+   */
   async createSession(
     providerId?: string,
     model?: string,
-    extras?: { workspacePath?: string; workspaceId?: string }
+    extras?: { workspacePath?: string; workspaceId?: string; id?: string }
   ): Promise<AISession> {
     const provider = providerId
       ? this.registry.getProvider(providerId)
@@ -367,7 +376,7 @@ export class AIService extends EventEmitter {
     }
 
     const session: AISession = {
-      id: this.generateSessionId(),
+      id: extras?.id ?? this.generateSessionId(),
       providerId: provider.id,
       model,
       messages: [],

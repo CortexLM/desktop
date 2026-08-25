@@ -293,11 +293,15 @@ describe('migration 004: workspace identity', () => {
       expect(db.prepare('PRAGMA foreign_key_check').all()).toEqual([]);
     });
 
-    it('reaches version 4 on a fresh database', async () => {
+    it('runs 004 as part of a full migration to head', async () => {
       const manager = new MigrationManager(db);
       await manager.migrate();
 
-      expect(manager.getCurrentVersion()).toBe(4);
+      // Asserted as "at least 4" rather than "exactly 4": pinning the head version
+      // here made this file fail every time a later migration was added, which says
+      // nothing about migration 004 — the subject of this suite. That 004 itself
+      // applied is what the rest of these tests check.
+      expect(manager.getCurrentVersion()).toBeGreaterThanOrEqual(4);
     });
   });
 

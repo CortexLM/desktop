@@ -1,10 +1,8 @@
 import { createSignal, onMount, type JSX } from 'solid-js';
-import { useNavigate, useParams } from '@solidjs/router';
+import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from './state/session-context.tsx';
-import { composerDraft, setComposerDraft } from './state/composer-draft.ts';
 import { AutomationsScreen } from './screens/automations/automations-screen.tsx';
-import { HomeScreen } from './screens/home/home-screen.tsx';
 import {
   ConnectGitHubScreen,
   SshConnectScreen,
@@ -13,8 +11,6 @@ import {
 } from './screens/onboarding/flow-screens.tsx';
 import { ReviewScreen } from './screens/review/review-screen.tsx';
 import { SecretsScreen } from './screens/secrets/secrets-screen.tsx';
-import { SessionDetailScreen, type WorkbenchTab } from './screens/session/session-detail-screen.tsx';
-import { SessionsScreen } from './screens/sessions/sessions-screen.tsx';
 import { IntegrationsScreen } from './screens/settings/integrations-screen.tsx';
 import {
   SettingsScreen,
@@ -40,85 +36,6 @@ const ONBOARDING_STEPS: readonly FlowStep[] = [
   { id: 'github', label: 'GitHub', done: false },
   { id: 'workspace', label: 'Workspace', done: false },
 ];
-
-export function HomeRoute(): JSX.Element {
-  const account = useAccount();
-  const navigate = useNavigate();
-
-  // The draft lives in `state/composer-draft.ts`, not here: a signal owned by this route is
-  // disposed the moment you navigate away, which silently emptied the composer on the way
-  // back. See that module for why it is not persisted to disk either.
-  //
-  // The runtime is still corrected against capabilities on mount rather than defaulting to
-  // Cloud: signed out, a draft pointing at a runtime the user cannot reach would fail on send.
-  onMount(() => {
-    const allowed = account.capabilities().runtimes;
-    if (!allowed.includes(composerDraft().runtime)) {
-      setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'local' }));
-    }
-  });
-
-  return (
-    <HomeScreen
-      capabilities={account.capabilities()}
-      draft={composerDraft()}
-      onDraftChange={setComposerDraft}
-      onStart={() => navigate('/sessions')}
-      recentSessions={[]}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onViewAllSessions={() => navigate('/sessions')}
-      onPickModel={() => navigate('/settings')}
-    />
-  );
-}
-
-export function SessionsRoute(): JSX.Element {
-  const navigate = useNavigate();
-  const [filter, setFilter] = createSignal('all');
-  const [query, setQuery] = createSignal('');
-
-  return (
-    <SessionsScreen
-      sessions={[]}
-      filters={[
-        { id: 'all', label: 'All' },
-        { id: 'mine', label: 'Mine' },
-        { id: 'archived', label: 'Archived' },
-      ]}
-      activeFilter={filter()}
-      onFilterChange={setFilter}
-      query={query()}
-      onQueryChange={setQuery}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onNewSession={() => navigate('/')}
-    />
-  );
-}
-
-export function SessionDetailRoute(): JSX.Element {
-  const navigate = useNavigate();
-  const params = useParams<{ sessionId: string }>();
-  const [tab, setTab] = createSignal<WorkbenchTab>('changes');
-  const [followUp, setFollowUp] = createSignal('');
-
-  return (
-    <SessionDetailScreen
-      title={`Session ${params.sessionId}`}
-      meta="Not yet connected to the orchestrator"
-      running={false}
-      files={[]}
-      prompt=""
-      activeTab={tab()}
-      onTabChange={setTab}
-      followUp={followUp()}
-      onFollowUpChange={setFollowUp}
-      onSendFollowUp={() => undefined}
-      followUpDisabled
-      followUpDisabledReason="Sessions are not wired to the orchestrator yet"
-      onBack={() => navigate('/sessions')}
-    />
-  );
-}
 
 export function SettingsRoute(): JSX.Element {
   const account = useAccount();
@@ -330,3 +247,5 @@ export function SshConnectRoute(): JSX.Element {
 
   return <SshConnectScreen onConnect={() => undefined} onCancel={() => navigate('/')} />;
 }
+
+export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-routes.tsx';

@@ -157,6 +157,14 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['automation', 'run', 'automation:run'],
   ['automation', 'toggle', 'automation:toggle'],
   ['automation', 'getLogs', 'automation:get-logs'],
+  ['session', 'list', 'session:list'],
+  ['session', 'get', 'session:get'],
+  ['session', 'start', 'session:start'],
+  ['session', 'followUp', 'session:follow-up'],
+  ['session', 'stop', 'session:stop'],
+  ['session', 'archive', 'session:archive'],
+  ['session', 'remove', 'session:delete'],
+  ['session', 'resolvePermission', 'session:resolve-permission'],
 ];
 
 /**
@@ -168,6 +176,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  * or `null` instead would be validated against a shape nobody declared.
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
+  ['session', 'listRepositories', 'session:list-repositories'],
   ['cortex', 'getState', 'cortex:get-state'],
   ['cortex', 'listModels', 'cortex:list-models'],
   ['cortex', 'deviceStart', 'cortex:device-start'],

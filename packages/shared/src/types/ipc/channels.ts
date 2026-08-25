@@ -107,6 +107,22 @@ export const IPC_CHANNELS = {
   CORTEX_OPEN_VERIFICATION: 'cortex:open-verification',
   CORTEX_SIGN_OUT: 'cortex:sign-out',
 
+  // Sessions (« runs ») — cf. `types/ipc/session.ts`.
+  //
+  // Distinct de `ai:*`, qui transporte une conversation. Ce domaine transporte
+  // une exécution : un état que l'inbox trie, un dépôt, une statistique de diff
+  // et une chronologie où un appel d'outil est une entrée à part entière. Il
+  // s'appuie sur l'orchestrateur d'`ai` au lieu de le dupliquer.
+  SESSION_LIST: 'session:list',
+  SESSION_GET: 'session:get',
+  SESSION_START: 'session:start',
+  SESSION_FOLLOW_UP: 'session:follow-up',
+  SESSION_STOP: 'session:stop',
+  SESSION_ARCHIVE: 'session:archive',
+  SESSION_DELETE: 'session:delete',
+  SESSION_RESOLVE_PERMISSION: 'session:resolve-permission',
+  SESSION_LIST_REPOSITORIES: 'session:list-repositories',
+
   // Events (main -> renderer)
   EVENT_FILE_CHANGE: 'event:file-change',
   EVENT_TERMINAL_DATA: 'event:terminal-data',
@@ -124,6 +140,7 @@ export const IPC_CHANNELS = {
   EVENT_MCP_PERMISSION_REVOKED: 'event:mcp-permission-revoked',
   EVENT_CORTEX_DEVICE_STATUS: 'event:cortex-device-status',
   EVENT_CORTEX_ACCOUNT_CHANGED: 'event:cortex-account-changed',
+  EVENT_SESSION_PROGRESS: 'event:session-progress',
 } as const;
 
 export type IPCChannelName = (typeof IPC_CHANNELS)[keyof typeof IPC_CHANNELS];
