@@ -1,0 +1,83 @@
+/*
+ * The single stylesheet an app imports to get the design's foundations.
+ *
+ * Order matters: generated Paper tokens first, then the semantic roles that reference the
+ * same theme selector, then structural dimensions.
+ */
+
+@import './tokens.generated.css';
+@import './semantic.css';
+@import './layout.css';
+
+/*
+ * Inter and JetBrains Mono are the two families the Paper file loads. They are resolved
+ * from the local install with a system fallback rather than fetched: the app is an Electron
+ * desktop client, and a webfont round-trip on launch would show unstyled text on the very
+ * first frame the user sees.
+ */
+:root {
+  --font-sans-stack: var(--font-sans), 'Inter var', system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-mono-stack: var(--font-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+
+  /* Paper renders its canvas with both smoothing hints; matching them keeps glyph weight
+   * identical between the design and the app, which a pixel comparison is sensitive to. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+
+  /* A desktop shell never document-scrolls; panes own their own overflow. */
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* The design draws focus nowhere, but removing it outright would strand keyboard users.
+ * `:focus-visible` keeps pointer interaction pixel-identical while still showing a ring
+ * for keyboard navigation. */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

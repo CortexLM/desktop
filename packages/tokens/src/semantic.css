@@ -1,0 +1,57 @@
+/*
+ * Semantic roles the Paper token set does not name.
+ *
+ * Hand-written, unlike tokens.generated.css. Paper's UI kit expresses a handful of roles
+ * as hex literals inside component styles rather than as tokens - interaction states, the
+ * raised surface, the always-dark toast, and the three elevation shadows. Leaving them as
+ * literals scattered through component CSS would make them unreviewable, so they are
+ * named here with the Paper node they were read from.
+ *
+ * Kept honest by packages/tokens/src/__tests__/semantic.test.ts, which checks these
+ * against the archived Paper JSX in design/paper/jsx/.
+ */
+
+:root {
+  /*
+   * Raised surface: composer, session card, dropdown menu.
+   * Light goes pure white to lift off the #FCFCFC page; dark reuses the panel value.
+   * Source: composer (CW-0 / KW-0), session card (EH-0 / JB-0), menu (GZ-0).
+   */
+  --color-surface-raised: #ffffff;
+
+  /*
+   * Row hover. Light is a hair lighter than --color-inset so hover reads as distinct from
+   * the active row; dark collapses the two onto the elevated surface, as the design does.
+   * Source: nav item (DY-0 / KE-0).
+   */
+  --color-hover: #f3f3f3;
+
+  /*
+   * Button hover fills. The design uses the same two literals in both themes even though
+   * --color-primary itself differs per theme, so these are deliberately not theme-scoped.
+   * Source: button primary (BC-0 / MW-0), button destructive (CC-0 / LZ-0).
+   */
+  --color-primary-hover: #2264dd;
+  --color-error-hover: #b8433c;
+
+  /*
+   * Toast is always dark, in both themes - a snackbar rather than a themed surface.
+   * Source: toast (GT-0), identical in the dark kit.
+   */
+  --color-toast-bg: #1f1f1f;
+  --color-toast-text: #f5f5f5;
+  --color-toast-accent: #3cc98a;
+
+  /* Elevation. Also theme-invariant in the design. */
+  --shadow-raised: 0 1px 3px #0000000a;
+  --shadow-menu: 0 4px 16px #00000014;
+  --shadow-toast: 0 4px 12px #00000026;
+
+  /* Disabled fills drop to 40% rather than switching colour. Source: BL-0, CL-0. */
+  --opacity-disabled: 0.4;
+}
+
+:root[data-theme='dark'] {
+  --color-surface-raised: #191919;
+  --color-hover: #202020;
+}
