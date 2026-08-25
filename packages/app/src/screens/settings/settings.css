@@ -248,3 +248,22 @@
 .cx-provider__state--configured {
   color: var(--color-success);
 }
+
+/*
+ * A save that did not take.
+ *
+ * Sits above the groups rather than beside the control that failed: a write can be
+ * rejected for a reason that has nothing to do with one field (no main process, a
+ * database that will not open), and threading a message back to the right row would
+ * imply a precision this does not have.
+ */
+.cx-settings__error {
+  padding: var(--spacing-3);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-error);
+  background: var(--color-error-tint);
+}

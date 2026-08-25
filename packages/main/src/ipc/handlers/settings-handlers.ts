@@ -28,23 +28,31 @@ import { ipcMain } from 'electron';
 
 import {
   GetProviderSettingsRequestSchema,
+  GetWorkspaceRunSettingsRequestSchema,
   SetProviderRequestSchema,
+  SetWorkspaceRunSettingsRequestSchema,
   IPC_CHANNELS,
 } from '@cortex-ide/shared';
 import type {
   GetProviderSettingsResponse,
+  GetWorkspaceRunSettingsResponse,
   ProviderId,
   SetProviderRequest,
   SetProviderResponse,
+  SetWorkspaceRunSettingsRequest,
+  SetWorkspaceRunSettingsResponse,
 } from '@cortex-ide/shared';
 
 import { getAIService } from '../../services/ai-service';
 import { getProviderSettingsService } from '../../services/provider-settings-service';
+import { getWorkspaceRunSettingsService } from '../../services/workspace-settings-service';
 import { createHandler } from './shared/handler-factory';
 
 export const SETTINGS_CHANNELS = [
   IPC_CHANNELS.SETTINGS_GET_PROVIDERS,
   IPC_CHANNELS.SETTINGS_SET_PROVIDER,
+  IPC_CHANNELS.SETTINGS_GET_WORKSPACE,
+  IPC_CHANNELS.SETTINGS_SET_WORKSPACE,
 ] as const;
 
 /**
@@ -88,11 +96,33 @@ export const handleSetProvider = createHandler<SetProviderRequest, SetProviderRe
 );
 
 /**
+ * Défauts et permissions d'exécution.
+ *
+ * Détenus par main, pas par le renderer. Ces réglages gouvernent ce que l'agent
+ * peut faire — lancer un shell, appliquer une migration, sortir sur le réseau — et
+ * un contrôle dont la valeur est lue depuis un stockage que le process rendu peut
+ * écrire n'est pas un contrôle.
+ */
+export const handleGetWorkspaceRunSettings = createHandler<
+  Record<string, never>,
+  GetWorkspaceRunSettingsResponse
+>(GetWorkspaceRunSettingsRequestSchema, async () => getWorkspaceRunSettingsService().get());
+
+export const handleSetWorkspaceRunSettings = createHandler<
+  SetWorkspaceRunSettingsRequest,
+  SetWorkspaceRunSettingsResponse
+>(SetWorkspaceRunSettingsRequestSchema, async (request) =>
+  getWorkspaceRunSettingsService().set(request)
+);
+
+/**
  * Enregistre les handlers settings
  */
 export function registerSettingsHandlers(): void {
   ipcMain.handle(IPC_CHANNELS.SETTINGS_GET_PROVIDERS, handleGetProviders);
   ipcMain.handle(IPC_CHANNELS.SETTINGS_SET_PROVIDER, handleSetProvider);
+  ipcMain.handle(IPC_CHANNELS.SETTINGS_GET_WORKSPACE, handleGetWorkspaceRunSettings);
+  ipcMain.handle(IPC_CHANNELS.SETTINGS_SET_WORKSPACE, handleSetWorkspaceRunSettings);
 }
 
 /**
