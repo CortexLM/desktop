@@ -102,37 +102,13 @@
     "vitest": "^4.1.10"
   },
   "dependencies": {
+    "better-sqlite3": "11.5.0",
     "chokidar": "^5.0.0",
-    "dompurify": "^3.4.13",
     "electron-log": "^5.4.4",
     "electron-updater": "^6.8.9",
     "node-cron": "^4.6.0",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
+    "node-pty": "^1.1.0",
     "simple-git": "^3.36.0",
     "zod": "^3.24.1"
-  },
-  "build": {
-    "appId": "com.cortex.ide",
-    "productName": "Cortex IDE",
-    "directories": {
-      "output": "dist",
-      "buildResources": "build"
-    },
-    "files": [
-      "packages/main/dist/**/*",
-      "packages/app/dist/**/*",
-      "packages/preload/dist/**/*",
-      "node_modules/node-pty/**/*",
-      "node_modules/chokidar/**/*",
-      "node_modules/simple-git/**/*",
-      "node_modules/node-cron/**/*"
-    ],
-    "asarUnpack": [
-      "node_modules/node-pty/**/*"
-    ],
-    "extraMetadata": {
-      "main": "packages/main/dist/index.js"
-    }
   }
 }

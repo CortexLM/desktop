@@ -30,6 +30,25 @@ native dependency version changes or `node_modules` is wiped:
 - **better-sqlite3** must load under two ABIs — Node (vitest) and Electron (the app). Build both with
   `bun run build:native-dual-abi` and check with `bun run verify:native-abi`. `@electron/rebuild` does
   NOT work here (Bun's content-addressed store); see the header comment in `scripts/build-native-dual-abi.ts`.
+- **Running `electron-builder` breaks the unit suite.** It invokes `@electron/rebuild`, which
+  recreates `better-sqlite3/build/Release/better_sqlite3.node` for Electron's ABI — the exact file
+  `build:native-dual-abi` moves aside because it *shadows* the ABI-keyed builds. Vitest then fails
+  every DB test with `Module did not self-register` / `was compiled against a different Node.js
+  version`. It is not a regression in your change: re-run `bun run build:native-dual-abi` (~50s) and
+  `bun run verify:native-abi` after any packaging run.
+
+### Packaging
+`electron-builder.yml` is the only config — the `build` field was removed from `package.json`
+because electron-builder preferred it and silently ignored the yml (so its targets, icons and
+signing config never applied).
+
+`node-pty` and `better-sqlite3` are declared in the **root** `package.json` as well as in
+`packages/main`. electron-builder resolves `node_modules` from the root manifest rather than from
+the `files` globs, so a native addon declared only by a workspace package is linked under
+`packages/main/node_modules/` and left out of the asar — the packaged app then dies at import with
+`ERR_MODULE_NOT_FOUND: Cannot find package 'node-pty'` while the dev build stays fine. Verify a
+packaging change by running the binary, not just by building it:
+`npx electron-builder --dir --linux && DISPLAY=:1 ./dist/linux-unpacked/cortex-ide --no-sandbox`.
 
 ### Running the Electron app
 - Build first: `bun run build` (builds `main`, `preload`, `app`, `test-harness`). `main` loads
