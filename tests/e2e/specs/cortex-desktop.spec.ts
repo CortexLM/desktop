@@ -59,6 +59,37 @@ test.describe('the app Electron loads', () => {
     await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
   });
 
+  test('gates what an account is needed for, and says why', async ({ page }) => {
+    // Locked rather than hidden: hiding these would make the signed-out app look like a
+    // smaller product, whereas a locked row advertises what an account adds. The tooltip is
+    // what makes the dead click explicable.
+    for (const label of ['Automations', 'Review', 'Usage']) {
+      const item = page.getByRole('button', { name: label });
+      await expect(item).toBeDisabled();
+      await expect(item).toHaveAttribute('title', new RegExp(`Sign in to Cortex to use ${label}`));
+    }
+
+    // And the destinations that need nothing stay usable.
+    await expect(page.getByRole('button', { name: 'Home' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Sessions' })).toBeEnabled();
+  });
+
+  test('keeps a typed prompt when you leave Home and come back', async ({ page }) => {
+    // The draft used to live in the route's own scope, which Solid disposes on navigation, so
+    // checking Sessions mid-thought silently emptied the composer.
+    const composer = page.getByPlaceholder(/Describe a task/i);
+    await composer.fill('Fix the flaky auth test');
+
+    await page.getByRole('button', { name: 'Sessions' }).click();
+    await expect(page.getByRole('heading', { name: 'Sessions' })).toBeVisible();
+
+    await page.getByRole('button', { name: 'Home' }).click();
+
+    await expect(page.getByPlaceholder(/Describe a task/i)).toHaveValue(
+      'Fix the flaky auth test',
+    );
+  });
+
   test('opens at the viewport the design is drawn at', async ({ page }) => {
     const size = await page.evaluate(() => ({
       width: window.innerWidth,
