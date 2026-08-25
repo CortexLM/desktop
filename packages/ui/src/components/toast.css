@@ -1,0 +1,40 @@
+/*
+ * Paper: Components / Tabs Toast Menu, "Toast" (GT-0).
+ * Reference export: design/paper/jsx/tabs-toast-menu.jsx
+ *
+ * padding 12px 16px, gap 10, radius-md, shadow-toast. 13px medium label. 40px tall.
+ *
+ * The toast is dark in both themes. The dark kit draws the identical #1F1F1F surface, so
+ * this is a snackbar rather than a themed surface, and the colours come from the toast
+ * tokens instead of the palette.
+ */
+
+.cx-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+
+  background: var(--color-toast-bg);
+  color: var(--color-toast-text);
+  box-shadow: var(--shadow-toast);
+}
+
+/*
+ * The status mark is a filled disc with a knocked-out glyph, so the glyph is painted in the
+ * toast's own background colour rather than in a foreground colour.
+ */
+.cx-toast__mark {
+  flex-shrink: 0;
+}
+
+.cx-toast__message {
+  flex-shrink: 0;
+}
