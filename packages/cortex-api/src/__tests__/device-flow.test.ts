@@ -126,6 +126,29 @@ describe('device flow polling', () => {
     expect((error as CortexDeviceFlowError).code).toBe('expired_token');
   });
 
+  it('treats an unrecognised code as a device-flow failure, not a generic one', async () => {
+    // Observed live: `POST /auth/device/token` with a code the service does not know answers
+    // `{"error":"invalid_grant","error_description":"Invalid device code"}`. It is RFC 6749
+    // rather than 8628, and before it was listed the loop still stopped — but the failure
+    // arrived as a plain CortexApiError, so a caller could not tell "that code is not valid"
+    // from "the service is broken".
+    const { fetch } = stubFetch([
+      { status: 400, body: { error: 'invalid_grant', error_description: 'Invalid device code' } },
+    ]);
+    const client = new CortexApiClient({ fetch });
+
+    const error = await pollDeviceToken(client, DEVICE_CODE_RESPONSE, {
+      sleep: instantSleep(),
+    }).catch((caught: unknown) => caught);
+
+    expect(error).toBeInstanceOf(CortexDeviceFlowError);
+    expect((error as CortexDeviceFlowError).code).toBe('invalid_grant');
+    expect((error as CortexDeviceFlowError).isTerminal).toBe(true);
+    // Not a poll signal: retrying the same code can only fail again.
+    expect((error as CortexDeviceFlowError).isPending).toBe(false);
+    expect((error as CortexDeviceFlowError).isSlowDown).toBe(false);
+  });
+
   it('gives up locally once the code outlives expires_in', async () => {
     // Without this the loop would poll a dead code forever if the server kept answering
     // authorization_pending.
@@ -224,6 +247,23 @@ describe('device flow state reporting', () => {
     }).catch(() => undefined);
 
     expect(states.at(-1)).toEqual({ status: 'denied' });
+  });
+
+  it('reports an unrecognised code as invalid rather than as expired', async () => {
+    const states: DeviceFlowState[] = [];
+    const { fetch } = stubFetch([
+      { status: 400, body: { error: 'invalid_grant', error_description: 'Invalid device code' } },
+    ]);
+    const client = new CortexApiClient({ fetch });
+
+    await pollDeviceToken(client, DEVICE_CODE_RESPONSE, {
+      sleep: instantSleep(),
+      onState: (state) => states.push(state),
+    }).catch(() => undefined);
+
+    // The mapping used to be "denied, else expired", which would have told the user to wait
+    // for a code that had already failed.
+    expect(states.at(-1)).toEqual({ status: 'invalid', reason: 'Invalid device code' });
   });
 });
 
