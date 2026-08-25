@@ -187,6 +187,12 @@ app.whenReady().then(async () => {
 
   await startupStep('Debug service', () => debugService.initialize());
 
+  // After the database, which it reads from. Restoring an automation means
+  // reinstalling its watcher or cron job too — a row read back without that
+  // produces a UI that says "enabled" while nothing fires, which is worse than an
+  // empty list because it does not admit to being empty.
+  await startupStep('Automations', () => automationService.hydrate());
+
   // After the window is open, deliberately: restoring the session verifies the
   // stored token against `/auth/me`, so it costs a network round trip. Blocking
   // the window on it would make every cold start as slow as the API is

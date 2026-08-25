@@ -20,6 +20,7 @@ import { formatAge } from './state/session-view.ts';
 import type { SessionSummary } from '@cortex-ide/shared';
 import {
   AutomationsRoute,
+  NewAutomationRoute,
   ConnectGitHubRoute,
   DeviceCodeRoute,
   HomeRoute,
@@ -207,7 +208,7 @@ function routes(): JSX.Element {
       <Route path="/sessions/:sessionId" component={SessionDetailRoute} />
       <Route path="/sessions/:sessionId/focus" component={SessionDetailRoute} />
       <Route path="/automations" component={AutomationsRoute} />
-      <Route path="/automations/new" component={AutomationsRoute} />
+      <Route path="/automations/new" component={NewAutomationRoute} />
       <Route path="/review" component={ReviewRoute} />
       <Route path="/usage" component={UsageRoute} />
       <Route path="/settings" component={SettingsRoute} />

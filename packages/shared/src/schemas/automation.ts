@@ -11,8 +11,20 @@ import { z } from 'zod';
 const FileTriggerSchema = z.object({
   type: z.literal('file_watch'),
   patterns: z.array(z.string()).min(1, 'At least one pattern is required'),
-  events: z.array(z.enum(['add', 'change', 'unlink'])).min(1, 'At least one event is required'),
-  workspacePath: z.string().min(1, 'Workspace path is required'),
+  /**
+   * Vide = « tous les événements ». Le renderer n'a pas de raison de choisir entre
+   * add / change / unlink : « quand les fichiers changent » veut dire les trois, et
+   * le handler complète.
+   */
+  events: z.array(z.enum(['add', 'change', 'unlink'])),
+  /**
+   * Vide = « l'espace de travail actif ».
+   *
+   * Un chemin disque n'est pas au renderer de le fournir : main ne le lui envoie
+   * délibérément pas, et exiger ici une valeur qu'il ne peut pas connaître rendait
+   * la création d'automation impossible depuis l'UI. Le handler le résout.
+   */
+  workspacePath: z.string(),
 });
 
 const GitTriggerSchema = z.object({
@@ -53,8 +65,19 @@ const ScriptActionSchema = z.object({
 const AITaskActionSchema = z.object({
   type: z.literal('ai_task'),
   prompt: z.string().min(1, 'Prompt is required'),
-  model: z.string().min(1, 'Model is required'),
-  provider: z.enum(['openai', 'anthropic', 'openrouter', 'ollama', 'grok']),
+  /** Vide = le défaut du provider. Quelqu'un qui n'a pas choisi de modèle en veut un. */
+  model: z.string(),
+  /**
+   * Vide = le provider effectivement enregistré.
+   *
+   * Le renderer ne sait pas laquelle des clés stockées a réellement construit un
+   * provider ; deviner ici produirait une automation qui échoue à son premier
+   * déclenchement, des heures plus tard, sans personne pour le voir.
+   */
+  provider: z.union([
+    z.enum(['openai', 'anthropic', 'openrouter', 'ollama', 'grok']),
+    z.literal(''),
+  ]),
   context: z.object({
     files: z.array(z.string()).optional(),
     workspacePath: z.string().optional(),
@@ -87,7 +110,8 @@ export const ActionSchema = z.discriminatedUnion('type', [
 // ============================================================================
 
 export const CreateAutomationRequestSchema = z.object({
-  workspaceId: z.string().min(1, 'Workspace ID is required'),
+  /** Vide = l'espace de travail actif, résolu par le handler. */
+  workspaceId: z.string(),
   name: z.string().min(1, 'Name is required'),
   enabled: z.boolean(),
   trigger: TriggerSchema,
