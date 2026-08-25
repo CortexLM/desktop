@@ -17,6 +17,7 @@ export const semanticTokens = {
   shadowRaised: '--shadow-raised',
   shadowMenu: '--shadow-menu',
   shadowToast: '--shadow-toast',
+  shadowSegment: '--shadow-segment',
   opacityDisabled: '--opacity-disabled',
 } as const;
 
@@ -35,6 +36,7 @@ export const semanticValues = {
     '--shadow-raised': '0 1px 3px #0000000a',
     '--shadow-menu': '0 4px 16px #00000014',
     '--shadow-toast': '0 4px 12px #00000026',
+    '--shadow-segment': '0 1px 2px #14141414',
     '--opacity-disabled': '0.4',
   },
   dark: {
@@ -73,6 +75,7 @@ export const semanticProvenance: Record<
   '--shadow-raised': { paperNodes: ['CW-0'], jsx: ['composer'], themed: false },
   '--shadow-menu': { paperNodes: ['GZ-0'], jsx: ['tabs-toast-menu'], themed: false },
   '--shadow-toast': { paperNodes: ['GT-0'], jsx: ['tabs-toast-menu'], themed: false },
+  '--shadow-segment': { paperNodes: ['20X-0'], jsx: [], themed: false },
   '--opacity-disabled': {
     paperNodes: ['BL-0', 'CL-0'],
     jsx: ['button-primary', 'button-destructive'],

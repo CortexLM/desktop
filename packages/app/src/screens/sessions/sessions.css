@@ -1,0 +1,320 @@
+/*
+ * Paper: Screens / Sessions (1YT-0, 259-0).
+ *
+ * A 1120px column: page header, a 30px controls row, then the inbox. The inbox is one
+ * continuous list with repo group headers interleaved, not a set of separate cards, so the
+ * rows are separated by bottom borders rather than gaps.
+ *
+ * Every trailing column is a fixed-width lane - 8px unread, 400px title, 110px status,
+ * 110px diff, then age. With content sizing the figures would land at a different x on
+ * every row.
+ */
+
+.cx-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Controls                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.cx-sessions__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cx-segmented {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--color-inset);
+}
+
+.cx-segmented__option {
+  display: flex;
+  align-items: center;
+
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  cursor: pointer;
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/*
+ * The selected segment lifts off its own track with a raised fill. It uses
+ * --color-surface-raised rather than --color-bg so it stays lighter than the inset track in
+ * light and darker-but-distinct in dark.
+ */
+.cx-segmented__option[aria-pressed='true'] {
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-segment);
+  color: var(--color-text);
+}
+
+.cx-sessions__spacer {
+  flex-grow: 1;
+}
+
+.cx-sessions__search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+
+  width: 280px;
+  padding: 5px 11px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+
+  background: var(--color-surface-raised);
+}
+
+.cx-sessions__search:focus-within {
+  border-color: var(--color-primary);
+}
+
+.cx-sessions__search-input {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  line-height: 16px;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.cx-sessions__search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inbox                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.cx-inbox {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  overflow: hidden;
+}
+
+.cx-inbox__group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-inset);
+}
+
+.cx-inbox__group-name {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+.cx-inbox__group-count {
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+}
+
+.cx-inbox__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+
+  padding: 12px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  text-align: left;
+}
+
+/* The list is a closed card, so the last row must not draw a second bottom edge. */
+.cx-inbox__row:last-child {
+  border-bottom: 0;
+}
+
+.cx-inbox__row:hover {
+  background: var(--color-hover);
+}
+
+/*
+ * The unread lane. 8px wide and always present, holding a 7px dot when there is unseen
+ * activity. Reserved on every row so the titles share a vertical lane.
+ */
+.cx-inbox__unread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 8px;
+}
+
+.cx-inbox__unread-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.cx-inbox__title-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  width: 400px;
+}
+
+.cx-inbox__title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 18px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-inbox__branch {
+  font-size: var(--text-2xs);
+  line-height: 14px;
+  color: var(--color-text-faint);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-inbox__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 110px;
+
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+/*
+ * The status dot carries the colour while the label stays muted. That is deliberate in the
+ * design: at 12px a coloured label on a white row reads as a link, so the hue is confined
+ * to the 6px dot.
+ */
+.cx-inbox__status-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+
+.cx-inbox__status-dot--success {
+  background: var(--color-success);
+}
+
+.cx-inbox__status-dot--warning {
+  background: var(--color-warning);
+}
+
+.cx-inbox__status-dot--error {
+  background: var(--color-error);
+}
+
+.cx-inbox__status-dot--neutral {
+  background: var(--color-text-faint);
+}
+
+.cx-inbox__status-dot--accent {
+  background: var(--color-primary);
+}
+
+.cx-inbox__diff {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 110px;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+}
+
+.cx-inbox__added {
+  color: var(--color-success);
+}
+
+.cx-inbox__removed {
+  color: var(--color-error);
+}
+
+.cx-inbox__age {
+  flex-grow: 1;
+  text-align: right;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Empty state                                                                */
+/* -------------------------------------------------------------------------- */
+
+/* Paper: Screens / Empty States (ASN-0, ASO-0). */
+.cx-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+
+  padding: 64px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  text-align: center;
+}
+
+.cx-empty__title {
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.cx-empty__body {
+  max-width: 420px;
+  font-size: var(--text-sm);
+  line-height: 20px;
+  color: var(--color-text-muted);
+}

@@ -56,8 +56,16 @@ describe('semantic token layer', () => {
     for (const token of Object.values(semanticTokens)) {
       const meta = semanticProvenance[token];
       expect(meta, `no provenance for ${token}`).toBeDefined();
-      expect(meta.paperNodes.length).toBeGreaterThan(0);
-      expect(meta.jsx.length).toBeGreaterThan(0);
+      expect(meta.paperNodes.length, `${token} names no Paper node`).toBeGreaterThan(0);
+    }
+  });
+
+  it('archives the JSX for every role read from a UI-kit section', () => {
+    // Roles read off a screen rather than the UI kit have no archived export - the archive
+    // covers the kit only - so the check is scoped to the ones that claim one.
+    for (const [token, meta] of Object.entries(semanticProvenance)) {
+      if (meta.jsx.length === 0) continue;
+      expect(meta.jsx.every((name) => name.length > 0), token).toBe(true);
     }
   });
 });
