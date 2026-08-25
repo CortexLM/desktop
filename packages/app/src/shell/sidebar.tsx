@@ -138,6 +138,62 @@ function UserRow(props: {
   );
 }
 
+function ChromeRow(props: { onToggle?: () => void }): JSX.Element {
+  return (
+    <div class="cx-sidebar__chrome">
+      <Show when={props.onToggle}>
+        {(toggle) => (
+          <button
+            type="button"
+            class="cx-sidebar__chrome-action"
+            onClick={() => toggle()()}
+            aria-label="Collapse sidebar"
+          >
+            <Icon name="sidebarToggle" size={16} />
+          </button>
+        )}
+      </Show>
+    </div>
+  );
+}
+
+function WorkspaceSwitcher(props: { workspace: string; onSwitch?: () => void }): JSX.Element {
+  return (
+    <button
+      type="button"
+      class="cx-sidebar__workspace"
+      onClick={() => props.onSwitch?.()}
+      aria-label={`Workspace: ${props.workspace}`}
+    >
+      <BrandTile />
+      <span class="cx-sidebar__workspace-name">{props.workspace}</span>
+      <Icon name="chevronDown" size={12} />
+    </button>
+  );
+}
+
+function PlanCard(props: { plan: SidebarPlan; onUpgrade?: () => void }): JSX.Element {
+  // Clamped rather than trusted: a quota that has been exceeded reports a ratio above 1,
+  // and letting that through would paint the fill past its track.
+  const percent = () => Math.min(100, Math.max(0, props.plan.progress * 100));
+
+  return (
+    <button type="button" class="cx-sidebar__upgrade" onClick={() => props.onUpgrade?.()}>
+      <span class="cx-sidebar__upgrade-label">{props.plan.label}</span>
+      <span
+        class="cx-sidebar__meter"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(percent())}
+        aria-label={props.plan.label}
+      >
+        <span class="cx-sidebar__meter-fill" style={{ width: `${percent()}%` }} />
+      </span>
+    </button>
+  );
+}
+
 /**
  * The 240px sidebar, identical on every screen.
  *
@@ -157,31 +213,8 @@ export function Sidebar(props: SidebarProps): JSX.Element {
 
   return (
     <nav class="cx-sidebar" aria-label="Primary">
-      <div class="cx-sidebar__chrome">
-        <Show when={props.onToggleSidebar}>
-          {(toggle) => (
-            <button
-              type="button"
-              class="cx-sidebar__chrome-action"
-              onClick={() => toggle()()}
-              aria-label="Collapse sidebar"
-            >
-              <Icon name="sidebarToggle" size={16} />
-            </button>
-          )}
-        </Show>
-      </div>
-
-      <button
-        type="button"
-        class="cx-sidebar__workspace"
-        onClick={() => props.onSwitchWorkspace?.()}
-        aria-label={`Workspace: ${props.workspace}`}
-      >
-        <BrandTile />
-        <span class="cx-sidebar__workspace-name">{props.workspace}</span>
-        <Icon name="chevronDown" size={12} />
-      </button>
+      <ChromeRow onToggle={props.onToggleSidebar} />
+      <WorkspaceSwitcher workspace={props.workspace} onSwitch={props.onSwitchWorkspace} />
 
       <div class="cx-sidebar__nav">
         <For each={DESTINATIONS}>
@@ -208,26 +241,8 @@ export function Sidebar(props: SidebarProps): JSX.Element {
       <div class="cx-sidebar__spacer" />
 
       <Show when={props.plan}>
-        {(plan) => (
-          <button type="button" class="cx-sidebar__upgrade" onClick={() => props.onUpgrade?.()}>
-            <span class="cx-sidebar__upgrade-label">{plan().label}</span>
-            <span
-              class="cx-sidebar__meter"
-              role="progressbar"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round(plan().progress * 100)}
-              aria-label={plan().label}
-            >
-              <span
-                class="cx-sidebar__meter-fill"
-                style={{ width: `${Math.min(100, Math.max(0, plan().progress * 100))}%` }}
-              />
-            </span>
-          </button>
-        )}
+        {(plan) => <PlanCard plan={plan()} onUpgrade={props.onUpgrade} />}
       </Show>
-
       <Show when={props.user}>
         {(user) => (
           <UserRow user={user()} onOpenAccount={props.onOpenAccount} onToggleTheme={theme.toggle} />
