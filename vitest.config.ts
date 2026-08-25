@@ -191,6 +191,19 @@ export default defineConfig({
       // reason — leaving them at the old basis would mean the floor sits far
       // below the real level and a genuine regression would not trip it.
       //
+      // MEASURED 2026-08-25 (`npx vitest run --coverage`, 128 test files /
+      // 3298 tests):
+      //
+      //   statements 83.46% (8818/10565)   branches 74.34% (3698/4974)
+      //   functions  82.68% (2578/3118)    lines    83.66% (7680/9179)
+      //
+      // Compare the denominators with the 08-17 reading: 11097 -> 10565
+      // statements, 10286 -> 9179 lines. Most of the ~9-point rise is that
+      // subtraction, and it should not be read as the suite getting better.
+      // Some of it is real — the Cortex account service, its IPC handlers, the
+      // device-flow primitive and the host façade all arrived with tests — but
+      // do not cite this delta as evidence of testing progress.
+      //
       // The gate is set ~1 point under each measured value. Not to make a run
       // pass: it already passes at the measured value. The margin absorbs
       // drift in the measurement itself while other work lands — over ~20
@@ -212,10 +225,10 @@ export default defineConfig({
       // config file on every run, which in CI yields either a dirty tree or a
       // threshold change nobody reviewed.
       thresholds: {
-        lines: 73,
-        functions: 68,
-        branches: 68,
-        statements: 73
+        lines: 82,
+        functions: 81,
+        branches: 73,
+        statements: 82
       },
       clean: true
     }
