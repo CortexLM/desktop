@@ -52,6 +52,34 @@ body {
   overflow: hidden;
 }
 
+/*
+ * Headings and paragraphs carry a browser default margin in em, which scales with font size:
+ * an h1 at 24px picks up ~16px above and below. Inside a fixed-height header that overflows
+ * and clips the title. The design specifies every gap explicitly, so the defaults are
+ * removed rather than overridden per component.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Lists are used for menus, plans and checklists, none of which want a marker or an indent. */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 button,
 input,
 textarea,

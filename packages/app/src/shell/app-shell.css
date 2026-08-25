@@ -25,8 +25,9 @@
 }
 
 /*
- * Page header. 52px on the list screens; the session detail uses its own 66px header, which
- * is taller to fit the PR action.
+ * Page header. The 52px in the design is the title block itself, not the space it sits in,
+ * so the block is a min-height with the surrounding room expressed as padding. Pinning the
+ * height instead would clip a two-line header - which is exactly what Settings has.
  */
 .cx-page-header {
   display: flex;
@@ -34,8 +35,8 @@
   gap: var(--spacing-3);
   flex-shrink: 0;
 
-  height: var(--layout-page-header);
-  padding-inline: 40px;
+  min-height: var(--layout-page-header);
+  padding: var(--spacing-6) 40px var(--spacing-4);
 }
 
 .cx-page-header__titles {
