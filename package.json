@@ -18,7 +18,7 @@
     "dev": "bun run --filter main dev",
     "build": "bun run --filter \"*\" build",
     "build:main": "bun run --filter main build",
-    "build:renderer": "bun run --filter renderer build",
+    "build:app": "bun run --filter @cortex-ide/app build",
     "build:preload": "bun run --filter preload build",
     "start": "electron .",
     "pack": "electron-builder --dir",
@@ -121,7 +121,7 @@
     },
     "files": [
       "packages/main/dist/**/*",
-      "packages/renderer/dist/**/*",
+      "packages/app/dist/**/*",
       "packages/preload/dist/**/*",
       "node_modules/node-pty/**/*",
       "node_modules/chokidar/**/*",
