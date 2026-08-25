@@ -36,6 +36,15 @@ export interface IntegrationsScreenProps {
   apiKeys: readonly ApiKey[];
   onCreateKey: () => void;
   onRevokeKey: (id: string) => void;
+  /**
+   * A message from the last action.
+   *
+   * Doubles as where a freshly-created key's value appears, which is blunt but
+   * deliberate: the service hashes its keys, so the value is readable exactly once
+   * and the design gives this screen no other slot. Losing it silently would be
+   * worse than showing it somewhere unexpected.
+   */
+  error?: string;
 }
 
 /**
@@ -108,6 +117,15 @@ function ApiKeys(props: {
   authenticated: boolean;
   onCreateKey: () => void;
   onRevokeKey: (id: string) => void;
+  /**
+   * A message from the last action.
+   *
+   * Doubles as where a freshly-created key's value appears, which is blunt but
+   * deliberate: the service hashes its keys, so the value is readable exactly once
+   * and the design gives this screen no other slot. Losing it silently would be
+   * worse than showing it somewhere unexpected.
+   */
+  error?: string;
 }): JSX.Element {
   return (
     <Section
@@ -157,6 +175,15 @@ export function IntegrationsScreen(props: IntegrationsScreenProps): JSX.Element 
 
       <PageBody width="settings">
         <div class="cx-settings">
+          {/* `role="alert"` so a freshly-created key is announced: it is readable
+              exactly once, and a silent render would be a value lost. */}
+          <Show when={props.error}>
+            {(message) => (
+              <p class="cx-settings__error" role="alert">
+                {message()}
+              </p>
+            )}
+          </Show>
           <ConnectedApps
             integrations={props.integrations}
             authenticated={props.capabilities.authenticated}

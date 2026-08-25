@@ -14,8 +14,12 @@
 import type { z } from 'zod';
 
 import { classifyError } from './classify.ts';
+import { unwrapList } from './envelopes.ts';
 import { CortexApiError, type CortexErrorContext } from './errors.ts';
 import {
+  apiKeyListSchema,
+  apiKeySchema,
+  unknownSchema,
   chatCompletionSchema,
   cortexUserSchema,
   deviceCodeSchema,
@@ -24,6 +28,7 @@ import {
   modelListSchema,
   organizationSchema,
   upstreamProviderListSchema,
+  type CortexApiKey,
   type ChatCompletion,
   type ChatCompletionRequest,
   type CortexModel,
@@ -36,6 +41,8 @@ import {
 } from './schemas.ts';
 
 export const CORTEX_API_BASE_URL = 'https://api.cortex.foundation';
+
+
 
 /** Header the service reads an API key from. */
 const API_KEY_HEADER = 'x-api-key';
@@ -306,6 +313,41 @@ export class CortexApiClient {
 
   currentUser(signal?: AbortSignal): Promise<CortexUser> {
     return this.request('/auth/me', cortexUserSchema, { signal });
+  }
+
+  /**
+   * The account's API keys.
+   *
+   * Authenticated, so it only works signed in. `OPTIONS` on the route reports
+   * `GET,POST,PUT,DELETE`, so the three methods below exist; their response shapes
+   * could not be observed, because reaching them needs a session that only a human
+   * approving a device flow can produce. The schemas are correspondingly lenient and
+   * say so.
+   */
+  async listApiKeys(signal?: AbortSignal): Promise<CortexApiKey[]> {
+    // The envelope is unwrapped before validation rather than matched by a union: a
+    // bare array, `{ data: [...] }` and `{ api_keys: [...] }` are all common, the
+    // shape could not be observed, and picking one would fail on the others with a
+    // validation error instead of a useful message.
+    const raw = await this.request('/auth/api-keys', unknownSchema, { signal });
+    return apiKeyListSchema.parse(unwrapList(raw));
+  }
+
+  createApiKey(name: string, signal?: AbortSignal): Promise<CortexApiKey> {
+    return this.request('/auth/api-keys', apiKeySchema, {
+      method: 'POST',
+      body: { name },
+      signal,
+    });
+  }
+
+  revokeApiKey(id: string, signal?: AbortSignal): Promise<void> {
+    // `unknownSchema` rather than a shape: the response body is not read, and
+    // declaring one would be inventing a contract for something ignored.
+    return this.request(`/auth/api-keys/${encodeURIComponent(id)}`, unknownSchema, {
+      method: 'DELETE',
+      signal,
+    }).then(() => undefined);
   }
 
   listOrganizations(signal?: AbortSignal): Promise<Organization[]> {

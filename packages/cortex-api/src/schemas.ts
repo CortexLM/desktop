@@ -253,3 +253,40 @@ export const chatCompletionSchema = z
   .passthrough();
 
 export type ChatCompletion = z.infer<typeof chatCompletionSchema>;
+
+/* -------------------------------------------------------------------------- */
+/* API keys                                                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * An API key, as `/auth/api-keys` returns it.
+ *
+ * Every field but `id` is optional and the object is `passthrough`, because the
+ * shape could not be observed: the route needs a real session, and obtaining one
+ * requires a human to approve a device flow. What is declared here is what the
+ * Integrations screen needs; anything else the service sends is carried through
+ * rather than dropped.
+ *
+ * `key` is present only in the create response. Services that hash their keys show
+ * the value once and never again, which is why the screen stores nothing and shows
+ * the last four characters.
+ */
+export const apiKeySchema = z
+  .object({
+    id: z.string(),
+    name: z.string().optional(),
+    created_at: z.union([z.number(), z.string()]).optional(),
+    last_used_at: z.union([z.number(), z.string()]).nullish(),
+    /** Only on creation. */
+    key: z.string().optional(),
+    /** Some services return a display suffix instead of the key. */
+    last_four: z.string().optional(),
+  })
+  .passthrough();
+
+export type CortexApiKey = z.infer<typeof apiKeySchema>;
+
+export const apiKeyListSchema = z.array(apiKeySchema);
+
+/** For responses whose body is not read. */
+export const unknownSchema = z.unknown();
