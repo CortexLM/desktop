@@ -214,3 +214,18 @@ export interface RepositoryOption {
 export interface ListRepositoriesResponse {
   repositories: RepositoryOption[];
 }
+
+/**
+ * Le résultat de l'ouverture d'un dossier.
+ *
+ * `repositories` plutôt qu'un simple succès : après l'ouverture, le composer doit
+ * afficher le nouveau dépôt, et le renvoyer ici évite un second aller-retour dont
+ * le résultat serait garanti.
+ *
+ * `cancelled` distingue « l'utilisateur a fermé la boîte de dialogue » d'un échec.
+ * Les confondre ferait afficher une erreur pour un geste normal.
+ */
+export interface OpenWorkspaceResponse {
+  cancelled: boolean;
+  repositories: RepositoryOption[];
+}

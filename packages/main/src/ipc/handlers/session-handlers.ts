@@ -24,6 +24,7 @@ import type {
   ListRepositoriesResponse,
   ListSessionsRequest,
   ListSessionsResponse,
+  OpenWorkspaceResponse,
   ResolveSessionPermissionRequest,
   SessionIdRequest,
   SessionProgressEvent,
@@ -45,6 +46,7 @@ export const SESSION_CHANNELS = [
   IPC_CHANNELS.SESSION_DELETE,
   IPC_CHANNELS.SESSION_RESOLVE_PERMISSION,
   IPC_CHANNELS.SESSION_LIST_REPOSITORIES,
+  IPC_CHANNELS.SESSION_OPEN_WORKSPACE,
 ] as const;
 
 /** `.optional()` parce que le renderer invoque sans argument pour les listes. */
@@ -156,6 +158,11 @@ export const handleListRepositories = createHandler<
   repositories: await getSessionService().listRepositories(),
 }));
 
+export const handleOpenWorkspace = createHandler<Record<string, never>, OpenWorkspaceResponse>(
+  NoPayloadSchema,
+  async () => getSessionService().openWorkspace(),
+);
+
 function broadcast(channel: string, payload: unknown): void {
   for (const window of BrowserWindow.getAllWindows()) {
     if (!window.isDestroyed()) window.webContents.send(channel, payload);
@@ -191,6 +198,7 @@ export function registerSessionHandlers(): void {
   ipcMain.handle(IPC_CHANNELS.SESSION_DELETE, handleDeleteSession);
   ipcMain.handle(IPC_CHANNELS.SESSION_RESOLVE_PERMISSION, handleResolveSessionPermission);
   ipcMain.handle(IPC_CHANNELS.SESSION_LIST_REPOSITORIES, handleListRepositories);
+  ipcMain.handle(IPC_CHANNELS.SESSION_OPEN_WORKSPACE, handleOpenWorkspace);
 
   eventCleanup?.();
   eventCleanup = setupSessionEvents();

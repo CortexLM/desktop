@@ -267,10 +267,23 @@ function expectFailure(response: unknown): { code: string; message: string } {
   return envelope.error;
 }
 
-beforeEach(() => {
+beforeEach(async () => {
   resetElectronMock();
   vi.clearAllMocks();
   workspaceManagerMock = new WorkspaceManagerMock();
+
+  // The initialised manager is memoised in `services/active-workspace`, shared by
+  // the workspace handlers and the session service so two callers cannot race to
+  // fix the singleton's dataDir. That memo outlives a test, so without this the
+  // fresh mock above would be ignored in favour of the previous test's instance.
+  //
+  // Imported here rather than at the top of the file, and that is not a style
+  // choice: `vi.mock` factories are hoisted, so a static import would evaluate the
+  // `workspace-manager` mock before `WorkspaceManagerMock` is initialised and the
+  // whole module would fail to load on a TDZ error.
+  const { resetActiveWorkspace } = await import('../../../services/active-workspace');
+  resetActiveWorkspace();
+
   resetDebugSettings();
 });
 

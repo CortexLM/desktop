@@ -84,6 +84,7 @@ import type {
   ListRepositoriesResponse,
   ListSessionsRequest,
   ListSessionsResponse,
+  OpenWorkspaceResponse,
   ResolveSessionPermissionRequest,
   SessionIdRequest,
   SessionProgressEvent,
@@ -250,6 +251,8 @@ export interface CortexAPI {
       request: ResolveSessionPermissionRequest
     ) => Promise<IPCResponse<{ resolved: true }>>;
     listRepositories: () => Promise<IPCResponse<ListRepositoriesResponse>>;
+    /** Opens the native folder picker and adopts the choice. Takes no path. */
+    openWorkspace: () => Promise<IPCResponse<OpenWorkspaceResponse>>;
     onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
   };
 
@@ -523,6 +526,7 @@ const cortexAPI: CortexAPI = {
     resolvePermission: (request) =>
       ipcRenderer.invoke(IPC_CHANNELS.SESSION_RESOLVE_PERMISSION, request),
     listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
+    openWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_OPEN_WORKSPACE),
     onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
   },
 

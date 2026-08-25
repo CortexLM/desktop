@@ -179,6 +179,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'listRepositories', 'session:list-repositories'],
+  ['session', 'openWorkspace', 'session:open-workspace'],
   ['settings', 'getProviders', 'settings:get-providers'],
   ['settings', 'getWorkspace', 'settings:get-workspace'],
   ['cortex', 'getState', 'cortex:get-state'],

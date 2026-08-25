@@ -129,7 +129,16 @@ export function HomeRoute(): JSX.Element {
       onOpenSession={(id) => navigate(`/sessions/${id}`)}
       onViewAllSessions={() => navigate('/sessions')}
       onPickModel={() => navigate('/settings')}
-      onPickRepo={() => cycleDraftField('repo', repositoryNames())}
+      onPickRepo={() => {
+        // With nothing to choose from, the useful action is to open a folder rather
+        // than to cycle an empty list — which is what the picker did, silently.
+        const names = repositoryNames();
+        if (names.length === 0) {
+          void runs.openWorkspace();
+          return;
+        }
+        cycleDraftField('repo', names);
+      }}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
       {...(startError() ? { limit: { kind: 'reached' as const, message: startError()! } } : {})}
     />
