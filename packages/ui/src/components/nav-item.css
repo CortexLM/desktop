@@ -1,0 +1,81 @@
+/*
+ * Paper: Components / Sidebar Nav (DY-0, KE-0) and the sidebar on every screen.
+ * Reference export: design/paper/jsx/nav-item.jsx
+ *
+ * padding 8px 10px, gap 10px, 13px type on a 16px line -> 32px in the isolated kit. The
+ * screens draw the row at 30px, so the block padding is a variable the sidebar tightens
+ * rather than a second copy of this component.
+ *
+ * The trailing dot slot is always present, even when empty. Without a fixed slot the label
+ * would reflow between rows that have an indicator and rows that do not, and the labels
+ * would stop sharing a vertical lane.
+ */
+
+.cx-nav-item {
+  --cx-nav-item-padding-block: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+  padding: var(--cx-nav-item-padding-block) 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  text-align: left;
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+
+  transition:
+    background-color 100ms ease,
+    color 100ms ease;
+}
+
+.cx-nav-item:hover:not(.cx-nav-item--active) {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* Active is the only state that shifts weight. Colour alone carries hover; weight plus
+ * fill carries selection, so the two never read as the same thing. */
+.cx-nav-item--active {
+  background: var(--color-inset);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+
+.cx-nav-item__label {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-nav-item__indicator {
+  width: var(--layout-dot);
+  height: var(--layout-dot);
+  flex-shrink: 0;
+}
+
+.cx-nav-item__indicator--unread {
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+/* Disabled marks a destination the current plan does not include. It stays visible and
+ * still announces itself, because the design uses it to advertise what signing in adds. */
+.cx-nav-item:disabled {
+  cursor: default;
+  color: var(--color-text-faint);
+}
+
+.cx-nav-item:disabled:hover {
+  background: transparent;
+}

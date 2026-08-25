@@ -1,0 +1,131 @@
+/*
+ * Paper: Components / Buttons (BC-0, BO-0, C0-0, CC-0 and their dark twins).
+ * Reference export: design/paper/jsx/button-*.jsx
+ *
+ * All four variants share one box: padding 8px 16px, 13px medium type on a 16px line, and
+ * radius-sm. That resolves to 32px tall, except secondary, which is 34px because its 1px
+ * border sits outside the padding.
+ */
+
+.cx-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  white-space: nowrap;
+
+  background: transparent;
+  cursor: pointer;
+
+  /* The design has no motion spec; this is short enough to feel immediate while stopping
+   * the fill from snapping on hover. */
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease,
+    opacity 100ms ease;
+}
+
+/* Disabled drops the whole button to 40% rather than swapping colours, which is what the
+ * kit does for the filled variants. */
+.cx-button:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Primary                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.cx-button--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.cx-button--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Secondary                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.cx-button--secondary {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.cx-button--secondary:hover:not(:disabled) {
+  background: var(--color-inset);
+}
+
+/* Disabled softens the border rather than dropping opacity: the kit shows the outline
+ * moving from border-strong to border, keeping the label readable. */
+.cx-button--secondary:disabled {
+  border-color: var(--color-border);
+  opacity: 1;
+  color: var(--color-text-faint);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Ghost                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.cx-button--ghost {
+  color: var(--color-text);
+}
+
+.cx-button--ghost:hover:not(:disabled) {
+  background: var(--color-inset);
+}
+
+/* Ghost has no fill to fade, so disabled mutes the label instead. */
+.cx-button--ghost:disabled {
+  opacity: 1;
+  color: var(--color-text-faint);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Destructive                                                                */
+/* -------------------------------------------------------------------------- */
+
+.cx-button--destructive {
+  background: var(--color-error);
+  color: var(--color-on-primary);
+}
+
+.cx-button--destructive:hover:not(:disabled) {
+  background: var(--color-error-hover);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Icon-only                                                                  */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * The square icon buttons in the chrome. Padding gives way to a fixed box so the glyph
+ * stays optically centred; the composer's send button is the 32px round case.
+ */
+.cx-button--icon {
+  width: var(--layout-button);
+  height: var(--layout-button);
+  padding: 0;
+}
+
+.cx-button--round {
+  border-radius: var(--radius-full);
+}
+
+/* Full-width, as used by the auth screens' stacked provider buttons. */
+.cx-button--block {
+  width: 100%;
+}
