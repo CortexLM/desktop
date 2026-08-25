@@ -2,7 +2,6 @@ import { onMount, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from './state/session-context.tsx';
-import { AutomationsScreen } from './screens/automations/automations-screen.tsx';
 import {
   ConnectGitHubScreen,
   SshConnectScreen,
@@ -68,24 +67,6 @@ export function ReviewRoute(): JSX.Element {
       capabilities={account.capabilities()}
       items={[]}
       onOpen={(id) => navigate(`/sessions/${id}`)}
-      onSignIn={() => navigate('/sign-in')}
-    />
-  );
-}
-
-export function AutomationsRoute(): JSX.Element {
-  const account = useAccount();
-  const navigate = useNavigate();
-
-  return (
-    <AutomationsScreen
-      capabilities={account.capabilities()}
-      stats={[]}
-      active={[]}
-      suggested={[]}
-      onToggle={() => undefined}
-      onOpen={(id) => navigate(`/automations/${id}`)}
-      onCreate={() => navigate('/automations/new')}
       onSignIn={() => navigate('/sign-in')}
     />
   );
@@ -165,3 +146,4 @@ export function SshConnectRoute(): JSX.Element {
 
 export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-routes.tsx';
 export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';
+export { AutomationsRoute, NewAutomationRoute } from './routes/automation-routes.tsx';
