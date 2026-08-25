@@ -5,6 +5,10 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vitest/globals"],
+    // Sources use explicit .ts/.tsx specifiers, which is what Bun and Vite resolve
+    // natively. Scoped here rather than in the base config because test-harness emits with
+    // tsc and this flag requires noEmit.
+    "allowImportingTsExtensions": true,
     "noEmit": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vitest.setup.ts", "vitest.config.ts"]

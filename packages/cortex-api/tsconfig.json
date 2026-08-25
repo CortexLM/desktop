@@ -2,9 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["ES2022", "DOM"],
-    // The suites read the generated CSS off disk to check it against the typed mirrors,
-    // so this package typechecks against Node's API surface as well as the DOM.
-    "types": ["vitest/globals", "node"],
+    "types": ["vitest/globals"],
     // Sources use explicit .ts specifiers, which is what Bun and Vite resolve natively.
     // Scoped here rather than in the base config because test-harness emits with tsc and
     // this flag requires noEmit.
