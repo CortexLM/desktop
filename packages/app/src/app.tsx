@@ -147,6 +147,7 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
             if (route?.path) navigate(route.path);
           }}
           onOpenRun={(id) => navigate(`/sessions/${id}`)}
+          onSignIn={() => navigate('/sign-in')}
         />
       }
     >

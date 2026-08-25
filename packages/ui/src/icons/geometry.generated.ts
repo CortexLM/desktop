@@ -30,7 +30,7 @@ export const iconGeometry = {
    */
   '3c3bad64': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M4.8 12.5a3.1 3.1 0 01-.35-6.18A4.1 4.1 0 0112.4 7.1a2.75 2.75 0 01-.65 5.4H4.8z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M4.8 12.5a3.1 3.1 0 01-.35-6.18A4.1 4.1 0 0112.4 7.1a2.75 2.75 0 01-.65 5.4H4.8z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.6","1.5"],
   },
   /**
@@ -39,7 +39,7 @@ export const iconGeometry = {
    */
   '6bc7cc4c': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3.5 13V3a1.5 1.5 0 011.5-1.5h7.5V11H5a1.5 1.5 0 00-1.5 1.5v0A1.5 1.5 0 005 14h7.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3.5 13V3a1.5 1.5 0 011.5-1.5h7.5V11H5a1.5 1.5 0 00-1.5 1.5v0A1.5 1.5 0 005 14h7.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -57,7 +57,7 @@ export const iconGeometry = {
    */
   'e99ff70c': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M3 4.5L6 7.5L9 4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3 4.5L6 7.5L9 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5","1.4"],
   },
   /**
@@ -66,7 +66,7 @@ export const iconGeometry = {
    */
   '676fac87': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M6 2.5H4A2.5 2.5 0 001.5 5v6A2.5 2.5 0 004 13.5h2v-11z\" fill=\"currentColor\" /> <rect x=\"1.5\" y=\"2.5\" width=\"13\" height=\"11\" rx=\"2.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<path d=\"M6 2.5H4A2.5 2.5 0 001.5 5v6A2.5 2.5 0 004 13.5h2v-11z\" fill=\"currentColor\" /> <rect x=\"1.5\" y=\"2.5\" width=\"13\" height=\"11\" rx=\"2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -75,7 +75,7 @@ export const iconGeometry = {
    */
   '10d1f809': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"8\" cy=\"8\" r=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M8 1.5V3.5M8 12.5V14.5M14.5 8H12.5M3.5 8H1.5M12.6 3.4L11.2 4.8M4.8 11.2L3.4 12.6M12.6 12.6L11.2 11.2M4.8 4.8L3.4 3.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"8\" cy=\"8\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M8 1.5V3.5M8 12.5V14.5M14.5 8H12.5M3.5 8H1.5M12.6 3.4L11.2 4.8M4.8 11.2L3.4 12.6M12.6 12.6L11.2 11.2M4.8 4.8L3.4 3.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -84,7 +84,7 @@ export const iconGeometry = {
    */
   '1ba2b365': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M2.5 6.7L8 2.2l5.5 4.5V13a1 1 0 01-1 1h-9a1 1 0 01-1-1V6.7z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M6.3 14v-3.6h3.4V14\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M2.5 6.7L8 2.2l5.5 4.5V13a1 1 0 01-1 1h-9a1 1 0 01-1-1V6.7z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M6.3 14v-3.6h3.4V14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -93,7 +93,7 @@ export const iconGeometry = {
    */
   '1e76aca9': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M5.6 4.2h7.9M5.6 8h7.9M5.6 11.8h7.9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M2.6 4.2h.01M2.6 8h.01M2.6 11.8h.01\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M5.6 4.2h7.9M5.6 8h7.9M5.6 11.8h7.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M2.6 4.2h.01M2.6 8h.01M2.6 11.8h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -102,7 +102,7 @@ export const iconGeometry = {
    */
   '2bf57453': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M4 13.2V9.4M8 13.2V3.9M12 13.2V7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M4 13.2V9.4M8 13.2V3.9M12 13.2V7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -111,7 +111,7 @@ export const iconGeometry = {
    */
   '9ceafc6c': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M9.3 1.6L3.2 8.9h3.9l-1.4 5.5 6.1-7.3H7.9l1.4-5.5z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M9.3 1.6L3.2 8.9h3.9l-1.4 5.5 6.1-7.3H7.9l1.4-5.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -120,7 +120,7 @@ export const iconGeometry = {
    */
   'c75a609a': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"4.6\" cy=\"4.1\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <circle cx=\"11.4\" cy=\"11.9\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M4.6 6v5.9M8.6 4.1h1.3a1.5 1.5 0 011.5 1.5V10\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<circle cx=\"4.6\" cy=\"4.1\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <circle cx=\"11.4\" cy=\"11.9\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M4.6 6v5.9M8.6 4.1h1.3a1.5 1.5 0 011.5 1.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -129,7 +129,7 @@ export const iconGeometry = {
    */
   '457636e2': {
     viewBox: "0 0 8 8",
-    body: "<path d=\"M1.5 3l2.5 2.5L6.5 3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M1.5 3l2.5 2.5L6.5 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -138,7 +138,7 @@ export const iconGeometry = {
    */
   '6356e2e2': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M4 6.5l4 4 4-4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M4 6.5l4 4 4-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.8"],
   },
   /**
@@ -156,7 +156,7 @@ export const iconGeometry = {
    */
   '3ad2deec': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5","1.6"],
   },
   /**
@@ -165,7 +165,7 @@ export const iconGeometry = {
    */
   '56123bb4': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M5.5 2.5H3.5C2.9 2.5 2.5 2.9 2.5 3.5V12.5C2.5 13.1 2.9 13.5 3.5 13.5H12.5C13.1 13.5 13.5 13.1 13.5 12.5V5.5C13.5 4.9 13.1 4.5 12.5 4.5H7.5L5.5 2.5Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M5.5 2.5H3.5C2.9 2.5 2.5 2.9 2.5 3.5V12.5C2.5 13.1 2.9 13.5 3.5 13.5H12.5C13.1 13.5 13.5 13.1 13.5 12.5V5.5C13.5 4.9 13.1 4.5 12.5 4.5H7.5L5.5 2.5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -174,7 +174,7 @@ export const iconGeometry = {
    */
   '6fa3deba': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M2.2 5.2L4.2 7.2L7.8 3.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M2.2 5.2L4.2 7.2L7.8 3.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -183,7 +183,7 @@ export const iconGeometry = {
    */
   'da8b097f': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M8 3.5v9M3.5 8h9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M8 3.5v9M3.5 8h9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -192,7 +192,7 @@ export const iconGeometry = {
    */
   '1c3a2abd': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M2 3.5L5 6.5l3-3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M2 3.5L5 6.5l3-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -201,7 +201,7 @@ export const iconGeometry = {
    */
   '21aa029b': {
     viewBox: "0 0 24 24",
-    body: "<path d=\"M4 13L9.5 18.5L20 6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M4 13L9.5 18.5L20 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["5","4.5"],
   },
   /**
@@ -210,7 +210,7 @@ export const iconGeometry = {
    */
   '43da08be': {
     viewBox: "0 0 9 9",
-    body: "<path d=\"M1.5 4.5l2 2 4-4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M1.5 4.5l2 2 4-4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -219,7 +219,7 @@ export const iconGeometry = {
    */
   'a0f88c29': {
     viewBox: "0 0 14 14",
-    body: "<circle cx=\"7\" cy=\"7\" r=\"5.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<circle cx=\"7\" cy=\"7\" r=\"5.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -228,7 +228,7 @@ export const iconGeometry = {
    */
   '09088fbe': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -237,7 +237,7 @@ export const iconGeometry = {
    */
   '1ce61d71': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"4.5\" cy=\"4\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"4.5\" cy=\"12\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M4.5 5.8V10.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"4.5\" cy=\"4\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"4.5\" cy=\"12\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M4.5 5.8V10.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -246,7 +246,7 @@ export const iconGeometry = {
    */
   '6b9f4103': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M8 12.5V3.5M8 3.5L4 7.5M8 3.5L12 7.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M8 12.5V3.5M8 3.5L4 7.5M8 3.5L12 7.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.6"],
   },
   /**
@@ -255,7 +255,7 @@ export const iconGeometry = {
    */
   'f4e2d126': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"6\" y=\"1.5\" width=\"4\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3.5 7.5C3.5 10 5.5 12 8 12C10.5 12 12.5 10 12.5 7.5M8 12V14.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<rect x=\"6\" y=\"1.5\" width=\"4\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3.5 7.5C3.5 10 5.5 12 8 12C10.5 12 12.5 10 12.5 7.5M8 12V14.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -264,7 +264,7 @@ export const iconGeometry = {
    */
   '18239af0': {
     viewBox: "0 0 14 14",
-    body: "<path d=\"M8.5 3.5L5 7l3.5 3.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M8.5 3.5L5 7l3.5 3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -273,7 +273,7 @@ export const iconGeometry = {
    */
   '375ea4dd': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M3 1.5L7 5l-4 3.5\" transform=\"rotate(90 5 5)\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3 1.5L7 5l-4 3.5\" transform=\"rotate(90 5 5)\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -282,7 +282,7 @@ export const iconGeometry = {
    */
   '4105dfba': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M8 12.5v-9M4 7l4-3.5L12 7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M8 12.5v-9M4 7l4-3.5L12 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.8"],
   },
   /**
@@ -291,7 +291,7 @@ export const iconGeometry = {
    */
   '51785885': {
     viewBox: "0 0 8 8",
-    body: "<path d=\"M1.8 2.7L4 5.2l2.2-2.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M1.8 2.7L4 5.2l2.2-2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -300,7 +300,7 @@ export const iconGeometry = {
    */
   '587759fb': {
     viewBox: "0 0 12 12",
-    body: "<circle cx=\"6\" cy=\"6\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M1.5 6h9M6 1.5c1.5 1.4 1.5 7.6 0 9M6 1.5c-1.5 1.4-1.5 7.6 0 9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<circle cx=\"6\" cy=\"6\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M1.5 6h9M6 1.5c1.5 1.4 1.5 7.6 0 9M6 1.5c-1.5 1.4-1.5 7.6 0 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.2","1.1"],
   },
   /**
@@ -309,7 +309,7 @@ export const iconGeometry = {
    */
   '5975f71b': {
     viewBox: "0 0 11 11",
-    body: "<path d=\"M1.5 3.5a1 1 0 011-1h2l1 1h3a1 1 0 011 1v3.5a1 1 0 01-1 1h-6a1 1 0 01-1-1V3.5z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<path d=\"M1.5 3.5a1 1 0 011-1h2l1 1h3a1 1 0 011 1v3.5a1 1 0 01-1 1h-6a1 1 0 01-1-1V3.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.1"],
   },
   /**
@@ -318,7 +318,7 @@ export const iconGeometry = {
    */
   '5a506b24': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M2 3l3 3-3 3M6.5 9H10\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M2 3l3 3-3 3M6.5 9H10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -327,7 +327,7 @@ export const iconGeometry = {
    */
   '5cf69c47': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M2 2.5h8M2 6h8M2 9.5h5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M2 2.5h8M2 6h8M2 9.5h5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -336,7 +336,7 @@ export const iconGeometry = {
    */
   '690bce60': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"0.9\" y=\"3.6\" width=\"14.2\" height=\"8.8\" rx=\"1.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3.1 10.1V5.9h1.15l1.32 1.65L6.9 5.9h1.15v4.2H6.9V7.7L5.57 9.32 4.25 7.7v2.4H3.1z\" fill=\"currentColor\" /> <path d=\"M11.4 5.9v2.3h-1.3l1.95 2.1 1.95-2.1h-1.3V5.9h-1.3z\" fill=\"currentColor\" />",
+    body: "<rect x=\"0.9\" y=\"3.6\" width=\"14.2\" height=\"8.8\" rx=\"1.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3.1 10.1V5.9h1.15l1.32 1.65L6.9 5.9h1.15v4.2H6.9V7.7L5.57 9.32 4.25 7.7v2.4H3.1z\" fill=\"currentColor\" /> <path d=\"M11.4 5.9v2.3h-1.3l1.95 2.1 1.95-2.1h-1.3V5.9h-1.3z\" fill=\"currentColor\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -345,7 +345,7 @@ export const iconGeometry = {
    */
   '8de87d37': {
     viewBox: "0 0 13 13",
-    body: "<circle cx=\"3.5\" cy=\"3\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"3.5\" cy=\"10\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"9.5\" cy=\"6.5\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3.5 4.6v3.8M5.1 6.5h2.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"3.5\" cy=\"3\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"3.5\" cy=\"10\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"9.5\" cy=\"6.5\" r=\"1.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3.5 4.6v3.8M5.1 6.5h2.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -354,7 +354,7 @@ export const iconGeometry = {
    */
   'b23bda88': {
     viewBox: "0 0 12 12",
-    body: "<circle cx=\"3\" cy=\"3\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"3\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"9\" cy=\"6\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3 4.5v3M4.5 6H7.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"3\" cy=\"3\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"3\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"9\" cy=\"6\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3 4.5v3M4.5 6H7.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -363,7 +363,7 @@ export const iconGeometry = {
    */
   'bfcfa124': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"6\" y=\"1.5\" width=\"4\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M3.5 7.5a4.5 4.5 0 009 0M8 12v2.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<rect x=\"6\" y=\"1.5\" width=\"4\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M3.5 7.5a4.5 4.5 0 009 0M8 12v2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -381,7 +381,7 @@ export const iconGeometry = {
    */
   'f6885b53': {
     viewBox: "0 0 12 12",
-    body: "<rect x=\"2.5\" y=\"5\" width=\"7\" height=\"5\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M4 5V3.8a2 2 0 014 0V5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<rect x=\"2.5\" y=\"5\" width=\"7\" height=\"5\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M4 5V3.8a2 2 0 014 0V5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -390,7 +390,7 @@ export const iconGeometry = {
    */
   '21bffe61': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M2 2l6 6M8 2l-6 6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M2 2l6 6M8 2l-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3","1.2"],
   },
   /**
@@ -399,7 +399,7 @@ export const iconGeometry = {
    */
   '31361e52': {
     viewBox: "0 0 8 8",
-    body: "<path d=\"M2 1.5L5.5 4 2 6.5\" transform=\"rotate(90 4 4)\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M2 1.5L5.5 4 2 6.5\" transform=\"rotate(90 4 4)\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -408,7 +408,7 @@ export const iconGeometry = {
    */
   '33208285': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M6 1.5v6M3.5 5L6 7.5 8.5 5M2 10.5h8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M6 1.5v6M3.5 5L6 7.5 8.5 5M2 10.5h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -417,7 +417,7 @@ export const iconGeometry = {
    */
   '55308498': {
     viewBox: "0 0 1216 170",
-    body: "<line x1=\"36\" y1=\"10\" x2=\"1210\" y2=\"10\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"55\" x2=\"1210\" y2=\"55\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"100\" x2=\"1210\" y2=\"100\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"145\" x2=\"1210\" y2=\"145\" stroke=\"currentColor\" /> <path d=\"M36 145 L200 138 L380 122 L560 96 L740 70 L920 44 L1100 24 L1210 16 L1210 145 Z\" fill=\"currentColor\" /> <path d=\"M36 145 L200 138 L380 122 L560 96 L740 70 L920 44 L1100 24 L1210 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M36 145 L200 143 L380 138 L560 130 L740 122 L920 116 L1100 110 L1210 107 L1210 145 Z\" fill=\"currentColor\" /> <path d=\"M36 145 L200 143 L380 138 L560 130 L740 122 L920 116 L1100 110 L1210 107\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <line x1=\"1140\" y1=\"10\" x2=\"1140\" y2=\"145\" stroke=\"currentColor\" strokeDasharray=\"3 3\" /> <text x=\"6\" y=\"14\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> $60 </text> <text x=\"6\" y=\"59\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> $40 </text> <text x=\"6\" y=\"104\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> $20 </text> <text x=\"12\" y=\"149\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> $0 </text> <text x=\"180\" y=\"164\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> Aug 1 </text> <text x=\"550\" y=\"164\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> Aug 10 </text> <text x=\"910\" y=\"164\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> Aug 19 </text> <text x=\"1126\" y=\"164\" fontFamily=\"JetBrains Mono\" fontSize=\"9\" fill=\"currentColor\"> Today </text>",
+    body: "<line x1=\"36\" y1=\"10\" x2=\"1210\" y2=\"10\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"55\" x2=\"1210\" y2=\"55\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"100\" x2=\"1210\" y2=\"100\" stroke=\"currentColor\" /> <line x1=\"36\" y1=\"145\" x2=\"1210\" y2=\"145\" stroke=\"currentColor\" /> <path d=\"M36 145 L200 138 L380 122 L560 96 L740 70 L920 44 L1100 24 L1210 16 L1210 145 Z\" fill=\"currentColor\" /> <path d=\"M36 145 L200 138 L380 122 L560 96 L740 70 L920 44 L1100 24 L1210 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M36 145 L200 143 L380 138 L560 130 L740 122 L920 116 L1100 110 L1210 107 L1210 145 Z\" fill=\"currentColor\" /> <path d=\"M36 145 L200 143 L380 138 L560 130 L740 122 L920 116 L1100 110 L1210 107\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <line x1=\"1140\" y1=\"10\" x2=\"1140\" y2=\"145\" stroke=\"currentColor\" stroke-dasharray=\"3 3\" /> <text x=\"6\" y=\"14\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> $60 </text> <text x=\"6\" y=\"59\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> $40 </text> <text x=\"6\" y=\"104\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> $20 </text> <text x=\"12\" y=\"149\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> $0 </text> <text x=\"180\" y=\"164\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> Aug 1 </text> <text x=\"550\" y=\"164\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> Aug 10 </text> <text x=\"910\" y=\"164\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> Aug 19 </text> <text x=\"1126\" y=\"164\" font-family=\"JetBrains Mono\" font-size=\"9\" fill=\"currentColor\"> Today </text>",
     strokeWidths: ["1.6"],
   },
   /**
@@ -426,7 +426,7 @@ export const iconGeometry = {
    */
   '5d49476e': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M5 8V2M2.5 4.5L5 2l2.5 2.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M5 8V2M2.5 4.5L5 2l2.5 2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2","1.4"],
   },
   /**
@@ -435,7 +435,7 @@ export const iconGeometry = {
    */
   '8e127c23': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3.5 1.5h6L12.5 4.5v10h-9z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" /> <path d=\"M5.5 7.5h1.4M8.1 7.5h2.4M5.5 10h1.4M8.1 10h1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M3.5 1.5h6L12.5 4.5v10h-9z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" /> <path d=\"M5.5 7.5h1.4M8.1 7.5h2.4M5.5 10h1.4M8.1 10h1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -444,7 +444,7 @@ export const iconGeometry = {
    */
   '93a9b756': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M5 1.5v7M1.5 5h7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M5 1.5v7M1.5 5h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -453,7 +453,7 @@ export const iconGeometry = {
    */
   '946b2aee': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3.2 8.6l3.2 3.2 6.4-7.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3.2 8.6l3.2 3.2 6.4-7.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.8","2.4"],
   },
   /**
@@ -462,7 +462,7 @@ export const iconGeometry = {
    */
   'afdd7c87': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -471,7 +471,7 @@ export const iconGeometry = {
    */
   'c1c31bf0': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"7\" cy=\"7\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M10.5 10.5L14 14\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"7\" cy=\"7\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M10.5 10.5L14 14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -480,7 +480,7 @@ export const iconGeometry = {
    */
   'cf598808': {
     viewBox: "0 0 12 12",
-    body: "<circle cx=\"3\" cy=\"3\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"3\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"9\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3 4.5v3M9 7.5V6a2 2 0 00-2-2H5.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"3\" cy=\"3\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"3\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"9\" cy=\"9\" r=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3 4.5v3M9 7.5V6a2 2 0 00-2-2H5.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -489,7 +489,7 @@ export const iconGeometry = {
    */
   'd376cd08': {
     viewBox: "0 0 24 24",
-    body: "<path d=\"M4.5 12.5L9.5 17.5L19.5 6.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M4.5 12.5L9.5 17.5L19.5 6.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["3"],
   },
   /**
@@ -498,7 +498,7 @@ export const iconGeometry = {
    */
   'e8e5526d': {
     viewBox: "0 0 11 11",
-    body: "<circle cx=\"5.5\" cy=\"5.5\" r=\"5\" fill=\"currentColor\" /> <path d=\"M3.4 5.6l1.4 1.4 2.6-2.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<circle cx=\"5.5\" cy=\"5.5\" r=\"5\" fill=\"currentColor\" /> <path d=\"M3.4 5.6l1.4 1.4 2.6-2.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -507,7 +507,7 @@ export const iconGeometry = {
    */
   '0cd65fc5': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3 6.6L8 2.8L13 6.6V12.6C13 13.1 12.6 13.5 12.1 13.5H3.9C3.4 13.5 3 13.1 3 12.6V6.6Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3 6.6L8 2.8L13 6.6V12.6C13 13.1 12.6 13.5 12.1 13.5H3.9C3.4 13.5 3 13.1 3 12.6V6.6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -516,7 +516,7 @@ export const iconGeometry = {
    */
   '101ff2d3': {
     viewBox: "0 0 13 13",
-    body: "<path d=\"M6.5 1.5l4 1.5v3c0 2.6-1.7 4.4-4 5.5-2.3-1.1-4-2.9-4-5.5V3l4-1.5z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" /> <path d=\"M4.8 6.3l1.2 1.2 2.2-2.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M6.5 1.5l4 1.5v3c0 2.6-1.7 4.4-4 5.5-2.3-1.1-4-2.9-4-5.5V3l4-1.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" /> <path d=\"M4.8 6.3l1.2 1.2 2.2-2.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -525,7 +525,7 @@ export const iconGeometry = {
    */
   '1bdae660': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M8 3.5V12.5M3.5 8H12.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M8 3.5V12.5M3.5 8H12.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -534,7 +534,7 @@ export const iconGeometry = {
    */
   '3657c7ca': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"1.8\" y=\"2.8\" width=\"12.4\" height=\"8.4\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M5.5 13.7h5M8 11.2v2.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<rect x=\"1.8\" y=\"2.8\" width=\"12.4\" height=\"8.4\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M5.5 13.7h5M8 11.2v2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -543,7 +543,7 @@ export const iconGeometry = {
    */
   '3bef17f7': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M1.6 8s2.3-4.4 6.4-4.4S14.4 8 14.4 8s-2.3 4.4-6.4 4.4S1.6 8 1.6 8z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <circle cx=\"8\" cy=\"8\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M1.6 8s2.3-4.4 6.4-4.4S14.4 8 14.4 8s-2.3 4.4-6.4 4.4S1.6 8 1.6 8z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <circle cx=\"8\" cy=\"8\" r=\"1.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -552,7 +552,7 @@ export const iconGeometry = {
    */
   '45f78fb6': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M6 2v8M2 6h8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M6 2v8M2 6h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -561,7 +561,7 @@ export const iconGeometry = {
    */
   '4c35a17d': {
     viewBox: "0 0 11 11",
-    body: "<rect x=\"1.5\" y=\"1.5\" width=\"8\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M4 5.5l1.2 1.2L7.5 4.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<rect x=\"1.5\" y=\"1.5\" width=\"8\" height=\"8\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M4 5.5l1.2 1.2L7.5 4.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.2"],
   },
   /**
@@ -570,7 +570,7 @@ export const iconGeometry = {
    */
   '50f29dca': {
     viewBox: "0 0 14 14",
-    body: "<circle cx=\"7\" cy=\"7\" r=\"6\" fill=\"currentColor\" /> <path d=\"M4.5 7l1.8 1.8L9.6 5.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<circle cx=\"7\" cy=\"7\" r=\"6\" fill=\"currentColor\" /> <path d=\"M4.5 7l1.8 1.8L9.6 5.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.4"],
   },
   /**
@@ -597,7 +597,7 @@ export const iconGeometry = {
    */
   '739f611b': {
     viewBox: "0 0 11 11",
-    body: "<circle cx=\"5.5\" cy=\"5.5\" r=\"4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M5.5 1.5v8M1.5 5.5h8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" />",
+    body: "<circle cx=\"5.5\" cy=\"5.5\" r=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M5.5 1.5v8M1.5 5.5h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" />",
     strokeWidths: ["1.1"],
   },
   /**
@@ -606,7 +606,7 @@ export const iconGeometry = {
    */
   '86dbf03b': {
     viewBox: "0 0 12 12",
-    body: "<path d=\"M2.5 2.5l7 7M9.5 2.5l-7 7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M2.5 2.5l7 7M9.5 2.5l-7 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**
@@ -615,7 +615,7 @@ export const iconGeometry = {
    */
   '89e929cd': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<rect x=\"1.8\" y=\"2.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <rect x=\"1.8\" y=\"9.2\" width=\"12.4\" height=\"4.6\" rx=\"1.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /> <path d=\"M4.4 4.5h.01M4.4 11.5h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -624,7 +624,7 @@ export const iconGeometry = {
    */
   '9357af00': {
     viewBox: "0 0 10 10",
-    body: "<path d=\"M1.5 2.5h7v4.5h-4L2.5 9V7h-1V2.5z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M1.5 2.5h7v4.5h-4L2.5 9V7h-1V2.5z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.1"],
   },
   /**
@@ -633,7 +633,7 @@ export const iconGeometry = {
    */
   '959c7ae0': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"7\" cy=\"7\" r=\"4.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M10.5 10.5L13.6 13.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"7\" cy=\"7\" r=\"4.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M10.5 10.5L13.6 13.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -642,7 +642,7 @@ export const iconGeometry = {
    */
   '9d80309f': {
     viewBox: "0 0 16 16",
-    body: "<circle cx=\"4.5\" cy=\"3.8\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"4.5\" cy=\"12.2\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"11.5\" cy=\"12.2\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M4.5 5.6V10.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M8.5 3.8H10C10.8 3.8 11.5 4.5 11.5 5.3V10.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M7 2.3L8.6 3.8L7 5.3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<circle cx=\"4.5\" cy=\"3.8\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"4.5\" cy=\"12.2\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"11.5\" cy=\"12.2\" r=\"1.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M4.5 5.6V10.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M8.5 3.8H10C10.8 3.8 11.5 4.5 11.5 5.3V10.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M7 2.3L8.6 3.8L7 5.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -651,7 +651,7 @@ export const iconGeometry = {
    */
   '9fd7aa7c': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M8.7 1.8L3.5 9H7.3L7.3 14.2L12.5 7H8.7L8.7 1.8Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M8.7 1.8L3.5 9H7.3L7.3 14.2L12.5 7H8.7L8.7 1.8Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -660,7 +660,7 @@ export const iconGeometry = {
    */
   'a36568c9': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3 13V8.5M8 13V3.5M13 13V6.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<path d=\"M3 13V8.5M8 13V3.5M13 13V6.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -669,7 +669,7 @@ export const iconGeometry = {
    */
   'a70ed60d': {
     viewBox: "0 0 11 11",
-    body: "<path d=\"M6.5 1L2.5 6h2.5L4.5 10l4-5H6l.5-4z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M6.5 1L2.5 6h2.5L4.5 10l4-5H6l.5-4z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.1"],
   },
   /**
@@ -696,7 +696,7 @@ export const iconGeometry = {
    */
   'd48c2705': {
     viewBox: "0 0 16 16",
-    body: "<rect x=\"2.5\" y=\"3\" width=\"11\" height=\"4.2\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <rect x=\"2.5\" y=\"8.8\" width=\"11\" height=\"4.2\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <circle cx=\"5\" cy=\"5.1\" r=\"0.8\" fill=\"currentColor\" /> <circle cx=\"5\" cy=\"10.9\" r=\"0.8\" fill=\"currentColor\" />",
+    body: "<rect x=\"2.5\" y=\"3\" width=\"11\" height=\"4.2\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <rect x=\"2.5\" y=\"8.8\" width=\"11\" height=\"4.2\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <circle cx=\"5\" cy=\"5.1\" r=\"0.8\" fill=\"currentColor\" /> <circle cx=\"5\" cy=\"10.9\" r=\"0.8\" fill=\"currentColor\" />",
     strokeWidths: ["1.5"],
   },
   /**
@@ -705,7 +705,7 @@ export const iconGeometry = {
    */
   'd49aa101': {
     viewBox: "0 0 16 16",
-    body: "<path d=\"M3.5 8.5L6.5 11.5L12.5 4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />",
+    body: "<path d=\"M3.5 8.5L6.5 11.5L12.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />",
     strokeWidths: ["1.6"],
   },
   /**
@@ -714,7 +714,7 @@ export const iconGeometry = {
    */
   'de819691': {
     viewBox: "0 0 10 10",
-    body: "<rect x=\"1.5\" y=\"1.5\" width=\"7\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M3.5 5.2l1 1 2-2.2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<rect x=\"1.5\" y=\"1.5\" width=\"7\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M3.5 5.2l1 1 2-2.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.1"],
   },
   /**
@@ -723,7 +723,7 @@ export const iconGeometry = {
    */
   'f14a70b7': {
     viewBox: "0 0 12 12",
-    body: "<circle cx=\"5.2\" cy=\"5.2\" r=\"3.6\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" /> <path d=\"M8 8l2.4 2.4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"__STROKE__\" strokeLinecap=\"round\" />",
+    body: "<circle cx=\"5.2\" cy=\"5.2\" r=\"3.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" /> <path d=\"M8 8l2.4 2.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"__STROKE__\" stroke-linecap=\"round\" />",
     strokeWidths: ["1.3"],
   },
   /**

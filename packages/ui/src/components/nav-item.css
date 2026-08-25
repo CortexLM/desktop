@@ -38,7 +38,15 @@
     color 100ms ease;
 }
 
-.cx-nav-item:hover:not(.cx-nav-item--active) {
+/*
+ * Hover excludes the unavailable states explicitly.
+ *
+ * Not redundant with the rules further down: `:hover:not(.cx-nav-item--active)` outweighs a
+ * bare `[aria-disabled='true']` on specificity, so a locked row lit up to full-strength text
+ * under the cursor and read as clickable. Measured: `color` went from rgb(168,168,168) to
+ * rgb(26,26,26) on hover.
+ */
+.cx-nav-item:hover:not(.cx-nav-item--active):not(:disabled):not([aria-disabled='true']) {
   background: var(--color-hover);
   color: var(--color-text);
 }
@@ -69,13 +77,29 @@
   background: var(--color-primary);
 }
 
-/* Disabled marks a destination the current plan does not include. It stays visible and
- * still announces itself, because the design uses it to advertise what signing in adds. */
-.cx-nav-item:disabled {
+/*
+ * Unavailable marks a destination the current plan does not include. It stays visible and
+ * still announces itself, because the design uses it to advertise what signing in adds.
+ *
+ * Both selectors, and they mean different things: `:disabled` is the caller passing
+ * `disabled`, `[aria-disabled]` is a locked destination. A locked row is deliberately NOT
+ * `disabled`, so it stays focusable and a keyboard or screen-reader user can reach it and
+ * find out why — a `disabled` button is skipped by tab order entirely, which made the
+ * explanation unreachable for exactly the users who most needed it.
+ */
+.cx-nav-item:disabled,
+.cx-nav-item[aria-disabled='true'] {
   cursor: default;
   color: var(--color-text-faint);
 }
 
-.cx-nav-item:disabled:hover {
+.cx-nav-item:disabled:hover,
+.cx-nav-item[aria-disabled='true']:hover {
   background: transparent;
+}
+
+.cx-nav-item__lock {
+  /* Sits where the unread dot would, so a locked row keeps the same label geometry. */
+  margin-left: calc(var(--spacing-1) * -1);
+  color: var(--color-text-faint);
 }
