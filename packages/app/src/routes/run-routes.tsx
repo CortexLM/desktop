@@ -159,6 +159,13 @@ function pickRepo(names: readonly string[], openFolder: () => void): void {
   cycleDraftField('repo', names);
 }
 
+/** "What should we build, Ana?" — the greeting knows the first name only. */
+function codeGreeting(displayName?: string): string {
+  return displayName
+    ? `What should we build, ${displayName.split(/\s+/)[0]}?`
+    : 'What should we build?';
+}
+
 export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
@@ -205,11 +212,7 @@ export function HomeRoute(): JSX.Element {
   return (
     <HomeScreen
       capabilities={account.capabilities()}
-      greeting={
-        account.user()?.displayName
-          ? `What should we build, ${account.user()!.displayName!.split(/\s+/)[0]}?`
-          : 'What should we build?'
-      }
+      greeting={codeGreeting(account.user()?.displayName)}
       draft={composerDraft()}
       onDraftChange={setComposerDraft}
       onStart={() => void start()}
@@ -249,6 +252,32 @@ const EMPTY_STATES: Record<string, { title: string; body: string }> = {
   archived: { title: 'Nothing archived', body: 'Sessions you archive are kept here.' },
 };
 
+/** "6 sessions across 3 repositories · 1 running" — over everything unarchived. */
+function workspaceSummary(sessions: readonly SessionSummary[]): string | undefined {
+  const all = sessions.filter((session) => !session.archived);
+  if (all.length === 0) return undefined;
+  const repos = new Set(all.map((session) => session.repo ?? 'Local folder')).size;
+  const running = all.filter(
+    (session) => session.status === 'running' || session.status === 'queued',
+  ).length;
+  const parts = [
+    `${all.length} session${all.length === 1 ? '' : 's'} across ${repos} repositor${repos === 1 ? 'y' : 'ies'}`,
+  ];
+  if (running > 0) parts.push(`${running} running`);
+  return parts.join(' · ');
+}
+
+function filterCounts(sessions: readonly SessionSummary[]) {
+  const all = sessions.filter((session) => !session.archived);
+  const counts: Record<string, number> = {
+    all: all.length,
+    active: all.filter((s) => s.status === 'queued' || s.status === 'running').length,
+    review: all.filter((s) => s.status === 'review').length,
+    archived: sessions.filter((s) => s.archived).length,
+  };
+  return SESSION_FILTERS.map((entry) => ({ ...entry, count: counts[entry.id] ?? 0 }));
+}
+
 export function SessionsRoute(): JSX.Element {
   const runs = useSessions();
   const navigate = useNavigate();
@@ -278,32 +307,8 @@ export function SessionsRoute(): JSX.Element {
       .map((session) => toInboxSession(session));
   });
 
-  // "6 sessions across 3 repositories · 1 running" — counted over everything
-  // unarchived, not the filtered view, so the line describes the workspace.
-  const summary = createMemo(() => {
-    const all = (runs.sessions() ?? []).filter((session) => !session.archived);
-    if (all.length === 0) return undefined;
-    const repos = new Set(all.map((session) => session.repo ?? 'Local folder')).size;
-    const running = all.filter(
-      (session) => session.status === 'running' || session.status === 'queued',
-    ).length;
-    const parts = [
-      `${all.length} session${all.length === 1 ? '' : 's'} across ${repos} repositor${repos === 1 ? 'y' : 'ies'}`,
-    ];
-    if (running > 0) parts.push(`${running} running`);
-    return parts.join(' · ');
-  });
-
-  const filters = createMemo(() => {
-    const all = (runs.sessions() ?? []).filter((session) => !session.archived);
-    const counts: Record<string, number> = {
-      all: all.length,
-      active: all.filter((s) => s.status === 'queued' || s.status === 'running').length,
-      review: all.filter((s) => s.status === 'review').length,
-      archived: (runs.sessions() ?? []).filter((s) => s.archived).length,
-    };
-    return SESSION_FILTERS.map((entry) => ({ ...entry, count: counts[entry.id] ?? 0 }));
-  });
+  const summary = createMemo(() => workspaceSummary(runs.sessions() ?? []));
+  const filters = createMemo(() => filterCounts(runs.sessions() ?? []));
 
   return (
     <SessionsScreen
