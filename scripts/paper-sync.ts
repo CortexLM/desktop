@@ -14,6 +14,7 @@
  * Requires PAPER_MCP_URL, PAPER_MCP_AUTH and PAPER_FILE_ID.
  */
 
+import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
@@ -36,8 +37,25 @@ const BASELINE_DIR = join(REPO_ROOT, 'tests/visual/paper-baselines');
 const ICONS_PATH = join(REPO_ROOT, 'packages/ui/src/icons/geometry.generated.ts');
 const MANIFEST_PATH = join(DESIGN_DIR, 'screens.json');
 
-const SCREENS_PAGE = 'Screens';
+/** "Cortex FF1 v1" — the Concept 3 file. Overridable for design explorations. */
+const DEFAULT_FILE_ID = '01M0WGA7TGHQFZ2H22QFE3YZ9C';
+
+const SCREENS_PAGE = 'Concept 03';
 const COMPONENTS_PAGE = 'Components';
+const CHAT_STATES_PAGE = 'Chat states';
+
+/**
+ * Concept-03 screens that are not part of the desktop app.
+ *
+ * `Product Code` is the marketing "coming soon" web page that shares the page with
+ * the app artboards. Keeping it out here keeps it out of the manifest, the specs,
+ * the baselines and the icon scan all at once.
+ */
+const NON_APP_SCREENS = new Set(['Product Code']);
+
+function isAppScreen(screen: string): boolean {
+  return !NON_APP_SCREENS.has(screen);
+}
 
 async function writeFileEnsuringDir(path: string, contents: string | Uint8Array): Promise<void> {
   await mkdir(dirname(path), { recursive: true });
@@ -106,6 +124,7 @@ function buildManifest(info: PaperBasicInfo): ScreenManifest {
       unparsed.push(artboard.name);
       continue;
     }
+    if (!isAppScreen(parsed.screen)) continue;
 
     const existing = screens.get(parsed.slug);
     if (existing) {
@@ -162,7 +181,7 @@ async function captureBaselines(client: PaperClient, only?: string[]): Promise<v
 
   for (const artboard of info.artboards) {
     const parsed = parseArtboardName(artboard.name);
-    if (!parsed) continue;
+    if (!parsed || !isAppScreen(parsed.screen)) continue;
     if (only && only.length > 0 && !only.includes(parsed.slug)) continue;
 
     const { bytes, mimeType } = await client.callImage('get_screenshot', { nodeId: artboard.id });
@@ -179,18 +198,43 @@ async function captureBaselines(client: PaperClient, only?: string[]): Promise<v
 }
 
 async function extractSpecs(client: PaperClient, only?: string[]): Promise<void> {
-  const pages = only?.includes('components') ? [COMPONENTS_PAGE, SCREENS_PAGE] : [SCREENS_PAGE];
+  const withComponents = only?.includes('components') ?? false;
+  const pages = withComponents
+    ? [COMPONENTS_PAGE, CHAT_STATES_PAGE, SCREENS_PAGE]
+    : [SCREENS_PAGE];
+  const force = only?.includes('force') ?? false;
+
+  // Off the components page, only the sections the app draws: the page also carries
+  // the marketing site's navbar/hero/footer/pricing boards, which are large enough
+  // to time the extraction out and describe nothing the desktop app renders.
+  const appSections = new Set(
+    UI_KIT_SECTIONS.filter((section) => section.page === COMPONENTS_PAGE).map((s) => s.nodeId),
+  );
 
   for (const pageName of pages) {
     const info = await openPage(client, pageName);
 
     for (const artboard of info.artboards) {
       const parsed = parseArtboardName(artboard.name);
-      // The Components page uses `Components / Light` rather than an em-dash theme suffix.
+      // The Components page names sections `Components 02 — Sidebar app` rather than
+      // using an em-dash theme suffix, so those fall back to a light, whole-name slug.
       const theme: 'light' | 'dark' = parsed?.theme ?? (/dark/i.test(artboard.name) ? 'dark' : 'light');
-      const slug = parsed?.slug ?? slugify(artboard.name.split('/')[0]!.trim());
+      const slug = parsed?.slug ?? slugify(artboard.name);
+      if (parsed && !isAppScreen(parsed.screen)) continue;
+      if (pageName === COMPONENTS_PAGE && !appSections.has(artboard.id)) continue;
 
-      if (only && only.length > 0 && !only.includes(slug) && !only.includes('all')) continue;
+      if (only && only.length > 0) {
+        const named = only.filter((arg) => arg !== 'components' && arg !== 'all' && arg !== 'force');
+        if (named.length > 0 && !named.includes(slug)) continue;
+      }
+
+      const path = join(SPEC_DIR, `${slug}.${theme}.json`);
+      // Resumable: a 50-artboard extraction that dies on a network blip picks up where
+      // it stopped instead of re-walking every tree. `force` re-extracts everything.
+      if (!force && existsSync(path)) {
+        log(`  spec ${slug}.${theme}: already extracted, skipping`);
+        continue;
+      }
 
       const spec = await extractArtboardSpec(
         client,
@@ -200,7 +244,6 @@ async function extractSpecs(client: PaperClient, only?: string[]): Promise<void>
         { maxDepth: 12 },
       );
 
-      const path = join(SPEC_DIR, `${slug}.${theme}.json`);
       await writeFileEnsuringDir(path, `${JSON.stringify(spec, null, 2)}\n`);
 
       const count = countNodes(spec.root);
@@ -210,27 +253,32 @@ async function extractSpecs(client: PaperClient, only?: string[]): Promise<void>
 }
 
 /**
- * The UI-kit sections on the Components page, keyed by the file they are archived to.
+ * The UI-kit sections archived as JSX, keyed by the file they are archived to.
  *
  * Paper's JSX export resolves every style to either a literal or a `var(--token)`
  * reference, which makes it the authoritative source for a component's padding, type and
  * fills. Archiving it means a component's CSS can be reviewed against the design without
  * a live Paper connection, and a design change shows up as a diff in these files.
+ *
+ * Only the app-relevant sections are archived: the Components page also carries the
+ * marketing site's navbar/hero/footer/pricing, which the desktop app never draws.
  */
-const UI_KIT_SECTIONS: Record<string, string> = {
-  'button-primary': 'BC-0',
-  'button-secondary': 'BO-0',
-  'button-ghost': 'C0-0',
-  'button-destructive': 'CC-0',
-  'text-field': 'CQ-0',
-  composer: 'CW-0',
-  'nav-item': 'DY-0',
-  'session-card': 'EH-0',
-  badge: 'FM-0',
-  'tabs-toast-menu': 'G7-0',
-  'automation-card': 'PN-0',
-  'card-states': 'V0-0',
-};
+const UI_KIT_SECTIONS: Array<{ name: string; page: string; nodeId: string }> = [
+  { name: 'sidebar-app', page: COMPONENTS_PAGE, nodeId: 'BG-0' },
+  { name: 'composer-apps-row', page: COMPONENTS_PAGE, nodeId: 'GF-0' },
+  { name: 'conversation', page: COMPONENTS_PAGE, nodeId: 'JS-0' },
+  { name: 'basics', page: COMPONENTS_PAGE, nodeId: 'VD-0' },
+  { name: 'tabs-chips-controls', page: COMPONENTS_PAGE, nodeId: '3VJ-0' },
+  { name: 'cards-sources-states', page: COMPONENTS_PAGE, nodeId: '419-0' },
+  { name: 'chat-components', page: CHAT_STATES_PAGE, nodeId: '602-0' },
+  { name: 'chat-thinking', page: CHAT_STATES_PAGE, nodeId: '5L7-0' },
+  { name: 'chat-streaming', page: CHAT_STATES_PAGE, nodeId: '5ZI-0' },
+  { name: 'chat-web-search', page: CHAT_STATES_PAGE, nodeId: '5ZJ-0' },
+  { name: 'chat-tool-calls', page: CHAT_STATES_PAGE, nodeId: '5ZK-0' },
+  { name: 'chat-file-viewer', page: CHAT_STATES_PAGE, nodeId: '5ZL-0' },
+  { name: 'chat-agent-run', page: CHAT_STATES_PAGE, nodeId: '5ZM-0' },
+  { name: 'chat-errors', page: CHAT_STATES_PAGE, nodeId: '5ZN-0' },
+];
 
 interface PaperJsxResponse {
   jsx?: string;
@@ -238,11 +286,16 @@ interface PaperJsxResponse {
 }
 
 async function archiveJsx(client: PaperClient, only?: string[]): Promise<void> {
-  await openPage(client, COMPONENTS_PAGE);
   const outputDir = join(DESIGN_DIR, 'jsx');
+  let currentPage: string | undefined;
 
-  for (const [name, nodeId] of Object.entries(UI_KIT_SECTIONS)) {
+  for (const { name, page, nodeId } of UI_KIT_SECTIONS) {
     if (only && only.length > 0 && !only.includes(name)) continue;
+
+    if (currentPage !== page) {
+      await openPage(client, page);
+      currentPage = page;
+    }
 
     const response = await client.callJson<PaperJsxResponse>('get_jsx', {
       nodeId,
@@ -256,7 +309,7 @@ async function archiveJsx(client: PaperClient, only?: string[]): Promise<void> {
 
     const header = [
       '// Paper JSX export - reference only, not compiled.',
-      `// Section "${name}" (node ${nodeId}) of the Components page.`,
+      `// Section "${name}" (node ${nodeId}) of the "${page}" page.`,
       '// Regenerate with: bun run paper:jsx',
       '',
     ].join('\n');
@@ -275,7 +328,7 @@ async function syncIcons(client: PaperClient): Promise<void> {
   // bindings, and normalisation would collapse them onto the same keys anyway.
   const artboards = info.artboards.filter((artboard) => {
     const parsed = parseArtboardName(artboard.name);
-    return parsed?.theme === 'light';
+    return parsed?.theme === 'light' && isAppScreen(parsed.screen);
   });
 
   const icons = await extractIcons(client, {
@@ -299,7 +352,9 @@ async function main(): Promise<void> {
   const [command = 'all', ...rest] = process.argv.slice(2);
   const only = rest.filter((arg) => !arg.startsWith('-'));
 
-  const client = new PaperClient();
+  const client = new PaperClient({
+    fileId: process.env.PAPER_FILE_ID ?? DEFAULT_FILE_ID,
+  });
   await client.connect();
 
   const info = await client.callJson<PaperBasicInfo>('open_file', {

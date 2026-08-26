@@ -1,65 +1,98 @@
 /*
- * Semantic roles the Paper token set does not name.
+ * Semantic roles the Paper token set does not name, plus the legacy-name bridge.
  *
- * Hand-written, unlike tokens.generated.css. Paper's UI kit expresses a handful of roles
- * as hex literals inside component styles rather than as tokens - interaction states, the
- * raised surface, the always-dark toast, and the three elevation shadows. Leaving them as
- * literals scattered through component CSS would make them unreviewable, so they are
- * named here with the Paper node they were read from.
+ * Hand-written, unlike tokens.generated.css. Two kinds of declarations live here:
  *
- * Kept honest by packages/tokens/src/__tests__/semantic.test.ts, which checks these
- * against the archived Paper JSX in design/paper/jsx/.
+ *   1. Roles Concept 03 expresses as literals inside component styles rather than
+ *      as tokens — the always-consistent toast, elevation shadows, disabled opacity,
+ *      and a few in-between greys (faint text, strong borders, inset wells) that sit
+ *      between named stops of the palette.
+ *
+ *   2. The legacy vocabulary of the previous design ("IDE New 01"): every component
+ *      written against it keeps rendering — in the NEW palette — while screens are
+ *      restyled one by one against their Concept 03 artboards. Each alias points at
+ *      the C3 role that plays the same part. Remove an alias only once nothing uses
+ *      its name (rg "var(--color-primary" and friends).
+ *
+ * Kept honest by packages/tokens/src/__tests__/semantic.test.ts.
  */
 
 :root {
-  /*
-   * Raised surface: composer, session card, dropdown menu.
-   * Light goes pure white to lift off the #FCFCFC page; dark reuses the panel value.
-   * Source: composer (CW-0 / KW-0), session card (EH-0 / JB-0), menu (GZ-0).
-   */
-  --color-surface-raised: #ffffff;
+  /* ------------------------------------------------------------------ */
+  /* Concept 03 roles without a Paper token                              */
+  /* ------------------------------------------------------------------ */
 
   /*
-   * Row hover. Light is a hair lighter than --color-inset so hover reads as distinct from
-   * the active row; dark collapses the two onto the elevated surface, as the design does.
-   * Source: nav item (DY-0 / KE-0).
+   * Placeholder / disabled text: one stop fainter than --color-text-muted,
+   * staying on the warm axis of the C3 ink (#6E6A62 -> #A19B90 light).
    */
-  --color-hover: #f3f3f3;
+  --color-text-faint: #a19b90;
+
+  /* Input outlines and dividers that must read over the sidebar fill. */
+  --color-border-strong: #d8d3c8;
 
   /*
-   * Button hover fills. The design uses the same two literals in both themes even though
-   * --color-primary itself differs per theme, so these are deliberately not theme-scoped.
-   * Source: button primary (BC-0 / MW-0), button destructive (CC-0 / LZ-0).
+   * Toast: a snackbar, not a themed surface — warm ink in both themes, with the
+   * dark-theme green as its accent so it reads on the dark fill either way.
    */
-  --color-primary-hover: #2264dd;
-  --color-error-hover: #b8433c;
+  --color-toast-bg: #26231f;
+  --color-toast-text: #f2efe9;
+  --color-toast-accent: #47a79e;
 
-  /*
-   * Toast is always dark, in both themes - a snackbar rather than a themed surface.
-   * Source: toast (GT-0), identical in the dark kit.
-   */
-  --color-toast-bg: #1f1f1f;
-  --color-toast-text: #f5f5f5;
-  --color-toast-accent: #3cc98a;
+  /* Elevation. Warm-neutral and theme-invariant, as in the C3 components page. */
+  --shadow-raised: 0 1px 3px #2418000f;
+  --shadow-menu: 0 4px 16px #24180014;
+  --shadow-toast: 0 4px 12px #24180026;
+  --shadow-segment: 0 1px 2px #24180014;
 
-  /* Elevation. Also theme-invariant in the design. */
-  --shadow-raised: 0 1px 3px #0000000a;
-  --shadow-menu: 0 4px 16px #00000014;
-  --shadow-toast: 0 4px 12px #00000026;
-
-  /*
-   * The selected segment of a segmented control. Tighter and slightly warmer than
-   * --shadow-raised, because it lifts a chip a couple of pixels off its own track rather
-   * than a card off the page.
-   * Source: Sessions controls row (20X-0).
-   */
-  --shadow-segment: 0 1px 2px #14141414;
-
-  /* Disabled fills drop to 40% rather than switching colour. Source: BL-0, CL-0. */
+  /* Disabled fills drop to 40% rather than switching colour. */
   --opacity-disabled: 0.4;
+
+  /* ------------------------------------------------------------------ */
+  /* Legacy-name bridge (previous design vocabulary -> C3 roles)         */
+  /* ------------------------------------------------------------------ */
+
+  /* Surfaces */
+  --color-panel: var(--color-bg-sidebar);
+  --color-surface-raised: var(--color-surface);
+  --color-inset: var(--color-active);
+
+  /* The old "primary" (action blue) is played by the C3 brand green. */
+  --color-primary: var(--color-green);
+  --color-primary-hover: var(--color-green-hover);
+  --color-primary-tint: var(--color-green-tint-8);
+  --color-on-primary: var(--color-on-green);
+
+  /* Destructive hover: one stop deeper than --color-error, warm axis. */
+  --color-error-hover: #8e3628;
+
+  /* Old type scale names. --text-sm and --text-xl match C3 stops exactly;
+   * 14/16 have no C3 stop and keep their pixel value until screens move to
+   * the C3 ramp (13/15/18/24/32). */
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: var(--text-caption);
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-xl: var(--text-title);
+
+  /* Old spacing names — same 4px grid, new prefix. */
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+
+  /* Old radius names. */
+  --radius-md: var(--radius-btn);
+  --radius-lg: var(--radius-card);
+  --radius-full: var(--radius-pill);
 }
 
 :root[data-theme='dark'] {
-  --color-surface-raised: #191919;
-  --color-hover: #202020;
+  --color-text-faint: #6c675e;
+  --color-border-strong: #46423a;
+  --color-error-hover: #e89b85;
 }
