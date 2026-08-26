@@ -40,25 +40,35 @@ const OUTPUT_DIR = join(REPO_ROOT, 'test-results/paper-parity');
  *
  * Overlays and per-screen states are omitted: they are not routes, so there is nothing to
  * navigate to. The route table's own suite is what proves none of them was forgotten.
+ *
+ * Reading the diff numbers: the captures run ANONYMOUS against fixture-free
+ * stores, while the boards stage a signed-in workspace (Ana, four sessions, a
+ * trial card, typed prompts). Two screens are auth-gated and render their gate
+ * instead of the board's content — code-ssh-connect and code-new-automation —
+ * so their percentages read as "different screen", not as drift. Everything else
+ * lands low single digits, which is content plus JPEG loss, not structure.
  */
 const ROUTES: Record<string, string> = {
   home: '/',
-  sessions: '/sessions',
-  'session-detail': '/sessions/example',
-  'session-detail-focus': '/sessions/example/focus',
-  automations: '/automations',
-  'new-automation': '/automations/new',
-  review: '/review',
-  usage: '/usage',
-  settings: '/settings',
-  'settings-integrations': '/settings/integrations',
-  secrets: '/secrets',
-  'ssh-connect': '/runtimes/ssh',
-  'auth-sign-in': '/sign-in',
-  'auth-device-code': '/sign-in/device',
-  'auth-connect-github': '/sign-in/github',
-  'auth-workspace-setup': '/sign-in/workspace',
-  onboarding: '/onboarding',
+  conversation: '/chat/example',
+  'code-home': '/code',
+  'code-sessions': '/code/sessions',
+  'code-session-detail': '/code/sessions/example',
+  'code-session-detail-focus': '/code/sessions/example/focus',
+  'code-automations': '/code/automations',
+  'code-new-automation': '/code/automations/new',
+  'code-review': '/code/review',
+  'code-usage': '/code/usage',
+  'code-settings': '/code/settings',
+  'code-integrations': '/code/settings/integrations',
+  'code-secrets': '/code/secrets',
+  'code-notifications': '/code/notifications',
+  'code-ssh-connect': '/code/runtimes/ssh',
+  'code-auth-sign-in': '/sign-in',
+  'code-auth-device-code': '/sign-in/device',
+  'code-auth-connect-github': '/sign-in/github',
+  'code-auth-workspace-setup': '/sign-in/workspace',
+  'code-onboarding': '/onboarding',
 };
 
 async function applyTheme(page: Page, theme: 'light' | 'dark'): Promise<void> {
@@ -106,10 +116,15 @@ test.describe('Paper parity', () => {
     if (!route) continue;
 
     for (const theme of ['light', 'dark'] as const) {
+      // A handful of boards are deliberately light-only (the collapsed-sidebar
+      // variant, the conversation); there is nothing to compare dark against.
+      if (!screen.artboards[theme]) continue;
+
       test(`${screen.slug} (${theme})`, async ({ page }) => {
         await applyTheme(page, theme);
         await stubCortexApi(page);
-        await page.setViewportSize({ width: screen.width, height: screen.height });
+        // Fit-content boards report height 0; the app frame is 900 in the file.
+        await page.setViewportSize({ width: screen.width, height: screen.height || 900 });
         await page.goto(url(route), { waitUntil: 'networkidle' });
 
         // The theme attribute is what the dark palette is scoped to, so a capture taken
