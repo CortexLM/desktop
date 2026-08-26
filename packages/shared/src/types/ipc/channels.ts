@@ -136,6 +136,12 @@ export const IPC_CHANNELS = {
   // faire traverser.
   SESSION_OPEN_WORKSPACE: 'session:open-workspace',
 
+  // Window chrome (custom title bar)
+  WINDOW_MINIMIZE: 'window:minimize',
+  WINDOW_TOGGLE_MAXIMIZE: 'window:toggle-maximize',
+  WINDOW_CLOSE: 'window:close',
+  WINDOW_IS_MAXIMIZED: 'window:is-maximized',
+
   // Chat conversations
   CHAT_LIST: 'chat:list',
   CHAT_GET: 'chat:get',
@@ -172,6 +178,7 @@ export const IPC_CHANNELS = {
   EVENT_CORTEX_ACCOUNT_CHANGED: 'event:cortex-account-changed',
   EVENT_SESSION_PROGRESS: 'event:session-progress',
   EVENT_CHAT_PROGRESS: 'event:chat-progress',
+  EVENT_WINDOW_MAXIMIZED: 'event:window-maximized',
 } as const;
 
 export type IPCChannelName = (typeof IPC_CHANNELS)[keyof typeof IPC_CHANNELS];

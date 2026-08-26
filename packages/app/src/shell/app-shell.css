@@ -7,10 +7,34 @@
  * not a fixed one - while the sidebar keeps its fixed width from its own stylesheet.
  */
 
+/*
+ * The window column: the custom title bar on top, then whatever the route
+ * renders (the workspace shell or a bare screen). In a browser the title bar
+ * renders nothing and the content simply owns the viewport.
+ */
+.cx-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cx-root__content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cx-root__content > * {
+  flex: 1;
+  min-height: 0;
+}
+
 .cx-app {
   display: grid;
   grid-template-columns: auto 1fr;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 
   background: var(--color-bg);

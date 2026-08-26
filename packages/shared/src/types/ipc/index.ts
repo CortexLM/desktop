@@ -18,4 +18,5 @@ export * from './settings';
 export * from './cortex';
 export * from './session';
 export * from './chat';
+export * from './window';
 export * from './channels';

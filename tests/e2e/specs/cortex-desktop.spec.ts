@@ -171,6 +171,48 @@ test.describe('the app Electron loads', () => {
   });
 });
 
+test.describe('the custom window chrome', () => {
+  test('draws its own window controls on Linux, with the frame gone', async ({ page }) => {
+    // The native frame carried the File/Edit menu strip; the custom bar is what
+    // replaces it. On Linux the app draws all three controls itself.
+    await expect(page.getByRole('button', { name: 'Minimize' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Maximize' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Close window' })).toBeVisible();
+  });
+
+  test('reports the OS verdict on maximize rather than assuming it', async ({ page }) => {
+    // The harness's X server runs no window manager, and without one X11 refuses
+    // to maximize — which makes it the perfect stage for the honesty check: the
+    // bridge must report what the OS actually did, and the button must keep
+    // saying "Maximize" instead of flipping to "Restore" on hope. (The real
+    // flip is covered by the unit suite over both the event and response paths.)
+    const verdict = await page.evaluate(async () => {
+      const bridge = (window as unknown as {
+        cortex: { windowControls: { toggleMaximize: () => Promise<{ success: boolean; data?: { maximized: boolean } }> } };
+      }).cortex;
+      return bridge.windowControls.toggleMaximize();
+    });
+
+    expect(verdict.success).toBe(true);
+    expect(typeof verdict.data?.maximized).toBe('boolean');
+
+    await expect(
+      page.getByRole('button', { name: verdict.data?.maximized ? 'Restore' : 'Maximize' }),
+    ).toBeVisible();
+  });
+
+  test('keeps the bar on the bare screens too', async ({ page }) => {
+    // Sign-in renders outside the workspace shell, but it still lives in a
+    // frameless window: without the bar there, the window could not be dragged
+    // or closed from that screen.
+    await page.evaluate(() => {
+      window.location.hash = '#/sign-in';
+    });
+    await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Close window' })).toBeVisible();
+  });
+});
+
 test.describe('the Cortex account channels', () => {
   test('answer with no payload, as the bridge invokes them', async ({ page }) => {
     // The bridge calls `invoke(channel)` with no argument, so main receives `undefined`.

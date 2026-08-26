@@ -16,6 +16,7 @@ import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { ConversationsProvider, useConversations } from './state/conversations-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
+import { TitleBar } from './shell/title-bar.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
@@ -289,14 +290,23 @@ export function App(props: AppProps): JSX.Element {
    * component runs once, so a bare `if` here would freeze the shell decision at
    * whatever the first route was — which is exactly the bug that kept the Chat
    * sidebar on screen after switching to /code.
+   *
+   * The title bar sits OUTSIDE the shell decision: bare screens (sign-in,
+   * onboarding) have no sidebar but still live in a frameless window that needs
+   * its drag region and controls.
    */
   const root = (routeProps: RouteSectionProps): JSX.Element => (
-    <Show
-      when={!isBarePath(routeProps.location.pathname)}
-      fallback={routeProps.children}
-    >
-      <Workspace>{routeProps.children}</Workspace>
-    </Show>
+    <div class="cx-root">
+      <TitleBar />
+      <div class="cx-root__content">
+        <Show
+          when={!isBarePath(routeProps.location.pathname)}
+          fallback={routeProps.children}
+        >
+          <Workspace>{routeProps.children}</Workspace>
+        </Show>
+      </div>
+    </div>
   );
 
   return (
