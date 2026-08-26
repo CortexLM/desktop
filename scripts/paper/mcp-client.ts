@@ -8,9 +8,32 @@
  * Configure with:
  *   PAPER_MCP_URL   full /mcp endpoint
  *   PAPER_MCP_AUTH  value for the Authorization header
+ *
+ * When the env vars are absent, the endpoint is read from `.cursor/mcp.json`
+ * (server `paper-remote`) — the same source of truth the editor's MCP host uses,
+ * so the pipeline and the agent tooling cannot drift onto two different tunnels.
  */
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 const PROTOCOL_VERSION = '2024-11-05';
+
+interface McpJsonServer {
+  url?: string;
+  headers?: Record<string, string>;
+}
+
+function fromMcpJson(): { url?: string; auth?: string } {
+  try {
+    const raw = readFileSync(join(import.meta.dirname, '../../.cursor/mcp.json'), 'utf8');
+    const parsed = JSON.parse(raw) as { mcpServers?: Record<string, McpJsonServer> };
+    const server = parsed.mcpServers?.['paper-remote'];
+    return { url: server?.url, auth: server?.headers?.Authorization };
+  } catch {
+    return {};
+  }
+}
 
 export interface PaperClientOptions {
   url?: string;
@@ -81,17 +104,20 @@ export class PaperClient {
   readonly fileId?: string;
 
   constructor(options: PaperClientOptions = {}) {
-    const url = options.url ?? process.env.PAPER_MCP_URL;
-    const auth = options.auth ?? process.env.PAPER_MCP_AUTH;
+    const fallback = fromMcpJson();
+    const url = options.url ?? process.env.PAPER_MCP_URL ?? fallback.url;
+    const auth = options.auth ?? process.env.PAPER_MCP_AUTH ?? fallback.auth;
 
     if (!url) {
       throw new PaperError(
-        'PAPER_MCP_URL is not set. Point it at the Paper desktop MCP endpoint (…/mcp).',
+        'PAPER_MCP_URL is not set and .cursor/mcp.json has no paper-remote server. ' +
+          'Point one of them at the Paper desktop MCP endpoint (…/mcp).',
       );
     }
     if (!auth) {
       throw new PaperError(
-        'PAPER_MCP_AUTH is not set. Provide the Authorization header value for the Paper MCP endpoint.',
+        'PAPER_MCP_AUTH is not set and .cursor/mcp.json carries no Authorization header ' +
+          'for paper-remote.',
       );
     }
 
@@ -170,30 +196,47 @@ export class PaperClient {
     await this.post({ jsonrpc: '2.0', method: 'notifications/initialized' });
   }
 
-  /** Invoke a Paper tool and return its raw content blocks. */
+  /** Invoke a Paper tool and return its raw content blocks. Retries transient timeouts. */
   async call(tool: string, args: Record<string, unknown> = {}): Promise<PaperContent[]> {
     await this.connect();
 
     const params: Record<string, unknown> = { ...args };
     if (this.fileId && !('fileId' in params)) params.fileId = this.fileId;
 
-    const response = await this.post<{ content: PaperContent[]; isError?: boolean }>({
-      jsonrpc: '2.0',
-      id: this.nextId++,
-      method: 'tools/call',
-      params: { name: tool, arguments: params },
-    });
+    // Large artboards make the desktop app miss its own deadline now and then; it
+    // answers with a "Tool call timed out" text block rather than an RPC error. One
+    // such blip aborting a 50-artboard extraction is why the retries exist.
+    const attempts = 3;
+    for (let attempt = 1; ; attempt += 1) {
+      const response = await this.post<{ content: PaperContent[]; isError?: boolean }>({
+        jsonrpc: '2.0',
+        id: this.nextId++,
+        method: 'tools/call',
+        params: { name: tool, arguments: params },
+      });
 
-    if (response.error) {
-      throw new PaperError(`Paper tool "${tool}" failed: ${response.error.message}`, response.error);
-    }
+      if (response.error) {
+        throw new PaperError(`Paper tool "${tool}" failed: ${response.error.message}`, response.error);
+      }
 
-    const result = response.result;
-    if (!result) throw new PaperError(`Paper tool "${tool}" returned no result`);
-    if (result.isError) {
-      throw new PaperError(`Paper tool "${tool}" reported an error`, result.content);
+      const result = response.result;
+      if (!result) throw new PaperError(`Paper tool "${tool}" returned no result`);
+
+      const text = (result.content ?? [])
+        .filter((block): block is PaperTextContent => block.type === 'text')
+        .map((block) => block.text)
+        .join('');
+      const timedOut = text.includes('Tool call timed out');
+
+      if ((result.isError || timedOut) && attempt < attempts) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 2_000));
+        continue;
+      }
+      if (result.isError || timedOut) {
+        throw new PaperError(`Paper tool "${tool}" reported an error`, result.content);
+      }
+      return result.content ?? [];
     }
-    return result.content ?? [];
   }
 
   /** Invoke a tool whose payload is a single JSON document in a text block. */

@@ -217,7 +217,7 @@ export function renderIconModule(icons: ExtractedIcon[]): string {
   return `/*
  * GENERATED FILE - DO NOT EDIT.
  *
- * Icon geometry lifted from the Paper file "IDE New 01".
+ * Icon geometry lifted from the Paper file "Cortex FF1 v1" (Concept 03).
  * Regenerate with: bun run paper:icons
  *
  * Keys are an 8-character hash of the normalised geometry, so a glyph keeps its key across

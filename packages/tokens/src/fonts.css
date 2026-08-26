@@ -1,0 +1,28 @@
+/*
+ * Bundled font faces.
+ *
+ * Inter and JetBrains Mono resolve from the OS install (theme.css builds their
+ * stacks); Source Serif 4 — the Concept 03 display and reading face — is not a
+ * font users have, so it ships with the app. Variable woff2, latin subset,
+ * SIL Open Font License 1.1 (Adobe / Source Serif project).
+ *
+ * `font-display: block` rather than `swap`: the greeting is the first thing the
+ * eye lands on, and a sans-serif flash there reads as a glitch. The file is
+ * bundled, so "blocking" costs a disk read, not a network round-trip.
+ */
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: block;
+  src: url('../assets/fonts/source-serif-4-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+  src: url('../assets/fonts/source-serif-4-italic-latin.woff2') format('woff2');
+}

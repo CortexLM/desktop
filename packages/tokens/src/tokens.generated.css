@@ -1,74 +1,112 @@
 /*
  * GENERATED FILE - DO NOT EDIT.
  *
- * Source: Paper file "IDE New 01" design tokens.
- * Paper token content hash: 6ac7b87c
+ * Source: Paper file "Cortex FF1 v1" design tokens (Concept 03).
+ * Paper token content hash: 0866c3ed
  * Regenerate with: bun run paper:tokens
  */
 
 :root {
   color-scheme: light;
 
-  --font-sans: Inter; /* UI type */
-  --font-mono: JetBrains Mono; /* Code, diff stats, IDs */
-  --text-xs: 12px; /* Chips, badges, overlines */
-  --text-sm: 13px; /* Secondary UI text, sidebar meta */
-  --text-base: 14px; /* Default UI text */
-  --text-md: 16px; /* Emphasized body, composer input */
-  --text-lg: 20px; /* Section headings */
-  --text-xl: 24px; /* Page titles (Cursor ~22-24px) */
-  --text-2xs: 11px; /* Metadata floor: timestamps, counts, durations */
+  --font-display: Source Serif 4; /* Serif display — greetings et heros (bi-typographie Claude) */
+  --font-sans: Inter; /* Sans UI — tout le reste (type Söhne/Inter ChatGPT) */
+  --font-mono: JetBrains Mono; /* Mono — commandes CLI, blocs de code */
+  --font-serif: Source Serif 4; /* Alias de --font-display — serif de lecture et greetings (Source Serif 4). */
+  --text-caption: 13px; /* Sidebar, labels, légal (échelle audit 13/15/18/24/32/48/64) */
+  --text-body: 15px; /* Corps de texte UI et messages */
+  --text-lg: 18px; /* Sous-titres, intro */
+  --text-title: 24px; /* Titres de section */
+  --text-greeting: 32px; /* Greeting serif au-dessus du composer (à la Claude) */
+  --text-hero: 48px; /* H1 pages produit internes */
+  --text-hero-xl: 64px; /* H1 marketing géant (à la ChatGPT) */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --tracking-tight: -0.01em; /* Large display type */
-  --tracking-wide: 0.06em; /* All-caps overlines */
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-6: 24px;
-  --spacing-8: 32px;
-  --radius-sm: 6px; /* Buttons, chips, badges */
-  --radius-md: 10px; /* Cards, inputs, composer */
-  --radius-full: 999px; /* Pills, dots, avatars */
+  --font-weight-bold: 700;
+  --tracking-tight: -0.02em; /* Grands titres serif */
+  --tracking-normal: 0em;
+  --tracking-wide: 0.08em; /* Petites caps / labels */
+  --leading-caption: 18px;
+  --leading-body: 24px;
+  --leading-title: 30px;
+  --leading-greeting: 40px;
+  --leading-hero: 54px;
+  --leading-hero-xl: 70px;
+  --breakpoint-desktop: 1440px;
+  --container-rail: 64px; /* Sidebar rétractée en rail d'icônes (Perplexity) */
+  --container-sidebar: 260px; /* Sidebar app (ChatGPT ~260 px) */
+  --container-reading: 700px; /* Colonne de lecture des réponses */
+  --container-composer: 720px; /* Composer au repos, centré à ~42 % de hauteur */
+  --container-content-max: 1120px; /* Largeur max contenu marketing */
+  --space-1: 4px; /* Grille 4 px */
+  --space-2: 8px;
+  --space-3: 12px; /* Inset sidebar (mesure DS Kimi) */
+  --space-4: 16px; /* Gouttière icônes sidebar (DS Kimi) */
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px; /* Espacement entre sections produit (Kimi ~96–120) */
+  --space-30: 120px;
+  --radius-sm: 8px; /* Petites icônes carrées, blocs code */
+  --radius-btn: 10px; /* Boutons rectangulaires, inputs */
+  --radius-card: 16px; /* Cartes, médias */
+  --radius-composer: 24px; /* Composer — radius généreux standard marché */
+  --radius-pill: 999px; /* Chips, pilules, CTA */
 
-  --color-bg: #FCFCFC; /* Light: app/content background (Devin-verified) */
-  --color-panel: #F8F8F8; /* Light: sidebar & secondary surfaces */
-  --color-inset: #F0F0F0; /* Light: hover, chips, inset wells */
-  --color-border: #E8E8E8; /* Light: hairline borders */
-  --color-border-strong: #E3E3E3; /* Light: input outlines, stronger dividers (softened) */
-  --color-text: #1A1A1A; /* Light: primary text */
-  --color-text-muted: #7A7A7A; /* Light: secondary text */
-  --color-text-faint: #A8A8A8; /* Light: placeholder/disabled text */
-  --color-primary: #3078FC; /* Primary action & link blue (Devin-verified) */
-  --color-primary-tint: #E8F0FC; /* Light: primary tint bg (info surfaces, user bubble) */
-  --color-on-primary: #FFFFFF; /* Text on primary/inverse fills */
-  --color-success: #1F8A58; /* Light: ready/merged green (Devin #48906f x Cursor #22745a) */
-  --color-success-tint: #E2F2EA; /* Light: success tint bg (diff-added, badges) */
-  --color-warning: #F08C2E; /* Light: running/waiting orange (Devin-verified #f48c38) */
-  --color-warning-tint: #FDF0E0; /* Light: warning tint bg */
-  --color-error: #D4524A; /* Light: error/destructive red */
-  --color-error-tint: #FBE9E8; /* Light: error tint bg */
+  --color-bg: #FAF8F4; /* Fond principal light — ivoire chaud (crème Claude / off-white Kimi), jamais blanc pur */
+  --color-bg-sidebar: #F3F0EA; /* Fond sidebar light — un cran sous le fond principal (règle ChatGPT/Kimi) */
+  --color-surface: #FFFFFF; /* Surface composer/cartes light */
+  --color-border: #E5E1D8; /* Bordure hairline light */
+  --color-text: #1F1D1A; /* Texte principal light — presque noir chaud */
+  --color-text-muted: #6E6A62; /* Texte secondaire light */
+  --color-accent: #B4622D; /* Accent unique cuivre — réservé au spark, bouton envoi, CTA. Hover/sélection toujours neutres (règle DS Kimi) */
+  --color-on-accent: #FFF9F2; /* Texte posé sur l'accent */
+  --color-green: #1F4945; /* Vert de marque Cortex (fond de la bannière officielle). Accent light mode : texte, liens, toggles ON, focus, états actifs. 9.44:1 sur ivoire (AAA). Rationné : jamais en aplat de grands fonds, jamais le CTA courant (qui reste encre). */
+  --color-green-hover: #183936; /* Hover/active des éléments verts en light. 11.80:1 sur ivoire. */
+  --color-green-tint-8: #E8EAE6; /* Fond teinté vert léger en light (8 % de vert sur ivoire) : tonal idle, fond des pastilles de citation, illustrations des cards d'apps. */
+  --color-green-tint-16: #D7DCD8; /* Fond teinté vert appuyé en light (16 %) : tonal hover/actif, sélection sidebar, badges. */
+  --color-green-on-tint: #1F4945; /* Texte vert sur fonds teintés light (7.21:1 sur tint-16, 8.27:1 sur tint-8). */
+  --color-on-green: #FFFFFF; /* Texte sur aplat vert #1F4945 (10.01:1). Jamais l'encre sur le vert light (1.64:1). */
+  --color-hover: #2418000D; /* Hover neutre light : encre chaude #241800 à 5 %. Règle v2 : les états neutres (hover/sélection/actif de nav, rows, menus, tabs) ne sont JAMAIS verts. */
+  --color-active: #24180017; /* Sélection/actif neutre light : encre chaude #241800 à 9 %. Utilisé pour rows actives de sidebar, items de menu sélectionnés, chips sélectionnées. */
+  --color-success: var(--color-green); /* Statut succès / checks passés / sessions terminées (mode Code). Alias de la famille verte. */
+  --color-success-tint: var(--color-green-tint-16); /* Fond teinté pour badges de succès. */
+  --color-warning: #9C6A1D; /* Statut avertissement (ocre chaud), limites d'usage, checks en attente. */
+  --color-warning-tint: #F5ECD8; /* Fond teinté pour badges d'avertissement. */
+  --color-error: #A8402F; /* Statut erreur (rouille oxblood), checks échoués, suppressions. */
+  --color-error-tint: #F6E5DF; /* Fond teinté pour badges d'erreur. */
+  --color-diff-add: #E2EDE4; /* Fond de ligne ajoutée dans les diffs de code. */
+  --color-diff-remove: #F7E8E1; /* Fond de ligne supprimée dans les diffs de code. */
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #141414; /* Dark: app background (Cursor-dark verified) */
-  --color-panel: #191919; /* Dark: cards & panels */
-  --color-inset: #202020; /* Dark: hover, chips, elevated wells */
-  --color-border: #2C2C2C; /* Dark: borders (Cursor-dark verified) */
-  --color-border-strong: #343434; /* Dark: input outlines, stronger dividers (softened) */
-  --color-text: #F5F5F5; /* Dark: primary text */
-  --color-text-muted: #9A9A9A; /* Dark: secondary text */
-  --color-text-faint: #6B6B6B; /* Dark: placeholder/disabled text */
-  --color-primary: #5C96FF; /* Dark: primary action & link blue (lifted for contrast) */
-  --color-primary-tint: #1B2B4A; /* Dark: primary tint bg */
-  --color-success: #3CC98A; /* Dark: ready/merged green */
-  --color-success-tint: #1D3A2C; /* Dark: success tint bg (Cursor MAX badge #205440 family) */
-  --color-warning: #F5A04C; /* Dark: running/waiting orange */
-  --color-warning-tint: #3D2B16; /* Dark: warning tint bg */
-  --color-error: #E5665E; /* Dark: error/destructive red */
-  --color-error-tint: #3D1F1D; /* Dark: error tint bg */
+  --color-bg: #211F1C; /* Fond principal dark — near-black chaud (Claude/Kimi), jamais noir pur */
+  --color-bg-sidebar: #1A1815; /* Fond sidebar dark — un cran sous le fond principal */
+  --color-surface: #2A2724; /* Surface composer/cartes dark */
+  --color-border: #3A362F; /* Bordure hairline dark */
+  --color-text: #EDEAE3; /* Texte principal dark */
+  --color-text-muted: #9B968C; /* Texte secondaire dark */
+  --color-accent: #CE8B57; /* Accent cuivre éclairci pour fonds sombres */
+  --color-green: #3F958C; /* Accent dark mode (vert de marque éclairci, même teinte 174°). 4.61:1 sur encre #211F1C (AA). */
+  --color-green-hover: #48ABA0; /* Hover/active des éléments verts en dark. 5.96:1 sur encre. */
+  --color-green-tint-8: #232825; /* Fond teinté vert léger en dark (8 % de green-base-dark sur encre). */
+  --color-green-tint-16: #26322E; /* Fond teinté vert appuyé en dark (16 %) : sélection sidebar, tonal actif. */
+  --color-green-on-tint: #47A79E; /* Texte vert sur fonds teintés dark (4.62:1 sur tint-16, 5.20:1 sur tint-8). Ne pas utiliser --color-dark-green en texte sur teinté (3.73:1). */
+  --color-on-green: #211F1C; /* Texte sur aplat vert dark #3F958C : l'encre (4.61:1, AA). Le blanc ne fait que 3.57:1 (réservé au texte large/gras). */
+  --color-hover: #EDEAE30F; /* Hover neutre dark : blanc chaud #EDEAE3 à 6 %. */
+  --color-active: #EDEAE31C; /* Sélection/actif neutre dark : blanc chaud #EDEAE3 à 11 %. */
+  --color-success: var(--color-green); /* Succès en mode sombre. */
+  --color-success-tint: var(--color-green-tint-16); /* Fond succès en mode sombre. */
+  --color-warning: #D9A855; /* Avertissement en mode sombre. */
+  --color-warning-tint: #37301C; /* Fond avertissement en mode sombre. */
+  --color-error: #E08268; /* Erreur en mode sombre. */
+  --color-error-tint: #3B241E; /* Fond erreur en mode sombre. */
+  --color-diff-add: #26332B; /* Fond de ligne ajoutée, diffs en mode sombre. */
+  --color-diff-remove: #392620; /* Fond de ligne supprimée, diffs en mode sombre. */
 }

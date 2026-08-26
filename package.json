@@ -36,7 +36,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report test-results/html-report",
     "test:e2e:trace": "playwright show-trace",
-    "//paper": "The Paper file `IDE New 01` owns the design. These commands pull from it; nothing under packages/tokens/src/*.generated.* or design/paper/ is hand-written. Needs PAPER_MCP_URL, PAPER_MCP_AUTH and PAPER_FILE_ID.",
+    "//paper": "The Paper file `Cortex FF1 v1` (Concept 03) owns the design. These commands pull from it; nothing under packages/tokens/src/*.generated.* or design/paper/ is hand-written. Endpoint comes from PAPER_MCP_URL/PAPER_MCP_AUTH or .cursor/mcp.json (paper-remote); PAPER_FILE_ID overrides the default file.",
     "paper:sync": "bun scripts/paper-sync.ts all",
     "paper:tokens": "bun scripts/paper-sync.ts tokens",
     "paper:manifest": "bun scripts/paper-sync.ts manifest",
