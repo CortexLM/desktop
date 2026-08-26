@@ -158,7 +158,8 @@
   align-items: center;
   gap: 6px;
 
-  padding: 6px 8px 2px;
+  height: 22px;
+  padding-inline: 8px;
 
   font-family: var(--font-mono-stack);
   font-size: 10px;
@@ -176,9 +177,9 @@
 .cx-sidebar__run {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 
-  height: 30px;
+  height: 28px;
   padding-inline: 8px;
   border: 0;
   border-radius: var(--radius-sm);
@@ -202,6 +203,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Runs under a repo group indent past the group's icon. */
+.cx-sidebar__repo + .cx-sidebar__run,
+.cx-sidebar__run + .cx-sidebar__run {
+  padding-left: 25px;
 }
 
 /* The copper dot on a run still in progress. */

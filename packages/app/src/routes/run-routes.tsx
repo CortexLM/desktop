@@ -278,10 +278,38 @@ export function SessionsRoute(): JSX.Element {
       .map((session) => toInboxSession(session));
   });
 
+  // "6 sessions across 3 repositories · 1 running" — counted over everything
+  // unarchived, not the filtered view, so the line describes the workspace.
+  const summary = createMemo(() => {
+    const all = (runs.sessions() ?? []).filter((session) => !session.archived);
+    if (all.length === 0) return undefined;
+    const repos = new Set(all.map((session) => session.repo ?? 'Local folder')).size;
+    const running = all.filter(
+      (session) => session.status === 'running' || session.status === 'queued',
+    ).length;
+    const parts = [
+      `${all.length} session${all.length === 1 ? '' : 's'} across ${repos} repositor${repos === 1 ? 'y' : 'ies'}`,
+    ];
+    if (running > 0) parts.push(`${running} running`);
+    return parts.join(' · ');
+  });
+
+  const filters = createMemo(() => {
+    const all = (runs.sessions() ?? []).filter((session) => !session.archived);
+    const counts: Record<string, number> = {
+      all: all.length,
+      active: all.filter((s) => s.status === 'queued' || s.status === 'running').length,
+      review: all.filter((s) => s.status === 'review').length,
+      archived: (runs.sessions() ?? []).filter((s) => s.archived).length,
+    };
+    return SESSION_FILTERS.map((entry) => ({ ...entry, count: counts[entry.id] ?? 0 }));
+  });
+
   return (
     <SessionsScreen
       sessions={visible()}
-      filters={SESSION_FILTERS}
+      summary={summary()}
+      filters={filters()}
       activeFilter={filter()}
       onFilterChange={setFilter}
       query={query()}
