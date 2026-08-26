@@ -2,7 +2,7 @@
  * Paper: C3 / Code / Notifications (G8I-0 light, G8J-0 dark).
  */
 
-.cx-notifications {
+.cx-notifications-page {
   display: flex;
   flex-direction: column;
 
@@ -11,13 +11,13 @@
   overflow-y: auto;
 }
 
-.cx-notifications__header {
+.cx-notifications-page__header {
   width: 100%;
   max-width: var(--layout-home-column);
   margin: 0 auto 24px;
 }
 
-.cx-notifications__title {
+.cx-notifications-page__title {
   font-family: var(--font-serif-stack);
   font-size: var(--text-title);
   font-weight: 600;
@@ -26,7 +26,7 @@
   color: var(--color-text);
 }
 
-.cx-notifications__list {
+.cx-notifications-page__list {
   display: flex;
   flex-direction: column;
 
@@ -40,11 +40,11 @@
   overflow: hidden;
 }
 
-.cx-notifications__list li + li {
+.cx-notifications-page__list li + li {
   border-top: 1px solid var(--color-border);
 }
 
-.cx-notifications__row {
+.cx-notifications-page__row {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -60,11 +60,11 @@
   cursor: pointer;
 }
 
-.cx-notifications__row:hover {
+.cx-notifications-page__row:hover {
   background: var(--color-hover);
 }
 
-.cx-notifications__dot {
+.cx-notifications-page__dot {
   flex-shrink: 0;
   width: 6px;
   height: 6px;
@@ -72,7 +72,7 @@
   background: var(--color-accent);
 }
 
-.cx-notifications__message {
+.cx-notifications-page__message {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -85,7 +85,7 @@
   color: var(--color-text);
 }
 
-.cx-notifications__age {
+.cx-notifications-page__age {
   flex-shrink: 0;
   font-size: 12px;
   color: var(--color-text-faint);
@@ -95,7 +95,7 @@
 /* Empty state                                                                */
 /* -------------------------------------------------------------------------- */
 
-.cx-notifications__empty {
+.cx-notifications-page__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,7 +105,7 @@
   color: var(--color-text-muted);
 }
 
-.cx-notifications__empty-title {
+.cx-notifications-page__empty-title {
   font-family: var(--font-sans-stack);
   font-size: 14px;
   font-weight: 560;
@@ -114,7 +114,7 @@
   color: var(--color-text);
 }
 
-.cx-notifications__empty-body {
+.cx-notifications-page__empty-body {
   font-family: var(--font-sans-stack);
   font-size: 13px;
   line-height: 18px;
