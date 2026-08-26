@@ -9,6 +9,7 @@ import type { MCPToolInvocation, MCPToolResult } from './mcp-service';
 import type { MCPServer, MCPTool } from '@cortex-ide/shared';
 import { getSecretsService } from './secrets-service';
 import { getDatabaseService } from './database-service';
+import { getProviderSettingsService } from './provider-settings-service';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
@@ -842,11 +843,37 @@ export class AIService extends EventEmitter {
 let aiServiceInstance: AIService | null = null;
 
 /**
+ * Applique les réglages providers PERSISTÉS au registry fraîchement construit.
+ *
+ * Sans cet appel, une clé enregistrée dans Settings ne survit pas au
+ * redémarrage : le constructeur ne lit que l'environnement (`fromEnv()`), et
+ * `settings:set-provider` — le seul autre endroit qui reconfigure le registry —
+ * ne rejoue rien au boot. Symptôme observé en démo : Settings affiche la clé
+ * masquée, mais tout run à froid échoue avec « No model is configured ».
+ *
+ * En try/catch : la lecture passe par `app.getPath('userData')`, absent dans
+ * certains harnais de test. Un échec ici laisse simplement le registry
+ * env-only, il ne doit pas empêcher le service d'exister.
+ */
+function applyStoredProviderSettings(service: AIService): void {
+  try {
+    const settings = getProviderSettingsService();
+    service.applyRegistryConfig(settings.toRegistryConfig());
+  } catch (error) {
+    console.warn(
+      '[AIService] Stored provider settings were not applied:',
+      error instanceof Error ? error.message : typeof error
+    );
+  }
+}
+
+/**
  * Récupère ou crée l'instance du service AI
  */
 export function getAIService(): AIService {
   if (!aiServiceInstance) {
     aiServiceInstance = new AIService();
+    applyStoredProviderSettings(aiServiceInstance);
   }
   return aiServiceInstance;
 }
