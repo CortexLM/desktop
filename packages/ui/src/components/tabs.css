@@ -1,35 +1,30 @@
 /*
- * Paper: Components / Tabs Toast Menu, "Tabs" (G9-0).
- * Reference export: design/paper/jsx/tabs-toast-menu.jsx
+ * Paper: Components 08 — Tabs, chips & contrôles (3VJ-0), "TABS — ACTIF SOULIGNÉ ENCRE".
+ * Reference export: design/paper/jsx/tabs-chips-controls.jsx
  *
- * Each tab is a column: padding-top 8, then a 13px label with 8px inline padding, then a
- * 7px gap, then a 2px indicator. The strip sits on a full-width 1px rule.
- *
- * The indicator is present on every tab, transparent when inactive. Rendering it only on
- * the active tab would make the whole strip shift by 9px as selection moved.
+ * The active tab is a 2px INK underline — never the accent — with the label a
+ * step heavier (560). Inactive labels are muted at the UI weight. The strip
+ * closes with a hairline the underline sits on.
  */
-
-.cx-tabs {
-  display: flex;
-  flex-direction: column;
-}
 
 .cx-tabs__list {
   display: flex;
-  gap: var(--spacing-1);
+  align-items: flex-end;
+  gap: 24px;
+
+  border-bottom: 1px solid var(--color-border);
 }
 
 .cx-tabs__tab {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 
-  padding: 8px 4px 0;
+  padding: 0;
   border: 0;
 
   background: transparent;
   cursor: pointer;
-  font-family: var(--font-sans-stack);
 }
 
 .cx-tabs__label {
@@ -37,63 +32,54 @@
   align-items: center;
   gap: 6px;
 
-  padding-inline: var(--spacing-2);
+  font-family: var(--font-sans-stack);
+  font-size: 14px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 18px;
 
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-regular);
-  line-height: 16px;
   color: var(--color-text-muted);
-  white-space: nowrap;
+}
+
+/* Inactive tabs pad where the active one draws its underline, keeping baselines level. */
+.cx-tabs__tab[aria-selected='false'] .cx-tabs__label {
+  padding-bottom: 10px;
+}
+
+.cx-tabs__tab[aria-selected='false']:hover .cx-tabs__label {
+  color: var(--color-text);
 }
 
 .cx-tabs__tab[aria-selected='true'] .cx-tabs__label {
-  font-weight: var(--font-weight-medium);
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
   color: var(--color-text);
 }
 
-.cx-tabs__tab:hover:not([aria-selected='true']) .cx-tabs__label {
-  color: var(--color-text);
+:root[data-theme='dark'] .cx-tabs__tab[aria-selected='true'] .cx-tabs__label {
+  font-weight: 530;
+  font-variation-settings: 'wght' 530;
 }
 
-/*
- * The indicator is drawn transparent rather than omitted on inactive tabs, so selection
- * does not change the strip's height.
- */
 .cx-tabs__indicator {
   height: 2px;
   border-radius: 1px;
-  background: transparent;
-}
-
-.cx-tabs__tab[aria-selected='true'] .cx-tabs__indicator {
   background: var(--color-text);
 }
 
-.cx-tabs__rule {
-  height: 1px;
-  border: 0;
-  margin: 0;
-  background: var(--color-border);
+.cx-tabs__tab[aria-selected='false'] .cx-tabs__indicator {
+  display: none;
 }
 
-/* Count badge on the Changes tab. Inherits the label's colour so it tracks selection. */
+/* The count after a label — a fact, not a pill. */
 .cx-tabs__count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 16px;
-  height: 16px;
-  padding-inline: 5px;
-
-  border-radius: var(--radius-full);
-  background: var(--color-inset);
-
-  font-size: var(--text-2xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 16px;
+  font-size: 12px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
   color: var(--color-text-muted);
 }
 
-.cx-tabs__tab[aria-selected='true'] .cx-tabs__count {
-  color: var(--color-text);
+.cx-tabs__tab:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
 }

@@ -2,10 +2,16 @@ import { render } from '@solidjs/testing-library';
 import { describe, expect, it } from 'vitest';
 
 import { Icon } from '../icon.tsx';
-import { icons, resolveIcon, type IconName } from '../icon-names.tsx';
+import { extraGeometry, icons, resolveIcon, type IconName } from '../icon-names.tsx';
 import { iconGeometry, STROKE_WIDTH_SLOT } from '../geometry.generated.ts';
 
 const iconNames = Object.keys(icons) as IconName[];
+
+/** Generated screen glyphs plus the hand-inlined Components-page ones. */
+const allGeometry: Record<string, { viewBox: string; body: string; strokeWidths: readonly string[] }> = {
+  ...iconGeometry,
+  ...extraGeometry,
+};
 
 describe('extracted icon geometry', () => {
   it('extracted a non-trivial set from the design', () => {
@@ -57,7 +63,7 @@ describe('semantic icon names', () => {
   it('resolves every name to a real glyph', () => {
     for (const name of iconNames) {
       const definition = resolveIcon(name);
-      expect(iconGeometry[definition.key], `${name} -> ${definition.key}`).toBeDefined();
+      expect(allGeometry[definition.key], `${name} -> ${definition.key}`).toBeDefined();
     }
   });
 
@@ -72,7 +78,7 @@ describe('semantic icon names', () => {
   it('sets a stroke width on every stroked glyph and none on fill-only glyphs', () => {
     for (const name of iconNames) {
       const definition = resolveIcon(name);
-      const stroked = iconGeometry[definition.key].strokeWidths.length > 0;
+      const stroked = allGeometry[definition.key]!.strokeWidths.length > 0;
       expect(definition.strokeWidth !== undefined, `${name} stroked=${stroked}`).toBe(stroked);
     }
   });
@@ -81,7 +87,7 @@ describe('semantic icon names', () => {
     for (const name of iconNames) {
       const definition = resolveIcon(name);
       if (definition.strokeWidth === undefined) continue;
-      const observed = iconGeometry[definition.key].strokeWidths;
+      const observed = allGeometry[definition.key]!.strokeWidths;
       expect(observed, `${name} width ${definition.strokeWidth}`).toContain(
         String(definition.strokeWidth),
       );
@@ -108,14 +114,14 @@ describe('Icon component', () => {
 
     expect(svg.getAttribute('width')).toBe('16');
     expect(svg.getAttribute('height')).toBe('16');
-    expect(svg.getAttribute('viewBox')).toBe('0 0 16 16');
+    expect(svg.getAttribute('viewBox')).toBe('0 0 24 24');
   });
 
   it('substitutes the stroke width into the geometry', () => {
     const { container } = render(() => <Icon name="sessions" />);
     const svg = container.querySelector('svg')!;
 
-    expect(svg.innerHTML).toContain('1.5');
+    expect(svg.innerHTML).toContain('1.75');
     expect(svg.innerHTML).not.toContain(STROKE_WIDTH_SLOT);
   });
 
