@@ -136,6 +136,14 @@ export const IPC_CHANNELS = {
   // faire traverser.
   SESSION_OPEN_WORKSPACE: 'session:open-workspace',
 
+  // Chat conversations
+  CHAT_LIST: 'chat:list',
+  CHAT_GET: 'chat:get',
+  CHAT_START: 'chat:start',
+  CHAT_SEND: 'chat:send',
+  CHAT_STOP: 'chat:stop',
+  CHAT_DELETE: 'chat:delete',
+
   // Secrets exposés aux exécutions comme variables d'environnement.
   //
   // Il n'y a pas de canal de lecture de valeur, et c'est délibéré : la seule
@@ -163,6 +171,7 @@ export const IPC_CHANNELS = {
   EVENT_CORTEX_DEVICE_STATUS: 'event:cortex-device-status',
   EVENT_CORTEX_ACCOUNT_CHANGED: 'event:cortex-account-changed',
   EVENT_SESSION_PROGRESS: 'event:session-progress',
+  EVENT_CHAT_PROGRESS: 'event:chat-progress',
 } as const;
 
 export type IPCChannelName = (typeof IPC_CHANNELS)[keyof typeof IPC_CHANNELS];

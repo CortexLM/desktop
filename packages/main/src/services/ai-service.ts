@@ -323,6 +323,16 @@ export class AIService extends EventEmitter {
     return this.registry.getProviderIds();
   }
 
+  /**
+   * Le provider par défaut, pour le produit Chat.
+   *
+   * Les conversations parlent au provider directement — un échange linéaire n'a
+   * pas besoin de la boucle d'agent, de ses outils ni de ses permissions.
+   */
+  chatProvider() {
+    return this.registry.getDefault();
+  }
+
   /** IDs actuellement résolus par le registry. */
   getRegisteredProviderIds(): string[] {
     return this.registry.getProviderIds();

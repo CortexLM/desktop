@@ -142,6 +142,7 @@ const PAYLOAD_LISTENERS: [group: string, method: string, channel: string][] = [
   // Pushed, not polled: a run advances in main at its own pace, and the event
   // carries the updated summary so the inbox row and the timeline move together.
   ['session', 'onProgress', 'event:session-progress'],
+  ['chat', 'onProgress', 'event:chat-progress'],
 ];
 
 function subscribeVia(group: string, method: string): Subscribe<unknown> {

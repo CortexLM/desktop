@@ -34,9 +34,9 @@ describe('route table against the Paper manifest', () => {
     expect(orphaned, `routes with no screen: ${orphaned.join(', ')}`).toEqual([]);
   });
 
-  it('covers all 24 screens', () => {
-    expect(designSlugs).toHaveLength(24);
-    expect(routedSlugs).toHaveLength(24);
+  it('covers all 27 screens', () => {
+    expect(designSlugs).toHaveLength(27);
+    expect(routedSlugs).toHaveLength(27);
   });
 
   it('lists each slug exactly once', () => {
@@ -89,8 +89,19 @@ describe('route shape', () => {
     expect(new Set(paths).size).toBe(paths.length);
   });
 
-  it('roots the app at Home', () => {
+  it('roots the app at the Chat home', () => {
     expect(routeBySlug('home')?.path).toBe('/');
+    expect(routeBySlug('home')?.product).toBe('chat');
+  });
+
+  it('keeps every Code screen under the /code prefix', () => {
+    for (const route of navigableRoutes()) {
+      if (route.product !== 'code' || !route.path) continue;
+      // The auth and onboarding screens are drawn on the Code page but serve both
+      // products, so their paths stay unprefixed.
+      if (route.slug.startsWith('code-auth-') || route.slug === 'code-onboarding') continue;
+      expect(route.path, route.slug).toMatch(/^\/code(\/|$)/);
+    }
   });
 });
 
@@ -98,31 +109,37 @@ describe('authentication gating', () => {
   it('leaves the surfaces that work signed out ungated', () => {
     // Anonymous use is a product requirement: local sessions with the user's own provider
     // keys have to work with no account at all.
-    for (const slug of ['home', 'sessions', 'session-detail', 'settings', 'secrets']) {
+    for (const slug of ['home', 'conversation', 'code-home', 'code-sessions', 'code-session-detail', 'code-settings', 'code-secrets']) {
       expect(routeBySlug(slug)?.requiresAuth, slug).toBeFalsy();
     }
   });
 
   it('gates the surfaces that are Cortex-only', () => {
-    for (const slug of ['automations', 'review', 'usage', 'new-automation', 'ssh-connect']) {
+    for (const slug of ['code-automations', 'code-review', 'code-usage', 'code-new-automation', 'code-ssh-connect']) {
       expect(routeBySlug(slug)?.requiresAuth, slug).toBe(true);
     }
   });
 
   it('never gates a sign-in screen behind being signed in', () => {
     for (const route of SCREEN_ROUTES) {
-      if (!route.slug.startsWith('auth-')) continue;
+      if (!route.slug.startsWith('code-auth-')) continue;
       expect(route.requiresAuth, `${route.slug} would be unreachable`).toBeFalsy();
     }
   });
 });
 
 describe('design coverage', () => {
+  /**
+   * Screens the file deliberately draws in one theme only: the collapsed-sidebar
+   * variant and the conversation exist as light boards. Listed here so a NEW
+   * screen missing its dark twin still fails.
+   */
+  const LIGHT_ONLY = new Set(['code-home-sidebar-collapsed', 'conversation']);
+
   it('has both a light and a dark artboard for every screen', () => {
-    // Every screen is drawn twice. A screen with one theme missing is an unfinished design,
-    // and it would leave the app with nothing to match against in that theme.
     for (const screen of manifest.screens) {
       expect(screen.artboards.light, `${screen.slug} has no light artboard`).toBeTruthy();
+      if (LIGHT_ONLY.has(screen.slug)) continue;
       expect(screen.artboards.dark, `${screen.slug} has no dark artboard`).toBeTruthy();
     }
   });

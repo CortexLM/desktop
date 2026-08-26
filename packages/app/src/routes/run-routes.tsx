@@ -58,7 +58,7 @@ function createStartRun(
         ...(draft.model ? { model: draft.model } : {}),
       });
       resetComposerDraft(draft.runtime);
-      navigate(`/sessions/${session.id}`);
+      navigate(`/code/sessions/${session.id}`);
     } catch (error) {
       setError(error instanceof Error ? error.message : String(error));
     } finally {
@@ -196,11 +196,11 @@ export function HomeRoute(): JSX.Element {
       signedIn: account.capabilities().authenticated,
       hasModel: Boolean(composerDraft().model),
       openFolder: () => void runs.openWorkspace(),
-      openSettings: () => navigate('/settings'),
+      openSettings: () => navigate('/code/settings'),
     }),
   );
 
-  const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/settings')));
+  const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/code/settings')));
 
   return (
     <HomeScreen
@@ -209,9 +209,9 @@ export function HomeRoute(): JSX.Element {
       onDraftChange={setComposerDraft}
       onStart={() => void start()}
       recentSessions={recent()}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onViewAllSessions={() => navigate('/sessions')}
-      onPickModel={() => navigate('/settings')}
+      onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
+      onViewAllSessions={() => navigate('/code/sessions')}
+      onPickModel={() => navigate('/code/settings')}
       onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
       {...(checklist() ? { checklist: checklist()! } : {})}
@@ -281,8 +281,8 @@ export function SessionsRoute(): JSX.Element {
       onFilterChange={setFilter}
       query={query()}
       onQueryChange={setQuery}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onNewSession={() => navigate('/')}
+      onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
+      onNewSession={() => navigate('/code')}
       emptyState={EMPTY_STATES[filter()] ?? EMPTY_STATES.all}
     />
   );
@@ -324,7 +324,7 @@ export function SessionDetailRoute(): JSX.Element {
       followUp={followUp()}
       onFollowUpChange={setFollowUp}
       onSendFollowUp={() => void send()}
-      onBack={() => navigate('/sessions')}
+      onBack={() => navigate('/code/sessions')}
       onStop={() => void runs.stop(params.sessionId)}
       onResolvePermission={(requestId, decision) =>
         void runs.host.resolvePermission(params.sessionId, requestId, decision)

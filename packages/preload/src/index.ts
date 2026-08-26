@@ -88,6 +88,15 @@ import type {
   ResolveSessionPermissionRequest,
   SessionIdRequest,
   SessionProgressEvent,
+  ChatIdRequest,
+  ChatProgressEvent,
+  GetConversationRequest,
+  GetConversationResponse,
+  ListConversationsResponse,
+  SendChatMessageRequest,
+  SendChatMessageResponse,
+  StartConversationRequest,
+  StartConversationResponse,
   SessionSummary,
   StartSessionRequest,
   StartSessionResponse,
@@ -262,6 +271,20 @@ export interface CortexAPI {
     /** Opens the native folder picker and adopts the choice. Takes no path. */
     openWorkspace: () => Promise<IPCResponse<OpenWorkspaceResponse>>;
     onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
+  };
+
+  /**
+   * The Chat product's conversations: linear exchanges with a provider, streamed
+   * over `event:chat-progress`.
+   */
+  chat: {
+    list: () => Promise<IPCResponse<ListConversationsResponse>>;
+    get: (request: GetConversationRequest) => Promise<IPCResponse<GetConversationResponse>>;
+    start: (request: StartConversationRequest) => Promise<IPCResponse<StartConversationResponse>>;
+    send: (request: SendChatMessageRequest) => Promise<IPCResponse<SendChatMessageResponse>>;
+    stop: (request: ChatIdRequest) => Promise<IPCResponse<{ stopped: true }>>;
+    remove: (request: ChatIdRequest) => Promise<IPCResponse<{ deleted: true }>>;
+    onProgress: (callback: (event: ChatProgressEvent) => void) => () => void;
   };
 
   /**
@@ -555,6 +578,16 @@ const cortexAPI: CortexAPI = {
     listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
     openWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_OPEN_WORKSPACE),
     onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
+  },
+
+  chat: {
+    list: () => ipcRenderer.invoke(IPC_CHANNELS.CHAT_LIST),
+    get: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_GET, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_START, request),
+    send: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_SEND, request),
+    stop: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_STOP, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_DELETE, request),
+    onProgress: createEventListener<ChatProgressEvent>(IPC_CHANNELS.EVENT_CHAT_PROGRESS),
   },
 
   settings: {

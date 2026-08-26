@@ -13,19 +13,23 @@ import { ThemeProvider } from '@cortex-ide/ui';
 
 import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
+import { ConversationsProvider, useConversations } from './state/conversations-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
-import { OverlayHost } from './shell/overlay-host.tsx';
-import { Sidebar, type RecentRun } from './shell/sidebar.tsx';
-import { navigableRoutes, routeBySlug } from './routes.ts';
+import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
+import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
+import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
 import { formatAge } from './state/session-view.ts';
-import type { SessionSummary } from '@cortex-ide/shared';
+import type { ConversationSummary, SessionSummary } from '@cortex-ide/shared';
 import {
   AutomationsRoute,
+  ChatHomeRoute,
+  ConversationRoute,
   NewAutomationRoute,
   ConnectGitHubRoute,
   DeviceCodeRoute,
   HomeRoute,
   IntegrationsRoute,
+  NotificationsRoute,
   ReviewRoute,
   SecretsRoute,
   SessionDetailRoute,
@@ -72,8 +76,8 @@ function segments(path: string): string[] {
  * Whether a concrete pathname matches a route pattern, treating `:param` as a wildcard.
  *
  * Segment-wise rather than by prefix. Truncating a pattern at its first parameter and
- * prefix-matching that would make `/sessions/:id/focus` match every `/sessions/...` path,
- * because its usable prefix is just `/sessions`.
+ * prefix-matching that would make `/code/sessions/:id/focus` match every
+ * `/code/sessions/...` path, because its usable prefix is just `/code/sessions`.
  */
 function matchesPattern(pathname: string, pattern: string): boolean {
   const actual = segments(pathname);
@@ -89,7 +93,7 @@ function matchesPattern(pathname: string, pattern: string): boolean {
  * Maps a pathname back to the slug the sidebar highlights.
  *
  * Most specific first: a pattern with fewer parameters wins over one with more at the same
- * depth, so `/sessions/:id/focus` is preferred over a hypothetical `/sessions/:a/:b`.
+ * depth, so `/code/sessions/:id/focus` is preferred over a hypothetical two-parameter one.
  */
 export function slugForPath(pathname: string): string {
   const parameterCount = (pattern: string) =>
@@ -107,7 +111,7 @@ export function slugForPath(pathname: string): string {
 }
 
 /**
- * The five most recent runs, for the sidebar.
+ * The five most recent runs, for the Code sidebar.
  *
  * Sliced from the store rather than asked of main with a limit: the list is
  * already held for the inbox, so a second query would be a round trip to learn
@@ -126,60 +130,77 @@ function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
     }));
 }
 
+/** The five most recent conversations, for the Chat sidebar's RECENTS. */
+function toRecentChats(conversations: readonly ConversationSummary[]): RecentChat[] {
+  return conversations.slice(0, 5).map((chat) => ({ id: chat.id, title: chat.title }));
+}
+
 /**
  * The shell around every routed screen.
  *
  * The auth and flow screens deliberately render outside it: they have no workspace to show a
  * sidebar for, and a locked navigation rail beside a sign-in form would be noise.
  */
+/** The footer identity, from the reconciled account. */
+function toUser(current: { displayName?: string; email?: string; organizationId?: string } | null) {
+  if (!current) return undefined;
+
+  // `displayName` is already reconciled in main, which knows how inconsistently the
+  // upstream identity providers fill in the name fields. Only the last-resort fallback
+  // lives here, for an account with neither a name nor an email.
+  const name = current.displayName ?? current.email ?? 'Signed in';
+  return {
+    name,
+    plan: current.organizationId ? 'Cortex workspace' : 'Personal',
+    initials: name
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part.charAt(0).toUpperCase())
+      .join(''),
+  };
+}
+
 function Workspace(props: { children: JSX.Element; pathname: () => string }): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
 
   const runs = useSessions();
+  const chats = useConversations();
   const activeSlug = createMemo(() => slugForPath(props.pathname()));
+  const product = createMemo(() => productForPath(props.pathname()));
 
   const recentRuns = createMemo(() => toRecentRuns(runs.sessions() ?? []));
+  const recentChats = createMemo(() => toRecentChats(chats.conversations() ?? []));
 
   // The sidebar's unread dot. Driven by runs that finished and have not been opened,
   // which is the only thing the app currently has to draw attention to.
   const unread = createMemo(() => ({
-    sessions: runs.awaitingReview().length > 0,
+    'code-sessions': runs.awaitingReview().length > 0,
   }));
 
-  const user = createMemo(() => {
-    const current = account.user();
-    if (!current) return undefined;
-
-    // `displayName` is already reconciled in main, which knows how inconsistently the
-    // upstream identity providers fill in the name fields. Only the last-resort fallback
-    // lives here, for an account with neither a name nor an email.
-    const name = current.displayName ?? current.email ?? 'Signed in';
-    return {
-      name,
-      plan: current.organizationId ? 'Cortex workspace' : 'Personal',
-      initials: name
-        .split(/\s+/)
-        .slice(0, 2)
-        .map((part) => part.charAt(0).toUpperCase())
-        .join(''),
-    };
-  });
+  const user = createMemo(() => toUser(account.user()));
 
   return (
     <AppShell
       sidebar={
         <Sidebar
-          workspace="Cortex Code"
+          product={product()}
+          onSwitchProduct={(next) => navigate(next === 'chat' ? '/' : '/code')}
           capabilities={account.capabilities()}
           activeSlug={activeSlug()}
           recentRuns={recentRuns()}
+          recentChats={recentChats()}
           user={user()}
           onNavigate={(slug) => {
             const route = routeBySlug(slug);
             if (route?.path) navigate(route.path);
           }}
-          onOpenRun={(id) => navigate(`/sessions/${id}`)}
+          onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
+          onOpenChat={(id) => navigate(`/chat/${id}`)}
+          onNewChat={() => navigate('/')}
+          onNewSession={() => navigate('/code')}
+          onOpenSearch={() => openOverlay('palette')}
+          onOpenAccount={() => navigate('/code/settings')}
           onSignIn={() => navigate('/sign-in')}
           unread={unread()}
         />
@@ -194,7 +215,7 @@ function Workspace(props: { children: JSX.Element; pathname: () => string }): JS
 }
 
 /** Routes that render on a bare page rather than inside the workspace shell. */
-const BARE_PATHS = ['/sign-in', '/onboarding', '/runtimes/ssh'];
+const BARE_PATHS = ['/sign-in', '/onboarding', '/code/runtimes/ssh'];
 
 function isBarePath(pathname: string): boolean {
   return BARE_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
@@ -214,25 +235,34 @@ export interface AppProps {
 function routes(): JSX.Element {
   return (
     <>
-      <Route path="/" component={HomeRoute} />
-      <Route path="/sessions" component={SessionsRoute} />
-      <Route path="/sessions/:sessionId" component={SessionDetailRoute} />
-      <Route path="/sessions/:sessionId/focus" component={SessionDetailRoute} />
-      <Route path="/automations" component={AutomationsRoute} />
-      <Route path="/automations/new" component={NewAutomationRoute} />
-      <Route path="/review" component={ReviewRoute} />
-      <Route path="/usage" component={UsageRoute} />
-      <Route path="/settings" component={SettingsRoute} />
-      <Route path="/settings/integrations" component={IntegrationsRoute} />
-      <Route path="/secrets" component={SecretsRoute} />
-      <Route path="/runtimes/ssh" component={SshConnectRoute} />
+      {/* Chat product */}
+      <Route path="/" component={ChatHomeRoute} />
+      <Route path="/chat/:conversationId" component={ConversationRoute} />
+
+      {/* Code product */}
+      <Route path="/code" component={HomeRoute} />
+      <Route path="/code/sessions" component={SessionsRoute} />
+      <Route path="/code/sessions/:sessionId" component={SessionDetailRoute} />
+      <Route path="/code/sessions/:sessionId/focus" component={SessionDetailRoute} />
+      <Route path="/code/automations" component={AutomationsRoute} />
+      <Route path="/code/automations/new" component={NewAutomationRoute} />
+      <Route path="/code/review" component={ReviewRoute} />
+      <Route path="/code/usage" component={UsageRoute} />
+      <Route path="/code/settings" component={SettingsRoute} />
+      <Route path="/code/settings/integrations" component={IntegrationsRoute} />
+      <Route path="/code/secrets" component={SecretsRoute} />
+      <Route path="/code/notifications" component={NotificationsRoute} />
+      <Route path="/code/runtimes/ssh" component={SshConnectRoute} />
+
+      {/* Account and onboarding, shared by both products */}
       <Route path="/sign-in" component={SignInRoute} />
       <Route path="/sign-in/device" component={DeviceCodeRoute} />
       <Route path="/sign-in/github" component={ConnectGitHubRoute} />
       <Route path="/sign-in/workspace" component={WorkspaceSetupRoute} />
       <Route path="/onboarding" component={ConnectGitHubRoute} />
-      {/* An unknown path lands on Home rather than a blank pane: a route that resolves to
-          nothing looks like a crash. */}
+
+      {/* An unknown path lands on the Chat home rather than a blank pane: a route that
+          resolves to nothing looks like a crash. */}
       <Route path="*" component={() => <Navigate href="/" />} />
     </>
   );
@@ -267,6 +297,7 @@ export function App(props: AppProps): JSX.Element {
     <ThemeProvider initial="system" storage={themeStorage}>
       <AccountProvider>
         <SessionsProvider>
+        <ConversationsProvider>
         {/*
           HashRouter, not the history router. The renderer loads from file:// in Electron,
           where a nested path like /sign-in/device is not a resolvable file - the history
@@ -281,6 +312,7 @@ export function App(props: AppProps): JSX.Element {
             </MemoryRouter>
           )}
         </Show>
+        </ConversationsProvider>
         </SessionsProvider>
       </AccountProvider>
     </ThemeProvider>

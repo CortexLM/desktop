@@ -1,9 +1,9 @@
 import { For, type JSX, Show } from 'solid-js';
 
-import { Icon, NavItem, useTheme } from '@cortex-ide/ui';
+import { Icon, NavItem, Segmented, useTheme } from '@cortex-ide/ui';
 import type { Capabilities } from '@cortex-ide/cortex-api';
 
-import { BrandTile } from './brand-mark.tsx';
+import type { Product } from '../routes.ts';
 
 import './sidebar.css';
 
@@ -15,6 +15,11 @@ export interface RecentRun {
   age: string;
   /** Shows the muted clock glyph the design puts on runs still in progress. */
   running?: boolean;
+}
+
+export interface RecentChat {
+  id: string;
+  title: string;
 }
 
 export interface SidebarPlan {
@@ -31,17 +36,23 @@ export interface SidebarUser {
 }
 
 export interface SidebarProps {
-  workspace: string;
+  product: Product;
+  onSwitchProduct: (product: Product) => void;
   capabilities: Capabilities;
   /** Slug of the active destination, from the route table. */
   activeSlug: string;
   recentRuns: readonly RecentRun[];
+  recentChats: readonly RecentChat[];
   plan?: SidebarPlan;
   user?: SidebarUser;
   unread?: Partial<Record<string, boolean>>;
   onNavigate: (slug: string) => void;
   onOpenRun: (id: string) => void;
-  onSwitchWorkspace?: () => void;
+  onOpenChat: (id: string) => void;
+  onNewChat: () => void;
+  onNewSession: () => void;
+  /** Opens the command palette — the Search app row. */
+  onOpenSearch?: () => void;
   onOpenAccount?: () => void;
   /** Opens the sign-in flow. The only route to it from inside the workspace. */
   onSignIn?: () => void;
@@ -57,13 +68,25 @@ interface Destination {
   capability?: keyof Capabilities;
 }
 
-/** The five primary destinations, in the order the design lists them. */
-const DESTINATIONS: readonly Destination[] = [
-  { slug: 'home', label: 'Home', icon: 'home' },
-  { slug: 'sessions', label: 'Sessions', icon: 'sessions' },
-  { slug: 'automations', label: 'Automations', icon: 'automations', capability: 'automations' },
-  { slug: 'review', label: 'Review', icon: 'review', capability: 'review' },
-  { slug: 'usage', label: 'Usage', icon: 'usage', capability: 'usageReporting' },
+/** The Code product's WORKSPACE destinations, in the order the design lists them. */
+const CODE_DESTINATIONS: readonly Destination[] = [
+  { slug: 'code-home', label: 'Home', icon: 'home' },
+  { slug: 'code-sessions', label: 'Sessions', icon: 'sessions' },
+  { slug: 'code-automations', label: 'Automations', icon: 'automations', capability: 'automations' },
+  { slug: 'code-review', label: 'Review', icon: 'review', capability: 'review' },
+  { slug: 'code-usage', label: 'Usage', icon: 'usage', capability: 'usageReporting' },
+];
+
+/**
+ * The Chat product's APPS. Search opens the palette; Code switches products; the
+ * rest are the roadmap, shown locked rather than hidden so the row advertises
+ * what is coming instead of pretending the product is smaller.
+ */
+const CHAT_APPS = [
+  { id: 'search', label: 'Search', icon: 'search' as const },
+  { id: 'research', label: 'Research', icon: 'research' as const, locked: 'Research is coming soon' },
+  { id: 'docs', label: 'Docs', icon: 'docs' as const, locked: 'Docs is coming soon' },
+  { id: 'agents', label: 'Agents', icon: 'agents' as const, locked: 'Agents is coming soon' },
 ];
 
 /** Groups runs under their repo, preserving the order they arrived in. */
@@ -77,6 +100,111 @@ function groupByRepo(runs: readonly RecentRun[]): Array<{ repo: string; runs: Re
   }
 
   return groups;
+}
+
+function Header(props: { onToggle?: () => void }): JSX.Element {
+  return (
+    <div class="cx-sidebar__header">
+      <Icon name="logo" size={22} width={43} label="Cortex" class="cx-sidebar__logo" />
+      <Show when={props.onToggle}>
+        {(toggle) => (
+          <button
+            type="button"
+            class="cx-sidebar__chrome-action"
+            onClick={() => toggle()()}
+            aria-label="Collapse sidebar"
+          >
+            <Icon name="sidebarToggle" size={16} />
+          </button>
+        )}
+      </Show>
+    </div>
+  );
+}
+
+function NewButton(props: { label: string; shortcut: string; onPress: () => void }): JSX.Element {
+  return (
+    <button type="button" class="cx-sidebar__new" onClick={() => props.onPress()}>
+      <Icon name="plus" size={15} strokeWidth={1.75} />
+      <span class="cx-sidebar__new-label">{props.label}</span>
+      <kbd class="cx-sidebar__new-shortcut">{props.shortcut}</kbd>
+    </button>
+  );
+}
+
+function ChatSections(props: SidebarProps): JSX.Element {
+  return (
+    <>
+      <NewButton label="New chat" shortcut="⌘K" onPress={() => props.onNewChat()} />
+
+      <div class="cx-sidebar__section-title">Apps</div>
+      <div class="cx-sidebar__nav">
+        <For each={CHAT_APPS}>
+          {(app) => (
+            <NavItem
+              icon={app.icon}
+              label={app.label}
+              lockedReason={app.locked}
+              onClick={() => (app.id === 'search' ? props.onOpenSearch?.() : undefined)}
+            />
+          )}
+        </For>
+      </div>
+
+      <Show when={props.recentChats.length > 0}>
+        <div class="cx-sidebar__section-title">Recents</div>
+        <div class="cx-sidebar__recent">
+          <For each={props.recentChats}>
+            {(chat) => (
+              <button
+                type="button"
+                class="cx-sidebar__run"
+                aria-current={props.activeSlug === 'conversation' ? undefined : undefined}
+                onClick={() => props.onOpenChat(chat.id)}
+              >
+                <span class="cx-sidebar__run-title">{chat.title}</span>
+              </button>
+            )}
+          </For>
+        </div>
+      </Show>
+    </>
+  );
+}
+
+function CodeSections(props: SidebarProps): JSX.Element {
+  const lockReason = (destination: Destination): string | undefined => {
+    if (!destination.capability) return undefined;
+    if (props.capabilities[destination.capability]) return undefined;
+    return `Sign in to Cortex to use ${destination.label}`;
+  };
+
+  return (
+    <>
+      <NewButton label="New session" shortcut="⌘N" onPress={() => props.onNewSession()} />
+
+      <div class="cx-sidebar__section-title">Workspace</div>
+      <div class="cx-sidebar__nav">
+        <For each={CODE_DESTINATIONS}>
+          {(destination) => (
+            <NavItem
+              icon={destination.icon}
+              label={destination.label}
+              active={props.activeSlug === destination.slug}
+              unread={props.unread?.[destination.slug]}
+              lockedReason={lockReason(destination)}
+              onClick={() => props.onNavigate(destination.slug)}
+            />
+          )}
+        </For>
+      </div>
+
+      <Show when={props.recentRuns.length > 0}>
+        <div class="cx-sidebar__section-title">Recent sessions</div>
+        <RecentRuns runs={props.recentRuns} onOpen={props.onOpenRun} />
+      </Show>
+    </>
+  );
 }
 
 function RecentRuns(props: { runs: readonly RecentRun[]; onOpen: (id: string) => void }): JSX.Element {
@@ -94,7 +222,7 @@ function RecentRuns(props: { runs: readonly RecentRun[]; onOpen: (id: string) =>
                 <button type="button" class="cx-sidebar__run" onClick={() => props.onOpen(run.id)}>
                   <span class="cx-sidebar__run-title">{run.title}</span>
                   <Show when={run.running}>
-                    <Icon name="circle" size={10} label="Running" />
+                    <span class="cx-sidebar__run-live" role="img" aria-label="Running" />
                   </Show>
                   <span class="cx-sidebar__run-age">{run.age}</span>
                 </button>
@@ -110,14 +238,8 @@ function RecentRuns(props: { runs: readonly RecentRun[]; onOpen: (id: string) =>
 /**
  * The footer: who you are, or an invitation to say so.
  *
- * Rendered in both states, which it did not used to be. It only appeared when a user was
- * signed in, and the consequences were worse than a missing row:
- *
- *   - There was no way to sign in from anywhere in the running app. The only `onSignIn`
- *     handlers hang off Usage, Review and Automations, and all three are locked precisely
- *     because you are not signed in. Anonymous was a one-way door.
- *   - The theme toggle lived here too, so a signed-out user could not reach the dark palette
- *     at all, despite the design drawing every screen in it.
+ * Rendered in both states. Anonymous keeps a way in — the locked rows above
+ * advertise what an account adds, and this is the row that acts on it.
  */
 function Footer(props: {
   user?: SidebarUser;
@@ -127,10 +249,7 @@ function Footer(props: {
 }): JSX.Element {
   return (
     <div class="cx-sidebar__user">
-      <Show
-        when={props.user}
-        fallback={<SignInRow onSignIn={props.onSignIn} />}
-      >
+      <Show when={props.user} fallback={<SignInRow onSignIn={props.onSignIn} />}>
         {(user) => <IdentityRow user={user()} onOpenAccount={props.onOpenAccount} />}
       </Show>
       <button
@@ -139,7 +258,7 @@ function Footer(props: {
         onClick={() => props.onToggleTheme()}
         aria-label="Toggle theme"
       >
-        <Icon name="theme" size={14} />
+        <Icon name="theme" size={15} />
       </button>
     </div>
   );
@@ -163,10 +282,7 @@ function SignInRow(props: { onSignIn?: () => void }): JSX.Element {
   );
 }
 
-function IdentityRow(props: {
-  user: SidebarUser;
-  onOpenAccount?: () => void;
-}): JSX.Element {
+function IdentityRow(props: { user: SidebarUser; onOpenAccount?: () => void }): JSX.Element {
   return (
     <button
       type="button"
@@ -181,40 +297,6 @@ function IdentityRow(props: {
         <span class="cx-sidebar__user-name">{props.user.name}</span>
         <span class="cx-sidebar__user-plan">{props.user.plan}</span>
       </span>
-    </button>
-  );
-}
-
-function ChromeRow(props: { onToggle?: () => void }): JSX.Element {
-  return (
-    <div class="cx-sidebar__chrome">
-      <Show when={props.onToggle}>
-        {(toggle) => (
-          <button
-            type="button"
-            class="cx-sidebar__chrome-action"
-            onClick={() => toggle()()}
-            aria-label="Collapse sidebar"
-          >
-            <Icon name="sidebarToggle" size={16} />
-          </button>
-        )}
-      </Show>
-    </div>
-  );
-}
-
-function WorkspaceSwitcher(props: { workspace: string; onSwitch?: () => void }): JSX.Element {
-  return (
-    <button
-      type="button"
-      class="cx-sidebar__workspace"
-      onClick={() => props.onSwitch?.()}
-      aria-label={`Workspace: ${props.workspace}`}
-    >
-      <BrandTile />
-      <span class="cx-sidebar__workspace-name">{props.workspace}</span>
-      <Icon name="chevronDown" size={12} />
     </button>
   );
 }
@@ -242,54 +324,39 @@ function PlanCard(props: { plan: SidebarPlan; onUpgrade?: () => void }): JSX.Ele
 }
 
 /**
- * The 240px sidebar, identical on every screen.
+ * The 260px sidebar (Concept 03): the bird mark, the Chat|Code product switcher,
+ * then the active product's sections, with the account row pinned below.
  *
- * Destinations the current plan does not include stay visible and locked rather than being
- * hidden. Hiding them would make the signed-out app look like a smaller product; showing
- * them locked is how the design advertises what an account adds, and it matches the model
- * picker, which lists Cortex models as locked for the same reason.
+ * Destinations the current plan does not include stay visible and locked rather
+ * than being hidden. Hiding them would make the signed-out app look like a
+ * smaller product; showing them locked is how the design advertises what an
+ * account adds.
  */
 export function Sidebar(props: SidebarProps): JSX.Element {
   const theme = useTheme();
 
-  const lockReason = (destination: Destination): string | undefined => {
-    if (!destination.capability) return undefined;
-    if (props.capabilities[destination.capability]) return undefined;
-    return `Sign in to Cortex to use ${destination.label}`;
-  };
-
   return (
     <nav class="cx-sidebar" aria-label="Primary">
-      <ChromeRow onToggle={props.onToggleSidebar} />
-      <WorkspaceSwitcher workspace={props.workspace} onSwitch={props.onSwitchWorkspace} />
+      <Header onToggle={props.onToggleSidebar} />
 
-      <div class="cx-sidebar__nav">
-        <For each={DESTINATIONS}>
-          {(destination) => (
-            <NavItem
-              icon={destination.icon}
-              label={destination.label}
-              active={props.activeSlug === destination.slug}
-              unread={props.unread?.[destination.slug]}
-              lockedReason={lockReason(destination)}
-              onClick={() => props.onNavigate(destination.slug)}
-            />
-          )}
-        </For>
-      </div>
+      <Segmented
+        class="cx-sidebar__products"
+        label="Product"
+        value={props.product}
+        onChange={(id) => props.onSwitchProduct(id as Product)}
+        options={[
+          { id: 'chat', label: 'Chat', icon: 'chat' },
+          { id: 'code', label: 'Code', icon: 'code' },
+        ]}
+      />
 
-      <Show when={props.recentRuns.length > 0}>
-        <div class="cx-sidebar__section">
-          <span class="cx-sidebar__section-title">Recent sessions</span>
-          <RecentRuns runs={props.recentRuns} onOpen={props.onOpenRun} />
-        </div>
+      <Show when={props.product === 'chat'} fallback={<CodeSections {...props} />}>
+        <ChatSections {...props} />
       </Show>
 
       <div class="cx-sidebar__spacer" />
 
-      <Show when={props.plan}>
-        {(plan) => <PlanCard plan={plan()} onUpgrade={props.onUpgrade} />}
-      </Show>
+      <Show when={props.plan}>{(plan) => <PlanCard plan={plan()} onUpgrade={props.onUpgrade} />}</Show>
       <Footer
         user={props.user}
         onOpenAccount={props.onOpenAccount}
