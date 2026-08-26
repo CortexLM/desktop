@@ -1,10 +1,11 @@
-import { createMemo, createSignal, Show, type JSX } from 'solid-js';
+import { createMemo, Show, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
   HashRouter,
   MemoryRouter,
   Navigate,
   Route,
+  useLocation,
   useNavigate,
   type RouteSectionProps,
 } from '@solidjs/router';
@@ -160,14 +161,15 @@ function toUser(current: { displayName?: string; email?: string; organizationId?
   };
 }
 
-function Workspace(props: { children: JSX.Element; pathname: () => string }): JSX.Element {
+function Workspace(props: { children: JSX.Element }): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const runs = useSessions();
   const chats = useConversations();
-  const activeSlug = createMemo(() => slugForPath(props.pathname()));
-  const product = createMemo(() => productForPath(props.pathname()));
+  const activeSlug = createMemo(() => slugForPath(location.pathname));
+  const product = createMemo(() => productForPath(location.pathname));
 
   const recentRuns = createMemo(() => toRecentRuns(runs.sessions() ?? []));
   const recentChats = createMemo(() => toRecentChats(chats.conversations() ?? []));
@@ -282,16 +284,20 @@ function seededHistory(initialPath: string) {
 }
 
 export function App(props: AppProps): JSX.Element {
-  const [pathname, setPathname] = createSignal(props.initialPath ?? '/');
-
-  const root = (routeProps: RouteSectionProps): JSX.Element => {
-    setPathname(routeProps.location.pathname);
-    return isBarePath(routeProps.location.pathname) ? (
-      routeProps.children
-    ) : (
-      <Workspace pathname={pathname}>{routeProps.children}</Workspace>
-    );
-  };
+  /**
+   * `<Show>` on a reactive read, not a ternary in the function body: a Solid
+   * component runs once, so a bare `if` here would freeze the shell decision at
+   * whatever the first route was — which is exactly the bug that kept the Chat
+   * sidebar on screen after switching to /code.
+   */
+  const root = (routeProps: RouteSectionProps): JSX.Element => (
+    <Show
+      when={!isBarePath(routeProps.location.pathname)}
+      fallback={routeProps.children}
+    >
+      <Workspace>{routeProps.children}</Workspace>
+    </Show>
+  );
 
   return (
     <ThemeProvider initial="system" storage={themeStorage}>
