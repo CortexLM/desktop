@@ -1,7 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-
-// Bun's `mock(fn)` spy factory maps to Vitest's `vi.fn(fn)`.
-const mock = vi.fn;
+import { describe, it, expect } from 'vitest';
 
 describe('Performance Handlers', () => {
   describe('getPerformanceMetrics', () => {

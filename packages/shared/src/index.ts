@@ -178,4 +178,6 @@ export {
   ProviderIdSchema,
   GetProviderSettingsRequestSchema,
   SetProviderRequestSchema,
+  GetWorkspaceRunSettingsRequestSchema,
+  SetWorkspaceRunSettingsRequestSchema,
 } from './schemas/settings';

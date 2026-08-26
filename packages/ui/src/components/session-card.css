@@ -1,0 +1,97 @@
+/*
+ * Paper: Components / Session Card (EH-0, JB-0).
+ * Reference export: design/paper/jsx/session-card.jsx
+ *
+ * A 360px raised card: padding 16, column gap 12. Two rows - title with its status badge,
+ * then branch, diff stats and age. 84px tall as drawn.
+ *
+ * The meta row uses a flex-grow spacer rather than space-between, because the trailing
+ * group has to stay together and right-aligned while the branch name truncates on the left.
+ */
+
+.cx-session-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-raised);
+  text-align: left;
+  font-family: var(--font-sans-stack);
+}
+
+/* Interactive cards are the ones that open a session. */
+.cx-session-card--interactive {
+  cursor: pointer;
+  transition: border-color 100ms ease;
+}
+
+.cx-session-card--interactive:hover {
+  border-color: var(--color-border-strong);
+}
+
+.cx-session-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cx-session-card__title {
+  flex-grow: 1;
+  min-width: 0;
+
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-session-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+}
+
+.cx-session-card__branch {
+  min-width: 0;
+  color: var(--color-text-muted);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-session-card__spacer {
+  flex-grow: 1;
+}
+
+/* Diff stats are the one place the design sets numbers in the UI face rather than mono, so
+ * they read as status rather than as code. */
+.cx-session-card__added,
+.cx-session-card__removed {
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+}
+
+.cx-session-card__added {
+  color: var(--color-success);
+}
+
+.cx-session-card__removed {
+  color: var(--color-error);
+}
+
+.cx-session-card__age {
+  flex-shrink: 0;
+  color: var(--color-text-faint);
+}

@@ -6,7 +6,7 @@ class MockProvider extends AIProvider {
   readonly id = 'mock';
   readonly name = 'Mock Provider';
 
-  async chat(messages: Message[], options?: ChatOptions): Promise<ChatResponse> {
+  async chat(_messages: Message[], _options?: ChatOptions): Promise<ChatResponse> {
     return {
       content: 'Mock response',
       model: 'mock-model',
@@ -18,7 +18,7 @@ class MockProvider extends AIProvider {
     };
   }
 
-  async *stream(messages: Message[], options?: ChatOptions): AsyncIterableIterator<StreamChunk> {
+  async *stream(_messages: Message[], _options?: ChatOptions): AsyncIterableIterator<StreamChunk> {
     yield { content: 'Hello ', done: false };
     yield { content: 'World', done: false };
     yield { content: '', done: true };

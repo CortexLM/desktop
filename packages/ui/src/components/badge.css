@@ -1,0 +1,59 @@
+/*
+ * Paper: Components / Badges & Chips (FM-0, IR-0).
+ * Reference export: design/paper/jsx/badge.jsx
+ *
+ * Status badges are a tinted pill: padding 3px 10px, gap 5px, 12px medium type on a 16px
+ * line, which resolves to 22px tall. The three live states carry a 6px dot; draft and
+ * merged do not, because they describe a PR rather than a running process.
+ */
+
+.cx-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.cx-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  background: currentColor;
+}
+
+.cx-badge--success {
+  background: var(--color-success-tint);
+  color: var(--color-success);
+}
+
+.cx-badge--warning {
+  background: var(--color-warning-tint);
+  color: var(--color-warning);
+}
+
+.cx-badge--error {
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
+
+/* Draft is the only neutral state: nothing is running and nothing has landed. */
+.cx-badge--neutral {
+  background: var(--color-inset);
+  color: var(--color-text-muted);
+}
+
+/* Merged reads as an accent rather than a success, which is deliberate in the design: it
+ * is an outcome, not a healthy-process signal. */
+.cx-badge--accent {
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}

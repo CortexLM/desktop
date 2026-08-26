@@ -9,6 +9,7 @@ export const CreateSessionRequestSchema = z.object({
   model: z.string().min(1, 'Model is required'),
   provider: z.enum(['openai', 'anthropic', 'openrouter', 'ollama']),
   systemPrompt: z.string().optional(),
+  workspacePath: z.string().optional(),
 });
 
 export const SendMessageRequestSchema = z.object({
@@ -22,6 +23,8 @@ export const SendMessageRequestSchema = z.object({
       end: z.number(),
     }).optional(),
   }).optional(),
+  workspacePath: z.string().optional(),
+  mode: z.enum(['agent', 'plan', 'mission', 'ask']).optional(),
 });
 
 export const StreamResponseRequestSchema = SendMessageRequestSchema;

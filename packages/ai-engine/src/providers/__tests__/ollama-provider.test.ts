@@ -277,7 +277,7 @@ describe('OllamaProvider', () => {
       // `.rejects` needs a promise, so the consuming loop runs inside an IIFE.
       await expect(
         (async () => {
-        for await (const chunk of provider.stream([{ role: 'user', content: 'test' }])) {
+        for await (const _chunk of provider.stream([{ role: 'user', content: 'test' }])) {
           // Should not reach here
         }
         })()
@@ -295,7 +295,7 @@ describe('OllamaProvider', () => {
       // `.rejects` needs a promise, so the consuming loop runs inside an IIFE.
       await expect(
         (async () => {
-        for await (const chunk of provider.stream([{ role: 'user', content: 'test' }])) {
+        for await (const _chunk of provider.stream([{ role: 'user', content: 'test' }])) {
           // Should not reach here
         }
         })()
@@ -318,7 +318,7 @@ describe('OllamaProvider', () => {
 
       const provider = new OllamaProvider({});
       
-      for await (const chunk of provider.stream([{ role: 'user', content: 'test' }], {
+      for await (const _chunk of provider.stream([{ role: 'user', content: 'test' }], {
         model: 'codellama',
         temperature: 0.5,
       })) {

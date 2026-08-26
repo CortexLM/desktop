@@ -35,6 +35,7 @@ import {
   IPCResponse,
 } from '@cortex-ide/shared/types/ipc';
 import { createHandler } from './shared/handler-factory';
+import { activeWorkspacePath } from '../../services/active-workspace';
 
 /** Channel serving the live terminal inventory to the renderer. */
 export const TERMINAL_LIST_CHANNEL = 'terminal:list';
@@ -79,9 +80,16 @@ export function registerTerminalHandlers() {
     async (_, request: CreateTerminalRequest): Promise<IPCResponse<CreateTerminalResponse>> => {
       try {
         const terminalId = randomUUID();
-        
+
+        // The active workspace, when the caller named no directory. The renderer is
+        // deliberately never sent a disk path, so it *cannot* ask for the right one —
+        // without this default a session's shell opens in the home directory and the
+        // user's first command is a `cd` into the repository they are already working
+        // in.
+        const cwd = request.cwd ?? (await activeWorkspacePath());
+
         const terminal = terminalService.createTerminal(terminalId, {
-          cwd: request.cwd,
+          ...(cwd ? { cwd } : {}),
           env: request.env,
           shell: request.shell,
         });

@@ -9,9 +9,9 @@ export class WindowManager {
       height: 900,
       minWidth: 1000,
       minHeight: 600,
-      backgroundColor: '#1a1a1a',
+      backgroundColor: '#0D0D0E',
       titleBarStyle: 'hiddenInset',
-      trafficLightPosition: { x: 16, y: 16 },
+      trafficLightPosition: { x: 30, y: 14 },
       webPreferences: {
         contextIsolation: true,
         nodeIntegration: false,

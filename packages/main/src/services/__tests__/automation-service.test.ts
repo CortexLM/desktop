@@ -196,7 +196,7 @@ function resetMocks(): void {
 }
 
 describe('AutomationService', () => {
-  let service: AutomationService;
+  let service: InstanceType<typeof AutomationService>;
   let consoleLogSpy: MockInstance<typeof console.log>;
   let consoleErrorSpy: MockInstance<typeof console.error>;
 
@@ -522,7 +522,7 @@ describe('AutomationService', () => {
       await sleep(5);
 
       expect(aiSendMessageMock).toHaveBeenCalledTimes(1);
-      const prompt = aiSendMessageMock.mock.calls[0][1] as string;
+      const prompt = String((aiSendMessageMock.mock.calls[0] as unknown as [unknown, string])[1]);
       expect(prompt).toContain('Review');
       expect(prompt).toContain('src/index.ts');
       expect(prompt).toContain('change');
@@ -758,7 +758,7 @@ describe('AutomationService', () => {
 
       await service.runAutomation(created.id, { event: 'change', path: 'a.ts' });
 
-      const prompt = aiSendMessageMock.mock.calls[0][1] as string;
+      const prompt = String((aiSendMessageMock.mock.calls[0] as unknown as [unknown, string])[1]);
       expect(prompt).toContain('Summarise');
       expect(prompt).toContain('Trigger data:');
       expect(prompt).toContain('"path": "a.ts"');
@@ -941,7 +941,7 @@ describe('AutomationService', () => {
       const log = await service.runAutomation(created.id);
 
       expect(log.actionResults).toHaveLength(3);
-      expect(log.actionResults.map((r) => r.output)).toEqual([
+      expect(log.actionResults.map((r) => r.output ?? '')).toEqual([
         'Notification sent: first',
         'Notification sent: second',
         'Notification sent: third',

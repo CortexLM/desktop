@@ -1,0 +1,98 @@
+/*
+ * Paper: Components / Tabs Toast Menu, "Dropdown menu" (GZ-0).
+ * Reference export: design/paper/jsx/tabs-toast-menu.jsx
+ *
+ * 240px raised surface: padding 6, gap 2, radius-md, 1px border, shadow-menu. Rows are
+ * padding 8px 10px with a 13px icon and a 13px regular label.
+ *
+ * The trailing slot is a fixed 20px whether or not the row has a shortcut, so labels share
+ * a vertical lane down the menu. Paper renders the empty box for the same reason.
+ */
+
+.cx-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  width: var(--layout-menu-width, 240px);
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-menu);
+}
+
+/* The runtime picker is narrower than the generic menu: 196px with 184px rows. */
+.cx-menu--compact {
+  --layout-menu-width: 196px;
+}
+
+.cx-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+  padding: 8px 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  text-align: left;
+
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.cx-menu__item:hover:not(:disabled),
+.cx-menu__item[data-highlighted] {
+  background: var(--color-inset);
+}
+
+.cx-menu__item:disabled {
+  cursor: default;
+  color: var(--color-text-faint);
+}
+
+.cx-menu__item:disabled:hover {
+  background: transparent;
+}
+
+/* Destructive rows tint the icon as well as the label; the design strokes the trash glyph
+ * with --color-error rather than leaving it muted. */
+.cx-menu__item--destructive {
+  color: var(--color-error);
+}
+
+.cx-menu__label {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+ * Fixed-width trailing slot. 20px is what the design reserves, and it is present on every
+ * row - a shortcut in some, empty in others - so the labels stay aligned.
+ */
+.cx-menu__trailing {
+  flex-shrink: 0;
+  width: 20px;
+
+  font-size: var(--text-2xs);
+  line-height: 14px;
+  text-align: right;
+  color: var(--color-text-faint);
+}
+
+.cx-menu__separator {
+  height: 1px;
+  margin: 2px 0;
+  border: 0;
+  background: var(--color-border);
+}

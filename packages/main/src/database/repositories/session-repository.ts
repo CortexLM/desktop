@@ -9,11 +9,12 @@ import { BaseRepository, toJSONColumn, fromJSONColumn } from './base-repository.
 const TABLE = 'sessions';
 
 export class SessionRepository extends BaseRepository {
-  create(data: Omit<Session, 'id' | 'created_at' | 'updated_at'>): Session {
+  create(data: Omit<Session, 'id' | 'created_at' | 'updated_at'> & { id?: string }): Session {
     const now = Date.now();
+    const { id: requestedId, ...rest } = data;
     const session: Session = {
-      id: randomUUID(),
-      ...data,
+      ...rest,
+      id: requestedId ?? randomUUID(),
       created_at: now,
       updated_at: now,
     };

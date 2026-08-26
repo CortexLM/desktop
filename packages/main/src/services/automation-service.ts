@@ -9,6 +9,8 @@ import { EventEmitter } from 'events';
 import { gitService } from './git-service';
 import { getAIService } from './ai-service';
 
+import { getDatabaseService } from './database-service';
+
 import type {
   Action,
   AITaskAction,
@@ -71,8 +73,117 @@ export class AutomationService extends EventEmitter {
   private activeAISessions: Set<string> = new Set();
   private disposed = false;
 
+  /** Set once `hydrate()` has run, so a second call cannot re-read the table. */
+  private hydrated = false;
+
   constructor() {
     super();
+  }
+
+  // ==========================================================================
+  // Persistance
+  // ==========================================================================
+  //
+  // La table `automations` existait depuis la migration 001 et n'était pas
+  // utilisée : le service gardait tout en mémoire. Une automation créée
+  // disparaissait donc au redémarrage, ce qui vide de sens le mot
+  // « automation » — l'utilisateur en programme une pour ne plus y penser.
+  //
+  // L'écriture est au mieux : une base indisponible doit dégrader la persistance,
+  // pas empêcher de créer une automation. Sa contrepartie est que `hydrate()`
+  // tolère une table absente.
+
+  /**
+   * Recharge les automations persistées et réactive celles qui sont actives.
+   *
+   * Réactiver est la moitié qui compte : une ligne relue sans watcher ni cron
+   * réinstallé produit une UI qui affiche « activée » pendant que rien ne se
+   * déclenche — pire qu'une liste vide, qui au moins ne mentirait pas.
+   */
+  async hydrate(): Promise<void> {
+    if (this.hydrated) return;
+    this.hydrated = true;
+
+    try {
+      const db = getDatabaseService();
+      const result = await db.query<{
+        id: string;
+        workspace_id: string | null;
+        name: string;
+        enabled: number;
+        trigger: string;
+        actions: string;
+        created_at: number;
+        updated_at: number;
+      }>('SELECT * FROM automations ORDER BY created_at ASC');
+
+      for (const row of result.rows) {
+        const automation: Automation = {
+          id: row.id,
+          workspaceId: row.workspace_id ?? '',
+          name: row.name,
+          enabled: row.enabled === 1,
+          trigger: JSON.parse(row.trigger) as Automation['trigger'],
+          actions: JSON.parse(row.actions) as Automation['actions'],
+          createdAt: row.created_at,
+          updatedAt: row.updated_at,
+        };
+        this.automations.set(automation.id, automation);
+        if (automation.enabled) await this.activateAutomation(automation.id);
+      }
+    } catch (error) {
+      console.error(
+        '[Automation] Could not restore stored automations:',
+        error instanceof Error ? error.name : typeof error
+      );
+    }
+  }
+
+  private async persist(automation: Automation): Promise<void> {
+    try {
+      const db = getDatabaseService();
+      await db.execute([
+        {
+          query: `INSERT INTO automations
+                    (id, workspace_id, name, enabled, trigger, actions, created_at, updated_at)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                  ON CONFLICT(id) DO UPDATE SET
+                    workspace_id = excluded.workspace_id,
+                    name = excluded.name,
+                    enabled = excluded.enabled,
+                    trigger = excluded.trigger,
+                    actions = excluded.actions,
+                    updated_at = excluded.updated_at`,
+          params: [
+            automation.id,
+            automation.workspaceId || null,
+            automation.name,
+            automation.enabled ? 1 : 0,
+            JSON.stringify(automation.trigger),
+            JSON.stringify(automation.actions),
+            automation.createdAt,
+            automation.updatedAt,
+          ],
+        },
+      ]);
+    } catch (error) {
+      console.error(
+        '[Automation] Could not persist automation:',
+        error instanceof Error ? error.name : typeof error
+      );
+    }
+  }
+
+  private async forget(id: string): Promise<void> {
+    try {
+      const db = getDatabaseService();
+      await db.execute([{ query: 'DELETE FROM automations WHERE id = ?', params: [id] }]);
+    } catch (error) {
+      console.error(
+        '[Automation] Could not delete automation:',
+        error instanceof Error ? error.name : typeof error
+      );
+    }
   }
 
   /**
@@ -104,6 +215,7 @@ export class AutomationService extends EventEmitter {
       await this.activateAutomation(id);
     }
 
+    await this.persist(newAutomation);
     this.emit('automation:created', newAutomation);
 
     return newAutomation;
@@ -135,6 +247,7 @@ export class AutomationService extends EventEmitter {
       await this.activateAutomation(id);
     }
 
+    await this.persist(updated);
     this.emit('automation:updated', updated);
 
     return updated;
@@ -153,6 +266,7 @@ export class AutomationService extends EventEmitter {
     this.automations.delete(id);
     this.logs.delete(id);
 
+    await this.forget(id);
     this.emit('automation:deleted', id);
   }
 

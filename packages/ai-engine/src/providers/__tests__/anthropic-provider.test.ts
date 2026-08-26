@@ -263,7 +263,7 @@ describe('AnthropicProvider', () => {
         { role: 'user', content: 'Test' }
       ];
 
-      for await (const chunk of provider.stream(messages)) {
+      for await (const _chunk of provider.stream(messages)) {
         // Just consume the stream
       }
 

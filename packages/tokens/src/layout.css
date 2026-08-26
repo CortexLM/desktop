@@ -1,0 +1,34 @@
+/*
+ * Structural dimensions read off the Paper artboards.
+ *
+ * Kept in sync with layout.ts by packages/tokens/src/__tests__/layout.test.ts, which
+ * fails if the two drift apart.
+ */
+
+:root {
+  --layout-viewport: 1440px;
+  --layout-sidebar: 240px;
+  --layout-sidebar-content: 215px;
+  --layout-sidebar-nav-item: 30px;
+  --layout-main: 1200px;
+  --layout-list-content: 1120px;
+  --layout-settings-content: 960px;
+  --layout-usage-content: 1040px;
+  --layout-home-column: 760px;
+  --layout-page-header: 52px;
+  --layout-session-header: 66px;
+  --layout-session-timeline: 452px;
+  --layout-session-workbench: 748px;
+  --layout-composer: 760px;
+  --layout-composer-content: 726px;
+  --layout-inbox-row: 59px;
+  --layout-menu-row: 32px;
+  --layout-field: 36px;
+  --layout-button: 32px;
+  --layout-badge: 22px;
+  --layout-chip: 26px;
+  --layout-icon: 14px;
+  --layout-dot: 8px;
+  --layout-avatar: 26px;
+  --layout-logo-tile: 24px;
+}

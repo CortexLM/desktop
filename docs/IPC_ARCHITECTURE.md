@@ -8,8 +8,8 @@ L'architecture IPC de Cortex IDE suit un pattern **type-safe** avec validation Z
 ┌─────────────────────────────────────────────────────────────┐
 │                      Renderer Process                        │
 │  ┌────────────────────────────────────────────────────┐     │
-│  │  packages/renderer/src/lib/api.ts                  │     │
-│  │  - High-level API client                           │     │
+│  │  packages/app/src/state/host.ts                      │     │
+│  │  - Typed host façade over window.cortex           │     │
 │  │  - Error unwrapping                                │     │
 │  │  - Type-safe helpers                               │     │
 │  └────────────────────┬───────────────────────────────┘     │

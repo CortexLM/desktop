@@ -24,6 +24,7 @@ export interface MessageContext {
 
 export interface CreateSessionRequest {
   workspaceId?: string;
+  workspacePath?: string;
   model: string;
   provider: AIProviderId;
   systemPrompt?: string;
@@ -40,6 +41,8 @@ export interface SendMessageRequest {
   sessionId: string;
   message: string;
   context?: MessageContext;
+  workspacePath?: string;
+  mode?: 'agent' | 'plan' | 'mission' | 'ask';
 }
 
 export interface SendMessageResponse {
@@ -57,10 +60,47 @@ export interface StreamResponseRequest {
   sessionId: string;
   message: string;
   context?: MessageContext;
+  workspacePath?: string;
+  mode?: 'agent' | 'plan' | 'mission' | 'ask';
+}
+
+export interface StreamToolPayload {
+  id: string;
+  name: string;
+  title?: string;
+  status: 'running' | 'done' | 'error';
+  detail?: string;
+  additions?: number;
+  deletions?: number;
+  durationMs?: number;
+}
+
+export interface StreamPermissionPayload {
+  id: string;
+  tool: string;
+  risk: string;
+  summary: string;
+  detail?: string;
+}
+
+export interface StreamPlanPayload {
+  title: string;
+  rationale: string;
+  approved: boolean;
+  steps: Array<{ id: string; title: string; status: string }>;
 }
 
 export interface StreamChunk {
-  type: 'chunk' | 'done' | 'error';
+  type:
+    | 'chunk'
+    | 'done'
+    | 'error'
+    | 'thinking'
+    | 'tool'
+    | 'permission'
+    | 'question'
+    | 'plan'
+    | 'context_full';
   content?: string;
   usage?: {
     promptTokens: number;
@@ -68,4 +108,8 @@ export interface StreamChunk {
     totalTokens: number;
   };
   error?: string;
+  tool?: StreamToolPayload;
+  permission?: StreamPermissionPayload;
+  question?: { id: string; prompt: string; options?: string[] };
+  plan?: StreamPlanPayload;
 }

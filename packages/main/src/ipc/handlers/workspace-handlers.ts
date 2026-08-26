@@ -15,7 +15,7 @@
  *    rafraîchir. Le pont est établi ici.
  */
 
-import { ipcMain, app, dialog, BrowserWindow } from 'electron';
+import { ipcMain, dialog, BrowserWindow } from 'electron';
 import type { IpcMainInvokeEvent } from 'electron';
 
 import {
@@ -33,7 +33,8 @@ import type {
   WorkspaceRemoveRequest,
 } from '@cortex-ide/shared';
 
-import { getWorkspaceManager, type WorkspaceManager } from '../../services/workspace-manager';
+import type { WorkspaceManager } from '../../services/workspace-manager';
+import { activeWorkspaceManager } from '../../services/active-workspace';
 import { createHandler } from './shared/handler-factory';
 
 export const WORKSPACE_CHANNELS = [
@@ -79,7 +80,6 @@ const EMPTY: WorkspaceMutationResponse = {};
 // Accès au manager
 // ============================================================================
 
-let managerPromise: Promise<WorkspaceManager> | null = null;
 let switchedListener: ((workspaceId: string) => void) | null = null;
 
 /**
@@ -89,34 +89,33 @@ let switchedListener: ((workspaceId: string) => void) | null = null;
  * alors que des workspaces sont enregistrés. La promesse est mémoïsée pour que
  * deux invokes concurrents ne lancent pas deux lectures.
  */
+/**
+ * Le manager, initialisé et abonné.
+ *
+ * L'initialisation et la mémoïsation vivent maintenant dans
+ * `services/active-workspace.ts`, parce que `getWorkspaceManager` construit son
+ * singleton à partir du `dataDir` du *premier* appelant : deux appelants avec des
+ * répertoires différents étaient une course réelle. Ce qui reste ici est le relais
+ * d'événement, qui est une préoccupation IPC — `BrowserWindow` n'a rien à faire
+ * dans un service.
+ */
 async function manager(): Promise<WorkspaceManager> {
-  if (!managerPromise) {
-    managerPromise = (async () => {
-      const instance = getWorkspaceManager(app.getPath('userData'));
-      await instance.initialize();
+  const instance = await activeWorkspaceManager();
 
-      // Relais vers le renderer. Enregistré ici plutôt que dans `register()`
-      // parce que le manager n'existe qu'après résolution du dataDir.
-      switchedListener = (workspaceId: string) => {
-        for (const window of BrowserWindow.getAllWindows()) {
-          if (!window.isDestroyed()) {
-            window.webContents.send(WORKSPACE_SWITCHED_EVENT, { workspaceId });
-          }
+  // Enregistré une seule fois. Sans la garde, chaque invoke ajouterait un abonné
+  // et le renderer recevrait l'événement autant de fois qu'il a appelé.
+  if (!switchedListener) {
+    switchedListener = (workspaceId: string) => {
+      for (const window of BrowserWindow.getAllWindows()) {
+        if (!window.isDestroyed()) {
+          window.webContents.send(WORKSPACE_SWITCHED_EVENT, { workspaceId });
         }
-      };
-      instance.on('workspace-switched', switchedListener);
-
-      return instance;
-    })();
-
-    // Un échec d'initialisation ne doit pas être mémoïsé : le prochain appel
-    // doit pouvoir réessayer (dossier créé entre-temps, droits corrigés).
-    managerPromise.catch(() => {
-      managerPromise = null;
-    });
+      }
+    };
+    instance.on('workspace-switched', switchedListener);
   }
 
-  return managerPromise;
+  return instance;
 }
 
 // ============================================================================
@@ -221,9 +220,9 @@ export function unregisterWorkspaceHandlers(): void {
 
   // Détache le relais d'événement : sans ça, un re-register empilerait un
   // second listener et le renderer recevrait chaque switch en double.
-  if (switchedListener && managerPromise) {
+  if (switchedListener) {
     const listener = switchedListener;
-    managerPromise
+    activeWorkspaceManager()
       .then((instance) => instance.off('workspace-switched', listener))
       .catch(() => {
         // Le manager n'a jamais été initialisé : rien à détacher.
@@ -231,5 +230,4 @@ export function unregisterWorkspaceHandlers(): void {
   }
 
   switchedListener = null;
-  managerPromise = null;
 }

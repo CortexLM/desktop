@@ -21,6 +21,10 @@ import { registerWorkspaceHandlers, unregisterWorkspaceHandlers } from './worksp
 import { registerChatHandlers, unregisterChatHandlers } from './chat-handlers';
 import { registerDebugHandlers, unregisterDebugHandlers } from './debug-handlers';
 import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings-handlers';
+import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
+import { registerCortexHandlers, unregisterCortexHandlers } from './cortex-handlers';
+import { registerSessionHandlers, unregisterSessionHandlers } from './session-handlers';
+import { registerSecretsHandlers, unregisterSecretsHandlers } from './secrets-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
 /**
@@ -79,6 +83,35 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     register: registerSettingsHandlers,
     unregister: unregisterSettingsHandlers,
   },
+  {
+    name: 'mission',
+    register: registerMissionHandlers,
+    unregister: unregisterMissionHandlers,
+  },
+  // Compte Cortex. Séparé de `settings` parce qu'il détient un jeton de session
+  // et mène le flux d'appareil — et parce que c'est le seul chemin par lequel le
+  // renderer peut atteindre l'API (son origine `file://` lui interdit d'appeler
+  // directement).
+  {
+    name: 'cortex',
+    register: registerCortexHandlers,
+    unregister: unregisterCortexHandlers,
+  },
+  // Les exécutions. Distinct de `ai`, qui transporte une conversation : ce
+  // domaine porte l'état qu'une inbox trie et la chronologie qu'un écran de
+  // détail affiche, et il persiste les deux.
+  {
+    name: 'session',
+    register: registerSessionHandlers,
+    unregister: unregisterSessionHandlers,
+  },
+  // Secrets. Domaine à part de `settings` : ce sont des données de l'espace de
+  // travail avec un cycle de vie, pas une configuration de provider.
+  {
+    name: 'secrets',
+    register: registerSecretsHandlers,
+    unregister: unregisterSecretsHandlers,
+  },
 ];
 
 /**
@@ -87,7 +120,7 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
  * L'enregistrement passe par `withIpcInstrumentation` : chaque handler est
  * enveloppé pour alimenter `ipcMonitor` et `performanceMonitor` (canal,
  * direction, durée, succès/échec — jamais les payloads). C'est le seul point
- * d'instrumentation, ce qui couvre les 14 domaines y compris ceux qui
+ * d'instrumentation, ce qui couvre tous les domaines y compris ceux qui
  * n'utilisent pas `createHandler`.
  */
 export function registerIPCHandlers(): void {

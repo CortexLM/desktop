@@ -12,13 +12,13 @@
     "./types/debug": "./src/types/debug.ts",
     "./logger": "./src/logger.ts"
   },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
-  },
-  "dependencies": {
-    "zod": "^3.24.1"
   }
 }

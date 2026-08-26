@@ -1,0 +1,360 @@
+/*
+ * Paper: Screens / Home (1OJ-0, 1TQ-0).
+ *
+ * A centred 760px column: the 44px brand tile, the composer, a get-started checklist, and
+ * the recent-sessions table. The checklist and the table are each dismissible or absent, so
+ * the column is a flex stack rather than fixed rows.
+ */
+
+.cx-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.cx-home__greeting {
+  display: flex;
+  justify-content: center;
+}
+
+.cx-home__composer {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Get started checklist                                                      */
+/* -------------------------------------------------------------------------- */
+
+.cx-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  width: 100%;
+
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-raised);
+}
+
+.cx-checklist__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.cx-checklist__title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+.cx-checklist__progress {
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+
+  background: var(--color-inset);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 14px;
+  color: var(--color-text-muted);
+}
+
+.cx-checklist__spacer {
+  flex-grow: 1;
+}
+
+.cx-checklist__dismiss {
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-checklist__dismiss:hover {
+  color: var(--color-text);
+}
+
+.cx-checklist__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cx-checklist__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cx-checklist__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+}
+
+.cx-checklist__mark--done {
+  background: var(--color-success);
+  color: var(--color-on-primary);
+}
+
+/* An open step is an empty ring, not a hollow circle glyph: the design draws the outline as
+ * the element's own border so it stays crisp at 16px. */
+.cx-checklist__mark--open {
+  border: 1.5px solid var(--color-border-strong);
+}
+
+.cx-checklist__label {
+  flex-grow: 1;
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+/* A completed step is struck through, which is what the design shows for the two done rows. */
+.cx-checklist__step--done .cx-checklist__label {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.cx-checklist__action {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Recent sessions                                                            */
+/* -------------------------------------------------------------------------- */
+
+.cx-recent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.cx-recent__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
+
+.cx-recent__title {
+  flex-grow: 1;
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.cx-recent__link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.cx-recent__list {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  overflow: hidden;
+}
+
+/*
+ * Rows are separated by a border on all but the first, rather than a gap. The design draws
+ * them as one continuous card, so a gap would show the page through the seams.
+ */
+.cx-recent__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+
+  padding: 14px 16px;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  text-align: left;
+}
+
+.cx-recent__row:first-child {
+  border-top: 0;
+}
+
+.cx-recent__row:hover {
+  background: var(--color-hover);
+}
+
+.cx-recent__row-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cx-recent__row-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-recent__row-meta {
+  font-size: var(--text-2xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-recent__status {
+  flex-shrink: 0;
+  width: 96px;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+/*
+ * Fixed-width lanes for the trailing columns. Without them the diff figures and timestamps
+ * would sit at a different x on every row, which is exactly what the design's repeated-row
+ * guidance warns about.
+ */
+.cx-recent__diff {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  width: 88px;
+
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+}
+
+.cx-recent__added {
+  color: var(--color-success);
+}
+
+.cx-recent__removed {
+  color: var(--color-error);
+}
+
+.cx-recent__age {
+  flex-shrink: 0;
+  width: 72px;
+  text-align: right;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+}
+
+.cx-recent__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+.cx-recent__status--running {
+  color: var(--color-warning);
+}
+
+.cx-recent__status--error {
+  color: var(--color-error);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Limit notices                                                              */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Paper: Screens / Limits Usage Warning (7VZ-0) and Limits Limit Reached (885-0).
+ *
+ * Both are Home with a notice above the composer, not separate screens. The warning is a
+ * 37px single-line strip; the reached notice is a 116px block, taller because it carries the
+ * explanation of what stopped and what to do.
+ */
+
+.cx-limit {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans-stack);
+}
+
+.cx-limit--warning {
+  padding: 9px 14px;
+  background: var(--color-warning-tint);
+  color: var(--color-warning);
+}
+
+.cx-limit--reached {
+  padding: 16px;
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
+
+.cx-limit__message {
+  flex-grow: 1;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+}
+
+.cx-limit__action {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: currentColor;
+  text-decoration: underline;
+  cursor: pointer;
+}

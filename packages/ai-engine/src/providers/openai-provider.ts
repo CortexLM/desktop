@@ -11,6 +11,8 @@ import {
   StreamChunk,
   ProviderConfig,
   ProviderTokenUsage,
+  type ProviderTool,
+  type ProviderToolCall,
 } from './base';
 
 export interface OpenAIChatOptions extends ChatOptions {
@@ -46,6 +48,7 @@ export class OpenAIProvider extends AIProvider {
         max_tokens: options?.maxTokens,
         top_p: options?.topP,
         stop: options?.stop,
+        ...(options?.tools?.length ? { tools: toOpenAITools(options.tools) } : {}),
       };
 
       // Add structured output if requested
@@ -74,6 +77,7 @@ export class OpenAIProvider extends AIProvider {
         model: response.model,
         usage,
         finishReason: choice?.finish_reason || undefined,
+        toolCalls: parseOpenAIToolCalls(choice?.message.tool_calls),
       };
     } catch (error) {
       this.handleError(error, 'chat failed');
@@ -93,6 +97,7 @@ export class OpenAIProvider extends AIProvider {
         top_p: options?.topP,
         stop: options?.stop,
         stream: true,
+        ...(options?.tools?.length ? { tools: toOpenAITools(options.tools) } : {}),
       };
 
       if (options?.structuredOutput && options?.responseFormat) {
@@ -119,4 +124,31 @@ export class OpenAIProvider extends AIProvider {
       return false;
     }
   }
+}
+
+function toOpenAITools(tools: ProviderTool[]): OpenAI.Chat.ChatCompletionTool[] {
+  return tools.map((tool) => ({
+    type: 'function',
+    function: {
+      name: tool.name,
+      description: tool.description,
+      parameters: tool.parameters,
+    },
+  }));
+}
+
+function parseOpenAIToolCalls(
+  raw: OpenAI.Chat.ChatCompletionMessageToolCall[] | undefined
+): ProviderToolCall[] | undefined {
+  if (!raw?.length) return undefined;
+  return raw.flatMap((call) => {
+    if (call.type !== 'function') return [];
+    let parsed: Record<string, unknown> = {};
+    try {
+      parsed = JSON.parse(call.function.arguments || '{}') as Record<string, unknown>;
+    } catch {
+      parsed = { raw: call.function.arguments };
+    }
+    return [{ id: call.id, name: call.function.name, arguments: parsed }];
+  });
 }

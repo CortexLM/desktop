@@ -51,7 +51,7 @@ describe('AI Stream Handler', () => {
       });
 
       try {
-        for await (const chunk of mockService.streamMessage()) {
+        for await (const _chunk of mockService.streamMessage()) {
           // Should not reach here
         }
       } catch (error) {
@@ -95,7 +95,7 @@ describe('AI Stream Handler', () => {
 
 describe('IPC Message Flow', () => {
   it('should handle request-response pattern', async () => {
-    const handler = mock(async (event: any, ...args: any[]) => {
+    const handler = mock(async (_event: any, ...args: any[]) => {
       return { success: true, data: args };
     });
 
