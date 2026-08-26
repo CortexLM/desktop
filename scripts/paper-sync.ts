@@ -179,10 +179,21 @@ async function captureBaselines(client: PaperClient, only?: string[]): Promise<v
   const info = await openPage(client, SCREENS_PAGE);
   let captured = 0;
 
+  const force = only?.includes('force') ?? false;
+
   for (const artboard of info.artboards) {
     const parsed = parseArtboardName(artboard.name);
     if (!parsed || !isAppScreen(parsed.screen)) continue;
-    if (only && only.length > 0 && !only.includes(parsed.slug)) continue;
+    const named = (only ?? []).filter((arg) => arg !== 'force');
+    if (named.length > 0 && !named.includes(parsed.slug)) continue;
+
+    // Resumable, like the spec extraction: a 52-board capture that dies on one
+    // slow render picks up where it stopped.
+    const jpgPath = join(BASELINE_DIR, `${parsed.slug}.${parsed.theme}.jpg`);
+    const pngPath = join(BASELINE_DIR, `${parsed.slug}.${parsed.theme}.png`);
+    if (!force && (existsSync(jpgPath) || existsSync(pngPath))) {
+      continue;
+    }
 
     const { bytes, mimeType } = await client.callImage('get_screenshot', { nodeId: artboard.id });
     const extension = mimeType.includes('png') ? 'png' : 'jpg';

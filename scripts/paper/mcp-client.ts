@@ -229,7 +229,7 @@ export class PaperClient {
       const timedOut = text.includes('Tool call timed out');
 
       if ((result.isError || timedOut) && attempt < attempts) {
-        await new Promise((resolve) => setTimeout(resolve, attempt * 2_000));
+        await new Promise((resolve) => setTimeout(resolve, attempt * 5_000));
         continue;
       }
       if (result.isError || timedOut) {
