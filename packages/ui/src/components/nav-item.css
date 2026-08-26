@@ -1,105 +1,106 @@
 /*
- * Paper: Components / Sidebar Nav (DY-0, KE-0) and the sidebar on every screen.
- * Reference export: design/paper/jsx/nav-item.jsx
+ * Paper: Components 02 — Sidebar app (BG-0), nav rows.
+ * Reference export: design/paper/jsx/sidebar-app.jsx
  *
- * padding 8px 10px, gap 10px, 13px type on a 16px line -> 32px in the isolated kit. The
- * screens draw the row at 30px, so the block padding is a variable the sidebar tightens
- * rather than a second copy of this component.
- *
- * The trailing dot slot is always present, even when empty. Without a fixed slot the label
- * would reflow between rows that have an indicator and rows that do not, and the labels
- * would stop sharing a vertical lane.
+ * A 32px row on an 8px radius: icon 16 at stroke 1.75, label 13. The active row
+ * carries the neutral ink wash (--color-active) and a semibold label; hover is
+ * the lighter wash. Green never marks navigation states.
  */
 
 .cx-nav-item {
-  --cx-nav-item-padding-block: 8px;
-
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
 
-  padding: var(--cx-nav-item-padding-block) 10px;
+  width: 100%;
+  height: 32px;
+  padding-inline: 8px;
   border: 0;
   border-radius: var(--radius-sm);
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-regular);
+  font-size: 13px;
+  font-weight: 400;
   line-height: 16px;
   text-align: left;
 
   background: transparent;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   cursor: pointer;
-
-  transition:
-    background-color 100ms ease,
-    color 100ms ease;
 }
 
-/*
- * Hover excludes the unavailable states explicitly.
- *
- * Not redundant with the rules further down: `:hover:not(.cx-nav-item--active)` outweighs a
- * bare `[aria-disabled='true']` on specificity, so a locked row lit up to full-strength text
- * under the cursor and read as clickable. Measured: `color` went from rgb(168,168,168) to
- * rgb(26,26,26) on hover.
- */
-.cx-nav-item:hover:not(.cx-nav-item--active):not(:disabled):not([aria-disabled='true']) {
-  background: var(--color-hover);
-  color: var(--color-text);
-}
-
-/* Active is the only state that shifts weight. Colour alone carries hover; weight plus
- * fill carries selection, so the two never read as the same thing. */
-.cx-nav-item--active {
-  background: var(--color-inset);
-  color: var(--color-text);
-  font-weight: var(--font-weight-medium);
+.cx-nav-item .cx-icon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
 }
 
 .cx-nav-item__label {
-  flex-grow: 1;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.cx-nav-item__indicator {
-  width: var(--layout-dot);
-  height: var(--layout-dot);
+.cx-nav-item:hover:not([aria-disabled='true']) {
+  background: var(--color-hover);
+}
+
+.cx-nav-item[aria-current='page'] {
+  background: var(--color-active);
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+}
+
+.cx-nav-item[aria-current='page'] .cx-icon {
+  color: var(--color-text);
+}
+
+:root[data-theme='dark'] .cx-nav-item[aria-current='page'] {
+  font-weight: 530;
+  font-variation-settings: 'wght' 530;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Locked                                                                     */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Locked rows stay focusable (aria-disabled, not disabled) so the reason can be
+ * read from the title. The row dims and the lock explains itself.
+ */
+.cx-nav-item[aria-disabled='true'] {
+  color: var(--color-text-faint);
+  cursor: default;
+}
+
+.cx-nav-item[aria-disabled='true'] .cx-icon {
+  color: var(--color-text-faint);
+}
+
+.cx-nav-item__lock-wrap {
+  display: inline-flex;
   flex-shrink: 0;
 }
 
-.cx-nav-item__indicator--unread {
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
+.cx-nav-item__lock {
+  color: var(--color-text-faint);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Unread indicator                                                           */
+/* -------------------------------------------------------------------------- */
 
 /*
- * Unavailable marks a destination the current plan does not include. It stays visible and
- * still announces itself, because the design uses it to advertise what signing in adds.
- *
- * Both selectors, and they mean different things: `:disabled` is the caller passing
- * `disabled`, `[aria-disabled]` is a locked destination. A locked row is deliberately NOT
- * `disabled`, so it stays focusable and a keyboard or screen-reader user can reach it and
- * find out why — a `disabled` button is skipped by tab order entirely, which made the
- * explanation unreachable for exactly the users who most needed it.
+ * The slot is always rendered so labels keep one vertical lane; the dot itself —
+ * the one place the copper accent appears in the sidebar — only paints unread.
  */
-.cx-nav-item:disabled,
-.cx-nav-item[aria-disabled='true'] {
-  cursor: default;
-  color: var(--color-text-faint);
+.cx-nav-item__indicator {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
 }
 
-.cx-nav-item:disabled:hover,
-.cx-nav-item[aria-disabled='true']:hover {
-  background: transparent;
-}
-
-.cx-nav-item__lock {
-  /* Sits where the unread dot would, so a locked row keeps the same label geometry. */
-  margin-left: calc(var(--spacing-1) * -1);
-  color: var(--color-text-faint);
+.cx-nav-item__indicator--unread {
+  background: var(--color-accent);
 }

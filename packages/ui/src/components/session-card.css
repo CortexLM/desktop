@@ -1,36 +1,40 @@
 /*
- * Paper: Components / Session Card (EH-0, JB-0).
- * Reference export: design/paper/jsx/session-card.jsx
+ * Paper: "Recent sessions" rows on C3 / Code / Home (BXF-0) and the inbox rows
+ * on C3 / Code / Sessions.
  *
- * A 360px raised card: padding 16, column gap 12. Two rows - title with its status badge,
- * then branch, diff stats and age. 84px tall as drawn.
- *
- * The meta row uses a flex-grow spacer rather than space-between, because the trailing
- * group has to stay together and right-aligned while the branch name truncates on the left.
+ * Rows live inside one raised container (surface, card radius, hairline) and
+ * divide with hairlines — information on the surface, not boxes in boxes. Title
+ * 14 at the UI weight; meta line 12 with mono literals; the diff stat reads
+ * green for additions, error for deletions.
  */
 
 .cx-session-card {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: 6px;
 
-  padding: var(--spacing-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
 
-  background: var(--color-surface-raised);
-  text-align: left;
   font-family: var(--font-sans-stack);
+  text-align: left;
+
+  background: transparent;
+  color: var(--color-text);
 }
 
-/* Interactive cards are the ones that open a session. */
+/* Rows separate with hairlines inside their shared container. */
+.cx-session-card + .cx-session-card {
+  border-top: 1px solid var(--color-border);
+}
+
 .cx-session-card--interactive {
   cursor: pointer;
-  transition: border-color 100ms ease;
 }
 
 .cx-session-card--interactive:hover {
-  border-color: var(--color-border-strong);
+  background: var(--color-hover);
 }
 
 .cx-session-card__header {
@@ -40,58 +44,50 @@
 }
 
 .cx-session-card__title {
-  flex-grow: 1;
-  min-width: 0;
-
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
-  color: var(--color-text);
-
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-size: 14px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 18px;
 }
 
 .cx-session-card__meta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
-  font-size: var(--text-xs);
+  font-size: 12px;
   line-height: 16px;
+  color: var(--color-text-muted);
 }
 
+/* Repo and branch names are literals, so they read in mono. */
 .cx-session-card__branch {
-  min-width: 0;
-  color: var(--color-text-muted);
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
 }
 
 .cx-session-card__spacer {
-  flex-grow: 1;
-}
-
-/* Diff stats are the one place the design sets numbers in the UI face rather than mono, so
- * they read as status rather than as code. */
-.cx-session-card__added,
-.cx-session-card__removed {
-  flex-shrink: 0;
-  font-weight: var(--font-weight-medium);
+  flex: 1;
 }
 
 .cx-session-card__added {
-  color: var(--color-success);
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
+  color: var(--color-green);
 }
 
 .cx-session-card__removed {
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
   color: var(--color-error);
 }
 
 .cx-session-card__age {
-  flex-shrink: 0;
+  font-size: 12px;
   color: var(--color-text-faint);
 }

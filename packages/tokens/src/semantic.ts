@@ -27,6 +27,7 @@ export const semanticTokens = {
   shadowToast: '--shadow-toast',
   shadowSegment: '--shadow-segment',
   opacityDisabled: '--opacity-disabled',
+  fontWghtUi: '--font-wght-ui',
 } as const;
 
 export type SemanticToken = (typeof semanticTokens)[keyof typeof semanticTokens];
@@ -45,11 +46,13 @@ export const semanticValues = {
     '--shadow-toast': '0 4px 12px #24180026',
     '--shadow-segment': '0 1px 2px #24180014',
     '--opacity-disabled': '0.4',
+    '--font-wght-ui': '480',
   },
   dark: {
     '--color-text-faint': '#6c675e',
     '--color-border-strong': '#46423a',
     '--color-error-hover': '#e89b85',
+    '--font-wght-ui': '440',
   },
 } as const;
 

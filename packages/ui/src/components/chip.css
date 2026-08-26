@@ -1,14 +1,12 @@
 /*
- * Paper: the composer control row (CW-0) and the secret chip in Components / Badges (G0-0).
- * Reference exports: design/paper/jsx/composer.jsx, design/paper/jsx/badge.jsx
+ * Paper: Components 08 — Tabs, chips & contrôles (3VJ-0), "CHIPS" row, and the
+ * composer picker chips on the Code screens.
+ * Reference export: design/paper/jsx/tabs-chips-controls.jsx
  *
- * Two closely related pills that are not interchangeable:
- *
- *   control  padding 5px 11px, gap 6px, --color-inset fill, no border   -> 26px
- *   outlined padding 4px 11px, gap 6px, --color-panel fill, 1px border  -> 26px
- *
- * Both land at 26px; the outlined variant loses a pixel of padding to its border. The
- * composer's own attachment chip is the outlined one at 4px 10px.
+ * Full radius everywhere. Three C3 registers:
+ *   control   the composer pickers — a quiet wash, label 12, mono for literals
+ *   outlined  suggestion chips — raised surface with a hairline
+ *   selected  a chosen suggestion — the neutral active wash, never green
  */
 
 .cx-chip {
@@ -16,72 +14,118 @@
   align-items: center;
   gap: 6px;
 
+  height: 26px;
+  padding-inline: 10px;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: 12px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
   line-height: 16px;
   white-space: nowrap;
 
-  background: var(--color-inset);
-  color: var(--color-text);
-}
-
-.cx-chip--control {
-  padding: 5px 11px;
-}
-
-.cx-chip--outlined {
-  padding: 4px 11px;
-  border: 1px solid var(--color-border);
-  background: var(--color-panel);
+  background: transparent;
   color: var(--color-text-muted);
 }
 
-/* Secret names and other identifiers are set in mono at regular weight, not medium: the
- * design leans on the face rather than the weight to mark them as literal values. */
 .cx-chip--mono {
   font-family: var(--font-mono-stack);
-  font-weight: var(--font-weight-regular);
+  font-size: 11px;
 }
 
-/* Interactive chips are the composer's pickers: repo, branch, model, runtime. */
-.cx-chip--interactive {
-  cursor: pointer;
-  transition: background-color 100ms ease;
-}
+/* -------------------------------------------------------------------------- */
+/* Control (composer pickers)                                                 */
+/* -------------------------------------------------------------------------- */
 
-.cx-chip--interactive:hover:not(:disabled) {
+.cx-chip--control {
   background: var(--color-hover);
 }
 
-.cx-chip--interactive:disabled {
-  cursor: default;
-  color: var(--color-text-faint);
+button.cx-chip--control:not(:disabled) {
+  cursor: pointer;
 }
 
-/*
- * The dismiss affordance on an attachment chip. Its own button so the chip stays clickable
- * as a whole without the two targets fighting; sized to the 9px glyph the design uses.
- */
+button.cx-chip--control:hover:not(:disabled) {
+  background: var(--color-active);
+  color: var(--color-text);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Outlined (suggestions, attachments)                                        */
+/* -------------------------------------------------------------------------- */
+
+.cx-chip--outlined {
+  height: 32px;
+  padding-inline: 14px;
+
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+
+  font-size: 13px;
+}
+
+button.cx-chip--outlined:not(:disabled) {
+  cursor: pointer;
+}
+
+button.cx-chip--outlined:hover:not(:disabled) {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Selected (a chosen suggestion)                                             */
+/* -------------------------------------------------------------------------- */
+
+/* The neutral active wash with an ink label — selection is never green. */
+.cx-chip--selected {
+  height: 32px;
+  padding-inline: 14px;
+
+  background: var(--color-active);
+
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+button.cx-chip--selected:not(:disabled) {
+  cursor: pointer;
+}
+
+.cx-chip:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
+}
+
+/* The icon reads muted next to a muted label and inherits ink when selected. */
+.cx-chip .cx-icon {
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dismiss (attachment chips)                                                 */
+/* -------------------------------------------------------------------------- */
+
 .cx-chip__dismiss {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
+  margin-right: -4px;
   padding: 0;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 
   background: transparent;
-  color: var(--color-text-faint);
+  color: var(--color-text-muted);
   cursor: pointer;
 }
 
 .cx-chip__dismiss:hover {
+  background: var(--color-active);
   color: var(--color-text);
 }

@@ -5,7 +5,7 @@ import type { IconKey } from '../icons/geometry.generated.ts';
 
 import './button.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'green' | 'destructive';
 
 export interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -22,7 +22,9 @@ export interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement>
 }
 
 /**
- * The four button variants from the Paper UI kit.
+ * The button variants from the Concept 03 Basics board: ink primary, bordered
+ * secondary, ghost, and green for decisive moments (send, confirm). Destructive
+ * follows the green grammar on the error hue.
  *
  * `type` defaults to `button`. The HTML default is `submit`, which inside the composer's
  * form would send the prompt on every icon press.

@@ -81,7 +81,7 @@ export function NavItem(props: NavItemProps): JSX.Element {
         if (typeof handler === 'function') handler(event);
       }}
     >
-      <Icon name={local.icon} size={14} />
+      <Icon name={local.icon} size={16} strokeWidth={1.75} />
       <span class="cx-nav-item__label">{local.label}</span>
       <Indicator unread={local.unread} />
       {/*

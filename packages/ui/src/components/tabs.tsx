@@ -43,7 +43,7 @@ function TabButton(props: TabButtonProps): JSX.Element {
       onClick={() => props.onSelect()}
     >
       <span class="cx-tabs__label">
-        <Show when={props.tab.icon}>{(name) => <Icon name={name()} size={12} />}</Show>
+        <Show when={props.tab.icon}>{(name) => <Icon name={name()} size={15} strokeWidth={1.75} />}</Show>
         {props.tab.label}
         <Show when={props.tab.count !== undefined}>
           <span class="cx-tabs__count">{props.tab.count}</span>
@@ -103,7 +103,6 @@ export function Tabs(props: TabsProps): JSX.Element {
           )}
         </For>
       </div>
-      <hr class="cx-tabs__rule" />
     </div>
   );
 }

@@ -48,6 +48,13 @@
   /* Disabled fills drop to 40% rather than switching colour. */
   --opacity-disabled: 0.4;
 
+  /*
+   * Optical weight of control labels, on Inter's variable axis. The C3 kit runs
+   * labels at 480 on light and eases to 440 on dark ("DARK · LABELS 440"), where
+   * light-on-dark text reads a step bolder than it is.
+   */
+  --font-wght-ui: 480;
+
   /* ------------------------------------------------------------------ */
   /* Legacy-name bridge (previous design vocabulary -> C3 roles)         */
   /* ------------------------------------------------------------------ */
@@ -95,4 +102,5 @@
   --color-text-faint: #6c675e;
   --color-border-strong: #46423a;
   --color-error-hover: #e89b85;
+  --font-wght-ui: 440;
 }
