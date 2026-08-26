@@ -25,6 +25,7 @@ import {
   WorkspaceToolExecutor,
   type AgentEvent,
   type AgentMode,
+  type Message as ProviderChatMessage,
   type PermissionDecision,
   type RegistryConfig,
   type ToolCall as AgentToolCall,
@@ -726,12 +727,18 @@ export class AIService extends EventEmitter {
         skills,
         executor,
         chat: async (messages) => {
-          const mapped: Message[] = messages.map((message) => ({
-            role: message.role === 'tool' ? 'user' : message.role,
-            content:
-              message.role === 'tool'
-                ? `Tool ${message.name ?? 'unknown'} result:\n${message.content}`
-                : message.content,
+          // Passed through natively, not flattened. The old mapping rewrote tool
+          // results as user prose and dropped the assistant's `toolCalls`
+          // entirely, so the model never saw itself call anything — and a model
+          // with no memory of having created the file creates it again, every
+          // iteration, until the cap. Providers already know how to replay
+          // tool calls and pair results by `toolCallId`.
+          const mapped: ProviderChatMessage[] = messages.map((message) => ({
+            role: message.role,
+            content: message.content,
+            ...(message.toolCalls ? { toolCalls: message.toolCalls } : {}),
+            ...(message.toolCallId ? { toolCallId: message.toolCallId } : {}),
+            ...(message.name ? { name: message.name } : {}),
           }));
           const response = await provider.chat(mapped, {
             ...options,

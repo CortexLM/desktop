@@ -38,7 +38,6 @@ import { basename } from 'node:path';
 import type {
   RepositoryOption,
   SessionDetail,
-  SessionDiffFile,
   SessionEvent,
   SessionStatus,
   SessionSummary,
@@ -48,6 +47,7 @@ import type {
 import { getDatabaseService } from './database-service';
 import { getAIService, type AIService } from './ai-service';
 import { gitService } from './git-service';
+import { diffForWorkspace, diffTotals } from './session-diff';
 import { activeWorkspaceManager, activeWorkspacePath } from './active-workspace';
 import { toSessionEvent } from './session-events';
 import { SessionStore } from './session-store';
@@ -139,7 +139,7 @@ export class SessionService extends EventEmitter {
     const detail: SessionDetail = {
       ...toSummary(row),
       events: events.rows.map(toEvent).filter((event): event is SessionEvent => event !== null),
-      files: await this.diffFor(row),
+      files: await diffForWorkspace(row.workspace_id),
     };
     if (row.model) detail.model = row.model;
     if (row.provider) detail.provider = row.provider;
@@ -440,24 +440,6 @@ export class SessionService extends EventEmitter {
   // Diff
   // ==========================================================================
 
-  private async diffFor(row: SessionRow): Promise<SessionDiffFile[]> {
-    if (!row.workspace_id) return [];
-
-    try {
-      const diff = await gitService.diff(row.workspace_id);
-      return diff.diffs.map((file) => ({
-        path: file.path,
-        additions: file.additions,
-        deletions: file.deletions,
-        diff: file.diff,
-      }));
-    } catch {
-      // Not a repository, or git failed. An empty change list is the honest answer
-      // — better than failing to open the session over it.
-      return [];
-    }
-  }
-
   /**
    * Recomputes the diff stat from git.
    *
@@ -471,12 +453,7 @@ export class SessionService extends EventEmitter {
     const row = rows.rows[0];
     if (!row) return {};
 
-    const files = await this.diffFor(row);
-    return {
-      additions: files.reduce((total, file) => total + file.additions, 0),
-      deletions: files.reduce((total, file) => total + file.deletions, 0),
-      files_changed: files.length,
-    };
+    return diffTotals(await diffForWorkspace(row.workspace_id));
   }
 
   // ==========================================================================
