@@ -245,7 +245,10 @@ describe('ai handlers', () => {
         createdAt: number;
       }>(handleCreateSession as Handler, { provider: 'openai', model: 'gpt-4' });
 
-      expect(aiServiceMock.createSession).toHaveBeenCalledWith('openai', 'gpt-4');
+      expect(aiServiceMock.createSession).toHaveBeenCalledWith('openai', 'gpt-4', {
+        workspacePath: undefined,
+        workspaceId: undefined,
+      });
       expect(data.sessionId).toBe('session-1');
       expect(data.providerId).toBe('openai');
       expect(data.createdAt).toBe(1_700_000_000);
@@ -261,10 +264,14 @@ describe('ai handlers', () => {
       expect(aiServiceMock.addSystemMessage).toHaveBeenCalledWith('session-1', 'Be terse.');
     });
 
-    it('skips the system prompt when absent', async () => {
+    it('attaches a coding-agent system prompt when none is supplied', async () => {
       await ok(handleCreateSession as Handler, { provider: 'openai', model: 'gpt-4' });
 
-      expect(aiServiceMock.addSystemMessage).not.toHaveBeenCalled();
+      expect(aiServiceMock.addSystemMessage).toHaveBeenCalled();
+      const prompt = String(
+        (aiServiceMock.addSystemMessage.mock.calls[0] as unknown as [string, string])[1]
+      );
+      expect(prompt).toContain('You are Cortex, an AI software engineering agent.');
     });
 
     it('accepts an optional workspaceId', async () => {
@@ -274,7 +281,10 @@ describe('ai handlers', () => {
         workspaceId: 'ws-1',
       });
 
-      expect(aiServiceMock.createSession).toHaveBeenCalledWith('ollama', 'llama3');
+      expect(aiServiceMock.createSession).toHaveBeenCalledWith('ollama', 'llama3', {
+        workspacePath: undefined,
+        workspaceId: 'ws-1',
+      });
     });
 
     it.each(['openai', 'anthropic', 'openrouter', 'ollama'])('accepts the %s provider', async (provider) => {
@@ -777,13 +787,19 @@ describe('automation handlers', () => {
       expect(error.code).toBe(ErrorCode.VALIDATION_ERROR);
     });
 
-    it('rejects a file_watch trigger with no events', async () => {
-      const error = await fail(handleCreateAutomation as Handler, {
+    it('fills in the events a file_watch trigger was sent without', async () => {
+      // The renderer has no reason to choose between add / change / unlink — "when
+      // files change" means all three — and it is not sent the workspace path at
+      // all. Rejecting the narrow form made creating an automation from the UI
+      // impossible, so the handler completes it instead.
+      const response = await ok(handleCreateAutomation as Handler, {
         ...validCreate,
-        trigger: { type: 'file_watch', patterns: ['*'], events: [], workspacePath: '/r' },
+        trigger: { type: 'file_watch', patterns: ['*'], events: [], workspacePath: '' },
       });
 
-      expect(error.code).toBe(ErrorCode.VALIDATION_ERROR);
+      const trigger = (response as { automation: { trigger: Record<string, unknown> } })
+        .automation.trigger;
+      expect(trigger.events).toEqual(['add', 'change', 'unlink']);
     });
 
     it('rejects an unknown git hook', async () => {
@@ -842,13 +858,12 @@ describe('automation handlers', () => {
       expect(error.code).toBe(ErrorCode.VALIDATION_ERROR);
     });
 
-    it('requires a workspaceId', async () => {
-      const error = await fail(handleCreateAutomation as Handler, {
-        ...validCreate,
-        workspaceId: '',
-      });
-
-      expect(error.code).toBe(ErrorCode.VALIDATION_ERROR);
+    it('accepts an empty workspaceId and resolves it', async () => {
+      // Same reason: a disk path is not the renderer's to supply. Requiring one it
+      // cannot know is what blocked automation creation from the UI entirely.
+      await expect(
+        ok(handleCreateAutomation as Handler, { ...validCreate, workspaceId: '' }),
+      ).resolves.toBeDefined();
     });
 
     it('requires the enabled flag', async () => {

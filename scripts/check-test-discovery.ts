@@ -1,288 +1,232 @@
 #!/usr/bin/env bun
 /**
- * Test-discovery guard-rail.
+ * Fails the build when a test file on disk is not claimed by any runner.
  *
- * Fails the build when a test file exists on disk but no runner project claims
- * it. This is the check that makes a silently-shrinking suite impossible: a
- * green CI that quietly skips files is more dangerous than a red one, because it
- * reports confidence it has not earned.
+ * The failure this exists to catch is silent: a suite that no config's `include` glob
+ * matches is not reported as skipped, it simply never loads, and the run goes green with
+ * the file sitting right there. That has happened in this repo before - the root config's
+ * `projects` glob only matched `packages/*​/vitest.config.ts`, so every suite under the
+ * repo-root `tests/` directory went unloaded for weeks.
  *
- * Two independent failure modes are covered:
+ * Rather than reimplement each runner's glob resolution and risk agreeing with a bug, this
+ * asks the runners themselves what they collected — `vitest list --json` and
+ * `playwright test --list` per config — and diffs that against the files on disk.
  *
- *   1. UNCLAIMED — a file matches the on-disk test glob but no project's
- *      `include` pattern matches it (wrong directory, restrictive `include`, or
- *      a directory with no vitest config at all).
- *   2. UNLOADABLE — a file is claimed but throws while loading (unresolvable
- *      import such as `bun:test` under vitest, syntax error, missing module).
- *      Vitest reports these as failed *suites* with zero tests; this script
- *      surfaces them as a discovery failure in its own right.
- *
- * Scope note: "no project" means no member of the root config's `projects` list —
- * every `packages/*​/vitest.config.ts` plus `tests/vitest.config.ts`. Both the
- * on-disk walk and the claim check cover `packages/` and the repo-root `tests/`.
- * Checking only `packages/` is how the eight root `tests/` suites previously went
- * unreported by this script *and* unloaded by the runner.
- *
- * Usage:
- *   bun scripts/check-test-discovery.ts            # report + exit 1 on drift
- *   bun scripts/check-test-discovery.ts --json     # machine-readable output
- *
- * Exit codes: 0 = every test file claimed and loadable, 1 = drift detected.
+ * Playwright used to be handled by *declaring* which directories it owned. That reproduced
+ * the very failure this script exists to catch, one level up: `tests/accessibility/` was
+ * listed as Playwright territory while no Playwright config had a `testDir` pointing at it,
+ * and `playwright.visual.config.ts` narrowed `testMatch` to a single file. Four specs, ~1500
+ * lines, were reported as "owned by playwright" while no runner ever loaded them. A
+ * directory declaration asserts intent; asking the runner measures reality.
  */
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, rmSync, statSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join, relative, resolve } from 'node:path';
+import { readdirSync, statSync } from 'node:fs';
+import { join, relative, sep } from 'node:path';
 
-const REPO_ROOT = resolve(import.meta.dirname, '..');
-const PACKAGES_DIR = join(REPO_ROOT, 'packages');
+const REPO_ROOT = join(import.meta.dirname, '..');
+
+const TEST_FILE_PATTERN = /\.(test|spec)\.(ts|tsx|js|jsx|mts|cts)$/;
+
+/** Directories never worth walking. */
+const SKIP_DIRECTORIES = new Set([
+  'node_modules',
+  'dist',
+  'build',
+  'coverage',
+  '.git',
+  'test-results',
+  'playwright-report',
+  'quality-reports',
+]);
 
 /**
- * Directories walked for test files on disk.
+ * Playwright configs to interrogate.
  *
- * `tests/` is here as well as `packages/`: this script used to walk only
- * `packages/`, and the eight suites under the repo-root `tests/` (integration,
- * performance, visual-regression) sat outside both its scope and the root
- * config's `projects` glob. They were reported nowhere and loaded by nothing —
- * the guard was blind to exactly the failure it exists to catch. They are now
- * claimed by `tests/vitest.config.ts` and verified here.
+ * A new config has to be added here, which is the point: an unlisted config's specs show up
+ * as unclaimed rather than passing as somebody else's problem.
  */
-const TEST_ROOTS = ['packages', 'tests'];
+const PLAYWRIGHT_CONFIGS = ['playwright.config.ts', 'playwright.visual.config.ts'];
 
-/** Test-file shape on disk. Kept deliberately broad — broader than any single
- *  package `include` — so a misplaced file shows up as unclaimed rather than
- *  vanishing. */
-const TEST_FILE_RE = /\.(test|spec)\.(ts|tsx|js|jsx|mts|cts)$/;
-
-/** Directories that never hold unit tests run by vitest. */
-const SKIP_DIRS = new Set(['node_modules', 'dist', 'build', 'coverage', '.git', '.turbo']);
-
-/**
- * Suites owned by other runners. Playwright specs use their own runner and
- * cannot link under vitest, so they are legitimately outside this check.
- * Anything excluded here MUST be covered by another CI job.
- */
-const OTHER_RUNNER_PATTERNS: Array<{ pattern: RegExp; runner: string; job: string }> = [
-  { pattern: /(^|\/)tests\/e2e\//, runner: 'playwright', job: 'test:e2e' },
-  { pattern: /(^|\/)tests\/visual\//, runner: 'playwright', job: 'test:e2e' },
-  { pattern: /(^|\/)tests\/accessibility\//, runner: 'playwright', job: 'test:e2e' },
-];
-
-interface Findings {
-  onDisk: string[];
-  claimed: string[];
-  unclaimed: string[];
-  otherRunner: Array<{ file: string; runner: string; job: string }>;
-  unloadable: Array<{ file: string; reason: string }>;
-  packages: Array<{ name: string; claimed: number }>;
-}
-
-function walk(dir: string, out: string[] = []): string[] {
-  for (const entry of readdirSync(dir)) {
-    if (SKIP_DIRS.has(entry)) continue;
-    const full = join(dir, entry);
-    const st = statSync(full);
-    if (st.isDirectory()) walk(full, out);
-    else if (TEST_FILE_RE.test(entry)) out.push(relative(REPO_ROOT, full));
-  }
-  return out;
-}
-
-/** A member of the root config's `projects` list. */
-interface Project {
-  /** Label for the report, e.g. `main` or `tests`. */
+interface CollectedTest {
   name: string;
-  /** Directory holding the `vitest.config.ts`, relative to the repo root. */
-  dir: string;
+  file: string;
+  projectName?: string;
+}
+
+function walk(directory: string, found: string[] = []): string[] {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') && entry.name !== '.github') continue;
+    const path = join(directory, entry.name);
+
+    if (entry.isDirectory()) {
+      if (SKIP_DIRECTORIES.has(entry.name)) continue;
+      walk(path, found);
+      continue;
+    }
+
+    if (TEST_FILE_PATTERN.test(entry.name)) found.push(path);
+  }
+  return found;
 }
 
 /**
- * Every directory that exposes a vitest config, i.e. the root `projects`
- * members: each `packages/*` plus the repo-root `tests/`.
+ * The spec files Playwright actually collects, across every config.
  *
- * Kept as a discovery walk rather than a hardcoded list so that adding a package
- * cannot silently leave it out of this check.
+ * `--list --reporter=json` rather than parsing `testDir`/`testMatch` ourselves: those
+ * interact (a narrow `testMatch` silently excludes most of a `testDir`) and reimplementing
+ * the interaction is how a checker ends up agreeing with the bug it is meant to find.
  */
-function vitestProjects(): Project[] {
-  const projects: Project[] = [];
+function collectFromPlaywright(): Set<string> {
+  const collected = new Set<string>();
 
-  if (existsSync(PACKAGES_DIR)) {
-    for (const p of readdirSync(PACKAGES_DIR).sort()) {
-      if (existsSync(join(PACKAGES_DIR, p, 'vitest.config.ts'))) {
-        projects.push({ name: p, dir: join('packages', p) });
+  for (const config of PLAYWRIGHT_CONFIGS) {
+    const result = spawnSync(
+      'bunx',
+      ['playwright', 'test', '--config', config, '--list', '--reporter=json'],
+      { cwd: REPO_ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 },
+    );
+
+    if (result.error) {
+      throw new Error(`could not list Playwright specs for ${config}: ${result.error.message}`);
+    }
+
+    const stdout = result.stdout ?? '';
+    const start = stdout.indexOf('{');
+    if (start === -1) {
+      throw new Error(
+        `"playwright test --list" produced no JSON for ${config}.\nstdout:\n${stdout.slice(
+          0,
+          2000,
+        )}\nstderr:\n${(result.stderr ?? '').slice(0, 2000)}`,
+      );
+    }
+
+    const report = JSON.parse(stdout.slice(start)) as {
+      config?: { rootDir?: string };
+    };
+
+    // Reported file paths are relative to `config.rootDir` — the *resolved* testDir, not the
+    // repo root. Joining them onto the repo root instead yields paths that exist nowhere and
+    // match nothing, which reads exactly like "collected but unclaimed".
+    const rootDir = report.config?.rootDir;
+    if (typeof rootDir !== 'string') {
+      throw new Error(`"playwright test --list" for ${config} reported no config.rootDir`);
+    }
+
+    // The report nests specs under `suites[].suites[]…`, each carrying the file it came from.
+    // Only the paths matter, so every `file` key at any depth is collected rather than the
+    // shape being walked.
+    const files = new Set<string>();
+    const visit = (node: unknown): void => {
+      if (Array.isArray(node)) {
+        node.forEach(visit);
+        return;
       }
+      if (typeof node !== 'object' || node === null) return;
+
+      const record = node as Record<string, unknown>;
+      if (typeof record.file === 'string') files.add(record.file);
+      Object.values(record).forEach(visit);
+    };
+    visit(report);
+
+    for (const file of files) {
+      collected.add(relative(REPO_ROOT, join(rootDir, file)));
     }
   }
 
-  // `tests/` is not under `packages/`, so the loop above never reaches it.
-  if (existsSync(join(REPO_ROOT, 'tests', 'vitest.config.ts'))) {
-    projects.push({ name: 'tests', dir: 'tests' });
-  }
-
-  return projects;
+  return collected;
 }
 
-/** Ask vitest which files it would load for a project. */
-function claimedBy(project: Project): string[] {
-  const cwd = join(REPO_ROOT, project.dir);
-  const res = spawnSync('bunx', ['vitest', 'list', '--filesOnly'], {
-    cwd,
+function collectFromVitest(fast: boolean): Set<string> {
+  const args = ['vitest', 'list', '--json'];
+  // `--fast` trades a little accuracy for speed by skipping the type-test projects, which
+  // dominate collection time. The full form is what CI should run.
+  if (fast) args.push('--typecheck.enabled=false');
+
+  const result = spawnSync('bunx', args, {
+    cwd: REPO_ROOT,
     encoding: 'utf8',
-    // `vitest list` still loads config; give it room on a cold cache.
-    timeout: 180_000,
+    maxBuffer: 256 * 1024 * 1024,
   });
 
-  if (res.status !== 0) {
-    const detail = `${res.stdout ?? ''}${res.stderr ?? ''}`.trim();
+  if (result.error) {
+    throw new Error(`could not run "bunx ${args.join(' ')}": ${result.error.message}`);
+  }
+
+  // Vitest prints config warnings to stdout ahead of the JSON, so the payload starts at the
+  // first bracket rather than at byte zero.
+  const stdout = result.stdout ?? '';
+  const start = stdout.indexOf('[');
+  if (start === -1) {
     throw new Error(
-      `\`vitest list\` failed in ${project.dir} (exit ${res.status}).\n` +
-        `A config that cannot even be loaded hides its whole suite.\n${detail}`
+      `"vitest list" produced no JSON.\nstdout:\n${stdout.slice(0, 2000)}\nstderr:\n${(
+        result.stderr ?? ''
+      ).slice(0, 2000)}`,
     );
   }
 
-  return (res.stdout ?? '')
-    .split('\n')
-    .map((l) => l.trim())
-    // `vitest list` prefixes each line with the project name in brackets when a
-    // config declares one (`[root-tests] integration/foo.test.ts`). Strip it
-    // before resolving, or the path is garbage and the file reads as unclaimed.
-    .map((l) => l.replace(/^\[[^\]]*\]\s*/, ''))
-    .filter((l) => TEST_FILE_RE.test(l))
-    .map((l) => relative(REPO_ROOT, resolve(cwd, l)));
-}
-
-/**
- * Detect claimed-but-unloadable suites: vitest reports zero collected tests for
- * a file whose module graph throws. Parsed from the JSON reporter.
- */
-function unloadableIn(project: Project): Array<{ file: string; reason: string }> {
-  const cwd = join(REPO_ROOT, project.dir);
-
-  // Written to a real file, not /dev/stdout: vitest interleaves its own console
-  // output on stdout, which corrupts the JSON document mid-stream.
-  const reportPath = join(
-    tmpdir(),
-    `cortex-discovery-${project.name}-${process.pid}-${Date.now()}.json`
-  );
-
-  const res = spawnSync(
-    'bunx',
-    ['vitest', 'run', '--reporter=json', `--outputFile=${reportPath}`],
-    { cwd, encoding: 'utf8', timeout: 600_000 }
-  );
-
-  let report: {
-    testResults?: Array<{ name: string; status: string; message?: string; assertionResults?: unknown[] }>;
-  };
+  let collected: CollectedTest[];
   try {
-    report = JSON.parse(readFileSync(reportPath, 'utf8'));
+    collected = JSON.parse(stdout.slice(start)) as CollectedTest[];
   } catch (error) {
-    // No parsable report means the run died before reporting. That is itself a
-    // discovery failure — staying silent here is the exact bug this guard
-    // exists to prevent.
-    const detail = `${res.stdout ?? ''}${res.stderr ?? ''}`.trim().split('\n').slice(-3).join(' ');
-    return [
-      {
-        file: project.dir,
-        reason: `no parsable JSON report (${(error as Error).message}). Tail: ${detail}`,
-      },
-    ];
-  } finally {
-    rmSync(reportPath, { force: true });
+    throw new Error(`could not parse "vitest list" output: ${String(error)}`);
   }
 
-  const bad: Array<{ file: string; reason: string }> = [];
-  for (const suite of report.testResults ?? []) {
-    const count = Array.isArray(suite.assertionResults) ? suite.assertionResults.length : 0;
-    if (suite.status === 'failed' && count === 0) {
-      const first = (suite.message ?? 'suite failed to load').split('\n')[0].trim();
-      bad.push({ file: relative(REPO_ROOT, resolve(cwd, suite.name)), reason: first });
-    }
-  }
-  return bad;
-}
-
-function collect(deep: boolean): Findings {
-  const onDisk = TEST_ROOTS.flatMap((root) => {
-    const full = join(REPO_ROOT, root);
-    return existsSync(full) ? walk(full) : [];
-  }).sort();
-
-  const otherRunner: Findings['otherRunner'] = [];
-  const inScope: string[] = [];
-  for (const f of onDisk) {
-    const match = OTHER_RUNNER_PATTERNS.find((p) => p.pattern.test(f));
-    if (match) otherRunner.push({ file: f, runner: match.runner, job: match.job });
-    else inScope.push(f);
-  }
-
-  const claimed = new Set<string>();
-  const packages: Findings['packages'] = [];
-  const unloadable: Findings['unloadable'] = [];
-
-  for (const project of vitestProjects()) {
-    const files = claimedBy(project);
-    files.forEach((f) => claimed.add(f));
-    packages.push({ name: project.name, claimed: files.length });
-    if (deep) unloadable.push(...unloadableIn(project));
-  }
-
-  return {
-    onDisk,
-    claimed: [...claimed].sort(),
-    unclaimed: inScope.filter((f) => !claimed.has(f)),
-    otherRunner,
-    unloadable,
-    packages,
-  };
+  return new Set(collected.map((test) => relative(REPO_ROOT, test.file)));
 }
 
 function main(): void {
-  const json = process.argv.includes('--json');
-  const deep = !process.argv.includes('--fast');
-  const f = collect(deep);
+  const fast = process.argv.includes('--fast');
 
-  if (json) {
-    console.log(JSON.stringify(f, null, 2));
-  } else {
-    const inScope = f.onDisk.length - f.otherRunner.length;
-    console.log('Test discovery');
-    console.log(`  on disk               ${f.onDisk.length}`);
-    console.log(`  other runners         ${f.otherRunner.length} (playwright)`);
-    console.log(`  in scope for vitest   ${inScope}`);
-    console.log(`  claimed by a project  ${f.claimed.length}`);
-    console.log('');
-    for (const p of f.packages) {
-      console.log(`    ${p.name.padEnd(14)} ${String(p.claimed).padStart(3)}`);
-    }
+  const onDisk = walk(REPO_ROOT).map((path) => relative(REPO_ROOT, path));
 
-    if (f.unclaimed.length) {
-      console.log('');
-      console.log(`UNCLAIMED — ${f.unclaimed.length} test file(s) no project loads:`);
-      for (const file of f.unclaimed) console.log(`  ${file}`);
-      console.log('');
-      console.log('  Fix: add the directory to the project\'s `include`, or add a');
-      console.log('  vitest.config.ts (and list it in the root config\'s `projects`)');
-      console.log('  if the directory has none.');
-    }
+  const byVitest = collectFromVitest(fast);
+  const byPlaywright = collectFromPlaywright();
 
-    if (f.unloadable.length) {
-      console.log('');
-      console.log(`UNLOADABLE — ${f.unloadable.length} claimed suite(s) throw while loading:`);
-      for (const u of f.unloadable) console.log(`  ${u.file}\n      ${u.reason}`);
-      console.log('');
-      console.log('  These contribute zero tests. A runner that treats them as');
-      console.log('  warnings reports green while skipping them.');
-    }
+  // A file counts as covered when *some* runner reports collecting it. Both sets are
+  // measured, so a file cannot slip through by being nobody's declared territory.
+  const unclaimed = onDisk.filter((path) => !byVitest.has(path) && !byPlaywright.has(path));
+
+  process.stdout.write(
+    [
+      `test files on disk        ${onDisk.length}`,
+      `collected by vitest       ${byVitest.size}`,
+      `collected by playwright   ${byPlaywright.size}`,
+      `unclaimed                 ${unclaimed.length}`,
+      '',
+    ].join('\n'),
+  );
+
+  if (unclaimed.length === 0) {
+    process.stdout.write('Every test file is claimed by a runner.\n');
+    return;
   }
 
-  const failures = f.unclaimed.length + f.unloadable.length;
-  if (failures > 0) {
-    if (!json) console.log(`\nFAIL: ${failures} discovery problem(s).`);
-    process.exit(1);
-  }
-  if (!json) console.log('\nOK: every test file is claimed and loadable.');
+  process.stderr.write(
+    [
+      '',
+      'These test files are not claimed by any runner. They will never execute, and the',
+      'suite will report green with them sitting on disk:',
+      '',
+      ...unclaimed.map((path) => `  ${path}`),
+      '',
+      'Fix by either adding a packages/<name>/vitest.config.ts whose include glob matches',
+      'them, widening an existing config, or - if they belong to Playwright - making sure a',
+      'listed config actually collects them: check its testDir AND its testMatch, since a',
+      'narrow testMatch silently excludes most of a testDir. New Playwright configs go in',
+      'PLAYWRIGHT_CONFIGS in this script.',
+      '',
+    ].join('\n'),
+  );
+
+  process.exitCode = 1;
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  process.stderr.write(`check-test-discovery: ${String(error)}\n`);
+  process.exitCode = 1;
+}

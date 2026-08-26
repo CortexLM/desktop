@@ -141,11 +141,26 @@ const EXPECTED_NAMESPACES = [
   'cortex.editor',
   'cortex.git',
   'cortex.ai',
+  'cortex.mission',
   'cortex.mcp',
   'cortex.terminal',
   'cortex.db',
   'cortex.automation',
   'cortex.update',
+  // Cortex account and model catalogue. The renderer's only route to
+  // `api.cortex.foundation`: its `file://` origin makes its own requests fail
+  // the CORS check. Carries no token in either direction — see
+  // `shared/types/ipc/cortex.ts`.
+  'cortex.cortex',
+  // Runs. Distinct from `cortex.ai`, which carries a conversation: this namespace
+  // carries the persisted run — its state, its timeline and its diff.
+  'cortex.session',
+  // Provider credentials and run settings. The one namespace that carries a secret
+  // across the boundary, and only in the renderer -> main direction.
+  'cortex.settings',
+  // Secrets. No method here reads a value back — the one that returns values is
+  // main-only, called by the agent loop.
+  'cortex.secrets',
   'ipc',
   'electron',
 ];

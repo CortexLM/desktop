@@ -189,7 +189,10 @@ function serverFixture(overrides: Partial<MCPServer> = {}): Omit<MCPServer, 'sta
   } as Omit<MCPServer, 'status' | 'installedAt'>;
 }
 
-async function installedService(): Promise<{ service: MCPService; server: MCPServer }> {
+async function installedService(): Promise<{
+  service: InstanceType<typeof MCPService>;
+  server: MCPServer;
+}> {
   const service = new MCPService(configPath);
   const server = await service.installServer(serverFixture());
   return { service, server };
@@ -675,7 +678,7 @@ describe('MCPService', () => {
       const tools = await service.discoverTools('filesystem');
 
       expect(tools).toHaveLength(2);
-      expect(tools.map((t) => t.name)).toEqual(['read_file', 'write_file']);
+      expect(tools.map((t: { name: string }) => t.name)).toEqual(['read_file', 'write_file']);
     });
 
     it('persists the discovered tools', async () => {
@@ -908,7 +911,7 @@ describe('MCPService', () => {
       await service.grantPermission('filesystem', 'read_file');
       await service.startServer('filesystem');
       const ids: number[] = [];
-      rpcHandler = (method, params, id) => {
+      rpcHandler = (method, _params, id) => {
         if (method === 'tools/call') ids.push(id);
         return { content: [{ type: 'text', text: `result-${id}` }] };
       };
@@ -920,7 +923,7 @@ describe('MCPService', () => {
       ]);
 
       expect(new Set(ids).size).toBe(3);
-      expect(new Set(results.map((r) => r.content[0].text)).size).toBe(3);
+      expect(new Set(results.map((r) => r.content[0]?.text ?? '')).size).toBe(3);
     });
   });
 

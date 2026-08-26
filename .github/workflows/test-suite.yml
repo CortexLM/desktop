@@ -22,12 +22,20 @@ jobs:
         # Names must match the `name` field in each package.json — `bun run
         # --filter` prints "No packages matched the filter" for anything else,
         # and a package silently absent from CI is the failure mode this suite
-        # is meant to catch. `shared`, `test-harness` and `test-utils` are
-        # scoped, so their full names are required.
+        # is meant to catch. Only `main` and `preload` are unscoped; every other
+        # package needs its full `@cortex-ide/…` name.
+        #
+        # `renderer` used to be listed and is gone: the React renderer was
+        # deleted. `app`, `ui`, `tokens` and `cortex-api` are its replacements
+        # and now carry the product — the UI, the design system and the API
+        # client — so they are gated here rather than only by the merged run.
         package:
           - '@cortex-ide/ai-engine'
           - main
-          - renderer
+          - '@cortex-ide/app'
+          - '@cortex-ide/ui'
+          - '@cortex-ide/tokens'
+          - '@cortex-ide/cortex-api'
           - '@cortex-ide/shared'
           - preload
           - '@cortex-ide/test-harness'

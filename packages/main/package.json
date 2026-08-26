@@ -13,14 +13,16 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@cortex-ide/shared": "workspace:*",
     "@cortex-ide/ai-engine": "workspace:*",
+    "@cortex-ide/cortex-api": "workspace:*",
+    "@cortex-ide/shared": "workspace:*",
     "better-sqlite3": "11.5.0",
     "electron": "^32.2.7",
     "electron-updater": "^6.3.9",
-    "glob": "^10.5.0",
+    "glob": "^13.0.6",
     "node-pty": "^1.1.0",
-    "prettier": "3.6.2"
+    "prettier": "3.6.2",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@cortex-ide/test-utils": "workspace:*",
@@ -29,7 +31,6 @@
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vite-plugin-electron": "^1.1.1",
-    "vitest": "^4.1.10",
-    "zod": "^3.24.1"
+    "vitest": "^4.1.10"
   }
 }

@@ -1,0 +1,99 @@
+/*
+ * Paper: Components / Tabs Toast Menu, "Tabs" (G9-0).
+ * Reference export: design/paper/jsx/tabs-toast-menu.jsx
+ *
+ * Each tab is a column: padding-top 8, then a 13px label with 8px inline padding, then a
+ * 7px gap, then a 2px indicator. The strip sits on a full-width 1px rule.
+ *
+ * The indicator is present on every tab, transparent when inactive. Rendering it only on
+ * the active tab would make the whole strip shift by 9px as selection moved.
+ */
+
+.cx-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.cx-tabs__list {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.cx-tabs__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  padding: 8px 4px 0;
+  border: 0;
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+}
+
+.cx-tabs__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding-inline: var(--spacing-2);
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.cx-tabs__tab[aria-selected='true'] .cx-tabs__label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.cx-tabs__tab:hover:not([aria-selected='true']) .cx-tabs__label {
+  color: var(--color-text);
+}
+
+/*
+ * The indicator is drawn transparent rather than omitted on inactive tabs, so selection
+ * does not change the strip's height.
+ */
+.cx-tabs__indicator {
+  height: 2px;
+  border-radius: 1px;
+  background: transparent;
+}
+
+.cx-tabs__tab[aria-selected='true'] .cx-tabs__indicator {
+  background: var(--color-text);
+}
+
+.cx-tabs__rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--color-border);
+}
+
+/* Count badge on the Changes tab. Inherits the label's colour so it tracks selection. */
+.cx-tabs__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding-inline: 5px;
+
+  border-radius: var(--radius-full);
+  background: var(--color-inset);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+.cx-tabs__tab[aria-selected='true'] .cx-tabs__count {
+  color: var(--color-text);
+}

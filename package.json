@@ -6,10 +6,11 @@
   "author": "Cortex IDE Team",
   "license": "MIT",
   "type": "module",
+  "main": "packages/main/dist/index.js",
   "workspaces": [
     "packages/*"
   ],
-  "//trustedDependencies": "better-sqlite3 ships a native addon. Bun skips postinstall scripts unless the package is trusted, which leaves no compiled binary — or a binary built for a different NODE_MODULE_VERSION. Vitest runs the suite under plain Node, so an unbuilt/stale addon fails every database test at `new Database()`. Keep this list in sync with any native dependency.",
+  "//trustedDependencies": "better-sqlite3 ships a native addon. Bun skips postinstall scripts unless the package is trusted, which leaves no compiled binary \u2014 or a binary built for a different NODE_MODULE_VERSION. Vitest runs the suite under plain Node, so an unbuilt/stale addon fails every database test at `new Database()`. Keep this list in sync with any native dependency.",
   "trustedDependencies": [
     "better-sqlite3"
   ],
@@ -17,7 +18,7 @@
     "dev": "bun run --filter main dev",
     "build": "bun run --filter \"*\" build",
     "build:main": "bun run --filter main build",
-    "build:renderer": "bun run --filter renderer build",
+    "build:app": "bun run --filter @cortex-ide/app build",
     "build:preload": "bun run --filter preload build",
     "start": "electron .",
     "pack": "electron-builder --dir",
@@ -35,16 +36,21 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report test-results/html-report",
     "test:e2e:trace": "playwright show-trace",
-    "verify:renderer": "tsx scripts/verify-renderer.ts",
+    "//paper": "The Paper file `IDE New 01` owns the design. These commands pull from it; nothing under packages/tokens/src/*.generated.* or design/paper/ is hand-written. Needs PAPER_MCP_URL, PAPER_MCP_AUTH and PAPER_FILE_ID.",
+    "paper:sync": "bun scripts/paper-sync.ts all",
+    "paper:tokens": "bun scripts/paper-sync.ts tokens",
+    "paper:manifest": "bun scripts/paper-sync.ts manifest",
+    "paper:baselines": "bun scripts/paper-sync.ts baselines",
+    "paper:spec": "bun scripts/paper-sync.ts spec",
+    "paper:jsx": "bun scripts/paper-sync.ts jsx",
+    "paper:icons": "bun scripts/paper-sync.ts icons",
     "build:native-dual-abi": "tsx scripts/build-native-dual-abi.ts",
     "verify:native-abi": "tsx scripts/verify-native-abi.ts",
-    "screenshots:renderer": "tsx scripts/capture-renderer-screenshots.ts",
-    "screenshots:capture": "bun scripts/capture-screenshots.ts",
-    "screenshots:view": "open screenshots/index.html || xdg-open screenshots/index.html",
-    "screenshots:clean": "rm -rf screenshots/*",
-    "screenshots:baseline": "mv screenshots screenshots-baseline",
-    "screenshots:compare": "./scripts/compare-screenshots.sh",
-    "screenshots:paper": "bun scripts/compare-with-paper.ts",
+    "//visual": "Renders every routed screen at its artboard's exact viewport and writes the captures beside the Paper references. Reporting rather than pass/fail: Paper only returns JPEG, so a strict comparison would fail on compression artefacts. Exact-value checking lives in packages/ui's fidelity suite.",
+    "test:visual": "xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' playwright test --config playwright.visual.config.ts",
+    "//paper:diff": "Pixel-compares the captures against the Paper references. The references are JPEG, so a perfect implementation cannot reach 0% - the numbers are for tracking movement, not for gating.",
+    "paper:diff": "bun scripts/paper-diff.ts",
+    "paper:align": "bun scripts/paper-align.ts",
     "screenshots:visual": "playwright test tests/visual/visual-regression.spec.ts",
     "screenshots:components": "playwright test tests/visual/component-isolation.spec.ts",
     "screenshots:storybook": "playwright test tests/visual/storybook-screenshots.spec.ts",
@@ -60,19 +66,8 @@
     "test:performance:budgets": "rm -rf tests/performance/results && bun run test:performance && bun tests/performance/check-budgets.ts --max-age-seconds=600",
     "test:visual-regression": "vitest run --project root-tests tests/visual-regression",
     "test:all": "bun run test:coverage && bun run test:e2e",
-    "quality:check": "node scripts/analyze-metrics.cjs && npx jscpd packages --format typescript --output quality-reports && npx eslint packages --format json > quality-reports/eslint-report.json 2>&1 || true",
     "quality:duplication": "npx jscpd packages --format typescript --output quality-reports",
     "quality:circular": "npx madge --circular --extensions ts,tsx packages/",
-    "quality:metrics": "node scripts/analyze-metrics.cjs",
-    "perf:bundle": "bun scripts/profile-bundle.ts",
-    "perf:db": "bun scripts/profile-database.ts",
-    "perf:ipc": "bun scripts/profile-ipc.ts",
-    "perf:runtime": "bun scripts/profile-runtime.ts",
-    "perf:startup": "bun scripts/profile-startup.ts",
-    "perf:all": "bun run build && bun scripts/profile-bundle.ts && bun scripts/profile-database.ts && bun scripts/profile-ipc.ts && bun scripts/aggregate-performance-reports.ts",
-    "perf:summary": "bun scripts/performance-summary.ts",
-    "perf:optimize": "bun scripts/apply-optimizations.ts",
-    "perf:optimize:dry": "bun scripts/apply-optimizations.ts --dry-run",
     "test:discovery": "bun scripts/check-test-discovery.ts",
     "test:discovery:fast": "bun scripts/check-test-discovery.ts --fast"
   },
@@ -84,6 +79,8 @@
     "@happy-dom/global-registrator": "18.0.1",
     "@playwright/test": "^1.62.1",
     "@testing-library/dom": "10.4.0",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.2.0",
     "@types/node-cron": "^3.0.11",
     "@typescript-eslint/eslint-plugin": "^8.67.0",
     "@typescript-eslint/parser": "^8.67.0",
@@ -105,36 +102,13 @@
     "vitest": "^4.1.10"
   },
   "dependencies": {
+    "better-sqlite3": "11.5.0",
     "chokidar": "^5.0.0",
-    "dompurify": "^3.4.13",
     "electron-log": "^5.4.4",
     "electron-updater": "^6.8.9",
     "node-cron": "^4.6.0",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "simple-git": "^3.36.0"
-  },
-  "build": {
-    "appId": "com.cortex.ide",
-    "productName": "Cortex IDE",
-    "directories": {
-      "output": "dist",
-      "buildResources": "build"
-    },
-    "files": [
-      "packages/main/dist/**/*",
-      "packages/renderer/dist/**/*",
-      "packages/preload/dist/**/*",
-      "node_modules/node-pty/**/*",
-      "node_modules/chokidar/**/*",
-      "node_modules/simple-git/**/*",
-      "node_modules/node-cron/**/*"
-    ],
-    "asarUnpack": [
-      "node_modules/node-pty/**/*"
-    ],
-    "extraMetadata": {
-      "main": "packages/main/dist/index.js"
-    }
+    "node-pty": "^1.1.0",
+    "simple-git": "^3.36.0",
+    "zod": "^3.24.1"
   }
 }

@@ -115,3 +115,81 @@ export interface SetProviderResponse {
   /** IDs que le registry résout après reconstruction. */
   activeProviders: ProviderId[];
 }
+
+/* -------------------------------------------------------------------------- */
+/* Réglages d'espace de travail                                               */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Les défauts appliqués à chaque nouvelle exécution.
+ *
+ * Persistés dans `app_state` plutôt que par espace de travail : ce sont les
+ * préférences de la personne, pas du dossier. Quelqu'un qui préfère les PR en
+ * brouillon les préfère partout, et re-choisir à chaque dossier ouvert serait
+ * une corvée sans contrepartie.
+ */
+export interface WorkspaceRunDefaults {
+  model: string;
+  repository: string;
+  baseBranch: string;
+  branchPrefix: string;
+  createPullRequests: 'draft' | 'ready' | 'never';
+}
+
+/**
+ * Ce que l'agent est autorisé à faire sans demander.
+ *
+ * Le défaut de `runShellCommands` est `true` parce qu'un agent de code qui ne
+ * peut pas lancer de commande ne peut pas vérifier son propre travail — il
+ * écrirait sans jamais exécuter un test. Les deux autres sont à `false` : une
+ * migration appliquée et un message envoyé ne se défont pas.
+ */
+export interface WorkspaceRunPermissions {
+  runShellCommands: boolean;
+  applyDatabaseMigrations: boolean;
+  slackNotifications: boolean;
+  networkAccess: 'allowlist' | 'all' | 'none';
+}
+
+export interface WorkspaceRunSettings {
+  defaults: WorkspaceRunDefaults;
+  permissions: WorkspaceRunPermissions;
+}
+
+export type GetWorkspaceRunSettingsResponse = WorkspaceRunSettings;
+
+/**
+ * Une écriture partielle.
+ *
+ * Partielle et non totale : l'UI change un réglage à la fois, et envoyer
+ * l'ensemble à chaque bascule ferait écraser par un onglet ce qu'un autre vient
+ * de modifier.
+ */
+export interface SetWorkspaceRunSettingsRequest {
+  defaults?: Partial<WorkspaceRunDefaults>;
+  permissions?: Partial<WorkspaceRunPermissions>;
+}
+
+export type SetWorkspaceRunSettingsResponse = WorkspaceRunSettings;
+
+/* -------------------------------------------------------------------------- */
+/* Secrets                                                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Un secret, tel que le renderer est autorisé à le voir.
+ *
+ * Pas de champ valeur, et pas même de masque. Contrairement à une clé d'API — où
+ * `sk-…4242` aide à reconnaître *laquelle* est enregistrée — un secret est
+ * identifié par son nom : un masque n'apporterait rien et donnerait quatre
+ * caractères de la valeur.
+ */
+export interface SecretView {
+  id: string;
+  /** Le nom de variable d'environnement que les exécutions référencent. */
+  name: string;
+  /** `local` : sur ce poste. `account` : synchronisé (pas encore disponible). */
+  scope: 'local' | 'account';
+  /** Absent tant que le secret n'a jamais servi. */
+  lastUsedAt?: number;
+}

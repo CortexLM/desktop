@@ -397,7 +397,7 @@ describe('GrokProvider', () => {
       // `.rejects` needs a promise, so the consuming loop runs inside an IIFE.
       await expect(
         (async () => {
-        for await (const chunk of provider.stream([{ role: 'user', content: 'test' }])) {
+        for await (const _chunk of provider.stream([{ role: 'user', content: 'test' }])) {
           // Should not reach here
         }
         })()

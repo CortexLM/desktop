@@ -73,6 +73,31 @@ import type {
   AutomationCompletedEvent,
   AutomationFailedEvent,
   AutomationNotificationEvent,
+  CortexAccountState,
+  CortexDeviceStartResponse,
+  CortexDeviceStatusEvent,
+  CortexListModelsResponse,
+  ArchiveSessionRequest,
+  FollowUpSessionRequest,
+  GetSessionRequest,
+  GetSessionResponse,
+  ListRepositoriesResponse,
+  ListSessionsRequest,
+  ListSessionsResponse,
+  OpenWorkspaceResponse,
+  ResolveSessionPermissionRequest,
+  SessionIdRequest,
+  SessionProgressEvent,
+  SessionSummary,
+  StartSessionRequest,
+  StartSessionResponse,
+  GetProviderSettingsResponse,
+  GetWorkspaceRunSettingsResponse,
+  SetProviderRequest,
+  SetProviderResponse,
+  SetWorkspaceRunSettingsRequest,
+  SetWorkspaceRunSettingsResponse,
+  SecretView,
 } from '@cortex-ide/shared';
 
 // MCP Types - Import from types/mcp.ts which are properly exported
@@ -149,6 +174,127 @@ export interface CortexAPI {
     sendMessage: (request: SendMessageRequest) => Promise<IPCResponse<SendMessageResponse>>;
     streamResponse: (request: StreamResponseRequest, onChunk: (chunk: StreamChunk) => void) => Promise<void>;
     stopStream: (sessionId: string) => Promise<void>;
+    resolvePermission: (request: {
+      sessionId: string;
+      requestId: string;
+      decision: 'allow-once' | 'allow-always' | 'deny';
+    }) => Promise<IPCResponse<{ requestId: string }>>;
+  };
+
+  mission: {
+    list: (request: { workspaceId?: string }) => Promise<
+      IPCResponse<{
+        missions: Array<{
+          id: string;
+          name: string;
+          status: string;
+          description: string;
+          steps: Array<{ id: string; name: string; status: string; result?: string; error?: string }>;
+          currentStep: number;
+        }>;
+      }>
+    >;
+    create: (request: {
+      workspaceId?: string;
+      name?: string;
+      description?: string;
+      steps?: string[];
+    }) => Promise<IPCResponse<{ mission: { id: string; name: string; status: string } }>>;
+    start: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+    pause: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+    resume: (request: { id: string }) => Promise<IPCResponse<{ mission: { id: string; status: string } }>>;
+  };
+
+  /**
+   * Compte Cortex et catalogue de modèles.
+   *
+   * Le seul chemin par lequel le renderer peut atteindre `api.cortex.foundation` :
+   * chargé depuis `file://`, il a une origine opaque et le contrôle CORS rejette
+   * ses requêtes avant l'envoi. Le contrat est dans `shared/types/ipc/cortex.ts`.
+   *
+   * Aucune méthode ne rend de jeton. `deviceStart` renvoie le code utilisateur et
+   * l'URL de vérification — faits pour être affichés — et l'issue arrive par
+   * `onDeviceStatus`. Le `device_code`, échangeable contre un jeton, ne sort pas
+   * de main.
+   */
+  cortex: {
+    getState: () => Promise<IPCResponse<CortexAccountState>>;
+    listModels: () => Promise<IPCResponse<CortexListModelsResponse>>;
+    deviceStart: () => Promise<IPCResponse<CortexDeviceStartResponse>>;
+    deviceCancel: () => Promise<IPCResponse<{ cancelled: true }>>;
+    /** Opens the approval page. Takes no URL: main uses the flow it started. */
+    openVerification: () => Promise<IPCResponse<{ opened: boolean }>>;
+    signOut: () => Promise<IPCResponse<CortexAccountState>>;
+    listApiKeys: () => Promise<
+      IPCResponse<{ keys: Array<{ id: string; name: string; lastFour?: string }> }>
+    >;
+    createApiKey: (request: {
+      name: string;
+    }) => Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
+    revokeApiKey: (request: { id: string }) => Promise<IPCResponse<{ revoked: true }>>;
+    onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
+    onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
+  };
+
+  /**
+   * Runs.
+   *
+   * Separate from `ai`, which carries a conversation. There is no "poll for the
+   * next event" method: a run advances in main at its own pace and the renderer
+   * learns of it through `onProgress`.
+   */
+  session: {
+    list: (request?: ListSessionsRequest) => Promise<IPCResponse<ListSessionsResponse>>;
+    get: (request: GetSessionRequest) => Promise<IPCResponse<GetSessionResponse>>;
+    start: (request: StartSessionRequest) => Promise<IPCResponse<StartSessionResponse>>;
+    followUp: (
+      request: FollowUpSessionRequest
+    ) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    stop: (request: SessionIdRequest) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    archive: (
+      request: ArchiveSessionRequest
+    ) => Promise<IPCResponse<{ session: SessionSummary | null }>>;
+    remove: (request: SessionIdRequest) => Promise<IPCResponse<{ deleted: true }>>;
+    resolvePermission: (
+      request: ResolveSessionPermissionRequest
+    ) => Promise<IPCResponse<{ resolved: true }>>;
+    listRepositories: () => Promise<IPCResponse<ListRepositoriesResponse>>;
+    /** Opens the native folder picker and adopts the choice. Takes no path. */
+    openWorkspace: () => Promise<IPCResponse<OpenWorkspaceResponse>>;
+    onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
+  };
+
+  /**
+   * Provider credentials and run settings.
+   *
+   * `setProvider` is the one call in the app that carries an API key in plaintext,
+   * and it goes one way only: `getProviders` answers with masks. The run settings
+   * are held by main because they govern what the agent may do — a permission
+   * whose value is read from a store the renderer can write is not a permission.
+   */
+  settings: {
+    getProviders: () => Promise<IPCResponse<GetProviderSettingsResponse>>;
+    setProvider: (request: SetProviderRequest) => Promise<IPCResponse<SetProviderResponse>>;
+    getWorkspace: () => Promise<IPCResponse<GetWorkspaceRunSettingsResponse>>;
+    setWorkspace: (
+      request: SetWorkspaceRunSettingsRequest
+    ) => Promise<IPCResponse<SetWorkspaceRunSettingsResponse>>;
+  };
+
+  /**
+   * Secrets exposed to runs as environment variables.
+   *
+   * There is deliberately no method that reads a value back. The one that returns
+   * values is main-process only, called by the agent loop — that the renderer
+   * cannot reach it is the entire point.
+   */
+  secrets: {
+    list: () => Promise<IPCResponse<{ secrets: SecretView[] }>>;
+    create: (request: {
+      name: string;
+      value: string;
+    }) => Promise<IPCResponse<{ secret: SecretView }>>;
+    remove: (request: { id: string }) => Promise<IPCResponse<{ deleted: true }>>;
   };
 
   // MCP
@@ -367,6 +513,61 @@ const cortexAPI: CortexAPI = {
     stopStream: async (sessionId) => {
       await ipcRenderer.invoke(IPC_CHANNELS.AI_STOP_STREAM, sessionId);
     },
+    resolvePermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.AI_RESOLVE_PERMISSION, request),
+  },
+
+  mission: {
+    list: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_LIST, request),
+    create: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_CREATE, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_START, request),
+    pause: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_PAUSE, request),
+    resume: (request) => ipcRenderer.invoke(IPC_CHANNELS.MISSION_RESUME, request),
+  },
+
+  cortex: {
+    getState: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_GET_STATE),
+    listModels: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_MODELS),
+    deviceStart: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_DEVICE_START),
+    deviceCancel: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_DEVICE_CANCEL),
+    openVerification: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION),
+    signOut: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_SIGN_OUT),
+    listApiKeys: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_API_KEYS),
+    createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
+    revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
+    onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
+      IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
+    ),
+    onAccountChanged: createEventListener<CortexAccountState>(
+      IPC_CHANNELS.EVENT_CORTEX_ACCOUNT_CHANGED,
+    ),
+  },
+
+  session: {
+    list: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST, request),
+    get: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_GET, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_START, request),
+    followUp: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_FOLLOW_UP, request),
+    stop: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_STOP, request),
+    archive: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_ARCHIVE, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.SESSION_DELETE, request),
+    resolvePermission: (request) =>
+      ipcRenderer.invoke(IPC_CHANNELS.SESSION_RESOLVE_PERMISSION, request),
+    listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
+    openWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_OPEN_WORKSPACE),
+    onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
+  },
+
+  settings: {
+    getProviders: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET_PROVIDERS),
+    setProvider: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_PROVIDER, request),
+    getWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET_WORKSPACE),
+    setWorkspace: (request) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_WORKSPACE, request),
+  },
+
+  secrets: {
+    list: () => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_LIST),
+    create: (request) => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_CREATE, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.SECRETS_DELETE, request),
   },
 
   // MCP
@@ -383,18 +584,8 @@ const cortexAPI: CortexAPI = {
     grantPermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_GRANT_PERMISSION, request),
     revokePermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_REVOKE_PERMISSION, request),
     checkPermission: (request) => ipcRenderer.invoke(IPC_CHANNELS.MCP_CHECK_PERMISSION, request),
-    // NOT YET WIRED (verified 2026-08-17): none of the six `event:mcp-*`
-    // channels below is ever sent from main — grep for `EVENT_MCP` under
-    // `packages/main/src` returns zero non-test hits. The `mcp:*` invoke
-    // handlers above are all real and registered; only these push
-    // notifications are missing their emitter.
-    //
-    // Consequence today: `MCPExtensionList.tsx` subscribes to
-    // `onServerStarted` / `onServerStopped` / `onServerError` to refresh its
-    // list, and that refresh never fires — the list only updates on the
-    // explicit reload the component does after its own start/stop call.
-    // Subscribing is inert, not broken; do not document these as working
-    // events.
+    // Bridged from MCPService EventEmitter events in mcp-handlers.ts
+    // (`setupMCPEvents`). MCPExtensionList refreshes on start/stop/error.
     onServerStarted: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_STARTED),
     onServerStopped: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_STOPPED),
     onServerError: createEventListener(IPC_CHANNELS.EVENT_MCP_SERVER_ERROR),
@@ -507,6 +698,11 @@ const IPC_ALLOWED_CHANNELS = [
   // `electron` n'en a besoin, et les deux listes restent indépendantes.
   'settings:get-providers',
   'settings:set-provider',
+  'mission:list',
+  'mission:create',
+  'mission:start',
+  'mission:pause',
+  'mission:resume',
 ] as const;
 
 const IPC_ALLOWED_EVENT_CHANNELS = [
@@ -522,8 +718,8 @@ const IPC_ALLOWED_EVENT_CHANNELS = [
   // `workspace-handlers.ts` DOES relay WorkspaceManager's internal
   // 'workspace-switched' EventEmitter event to every window as
   // `event:workspace-switched` (see the `switchedListener` registered in
-  // `manager()`), so the emitter side is real — unlike the `event:mcp-*` family
-  // above.
+  // `manager()`), so the emitter side is real — same as the `event:mcp-*`
+  // family, which `setupMCPEvents` now forwards from MCPService.
   //
   // But (verified 2026-08-17) the only renderer subscriber is
   // `components/workspace/WorkspaceSwitcher.tsx`, which no file imports and

@@ -17,7 +17,7 @@ import type {
   SendMessageResponse,
 } from '@cortex-ide/shared';
 
-import type { ChatResponse } from '@cortex-ide/ai-engine';
+import { CODING_TOOLS, composeSystemPrompt, type ChatResponse } from '@cortex-ide/ai-engine';
 
 import { getAIService } from '../../services/ai-service';
 import { createHandler } from './shared/handler-factory';
@@ -32,12 +32,22 @@ export const handleCreateSession = createHandler<CreateSessionRequest, CreateSes
   CreateSessionRequestSchema,
   async (request) => {
     const aiService = getAIService();
-    const session = await aiService.createSession(request.provider, request.model);
+    const session = await aiService.createSession(request.provider, request.model, {
+      workspacePath: request.workspacePath,
+      workspaceId: request.workspaceId,
+    });
 
-    // Ajouter un message système si fourni
-    if (request.systemPrompt) {
-      aiService.addSystemMessage(session.id, request.systemPrompt);
-    }
+    aiService.addSystemMessage(
+      session.id,
+      request.systemPrompt ??
+        composeSystemPrompt({
+          tools: CODING_TOOLS,
+          mode: 'agent',
+          autonomy: 'medium',
+          runtime: 'interactive',
+          workspaceRoot: request.workspacePath,
+        })
+    );
 
     return {
       sessionId: session.id,

@@ -26,6 +26,32 @@ export function registerAIStreamHandler() {
   // The renderer's Stop button invokes this. Without a handler the invoke
   // rejects with "No handler registered", so stopping a generation failed
   // silently and the UI stayed stuck in its streaming state.
+  ipcMain.handle(IPC_CHANNELS.AI_RESOLVE_PERMISSION, (_event, payload: unknown) => {
+    const body = payload as { sessionId?: string; requestId?: string; decision?: string };
+    if (!body?.sessionId || !body.requestId || !body.decision) {
+      return { success: false, error: { code: 'VALIDATION_ERROR', message: 'sessionId, requestId and decision are required' } };
+    }
+    getAIService().resolvePermission(
+      body.sessionId,
+      body.requestId,
+      body.decision as 'allow-once' | 'allow-always' | 'deny'
+    );
+    return { success: true, data: { requestId: body.requestId } };
+  });
+
+  ipcMain.handle(IPC_CHANNELS.AI_LIST_CHECKPOINTS, () => {
+    return { success: true, data: { checkpoints: getAIService().listCheckpoints() } };
+  });
+
+  ipcMain.handle(IPC_CHANNELS.AI_RESTORE_CHECKPOINT, (_event, payload: unknown) => {
+    const body = payload as { sessionId?: string; checkpointId?: string };
+    if (!body?.sessionId || !body.checkpointId) {
+      return { success: false, error: { code: 'VALIDATION_ERROR', message: 'sessionId and checkpointId are required' } };
+    }
+    getAIService().restoreCheckpoint(body.sessionId, body.checkpointId);
+    return { success: true, data: { checkpointId: body.checkpointId } };
+  });
+
   ipcMain.handle(IPC_CHANNELS.AI_STOP_STREAM, (_event, sessionId: unknown) => {
     if (typeof sessionId !== 'string' || sessionId.length === 0) {
       return { success: false, error: { code: 'VALIDATION_ERROR', message: 'sessionId is required' } };
@@ -42,7 +68,8 @@ export function registerAIStreamHandler() {
   aiService.on('stream:chunk', (data: StreamEventData) => {
     const stream = activeStreams.get(data.sessionId);
     if (stream && !stream.aborted) {
-      const chunk: StreamChunk = {
+      const raw = data.chunk as StreamEventData['chunk'] & { ipc?: StreamChunk };
+      const chunk: StreamChunk = raw.ipc ?? {
         type: data.chunk.done ? 'done' : 'chunk',
         content: data.chunk.content,
       };
@@ -82,7 +109,7 @@ async function handleStreamResponse(
     const validatedRequest = StreamResponseRequestSchema.parse(request) as StreamResponseRequest;
     
     const aiService = getAIService();
-    const { sessionId, message } = validatedRequest;
+    const { sessionId, message, workspacePath, mode } = validatedRequest;
     
     // Enregistrer le stream actif
     activeStreams.set(sessionId, {
@@ -94,7 +121,10 @@ async function handleStreamResponse(
     // Démarrer le streaming en arrière-plan
     (async () => {
       try {
-        for await (const _chunk of aiService.streamMessage(sessionId, message)) {
+        for await (const _chunk of aiService.streamMessage(sessionId, message, undefined, {
+          workspacePath,
+          mode,
+        })) {
           const stream = activeStreams.get(sessionId);
           if (!stream || stream.aborted) {
             break;
@@ -165,5 +195,8 @@ export function cleanupAIStreamHandler(): void {
   activeStreams.clear();
   ipcMain.removeHandler(IPC_CHANNELS.AI_STREAM_RESPONSE);
   ipcMain.removeHandler(IPC_CHANNELS.AI_STOP_STREAM);
+  ipcMain.removeHandler(IPC_CHANNELS.AI_RESOLVE_PERMISSION);
+  ipcMain.removeHandler(IPC_CHANNELS.AI_LIST_CHECKPOINTS);
+  ipcMain.removeHandler(IPC_CHANNELS.AI_RESTORE_CHECKPOINT);
   console.log('[IPC] AI stream handler cleaned up');
 }

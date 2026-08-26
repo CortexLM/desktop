@@ -120,7 +120,9 @@ describe('AutomationService - fuites mémoire', () => {
           name: 'failing',
           isAvailable: () => Promise.resolve(true),
           chat: () => Promise.reject(new Error('provider exploded')),
-          stream: async function* () {},
+          stream: async function* () {
+            throw new Error('provider exploded');
+          },
         }),
       } as never);
       aiService = failing;

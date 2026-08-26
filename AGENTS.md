@@ -2,17 +2,22 @@
 
 ## Cursor Cloud specific instructions
 
-Cortex IDE is a single product: an **Electron 32 desktop IDE** in a **Bun workspaces monorepo**
-(`packages/main` = Electron main, `packages/preload`, `packages/renderer` = React UI,
-`packages/shared`, `packages/ai-engine`; `packages/test-harness` and `docs-site` are optional).
+Cortex Code is a single product: an **Electron 32 desktop app** in a **Bun workspaces monorepo**
+(`packages/main` = Electron main, `packages/preload` = the context-bridge,
+`packages/app` = **SolidJS** UI, `packages/tokens` + `packages/ui` = the design system,
+`packages/cortex-api` = the `api.cortex.foundation` client, `packages/shared`,
+`packages/ai-engine`; `packages/test-harness` and `docs-site` are optional).
 Persistence is an embedded SQLite DB (`better-sqlite3`) — there is no external DB/Redis/server to run.
+
+**There is exactly one renderer, and it is `packages/app`.** The React renderer that used to live
+in `packages/renderer` has been deleted; do not reintroduce React, and do not look for it.
 
 Standard commands live in `package.json` scripts and `README.md` / `CONTRIBUTING.md`. Notes below
 cover only the non-obvious things.
 
 ### Toolchain
-- **Bun** is the package manager/runner (`bun.lock`). It is preinstalled at `/usr/local/bin/bun`
-  (persisted in the environment); the update script runs `bun install`.
+- **Bun** is the package manager/runner (`bun.lock`). Install with `curl -fsSL https://bun.sh/install | bash`
+  if `/usr/local/bin/bun` or `~/.bun/bin/bun` is missing.
 - Node 22 + a C/C++ toolchain (`gcc/g++/make/python3`) are present for compiling native addons.
 
 ### Native modules (the main gotcha)
@@ -25,27 +30,68 @@ native dependency version changes or `node_modules` is wiped:
 - **better-sqlite3** must load under two ABIs — Node (vitest) and Electron (the app). Build both with
   `bun run build:native-dual-abi` and check with `bun run verify:native-abi`. `@electron/rebuild` does
   NOT work here (Bun's content-addressed store); see the header comment in `scripts/build-native-dual-abi.ts`.
+- **Running `electron-builder` breaks the unit suite.** It invokes `@electron/rebuild`, which
+  recreates `better-sqlite3/build/Release/better_sqlite3.node` for Electron's ABI — the exact file
+  `build:native-dual-abi` moves aside because it *shadows* the ABI-keyed builds. Vitest then fails
+  every DB test with `Module did not self-register` / `was compiled against a different Node.js
+  version`. It is not a regression in your change: re-run `bun run build:native-dual-abi` (~50s) and
+  `bun run verify:native-abi` after any packaging run.
+
+### Packaging
+`electron-builder.yml` is the only config — the `build` field was removed from `package.json`
+because electron-builder preferred it and silently ignored the yml (so its targets, icons and
+signing config never applied).
+
+`node-pty` and `better-sqlite3` are declared in the **root** `package.json` as well as in
+`packages/main`. electron-builder resolves `node_modules` from the root manifest rather than from
+the `files` globs, so a native addon declared only by a workspace package is linked under
+`packages/main/node_modules/` and left out of the asar — the packaged app then dies at import with
+`ERR_MODULE_NOT_FOUND: Cannot find package 'node-pty'` while the dev build stays fine. Verify a
+packaging change by running the binary, not just by building it:
+`npx electron-builder --dir --linux && DISPLAY=:1 ./dist/linux-unpacked/cortex-ide --no-sandbox`.
 
 ### Running the Electron app
-- Build first: `bun run build` (builds `main`, `preload`, `renderer`).
-- `bun run start` / `electron .` **fails** with `Cannot find module '/workspace'`: the root
-  `package.json` has no `main` field (electron-builder injects it only when packaging). To run the
-  built app in this headless VM, point Electron at the entry directly and disable the sandbox:
+- Build first: `bun run build` (builds `main`, `preload`, `app`, `test-harness`). `main` loads
+  `packages/app/dist/index.html`, so a stale `app` build is the failure mode where you test the
+  previous commit's UI.
+- Root `package.json` sets `"main": "packages/main/dist/index.js"`, so `bun run start` / `electron .`
+  works after a build. In a headless VM, disable the sandbox:
   `DISPLAY=:1 ./node_modules/.bin/electron packages/main/dist/index.js --no-sandbox`
-  (the `Failed to connect to the bus` / GPU-process messages are harmless in headless mode). The app
-  opens on a "Open a folder to get started" screen; enter an absolute folder path to load a workspace.
+  (the `Failed to connect to the bus` / GPU-process messages are harmless). The app opens straight
+  onto a usable signed-out workspace — being usable with no account is a product requirement.
 - `bun run dev` rebuilds `main` in watch mode; you still launch Electron against the built entry as above.
 
+### The renderer cannot call the Cortex API (this trips everyone once)
+The renderer is loaded from `file://`, so its origin is opaque and **every** `fetch` to
+`api.cortex.foundation` fails the CORS check before it is sent. No header fixes this. All API access
+goes through main over the `cortex:*` IPC channels (`packages/main/src/services/cortex-account-service.ts`,
+exposed as `window.cortex.cortex`). The session token stays in main — encrypted at rest via
+`safeStorage`, `0o600` when no keyring is available — and never crosses to the renderer, nor does the
+device flow's `device_code`. See `packages/shared/src/types/ipc/cortex.ts` for the contract and
+`packages/cortex-api/CONTRACT.md` for what was established by probing the live service (notably: the
+service refuses `Authorization: Bearer`; the sealed session cookie is named `wos-session`).
+
+### Provider setup (agent loop)
+The session workbench talks to whatever provider is saved in Settings. For a local/dev loop without
+cloud keys, configure **Ollama** (default `http://127.0.0.1:11434`) or leave keys empty and the
+composer will surface a provider error instead of hanging. Settings → Providers is the only place
+API keys are entered; they never appear in logs.
+
 ### Tests / lint / build
-- `bun run test` (Vitest) is the unit runner; the full suite passes. Do not use `bun:test`
-  (see `test:discovery`).
+- `bun run test` (Vitest) is the unit runner. Do not use `bun:test` (see `test:discovery`).
 - `bun run test:e2e` (Playwright + Electron) needs `bunx playwright install chromium`; it already runs
   under `xvfb-run`.
 - ESLint runs via `npx eslint packages` / `bun run quality:check` (the `lint` script is only a
   placeholder in `test-harness`).
 
-### Known pre-existing defects (NOT environment problems)
-- `bun run typecheck` reports errors (type errors in some `__tests__` files, missing
-  `@types/better-sqlite3`). `bun run lint`/ESLint reports pre-existing findings.
-- `packages/test-harness` build fails: it imports `./benchmarks/index.js`, a source file that does not
-  exist in the repo. This optional package does not affect the Electron app.
+### Product scope (do not invent a different app)
+- The UI is pixel-matched to the Paper file `01M0S24CY8SPNCXKQEC58TJVWS`. The routed screens are the
+  artboards: home, sessions inbox, session detail, automations, review, usage, settings (+
+  integrations), secrets, sign-in, device code, onboarding flows, SSH connect. `packages/app/src/routes.ts`
+  is the source of truth and a test asserts it against the Paper manifest.
+- Design values come from `@cortex-ide/tokens`; do not hardcode colours or spacing. Regenerate with
+  the `paper:*` scripts rather than editing generated files by hand.
+- Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
+  *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
+- **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
+- MCP `event:mcp-*` channels are emitted by `setupMCPEvents` in `packages/main/src/ipc/handlers/mcp-handlers.ts`.

@@ -19,6 +19,7 @@ describe('Model Presets 2026', () => {
       expect(RECOMMENDED_MODELS.anthropic).toBeDefined();
       expect(RECOMMENDED_MODELS.openrouter).toBeDefined();
       expect(RECOMMENDED_MODELS.grok).toBeDefined();
+      expect(RECOMMENDED_MODELS.ollama).toBeDefined();
     });
 
     it('should have latest OpenAI models', () => {

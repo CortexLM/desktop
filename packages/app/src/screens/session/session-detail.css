@@ -1,0 +1,386 @@
+/*
+ * Paper: Screens / Session Detail (2BI-0, 2J9-0) and Session Detail (Focus) (59N-0, 5HB-0).
+ *
+ * A 66px header over a split body: a 452px agent timeline and a 748px workbench, which is
+ * the 1200px main pane divided exactly. The header is taller than the 52px list header
+ * because it carries the stop and pull-request actions.
+ *
+ * The Focus artboard is this screen at full 1440px width with the sidebar hidden, so it is
+ * the same component with a different frame around it rather than a second screen.
+ */
+
+.cx-session {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+.cx-session__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+
+  height: var(--layout-session-header);
+  padding-inline: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cx-session__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-session__back:hover {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+.cx-session__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cx-session__title {
+  margin: 0;
+
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 18px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-session__meta {
+  margin: 0;
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-session__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/*
+ * The split. `grid` with a fixed first track rather than flex, so the timeline keeps its
+ * 452px whatever the workbench contains - a wide diff must not push the conversation
+ * narrower.
+ */
+.cx-session__body {
+  display: grid;
+  grid-template-columns: var(--layout-session-timeline) 1fr;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.cx-session__timeline {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--color-border);
+}
+
+.cx-session__workbench {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Timeline                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.cx-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  flex-grow: 1;
+  min-height: 0;
+
+  padding: var(--spacing-4);
+  overflow-y: auto;
+}
+
+.cx-timeline__prompt {
+  margin: 0;
+
+  font-size: var(--text-sm);
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.cx-timeline__reply {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Plan                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.cx-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 2px;
+  margin: 0;
+  list-style: none;
+}
+
+.cx-plan__step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+/*
+ * The step marker is a 14px ring drawn as a border rather than a glyph, so it stays crisp
+ * at that size. Its contents say which state the step is in: a check when done, a 5px disc
+ * when in progress, nothing when pending.
+ */
+.cx-plan__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+}
+
+.cx-plan__mark--pending {
+  border-color: var(--color-border-strong);
+}
+
+.cx-plan__current-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-muted);
+}
+
+.cx-plan__label {
+  font-size: var(--text-sm);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+/* The step being worked on is the only one at full text colour; the rest stay muted. */
+.cx-plan__step--current .cx-plan__label {
+  color: var(--color-text);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Worklog                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.cx-worklog {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cx-worklog__toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-worklog__toggle:hover {
+  color: var(--color-text);
+}
+
+.cx-worklog__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-left: 18px;
+  margin: 0;
+  list-style: none;
+}
+
+.cx-worklog__entry {
+  font-family: var(--font-mono-stack);
+  font-size: var(--text-xs);
+  line-height: 18px;
+  color: var(--color-text-faint);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Artifacts                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.cx-artifact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.cx-artifact__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+.cx-artifact__text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.cx-artifact__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-artifact__meta {
+  font-size: var(--text-2xs);
+  line-height: 14px;
+  color: var(--color-text-faint);
+}
+
+.cx-artifact__action {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Timeline footer                                                            */
+/* -------------------------------------------------------------------------- */
+
+.cx-timeline__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.cx-timeline__activity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+/*
+ * The activity pulse. A 12px square with a soft pulse rather than a spinner: it sits inline
+ * with a sentence, where a rotating ring reads as a loading state for the whole pane.
+ */
+.cx-timeline__pulse {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-warning);
+  animation: cx-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes cx-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/*
+ * Why a run failed.
+ *
+ * Above the split body rather than inside the timeline: on a failed run this is the
+ * only line worth reading, and putting it in sequence among the tool calls meant a
+ * recorded cause still read as "it just stopped".
+ */
+.cx-session__error {
+  margin: 0 var(--spacing-5) var(--spacing-3);
+  padding: var(--spacing-3);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-error);
+  background: var(--color-error-tint);
+}

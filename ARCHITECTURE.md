@@ -113,30 +113,30 @@ cortex-ide/
 
 **Principe:** Minimaliste - seulement ce qui DOIT être dans le main process.
 
-### Package: renderer
+### Package: app
 
-**Responsabilité:** Interface utilisateur React.
+**Responsabilité:** Interface utilisateur SolidJS. C'est le seul renderer — le package
+`renderer` (React) a été supprimé.
 
 **Structure:**
 ```
-renderer/src/
-├── components/        # Composants React réutilisables
-│   ├── ai/           # Composants agents IA
-│   ├── workspace/    # Navigation, file tree
-│   └── ui/           # Composants UI (Radix-based)
-├── views/            # Pages/vues principales
-├── hooks/            # Custom React hooks
-├── contexts/         # React Context providers
-└── lib/              # Utilitaires frontend
+app/src/
+├── screens/           # Un dossier par artboard Paper
+├── shell/             # Sidebar, AppShell, en-têtes de page
+├── overlays/          # Palette de commandes, notifications, modales
+├── state/             # Contexte de compte + `host.ts` (le pont IPC)
+├── routes.ts          # Table de routes, vérifiée contre le manifeste Paper
+└── app.tsx            # HashRouter + providers
 ```
 
 **Stack:**
-- React 18 + TypeScript
-- TanStack Query (data fetching)
-- Zustand (state management)
-- Radix UI + Tailwind CSS
+- SolidJS + TypeScript
+- `@solidjs/router` en **HashRouter** (obligatoire : le renderer est chargé depuis
+  `file://`, où un routeur d'historique produit un 404 dur sur toute route imbriquée)
+- `@cortex-ide/tokens` / `@cortex-ide/ui` pour le design system
 
-**Principe:** Composants petits et testables, pas de logique métier lourde.
+**Principe:** aucun appel réseau depuis le renderer. Son origine `file://` fait échouer
+le contrôle CORS ; tout passe par `state/host.ts` et les canaux `cortex:*`.
 
 ### Package: preload
 

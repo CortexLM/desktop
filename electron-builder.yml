@@ -9,10 +9,24 @@ directories:
 
 files:
   - packages/main/dist/**/*
-  - packages/renderer/dist/**/*
+  - packages/app/dist/**/*
   - packages/preload/dist/**/*
   - node_modules/**/*
   - package.json
+
+# Native addons cannot be loaded from inside an asar: `dlopen` needs a real path on
+# disk. Both of these ship a `.node` binary, so they are unpacked beside it.
+#
+# They are also why `node-pty` and `better-sqlite3` are declared in the ROOT
+# package.json rather than only in `packages/main`. electron-builder resolves
+# node_modules from the root manifest, not from the `files` globs, so a native addon
+# declared only by a workspace package is linked under `packages/main/node_modules/`
+# and silently left out — the packaged app then died at import with
+# `ERR_MODULE_NOT_FOUND: Cannot find package 'node-pty'`, while the dev build stayed
+# fine because it resolves from the workspace instead of the asar.
+asarUnpack:
+  - node_modules/node-pty/**/*
+  - node_modules/better-sqlite3/**/*
 
 extraMetadata:
   main: packages/main/dist/index.js

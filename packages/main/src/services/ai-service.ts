@@ -7,10 +7,30 @@
 import { EventEmitter } from 'events';
 import type { MCPToolInvocation, MCPToolResult } from './mcp-service';
 import type { MCPServer, MCPTool } from '@cortex-ide/shared';
+import { getSecretsService } from './secrets-service';
+import { getDatabaseService } from './database-service';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
-import { AIProviderRegistry, type RegistryConfig } from '@cortex-ide/ai-engine';
+import {
+  AgentServer,
+  AIProviderRegistry,
+  CheckpointStore,
+  CODING_TOOLS,
+  InMemoryPermissionGate,
+  loadDroidsFromWorkspace,
+  loadSkillsFromWorkspace,
+  readProjectConventions,
+  WorkspaceToolExecutor,
+  type AgentEvent,
+  type AgentMode,
+  type PermissionDecision,
+  type RegistryConfig,
+  type ToolCall as AgentToolCall,
+  type ToolDefinition as AgentToolDefinition,
+  type ToolResult,
+} from '@cortex-ide/ai-engine';
+import type { StreamChunk as IpcStreamChunk } from '@cortex-ide/shared';
 
 // Local type definitions
 interface Message {
@@ -86,7 +106,6 @@ export interface MCPServiceLike {
   invokeTool(invocation: MCPToolInvocation): Promise<MCPToolResult>;
 }
 
-class AIProviderError extends Error {}
 
 export interface AISession {
   id: string;
@@ -95,6 +114,7 @@ export interface AISession {
   messages: Message[];
   createdAt: number;
   updatedAt: number;
+  workspacePath?: string;
   mcpEnabled?: boolean;
   availableTools?: ToolDefinition[];
 }
@@ -108,6 +128,9 @@ export class AIService extends EventEmitter {
   private registry: AIProviderRegistry;
   private sessions = new Map<string, AISession>();
   private mcpService?: MCPServiceLike;
+  private permissionGates = new Map<string, InMemoryPermissionGate>();
+  private checkpoints = new CheckpointStore();
+  readonly agentServer: AgentServer;
 
   constructor(registry?: AIProviderRegistry, mcpService?: MCPServiceLike) {
     super();
@@ -116,6 +139,28 @@ export class AIService extends EventEmitter {
     // `validateRegistry()` below warns about the same env vars `fromEnv()` reads.
     this.registry = registry || AIProviderRegistry.fromEnv();
     this.mcpService = mcpService;
+    this.agentServer = new AgentServer({
+      persist: {
+        save: (record) => {
+          void this.persistSessionRow(
+            {
+              id: record.id,
+              providerId: record.providerId,
+              model: record.model,
+              messages: [],
+              createdAt: record.createdAt,
+              updatedAt: record.updatedAt,
+              workspacePath: record.workspacePath,
+            },
+            undefined
+          );
+        },
+        saveMessage: (sessionId, role, content) => {
+          if (role === 'tool') return;
+          void this.persistMessage(sessionId, role, content);
+        },
+      },
+    });
     this.validateRegistry();
   }
 
@@ -136,7 +181,7 @@ export class AIService extends EventEmitter {
     }
 
     if (!this.mcpService) {
-      throw new Error('MCP service not configured');
+      return;
     }
 
     // Récupérer les tools disponibles depuis les serveurs MCP
@@ -297,7 +342,20 @@ export class AIService extends EventEmitter {
   /**
    * Crée une nouvelle session
    */
-  async createSession(providerId?: string, model?: string): Promise<AISession> {
+  /**
+   * `extras.id` lets a caller that already owns an identifier reuse it.
+   *
+   * `SessionService` needs this: it writes the run's row *before* resolving a
+   * provider, so that a missing key becomes a recorded failure on an existing run
+   * rather than a rejected call with nothing to show. That only works if the
+   * session it later creates carries the same id as the row. `AgentServer` already
+   * accepted an `id`; this was the one link that dropped it.
+   */
+  async createSession(
+    providerId?: string,
+    model?: string,
+    extras?: { workspacePath?: string; workspaceId?: string; id?: string }
+  ): Promise<AISession> {
     const provider = providerId
       ? this.registry.getProvider(providerId)
       : this.registry.getProviderIds().length > 0 
@@ -319,16 +377,24 @@ export class AIService extends EventEmitter {
     }
 
     const session: AISession = {
-      id: this.generateSessionId(),
+      id: extras?.id ?? this.generateSessionId(),
       providerId: provider.id,
       model,
       messages: [],
       createdAt: Date.now(),
       updatedAt: Date.now(),
+      workspacePath: extras?.workspacePath,
     };
 
     this.sessions.set(session.id, session);
+    this.agentServer.createSession({
+      id: session.id,
+      providerId: session.providerId,
+      model: session.model,
+      workspacePath: session.workspacePath,
+    });
     this.emit('session:created', session);
+    void this.persistSessionRow(session, extras?.workspaceId);
 
     return session;
   }
@@ -376,47 +442,73 @@ export class AIService extends EventEmitter {
       throw new Error(`Provider "${session.providerId}" not found`);
     }
 
-    // Ajouter le message utilisateur
-    const userMessage: Message = { role: 'user', content };
-    session.messages.push(userMessage);
-    session.updatedAt = Date.now();
-
-    try {
-      // Envoyer au provider avec les options
-      const response = await provider.chat(session.messages, options);
-
-      // Ajouter la réponse de l'assistant
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: response.content,
-      };
-      session.messages.push(assistantMessage);
-      session.updatedAt = Date.now();
-
-      this.emit('message:sent', { sessionId, message: userMessage });
-      this.emit('message:received', { sessionId, message: assistantMessage, response });
-
-      return response;
-    } catch (error) {
-      // Retirer le message utilisateur en cas d'erreur
-      session.messages.pop();
-      
-      if (error instanceof AIProviderError) {
-        this.emit('error', { sessionId, error });
-        throw error;
-      }
-      
-      throw new Error(`Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    const chunks: string[] = [];
+    for await (const chunk of this.streamMessage(sessionId, content, options, {
+      workspacePath: session.workspacePath,
+    })) {
+      if (chunk.content) chunks.push(chunk.content);
     }
+
+    return {
+      content: chunks.join(''),
+      model: session.model ?? provider.id,
+      usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+    };
   }
 
   /**
    * Envoie un message en mode streaming
    */
+  resolvePermission(sessionId: string, requestId: string, decision: PermissionDecision): void {
+    this.permissionGates.get(sessionId)?.resolve(requestId, decision);
+    this.agentServer.resolvePermission(sessionId, requestId, decision);
+  }
+
+  forkSession(sessionId: string) {
+    return this.agentServer.forkSession(sessionId);
+  }
+
+  compactSession(sessionId: string) {
+    return this.agentServer.compactSession(sessionId);
+  }
+
+  revertLastTurn(sessionId: string) {
+    const record = this.agentServer.revertLastTurn(sessionId);
+    const session = this.sessions.get(sessionId);
+    if (session) {
+      session.messages = record.messages
+        .filter((message) => message.role !== 'tool')
+        .map((message) => ({ role: message.role as Message['role'], content: message.content }));
+    }
+    return record;
+  }
+
+  switchSessionModel(sessionId: string, providerId: string, model?: string) {
+    return this.agentServer.switchModel(sessionId, providerId, model);
+  }
+
+  listCheckpoints() {
+    return this.checkpoints.list();
+  }
+
+  restoreCheckpoint(sessionId: string, checkpointId: string): void {
+    const session = this.sessions.get(sessionId);
+    if (!session) throw new Error(`Session "${sessionId}" not found`);
+    const messages = this.checkpoints.restore(checkpointId);
+    session.messages = messages
+      .filter((message) => message.role !== 'tool')
+      .map((message) => ({
+        role: message.role as Message['role'],
+        content: message.content,
+      }));
+    session.updatedAt = Date.now();
+  }
+
   async *streamMessage(
     sessionId: string,
     content: string,
-    options?: ChatOptions
+    options?: ChatOptions,
+    agent?: { workspacePath?: string; mode?: AgentMode }
   ): AsyncIterableIterator<StreamChunk> {
     const session = this.sessions.get(sessionId);
     if (!session) {
@@ -434,43 +526,16 @@ export class AIService extends EventEmitter {
     session.updatedAt = Date.now();
 
     this.emit('message:sent', { sessionId, message: userMessage });
+    void this.persistMessage(session.id, 'user', content);
 
-    // Accumulation dans un tableau puis join() : la concaténation de string
-    // dans la boucle était en O(n²) sur les réponses longues.
-    const chunks: string[] = [];
-
-    try {
-      // Stream depuis le provider avec le modèle de la session si défini
-
-      for await (const chunk of provider.stream(session.messages, options)) {
-        chunks.push(chunk.content);
-        
-        // Émettre l'événement pour l'IPC
-        this.emit('stream:chunk', { sessionId, chunk });
-        
-        yield chunk;
-      }
-
-      // Ajouter la réponse complète de l'assistant
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: chunks.join(''),
-      };
-      session.messages.push(assistantMessage);
-      session.updatedAt = Date.now();
-
-      this.emit('message:received', { sessionId, message: assistantMessage });
-    } catch (error) {
-      // Retirer le message utilisateur en cas d'erreur
-      session.messages.pop();
-      
-      if (error instanceof AIProviderError) {
-        this.emit('error', { sessionId, error });
-        throw error;
-      }
-      
-      throw new Error(`Failed to stream message: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (agent?.workspacePath && !session.workspacePath) {
+      session.workspacePath = agent.workspacePath;
     }
+
+    yield* this.streamAgentTurn(session, provider, content, options, {
+      workspacePath: agent?.workspacePath ?? session.workspacePath ?? process.cwd(),
+      mode: agent?.mode,
+    });
   }
 
   /**
@@ -487,6 +552,7 @@ export class AIService extends EventEmitter {
     session.updatedAt = Date.now();
 
     this.emit('message:added', { sessionId, message: systemMessage });
+    void this.persistMessage(sessionId, 'system', content);
   }
 
   /**
@@ -562,9 +628,203 @@ export class AIService extends EventEmitter {
     this.emit('session:cleared', sessionId);
   }
 
+  private async *streamAgentTurn(
+    session: AISession,
+    provider: NonNullable<ReturnType<AIProviderRegistry['getProvider']>>,
+    _userText: string,
+    options: ChatOptions | undefined,
+    agent: { workspacePath: string; mode?: AgentMode }
+  ): AsyncIterableIterator<StreamChunk> {
+    const workspaceRoot = agent.workspacePath;
+    const [conventions, droids, skills] = await Promise.all([
+      readProjectConventions(workspaceRoot),
+      loadDroidsFromWorkspace(workspaceRoot),
+      loadSkillsFromWorkspace(workspaceRoot),
+    ]);
+
+    if (this.mcpService) {
+      await this.enableMCPForSession(session.id);
+    }
+
+    const mcpTools = this.toAgentMcpTools(session);
+    const tools: AgentToolDefinition[] = [...CODING_TOOLS, ...mcpTools];
+
+    // The user's stored secrets, as environment variables for anything the agent
+    // runs. Read per turn rather than cached: a secret added in Settings should
+    // apply to the next run, not to the next launch. Best-effort — a run without a
+    // secret is degraded, a run that refuses to start over one is broken.
+    const secretEnv = await getSecretsService()
+      .environment()
+      .catch(() => ({}) as Record<string, string>);
+
+    const workspaceExecutor = new WorkspaceToolExecutor({
+      workspaceRoot,
+      droids,
+      skills,
+      env: secretEnv,
+      autonomy: this.agentServer.getSession(session.id)?.autonomy ?? 'medium',
+      delegationDepth: this.agentServer.getSession(session.id)?.parentId ? 1 : 0,
+      onTodos: (todos, merge) => this.agentServer.mergeTodos(session.id, todos, merge),
+      runDroid: async (droid, prompt) => {
+        const child = this.agentServer.createChildSession(session.id, droid.name);
+        const result = await provider.chat(
+          [
+            { role: 'system', content: droid.systemPrompt },
+            { role: 'user', content: prompt },
+          ],
+          { ...options, model: droid.model ?? session.model }
+        );
+        child.messages.push({ role: 'user', content: prompt }, { role: 'assistant', content: result.content });
+        return result.content;
+      },
+    });
+    const executor = {
+      execute: async (call: AgentToolCall): Promise<ToolResult> => {
+        if (call.name.startsWith('mcp__')) {
+          const [, serverId, toolName] = call.name.split('__');
+          const results = await this.processToolCalls(session.id, [
+            {
+              id: call.id,
+              type: 'mcp_tool',
+              serverId,
+              toolName,
+              arguments: call.arguments,
+            },
+          ]);
+          const payload = results[0]?.content ?? '';
+          return { ok: !payload.includes('"isError":true'), output: payload };
+        }
+        return workspaceExecutor.execute(call);
+      },
+    };
+
+    if (!this.agentServer.getSession(session.id)) {
+      this.agentServer.createSession({
+        id: session.id,
+        providerId: session.providerId,
+        model: session.model,
+        workspacePath: workspaceRoot,
+        mode: agent.mode,
+      });
+    }
+    const hosted = this.agentServer.getSession(session.id)!;
+    hosted.messages = session.messages.map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
+    hosted.mode = agent.mode ?? hosted.mode;
+    hosted.workspacePath = workspaceRoot;
+    this.agentServer.setMode(session.id, hosted.mode);
+
+    const visible: string[] = [];
+
+    try {
+      for await (const event of this.agentServer.runTurn(session.id, _userText, {
+        extraTools: mcpTools,
+        conventions,
+        skills,
+        executor,
+        chat: async (messages) => {
+          const mapped: Message[] = messages.map((message) => ({
+            role: message.role === 'tool' ? 'user' : message.role,
+            content:
+              message.role === 'tool'
+                ? `Tool ${message.name ?? 'unknown'} result:\n${message.content}`
+                : message.content,
+          }));
+          const response = await provider.chat(mapped, {
+            ...options,
+            model: session.model,
+            tools: tools.map((tool) => ({
+              name: tool.name,
+              description: tool.description,
+              parameters: tool.parameters as unknown as Record<string, unknown>,
+            })),
+          });
+          return { content: response.content, toolCalls: response.toolCalls };
+        },
+      })) {
+        const ipc = agentEventToIpc(event);
+        this.emit('stream:chunk', {
+          sessionId: session.id,
+          chunk: { content: ipc.content ?? '', done: ipc.type === 'done', ipc },
+        });
+        if (event.type === 'text') visible.push(event.text);
+        yield { content: ipc.content ?? '', done: ipc.type === 'done' };
+        if (event.type === 'error') {
+          throw new Error(event.message);
+        }
+      }
+
+      const assistantText = visible.join('\n') || '(agent turn)';
+      session.messages.push({
+        role: 'assistant',
+        content: assistantText,
+      });
+      session.updatedAt = Date.now();
+    } catch (error) {
+      session.messages.pop();
+      this.emit('error', {
+        sessionId: session.id,
+        error: error instanceof Error ? error : new Error(String(error)),
+      });
+      throw error;
+    }
+  }
+
   /**
    * Génère un ID unique pour les sessions
    */
+  private toAgentMcpTools(session: AISession): AgentToolDefinition[] {
+    return (session.availableTools ?? []).map((tool) => ({
+      name: `mcp__${tool.serverId}__${tool.toolName}`,
+      description: `${tool.description} (MCP ${tool.serverId})`,
+      risk: 'write' as const,
+      parameters: {
+        type: 'object' as const,
+        properties: (tool.inputSchema?.properties ?? {}) as AgentToolDefinition['parameters']['properties'],
+        required: tool.inputSchema?.required,
+      },
+    }));
+  }
+
+  private async persistSessionRow(session: AISession, workspaceId?: string): Promise<void> {
+    try {
+      const manager = await getDatabaseService().getManager();
+      if (manager.getSession(session.id)) return;
+      manager.createSession({
+        id: session.id,
+        workspace_id: workspaceId ?? null,
+        title: 'New session',
+        model: session.model ?? null,
+        metadata: {
+          provider: session.providerId,
+          workspacePath: session.workspacePath ?? null,
+        },
+      });
+    } catch {
+      // Tests and early boot may not have SQLite ready.
+    }
+  }
+
+  private async persistMessage(
+    sessionId: string,
+    role: 'user' | 'assistant' | 'system',
+    content: string
+  ): Promise<void> {
+    try {
+      const manager = await getDatabaseService().getManager();
+      if (!manager.getSession(sessionId)) return;
+      manager.createMessage({
+        session_id: sessionId,
+        role,
+        content,
+      });
+    } catch {
+      // Same as persistSessionRow: persistence is best-effort.
+    }
+  }
+
   private generateSessionId(): string {
     return `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
   }
@@ -594,6 +854,58 @@ export function getAIService(): AIService {
 /**
  * Réinitialise l'instance du service AI
  */
+function agentEventToIpc(event: AgentEvent): IpcStreamChunk {
+  switch (event.type) {
+    case 'thinking':
+      return { type: 'thinking', content: event.text };
+    case 'text':
+      return { type: 'chunk', content: event.text };
+    case 'tool_start':
+      return {
+        type: 'tool',
+        tool: {
+          id: event.id,
+          name: event.name,
+          title: event.title,
+          status: 'running',
+          detail: event.detail,
+        },
+      };
+    case 'tool_end':
+      return {
+        type: 'tool',
+        content: event.output,
+        tool: {
+          id: event.id,
+          name: event.name,
+          status: event.ok ? 'done' : 'error',
+          additions: event.additions,
+          deletions: event.deletions,
+          durationMs: event.durationMs,
+        },
+      };
+    case 'permission':
+      return { type: 'permission', permission: event.request };
+    case 'question':
+      return { type: 'question', question: { id: event.id, prompt: event.prompt, options: event.options } };
+    case 'plan':
+      return { type: 'plan', plan: event.plan };
+    case 'context_full':
+      return {
+        type: 'context_full',
+        usage: {
+          promptTokens: event.tokens,
+          completionTokens: 0,
+          totalTokens: event.tokens,
+        },
+      };
+    case 'error':
+      return { type: 'error', error: event.message };
+    case 'done':
+      return { type: 'done' };
+  }
+}
+
 export function resetAIService(): void {
   if (aiServiceInstance) {
     aiServiceInstance.cleanup();
