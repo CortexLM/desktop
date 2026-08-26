@@ -27,7 +27,13 @@ import type { SessionDetailScreenProps } from './session-detail-screen.tsx';
 /** The props Session Detail needs, minus the ones the route owns (tab, follow-up). */
 type DetailView = Omit<
   SessionDetailScreenProps,
-  'activeTab' | 'onTabChange' | 'followUp' | 'onFollowUpChange' | 'onSendFollowUp' | 'onBack'
+  | 'activeTab'
+  | 'onTabChange'
+  | 'followUp'
+  | 'onFollowUpChange'
+  | 'onSendFollowUp'
+  | 'onBack'
+  | 'onResolvePermission'
 >;
 
 /**
@@ -71,26 +77,42 @@ function planOf(events: readonly SessionEvent[]): readonly PlanStep[] | undefine
 /**
  * What is happening right now, shown above the follow-up composer.
  *
- * A pending permission request wins over a running tool: it is the one state that
- * needs the user to do something, and burying it under "Running Edit" would leave
- * the run looking busy while it is actually blocked.
+ * Read off the LAST event only, not scanned backwards: a decided permission is
+ * never rewritten in place — the decision shows up as the tool events that follow
+ * it — so a scan that walks past those would rediscover the old request and
+ * report a run as "waiting" that was allowed minutes ago.
  */
 function activityOf(detail: SessionDetail): string | undefined {
   if (detail.status !== 'running') return undefined;
 
-  // Scanned backwards rather than with `findLast`, which needs the ES2023 lib —
-  // not worth widening what this whole package may assume for one call.
-  for (let index = detail.events.length - 1; index >= 0; index -= 1) {
-    const event = detail.events[index]!;
-    if (event.kind === 'permission' && event.decision === undefined) {
-      return `Waiting for permission: ${event.summary}`;
-    }
-    if (event.kind === 'tool' && event.ok === undefined) {
-      return `Running ${event.title || event.name}`;
-    }
+  const event = detail.events.at(-1);
+  if (event?.kind === 'permission' && event.decision === undefined) {
+    return `Waiting for permission: ${event.summary}`;
+  }
+  if (event?.kind === 'tool' && event.ok === undefined) {
+    return `Running ${event.title || event.name}`;
   }
 
   return 'Working…';
+}
+
+/**
+ * The permission the run is currently blocked on, if any.
+ *
+ * Same reading as `activityOf`: pending means the request is the newest thing on
+ * the timeline and the run is still live. The moment it is decided, the loop
+ * appends a tool event after it and the banner leaves on its own — no decision
+ * field needs to be written back into the stored event.
+ */
+function pendingPermissionOf(
+  detail: SessionDetail,
+): { requestId: string; summary: string; risk: 'safe' | 'caution' | 'dangerous' } | undefined {
+  if (detail.status !== 'running') return undefined;
+
+  const event = detail.events.at(-1);
+  if (event?.kind !== 'permission' || event.decision !== undefined) return undefined;
+
+  return { requestId: event.requestId, summary: event.summary, risk: event.risk };
 }
 
 /** "Worked for 4m 32s", once the run has both ends of its interval. */
@@ -198,6 +220,7 @@ function toView(detail: SessionDetail): DetailView {
   assign(view, 'work', work.length > 0 ? work : undefined);
   assign(view, 'artifacts', artifactsOf(detail));
   assign(view, 'activity', activityOf(detail));
+  assign(view, 'permission', pendingPermissionOf(detail));
   assign(view, 'workSummary', workSummaryOf(detail));
   // The recorded reason, or the last error event when the row has none — a run can
   // fail mid-turn and be recorded on the timeline before the status catches up.

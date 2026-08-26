@@ -1,6 +1,6 @@
 import { createSignal, For, type JSX, Show } from 'solid-js';
 
-import { Composer, Icon, type ComposerControl } from '@cortex-ide/ui';
+import { Button, Composer, Icon, type ComposerControl } from '@cortex-ide/ui';
 
 export type PlanStepState = 'done' | 'current' | 'pending';
 
@@ -24,6 +24,15 @@ export interface SessionArtifact {
   onOpen?: () => void;
 }
 
+export type PermissionDecision = 'allow-once' | 'allow-always' | 'deny';
+
+export interface PendingPermission {
+  requestId: string;
+  /** What the agent is asking to do, e.g. `Create NOTES.md`. */
+  summary: string;
+  risk: 'safe' | 'caution' | 'dangerous';
+}
+
 export interface SessionTimelineProps {
   /** What the user asked for. */
   prompt: string;
@@ -36,6 +45,9 @@ export interface SessionTimelineProps {
   artifacts?: readonly SessionArtifact[];
   /** One line on what is happening right now, shown above the follow-up composer. */
   activity?: string;
+  /** The permission the run is blocked on. The agent waits until it is decided. */
+  permission?: PendingPermission;
+  onResolvePermission?: (requestId: string, decision: PermissionDecision) => void;
   followUp: string;
   onFollowUpChange: (value: string) => void;
   onSendFollowUp: () => void;
@@ -141,6 +153,51 @@ function ArtifactCard(props: { artifact: SessionArtifact }): JSX.Element {
 }
 
 /**
+ * The decision the run is blocked on: Allow / Always allow / Deny.
+ *
+ * `role="alert"`: this is the one timeline state where the agent is waiting on the
+ * user, not the other way round. The buttons disable themselves after a click —
+ * the banner only leaves the screen when the loop reacts (a tool event follows),
+ * and until then a second click would race the first decision.
+ */
+function PermissionBanner(props: {
+  request: PendingPermission;
+  onResolve?: (requestId: string, decision: PermissionDecision) => void;
+}): JSX.Element {
+  const [decidedId, setDecidedId] = createSignal<string>();
+  const busy = () => decidedId() === props.request.requestId;
+
+  const decide = (decision: PermissionDecision) => {
+    if (busy()) return;
+    setDecidedId(props.request.requestId);
+    props.onResolve?.(props.request.requestId, decision);
+  };
+
+  return (
+    <div class="cx-permission" role="alert" data-risk={props.request.risk}>
+      <span class="cx-permission__icon" aria-hidden="true">
+        <Icon name="lock" size={14} />
+      </span>
+      <span class="cx-permission__text">
+        <span class="cx-permission__title">Permission needed</span>
+        <span class="cx-permission__summary">{props.request.summary}</span>
+      </span>
+      <span class="cx-permission__actions">
+        <Button variant="ghost" disabled={busy()} onClick={() => decide('deny')}>
+          Deny
+        </Button>
+        <Button variant="secondary" disabled={busy()} onClick={() => decide('allow-always')}>
+          Always allow
+        </Button>
+        <Button variant="primary" disabled={busy()} onClick={() => decide('allow-once')}>
+          Allow
+        </Button>
+      </span>
+    </div>
+  );
+}
+
+/**
  * The agent timeline: what was asked, the plan, what was done, and the follow-up composer.
  *
  * The composer is pinned below the scrolling transcript rather than sitting at the end of
@@ -168,13 +225,19 @@ export function SessionTimeline(props: SessionTimelineProps): JSX.Element {
       </div>
 
       <div class="cx-timeline__footer">
-        <Show when={props.activity}>
-          {(activity) => (
-            <p class="cx-timeline__activity" role="status">
-              <span class="cx-timeline__pulse" aria-hidden="true" />
-              {activity()}
-            </p>
+        <Show when={props.permission}>
+          {(request) => (
+            <PermissionBanner request={request()} onResolve={props.onResolvePermission} />
           )}
+        </Show>
+
+        {/* Hidden while the permission banner is up: "Waiting for permission" under a
+            banner that says the same thing with buttons would be saying it twice. */}
+        <Show when={!props.permission && props.activity}>
+          <p class="cx-timeline__activity" role="status">
+            <span class="cx-timeline__pulse" aria-hidden="true" />
+            {props.activity}
+          </p>
         </Show>
 
         <Composer

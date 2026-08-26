@@ -326,6 +326,9 @@ export function SessionDetailRoute(): JSX.Element {
       onSendFollowUp={() => void send()}
       onBack={() => navigate('/sessions')}
       onStop={() => void runs.stop(params.sessionId)}
+      onResolvePermission={(requestId, decision) =>
+        void runs.host.resolvePermission(params.sessionId, requestId, decision)
+      }
       shell={shell()}
     />
   );

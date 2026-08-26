@@ -751,7 +751,12 @@ export class AIService extends EventEmitter {
           chunk: { content: ipc.content ?? '', done: ipc.type === 'done', ipc },
         });
         if (event.type === 'text') visible.push(event.text);
-        yield { content: ipc.content ?? '', done: ipc.type === 'done' };
+        // The full IPC payload rides along, not just the text. The consumer that
+        // matters here is SessionService.recordChunk: with `{ content, done }`
+        // alone, tool calls, permission requests and plans never reached the
+        // timeline — and a permission request nobody can see is a run that waits
+        // forever on a decision that cannot be given.
+        yield { ...ipc, content: ipc.content ?? '', done: ipc.type === 'done' };
         if (event.type === 'error') {
           throw new Error(event.message);
         }

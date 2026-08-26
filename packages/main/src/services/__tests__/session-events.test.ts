@@ -75,7 +75,34 @@ describe('tool chunks', () => {
 });
 
 describe('permission chunks', () => {
-  it('carries the request id and the summary', () => {
+  it('reads the engine shape: `id`, with risks named write/exec', () => {
+    // This is the exact payload the agent loop emits (PermissionRequest). Reading
+    // only a `requestId` field is how these vanished from the timeline — and a
+    // permission request nobody sees is a run that waits forever.
+    expect(
+      toSessionEvent(
+        { permission: { id: 'perm-call-1', tool: 'Create', summary: 'Create NOTES.md', risk: 'write' } },
+        AT,
+      ),
+    ).toEqual({
+      kind: 'permission',
+      at: AT,
+      requestId: 'perm-call-1',
+      summary: 'Create NOTES.md',
+      risk: 'caution',
+    });
+  });
+
+  it('reads exec risk as dangerous', () => {
+    const event = toSessionEvent(
+      { permission: { id: 'perm-2', summary: 'Execute rm -rf build', risk: 'exec' } },
+      AT,
+    );
+
+    expect((event as { risk: string }).risk).toBe('dangerous');
+  });
+
+  it('still accepts the stored `requestId` shape', () => {
     expect(
       toSessionEvent(
         { permission: { requestId: 'req-1', summary: 'Run `rm -rf build`', risk: 'dangerous' } },
