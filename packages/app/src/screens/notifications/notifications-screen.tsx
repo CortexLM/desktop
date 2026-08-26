@@ -24,37 +24,37 @@ export interface NotificationsScreenProps {
  */
 export function NotificationsScreen(props: NotificationsScreenProps): JSX.Element {
   return (
-    <div class="cx-notifications">
-      <header class="cx-notifications__header">
-        <h1 class="cx-notifications__title">Notifications</h1>
+    <div class="cx-notifications-page">
+      <header class="cx-notifications-page__header">
+        <h1 class="cx-notifications-page__title">Notifications</h1>
       </header>
 
       <Show
         when={props.notifications.length > 0}
         fallback={
-          <div class="cx-notifications__empty">
+          <div class="cx-notifications-page__empty">
             <Icon name="inbox" size={26} strokeWidth={1.6} />
-            <p class="cx-notifications__empty-title">Nothing needs you</p>
-            <p class="cx-notifications__empty-body">
+            <p class="cx-notifications-page__empty-title">Nothing needs you</p>
+            <p class="cx-notifications-page__empty-body">
               Runs that finish or fail while you are elsewhere will land here.
             </p>
           </div>
         }
       >
-        <ul class="cx-notifications__list">
+        <ul class="cx-notifications-page__list">
           <For each={props.notifications}>
             {(entry) => (
               <li>
                 <button
                   type="button"
-                  class="cx-notifications__row"
+                  class="cx-notifications-page__row"
                   onClick={() => props.onOpen(entry.id)}
                 >
                   <Show when={entry.unread}>
-                    <span class="cx-notifications__dot" aria-label="Unread" role="img" />
+                    <span class="cx-notifications-page__dot" aria-label="Unread" role="img" />
                   </Show>
-                  <span class="cx-notifications__message">{entry.message}</span>
-                  <span class="cx-notifications__age">{entry.age}</span>
+                  <span class="cx-notifications-page__message">{entry.message}</span>
+                  <span class="cx-notifications-page__age">{entry.age}</span>
                 </button>
               </li>
             )}
