@@ -521,6 +521,19 @@ function toDeviceStatus(error: unknown): CortexDeviceStatus {
     if (error.code === 'access_denied') return { kind: 'denied' };
     if (error.code === 'expired_token') return { kind: 'expired' };
   }
+
+  // Le service v1 a retiré les routes `/auth/*` : le démarrage répond en
+  // problem+json `not_found`. C'est un changement de contrat côté serveur, pas
+  // une panne — le dire tel quel, avec l'issue de secours qui marche.
+  if (isCortexApiError(error) && error.code === 'not_found') {
+    return {
+      kind: 'error',
+      message:
+        'Sign-in is unavailable: the account service has retired this endpoint. ' +
+        'Local sessions with your own provider key keep working from Settings.',
+    };
+  }
+
   return { kind: 'error', message: describe(error) };
 }
 

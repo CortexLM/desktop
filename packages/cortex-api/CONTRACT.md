@@ -168,3 +168,48 @@ Not reachable without credentials, so deliberately not modelled:
 Those gaps are why `CortexApiClient` covers auth, models and providers concretely and
 exposes a typed escape hatch (`request`) for the rest, rather than inventing endpoints that
 would fail at runtime.
+
+## Addendum — v1 contract drift (observed 2026-08-26)
+
+The deployed service moved under the client; nothing below is a guess. Probed with
+plain curl from this workspace while `CortexLM/backend` itself remained
+inaccessible (repository not visible to this agent's GitHub token — this section
+records the empirical surface until the source can be read).
+
+### The `/auth/*` family is gone
+
+Every previously-working auth route now answers RFC 7807 problem+json:
+
+```json
+{ "type": "about:blank", "title": "Not Found", "status": 404,
+  "detail": "No such endpoint. See https://docs.cortex.foundation/api.",
+  "code": "not_found" }
+```
+
+Observed on `/auth/me`, `/auth/device/start`, `/auth/device/poll`. The device
+flow therefore cannot start against this deployment. `classifyError` surfaces the
+problem+json `code`/`detail` as a `CortexApiError`, and the account service maps
+`not_found` on the device flow to an honest "the account service has retired this
+endpoint" message with the local-key fallback. What replaces the flow is not yet
+discoverable from outside:
+
+- `GET /v1/me` → `401 {"code":"AUTH_REQUIRED"}` (exists, wants credentials)
+- `GET /v1/auth/login` → `405` (exists; method not allowed anonymously)
+- RFC 8414 metadata (`/.well-known/oauth-authorization-server`) → 404
+- `docs.cortex.foundation` timed out on every probe
+
+### `/v1/models` changed envelope and key
+
+```json
+{ "items": [ { "slug": "cortex-1-mini", "display_name": "Cortex 1 Mini",
+  "description": "Preview — the model Cortex is serving today.",
+  "context_tokens": 262144, "max_output_tokens": 32768,
+  "supports_reasoning": true, "supports_tools": true,
+  "supports_vision": false, "is_preview": true } ],
+  "has_more": false }
+```
+
+Previously `{ "object": "list", "data": [{ "id": … }] }`. `modelListSchema`
+accepts both envelopes and normalises `slug` onto `id`, so consumers (the model
+picker, capabilities) are unaffected. Verified against the live service through
+`CortexApiClient.listModels()`.
