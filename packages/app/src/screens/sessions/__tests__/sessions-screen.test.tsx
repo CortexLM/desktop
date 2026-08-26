@@ -111,11 +111,12 @@ describe('Sessions inbox', () => {
 
   it('confines the status colour to the dot and keeps the label muted', () => {
     // At 12px a coloured label on a white row reads as a link, so the hue stays in the dot.
+    // C3 tones: live runs are the copper accent, landed states the brand green.
     const { container } = renderSessions();
 
-    expect(container.querySelector('.cx-inbox__status-dot--warning')).not.toBeNull();
-    expect(container.querySelector('.cx-inbox__status-dot--success')).not.toBeNull();
+    // running -> copper accent; pr-ready and merged -> brand green.
     expect(container.querySelector('.cx-inbox__status-dot--accent')).not.toBeNull();
+    expect(container.querySelectorAll('.cx-inbox__status-dot--success').length).toBeGreaterThan(0);
   });
 
   it('formats diff counts with a minus sign', () => {

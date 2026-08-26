@@ -158,6 +158,11 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['automation', 'toggle', 'automation:toggle'],
   ['automation', 'getLogs', 'automation:get-logs'],
   ['session', 'list', 'session:list'],
+  ['chat', 'get', 'chat:get'],
+  ['chat', 'start', 'chat:start'],
+  ['chat', 'send', 'chat:send'],
+  ['chat', 'stop', 'chat:stop'],
+  ['chat', 'remove', 'chat:delete'],
   ['session', 'get', 'session:get'],
   ['session', 'start', 'session:start'],
   ['session', 'followUp', 'session:follow-up'],
@@ -182,6 +187,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  * or `null` instead would be validated against a shape nobody declared.
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
+  ['chat', 'list', 'chat:list'],
   ['session', 'listRepositories', 'session:list-repositories'],
   ['session', 'openWorkspace', 'session:open-workspace'],
   ['settings', 'getProviders', 'settings:get-providers'],

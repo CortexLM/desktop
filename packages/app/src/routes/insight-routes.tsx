@@ -57,7 +57,7 @@ export function ReviewRoute(): JSX.Element {
     <ReviewScreen
       capabilities={account.capabilities()}
       items={items()}
-      onOpen={(id) => navigate(`/sessions/${id}`)}
+      onOpen={(id) => navigate(`/code/sessions/${id}`)}
       onSignIn={() => navigate('/sign-in')}
     />
   );

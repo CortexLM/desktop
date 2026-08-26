@@ -37,11 +37,13 @@ describe('App', () => {
     });
   });
 
-  it('lands on Home', async () => {
+  it('lands on the Chat home', async () => {
     render(() => <App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Home' })).toHaveAttribute('aria-current', 'page');
+      // The root is the Chat product: the greeting and the "ask anything" composer.
+      expect(screen.getByRole('heading', { name: /Good (morning|afternoon|evening)/ })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'true');
     });
   });
 
@@ -50,8 +52,8 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByLabelText('Prompt')).toBeInTheDocument());
   });
 
-  it('renders the sidebar with the five destinations', async () => {
-    render(() => <App />);
+  it('renders the Code sidebar with the five workspace destinations', async () => {
+    render(() => <App initialPath="/code" />);
 
     await waitFor(() => {
       for (const label of ['Home', 'Sessions', 'Automations', 'Review', 'Usage']) {
@@ -61,7 +63,7 @@ describe('App', () => {
   });
 
   it('locks the Cortex-only destinations while signed out', async () => {
-    render(() => <App />);
+    render(() => <App initialPath="/code" />);
 
     await waitFor(() => {
       // `aria-disabled`, not `disabled` — see NavItem: a disabled button cannot be focused,
@@ -89,7 +91,7 @@ describe('App', () => {
 
   it('defaults the draft runtime to one the user can actually reach', async () => {
     // Signed out there is only Local. A draft pointing at Cloud would fail on send.
-    render(() => <App />);
+    render(() => <App initialPath="/code" />);
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Local/ })).toBeInTheDocument();
@@ -139,15 +141,15 @@ describe('slugForPath', () => {
   });
 
   it('prefers the longest match, so a nested path is not shadowed by its parent', () => {
-    // Sorting the other way round would highlight Settings for /settings/integrations and
-    // Sessions for /sessions/:id.
-    expect(slugForPath('/settings/integrations')).toBe('settings-integrations');
-    expect(slugForPath('/settings')).toBe('settings');
+    // Sorting the other way round would highlight Settings for /code/settings/integrations
+    // and Sessions for /code/sessions/:id.
+    expect(slugForPath('/code/settings/integrations')).toBe('code-integrations');
+    expect(slugForPath('/code/settings')).toBe('code-settings');
   });
 
   it('maps a session detail path to the session detail screen', () => {
-    expect(slugForPath('/sessions/abc123')).toBe('session-detail');
-    expect(slugForPath('/sessions')).toBe('sessions');
+    expect(slugForPath('/code/sessions/abc123')).toBe('code-session-detail');
+    expect(slugForPath('/code/sessions')).toBe('code-sessions');
   });
 
   it('falls back to Home for a path it does not know', () => {

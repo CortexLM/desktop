@@ -15,22 +15,28 @@ const RUNS: RecentRun[] = [
 function renderSidebar(overrides: Partial<SidebarProps> = {}) {
   const onNavigate = overrides.onNavigate ?? vi.fn();
   const onOpenRun = overrides.onOpenRun ?? vi.fn();
+  const onSwitchProduct = overrides.onSwitchProduct ?? vi.fn();
 
   const result = render(() => (
     <ThemeProvider initial="light">
       <Sidebar
-        workspace="forge"
+        product="code"
         capabilities={ANONYMOUS_CAPABILITIES}
-        activeSlug="home"
+        activeSlug="code-home"
         recentRuns={RUNS}
+        recentChats={[]}
+        onOpenChat={vi.fn()}
+        onNewChat={vi.fn()}
+        onNewSession={vi.fn()}
         {...overrides}
+        onSwitchProduct={onSwitchProduct}
         onNavigate={onNavigate}
         onOpenRun={onOpenRun}
       />
     </ThemeProvider>
   ));
 
-  return { ...result, onNavigate, onOpenRun };
+  return { ...result, onNavigate, onOpenRun, onSwitchProduct };
 }
 
 describe('Sidebar navigation', () => {
@@ -45,19 +51,45 @@ describe('Sidebar navigation', () => {
   });
 
   it('marks the active destination', () => {
-    renderSidebar({ activeSlug: 'sessions' });
+    renderSidebar({ activeSlug: 'code-sessions' });
     expect(screen.getByRole('button', { name: 'Sessions' })).toHaveAttribute('aria-current', 'page');
   });
 
   it('reports a navigation by slug', () => {
     const { onNavigate } = renderSidebar();
     fireEvent.click(screen.getByRole('button', { name: 'Sessions' }));
-    expect(onNavigate).toHaveBeenCalledWith('sessions');
+    expect(onNavigate).toHaveBeenCalledWith('code-sessions');
   });
 
   it('shows the unread dot where the caller says there is activity', () => {
-    const { container } = renderSidebar({ unread: { sessions: true } });
+    const { container } = renderSidebar({ unread: { 'code-sessions': true } });
     expect(container.querySelectorAll('.cx-nav-item__indicator--unread')).toHaveLength(1);
+  });
+});
+
+describe('Sidebar product switcher', () => {
+  it('offers both products with the Code side active here', () => {
+    renderSidebar();
+    expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.getByRole('button', { name: 'Code' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('switches products', () => {
+    const { onSwitchProduct } = renderSidebar();
+    fireEvent.click(screen.getByRole('button', { name: 'Chat' }));
+    expect(onSwitchProduct).toHaveBeenCalledWith('chat');
+  });
+
+  it('shows the chat sections when the Chat product is active', () => {
+    renderSidebar({ product: 'chat' });
+
+    expect(screen.getByText('New chat')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+    // The roadmap apps are locked with an honest reason, not hidden.
+    expect(screen.getByRole('button', { name: 'Research' })).toHaveAttribute(
+      'title',
+      'Research is coming soon',
+    );
   });
 });
 
@@ -133,16 +165,16 @@ describe('Sidebar recent sessions', () => {
     expect(onOpenRun).toHaveBeenCalledWith('run-1');
   });
 
-  it('marks the runs still in progress', () => {
-    renderSidebar();
-    expect(screen.getAllByLabelText('Running')).toHaveLength(1);
+  it('marks the runs still in progress with the copper dot', () => {
+    const { container } = renderSidebar();
+    expect(container.querySelectorAll('.cx-sidebar__run-live')).toHaveLength(1);
   });
 
   it('omits the whole section when there is nothing recent', () => {
     // An empty "Recent sessions" heading is worse than no heading: it reads as a failure to
     // load rather than as a fresh install.
-    const { container } = renderSidebar({ recentRuns: [] });
-    expect(container.querySelector('.cx-sidebar__section')).toBeNull();
+    renderSidebar({ recentRuns: [] });
+    expect(screen.queryByText('Recent sessions')).toBeNull();
   });
 });
 

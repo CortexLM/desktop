@@ -82,7 +82,7 @@ function toNotifications(
           ? `${session.title} failed`
           : `${session.title} is ready to review`,
       age: formatAge(session.updatedAt, now),
-      href: `/sessions/${session.id}`,
+      href: `/code/sessions/${session.id}`,
     }));
 }
 
@@ -148,7 +148,7 @@ function dispatch(id: string, targets: DispatchTargets): void {
     return;
   }
   if (id.startsWith('open:')) {
-    targets.navigate(`/sessions/${id.slice(5)}`);
+    targets.navigate(`/code/sessions/${id.slice(5)}`);
     return;
   }
   if (id === 'action:new-session') {
@@ -239,7 +239,7 @@ export function OverlayHost(): JSX.Element {
           notifications={notifications()}
           onOpen={(id) => {
             setOpen(null);
-            navigate(`/sessions/${id}`);
+            navigate(`/code/sessions/${id}`);
           }}
           onDismiss={() => setOpen(null)}
         />
