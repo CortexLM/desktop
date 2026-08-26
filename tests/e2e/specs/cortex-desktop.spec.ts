@@ -40,26 +40,42 @@ async function viaBridge<T>(page: Page, method: string): Promise<Envelope<T>> {
   }, method);
 }
 
+/** Switches the shell to the Code product and waits for its sidebar. */
+async function openCode(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    window.location.hash = '#/code';
+  });
+  await expect(page.getByRole('button', { name: 'Home' })).toBeVisible();
+}
+
 test.describe('the app Electron loads', () => {
   test('is the SolidJS renderer, not the retired React one', async ({ page }) => {
     // `#root` with the Solid bundle attached. The React app mounted a different tree, so
     // this fails loudly if `main` is pointed back at the old dist.
     await expect(page.locator('#root')).toBeAttached();
 
-    // The workspace chrome the design draws: a navigation rail with the primary
-    // destinations. Asserted by role and name so it survives class renames.
+    // The C3 shell: a navigation rail carrying the Chat|Code product switcher.
     await expect(page.getByRole('navigation')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Home' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
+
+    // The Code product keeps the five workspace destinations.
+    await openCode(page);
     await expect(page.getByRole('button', { name: 'Sessions' })).toBeVisible();
   });
 
   test('is usable with no account at all', async ({ page }) => {
-    // The anonymous path is a product requirement, not a fallback: the composer has to be
-    // reachable without signing in.
+    // The anonymous path is a product requirement, not a fallback: the Chat composer
+    // greets first, and the Code composer has to be reachable without signing in too.
+    await expect(page.getByPlaceholder(/Ask anything/i)).toBeVisible();
+
+    await openCode(page);
     await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
   });
 
   test('gates what an account is needed for, and says why', async ({ page }) => {
+    await openCode(page);
+
     // Locked rather than hidden: hiding these would make the signed-out app look like a
     // smaller product, whereas a locked row advertises what an account adds.
     for (const label of ['Automations', 'Review', 'Usage']) {
@@ -80,6 +96,7 @@ test.describe('the app Electron loads', () => {
     // attribute: `aria-disabled` is advisory and the browser does still fire the event.
     await page.getByRole('button', { name: 'Usage' }).click({ force: true });
     await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
+
 
     // And the destinations that need nothing stay usable.
     await expect(page.getByRole('button', { name: 'Home' })).toBeEnabled();
@@ -109,6 +126,7 @@ test.describe('the app Electron loads', () => {
   test('keeps a typed prompt when you leave Home and come back', async ({ page }) => {
     // The draft used to live in the route's own scope, which Solid disposes on navigation, so
     // checking Sessions mid-thought silently emptied the composer.
+    await openCode(page);
     const composer = page.getByPlaceholder(/Describe a task/i);
     await composer.fill('Fix the flaky auth test');
 
@@ -240,12 +258,13 @@ test.describe('runs', () => {
     // No provider is configured in a fresh userData, and that is the case worth
     // covering: the old path threw out of `start`, surfaced a raw error and recorded
     // nothing, so the user had a toast to re-read and no trace of the attempt.
+    await openCode(page);
     await page.getByPlaceholder(/Describe a task/i).fill('Add a hello function');
     // The submit is a glyph button; its accessible name is what makes it findable.
     await page.getByRole('button', { name: 'Start session' }).click();
 
     // Lands on the run's own screen, which means the id existed before navigation.
-    await expect(page).toHaveURL(/#\/sessions\/session_/);
+    await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     // The failure is recorded and says what to do about it, rather than being a
     // generic "something went wrong".
@@ -261,13 +280,14 @@ test.describe('runs', () => {
   });
 
   test('survives a reload, because the run is in the database', async ({ page }) => {
+    await openCode(page);
     await page.getByPlaceholder(/Describe a task/i).fill('Persisted across reload');
     await page.getByRole('button', { name: 'Start session' }).click();
-    await expect(page).toHaveURL(/#\/sessions\/session_/);
+    await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
-      window.location.hash = '#/sessions';
+      window.location.hash = '#/code/sessions';
     });
 
     // The old in-memory store showed an empty list on every launch while the rows
@@ -306,7 +326,7 @@ test.describe('the command palette', () => {
 test.describe('settings', () => {
   test('persists a run setting through main', async ({ page }) => {
     await page.evaluate(() => {
-      window.location.hash = '#/settings';
+      window.location.hash = '#/code/settings';
     });
     await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
 
@@ -318,7 +338,7 @@ test.describe('settings', () => {
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
-      window.location.hash = '#/settings';
+      window.location.hash = '#/code/settings';
     });
 
     await expect(page.getByLabel(/Branch prefix/i)).toHaveValue('agent/', { timeout: 15000 });
@@ -329,9 +349,10 @@ test.describe('the Shell tab', () => {
   test('runs a real shell', async ({ page }) => {
     // The tab rendered nothing before: the workbench declared it and passed
     // `undefined` as its content, so the design's four tabs were three.
+    await openCode(page);
     await page.getByPlaceholder(/Describe a task/i).fill('shell');
     await page.getByRole('button', { name: 'Start session' }).click();
-    await expect(page).toHaveURL(/#\/sessions\/session_/);
+    await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     await page.getByRole('tab', { name: /Shell/ }).click();
 
@@ -341,7 +362,10 @@ test.describe('the Shell tab', () => {
     const screen = page.locator('.xterm-screen');
     await expect(screen).toBeVisible();
 
-    await screen.click();
+    // `force`: while the bundled fonts land, xterm refits and the screen's box
+    // moves for a moment, which Playwright's stability check waits out forever.
+    // The echo round-trip below is the real assertion; the click only focuses.
+    await screen.click({ force: true });
     await page.keyboard.type('echo wired-ok');
     await page.keyboard.press('Enter');
 
