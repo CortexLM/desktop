@@ -156,6 +156,7 @@ const EXPECTED_NAMESPACES = [
   // carries the persisted run — its state, its timeline and its diff.
   'cortex.session',
   'cortex.chat',
+  'cortex.windowControls',
   // Provider credentials and run settings. The one namespace that carries a secret
   // across the boundary, and only in the renderer -> main direction.
   'cortex.settings',

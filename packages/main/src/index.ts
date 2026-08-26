@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { IPC_CHANNELS } from '@cortex-ide/shared';
+import { installAppMenu, windowChromeOptions } from './window/chrome';
 import { registerIPCHandlers, unregisterIPCHandlers } from './ipc/handlers/index';
 import { startMCPEvents, stopMCPEvents } from './ipc/handlers/mcp-handlers';
 import { updateManager } from './updater';
@@ -32,15 +34,15 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 600,
-    // The design's light background. This colour is only visible for the frame or
-    // two before the renderer paints, which is exactly why it matters: #0D0D0E
-    // flashed near-black before a light UI. Light is the default theme, and a
-    // renderer that resolves to dark repaints within the same frame.
-    backgroundColor: '#FCFCFC',
-    titleBarStyle: 'hiddenInset',
-    // Matches where the artboards draw the traffic lights, so the sidebar's
-    // reserved chrome row lines up with the real window buttons.
-    trafficLightPosition: { x: 16, y: 16 },
+    // The design's light background (C3 ivory). This colour is only visible for
+    // the frame or two before the renderer paints, which is exactly why it
+    // matters: #0D0D0E flashed near-black before a light UI. Light is the
+    // default theme, and a renderer that resolves to dark repaints within the
+    // same frame.
+    backgroundColor: '#FAF8F4',
+    // The frame is the app's own: no native title bar, no menu strip. What that
+    // means per OS lives in window/chrome.ts.
+    ...windowChromeOptions(),
     webPreferences: {
       // Must match the preload build output. Vite emits CommonJS as `.cjs`
       // (see packages/preload/vite.config.ts + its package.json "main"), and a
@@ -69,6 +71,14 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(__dirname, '../../app/dist/index.html'));
   }
+
+  // The custom bar's restore button mirrors this state; pushed rather than
+  // polled so the glyph flips the same frame the OS changes the window.
+  const reportMaximized = (maximized: boolean) => () => {
+    mainWindow?.webContents.send(IPC_CHANNELS.EVENT_WINDOW_MAXIMIZED, { maximized });
+  };
+  mainWindow.on('maximize', reportMaximized(true));
+  mainWindow.on('unmaximize', reportMaximized(false));
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -160,6 +170,10 @@ app.whenReady().then(async () => {
   await startupStep('IPC handlers', () => registerIPCHandlers());
   await startupStep('Automation events', () => setupAutomationEvents());
   await startupStep('MCP events', () => startMCPEvents());
+
+  // The frame is ours: drop the native menu strip (kept minimal on macOS,
+  // where the accelerators live in the system bar).
+  await startupStep('Application menu', () => installAppMenu());
 
   // Open the window before touching anything slow or fallible.
   createWindow();

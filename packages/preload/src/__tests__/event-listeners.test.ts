@@ -143,6 +143,7 @@ const PAYLOAD_LISTENERS: [group: string, method: string, channel: string][] = [
   // carries the updated summary so the inbox row and the timeline move together.
   ['session', 'onProgress', 'event:session-progress'],
   ['chat', 'onProgress', 'event:chat-progress'],
+  ['windowControls', 'onMaximizedChange', 'event:window-maximized'],
 ];
 
 function subscribeVia(group: string, method: string): Subscribe<unknown> {

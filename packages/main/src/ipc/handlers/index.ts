@@ -28,6 +28,7 @@ import {
   registerConversationHandlers,
   unregisterConversationHandlers,
 } from './conversation-handlers';
+import { registerWindowHandlers, unregisterWindowHandlers } from './window-handlers';
 import { registerSecretsHandlers, unregisterSecretsHandlers } from './secrets-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
@@ -108,6 +109,11 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     name: 'conversations',
     register: registerConversationHandlers,
     unregister: unregisterConversationHandlers,
+  },
+  {
+    name: 'window',
+    register: registerWindowHandlers,
+    unregister: unregisterWindowHandlers,
   },
   {
     name: 'session',

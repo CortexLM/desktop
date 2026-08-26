@@ -188,6 +188,10 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['chat', 'list', 'chat:list'],
+  ['windowControls', 'minimize', 'window:minimize'],
+  ['windowControls', 'toggleMaximize', 'window:toggle-maximize'],
+  ['windowControls', 'close', 'window:close'],
+  ['windowControls', 'isMaximized', 'window:is-maximized'],
   ['session', 'listRepositories', 'session:list-repositories'],
   ['session', 'openWorkspace', 'session:open-workspace'],
   ['settings', 'getProviders', 'settings:get-providers'],

@@ -90,6 +90,8 @@ import type {
   SessionProgressEvent,
   ChatIdRequest,
   ChatProgressEvent,
+  IsWindowMaximizedResponse,
+  WindowMaximizedEvent,
   GetConversationRequest,
   GetConversationResponse,
   ListConversationsResponse,
@@ -271,6 +273,23 @@ export interface CortexAPI {
     /** Opens the native folder picker and adopts the choice. Takes no path. */
     openWorkspace: () => Promise<IPCResponse<OpenWorkspaceResponse>>;
     onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
+  };
+
+  /**
+   * Which OS the app runs on. The renderer sizes its custom title bar with it:
+   * macOS reserves the traffic-light inset, Windows and Linux draw their own
+   * window controls. A function rather than a value: the bridge is a wall of
+   * functions, and the exposed-surface guard keeps it that way.
+   */
+  platform: () => NodeJS.Platform;
+
+  /** What the native frame used to do, for the custom title bar's buttons. */
+  windowControls: {
+    minimize: () => Promise<IPCResponse<{ minimized: true }>>;
+    toggleMaximize: () => Promise<IPCResponse<IsWindowMaximizedResponse>>;
+    close: () => Promise<IPCResponse<{ closed: true }>>;
+    isMaximized: () => Promise<IPCResponse<IsWindowMaximizedResponse>>;
+    onMaximizedChange: (callback: (event: WindowMaximizedEvent) => void) => () => void;
   };
 
   /**
@@ -578,6 +597,18 @@ const cortexAPI: CortexAPI = {
     listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
     openWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_OPEN_WORKSPACE),
     onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
+  },
+
+  platform: () => process.platform,
+
+  windowControls: {
+    minimize: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_MINIMIZE),
+    toggleMaximize: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_TOGGLE_MAXIMIZE),
+    close: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_CLOSE),
+    isMaximized: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_IS_MAXIMIZED),
+    onMaximizedChange: createEventListener<WindowMaximizedEvent>(
+      IPC_CHANNELS.EVENT_WINDOW_MAXIMIZED,
+    ),
   },
 
   chat: {
