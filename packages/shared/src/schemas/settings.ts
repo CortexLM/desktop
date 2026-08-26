@@ -55,3 +55,46 @@ export const SetProviderRequestSchema = z.object({
   baseUrl: z.string().max(2048).optional(),
   defaultModel: z.string().max(256).optional(),
 });
+
+/**
+ * Lecture des réglages d'exécution. Sans paramètre.
+ *
+ * `.optional()` pour la même raison que `GetProviderSettingsRequestSchema` : le
+ * pont invoque sans argument, donc main reçoit `undefined`, et un schéma d'objet
+ * strict rejetterait chaque appel à l'exécution seulement.
+ */
+export const GetWorkspaceRunSettingsRequestSchema = z
+  .object({})
+  .optional()
+  .transform(() => ({}) as Record<string, never>);
+
+const WorkspaceRunDefaultsPatchSchema = z
+  .object({
+    model: z.string(),
+    repository: z.string(),
+    baseBranch: z.string(),
+    branchPrefix: z.string(),
+    createPullRequests: z.enum(['draft', 'ready', 'never']),
+  })
+  .partial();
+
+const WorkspaceRunPermissionsPatchSchema = z
+  .object({
+    runShellCommands: z.boolean(),
+    applyDatabaseMigrations: z.boolean(),
+    slackNotifications: z.boolean(),
+    networkAccess: z.enum(['allowlist', 'all', 'none']),
+  })
+  .partial();
+
+/**
+ * Écriture partielle : l'UI change un réglage à la fois.
+ *
+ * Accepter l'objet entier obligerait le renderer à renvoyer ce qu'il a lu au
+ * chargement, et un second onglet écraserait au clic suivant ce que le premier
+ * vient de modifier.
+ */
+export const SetWorkspaceRunSettingsRequestSchema = z.object({
+  defaults: WorkspaceRunDefaultsPatchSchema.optional(),
+  permissions: WorkspaceRunPermissionsPatchSchema.optional(),
+});

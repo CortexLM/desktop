@@ -96,8 +96,12 @@ describe('TriggerSchema', () => {
     }
   });
 
-  it('rejette un file_watch sans events', () => {
-    expect(TriggerSchema.safeParse({ ...FILE_TRIGGER, events: [] }).success).toBe(false);
+  it('accepte un file_watch sans events, que le handler complète', () => {
+    // Le renderer n'a pas de raison de choisir entre add / change / unlink :
+    // « quand les fichiers changent » veut dire les trois. Exiger un choix ici
+    // rendait la création d'automation impossible depuis l'UI, et
+    // `automation-handlers` remplit la liste.
+    expect(TriggerSchema.safeParse({ ...FILE_TRIGGER, events: [] }).success).toBe(true);
   });
 
   it("rejette un event hors de ('add'|'change'|'unlink')", () => {
@@ -106,10 +110,11 @@ describe('TriggerSchema', () => {
     ).toBe(false);
   });
 
-  it('rejette un file_watch sans workspacePath', () => {
-    expect(TriggerSchema.safeParse({ ...FILE_TRIGGER, workspacePath: '' }).success).toBe(
-      false
-    );
+  it('accepte un file_watch sans workspacePath, que le handler résout', () => {
+    // Un chemin disque n'est pas au renderer de le fournir : main ne le lui envoie
+    // délibérément pas, donc l'exiger était exiger une valeur impossible à
+    // connaître. Le handler y met l'espace de travail actif.
+    expect(TriggerSchema.safeParse({ ...FILE_TRIGGER, workspacePath: '' }).success).toBe(true);
   });
 
   it('accepte les quatre hooks git et rejette les autres', () => {
@@ -186,15 +191,18 @@ describe('ActionSchema', () => {
     ).toBe(false);
   });
 
-  it('exige prompt et model pour ai_task', () => {
+  it('exige un prompt pour ai_task, mais pas un modèle', () => {
+    // Le prompt est la seule chose que seul l'utilisateur peut fournir. Un modèle
+    // vide veut dire « le défaut du provider », et un provider vide « celui qui est
+    // réellement enregistré » — deux valeurs que le renderer ne peut pas connaître
+    // et que main résout avant que le service ne voie la requête.
     expect(
       ActionSchema.safeParse({ type: 'ai_task', prompt: '', model: 'm', provider: 'openai' })
         .success
     ).toBe(false);
     expect(
-      ActionSchema.safeParse({ type: 'ai_task', prompt: 'p', model: '', provider: 'openai' })
-        .success
-    ).toBe(false);
+      ActionSchema.safeParse({ type: 'ai_task', prompt: 'p', model: '', provider: '' }).success
+    ).toBe(true);
   });
 
   it('restreint git_operation aux quatre opérations connues', () => {
@@ -252,11 +260,13 @@ describe('CreateAutomationRequestSchema', () => {
     expect(CreateAutomationRequestSchema.safeParse(withoutEnabled).success).toBe(false);
   });
 
-  it('rejette workspaceId ou name vide', () => {
+  it('exige un nom, mais accepte un workspaceId vide', () => {
+    // Même raison : le `workspaceId` est un chemin que main résout. Le nom, lui,
+    // n'existe que si l'utilisateur l'a écrit — rien ne peut le deviner.
     expect(
       CreateAutomationRequestSchema.safeParse({ ...(VALID as object), workspaceId: '' })
         .success
-    ).toBe(false);
+    ).toBe(true);
     expect(
       CreateAutomationRequestSchema.safeParse({ ...(VALID as object), name: '' }).success
     ).toBe(false);

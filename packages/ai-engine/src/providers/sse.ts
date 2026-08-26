@@ -12,9 +12,55 @@
  * - le reader n'était jamais libéré/annulé en cas d'erreur ou d'abandon
  */
 
+import type { ProviderToolCall } from './base';
+
+/**
+ * Décode les arguments d'un appel d'outil.
+ *
+ * Les arguments arrivent en JSON sérialisé, et un modèle produit parfois du JSON
+ * invalide. On préfère un appel dont les arguments sont vides à une exception qui
+ * ferait échouer tout le tour : la boucle peut alors répondre à l'outil que sa
+ * saisie était illisible, ce qui donne au modèle une chance de se corriger.
+ *
+ * Défini ici et non dans le provider : `sse.ts` ne doit rien importer de lui, ou
+ * les deux modules forment un cycle qui ne tient que par le hoisting.
+ */
+export function parseToolArguments(raw: string): Record<string, unknown> {
+  if (!raw.trim()) return {};
+
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return parsed !== null && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : {};
+  } catch {
+    return {};
+  }
+}
+
 export interface SSEStreamChunk {
   content: string;
   done: boolean;
+  /**
+   * Appels d'outils complets, émis uniquement sur le chunk terminal.
+   *
+   * Ils ne peuvent pas être émis au fil de l'eau : les arguments arrivent en
+   * fragments de JSON, et un fragment n'est pas exploitable tant que l'appel
+   * n'est pas complet.
+   */
+  toolCalls?: ProviderToolCall[];
+}
+
+/** Fragment d'appel d'outil dans un delta de streaming. */
+export interface OpenAIToolCallDelta {
+  /**
+   * Position de l'appel dans la liste. C'est la seule clé fiable : `id` et
+   * `name` n'arrivent que sur le premier fragment de chaque appel.
+   */
+  index: number;
+  id?: string;
+  type?: string;
+  function?: { name?: string; arguments?: string };
 }
 
 /** Chunk brut au format OpenAI `chat.completion.chunk`. */
@@ -23,9 +69,51 @@ export interface OpenAICompatibleChunk {
     delta?: {
       role?: string;
       content?: string | null;
+      tool_calls?: OpenAIToolCallDelta[];
     };
     finish_reason?: string | null;
   }>;
+}
+
+/**
+ * Accumulateur d'appels d'outils sur un flux.
+ *
+ * Les fragments d'arguments doivent être concaténés par index : un appel arrive
+ * comme `{"pa`, `th": "/t`, `mp"}` réparti sur plusieurs chunks. Parser chaque
+ * fragment produit du JSON invalide, et les indexer par `id` échoue parce que
+ * l'`id` n'est présent que sur le premier fragment.
+ */
+export class ToolCallAccumulator {
+  private readonly calls = new Map<number, { id: string; name: string; args: string }>();
+
+  add(deltas: OpenAIToolCallDelta[] | undefined): void {
+    for (const delta of deltas ?? []) {
+      const existing = this.calls.get(delta.index) ?? { id: '', name: '', args: '' };
+
+      this.calls.set(delta.index, {
+        id: delta.id ?? existing.id,
+        name: delta.function?.name ?? existing.name,
+        args: existing.args + (delta.function?.arguments ?? ''),
+      });
+    }
+  }
+
+  get size(): number {
+    return this.calls.size;
+  }
+
+  /** Les appels terminés, dans l'ordre de leur index. */
+  toToolCalls(): ProviderToolCall[] {
+    return [...this.calls.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([index, call]) => ({
+        // Un provider qui n'émet jamais d'`id` reste appariable : l'index est
+        // stable sur la durée du flux, donc il fait un identifiant valide.
+        id: call.id || `call_${index}`,
+        name: call.name,
+        arguments: parseToolArguments(call.args),
+      }));
+  }
 }
 
 /**
@@ -78,6 +166,50 @@ export function toStreamChunk(parsed: OpenAICompatibleChunk): SSEStreamChunk {
 }
 
 /**
+ * Traite une ligne SSE, en alimentant l'accumulateur d'outils au passage.
+ *
+ * `null` signale le marqueur de fin ; `undefined` signale une ligne sans rien à
+ * émettre (commentaire, chunk vide, JSON illisible).
+ */
+function handleSSELine(
+  line: string,
+  tools: ToolCallAccumulator,
+): SSEStreamChunk | null | undefined {
+  const payload = parseSSELine(line);
+  if (payload === undefined || payload === '') return undefined;
+  if (isSSEDoneMarker(payload)) return null;
+
+  const parsed = parseChunkPayload(payload);
+  if (!parsed) return undefined;
+
+  tools.add(parsed.choices?.[0]?.delta?.tool_calls);
+  return toEmittableChunk(parsed, tools);
+}
+
+/** `undefined` sur une ligne mal formée : on l'ignore plutôt que casser le flux. */
+function parseChunkPayload(payload: string): OpenAICompatibleChunk | undefined {
+  try {
+    return JSON.parse(payload) as OpenAICompatibleChunk;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Le chunk à émettre, ou rien quand il n'apporte ni texte ni fin de flux. */
+function toEmittableChunk(
+  parsed: OpenAICompatibleChunk,
+  tools: ToolCallAccumulator,
+): SSEStreamChunk | undefined {
+  const chunk = toStreamChunk(parsed);
+
+  if (chunk.done && tools.size > 0) {
+    return { ...chunk, toolCalls: tools.toToolCalls() };
+  }
+
+  return chunk.content || chunk.done ? chunk : undefined;
+}
+
+/**
  * Parse un flux SSE OpenAI-compatible en chunks.
  *
  * Le reader est toujours libéré (et le flux annulé si on sort avant la fin),
@@ -89,32 +221,19 @@ export async function* parseSSEStream(
 ): AsyncIterableIterator<SSEStreamChunk> {
   const reader = body.getReader();
   const decoder = new TextDecoder();
+  const tools = new ToolCallAccumulator();
   let buffer = '';
   let completed = false;
 
   /** Parse les lignes disponibles et émet les chunks correspondants. */
   function* drain(lines: string[]): Generator<SSEStreamChunk> {
     for (const line of lines) {
-      const payload = parseSSELine(line);
-      if (payload === undefined || payload === '') continue;
-
-      if (isSSEDoneMarker(payload)) {
+      const chunk = handleSSELine(line, tools);
+      if (chunk === null) {
         completed = true;
         return;
       }
-
-      let parsed: OpenAICompatibleChunk;
-      try {
-        parsed = JSON.parse(payload) as OpenAICompatibleChunk;
-      } catch {
-        // Ligne mal formée : on l'ignore plutôt que de casser tout le flux
-        continue;
-      }
-
-      const chunk = toStreamChunk(parsed);
-      if (chunk.content || chunk.done) {
-        yield chunk;
-      }
+      if (chunk !== undefined) yield chunk;
     }
   }
 
@@ -127,9 +246,7 @@ export async function* parseSSEStream(
         // et le buffer peut contenir une dernière ligne sans `\n` final.
         buffer += decoder.decode();
         const trailing = buffer.trim();
-        if (trailing) {
-          yield* drain([trailing]);
-        }
+        if (trailing) yield* drain([trailing]);
         break;
       }
 
@@ -140,9 +257,16 @@ export async function* parseSSEStream(
       yield* drain(lines);
     }
 
-    // Garantit un chunk terminal pour les consommateurs qui attendent `done`
+    // Garantit un chunk terminal pour les consommateurs qui attendent `done`.
+    // Les appels d'outils y sont joints : certains providers envoient `[DONE]`
+    // sans jamais émettre de `finish_reason`, et sans cela les appels accumulés
+    // seraient perdus au moment même où ils deviennent exploitables.
     if (completed) {
-      yield { content: '', done: true };
+      yield {
+        content: '',
+        done: true,
+        toolCalls: tools.size > 0 ? tools.toToolCalls() : undefined,
+      };
     }
   } finally {
     // Libère systématiquement la connexion, y compris si le consommateur

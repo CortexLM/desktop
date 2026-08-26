@@ -1,9 +1,0 @@
-export { BasePage } from './BasePage';
-export { EditorPage } from './EditorPage';
-export { GitPage } from './GitPage';
-export { TerminalPage } from './TerminalPage';
-export { AIChatPage } from './AIChatPage';
-export { WorkspacePage } from './WorkspacePage';
-export { AutomationPage } from './AutomationPage';
-export { ExtensionsPage } from './ExtensionsPage';
-export { AccountPage } from './AccountPage';

@@ -62,12 +62,23 @@ jobs:
             echo "main_kb=$((MAIN_BYTES / 1024))" >> $GITHUB_OUTPUT
           fi
           
-          # Renderer package
-          if [ -d packages/renderer/dist ]; then
-            RENDERER_SIZE=$(du -sh packages/renderer/dist | cut -f1)
-            RENDERER_BYTES=$(du -sb packages/renderer/dist | cut -f1)
+          # Renderer package — packages/app since the React renderer was deleted.
+          #
+          # The `renderer_kb` output name is kept because five later steps read it, and it
+          # is still the renderer's bundle. The path is what mattered: guarded by
+          # `-d packages/renderer/dist`, this block silently stopped running, leaving
+          # `renderer_kb` empty — which the JS steps below interpolate directly, producing
+          # `const bundleSize = ;` and a syntax error rather than a useful report.
+          if [ -d packages/app/dist ]; then
+            RENDERER_SIZE=$(du -sh packages/app/dist | cut -f1)
+            RENDERER_BYTES=$(du -sb packages/app/dist | cut -f1)
             echo "Renderer package: $RENDERER_SIZE" >> bundle-report.txt
             echo "renderer_kb=$((RENDERER_BYTES / 1024))" >> $GITHUB_OUTPUT
+          else
+            # Explicit zero rather than an absent output: an empty string breaks the
+            # numeric comparisons and the JS interpolation downstream.
+            echo "Renderer package: MISSING (packages/app/dist not built)" >> bundle-report.txt
+            echo "renderer_kb=0" >> $GITHUB_OUTPUT
           fi
           
           # Preload package
@@ -247,14 +258,19 @@ jobs:
           git push || true
         continue-on-error: true
 
+      # MEASURED 2026-08-25: packages/app/dist is 1001 KB (250 KB of JS + CSS + HTML,
+      # the rest a sourcemap). The old React renderer was ~5 MB, dominated by Monaco, so
+      # the 10 MB ceiling this inherited can no longer trip — a gate that cannot fire is
+      # not a gate. 2048 KB leaves room for Monaco to return to the session workbench
+      # while still catching an accidental order-of-magnitude regression.
       - name: Performance regression detection
-        if: steps.build_time.outputs.duration > 120 || steps.bundle_size.outputs.renderer_kb > 10240
+        if: steps.build_time.outputs.duration > 120 || steps.bundle_size.outputs.renderer_kb > 2048
         uses: actions/github-script@v7
         with:
           script: |
             const title = '⚠️ Performance Regression Detected';
             const buildTime = ${{ steps.build_time.outputs.duration }};
-            const bundleSize = ${{ steps.bundle_size.outputs.renderer_kb }};
+            const bundleSize = ${{ steps.bundle_size.outputs.renderer_kb || 0 }};
             
             const body = `
             ## Performance Regression Alert
@@ -297,7 +313,7 @@ jobs:
         with:
           script: |
             const buildTime = ${{ steps.build_time.outputs.duration }};
-            const rendererSize = ${{ steps.bundle_size.outputs.renderer_kb }};
+            const rendererSize = ${{ steps.bundle_size.outputs.renderer_kb || 0 }};
             const totalLoc = ${{ steps.complexity.outputs.total_loc }};
             
             const body = `

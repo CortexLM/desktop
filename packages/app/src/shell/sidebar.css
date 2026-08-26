@@ -1,0 +1,343 @@
+/*
+ * Paper: the `Sidebar` frame, identical on every screen (1YU-0, 1OK-0, 2BJ-0, ...).
+ *
+ * 240px wide with a 215px content column, which is a 12.5px inset on each side. The blocks
+ * from top to bottom: window chrome row, workspace switcher, nav, recent sessions, then a
+ * spacer that pushes the upgrade card and user row to the bottom.
+ *
+ * The spacer is why this is a flex column rather than a grid: the recent-sessions list is
+ * the only block that varies in height, and everything below it has to stay pinned.
+ */
+
+.cx-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  width: var(--layout-sidebar);
+  height: 100%;
+  padding-inline: 12.5px;
+
+  background: var(--color-panel);
+  border-right: 1px solid var(--color-border);
+}
+
+/*
+ * The window chrome row. On macOS the traffic lights are drawn by the OS into this space,
+ * so the row is reserved even though the app renders nothing on the left of it.
+ */
+.cx-sidebar__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  height: 26px;
+  margin-top: 14px;
+}
+
+.cx-sidebar__chrome-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-sidebar__chrome-action:hover {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* Workspace switcher: a 24px logo tile, the workspace name, and a chevron. */
+.cx-sidebar__workspace {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+
+  height: 36px;
+  margin-top: 10px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  text-align: left;
+}
+
+.cx-sidebar__workspace:hover {
+  background: var(--color-hover);
+}
+
+/*
+ * The brand tile. The mark is knocked out of a dark green plate, and that green is the one
+ * colour in the product that is not a design token: it is the brand, so it does not shift
+ * with the theme.
+ */
+.cx-sidebar__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: var(--layout-logo-tile);
+  height: var(--layout-logo-tile);
+  border-radius: 7px;
+
+  background: #1f4944;
+  color: #f8f5ea;
+}
+
+.cx-sidebar__logo--large {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.cx-sidebar__workspace-name {
+  flex-grow: 1;
+  min-width: 0;
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-top: var(--spacing-4);
+}
+
+/*
+ * Nav rows are 30px on the screens where the isolated kit draws 32px. The difference is
+ * block padding, exposed by the component as a variable rather than duplicated as a second
+ * component.
+ */
+.cx-sidebar__nav .cx-nav-item {
+  --cx-nav-item-padding-block: 7px;
+}
+
+.cx-sidebar__section {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: var(--spacing-6);
+}
+
+.cx-sidebar__section-title {
+  flex-shrink: 0;
+  padding-inline: 10px;
+  margin-bottom: var(--spacing-2);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 14px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.cx-sidebar__recent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+/* A repo heading inside the recent list. Not a link: it groups, it does not navigate. */
+.cx-sidebar__repo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 10px;
+
+  font-size: var(--text-2xs);
+  line-height: 14px;
+  color: var(--color-text-faint);
+}
+
+.cx-sidebar__repo-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-sidebar__run {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+
+  padding: 5px 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  line-height: 16px;
+  color: var(--color-text);
+  text-align: left;
+}
+
+.cx-sidebar__run:hover {
+  background: var(--color-hover);
+}
+
+.cx-sidebar__run-title {
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-sidebar__run-age {
+  flex-shrink: 0;
+  font-size: var(--text-2xs);
+  color: var(--color-text-faint);
+}
+
+/* Pushes the upgrade card and user row to the bottom of the column. */
+.cx-sidebar__spacer {
+  flex-grow: 1;
+  min-height: var(--spacing-4);
+}
+
+.cx-sidebar__upgrade {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+
+  padding: 8px 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: var(--color-inset);
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  text-align: left;
+}
+
+.cx-sidebar__upgrade:hover {
+  background: var(--color-border);
+}
+
+.cx-sidebar__upgrade-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text);
+}
+
+.cx-sidebar__meter {
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+  overflow: hidden;
+}
+
+.cx-sidebar__meter-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.cx-sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+
+  height: 44px;
+  margin-bottom: 10px;
+  padding-inline: 6px;
+}
+
+.cx-sidebar__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-grow: 1;
+  min-width: 0;
+
+  padding: 4px 4px 4px 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans-stack);
+  text-align: left;
+}
+
+.cx-sidebar__identity:hover {
+  background: var(--color-hover);
+}
+
+.cx-sidebar__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: var(--layout-avatar);
+  height: var(--layout-avatar);
+  border-radius: var(--radius-full);
+
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.cx-sidebar__identity-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cx-sidebar__user-name {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-sidebar__user-plan {
+  font-size: var(--text-2xs);
+  line-height: 14px;
+  color: var(--color-text-faint);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

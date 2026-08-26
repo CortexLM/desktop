@@ -135,6 +135,13 @@ const PAYLOAD_LISTENERS: [group: string, method: string, channel: string][] = [
   ['update', 'onDownloadProgress', 'update:download-progress'],
   ['update', 'onDownloaded', 'update:downloaded'],
   ['update', 'onError', 'update:error'],
+  // Pushed rather than polled: the device-flow loop runs in main, and the account session
+  // is process-wide, so a sign-in from one window has to reach every other one.
+  ['cortex', 'onDeviceStatus', 'event:cortex-device-status'],
+  ['cortex', 'onAccountChanged', 'event:cortex-account-changed'],
+  // Pushed, not polled: a run advances in main at its own pace, and the event
+  // carries the updated summary so the inbox row and the timeline move together.
+  ['session', 'onProgress', 'event:session-progress'],
 ];
 
 function subscribeVia(group: string, method: string): Subscribe<unknown> {

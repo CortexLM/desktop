@@ -157,6 +157,43 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['automation', 'run', 'automation:run'],
   ['automation', 'toggle', 'automation:toggle'],
   ['automation', 'getLogs', 'automation:get-logs'],
+  ['session', 'list', 'session:list'],
+  ['session', 'get', 'session:get'],
+  ['session', 'start', 'session:start'],
+  ['session', 'followUp', 'session:follow-up'],
+  ['session', 'stop', 'session:stop'],
+  ['session', 'archive', 'session:archive'],
+  ['session', 'remove', 'session:delete'],
+  ['session', 'resolvePermission', 'session:resolve-permission'],
+  ['settings', 'setProvider', 'settings:set-provider'],
+  ['settings', 'setWorkspace', 'settings:set-workspace'],
+  ['secrets', 'create', 'secrets:create'],
+  ['secrets', 'remove', 'secrets:delete'],
+  ['cortex', 'createApiKey', 'cortex:create-api-key'],
+  ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
+];
+
+/**
+ * Methods that take no argument at all.
+ *
+ * Kept separate because the assertion is different, and the difference is the point: these
+ * must invoke with the channel *only*. Main validates them with an optional schema precisely
+ * because `invoke(channel)` delivers `undefined`, and a forwarder that helpfully passed `{}`
+ * or `null` instead would be validated against a shape nobody declared.
+ */
+const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
+  ['session', 'listRepositories', 'session:list-repositories'],
+  ['session', 'openWorkspace', 'session:open-workspace'],
+  ['settings', 'getProviders', 'settings:get-providers'],
+  ['settings', 'getWorkspace', 'settings:get-workspace'],
+  ['secrets', 'list', 'secrets:list'],
+  ['cortex', 'getState', 'cortex:get-state'],
+  ['cortex', 'listApiKeys', 'cortex:list-api-keys'],
+  ['cortex', 'listModels', 'cortex:list-models'],
+  ['cortex', 'deviceStart', 'cortex:device-start'],
+  ['cortex', 'deviceCancel', 'cortex:device-cancel'],
+  ['cortex', 'openVerification', 'cortex:open-verification'],
+  ['cortex', 'signOut', 'cortex:sign-out'],
 ];
 
 type AnyFn = (...args: unknown[]) => Promise<unknown>;
@@ -177,10 +214,19 @@ describe('façade methods invoke the channel main registered', () => {
     expect(invokeMock).toHaveBeenCalledWith(channel, request);
   });
 
+  it.each(NO_ARG_METHODS)('cortex.%s.%s -> %s (no payload)', async (group, method, channel) => {
+    await call(group, method)();
+
+    expect(invokeMock).toHaveBeenCalledTimes(1);
+    // Exactly one argument. `toHaveBeenCalledWith(channel)` would also pass if a second
+    // `undefined` were forwarded, which is a different wire message.
+    expect(invokeMock.mock.calls[0]).toEqual([channel]);
+  });
+
   it('routes each method to a distinct channel', () => {
     // Catches a copy-paste that points two methods at one channel — the shape
     // of the `git.push` -> `git:pull` bug, which no type check can see.
-    const channels = SINGLE_ARG_METHODS.map(([, , channel]) => channel);
+    const channels = [...SINGLE_ARG_METHODS, ...NO_ARG_METHODS].map(([, , channel]) => channel);
     expect(new Set(channels).size).toBe(channels.length);
   });
 
@@ -190,6 +236,7 @@ describe('façade methods invoke the channel main registered', () => {
     // failure mode this repo has hit repeatedly.
     const tabled = new Set([
       ...SINGLE_ARG_METHODS.map(([group, method]) => `${group}.${method}`),
+      ...NO_ARG_METHODS.map(([group, method]) => `${group}.${method}`),
       // Covered by their own cases below.
       'fs.watch',
       'fs.unwatch',

@@ -47,11 +47,27 @@ export interface ScriptAction {
   env?: Record<string, string>;
 }
 
+export type AIProviderName = 'openai' | 'anthropic' | 'openrouter' | 'ollama' | 'grok';
+
 export interface AITaskAction {
   type: 'ai_task';
   prompt: string;
+  /**
+   * Le modèle, ou vide pour laisser le provider appliquer son défaut.
+   *
+   * Vide n'existe qu'en transit : `automation-handlers` le résout avant que le
+   * service ne voie la requête, donc une automation stockée en a toujours un.
+   */
   model: string;
-  provider: 'openai' | 'anthropic' | 'openrouter' | 'ollama' | 'grok';
+  /**
+   * Le provider, ou vide pour « celui qui est réellement enregistré ».
+   *
+   * Le renderer ne sait pas laquelle des clés stockées a construit un provider, et
+   * deviner produirait une automation qui échoue à son premier déclenchement, des
+   * heures plus tard, sans personne pour le voir. Comme `model`, vide n'existe
+   * qu'en transit.
+   */
+  provider: AIProviderName | '';
   context?: {
     files?: string[];
     workspacePath?: string;
