@@ -88,40 +88,10 @@ interface ControlRowProps {
   onDictate?: () => void;
 }
 
-function ControlRow(props: ControlRowProps): JSX.Element {
+/** The right side of the toolbar: model picker, mic, and the green send. */
+function TrailingActions(props: ControlRowProps): JSX.Element {
   return (
-    <div class="cx-composer__controls">
-      <Show when={props.onAttach}>
-        {(attach) => (
-          <button
-            type="button"
-            class="cx-composer__attach"
-            aria-label="Attach"
-            disabled={props.disabled}
-            onClick={() => attach()()}
-          >
-            <Icon name="plus" size={16} strokeWidth={1.75} />
-          </button>
-        )}
-      </Show>
-
-      {props.leading}
-
-      <For each={props.controls}>
-        {(control) => (
-          <Chip
-            icon={control.icon}
-            picker={control.picker}
-            onPress={control.onPress ? () => control.onPress?.() : undefined}
-            disabled={control.disabled || props.disabled}
-          >
-            {control.label}
-          </Chip>
-        )}
-      </For>
-
-      <span class="cx-composer__spacer" />
-
+    <>
       <Show when={props.modelLabel}>
         {(model) => (
           <button
@@ -158,6 +128,45 @@ function ControlRow(props: ControlRowProps): JSX.Element {
       >
         <Icon name="send" size={16} strokeWidth={1.75} />
       </button>
+    </>
+  );
+}
+
+function ControlRow(props: ControlRowProps): JSX.Element {
+  return (
+    <div class="cx-composer__controls">
+      <Show when={props.onAttach}>
+        {(attach) => (
+          <button
+            type="button"
+            class="cx-composer__attach"
+            aria-label="Attach"
+            disabled={props.disabled}
+            onClick={() => attach()()}
+          >
+            <Icon name="plus" size={16} strokeWidth={1.75} />
+          </button>
+        )}
+      </Show>
+
+      {props.leading}
+
+      <For each={props.controls}>
+        {(control) => (
+          <Chip
+            icon={control.icon}
+            picker={control.picker}
+            onPress={control.onPress ? () => control.onPress?.() : undefined}
+            disabled={control.disabled || props.disabled}
+          >
+            {control.label}
+          </Chip>
+        )}
+      </For>
+
+      <span class="cx-composer__spacer" />
+
+      <TrailingActions {...props} />
     </div>
   );
 }
@@ -273,17 +282,7 @@ export function Composer(props: ComposerProps): JSX.Element {
         />
       </Show>
 
-      <ControlRow
-        controls={local.controls}
-        leading={local.leading}
-        disabled={local.disabled}
-        canSend={canSend}
-        sendLabel={local.sendLabel ?? 'Start session'}
-        modelLabel={local.modelLabel}
-        onPickModel={local.onPickModel}
-        onAttach={local.onAttach}
-        onDictate={local.onDictate}
-      />
+      <ControlRow {...local} canSend={canSend} sendLabel={local.sendLabel ?? 'Start session'} />
 
       <Show when={local.disabledReason}>
         {(reason) => (
