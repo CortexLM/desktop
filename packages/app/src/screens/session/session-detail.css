@@ -1,9 +1,10 @@
 /*
- * Paper: Screens / Session Detail (2BI-0, 2J9-0) and Session Detail (Focus) (59N-0, 5HB-0).
+ * Paper: C3 / Code / Session Detail (CWN-0, CWO-0) and Session Detail (Focus).
+ * Reference export: design/paper/jsx/screens/code-session-detail.jsx
  *
- * A 66px header over a split body: a 452px agent timeline and a 748px workbench, which is
- * the 1200px main pane divided exactly. The header is taller than the 52px list header
- * because it carries the stop and pull-request actions.
+ * A 14/24 header over a split body: a 440px agent timeline (hairline right) and
+ * the workbench. The prompt sits in a green-tinted bubble; the workbench tabs
+ * are this screen's own register — 12.5 labels on a GREEN 2px underline.
  *
  * The Focus artboard is this screen at full 1440px width with the sidebar hidden, so it is
  * the same component with a different frame around it rather than a second screen.
@@ -19,11 +20,10 @@
 .cx-session__header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: 14px;
   flex-shrink: 0;
 
-  height: var(--layout-session-header);
-  padding-inline: var(--spacing-4);
+  padding: 14px 24px;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -36,10 +36,10 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  border: 0;
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
 
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-text-muted);
   cursor: pointer;
 }
@@ -60,9 +60,11 @@
 .cx-session__title {
   margin: 0;
 
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-semibold);
-  line-height: 18px;
+  font-family: var(--font-serif-stack);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 22px;
   color: var(--color-text);
 
   overflow: hidden;
@@ -73,9 +75,10 @@
 .cx-session__meta {
   margin: 0;
 
-  font-size: var(--text-xs);
-  line-height: 16px;
-  color: var(--color-text-faint);
+  font-family: var(--font-mono-stack);
+  font-size: 10.5px;
+  line-height: 14px;
+  color: var(--color-text-muted);
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,6 +118,58 @@
   min-height: 0;
 }
 
+/*
+ * The workbench tab strip: this screen's own register of the kit tabs — 12.5px
+ * labels, 12px icons, a GREEN 2px underline (the one place tabs take the accent)
+ * and a count pill on the neutral wash.
+ */
+.cx-session__workbench .cx-tabs__list {
+  gap: 2px;
+  padding: 6px 20px 0;
+  background: var(--color-bg);
+}
+
+.cx-session__workbench .cx-tabs__tab {
+  gap: 0;
+}
+
+.cx-session__workbench .cx-tabs__label {
+  padding: 8px 12px 10px;
+
+  font-size: 12.5px;
+  line-height: 16px;
+}
+
+.cx-session__workbench .cx-tabs__tab[aria-selected='false'] .cx-tabs__label {
+  padding-bottom: 10px;
+}
+
+.cx-session__workbench .cx-tabs__indicator {
+  background: var(--color-green);
+}
+
+.cx-session__workbench .cx-tabs__tab[aria-selected='true'] .cx-tabs__label {
+  padding-bottom: 8px;
+}
+
+.cx-session__workbench .cx-tabs__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 16px;
+  padding-inline: 6px;
+  border-radius: var(--radius-pill);
+
+  font-size: 10.5px;
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+  line-height: 14px;
+
+  background: var(--color-active);
+  color: var(--color-text);
+}
+
 /* -------------------------------------------------------------------------- */
 /* Timeline                                                                   */
 /* -------------------------------------------------------------------------- */
@@ -122,26 +177,40 @@
 .cx-timeline {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: 18px;
   flex-grow: 1;
   min-height: 0;
 
-  padding: var(--spacing-4);
+  padding: 20px;
   overflow-y: auto;
 }
 
+/* What the user asked for: a quiet green-tinted bubble, 13.5/20. */
 .cx-timeline__prompt {
   margin: 0;
+  padding: 10px 14px;
+  border-radius: 14px;
 
-  font-size: var(--text-sm);
+  font-size: 13.5px;
   line-height: 20px;
   color: var(--color-text);
+
+  background: var(--color-green-tint-8);
 }
 
 .cx-timeline__reply {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+}
+
+/* The agent's prose answers straight on the pane, no bubble. */
+.cx-timeline__reply-text {
+  margin: 0;
+
+  font-size: 13.5px;
+  line-height: 20px;
+  color: var(--color-text);
 }
 
 /* -------------------------------------------------------------------------- */

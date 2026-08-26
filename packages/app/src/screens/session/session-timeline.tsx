@@ -211,7 +211,7 @@ export function SessionTimeline(props: SessionTimelineProps): JSX.Element {
 
         <Show when={props.reply || props.plan?.length || props.workSummary}>
           <div class="cx-timeline__reply">
-            <Show when={props.reply}>{(reply) => <p class="cx-timeline__prompt">{reply()}</p>}</Show>
+            <Show when={props.reply}>{(reply) => <p class="cx-timeline__reply-text">{reply()}</p>}</Show>
             <Show when={props.plan?.length ? props.plan : undefined}>
               {(steps) => <PlanList steps={steps()} />}
             </Show>
