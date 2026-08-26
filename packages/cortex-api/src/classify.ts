@@ -20,6 +20,28 @@ import { CortexApiError, CortexDeviceFlowError, isDeviceFlowErrorCode } from './
 import type { CortexErrorContext } from './errors.ts';
 import { applicationErrorSchema, oauthErrorSchema } from './schemas.ts';
 
+/**
+ * RFC 7807 problem+json, which the v1 service answers for routing-level
+ * failures — including "No such endpoint" when a contract moves under the
+ * client. Surfacing its `code` and `detail` turns "404 unrecognised error body"
+ * into something a person can act on.
+ */
+interface ProblemBody {
+  code?: unknown;
+  title?: unknown;
+  detail?: unknown;
+  status?: unknown;
+}
+
+function classifyProblem(payload: unknown, context: CortexErrorContext): Error | undefined {
+  if (typeof payload !== 'object' || payload === null) return undefined;
+  const problem = payload as ProblemBody;
+  if (typeof problem.code !== 'string' || typeof problem.title !== 'string') return undefined;
+
+  const detail = typeof problem.detail === 'string' ? problem.detail : problem.title;
+  return new CortexApiError(problem.code, detail, context);
+}
+
 export function classifyError(payload: unknown, context: CortexErrorContext): Error {
   const oauth = oauthErrorSchema.safeParse(payload);
   if (oauth.success && isDeviceFlowErrorCode(oauth.data.error)) {
@@ -29,6 +51,9 @@ export function classifyError(payload: unknown, context: CortexErrorContext): Er
       context,
     );
   }
+
+  const problem = classifyProblem(payload, context);
+  if (problem) return problem;
 
   const application = applicationErrorSchema.safeParse(payload);
   if (application.success) {
