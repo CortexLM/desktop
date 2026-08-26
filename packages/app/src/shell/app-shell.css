@@ -25,32 +25,35 @@
 }
 
 /*
- * Page header. The 52px in the design is the title block itself, not the space it sits in,
- * so the block is a min-height with the surrounding room expressed as padding. Pinning the
- * height instead would clip a two-line header - which is exactly what Settings has.
+ * Page header (C3): a serif display title over a muted 13/18 subtitle, on a 32px
+ * top inset. The block is a min-height with the surrounding room expressed as
+ * padding — pinning the height instead would clip a two-line header, which is
+ * exactly what Settings has.
  */
 .cx-page-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-3);
   flex-shrink: 0;
 
   min-height: var(--layout-page-header);
-  padding: var(--spacing-6) 40px var(--spacing-4);
+  padding: 32px 40px var(--spacing-4);
 }
 
 .cx-page-header__titles {
   display: flex;
   flex-direction: column;
+  gap: 6px;
   flex-grow: 1;
   min-width: 0;
 }
 
 .cx-page-header__title {
-  font-size: var(--text-xl);
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-serif-stack);
+  font-size: var(--text-title);
+  font-weight: 600;
   letter-spacing: var(--tracking-tight);
-  line-height: 30px;
+  line-height: var(--leading-title);
   color: var(--color-text);
 }
 

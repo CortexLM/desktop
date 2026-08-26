@@ -80,6 +80,7 @@ export function toSummary(row: SessionRow): SessionSummary {
   };
   if (row.repo) summary.repo = row.repo;
   if (row.branch) summary.branch = row.branch;
+  if (row.started_at !== null) summary.startedAt = row.started_at;
   if (row.finished_at !== null) summary.finishedAt = row.finished_at;
   if (row.error) summary.error = row.error;
   if (row.pull_request_url) summary.pullRequestUrl = row.pull_request_url;
