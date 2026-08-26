@@ -5,6 +5,7 @@ import { registerIPCHandlers, unregisterIPCHandlers } from './ipc/handlers/index
 import { startMCPEvents, stopMCPEvents } from './ipc/handlers/mcp-handlers';
 import { updateManager } from './updater';
 import { automationService } from './services/automation-service';
+import { getCortexAccountService } from './services/cortex-account-service';
 import { getDatabaseService } from './services/database-service';
 import { debugService } from './services/debug-service';
 import { ipcMonitor } from './services/ipc-monitor';
@@ -25,13 +26,21 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1400,
+    // 1440x900 is the viewport every Paper artboard is drawn at, so the window
+    // opens showing the layout as designed rather than a reflowed approximation.
+    width: 1440,
     height: 900,
     minWidth: 1000,
     minHeight: 600,
-    backgroundColor: '#0D0D0E',
+    // The design's light background. This colour is only visible for the frame or
+    // two before the renderer paints, which is exactly why it matters: #0D0D0E
+    // flashed near-black before a light UI. Light is the default theme, and a
+    // renderer that resolves to dark repaints within the same frame.
+    backgroundColor: '#FCFCFC',
     titleBarStyle: 'hiddenInset',
-    trafficLightPosition: { x: 30, y: 14 },
+    // Matches where the artboards draw the traffic lights, so the sidebar's
+    // reserved chrome row lines up with the real window buttons.
+    trafficLightPosition: { x: 16, y: 16 },
     webPreferences: {
       // Must match the preload build output. Vite emits CommonJS as `.cjs`
       // (see packages/preload/vite.config.ts + its package.json "main"), and a
@@ -48,12 +57,17 @@ function createWindow() {
     }
   });
 
-  // Load renderer
+  // Load the renderer: `packages/app`, the SolidJS UI built against the Paper
+  // design. (The React renderer it replaced has been deleted.)
+  //
+  // The renderer routes on the URL hash, which is what makes this work at all: a
+  // path like /sign-in/device is not a resolvable file, so a history router would
+  // 404 on every route but the root under file:// — on first load and on reload.
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(join(__dirname, '../../renderer/dist/index.html'));
+    mainWindow.loadFile(join(__dirname, '../../app/dist/index.html'));
   }
 
   mainWindow.on('closed', () => {
@@ -173,6 +187,25 @@ app.whenReady().then(async () => {
 
   await startupStep('Debug service', () => debugService.initialize());
 
+  // After the database, which it reads from. Restoring an automation means
+  // reinstalling its watcher or cron job too — a row read back without that
+  // produces a UI that says "enabled" while nothing fires, which is worse than an
+  // empty list because it does not admit to being empty.
+  await startupStep('Automations', () => automationService.hydrate());
+
+  // After the window is open, deliberately: restoring the session verifies the
+  // stored token against `/auth/me`, so it costs a network round trip. Blocking
+  // the window on it would make every cold start as slow as the API is
+  // reachable. The renderer starts anonymous and is corrected by
+  // `event:cortex-account-changed` when this resolves.
+  await startupStep('Cortex account', async () => {
+    const service = getCortexAccountService();
+    const state = await service.restore();
+    if (state.user && mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('event:cortex-account-changed', state);
+    }
+  });
+
   await startupStep('Updater', () => {
     if (mainWindow) {
       updateManager.initialize(mainWindow);
@@ -200,4 +233,7 @@ app.on('before-quit', async () => {
   await startupStep('Database cleanup', () => getDatabaseService().close());
   await startupStep('Updater cleanup', () => updateManager.destroy());
   await startupStep('Debug cleanup', () => debugService.cleanup());
+  // Aborts an in-flight device-flow poll loop, which would otherwise keep a
+  // timer alive and hold the process open past quit.
+  await startupStep('Cortex account cleanup', () => getCortexAccountService().dispose());
 });

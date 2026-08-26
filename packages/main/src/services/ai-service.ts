@@ -7,6 +7,7 @@
 import { EventEmitter } from 'events';
 import type { MCPToolInvocation, MCPToolResult } from './mcp-service';
 import type { MCPServer, MCPTool } from '@cortex-ide/shared';
+import { getSecretsService } from './secrets-service';
 import { getDatabaseService } from './database-service';
 
 // Imported as a value, not `import type`: the no-registry constructor path
@@ -341,10 +342,19 @@ export class AIService extends EventEmitter {
   /**
    * Crée une nouvelle session
    */
+  /**
+   * `extras.id` lets a caller that already owns an identifier reuse it.
+   *
+   * `SessionService` needs this: it writes the run's row *before* resolving a
+   * provider, so that a missing key becomes a recorded failure on an existing run
+   * rather than a rejected call with nothing to show. That only works if the
+   * session it later creates carries the same id as the row. `AgentServer` already
+   * accepted an `id`; this was the one link that dropped it.
+   */
   async createSession(
     providerId?: string,
     model?: string,
-    extras?: { workspacePath?: string; workspaceId?: string }
+    extras?: { workspacePath?: string; workspaceId?: string; id?: string }
   ): Promise<AISession> {
     const provider = providerId
       ? this.registry.getProvider(providerId)
@@ -367,7 +377,7 @@ export class AIService extends EventEmitter {
     }
 
     const session: AISession = {
-      id: this.generateSessionId(),
+      id: extras?.id ?? this.generateSessionId(),
       providerId: provider.id,
       model,
       messages: [],
@@ -639,10 +649,19 @@ export class AIService extends EventEmitter {
     const mcpTools = this.toAgentMcpTools(session);
     const tools: AgentToolDefinition[] = [...CODING_TOOLS, ...mcpTools];
 
+    // The user's stored secrets, as environment variables for anything the agent
+    // runs. Read per turn rather than cached: a secret added in Settings should
+    // apply to the next run, not to the next launch. Best-effort — a run without a
+    // secret is degraded, a run that refuses to start over one is broken.
+    const secretEnv = await getSecretsService()
+      .environment()
+      .catch(() => ({}) as Record<string, string>);
+
     const workspaceExecutor = new WorkspaceToolExecutor({
       workspaceRoot,
       droids,
       skills,
+      env: secretEnv,
       autonomy: this.agentServer.getSession(session.id)?.autonomy ?? 'medium',
       delegationDepth: this.agentServer.getSession(session.id)?.parentId ? 1 : 0,
       onTodos: (todos, merge) => this.agentServer.mergeTodos(session.id, todos, merge),

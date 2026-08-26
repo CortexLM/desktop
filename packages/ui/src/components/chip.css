@@ -1,0 +1,87 @@
+/*
+ * Paper: the composer control row (CW-0) and the secret chip in Components / Badges (G0-0).
+ * Reference exports: design/paper/jsx/composer.jsx, design/paper/jsx/badge.jsx
+ *
+ * Two closely related pills that are not interchangeable:
+ *
+ *   control  padding 5px 11px, gap 6px, --color-inset fill, no border   -> 26px
+ *   outlined padding 4px 11px, gap 6px, --color-panel fill, 1px border  -> 26px
+ *
+ * Both land at 26px; the outlined variant loses a pixel of padding to its border. The
+ * composer's own attachment chip is the outlined one at 4px 10px.
+ */
+
+.cx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  white-space: nowrap;
+
+  background: var(--color-inset);
+  color: var(--color-text);
+}
+
+.cx-chip--control {
+  padding: 5px 11px;
+}
+
+.cx-chip--outlined {
+  padding: 4px 11px;
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
+  color: var(--color-text-muted);
+}
+
+/* Secret names and other identifiers are set in mono at regular weight, not medium: the
+ * design leans on the face rather than the weight to mark them as literal values. */
+.cx-chip--mono {
+  font-family: var(--font-mono-stack);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Interactive chips are the composer's pickers: repo, branch, model, runtime. */
+.cx-chip--interactive {
+  cursor: pointer;
+  transition: background-color 100ms ease;
+}
+
+.cx-chip--interactive:hover:not(:disabled) {
+  background: var(--color-hover);
+}
+
+.cx-chip--interactive:disabled {
+  cursor: default;
+  color: var(--color-text-faint);
+}
+
+/*
+ * The dismiss affordance on an attachment chip. Its own button so the chip stays clickable
+ * as a whole without the two targets fighting; sized to the 9px glyph the design uses.
+ */
+.cx-chip__dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+
+  background: transparent;
+  color: var(--color-text-faint);
+  cursor: pointer;
+}
+
+.cx-chip__dismiss:hover {
+  color: var(--color-text);
+}

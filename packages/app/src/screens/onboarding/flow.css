@@ -1,0 +1,112 @@
+/*
+ * Paper: Screens / Onboarding (3JA-0), Auth Connect GitHub (7OL-0), Auth Workspace Setup
+ * (7ON-0) and SSH Connect (6UJ-0).
+ *
+ * All four are a centred card on a bare page. Onboarding and the two auth steps are 640px;
+ * SSH Connect is drawn narrower at 480px, but the difference is content rather than
+ * structure, so one width with a max applies to all of them.
+ */
+
+.cx-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 480px;
+}
+
+/*
+ * Progress through the flow. A horizontal list of labelled marks rather than a numbered
+ * stepper: the steps have names worth reading, and a bare "2 of 4" says less than the names
+ * themselves.
+ */
+.cx-flow__steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-3);
+
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cx-flow__step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: var(--text-2xs);
+  line-height: 16px;
+  color: var(--color-text-faint);
+}
+
+.cx-flow__step--done {
+  color: var(--color-success);
+}
+
+.cx-flow__step-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 14px;
+  height: 14px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-full);
+}
+
+.cx-flow__step--done .cx-flow__step-mark {
+  border-color: var(--color-success);
+  background: var(--color-success-tint);
+}
+
+.cx-flow__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+  margin-top: 28px;
+}
+
+.cx-flow__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+/*
+ * What an integration is being granted. Listed explicitly rather than summarised: a consent
+ * screen that says "access your repositories" and nothing else is asking for trust it has
+ * not earned.
+ */
+.cx-flow__grants {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin: 0;
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-panel);
+  list-style: none;
+}
+
+.cx-flow__grant {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text-muted);
+}
+
+.cx-flow__grant .cx-icon {
+  margin-top: 4px;
+  color: var(--color-success);
+}

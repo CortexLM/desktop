@@ -1,0 +1,129 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import { describe, expect, it } from 'vitest';
+
+import { navigableRoutes, routeBySlug, SCREEN_ROUTES } from '../routes.ts';
+
+/**
+ * Ties the route table to the design.
+ *
+ * This is the guard that stops a screen from being quietly forgotten. The Paper manifest is
+ * generated from the file itself, so a screen added to the design shows up here as a
+ * missing route on the next run - and a route with no screen behind it shows up as the
+ * reverse. Without the second direction, deleting a screen from the design would leave a
+ * route pointing at nothing.
+ */
+const manifest = JSON.parse(
+  readFileSync(join(import.meta.dirname, '../../../../design/paper/screens.json'), 'utf8'),
+) as {
+  screens: Array<{ slug: string; screen: string; artboards: { light?: string; dark?: string } }>;
+};
+
+const designSlugs = manifest.screens.map((screen) => screen.slug).sort();
+const routedSlugs = SCREEN_ROUTES.map((route) => route.slug).sort();
+
+describe('route table against the Paper manifest', () => {
+  it('covers every screen in the design', () => {
+    const missing = designSlugs.filter((slug) => !routedSlugs.includes(slug));
+    expect(missing, `screens in the design with no route: ${missing.join(', ')}`).toEqual([]);
+  });
+
+  it('has no route for a screen the design does not contain', () => {
+    const orphaned = routedSlugs.filter((slug) => !designSlugs.includes(slug));
+    expect(orphaned, `routes with no screen: ${orphaned.join(', ')}`).toEqual([]);
+  });
+
+  it('covers all 24 screens', () => {
+    expect(designSlugs).toHaveLength(24);
+    expect(routedSlugs).toHaveLength(24);
+  });
+
+  it('lists each slug exactly once', () => {
+    expect(new Set(routedSlugs).size).toBe(routedSlugs.length);
+  });
+});
+
+describe('route shape', () => {
+  it('gives every navigable screen a path', () => {
+    for (const route of navigableRoutes()) {
+      expect(route.path, `${route.slug} is navigable but has no path`).toBeTruthy();
+      expect(route.path, `${route.slug} path must be absolute`).toMatch(/^\//);
+    }
+  });
+
+  it('gives every overlay and state a host to layer over', () => {
+    // An overlay with no host has nowhere to render, and a state with no host is really a
+    // screen that was mis-classified.
+    for (const route of SCREEN_ROUTES) {
+      if (route.kind === 'route') continue;
+      expect(route.host, `${route.slug} is a ${route.kind} with no host`).toBeTruthy();
+    }
+  });
+
+  it('points every host at a navigable screen', () => {
+    const navigable = new Set(navigableRoutes().map((route) => route.slug));
+    for (const route of SCREEN_ROUTES) {
+      if (!route.host) continue;
+      expect(navigable.has(route.host), `${route.slug} hosts on ${route.host}, which is not navigable`).toBe(
+        true,
+      );
+    }
+  });
+
+  it('never gives a path to an overlay or a state', () => {
+    for (const route of SCREEN_ROUTES) {
+      if (route.kind === 'route') continue;
+      expect(route.path, `${route.slug} is a ${route.kind} but has a path`).toBeUndefined();
+    }
+  });
+
+  it('gives every screen a title', () => {
+    for (const route of SCREEN_ROUTES) {
+      expect(route.title.length, route.slug).toBeGreaterThan(0);
+    }
+  });
+
+  it('uses distinct paths', () => {
+    const paths = navigableRoutes().map((route) => route.path);
+    expect(new Set(paths).size).toBe(paths.length);
+  });
+
+  it('roots the app at Home', () => {
+    expect(routeBySlug('home')?.path).toBe('/');
+  });
+});
+
+describe('authentication gating', () => {
+  it('leaves the surfaces that work signed out ungated', () => {
+    // Anonymous use is a product requirement: local sessions with the user's own provider
+    // keys have to work with no account at all.
+    for (const slug of ['home', 'sessions', 'session-detail', 'settings', 'secrets']) {
+      expect(routeBySlug(slug)?.requiresAuth, slug).toBeFalsy();
+    }
+  });
+
+  it('gates the surfaces that are Cortex-only', () => {
+    for (const slug of ['automations', 'review', 'usage', 'new-automation', 'ssh-connect']) {
+      expect(routeBySlug(slug)?.requiresAuth, slug).toBe(true);
+    }
+  });
+
+  it('never gates a sign-in screen behind being signed in', () => {
+    for (const route of SCREEN_ROUTES) {
+      if (!route.slug.startsWith('auth-')) continue;
+      expect(route.requiresAuth, `${route.slug} would be unreachable`).toBeFalsy();
+    }
+  });
+});
+
+describe('design coverage', () => {
+  it('has both a light and a dark artboard for every screen', () => {
+    // Every screen is drawn twice. A screen with one theme missing is an unfinished design,
+    // and it would leave the app with nothing to match against in that theme.
+    for (const screen of manifest.screens) {
+      expect(screen.artboards.light, `${screen.slug} has no light artboard`).toBeTruthy();
+      expect(screen.artboards.dark, `${screen.slug} has no dark artboard`).toBeTruthy();
+    }
+  });
+});

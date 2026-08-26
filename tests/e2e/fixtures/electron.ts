@@ -1,39 +1,47 @@
 import { test as base, _electron as electron, ElectronApplication, Page } from '@playwright/test';
-import { mkdtempSync } from 'node:fs';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'path';
 
-import { createFixtureWorkspace, removeFixtureDir } from './workspace';
-
 /**
- * Electron fixture for launching Cortex IDE.
+ * Electron fixture for launching Cortex Code.
  *
- * Every test gets its own workspace directory AND its own Electron `userData`
- * directory. Both were previously shared across the four parallel workers, and
- * both leaked:
+ * Every test gets its own Electron `userData` directory. It used to be shared across the
+ * four parallel workers and it leaked: `localStorage` and the SQLite file carried between
+ * launches, which is how one spec came to count four open tabs instead of three once the
+ * editor store started persisting them.
  *
- *   - the shared Git repo made execution order part of the contract (see
- *     `workspace.ts` for the detail);
- *   - the shared `userData` carried localStorage between launches, which is how
- *     'should manage multiple tabs' came to count 4 tabs instead of 3 once the
- *     editor store started persisting open tabs.
+ * That matters more now, not less: `userData` is where the Cortex session token is
+ * persisted, so a shared directory would let one test's sign-in state decide what another
+ * test sees.
  */
 export interface ElectronFixtures {
-  /** This test's private workspace: a freshly seeded Git repo. */
-  workspacePath: string;
   /** This test's private Electron `userData` directory. */
   userDataDir: string;
   electronApp: ElectronApplication;
   page: Page;
 }
 
-export const test = base.extend<ElectronFixtures>({
-  workspacePath: async ({}, use) => {
-    const workspace = createFixtureWorkspace();
-    await use(workspace);
-    removeFixtureDir(workspace);
-  },
+/**
+ * Removes a disposable directory created for one test.
+ *
+ * `maxRetries` covers the userData case: Electron has just been asked to close, and on a
+ * slow machine a Crashpad handler or a cache writer can still hold a file open for a few
+ * milliseconds after `app.close()` resolves. Cleanup is best-effort by design — a leftover
+ * temp directory is noise, whereas throwing here would fail a test that already passed.
+ */
+function removeFixtureDir(path: string): void {
+  try {
+    rmSync(path, { recursive: true, force: true, maxRetries: 5, retryDelay: 50 });
+  } catch (error) {
+    console.warn(
+      `⚠️  Could not remove the fixture directory ${path}:`,
+      error instanceof Error ? error.message : error
+    );
+  }
+}
 
+export const test = base.extend<ElectronFixtures>({
   userDataDir: async ({}, use) => {
     const dir = mkdtempSync(join(tmpdir(), 'cortex-e2e-udd-'));
     await use(dir);
@@ -90,42 +98,21 @@ export const test = base.extend<ElectronFixtures>({
     await app.close();
   },
 
-  page: async ({ electronApp, workspacePath }, use) => {
-    // Get the first window
+  page: async ({ electronApp }, use) => {
     const page = await electronApp.firstWindow({ timeout: 60000 });
 
-    // Wait for the app to be fully loaded
     await page.waitForLoadState('domcontentloaded', { timeout: 60000 });
 
-    // Optional: wait for specific element to ensure app is ready
-    await page.waitForSelector('body', { timeout: 60000 });
-
-    // The app asks for a folder before showing the workbench, so seed one and
-    // reload. Without this every test would stall on the workspace selector
-    // instead of reaching the view under test.
+    // The renderer mounts into `#root`, so waiting on `body` would return before there is
+    // anything to assert against.
     //
-    // Onboarding flags are set at the same time: the welcome modal overlays the
-    // workbench and would intercept clicks on the views being tested.
-    //
-    // No editor-session cleanup is needed here any more. `userData` is private
-    // to this launch, so localStorage starts empty and there is no previous
-    // spec's session to inherit — the `addInitScript` that used to clear
-    // `cortex:editor-session` was working around the shared directory that this
-    // fixture no longer uses.
-    await page.evaluate((workspace) => {
-      window.localStorage.setItem('cortex:workspace-path', workspace);
-      window.localStorage.setItem('cortex:skip-welcome', 'true');
-      window.localStorage.setItem(
-        'cortex:onboarding',
-        JSON.stringify({
-          hasSeenWelcome: true,
-          hasCompletedTutorial: true,
-          hasConfiguredProvider: true,
-        })
-      );
-    }, workspacePath);
-
-    await page.reload({ waitUntil: 'domcontentloaded', timeout: 60000 });
+    // Nothing is seeded into `localStorage` here. The retired React renderer gated its
+    // workbench behind `cortex:workspace-path` and a set of onboarding flags, which this
+    // fixture had to fake before any view was reachable. The current renderer opens
+    // straight onto a usable, signed-out workspace — being usable with no account is a
+    // product requirement — so there is no gate left to unlock, and faking one would test
+    // a state the app no longer has.
+    await page.waitForSelector('#root', { timeout: 60000 });
 
     await use(page);
   }

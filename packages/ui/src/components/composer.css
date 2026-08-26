@@ -1,0 +1,161 @@
+/*
+ * Paper: Components / Inputs, "Composer (hero)" (CW-0, KW-0), and the Home composer (1QJ-0).
+ * Reference export: design/paper/jsx/composer.jsx
+ *
+ * A raised card: padding 16, column gap 12, radius-md, 1px border-strong, shadow-raised.
+ * Three stacked rows - prompt, attachments, controls - with the attachment row only present
+ * when there is something in it.
+ *
+ * The prompt is 16px on a 24px line, which is the only place in the design that uses
+ * --text-md: it is the one input the user actually composes prose in.
+ */
+
+.cx-composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-raised);
+}
+
+/* Focus lifts the border rather than adding a ring, so the card does not change size. */
+.cx-composer:focus-within {
+  border-color: var(--color-primary);
+}
+
+.cx-composer--disabled {
+  opacity: var(--opacity-disabled);
+}
+
+/*
+ * The prompt input.
+ *
+ * A textarea rather than a contenteditable: the design shows an inline repo mention as a
+ * chip, which contenteditable would render natively, but it would also hand us the entire
+ * rich-text editing surface - paste sanitisation, selection, undo - for one decoration. The
+ * chip is drawn in the row above instead, and the field stays a plain textarea whose value
+ * is unambiguous.
+ */
+.cx-composer__prompt {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  resize: none;
+  overflow: hidden;
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-md);
+  line-height: 24px;
+
+  background: transparent;
+  color: var(--color-text);
+
+  /* One line at rest, growing to five before it scrolls. The design draws a single 24px
+   * line; a fixed height would clip a two-line prompt with no way to see it. */
+  min-height: 24px;
+  max-height: 120px;
+}
+
+.cx-composer__prompt::placeholder {
+  color: var(--color-text-faint);
+}
+
+.cx-composer__prompt:focus {
+  outline: none;
+}
+
+/* Inline repo mention, shown ahead of the prompt when a repo is bound to the draft. */
+.cx-composer__mention {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: var(--radius-sm);
+
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+}
+
+.cx-composer__attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.cx-composer__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.cx-composer__spacer {
+  flex-grow: 1;
+}
+
+/*
+ * Send is a 32px round accent button, not the standard primary button: the design gives it
+ * radius-full and a fixed square box rather than padding.
+ */
+.cx-composer__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  cursor: pointer;
+
+  transition: background-color 100ms ease, opacity 100ms ease;
+}
+
+.cx-composer__send:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.cx-composer__send:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
+}
+
+/* Icon-only affordances in the control row: attach and dictate. */
+.cx-composer__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-composer__action:hover:not(:disabled) {
+  background: var(--color-inset);
+  color: var(--color-text);
+}
+
+.cx-composer__action:disabled {
+  cursor: default;
+  color: var(--color-text-faint);
+}

@@ -1,0 +1,74 @@
+/*
+ * GENERATED FILE - DO NOT EDIT.
+ *
+ * Source: Paper file "IDE New 01" design tokens.
+ * Paper token content hash: 6ac7b87c
+ * Regenerate with: bun run paper:tokens
+ */
+
+:root {
+  color-scheme: light;
+
+  --font-sans: Inter; /* UI type */
+  --font-mono: JetBrains Mono; /* Code, diff stats, IDs */
+  --text-xs: 12px; /* Chips, badges, overlines */
+  --text-sm: 13px; /* Secondary UI text, sidebar meta */
+  --text-base: 14px; /* Default UI text */
+  --text-md: 16px; /* Emphasized body, composer input */
+  --text-lg: 20px; /* Section headings */
+  --text-xl: 24px; /* Page titles (Cursor ~22-24px) */
+  --text-2xs: 11px; /* Metadata floor: timestamps, counts, durations */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --tracking-tight: -0.01em; /* Large display type */
+  --tracking-wide: 0.06em; /* All-caps overlines */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --radius-sm: 6px; /* Buttons, chips, badges */
+  --radius-md: 10px; /* Cards, inputs, composer */
+  --radius-full: 999px; /* Pills, dots, avatars */
+
+  --color-bg: #FCFCFC; /* Light: app/content background (Devin-verified) */
+  --color-panel: #F8F8F8; /* Light: sidebar & secondary surfaces */
+  --color-inset: #F0F0F0; /* Light: hover, chips, inset wells */
+  --color-border: #E8E8E8; /* Light: hairline borders */
+  --color-border-strong: #E3E3E3; /* Light: input outlines, stronger dividers (softened) */
+  --color-text: #1A1A1A; /* Light: primary text */
+  --color-text-muted: #7A7A7A; /* Light: secondary text */
+  --color-text-faint: #A8A8A8; /* Light: placeholder/disabled text */
+  --color-primary: #3078FC; /* Primary action & link blue (Devin-verified) */
+  --color-primary-tint: #E8F0FC; /* Light: primary tint bg (info surfaces, user bubble) */
+  --color-on-primary: #FFFFFF; /* Text on primary/inverse fills */
+  --color-success: #1F8A58; /* Light: ready/merged green (Devin #48906f x Cursor #22745a) */
+  --color-success-tint: #E2F2EA; /* Light: success tint bg (diff-added, badges) */
+  --color-warning: #F08C2E; /* Light: running/waiting orange (Devin-verified #f48c38) */
+  --color-warning-tint: #FDF0E0; /* Light: warning tint bg */
+  --color-error: #D4524A; /* Light: error/destructive red */
+  --color-error-tint: #FBE9E8; /* Light: error tint bg */
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #141414; /* Dark: app background (Cursor-dark verified) */
+  --color-panel: #191919; /* Dark: cards & panels */
+  --color-inset: #202020; /* Dark: hover, chips, elevated wells */
+  --color-border: #2C2C2C; /* Dark: borders (Cursor-dark verified) */
+  --color-border-strong: #343434; /* Dark: input outlines, stronger dividers (softened) */
+  --color-text: #F5F5F5; /* Dark: primary text */
+  --color-text-muted: #9A9A9A; /* Dark: secondary text */
+  --color-text-faint: #6B6B6B; /* Dark: placeholder/disabled text */
+  --color-primary: #5C96FF; /* Dark: primary action & link blue (lifted for contrast) */
+  --color-primary-tint: #1B2B4A; /* Dark: primary tint bg */
+  --color-success: #3CC98A; /* Dark: ready/merged green */
+  --color-success-tint: #1D3A2C; /* Dark: success tint bg (Cursor MAX badge #205440 family) */
+  --color-warning: #F5A04C; /* Dark: running/waiting orange */
+  --color-warning-tint: #3D2B16; /* Dark: warning tint bg */
+  --color-error: #E5665E; /* Dark: error/destructive red */
+  --color-error-tint: #3D1F1D; /* Dark: error tint bg */
+}

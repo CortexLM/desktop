@@ -28,6 +28,15 @@ export interface WorkspaceToolHostOptions {
   skills?: SkillDefinition[];
   autonomy?: AutonomyLevel;
   delegationDepth?: number;
+  /**
+   * Extra environment for `Execute`.
+   *
+   * How the user's secrets reach a command the agent runs. Merged over
+   * `process.env` rather than replacing it, because a shell with no PATH cannot run
+   * anything — and the host, not this executor, is what decides which secrets a
+   * given run is entitled to.
+   */
+  env?: Record<string, string>;
 }
 
 export class WorkspaceToolExecutor implements ToolExecutor {
@@ -205,6 +214,10 @@ export class WorkspaceToolExecutor implements ToolExecutor {
       cwd,
       timeout: 30_000,
       maxBuffer: 1024 * 1024,
+      // Merged over the inherited environment, not replacing it: a shell without a
+      // PATH cannot run anything. Only set when the host supplied secrets, so the
+      // common case keeps `execFile`'s default inheritance.
+      ...(this.options.env ? { env: { ...process.env, ...this.options.env } } : {}),
     });
     return { ok: true, output: [stdout, stderr].filter(Boolean).join('\n') };
   }

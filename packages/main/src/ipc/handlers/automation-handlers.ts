@@ -17,6 +17,7 @@ import {
 } from '@cortex-ide/shared';
 
 import type {
+  AITaskAction,
   CreateAutomationRequest,
   CreateAutomationResponse,
   UpdateAutomationRequest,
@@ -36,6 +37,8 @@ import type {
 } from '@cortex-ide/shared';
 
 import { automationService } from '../../services/automation-service';
+import { activeWorkspacePath } from '../../services/active-workspace';
+import { getAIService } from '../../services/ai-service';
 import { createHandler } from './shared/handler-factory';
 
 export const AUTOMATION_CHANNELS = [
@@ -49,11 +52,75 @@ export const AUTOMATION_CHANNELS = [
   IPC_CHANNELS.AUTOMATION_GET_LOGS,
 ] as const;
 
+/**
+ * Fills in what the renderer must not supply.
+ *
+ * `FileTrigger.workspacePath` and `AITaskAction.provider` / `.model` are required
+ * by the service, and none of the three is the renderer's to know: the path is a
+ * disk location main deliberately does not send across, and the provider is
+ * whichever one the stored key actually built. A renderer guessing them would
+ * either leak the tree or point an automation at a provider that is not registered
+ * — which fails on the first firing, hours later, with nobody watching.
+ *
+ * Empty values are treated as "resolve this", so a caller can send a complete
+ * request and keep it.
+ */
+function registeredProvider(): AITaskAction['provider'] {
+  try {
+    const ids = getAIService().getRegisteredProviderIds?.() ?? [];
+    return (ids[0] ?? 'openai') as AITaskAction['provider'];
+  } catch {
+    // Enrichment, not a dependency: the registry may not be built yet, and an
+    // automation is still worth creating. The provider's own default applies.
+    return 'openai';
+  }
+}
+
+async function complete(request: CreateAutomationRequest): Promise<CreateAutomationRequest> {
+  const workspacePath = (await activeWorkspacePath()) ?? '';
+  const provider = registeredProvider();
+
+  const trigger =
+    request.trigger.type === 'file_watch'
+      ? {
+          ...request.trigger,
+          workspacePath: request.trigger.workspacePath || workspacePath,
+          // Every filesystem event, because "when files change" means all three.
+          // Asking the user to pick among add/change/unlink is a distinction the
+          // form has no reason to expose.
+          events:
+            request.trigger.events?.length > 0
+              ? request.trigger.events
+              : (['add', 'change', 'unlink'] as const).slice(),
+        }
+      : request.trigger;
+
+  const actions = request.actions.map((action) =>
+    action.type === 'ai_task'
+      ? {
+          ...action,
+          provider: action.provider || provider,
+          // An empty model lets the provider use its own default, which is what a
+          // user who never chose one wants.
+          model: action.model || '',
+          context: action.context ?? { workspacePath },
+        }
+      : action,
+  );
+
+  return {
+    ...request,
+    workspaceId: request.workspaceId || workspacePath,
+    trigger,
+    actions,
+  } as CreateAutomationRequest;
+}
+
 export const handleCreateAutomation = createHandler<
   CreateAutomationRequest,
   CreateAutomationResponse
 >(CreateAutomationRequestSchema, async (request) => {
-  const automation = await automationService.createAutomation(request);
+  const automation = await automationService.createAutomation(await complete(request));
   return { automation };
 });
 

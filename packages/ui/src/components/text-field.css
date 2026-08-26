@@ -1,0 +1,86 @@
+/*
+ * Paper: Components / Inputs, "Text field" (CQ-0, LS-0).
+ * Reference export: design/paper/jsx/text-field.jsx
+ *
+ * Label 13px medium, then a 36px control (padding 9px 12px on a 16px line, plus 1px
+ * border), then a 12px hint. Column gap 8px.
+ *
+ * The value is set in mono at 13px: the fields in this design hold identifiers - secret
+ * names, branch names, prefixes - not prose.
+ */
+
+.cx-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.cx-field__label {
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--color-text);
+}
+
+.cx-field__control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+
+  padding: 9px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+
+  background: var(--color-bg);
+
+  transition: border-color 100ms ease;
+}
+
+/* Focus lifts the outline to the accent rather than adding a ring, so the control does not
+ * change size when focused. */
+.cx-field__control:focus-within {
+  border-color: var(--color-primary);
+}
+
+.cx-field__control--invalid {
+  border-color: var(--color-error);
+}
+
+.cx-field__input {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+
+  font-family: var(--font-mono-stack);
+  font-size: var(--text-sm);
+  line-height: 16px;
+
+  background: transparent;
+  color: var(--color-text);
+}
+
+.cx-field__input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.cx-field__input:disabled {
+  color: var(--color-text-faint);
+}
+
+/* Sans for the fields that do hold prose rather than an identifier. */
+.cx-field__input--prose {
+  font-family: var(--font-sans-stack);
+}
+
+.cx-field__hint {
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+.cx-field__hint--error {
+  color: var(--color-error);
+}

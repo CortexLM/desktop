@@ -1,8 +1,27 @@
 // Interface de base pour tous les providers AI
 
+export type MessageRole = 'user' | 'assistant' | 'system' | 'tool';
+
 export interface Message {
-  role: 'user' | 'assistant' | 'system';
+  role: MessageRole;
+  /**
+   * Peut être vide sur un message assistant qui ne fait qu'appeler des outils :
+   * le modèle répond alors uniquement par `toolCalls`.
+   */
   content: string;
+  /**
+   * Outils demandés par l'assistant. Doivent être renvoyés tels quels au tour
+   * suivant : sans eux, le provider reçoit un résultat d'outil qui ne correspond
+   * à aucun appel et rejette la requête.
+   */
+  toolCalls?: ProviderToolCall[];
+  /**
+   * Identifiant de l'appel auquel ce message répond. Obligatoire sur un message
+   * `tool` — c'est ce qui apparie le résultat à sa demande.
+   */
+  toolCallId?: string;
+  /** Nom de l'outil, attendu par certains providers sur un message `tool`. */
+  name?: string;
 }
 
 /** JSON-schema tool the model may call. Independent of the agent-loop types. */
@@ -18,6 +37,14 @@ export interface ProviderToolCall {
   arguments: Record<string, unknown>;
 }
 
+/**
+ * Contrainte sur l'appel d'outil.
+ *
+ * `required` force le modèle à appeler un outil au lieu de répondre en prose :
+ * indispensable quand la boucle attend une action et non un commentaire.
+ */
+export type ToolChoice = 'auto' | 'none' | 'required';
+
 export interface ChatOptions {
   model?: string;
   temperature?: number;
@@ -26,6 +53,19 @@ export interface ChatOptions {
   stop?: string[];
   stream?: boolean;
   tools?: ProviderTool[];
+  toolChoice?: ToolChoice;
+}
+
+/** Un modèle exposé par un provider, tel que le sélecteur l'affiche. */
+export interface ProviderModel {
+  id: string;
+  /** Libellé lisible. Retombe sur `id` quand le provider n'en fournit pas. */
+  displayName: string;
+  contextLength?: number;
+  maxOutputTokens?: number;
+  supportsTools?: boolean;
+  supportsStreaming?: boolean;
+  supportsVision?: boolean;
 }
 
 export interface ProviderTokenUsage {
@@ -110,6 +150,16 @@ export abstract class AIProvider {
   ): AsyncIterableIterator<StreamChunk>;
 
   abstract isAvailable(): Promise<boolean>;
+
+  /**
+   * Modèles exposés par ce provider.
+   *
+   * Retourne une liste vide par défaut : tous les providers ne publient pas de
+   * catalogue, et un sélecteur vide est plus honnête qu'une liste inventée.
+   */
+  listModels(): Promise<ProviderModel[]> {
+    return Promise.resolve([]);
+  }
 
   /**
    * Normalise n'importe quoi de levé par un SDK en `AIProviderError`.

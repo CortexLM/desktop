@@ -1,14 +1,12 @@
 /**
  * Global setup for E2E tests
  *
- * Builds the Electron app. That is all it does.
+ * Builds the app. That is all it does.
  *
- * It used to also create one shared workspace for the whole suite. That
- * workspace is now created per test by the `workspacePath` fixture
- * (`tests/e2e/fixtures/workspace.ts`), because sharing one Git repository across
- * four parallel workers made execution order part of the contract: a spec that
- * commits everything leaves the repo clean for whoever runs next, and the specs
- * guarded by `if (hasChanges)` then pass without asserting anything.
+ * The build has to happen here rather than being assumed: the specs launch Electron against
+ * `packages/main/dist/index.js`, which loads `packages/app/dist/index.html`. Running them
+ * against a stale dist is the failure mode where the suite passes while testing the previous
+ * commit's renderer.
  */
 import { execSync } from 'node:child_process';
 
