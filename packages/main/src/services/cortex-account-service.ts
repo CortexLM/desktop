@@ -41,13 +41,13 @@ import { dirname, join } from 'node:path';
 import {
   CortexApiClient,
   DeviceFlowAbortedError,
-  isCortexApiError,
-  isCortexDeviceFlowError,
   pollDeviceToken,
   type CortexModel,
   type CortexUser,
   type DeviceCode,
 } from '@cortex-ide/cortex-api';
+
+import { describeError, isAuthFailure, toDeviceStatus } from './cortex-account-status';
 import type {
   CortexAccountState,
   CortexDeviceStartResponse,
@@ -300,7 +300,7 @@ export class CortexAccountService {
       return { models: models.map(toModelView) };
     } catch (error) {
       this.reachable = false;
-      return { models: [], error: describe(error) };
+      return { models: [], error: describeError(error) };
     }
   }
 
@@ -501,45 +501,6 @@ export class CortexAccountService {
     this.deviceListeners.clear();
     this.accountListeners.clear();
   }
-}
-
-/**
- * Le jeton est-il refusé, plutôt que l'API injoignable ?
- *
- * La distinction décide s'il faut effacer la session au démarrage. La confondre
- * dans un sens déconnecte à chaque coupure réseau ; dans l'autre, elle laisse
- * une UI connectée dont chaque appel échoue. `CortexApiError.isAuthFailure`
- * porte déjà la règle (401, `AUTH_REQUIRED`, `INVALID_SESSION`).
- */
-function isAuthFailure(error: unknown): boolean {
-  return isCortexApiError(error) && error.isAuthFailure;
-}
-
-/** Traduit l'échec d'un flux d'appareil vers le vocabulaire de l'UI. */
-function toDeviceStatus(error: unknown): CortexDeviceStatus {
-  if (isCortexDeviceFlowError(error)) {
-    if (error.code === 'access_denied') return { kind: 'denied' };
-    if (error.code === 'expired_token') return { kind: 'expired' };
-  }
-
-  // Le service v1 a retiré les routes `/auth/*` : le démarrage répond en
-  // problem+json `not_found`. C'est un changement de contrat côté serveur, pas
-  // une panne — le dire tel quel, avec l'issue de secours qui marche.
-  if (isCortexApiError(error) && error.code === 'not_found') {
-    return {
-      kind: 'error',
-      message:
-        'Sign-in is unavailable: the account service has retired this endpoint. ' +
-        'Local sessions with your own provider key keep working from Settings.',
-    };
-  }
-
-  return { kind: 'error', message: describe(error) };
-}
-
-function describe(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  return String(error);
 }
 
 // ============================================================================
