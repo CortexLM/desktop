@@ -205,6 +205,11 @@ export function HomeRoute(): JSX.Element {
   return (
     <HomeScreen
       capabilities={account.capabilities()}
+      greeting={
+        account.user()?.displayName
+          ? `What should we build, ${account.user()!.displayName!.split(/\s+/)[0]}?`
+          : 'What should we build?'
+      }
       draft={composerDraft()}
       onDraftChange={setComposerDraft}
       onStart={() => void start()}

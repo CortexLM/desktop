@@ -19,13 +19,9 @@ export interface RecentSessionsProps {
   onViewAll?: () => void;
 }
 
-/** Statuses that get a leading dot in this table: the ones describing something in motion. */
-const LIVE_STATUSES: ReadonlySet<SessionStatus> = new Set(['running', 'error']);
-
+/** The dot takes the status tone: copper for live, green for landed, red for failed. */
 function statusClass(status: SessionStatus): string {
-  if (status === 'running') return 'cx-recent__status cx-recent__status--running';
-  if (status === 'error') return 'cx-recent__status cx-recent__status--error';
-  return 'cx-recent__status';
+  return `cx-recent__status cx-recent__status--${SESSION_STATUS_TONES[status].tone}`;
 }
 
 /**
@@ -58,12 +54,9 @@ export function RecentSessions(props: RecentSessionsProps): JSX.Element {
                 <span class="cx-recent__row-meta">{row.context}</span>
               </span>
 
-              <span class={statusClass(row.status)}>
-                <Show when={LIVE_STATUSES.has(row.status)}>
-                  <span class="cx-recent__dot" aria-hidden="true" />
-                </Show>
-                {SESSION_STATUS_TONES[row.status].label}
-              </span>
+              <span class={statusClass(row.status)}>{SESSION_STATUS_TONES[row.status].label}</span>
+
+              <span class="cx-recent__spacer" aria-hidden="true" />
 
               <span class="cx-recent__diff">
                 <Show when={row.diff}>
