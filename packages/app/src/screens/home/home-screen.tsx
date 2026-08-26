@@ -3,7 +3,6 @@ import { createSignal, type JSX, Show } from 'solid-js';
 import { Composer, type ComposerControl } from '@cortex-ide/ui';
 import type { Capabilities, RuntimeKind } from '@cortex-ide/cortex-api';
 
-import { BrandTile } from '../../shell/brand-mark.tsx';
 import { PageBody } from '../../shell/app-shell.tsx';
 import { Checklist, type ChecklistStep } from './checklist.tsx';
 import { RecentSessions, type RecentSessionRow } from './recent-sessions.tsx';
@@ -28,6 +27,8 @@ export interface LimitNotice {
 
 export interface HomeScreenProps {
   capabilities: Capabilities;
+  /** "What should we build, Ana?" — assembled by the caller, which knows the name. */
+  greeting: string;
   draft: SessionDraft;
   onDraftChange: (draft: SessionDraft) => void;
   onStart: (draft: SessionDraft) => void;
@@ -92,6 +93,8 @@ function picker(spec: PickerSpec): ComposerControl {
  * showing the notice - offering a send button that cannot work would be worse than saying so.
  */
 function draftControls(props: HomeScreenProps): ComposerControl[] {
+  // The model is not a chip: C3 puts it on the composer's right as bare text
+  // (`modelLabel`), so the left row carries only where the run happens.
   return [
     picker({
       id: 'repo',
@@ -104,11 +107,6 @@ function draftControls(props: HomeScreenProps): ComposerControl[] {
       label: props.draft.branch ?? 'Default branch',
       icon: 'branch',
       onPress: props.onPickBranch,
-    }),
-    picker({
-      id: 'model',
-      label: props.draft.model ?? 'Choose a model',
-      onPress: props.onPickModel,
     }),
     picker({
       id: 'runtime',
@@ -131,9 +129,7 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
   return (
     <PageBody width="centred">
       <div class="cx-home">
-        <div class="cx-home__greeting">
-          <BrandTile large />
-        </div>
+        <h1 class="cx-home__greeting">{props.greeting}</h1>
 
         <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
 
@@ -144,6 +140,8 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
             onSubmit={() => props.onStart(props.draft)}
             placeholder="Describe a task, or paste an issue link"
             controls={controls()}
+            modelLabel={props.draft.model ?? 'Choose a model'}
+            onPickModel={props.onPickModel}
             onAttach={props.onAttach}
             onDictate={props.onDictate}
             disabled={blocked()}

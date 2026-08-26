@@ -1,78 +1,120 @@
 /*
- * Paper: Screens / Home (1OJ-0, 1TQ-0).
+ * Paper: C3 / Code / Home (BXF-0 light, BXG-0 dark), plus the Limits Usage
+ * Warning / Limit Reached variants of the same screen.
+ * Reference export: design/paper/jsx/screens/code-home.jsx
  *
- * A centred 760px column: the 44px brand tile, the composer, a get-started checklist, and
- * the recent-sessions table. The checklist and the table are each dismissible or absent, so
- * the column is a flex stack rather than fixed rows.
+ * A centred 720px column on a 64px top inset: the serif greeting, the composer,
+ * the get-started card, then Recent sessions. Cards are surface-on-page with
+ * hairlines and the 16px card radius — information on the surface, not boxes in
+ * boxes.
  */
 
 .cx-home {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-6);
+
+  width: 100%;
+  padding: 64px 40px 40px;
 }
 
 .cx-home__greeting {
-  display: flex;
-  justify-content: center;
-}
+  margin-bottom: 28px;
 
-.cx-home__composer {
-  width: 100%;
+  font-family: var(--font-serif-stack);
+  font-size: var(--text-greeting);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-greeting);
+  text-align: center;
+
+  color: var(--color-text);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Get started checklist                                                      */
+/* Composer (the Code screen's register of the kit card)                      */
+/* -------------------------------------------------------------------------- */
+
+.cx-home__composer {
+  width: var(--layout-composer);
+}
+
+/* The Code home draws the card with a softer ring and a deeper, larger shadow
+ * than the kit's resting state, and a 15/24 prompt. */
+.cx-home__composer .cx-composer {
+  padding: 18px 18px 14px;
+  border-color: color-mix(in srgb, var(--color-text) 12%, transparent);
+  box-shadow:
+    #1f1d1a0a 0 12px 32px,
+    #1f1d1a08 0 2px 8px;
+}
+
+.cx-home__composer .cx-composer__prompt {
+  line-height: 24px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Get started                                                                */
 /* -------------------------------------------------------------------------- */
 
 .cx-checklist {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
-  width: 100%;
+  gap: 10px;
 
-  padding: 18px;
+  width: var(--layout-composer);
+  margin-top: 24px;
+  padding: 16px 20px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
 
-  background: var(--color-surface-raised);
+  background: var(--color-surface);
 }
 
 .cx-checklist__header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: 10px;
 }
 
 .cx-checklist__title {
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
+  font-family: var(--font-sans-stack);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
   color: var(--color-text);
 }
 
 .cx-checklist__progress {
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
 
-  background: var(--color-inset);
-  font-size: var(--text-2xs);
-  font-weight: var(--font-weight-medium);
+  height: 20px;
+  padding-inline: 8px;
+  border-radius: var(--radius-pill);
+
+  font-size: 11px;
+  font-weight: 520;
+  font-variation-settings: 'wght' 520;
   line-height: 14px;
+
+  background: var(--color-hover);
   color: var(--color-text-muted);
 }
 
 .cx-checklist__spacer {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .cx-checklist__dismiss {
   padding: 0;
   border: 0;
-  background: transparent;
 
-  font-size: var(--text-xs);
+  font-family: var(--font-sans-stack);
+  font-size: 12px;
+  line-height: 16px;
+
+  background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
 }
@@ -84,13 +126,30 @@
 .cx-checklist__steps {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
 }
 
 .cx-checklist__step {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  padding-block: 6px;
+
+  font-family: var(--font-sans-stack);
+  font-size: 13px;
+  font-weight: 520;
+  font-variation-settings: 'wght' 520;
+  line-height: 16px;
+  color: var(--color-text);
+}
+
+/* Done steps strike through and mute — the row becomes a record, not a task. */
+.cx-checklist__step--done {
+  font-weight: 400;
+  font-variation-settings: 'wght' 400;
+  color: var(--color-text-muted);
+  text-decoration: line-through 1px;
 }
 
 .cx-checklist__mark {
@@ -99,46 +158,41 @@
   justify-content: center;
   flex-shrink: 0;
 
-  width: 16px;
-  height: 16px;
-  border-radius: var(--radius-full);
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+}
+
+.cx-checklist__mark--open {
+  border: 1.5px solid color-mix(in srgb, var(--color-text) 16%, transparent);
 }
 
 .cx-checklist__mark--done {
-  background: var(--color-success);
-  color: var(--color-on-primary);
-}
-
-/* An open step is an empty ring, not a hollow circle glyph: the design draws the outline as
- * the element's own border so it stays crisp at 16px. */
-.cx-checklist__mark--open {
-  border: 1.5px solid var(--color-border-strong);
+  background: var(--color-green);
+  color: var(--color-on-green);
 }
 
 .cx-checklist__label {
-  flex-grow: 1;
-  font-size: var(--text-sm);
-  line-height: 18px;
-  color: var(--color-text);
-}
-
-/* A completed step is struck through, which is what the design shows for the two done rows. */
-.cx-checklist__step--done .cx-checklist__label {
-  color: var(--color-text-muted);
-  text-decoration: line-through;
+  flex: 1;
 }
 
 .cx-checklist__action {
-  flex-shrink: 0;
   padding: 0;
   border: 0;
-  background: transparent;
 
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
-  color: var(--color-primary);
+  font-family: var(--font-sans-stack);
+  font-size: 12px;
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+  line-height: 16px;
+
+  background: transparent;
+  color: var(--color-green);
   cursor: pointer;
+}
+
+.cx-checklist__action:hover {
+  color: var(--color-green-hover);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -148,20 +202,24 @@
 .cx-recent {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
-  width: 100%;
+
+  width: var(--layout-composer);
+  margin-top: 24px;
 }
 
 .cx-recent__header {
   display: flex;
   align-items: baseline;
-  gap: var(--spacing-2);
+
+  margin-bottom: 10px;
 }
 
 .cx-recent__title {
-  flex-grow: 1;
-  font-size: var(--text-md);
-  font-weight: var(--font-weight-medium);
+  flex: 1;
+
+  font-family: var(--font-sans-stack);
+  font-size: 15px;
+  font-weight: 600;
   line-height: 20px;
   color: var(--color-text);
 }
@@ -169,12 +227,20 @@
 .cx-recent__link {
   padding: 0;
   border: 0;
-  background: transparent;
 
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
+  font-family: var(--font-sans-stack);
+  font-size: 12px;
+  font-weight: 520;
+  font-variation-settings: 'wght' 520;
+  line-height: 16px;
+
+  background: transparent;
+  color: var(--color-green);
   cursor: pointer;
+}
+
+.cx-recent__link:hover {
+  color: var(--color-green-hover);
 }
 
 .cx-recent__list {
@@ -182,94 +248,123 @@
   flex-direction: column;
 
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-raised);
+  border-radius: var(--radius-card);
   overflow: hidden;
+
+  background: var(--color-surface);
 }
 
-/*
- * Rows are separated by a border on all but the first, rather than a gap. The design draws
- * them as one continuous card, so a gap would show the page through the seams.
- */
 .cx-recent__row {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: 12px;
 
-  padding: 14px 16px;
+  padding: 12px 16px;
   border: 0;
-  border-top: 1px solid var(--color-border);
+
+  font-family: var(--font-sans-stack);
+  text-align: left;
 
   background: transparent;
   cursor: pointer;
-  font-family: var(--font-sans-stack);
-  text-align: left;
 }
 
-.cx-recent__row:first-child {
-  border-top: 0;
+.cx-recent__row + .cx-recent__row {
+  border-top: 1px solid var(--color-border);
 }
 
 .cx-recent__row:hover {
   background: var(--color-hover);
 }
 
+/* Fixed lanes so the figures line up across rows: title 330, status 96,
+ * spacer, diff 96, age 70. */
 .cx-recent__row-text {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  min-width: 0;
+  flex-shrink: 0;
+  gap: 3px;
+
+  width: 330px;
 }
 
 .cx-recent__row-title {
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
-  color: var(--color-text);
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-size: 14px;
+  font-weight: 520;
+  font-variation-settings: 'wght' 520;
+  line-height: 18px;
+  color: var(--color-text);
 }
 
 .cx-recent__row-meta {
-  font-size: var(--text-2xs);
-  line-height: 16px;
-  color: var(--color-text-faint);
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-family: var(--font-mono-stack);
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--color-text-muted);
 }
 
 .cx-recent__status {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+  gap: 6px;
+
   width: 96px;
 
-  font-size: var(--text-xs);
+  font-size: 12px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
   line-height: 16px;
   color: var(--color-text-muted);
 }
 
-/*
- * Fixed-width lanes for the trailing columns. Without them the diff figures and timestamps
- * would sit at a different x on every row, which is exactly what the design's repeated-row
- * guidance warns about.
- */
+.cx-recent__status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-green);
+}
+
+.cx-recent__status--accent::before {
+  background: var(--color-accent);
+}
+
+.cx-recent__status--error::before {
+  background: var(--color-error);
+}
+
+.cx-recent__status--neutral::before {
+  background: var(--color-text-faint);
+}
+
+.cx-recent__spacer {
+  flex: 1;
+}
+
 .cx-recent__diff {
   display: flex;
+  flex-shrink: 0;
   gap: 6px;
   justify-content: flex-end;
-  flex-shrink: 0;
-  width: 88px;
 
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-medium);
+  width: 96px;
+
+  font-family: var(--font-mono-stack);
+  font-size: 11px;
   line-height: 16px;
 }
 
 .cx-recent__added {
-  color: var(--color-success);
+  color: var(--color-green);
 }
 
 .cx-recent__removed {
@@ -278,83 +373,59 @@
 
 .cx-recent__age {
   flex-shrink: 0;
-  width: 72px;
-  text-align: right;
+  width: 70px;
 
-  font-size: var(--text-xs);
+  font-size: 11px;
   line-height: 16px;
-  color: var(--color-text-faint);
-}
-
-.cx-recent__dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-right: 6px;
-  border-radius: var(--radius-full);
-  background: currentColor;
-}
-
-.cx-recent__status--running {
-  color: var(--color-warning);
-}
-
-.cx-recent__status--error {
-  color: var(--color-error);
+  text-align: right;
+  color: var(--color-text-muted);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Limit notices                                                              */
+/* Limits banner                                                              */
 /* -------------------------------------------------------------------------- */
-
-/*
- * Paper: Screens / Limits Usage Warning (7VZ-0) and Limits Limit Reached (885-0).
- *
- * Both are Home with a notice above the composer, not separate screens. The warning is a
- * 37px single-line strip; the reached notice is a 116px block, taller because it carries the
- * explanation of what stopped and what to do.
- */
 
 .cx-limit {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
-  width: 100%;
+  gap: 12px;
 
-  border-radius: var(--radius-md);
+  width: var(--layout-composer);
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-btn);
+
   font-family: var(--font-sans-stack);
+  font-size: 13px;
+  line-height: 18px;
 }
 
 .cx-limit--warning {
-  padding: 9px 14px;
+  border: 1px solid var(--color-warning);
   background: var(--color-warning-tint);
   color: var(--color-warning);
 }
 
 .cx-limit--reached {
-  padding: 16px;
+  border: 1px solid var(--color-error);
   background: var(--color-error-tint);
   color: var(--color-error);
 }
 
 .cx-limit__message {
-  flex-grow: 1;
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
+  flex: 1;
 }
 
 .cx-limit__action {
-  flex-shrink: 0;
   padding: 0;
   border: 0;
-  background: transparent;
 
-  font-family: inherit;
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
-  color: currentColor;
+  font-size: 12px;
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+
+  background: transparent;
+  color: inherit;
   text-decoration: underline;
   cursor: pointer;
 }
