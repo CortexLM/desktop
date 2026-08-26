@@ -54,25 +54,41 @@ function toToolEvent(tool: Record<string, unknown>, at: number): SessionEvent | 
   return event;
 }
 
+/**
+ * Engine risk words (`ToolRisk`: safe/write/exec) translated to the UI's
+ * vocabulary. Unknown values read as `safe` deliberately: the agent loop is what
+ * gates the call, and inflating an unrecognised value to `dangerous` would train
+ * the user to dismiss the warning.
+ */
+function toRisk(raw: unknown): 'safe' | 'caution' | 'dangerous' {
+  if (raw === 'dangerous' || raw === 'exec') return 'dangerous';
+  if (raw === 'caution' || raw === 'write' || raw === 'net') return 'caution';
+  return 'safe';
+}
+
 function toPermissionEvent(
   permission: Record<string, unknown>,
   at: number,
 ): SessionEvent | undefined {
-  if (typeof permission.requestId !== 'string') return undefined;
+  // The engine names it `id` (see PermissionRequest in the agent loop); older
+  // rows may carry `requestId`. Accepting only the latter is how permission
+  // requests silently vanished from the timeline — and the run then waited
+  // forever on a decision nobody was ever shown.
+  const requestId =
+    typeof permission.id === 'string'
+      ? permission.id
+      : typeof permission.requestId === 'string'
+        ? permission.requestId
+        : undefined;
+  if (!requestId) return undefined;
 
   return {
     kind: 'permission',
     at,
-    requestId: permission.requestId,
+    requestId,
     summary:
       typeof permission.summary === 'string' ? permission.summary : 'Permission needed',
-    // Unknown risk reads as `safe` deliberately: the agent loop is what gates the
-    // call, and inflating an unrecognised value to `dangerous` would train the user
-    // to dismiss the warning.
-    risk:
-      permission.risk === 'dangerous' || permission.risk === 'caution'
-        ? permission.risk
-        : 'safe',
+    risk: toRisk(permission.risk),
   };
 }
 

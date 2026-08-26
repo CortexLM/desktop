@@ -344,6 +344,70 @@
 }
 
 /*
+ * The permission banner. It sits where the activity line does — above the follow-up
+ * composer — because it is that line's actionable form: the run is not "working",
+ * it is waiting on the user, and the buttons are the answer.
+ */
+.cx-permission {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+
+  padding: var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-raised);
+}
+
+.cx-permission__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-text-muted);
+}
+
+.cx-permission[data-risk='dangerous'] .cx-permission__icon {
+  color: var(--color-error);
+}
+
+.cx-permission__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cx-permission__title {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.cx-permission__summary {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cx-permission__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/*
  * The activity pulse. A 12px square with a soft pulse rather than a spinner: it sits inline
  * with a sentence, where a rotating ring reads as a loading state for the whole pane.
  */

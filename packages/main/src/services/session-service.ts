@@ -79,6 +79,32 @@ export class SessionService extends EventEmitter {
   constructor(options: { ai?: AIService } = {}) {
     super();
     this.ai = options.ai ?? getAIService();
+    // Fire-and-forget: recovery must not delay construction, and a failure to
+    // recover must not take the service down with it.
+    void this.recoverInterrupted().catch(() => undefined);
+  }
+
+  /**
+   * Settles runs a previous process left in flight.
+   *
+   * A `running` row whose process is gone is not running — its agent loop, its
+   * abort handle and its permission gate died with the process. Left as-is, the
+   * inbox shows it working forever and the detail screen waits on a permission
+   * nobody can grant. `stopped` rather than `failed`: nothing about the run went
+   * wrong, the app was closed under it.
+   *
+   * Runs in `this.running` are exempt by construction: this executes before the
+   * first `start()` of this process can possibly have registered one.
+   */
+  private async recoverInterrupted(): Promise<void> {
+    const db = getDatabaseService();
+    await db.execute([
+      {
+        query: `UPDATE sessions SET status = 'stopped', finished_at = ?, updated_at = ?
+                WHERE status IN ('queued', 'running')`,
+        params: [Date.now(), Date.now()],
+      },
+    ]);
   }
 
   // ==========================================================================
