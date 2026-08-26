@@ -10,6 +10,8 @@
 import { createMemo, createSignal, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
+import type { SessionSummary } from '@cortex-ide/shared';
+
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import {
