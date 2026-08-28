@@ -1,7 +1,9 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import solid from 'vite-plugin-solid';
 
-import { withConnectSrc } from './src/build/connect-src.ts';
+// Not under a directory named `build`: `.gitignore` has a bare `build/`, which matches
+// at any depth, so a module there is silently never committed and only CI notices.
+import { withConnectSrc } from './src/security/connect-src.ts';
 
 /**
  * Rewrites the page's `connect-src` for the origin this build targets.

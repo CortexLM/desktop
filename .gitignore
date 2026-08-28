@@ -15,7 +15,11 @@ playwright-report/
 # Dependencies
 node_modules/
 dist/
-build/
+# Anchored. A bare `build/` matches at any depth, so a source directory named `build`
+# anywhere under packages/ was silently never committed — the working tree looked
+# clean, and only CI saw the missing module. Native-addon build output lives under
+# node_modules/, which is already covered above.
+/build/
 
 # OS files
 .DS_Store
