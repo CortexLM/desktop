@@ -31,8 +31,14 @@ const service = {
   onAccountChanged: vi.fn(() => () => {}),
 };
 
+const proxyProductRequest = vi.fn();
+
 vi.mock('../../../services/cortex-account-service', () => ({
   getCortexAccountService: () => service,
+}));
+
+vi.mock('../../../services/cortex-product-proxy', () => ({
+  proxyProductRequest: (...args: unknown[]) => proxyProductRequest(...args),
 }));
 
 const { registerCortexHandlers, unregisterCortexHandlers } = await import('../cortex-handlers');
@@ -48,6 +54,7 @@ async function invoke(channel: string): Promise<unknown> {
 
 beforeEach(() => {
   resetElectronMock();
+  proxyProductRequest.mockReset();
   service.state.mockReturnValue(ANONYMOUS);
   service.listModels.mockResolvedValue({ models: [] });
   service.startDeviceFlow.mockResolvedValue({
@@ -163,6 +170,22 @@ describe('events', () => {
     // canal de sondage. Sans ces abonnements, l'écran attendrait indéfiniment.
     expect(service.onDeviceStatus).toHaveBeenCalled();
     expect(service.onAccountChanged).toHaveBeenCalled();
+  });
+
+  it('registers the product-request proxy', async () => {
+    proxyProductRequest.mockResolvedValue({
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+      bodyText: '{"id":"mst_1"}',
+    });
+    const handler = registeredHandlers.get('cortex:product-request');
+    expect(handler).toBeDefined();
+    const response = await handler?.({}, { method: 'GET', path: '/v1/mascots' });
+    expect(proxyProductRequest).toHaveBeenCalledWith({ method: 'GET', path: '/v1/mascots' });
+    expect(response).toEqual({
+      success: true,
+      data: { status: 200, headers: { 'content-type': 'application/json' }, bodyText: '{"id":"mst_1"}' },
+    });
   });
 
   it('unsubscribes on unregister', () => {

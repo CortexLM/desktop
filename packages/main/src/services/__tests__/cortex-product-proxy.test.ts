@@ -26,6 +26,7 @@ describe('product path allowlist', () => {
     expect(isProductPath('/v1/mascots/mst_1/messages')).toBe(true);
     expect(isProductPath('/v1/skills/research')).toBe(true);
     expect(isProductPath('/v1/plugins/connections')).toBe(true);
+    expect(isProductPath('/v1/mascots/mst_1/memory?tier=profile')).toBe(true);
     expect(isProductPath('/v1/conversations')).toBe(false);
     expect(isProductPath('/auth/me')).toBe(false);
   });
