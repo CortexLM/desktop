@@ -222,6 +222,17 @@ jobs:
           # GitHub-hosted runners are not setuid-sandbox capable; without
           # --no-sandbox this FATAL-aborts and the job never reaches Playwright.
           "$ELECTRON_BIN" --no-sandbox --version
+
+      # Electron and Node do not share an ABI. Without this, better-sqlite3
+      # (Node-built) degrades persistence and node-pty cannot spawn a shell —
+      # the window still opens, but Settings and the Shell tab fail.
+      - name: Build native addons for Electron
+        run: |
+          set -euo pipefail
+          bun run build:native-dual-abi
+          PTY_DIR="$(node -p "require('path').dirname(require.resolve('node-pty/package.json'))")"
+          ELECTRON_VERSION="$(node -p "require('electron/package.json').version")"
+          (cd "$PTY_DIR" && npx node-gyp rebuild --target="$ELECTRON_VERSION" --dist-url=https://electronjs.org/headers --arch=x64)
       
       - name: Install Playwright
         run: bunx playwright install chromium --with-deps
