@@ -53,8 +53,9 @@ plugins is “Composio is not configured”. See [bot-grok-core.md](./bot-grok-c
 
 Push to `staging` runs `.github/workflows/staging.yml`: build web + Electron
 artifacts, upload them, GitHub Environment `staging`, OIDC (`id-token: write`).
-Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is off while the staging
-AWS account is CLOSED. No AWS keys in git.
+PRs into `staging` run `.github/workflows/test-suite.yml` (same unit / IPC /
+e2e jobs as `main`). Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is
+off while the staging AWS account is CLOSED. No AWS keys in git.
 
 ## Linux Grok box
 
