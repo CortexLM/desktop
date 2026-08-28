@@ -40,11 +40,11 @@ const SAFE_DOMAINS = [
   'www.github.com',
   'docs.github.com',
   'api.github.com',
-  'cortex-ide.com',
-  'www.cortex-ide.com',
   // The device flow sends the user to `auth.cortex.foundation/device` to approve
-  // the code, and `api.cortex.foundation` is the API itself. Matched via the
-  // `.endsWith('.' + domain)` rule below, so both subdomains are covered.
+  // the code, `api.cortex.foundation` is the API itself, and releases come from
+  // `releases.cortex.foundation`. Matched via the `.endsWith('.' + domain)` rule
+  // below, so every subdomain is covered by this one entry — which is why the
+  // retired `cortex-ide.com` pair is not listed: it is not a Cortex origin.
   'cortex.foundation',
 ] as const;
 

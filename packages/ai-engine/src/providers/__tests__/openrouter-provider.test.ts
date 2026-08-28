@@ -92,8 +92,8 @@ describe('OpenRouterProvider', () => {
       
       expect(headers['Authorization']).toBe('Bearer test-key');
       expect(headers['Content-Type']).toBe('application/json');
-      expect(headers['HTTP-Referer']).toBe('https://cortex-ide.com');
-      expect(headers['X-Title']).toBe('Cortex IDE');
+      expect(headers['HTTP-Referer']).toBe('https://cortex.foundation');
+      expect(headers['X-Title']).toBe('Cortex');
     });
 
     it('should use custom model from options', async () => {
