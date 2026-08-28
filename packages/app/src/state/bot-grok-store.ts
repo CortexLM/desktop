@@ -17,6 +17,8 @@ import {
   listRoutines,
   listSkills,
   pauseRoutine,
+  postHandoff,
+  postTeach,
   resumeRoutine,
   runSkill,
   type ApiBotGroup,
@@ -105,6 +107,26 @@ export async function loadGroups(mascotId: string): Promise<void> {
     setGroups(groupRows);
     setInbox(inboxRows);
   });
+}
+
+export async function handoffTo(mascotId: string, toMascotId: string, message?: string): Promise<void> {
+  await postHandoff(requireBotClient(), mascotId, { to_mascot_id: toMascotId, message });
+}
+
+export async function teachFromVideo(mascotId: string, videoId: string): Promise<void> {
+  await postTeach(requireBotClient(), mascotId, { video_id: videoId });
+  await loadSkills();
+}
+
+export function resetGrokForTests(): void {
+  setMemory([]);
+  setSkills([]);
+  setRoutines([]);
+  setGroups([]);
+  setInbox([]);
+  setSkillDoc(undefined);
+  setPanelState('idle');
+  setPanelError('');
 }
 
 async function runPanel(work: () => Promise<void>): Promise<void> {

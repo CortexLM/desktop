@@ -9,6 +9,7 @@ import { mascotPath, skillPath, withQuery } from './bot-paths.ts';
 import {
   DEFAULT_ROUTINE_CRON,
   groupListSchema,
+  inboxItemSchema,
   inboxListSchema,
   memoryFactSchema,
   memoryListSchema,
@@ -203,7 +204,7 @@ export function postBotInbox(
   body: { message: string; from_mascot_id?: string },
   signal?: AbortSignal,
 ): Promise<ApiBotInboxItem> {
-  return client.request(mascotPath(id, '/inbox'), unknownSchema, { method: 'POST', body, signal });
+  return client.request(mascotPath(id, '/inbox'), inboxItemSchema, { method: 'POST', body, signal });
 }
 
 export async function listBotGroups(

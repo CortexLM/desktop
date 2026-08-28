@@ -2,6 +2,8 @@
  * Mascot CRUD, messages, ask-user, secrets. Staging routes.
  */
 
+import type { z } from 'zod';
+
 import type { CortexApiClient } from './client.ts';
 import { unknownSchema } from './schemas.ts';
 import { mascotPath } from './bot-paths.ts';
@@ -114,9 +116,9 @@ export async function postSecret(
 async function items<T>(
   client: CortexApiClient,
   path: string,
-  schema: { parse: (value: unknown) => { items: T[] } },
+  schema: z.ZodType<{ items: T[] }>,
   signal?: AbortSignal,
 ): Promise<T[]> {
-  const list = await client.request(path, schema as never, { signal });
+  const list = await client.request(path, schema, { signal });
   return list.items;
 }

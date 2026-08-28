@@ -43,7 +43,7 @@ A VNC ticket is still `{ ticket_hash }` only.
 | Skills | `CRUD /v1/skills`, `POST /mascots/{id}/skills/{slug}/run` | same |
 | Routines | `CRUD` + `/pause` + `/resume` | same. Default cron `0 9 * * 1-5` |
 | Groups / inbox / handoff | `/groups`, `/inbox`, `/handoff` | empty, not a mock roster |
-| Teach | `POST /teach` `{ video_id }` | same |
+| Teach | `POST /teach` `{ video_id }` from Videos | same |
 
 ## Plugins
 
