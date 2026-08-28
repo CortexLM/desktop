@@ -22,6 +22,9 @@ import type {
   StartSessionRequest,
 } from '@cortex-ide/shared';
 
+import { createCloudSessionHost } from './cloud-session-host.ts';
+import { liveSession } from './realtime-session.ts';
+
 export interface SessionHost {
   list(request?: ListSessionsRequest): Promise<SessionSummary[]>;
   /** `null` when the id matches nothing — a stale link, not an error. */
@@ -132,5 +135,7 @@ export function detachedSessionHost(): SessionHost {
 
 export function resolveSessionHost(): SessionHost {
   const api = bridge();
-  return api ? electronSessionHost(api) : detachedSessionHost();
+  if (api) return electronSessionHost(api);
+  const live = liveSession();
+  return live ? createCloudSessionHost(live) : detachedSessionHost();
 }

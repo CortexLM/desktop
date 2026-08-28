@@ -34,7 +34,10 @@ The harness is the process that can touch a disk, a PTY, and Git.
 A session that is running in Cortex cloud shows **Cloud session running**
 even if the local harness is down.
 
-See [docs/harness.md](./harness.md).
+On the web, starts and Allow/Always/Deny go over `/v1/realtime` when that
+socket is up. There is no HTTP fallback that runs tools in the tab.
+
+See [docs/harness.md](./harness.md) and [docs/realtime.md](./realtime.md).
 
 ## Providers
 

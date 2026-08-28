@@ -6,6 +6,7 @@ import { createCloudChatHost } from '../cloud-chat-host.ts';
 import { liveApiBase } from '../live-api.ts';
 import { applyRealtimeEvent } from '../realtime-bridge.ts';
 import { mergeInbox } from '../inbox.ts';
+import { resetLiveSession, sendBotTurn } from '../realtime-session.ts';
 
 function jsonFetch(path: string, body: unknown, headers?: Record<string, string>) {
   return (async (input: RequestInfo | URL) => {
@@ -57,6 +58,13 @@ describe('cloud chat host', () => {
     expect(conversation.id).toBe('cnv_1');
     expect(deltas).toEqual(['ok']);
     expect(conversation.messages[1]?.content).toBe('ok');
+  });
+});
+
+describe('Bot turns', () => {
+  it('stays local when the realtime socket is not connected', () => {
+    resetLiveSession();
+    expect(sendBotTurn('m1', 'hello')).toBe(false);
   });
 });
 

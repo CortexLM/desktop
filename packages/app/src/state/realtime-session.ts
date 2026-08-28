@@ -48,3 +48,11 @@ export function resetLiveSession(): void {
   session?.realtime.disconnect();
   session = undefined;
 }
+
+/** True when the Bot turn went out on the socket. False means stay on local UI. */
+export function sendBotTurn(mascotId: string, message: string): boolean {
+  const current = liveSession();
+  if (!current || current.transport.channel() !== 'realtime') return false;
+  current.transport.send({ type: 'bot.turn', mascot_id: mascotId, message });
+  return true;
+}

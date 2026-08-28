@@ -12,6 +12,7 @@ import {
 } from '../state/bots.ts';
 import { postInbox } from '../state/inbox.ts';
 import { showOsNotification } from '../state/os-notify.ts';
+import { sendBotTurn } from '../state/realtime-session.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import {
   BotConversationScreen,
@@ -69,6 +70,7 @@ export function BotConversationRoute(): JSX.Element {
     if (!current || !text) return;
     appendBotMessage(current.id, { role: 'user', content: text, at: Date.now() });
     setDraft('');
+    sendBotTurn(current.id, text);
     if (current.computer.status === 'hibernated' || current.computer.status === 'wake-failed') {
       appendBotMessage(current.id, {
         role: 'assistant',
