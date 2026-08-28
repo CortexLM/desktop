@@ -219,7 +219,9 @@ jobs:
           ELECTRON_BIN="$(node -p "require('electron')")"
           test -x "$ELECTRON_BIN"
           echo "Electron binary: $ELECTRON_BIN"
-          "$ELECTRON_BIN" --version
+          # GitHub-hosted runners are not setuid-sandbox capable; without
+          # --no-sandbox this FATAL-aborts and the job never reaches Playwright.
+          "$ELECTRON_BIN" --no-sandbox --version
       
       - name: Install Playwright
         run: bunx playwright install chromium --with-deps
