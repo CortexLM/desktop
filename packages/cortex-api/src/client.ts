@@ -14,8 +14,10 @@
 import type { z } from 'zod';
 
 import { classifyError } from './classify.ts';
+import { cookieHeader, GUEST_COOKIE_NAME, SESSION_COOKIE_NAME } from './cookies.ts';
 import { unwrapList } from './envelopes.ts';
 import { CortexApiError, type CortexErrorContext } from './errors.ts';
+import { readEventStream } from './sse.ts';
 import {
   apiKeyListSchema,
   apiKeySchema,
@@ -41,6 +43,7 @@ import {
 } from './schemas.ts';
 
 export const CORTEX_API_BASE_URL = 'https://api.cortex.foundation';
+export { GUEST_COOKIE_NAME, SESSION_COOKIE_NAME };
 
 
 
@@ -71,10 +74,12 @@ export interface CortexCredentials {
    * cookie name to use a token the device flow just handed them.
    */
   accessToken?: string;
+  /**
+   * Guest session token from POST /v1/auth/guest, sent as `cortex_gt`.
+   * Observed 2026-08-28. Not an API key.
+   */
+  guestToken?: string;
 }
-
-/** Name of the WorkOS sealed session cookie. Probed, not assumed — see CONTRACT.md. */
-export const SESSION_COOKIE_NAME = 'wos-session';
 
 export interface CortexApiClientOptions {
   baseUrl?: string;
@@ -114,11 +119,21 @@ export class CortexApiClient {
 
   /** True when the client has something to authenticate with. */
   get isAuthenticated(): boolean {
-    return Boolean(this.credentials.apiKey ?? this.credentials.sessionCookie);
+    return Boolean(
+      this.credentials.apiKey ??
+        this.credentials.sessionCookie ??
+        this.credentials.accessToken ??
+        this.credentials.guestToken,
+    );
   }
 
   setCredentials(credentials: CortexCredentials): void {
     this.credentials = credentials;
+  }
+
+  /** Applies a `cortex_gt` value captured from Set-Cookie (Node / Electron). */
+  applyGuestToken(token: string): void {
+    this.credentials = { ...this.credentials, guestToken: token };
   }
 
   clearCredentials(): void {
@@ -138,11 +153,7 @@ export class CortexApiClient {
 
       // An explicit `sessionCookie` wins: it carries a full `name=value` the caller chose,
       // so overriding it with a token we wrapped ourselves would discard their intent.
-      const cookie =
-        this.credentials.sessionCookie ??
-        (this.credentials.accessToken
-          ? `${SESSION_COOKIE_NAME}=${this.credentials.accessToken}`
-          : undefined);
+      const cookie = cookieHeader(this.credentials);
       if (cookie) headers.set('Cookie', cookie);
 
       if (this.organizationId) headers.set(ORGANIZATION_HEADER, this.organizationId);
@@ -213,6 +224,24 @@ export class CortexApiClient {
     }
   }
 
+  /**
+   * Performs the request and returns the Response if it is 2xx.
+   *
+   * Product streams (conversation turns) need headers and a body they can
+   * consume incrementally, which `request` cannot give them.
+   */
+  async open(path: string, options: RequestOptions = {}): Promise<Response> {
+    const route = `${options.method ?? 'GET'} ${path}`;
+    const response = await this.send(path, route, options);
+    if (!response.ok) throw await this.toError(response, route);
+    return response;
+  }
+
+  /** Validates a 2xx JSON body. Public so product helpers can parse `open` results. */
+  async readJson<T>(response: Response, schema: z.ZodType<T>, route: string): Promise<T> {
+    return this.parse(response, schema, route);
+  }
+
   /** Reads a 2xx body and validates it against a schema. */
   private async parse<T>(response: Response, schema: z.ZodType<T>, route: string): Promise<T> {
     const context = this.errorContext(response, route);
@@ -248,6 +277,7 @@ export class CortexApiClient {
     const response = await this.send(path, route, options);
 
     if (!response.ok) throw await this.toError(response, route);
+    if (response.status === 204) return undefined as T;
     return this.parse(response, schema, route);
   }
 
@@ -312,7 +342,7 @@ export class CortexApiClient {
   /* ---------------------------------------------------------------------- */
 
   currentUser(signal?: AbortSignal): Promise<CortexUser> {
-    return this.request('/auth/me', cortexUserSchema, { signal });
+    return this.request('/v1/me', cortexUserSchema, { signal });
   }
 
   /**
@@ -354,8 +384,12 @@ export class CortexApiClient {
     return this.request('/organizations', organizationSchema.array(), { signal });
   }
 
-  logout(signal?: AbortSignal): Promise<CortexUser> {
-    return this.request('/auth/logout', cortexUserSchema, { method: 'POST', body: {}, signal });
+  logout(signal?: AbortSignal): Promise<void> {
+    return this.request('/v1/auth/logout', unknownSchema, {
+      method: 'POST',
+      body: {},
+      signal,
+    }).then(() => undefined);
   }
 
   /**
@@ -365,7 +399,7 @@ export class CortexApiClient {
    * app never needs to know them.
    */
   get loginUrl(): string {
-    return `${this.baseUrl}/auth/login`;
+    return `${this.baseUrl}/v1/auth/login`;
   }
 
   /* ---------------------------------------------------------------------- */
@@ -413,53 +447,5 @@ export class CortexApiClient {
     }
 
     yield* readEventStream(response.body);
-  }
-}
-
-/**
- * Yields the parsed payload of each `data:` line in a server-sent event stream.
- *
- * A real socket does not respect frame boundaries, so a partial frame has to survive in the
- * buffer until the rest of it arrives.
- */
-async function* readEventStream(
-  body: ReadableStream<Uint8Array>,
-): AsyncGenerator<unknown, void, undefined> {
-  const reader = body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = '';
-
-  try {
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-
-      let boundary = buffer.indexOf('\n\n');
-      while (boundary !== -1) {
-        const frame = buffer.slice(0, boundary);
-        buffer = buffer.slice(boundary + 2);
-        boundary = buffer.indexOf('\n\n');
-        yield* parseEventFrame(frame);
-      }
-    }
-  } finally {
-    reader.releaseLock();
-  }
-}
-
-function* parseEventFrame(frame: string): Generator<unknown, void, undefined> {
-  for (const line of frame.split('\n')) {
-    if (!line.startsWith('data:')) continue;
-
-    const data = line.slice(5).trim();
-    if (data === '' || data === '[DONE]') continue;
-
-    try {
-      yield JSON.parse(data);
-    } catch {
-      // A malformed frame is not worth aborting a live stream for; the caller still sees
-      // the frames that did parse.
-    }
   }
 }

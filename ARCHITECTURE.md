@@ -32,7 +32,7 @@ reached through `packages/cortex-api`. Cloning that repository is not required.
 | `packages/preload` | `contextBridge` façades. Channel allowlist. No Node for the renderer. |
 | `packages/shared` | IPC channel names, request/response types, Zod schemas. |
 | `packages/ai-engine` | Provider registry, tools, semantic chunking, agent manager. |
-| `packages/cortex-api` | HTTP client + catalogue schemas for the live Cortex API. |
+| `packages/cortex-api` | HTTP + realtime client for the live Cortex API. |
 | `packages/tokens` | Concept 03 tokens (palette, type, layout). Generated from Paper. |
 | `packages/ui` | Design-system components transcribed from Paper. |
 | `packages/test-harness` | CLI (`cortex-test`). Not an in-app Benchmarks screen. |
@@ -81,13 +81,21 @@ Chat / Bot destinations may exist before their artboards are extracted.
 ## Chat
 
 Conversations persist in SQLite (`conversations`, `conversation_messages`)
-via `ConversationService` and `chat:*` IPC. Streaming uses `event:chat-progress`.
+via `ConversationService` and `chat:*` IPC on desktop. Streaming uses
+`event:chat-progress` locally.
+
+On the web (a `cortex.foundation` origin, or `VITE_CORTEX_API_BASE_URL`), Chat
+prefers authenticated `/v1/realtime` for tokens and falls back to
+`POST /v1/conversations/turns` (SSE). Localhost and the test suite stay on the
+detached host so they never open a production guest session. See
+[packages/cortex-api/CONTRACT.md](./packages/cortex-api/CONTRACT.md).
 
 Planning, projects, library, and plugins are product stores in the renderer
 (`packages/app/src/state/`). They persist to `localStorage` so web and desktop
 share the same behaviour without a second SQLite schema for UI-only lists.
 Scheduled-task *results* become inbox notifications; they do not invent a
-second agent runtime.
+second agent runtime. When the live API grows those routes, the same typed
+client is reused — until then the pages are honest local state.
 
 ## Code
 

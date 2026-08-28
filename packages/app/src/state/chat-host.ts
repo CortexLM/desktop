@@ -13,6 +13,9 @@ import type {
   ConversationSummary,
 } from '@cortex-ide/shared';
 
+import { createCloudChatHost } from './cloud-chat-host.ts';
+import { liveSession } from './realtime-session.ts';
+
 export interface ChatHost {
   list: () => Promise<{ conversations: ConversationSummary[]; modelLabel: string }>;
   get: (id: string) => Promise<ConversationDetail | null>;
@@ -91,5 +94,8 @@ function detached(): ChatHost {
 
 export function resolveChatHost(): ChatHost {
   const api = (globalThis as { cortex?: { chat?: ChatBridge } }).cortex?.chat;
-  return api ? attached(api) : detached();
+  if (api) return attached(api);
+
+  const live = liveSession();
+  return live ? createCloudChatHost(live) : detached();
 }

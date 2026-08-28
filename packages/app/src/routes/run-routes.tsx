@@ -31,6 +31,7 @@ import {
 import { createSessionDetail } from '../screens/session/session-detail-state.ts';
 import { ShellView } from '../screens/session/shell-view.tsx';
 import { harnessStatus, remoteHost, setRemoteHost } from '../state/harness.ts';
+import { codePermissionBlocked, realtimeStatus } from '../state/realtime-bridge.ts';
 
 /**
  * Starts a run from the current draft.
@@ -204,6 +205,8 @@ export function HomeRoute(): JSX.Element {
     harnessStatus({
       authenticated: account.capabilities().authenticated,
       cloudSession: (runs.sessions() ?? []).some((session) => session.status === 'running'),
+      permissionBlocked: codePermissionBlocked(),
+      connecting: realtimeStatus() === 'connecting',
     }),
   );
 

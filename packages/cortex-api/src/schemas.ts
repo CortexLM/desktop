@@ -192,8 +192,12 @@ export const cortexUserSchema = z
     first_name: z.string().nullish(),
     last_name: z.string().nullish(),
     name: z.string().nullish(),
+    display_name: z.string().nullish(),
     profile_picture_url: z.string().nullish(),
     organization_id: z.string().nullish(),
+    plan_slug: z.string().nullish(),
+    is_guest: z.boolean().optional(),
+    quotas: z.array(z.unknown()).optional(),
   })
   .passthrough();
 
