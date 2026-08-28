@@ -12,6 +12,33 @@ import type { RemoteState } from '../../state/remote-collection.ts';
 
 import './product-pages.css';
 
+function LibraryList(props: {
+  items: readonly LibraryItem[];
+  onRemove?: (id: string) => void;
+}): JSX.Element {
+  return (
+    <div class="cx-product-list">
+      <For each={props.items}>
+        {(item) => (
+          <div class="cx-product-row" data-library-item={item.id}>
+            <div>
+              <div class="cx-product-row__title">{item.title}</div>
+              <p class="cx-product-row__meta">{item.kind} · {item.excerpt}</p>
+            </div>
+            <div class="cx-product-row__action">
+              <Show when={props.onRemove}>
+                <Button variant="secondary" onClick={() => props.onRemove?.(item.id)}>
+                  Remove
+                </Button>
+              </Show>
+            </div>
+          </div>
+        )}
+      </For>
+    </div>
+  );
+}
+
 export function LibraryScreen(props: {
   items: readonly LibraryItem[];
   state: RemoteState;
@@ -46,25 +73,10 @@ export function LibraryScreen(props: {
             emptyBody="Save an answer from a conversation and it will land here."
             onRetry={props.onRetry}
           >
-            <div class="cx-product-list">
-              <For each={props.items}>
-                {(item) => (
-                  <div class="cx-product-row" data-library-item={item.id}>
-                    <div>
-                      <div class="cx-product-row__title">{item.title}</div>
-                      <p class="cx-product-row__meta">{item.kind} · {item.excerpt}</p>
-                    </div>
-                    <div class="cx-product-row__action">
-                      <Show when={props.onRemove}>
-                        <Button variant="secondary" onClick={() => props.onRemove?.(item.id)}>
-                          Remove
-                        </Button>
-                      </Show>
-                    </div>
-                  </div>
-                )}
-              </For>
-            </div>
+            <LibraryList
+              items={props.items}
+              {...(props.onRemove ? { onRemove: props.onRemove } : {})}
+            />
           </RemoteStateView>
         </Show>
       </PageBody>

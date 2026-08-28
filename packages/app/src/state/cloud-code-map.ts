@@ -77,6 +77,42 @@ export function toSessionSummary(row: ApiCodeSessionDetail, now = Date.now()): S
   return summary;
 }
 
+/** `kind`, or the role when the row only carries one. */
+function timelineKind(entry: ApiCodeTimelineEntry): string | undefined {
+  if (entry.kind) return entry.kind;
+  if (entry.role === 'user') return 'prompt';
+  if (entry.role === 'assistant') return 'reply';
+  return undefined;
+}
+
+function toToolEvent(
+  entry: ApiCodeTimelineEntry,
+  at: number,
+  text: string,
+): Extract<SessionEvent, { kind: 'tool' }> {
+  const event: Extract<SessionEvent, { kind: 'tool' }> = {
+    kind: 'tool',
+    at,
+    name: entry.tool ?? 'Tool',
+    title: text || (entry.tool ?? 'Tool call'),
+  };
+  // Absent while the tool is still running, which is not the same as failing.
+  if (entry.status === 'ok') event.ok = true;
+  if (entry.status === 'error') event.ok = false;
+  return event;
+}
+
+const TIMELINE_BUILDERS: Record<
+  string,
+  (entry: ApiCodeTimelineEntry, at: number, text: string) => SessionEvent
+> = {
+  prompt: (_entry, at, text) => ({ kind: 'prompt', at, text }),
+  reply: (_entry, at, text) => ({ kind: 'reply', at, text }),
+  thinking: (_entry, at, text) => ({ kind: 'thinking', at, text }),
+  error: (_entry, at, text) => ({ kind: 'error', at, message: text }),
+  tool: toToolEvent,
+};
+
 /**
  * Projects one timeline row.
  *
@@ -88,25 +124,9 @@ export function toSessionEvent(
   entry: ApiCodeTimelineEntry,
   now = Date.now(),
 ): SessionEvent | undefined {
-  const at = toEpoch(entry.created_at, now);
-  const text = entry.text ?? '';
-
-  if (entry.kind === 'prompt' || entry.role === 'user') return { kind: 'prompt', at, text };
-  if (entry.kind === 'reply' || entry.role === 'assistant') return { kind: 'reply', at, text };
-  if (entry.kind === 'thinking') return { kind: 'thinking', at, text };
-  if (entry.kind === 'error') return { kind: 'error', at, message: text };
-  if (entry.kind === 'tool') {
-    const event: Extract<SessionEvent, { kind: 'tool' }> = {
-      kind: 'tool',
-      at,
-      name: entry.tool ?? 'Tool',
-      title: text || (entry.tool ?? 'Tool call'),
-    };
-    if (entry.status === 'ok') event.ok = true;
-    if (entry.status === 'error') event.ok = false;
-    return event;
-  }
-  return undefined;
+  const kind = timelineKind(entry);
+  const build = kind ? TIMELINE_BUILDERS[kind] : undefined;
+  return build?.(entry, toEpoch(entry.created_at, now), entry.text ?? '');
 }
 
 function toDiffFiles(row: ApiCodeSessionDetail): SessionDiffFile[] {
@@ -177,38 +197,81 @@ function pick<T extends string>(
   return allowed.find((entry) => entry === value) ?? fallback;
 }
 
+function toRunDefaults(
+  row: ApiCodeSettings['defaults'],
+  fallback: WorkspaceRunSettings['defaults'],
+): WorkspaceRunSettings['defaults'] {
+  return {
+    model: row?.model ?? fallback.model,
+    repository: row?.repository ?? fallback.repository,
+    baseBranch: row?.base_branch ?? fallback.baseBranch,
+    branchPrefix: row?.branch_prefix ?? fallback.branchPrefix,
+    createPullRequests: pick(PR_MODES, row?.create_pull_requests, fallback.createPullRequests),
+  };
+}
+
+function toRunPermissions(
+  row: ApiCodeSettings['permissions'],
+  fallback: WorkspaceRunSettings['permissions'],
+): WorkspaceRunSettings['permissions'] {
+  return {
+    runShellCommands: row?.run_shell_commands ?? fallback.runShellCommands,
+    applyDatabaseMigrations: row?.apply_database_migrations ?? fallback.applyDatabaseMigrations,
+    slackNotifications: row?.slack_notifications ?? fallback.slackNotifications,
+    networkAccess: pick(NETWORK_MODES, row?.network_access, fallback.networkAccess),
+  };
+}
+
 export function toRunSettings(
   row: ApiCodeSettings,
   defaults: WorkspaceRunSettings,
 ): WorkspaceRunSettings {
   return {
-    defaults: {
-      model: row.defaults?.model ?? defaults.defaults.model,
-      repository: row.defaults?.repository ?? defaults.defaults.repository,
-      baseBranch: row.defaults?.base_branch ?? defaults.defaults.baseBranch,
-      branchPrefix: row.defaults?.branch_prefix ?? defaults.defaults.branchPrefix,
-      createPullRequests: pick(
-        PR_MODES,
-        row.defaults?.create_pull_requests,
-        defaults.defaults.createPullRequests,
-      ),
-    },
-    permissions: {
-      runShellCommands:
-        row.permissions?.run_shell_commands ?? defaults.permissions.runShellCommands,
-      applyDatabaseMigrations:
-        row.permissions?.apply_database_migrations ??
-        defaults.permissions.applyDatabaseMigrations,
-      slackNotifications:
-        row.permissions?.slack_notifications ?? defaults.permissions.slackNotifications,
-      networkAccess: pick(
-        NETWORK_MODES,
-        row.permissions?.network_access,
-        defaults.permissions.networkAccess,
-      ),
-    },
+    defaults: toRunDefaults(row.defaults, defaults.defaults),
+    permissions: toRunPermissions(row.permissions, defaults.permissions),
   };
 }
+
+/**
+ * Copies the keys a caller actually set, renaming each to its wire name.
+ *
+ * Table-driven so "which fields exist" is one list rather than a chain of
+ * `!== undefined` checks: adding a setting should not mean editing a branch.
+ */
+function renameSet(
+  source: Record<string, unknown>,
+  names: ReadonlyArray<readonly [string, string]>,
+): Record<string, unknown> {
+  const wire: Record<string, unknown> = {};
+  for (const [from, to] of names) {
+    const value = source[from];
+    if (value !== undefined) wire[to] = value;
+  }
+  return wire;
+}
+
+/**
+ * The camelCase-to-wire name pairs.
+ *
+ * The source keys are typed against `WorkspaceRunSettings` so a renamed field fails
+ * to compile here rather than silently stopping being sent.
+ */
+const DEFAULT_NAMES: ReadonlyArray<readonly [keyof WorkspaceRunSettings['defaults'], string]> = [
+  ['model', 'model'],
+  ['repository', 'repository'],
+  ['baseBranch', 'base_branch'],
+  ['branchPrefix', 'branch_prefix'],
+  ['createPullRequests', 'create_pull_requests'],
+];
+
+const PERMISSION_NAMES: ReadonlyArray<
+  readonly [keyof WorkspaceRunSettings['permissions'], string]
+> = [
+  ['runShellCommands', 'run_shell_commands'],
+  ['applyDatabaseMigrations', 'apply_database_migrations'],
+  ['slackNotifications', 'slack_notifications'],
+  ['networkAccess', 'network_access'],
+];
 
 /** Sends only what changed, so one tab's save cannot clobber another's. */
 export function toSettingsPatch(patch: {
@@ -216,34 +279,7 @@ export function toSettingsPatch(patch: {
   permissions?: Partial<WorkspaceRunSettings['permissions']>;
 }): ApiCodeSettings {
   const body: ApiCodeSettings = {};
-
-  if (patch.defaults) {
-    const wire: NonNullable<ApiCodeSettings['defaults']> = {};
-    if (patch.defaults.model !== undefined) wire.model = patch.defaults.model;
-    if (patch.defaults.repository !== undefined) wire.repository = patch.defaults.repository;
-    if (patch.defaults.baseBranch !== undefined) wire.base_branch = patch.defaults.baseBranch;
-    if (patch.defaults.branchPrefix !== undefined) {
-      wire.branch_prefix = patch.defaults.branchPrefix;
-    }
-    if (patch.defaults.createPullRequests !== undefined) {
-      wire.create_pull_requests = patch.defaults.createPullRequests;
-    }
-    body.defaults = wire;
-  }
-
-  if (patch.permissions) {
-    const wire: NonNullable<ApiCodeSettings['permissions']> = {};
-    const source = patch.permissions;
-    if (source.runShellCommands !== undefined) wire.run_shell_commands = source.runShellCommands;
-    if (source.applyDatabaseMigrations !== undefined) {
-      wire.apply_database_migrations = source.applyDatabaseMigrations;
-    }
-    if (source.slackNotifications !== undefined) {
-      wire.slack_notifications = source.slackNotifications;
-    }
-    if (source.networkAccess !== undefined) wire.network_access = source.networkAccess;
-    body.permissions = wire;
-  }
-
+  if (patch.defaults) body.defaults = renameSet(patch.defaults, DEFAULT_NAMES);
+  if (patch.permissions) body.permissions = renameSet(patch.permissions, PERMISSION_NAMES);
   return body;
 }

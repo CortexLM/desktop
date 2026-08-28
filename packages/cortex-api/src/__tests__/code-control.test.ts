@@ -3,26 +3,19 @@ import { describe, expect, it } from 'vitest';
 import { CortexApiClient } from '../client.ts';
 import { isCortexApiError } from '../errors.ts';
 import {
-  archiveCodeSession,
   createCodeAutomation,
   createCodeSecret,
-  createCodeSession,
   createCodeSshRuntime,
   createCodeTicket,
   deleteCodeAutomation,
   deleteCodeSecret,
-  deleteCodeSession,
   deleteCodeSshRuntime,
   deleteCodeTicket,
-  followUpCodeSession,
-  getCodeSession,
   getCodeSettings,
   getCodeTicket,
-  getCodeUsage,
   listCodeAutomationLogs,
   listCodeAutomations,
   listCodeProviders,
-  listCodeRepositories,
   listCodeSecrets,
   listCodeSshRuntimes,
   listCodeTickets,
@@ -30,10 +23,19 @@ import {
   patchCodeTicket,
   putCodeProvider,
   putCodeSettings,
-  resolveCodePermission,
   runCodeAutomation,
-  stopCodeSession,
   unpairCodeHost,
+} from '../code-config.ts';
+import {
+  archiveCodeSession,
+  createCodeSession,
+  deleteCodeSession,
+  followUpCodeSession,
+  getCodeSession,
+  getCodeUsage,
+  listCodeRepositories,
+  resolveCodePermission,
+  stopCodeSession,
 } from '../code-control.ts';
 import { stubFetch } from './fixtures.ts';
 

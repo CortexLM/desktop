@@ -37,7 +37,8 @@ import { desktopTransport, probeDesktopTransport } from '../state/vnc-ticket.ts'
 import { sendBotTurn } from '../state/realtime-session.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import { BotConversationScreen, BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
-import { BotComputerScreen, BotSettingsScreen } from '../screens/bot/mascot-computer-screens.tsx';
+import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
+import { BotSettingsScreen } from '../screens/bot/mascot-settings-screen.tsx';
 import type { Mascot, MascotColor, MascotShape } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
 

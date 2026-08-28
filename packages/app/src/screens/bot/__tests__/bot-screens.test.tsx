@@ -8,7 +8,8 @@ import {
   BotRoutinesScreen,
   BotSkillsScreen,
 } from '../mascot-runtime-screens.tsx';
-import { BotComputerScreen, BotSettingsScreen } from '../mascot-computer-screens.tsx';
+import { BotComputerScreen } from '../mascot-computer-screens.tsx';
+import { BotSettingsScreen } from '../mascot-settings-screen.tsx';
 import { BotMessagesScreen, BotVideosScreen } from '../mascot-detail-screens.tsx';
 import type { Mascot } from '../../../state/bot-map.ts';
 

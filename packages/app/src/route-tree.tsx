@@ -50,8 +50,7 @@ import {
   BotVideosRoute,
 } from './routes/bot-routes.tsx';
 
-/** The route tree, shared by HashRouter and MemoryRouter. */
-export function appRoutes(): JSX.Element {
+function chatRoutes(): JSX.Element {
   return (
     <>
       <Route path="/" component={ChatHomeRoute} />
@@ -64,7 +63,13 @@ export function appRoutes(): JSX.Element {
       <Route path="/library" component={LibraryRoute} />
       <Route path="/plugins" component={PluginsRoute} />
       <Route path="/settings" component={ChatSettingsRoute} />
+    </>
+  );
+}
 
+function codeRoutes(): JSX.Element {
+  return (
+    <>
       <Route path="/code" component={HomeRoute} />
       <Route path="/code/sessions" component={SessionsRoute} />
       <Route path="/code/sessions/:sessionId" component={SessionDetailRoute} />
@@ -83,7 +88,13 @@ export function appRoutes(): JSX.Element {
           specific path is not shadowed. */}
       <Route path="/code/runtimes/ssh" component={SshConnectRoute} />
       <Route path="/code/runtimes" component={RuntimesRoute} />
+    </>
+  );
+}
 
+function botRoutes(): JSX.Element {
+  return (
+    <>
       <Route path="/bot" component={BotHomeRoute} />
       <Route path="/bot/new" component={BotCreateRoute} />
       <Route path="/bot/:mascotId" component={BotConversationRoute} />
@@ -95,12 +106,30 @@ export function appRoutes(): JSX.Element {
       <Route path="/bot/:mascotId/routines" component={BotRoutinesRoute} />
       <Route path="/bot/:mascotId/groups" component={BotGroupsRoute} />
       <Route path="/bot/:mascotId/settings" component={BotSettingsRoute} />
+    </>
+  );
+}
 
+function authRoutes(): JSX.Element {
+  return (
+    <>
       <Route path="/sign-in" component={SignInRoute} />
       <Route path="/sign-in/device" component={DeviceCodeRoute} />
       <Route path="/sign-in/github" component={ConnectGitHubRoute} />
       <Route path="/sign-in/workspace" component={WorkspaceSetupRoute} />
       <Route path="/onboarding" component={ConnectGitHubRoute} />
+    </>
+  );
+}
+
+/** The route tree, shared by HashRouter and MemoryRouter. */
+export function appRoutes(): JSX.Element {
+  return (
+    <>
+      {chatRoutes()}
+      {codeRoutes()}
+      {botRoutes()}
+      {authRoutes()}
       <Route path="*" component={() => <Navigate href="/" />} />
     </>
   );

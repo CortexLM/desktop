@@ -57,6 +57,65 @@ export interface TicketsScreenProps {
   onSignIn: () => void;
 }
 
+/**
+ * Start, or open the run that already exists.
+ *
+ * Once a ticket has a session it links to it rather than offering to start a
+ * second one for the same work.
+ */
+function TicketAction(props: {
+  ticket: CodeTicket;
+  onStart: (ticket: CodeTicket) => void;
+  onOpenSession: (sessionId: string) => void;
+}): JSX.Element {
+  return (
+    <Show
+      when={props.ticket.sessionId}
+      fallback={
+        <Button variant="primary" onClick={() => props.onStart(props.ticket)}>
+          Start session
+        </Button>
+      }
+    >
+      {(sessionId) => (
+        <Button variant="secondary" onClick={() => props.onOpenSession(sessionId())}>
+          Open session
+        </Button>
+      )}
+    </Show>
+  );
+}
+
+function TicketRow(props: {
+  ticket: CodeTicket;
+  onOpen: (id: string) => void;
+  onStart: (ticket: CodeTicket) => void;
+  onOpenSession: (sessionId: string) => void;
+}): JSX.Element {
+  return (
+    <div class="cx-product-row" data-ticket={props.ticket.id}>
+      <button
+        type="button"
+        class="cx-product-row__open"
+        onClick={() => props.onOpen(props.ticket.id)}
+      >
+        <div class="cx-product-row__title">{props.ticket.title}</div>
+        <p class="cx-product-row__meta">
+          {STATUS_LABEL[props.ticket.status]}
+          {props.ticket.repository ? ` · ${props.ticket.repository}` : ''}
+        </p>
+      </button>
+      <div class="cx-product-row__action">
+        <TicketAction
+          ticket={props.ticket}
+          onStart={props.onStart}
+          onOpenSession={props.onOpenSession}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function TicketsScreen(props: TicketsScreenProps): JSX.Element {
   return (
     <>
@@ -89,37 +148,12 @@ export function TicketsScreen(props: TicketsScreenProps): JSX.Element {
             <div class="cx-product-list">
               <For each={props.tickets}>
                 {(ticket) => (
-                  <div class="cx-product-row" data-ticket={ticket.id}>
-                    <button
-                      type="button"
-                      class="cx-product-row__open"
-                      onClick={() => props.onOpen(ticket.id)}
-                    >
-                      <div class="cx-product-row__title">{ticket.title}</div>
-                      <p class="cx-product-row__meta">
-                        {STATUS_LABEL[ticket.status]}
-                        {ticket.repository ? ` · ${ticket.repository}` : ''}
-                      </p>
-                    </button>
-                    <div class="cx-product-row__action">
-                      {/* Once a run exists the ticket links to it rather than
-                          offering to start a second one for the same work. */}
-                      <Show
-                        when={ticket.sessionId}
-                        fallback={
-                          <Button variant="primary" onClick={() => props.onStart(ticket)}>
-                            Start session
-                          </Button>
-                        }
-                      >
-                        {(sessionId) => (
-                          <Button variant="secondary" onClick={() => props.onOpenSession(sessionId())}>
-                            Open session
-                          </Button>
-                        )}
-                      </Show>
-                    </div>
-                  </div>
+                  <TicketRow
+                    ticket={ticket}
+                    onOpen={props.onOpen}
+                    onStart={props.onStart}
+                    onOpenSession={props.onOpenSession}
+                  />
                 )}
               </For>
             </div>
@@ -140,26 +174,70 @@ export interface TicketDetailScreenProps {
   onBack: () => void;
 }
 
-export function TicketDetailScreen(props: TicketDetailScreenProps): JSX.Element {
+function TicketEditor(props: {
+  ticket: CodeTicket;
+  onSave: (patch: { title: string; body: string }) => void;
+}): JSX.Element {
   const [title, setTitle] = createSignal<string | undefined>();
   const [body, setBody] = createSignal<string | undefined>();
 
   return (
+    <form
+      class="cx-ticket-form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        props.onSave({
+          title: title() ?? props.ticket.title,
+          body: body() ?? props.ticket.body,
+        });
+      }}
+    >
+      <input
+        type="text"
+        value={title() ?? props.ticket.title}
+        aria-label="Ticket title"
+        onInput={(event) => setTitle(event.currentTarget.value)}
+      />
+      <textarea
+        rows={8}
+        value={body() ?? props.ticket.body}
+        aria-label="Ticket detail"
+        placeholder="What should the agent know before it starts?"
+        onInput={(event) => setBody(event.currentTarget.value)}
+      />
+      <Button variant="secondary" type="submit">Save ticket</Button>
+    </form>
+  );
+}
+
+/** Loading, versus a ticket that is genuinely not on the account. */
+function TicketFallback(props: { state: RemoteState; error?: string; onBack: () => void }): JSX.Element {
+  return (
+    <Show
+      when={props.state !== 'loading' && props.state !== 'idle'}
+      fallback={<HonestState kind="loading" title="Opening ticket" body="Reading the ticket." />}
+    >
+      <HonestState
+        kind="error"
+        title="Ticket not found"
+        body={props.error || 'This ticket is not on your account.'}
+        actionLabel="Back to tickets"
+        onAction={props.onBack}
+      />
+    </Show>
+  );
+}
+
+export function TicketDetailScreen(props: TicketDetailScreenProps): JSX.Element {
+  return (
     <Show
       when={props.ticket}
       fallback={
-        <Show
-          when={props.state !== 'loading' && props.state !== 'idle'}
-          fallback={<HonestState kind="loading" title="Opening ticket" body="Reading the ticket." />}
-        >
-          <HonestState
-            kind="error"
-            title="Ticket not found"
-            body={props.error || 'This ticket is not on your account.'}
-            actionLabel="Back to tickets"
-            onAction={props.onBack}
-          />
-        </Show>
+        <TicketFallback
+          state={props.state}
+          {...(props.error ? { error: props.error } : {})}
+          onBack={props.onBack}
+        />
       }
     >
       {(ticket) => (
@@ -168,48 +246,15 @@ export function TicketDetailScreen(props: TicketDetailScreenProps): JSX.Element 
             title={ticket().title}
             subtitle={STATUS_LABEL[ticket().status]}
             actions={
-              <Show
-                when={ticket().sessionId}
-                fallback={
-                  <Button variant="primary" onClick={() => props.onStart(ticket())}>
-                    Start session
-                  </Button>
-                }
-              >
-                {(sessionId) => (
-                  <Button variant="secondary" onClick={() => props.onOpenSession(sessionId())}>
-                    Open session
-                  </Button>
-                )}
-              </Show>
+              <TicketAction
+                ticket={ticket()}
+                onStart={props.onStart}
+                onOpenSession={props.onOpenSession}
+              />
             }
           />
           <PageBody width="list">
-            <form
-              class="cx-ticket-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                props.onSave({
-                  title: title() ?? ticket().title,
-                  body: body() ?? ticket().body,
-                });
-              }}
-            >
-              <input
-                type="text"
-                value={title() ?? ticket().title}
-                aria-label="Ticket title"
-                onInput={(event) => setTitle(event.currentTarget.value)}
-              />
-              <textarea
-                rows={8}
-                value={body() ?? ticket().body}
-                aria-label="Ticket detail"
-                placeholder="What should the agent know before it starts?"
-                onInput={(event) => setBody(event.currentTarget.value)}
-              />
-              <Button variant="secondary" type="submit">Save ticket</Button>
-            </form>
+            <TicketEditor ticket={ticket()} onSave={props.onSave} />
           </PageBody>
         </>
       )}

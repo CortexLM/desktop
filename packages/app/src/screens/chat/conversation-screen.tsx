@@ -96,6 +96,74 @@ function LiveTail(props: { text: () => string | undefined }): JSX.Element {
 }
 
 /**
+ * Saving answers to the account library.
+ *
+ * Tracks which turns have been saved so the control can report what it did rather
+ * than staying clickable and giving no sign either way.
+ */
+interface LibrarySaves {
+  save: (text: string) => void;
+  isSaved: (text: string) => boolean;
+  error: () => string;
+}
+
+function useLibrarySaves(conversationId: () => string): LibrarySaves {
+  const [saved, setSaved] = createSignal<readonly string[]>([]);
+  const [error, setError] = createSignal('');
+
+  return {
+    isSaved: (text) => saved().includes(text),
+    error,
+    /**
+     * The title is the answer's first line, trimmed: a library row needs something
+     * recognisable, and asking for a title would put a dialog between the user and
+     * a one-click action.
+     */
+    save: (text) => {
+      setError('');
+      void saveToLibrary({
+        title: firstLine(text),
+        kind: 'answer',
+        excerpt: text.slice(0, 280),
+        conversationId: conversationId(),
+      })
+        .then(() => setSaved((current) => [...current, text]))
+        .catch((caught: unknown) =>
+          setError(caught instanceof Error ? caught.message : String(caught)),
+        );
+    },
+  };
+}
+
+function Thread(props: {
+  messages: readonly ChatMessage[];
+  live: () => string | undefined;
+  onCopy: (text: string) => void;
+  library: LibrarySaves;
+}): JSX.Element {
+  return (
+    <>
+      <For each={props.messages}>
+        {(message) => (
+          <Turn
+            message={message}
+            actions={{
+              onCopy: props.onCopy,
+              onSave: props.library.save,
+              saved: props.library.isSaved(message.content),
+            }}
+          />
+        )}
+      </For>
+      <LiveTail text={props.live} />
+      <Show when={props.library.error()}>
+        <p class="cx-conversation__error" role="alert">{props.library.error()}</p>
+      </Show>
+    </>
+  );
+}
+
+/**
  * One conversation: the stored turns, the live tail while a reply streams, and
  * the follow-up composer pinned beneath the reading column.
  */
@@ -132,45 +200,17 @@ export function ConversationScreen(props: ConversationScreenProps): JSX.Element 
     void navigator.clipboard?.writeText(text);
   };
 
-  const [saved, setSaved] = createSignal<readonly string[]>([]);
-  const [saveError, setSaveError] = createSignal('');
-
-  /**
-   * Saves an answer to the account library.
-   *
-   * The title is the answer's first line, trimmed: a library row needs something
-   * recognisable, and the alternative — asking for a title — puts a dialog between
-   * the user and a one-click action.
-   */
-  const save = (text: string) => {
-    setSaveError('');
-    void saveToLibrary({
-      title: firstLine(text),
-      kind: 'answer',
-      excerpt: text.slice(0, 280),
-      conversationId: props.conversationId(),
-    })
-      .then(() => setSaved((current) => [...current, text]))
-      .catch((error: unknown) =>
-        setSaveError(error instanceof Error ? error.message : String(error)),
-      );
-  };
+  const library = useLibrarySaves(props.conversationId);
 
   return (
     <div class="cx-conversation">
       <div class="cx-conversation__thread" ref={thread}>
-        <For each={detail()?.messages ?? []}>
-          {(message) => (
-            <Turn
-              message={message}
-              actions={{ onCopy: copy, onSave: save, saved: saved().includes(message.content) }}
-            />
-          )}
-        </For>
-        <LiveTail text={live} />
-        <Show when={saveError()}>
-          <p class="cx-conversation__error" role="alert">{saveError()}</p>
-        </Show>
+        <Thread
+          messages={detail()?.messages ?? []}
+          live={live}
+          onCopy={copy}
+          library={library}
+        />
       </div>
 
       <Composer

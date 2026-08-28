@@ -86,65 +86,57 @@ function toLog(row: ApiCodeAutomationLog, now = Date.now()): AutomationLog {
   return log;
 }
 
+/**
+ * Runs a read, answering empty when the route is absent.
+ *
+ * A list is allowed to be empty; a write is not allowed to look like it worked.
+ * That asymmetry is why reads and writes are wrapped differently.
+ */
+async function readOrEmpty<T>(read: () => Promise<T[]>): Promise<T[]> {
+  try {
+    return await read();
+  } catch (error) {
+    if (isRouteMissing(error)) return [];
+    throw error;
+  }
+}
+
+/** Runs a write, turning a missing route into copy the screen can show. */
+async function write<T>(work: () => Promise<T>): Promise<T> {
+  try {
+    return await work();
+  } catch (error) {
+    return explain(error);
+  }
+}
+
 export function createCloudAutomationHost(client: CortexApiClient): AutomationHost {
   return {
-    list: async () => {
-      try {
-        const rows = await listCodeAutomations(client);
-        return rows.map((row) => toAutomation(row));
-      } catch (error) {
-        if (isRouteMissing(error)) return [];
-        throw error;
-      }
-    },
+    list: () => readOrEmpty(async () => (await listCodeAutomations(client)).map(toAutomation)),
 
-    create: async (input) => {
-      try {
-        return toAutomation(
+    create: (input) =>
+      write(async () =>
+        toAutomation(
           await createCodeAutomation(client, {
             name: input.name,
             enabled: input.enabled,
             trigger: input.trigger,
             actions: input.actions,
           }),
-        );
-      } catch (error) {
-        return explain(error);
-      }
-    },
+        ),
+      ),
 
-    toggle: async (id, enabled) => {
-      try {
-        return toAutomation(await patchCodeAutomation(client, id, { enabled }));
-      } catch (error) {
-        return explain(error);
-      }
-    },
+    toggle: (id, enabled) =>
+      write(async () => toAutomation(await patchCodeAutomation(client, id, { enabled }))),
 
-    remove: async (id) => {
-      try {
+    remove: (id) =>
+      write(async () => {
         await deleteCodeAutomation(client, id);
-      } catch (error) {
-        explain(error);
-      }
-    },
+      }),
 
-    run: async (id) => {
-      try {
-        return toLog(await runCodeAutomation(client, id));
-      } catch (error) {
-        return explain(error);
-      }
-    },
+    run: (id) => write(async () => toLog(await runCodeAutomation(client, id))),
 
-    logs: async (id) => {
-      try {
-        const rows = await listCodeAutomationLogs(client, id);
-        return rows.map((row) => toLog(row));
-      } catch (error) {
-        if (isRouteMissing(error)) return [];
-        throw error;
-      }
-    },
+    logs: (id) =>
+      readOrEmpty(async () => (await listCodeAutomationLogs(client, id)).map(toLog)),
   };
 }

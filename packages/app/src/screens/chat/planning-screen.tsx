@@ -109,6 +109,51 @@ function TemplateList(props: {
 }
 
 /**
+ * Signed out there is no schedule to show, only the catalogue.
+ *
+ * The templates stay visible so what Planning is for is legible before signing in —
+ * a bare gate would explain nothing about what an account buys.
+ */
+function SignedOut(props: PlanningScreenProps): JSX.Element {
+  return (
+    <>
+      <HonestState
+        kind="signed-out"
+        title="Planning needs a Cortex account"
+        body="A job has to run when this tab is closed, so the schedule lives on Cortex."
+        actionLabel="Sign in"
+        onAction={props.onSignIn}
+      />
+      <TemplateList
+        templates={props.templates}
+        signedIn={false}
+        onAdd={props.onAdd}
+        onSignIn={props.onSignIn}
+      />
+    </>
+  );
+}
+
+function ScheduleList(props: PlanningScreenProps): JSX.Element {
+  return (
+    <div class="cx-product-list">
+      <For each={props.tasks}>
+        {(task) => (
+          <TaskRow
+            task={task}
+            locked={Boolean(task.requiresAccount) && !props.signedIn}
+            onToggle={() => props.onToggle(task.id)}
+            onRun={() =>
+              task.requiresAccount && !props.signedIn ? props.onSignIn() : props.onRun(task.id)
+            }
+          />
+        )}
+      </For>
+    </div>
+  );
+}
+
+/**
  * Scheduled tasks. The schedule is the account's; the five Cortex-authored jobs
  * are templates, and Subnet 100 is last and Cortex-only.
  */
@@ -120,26 +165,7 @@ export function PlanningScreen(props: PlanningScreenProps): JSX.Element {
         subtitle="Recurring jobs that run on Cortex, on a cadence. Not a project plan."
       />
       <PageBody width="list">
-        <Show
-          when={props.signedIn}
-          fallback={
-            <>
-              <HonestState
-                kind="signed-out"
-                title="Planning needs a Cortex account"
-                body="A job has to run when this tab is closed, so the schedule lives on Cortex."
-                actionLabel="Sign in"
-                onAction={props.onSignIn}
-              />
-              <TemplateList
-                templates={props.templates}
-                signedIn={false}
-                onAdd={props.onAdd}
-                onSignIn={props.onSignIn}
-              />
-            </>
-          }
-        >
+        <Show when={props.signedIn} fallback={<SignedOut {...props} />}>
           <RemoteStateView
             state={props.state}
             {...(props.error ? { error: props.error } : {})}
@@ -148,20 +174,7 @@ export function PlanningScreen(props: PlanningScreenProps): JSX.Element {
             emptyBody="Add one of the jobs below and it will run on its cadence until you pause it."
             onRetry={props.onRetry}
           >
-            <div class="cx-product-list">
-              <For each={props.tasks}>
-                {(task) => (
-                  <TaskRow
-                    task={task}
-                    locked={Boolean(task.requiresAccount) && !props.signedIn}
-                    onToggle={() => props.onToggle(task.id)}
-                    onRun={() =>
-                      task.requiresAccount && !props.signedIn ? props.onSignIn() : props.onRun(task.id)
-                    }
-                  />
-                )}
-              </For>
-            </div>
+            <ScheduleList {...props} />
           </RemoteStateView>
           <Show when={props.state === 'ready' || props.state === 'empty'}>
             <TemplateList

@@ -38,6 +38,33 @@ function ProjectFallback(props: {
   );
 }
 
+/**
+ * An editable brief, because a project whose brief could only be empty was a field
+ * with no way to fill it.
+ */
+function BriefForm(props: { project: ChatProject; onSave: (brief: string) => void }): JSX.Element {
+  const [brief, setBrief] = createSignal<string | undefined>();
+
+  return (
+    <form
+      class="cx-product-form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        props.onSave(brief() ?? props.project.brief);
+      }}
+    >
+      <input
+        type="text"
+        value={brief() ?? props.project.brief}
+        placeholder="What is this project for?"
+        aria-label="Project brief"
+        onInput={(event) => setBrief(event.currentTarget.value)}
+      />
+      <Button variant="secondary" type="submit">Save brief</Button>
+    </form>
+  );
+}
+
 export function ProjectScreen(props: {
   project?: ChatProject;
   state: RemoteState;
@@ -46,8 +73,6 @@ export function ProjectScreen(props: {
   onSaveBrief: (brief: string) => void;
   onBack: () => void;
 }): JSX.Element {
-  const [brief, setBrief] = createSignal<string | undefined>();
-
   return (
     <Show
       when={props.project}
@@ -67,24 +92,7 @@ export function ProjectScreen(props: {
             actions={<Button variant="secondary" onClick={() => props.onOpenSources()}>Sources</Button>}
           />
           <PageBody width="list">
-            {/* An editable brief, because a project whose brief could only be
-                empty was a field with no way to fill it. */}
-            <form
-              class="cx-product-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                props.onSaveBrief(brief() ?? project().brief);
-              }}
-            >
-              <input
-                type="text"
-                value={brief() ?? project().brief}
-                placeholder="What is this project for?"
-                aria-label="Project brief"
-                onInput={(event) => setBrief(event.currentTarget.value)}
-              />
-              <Button variant="secondary" type="submit">Save brief</Button>
-            </form>
+            <BriefForm project={project()} onSave={props.onSaveBrief} />
           </PageBody>
         </>
       )}
@@ -130,6 +138,42 @@ function AddSourceForm(props: {
   );
 }
 
+function SourceList(props: {
+  project: ChatProject;
+  onRemove: (sourceId: string) => void;
+}): JSX.Element {
+  return (
+    <Show
+      when={props.project.sources.length > 0}
+      fallback={
+        <HonestState
+          kind="empty"
+          title="No sources"
+          body="Attach a file, a folder, a plugin, or a URL. This list stays empty until you do."
+        />
+      }
+    >
+      <div class="cx-product-list">
+        <For each={props.project.sources}>
+          {(source) => (
+            <div class="cx-product-row" data-source={source.id}>
+              <div>
+                <div class="cx-product-row__title">{source.label}</div>
+                <p class="cx-product-row__meta">{source.kind}</p>
+              </div>
+              <div class="cx-product-row__action">
+                <Button variant="secondary" onClick={() => props.onRemove(source.id)}>
+                  Remove
+                </Button>
+              </div>
+            </div>
+          )}
+        </For>
+      </div>
+    </Show>
+  );
+}
+
 export function ProjectSourcesScreen(props: {
   project?: ChatProject;
   state: RemoteState;
@@ -158,34 +202,7 @@ export function ProjectSourcesScreen(props: {
           />
           <PageBody width="list">
             <AddSourceForm onAdd={props.onAdd} />
-            <Show
-              when={project().sources.length > 0}
-              fallback={
-                <HonestState
-                  kind="empty"
-                  title="No sources"
-                  body="Attach a file, a folder, a plugin, or a URL. This list stays empty until you do."
-                />
-              }
-            >
-              <div class="cx-product-list">
-                <For each={project().sources}>
-                  {(source) => (
-                    <div class="cx-product-row" data-source={source.id}>
-                      <div>
-                        <div class="cx-product-row__title">{source.label}</div>
-                        <p class="cx-product-row__meta">{source.kind}</p>
-                      </div>
-                      <div class="cx-product-row__action">
-                        <Button variant="secondary" onClick={() => props.onRemove(source.id)}>
-                          Remove
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                </For>
-              </div>
-            </Show>
+            <SourceList project={project()} onRemove={props.onRemove} />
           </PageBody>
         </>
       )}

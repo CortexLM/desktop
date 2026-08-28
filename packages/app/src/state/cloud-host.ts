@@ -94,96 +94,139 @@ export interface CloudHostOptions {
   sleep?: (ms: number) => Promise<void>;
 }
 
-export function createCloudHost(options: CloudHostOptions): CortexHost {
-  const { client } = options;
-  const deviceListeners = new Set<(status: CortexDeviceStatus) => void>();
-  const accountListeners = new Set<(state: CortexAccountState) => void>();
+/**
+ * Reads the session.
+ *
+ * `credentialsEncrypted: false` is the truthful answer for a browser: there is no
+ * OS keyring here, the session lives in an httpOnly cookie the tab cannot read,
+ * and claiming encryption-at-rest for something we do not store would be a
+ * security claim we cannot back.
+ */
+async function readState(client: CortexApiClient): Promise<CortexAccountState> {
+  try {
+    const user = await client.currentUser();
+    return {
+      user: isRealAccount(user) ? toUserView(user) : null,
+      reachable: true,
+      credentialsEncrypted: false,
+    };
+  } catch (error) {
+    return {
+      user: null,
+      // An answered 4xx proves the service is up; only a transport failure leaves
+      // us unable to say whether it is.
+      reachable: isCortexApiError(error) ? error.status > 0 : false,
+      credentialsEncrypted: false,
+    };
+  }
+}
 
+/** The API-key half. Split out to keep the host factory readable. */
+function apiKeyMethods(
+  client: CortexApiClient,
+): Pick<CortexHost, 'listApiKeys' | 'createApiKey' | 'revokeApiKey'> {
+  return {
+    listApiKeys: async () => {
+      const keys = await client.listApiKeys();
+      return keys.map((key) => {
+        const row: { id: string; name: string; lastFour?: string } = {
+          id: key.id,
+          name: key.name ?? 'Key',
+        };
+        if (key.last_four) row.lastFour = key.last_four;
+        return row;
+      });
+    },
+    createApiKey: async (name) => {
+      const created = await client.createApiKey(name);
+      const row: { id: string; name: string; key?: string } = {
+        id: created.id,
+        name: created.name ?? name,
+      };
+      // Shown once. The service hashes it, so there is no second chance to read it.
+      if (created.key) row.key = created.key;
+      return row;
+    },
+    revokeApiKey: (id) => client.revokeApiKey(id),
+  };
+}
+
+/** A set of listeners plus the subscribe function screens hand to `onCleanup`. */
+function channel<T>(): {
+  emit: (value: T) => void;
+  subscribe: (listener: (value: T) => void) => () => boolean;
+} {
+  const listeners = new Set<(value: T) => void>();
+  return {
+    emit: (value) => {
+      for (const listener of listeners) listener(value);
+    },
+    subscribe: (listener) => {
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    },
+  };
+}
+
+/**
+ * Polls one flow to its conclusion and reports what happened.
+ *
+ * Detached from `startDeviceFlow` so the screen can paint the user code immediately
+ * instead of waiting on a promise that only settles once the user has finished in
+ * another tab.
+ */
+async function pollFlow(
+  options: CloudHostOptions,
+  current: Flow,
+  emitDevice: (status: CortexDeviceStatus) => void,
+  emitAccount: (state: CortexAccountState) => void,
+): Promise<void> {
+  const { client } = options;
+  try {
+    const token = await pollDeviceToken(client, current.code, {
+      signal: current.controller.signal,
+      ...(options.sleep ? { sleep: options.sleep } : {}),
+      onState: (state) => {
+        if (state.status === 'awaiting-authorization') emitDevice({ kind: 'pending' });
+      },
+    });
+    client.setCredentials({ accessToken: token.access_token });
+    const state = await readState(client);
+    emitDevice(
+      state.user
+        ? { kind: 'authorized', user: state.user }
+        : { kind: 'error', message: 'Signed in, but the account could not be read.' },
+    );
+    emitAccount(state);
+  } catch (error) {
+    emitDevice(deviceFailure(error));
+  }
+}
+
+/** The device-flow half: start, cancel, and open the approval page. */
+function deviceFlowMethods(
+  options: CloudHostOptions,
+  emitDevice: (status: CortexDeviceStatus) => void,
+  emitAccount: (state: CortexAccountState) => void,
+): Pick<CortexHost, 'startDeviceFlow' | 'cancelDeviceFlow' | 'openVerificationPage'> {
+  const { client } = options;
   let flow: Flow | undefined;
 
-  const emitDevice = (status: CortexDeviceStatus) => {
-    for (const listener of deviceListeners) listener(status);
-  };
-  const emitAccount = (state: CortexAccountState) => {
-    for (const listener of accountListeners) listener(state);
-  };
-
-  /**
-   * Reads the session.
-   *
-   * `credentialsEncrypted: false` is the truthful answer for a browser: there is
-   * no OS keyring here, the session lives in an httpOnly cookie the tab cannot
-   * read, and claiming encryption-at-rest for something we do not store would be
-   * a security claim we cannot back.
-   */
-  const readState = async (): Promise<CortexAccountState> => {
+  const watch = async (current: Flow): Promise<void> => {
     try {
-      const user = await client.currentUser();
-      return {
-        user: isRealAccount(user) ? toUserView(user) : null,
-        reachable: true,
-        credentialsEncrypted: false,
-      };
-    } catch (error) {
-      return {
-        user: null,
-        // An answered 4xx proves the service is up; only a transport failure
-        // leaves us unable to say whether it is.
-        reachable: isCortexApiError(error) ? error.status > 0 : false,
-        credentialsEncrypted: false,
-      };
-    }
-  };
-
-  /**
-   * Polls the started flow in the background.
-   *
-   * Detached from `startDeviceFlow` so the screen can paint the user code
-   * immediately instead of waiting on a promise that only settles once the user
-   * has finished in another tab.
-   */
-  const watchFlow = async (current: Flow): Promise<void> => {
-    try {
-      const token = await pollDeviceToken(client, current.code, {
-        signal: current.controller.signal,
-        ...(options.sleep ? { sleep: options.sleep } : {}),
-        onState: (state) => {
-          if (state.status === 'awaiting-authorization') emitDevice({ kind: 'pending' });
-        },
-      });
-      client.setCredentials({ accessToken: token.access_token });
-      const state = await readState();
-      emitDevice(
-        state.user ? { kind: 'authorized', user: state.user } : { kind: 'error', message: 'Signed in, but the account could not be read.' },
-      );
-      emitAccount(state);
-    } catch (error) {
-      emitDevice(deviceFailure(error));
+      await pollFlow(options, current, emitDevice, emitAccount);
     } finally {
       if (flow === current) flow = undefined;
     }
   };
 
   return {
-    getState: readState,
-
-    listModels: async () => {
-      try {
-        const models = await client.listModels();
-        return { models: models.map(toModelView) };
-      } catch (error) {
-        // The catalogue failing must not take the app down: the picker falls back
-        // to whatever the account can already use, same as the anonymous path.
-        return { models: [], error: messageFor(error) };
-      }
-    },
-
     startDeviceFlow: async () => {
       flow?.controller.abort();
       const code = await client.startDeviceAuthorization();
       const current: Flow = { code, controller: new AbortController() };
       flow = current;
-      void watchFlow(current);
+      void watch(current);
       return toStartResponse(code);
     },
 
@@ -194,9 +237,34 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
 
     openVerificationPage: async () => {
       const url = flow?.code.verification_uri_complete ?? flow?.code.verification_uri;
+      // No flow in progress, so it says so rather than appearing to have worked.
       if (!url) return false;
       (options.openUrl ?? defaultOpen)(url);
       return true;
+    },
+  };
+}
+
+export function createCloudHost(options: CloudHostOptions): CortexHost {
+  const { client } = options;
+  const device = channel<CortexDeviceStatus>();
+  const account = channel<CortexAccountState>();
+
+  return {
+    ...apiKeyMethods(client),
+    ...deviceFlowMethods(options, device.emit, account.emit),
+
+    getState: () => readState(client),
+
+    listModels: async () => {
+      try {
+        const models = await client.listModels();
+        return { models: models.map(toModelView) };
+      } catch (error) {
+        // The catalogue failing must not take the app down: the picker falls back
+        // to whatever the account can already use, same as the anonymous path.
+        return { models: [], error: messageFor(error) };
+      }
     },
 
     signOut: async () => {
@@ -213,47 +281,15 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
         reachable: true,
         credentialsEncrypted: false,
       };
-      emitAccount(state);
+      account.emit(state);
       return state;
     },
-
-    listApiKeys: async () => {
-      const keys = await client.listApiKeys();
-      return keys.map((key) => {
-        const row: { id: string; name: string; lastFour?: string } = {
-          id: key.id,
-          name: key.name ?? 'Key',
-        };
-        if (key.last_four) row.lastFour = key.last_four;
-        return row;
-      });
-    },
-
-    createApiKey: async (name) => {
-      const created = await client.createApiKey(name);
-      const row: { id: string; name: string; key?: string } = {
-        id: created.id,
-        name: created.name ?? name,
-      };
-      // Shown once. The service hashes it, so there is no second chance to read it.
-      if (created.key) row.key = created.key;
-      return row;
-    },
-
-    revokeApiKey: (id) => client.revokeApiKey(id),
 
     productRequest: (request: CortexProductRequest): Promise<CortexProductResponse> =>
       exchange(client, request),
 
-    onDeviceStatus: (listener) => {
-      deviceListeners.add(listener);
-      return () => deviceListeners.delete(listener);
-    },
-
-    onAccountChanged: (listener) => {
-      accountListeners.add(listener);
-      return () => accountListeners.delete(listener);
-    },
+    onDeviceStatus: device.subscribe,
+    onAccountChanged: account.subscribe,
   };
 }
 

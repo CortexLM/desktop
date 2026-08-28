@@ -106,6 +106,13 @@ function toStatus(value: string | undefined): TaskStatus {
   return value === 'paused' ? 'paused' : 'active';
 }
 
+/**
+ * Projects a task row.
+ *
+ * The matching template fills anything the row leaves out. That is not invention:
+ * the service stores the task by the template's id, so its title and summary are
+ * the same copy, and a row that omits them should still read as the job it is.
+ */
 export function toScheduledTask(row: ApiPlanningTask): ScheduledTask {
   const template = PLANNING_TEMPLATES.find((entry) => entry.id === row.id);
   const task: ScheduledTask = {
@@ -116,12 +123,16 @@ export function toScheduledTask(row: ApiPlanningTask): ScheduledTask {
     status: toStatus(row.status),
   };
 
-  const lastRun = readString(row, 'last_run_at');
-  if (lastRun) {
-    const parsed = Date.parse(lastRun);
-    if (!Number.isNaN(parsed)) task.lastRunAt = parsed;
-  }
-  if (template?.requiresAccount) task.requiresAccount = true;
+  return withOptional(task, readEpoch(row, 'last_run_at'), template?.requiresAccount);
+}
+
+function withOptional(
+  task: ScheduledTask,
+  lastRunAt: number | undefined,
+  requiresAccount: boolean | undefined,
+): ScheduledTask {
+  if (lastRunAt !== undefined) task.lastRunAt = lastRunAt;
+  if (requiresAccount) task.requiresAccount = true;
   return task;
 }
 
@@ -129,6 +140,13 @@ export function toScheduledTask(row: ApiPlanningTask): ScheduledTask {
 function readString(row: ApiPlanningTask, key: string): string | undefined {
   const value = (row as Record<string, unknown>)[key];
   return typeof value === 'string' ? value : undefined;
+}
+
+function readEpoch(row: ApiPlanningTask, key: string): number | undefined {
+  const value = readString(row, key);
+  if (!value) return undefined;
+  const parsed = Date.parse(value);
+  return Number.isNaN(parsed) ? undefined : parsed;
 }
 
 const collection = createRemoteCollection<ScheduledTask>({

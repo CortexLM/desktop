@@ -124,25 +124,30 @@ export { listItems } from './lists.ts';
 
 export {
   archiveCodeSession,
+  createCodeSession,
+  deleteCodeSession,
+  followUpCodeSession,
+  getCodeSession,
+  getCodeUsage,
+  listCodeRepositories,
+  resolveCodePermission,
+  stopCodeSession,
+} from './code-control.ts';
+
+export {
   createCodeAutomation,
   createCodeSecret,
-  createCodeSession,
   createCodeSshRuntime,
   createCodeTicket,
   deleteCodeAutomation,
   deleteCodeSecret,
-  deleteCodeSession,
   deleteCodeSshRuntime,
   deleteCodeTicket,
-  followUpCodeSession,
-  getCodeSession,
   getCodeSettings,
   getCodeTicket,
-  getCodeUsage,
   listCodeAutomationLogs,
   listCodeAutomations,
   listCodeProviders,
-  listCodeRepositories,
   listCodeSecrets,
   listCodeSshRuntimes,
   listCodeTickets,
@@ -150,11 +155,9 @@ export {
   patchCodeTicket,
   putCodeProvider,
   putCodeSettings,
-  resolveCodePermission,
   runCodeAutomation,
-  stopCodeSession,
   unpairCodeHost,
-} from './code-control.ts';
+} from './code-config.ts';
 
 export type {
   ApiCodeAutomation,

@@ -56,74 +56,110 @@ async function orNotFound<T>(read: () => Promise<T>, fallback: T): Promise<T> {
   }
 }
 
-export function createCloudSessionHost(options: {
+interface CloudSessionOptions {
   client: CortexApiClient;
   transport: StreamTransport;
-}): SessionHost {
+}
+
+/**
+ * Starts a run through the control plane, falling back to the socket.
+ *
+ * HTTP first because it returns the service's session id, which is what makes the
+ * run findable again after a reload. The socket path is kept for a backend that
+ * only speaks realtime, and it is honest about what it produced: that id is
+ * provisional until a `code.session` event names the real one.
+ */
+async function startRun(
+  options: CloudSessionOptions,
+  request: StartSessionRequest,
+): Promise<SessionSummary> {
+  if (request.runtime === 'local') throw new Error(CLOUD_ONLY);
+
+  try {
+    return toSessionSummary(
+      await createCodeSession(options.client, {
+        prompt: request.prompt,
+        runtime: request.runtime,
+        ...(request.repo ? { repository: request.repo } : {}),
+        ...(request.branch ? { branch: request.branch } : {}),
+        ...(request.model ? { model: request.model } : {}),
+      }),
+    );
+  } catch (error) {
+    if (!isRouteMissing(error)) throw error;
+    return startOverSocket(options.transport, request);
+  }
+}
+
+async function followRun(
+  options: CloudSessionOptions,
+  id: string,
+  prompt: string,
+): Promise<SessionSummary | null> {
+  try {
+    return toSessionSummary(await followUpCodeSession(options.client, id, { message: prompt }));
+  } catch (error) {
+    if (!isRouteMissing(error)) throw error;
+    if (options.transport.channel() !== 'realtime') throw new Error(CLOUD_ONLY);
+    options.transport.send({ type: 'code.turn', session_id: id, message: prompt });
+    return null;
+  }
+}
+
+/**
+ * Answers a permission prompt on whichever channel is up.
+ *
+ * The socket is preferred because the run is blocked on the other end of it, but a
+ * read-only SSE fallback cannot carry the answer — so HTTP is not an optimisation
+ * here, it is the difference between the user being able to unblock the run and not.
+ */
+async function answerPermission(
+  options: CloudSessionOptions,
+  id: string,
+  requestId: string,
+  decision: 'allow-once' | 'allow-always' | 'deny',
+): Promise<void> {
+  const wire = toWireDecision(decision);
+  if (options.transport.channel() === 'realtime') {
+    options.transport.send({
+      type: 'code.permission',
+      session_id: id,
+      request_permission_id: requestId,
+      decision: wire,
+    });
+    return;
+  }
+  await resolveCodePermission(options.client, id, {
+    request_permission_id: requestId,
+    decision: wire,
+  });
+}
+
+export function createCloudSessionHost(options: CloudSessionOptions): SessionHost {
   const listeners = new Set<(event: SessionProgressEvent) => void>();
   const surface = createHttpProductSurface(options.client);
 
-  /**
-   * Starts a run through the control plane, falling back to the socket.
-   *
-   * HTTP first because it returns the service's session id, which is what makes
-   * the run findable again after a reload. The socket path is kept for a backend
-   * that only speaks realtime, and it is honest about what it produced: the id is
-   * provisional until a `code.session` event names the real one.
-   */
-  const start = async (request: StartSessionRequest): Promise<SessionSummary> => {
-    if (request.runtime === 'local') throw new Error(CLOUD_ONLY);
-
-    try {
-      return toSessionSummary(
-        await createCodeSession(options.client, {
-          prompt: request.prompt,
-          runtime: request.runtime,
-          ...(request.repo ? { repository: request.repo } : {}),
-          ...(request.branch ? { branch: request.branch } : {}),
-          ...(request.model ? { model: request.model } : {}),
-        }),
-      );
-    } catch (error) {
-      if (!isRouteMissing(error)) throw error;
-      return startOverSocket(options.transport, request);
-    }
-  };
-
   return {
-    list: async () => {
-      const rows = await orNotFound(() => surface.listCodeSessions(), []);
-      return rows.map((row) => toSessionSummary(row));
-    },
+    list: async () =>
+      (await orNotFound(() => surface.listCodeSessions(), [])).map((row) => toSessionSummary(row)),
 
-    get: async (id) => {
-      const row = await orNotFound<SessionDetail | null>(
+    get: (id) =>
+      orNotFound<SessionDetail | null>(
         async () => toSessionDetail(await getCodeSession(options.client, id)),
         null,
-      );
-      return row;
-    },
+      ),
 
-    start,
+    start: (request) => startRun(options, request),
 
-    followUp: async (id, prompt) => {
-      try {
-        return toSessionSummary(await followUpCodeSession(options.client, id, { message: prompt }));
-      } catch (error) {
-        if (!isRouteMissing(error)) throw error;
-        if (options.transport.channel() !== 'realtime') throw new Error(CLOUD_ONLY);
-        options.transport.send({ type: 'code.turn', session_id: id, message: prompt });
-        return null;
-      }
-    },
+    followUp: (id, prompt) => followRun(options, id, prompt),
 
-    stop: async (id) =>
+    stop: (id) =>
       orNotFound<SessionSummary | null>(
         async () => toSessionSummary(await stopCodeSession(options.client, id)),
         null,
       ),
 
-    archive: async (id, archived) =>
+    archive: (id, archived) =>
       orNotFound<SessionSummary | null>(
         async () => toSessionSummary(await archiveCodeSession(options.client, id, archived)),
         null,
@@ -135,34 +171,13 @@ export function createCloudSessionHost(options: {
       }, undefined);
     },
 
-    /**
-     * Answers a permission prompt on whichever channel is up.
-     *
-     * The socket is preferred because the run is blocked on the other end of it,
-     * but a read-only SSE fallback cannot carry the answer — so HTTP is not an
-     * optimisation here, it is the difference between the user being able to
-     * unblock the run and not.
-     */
-    resolvePermission: async (id, requestId, decision) => {
-      if (options.transport.channel() === 'realtime') {
-        options.transport.send({
-          type: 'code.permission',
-          session_id: id,
-          request_permission_id: requestId,
-          decision: toWireDecision(decision),
-        });
-        return;
-      }
-      await resolveCodePermission(options.client, id, {
-        request_permission_id: requestId,
-        decision: toWireDecision(decision),
-      });
-    },
+    resolvePermission: (id, requestId, decision) =>
+      answerPermission(options, id, requestId, decision),
 
-    listRepositories: async () => {
-      const rows = await orNotFound(() => listCodeRepositories(options.client), []);
-      return rows.flatMap((row) => toRepositoryOption(row));
-    },
+    listRepositories: async () =>
+      (await orNotFound(() => listCodeRepositories(options.client), [])).flatMap((row) =>
+        toRepositoryOption(row),
+      ),
 
     /**
      * There is no folder picker in a browser, and a repository has to be one the

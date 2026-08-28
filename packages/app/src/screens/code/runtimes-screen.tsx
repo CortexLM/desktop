@@ -105,6 +105,87 @@ function SshForm(props: {
   );
 }
 
+function PairedHosts(props: RuntimesScreenProps): JSX.Element {
+  return (
+    <>
+      <h3 class="cx-product-section">Paired machines</h3>
+      <RemoteStateView
+        state={props.hostsState}
+        {...(props.hostsError ? { error: props.hostsError } : {})}
+        label="Cortex Code hosts"
+        emptyTitle="No paired machines"
+        emptyBody="Pair a machine that already runs Cortex Code and its sessions will show up here."
+        emptyActionLabel="Pair a machine"
+        onEmptyAction={props.onPair}
+        onRetry={props.onReload}
+      >
+        <div class="cx-product-list">
+          <For each={props.hosts}>
+            {(host) => (
+              <div class="cx-product-row" data-host={host.id}>
+                <div>
+                  <div class="cx-product-row__title">{host.name}</div>
+                  <p class="cx-product-row__meta">
+                    {STATUS_LABEL[host.status]}
+                    {host.url ? ` · ${host.url}` : ''}
+                  </p>
+                </div>
+                <div class="cx-product-row__action">
+                  <Button variant="secondary" onClick={() => props.onUnpair(host.id)}>
+                    Unpair
+                  </Button>
+                </div>
+              </div>
+            )}
+          </For>
+        </div>
+      </RemoteStateView>
+    </>
+  );
+}
+
+function SshRuntimes(props: RuntimesScreenProps): JSX.Element {
+  return (
+    <>
+      <h3 class="cx-product-section">Servers over SSH</h3>
+      <p class="cx-product-note">
+        Cortex completes the handshake. No key or password is typed here, and none is
+        stored by this client.
+      </p>
+      <SshForm onAdd={props.onAddSsh} />
+      <RemoteStateView
+        state={props.runtimesState}
+        {...(props.runtimesError ? { error: props.runtimesError } : {})}
+        label="SSH runtimes"
+        emptyTitle="No servers"
+        emptyBody="Add a host and user above. Cortex verifies the server and reports its fingerprint."
+        onRetry={props.onReload}
+      >
+        <div class="cx-product-list">
+          <For each={props.runtimes}>
+            {(runtime) => (
+              <div class="cx-product-row" data-runtime={runtime.id}>
+                <div>
+                  <div class="cx-product-row__title">{runtime.label}</div>
+                  <p class="cx-product-row__meta">
+                    {STATUS_LABEL[runtime.status]}
+                    {runtime.fingerprint ? ` · ${runtime.fingerprint}` : ''}
+                  </p>
+                </div>
+                <div class="cx-product-row__action">
+                  <Button variant="secondary" onClick={() => props.onRemoveSsh(runtime.id)}>
+                    Remove
+                  </Button>
+                </div>
+              </div>
+            )}
+          </For>
+        </div>
+      </RemoteStateView>
+    </>
+  );
+}
+
 /**
  * Where Code runs: Cloud, a paired machine, or a server over SSH.
  *
@@ -142,75 +223,8 @@ export function RuntimesScreen(props: RuntimesScreenProps): JSX.Element {
           <Show when={props.pairingCode}>
             {(code) => <PairingCode code={code()} onDismiss={props.onDismissCode} />}
           </Show>
-
-          <h3 class="cx-product-section">Paired machines</h3>
-          <RemoteStateView
-            state={props.hostsState}
-            {...(props.hostsError ? { error: props.hostsError } : {})}
-            label="Cortex Code hosts"
-            emptyTitle="No paired machines"
-            emptyBody="Pair a machine that already runs Cortex Code and its sessions will show up here."
-            emptyActionLabel="Pair a machine"
-            onEmptyAction={props.onPair}
-            onRetry={props.onReload}
-          >
-            <div class="cx-product-list">
-              <For each={props.hosts}>
-                {(host) => (
-                  <div class="cx-product-row" data-host={host.id}>
-                    <div>
-                      <div class="cx-product-row__title">{host.name}</div>
-                      <p class="cx-product-row__meta">
-                        {STATUS_LABEL[host.status]}
-                        {host.url ? ` · ${host.url}` : ''}
-                      </p>
-                    </div>
-                    <div class="cx-product-row__action">
-                      <Button variant="secondary" onClick={() => props.onUnpair(host.id)}>
-                        Unpair
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </For>
-            </div>
-          </RemoteStateView>
-
-          <h3 class="cx-product-section">Servers over SSH</h3>
-          <p class="cx-product-note">
-            Cortex completes the handshake. No key or password is typed here, and none
-            is stored by this client.
-          </p>
-          <SshForm onAdd={props.onAddSsh} />
-          <RemoteStateView
-            state={props.runtimesState}
-            {...(props.runtimesError ? { error: props.runtimesError } : {})}
-            label="SSH runtimes"
-            emptyTitle="No servers"
-            emptyBody="Add a host and user above. Cortex verifies the server and reports its fingerprint."
-            onRetry={props.onReload}
-          >
-            <div class="cx-product-list">
-              <For each={props.runtimes}>
-                {(runtime) => (
-                  <div class="cx-product-row" data-runtime={runtime.id}>
-                    <div>
-                      <div class="cx-product-row__title">{runtime.label}</div>
-                      <p class="cx-product-row__meta">
-                        {STATUS_LABEL[runtime.status]}
-                        {runtime.fingerprint ? ` · ${runtime.fingerprint}` : ''}
-                      </p>
-                    </div>
-                    <div class="cx-product-row__action">
-                      <Button variant="secondary" onClick={() => props.onRemoveSsh(runtime.id)}>
-                        Remove
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </For>
-            </div>
-          </RemoteStateView>
+          <PairedHosts {...props} />
+          <SshRuntimes {...props} />
         </Show>
       </PageBody>
     </>
