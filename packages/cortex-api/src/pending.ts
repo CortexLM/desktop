@@ -10,6 +10,16 @@ import type { z } from 'zod';
 
 import type { CortexApiClient } from './client.ts';
 import {
+  createMascot,
+  createVncTicket,
+  deleteMascot,
+  heartbeatCodeHost,
+  listMascotVideos,
+  markNotificationRead,
+  pairCodeHost,
+  postScheduledResult,
+} from './control-plane.ts';
+import {
   codeHostListSchema,
   codeSessionListSchema,
   libraryItemListSchema,
@@ -34,6 +44,14 @@ export interface ProductSurface {
   listLibraryItems: (signal?: AbortSignal) => Promise<ApiLibraryItem[]>;
   listPlugins: (signal?: AbortSignal) => Promise<ApiPlugin[]>;
   listNotifications: (signal?: AbortSignal) => Promise<ApiNotification[]>;
+  postScheduledResult: typeof postScheduledResult;
+  pairCodeHost: typeof pairCodeHost;
+  heartbeatCodeHost: typeof heartbeatCodeHost;
+  createMascot: typeof createMascot;
+  deleteMascot: typeof deleteMascot;
+  createVncTicket: typeof createVncTicket;
+  listMascotVideos: typeof listMascotVideos;
+  markNotificationRead: typeof markNotificationRead;
 }
 
 export function createHttpProductSurface(client: CortexApiClient): ProductSurface {
@@ -45,6 +63,15 @@ export function createHttpProductSurface(client: CortexApiClient): ProductSurfac
     listLibraryItems: (signal) => items(client, '/v1/library', libraryItemListSchema, signal),
     listPlugins: (signal) => items(client, '/v1/plugins', pluginListSchema, signal),
     listNotifications: (signal) => items(client, '/v1/notifications', notificationListSchema, signal),
+    postScheduledResult: (conversationId, body, signal) =>
+      postScheduledResult(client, conversationId, body, signal),
+    pairCodeHost: (signal) => pairCodeHost(client, signal),
+    heartbeatCodeHost: (body, signal) => heartbeatCodeHost(client, body, signal),
+    createMascot: (body, signal) => createMascot(client, body, signal),
+    deleteMascot: (id, signal) => deleteMascot(client, id, signal),
+    createVncTicket: (id, signal) => createVncTicket(client, id, signal),
+    listMascotVideos: (id, signal) => listMascotVideos(client, id, signal),
+    markNotificationRead: (id, signal) => markNotificationRead(client, id, signal),
   };
 }
 
@@ -76,5 +103,13 @@ export function createMockProductSurface(seed: Partial<{
     listLibraryItems: () => empty(seed.library),
     listPlugins: () => empty(seed.plugins),
     listNotifications: () => empty(seed.notifications),
+    postScheduledResult: async () => {},
+    pairCodeHost: async () => ({ pairing_code: 'PAIR-TEST' }),
+    heartbeatCodeHost: async () => {},
+    createMascot: async (body) => ({ id: 'mst_mock', name: body.name }),
+    deleteMascot: async () => {},
+    createVncTicket: async () => ({ ticket_hash: 'ticket-hash-only' }),
+    listMascotVideos: async () => [],
+    markNotificationRead: async () => {},
   };
 }

@@ -38,6 +38,17 @@ export type {
 } from './product-schemas.ts';
 
 export {
+  createMascot,
+  createVncTicket,
+  deleteMascot,
+  heartbeatCodeHost,
+  listMascotVideos,
+  markNotificationRead,
+  pairCodeHost,
+  postScheduledResult,
+} from './control-plane.ts';
+
+export {
   createHttpProductSurface,
   createMockProductSurface,
   type ProductSurface,
@@ -48,20 +59,32 @@ export type {
   ApiCodeSession,
   ApiLibraryItem,
   ApiMascot,
+  ApiMascotVideo,
   ApiNotification,
   ApiPlanningTask,
   ApiPlugin,
+  HostHeartbeat,
+  HostPairing,
+  ScheduledResult,
+  VncTicket,
 } from './pending-schemas.ts';
 
 export {
+  CONNECTION_LOCAL_TYPES,
   createMockRealtime,
+  createRealtimeSse,
   createRealtimeSocket,
   createStreamTransport,
   eventFromTurnFrame,
+  isConnectionLocalType,
+  parseRoom,
+  REALTIME_EVENTS_PATH,
   REALTIME_PATH,
   realtimeUrl,
+  roomName,
   type RealtimeClient,
   type RealtimeEvent,
+  type RealtimeRoom,
   type RealtimeStatus,
   type StreamTransport,
 } from './realtime/index.ts';

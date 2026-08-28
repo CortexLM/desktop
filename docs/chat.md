@@ -35,7 +35,10 @@ Active recurring jobs. Seed mix (do not reorder):
 
 Copy is Cortex's. Do not paste ChatGPT task names or descriptions.
 
-A run result emits a `scheduled-task` notification.
+A run result emits a `scheduled-task` notification. When a live conversation
+id (`cnv_…`) is already known, the same result is also posted to
+`POST /v1/conversations/{id}/scheduled-results` (idempotent on user+task_id).
+The client never invents that id.
 
 ## Plugins
 

@@ -19,6 +19,7 @@ import { createMemo, createResource, type Accessor } from 'solid-js';
 import type { SessionDetail, SessionEvent } from '@cortex-ide/shared';
 
 import type { SessionsContextValue } from '../../state/sessions-context.tsx';
+import { watchLiveRoom } from '../../state/realtime-rooms.ts';
 import { formatDuration, toSessionMeta } from '../../state/session-view.ts';
 import { parseUnifiedDiff, type DiffFile } from './diff-view.tsx';
 import type { PlanStep, SessionArtifact, WorkEntry } from './session-timeline.tsx';
@@ -264,6 +265,7 @@ export function createSessionDetail(
   id: Accessor<string>,
   runs: SessionsContextValue,
 ): SessionDetailState {
+  watchLiveRoom('code_session', id);
   /**
    * Refetches whenever the store's row for this run moves.
    *

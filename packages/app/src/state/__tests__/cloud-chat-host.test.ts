@@ -7,6 +7,8 @@ import { liveApiBase } from '../live-api.ts';
 import { applyRealtimeEvent } from '../realtime-bridge.ts';
 import { mergeInbox } from '../inbox.ts';
 import { resetLiveSession, sendBotTurn } from '../realtime-session.ts';
+import { subscribeRoom } from '../realtime-rooms.ts';
+import { deliverScheduledResult, isLiveConversationId } from '../scheduled-results.ts';
 
 function jsonFetch(path: string, body: unknown, headers?: Record<string, string>) {
   return (async (input: RequestInfo | URL) => {
@@ -75,5 +77,37 @@ describe('realtime inbox bridge', () => {
     const kinds = mergeInbox([]).map((item) => item.kind);
     expect(kinds).toContain('bot-ask-user');
     expect(kinds).toContain('code-run-blocked');
+  });
+
+  it('ignores connection-local hello, heartbeat, subscribed, and error', () => {
+    const before = mergeInbox([]).length;
+    applyRealtimeEvent({ type: 'hello' });
+    applyRealtimeEvent({ type: 'heartbeat' });
+    applyRealtimeEvent({ type: 'subscribed', room: 'conversation:cnv_1' });
+    applyRealtimeEvent({ type: 'error', code: 'not_found', message: 'no such room' });
+    expect(mergeInbox([]).length).toBe(before);
+  });
+});
+
+describe('rooms', () => {
+  it('subscribes and unsubscribes optional rooms', async () => {
+    const mock = createMockRealtime();
+    await mock.connect();
+    const leave = subscribeRoom(mock, 'conversation', 'cnv_1');
+    leave();
+    expect(mock.sent).toEqual([
+      { type: 'subscribe', room: 'conversation:cnv_1' },
+      { type: 'unsubscribe', room: 'conversation:cnv_1' },
+    ]);
+  });
+});
+
+describe('scheduled results', () => {
+  it('does not invent a conversation id or POST without a live cnv_', async () => {
+    resetLiveSession();
+    expect(isLiveConversationId('local-thread')).toBe(false);
+    expect(await deliverScheduledResult({ taskId: 'todays-notes', conversationId: 'local-thread' })).toBe(
+      false,
+    );
   });
 });

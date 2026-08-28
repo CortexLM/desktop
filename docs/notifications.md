@@ -28,6 +28,12 @@ the event *is* a Code run changing state.
 
 - Opening an item navigates to the object it is about (session, task,
   mascot). Items with nowhere to go stay in the list without a dead link.
-- Mark-as-read is offered only when something is unread.
+- Mark-as-read is offered only when something is unread. Local ids stay
+  local; server ids also `POST /v1/notifications/{id}/read`.
+- `GET /v1/notifications` hydrates the inbox when the route exists. A live
+  `404` stays `not_found` and the local store is unchanged.
+- Realtime `notification` frames on the owner room post the same kinds.
+  Connection-local socket frames (`hello`, `heartbeat`, `subscribed`,
+  `error`) never become inbox rows.
 - Main never logs the notification body if it might contain user content
   from a private repo. Titles are enough for the OS banner.

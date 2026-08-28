@@ -4,19 +4,24 @@ Chat, Code, and Bot prefer one authenticated socket, then fall back to HTTP.
 
 ## Preference order
 
-1. **`WS /v1/realtime`** — Chat tokens, Code tools/permissions, Bot ask-user,
-   notifications. Authenticated with the same cookie as HTTP (`cortex_gt` for
-   guests, `wos-session` for a WorkOS session). No API key is placed on the
-   URL.
-2. **HTTP turns** — `POST /v1/conversations/turns` (create) and
+1. **`WS /v1/realtime`** — authenticated JSON text frames. Chat tokens (owner
+   room), Code tools/permissions, Bot ask-user, notifications. Cookie auth
+   (`cortex_gt` / `wos-session`). No API key on the URL. Origin allowlisted;
+   missing Origin is allowed for Electron.
+2. **`GET /v1/realtime/events`** — SSE fallback, owner room, listen-only.
+   Subscribe/send still need the socket. Chat turns stay on HTTP POST.
+3. **HTTP turns** — `POST /v1/conversations/turns` (create) and
    `POST /v1/conversations/:id/turns` (follow-up). Server-sent events. This
    path was observed live on 2026-08-28.
-3. **Desktop IPC** — SQLite + `event:chat-progress` inside Electron.
+4. **Desktop IPC** — SQLite + `event:chat-progress` inside Electron.
 
-The socket is **not deployed yet** (`404` on the public API). The typed client
-and the in-process mock implement the same `RealtimeClient` interface, so the
-UI does not grow a second event shape. See
-[packages/cortex-api/CONTRACT.md](../packages/cortex-api/CONTRACT.md).
+Optional rooms: `conversation:`, `code_session:`, `mascot:`. A miss is
+`not_found`. `hello` / `heartbeat` / `subscribed` / `error` are
+connection-local and must not become inbox rows or leak across tabs.
+
+The socket is **not deployed yet** (`404` on the public API). The typed
+client, the SSE fallback, and the in-process mock share `RealtimeClient`.
+See [packages/cortex-api/CONTRACT.md](../packages/cortex-api/CONTRACT.md).
 
 ## Web vs desktop
 

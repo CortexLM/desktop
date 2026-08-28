@@ -10,6 +10,7 @@ import { useNavigate, useParams } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
 import { useConversations } from '../state/conversations-context.tsx';
+import { watchLiveRoom } from '../state/realtime-rooms.ts';
 import { chatDraft, chatMode, resetChatDraft, setChatDraft, setChatMode } from '../state/chat-draft.ts';
 import { ChatHomeScreen, type ChatApp } from '../screens/chat/chat-home-screen.tsx';
 import { ConversationScreen } from '../screens/chat/conversation-screen.tsx';
@@ -81,6 +82,7 @@ export function ChatHomeRoute(): JSX.Element {
 export function ConversationRoute(): JSX.Element {
   const params = useParams<{ conversationId: string }>();
   const chats = useConversations();
+  watchLiveRoom('conversation', () => params.conversationId);
 
   return <ConversationScreen conversationId={() => params.conversationId} chats={chats} />;
 }

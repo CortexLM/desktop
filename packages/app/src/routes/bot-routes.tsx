@@ -13,6 +13,8 @@ import {
 import { postInbox } from '../state/inbox.ts';
 import { showOsNotification } from '../state/os-notify.ts';
 import { sendBotTurn } from '../state/realtime-session.ts';
+import { watchLiveRoom } from '../state/realtime-rooms.ts';
+import { requestVncTicket } from '../state/vnc-ticket.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import {
   BotConversationScreen,
@@ -23,6 +25,7 @@ import { BotComputerScreen, BotSettingsScreen } from '../screens/bot/mascot-comp
 
 function useMascot() {
   const params = useParams<{ mascotId: string }>();
+  watchLiveRoom('mascot', () => params.mascotId);
   return createMemo(() => mascotById(params.mascotId));
 }
 
@@ -125,16 +128,7 @@ export function BotComputerRoute(): JSX.Element {
     const current = mascot();
     if (!current) return;
     setComputerStatus(current.id, 'waking');
-    // No farm in this process: a wake without an API is a failed wake, not a fake VNC.
-    window.setTimeout(() => {
-      setComputerStatus(current.id, 'wake-failed', 'The farm is not reachable from this client.');
-      const item = postInbox({
-        kind: 'farm-wake-fail',
-        message: `${current.name}'s computer failed to wake`,
-        href: `/bot/${current.id}/computer`,
-      });
-      void showOsNotification({ title: 'Bot', body: item.message, kind: 'farm-wake-fail' });
-    }, 400);
+    void finishWake(current.id, current.name);
   };
 
   return (
@@ -148,4 +142,19 @@ export function BotComputerRoute(): JSX.Element {
       onBack={() => navigate('/bot')}
     />
   );
+}
+
+async function finishWake(mascotId: string, name: string): Promise<void> {
+  const hash = await requestVncTicket(mascotId);
+  if (hash) {
+    setComputerStatus(mascotId, 'running');
+    return;
+  }
+  setComputerStatus(mascotId, 'wake-failed', 'The farm is not reachable from this client.');
+  const item = postInbox({
+    kind: 'farm-wake-fail',
+    message: `${name}'s computer failed to wake`,
+    href: `/bot/${mascotId}/computer`,
+  });
+  void showOsNotification({ title: 'Bot', body: item.message, kind: 'farm-wake-fail' });
 }

@@ -8,6 +8,7 @@ import { useNavigate } from '@solidjs/router';
 import { useSessions } from '../state/sessions-context.tsx';
 import { formatAge } from '../state/session-view.ts';
 import { markInboxRead, mergeInbox } from '../state/inbox.ts';
+import { hydrateRemoteNotifications, markRemoteNotificationRead } from '../state/notifications-sync.ts';
 import { requestWebPermission } from '../state/os-notify.ts';
 import {
   NotificationsScreen,
@@ -20,6 +21,7 @@ export function NotificationsRoute(): JSX.Element {
 
   onMount(() => {
     void requestWebPermission();
+    void hydrateRemoteNotifications();
   });
 
   const entries = createMemo((): NotificationEntry[] => {
@@ -38,6 +40,7 @@ export function NotificationsRoute(): JSX.Element {
       onOpen={(id) => {
         const item = mergeInbox(runs.sessions() ?? []).find((entry) => entry.id === id);
         markInboxRead(id);
+        markRemoteNotificationRead(id);
         navigate(item?.href ?? '/code/sessions');
       }}
     />

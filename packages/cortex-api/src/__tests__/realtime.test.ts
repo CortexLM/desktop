@@ -1,9 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
 import { CortexApiClient } from '../client.ts';
+import { CortexApiError } from '../errors.ts';
 import { eventFromTurnFrame } from '../realtime/events.ts';
 import { createMockRealtime } from '../realtime/mock.ts';
+import {
+  isConnectionLocalType,
+  parseRoom,
+  roomName,
+} from '../realtime/rooms.ts';
 import { createRealtimeSocket, type BrowserWebSocket } from '../realtime/socket.ts';
+import { createRealtimeSse } from '../realtime/sse-fallback.ts';
 import { createStreamTransport } from '../realtime/transport.ts';
 import { realtimeUrl } from '../realtime/url.ts';
 
@@ -59,6 +66,26 @@ describe('event mapping', () => {
 
     const done = eventFromTurnFrame({ type: 'done', finish_reason: 'stop' }, { conversationId: 'cnv_1' });
     expect(done).toMatchObject({ type: 'chat.done', finish_reason: 'stop' });
+
+    const started = eventFromTurnFrame({ type: 'turn_started' }, { conversationId: 'cnv_1' });
+    expect(started).toMatchObject({ type: 'chat.started', conversation_id: 'cnv_1' });
+  });
+});
+
+describe('rooms', () => {
+  it('names conversation, code_session, and mascot rooms', () => {
+    expect(roomName({ kind: 'conversation', id: 'cnv_1' })).toBe('conversation:cnv_1');
+    expect(roomName({ kind: 'code_session', id: 'ses_1' })).toBe('code_session:ses_1');
+    expect(parseRoom('mascot:mst_1')).toEqual({ kind: 'mascot', id: 'mst_1' });
+    expect(parseRoom('farm:x')).toBeUndefined();
+  });
+
+  it('treats hello, heartbeat, subscribed, and error as connection-local', () => {
+    expect(isConnectionLocalType('hello')).toBe(true);
+    expect(isConnectionLocalType('heartbeat')).toBe(true);
+    expect(isConnectionLocalType('subscribed')).toBe(true);
+    expect(isConnectionLocalType('error')).toBe(true);
+    expect(isConnectionLocalType('chat.token')).toBe(false);
   });
 });
 
@@ -95,7 +122,7 @@ describe('socket client', () => {
     expect(status).toBe('unavailable');
   });
 
-  it('sends hello after open and parses inbound events', async () => {
+  it('waits for the server hello and sends subscribe frames for rooms', async () => {
     const fake = new FakeSocket();
     const client = createRealtimeSocket({
       baseUrl: 'https://api.cortex.foundation',
@@ -110,10 +137,27 @@ describe('socket client', () => {
     const seen: string[] = [];
     client.subscribe((event) => seen.push(event.type));
     await client.connect();
-    expect(fake.sent[0]).toBe(JSON.stringify({ type: 'hello' }));
+    expect(fake.sent).toEqual([]);
 
+    client.join('conversation:cnv_1');
+    expect(fake.sent[0]).toBe(JSON.stringify({ type: 'subscribe', room: 'conversation:cnv_1' }));
+
+    fake.push(JSON.stringify({ type: 'hello' }));
     fake.push(JSON.stringify({ type: 'notification', kind: 'mention', message: 'Ana mentioned you' }));
-    expect(seen).toEqual(['notification']);
+    expect(seen).toEqual(['hello', 'notification']);
+  });
+});
+
+describe('SSE fallback', () => {
+  it('marks GET /v1/realtime/events unavailable on a live 404', async () => {
+    const fetchImpl = (async () =>
+      new Response(JSON.stringify({ code: 'not_found', title: 'Not found', detail: 'No such endpoint.' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      })) as typeof fetch;
+    const sse = createRealtimeSse(new CortexApiClient({ fetch: fetchImpl }));
+    expect(await sse.connect()).toBe('unavailable');
+    expect(() => sse.send({ type: 'chat.turn', message: 'hi' })).toThrow(CortexApiError);
   });
 });
 
@@ -162,6 +206,27 @@ describe('stream transport', () => {
     }
 
     expect(transport.channel()).toBe('http');
-    expect(types).toEqual(['hello', 'chat.token', 'chat.done']);
+    expect(types).toEqual(['chat.started', 'chat.token', 'chat.done']);
+  });
+
+  it('does not finish a socket turn on connection-local frames', async () => {
+    const mock = createMockRealtime();
+    await mock.connect();
+    const transport = createStreamTransport(mock);
+    const collected: string[] = [];
+    const consume = (async () => {
+      for await (const event of transport.streamChat('hi')) {
+        collected.push(event.type);
+        if (event.type === 'chat.done') break;
+      }
+    })();
+    queueMicrotask(() => {
+      mock.emit({ type: 'hello' });
+      mock.emit({ type: 'heartbeat' });
+      mock.emit({ type: 'error', code: 'not_found' });
+      mock.emit({ type: 'chat.done' });
+    });
+    await consume;
+    expect(collected).toEqual(['chat.done']);
   });
 });
