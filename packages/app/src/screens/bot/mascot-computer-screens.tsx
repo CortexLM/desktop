@@ -1,4 +1,4 @@
-import { type JSX, Show } from 'solid-js';
+import { type JSX, Match, Show, Switch } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
@@ -130,13 +130,31 @@ function ComputerStates(props: {
   onOpenFile: (path: string) => void;
   onToggleRecord: () => void;
 }): JSX.Element {
-  if (props.offline) {
-    return <HonestState kind="error" title="Computer offline" body="The farm or local daemon is not connected. This is not a live desktop." actionLabel="Retry wake" onAction={props.onWake} />;
-  }
-  if (props.asleep) {
-    return <HonestState kind="empty" title="Hibernated" body="Unused farm machines sleep. Wake to resume this mascot’s dedicated box." actionLabel="Wake" onAction={props.onWake} />;
-  }
-  return <LiveComputerPanels {...props} />;
+  // `Switch` / `Match` rather than early `return`s: a component body runs once in
+  // Solid, so the `if` chain this replaced meant a box that woke never showed its
+  // panels — the screen stayed on whichever state was true at first paint.
+  return (
+    <Switch fallback={<LiveComputerPanels {...props} />}>
+      <Match when={props.offline}>
+        <HonestState
+          kind="error"
+          title="Computer offline"
+          body="The farm or local daemon is not connected. This is not a live desktop."
+          actionLabel="Retry wake"
+          onAction={props.onWake}
+        />
+      </Match>
+      <Match when={props.asleep}>
+        <HonestState
+          kind="empty"
+          title="Hibernated"
+          body="Unused farm machines sleep. Wake to resume this mascot’s dedicated box."
+          actionLabel="Wake"
+          onAction={props.onWake}
+        />
+      </Match>
+    </Switch>
+  );
 }
 
 function LiveComputerPanels(props: {
