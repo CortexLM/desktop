@@ -7,7 +7,7 @@ import {
   BotMemoryScreen,
   BotRoutinesScreen,
   BotSkillsScreen,
-} from '../mascot-grok-screens.tsx';
+} from '../mascot-runtime-screens.tsx';
 import { BotComputerScreen, BotSettingsScreen } from '../mascot-computer-screens.tsx';
 import { BotMessagesScreen, BotVideosScreen } from '../mascot-detail-screens.tsx';
 import type { Mascot } from '../../../state/bot-map.ts';
@@ -82,7 +82,7 @@ describe('mascot list and create', () => {
   });
 });
 
-describe('grok screens', () => {
+describe('bot runtime screens', () => {
   it('renders memory, skills, routines, and groups including too-old', () => {
     const onForget = vi.fn();
     const onOpen = vi.fn();

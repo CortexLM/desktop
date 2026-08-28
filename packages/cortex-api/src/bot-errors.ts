@@ -1,5 +1,5 @@
 /**
- * Honest Bot errors. A 404 on a Grok-core route means the backend is too old.
+ * Honest Bot errors. A 404 on a Cortex Bot runtime route means the backend is too old.
  * A 503 on plugins means Composio is not configured. Neither is an empty list.
  */
 

@@ -1,9 +1,9 @@
 /**
- * Shapes for Bot / mascot routes on CortexLM/backend staging + Grok core.
+ * Shapes for Bot / mascot routes on CortexLM/backend staging + Bot runtime.
  *
  * Existing mascot/computer routes are on staging. Memory, skills, routines,
  * tasks, inbox, groups, handoff, and teach are designed against the parallel
- * Grok PR. Fields stay optional so a live 404 is `not_found`, not a parse
+ * Bot runtime PR. Fields stay optional so a live 404 is `not_found`, not a parse
  * failure that looks like an empty farm.
  */
 

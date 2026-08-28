@@ -20,13 +20,13 @@ import {
   skillDoc,
   skills,
   toggleRoutine,
-} from '../state/bot-grok-store.ts';
+} from '../state/bot-runtime-store.ts';
 import {
   BotGroupsScreen,
   BotMemoryScreen,
   BotRoutinesScreen,
   BotSkillsScreen,
-} from '../screens/bot/mascot-grok-screens.tsx';
+} from '../screens/bot/mascot-runtime-screens.tsx';
 import { useBotMascot } from './bot-mascot.ts';
 
 export function BotMemoryRoute(): JSX.Element {

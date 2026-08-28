@@ -1,5 +1,5 @@
 /**
- * Grok-core Bot routes: memory, skills, routines, tasks, inbox, groups,
+ * Cortex Bot runtime routes: memory, skills, routines, tasks, inbox, groups,
  * handoff, teach. A live 404 stays `not_found`.
  */
 
@@ -27,7 +27,7 @@ import {
   type ApiSkill,
   type ApiSkillRun,
   type MemoryTier,
-} from './bot-grok-schemas.ts';
+} from './bot-runtime-schemas.ts';
 
 export { DEFAULT_ROUTINE_CRON };
 

@@ -18,11 +18,11 @@ import {
   pluginRowSchema,
   skillRunSchema,
   taskRowSchema,
-} from '../bot-grok-schemas.ts';
+} from '../bot-runtime-schemas.ts';
 import { realtimeClientMessageSchema, realtimeEventSchema } from '../realtime/events.ts';
 
 describe('bot schemas', () => {
-  it('keeps optional computer and grok fields without inventing a farm', () => {
+  it('keeps optional computer and runtime fields without inventing a farm', () => {
     expect(computerStatusSchema.parse('offline')).toBe('offline');
     expect(attachmentSchema.parse({ name: 'clip.mp4' }).name).toBe('clip.mp4');
     expect(askUserSchema.parse({ prompt: 'Wake?', options: ['yes'] }).pending).toBeUndefined();
@@ -34,7 +34,7 @@ describe('bot schemas', () => {
     expect(filePreviewSchema.parse({ path: '/a', content: 'x' }).content).toBe('x');
   });
 
-  it('parses grok rows that a newer backend may send', () => {
+  it('parses runtime rows that a newer backend may send', () => {
     expect(memoryTierSchema.parse('note')).toBe('note');
     expect(skillRunSchema.parse({ status: 'started' }).status).toBe('started');
     expect(taskRowSchema.parse({ id: 'tsk_1', title: 'Scout' }).title).toBe('Scout');

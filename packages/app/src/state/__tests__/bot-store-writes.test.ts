@@ -30,7 +30,7 @@ import {
   runMascotSkill,
   teachFromVideo,
   toggleRoutine,
-} from '../bot-grok-store.ts';
+} from '../bot-runtime-store.ts';
 import { applyBotRealtime } from '../bot-realtime.ts';
 import {
   createMascot,
@@ -136,7 +136,7 @@ describe('bot actions and hydrate', () => {
   });
 });
 
-describe('grok writes', () => {
+describe('bot runtime writes', () => {
   it('forgets, opens, runs, toggles, groups, handoff, and teach', async () => {
     const { calls } = clientFor([
       { body: {} },

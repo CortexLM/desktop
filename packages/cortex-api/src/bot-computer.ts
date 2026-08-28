@@ -1,6 +1,6 @@
 /**
  * Dedicated computer per mascot: lifecycle, screenshot, input, VNC, record,
- * videos, box shell, and filesystem. Staging + Grok box routes.
+ * videos, box shell, and filesystem. Staging + Bot box routes.
  */
 
 import type { CortexApiClient } from './client.ts';
