@@ -1,7 +1,7 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import * as publicApi from '../index.ts';
-import { TEST_DOUBLES_FLAG } from '../test-flag.ts';
+import { withTestDoublesFlag } from '../test-flag.ts';
 import { createMockProductSurface, createMockRealtime } from '../test-doubles.ts';
 
 describe('public client', () => {
@@ -13,24 +13,19 @@ describe('public client', () => {
 });
 
 describe('test doubles', () => {
-  const previous = process.env[TEST_DOUBLES_FLAG];
-
-  afterEach(() => {
-    if (previous === undefined) delete process.env[TEST_DOUBLES_FLAG];
-    else process.env[TEST_DOUBLES_FLAG] = previous;
-  });
-
   it('refuse to look like a live farm without the test flag', () => {
-    delete process.env[TEST_DOUBLES_FLAG];
-    expect(() => createMockProductSurface()).toThrow(/test double/i);
-    expect(() => createMockRealtime()).toThrow(/test double/i);
+    withTestDoublesFlag(undefined, () => {
+      expect(() => createMockProductSurface()).toThrow(/test double/i);
+      expect(() => createMockRealtime()).toThrow(/test double/i);
+    });
   });
 
   it('seed a surface only when the flag is set', async () => {
-    process.env[TEST_DOUBLES_FLAG] = '1';
-    const surface = createMockProductSurface({
-      tasks: [{ id: 'todays-notes', title: "Today's notes" }],
-    });
+    const surface = withTestDoublesFlag('1', () =>
+      createMockProductSurface({
+        tasks: [{ id: 'todays-notes', title: "Today's notes" }],
+      }),
+    );
     expect(await surface.listPlanningTasks()).toEqual([
       { id: 'todays-notes', title: "Today's notes" },
     ]);
