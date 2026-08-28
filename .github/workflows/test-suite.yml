@@ -201,6 +201,12 @@ jobs:
       
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      # electron is not in trustedDependencies, so Bun skips its postinstall
+      # and Playwright's electron.launch dies with "Electron failed to install
+      # correctly". Download the binary the same way a local setup does.
+      - name: Install Electron binary
+        run: node node_modules/electron/install.js
       
       - name: Install Playwright
         run: bunx playwright install chromium --with-deps
