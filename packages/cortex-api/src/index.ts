@@ -120,6 +120,90 @@ export {
   type ProductSurface,
 } from './pending.ts';
 
+export { listItems } from './lists.ts';
+
+export {
+  archiveCodeSession,
+  createCodeAutomation,
+  createCodeSecret,
+  createCodeSession,
+  createCodeSshRuntime,
+  createCodeTicket,
+  deleteCodeAutomation,
+  deleteCodeSecret,
+  deleteCodeSession,
+  deleteCodeSshRuntime,
+  deleteCodeTicket,
+  followUpCodeSession,
+  getCodeSession,
+  getCodeSettings,
+  getCodeTicket,
+  getCodeUsage,
+  listCodeAutomationLogs,
+  listCodeAutomations,
+  listCodeProviders,
+  listCodeRepositories,
+  listCodeSecrets,
+  listCodeSshRuntimes,
+  listCodeTickets,
+  patchCodeAutomation,
+  patchCodeTicket,
+  putCodeProvider,
+  putCodeSettings,
+  resolveCodePermission,
+  runCodeAutomation,
+  stopCodeSession,
+  unpairCodeHost,
+} from './code-control.ts';
+
+export type {
+  ApiCodeAutomation,
+  ApiCodeAutomationLog,
+  ApiCodeFileChange,
+  ApiCodePermissionRequest,
+  ApiCodeProvider,
+  ApiCodePullRequest,
+  ApiCodeRepository,
+  ApiCodeSecret,
+  ApiCodeSessionDetail,
+  ApiCodeSettings,
+  ApiCodeSshRuntime,
+  ApiCodeTicket,
+  ApiCodeTimelineEntry,
+  ApiCodeUsage,
+} from './code-control-schemas.ts';
+
+export {
+  createLibraryItem,
+  createPlanningTask,
+  createProjectSource,
+  createResearchTask,
+  deleteLibraryItem,
+  deletePlanningTask,
+  deleteProject,
+  deleteProjectSource,
+  getChatPreferences,
+  getProject,
+  listLibraryItems,
+  listPlanningRuns,
+  listPlanningTasks,
+  listProjectSources,
+  listResearchTasks,
+  patchPlanningTask,
+  patchProject,
+  putChatPreferences,
+  runPlanningTask,
+} from './chat-surface.ts';
+
+export type {
+  ApiChatPreferences,
+  ApiLibraryItemDetail,
+  ApiPlanningRun,
+  ApiProjectDetail,
+  ApiProjectSource,
+  ApiResearchTask,
+} from './chat-surface-schemas.ts';
+
 export type {
   ApiCodeHost,
   ApiCodeSession,

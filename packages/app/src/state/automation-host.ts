@@ -9,6 +9,9 @@
 
 import type { Automation, AutomationLog, IPCResponse, Trigger } from '@cortex-ide/shared';
 
+import { createCloudAutomationHost } from './cloud-automation-host.ts';
+import { liveSession } from './realtime-session.ts';
+
 export interface AutomationHost {
   list(): Promise<Automation[]>;
   create(input: {
@@ -80,5 +83,8 @@ export function detachedAutomationHost(): AutomationHost {
 
 export function resolveAutomationHost(): AutomationHost {
   const api = bridge();
-  return api ? electronAutomationHost(api) : detachedAutomationHost();
+  if (api) return electronAutomationHost(api);
+
+  const live = liveSession();
+  return live ? createCloudAutomationHost(live.client) : detachedAutomationHost();
 }
