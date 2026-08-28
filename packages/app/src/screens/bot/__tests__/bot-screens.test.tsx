@@ -204,7 +204,15 @@ describe('computer, videos, and settings', () => {
         />
         <BotVideosScreen mascot={mascot} onTeach={onTeach} onBack={vi.fn()} onGo={vi.fn()} />
         <BotMessagesScreen mascot={mascot} onBack={vi.fn()} onGo={vi.fn()} />
-        <BotSettingsScreen mascot={mascot} onBack={vi.fn()} onGo={vi.fn()} />
+        <BotSettingsScreen
+          mascot={mascot}
+          onRename={vi.fn()}
+          onShape={vi.fn()}
+          onColor={vi.fn()}
+          onDelete={vi.fn()}
+          onBack={vi.fn()}
+          onGo={vi.fn()}
+        />
       </>
     ));
     fireEvent.click(screen.getByRole('button', { name: 'Hibernate' }));

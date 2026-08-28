@@ -20,6 +20,15 @@ function Missing(props: { onBack: () => void }): JSX.Element {
 }
 
 function PanelState(props: { state: BotPanelState; error: string; surface: string }): JSX.Element | null {
+  if (props.state === 'loading' || props.state === 'idle') {
+    return (
+      <HonestState
+        kind="loading"
+        title={`Loading ${props.surface.toLowerCase()}`}
+        body="Reading this mascot's runtime."
+      />
+    );
+  }
   if (props.state === 'too-old') {
     const copy = backendTooOldCopy(props.surface);
     return <HonestState kind="error" title={copy.title} body={copy.body} />;

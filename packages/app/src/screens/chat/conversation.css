@@ -162,8 +162,20 @@
   color: var(--color-text);
 }
 
+.cx-conversation__action:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
 .cx-conversation__actions-spacer {
   flex: 1;
+}
+
+.cx-conversation__error {
+  margin: 8px 0 0;
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-error);
 }
 
 /* -------------------------------------------------------------------------- */

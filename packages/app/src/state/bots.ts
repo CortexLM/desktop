@@ -9,6 +9,8 @@ import { createSignal } from 'solid-js';
 import {
   classifyBotError,
   createMascot as apiCreate,
+  deleteMascot as apiDelete,
+  patchMascot as apiPatch,
   getComputer,
   getMascot,
   isCortexApiError,
@@ -91,6 +93,44 @@ export async function createMascot(
   const mascot = mapMascot(created);
   setMascots((current) => [mascot, ...current.filter((row) => row.id !== mascot.id)]);
   return mascot;
+}
+
+/**
+ * Renames a mascot or changes its shape and colour.
+ *
+ * The settings screen was read-only: it printed the shape and colour as prose with
+ * no control to change either, even though `PATCH /v1/mascots/{id}` was already in
+ * the client. The API's answer replaces the local row rather than the requested
+ * patch being applied optimistically, so what is shown is what the service stored.
+ */
+export async function updateMascot(
+  id: string,
+  patch: { name?: string; shape?: MascotShape; color?: MascotColor },
+): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('The Bot API is not connected from this origin.');
+  const updated = await apiPatch(client, id, patch);
+  const mapped = mapMascot(updated);
+  setMascots((current) =>
+    current.map((mascot) =>
+      mascot.id === id
+        ? { ...mapped, messages: mascot.messages, videos: mascot.videos, computer: mascot.computer }
+        : mascot,
+    ),
+  );
+}
+
+/**
+ * Deletes a mascot.
+ *
+ * Its dedicated computer goes with it — that is the service's doing, not something
+ * this client can undo, which is why the screen asks before calling this.
+ */
+export async function removeMascot(id: string): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('The Bot API is not connected from this origin.');
+  await apiDelete(client, id);
+  setMascots((current) => current.filter((mascot) => mascot.id !== id));
 }
 
 export async function hydrateMascot(id: string): Promise<void> {

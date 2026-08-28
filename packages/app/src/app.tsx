@@ -14,11 +14,15 @@ import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { ConversationsProvider, useConversations } from './state/conversations-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
+import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
+import { hasElectronHost } from './state/electron-bridge.ts';
+import { realtimeStatus } from './state/realtime-bridge.ts';
+import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
 import { formatAge } from './state/session-view.ts';
 import type { ConversationSummary, SessionSummary } from '@cortex-ide/shared';
 import { appRoutes } from './route-tree.tsx';
@@ -190,6 +194,13 @@ function Workspace(props: { children: JSX.Element }): JSX.Element {
         />
       }
     >
+      {/* Above the routes so it is the same strip on every surface rather than
+          something each screen has to remember to render. */}
+      <ConnectionBanner
+        status={realtimeStatus()}
+        live={liveSession() !== undefined && !hasElectronHost()}
+        onRetry={() => void bootLiveRealtime()}
+      />
       {props.children}
       {/* Inside the shell so the overlays can navigate, and above the routes so a
           palette does not unmount on the navigation it just performed. */}

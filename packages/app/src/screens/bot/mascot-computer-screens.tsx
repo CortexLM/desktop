@@ -1,13 +1,18 @@
-import { type JSX, Show } from 'solid-js';
+import { createSignal, For, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
-import { ComputerDesktop } from './computer-desktop.tsx';
+import { ComputerDesktop, type DesktopTransport } from './computer-desktop.tsx';
 import { FilesPanel, TerminalPanel } from './computer-panels.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
-import { computerIsOffline, type Mascot } from '../../state/bot-map.ts';
+import {
+  computerIsOffline,
+  type Mascot,
+  type MascotColor,
+  type MascotShape,
+} from '../../state/bot-map.ts';
 import type { ApiFilePreview, ApiFsEntry, ComputerInput } from '@cortex-ide/cortex-api';
 
 import '../chat/product-pages.css';
@@ -20,6 +25,7 @@ export function BotComputerScreen(props: {
   preview?: ApiFilePreview;
   recording?: boolean;
   error?: string;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -46,6 +52,7 @@ export function BotComputerScreen(props: {
           preview={props.preview}
           recording={props.recording}
           error={props.error}
+          transport={props.transport}
           onWake={props.onWake}
           onHibernate={props.onHibernate}
           onStop={props.onStop}
@@ -68,6 +75,7 @@ interface ComputerBodyProps {
   preview?: ApiFilePreview;
   recording?: boolean;
   error?: string;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -96,6 +104,7 @@ function ComputerBody(props: ComputerBodyProps): JSX.Element {
           files={props.files}
           preview={props.preview}
           recording={props.recording}
+          transport={props.transport}
           onWake={props.onWake}
           onHibernate={props.onHibernate}
           onStop={props.onStop}
@@ -117,6 +126,7 @@ function ComputerStates(props: {
   files: readonly ApiFsEntry[];
   preview?: ApiFilePreview;
   recording?: boolean;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -140,6 +150,7 @@ function LiveComputerPanels(props: {
   files: readonly ApiFsEntry[];
   preview?: ApiFilePreview;
   recording?: boolean;
+  transport?: DesktopTransport;
   onHibernate: () => void;
   onStop: () => void;
   onInput: (input: ComputerInput) => void;
@@ -149,7 +160,12 @@ function LiveComputerPanels(props: {
 }): JSX.Element {
   return (
     <>
-      <ComputerDesktop src={props.screenshot} offline={false} onInput={props.onInput} />
+      <ComputerDesktop
+        src={props.screenshot}
+        offline={false}
+        transport={props.transport}
+        onInput={props.onInput}
+      />
       <TerminalPanel log={props.shellLog} onRun={props.onShell} />
       <FilesPanel entries={props.files} preview={props.preview} onOpen={props.onOpenFile} />
       <div class="cx-mascot-rail">
@@ -163,7 +179,72 @@ function LiveComputerPanels(props: {
   );
 }
 
-export function BotSettingsScreen(props: { mascot?: Mascot; onBack: () => void; onGo: (path: string) => void }): JSX.Element {
+const SHAPES: readonly MascotShape[] = ['round', 'square', 'tall', 'wide'];
+const COLORS: readonly MascotColor[] = ['green', 'terracotta', 'ink'];
+
+/**
+ * Shape and colour, editable.
+ *
+ * The same segmented controls the create screen uses, so a mascot is not permanently
+ * whatever it was made as. `PATCH /v1/mascots/{id}` has always been in the client;
+ * this screen simply printed the values as prose and offered no way to change them.
+ */
+function Appearance(props: {
+  shape: MascotShape;
+  color: MascotColor;
+  onShape: (shape: MascotShape) => void;
+  onColor: (color: MascotColor) => void;
+}): JSX.Element {
+  return (
+    <>
+      <h3 class="cx-product-section">Shape</h3>
+      <div class="cx-mascot-rail">
+        <For each={SHAPES}>
+          {(shape) => (
+            <Button
+              variant={props.shape === shape ? 'primary' : 'secondary'}
+              aria-pressed={props.shape === shape}
+              onClick={() => props.onShape(shape)}
+            >
+              {shape}
+            </Button>
+          )}
+        </For>
+      </div>
+      <h3 class="cx-product-section">Colour</h3>
+      <div class="cx-mascot-rail">
+        <For each={COLORS}>
+          {(color) => (
+            <Button
+              variant={props.color === color ? 'primary' : 'secondary'}
+              aria-pressed={props.color === color}
+              onClick={() => props.onColor(color)}
+            >
+              {color}
+            </Button>
+          )}
+        </For>
+      </div>
+    </>
+  );
+}
+
+export interface BotSettingsScreenProps {
+  mascot?: Mascot;
+  error?: string;
+  saving?: boolean;
+  onRename: (name: string) => void;
+  onShape: (shape: MascotShape) => void;
+  onColor: (color: MascotColor) => void;
+  onDelete: () => void;
+  onBack: () => void;
+  onGo: (path: string) => void;
+}
+
+export function BotSettingsScreen(props: BotSettingsScreenProps): JSX.Element {
+  const [name, setName] = createSignal<string | undefined>();
+  const [confirming, setConfirming] = createSignal(false);
+
   return (
     <Show
       when={props.mascot}
@@ -174,10 +255,61 @@ export function BotSettingsScreen(props: { mascot?: Mascot; onBack: () => void; 
           <PageHeader title="Mascot settings" subtitle={mascot().name} />
           <PageBody width="settings">
             <MascotRail links={mascotLinks(mascot().id, 'settings', props.onGo)} />
+            <Show when={props.error}>
+              <p class="cx-product-error" role="alert">{props.error}</p>
+            </Show>
+
+            <form
+              class="cx-product-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                props.onRename(name() ?? mascot().name);
+              }}
+            >
+              <input
+                type="text"
+                value={name() ?? mascot().name}
+                aria-label="Mascot name"
+                onInput={(event) => setName(event.currentTarget.value)}
+              />
+              <Button variant="secondary" type="submit" disabled={props.saving}>Rename</Button>
+            </form>
+
+            <Appearance
+              shape={mascot().shape}
+              color={mascot().color}
+              onShape={props.onShape}
+              onColor={props.onColor}
+            />
+
+            <h3 class="cx-product-section">Computer</h3>
             <p class="cx-product-row__meta">
-              Shape {mascot().shape} · colour {mascot().color}. The computer id {mascot().computer.id} is
-              bound to this mascot and cannot be reassigned.
+              The computer id {mascot().computer.id} is bound to this mascot and cannot be
+              reassigned.
             </p>
+
+            <h3 class="cx-product-section">Delete</h3>
+            <Show
+              when={confirming()}
+              fallback={
+                <Button variant="secondary" onClick={() => setConfirming(true)}>
+                  Delete mascot
+                </Button>
+              }
+            >
+              {/* Confirmed because the dedicated computer goes with it, and this
+                  client cannot undo either. */}
+              <p class="cx-product-row__meta">
+                Deleting {mascot().name} also destroys its dedicated computer and everything
+                on it.
+              </p>
+              <div class="cx-mascot-rail">
+                <Button variant="destructive" onClick={() => props.onDelete()}>
+                  Delete permanently
+                </Button>
+                <Button variant="ghost" onClick={() => setConfirming(false)}>Cancel</Button>
+              </div>
+            </Show>
           </PageBody>
         </>
       )}
