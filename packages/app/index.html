@@ -8,10 +8,14 @@
       A restrictive CSP even though this is a local Electron renderer: the browser panel and
       pull-request views render remote content, and 'unsafe-inline' for styles is needed only
       because Vite injects the stylesheet that way in development.
+
+      `connect-src` is rewritten at build time by the `cortex-connect-src` plugin, which adds
+      the `wss:` origin the realtime socket needs and honours VITE_CORTEX_API_BASE_URL. The
+      value below is the production default and what the dev server uses.
     -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.cortex.foundation"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.cortex.foundation wss://api.cortex.foundation"
     />
   </head>
   <body>
