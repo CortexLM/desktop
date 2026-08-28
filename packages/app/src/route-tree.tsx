@@ -32,6 +32,11 @@ import {
   ResearchRoute,
 } from './routes/chat-product-routes.tsx';
 import {
+  RuntimesRoute,
+  TicketDetailRoute,
+  TicketsRoute,
+} from './routes/code-runtime-routes.tsx';
+import {
   BotComputerRoute,
   BotConversationRoute,
   BotCreateRoute,
@@ -72,7 +77,12 @@ export function appRoutes(): JSX.Element {
       <Route path="/code/settings/integrations" component={IntegrationsRoute} />
       <Route path="/code/secrets" component={SecretsRoute} />
       <Route path="/code/notifications" component={NotificationsRoute} />
+      <Route path="/code/tickets" component={TicketsRoute} />
+      <Route path="/code/tickets/:ticketId" component={TicketDetailRoute} />
+      {/* The bare SSH page is registered before the Runtimes index so its more
+          specific path is not shadowed. */}
       <Route path="/code/runtimes/ssh" component={SshConnectRoute} />
+      <Route path="/code/runtimes" component={RuntimesRoute} />
 
       <Route path="/bot" component={BotHomeRoute} />
       <Route path="/bot/new" component={BotCreateRoute} />

@@ -7,16 +7,21 @@ import type { SidebarProps } from './sidebar-types.ts';
 interface Destination {
   slug: string;
   label: string;
-  icon: 'home' | 'sessions' | 'automations' | 'review' | 'usage';
+  icon: 'home' | 'sessions' | 'automations' | 'review' | 'usage' | 'docs' | 'server';
   capability?: keyof SidebarProps['capabilities'];
 }
 
 const CODE_DESTINATIONS: readonly Destination[] = [
   { slug: 'code-home', label: 'Home', icon: 'home' },
   { slug: 'code-sessions', label: 'Sessions', icon: 'sessions' },
+  { slug: 'code-tickets', label: 'Tickets', icon: 'docs' },
   { slug: 'code-automations', label: 'Automations', icon: 'automations', capability: 'automations' },
   { slug: 'code-review', label: 'Review', icon: 'review', capability: 'review' },
   { slug: 'code-usage', label: 'Usage', icon: 'usage', capability: 'usageReporting' },
+  // Where runs happen. Last because it is configuration rather than a destination
+  // you work in, but in the nav because the browser cannot run a harness and this
+  // is the screen that says what to do about it.
+  { slug: 'code-runtimes', label: 'Runtimes', icon: 'server' },
 ];
 
 const CHAT_APPS = [
