@@ -96,3 +96,22 @@
   padding: 24px;
   text-align: center;
 }
+
+.cx-vnc--live {
+  padding: 0;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.cx-vnc__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cx-mascot-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}

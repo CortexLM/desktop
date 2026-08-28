@@ -3,7 +3,7 @@
  * library, plugins, research, settings.
  */
 
-import { createMemo, createSignal, type JSX } from 'solid-js';
+import { createEffect, createMemo, createSignal, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -11,7 +11,15 @@ import { scheduledTasks, setTaskStatus, markTaskRan } from '../state/planning.ts
 import { deliverScheduledResult } from '../state/scheduled-results.ts';
 import { addProjectSource, chatProjects, createProject, projectById } from '../state/projects.ts';
 import { libraryItems } from '../state/library.ts';
-import { installPlugin, installedPlugins } from '../state/plugins.ts';
+import {
+  installPlugin,
+  isPluginConnected,
+  pluginError,
+  pluginState,
+  reconcilePlugins,
+  removePlugin,
+  type PluginBrand,
+} from '../state/plugins.ts';
 import { postInbox } from '../state/inbox.ts';
 import { showOsNotification } from '../state/os-notify.ts';
 import { PlanningScreen } from '../screens/chat/planning-screen.tsx';
@@ -107,7 +115,22 @@ export function LibraryRoute(): JSX.Element {
 }
 
 export function PluginsRoute(): JSX.Element {
-  return <PluginsScreen installed={installedPlugins()} onInstall={installPlugin} />;
+  createEffect(() => {
+    void reconcilePlugins();
+  });
+  const connected = createMemo(() =>
+    (['drive', 'slack', 'github', 'paper'] as const).filter((id) => isPluginConnected(id)),
+  );
+  return (
+    <PluginsScreen
+      connected={connected()}
+      loading={pluginState() === 'loading'}
+      unavailable={pluginState() === 'unavailable'}
+      error={pluginState() === 'error' ? pluginError() : undefined}
+      onConnect={(id: PluginBrand) => void installPlugin(id)}
+      onDisconnect={(id: PluginBrand) => void removePlugin(id)}
+    />
+  );
 }
 
 export function ResearchRoute(): JSX.Element {

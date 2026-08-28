@@ -1,108 +1,172 @@
 /**
- * Bot mascots. Creating one always creates its dedicated computer.
- * Machines are never reused across mascots.
+ * Bot mascots. The API is the source of truth. localStorage only caches the
+ * last successful list so a reload can paint, then reconcile() replaces it.
+ * Create / send / hibernate / videos never write the cache as if they succeeded.
  */
 
 import { createSignal } from 'solid-js';
 
+import {
+  classifyBotError,
+  createMascot as apiCreate,
+  getComputer,
+  getMascot,
+  isCortexApiError,
+  listMascotMessages,
+  listMascots,
+  listMascotVideos,
+} from '@cortex-ide/cortex-api';
+
+import { botClient } from './bot-client.ts';
+import {
+  mapComputer,
+  mapMascot,
+  mapMessage,
+  mapVideo,
+  type Mascot,
+  type MascotColor,
+  type MascotShape,
+} from './bot-map.ts';
 import { readJson, writeJson } from './persist.ts';
 
-export type MascotShape = 'round' | 'square' | 'tall' | 'wide';
-export type MascotColor = 'green' | 'terracotta' | 'ink';
-export type ComputerStatus = 'empty' | 'hibernated' | 'waking' | 'running' | 'wake-failed';
+export type {
+  BotComputer,
+  BotMessage,
+  BotVideo,
+  ComputerStatus,
+  Mascot,
+  MascotColor,
+  MascotShape,
+} from './bot-map.ts';
 
-export interface BotMessage {
-  seq: number;
-  role: 'user' | 'assistant';
-  content: string;
-  at: number;
-  /** The mascot is blocked on an answer. */
-  askUser?: boolean;
-}
+export {
+  computerIsOffline,
+  isPendingAsk,
+  isPendingSecret,
+} from './bot-map.ts';
 
-export interface BotVideo {
-  id: string;
-  title: string;
-  recordedAt: number;
-  /** Cursor + click-zoom recording, never a shared grab. */
-  kind: 'cursor-zoom';
-}
+const CACHE_KEY = 'cortex.bots.cache.v2';
 
-export interface BotComputer {
-  id: string;
-  mascotId: string;
-  status: ComputerStatus;
-  /** Spec the farm must meet. Displayed, not negotiated here. */
-  spec: { arch: 'x86_64'; vcpu: number; memoryGiB: number; browser: true };
-  lastError?: string;
-}
+export type BotLoadState = 'idle' | 'loading' | 'ready' | 'error' | 'unavailable';
 
-export interface Mascot {
-  id: string;
-  name: string;
-  shape: MascotShape;
-  color: MascotColor;
-  createdAt: number;
-  computer: BotComputer;
-  messages: BotMessage[];
-  videos: BotVideo[];
-}
+const [mascots, setMascots] = createSignal<Mascot[]>(readCache());
+const [loadState, setLoadState] = createSignal<BotLoadState>('idle');
+const [loadError, setLoadError] = createSignal<string>('');
 
-const STORAGE_KEY = 'cortex.bots.v1';
-
-const [mascots, setMascots] = createSignal<Mascot[]>(readJson(STORAGE_KEY, []));
-
-export { mascots };
-
-function persist(next: Mascot[]): void {
-  setMascots(next);
-  writeJson(STORAGE_KEY, next);
-}
-
-function newId(prefix: string): string {
-  return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
-}
-
-export function createMascot(name: string, shape: MascotShape, color: MascotColor): Mascot {
-  const id = newId('bot');
-  const mascot: Mascot = {
-    id,
-    name: name.trim() || 'Untitled mascot',
-    shape,
-    color,
-    createdAt: Date.now(),
-    computer: {
-      id: newId('pc'),
-      mascotId: id,
-      status: 'hibernated',
-      spec: { arch: 'x86_64', vcpu: 4, memoryGiB: 16, browser: true },
-    },
-    messages: [],
-    videos: [],
-  };
-  persist([mascot, ...mascots()]);
-  return mascot;
-}
+export { mascots, loadState, loadError };
 
 export function mascotById(id: string): Mascot | undefined {
   return mascots().find((mascot) => mascot.id === id);
 }
 
-export function setComputerStatus(mascotId: string, status: ComputerStatus, lastError?: string): void {
-  persist(
-    mascots().map((mascot) => {
-      if (mascot.id !== mascotId) return mascot;
-      return { ...mascot, computer: { ...mascot.computer, status, lastError } };
-    }),
+export async function reconcileMascots(): Promise<void> {
+  const client = botClient();
+  if (!client) {
+    setLoadState('unavailable');
+    setLoadError('The Bot API is not connected from this origin.');
+    setMascots([]);
+    return;
+  }
+  setLoadState('loading');
+  try {
+    const rows = await listMascots(client);
+    const next = rows.map(mapMascot);
+    setMascots(next);
+    writeJson(CACHE_KEY, summaries(next));
+    setLoadState('ready');
+    setLoadError('');
+  } catch (error) {
+    applyListError(error);
+  }
+}
+
+export async function createMascot(
+  name: string,
+  shape: MascotShape,
+  color: MascotColor,
+): Promise<Mascot> {
+  const client = botClient();
+  if (!client) throw new Error('The Bot API is not connected from this origin.');
+  const created = await apiCreate(client, { name: name.trim() || 'Untitled mascot', shape, color });
+  const mascot = mapMascot(created);
+  setMascots((current) => {
+    const next = [mascot, ...current.filter((row) => row.id !== mascot.id)];
+    writeJson(CACHE_KEY, summaries(next));
+    return next;
+  });
+  return mascot;
+}
+
+export async function hydrateMascot(id: string): Promise<void> {
+  const client = botClient();
+  if (!client) return;
+  const bundle = await loadMascotBundle(id);
+  setMascots((current) =>
+    current.map((mascot) => (mascot.id === id ? mergeHydration(mascot, bundle) : mascot)),
   );
 }
 
-export function appendBotMessage(mascotId: string, message: Omit<BotMessage, 'seq'>): void {
-  persist(
-    mascots().map((mascot) => {
-      if (mascot.id !== mascotId) return mascot;
-      const seq = mascot.messages.length === 0 ? 0 : mascot.messages[mascot.messages.length - 1]!.seq + 1;
-      return { ...mascot, messages: [...mascot.messages, { ...message, seq }] };
+export function replaceMascot(next: Mascot): void {
+  setMascots((current) => current.map((mascot) => (mascot.id === next.id ? next : mascot)));
+}
+
+export function patchMascotState(id: string, patch: (mascot: Mascot) => Mascot): void {
+  setMascots((current) => current.map((mascot) => (mascot.id === id ? patch(mascot) : mascot)));
+}
+
+export function resetBotsForTests(): void {
+  setMascots([]);
+  setLoadState('idle');
+  setLoadError('');
+}
+
+async function loadMascotBundle(id: string) {
+  const client = botClient()!;
+  const [detail, messages, videos, computer] = await Promise.all([
+    getMascot(client, id).catch(() => undefined),
+    listMascotMessages(client, id).catch(() => undefined),
+    listMascotVideos(client, id).catch(() => undefined),
+    getComputer(client, id).catch(() => undefined),
+  ]);
+  return { detail, messages, videos, computer };
+}
+
+function mergeHydration(
+  mascot: Mascot,
+  bundle: Awaited<ReturnType<typeof loadMascotBundle>>,
+): Mascot {
+  const mapped = bundle.detail ? mapMascot(bundle.detail) : mascot;
+  return {
+    ...mapped,
+    messages: bundle.messages ? bundle.messages.map(mapMessage) : mascot.messages,
+    videos: bundle.videos ? bundle.videos.map(mapVideo) : mascot.videos,
+    computer: bundle.computer
+      ? mapComputer(bundle.detail ?? { id: mascot.id }, bundle.computer)
+      : mapped.computer,
+  };
+}
+
+function applyListError(error: unknown): void {
+  const classified = classifyBotError(error);
+  setLoadState(isCortexApiError(error) && error.status === 404 ? 'unavailable' : 'error');
+  setLoadError(classified.message);
+}
+
+function summaries(rows: Mascot[]): Array<{ id: string; name: string; shape: string; color: string }> {
+  return rows.map((row) => ({ id: row.id, name: row.name, shape: row.shape, color: row.color }));
+}
+
+function readCache(): Mascot[] {
+  const rows = readJson<Array<{ id: string; name?: string; shape?: string; color?: string }>>(
+    CACHE_KEY,
+    [],
+  );
+  return rows.map((row) =>
+    mapMascot({
+      id: row.id,
+      name: row.name,
+      shape: row.shape,
+      color: row.color,
     }),
   );
 }

@@ -177,6 +177,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['secrets', 'remove', 'secrets:delete'],
   ['cortex', 'createApiKey', 'cortex:create-api-key'],
   ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
+  ['cortex', 'productRequest', 'cortex:product-request'],
 ];
 
 /**

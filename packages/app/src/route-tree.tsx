@@ -35,9 +35,13 @@ import {
   BotComputerRoute,
   BotConversationRoute,
   BotCreateRoute,
+  BotGroupsRoute,
   BotHomeRoute,
+  BotMemoryRoute,
   BotMessagesRoute,
+  BotRoutinesRoute,
   BotSettingsRoute,
+  BotSkillsRoute,
   BotVideosRoute,
 } from './routes/bot-routes.tsx';
 
@@ -76,6 +80,10 @@ export function appRoutes(): JSX.Element {
       <Route path="/bot/:mascotId/messages" component={BotMessagesRoute} />
       <Route path="/bot/:mascotId/videos" component={BotVideosRoute} />
       <Route path="/bot/:mascotId/computer" component={BotComputerRoute} />
+      <Route path="/bot/:mascotId/memory" component={BotMemoryRoute} />
+      <Route path="/bot/:mascotId/skills" component={BotSkillsRoute} />
+      <Route path="/bot/:mascotId/routines" component={BotRoutinesRoute} />
+      <Route path="/bot/:mascotId/groups" component={BotGroupsRoute} />
       <Route path="/bot/:mascotId/settings" component={BotSettingsRoute} />
 
       <Route path="/sign-in" component={SignInRoute} />

@@ -18,6 +18,8 @@ import type {
   CortexDeviceStartResponse,
   CortexDeviceStatus,
   CortexModelView,
+  CortexProductRequest,
+  CortexProductResponse,
   IPCResponse,
 } from '@cortex-ide/shared';
 
@@ -45,6 +47,7 @@ export interface CortexHost {
    */
   createApiKey(name: string): Promise<{ id: string; name: string; key?: string }>;
   revokeApiKey(id: string): Promise<void>;
+  productRequest(request: CortexProductRequest): Promise<CortexProductResponse>;
   onDeviceStatus(listener: (status: CortexDeviceStatus) => void): () => void;
   onAccountChanged(listener: (state: CortexAccountState) => void): () => void;
 }
@@ -64,6 +67,7 @@ interface CortexBridge {
     name: string;
   }): Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
   revokeApiKey(request: { id: string }): Promise<IPCResponse<{ revoked: true }>>;
+  productRequest(request: CortexProductRequest): Promise<IPCResponse<CortexProductResponse>>;
   onDeviceStatus(callback: (event: { status: CortexDeviceStatus }) => void): () => void;
   onAccountChanged(callback: (state: CortexAccountState) => void): () => void;
 }
@@ -104,6 +108,7 @@ function electronHost(api: CortexBridge): CortexHost {
     revokeApiKey: async (id) => {
       unwrap(await api.revokeApiKey({ id }));
     },
+    productRequest: async (request) => unwrap(await api.productRequest(request)),
     onDeviceStatus: (listener) => api.onDeviceStatus((event) => listener(event.status)),
     onAccountChanged: (listener) => api.onAccountChanged(listener),
   };
@@ -130,6 +135,7 @@ export function detachedHost(): CortexHost {
     listApiKeys: async () => [],
     createApiKey: () => Promise.reject(unavailable()),
     revokeApiKey: () => Promise.reject(unavailable()),
+    productRequest: () => Promise.reject(unavailable()),
     onDeviceStatus: () => () => {},
     onAccountChanged: () => () => {},
   };
