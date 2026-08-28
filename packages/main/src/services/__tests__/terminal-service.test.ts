@@ -26,7 +26,7 @@ describe('TerminalService', () => {
   let service: TerminalService;
 
   beforeEach(() => {
-    service = new TerminalService();
+    service = new TerminalService(mockPtySpawn);
     mockPtySpawn.mockClear();
     mockPtyInstance.onData.mockClear();
     mockPtyInstance.onExit.mockClear();
@@ -242,6 +242,16 @@ describe('TerminalService', () => {
       const spawnArgs = mockPtySpawn.mock.calls[0];
       expect(spawnArgs[0]).toBeDefined();
       expect(typeof spawnArgs[0]).toBe('string');
+    });
+  });
+
+  describe('native addon is deferred', () => {
+    it('constructs without calling spawn', () => {
+      const spawn = vi.fn();
+      const idle = new TerminalService(spawn);
+
+      expect(spawn).not.toHaveBeenCalled();
+      expect(idle.listTerminals()).toEqual([]);
     });
   });
 });

@@ -198,15 +198,28 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/bun.lock') }}
+
+      - name: Cache Electron binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/electron
+          key: ${{ runner.os }}-electron-${{ hashFiles('**/bun.lock') }}
       
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # electron is not in trustedDependencies, so Bun skips its postinstall
-      # and Playwright's electron.launch dies with "Electron failed to install
-      # correctly". Download the binary the same way a local setup does.
+      # electron is not in trustedDependencies, so Bun skips its postinstall.
+      # Resolve the package through Node (Bun's content-addressed store) and
+      # fail the job if the binary is still missing after install.js.
       - name: Install Electron binary
-        run: node node_modules/electron/install.js
+        run: |
+          set -euo pipefail
+          ELECTRON_DIR="$(node -p "require('path').dirname(require.resolve('electron/package.json'))")"
+          node "$ELECTRON_DIR/install.js"
+          ELECTRON_BIN="$(node -p "require('electron')")"
+          test -x "$ELECTRON_BIN"
+          echo "Electron binary: $ELECTRON_BIN"
+          "$ELECTRON_BIN" --version
       
       - name: Install Playwright
         run: bunx playwright install chromium --with-deps
