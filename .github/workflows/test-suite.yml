@@ -280,7 +280,16 @@ jobs:
         run: bun install --frozen-lockfile
       
       - name: Run visual regression tests
-        run: bun run test:visual-regression
+        run: |
+          set -euo pipefail
+          # The vitest visual-regression suite left with the React renderer.
+          # Playwright still owns tests/visual. An empty glob used to fail the
+          # whole Test Suite ("No test files found") on every staging PR.
+          if ! find tests/visual-regression \( -name '*.test.ts' -o -name '*.spec.ts' \) 2>/dev/null | grep -q .; then
+            echo "No vitest visual-regression files; Playwright covers tests/visual."
+            exit 0
+          fi
+          bun run test:visual-regression
       
       - name: Upload visual diffs
         if: failure()
