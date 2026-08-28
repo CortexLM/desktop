@@ -5,6 +5,9 @@ export default defineConfig({
     name: 'cortex-api',
     globals: true,
     environment: 'node',
+    env: {
+      CORTEX_ALLOW_TEST_DOUBLES: '1',
+    },
     include: ['src/**/*.{test,spec}.ts'],
     exclude: ['node_modules', 'dist'],
     coverage: {

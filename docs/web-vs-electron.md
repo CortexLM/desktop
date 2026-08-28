@@ -56,10 +56,12 @@ Contributors do not need that clone.
 Streaming order:
 
 1. Authenticated `WS /v1/realtime` — Chat tokens, Code tools/permissions,
-   Bot ask-user, notifications. Not deployed yet; the typed client + mock
-   share one interface.
-2. HTTP fallback — `POST /v1/conversations/turns` (SSE). Observed live.
-3. Desktop IPC — local SQLite + `event:chat-progress` when Electron is present.
+   Bot ask-user, notifications.
+2. `GET /v1/realtime/events` — SSE, listen-only. Chat turns go HTTP.
+3. HTTP fallback — `POST /v1/conversations/turns` (SSE). Observed live.
+4. Desktop IPC — local SQLite + `event:chat-progress` when Electron is present.
+
+Mocks are test-only. See [docs/staging.md](./staging.md).
 
 Web Code still never runs the harness in the tab. See
 [CONTRACT.md](../packages/cortex-api/CONTRACT.md).

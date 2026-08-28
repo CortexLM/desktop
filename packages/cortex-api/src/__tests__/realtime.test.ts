@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { CortexApiClient } from '../client.ts';
 import { CortexApiError } from '../errors.ts';
 import { eventFromTurnFrame } from '../realtime/events.ts';
-import { createMockRealtime } from '../realtime/mock.ts';
+import { createListenOnlyRealtime, createMockRealtime } from '../test-doubles.ts';
 import {
   isConnectionLocalType,
   parseRoom,
@@ -206,6 +206,30 @@ describe('stream transport', () => {
     }
 
     expect(transport.channel()).toBe('http');
+    expect(types).toEqual(['chat.started', 'chat.token', 'chat.done']);
+  });
+
+  it('uses HTTP turns when only the listen-only SSE client is up', async () => {
+    const stream = [
+      'data: {"type":"text_delta","delta":"ok"}\n\n',
+      'data: {"type":"done","finish_reason":"stop"}\n\n',
+    ].join('');
+    const fetchImpl = (async () =>
+      new Response(stream, {
+        status: 200,
+        headers: { 'x-conversation-id': 'cnv_1', 'x-message-id': 'msg_1' },
+      })) as typeof globalThis.fetch;
+
+    const sse = createListenOnlyRealtime('connected');
+    const transport = createStreamTransport(sse, new CortexApiClient({ fetch: fetchImpl }));
+
+    const types: string[] = [];
+    for await (const event of transport.streamChat('hi')) {
+      types.push(event.type);
+    }
+
+    expect(transport.channel()).toBe('sse');
+    expect(sse.sent).toHaveLength(0);
     expect(types).toEqual(['chat.started', 'chat.token', 'chat.done']);
   });
 

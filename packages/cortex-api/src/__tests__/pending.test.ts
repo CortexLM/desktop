@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import { CortexApiClient } from '../client.ts';
 import { CortexApiError } from '../errors.ts';
-import { createHttpProductSurface, createMockProductSurface } from '../pending.ts';
+import { createMockProductSurface } from '../test-doubles.ts';
+import { createHttpProductSurface } from '../pending.ts';
 import { stubFetch } from './fixtures.ts';
 
 describe('product surface', () => {

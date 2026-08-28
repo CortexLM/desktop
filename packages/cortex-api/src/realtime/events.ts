@@ -80,6 +80,8 @@ export type RealtimeStatus = 'idle' | 'connecting' | 'connected' | 'disconnected
 
 export interface RealtimeClient {
   readonly status: RealtimeStatus;
+  /** False for the SSE listen-only fallback. Chat turns then use HTTP. */
+  readonly writable: boolean;
   connect: () => Promise<RealtimeStatus>;
   disconnect: () => void;
   subscribe: (handler: (event: RealtimeEvent) => void) => () => void;
