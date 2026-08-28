@@ -5,7 +5,9 @@ import { describe, expect, it } from 'vitest';
 
 import { DEFAULT_UPDATE_FEED_URL, resolveUpdateFeedUrl, shouldCheckForUpdates } from '../update-policy';
 
-const builderYml = readFileSync(resolve(__dirname, '../../../../electron-builder.yml'), 'utf8');
+const repoRoot = resolve(__dirname, '../../../..');
+const builderYml = readFileSync(resolve(repoRoot, 'electron-builder.yml'), 'utf8');
+const buildWorkflow = readFileSync(resolve(repoRoot, '.github/workflows/build.yml'), 'utf8');
 
 describe('resolveUpdateFeedUrl', () => {
   it('uses the production generic feed', () => {
@@ -16,6 +18,10 @@ describe('resolveUpdateFeedUrl', () => {
   it('matches electron-builder.yml so the packaged app and CI publish the same origin', () => {
     expect(builderYml).toContain(`url: ${DEFAULT_UPDATE_FEED_URL}`);
     expect(builderYml).toContain('provider: generic');
+    expect(buildWorkflow).toContain('publish-feed');
+    expect(buildWorkflow).toContain('releases.cortex-ide.com');
+    expect(buildWorkflow).toContain('latest.yml');
+    expect(buildWorkflow).toContain('PRODUCTION_RELEASES_BUCKET');
   });
 
   it('accepts CORTEX_UPDATE_FEED_URL as a local-feed override', () => {
