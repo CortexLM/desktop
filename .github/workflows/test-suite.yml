@@ -2,9 +2,11 @@ name: Test Suite
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, staging]
   pull_request:
-    branches: [main, develop]
+    # Base branches. A PR into `staging` had no checks while this listed
+    # only `main` and `develop`.
+    branches: [main, develop, staging]
 
 # Cancel in-progress runs for the same PR
 concurrency:
