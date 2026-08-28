@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library';
+import { createSignal } from 'solid-js';
 import { describe, expect, it, vi } from 'vitest';
+
+import type { Product } from '../../routes.ts';
 
 import { ANONYMOUS_CAPABILITIES, AUTHENTICATED_CAPABILITIES } from '@cortex-ide/cortex-api';
 import { ThemeProvider } from '@cortex-ide/ui';
@@ -97,6 +100,38 @@ describe('Sidebar product switcher', () => {
     renderSidebar({ product: 'bot' });
     expect(screen.getByText('New mascot')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
+  });
+
+  it('replaces Chat sections when the product prop changes after mount', () => {
+    // A bare `if (props.product)` in the component body freezes the first
+    // product's sections. E2E starts on Chat and then sets `#/code`.
+    const [product, setProduct] = createSignal<Product>('chat');
+    render(() => (
+      <ThemeProvider initial="light">
+        <Sidebar
+          product={product()}
+          capabilities={ANONYMOUS_CAPABILITIES}
+          activeSlug="home"
+          recentRuns={[]}
+          recentChats={[]}
+          onOpenChat={vi.fn()}
+          onNewChat={vi.fn()}
+          onNewSession={vi.fn()}
+          onNewMascot={vi.fn()}
+          onSwitchProduct={vi.fn()}
+          onNavigate={vi.fn()}
+          onOpenRun={vi.fn()}
+        />
+      </ThemeProvider>
+    ));
+
+    expect(screen.getByText('New chat')).toBeInTheDocument();
+
+    setProduct('code');
+
+    expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    expect(screen.queryByText('New chat')).toBeNull();
   });
 });
 

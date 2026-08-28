@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@solidjs/testing-library';
+import { fireEvent, render, screen, waitFor } from '@solidjs/testing-library';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { App, slugForPath } from '../app.tsx';
@@ -60,6 +60,25 @@ describe('App', () => {
         expect(screen.getByRole('button', { name: label }), label).toBeInTheDocument();
       }
     });
+  });
+
+  it('swaps the Chat sidebar for Code destinations after switching products', async () => {
+    // Starts on Chat (the Electron landing path). A frozen ProductSections
+    // would keep "New chat" after this click and hide Home / Sessions — which
+    // is what the desktop e2e suite was asserting against.
+    render(() => <App />);
+
+    await waitFor(() => {
+      expect(screen.getByText('New chat')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Code' }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    });
+    expect(screen.queryByText('New chat')).toBeNull();
   });
 
   it('locks the Cortex-only destinations while signed out', async () => {
