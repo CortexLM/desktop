@@ -53,6 +53,7 @@ describe('Bot computers', () => {
     expect(first.computer.id).not.toBe(second.computer.id);
     expect(mascotById(first.id)?.computer.spec.vcpu).toBeGreaterThanOrEqual(4);
     expect(mascots().length).toBeGreaterThanOrEqual(2);
+    expect(globalThis.localStorage?.getItem('cortex.bots.cache.v2')).toBeNull();
   });
 
   it('does not invent a running farm when the list is unavailable', async () => {

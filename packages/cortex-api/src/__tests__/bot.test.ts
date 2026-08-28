@@ -93,18 +93,21 @@ describe('computer', () => {
     const { client, calls } = clientFor([
       { body: { image_base64: 'aaaa', content_type: 'image/png' } },
       { body: {} },
+      { body: {} },
       { body: { stdout: 'ok', exit_code: 0 } },
       { body: { status: 'running', provider: 'farm' } },
     ]);
     const shot = await getScreenshot(client, 'mst_1');
     await postComputerInput(client, 'mst_1', { action: 'click', x: 10, y: 20 });
+    await postComputerInput(client, 'mst_1', { action: 'drag', x: 10, y: 20, x2: 80, y2: 90 });
     const shell = await postShell(client, 'mst_1', 'ls');
     const box = await getComputer(client, 'mst_1');
     expect(shot.image_base64).toBe('aaaa');
     expect(shell.exit_code).toBe(0);
     expect(box.status).toBe('running');
     expect(calls[1]!.body).toEqual({ action: 'click', x: 10, y: 20 });
-    expect(calls[2]!.url).toContain('/computer/shell');
+    expect(calls[2]!.body).toEqual({ action: 'drag', x: 10, y: 20, x2: 80, y2: 90 });
+    expect(calls[3]!.url).toContain('/computer/shell');
   });
 });
 

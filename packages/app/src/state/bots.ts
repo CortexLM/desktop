@@ -1,7 +1,7 @@
 /**
  * Bot mascots. The API is the source of truth. localStorage only caches the
- * last successful list so a reload can paint, then reconcile() replaces it.
- * Create / send / hibernate / videos never write the cache as if they succeeded.
+ * last successful list (reconcile). Create / send / hibernate / videos never
+ * write the cache.
  */
 
 import { createSignal } from 'solid-js';
@@ -89,11 +89,7 @@ export async function createMascot(
   if (!client) throw new Error('The Bot API is not connected from this origin.');
   const created = await apiCreate(client, { name: name.trim() || 'Untitled mascot', shape, color });
   const mascot = mapMascot(created);
-  setMascots((current) => {
-    const next = [mascot, ...current.filter((row) => row.id !== mascot.id)];
-    writeJson(CACHE_KEY, summaries(next));
-    return next;
-  });
+  setMascots((current) => [mascot, ...current.filter((row) => row.id !== mascot.id)]);
   return mascot;
 }
 
