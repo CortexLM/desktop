@@ -31,9 +31,12 @@ import {
   type ApiCodeSession,
   type ApiLibraryItem,
   type ApiMascot,
+  type ApiMascotVideo,
   type ApiNotification,
   type ApiPlanningTask,
   type ApiPlugin,
+  type HostPairing,
+  type VncTicket,
 } from './pending-schemas.ts';
 
 export interface ProductSurface {
@@ -44,14 +47,24 @@ export interface ProductSurface {
   listLibraryItems: (signal?: AbortSignal) => Promise<ApiLibraryItem[]>;
   listPlugins: (signal?: AbortSignal) => Promise<ApiPlugin[]>;
   listNotifications: (signal?: AbortSignal) => Promise<ApiNotification[]>;
-  postScheduledResult: typeof postScheduledResult;
-  pairCodeHost: typeof pairCodeHost;
-  heartbeatCodeHost: typeof heartbeatCodeHost;
-  createMascot: typeof createMascot;
-  deleteMascot: typeof deleteMascot;
-  createVncTicket: typeof createVncTicket;
-  listMascotVideos: typeof listMascotVideos;
-  markNotificationRead: typeof markNotificationRead;
+  postScheduledResult: (
+    conversationId: string,
+    body: { task_id: string; message?: string },
+    signal?: AbortSignal,
+  ) => Promise<void>;
+  pairCodeHost: (signal?: AbortSignal) => Promise<HostPairing>;
+  heartbeatCodeHost: (
+    body: { device_token: string; host_id?: string },
+    signal?: AbortSignal,
+  ) => Promise<void>;
+  createMascot: (
+    body: { name: string; shape?: string; color?: string },
+    signal?: AbortSignal,
+  ) => Promise<ApiMascot>;
+  deleteMascot: (id: string, signal?: AbortSignal) => Promise<void>;
+  createVncTicket: (id: string, signal?: AbortSignal) => Promise<VncTicket>;
+  listMascotVideos: (id: string, signal?: AbortSignal) => Promise<ApiMascotVideo[]>;
+  markNotificationRead: (id: string, signal?: AbortSignal) => Promise<void>;
 }
 
 export function createHttpProductSurface(client: CortexApiClient): ProductSurface {

@@ -85,6 +85,7 @@ export {
   type RealtimeClient,
   type RealtimeEvent,
   type RealtimeRoom,
+  type RealtimeRoomKind,
   type RealtimeStatus,
   type StreamTransport,
 } from './realtime/index.ts';
