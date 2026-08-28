@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@solidjs/testing-library';
+import { fireEvent, render, screen, waitFor } from '@solidjs/testing-library';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { App, slugForPath } from '../app.tsx';
@@ -62,6 +62,25 @@ describe('App', () => {
     });
   });
 
+  it('swaps the Chat sidebar for Code destinations after switching products', async () => {
+    // Starts on Chat (the Electron landing path). A frozen ProductSections
+    // would keep "New chat" after this click and hide Home / Sessions — which
+    // is what the desktop e2e suite was asserting against.
+    render(() => <App />);
+
+    await waitFor(() => {
+      expect(screen.getByText('New chat')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Code' }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    });
+    expect(screen.queryByText('New chat')).toBeNull();
+  });
+
   it('locks the Cortex-only destinations while signed out', async () => {
     render(() => <App initialPath="/code" />);
 
@@ -106,6 +125,85 @@ describe('App', () => {
       expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'true');
       expect(screen.getByRole('heading', { name: 'Bot' })).toBeInTheDocument();
     });
+  });
+
+  it('opens Bot create and mascot surfaces', async () => {
+    const created = render(() => <App initialPath="/bot/new" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'New mascot' })).toBeInTheDocument());
+    created.unmount();
+
+    const chat = render(() => <App initialPath="/bot/mst_1" />);
+    await waitFor(() => expect(screen.getByText(/Mascot not found|Conversation|Scout/)).toBeInTheDocument());
+    chat.unmount();
+
+    const computer = render(() => <App initialPath="/bot/mst_1/computer" />);
+    await waitFor(() => expect(screen.getByText(/Computer|Mascot not found|farm or local daemon/)).toBeInTheDocument());
+    computer.unmount();
+
+    const memory = render(() => <App initialPath="/bot/mst_1/memory" />);
+    await waitFor(() => expect(screen.getByText(/Memory|Mascot not found|Backend too old/)).toBeInTheDocument());
+    memory.unmount();
+
+    const skills = render(() => <App initialPath="/bot/mst_1/skills" />);
+    await waitFor(() => expect(screen.getByText(/Skills|Mascot not found|Backend too old/)).toBeInTheDocument());
+    skills.unmount();
+
+    const routines = render(() => <App initialPath="/bot/mst_1/routines" />);
+    await waitFor(() => expect(screen.getByText(/Routines|Mascot not found|Backend too old/)).toBeInTheDocument());
+    routines.unmount();
+
+    const groups = render(() => <App initialPath="/bot/mst_1/groups" />);
+    await waitFor(() => expect(screen.getByText(/Groups|Mascot not found|Backend too old/)).toBeInTheDocument());
+    groups.unmount();
+
+    const videos = render(() => <App initialPath="/bot/mst_1/videos" />);
+    await waitFor(() => expect(screen.getByText(/Videos|Mascot not found/)).toBeInTheDocument());
+    videos.unmount();
+
+    const settings = render(() => <App initialPath="/bot/mst_1/settings" />);
+    await waitFor(() =>
+      expect(screen.getByRole('heading', { name: /Mascot settings|Mascot not found/i })).toBeInTheDocument(),
+    );
+    settings.unmount();
+
+    const messages = render(() => <App initialPath="/bot/mst_1/messages" />);
+    await waitFor(() => expect(screen.getByText(/Messages|Mascot not found/)).toBeInTheDocument());
+    messages.unmount();
+
+    render(() => <App initialPath="/plugins" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Plugins' })).toBeInTheDocument());
+  });
+
+  it('mounts remaining product and Code destinations', async () => {
+    const paths = [
+      '/research',
+      '/planning',
+      '/projects',
+      '/projects/p1',
+      '/projects/p1/sources',
+      '/library',
+      '/settings',
+      '/code/sessions',
+      '/code/automations',
+      '/code/review',
+      '/code/usage',
+      '/code/settings',
+      '/code/settings/integrations',
+      '/code/secrets',
+      '/code/notifications',
+      '/code/automations/new',
+      '/code/runtimes/ssh',
+      '/onboarding',
+      '/sign-in/device',
+      '/sign-in/github',
+      '/sign-in/workspace',
+    ];
+    for (const path of paths) {
+      const view = render(() => <App initialPath={path} />);
+      await Promise.resolve();
+      expect(document.body.innerHTML.length, path).toBeGreaterThan(10);
+      view.unmount();
+    }
   });
 
   it('renders the sign-in screen without the workspace shell', async () => {

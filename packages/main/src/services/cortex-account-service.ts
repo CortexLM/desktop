@@ -501,6 +501,11 @@ export class CortexAccountService {
     this.deviceListeners.clear();
     this.accountListeners.clear();
   }
+
+  /** Main-only. The renderer never receives this client or its tokens. */
+  getApiClient(): CortexApiClient {
+    return this.client;
+  }
 }
 
 // ============================================================================

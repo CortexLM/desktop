@@ -49,6 +49,73 @@ export {
 } from './control-plane.ts';
 
 export {
+  getMascot,
+  listMascots,
+  listMascotMessages,
+  patchMascot,
+  postAskUser,
+  postMascotMessage,
+  postRespond,
+  postSecret,
+} from './bot-mascots.ts';
+
+export {
+  getComputer,
+  getCursor,
+  getScreenshot,
+  listComputerFs,
+  postComputerInput,
+  postLifecycle,
+  postRecord,
+  postShell,
+  readComputerFile,
+  type ComputerInput,
+  type ComputerInputAction,
+  type LifecycleAction,
+} from './bot-computer.ts';
+
+export {
+  addMemory,
+  createBotTask,
+  createRoutine,
+  createSkill,
+  DEFAULT_ROUTINE_CRON,
+  deleteRoutine,
+  deleteSkill,
+  forgetMemory,
+  getBotTask,
+  getSkill,
+  listBotGroups,
+  listBotInbox,
+  listMemory,
+  listRoutines,
+  listSkills,
+  pauseRoutine,
+  postBotInbox,
+  postHandoff,
+  postTeach,
+  resumeRoutine,
+  runSkill,
+} from './bot-grok.ts';
+
+export {
+  connectPlugin,
+  disconnectPlugin,
+  listPluginConnections,
+  listPlugins,
+} from './bot-plugins.ts';
+
+export {
+  BACKEND_TOO_OLD,
+  backendTooOldCopy,
+  classifyBotError,
+  farmOfflineCopy,
+  isNotFound,
+  isServiceUnavailable,
+  PLUGIN_UNAVAILABLE,
+} from './bot-errors.ts';
+
+export {
   createHttpProductSurface,
   type ProductSurface,
 } from './pending.ts';
@@ -67,6 +134,29 @@ export type {
   ScheduledResult,
   VncTicket,
 } from './pending-schemas.ts';
+
+export type {
+  ApiBotMessage,
+  ApiComputer,
+  ApiComputerStatus,
+  ApiCursor,
+  ApiFilePreview,
+  ApiFsEntry,
+  ApiScreenshot,
+  ApiShellResult,
+} from './bot-schemas.ts';
+
+export type {
+  ApiBotGroup,
+  ApiBotInboxItem,
+  ApiBotTask,
+  ApiMemoryFact,
+  ApiPluginConnection,
+  ApiRoutine,
+  ApiSkill,
+  ApiSkillRun,
+  MemoryTier,
+} from './bot-grok-schemas.ts';
 
 export {
   CONNECTION_LOCAL_TYPES,

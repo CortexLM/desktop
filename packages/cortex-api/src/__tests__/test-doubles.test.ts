@@ -24,11 +24,30 @@ describe('test doubles', () => {
     const surface = withTestDoublesFlag('1', () =>
       createMockProductSurface({
         tasks: [{ id: 'todays-notes', title: "Today's notes" }],
+        mascots: [{ id: 'mst_1', name: 'Scout' }],
+        hosts: [{ id: 'h1', name: 'ana-mbp' }],
+        sessions: [{ id: 'ses_1' }],
+        library: [{ id: 'lib_1' }],
+        plugins: [{ id: 'drive' }],
+        notifications: [{ id: 'ntf_1' }],
       }),
     );
     expect(await surface.listPlanningTasks()).toEqual([
       { id: 'todays-notes', title: "Today's notes" },
     ]);
+    expect((await surface.listMascots())[0]?.id).toBe('mst_1');
+    expect((await surface.listCodeHosts())[0]?.name).toBe('ana-mbp');
+    expect((await surface.listCodeSessions())[0]?.id).toBe('ses_1');
+    expect((await surface.listLibraryItems())[0]?.id).toBe('lib_1');
+    expect((await surface.listPlugins())[0]?.id).toBe('drive');
+    expect((await surface.listNotifications())[0]?.id).toBe('ntf_1');
     expect(await surface.createVncTicket('mst_1')).toEqual({ ticket_hash: 'ticket-hash-only' });
+    expect(await surface.pairCodeHost()).toEqual({ pairing_code: 'PAIR-TEST' });
+    expect(await surface.createMascot({ name: 'New' })).toEqual({ id: 'mst_mock', name: 'New' });
+    await surface.postScheduledResult('cnv_1', { task_id: 'todays-notes' });
+    await surface.heartbeatCodeHost({ device_token: 'dev_1' });
+    await surface.deleteMascot('mst_1');
+    expect(await surface.listMascotVideos('mst_1')).toEqual([]);
+    await surface.markNotificationRead('ntf_1');
   });
 });

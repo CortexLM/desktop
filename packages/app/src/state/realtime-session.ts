@@ -17,6 +17,9 @@ import {
 
 import { applyRealtimeEvent, setRealtimeStatus } from './realtime-bridge.ts';
 import { liveApiBase } from './live-api.ts';
+import { hasElectronHost } from './host.ts';
+import { ipcProductFetch } from './ipc-fetch.ts';
+import { CORTEX_API_BASE_URL } from '@cortex-ide/cortex-api';
 
 export interface LiveSession {
   client: CortexApiClient;
@@ -27,14 +30,20 @@ export interface LiveSession {
 let session: LiveSession | undefined;
 
 export function liveSession(): LiveSession | undefined {
-  const baseUrl = liveApiBase();
+  const baseUrl = sessionBaseUrl();
   if (!baseUrl) return undefined;
   if (!session) {
-    const client = new CortexApiClient({ baseUrl });
+    const fetchImpl = hasElectronHost() ? ipcProductFetch : undefined;
+    const client = new CortexApiClient({ baseUrl, fetch: fetchImpl });
     const realtime = createRealtimeSocket({ baseUrl });
     session = { client, realtime, transport: createStreamTransport(realtime, client) };
   }
   return session;
+}
+
+/** Web uses the Vite/origin base. Electron uses main as the fetch, same URL. */
+function sessionBaseUrl(): string | undefined {
+  return liveApiBase() ?? (hasElectronHost() ? CORTEX_API_BASE_URL : undefined);
 }
 
 export async function bootLiveRealtime(): Promise<void> {

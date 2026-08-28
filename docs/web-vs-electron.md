@@ -16,7 +16,8 @@ hasElectronHost();    // true only inside Electron
 - HashRouter — required so `/code/sessions/:id` works under `file://`.
 - Detached hosts: every `resolve*Host()` has an Electron façade and a
   browser implementation that returns honest empty / error states.
-- `localStorage` product stores (Planning, projects, library, bots).
+- `localStorage` product stores (Planning, projects, library). Bot list
+  cache only — writes go through cortex-api (Electron: `cortex:product-request`).
 
 ## What is desktop-only
 

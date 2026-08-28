@@ -26,14 +26,14 @@ describe('PlanningScreen', () => {
 describe('PluginsScreen', () => {
   it('shows official brand names and the Composio install path', () => {
     const onInstall = vi.fn();
-    render(() => <PluginsScreen installed={[]} onInstall={onInstall} />);
+    render(() => <PluginsScreen connected={[]} onConnect={onInstall} />);
 
     expect(screen.getByText('Google Drive')).toBeInTheDocument();
     expect(screen.getByText('Slack')).toBeInTheDocument();
     expect(screen.getByText('GitHub')).toBeInTheDocument();
     expect(screen.getByText('Paper')).toBeInTheDocument();
 
-    fireEvent.click(screen.getAllByRole('button', { name: 'Install with Composio' })[0]!);
+    fireEvent.click(screen.getAllByRole('button', { name: 'Connect with Composio' })[0]!);
     expect(onInstall).toHaveBeenCalledWith('drive');
   });
 });

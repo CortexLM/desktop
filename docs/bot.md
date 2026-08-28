@@ -53,7 +53,8 @@ not a generic screen grab shared across bots.
 
 ## Persistence
 
-Mascot list and local drafts live in the renderer store (`localStorage`)
-so web and desktop can open the same pages. The farm lease, VNC token, and
-recordings are server-side when the API is reachable; this client never
-stores SSH or host keys.
+The mascot list, messages, computer lifecycle, and videos are server-side
+(`packages/cortex-api`). The renderer may cache the last successful **list**
+in `localStorage` and must reconcile on open. Writes never succeed by
+updating that cache alone. See [bot-grok-core.md](./bot-grok-core.md).
+This client never stores SSH or host keys.

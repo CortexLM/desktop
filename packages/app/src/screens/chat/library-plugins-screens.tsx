@@ -62,8 +62,12 @@ export function LibraryScreen(props: {
 }
 
 export function PluginsScreen(props: {
-  installed: readonly PluginBrand[];
-  onInstall: (id: PluginBrand) => void;
+  connected: readonly PluginBrand[];
+  onConnect: (id: PluginBrand) => void;
+  onDisconnect?: (id: PluginBrand) => void;
+  loading?: boolean;
+  unavailable?: boolean;
+  error?: string;
 }): JSX.Element {
   return (
     <>
@@ -72,30 +76,59 @@ export function PluginsScreen(props: {
         subtitle="Connect the services you already use. Install path is Composio."
       />
       <PageBody width="list">
-        <div class="cx-product-list">
-          <For each={PLUGIN_CARDS}>
-            {(card) => (
-              <div class="cx-plugin-card">
-                <BrandLogo brand={card.id} />
-                <div>
-                  <div class="cx-plugin-card__name">{card.name}</div>
-                  <p class="cx-plugin-card__summary">{card.summary}</p>
-                </div>
-                <div class="cx-product-row__action">
-                  <Show
-                    when={!props.installed.includes(card.id)}
-                    fallback={<span class="cx-product-row__meta">Installed via Composio</span>}
-                  >
-                    <Button variant="primary" onClick={() => props.onInstall(card.id)}>
-                      Install with Composio
-                    </Button>
-                  </Show>
-                </div>
-              </div>
-            )}
-          </For>
-        </div>
+        <Show when={!props.loading} fallback={<HonestState kind="loading" title="Loading plugins" body="Asking the catalog." />}>
+          <Show
+            when={!props.unavailable}
+            fallback={
+              <HonestState
+                kind="error"
+                title="Plugins unavailable"
+                body={props.error || 'Composio is not configured on this backend. Drive and Slack are not connected.'}
+              />
+            }
+          >
+            <Show when={!props.error} fallback={<HonestState kind="error" title="Could not load plugins" body={props.error ?? ''} />}>
+              <PluginCards connected={props.connected} onConnect={props.onConnect} onDisconnect={props.onDisconnect} />
+            </Show>
+          </Show>
+        </Show>
       </PageBody>
     </>
+  );
+}
+
+function PluginCards(props: {
+  connected: readonly PluginBrand[];
+  onConnect: (id: PluginBrand) => void;
+  onDisconnect?: (id: PluginBrand) => void;
+}): JSX.Element {
+  return (
+    <div class="cx-product-list">
+      <For each={PLUGIN_CARDS}>
+        {(card) => (
+          <div class="cx-plugin-card">
+            <BrandLogo brand={card.id} />
+            <div>
+              <div class="cx-plugin-card__name">{card.name}</div>
+              <p class="cx-plugin-card__summary">{card.summary}</p>
+            </div>
+            <div class="cx-product-row__action">
+              <Show
+                when={!props.connected.includes(card.id)}
+                fallback={
+                  <Button variant="secondary" onClick={() => props.onDisconnect?.(card.id)}>
+                    Disconnect
+                  </Button>
+                }
+              >
+                <Button variant="primary" onClick={() => props.onConnect(card.id)}>
+                  Connect with Composio
+                </Button>
+              </Show>
+            </div>
+          </div>
+        )}
+      </For>
+    </div>
   );
 }

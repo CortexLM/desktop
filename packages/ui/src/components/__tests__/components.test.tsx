@@ -256,6 +256,13 @@ describe('NavItem', () => {
     fireEvent.click(screen.getByRole('button'));
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  it('fires when unlocked', () => {
+    const onClick = vi.fn();
+    render(() => <NavItem icon="home" label="Home" onClick={onClick} />);
+    fireEvent.click(screen.getByRole('button'));
+    expect(onClick).toHaveBeenCalledOnce();
+  });
 });
 
 describe('TextField', () => {

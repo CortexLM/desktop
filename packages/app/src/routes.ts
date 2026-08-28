@@ -75,6 +75,10 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   { slug: 'bot-messages', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/messages', title: 'Messages' },
   { slug: 'bot-videos', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/videos', title: 'Videos' },
   { slug: 'bot-computer', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/computer', title: 'Computer' },
+  { slug: 'bot-memory', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/memory', title: 'Memory' },
+  { slug: 'bot-skills', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/skills', title: 'Skills' },
+  { slug: 'bot-routines', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/routines', title: 'Routines' },
+  { slug: 'bot-groups', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/groups', title: 'Groups' },
   { slug: 'bot-settings', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/settings', title: 'Mascot settings' },
 
   // ── Onboarding and account ────────────────────────────────────────────────

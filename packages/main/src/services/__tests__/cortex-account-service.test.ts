@@ -9,7 +9,7 @@
  *   2. « Jeton refusé » et « API injoignable » sont distingués à la restauration.
  *      Les confondre dans un sens déconnecte à chaque coupure réseau ; dans
  *      l'autre, ça laisse une UI connectée dont chaque appel échoue.
- *   3. Le jeton est vérifié contre `/auth/me` au démarrage, pas présumé valide.
+ *   3. Le jeton est vérifié contre `/v1/me` au démarrage, pas présumé valide.
  *   4. Le flux d'appareil est mené ici : le renderer reçoit ce qui s'affiche et
  *      apprend l'issue par un événement.
  *
@@ -54,7 +54,7 @@ function jsonResponse({ status, body }: Reply): Response {
 /**
  * Un `fetch` piloté par route.
  *
- * Par route et non par ordre d'appel : `restore()` appelle `/auth/me`, un flux
+ * Par route et non par ordre d'appel : `restore()` appelle `/v1/me`, un flux
  * d'appareil appelle deux autres routes, et une file ordonnée rendrait chaque
  * test dépendant du nombre d'appels internes du service.
  */
@@ -149,7 +149,7 @@ afterEach(() => {
 describe('the token never reaches the renderer', () => {
   it('omits it from the state, signed in', async () => {
     seedStoredSession();
-    const { fetch } = stubFetch({ '/auth/me': ME_OK });
+    const { fetch } = stubFetch({ '/v1/me': ME_OK });
     const service = makeService(fetch);
 
     const state = await service.restore();
@@ -196,20 +196,20 @@ describe('the token never reaches the renderer', () => {
 describe('restoring a stored session', () => {
   it('verifies the token against the API rather than trusting it', async () => {
     seedStoredSession();
-    const { fetch, calls } = stubFetch({ '/auth/me': ME_OK });
+    const { fetch, calls } = stubFetch({ '/v1/me': ME_OK });
 
     await makeService(fetch).restore();
 
-    expect(calls.some((call) => call.url.includes('/auth/me'))).toBe(true);
+    expect(calls.some((call) => call.url.includes('/v1/me'))).toBe(true);
   });
 
   it('sends the token as the wos-session cookie, not as a bearer', async () => {
     seedStoredSession();
-    const { fetch, calls } = stubFetch({ '/auth/me': ME_OK });
+    const { fetch, calls } = stubFetch({ '/v1/me': ME_OK });
 
     await makeService(fetch).restore();
 
-    const me = calls.find((call) => call.url.includes('/auth/me'))!;
+    const me = calls.find((call) => call.url.includes('/v1/me'))!;
     // Le service refuse explicitement le Bearer JWT : « Bearer JWT session auth
     // is disabled; use WorkOS sealed session cookie or API key ». Un jeton envoyé
     // en `Authorization` serait rejeté à chaque appel.
@@ -220,7 +220,7 @@ describe('restoring a stored session', () => {
   it('drops a token the API rejects', async () => {
     seedStoredSession();
     const { fetch } = stubFetch({
-      '/auth/me': { status: 401, body: { code: 'AUTH_REQUIRED', message: 'Authentication required' } },
+      '/v1/me': { status: 401, body: { code: 'AUTH_REQUIRED', message: 'Authentication required' } },
     });
     const service = makeService(fetch);
 
@@ -290,7 +290,7 @@ describe('persistence', () => {
         },
       },
       '/auth/device/token': { status: 200, body: { access_token: TOKEN } },
-      '/auth/me': ME_OK,
+      '/v1/me': ME_OK,
     });
     const service = makeService(fetch);
 
@@ -339,7 +339,7 @@ describe('persistence', () => {
     // service ne sait pas relire redemanderait un flux d'appareil à chaque
     // lancement, et c'est le genre de régression qu'un test d'écriture seul
     // laisse passer.
-    const { fetch } = stubFetch({ '/auth/me': ME_OK });
+    const { fetch } = stubFetch({ '/v1/me': ME_OK });
     const restored = await makeService(fetch).restore();
 
     expect(restored.user?.email).toBe('ada@example.com');
@@ -454,7 +454,7 @@ describe('the device flow', () => {
     const { fetch } = stubFetch({
       '/auth/device/code': { ...CODE_REPLY, body: { ...CODE_REPLY.body, interval: 0 } },
       '/auth/device/token': { status: 200, body: { access_token: TOKEN } },
-      '/auth/me': ME_OK,
+      '/v1/me': ME_OK,
     });
     const service = makeService(fetch);
 
@@ -501,7 +501,7 @@ describe('signing out', () => {
   it('clears the local session even when the server call fails', async () => {
     seedStoredSession();
     const { fetch } = stubFetch({
-      '/auth/me': ME_OK,
+      '/v1/me': ME_OK,
       '/auth/logout': { status: 500, body: { code: 'SERVER_ERROR', message: 'boom' } },
     });
     const service = makeService(fetch);

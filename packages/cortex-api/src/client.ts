@@ -237,6 +237,15 @@ export class CortexApiClient {
     return response;
   }
 
+  /**
+   * Same as `open`, but returns the Response on 4xx/5xx so a main-process
+   * proxy can reconstruct it for the renderer without leaking credentials.
+   */
+  exchange(path: string, options: RequestOptions = {}): Promise<Response> {
+    const route = `${options.method ?? 'GET'} ${path}`;
+    return this.send(path, route, options);
+  }
+
   /** Validates a 2xx JSON body. Public so product helpers can parse `open` results. */
   async readJson<T>(response: Response, schema: z.ZodType<T>, route: string): Promise<T> {
     return this.parse(response, schema, route);

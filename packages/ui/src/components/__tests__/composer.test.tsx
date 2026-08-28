@@ -231,4 +231,19 @@ describe('Composer controls', () => {
     expect(onAttach).toHaveBeenCalledOnce();
     expect(onDictate).toHaveBeenCalledOnce();
   });
+
+  it('shows the trailing model picker only when a label is supplied', () => {
+    const onPickModel = vi.fn();
+    renderComposer({ modelLabel: 'Cortex 2 · Thinking High', onPickModel });
+
+    const picker = screen.getByRole('button', { name: /Cortex 2/ });
+    expect(picker).not.toBeDisabled();
+    fireEvent.click(picker);
+    expect(onPickModel).toHaveBeenCalledOnce();
+  });
+
+  it('disables the trailing model picker when there is no handler', () => {
+    renderComposer({ modelLabel: 'Cortex 2 · Thinking High' });
+    expect(screen.getByRole('button', { name: /Cortex 2/ })).toBeDisabled();
+  });
 });
