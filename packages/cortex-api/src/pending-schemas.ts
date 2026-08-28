@@ -3,9 +3,7 @@
  *
  * None of these answered on the public API on 2026-08-28 (all 404 except
  * `/v1/projects`, which is already in product-schemas). Fields are optional
- * and passthrough so a mock and the live client share one type when the
- * service lands. Do not treat a successful parse of a mock row as proof the
- * farm exists.
+ * so the live client can grow. A successful parse is not proof the farm exists.
  */
 
 import { z } from 'zod';
@@ -96,14 +94,12 @@ export const notificationRowSchema = z
 export type ApiNotification = z.infer<typeof notificationRowSchema>;
 export const notificationListSchema = listEnvelopeSchema(notificationRowSchema);
 
-/** Shown once. The service stores a hash; the client never sends or stores that hash. */
-export const hostPairingSchema = z
-  .object({
-    pairing_code: z.string(),
-    expires_in: z.number().optional(),
-    host_id: z.string().optional(),
-  })
-  .passthrough();
+/** Shown once. Extra keys such as `pairing_hash` are dropped, not stored. */
+export const hostPairingSchema = z.object({
+  pairing_code: z.string(),
+  expires_in: z.number().optional(),
+  host_id: z.string().optional(),
+});
 
 export type HostPairing = z.infer<typeof hostPairingSchema>;
 
@@ -116,12 +112,10 @@ export const hostHeartbeatSchema = z
 
 export type HostHeartbeat = z.infer<typeof hostHeartbeatSchema>;
 
-/** Signaling ticket. Hash only — never a VNC password. */
-export const vncTicketSchema = z
-  .object({
-    ticket_hash: z.string(),
-  })
-  .passthrough();
+/** Signaling ticket. Hash only — passwords in the payload are dropped. */
+export const vncTicketSchema = z.object({
+  ticket_hash: z.string(),
+});
 
 export type VncTicket = z.infer<typeof vncTicketSchema>;
 

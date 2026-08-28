@@ -50,7 +50,6 @@ export {
 
 export {
   createHttpProductSurface,
-  createMockProductSurface,
   type ProductSurface,
 } from './pending.ts';
 
@@ -71,7 +70,6 @@ export type {
 
 export {
   CONNECTION_LOCAL_TYPES,
-  createMockRealtime,
   createRealtimeSse,
   createRealtimeSocket,
   createStreamTransport,
@@ -87,6 +85,7 @@ export {
   type RealtimeRoom,
   type RealtimeRoomKind,
   type RealtimeStatus,
+  type StreamChannel,
   type StreamTransport,
 } from './realtime/index.ts';
 

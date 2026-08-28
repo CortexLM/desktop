@@ -1,9 +1,8 @@
 /**
- * HTTP helpers for routes that are not on the public API yet.
+ * HTTP helpers for the backend staging control plane.
  *
- * Each call hits the path the parallel backend PRs named. A live 404 is an
- * honest `CortexApiError` (`not_found`), not an empty list invented here.
- * Tests use `createMockProductSurface` instead of pretending the farm is up.
+ * Each call hits the live path. A 404 is `not_found`, not an empty farm.
+ * Test doubles live in `test-doubles.ts` behind `CORTEX_ALLOW_TEST_DOUBLES=1`.
  */
 
 import type { z } from 'zod';
@@ -96,33 +95,4 @@ async function items<T>(
 ): Promise<T[]> {
   const list = await client.request(path, schema, { signal });
   return list.items;
-}
-
-export function createMockProductSurface(seed: Partial<{
-  mascots: ApiMascot[];
-  hosts: ApiCodeHost[];
-  sessions: ApiCodeSession[];
-  tasks: ApiPlanningTask[];
-  library: ApiLibraryItem[];
-  plugins: ApiPlugin[];
-  notifications: ApiNotification[];
-}> = {}): ProductSurface {
-  const empty = async <T>(rows: T[] | undefined) => rows ?? [];
-  return {
-    listMascots: () => empty(seed.mascots),
-    listCodeHosts: () => empty(seed.hosts),
-    listCodeSessions: () => empty(seed.sessions),
-    listPlanningTasks: () => empty(seed.tasks),
-    listLibraryItems: () => empty(seed.library),
-    listPlugins: () => empty(seed.plugins),
-    listNotifications: () => empty(seed.notifications),
-    postScheduledResult: async () => {},
-    pairCodeHost: async () => ({ pairing_code: 'PAIR-TEST' }),
-    heartbeatCodeHost: async () => {},
-    createMascot: async (body) => ({ id: 'mst_mock', name: body.name }),
-    deleteMascot: async () => {},
-    createVncTicket: async () => ({ ticket_hash: 'ticket-hash-only' }),
-    listMascotVideos: async () => [],
-    markNotificationRead: async () => {},
-  };
 }

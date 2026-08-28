@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { CortexApiClient, createMockRealtime, createStreamTransport } from '@cortex-ide/cortex-api';
+import { CortexApiClient, createStreamTransport } from '@cortex-ide/cortex-api';
+import { createMockRealtime } from '@cortex-ide/cortex-api/test-doubles';
 
 import { createCloudChatHost } from '../cloud-chat-host.ts';
 import { liveApiBase } from '../live-api.ts';

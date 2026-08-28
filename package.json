@@ -77,7 +77,8 @@
     "quality:duplication": "npx jscpd packages --format typescript --output quality-reports",
     "quality:circular": "npx madge --circular --extensions ts,tsx packages/",
     "test:discovery": "bun scripts/check-test-discovery.ts",
-    "test:discovery:fast": "bun scripts/check-test-discovery.ts --fast"
+    "test:discovery:fast": "bun scripts/check-test-discovery.ts --fast",
+    "test:staging-local": "bash scripts/test-staging-local.sh"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

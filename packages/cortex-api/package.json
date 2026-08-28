@@ -8,6 +8,7 @@
   "//contract": "Typed client for https://api.cortex.foundation. The contract in schemas.ts was established by probing the live service; see CONTRACT.md for what was observed and what is still unknown.",
   "exports": {
     ".": "./src/index.ts",
+    "./test-doubles": "./src/test-doubles.ts",
     "./schemas": "./src/schemas.ts",
     "./errors": "./src/errors.ts"
   },

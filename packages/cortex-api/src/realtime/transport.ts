@@ -1,10 +1,6 @@
 /**
- * Prefer the realtime socket; fall back to HTTP conversation turns.
- *
- * Chat tokens, Code permissions, Bot ask-user, and notifications arrive on the
- * socket when it is connected. HTTP POST /v1/conversations[/id]/turns is the
- * observed fallback for Chat. Code/Bot streams have no HTTP route yet — those
- * stay on the socket or the local mock, never a fake harness in the browser.
+ * Prefer GET /v1/realtime (writable WS). SSE is listen-only; Chat turns then
+ * use POST /v1/conversations[/id]/turns. Code/Bot still need the socket.
  */
 
 import type { CortexApiClient } from '../client.ts';
@@ -17,8 +13,10 @@ import {
 } from './events.ts';
 import { isConnectionLocalType } from './rooms.ts';
 
+export type StreamChannel = 'realtime' | 'sse' | 'http' | 'none';
+
 export interface StreamTransport {
-  readonly channel: () => 'realtime' | 'http' | 'none';
+  readonly channel: () => StreamChannel;
   subscribe: (handler: (event: RealtimeEvent) => void) => () => void;
   streamChat: (
     message: string,
@@ -32,15 +30,21 @@ export function createStreamTransport(
   http?: CortexApiClient,
 ): StreamTransport {
   return {
-    channel: () => {
-      if (realtime.status === 'connected') return 'realtime';
-      if (http) return 'http';
-      return 'none';
-    },
+    channel: () => channelOf(realtime, http),
     subscribe: (handler) => realtime.subscribe(handler),
     streamChat: (message, conversationId) => streamChatTurn(realtime, http, message, conversationId),
     send: (message) => realtime.send(message),
   };
+}
+
+function channelOf(realtime: RealtimeClient, http?: CortexApiClient): StreamChannel {
+  if (realtime.status === 'connected' && realtime.writable) return 'realtime';
+  if (realtime.status === 'connected') return 'sse';
+  return http ? 'http' : 'none';
+}
+
+function canSendOn(realtime: RealtimeClient): boolean {
+  return realtime.status === 'connected' && realtime.writable;
 }
 
 async function* streamChatTurn(
@@ -49,7 +53,7 @@ async function* streamChatTurn(
   message: string,
   conversationId?: string,
 ): AsyncGenerator<RealtimeEvent, void, undefined> {
-  if (realtime.status === 'connected') {
+  if (canSendOn(realtime)) {
     yield* streamOverSocket(realtime, message, conversationId);
     return;
   }

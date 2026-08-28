@@ -19,9 +19,11 @@ Optional rooms: `conversation:`, `code_session:`, `mascot:`. A miss is
 `not_found`. `hello` / `heartbeat` / `subscribed` / `error` are
 connection-local and must not become inbox rows or leak across tabs.
 
-The socket is **not deployed yet** (`404` on the public API). The typed
-client, the SSE fallback, and the in-process mock share `RealtimeClient`.
-See [packages/cortex-api/CONTRACT.md](../packages/cortex-api/CONTRACT.md).
+The socket may still `404` on the public API; that stays `not_found`. The
+typed socket, the SSE fallback, and HTTP turns share one transport. The
+in-process mock is a test double only (`CORTEX_ALLOW_TEST_DOUBLES=1`).
+See [packages/cortex-api/CONTRACT.md](../packages/cortex-api/CONTRACT.md)
+and [docs/staging.md](./staging.md).
 
 ## Web vs desktop
 

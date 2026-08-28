@@ -46,6 +46,9 @@ export function createRealtimeSocket(options: RealtimeSocketOptions): RealtimeCl
     get status() {
       return state.status;
     },
+    get writable() {
+      return state.status === 'connected';
+    },
     connect: () => openSocket(options, state),
     disconnect: () => {
       state.socket?.close();

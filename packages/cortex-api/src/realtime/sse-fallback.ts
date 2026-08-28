@@ -27,6 +27,9 @@ export function createRealtimeSse(client: CortexApiClient): RealtimeClient {
     get status() {
       return status;
     },
+    get writable() {
+      return false;
+    },
     connect: () => openSse(client, handlers, (next) => {
       status = next;
     }, (controller) => {

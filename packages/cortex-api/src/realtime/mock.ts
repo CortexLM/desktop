@@ -1,10 +1,11 @@
 /**
- * In-process realtime client. Same interface as the WebSocket client.
+ * In-process realtime client for tests. Not a live farm or session.
  *
- * Used by tests and by the app when `/v1/realtime` has not landed. It never
- * pretends to be the farm: callers must `emit` events they want the UI to see.
+ * Import from `@cortex-ide/cortex-api/test-doubles` with
+ * `CORTEX_ALLOW_TEST_DOUBLES=1`. The public package entry does not export this.
  */
 
+import { assertTestDoublesAllowed } from '../test-flag.ts';
 import type {
   RealtimeClient,
   RealtimeClientMessage,
@@ -17,7 +18,11 @@ export interface MockRealtime extends RealtimeClient {
   emit: (event: RealtimeEvent) => void;
 }
 
-export function createMockRealtime(initial: RealtimeStatus = 'disconnected'): MockRealtime {
+export function createMockRealtime(
+  initial: RealtimeStatus = 'disconnected',
+  options: { writable?: boolean } = {},
+): MockRealtime {
+  assertTestDoublesAllowed('createMockRealtime');
   const handlers = new Set<(event: RealtimeEvent) => void>();
   const sent: RealtimeClientMessage[] = [];
   let status: RealtimeStatus = initial;
@@ -26,6 +31,9 @@ export function createMockRealtime(initial: RealtimeStatus = 'disconnected'): Mo
     sent,
     get status() {
       return status;
+    },
+    get writable() {
+      return options.writable ?? status === 'connected';
     },
     connect: async () => {
       status = 'connected';

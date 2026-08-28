@@ -264,11 +264,13 @@ SSE events (verbatim types): `disclosure`, `reasoning_delta`, `reasoning_done`,
 
 `GET/WS /v1/realtime` → `404`. Bot (`/v1/mascots`, `/v1/bots`, `/v1/computers`),
 Planning, Library, Plugins, Code hosts, and `/v1/notifications` likewise `404`.
-`packages/cortex-api` exposes a typed WebSocket client and an in-process mock
-behind the same `RealtimeClient` interface, plus a `ProductSurface` for
-mascots, Code hosts/sessions, Planning, Library, Plugins, and notifications.
-Chat/Code/Bot prefer the socket when it is connected. Chat falls back to the
-HTTP turn stream above. Web Code still never runs the harness in the renderer.
+`packages/cortex-api` exposes a typed WebSocket client, an SSE fallback, and
+`createHttpProductSurface` for mascots, Code hosts/sessions, Planning, Library,
+Plugins, and notifications. In-process mocks are **not** on the public entry
+— they live in `@cortex-ide/cortex-api/test-doubles` behind
+`CORTEX_ALLOW_TEST_DOUBLES=1`. Chat/Code/Bot prefer the writable socket.
+Chat falls back to SSE listen + HTTP turns. Web Code still never runs the
+harness in the renderer.
 
 `/health` and `GET /v1/providers` now `404`. `/v1/models` remains public.
 
