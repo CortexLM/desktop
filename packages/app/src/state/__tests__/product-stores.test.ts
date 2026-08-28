@@ -6,6 +6,7 @@ import { PLANNING_SEED, scheduledTasks, setTaskStatus } from '../planning.ts';
 import { setBotClientForTests } from '../bot-client.ts';
 import { createMascot, mascotById, mascots, reconcileMascots, resetBotsForTests } from '../bots.ts';
 import { sendBotMessage } from '../bot-actions.ts';
+import { loadMemory, loadRoutines, loadSkills, panelState, resetGrokForTests } from '../bot-grok-store.ts';
 import { createProject, projectById } from '../projects.ts';
 import { harnessStatus } from '../harness.ts';
 import { inboxFromSessions, mergeInbox, postInbox } from '../inbox.ts';
@@ -16,6 +17,7 @@ afterEach(() => {
   globalThis.localStorage?.clear();
   setBotClientForTests(undefined);
   resetBotsForTests();
+  resetGrokForTests();
 });
 
 describe('Planning seed', () => {
@@ -121,5 +123,32 @@ describe('Bot message writes', () => {
     expect(calls[0]!.url).toContain('/v1/mascots/mst_1/messages');
     expect(calls[0]!.body).toEqual({ text: 'hello' });
     expect(writes.some((key) => key.startsWith('cortex.bots'))).toBe(false);
+  });
+});
+
+describe('Grok panels', () => {
+  it('loads memory, skills, and routines from the API', async () => {
+    const { fetch, calls } = stubFetch([
+      { body: { items: [{ id: 'f1', tier: 'profile', text: 'Likes tea' }], has_more: false } },
+      { body: { items: [], has_more: false } },
+      { body: { items: [{ slug: 'research', name: 'Research' }], has_more: false } },
+      { body: { items: [], has_more: false } },
+    ]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+    await loadMemory('mst_1');
+    await loadSkills();
+    await loadRoutines('mst_1');
+    expect(calls[0]!.url).toContain('/v1/mascots/mst_1/memory?tier=profile');
+    expect(calls[2]!.url).toBe('https://api.cortex.foundation/v1/skills');
+    expect(calls[3]!.url).toContain('/v1/mascots/mst_1/routines');
+    expect(panelState()).toBe('ready');
+  });
+
+  it('does not invent rows when the Grok routes are missing', async () => {
+    const missing = { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } };
+    const { fetch } = stubFetch([missing, missing]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+    await loadMemory('mst_1');
+    expect(panelState()).toBe('too-old');
   });
 });

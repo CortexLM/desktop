@@ -10,6 +10,7 @@ import {
   submitBotSecret,
 } from '../state/bot-actions.ts';
 import { createMascot, loadError, loadState, mascots, reconcileMascots } from '../state/bots.ts';
+import { teachFromVideo } from '../state/bot-grok-store.ts';
 import {
   fsEntries,
   loadFs,
@@ -156,7 +157,18 @@ export function BotMessagesRoute(): JSX.Element {
 
 export function BotVideosRoute(): JSX.Element {
   const navigate = useNavigate();
-  return <BotVideosScreen mascot={useBotMascot()()} onBack={() => navigate('/bot')} onGo={(path) => navigate(path)} />;
+  const mascot = useBotMascot();
+  return (
+    <BotVideosScreen
+      mascot={mascot()}
+      onTeach={(videoId) => {
+        const current = mascot();
+        if (current) void teachFromVideo(current.id, videoId);
+      }}
+      onBack={() => navigate('/bot')}
+      onGo={(path) => navigate(path)}
+    />
+  );
 }
 
 export function BotSettingsRoute(): JSX.Element {

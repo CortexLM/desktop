@@ -1,5 +1,7 @@
 import { For, type JSX, Show } from 'solid-js';
 
+import { Button } from '@cortex-ide/ui';
+
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
 import { AskCard, SecretCard, SendToUserBubble, UserBubble, WorkRail } from './conversation-widgets.tsx';
@@ -251,6 +253,9 @@ export function BotVideosScreen(props: {
                         <div class="cx-product-row__title">{video.title}</div>
                         <p class="cx-product-row__meta">{video.kind}</p>
                       </div>
+                      <Button variant="secondary" onClick={() => props.onTeach?.(video.id)}>
+                        Teach skill
+                      </Button>
                     </div>
                   )}
                 </For>

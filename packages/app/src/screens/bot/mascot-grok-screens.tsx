@@ -203,6 +203,11 @@ export function BotGroupsScreen(props: {
   inbox: readonly ApiBotInboxItem[];
   state: GrokPanelState;
   error: string;
+  toId: string;
+  note: string;
+  onToId: (value: string) => void;
+  onNote: (value: string) => void;
+  onHandoff: () => void;
   onBack: () => void;
   onGo: (path: string) => void;
 }): JSX.Element {
@@ -214,32 +219,73 @@ export function BotGroupsScreen(props: {
           <PageBody width="list">
             <MascotRail links={mascotLinks(mascot().id, 'groups', props.onGo)} />
             <PanelState state={props.state} error={props.error} surface="Groups" />
-            <Show when={props.state === 'ready' && props.groups.length === 0 && props.inbox.length === 0}>
-              <HonestState kind="empty" title="No groups" body="No channels or inbox items on the server." />
-            </Show>
-            <For each={props.groups}>
-              {(group) => (
-                <div class="cx-product-row">
-                  <div>
-                    <div class="cx-product-row__title">{group.name ?? group.title ?? group.id}</div>
-                    <p class="cx-product-row__meta">{group.kind ?? 'group'}</p>
-                  </div>
-                </div>
-              )}
-            </For>
-            <For each={props.inbox}>
-              {(item) => (
-                <div class="cx-product-row">
-                  <div>
-                    <div class="cx-product-row__title">{item.kind ?? 'inbox'}</div>
-                    <p class="cx-product-row__meta">{item.message ?? ''}</p>
-                  </div>
-                </div>
-              )}
-            </For>
+            <HandoffForm toId={props.toId} note={props.note} onToId={props.onToId} onNote={props.onNote} onHandoff={props.onHandoff} />
+            <GroupLists groups={props.groups} inbox={props.inbox} state={props.state} />
           </PageBody>
         </>
       )}
     </Show>
+  );
+}
+
+function HandoffForm(props: {
+  toId: string;
+  note: string;
+  onToId: (value: string) => void;
+  onNote: (value: string) => void;
+  onHandoff: () => void;
+}): JSX.Element {
+  return (
+    <>
+      <input
+        class="cx-product-row"
+        value={props.toId}
+        onInput={(event) => props.onToId(event.currentTarget.value)}
+        placeholder="Handoff to mascot id"
+      />
+      <input
+        class="cx-product-row"
+        value={props.note}
+        onInput={(event) => props.onNote(event.currentTarget.value)}
+        placeholder="Optional note"
+      />
+      <Button variant="primary" onClick={() => props.onHandoff()}>
+        Handoff
+      </Button>
+    </>
+  );
+}
+
+function GroupLists(props: {
+  groups: readonly ApiBotGroup[];
+  inbox: readonly ApiBotInboxItem[];
+  state: GrokPanelState;
+}): JSX.Element {
+  return (
+    <>
+      <Show when={props.state === 'ready' && props.groups.length === 0 && props.inbox.length === 0}>
+        <HonestState kind="empty" title="No groups" body="No channels or inbox items on the server." />
+      </Show>
+      <For each={props.groups}>
+        {(group) => (
+          <div class="cx-product-row">
+            <div>
+              <div class="cx-product-row__title">{group.name ?? group.title ?? group.id}</div>
+              <p class="cx-product-row__meta">{group.kind ?? 'group'}</p>
+            </div>
+          </div>
+        )}
+      </For>
+      <For each={props.inbox}>
+        {(item) => (
+          <div class="cx-product-row">
+            <div>
+              <div class="cx-product-row__title">{item.kind ?? 'inbox'}</div>
+              <p class="cx-product-row__meta">{item.message ?? ''}</p>
+            </div>
+          </div>
+        )}
+      </For>
+    </>
   );
 }

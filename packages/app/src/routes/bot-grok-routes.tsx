@@ -5,6 +5,7 @@ import {
   addRoutine,
   forgetFact,
   groups,
+  handoffTo,
   inbox,
   loadGroups,
   loadMemory,
@@ -110,6 +111,8 @@ export function BotRoutinesRoute(): JSX.Element {
 export function BotGroupsRoute(): JSX.Element {
   const navigate = useNavigate();
   const mascot = useBotMascot();
+  const [toId, setToId] = createSignal('');
+  const [note, setNote] = createSignal('');
   createEffect(() => {
     const current = mascot();
     if (current) void loadGroups(current.id);
@@ -121,6 +124,19 @@ export function BotGroupsRoute(): JSX.Element {
       inbox={inbox()}
       state={panelState()}
       error={panelError()}
+      toId={toId()}
+      note={note()}
+      onToId={setToId}
+      onNote={setNote}
+      onHandoff={() => {
+        const current = mascot();
+        if (current && toId().trim()) {
+          void handoffTo(current.id, toId().trim(), note().trim() || undefined).then(() => {
+            setToId('');
+            setNote('');
+          });
+        }
+      }}
       onBack={() => navigate('/bot')}
       onGo={(path) => navigate(path)}
     />

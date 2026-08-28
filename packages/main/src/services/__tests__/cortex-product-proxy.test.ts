@@ -69,7 +69,7 @@ describe('client exchange', () => {
       new Response(JSON.stringify({ code: 'not_found', title: 'Not found' }), {
         status: 404,
         headers: { 'content-type': 'application/json' },
-      })) as typeof fetch;
+      })) as unknown as typeof fetch;
     const client = new CortexApiClient({ fetch: fetchImpl });
     const response = await client.exchange('/v1/mascots');
     expect(response.status).toBe(404);
