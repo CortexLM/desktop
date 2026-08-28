@@ -242,9 +242,12 @@ export class UpdateManager {
   }
 
   private sendToRenderer(channel: string, data?: unknown): void {
-    if (this.mainWindow && !this.mainWindow.isDestroyed()) {
-      this.mainWindow.webContents.send(channel, data);
+    if (!this.mainWindow || this.mainWindow.isDestroyed()) return;
+    if (data === undefined) {
+      this.mainWindow.webContents.send(channel);
+      return;
     }
+    this.mainWindow.webContents.send(channel, data);
   }
 
   destroy(): void {
