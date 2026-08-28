@@ -36,10 +36,11 @@ only behind `CORTEX_ALLOW_TEST_DOUBLES=1` (set in Vitest configs).
 | `detachedSettingsHost` / `detachedSecretsHost` / `detachedAutomationHost` | honest empty | matching `*-host.ts` | Same |
 | `@cortex-ide/test-utils` IPC/FS/AI mocks | test harness | `packages/test-utils` | No — benches and integration suites only |
 
-Local `localStorage` stores (Planning seed, library, plugins, inbox, bot
-mascots) are UI caches. They do not invent a running farm or Code session.
-Waking a Bot computer still goes through `createVncTicket` (hash only); a 404
-is wake-failed.
+Local `localStorage` stores (Planning seed, library, inbox) are UI caches.
+Bot mascots, messages, computer lifecycle, videos, and plugin connections
+are API-backed. The mascot list cache must reconcile on open. A 404 on a
+Grok-core route is “backend too old”, not a local stand-in. A 503 on
+plugins is “Composio is not configured”. See [bot-grok-core.md](./bot-grok-core.md).
 
 ## Product locks
 

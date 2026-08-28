@@ -9,19 +9,25 @@
 import { z } from 'zod';
 
 import { listEnvelopeSchema } from './product-schemas.ts';
+import {
+  mascotListSchema,
+  mascotRowSchema,
+  mascotVideoListSchema,
+  mascotVideoSchema,
+  type ApiMascot,
+  type ApiMascotVideo,
+} from './bot-schemas.ts';
+import { pluginListSchema, pluginRowSchema, type ApiPlugin } from './bot-grok-schemas.ts';
 
-export const mascotRowSchema = z
-  .object({
-    id: z.string(),
-    name: z.string().optional(),
-    shape: z.string().optional(),
-    color: z.string().optional(),
-    computer_id: z.string().optional(),
-  })
-  .passthrough();
-
-export type ApiMascot = z.infer<typeof mascotRowSchema>;
-export const mascotListSchema = listEnvelopeSchema(mascotRowSchema);
+export {
+  mascotListSchema,
+  mascotRowSchema,
+  mascotVideoListSchema,
+  mascotVideoSchema,
+  pluginListSchema,
+  pluginRowSchema,
+};
+export type { ApiMascot, ApiMascotVideo, ApiPlugin };
 
 export const codeHostRowSchema = z
   .object({
@@ -71,17 +77,6 @@ export const libraryItemRowSchema = z
 export type ApiLibraryItem = z.infer<typeof libraryItemRowSchema>;
 export const libraryItemListSchema = listEnvelopeSchema(libraryItemRowSchema);
 
-export const pluginRowSchema = z
-  .object({
-    id: z.string(),
-    name: z.string().optional(),
-    installed: z.boolean().optional(),
-  })
-  .passthrough();
-
-export type ApiPlugin = z.infer<typeof pluginRowSchema>;
-export const pluginListSchema = listEnvelopeSchema(pluginRowSchema);
-
 export const notificationRowSchema = z
   .object({
     id: z.string(),
@@ -118,17 +113,6 @@ export const vncTicketSchema = z.object({
 });
 
 export type VncTicket = z.infer<typeof vncTicketSchema>;
-
-export const mascotVideoSchema = z
-  .object({
-    id: z.string(),
-    title: z.string().optional(),
-    created_at: z.string().optional(),
-  })
-  .passthrough();
-
-export type ApiMascotVideo = z.infer<typeof mascotVideoSchema>;
-export const mascotVideoListSchema = listEnvelopeSchema(mascotVideoSchema);
 
 export const scheduledResultSchema = z
   .object({

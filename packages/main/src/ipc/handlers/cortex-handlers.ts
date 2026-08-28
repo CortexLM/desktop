@@ -26,9 +26,12 @@ import type {
   CortexAccountState,
   CortexDeviceStartResponse,
   CortexListModelsResponse,
+  CortexProductRequest,
+  CortexProductResponse,
 } from '@cortex-ide/shared';
 
 import { getCortexAccountService } from '../../services/cortex-account-service';
+import { proxyProductRequest } from '../../services/cortex-product-proxy';
 import { createHandler } from './shared/handler-factory';
 
 export const CORTEX_CHANNELS = [
@@ -41,6 +44,7 @@ export const CORTEX_CHANNELS = [
   IPC_CHANNELS.CORTEX_LIST_API_KEYS,
   IPC_CHANNELS.CORTEX_CREATE_API_KEY,
   IPC_CHANNELS.CORTEX_REVOKE_API_KEY,
+  IPC_CHANNELS.CORTEX_PRODUCT_REQUEST,
 ] as const;
 
 /**
@@ -105,6 +109,17 @@ export const handleSignOut = createHandler<Record<string, never>, CortexAccountS
   async () => getCortexAccountService().signOut(),
 );
 
+const ProductRequestSchema = z.object({
+  method: z.enum(['GET', 'POST', 'PUT', 'DELETE', 'PATCH']),
+  path: z.string().min(1).max(512),
+  body: z.unknown().optional(),
+});
+
+export const handleProductRequest = createHandler<CortexProductRequest, CortexProductResponse>(
+  ProductRequestSchema,
+  (request) => proxyProductRequest(request),
+);
+
 function broadcast(channel: string, payload: unknown): void {
   for (const window of BrowserWindow.getAllWindows()) {
     if (!window.isDestroyed()) window.webContents.send(channel, payload);
@@ -145,6 +160,7 @@ export function registerCortexHandlers(): void {
   ipcMain.handle(IPC_CHANNELS.CORTEX_LIST_API_KEYS, handleListApiKeys);
   ipcMain.handle(IPC_CHANNELS.CORTEX_CREATE_API_KEY, handleCreateApiKey);
   ipcMain.handle(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, handleRevokeApiKey);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST, handleProductRequest);
 
   eventCleanup?.();
   eventCleanup = setupCortexEvents();

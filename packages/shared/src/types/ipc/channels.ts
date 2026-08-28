@@ -114,6 +114,8 @@ export const IPC_CHANNELS = {
   CORTEX_LIST_API_KEYS: 'cortex:list-api-keys',
   CORTEX_CREATE_API_KEY: 'cortex:create-api-key',
   CORTEX_REVOKE_API_KEY: 'cortex:revoke-api-key',
+  // Product HTTP proxy. Path-allowlisted. Tokens stay in main.
+  CORTEX_PRODUCT_REQUEST: 'cortex:product-request',
 
   // Sessions (« runs ») — cf. `types/ipc/session.ts`.
   //

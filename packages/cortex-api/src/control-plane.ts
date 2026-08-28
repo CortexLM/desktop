@@ -8,11 +8,10 @@
 
 import type { CortexApiClient } from './client.ts';
 import { unknownSchema } from './schemas.ts';
+import { createMascot as createMascotHttp, deleteMascot as deleteMascotHttp } from './bot-mascots.ts';
+import { createVncTicket as createVncTicketHttp, listMascotVideos as listVideosHttp } from './bot-computer.ts';
 import {
   hostPairingSchema,
-  mascotRowSchema,
-  mascotVideoListSchema,
-  vncTicketSchema,
   type ApiMascot,
   type ApiMascotVideo,
   type HostPairing,
@@ -57,44 +56,31 @@ export function createMascot(
   body: { name: string; shape?: string; color?: string },
   signal?: AbortSignal,
 ): Promise<ApiMascot> {
-  return client.request('/v1/mascots', mascotRowSchema, { method: 'POST', body, signal });
+  return createMascotHttp(client, body, signal);
 }
 
-export async function deleteMascot(
+export function deleteMascot(
   client: CortexApiClient,
   mascotId: string,
   signal?: AbortSignal,
 ): Promise<void> {
-  await client.request(`/v1/mascots/${encodeURIComponent(mascotId)}`, unknownSchema, {
-    method: 'DELETE',
-    signal,
-  });
+  return deleteMascotHttp(client, mascotId, signal);
 }
 
-export async function createVncTicket(
+export function createVncTicket(
   client: CortexApiClient,
   mascotId: string,
   signal?: AbortSignal,
 ): Promise<VncTicket> {
-  const raw = await client.request(
-    `/v1/mascots/${encodeURIComponent(mascotId)}/computer/vnc-ticket`,
-    vncTicketSchema,
-    { method: 'POST', body: {}, signal },
-  );
-  return { ticket_hash: raw.ticket_hash };
+  return createVncTicketHttp(client, mascotId, signal);
 }
 
-export async function listMascotVideos(
+export function listMascotVideos(
   client: CortexApiClient,
   mascotId: string,
   signal?: AbortSignal,
 ): Promise<ApiMascotVideo[]> {
-  const list = await client.request(
-    `/v1/mascots/${encodeURIComponent(mascotId)}/videos`,
-    mascotVideoListSchema,
-    { signal },
-  );
-  return list.items;
+  return listVideosHttp(client, mascotId, signal);
 }
 
 export async function markNotificationRead(
