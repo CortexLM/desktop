@@ -142,6 +142,9 @@ export const IPC_CHANNELS = {
   WINDOW_CLOSE: 'window:close',
   WINDOW_IS_MAXIMIZED: 'window:is-maximized',
 
+  // OS / web notification banners. Bodies are titles, not repo dumps.
+  NOTIFY_SHOW: 'notify:show',
+
   // Chat conversations
   CHAT_LIST: 'chat:list',
   CHAT_GET: 'chat:get',

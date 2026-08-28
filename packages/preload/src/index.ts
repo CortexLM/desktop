@@ -92,6 +92,8 @@ import type {
   ChatProgressEvent,
   IsWindowMaximizedResponse,
   WindowMaximizedEvent,
+  NotifyShowRequest,
+  NotifyShowResponse,
   GetConversationRequest,
   GetConversationResponse,
   ListConversationsResponse,
@@ -290,6 +292,10 @@ export interface CortexAPI {
     close: () => Promise<IPCResponse<{ closed: true }>>;
     isMaximized: () => Promise<IPCResponse<IsWindowMaximizedResponse>>;
     onMaximizedChange: (callback: (event: WindowMaximizedEvent) => void) => () => void;
+  };
+
+  notify: {
+    show: (request: NotifyShowRequest) => Promise<IPCResponse<NotifyShowResponse>>;
   };
 
   /**
@@ -609,6 +615,10 @@ const cortexAPI: CortexAPI = {
     onMaximizedChange: createEventListener<WindowMaximizedEvent>(
       IPC_CHANNELS.EVENT_WINDOW_MAXIMIZED,
     ),
+  },
+
+  notify: {
+    show: (request) => ipcRenderer.invoke(IPC_CHANNELS.NOTIFY_SHOW, request),
   },
 
   chat: {

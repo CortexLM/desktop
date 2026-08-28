@@ -6,6 +6,8 @@ import type { Capabilities, RuntimeKind } from '@cortex-ide/cortex-api';
 import { PageBody } from '../../shell/app-shell.tsx';
 import { Checklist, type ChecklistStep } from './checklist.tsx';
 import { RecentSessions, type RecentSessionRow } from './recent-sessions.tsx';
+import { HarnessBanner } from '../code/harness-banner.tsx';
+import type { HarnessStatus } from '../../state/harness.ts';
 
 import './home.css';
 
@@ -44,6 +46,9 @@ export interface HomeScreenProps {
   onPickRuntime?: () => void;
   onAttach?: () => void;
   onDictate?: () => void;
+  harness?: HarnessStatus;
+  remoteHost?: string;
+  onRemoteHostChange?: (value: string) => void;
 }
 
 const RUNTIME_LABELS: Record<RuntimeKind, string> = {
@@ -130,6 +135,10 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
     <PageBody width="centred">
       <div class="cx-home">
         <h1 class="cx-home__greeting">{props.greeting}</h1>
+
+        <Show when={props.harness}>
+          {(status) => <HarnessBanner status={status()} remoteHost={props.remoteHost} onRemoteHostChange={props.onRemoteHostChange} />}
+        </Show>
 
         <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
 

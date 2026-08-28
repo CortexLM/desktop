@@ -29,6 +29,7 @@ import {
   unregisterConversationHandlers,
 } from './conversation-handlers';
 import { registerWindowHandlers, unregisterWindowHandlers } from './window-handlers';
+import { registerNotifyHandlers, unregisterNotifyHandlers } from './notify-handlers';
 import { registerSecretsHandlers, unregisterSecretsHandlers } from './secrets-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
@@ -114,6 +115,11 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
     name: 'window',
     register: registerWindowHandlers,
     unregister: unregisterWindowHandlers,
+  },
+  {
+    name: 'notify',
+    register: registerNotifyHandlers,
+    unregister: unregisterNotifyHandlers,
   },
   {
     name: 'session',

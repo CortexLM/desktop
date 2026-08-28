@@ -89,12 +89,22 @@ describe('App', () => {
     });
   });
 
-  it('defaults the draft runtime to one the user can actually reach', async () => {
-    // Signed out there is only Local. A draft pointing at Cloud would fail on send.
+  it('does not offer a local harness on the web', async () => {
+    // jsdom is a browser surface. The Code harness never runs in the tab.
     render(() => <App initialPath="/code" />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: /Local/ })).toBeInTheDocument();
+      expect(screen.getByText(/Cloud only/)).toBeInTheDocument();
+    });
+    expect(screen.queryByRole('button', { name: /Local/ })).toBeNull();
+  });
+
+  it('offers Bot as a first-class product', async () => {
+    render(() => <App initialPath="/bot" />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByRole('heading', { name: 'Bot' })).toBeInTheDocument();
     });
   });
 

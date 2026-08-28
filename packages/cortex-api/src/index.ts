@@ -38,13 +38,23 @@ export {
   AUTHENTICATED_CAPABILITIES,
   canUseRuntime,
   capabilitiesFor,
+  capabilitiesOn,
+  runtimesOn,
   modelAvailability,
   modelLabel,
+  type AppSurface,
   type Capabilities,
   type ModelAvailability,
   type ModelLockReason,
   type RuntimeKind,
 } from './capabilities.ts';
+
+export {
+  PROVIDER_CATALOG,
+  providerById,
+  type CatalogAuthKind,
+  type ProviderCatalogEntry,
+} from './provider-catalog.ts';
 
 export type {
   ChatCompletion,

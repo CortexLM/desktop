@@ -58,10 +58,26 @@ test.describe('the app Electron loads', () => {
     await expect(page.getByRole('navigation')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Bot', exact: true })).toBeVisible();
 
     // The Code product keeps the five workspace destinations.
     await openCode(page);
     await expect(page.getByRole('button', { name: 'Sessions' })).toBeVisible();
+  });
+
+  test('opens Bot and Planning as real pages', async ({ page }) => {
+    await page.evaluate(() => {
+      window.location.hash = '#/bot';
+    });
+    await expect(page.getByRole('heading', { name: 'Bot' })).toBeVisible();
+    await expect(page.getByText(/dedicated computer/i)).toBeVisible();
+
+    await page.evaluate(() => {
+      window.location.hash = '#/planning';
+    });
+    await expect(page.getByRole('heading', { name: 'Planning' })).toBeVisible();
+    await expect(page.getByText("Today's notes")).toBeVisible();
+    await expect(page.getByText('Subnet 100 news')).toBeVisible();
   });
 
   test('is usable with no account at all', async ({ page }) => {

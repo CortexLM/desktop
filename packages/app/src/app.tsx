@@ -3,8 +3,6 @@ import {
   createMemoryHistory,
   HashRouter,
   MemoryRouter,
-  Navigate,
-  Route,
   useLocation,
   useNavigate,
   type RouteSectionProps,
@@ -19,29 +17,10 @@ import { AppShell } from './shell/app-shell.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
-import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
+import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
 import { formatAge } from './state/session-view.ts';
 import type { ConversationSummary, SessionSummary } from '@cortex-ide/shared';
-import {
-  AutomationsRoute,
-  ChatHomeRoute,
-  ConversationRoute,
-  NewAutomationRoute,
-  ConnectGitHubRoute,
-  DeviceCodeRoute,
-  HomeRoute,
-  IntegrationsRoute,
-  NotificationsRoute,
-  ReviewRoute,
-  SecretsRoute,
-  SessionDetailRoute,
-  SessionsRoute,
-  SettingsRoute,
-  SignInRoute,
-  SshConnectRoute,
-  UsageRoute,
-  WorkspaceSetupRoute,
-} from './route-components.tsx';
+import { appRoutes } from './route-tree.tsx';
 
 import '@cortex-ide/ui/styles.css';
 
@@ -188,7 +167,7 @@ function Workspace(props: { children: JSX.Element }): JSX.Element {
       sidebar={
         <Sidebar
           product={product()}
-          onSwitchProduct={(next) => navigate(next === 'chat' ? '/' : '/code')}
+          onSwitchProduct={(next) => navigate(productHome(next))}
           capabilities={account.capabilities()}
           activeSlug={activeSlug()}
           recentRuns={recentRuns()}
@@ -202,6 +181,7 @@ function Workspace(props: { children: JSX.Element }): JSX.Element {
           onOpenChat={(id) => navigate(`/chat/${id}`)}
           onNewChat={() => navigate('/')}
           onNewSession={() => navigate('/code')}
+          onNewMascot={() => navigate('/bot/new')}
           onOpenSearch={() => openOverlay('palette')}
           onOpenAccount={() => navigate('/code/settings')}
           onSignIn={() => navigate('/sign-in')}
@@ -234,42 +214,7 @@ export interface AppProps {
   initialPath?: string;
 }
 
-/** The route tree, shared by both router flavours. */
-function routes(): JSX.Element {
-  return (
-    <>
-      {/* Chat product */}
-      <Route path="/" component={ChatHomeRoute} />
-      <Route path="/chat/:conversationId" component={ConversationRoute} />
-
-      {/* Code product */}
-      <Route path="/code" component={HomeRoute} />
-      <Route path="/code/sessions" component={SessionsRoute} />
-      <Route path="/code/sessions/:sessionId" component={SessionDetailRoute} />
-      <Route path="/code/sessions/:sessionId/focus" component={SessionDetailRoute} />
-      <Route path="/code/automations" component={AutomationsRoute} />
-      <Route path="/code/automations/new" component={NewAutomationRoute} />
-      <Route path="/code/review" component={ReviewRoute} />
-      <Route path="/code/usage" component={UsageRoute} />
-      <Route path="/code/settings" component={SettingsRoute} />
-      <Route path="/code/settings/integrations" component={IntegrationsRoute} />
-      <Route path="/code/secrets" component={SecretsRoute} />
-      <Route path="/code/notifications" component={NotificationsRoute} />
-      <Route path="/code/runtimes/ssh" component={SshConnectRoute} />
-
-      {/* Account and onboarding, shared by both products */}
-      <Route path="/sign-in" component={SignInRoute} />
-      <Route path="/sign-in/device" component={DeviceCodeRoute} />
-      <Route path="/sign-in/github" component={ConnectGitHubRoute} />
-      <Route path="/sign-in/workspace" component={WorkspaceSetupRoute} />
-      <Route path="/onboarding" component={ConnectGitHubRoute} />
-
-      {/* An unknown path lands on the Chat home rather than a blank pane: a route that
-          resolves to nothing looks like a crash. */}
-      <Route path="*" component={() => <Navigate href="/" />} />
-    </>
-  );
-}
+/** The route tree lives in `route-tree.tsx` so this file stays inside the line budget. */
 
 /**
  * An in-memory history seeded to a starting path.
@@ -321,10 +266,10 @@ export function App(props: AppProps): JSX.Element {
           reload alike. A hash keeps the whole route in the fragment, which never reaches the
           filesystem. It also means the preview server needs no SPA fallback.
         */}
-        <Show when={props.initialPath} fallback={<HashRouter root={root}>{routes()}</HashRouter>}>
+        <Show when={props.initialPath} fallback={<HashRouter root={root}>{appRoutes()}</HashRouter>}>
           {(initialPath) => (
             <MemoryRouter root={root} history={seededHistory(initialPath())}>
-              {routes()}
+              {appRoutes()}
             </MemoryRouter>
           )}
         </Show>
