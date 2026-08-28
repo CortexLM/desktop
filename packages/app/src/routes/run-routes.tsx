@@ -10,6 +10,7 @@
 import { createMemo, createSignal, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
+import type { RuntimeKind } from '@cortex-ide/cortex-api';
 import type { SessionSummary } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -29,6 +30,7 @@ import {
 } from '../screens/session/session-detail-screen.tsx';
 import { createSessionDetail } from '../screens/session/session-detail-state.ts';
 import { ShellView } from '../screens/session/shell-view.tsx';
+import { harnessStatus, remoteHost, setRemoteHost } from '../state/harness.ts';
 
 /**
  * Starts a run from the current draft.
@@ -168,36 +170,25 @@ function codeGreeting(displayName?: string): string {
     : 'What should we build?';
 }
 
+function correctDraftRuntime(allowed: readonly RuntimeKind[]): void {
+  if (!allowed.includes(composerDraft().runtime)) {
+    setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'cloud' }));
+  }
+}
+
 export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
   const navigate = useNavigate();
 
-  // The draft lives in `state/composer-draft.ts`, not here: a signal owned by this route is
-  // disposed the moment you navigate away, which silently emptied the composer on the way
-  // back. See that module for why it is not persisted to disk either.
-  //
-  // The runtime is still corrected against capabilities on mount rather than defaulting to
-  // Cloud: signed out, a draft pointing at a runtime the user cannot reach would fail on send.
-  onMount(() => {
-    const allowed = account.capabilities().runtimes;
-    if (!allowed.includes(composerDraft().runtime)) {
-      setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'local' }));
-    }
-  });
+  onMount(() => correctDraftRuntime(account.capabilities().runtimes));
 
   const [startError, setStartError] = createSignal<string>();
   const start = createStartRun(runs, navigate, setStartError);
-
   const recent = createMemo(() =>
-    (runs.sessions() ?? [])
-      .filter((session) => !session.archived)
-      .slice(0, 5)
-      .map((session) => toRecentRow(session)),
+    (runs.sessions() ?? []).filter((session) => !session.archived).slice(0, 5).map(toRecentRow),
   );
-
   const repositoryNames = createMemo(() => (runs.repositories() ?? []).map((repo) => repo.id));
-
   const checklist = createMemo(() =>
     buildChecklist({
       hasRepository: repositoryNames().length > 0,
@@ -208,8 +199,13 @@ export function HomeRoute(): JSX.Element {
       openSettings: () => navigate('/code/settings'),
     }),
   );
-
   const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/code/settings')));
+  const harness = createMemo(() =>
+    harnessStatus({
+      authenticated: account.capabilities().authenticated,
+      cloudSession: (runs.sessions() ?? []).some((session) => session.status === 'running'),
+    }),
+  );
 
   return (
     <HomeScreen
@@ -224,6 +220,9 @@ export function HomeRoute(): JSX.Element {
       onPickModel={() => navigate('/code/settings')}
       onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
+      harness={harness()}
+      remoteHost={remoteHost()}
+      onRemoteHostChange={setRemoteHost}
       {...(checklist() ? { checklist: checklist()! } : {})}
       {...(limit() ? { limit: limit()! } : {})}
     />

@@ -28,6 +28,7 @@ function renderSidebar(overrides: Partial<SidebarProps> = {}) {
         onOpenChat={vi.fn()}
         onNewChat={vi.fn()}
         onNewSession={vi.fn()}
+        onNewMascot={vi.fn()}
         {...overrides}
         onSwitchProduct={onSwitchProduct}
         onNavigate={onNavigate}
@@ -68,16 +69,19 @@ describe('Sidebar navigation', () => {
 });
 
 describe('Sidebar product switcher', () => {
-  it('offers both products with the Code side active here', () => {
+  it('offers all three products with the Code side active here', () => {
     renderSidebar();
     expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'false');
     expect(screen.getByRole('button', { name: 'Code' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('switches products', () => {
     const { onSwitchProduct } = renderSidebar();
     fireEvent.click(screen.getByRole('button', { name: 'Chat' }));
     expect(onSwitchProduct).toHaveBeenCalledWith('chat');
+    fireEvent.click(screen.getByRole('button', { name: 'Bot' }));
+    expect(onSwitchProduct).toHaveBeenCalledWith('bot');
   });
 
   it('shows the chat sections when the Chat product is active', () => {
@@ -85,11 +89,14 @@ describe('Sidebar product switcher', () => {
 
     expect(screen.getByText('New chat')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
-    // The roadmap apps are locked with an honest reason, not hidden.
-    expect(screen.getByRole('button', { name: 'Research' })).toHaveAttribute(
-      'title',
-      'Research is coming soon',
-    );
+    expect(screen.getByRole('button', { name: 'Planning' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Plugins' })).toBeInTheDocument();
+  });
+
+  it('shows Bot as a first-class product, not a locked card', () => {
+    renderSidebar({ product: 'bot' });
+    expect(screen.getByText('New mascot')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
   });
 });
 

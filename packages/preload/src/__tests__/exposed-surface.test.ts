@@ -157,6 +157,7 @@ const EXPECTED_NAMESPACES = [
   'cortex.session',
   'cortex.chat',
   'cortex.windowControls',
+  'cortex.notify',
   // Provider credentials and run settings. The one namespace that carries a secret
   // across the boundary, and only in the renderer -> main direction.
   'cortex.settings',

@@ -171,6 +171,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'remove', 'session:delete'],
   ['session', 'resolvePermission', 'session:resolve-permission'],
   ['settings', 'setProvider', 'settings:set-provider'],
+  ['notify', 'show', 'notify:show'],
   ['settings', 'setWorkspace', 'settings:set-workspace'],
   ['secrets', 'create', 'secrets:create'],
   ['secrets', 'remove', 'secrets:delete'],

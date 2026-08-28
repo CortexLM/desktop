@@ -1,6 +1,6 @@
 appId: com.cortex.ide
-productName: Cortex IDE
-copyright: Copyright © 2026 Cortex IDE Team
+productName: Cortex
+copyright: Copyright © 2026 Cortex Foundation / CortexLM
 asar: true
 
 directories:
@@ -78,7 +78,7 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: always
   createStartMenuShortcut: true
-  shortcutName: Cortex IDE
+  shortcutName: Cortex
   installerIcon: build/icon.ico
   uninstallerIcon: build/icon.ico
 
@@ -95,10 +95,10 @@ linux:
       arch:
         - x64
         - arm64
-  maintainer: Cortex IDE Team
+  maintainer: Cortex Foundation / CortexLM
   desktop:
-    Name: Cortex IDE
-    Comment: Professional IDE with AI orchestration
+    Name: Cortex
+    Comment: Cortex Chat + Code + Bot
     Terminal: false
     Type: Application
     Categories: Development;IDE;

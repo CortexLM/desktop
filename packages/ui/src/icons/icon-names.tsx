@@ -36,6 +36,11 @@ export const extraGeometry = {
     body: '<circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="__STROKE__" />',
     strokeWidths: ['1.4'],
   },
+  bot: {
+    viewBox: '0 0 16 16',
+    body: '<rect x="3" y="4" width="10" height="9" rx="3" fill="none" stroke="currentColor" stroke-width="__STROKE__" /><circle cx="6.2" cy="8" r="0.9" fill="currentColor" /><circle cx="9.8" cy="8" r="0.9" fill="currentColor" /><path d="M8 2.2v1.8M5.5 12.2c.8.7 2.2.7 3 0" fill="none" stroke="currentColor" stroke-width="__STROKE__" stroke-linecap="round" />',
+    strokeWidths: ['1.5'],
+  },
 } as const;
 
 export type ExtraIconKey = keyof typeof extraGeometry;
@@ -54,6 +59,7 @@ export const icons = {
   // Product switcher
   chat: { key: '9ccc0f89', size: 14, strokeWidth: 1.75 },
   code: { key: '3c665596', size: 14, strokeWidth: 1.75 },
+  bot: { key: 'bot', size: 14, strokeWidth: 1.5 },
 
   // Workspace navigation (Code product sidebar)
   home: { key: '1ad88b3c', size: 16, strokeWidth: 1.75 },

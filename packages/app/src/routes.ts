@@ -1,50 +1,50 @@
 /**
- * The route table, keyed by the Paper screen slug.
+ * The route table, keyed by slug.
  *
- * Every entry's `slug` matches an entry in `design/paper/screens.json`, and the suite
- * checks both directions: a screen in the design with no route here, and a route here with
- * no screen in the design, both fail. That is what stops a screen from being quietly
- * forgotten as the design grows.
+ * `source: 'paper'` slugs must match `design/paper/screens.json`. The suite
+ * checks both directions for those so a Concept 03 screen cannot be forgotten.
  *
- * Concept 03 splits the app into two products behind one shell: Chat owns `/` and the
- * conversation view; Code owns everything under `/code`. The auth screens are drawn on
- * the Code page of the design but serve both products, so their paths stay unprefixed.
- *
- * Not every screen is a destination. Command Palette and the Limits screens are overlays
- * or states layered onto another screen, so they carry no path — they are still listed,
- * because being listed is what makes them accounted for.
+ * `source: 'product'` slugs are Chat / Bot destinations that are not on page
+ * 6-0 yet (Bot lives on Paper page D-0). They are real routes with honest
+ * states; they are not required to have an extracted artboard.
  */
 
-export type ScreenKind =
-  /** Reachable at its own path. */
-  | 'route'
-  /** Layered over whichever screen is beneath it. */
-  | 'overlay'
-  /** A variant of another screen rather than a place of its own. */
-  | 'state';
+export type ScreenKind = 'route' | 'overlay' | 'state';
 
-export type Product = 'chat' | 'code';
+export type Product = 'chat' | 'code' | 'bot';
+
+export type RouteSource = 'paper' | 'product';
 
 export interface ScreenRoute {
-  /** Matches the slug in design/paper/screens.json. */
   slug: string;
   kind: ScreenKind;
-  /** Which product's sidebar frames this screen. */
   product: Product;
-  /** Path, for `kind: 'route'` only. */
+  source?: RouteSource;
   path?: string;
-  /** The screen this one layers over or varies, for overlays and states. */
   host?: string;
-  /** True when the screen needs a Cortex account. */
   requiresAuth?: boolean;
-  /** Window title fragment. */
   title: string;
 }
 
 export const SCREEN_ROUTES: readonly ScreenRoute[] = [
-  // ── Chat ──────────────────────────────────────────────────────────────────
+  // ── Chat (Paper + product) ───────────────────────────────────────────────
   { slug: 'home', kind: 'route', product: 'chat', path: '/', title: 'Cortex' },
   { slug: 'conversation', kind: 'route', product: 'chat', path: '/chat/:conversationId', title: 'Chat' },
+  { slug: 'research', kind: 'route', product: 'chat', source: 'product', path: '/research', title: 'Research' },
+  { slug: 'planning', kind: 'route', product: 'chat', source: 'product', path: '/planning', title: 'Planning' },
+  { slug: 'projects', kind: 'route', product: 'chat', source: 'product', path: '/projects', title: 'Projects' },
+  { slug: 'project', kind: 'route', product: 'chat', source: 'product', path: '/projects/:projectId', title: 'Project' },
+  {
+    slug: 'project-sources',
+    kind: 'route',
+    product: 'chat',
+    source: 'product',
+    path: '/projects/:projectId/sources',
+    title: 'Sources',
+  },
+  { slug: 'library', kind: 'route', product: 'chat', source: 'product', path: '/library', title: 'Library' },
+  { slug: 'plugins', kind: 'route', product: 'chat', source: 'product', path: '/plugins', title: 'Plugins' },
+  { slug: 'chat-settings', kind: 'route', product: 'chat', source: 'product', path: '/settings', title: 'Settings' },
 
   // ── Code: primary destinations, in sidebar order ─────────────────────────
   { slug: 'code-home', kind: 'route', product: 'code', path: '/code', title: 'Code' },
@@ -68,7 +68,16 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   { slug: 'code-new-automation', kind: 'route', product: 'code', path: '/code/automations/new', requiresAuth: true, title: 'New automation' },
   { slug: 'code-ssh-connect', kind: 'route', product: 'code', path: '/code/runtimes/ssh', requiresAuth: true, title: 'Connect a server' },
 
-  // ── Onboarding and account (drawn on the Code page; serve both products) ──
+  // ── Bot (Paper page D-0; not on the Concept 03 manifest yet) ─────────────
+  { slug: 'bot-home', kind: 'route', product: 'bot', source: 'product', path: '/bot', title: 'Bot' },
+  { slug: 'bot-create', kind: 'route', product: 'bot', source: 'product', path: '/bot/new', title: 'New mascot' },
+  { slug: 'bot-conversation', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId', title: 'Mascot' },
+  { slug: 'bot-messages', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/messages', title: 'Messages' },
+  { slug: 'bot-videos', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/videos', title: 'Videos' },
+  { slug: 'bot-computer', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/computer', title: 'Computer' },
+  { slug: 'bot-settings', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/settings', title: 'Mascot settings' },
+
+  // ── Onboarding and account ────────────────────────────────────────────────
   { slug: 'code-onboarding', kind: 'route', product: 'code', path: '/onboarding', title: 'Get started' },
   { slug: 'code-auth-sign-in', kind: 'route', product: 'code', path: '/sign-in', title: 'Sign in' },
   { slug: 'code-auth-device-code', kind: 'route', product: 'code', path: '/sign-in/device', title: 'Sign in' },
@@ -82,7 +91,10 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   { slug: 'code-limits-upgrade-modal', kind: 'overlay', product: 'code', host: 'code-usage', title: 'Upgrade' },
 ] as const;
 
-/** Screens that have their own path. */
+export function paperRoutes(): readonly ScreenRoute[] {
+  return SCREEN_ROUTES.filter((route) => route.source !== 'product');
+}
+
 export function navigableRoutes(): readonly ScreenRoute[] {
   return SCREEN_ROUTES.filter((route) => route.kind === 'route');
 }
@@ -91,7 +103,15 @@ export function routeBySlug(slug: string): ScreenRoute | undefined {
   return SCREEN_ROUTES.find((route) => route.slug === slug);
 }
 
-/** Which product's shell frames a pathname. `/code…` is Code; everything else chats. */
+export function productHome(product: Product): string {
+  if (product === 'code') return '/code';
+  if (product === 'bot') return '/bot';
+  return '/';
+}
+
+/** Which product's shell frames a pathname. */
 export function productForPath(pathname: string): Product {
-  return pathname === '/code' || pathname.startsWith('/code/') ? 'code' : 'chat';
+  if (pathname === '/code' || pathname.startsWith('/code/')) return 'code';
+  if (pathname === '/bot' || pathname.startsWith('/bot/')) return 'bot';
+  return 'chat';
 }

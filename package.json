@@ -2,9 +2,17 @@
   "name": "cortex-ide",
   "version": "0.1.0",
   "private": true,
-  "description": "IDE professionnel Electron avec orchestration d'agents IA multi-providers",
-  "author": "Cortex IDE Team",
-  "license": "MIT",
+  "description": "Cortex — Chat, Code, and Bot. One Electron + web app.",
+  "author": "Cortex Foundation / CortexLM",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CortexLM/agent-coding.git"
+  },
+  "homepage": "https://github.com/CortexLM/agent-coding",
+  "bugs": {
+    "url": "https://github.com/CortexLM/agent-coding/issues"
+  },
   "type": "module",
   "main": "packages/main/dist/index.js",
   "workspaces": [

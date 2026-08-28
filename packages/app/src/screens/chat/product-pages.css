@@ -1,0 +1,98 @@
+.cx-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cx-product-row,
+.cx-plugin-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cx-product-row:hover,
+.cx-plugin-card:hover {
+  background: var(--color-hover);
+}
+
+.cx-product-row__title,
+.cx-plugin-card__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.cx-product-row__meta,
+.cx-plugin-card__summary {
+  margin: 2px 0 0;
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+.cx-product-row__action {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.cx-mascot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.cx-mascot-swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.cx-mascot-swatch--round { border-radius: 50%; }
+.cx-mascot-swatch--square { border-radius: 8px; }
+.cx-mascot-swatch--tall { width: 36px; height: 56px; border-radius: 18px; }
+.cx-mascot-swatch--wide { width: 56px; height: 36px; border-radius: 18px; }
+.cx-mascot-swatch--green { background: #1f4945; }
+.cx-mascot-swatch--terracotta { background: #b4622d; }
+.cx-mascot-swatch--ink { background: #211f1c; }
+
+.cx-harness {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.cx-harness--failed-wake,
+.cx-harness--permission-blocked {
+  border-color: var(--color-error);
+  color: var(--color-text);
+}
+
+.cx-vnc {
+  min-height: 280px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: #1a1815;
+  color: #faf8f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}

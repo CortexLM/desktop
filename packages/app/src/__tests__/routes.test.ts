@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { navigableRoutes, routeBySlug, SCREEN_ROUTES } from '../routes.ts';
+import { navigableRoutes, paperRoutes, routeBySlug, SCREEN_ROUTES } from '../routes.ts';
 
 /**
  * Ties the route table to the design.
@@ -21,26 +21,35 @@ const manifest = JSON.parse(
 };
 
 const designSlugs = manifest.screens.map((screen) => screen.slug).sort();
+const paperSlugs = paperRoutes().map((route) => route.slug).sort();
 const routedSlugs = SCREEN_ROUTES.map((route) => route.slug).sort();
 
 describe('route table against the Paper manifest', () => {
   it('covers every screen in the design', () => {
-    const missing = designSlugs.filter((slug) => !routedSlugs.includes(slug));
+    const missing = designSlugs.filter((slug) => !paperSlugs.includes(slug));
     expect(missing, `screens in the design with no route: ${missing.join(', ')}`).toEqual([]);
   });
 
-  it('has no route for a screen the design does not contain', () => {
-    const orphaned = routedSlugs.filter((slug) => !designSlugs.includes(slug));
-    expect(orphaned, `routes with no screen: ${orphaned.join(', ')}`).toEqual([]);
+  it('has no Paper route for a screen the design does not contain', () => {
+    const orphaned = paperSlugs.filter((slug) => !designSlugs.includes(slug));
+    expect(orphaned, `Paper routes with no screen: ${orphaned.join(', ')}`).toEqual([]);
   });
 
-  it('covers all 27 screens', () => {
+  it('covers all 27 Paper screens', () => {
     expect(designSlugs).toHaveLength(27);
-    expect(routedSlugs).toHaveLength(27);
+    expect(paperSlugs).toHaveLength(27);
   });
 
   it('lists each slug exactly once', () => {
     expect(new Set(routedSlugs).size).toBe(routedSlugs.length);
+  });
+
+  it('keeps Chat and Bot product destinations out of the Paper manifest check', () => {
+    expect(SCREEN_ROUTES.some((route) => route.source === 'product' && route.product === 'bot')).toBe(
+      true,
+    );
+    expect(routeBySlug('planning')?.path).toBe('/planning');
+    expect(routeBySlug('bot-home')?.path).toBe('/bot');
   });
 });
 
@@ -94,6 +103,13 @@ describe('route shape', () => {
     expect(routeBySlug('home')?.product).toBe('chat');
   });
 
+  it('keeps every Bot screen under the /bot prefix', () => {
+    for (const route of navigableRoutes()) {
+      if (route.product !== 'bot' || !route.path) continue;
+      expect(route.path, route.slug).toMatch(/^\/bot(\/|$)/);
+    }
+  });
+
   it('keeps every Code screen under the /code prefix', () => {
     for (const route of navigableRoutes()) {
       if (route.product !== 'code' || !route.path) continue;
@@ -109,7 +125,19 @@ describe('authentication gating', () => {
   it('leaves the surfaces that work signed out ungated', () => {
     // Anonymous use is a product requirement: local sessions with the user's own provider
     // keys have to work with no account at all.
-    for (const slug of ['home', 'conversation', 'code-home', 'code-sessions', 'code-session-detail', 'code-settings', 'code-secrets']) {
+    for (const slug of [
+      'home',
+      'conversation',
+      'planning',
+      'projects',
+      'plugins',
+      'bot-home',
+      'code-home',
+      'code-sessions',
+      'code-session-detail',
+      'code-settings',
+      'code-secrets',
+    ]) {
       expect(routeBySlug(slug)?.requiresAuth, slug).toBeFalsy();
     }
   });

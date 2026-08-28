@@ -63,6 +63,23 @@ export function capabilitiesFor(authenticated: boolean): Capabilities {
   return authenticated ? AUTHENTICATED_CAPABILITIES : ANONYMOUS_CAPABILITIES;
 }
 
+/**
+ * Where the UI is running. The browser never offers `local`: the Code harness
+ * cannot execute in a tab. Desktop may.
+ */
+export type AppSurface = 'electron' | 'browser';
+
+export function runtimesOn(surface: AppSurface, authenticated: boolean): readonly RuntimeKind[] {
+  if (surface === 'browser') return authenticated ? ['cloud', 'ssh'] : [];
+  return authenticated ? AUTHENTICATED_CAPABILITIES.runtimes : ANONYMOUS_CAPABILITIES.runtimes;
+}
+
+/** Capabilities with the runtime list corrected for web vs desktop. */
+export function capabilitiesOn(surface: AppSurface, authenticated: boolean): Capabilities {
+  const base = capabilitiesFor(authenticated);
+  return { ...base, runtimes: runtimesOn(surface, authenticated) };
+}
+
 /** Why a model cannot be selected, or `null` when it can. */
 export type ModelLockReason = 'requires-account' | 'requires-upgrade' | 'unavailable';
 
