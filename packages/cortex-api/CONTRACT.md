@@ -213,3 +213,60 @@ Previously `{ "object": "list", "data": [{ "id": … }] }`. `modelListSchema`
 accepts both envelopes and normalises `slug` onto `id`, so consumers (the model
 picker, capabilities) are unaffected. Verified against the live service through
 `CortexApiClient.listModels()`.
+
+## Addendum — guest, conversations, realtime (observed 2026-08-28)
+
+`CortexLM/backend` is still not visible to this token. Parallel PRs (realtime
+socket, Bot mascots, Chat Planning/Projects) are not on the public deployment
+yet. What follows was probed with a **guest session** created by the live
+service — no API keys were invented or stored.
+
+### Guest auth (observed)
+
+`POST /v1/auth/guest` → `200 {"kind":"guest","user_id":"usr_…"}` and
+`Set-Cookie: cortex_gt=<token>; HttpOnly; SameSite=Lax; Secure; Domain=cortex.foundation`.
+
+`GET /v1/me` with that cookie →
+
+```json
+{ "email": "", "display_name": "Guest", "plan_slug": "guest", "is_guest": true,
+  "quotas": [{ "key": "quick_messages_per_day", "used": 0, "limit": 100,
+    "resets_at": "2026-08-29T00:00:00+00:00" }] }
+```
+
+`POST /v1/auth/logout` → `204`.
+`GET /v1/auth/login` → `307` to WorkOS AuthKit (`redirect_uri=…/v1/auth/callback`).
+
+The cookie name for guests is `cortex_gt`, not `wos-session`. The client sends
+whichever it has; it still never uses `Authorization: Bearer`.
+
+### Conversations (observed)
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| GET | `/v1/conversations` | `{ items: [{ id, title, last_message_at, model_slug, message_count }], has_more }` |
+| POST | `/v1/conversations/turns` | Body `{ message }`. **Creates** a thread. SSE. |
+| POST | `/v1/conversations/:id/turns` | Follow-up. `id` is `cnv_` + ULID. SSE. |
+| GET | `/v1/conversations/:id/messages` | `{ items: [{ id, role, text, created_at, model_name }], has_more }` |
+| DELETE | `/v1/conversations/:id` | Allowed. GET on the conversation itself is `405`. |
+
+SSE events (verbatim types): `disclosure`, `reasoning_delta`, `reasoning_done`,
+`text_delta`, `usage`, `done`. Headers: `x-conversation-id`, `x-message-id`.
+`last-event-id` is accepted on CORS preflight.
+
+### Projects (observed)
+
+`GET /v1/projects` → `{ items, has_more }` (empty for a guest).
+`POST /v1/projects` requires `{ name }`. Guests receive `403 entitlement_required`
+(`required_plan: "free"`). That is a real gate, not a missing route.
+
+### Not landed (typed + mocked)
+
+`GET/WS /v1/realtime` → `404`. Bot (`/v1/mascots`, `/v1/bots`, `/v1/computers`),
+Planning, Library, Plugins, Code hosts, and `/v1/notifications` likewise `404`.
+`packages/cortex-api` exposes a typed WebSocket client and an in-process mock
+behind the same `RealtimeClient` interface. Chat prefers the socket when it is
+connected and falls back to the HTTP turn stream above. Web Code still never
+runs the harness in the renderer.
+
+`/health` and `GET /v1/providers` now `404`. `/v1/models` remains public.

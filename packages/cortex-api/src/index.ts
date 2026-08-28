@@ -8,11 +8,47 @@
 export {
   CORTEX_API_BASE_URL,
   CortexApiClient,
+  GUEST_COOKIE_NAME,
   SESSION_COOKIE_NAME,
   type CortexApiClientOptions,
   type CortexCredentials,
   type RequestOptions,
 } from './client.ts';
+
+export { guestTokenFromSetCookie } from './cookies.ts';
+
+export {
+  createProject,
+  deleteConversation,
+  listConversationMessages,
+  listConversations,
+  listProjects,
+  startGuestSession,
+  streamConversationTurn,
+  type StreamTurnRequest,
+} from './product.ts';
+
+export type {
+  ApiConversation,
+  ApiConversationMessage,
+  ApiProject,
+  GuestSession,
+  Quota,
+  TurnEvent,
+} from './product-schemas.ts';
+
+export {
+  createMockRealtime,
+  createRealtimeSocket,
+  createStreamTransport,
+  eventFromTurnFrame,
+  REALTIME_PATH,
+  realtimeUrl,
+  type RealtimeClient,
+  type RealtimeEvent,
+  type RealtimeStatus,
+  type StreamTransport,
+} from './realtime/index.ts';
 
 export {
   authorizeDevice,

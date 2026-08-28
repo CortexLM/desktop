@@ -32,13 +32,17 @@ describe('CortexApiClient configuration', () => {
     expect(client.isAuthenticated).toBe(true);
 
     client.clearCredentials();
+    client.setCredentials({ guestToken: 'guest-test-token' });
+    expect(client.isAuthenticated).toBe(true);
+
+    client.clearCredentials();
     expect(client.isAuthenticated).toBe(false);
   });
 
   it('points the redirect sign-in path at the service, not at WorkOS', () => {
     // The service's 307 carries the WorkOS client id and redirect uri, so the desktop app
     // must never build a WorkOS url itself.
-    expect(new CortexApiClient().loginUrl).toBe('https://api.cortex.foundation/auth/login');
+    expect(new CortexApiClient().loginUrl).toBe('https://api.cortex.foundation/v1/auth/login');
   });
 });
 
@@ -227,7 +231,7 @@ describe('error discrimination', () => {
     const error = (await client.currentUser().catch((caught: unknown) => caught)) as CortexApiError;
 
     expect(error.requestId).toBe('req-test-0001');
-    expect(error.route).toBe('GET /auth/me');
+    expect(error.route).toBe('GET /v1/me');
     expect(String(error)).toContain('req-test-0001');
   });
 

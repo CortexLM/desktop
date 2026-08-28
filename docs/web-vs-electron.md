@@ -49,7 +49,17 @@ VITE_DEV_SERVER_URL=http://localhost:5173 bun run start
 ## Live API
 
 `packages/cortex-api` targets `https://api.cortex.foundation` (override
-with `CORTEX_API_BASE_URL`). The backend implementation lives in
-`CortexLM/backend`. Contributors do not need that clone; the client is
-written against the published `/v1` contract
-([CONTRACT.md](../packages/cortex-api/CONTRACT.md)).
+with `CORTEX_API_BASE_URL` in main, or `VITE_CORTEX_API_BASE_URL` for the
+web renderer). The backend implementation lives in `CortexLM/backend`.
+Contributors do not need that clone.
+
+Streaming order:
+
+1. Authenticated `WS /v1/realtime` — Chat tokens, Code tools/permissions,
+   Bot ask-user, notifications. Not deployed yet; the typed client + mock
+   share one interface.
+2. HTTP fallback — `POST /v1/conversations/turns` (SSE). Observed live.
+3. Desktop IPC — local SQLite + `event:chat-progress` when Electron is present.
+
+Web Code still never runs the harness in the tab. See
+[CONTRACT.md](../packages/cortex-api/CONTRACT.md).

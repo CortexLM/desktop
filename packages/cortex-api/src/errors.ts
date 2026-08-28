@@ -62,7 +62,13 @@ export class CortexApiError extends Error {
 
   /** True when re-authenticating could plausibly fix this. */
   get isAuthFailure(): boolean {
-    return this.status === 401 || this.code === 'AUTH_REQUIRED' || this.code === 'INVALID_SESSION';
+    return (
+      this.status === 401 ||
+      this.code === 'AUTH_REQUIRED' ||
+      this.code === 'INVALID_SESSION' ||
+      this.code === 'unauthenticated' ||
+      this.code === 'invalid_credential'
+    );
   }
 
   /** True when the caller is not entitled to the resource; signing in again will not help. */

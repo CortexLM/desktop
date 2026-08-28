@@ -13,6 +13,7 @@ import {
 import type { ChatMode, ConversationDetail, ConversationSummary } from '@cortex-ide/shared';
 
 import { resolveChatHost, type ChatHost } from './chat-host.ts';
+import { bootLiveRealtime } from './realtime-session.ts';
 
 /**
  * The conversation list the Chat product reads from.
@@ -137,6 +138,7 @@ export function ConversationsProvider(props: ConversationsProviderProps): JSX.El
 
   onMount(() => {
     const detach = host.onProgress((event) => applyProgress(state, event, refresh));
+    void bootLiveRealtime();
     onCleanup(detach);
   });
 

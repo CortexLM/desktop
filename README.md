@@ -109,7 +109,7 @@ Details are in [AGENTS.md](./AGENTS.md).
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [docs/chat.md](./docs/chat.md) · [docs/code.md](./docs/code.md) · [docs/bot.md](./docs/bot.md)
 - [docs/notifications.md](./docs/notifications.md) · [docs/harness.md](./docs/harness.md)
-- [docs/web-vs-electron.md](./docs/web-vs-electron.md)
+- [docs/web-vs-electron.md](./docs/web-vs-electron.md) · [docs/realtime.md](./docs/realtime.md)
 - [packages/cortex-api/CONTRACT.md](./packages/cortex-api/CONTRACT.md) — live API contract
 
 ## License

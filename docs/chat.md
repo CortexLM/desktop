@@ -56,9 +56,11 @@ Every Chat destination handles:
 
 ## Persistence
 
-Conversations: SQLite + `chat:*` IPC on desktop; detached host on web (the
-composer still starts a thread in memory / local store and says when the
-desktop host is missing).
+Conversations: SQLite + `chat:*` IPC on desktop. On a `cortex.foundation`
+origin (or `VITE_CORTEX_API_BASE_URL`) the web host talks to the live API:
+guest session via `POST /v1/auth/guest`, turns via `/v1/realtime` when that
+socket is up, otherwise `POST /v1/conversations/turns` (SSE). Localhost and
+tests stay detached so they do not open a production guest session.
 
 Planning, projects, library, plugin install flags: renderer store +
 `localStorage`, shared by web and desktop, so the pages are real before a
