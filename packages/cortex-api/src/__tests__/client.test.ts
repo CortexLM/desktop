@@ -32,13 +32,17 @@ describe('CortexApiClient configuration', () => {
     expect(client.isAuthenticated).toBe(true);
 
     client.clearCredentials();
+    client.setCredentials({ guestToken: 'guest-test-token' });
+    expect(client.isAuthenticated).toBe(true);
+
+    client.clearCredentials();
     expect(client.isAuthenticated).toBe(false);
   });
 
   it('points the redirect sign-in path at the service, not at WorkOS', () => {
     // The service's 307 carries the WorkOS client id and redirect uri, so the desktop app
     // must never build a WorkOS url itself.
-    expect(new CortexApiClient().loginUrl).toBe('https://api.cortex.foundation/auth/login');
+    expect(new CortexApiClient().loginUrl).toBe('https://api.cortex.foundation/v1/auth/login');
   });
 });
 
@@ -113,6 +117,42 @@ describe('public routes', () => {
 
     expect(calls[0]!.url).toBe('https://api.cortex.foundation/v1/models');
     expect(models.map((model) => model.id)).toEqual(['cortex-codex', 'cortex-opus']);
+  });
+
+  it('unwraps the v1 items envelope and keys models by slug', async () => {
+    // The deployed v1 answers { items: [{ slug, … }], has_more } — observed live on
+    // 2026-08-26. Both the envelope and the key are normalised so consumers only
+    // ever see `data` rows with an `id`.
+    const { fetch } = stubFetch([
+      {
+        body: {
+          items: [
+            {
+              slug: 'cortex-1-mini',
+              display_name: 'Cortex 1 Mini',
+              description: 'Preview — the model Cortex is serving today.',
+              context_tokens: 262144,
+              max_output_tokens: 32768,
+              supports_reasoning: true,
+              supports_tools: true,
+              supports_vision: false,
+              is_preview: true,
+            },
+          ],
+          has_more: false,
+        },
+      },
+    ]);
+
+    const models = await new CortexApiClient({ fetch }).listModels();
+
+    expect(models).toHaveLength(1);
+    expect(models[0]).toMatchObject({
+      id: 'cortex-1-mini',
+      display_name: 'Cortex 1 Mini',
+      is_preview: true,
+      supports_tools: true,
+    });
   });
 
   it('keeps credit multipliers as strings', async () => {
@@ -191,7 +231,7 @@ describe('error discrimination', () => {
     const error = (await client.currentUser().catch((caught: unknown) => caught)) as CortexApiError;
 
     expect(error.requestId).toBe('req-test-0001');
-    expect(error.route).toBe('GET /auth/me');
+    expect(error.route).toBe('GET /v1/me');
     expect(String(error)).toContain('req-test-0001');
   });
 
@@ -214,6 +254,30 @@ describe('error discrimination', () => {
 
     expect(error.code).toBe('SCHEMA_MISMATCH');
     expect(error.message).toContain('data');
+  });
+
+  it('surfaces problem+json code and detail instead of "unrecognised error body"', async () => {
+    // The v1 service answers RFC 7807 for routing-level failures — including
+    // "No such endpoint" after the /auth/* contract moved (observed live).
+    const { fetch } = stubFetch([
+      {
+        status: 404,
+        body: {
+          type: 'about:blank',
+          title: 'Not Found',
+          status: 404,
+          detail: 'No such endpoint. See https://docs.cortex.foundation/api.',
+          code: 'not_found',
+        },
+      },
+    ]);
+    const client = new CortexApiClient({ fetch });
+
+    const error = (await client.currentUser().catch((caught: unknown) => caught)) as CortexApiError;
+
+    expect(error).toBeInstanceOf(CortexApiError);
+    expect(error.code).toBe('not_found');
+    expect(error.message).toContain('No such endpoint');
   });
 
   it('reports a non-JSON error body without throwing on the parse', async () => {

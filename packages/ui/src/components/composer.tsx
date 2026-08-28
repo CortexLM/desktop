@@ -33,8 +33,13 @@ export interface ComposerProps extends Omit<JSX.HTMLAttributes<HTMLFormElement>,
   attachments?: readonly ComposerAttachment[];
   onRemoveAttachment?: (id: string) => void;
   controls?: readonly ComposerControl[];
+  /** Product-specific controls after the attach button, e.g. the chat mode segmented. */
+  leading?: JSX.Element;
   onAttach?: () => void;
   onDictate?: () => void;
+  /** The bare-text model picker on the right, e.g. "Cortex 2 · Thinking High". */
+  modelLabel?: string;
+  onPickModel?: () => void;
   /** Blocks submission, e.g. while a session is starting or a quota is exhausted. */
   disabled?: boolean;
   /** Announced reason the composer cannot submit, e.g. a reached limit. */
@@ -66,29 +71,9 @@ function AttachmentRow(props: AttachmentRowProps): JSX.Element {
   );
 }
 
-interface ComposerActionProps {
-  label: string;
-  icon: 'attach' | 'mic';
-  disabled?: boolean;
-  onPress: () => void;
-}
-
-function ComposerAction(props: ComposerActionProps): JSX.Element {
-  return (
-    <button
-      type="button"
-      class="cx-composer__action"
-      aria-label={props.label}
-      disabled={props.disabled}
-      onClick={() => props.onPress()}
-    >
-      <Icon name={props.icon} size={15} />
-    </button>
-  );
-}
-
 interface ControlRowProps {
   controls?: readonly ComposerControl[];
+  leading?: JSX.Element;
   disabled?: boolean;
   /**
    * An accessor rather than a boolean. Passing the resolved value would depend on the JSX
@@ -97,13 +82,75 @@ interface ControlRowProps {
    */
   canSend: () => boolean;
   sendLabel: string;
+  modelLabel?: string;
+  onPickModel?: () => void;
   onAttach?: () => void;
   onDictate?: () => void;
+}
+
+/** The right side of the toolbar: model picker, mic, and the green send. */
+function TrailingActions(props: ControlRowProps): JSX.Element {
+  return (
+    <>
+      <Show when={props.modelLabel}>
+        {(model) => (
+          <button
+            type="button"
+            class="cx-composer__model"
+            disabled={props.disabled || !props.onPickModel}
+            onClick={() => props.onPickModel?.()}
+          >
+            {model()}
+            <Icon name="chevronDownBold" size={14} strokeWidth={1.75} />
+          </button>
+        )}
+      </Show>
+
+      <Show when={props.onDictate}>
+        {(dictate) => (
+          <button
+            type="button"
+            class="cx-composer__action"
+            aria-label="Dictate"
+            disabled={props.disabled}
+            onClick={() => dictate()()}
+          >
+            <Icon name="mic" size={16} strokeWidth={1.75} />
+          </button>
+        )}
+      </Show>
+
+      <button
+        type="submit"
+        class="cx-composer__send"
+        aria-label={props.sendLabel}
+        disabled={!props.canSend()}
+      >
+        <Icon name="send" size={16} strokeWidth={1.75} />
+      </button>
+    </>
+  );
 }
 
 function ControlRow(props: ControlRowProps): JSX.Element {
   return (
     <div class="cx-composer__controls">
+      <Show when={props.onAttach}>
+        {(attach) => (
+          <button
+            type="button"
+            class="cx-composer__attach"
+            aria-label="Attach"
+            disabled={props.disabled}
+            onClick={() => attach()()}
+          >
+            <Icon name="plus" size={16} strokeWidth={1.75} />
+          </button>
+        )}
+      </Show>
+
+      {props.leading}
+
       <For each={props.controls}>
         {(control) => (
           <Chip
@@ -119,35 +166,7 @@ function ControlRow(props: ControlRowProps): JSX.Element {
 
       <span class="cx-composer__spacer" />
 
-      <Show when={props.onAttach}>
-        {(attach) => (
-          <ComposerAction
-            label="Attach"
-            icon="attach"
-            disabled={props.disabled}
-            onPress={() => attach()()}
-          />
-        )}
-      </Show>
-      <Show when={props.onDictate}>
-        {(dictate) => (
-          <ComposerAction
-            label="Dictate"
-            icon="mic"
-            disabled={props.disabled}
-            onPress={() => dictate()()}
-          />
-        )}
-      </Show>
-
-      <button
-        type="submit"
-        class="cx-composer__send"
-        aria-label={props.sendLabel}
-        disabled={!props.canSend()}
-      >
-        <Icon name="send" size={13} strokeWidth={1.6} />
-      </button>
+      <TrailingActions {...props} />
     </div>
   );
 }
@@ -166,8 +185,11 @@ const OWNED_PROPS = [
   'attachments',
   'onRemoveAttachment',
   'controls',
+  'leading',
   'onAttach',
   'onDictate',
+  'modelLabel',
+  'onPickModel',
   'disabled',
   'disabledReason',
   'sendLabel',
@@ -260,14 +282,7 @@ export function Composer(props: ComposerProps): JSX.Element {
         />
       </Show>
 
-      <ControlRow
-        controls={local.controls}
-        disabled={local.disabled}
-        canSend={canSend}
-        sendLabel={local.sendLabel ?? 'Start session'}
-        onAttach={local.onAttach}
-        onDictate={local.onDictate}
-      />
+      <ControlRow {...local} canSend={canSend} sendLabel={local.sendLabel ?? 'Start session'} />
 
       <Show when={local.disabledReason}>
         {(reason) => (

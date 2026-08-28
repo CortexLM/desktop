@@ -89,7 +89,11 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       return;
     }
 
-    messages.push({ role: 'assistant', content });
+    // `toolCalls` rides along so the next completion request replays the calls
+    // natively. Flattened away, the model has no memory of having called the
+    // tool and calls it again — observed as the same Create repeated until the
+    // iteration cap.
+    messages.push({ role: 'assistant', content, toolCalls: calls });
 
     const writePaths = new Set<string>();
     const skipped = new Set<string>();
@@ -98,7 +102,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       if (writePath) {
         if (writePaths.has(writePath)) {
           const denied = `Never edit one file from two calls at once: ${writePath}`;
-          messages.push({ role: 'tool', name: call.name, content: denied });
+          messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
           yield {
             type: 'tool_end',
             id: call.id,
@@ -127,7 +131,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         (MUTATE_TOOLS.has(call.name) || definition?.risk !== 'safe');
       if (specLocked) {
         const denied = `Plan/ask mode forbids ${call.name}`;
-        messages.push({ role: 'tool', name: call.name, content: denied });
+        messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
         yield {
           type: 'tool_end',
           id: call.id,
@@ -142,7 +146,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       if (call.name === 'AskUser') {
         if ((options.delegationDepth ?? 0) > 0) {
           const denied = 'Children must not AskUser. Return a self-contained report.';
-          messages.push({ role: 'tool', name: call.name, content: denied });
+          messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
           yield {
             type: 'tool_end',
             id: call.id,
@@ -166,7 +170,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         const answer = options.questions
           ? await options.questions.ask(call.id, prompt, choices)
           : '';
-        messages.push({ role: 'tool', name: 'AskUser', content: answer || '(no answer)' });
+        messages.push({ role: 'tool', name: 'AskUser', content: answer || '(no answer)', toolCallId: call.id });
         yield {
           type: 'tool_end',
           id: call.id,
@@ -180,7 +184,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
 
       if (call.name === 'Task' && (options.delegationDepth ?? 0) > 0) {
         const denied = 'No nested Task.';
-        messages.push({ role: 'tool', name: call.name, content: denied });
+        messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
         yield {
           type: 'tool_end',
           id: call.id,
@@ -195,7 +199,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       if (call.name === 'ExitSpecMode') {
         if (hasUnresolvedOptions(call.arguments)) {
           const denied = 'Do not ExitSpecMode with unresolved Option A/B. Use AskUser first.';
-          messages.push({ role: 'tool', name: call.name, content: denied });
+          messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
           yield {
             type: 'tool_end',
             id: call.id,
@@ -208,7 +212,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         }
         const plan = planFromExit(call.arguments);
         yield { type: 'plan', plan };
-        messages.push({ role: 'tool', name: call.name, content: JSON.stringify(plan) });
+        messages.push({ role: 'tool', name: call.name, content: JSON.stringify(plan), toolCallId: call.id });
         options.onMessages?.(messages);
         yield { type: 'done', finishReason: 'plan' };
         return;
@@ -218,7 +222,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         const command = String(call.arguments.command ?? '');
         if (!autonomyAllowsExecute(options.autonomy ?? 'medium', command)) {
           const denied = `Execute blocked by autonomy=${options.autonomy ?? 'medium'} or the blocklist.`;
-          messages.push({ role: 'tool', name: call.name, content: denied });
+          messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
           yield {
             type: 'tool_end',
             id: call.id,
@@ -245,7 +249,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
       const decision = await options.permissions.decide(request);
       if (decision === 'deny') {
         const denied = `Permission denied for ${call.name}`;
-        messages.push({ role: 'tool', name: call.name, content: denied });
+        messages.push({ role: 'tool', name: call.name, content: denied, toolCallId: call.id });
         yield {
           type: 'tool_end',
           id: call.id,
@@ -274,6 +278,7 @@ export async function* runAgentTurn(options: RunAgentTurnOptions): AsyncGenerato
         role: 'tool',
         name: call.name,
         content: output,
+        toolCallId: call.id,
       });
 
       yield {

@@ -31,6 +31,9 @@ export type { NavItemProps } from './components/nav-item.tsx';
 export { SessionCard } from './components/session-card.tsx';
 export type { DiffStat, SessionCardProps } from './components/session-card.tsx';
 
+export { Segmented } from './components/segmented.tsx';
+export type { SegmentedOption, SegmentedProps } from './components/segmented.tsx';
+
 export { TabPanel, Tabs } from './components/tabs.tsx';
 export type { TabDefinition, TabPanelProps, TabsProps } from './components/tabs.tsx';
 

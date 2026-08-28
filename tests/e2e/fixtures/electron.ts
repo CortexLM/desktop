@@ -1,7 +1,10 @@
 import { test as base, _electron as electron, ElectronApplication, Page } from '@playwright/test';
+import { createRequire } from 'node:module';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'path';
+
+const require = createRequire(import.meta.url);
 
 /**
  * Electron fixture for launching Cortex Code.
@@ -52,8 +55,10 @@ export const test = base.extend<ElectronFixtures>({
   },
 
   electronApp: async ({ userDataDir }, use) => {
-    // Path to the built Electron main process
-    const electronPath = join(process.cwd(), 'node_modules', '.bin', 'electron');
+    // The real Electron binary, not `node_modules/.bin/electron` (a Node
+    // wrapper). Playwright talks to Chromium over a debug pipe; launching the
+    // wrapper is the hang that looks like a 60s `electronApp` timeout.
+    const electronPath = require('electron') as string;
     const mainPath = join(process.cwd(), 'packages', 'main', 'dist', 'index.js');
 
     // Chromium refuses to start as root unless the sandbox is disabled:
@@ -63,6 +68,9 @@ export const test = base.extend<ElectronFixtures>({
     // in the app itself. Real users keep their sandbox.
     const runningAsRoot = typeof process.getuid === 'function' && process.getuid() === 0;
     // Headless Cloud VMs need this even when not root (no user namespace).
+    const needsSandboxOff = Boolean(
+      process.env.CI || runningAsRoot || process.env.DISPLAY,
+    );
 
     // `--user-data-dir` is what makes this launch's state private. Verified by
     // probe rather than assumed: with the flag, `app.getPath('userData')`
@@ -73,7 +81,8 @@ export const test = base.extend<ElectronFixtures>({
     // argument as the app path and passes everything after it to the app.
     const launchArgs = [
       `--user-data-dir=${userDataDir}`,
-      ...(runningAsRoot || process.env.DISPLAY ? ['--no-sandbox'] : []),
+      ...(needsSandboxOff ? ['--no-sandbox'] : []),
+      ...(process.env.CI ? ['--disable-gpu', '--disable-dev-shm-usage'] : []),
       mainPath,
     ];
 

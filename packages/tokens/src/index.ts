@@ -23,9 +23,10 @@ export {
 export { layout, layoutCssVariables, type Layout, type LayoutCssVariable } from './layout.ts';
 
 export {
-  semanticProvenance,
+  semanticAliases,
   semanticTokens,
   semanticValues,
+  type SemanticAlias,
   type SemanticToken,
 } from './semantic.ts';
 

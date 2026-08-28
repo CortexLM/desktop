@@ -6,6 +6,8 @@ import {
   AUTHENTICATED_CAPABILITIES,
   canUseRuntime,
   capabilitiesFor,
+  capabilitiesOn,
+  runtimesOn,
   modelAvailability,
   modelLabel,
 } from '../capabilities.ts';
@@ -48,6 +50,18 @@ describe('anonymous capabilities', () => {
     expect(canUseRuntime('cloud', ANONYMOUS_CAPABILITIES)).toBe(false);
     expect(canUseRuntime('ssh', ANONYMOUS_CAPABILITIES)).toBe(false);
     expect(canUseRuntime('cloud', AUTHENTICATED_CAPABILITIES)).toBe(true);
+  });
+});
+
+describe('surface runtimes', () => {
+  it('never offers local in the browser', () => {
+    expect(runtimesOn('browser', false)).toEqual([]);
+    expect(runtimesOn('browser', true)).toEqual(['cloud', 'ssh']);
+  });
+
+  it('keeps local on desktop signed out', () => {
+    expect(runtimesOn('electron', false)).toEqual(['local']);
+    expect(capabilitiesOn('electron', false).runtimes).toEqual(['local']);
   });
 });
 

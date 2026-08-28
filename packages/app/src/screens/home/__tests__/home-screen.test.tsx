@@ -51,6 +51,7 @@ function renderHome(overrides: Partial<HomeScreenProps> = {}) {
   const result = render(() => (
     <HomeScreen
       capabilities={ANONYMOUS_CAPABILITIES}
+      greeting="What should we build?"
       recentSessions={ROWS}
       {...rest}
       draft={draft()}
@@ -236,10 +237,12 @@ describe('Home recent sessions', () => {
     expect(screen.getByText('\u221242')).toBeInTheDocument();
   });
 
-  it('shows a leading dot only on the statuses describing something in motion', () => {
-    // Running and Error are live; PR ready is a settled outcome.
+  it('tones each status dot: copper for live, error for failed', () => {
+    // C3 gives every status a dot in its own hue: Running is the copper accent,
+    // Error the oxblood, and settled outcomes the brand green.
     const { container } = renderHome();
-    expect(container.querySelectorAll('.cx-recent__dot')).toHaveLength(2);
+    expect(container.querySelectorAll('.cx-recent__status--accent')).toHaveLength(1);
+    expect(container.querySelectorAll('.cx-recent__status--error')).toHaveLength(1);
   });
 
   it('opens a session by id', () => {

@@ -8,11 +8,176 @@
 export {
   CORTEX_API_BASE_URL,
   CortexApiClient,
+  GUEST_COOKIE_NAME,
   SESSION_COOKIE_NAME,
   type CortexApiClientOptions,
   type CortexCredentials,
   type RequestOptions,
 } from './client.ts';
+
+export { guestTokenFromSetCookie } from './cookies.ts';
+
+export {
+  createProject,
+  deleteConversation,
+  listConversationMessages,
+  listConversations,
+  listProjects,
+  startGuestSession,
+  streamConversationTurn,
+  type StreamTurnRequest,
+} from './product.ts';
+
+export type {
+  ApiConversation,
+  ApiConversationMessage,
+  ApiProject,
+  GuestSession,
+  Quota,
+  TurnEvent,
+} from './product-schemas.ts';
+
+export {
+  createMascot,
+  createVncTicket,
+  deleteMascot,
+  heartbeatCodeHost,
+  listMascotVideos,
+  markNotificationRead,
+  pairCodeHost,
+  postScheduledResult,
+} from './control-plane.ts';
+
+export {
+  getMascot,
+  listMascots,
+  listMascotMessages,
+  patchMascot,
+  postAskUser,
+  postMascotMessage,
+  postRespond,
+  postSecret,
+} from './bot-mascots.ts';
+
+export {
+  getComputer,
+  getCursor,
+  getScreenshot,
+  listComputerFs,
+  postComputerInput,
+  postLifecycle,
+  postRecord,
+  postShell,
+  readComputerFile,
+  type ComputerInput,
+  type ComputerInputAction,
+  type LifecycleAction,
+} from './bot-computer.ts';
+
+export {
+  addMemory,
+  createBotTask,
+  createRoutine,
+  createSkill,
+  DEFAULT_ROUTINE_CRON,
+  deleteRoutine,
+  deleteSkill,
+  forgetMemory,
+  getBotTask,
+  getSkill,
+  listBotGroups,
+  listBotInbox,
+  listMemory,
+  listRoutines,
+  listSkills,
+  pauseRoutine,
+  postBotInbox,
+  postHandoff,
+  postTeach,
+  resumeRoutine,
+  runSkill,
+} from './bot-grok.ts';
+
+export {
+  connectPlugin,
+  disconnectPlugin,
+  listPluginConnections,
+  listPlugins,
+} from './bot-plugins.ts';
+
+export {
+  BACKEND_TOO_OLD,
+  backendTooOldCopy,
+  classifyBotError,
+  farmOfflineCopy,
+  isNotFound,
+  isServiceUnavailable,
+  PLUGIN_UNAVAILABLE,
+} from './bot-errors.ts';
+
+export {
+  createHttpProductSurface,
+  type ProductSurface,
+} from './pending.ts';
+
+export type {
+  ApiCodeHost,
+  ApiCodeSession,
+  ApiLibraryItem,
+  ApiMascot,
+  ApiMascotVideo,
+  ApiNotification,
+  ApiPlanningTask,
+  ApiPlugin,
+  HostHeartbeat,
+  HostPairing,
+  ScheduledResult,
+  VncTicket,
+} from './pending-schemas.ts';
+
+export type {
+  ApiBotMessage,
+  ApiComputer,
+  ApiComputerStatus,
+  ApiCursor,
+  ApiFilePreview,
+  ApiFsEntry,
+  ApiScreenshot,
+  ApiShellResult,
+} from './bot-schemas.ts';
+
+export type {
+  ApiBotGroup,
+  ApiBotInboxItem,
+  ApiBotTask,
+  ApiMemoryFact,
+  ApiPluginConnection,
+  ApiRoutine,
+  ApiSkill,
+  ApiSkillRun,
+  MemoryTier,
+} from './bot-grok-schemas.ts';
+
+export {
+  CONNECTION_LOCAL_TYPES,
+  createRealtimeSse,
+  createRealtimeSocket,
+  createStreamTransport,
+  eventFromTurnFrame,
+  isConnectionLocalType,
+  parseRoom,
+  REALTIME_EVENTS_PATH,
+  REALTIME_PATH,
+  realtimeUrl,
+  roomName,
+  type RealtimeClient,
+  type RealtimeEvent,
+  type RealtimeRoom,
+  type RealtimeRoomKind,
+  type RealtimeStatus,
+  type StreamChannel,
+  type StreamTransport,
+} from './realtime/index.ts';
 
 export {
   authorizeDevice,
@@ -38,13 +203,23 @@ export {
   AUTHENTICATED_CAPABILITIES,
   canUseRuntime,
   capabilitiesFor,
+  capabilitiesOn,
+  runtimesOn,
   modelAvailability,
   modelLabel,
+  type AppSurface,
   type Capabilities,
   type ModelAvailability,
   type ModelLockReason,
   type RuntimeKind,
 } from './capabilities.ts';
+
+export {
+  PROVIDER_CATALOG,
+  providerById,
+  type CatalogAuthKind,
+  type ProviderCatalogEntry,
+} from './provider-catalog.ts';
 
 export type {
   ChatCompletion,

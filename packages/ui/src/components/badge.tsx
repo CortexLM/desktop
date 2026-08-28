@@ -7,16 +7,17 @@ export type BadgeTone = 'success' | 'warning' | 'error' | 'neutral' | 'accent';
 /**
  * The session states the design draws a badge for, and the tone each maps to.
  *
- * `merged` is an accent rather than a success on purpose: it describes an outcome that has
- * landed, not a process that is healthy. `draft` is the only neutral - nothing is running
- * and nothing has landed.
+ * Concept 03 paints these straight on the row: running is the copper accent (the
+ * "something is happening" hue), landed states are the brand green, failures the
+ * oxblood error. `draft` is the only neutral — nothing is running and nothing
+ * has landed.
  */
 export const SESSION_STATUS_TONES = {
   'pr-ready': { tone: 'success', label: 'PR ready', dot: true },
-  running: { tone: 'warning', label: 'Running', dot: true },
+  running: { tone: 'accent', label: 'Running', dot: true },
   error: { tone: 'error', label: 'Error', dot: true },
   draft: { tone: 'neutral', label: 'Draft', dot: false },
-  merged: { tone: 'accent', label: 'Merged', dot: false },
+  merged: { tone: 'success', label: 'Merged', dot: false },
 } as const satisfies Record<string, { tone: BadgeTone; label: string; dot: boolean }>;
 
 export type SessionStatus = keyof typeof SESSION_STATUS_TONES;

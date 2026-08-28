@@ -1,107 +1,119 @@
-# Cortex Code
+# Cortex
 
-**A local coding-agent desktop IDE built with Electron, Bun, and React.**
+**Chat. Code. Bot.** One product, two surfaces: a web app and an Electron desktop app.
 
-Cortex Code is a session-first workbench for AI-assisted coding: session list on the left, agent transcript + composer in the center, Git panel on the right.
+Cortex is a local-first workspace for talking to models, running a coding agent in your repos, and giving each mascot its own computer. The same SolidJS shell runs in the browser and inside Electron. Persistence is an embedded SQLite database on desktop. There is no required cloud account for Chat or local Code.
 
-## Quick Start
+## The three products
+
+| Product | What it is |
+| --- | --- |
+| **Chat** | General assistant. Home, conversations, scheduled tasks (Planning), projects and sources, library, plugins, settings. |
+| **Code** | Coding-agent workbench. Sessions with a plan, permissions (Allow / Always / Deny), a real terminal, and a changes diff. |
+| **Bot** | Mascots. Each mascot owns exactly one dedicated computer — never a shared VM, disk, VNC session, or recording. |
+
+The product switcher in the sidebar is **Chat | Code | Bot**. Design source of truth is the Paper file *Cortex FF1 v1* (Concept 03 for Chat + Code; page D-0 for Bot).
+
+## Web vs desktop
+
+The UI is one shell (`packages/app`). What differs is where work *runs*.
+
+- **Desktop (Electron)** may run the Code harness on this machine: filesystem, `node-pty` terminal, Git, and the agent loop live in the main process.
+- **Web** never runs that harness in the browser. Code is Cloud-only, or it talks to a PC / server that already runs Cortex Code. See [docs/web-vs-electron.md](./docs/web-vs-electron.md) and [docs/harness.md](./docs/harness.md).
+
+Provider API keys entered in Settings are stored in the OS keychain on desktop. They are never written to the renderer, logs, or this repository. `.env.example` is example-only.
+
+## Quick start
 
 ```bash
-# Install dependencies
+# Install dependencies (Bun)
 bun install
 
-# Build native modules for Electron (if not already built)
+# Native addons for Electron (if node_modules was wiped)
 bun run build:native-dual-abi
 
-# Build all packages
+# Build main, preload, app, test-harness
 bun run build
 
-# Start the application
+# Desktop
 bun run start
 
-# Or in development mode (with watch)
-bun run dev
+# Web preview of the same UI (no local harness)
+bun run --filter @cortex-ide/app preview
 ```
 
-For headless/CI environments:
+Headless / CI desktop:
+
 ```bash
 DISPLAY=:1 ./node_modules/.bin/electron packages/main/dist/index.js --no-sandbox
 ```
 
-## What It Does
-
-- **Coding-agent loop** — tool-using turns (read, edit, write, grep, glob, bash, git) with permissions and checkpoints
-- **Session workbench** — chat with the agent, see tool calls, approve file changes
-- **Git integration** — status, stage, commit, sync, stash
-- **MCP extensions** — discover, install, and invoke Model Context Protocol servers
-- **Missions** — multi-step workflows with state machine (planning → running → paused → completed)
-- **Provider support** — OpenAI, Anthropic, Grok, Ollama, OpenRouter
-- **Local-first** — embedded SQLite database, no external services required
-
-## What It Does Not Do
-
-- **Inline autocomplete** — use your code editor for that
-- **In-app benchmarks UI** — the benchmark harness is CLI-only (`packages/test-harness`)
-- **Silent dangerous tools** — file writes and shell commands require explicit approval
+Optional: configure **Ollama** (`http://127.0.0.1:11434`) or a provider key in **Settings → Providers**. Empty keys surface a provider error; they do not hang the composer.
 
 ## Architecture
 
 ```
-cortex-ide/
-├── packages/
-│   ├── main/           # Electron main process
-│   ├── renderer/       # React frontend
-│   ├── preload/        # Secure bridge to main
-│   ├── shared/         # Types, schemas, constants
-│   ├── ai-engine/      # Agent runtime, providers, tools
-│   └── test-harness/   # CLI benchmark framework
-├── tests/              # E2E tests (Playwright)
-└── scripts/            # Build helpers
+packages/
+  app/            SolidJS UI — Chat, Code, Bot (web + Electron)
+  main/           Electron main: SQLite, IPC, agent loop, local harness
+  preload/        Typed bridge. Allowlisted channels only.
+  shared/         Types, Zod schemas, IPC channel names
+  ai-engine/      Providers, tools, chunking
+  cortex-api/     Client for the live Cortex API (CortexLM/backend)
+  tokens/         Concept 03 palette and fonts
+  ui/             Design-system components
+  test-harness/   CLI benches (`cortex-test`) — not an in-app screen
 ```
+
+Start with [ARCHITECTURE.md](./ARCHITECTURE.md). Product docs live under [`docs/`](./docs/).
 
 ## Stack
 
-| Layer | Technologies |
-|-------|-------------|
-| Frontend | React 18, TypeScript, TanStack Query, Zustand, Radix UI, Tailwind CSS |
-| Backend | Electron 32, Better-SQLite3, Node-pty, Simple-git |
-| AI | Multi-provider registry, streaming, semantic chunking |
-| Build | Vite, electron-builder, Bun |
+| Layer | Choice |
+| --- | --- |
+| UI | SolidJS, `@solidjs/router` (HashRouter), `@cortex-ide/ui` |
+| Desktop | Electron 32, better-sqlite3, node-pty |
+| AI | Multi-provider registry (OpenAI, Anthropic, Grok, Ollama, OpenRouter, Cortex) |
+| Package manager | Bun |
 
 ## Development
 
 ```bash
-bun run dev          # Watch mode
-bun run build        # Production build
-bun run start        # Launch Electron
-bun run typecheck    # TypeScript check
-bun run test         # Unit tests (Vitest)
-bun run test:e2e     # E2E tests (Playwright)
+bun run dev              # watch main
+bun run build            # production build
+bun run start            # launch Electron
+bun run typecheck
+bun run test             # Vitest
+bun run test:e2e         # Playwright + Electron (needs xvfb in CI)
+npx eslint packages      # lint (root `lint` is a placeholder)
 ```
 
-## Documentation
+See [CONTRIBUTING.md](./CONTRIBUTING.md) and [TESTING.md](./TESTING.md).
 
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — System architecture overview
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — Development guidelines
-- **[TESTING.md](./TESTING.md)** — Test setup and conventions
-- **[AGENTS.md](./AGENTS.md)** — Instructions for AI coding agents
-- **[docs/IPC_ARCHITECTURE.md](./docs/IPC_ARCHITECTURE.md)** — Inter-process communication
+## Native modules
 
-## Native Modules
+`better-sqlite3` and `node-pty` must be built for Electron's ABI (and `better-sqlite3` also for Node, so Vitest can load it):
 
-The app uses native modules that need to be built for Electron's ABI:
-
-- **better-sqlite3** — embedded database
-- **node-pty** — terminal emulation
-
-If tests fail with missing `pty.node`, run:
 ```bash
 bun run build:native-dual-abi
 bun run verify:native-abi
 ```
 
-See [AGENTS.md](./AGENTS.md) for detailed native module build instructions.
+Details are in [AGENTS.md](./AGENTS.md).
+
+## Documentation
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — current system
+- [CONTRIBUTING.md](./CONTRIBUTING.md) — how to change this repo
+- [SECURITY.md](./SECURITY.md) — how to report vulnerabilities
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- [docs/chat.md](./docs/chat.md) · [docs/code.md](./docs/code.md) · [docs/bot.md](./docs/bot.md)
+- [docs/notifications.md](./docs/notifications.md) · [docs/harness.md](./docs/harness.md)
+- [docs/web-vs-electron.md](./docs/web-vs-electron.md) · [docs/realtime.md](./docs/realtime.md)
+- [packages/cortex-api/CONTRACT.md](./packages/cortex-api/CONTRACT.md) — live API contract
 
 ## License
 
-MIT
+Copyright 2026 Cortex Foundation / CortexLM.
+
+Licensed under the [Apache License, Version 2.0](./LICENSE). Third-party notices (fonts, brand marks) are in [NOTICE](./NOTICE).

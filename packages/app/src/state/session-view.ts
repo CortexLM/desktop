@@ -84,6 +84,19 @@ function diffOf(summary: SessionSummary): { added: number; removed: number } | u
   return { added: summary.additions, removed: summary.deletions };
 }
 
+const RUNTIME_LABELS: Record<string, string> = { local: 'Local', cloud: 'Cloud', ssh: 'SSH' };
+
+/**
+ * "Running · 12m" while live, the plain label otherwise. The duration reads off
+ * the run's own clock so the row says how long it has actually been working.
+ */
+function statusLabelOf(summary: SessionSummary, now: number): string {
+  const badge = toBadgeStatus(summary.status);
+  const label = badge === 'pr-ready' ? 'PR ready' : badge.charAt(0).toUpperCase() + badge.slice(1);
+  if (summary.status !== 'running' || !summary.startedAt) return label;
+  return `Running · ${formatDuration(now - summary.startedAt).split(' ')[0]}`;
+}
+
 export function toInboxSession(summary: SessionSummary, now = Date.now()): InboxSession {
   const diff = diffOf(summary);
   return {
@@ -94,6 +107,8 @@ export function toInboxSession(summary: SessionSummary, now = Date.now()): Inbox
     repo: summary.repo ?? 'Local folder',
     branch: summary.branch ?? '—',
     status: toBadgeStatus(summary.status),
+    statusLabel: statusLabelOf(summary, now),
+    runtime: RUNTIME_LABELS[summary.runtime] ?? summary.runtime,
     age: formatAge(summary.updatedAt, now),
     ...(diff ? { diff } : {}),
   };

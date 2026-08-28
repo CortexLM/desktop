@@ -71,6 +71,19 @@ function tsIdentifier(name: string): string {
   return name.replace(/^--/, '').replace(/-([a-z0-9])/g, (_, c: string) => c.toUpperCase());
 }
 
+/**
+ * Rewrites alias values for the collapsed namespace.
+ *
+ * Paper's dark aliases point at dark tokens by their Paper names —
+ * `--color-success` (dark) is `var(--color-dark-green)`. After the themes are
+ * collapsed onto one property per role, `--color-dark-green` no longer exists;
+ * the alias must point at the role (`--color-green`), whose value the
+ * `[data-theme='dark']` block already flips.
+ */
+function collapseAliases(value: string): string {
+  return value.replaceAll('var(--color-dark-', 'var(--color-');
+}
+
 function declarations(entries: Array<[string, string, string | undefined]>, indent: string): string {
   return entries
     .map(([name, value, description]) =>
@@ -93,14 +106,16 @@ export function generateTokens(tokens: PaperToken[], contentHash: string): Gener
 
   for (const [role, token] of grouped.lightColors) {
     const property = `${COLOR_PREFIX}${role}`;
-    light[property] = token.value;
-    lightDeclarations.push([property, token.value, token.description]);
+    const lightValue = collapseAliases(token.value);
+    light[property] = lightValue;
+    lightDeclarations.push([property, lightValue, token.description]);
 
     const darkToken = resolveDark(role, grouped);
     // A role with no dark counterpart is theme-invariant by design (`--color-on-primary`
     // is white on both). Emitting the light value keeps the property defined either way.
-    dark[property] = darkToken?.value ?? token.value;
-    if (darkToken) darkDeclarations.push([property, darkToken.value, darkToken.description]);
+    const darkValue = collapseAliases(darkToken?.value ?? token.value);
+    dark[property] = darkValue;
+    if (darkToken) darkDeclarations.push([property, darkValue, darkToken.description]);
   }
 
   const claimedDarkRoles = new Set<string>();
@@ -122,7 +137,7 @@ export function generateTokens(tokens: PaperToken[], contentHash: string): Gener
     '/*',
     ' * GENERATED FILE - DO NOT EDIT.',
     ' *',
-    ' * Source: Paper file "IDE New 01" design tokens.',
+    ' * Source: Paper file "Cortex FF1 v1" design tokens (Concept 03).',
     ` * Paper token content hash: ${contentHash}`,
     ' * Regenerate with: bun run paper:tokens',
     ' */',

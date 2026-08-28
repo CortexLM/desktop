@@ -27,7 +27,7 @@ Set up your API keys:
 ```bash
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
-export OPENLUX_API_KEY="sk-O1XOv8M7uO9MhEx0js7kkdWe0GfZVwne9WojDnyT0byKqsVj"
+export OPENLUX_API_KEY="sk-…"
 ```
 
 Optional model configuration:

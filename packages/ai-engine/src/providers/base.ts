@@ -139,6 +139,11 @@ export abstract class AIProvider {
     this.config = config;
   }
 
+  /** The configured default model, when the user or environment named one. */
+  get defaultModel(): string | undefined {
+    return this.config.defaultModel;
+  }
+
   abstract chat(
     messages: Message[],
     options?: ChatOptions

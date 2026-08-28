@@ -8,8 +8,10 @@
  * insights, onboarding flows, auth — and `app.tsx` still imports from one place.
  */
 
+export { ChatHomeRoute, ConversationRoute } from './routes/chat-routes.tsx';
 export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-routes.tsx';
 export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';
+export { NotificationsRoute } from './routes/notification-routes.tsx';
 export { AutomationsRoute, NewAutomationRoute } from './routes/automation-routes.tsx';
 export { SecretsRoute } from './routes/secrets-routes.tsx';
 export { ReviewRoute, UsageRoute } from './routes/insight-routes.tsx';

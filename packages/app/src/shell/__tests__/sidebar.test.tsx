@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library';
+import { createSignal } from 'solid-js';
 import { describe, expect, it, vi } from 'vitest';
+
+import type { Product } from '../../routes.ts';
 
 import { ANONYMOUS_CAPABILITIES, AUTHENTICATED_CAPABILITIES } from '@cortex-ide/cortex-api';
 import { ThemeProvider } from '@cortex-ide/ui';
@@ -15,22 +18,29 @@ const RUNS: RecentRun[] = [
 function renderSidebar(overrides: Partial<SidebarProps> = {}) {
   const onNavigate = overrides.onNavigate ?? vi.fn();
   const onOpenRun = overrides.onOpenRun ?? vi.fn();
+  const onSwitchProduct = overrides.onSwitchProduct ?? vi.fn();
 
   const result = render(() => (
     <ThemeProvider initial="light">
       <Sidebar
-        workspace="forge"
+        product="code"
         capabilities={ANONYMOUS_CAPABILITIES}
-        activeSlug="home"
+        activeSlug="code-home"
         recentRuns={RUNS}
+        recentChats={[]}
+        onOpenChat={vi.fn()}
+        onNewChat={vi.fn()}
+        onNewSession={vi.fn()}
+        onNewMascot={vi.fn()}
         {...overrides}
+        onSwitchProduct={onSwitchProduct}
         onNavigate={onNavigate}
         onOpenRun={onOpenRun}
       />
     </ThemeProvider>
   ));
 
-  return { ...result, onNavigate, onOpenRun };
+  return { ...result, onNavigate, onOpenRun, onSwitchProduct };
 }
 
 describe('Sidebar navigation', () => {
@@ -45,19 +55,83 @@ describe('Sidebar navigation', () => {
   });
 
   it('marks the active destination', () => {
-    renderSidebar({ activeSlug: 'sessions' });
+    renderSidebar({ activeSlug: 'code-sessions' });
     expect(screen.getByRole('button', { name: 'Sessions' })).toHaveAttribute('aria-current', 'page');
   });
 
   it('reports a navigation by slug', () => {
     const { onNavigate } = renderSidebar();
     fireEvent.click(screen.getByRole('button', { name: 'Sessions' }));
-    expect(onNavigate).toHaveBeenCalledWith('sessions');
+    expect(onNavigate).toHaveBeenCalledWith('code-sessions');
   });
 
   it('shows the unread dot where the caller says there is activity', () => {
-    const { container } = renderSidebar({ unread: { sessions: true } });
+    const { container } = renderSidebar({ unread: { 'code-sessions': true } });
     expect(container.querySelectorAll('.cx-nav-item__indicator--unread')).toHaveLength(1);
+  });
+});
+
+describe('Sidebar product switcher', () => {
+  it('offers all three products with the Code side active here', () => {
+    renderSidebar();
+    expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.getByRole('button', { name: 'Code' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('switches products', () => {
+    const { onSwitchProduct } = renderSidebar();
+    fireEvent.click(screen.getByRole('button', { name: 'Chat' }));
+    expect(onSwitchProduct).toHaveBeenCalledWith('chat');
+    fireEvent.click(screen.getByRole('button', { name: 'Bot' }));
+    expect(onSwitchProduct).toHaveBeenCalledWith('bot');
+  });
+
+  it('shows the chat sections when the Chat product is active', () => {
+    renderSidebar({ product: 'chat' });
+
+    expect(screen.getByText('New chat')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Planning' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Plugins' })).toBeInTheDocument();
+  });
+
+  it('shows Bot as a first-class product, not a locked card', () => {
+    renderSidebar({ product: 'bot' });
+    expect(screen.getByText('New mascot')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
+  });
+
+  it('replaces Chat sections when the product prop changes after mount', () => {
+    // A bare `if (props.product)` in the component body freezes the first
+    // product's sections. E2E starts on Chat and then sets `#/code`.
+    const [product, setProduct] = createSignal<Product>('chat');
+    render(() => (
+      <ThemeProvider initial="light">
+        <Sidebar
+          product={product()}
+          capabilities={ANONYMOUS_CAPABILITIES}
+          activeSlug="home"
+          recentRuns={[]}
+          recentChats={[]}
+          onOpenChat={vi.fn()}
+          onNewChat={vi.fn()}
+          onNewSession={vi.fn()}
+          onNewMascot={vi.fn()}
+          onSwitchProduct={vi.fn()}
+          onNavigate={vi.fn()}
+          onOpenRun={vi.fn()}
+        />
+      </ThemeProvider>
+    ));
+
+    expect(screen.getByText('New chat')).toBeInTheDocument();
+
+    setProduct('code');
+
+    expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    expect(screen.queryByText('New chat')).toBeNull();
   });
 });
 
@@ -133,16 +207,16 @@ describe('Sidebar recent sessions', () => {
     expect(onOpenRun).toHaveBeenCalledWith('run-1');
   });
 
-  it('marks the runs still in progress', () => {
-    renderSidebar();
-    expect(screen.getAllByLabelText('Running')).toHaveLength(1);
+  it('marks the runs still in progress with the copper dot', () => {
+    const { container } = renderSidebar();
+    expect(container.querySelectorAll('.cx-sidebar__run-live')).toHaveLength(1);
   });
 
   it('omits the whole section when there is nothing recent', () => {
     // An empty "Recent sessions" heading is worse than no heading: it reads as a failure to
     // load rather than as a fresh install.
-    const { container } = renderSidebar({ recentRuns: [] });
-    expect(container.querySelector('.cx-sidebar__section')).toBeNull();
+    renderSidebar({ recentRuns: [] });
+    expect(screen.queryByText('Recent sessions')).toBeNull();
   });
 });
 

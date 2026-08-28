@@ -20,6 +20,7 @@ import * as addMcpTables from './003_add_mcp_tables';
 import * as workspaceIdentity from './004_workspace_identity';
 import * as sessionRuns from './005_session_runs';
 import * as secrets from './006_secrets';
+import * as conversations from './007_conversations';
 
 export interface Migration {
   version: number;
@@ -71,4 +72,5 @@ export const MIGRATIONS: Migration[] = [
   normalise(workspaceIdentity as MigrationModule, 4, 'Key workspaces by path'),
   normalise(sessionRuns as MigrationModule, 5, 'Session run state and timeline'),
   normalise(secrets as MigrationModule, 6, 'Secrets'),
+  normalise(conversations as MigrationModule, 7, 'Chat conversations'),
 ].sort((a, b) => a.version - b.version);

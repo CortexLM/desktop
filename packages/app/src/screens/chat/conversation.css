@@ -1,0 +1,176 @@
+/*
+ * Paper: C3 / Conversation (4ZS-0) and Chat / 01–08 state boards.
+ * Reference exports: design/paper/jsx/conversation.jsx, chat-thinking.jsx,
+ * chat-streaming.jsx, chat-errors.jsx.
+ *
+ * A 700px reading column. The user's turn is a wash bubble tucked to the right
+ * (18px radius, 4px on the trailing corner); the assistant answers in serif
+ * prose straight on the page — information on the surface, not in a card.
+ */
+
+.cx-conversation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  padding: 24px 40px 16px;
+}
+
+.cx-conversation__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  max-width: var(--container-reading);
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Turns                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.cx-conversation__user {
+  align-self: flex-end;
+
+  max-width: 440px;
+  padding: 10px 16px;
+  border-radius: 18px 18px 4px 18px;
+
+  font-family: var(--font-sans-stack);
+  font-size: 14px;
+  line-height: 20px;
+
+  background: var(--color-hover);
+  color: var(--color-text);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.cx-conversation__assistant {
+  font-family: var(--font-serif-stack);
+  font-size: 16px;
+  line-height: 26px;
+
+  color: var(--color-text);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* The streaming caret at the end of a live reply. */
+.cx-conversation__caret {
+  display: inline-block;
+  width: 7px;
+  height: 15px;
+  margin-left: 2px;
+  border-radius: 1px;
+  vertical-align: baseline;
+
+  background: var(--color-green);
+  animation: cx-caret-pulse 1s steps(2, start) infinite;
+}
+
+@keyframes cx-caret-pulse {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* "Thinking…" while the first token is on its way. */
+.cx-conversation__thinking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--font-sans-stack);
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+.cx-conversation__thinking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-green);
+  animation: cx-thinking-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes cx-thinking-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* A failed reply names its reason in the error hue, still in the thread. */
+.cx-conversation__error {
+  padding: 10px 14px;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-btn);
+
+  font-family: var(--font-sans-stack);
+  font-size: 13px;
+  line-height: 18px;
+
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reply actions                                                              */
+/* -------------------------------------------------------------------------- */
+
+.cx-conversation__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: -12px;
+}
+
+.cx-conversation__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  height: 28px;
+  padding-inline: 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-sans-stack);
+  font-size: 12px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 16px;
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-conversation__action:hover {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+.cx-conversation__actions-spacer {
+  flex: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Follow-up composer                                                         */
+/* -------------------------------------------------------------------------- */
+
+.cx-conversation__composer {
+  width: 100%;
+  max-width: var(--container-reading);
+}

@@ -1,59 +1,81 @@
 /*
- * Paper: Components / Badges & Chips (FM-0, IR-0).
- * Reference export: design/paper/jsx/badge.jsx
+ * Paper: the session status marks on the Code screens — "• Running", "• PR ready",
+ * "✓ Merged", "• Error" — drawn straight on the row, zero chrome.
  *
- * Status badges are a tinted pill: padding 3px 10px, gap 5px, 12px medium type on a 16px
- * line, which resolves to 22px tall. The three live states carry a 6px dot; draft and
- * merged do not, because they describe a PR rather than a running process.
+ * A badge is a coloured 12px label with a 6px leading dot for live states. Tones
+ * map to the C3 status hues: running is the copper accent, landed states are the
+ * brand green, failures the oxblood error.
  */
 
 .cx-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
+  gap: 6px;
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: 12px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
   line-height: 16px;
   white-space: nowrap;
 }
 
 .cx-badge__dot {
+  flex-shrink: 0;
   width: 6px;
   height: 6px;
-  border-radius: var(--radius-full);
-  flex-shrink: 0;
-  background: currentColor;
+  border-radius: var(--radius-pill);
+  background: currentcolor;
 }
 
 .cx-badge--success {
-  background: var(--color-success-tint);
-  color: var(--color-success);
+  color: var(--color-green);
 }
 
 .cx-badge--warning {
-  background: var(--color-warning-tint);
   color: var(--color-warning);
 }
 
 .cx-badge--error {
-  background: var(--color-error-tint);
   color: var(--color-error);
 }
 
-/* Draft is the only neutral state: nothing is running and nothing has landed. */
 .cx-badge--neutral {
-  background: var(--color-inset);
   color: var(--color-text-muted);
 }
 
-/* Merged reads as an accent rather than a success, which is deliberate in the design: it
- * is an outcome, not a healthy-process signal. */
 .cx-badge--accent {
-  background: var(--color-primary-tint);
-  color: var(--color-primary);
+  color: var(--color-accent);
+}
+
+/*
+ * The tinted register, for badges that sit on their own fill (NEW pills, plan
+ * badges). Same tones, painted on the matching tint.
+ */
+.cx-badge--tinted {
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+
+  font-size: 10px;
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+  letter-spacing: 0.03em;
+  line-height: 12px;
+}
+
+.cx-badge--tinted.cx-badge--success {
+  background: var(--color-green-tint-8);
+  color: var(--color-green-on-tint);
+}
+
+.cx-badge--tinted.cx-badge--warning {
+  background: var(--color-warning-tint);
+}
+
+.cx-badge--tinted.cx-badge--error {
+  background: var(--color-error-tint);
+}
+
+.cx-badge--tinted.cx-badge--neutral {
+  background: var(--color-hover);
 }

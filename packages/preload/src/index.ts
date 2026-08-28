@@ -77,6 +77,8 @@ import type {
   CortexDeviceStartResponse,
   CortexDeviceStatusEvent,
   CortexListModelsResponse,
+  CortexProductRequest,
+  CortexProductResponse,
   ArchiveSessionRequest,
   FollowUpSessionRequest,
   GetSessionRequest,
@@ -88,6 +90,19 @@ import type {
   ResolveSessionPermissionRequest,
   SessionIdRequest,
   SessionProgressEvent,
+  ChatIdRequest,
+  ChatProgressEvent,
+  IsWindowMaximizedResponse,
+  WindowMaximizedEvent,
+  NotifyShowRequest,
+  NotifyShowResponse,
+  GetConversationRequest,
+  GetConversationResponse,
+  ListConversationsResponse,
+  SendChatMessageRequest,
+  SendChatMessageResponse,
+  StartConversationRequest,
+  StartConversationResponse,
   SessionSummary,
   StartSessionRequest,
   StartSessionResponse,
@@ -232,6 +247,9 @@ export interface CortexAPI {
       name: string;
     }) => Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
     revokeApiKey: (request: { id: string }) => Promise<IPCResponse<{ revoked: true }>>;
+    productRequest: (
+      request: CortexProductRequest,
+    ) => Promise<IPCResponse<CortexProductResponse>>;
     onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
     onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
   };
@@ -262,6 +280,41 @@ export interface CortexAPI {
     /** Opens the native folder picker and adopts the choice. Takes no path. */
     openWorkspace: () => Promise<IPCResponse<OpenWorkspaceResponse>>;
     onProgress: (callback: (event: SessionProgressEvent) => void) => () => void;
+  };
+
+  /**
+   * Which OS the app runs on. The renderer sizes its custom title bar with it:
+   * macOS reserves the traffic-light inset, Windows and Linux draw their own
+   * window controls. A function rather than a value: the bridge is a wall of
+   * functions, and the exposed-surface guard keeps it that way.
+   */
+  platform: () => NodeJS.Platform;
+
+  /** What the native frame used to do, for the custom title bar's buttons. */
+  windowControls: {
+    minimize: () => Promise<IPCResponse<{ minimized: true }>>;
+    toggleMaximize: () => Promise<IPCResponse<IsWindowMaximizedResponse>>;
+    close: () => Promise<IPCResponse<{ closed: true }>>;
+    isMaximized: () => Promise<IPCResponse<IsWindowMaximizedResponse>>;
+    onMaximizedChange: (callback: (event: WindowMaximizedEvent) => void) => () => void;
+  };
+
+  notify: {
+    show: (request: NotifyShowRequest) => Promise<IPCResponse<NotifyShowResponse>>;
+  };
+
+  /**
+   * The Chat product's conversations: linear exchanges with a provider, streamed
+   * over `event:chat-progress`.
+   */
+  chat: {
+    list: () => Promise<IPCResponse<ListConversationsResponse>>;
+    get: (request: GetConversationRequest) => Promise<IPCResponse<GetConversationResponse>>;
+    start: (request: StartConversationRequest) => Promise<IPCResponse<StartConversationResponse>>;
+    send: (request: SendChatMessageRequest) => Promise<IPCResponse<SendChatMessageResponse>>;
+    stop: (request: ChatIdRequest) => Promise<IPCResponse<{ stopped: true }>>;
+    remove: (request: ChatIdRequest) => Promise<IPCResponse<{ deleted: true }>>;
+    onProgress: (callback: (event: ChatProgressEvent) => void) => () => void;
   };
 
   /**
@@ -534,6 +587,7 @@ const cortexAPI: CortexAPI = {
     listApiKeys: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_API_KEYS),
     createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
     revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
+    productRequest: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST, request),
     onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
       IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
     ),
@@ -555,6 +609,32 @@ const cortexAPI: CortexAPI = {
     listRepositories: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_LIST_REPOSITORIES),
     openWorkspace: () => ipcRenderer.invoke(IPC_CHANNELS.SESSION_OPEN_WORKSPACE),
     onProgress: createEventListener<SessionProgressEvent>(IPC_CHANNELS.EVENT_SESSION_PROGRESS),
+  },
+
+  platform: () => process.platform,
+
+  windowControls: {
+    minimize: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_MINIMIZE),
+    toggleMaximize: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_TOGGLE_MAXIMIZE),
+    close: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_CLOSE),
+    isMaximized: () => ipcRenderer.invoke(IPC_CHANNELS.WINDOW_IS_MAXIMIZED),
+    onMaximizedChange: createEventListener<WindowMaximizedEvent>(
+      IPC_CHANNELS.EVENT_WINDOW_MAXIMIZED,
+    ),
+  },
+
+  notify: {
+    show: (request) => ipcRenderer.invoke(IPC_CHANNELS.NOTIFY_SHOW, request),
+  },
+
+  chat: {
+    list: () => ipcRenderer.invoke(IPC_CHANNELS.CHAT_LIST),
+    get: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_GET, request),
+    start: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_START, request),
+    send: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_SEND, request),
+    stop: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_STOP, request),
+    remove: (request) => ipcRenderer.invoke(IPC_CHANNELS.CHAT_DELETE, request),
+    onProgress: createEventListener<ChatProgressEvent>(IPC_CHANNELS.EVENT_CHAT_PROGRESS),
   },
 
   settings: {

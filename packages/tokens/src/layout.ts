@@ -15,10 +15,10 @@ export const layout = {
   viewport: 1440,
 
   sidebar: {
-    /** `Sidebar` frame. */
-    width: 240,
-    /** Inner content width; the 12.5px inset on each side is the sidebar's padding. */
-    content: 215,
+    /** `Sidebar` frame on every C3 screen (BXH-0: 260px, bg-sidebar, hairline right). */
+    width: 260,
+    /** Inner content width; the 12px inset on each side is the sidebar's padding. */
+    content: 236,
     /** Traffic-light row above the workspace switcher. */
     chromeRow: 26,
     /** `Workspace switcher`. */
@@ -37,7 +37,7 @@ export const layout = {
 
   main: {
     /** `Main` frame: viewport minus the sidebar. */
-    width: 1200,
+    width: 1180,
     /** Content width on the list screens (Sessions, Automations). */
     listContent: 1120,
     /** Content width on Settings. */
@@ -45,7 +45,7 @@ export const layout = {
     /** Content width on Usage and the Limits screens. */
     usageContent: 1040,
     /** Centred column on Home. */
-    homeColumn: 760,
+    homeColumn: 720,
     /** `Page header`. */
     pageHeader: 52,
     /** Session Detail header, taller than the list header to fit the PR action. */
@@ -55,20 +55,21 @@ export const layout = {
   },
 
   sessionDetail: {
-    /** Agent timeline pane. */
-    timeline: 452,
+    /** Agent timeline pane. Provisional split of the 1180 main pane; re-measure
+     * against design/paper/spec/code-session-detail.light.json when it lands. */
+    timeline: 440,
     /** Shell / Changes / PR / Browser pane. */
-    workbench: 748,
+    workbench: 740,
     /** Body height below the session header. */
     body: 834,
   },
 
   composer: {
-    /** Home composer shell. */
-    width: 760,
+    /** Composer shell (GF-0: 720 wide at rest). */
+    width: 720,
     height: 104,
-    /** Inner width; 17px padding on each side. */
-    content: 726,
+    /** Inner width; 20px left and 16px right insets. */
+    content: 684,
     /** Prompt line. */
     prompt: 26,
     /** Control row carrying repo, branch, model and runtime chips. */
@@ -127,10 +128,10 @@ export const layout = {
   control: {
     /** Input and select height. */
     field: 36,
-    /** Primary, ghost and destructive buttons. */
-    button: 32,
-    /** Secondary button; 2px taller because of its border. */
-    buttonSecondary: 34,
+    /** Buttons are 36px pills in C3; icon-only buttons are 32. */
+    button: 36,
+    /** Icon-only ghost button and the round send. */
+    buttonSecondary: 32,
     /** Status badge. */
     badge: 22,
     /** Chip with a leading icon. */

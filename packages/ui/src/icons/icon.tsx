@@ -1,7 +1,16 @@
 import { type JSX, splitProps } from 'solid-js';
 
 import { iconGeometry, STROKE_WIDTH_SLOT, type IconKey } from './geometry.generated.ts';
-import { icons, resolveIcon, type IconName } from './icon-names.tsx';
+import { extraGeometry, icons, resolveIcon, type IconName } from './icon-names.tsx';
+
+/**
+ * Generated screen glyphs plus the few the design only draws on the Components
+ * page (which the extractor does not scan). One lookup table, same shape.
+ */
+const allGeometry: Record<string, { viewBox: string; body: string; strokeWidths: readonly string[] }> = {
+  ...iconGeometry,
+  ...extraGeometry,
+};
 
 import './icon.css';
 
@@ -32,7 +41,7 @@ export function Icon(props: IconProps): JSX.Element {
   const [local, rest] = splitProps(props, ['name', 'size', 'strokeWidth', 'label', 'class']);
 
   const definition = () => resolveIcon(local.name);
-  const geometry = () => iconGeometry[definition().key];
+  const geometry = () => allGeometry[definition().key]!;
   const size = () => local.size ?? definition().size;
   const strokeWidth = () => local.strokeWidth ?? definition().strokeWidth;
 

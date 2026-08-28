@@ -32,6 +32,15 @@ export interface AgentMessage {
   role: 'user' | 'assistant' | 'system' | 'tool';
   content: string;
   name?: string;
+  /**
+   * On an assistant message: the tool calls it made. Kept on the transcript so
+   * the next completion request can replay them natively. Without them the model
+   * sees an empty assistant message followed by a result it never asked for — and
+   * a model with no memory of having called the tool calls it again, forever.
+   */
+  toolCalls?: ToolCall[];
+  /** On a tool message: the call this result answers. Pairs result to request. */
+  toolCallId?: string;
 }
 
 export interface AgentToolParameterSchema {

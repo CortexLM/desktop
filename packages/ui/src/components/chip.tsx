@@ -6,7 +6,7 @@ import type { IconKey } from '../icons/geometry.generated.ts';
 
 import './chip.css';
 
-export type ChipVariant = 'control' | 'outlined';
+export type ChipVariant = 'control' | 'outlined' | 'selected';
 
 export interface ChipProps extends JSX.HTMLAttributes<HTMLElement> {
   variant?: ChipVariant;

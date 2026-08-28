@@ -2,9 +2,17 @@
   "name": "cortex-ide",
   "version": "0.1.0",
   "private": true,
-  "description": "IDE professionnel Electron avec orchestration d'agents IA multi-providers",
-  "author": "Cortex IDE Team",
-  "license": "MIT",
+  "description": "Cortex — Chat, Code, and Bot. One Electron + web app.",
+  "author": "Cortex Foundation / CortexLM",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CortexLM/agent-coding.git"
+  },
+  "homepage": "https://github.com/CortexLM/agent-coding",
+  "bugs": {
+    "url": "https://github.com/CortexLM/agent-coding/issues"
+  },
   "type": "module",
   "main": "packages/main/dist/index.js",
   "workspaces": [
@@ -36,7 +44,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report test-results/html-report",
     "test:e2e:trace": "playwright show-trace",
-    "//paper": "The Paper file `IDE New 01` owns the design. These commands pull from it; nothing under packages/tokens/src/*.generated.* or design/paper/ is hand-written. Needs PAPER_MCP_URL, PAPER_MCP_AUTH and PAPER_FILE_ID.",
+    "//paper": "The Paper file `Cortex FF1 v1` (Concept 03) owns the design. These commands pull from it; nothing under packages/tokens/src/*.generated.* or design/paper/ is hand-written. Endpoint comes from PAPER_MCP_URL/PAPER_MCP_AUTH or .cursor/mcp.json (paper-remote); PAPER_FILE_ID overrides the default file.",
     "paper:sync": "bun scripts/paper-sync.ts all",
     "paper:tokens": "bun scripts/paper-sync.ts tokens",
     "paper:manifest": "bun scripts/paper-sync.ts manifest",
@@ -69,7 +77,8 @@
     "quality:duplication": "npx jscpd packages --format typescript --output quality-reports",
     "quality:circular": "npx madge --circular --extensions ts,tsx packages/",
     "test:discovery": "bun scripts/check-test-discovery.ts",
-    "test:discovery:fast": "bun scripts/check-test-discovery.ts --fast"
+    "test:discovery:fast": "bun scripts/check-test-discovery.ts --fast",
+    "test:staging-local": "bash scripts/test-staging-local.sh"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

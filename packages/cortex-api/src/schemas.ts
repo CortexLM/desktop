@@ -51,18 +51,30 @@ export const modelCapabilitiesSchema = z
 
 export const cortexModelSchema = z
   .object({
+    /**
+     * The v1 catalogue keys models by `slug`; earlier deployments used `id`.
+     * Normalised in a preprocess below so consumers only ever see `id`.
+     */
     id: z.string(),
-    object: z.literal('model').or(z.string()),
+    object: z.literal('model').or(z.string()).optional(),
     created: z.number().optional(),
     display_name: z.string().optional(),
+    description: z.string().optional(),
     category: modelCategorySchema.optional(),
     is_premium: z.boolean().optional(),
+    /** v1 flags preview models explicitly. */
+    is_preview: z.boolean().optional(),
     /** Server-side expression of plan gating: the caller may not use this model. */
     locked: z.boolean().optional(),
     cost_multiplier: z.number().optional(),
     context_length: z.number().optional(),
+    /** v1 name for the context window. */
+    context_tokens: z.number().optional(),
     max_output_tokens: z.number().optional(),
     capabilities: modelCapabilitiesSchema.optional(),
+    supports_reasoning: z.boolean().optional(),
+    supports_tools: z.boolean().optional(),
+    supports_vision: z.boolean().optional(),
     /**
      * Credit multipliers arrive as decimal *strings* ("0.600"). They are kept as strings:
      * parsing them to float would quietly lose precision on a billing value.
@@ -77,12 +89,43 @@ export const cortexModelSchema = z
 
 export type CortexModel = z.infer<typeof cortexModelSchema>;
 
-export const modelListSchema = z
+/** v1 rows key models by `slug`; earlier deployments used `id`. Normalise to `id`. */
+function normaliseModelRow(row: unknown): unknown {
+  if (typeof row !== 'object' || row === null) return row;
+  const record = row as Record<string, unknown>;
+  if (typeof record.id === 'string') return record;
+  if (typeof record.slug === 'string') return { ...record, id: record.slug };
+  return record;
+}
+
+const modelListEnvelopeSchema = z
   .object({
-    object: z.literal('list').or(z.string()),
     data: z.array(cortexModelSchema),
+    has_more: z.boolean().optional(),
   })
   .passthrough();
+
+/**
+ * The v1 catalogue answers `{ items: [...], has_more }`; earlier deployments
+ * answered `{ object: 'list', data: [...] }`. Both are accepted and collapsed
+ * onto one `data` array so callers never see the envelope difference. A body
+ * with NEITHER array is left untouched, so it still fails the schema instead of
+ * being silently normalised into an empty catalogue.
+ */
+export const modelListSchema = z
+  .unknown()
+  .transform((raw) => {
+    if (typeof raw !== 'object' || raw === null) return raw;
+    const record = raw as Record<string, unknown>;
+    const rows = Array.isArray(record.items)
+      ? record.items
+      : Array.isArray(record.data)
+        ? record.data
+        : undefined;
+    if (!rows) return raw;
+    return { ...record, data: rows.map(normaliseModelRow) };
+  })
+  .pipe(modelListEnvelopeSchema);
 
 export type ModelList = z.infer<typeof modelListSchema>;
 
@@ -149,8 +192,12 @@ export const cortexUserSchema = z
     first_name: z.string().nullish(),
     last_name: z.string().nullish(),
     name: z.string().nullish(),
+    display_name: z.string().nullish(),
     profile_picture_url: z.string().nullish(),
     organization_id: z.string().nullish(),
+    plan_slug: z.string().nullish(),
+    is_guest: z.boolean().optional(),
+    quotas: z.array(z.unknown()).optional(),
   })
   .passthrough();
 

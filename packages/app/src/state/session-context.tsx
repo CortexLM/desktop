@@ -13,7 +13,7 @@ import {
 
 import {
   annotateCatalogue,
-  capabilitiesFor,
+  capabilitiesOn,
   type Capabilities,
   type CortexModel,
   type ModelAvailability,
@@ -22,6 +22,7 @@ import {
 import type { CortexAccountState, CortexModelView, CortexUserView } from '@cortex-ide/shared';
 
 import { resolveHost, type CortexHost } from './host.ts';
+import { chromePlatform } from './platform.ts';
 
 /**
  * The account state every screen reads from.
@@ -91,7 +92,9 @@ export function AccountProvider(props: AccountProviderProps): JSX.Element {
     setReachable(state.reachable);
   };
 
-  const capabilities = createMemo(() => capabilitiesFor(user() !== null));
+  const capabilities = createMemo(() =>
+    capabilitiesOn(chromePlatform() === 'browser' ? 'browser' : 'electron', user() !== null),
+  );
 
   const [models] = createResource(
     async () => {

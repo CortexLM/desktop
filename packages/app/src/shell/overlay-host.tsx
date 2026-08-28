@@ -7,6 +7,7 @@ import { UpgradeModal } from '../overlays/upgrade-modal.tsx';
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import { formatAge } from '../state/session-view.ts';
+import { markInboxRead, mergeInbox } from '../state/inbox.ts';
 import { navigableRoutes, routeBySlug } from '../routes.ts';
 
 /**
@@ -72,18 +73,13 @@ function toNotifications(
   sessions: readonly { id: string; title: string; status: string; updatedAt: number }[],
   now: number,
 ): AppNotification[] {
-  return sessions
-    .filter((session) => session.status === 'review' || session.status === 'failed')
-    .slice(0, 20)
-    .map((session) => ({
-      id: session.id,
-      message:
-        session.status === 'failed'
-          ? `${session.title} failed`
-          : `${session.title} is ready to review`,
-      age: formatAge(session.updatedAt, now),
-      href: `/sessions/${session.id}`,
-    }));
+  return mergeInbox(sessions).map((item) => ({
+    id: item.id,
+    message: item.message,
+    age: formatAge(item.at, now),
+    unread: item.unread,
+    href: item.href,
+  }));
 }
 
 /**
@@ -148,7 +144,7 @@ function dispatch(id: string, targets: DispatchTargets): void {
     return;
   }
   if (id.startsWith('open:')) {
-    targets.navigate(`/sessions/${id.slice(5)}`);
+    targets.navigate(`/code/sessions/${id.slice(5)}`);
     return;
   }
   if (id === 'action:new-session') {
@@ -239,7 +235,9 @@ export function OverlayHost(): JSX.Element {
           notifications={notifications()}
           onOpen={(id) => {
             setOpen(null);
-            navigate(`/sessions/${id}`);
+            markInboxRead(id);
+            const item = notifications().find((entry) => entry.id === id);
+            navigate(item?.href ?? '/code/notifications');
           }}
           onDismiss={() => setOpen(null)}
         />

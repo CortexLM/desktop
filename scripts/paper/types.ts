@@ -70,14 +70,21 @@ export interface PaperComputedStyles {
 }
 
 /**
- * An artboard named `Screens / Session Detail — Dark` describes one screen in one theme.
- * Screen routing and the visual-regression baselines both key off this split.
+ * An artboard named `C3 / Code / Session Detail — Dark` describes one screen in one
+ * theme. Screen routing and the visual-regression baselines both key off this split.
  */
 export interface ParsedArtboardName {
+  /** The concept prefix, e.g. `C3`. */
   group: string;
+  /** Path below the concept, e.g. `Code / Session Detail` or `Home`. */
   screen: string;
   theme: 'light' | 'dark';
-  /** Stable kebab-case identifier, e.g. `session-detail`. */
+  /**
+   * Stable kebab-case identifier built from the WHOLE path below the concept,
+   * e.g. `code-session-detail`. The chat product's `C3 / Home` and the code
+   * product's `C3 / Code / Home` must not collapse onto one `home` slug — that
+   * collision is exactly what slugging only the last segment produced.
+   */
   slug: string;
 }
 
@@ -93,7 +100,7 @@ export function parseArtboardName(name: string): ParsedArtboardName | null {
   const path = themeSplit.slice(0, -1).join(EM_DASH).trim();
   const segments = path.split('/').map((segment) => segment.trim());
   const group = segments.length > 1 ? segments[0]! : '';
-  const screen = segments[segments.length - 1]!;
+  const screen = segments.length > 1 ? segments.slice(1).join(' / ') : segments[0]!;
 
   return { group, screen, theme: themeRaw, slug: slugify(screen) };
 }

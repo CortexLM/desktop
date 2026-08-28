@@ -117,6 +117,11 @@ describe('Menu', () => {
     const { container } = render(() => <MenuSeparator />);
     expect(container.querySelector('hr.cx-menu__separator')).not.toBeNull();
   });
+
+  it('keeps a caller class on the separator', () => {
+    const { container } = render(() => <MenuSeparator class="after-danger" />);
+    expect(container.querySelector('hr')).toHaveClass('cx-menu__separator', 'after-danger');
+  });
 });
 
 describe('Toast', () => {
@@ -240,6 +245,26 @@ describe('Tabs', () => {
     const { active } = renderTabs('shell');
     fireEvent.click(screen.getByRole('tab', { name: /PR/ }));
     expect(active()).toBe('pr');
+  });
+
+  it('keeps Home and End on the current tab when every tab is disabled', () => {
+    const onChange = vi.fn();
+    render(() => (
+      <Tabs
+        class="work-tabs"
+        label="Empty strip"
+        active="gone"
+        onChange={onChange}
+        tabs={[{ id: 'gone', label: 'Gone', disabled: true }]}
+      />
+    ));
+    const list = screen.getByRole('tablist');
+    fireEvent.keyDown(list, { key: 'ArrowRight' });
+    expect(onChange).not.toHaveBeenCalled();
+    fireEvent.keyDown(list, { key: 'Home' });
+    fireEvent.keyDown(list, { key: 'End' });
+    expect(onChange).toHaveBeenCalledWith('gone');
+    expect(document.querySelector('.cx-tabs.work-tabs')).not.toBeNull();
   });
 });
 

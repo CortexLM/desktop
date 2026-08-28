@@ -63,8 +63,20 @@ export function toRuntime(raw: string | null): SessionRuntime {
   return raw === 'cloud' || raw === 'ssh' ? raw : 'local';
 }
 
+/** The nullable columns, folded in only when present so the wire stays lean. */
+function optionalFields(row: SessionRow): Partial<SessionSummary> {
+  return {
+    ...(row.repo ? { repo: row.repo } : {}),
+    ...(row.branch ? { branch: row.branch } : {}),
+    ...(row.started_at !== null ? { startedAt: row.started_at } : {}),
+    ...(row.finished_at !== null ? { finishedAt: row.finished_at } : {}),
+    ...(row.error ? { error: row.error } : {}),
+    ...(row.pull_request_url ? { pullRequestUrl: row.pull_request_url } : {}),
+  };
+}
+
 export function toSummary(row: SessionRow): SessionSummary {
-  const summary: SessionSummary = {
+  return {
     id: row.id,
     // The prompt is the title the user recognises. `title` is a fallback for rows
     // written by the older chat path, which set it to "New session".
@@ -77,13 +89,8 @@ export function toSummary(row: SessionRow): SessionSummary {
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     archived: row.archived === 1,
+    ...optionalFields(row),
   };
-  if (row.repo) summary.repo = row.repo;
-  if (row.branch) summary.branch = row.branch;
-  if (row.finished_at !== null) summary.finishedAt = row.finished_at;
-  if (row.error) summary.error = row.error;
-  if (row.pull_request_url) summary.pullRequestUrl = row.pull_request_url;
-  return summary;
 }
 
 /**

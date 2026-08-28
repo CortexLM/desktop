@@ -24,6 +24,12 @@ import { registerSettingsHandlers, unregisterSettingsHandlers } from './settings
 import { registerMissionHandlers, unregisterMissionHandlers } from './mission-handlers';
 import { registerCortexHandlers, unregisterCortexHandlers } from './cortex-handlers';
 import { registerSessionHandlers, unregisterSessionHandlers } from './session-handlers';
+import {
+  registerConversationHandlers,
+  unregisterConversationHandlers,
+} from './conversation-handlers';
+import { registerWindowHandlers, unregisterWindowHandlers } from './window-handlers';
+import { registerNotifyHandlers, unregisterNotifyHandlers } from './notify-handlers';
 import { registerSecretsHandlers, unregisterSecretsHandlers } from './secrets-handlers';
 import { withIpcInstrumentation } from './shared/ipc-instrumentation';
 
@@ -101,6 +107,21 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
   // domaine porte l'état qu'une inbox trie et la chronologie qu'un écran de
   // détail affiche, et il persiste les deux.
   {
+    name: 'conversations',
+    register: registerConversationHandlers,
+    unregister: unregisterConversationHandlers,
+  },
+  {
+    name: 'window',
+    register: registerWindowHandlers,
+    unregister: unregisterWindowHandlers,
+  },
+  {
+    name: 'notify',
+    register: registerNotifyHandlers,
+    unregister: unregisterNotifyHandlers,
+  },
+  {
     name: 'session',
     register: registerSessionHandlers,
     unregister: unregisterSessionHandlers,
@@ -126,7 +147,13 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
 export function registerIPCHandlers(): void {
   withIpcInstrumentation(() => {
     for (const domain of HANDLER_DOMAINS) {
-      domain.register();
+      try {
+        domain.register();
+      } catch (error) {
+        // One broken domain must not leave the renderer with zero IPC — the
+        // window still has to open (see `startupStep` in `index.ts`).
+        console.error(`[IPC] Failed to register ${domain.name} handlers:`, error);
+      }
     }
   });
 
