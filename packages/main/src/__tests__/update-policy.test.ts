@@ -11,15 +11,15 @@ const buildWorkflow = readFileSync(resolve(repoRoot, '.github/workflows/build.ym
 
 describe('resolveUpdateFeedUrl', () => {
   it('uses the production generic feed', () => {
-    expect(resolveUpdateFeedUrl({})).toBe('https://releases.cortex-ide.com/');
-    expect(DEFAULT_UPDATE_FEED_URL).toBe('https://releases.cortex-ide.com/');
+    expect(resolveUpdateFeedUrl({})).toBe('https://releases.cortex.foundation/');
+    expect(DEFAULT_UPDATE_FEED_URL).toBe('https://releases.cortex.foundation/');
   });
 
   it('matches electron-builder.yml so the packaged app and CI publish the same origin', () => {
     expect(builderYml).toContain(`url: ${DEFAULT_UPDATE_FEED_URL}`);
     expect(builderYml).toContain('provider: generic');
     expect(buildWorkflow).toContain('publish-feed');
-    expect(buildWorkflow).toContain('releases.cortex-ide.com');
+    expect(buildWorkflow).toContain('releases.cortex.foundation');
     expect(buildWorkflow).toContain('latest.yml');
     expect(buildWorkflow).toContain('PRODUCTION_RELEASES_BUCKET');
   });

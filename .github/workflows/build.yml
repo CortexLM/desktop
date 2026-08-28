@@ -136,7 +136,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Production update feed. The packaged app checks
-  # https://releases.cortex-ide.com/ (electron-builder.yml publish.url).
+  # https://releases.cortex.foundation/ (electron-builder.yml publish.url).
   # Staging must not write this origin. No AWS keys in git — OIDC only.
   publish-feed:
     name: Publish production update feed

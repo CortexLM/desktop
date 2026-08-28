@@ -5,7 +5,7 @@
  * into `app-update.yml`. `CORTEX_UPDATE_FEED_URL` overrides it for a local
  * feed. That is a test hook, not a second production channel.
  */
-export const DEFAULT_UPDATE_FEED_URL = 'https://releases.cortex-ide.com/';
+export const DEFAULT_UPDATE_FEED_URL = 'https://releases.cortex.foundation/';
 
 export function resolveUpdateFeedUrl(
   env: Record<string, string | undefined> = process.env,
