@@ -106,16 +106,20 @@ export { pairingCode, pairingError };
 
 export async function startPairing(): Promise<void> {
   setPairingError('');
-  const code = await requestHostPairing();
-  if (!code) {
-    // `requestHostPairing` swallows a 404 into `undefined`, which here means the
-    // control plane has no pairing route rather than that pairing failed.
-    setPairingError('This Cortex backend cannot pair a Code host yet.');
-    return;
+  try {
+    const code = await requestHostPairing();
+    if (!code) {
+      // `undefined` means the control plane has no pairing route — distinct from a
+      // failure, which arrives as a throw and gets the error's own message.
+      setPairingError('This Cortex backend cannot pair a Code host yet.');
+      return;
+    }
+    // Read it back out of the one-shot holder so it is not held in two places.
+    setPairingCode(consumePairingCode() ?? code);
+    await hosts.reload();
+  } catch (error) {
+    setPairingError(error instanceof Error ? error.message : String(error));
   }
-  // Read it back out of the one-shot holder so it is not held in two places.
-  setPairingCode(consumePairingCode() ?? code);
-  await hosts.reload();
 }
 
 export function clearPairingCode(): void {
