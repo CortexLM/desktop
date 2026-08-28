@@ -69,10 +69,17 @@ jobs:
           # `-d packages/renderer/dist`, this block silently stopped running, leaving
           # `renderer_kb` empty — which the JS steps below interpolate directly, producing
           # `const bundleSize = ;` and a syntax error rather than a useful report.
+          #
+          # Source maps are excluded. `build.sourcemap` is on, so dist carries a ~2.4 MB
+          # `.map` beside a ~750 KB bundle — three times the artefact being measured. The
+          # regression threshold below is 2048 KB, so including the map put every run
+          # permanently over it and the "regression detected" branch fired on every build,
+          # main included. Maps are not shipped to a browser and are not what this metric
+          # is for.
           if [ -d packages/app/dist ]; then
-            RENDERER_SIZE=$(du -sh packages/app/dist | cut -f1)
-            RENDERER_BYTES=$(du -sb packages/app/dist | cut -f1)
-            echo "Renderer package: $RENDERER_SIZE" >> bundle-report.txt
+            RENDERER_SIZE=$(du -sh --exclude='*.map' packages/app/dist | cut -f1)
+            RENDERER_BYTES=$(du -sb --exclude='*.map' packages/app/dist | cut -f1)
+            echo "Renderer package: $RENDERER_SIZE (excluding source maps)" >> bundle-report.txt
             echo "renderer_kb=$((RENDERER_BYTES / 1024))" >> $GITHUB_OUTPUT
           else
             # Explicit zero rather than an absent output: an empty string breaks the
