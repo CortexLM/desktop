@@ -147,7 +147,13 @@ export const HANDLER_DOMAINS: readonly HandlerDomain[] = [
 export function registerIPCHandlers(): void {
   withIpcInstrumentation(() => {
     for (const domain of HANDLER_DOMAINS) {
-      domain.register();
+      try {
+        domain.register();
+      } catch (error) {
+        // One broken domain must not leave the renderer with zero IPC — the
+        // window still has to open (see `startupStep` in `index.ts`).
+        console.error(`[IPC] Failed to register ${domain.name} handlers:`, error);
+      }
     }
   });
 
