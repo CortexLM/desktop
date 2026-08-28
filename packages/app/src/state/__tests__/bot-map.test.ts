@@ -1,0 +1,95 @@
+import { describe, expect, it } from 'vitest';
+
+import {
+  computerIsOffline,
+  isPendingAsk,
+  isPendingSecret,
+  mapComputer,
+  mapMascot,
+  mapMessage,
+  mapVideo,
+} from '../bot-map.ts';
+
+describe('mapMascot', () => {
+  it('fills honest defaults and keeps farm extras off the model', () => {
+    const mascot = mapMascot({ id: 'mst_1', extra: true });
+    expect(mascot.name).toBe('Untitled mascot');
+    expect(mascot.shape).toBe('round');
+    expect(mascot.color).toBe('green');
+    expect(mascot.computer.id).toBe('pc_mst_1');
+    expect(mascot.computer.status).toBe('hibernated');
+    expect(mascot.computer.spec).toEqual({ arch: 'x86_64', vcpu: 4, memoryGiB: 16, browser: true });
+  });
+
+  it('maps known shape, colour, and nested computer fields', () => {
+    const mascot = mapMascot({
+      id: 'mst_2',
+      name: '  Scout  ',
+      shape: 'tall',
+      color: 'ink',
+      created_at: '2026-01-01T00:00:00.000Z',
+      computer: {
+        id: 'pc_9',
+        mascot_id: 'mst_2',
+        status: 'running',
+        provider: 'farm',
+        last_error: 'none',
+        screenshot_url: 'https://shot',
+        arch: 'arm64',
+        vcpu: 8,
+        memory_gib: 32,
+      },
+    });
+    expect(mascot.name).toBe('Scout');
+    expect(mascot.shape).toBe('tall');
+    expect(mascot.color).toBe('ink');
+    expect(mascot.createdAt).toBeGreaterThan(0);
+    expect(mascot.computer.provider).toBe('farm');
+    expect(mascot.computer.lastError).toBe('none');
+    expect(mascot.computer.screenshotUrl).toBe('https://shot');
+    expect(mascot.computer.spec.vcpu).toBe(8);
+  });
+});
+
+describe('mapComputer', () => {
+  it('treats mock and offline boxes as offline', () => {
+    expect(mapComputer({ id: 'm' }, { provider: 'mock' }).status).toBe('offline');
+    expect(mapComputer({ id: 'm' }, { offline: true }).status).toBe('offline');
+    expect(mapComputer({ id: 'm' }, { status: 'wake_failed' }).status).toBe('wake-failed');
+    expect(mapComputer({ id: 'm' }, { status: 'connecting' }).status).toBe('waking');
+    expect(mapComputer({ id: 'm', computer_id: 'pc_listed' }).id).toBe('pc_listed');
+  });
+});
+
+describe('mapMessage', () => {
+  it('classifies ask, secret, work, and user kinds', () => {
+    expect(mapMessage({ kind: 'ask-user', text: 'Wake?' }, 1).kind).toBe('ask_user');
+    expect(mapMessage({ kind: 'secret_request', secret: { name: 'token' } }, 2).secret?.name).toBe(
+      'token',
+    );
+    expect(mapMessage({ kind: 'tool_call', tool: 'shell' }, 3).work?.tool).toBe('shell');
+    expect(mapMessage({ role: 'user', content: 'hi' }, 4).kind).toBe('user');
+    expect(mapMessage({ role: 'assistant', text: 'ok' }, 5).kind).toBe('send_to_user');
+    expect(mapMessage({ ask_user: { prompt: 'Go?', options: ['yes'] } }, 6).ask?.prompt).toBe('Go?');
+    expect(mapMessage({ secret: { reason: 'key' } }, 7).kind).toBe('secret');
+    expect(mapMessage({ tool: 'fs' }, 8).kind).toBe('work');
+  });
+});
+
+describe('videos and pending flags', () => {
+  it('defaults a recording title and pending asks', () => {
+    expect(mapVideo({ id: 'vid_1' }).title).toBe('Recording');
+    expect(mapVideo({ id: 'vid_2', title: 'Clip', kind: 'zoom', created_at: '2026-01-02' }).kind).toBe(
+      'zoom',
+    );
+    expect(isPendingAsk({ kind: 'ask_user', ask: { prompt: 'x', pending: true } } as never)).toBe(true);
+    expect(isPendingAsk({ kind: 'ask_user' } as never)).toBe(true);
+    expect(isPendingSecret({ kind: 'secret', secret: { name: 't', pending: false } } as never)).toBe(
+      false,
+    );
+    expect(isPendingSecret({ kind: 'secret' } as never)).toBe(true);
+    expect(computerIsOffline({ status: 'offline' } as never)).toBe(true);
+    expect(computerIsOffline({ status: 'running', provider: 'mock' } as never)).toBe(true);
+    expect(computerIsOffline({ status: 'running' } as never)).toBe(false);
+  });
+});

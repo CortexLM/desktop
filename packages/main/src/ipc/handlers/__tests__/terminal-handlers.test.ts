@@ -86,7 +86,9 @@ vi.mock('node-pty', () => ({ spawn: spawnMock }));
 const { registerTerminalHandlers, unregisterTerminalHandlers, TERMINAL_LIST_CHANNEL } = await import(
   '../terminal-handlers'
 );
-const { getTerminalService } = await import('../../../services/terminal-service');
+const { getTerminalService, resetTerminalService } = await import(
+  '../../../services/terminal-service'
+);
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -135,6 +137,10 @@ describe('terminal handlers', () => {
     resetElectronMock();
     spawned.length = 0;
     spawnMock.mockClear();
+    // Seed the singleton with the mock spawn so register() never createRequire's
+    // the native addon. `vi.mock('node-pty')` does not intercept createRequire.
+    resetTerminalService();
+    getTerminalService(spawnMock);
     registerTerminalHandlers();
   });
 
@@ -142,6 +148,7 @@ describe('terminal handlers', () => {
     // Also kills every PTY through `TerminalService.cleanup()`, so no fake
     // terminal leaks into the next test.
     unregisterTerminalHandlers();
+    resetTerminalService();
   });
 
   // -------------------------------------------------------------------------

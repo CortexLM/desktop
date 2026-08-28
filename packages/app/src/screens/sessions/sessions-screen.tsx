@@ -12,10 +12,14 @@ export interface InboxSession {
   branch: string;
   repo: string;
   status: SessionStatus;
+  /** "Running · 12m" — status plus elapsed time, joined by the caller. */
+  statusLabel?: string;
+  /** Where the run executes: "Local", "Cloud", "SSH". */
+  runtime?: string;
   diff?: { added: number; removed: number };
   /** Pre-formatted, e.g. "4m ago". */
   age: string;
-  /** Shows the 7px lane dot. */
+  /** Shows the 7px lane dot in the status tone. */
   unread?: boolean;
 }
 
@@ -28,6 +32,8 @@ export interface SessionFilter {
 
 export interface SessionsScreenProps {
   sessions: readonly InboxSession[];
+  /** "6 sessions across 3 repositories · 1 running", assembled by the caller. */
+  summary?: string;
   filters: readonly SessionFilter[];
   activeFilter: string;
   onFilterChange: (id: string) => void;
@@ -57,30 +63,6 @@ function groupByRepo(sessions: readonly InboxSession[]): RepoGroup[] {
   return groups;
 }
 
-function SegmentedFilter(props: {
-  filters: readonly SessionFilter[];
-  active: string;
-  onChange: (id: string) => void;
-}): JSX.Element {
-  return (
-    <div class="cx-segmented" role="group" aria-label="Filter sessions">
-      <For each={props.filters}>
-        {(filter) => (
-          <button
-            type="button"
-            class="cx-segmented__option"
-            aria-pressed={filter.id === props.active}
-            onClick={() => props.onChange(filter.id)}
-          >
-            {filter.label}
-            <Show when={filter.count !== undefined}>{` ${filter.count}`}</Show>
-          </button>
-        )}
-      </For>
-    </div>
-  );
-}
-
 function InboxRow(props: { session: InboxSession; onOpen: (id: string) => void }): JSX.Element {
   const tone = () => SESSION_STATUS_TONES[props.session.status].tone;
 
@@ -91,21 +73,29 @@ function InboxRow(props: { session: InboxSession; onOpen: (id: string) => void }
       onClick={() => props.onOpen(props.session.id)}
       aria-label={`${props.session.title}, ${SESSION_STATUS_TONES[props.session.status].label}`}
     >
-      <span class="cx-inbox__unread">
-        <Show when={props.session.unread}>
-          <span class="cx-inbox__unread-dot" role="img" aria-label="Unread" />
-        </Show>
-      </span>
+      <span class={`cx-inbox__dot cx-inbox__dot--${tone()}`} aria-hidden="true" />
 
       <span class="cx-inbox__title-column">
         <span class="cx-inbox__title">{props.session.title}</span>
         <span class="cx-inbox__branch">{props.session.branch}</span>
       </span>
 
-      <span class="cx-inbox__status">
-        <span class={`cx-inbox__status-dot cx-inbox__status-dot--${tone()}`} aria-hidden="true" />
-        {SESSION_STATUS_TONES[props.session.status].label}
+      <span class="cx-inbox__runtime">
+        <Show when={props.session.runtime}>
+          {(runtime) => (
+            <>
+              <Icon name="desktop" size={12} strokeWidth={1.4} />
+              {runtime()}
+            </>
+          )}
+        </Show>
       </span>
+
+      <span class="cx-inbox__status">
+        {props.session.statusLabel ?? SESSION_STATUS_TONES[props.session.status].label}
+      </span>
+
+      <span class="cx-inbox__spacer" aria-hidden="true" />
 
       <span class="cx-inbox__diff">
         <Show when={props.session.diff}>
@@ -135,22 +125,34 @@ function ControlsRow(props: {
 }): JSX.Element {
   return (
     <div class="cx-sessions__controls">
-      <SegmentedFilter
-        filters={props.filters}
-        active={props.activeFilter}
-        onChange={props.onFilterChange}
-      />
-      <span class="cx-sessions__spacer" />
       <div class="cx-sessions__search">
-        <Icon name="search" size={13} />
+        <Icon name="search" size={13} strokeWidth={1.5} />
         <input
           type="search"
           class="cx-sessions__search-input"
-          placeholder="Search sessions"
+          placeholder="Search sessions…"
           value={props.query}
           aria-label="Search sessions"
           onInput={(event) => props.onQueryChange(event.currentTarget.value)}
         />
+      </div>
+
+      <div class="cx-sessions__filters" role="group" aria-label="Filter sessions">
+        <For each={props.filters}>
+          {(filter) => (
+            <button
+              type="button"
+              class="cx-sessions__filter"
+              aria-pressed={filter.id === props.activeFilter}
+              onClick={() => props.onFilterChange(filter.id)}
+            >
+              {filter.label}
+              <Show when={filter.count !== undefined}>
+                <span class="cx-sessions__filter-count">{filter.count}</span>
+              </Show>
+            </button>
+          )}
+        </For>
       </div>
     </div>
   );
@@ -173,19 +175,21 @@ function Inbox(props: { groups: RepoGroup[]; onOpen: (id: string) => void }): JS
     <div class="cx-inbox">
       <For each={props.groups}>
         {(group) => (
-          <>
-            <div class="cx-inbox__group">
-              <Icon name="folder" size={12} />
+          <div class="cx-inbox__group">
+            <div class="cx-inbox__group-header">
+              <Icon name="folder" size={12} strokeWidth={1.4} />
               <span class="cx-inbox__group-name">{group.repo}</span>
               <span class="cx-inbox__group-count">
                 {group.sessions.length}
                 {group.sessions.length === 1 ? ' session' : ' sessions'}
               </span>
             </div>
-            <For each={group.sessions}>
-              {(session) => <InboxRow session={session} onOpen={props.onOpen} />}
-            </For>
-          </>
+            <div class="cx-inbox__card">
+              <For each={group.sessions}>
+                {(session) => <InboxRow session={session} onOpen={props.onOpen} />}
+              </For>
+            </div>
+          </div>
         )}
       </For>
     </div>
@@ -193,7 +197,7 @@ function Inbox(props: { groups: RepoGroup[]; onOpen: (id: string) => void }): JS
 }
 
 /**
- * Sessions: the inbox of everything running or finished, grouped by repo.
+ * Sessions: the inbox of everything running or finished, one card per repo.
  *
  * The Empty States artboard is this screen with nothing in the list, so it is a branch here
  * rather than a route of its own. The controls stay mounted in that branch: hiding them
@@ -204,10 +208,11 @@ export function SessionsScreen(props: SessionsScreenProps): JSX.Element {
     <>
       <PageHeader
         title="Sessions"
+        subtitle={props.summary}
         actions={
           <Show when={props.onNewSession}>
             {(start) => (
-              <Button variant="primary" icon="plusSmall" onClick={() => start()()}>
+              <Button variant="green" icon="plusSmall" onClick={() => start()()}>
                 New session
               </Button>
             )}

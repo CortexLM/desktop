@@ -57,6 +57,8 @@ export interface SessionSummary {
   filesChanged: number;
   createdAt: number;
   updatedAt: number;
+  /** Présent dès que le tour a commencé. */
+  startedAt?: number;
   /** Absent tant que l'exécution tourne. */
   finishedAt?: number;
   archived: boolean;

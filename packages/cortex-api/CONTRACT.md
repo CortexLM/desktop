@@ -168,3 +168,174 @@ Not reachable without credentials, so deliberately not modelled:
 Those gaps are why `CortexApiClient` covers auth, models and providers concretely and
 exposes a typed escape hatch (`request`) for the rest, rather than inventing endpoints that
 would fail at runtime.
+
+## Addendum — v1 contract drift (observed 2026-08-26)
+
+The deployed service moved under the client; nothing below is a guess. Probed with
+plain curl from this workspace while `CortexLM/backend` itself remained
+inaccessible (repository not visible to this agent's GitHub token — this section
+records the empirical surface until the source can be read).
+
+### The `/auth/*` family is gone
+
+Every previously-working auth route now answers RFC 7807 problem+json:
+
+```json
+{ "type": "about:blank", "title": "Not Found", "status": 404,
+  "detail": "No such endpoint. See https://docs.cortex.foundation/api.",
+  "code": "not_found" }
+```
+
+Observed on `/auth/me`, `/auth/device/start`, `/auth/device/poll`. The device
+flow therefore cannot start against this deployment. `classifyError` surfaces the
+problem+json `code`/`detail` as a `CortexApiError`, and the account service maps
+`not_found` on the device flow to an honest "the account service has retired this
+endpoint" message with the local-key fallback. What replaces the flow is not yet
+discoverable from outside:
+
+- `GET /v1/me` → `401 {"code":"AUTH_REQUIRED"}` (exists, wants credentials)
+- `GET /v1/auth/login` → `405` (exists; method not allowed anonymously)
+- RFC 8414 metadata (`/.well-known/oauth-authorization-server`) → 404
+- `docs.cortex.foundation` timed out on every probe
+
+### `/v1/models` changed envelope and key
+
+```json
+{ "items": [ { "slug": "cortex-1-mini", "display_name": "Cortex 1 Mini",
+  "description": "Preview — the model Cortex is serving today.",
+  "context_tokens": 262144, "max_output_tokens": 32768,
+  "supports_reasoning": true, "supports_tools": true,
+  "supports_vision": false, "is_preview": true } ],
+  "has_more": false }
+```
+
+Previously `{ "object": "list", "data": [{ "id": … }] }`. `modelListSchema`
+accepts both envelopes and normalises `slug` onto `id`, so consumers (the model
+picker, capabilities) are unaffected. Verified against the live service through
+`CortexApiClient.listModels()`.
+
+## Addendum — guest, conversations, realtime (observed 2026-08-28)
+
+`CortexLM/backend` is still not visible to this token. Parallel PRs (realtime
+socket, Bot mascots, Chat Planning/Projects) are not on the public deployment
+yet. What follows was probed with a **guest session** created by the live
+service — no API keys were invented or stored.
+
+### Guest auth (observed)
+
+`POST /v1/auth/guest` → `200 {"kind":"guest","user_id":"usr_…"}` and
+`Set-Cookie: cortex_gt=<token>; HttpOnly; SameSite=Lax; Secure; Domain=cortex.foundation`.
+
+`GET /v1/me` with that cookie →
+
+```json
+{ "email": "", "display_name": "Guest", "plan_slug": "guest", "is_guest": true,
+  "quotas": [{ "key": "quick_messages_per_day", "used": 0, "limit": 100,
+    "resets_at": "2026-08-29T00:00:00+00:00" }] }
+```
+
+`POST /v1/auth/logout` → `204`.
+`GET /v1/auth/login` → `307` to WorkOS AuthKit (`redirect_uri=…/v1/auth/callback`).
+
+The cookie name for guests is `cortex_gt`, not `wos-session`. The client sends
+whichever it has; it still never uses `Authorization: Bearer`.
+
+### Conversations (observed)
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| GET | `/v1/conversations` | `{ items: [{ id, title, last_message_at, model_slug, message_count }], has_more }` |
+| POST | `/v1/conversations/turns` | Body `{ message }`. **Creates** a thread. SSE. |
+| POST | `/v1/conversations/:id/turns` | Follow-up. `id` is `cnv_` + ULID. SSE. |
+| GET | `/v1/conversations/:id/messages` | `{ items: [{ id, role, text, created_at, model_name }], has_more }` |
+| DELETE | `/v1/conversations/:id` | Allowed. GET on the conversation itself is `405`. |
+
+SSE events (verbatim types): `disclosure`, `reasoning_delta`, `reasoning_done`,
+`text_delta`, `usage`, `done`. Headers: `x-conversation-id`, `x-message-id`.
+`last-event-id` is accepted on CORS preflight.
+
+### Projects (observed)
+
+`GET /v1/projects` → `{ items, has_more }` (empty for a guest).
+`POST /v1/projects` requires `{ name }`. Guests receive `403 entitlement_required`
+(`required_plan: "free"`). That is a real gate, not a missing route.
+
+### Not landed (typed + mocked)
+
+`GET/WS /v1/realtime` → `404`. Bot (`/v1/mascots`, `/v1/bots`, `/v1/computers`),
+Planning, Library, Plugins, Code hosts, and `/v1/notifications` likewise `404`.
+`packages/cortex-api` exposes a typed WebSocket client, an SSE fallback, and
+`createHttpProductSurface` for mascots, Code hosts/sessions, Planning, Library,
+Plugins, and notifications. In-process mocks are **not** on the public entry
+— they live in `@cortex-ide/cortex-api/test-doubles` behind
+`CORTEX_ALLOW_TEST_DOUBLES=1`. Chat/Code/Bot prefer the writable socket.
+Chat falls back to SSE listen + HTTP turns. Web Code still never runs the
+harness in the renderer.
+
+`/health` and `GET /v1/providers` now `404`. `/v1/models` remains public.
+
+## Addendum — product control plane (CortexLM/backend PR 36)
+
+`CortexLM/backend` is still not visible to this token. The shapes below follow
+`docs/product-realtime.md` and `packages/api-types/src/realtime.ts` on that
+draft PR. A live 404 stays `not_found`. No keys were invented.
+
+### Transport
+
+| Method | Path | Role |
+| --- | --- | --- |
+| GET | `/v1/realtime` | Authenticated WebSocket. JSON text frames. |
+| GET | `/v1/realtime/events` | SSE fallback. Owner room, listen-only. |
+| POST | `/v1/conversations/{id}/turns` | Observed Chat HTTP stream (unchanged). |
+
+Rooms: implicit signed-in user (owner), plus optional `conversation:`,
+`code_session:`, `mascot:`. A miss is `not_found` (connection-local `error`).
+`hello`, `heartbeat`, `subscribed`, and `error` are connection-local and must
+not leak across tabs or become inbox rows.
+
+Origin is allowlisted. A missing Origin is allowed (Electron). The client
+never puts a cookie or API key on the WebSocket URL.
+
+### Chat
+
+Turn tokens fan out on the owner room. Scheduled-task results use
+`POST /v1/conversations/{id}/scheduled-results` (owner-only, idempotent on
+`user` + `task_id`). The client does not invent a conversation id.
+
+### Code
+
+Cloud and connected-host sessions. A run may prompt Allow / Always / Deny.
+Host pairing returns a code shown once; the service stores a hash the client
+never persists. Heartbeat is `{ device_token, host_id? }` — no SSH or
+provider keys on the wire. Web still rejects `runtime: 'local'`.
+
+### Bot
+
+Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
+`{ ticket_hash }` only — never a password. Videos list at
+`GET /v1/mascots/{id}/videos`.
+
+Grok-core routes (parallel backend PR). A live 404 stays `not_found` /
+`backend_too_old` in the UI — never a localStorage stand-in:
+
+| Method | Path |
+| --- | --- |
+| GET/POST | `/v1/mascots/{id}/messages` |
+| POST | `/v1/mascots/{id}/ask-user`, `/respond`, `/secrets` |
+| GET | `/v1/mascots/{id}/computer` |
+| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell` |
+| GET | `/computer/screenshot`, `/cursor`, `/fs`, `/file` |
+| GET/POST/DELETE | `/v1/mascots/{id}/memory?tier=` |
+| CRUD | `/v1/skills` + `POST /v1/mascots/{id}/skills/{slug}/run` |
+| CRUD + pause/resume | `/v1/mascots/{id}/routines` |
+| POST/GET | `/v1/mascots/{id}/tasks` |
+| POST/GET | `/inbox`, `/groups`, `/handoff`, `/teach` |
+| GET | `/v1/plugins`, `/v1/plugins/connections` |
+
+Agent turn events on `/v1/realtime`: `token`, `tool_call`, `tool_result`,
+`send_to_user`, `ask_user`, `computer_offline`.
+
+### Notifications
+
+`GET /v1/notifications`, `POST /v1/notifications/{id}/read`, plus realtime
+`notification` frames on the owner room.

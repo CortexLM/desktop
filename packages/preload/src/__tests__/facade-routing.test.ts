@@ -158,6 +158,11 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['automation', 'toggle', 'automation:toggle'],
   ['automation', 'getLogs', 'automation:get-logs'],
   ['session', 'list', 'session:list'],
+  ['chat', 'get', 'chat:get'],
+  ['chat', 'start', 'chat:start'],
+  ['chat', 'send', 'chat:send'],
+  ['chat', 'stop', 'chat:stop'],
+  ['chat', 'remove', 'chat:delete'],
   ['session', 'get', 'session:get'],
   ['session', 'start', 'session:start'],
   ['session', 'followUp', 'session:follow-up'],
@@ -166,11 +171,13 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['session', 'remove', 'session:delete'],
   ['session', 'resolvePermission', 'session:resolve-permission'],
   ['settings', 'setProvider', 'settings:set-provider'],
+  ['notify', 'show', 'notify:show'],
   ['settings', 'setWorkspace', 'settings:set-workspace'],
   ['secrets', 'create', 'secrets:create'],
   ['secrets', 'remove', 'secrets:delete'],
   ['cortex', 'createApiKey', 'cortex:create-api-key'],
   ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
+  ['cortex', 'productRequest', 'cortex:product-request'],
 ];
 
 /**
@@ -182,6 +189,11 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
  * or `null` instead would be validated against a shape nobody declared.
  */
 const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
+  ['chat', 'list', 'chat:list'],
+  ['windowControls', 'minimize', 'window:minimize'],
+  ['windowControls', 'toggleMaximize', 'window:toggle-maximize'],
+  ['windowControls', 'close', 'window:close'],
+  ['windowControls', 'isMaximized', 'window:is-maximized'],
   ['session', 'listRepositories', 'session:list-repositories'],
   ['session', 'openWorkspace', 'session:open-workspace'],
   ['settings', 'getProviders', 'settings:get-providers'],
@@ -228,6 +240,12 @@ describe('façade methods invoke the channel main registered', () => {
     // of the `git.push` -> `git:pull` bug, which no type check can see.
     const channels = [...SINGLE_ARG_METHODS, ...NO_ARG_METHODS].map(([, , channel]) => channel);
     expect(new Set(channels).size).toBe(channels.length);
+  });
+
+  it('reports process.platform without crossing IPC', () => {
+    const platform = cortex.platform as unknown as () => string;
+    expect(platform()).toBe(process.platform);
+    expect(invokeMock).not.toHaveBeenCalled();
   });
 
   it('covers every promise-returning façade method', () => {

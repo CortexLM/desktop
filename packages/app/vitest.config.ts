@@ -10,6 +10,9 @@ export default defineConfig({
     name: 'app',
     globals: true,
     environment: 'jsdom',
+    env: {
+      CORTEX_ALLOW_TEST_DOUBLES: '1',
+    },
     setupFiles: ['./vitest.setup.ts'],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', 'dist'],

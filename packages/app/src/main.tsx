@@ -1,6 +1,10 @@
 import { render } from 'solid-js/web';
 
 import { App } from './app.tsx';
+import { stampPlatform } from './state/platform.ts';
+
+// Before the first render, so platform-scoped CSS applies on the first frame.
+stampPlatform();
 
 const root = document.querySelector('#root');
 

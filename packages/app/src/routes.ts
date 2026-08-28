@@ -1,89 +1,121 @@
 /**
- * The route table, keyed by the Paper screen slug.
+ * The route table, keyed by slug.
  *
- * Every entry's `slug` matches an entry in `design/paper/screens.json`, and the suite
- * checks both directions: a screen in the design with no route here, and a route here with
- * no screen in the design, both fail. That is what stops a screen from being quietly
- * forgotten as the design grows.
+ * `source: 'paper'` slugs must match `design/paper/screens.json`. The suite
+ * checks both directions for those so a Concept 03 screen cannot be forgotten.
  *
- * Not every screen is a destination. Command Palette, Notifications and the three Limits
- * screens are overlays or states layered onto another screen, so they carry no path - they
- * are still listed, because being listed is what makes them accounted for.
+ * `source: 'product'` slugs are Chat / Bot destinations that are not on page
+ * 6-0 yet (Bot lives on Paper page D-0). They are real routes with honest
+ * states; they are not required to have an extracted artboard.
  */
 
-export type ScreenKind =
-  /** Reachable at its own path. */
-  | 'route'
-  /** Layered over whichever screen is beneath it. */
-  | 'overlay'
-  /** A variant of another screen rather than a place of its own. */
-  | 'state';
+export type ScreenKind = 'route' | 'overlay' | 'state';
+
+export type Product = 'chat' | 'code' | 'bot';
+
+export type RouteSource = 'paper' | 'product';
 
 export interface ScreenRoute {
-  /** Matches the slug in design/paper/screens.json. */
   slug: string;
   kind: ScreenKind;
-  /** Path, for `kind: 'route'` only. */
+  product: Product;
+  source?: RouteSource;
   path?: string;
-  /** The screen this one layers over or varies, for overlays and states. */
   host?: string;
-  /** True when the screen needs a Cortex account. */
   requiresAuth?: boolean;
-  /** Window title fragment. */
   title: string;
 }
 
 export const SCREEN_ROUTES: readonly ScreenRoute[] = [
-  // Primary destinations, in sidebar order.
-  { slug: 'home', kind: 'route', path: '/', title: 'Home' },
-  { slug: 'sessions', kind: 'route', path: '/sessions', title: 'Sessions' },
-  { slug: 'automations', kind: 'route', path: '/automations', requiresAuth: true, title: 'Automations' },
-  { slug: 'review', kind: 'route', path: '/review', requiresAuth: true, title: 'Review' },
-  { slug: 'usage', kind: 'route', path: '/usage', requiresAuth: true, title: 'Usage' },
-
-  // Session surfaces.
-  { slug: 'session-detail', kind: 'route', path: '/sessions/:sessionId', title: 'Session' },
+  // ── Chat (Paper + product) ───────────────────────────────────────────────
+  { slug: 'home', kind: 'route', product: 'chat', path: '/', title: 'Cortex' },
+  { slug: 'conversation', kind: 'route', product: 'chat', path: '/chat/:conversationId', title: 'Chat' },
+  { slug: 'research', kind: 'route', product: 'chat', source: 'product', path: '/research', title: 'Research' },
+  { slug: 'planning', kind: 'route', product: 'chat', source: 'product', path: '/planning', title: 'Planning' },
+  { slug: 'projects', kind: 'route', product: 'chat', source: 'product', path: '/projects', title: 'Projects' },
+  { slug: 'project', kind: 'route', product: 'chat', source: 'product', path: '/projects/:projectId', title: 'Project' },
   {
-    slug: 'session-detail-focus',
+    slug: 'project-sources',
     kind: 'route',
-    path: '/sessions/:sessionId/focus',
-    title: 'Session',
+    product: 'chat',
+    source: 'product',
+    path: '/projects/:projectId/sources',
+    title: 'Sources',
   },
-  { slug: 'session-states', kind: 'state', host: 'session-detail', title: 'Session' },
-  { slug: 'empty-states', kind: 'state', host: 'sessions', title: 'Sessions' },
+  { slug: 'library', kind: 'route', product: 'chat', source: 'product', path: '/library', title: 'Library' },
+  { slug: 'plugins', kind: 'route', product: 'chat', source: 'product', path: '/plugins', title: 'Plugins' },
+  { slug: 'chat-settings', kind: 'route', product: 'chat', source: 'product', path: '/settings', title: 'Settings' },
 
-  // Configuration.
-  { slug: 'settings', kind: 'route', path: '/settings', title: 'Settings' },
-  {
-    slug: 'settings-integrations',
-    kind: 'route',
-    path: '/settings/integrations',
-    title: 'Integrations',
-  },
-  { slug: 'secrets', kind: 'route', path: '/secrets', title: 'Secrets' },
-  { slug: 'new-automation', kind: 'route', path: '/automations/new', requiresAuth: true, title: 'New automation' },
-  { slug: 'ssh-connect', kind: 'route', path: '/runtimes/ssh', requiresAuth: true, title: 'Connect a server' },
+  // ── Code: primary destinations, in sidebar order ─────────────────────────
+  { slug: 'code-home', kind: 'route', product: 'code', path: '/code', title: 'Code' },
+  { slug: 'code-sessions', kind: 'route', product: 'code', path: '/code/sessions', title: 'Sessions' },
+  { slug: 'code-automations', kind: 'route', product: 'code', path: '/code/automations', requiresAuth: true, title: 'Automations' },
+  { slug: 'code-review', kind: 'route', product: 'code', path: '/code/review', requiresAuth: true, title: 'Review' },
+  { slug: 'code-usage', kind: 'route', product: 'code', path: '/code/usage', requiresAuth: true, title: 'Usage' },
 
-  // Onboarding and account.
-  { slug: 'onboarding', kind: 'route', path: '/onboarding', title: 'Get started' },
-  { slug: 'auth-sign-in', kind: 'route', path: '/sign-in', title: 'Sign in' },
-  { slug: 'auth-device-code', kind: 'route', path: '/sign-in/device', title: 'Sign in' },
-  { slug: 'auth-connect-github', kind: 'route', path: '/sign-in/github', title: 'Connect GitHub' },
-  { slug: 'auth-workspace-setup', kind: 'route', path: '/sign-in/workspace', title: 'Set up workspace' },
+  // ── Code: session surfaces ────────────────────────────────────────────────
+  { slug: 'code-session-detail', kind: 'route', product: 'code', path: '/code/sessions/:sessionId', title: 'Session' },
+  { slug: 'code-session-detail-focus', kind: 'route', product: 'code', path: '/code/sessions/:sessionId/focus', title: 'Session' },
+  { slug: 'code-session-states', kind: 'state', product: 'code', host: 'code-session-detail', title: 'Session' },
+  { slug: 'code-empty-states', kind: 'state', product: 'code', host: 'code-sessions', title: 'Sessions' },
+  { slug: 'code-home-sidebar-collapsed', kind: 'state', product: 'code', host: 'code-home', title: 'Code' },
 
-  // Overlays.
-  { slug: 'command-palette', kind: 'overlay', host: 'sessions', title: 'Command palette' },
-  { slug: 'notifications', kind: 'overlay', host: 'home', title: 'Notifications' },
-  { slug: 'limits-usage-warning', kind: 'state', host: 'home', title: 'Home' },
-  { slug: 'limits-limit-reached', kind: 'state', host: 'home', title: 'Home' },
-  { slug: 'limits-upgrade-modal', kind: 'overlay', host: 'usage', title: 'Upgrade' },
+  // ── Code: configuration ───────────────────────────────────────────────────
+  { slug: 'code-settings', kind: 'route', product: 'code', path: '/code/settings', title: 'Settings' },
+  { slug: 'code-integrations', kind: 'route', product: 'code', path: '/code/settings/integrations', title: 'Integrations' },
+  { slug: 'code-secrets', kind: 'route', product: 'code', path: '/code/secrets', title: 'Secrets' },
+  { slug: 'code-notifications', kind: 'route', product: 'code', path: '/code/notifications', title: 'Notifications' },
+  { slug: 'code-new-automation', kind: 'route', product: 'code', path: '/code/automations/new', requiresAuth: true, title: 'New automation' },
+  { slug: 'code-ssh-connect', kind: 'route', product: 'code', path: '/code/runtimes/ssh', requiresAuth: true, title: 'Connect a server' },
+
+  // ── Bot (Paper page D-0; not on the Concept 03 manifest yet) ─────────────
+  { slug: 'bot-home', kind: 'route', product: 'bot', source: 'product', path: '/bot', title: 'Bot' },
+  { slug: 'bot-create', kind: 'route', product: 'bot', source: 'product', path: '/bot/new', title: 'New mascot' },
+  { slug: 'bot-conversation', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId', title: 'Mascot' },
+  { slug: 'bot-messages', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/messages', title: 'Messages' },
+  { slug: 'bot-videos', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/videos', title: 'Videos' },
+  { slug: 'bot-computer', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/computer', title: 'Computer' },
+  { slug: 'bot-memory', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/memory', title: 'Memory' },
+  { slug: 'bot-skills', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/skills', title: 'Skills' },
+  { slug: 'bot-routines', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/routines', title: 'Routines' },
+  { slug: 'bot-groups', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/groups', title: 'Groups' },
+  { slug: 'bot-settings', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/settings', title: 'Mascot settings' },
+
+  // ── Onboarding and account ────────────────────────────────────────────────
+  { slug: 'code-onboarding', kind: 'route', product: 'code', path: '/onboarding', title: 'Get started' },
+  { slug: 'code-auth-sign-in', kind: 'route', product: 'code', path: '/sign-in', title: 'Sign in' },
+  { slug: 'code-auth-device-code', kind: 'route', product: 'code', path: '/sign-in/device', title: 'Sign in' },
+  { slug: 'code-auth-connect-github', kind: 'route', product: 'code', path: '/sign-in/github', title: 'Connect GitHub' },
+  { slug: 'code-auth-workspace-setup', kind: 'route', product: 'code', path: '/sign-in/workspace', title: 'Set up workspace' },
+
+  // ── Overlays and layered states ───────────────────────────────────────────
+  { slug: 'code-command-palette', kind: 'overlay', product: 'code', host: 'code-sessions', title: 'Command palette' },
+  { slug: 'code-limits-usage-warning', kind: 'state', product: 'code', host: 'code-home', title: 'Code' },
+  { slug: 'code-limits-limit-reached', kind: 'state', product: 'code', host: 'code-home', title: 'Code' },
+  { slug: 'code-limits-upgrade-modal', kind: 'overlay', product: 'code', host: 'code-usage', title: 'Upgrade' },
 ] as const;
 
-/** Screens that have their own path. */
+export function paperRoutes(): readonly ScreenRoute[] {
+  return SCREEN_ROUTES.filter((route) => route.source !== 'product');
+}
+
 export function navigableRoutes(): readonly ScreenRoute[] {
   return SCREEN_ROUTES.filter((route) => route.kind === 'route');
 }
 
 export function routeBySlug(slug: string): ScreenRoute | undefined {
   return SCREEN_ROUTES.find((route) => route.slug === slug);
+}
+
+export function productHome(product: Product): string {
+  if (product === 'code') return '/code';
+  if (product === 'bot') return '/bot';
+  return '/';
+}
+
+/** Which product's shell frames a pathname. */
+export function productForPath(pathname: string): Product {
+  if (pathname === '/code' || pathname.startsWith('/code/')) return 'code';
+  if (pathname === '/bot' || pathname.startsWith('/bot/')) return 'bot';
+  return 'chat';
 }

@@ -1,109 +1,199 @@
 /*
- * Paper: Components / Inputs, "Composer (hero)" (CW-0, KW-0), and the Home composer (1QJ-0).
- * Reference export: design/paper/jsx/composer.jsx
+ * Paper: Components 03 — Composer & apps row (GF-0).
+ * Reference export: design/paper/jsx/composer-apps-row.jsx
  *
- * A raised card: padding 16, column gap 12, radius-md, 1px border-strong, shadow-raised.
- * Three stacked rows - prompt, attachments, controls - with the attachment row only present
- * when there is something in it.
- *
- * The prompt is 16px on a 24px line, which is the only place in the design that uses
- * --text-md: it is the one input the user actually composes prose in.
+ * A raised card on the composer radius (24): surface fill, hairline ring, the
+ * soft double shadow. Prompt 15/22; the toolbar holds the attach button and the
+ * product's controls on the left, the bare-text model picker, mic and the green
+ * circular send on the right. Focus is the one moment the accent radiates: a
+ * 45% green hairline with a ring and a wide glow.
  */
 
 .cx-composer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: 14px;
 
-  padding: var(--spacing-4);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
+  width: 100%;
+  padding: 16px 16px 12px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-composer);
 
-  background: var(--color-surface-raised);
-  box-shadow: var(--shadow-raised);
+  background: var(--color-surface);
+  box-shadow:
+    #1f1d1a0a 0 1px 2px,
+    #1f1d1a0a 0 4px 12px;
+
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
-/* Focus lifts the border rather than adding a ring, so the card does not change size. */
+:root[data-theme='dark'] .cx-composer {
+  box-shadow: none;
+}
+
 .cx-composer:focus-within {
-  border-color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-green) 45%, transparent);
+  box-shadow:
+    color-mix(in srgb, var(--color-green) 8%, transparent) 0 0 0 3px,
+    color-mix(in srgb, var(--color-green) 18%, transparent) 0 0 36px 4px;
+}
+
+:root[data-theme='dark'] .cx-composer:focus-within {
+  border-color: color-mix(in srgb, var(--color-green-hover) 50%, transparent);
+  box-shadow:
+    color-mix(in srgb, var(--color-green) 12%, transparent) 0 0 0 3px,
+    color-mix(in srgb, var(--color-green) 22%, transparent) 0 0 36px 4px;
 }
 
 .cx-composer--disabled {
-  opacity: var(--opacity-disabled);
+  opacity: 0.7;
 }
 
-/*
- * The prompt input.
- *
- * A textarea rather than a contenteditable: the design shows an inline repo mention as a
- * chip, which contenteditable would render natively, but it would also hand us the entire
- * rich-text editing surface - paste sanitisation, selection, undo - for one decoration. The
- * chip is drawn in the row above instead, and the field stays a plain textarea whose value
- * is unambiguous.
- */
+/* -------------------------------------------------------------------------- */
+/* Prompt                                                                     */
+/* -------------------------------------------------------------------------- */
+
 .cx-composer__prompt {
   width: 100%;
+  min-height: 22px;
+  max-height: 176px;
   padding: 0;
   border: 0;
   resize: none;
-  overflow: hidden;
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-md);
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 22px;
 
   background: transparent;
   color: var(--color-text);
-
-  /* One line at rest, growing to five before it scrolls. The design draws a single 24px
-   * line; a fixed height would clip a two-line prompt with no way to see it. */
-  min-height: 24px;
-  max-height: 120px;
 }
 
-.cx-composer__prompt::placeholder {
-  color: var(--color-text-faint);
+:root[data-theme='dark'] .cx-composer__prompt {
+  font-weight: 350;
+  font-variation-settings: 'wght' 350;
 }
 
 .cx-composer__prompt:focus {
   outline: none;
 }
 
-/* Inline repo mention, shown ahead of the prompt when a repo is bound to the draft. */
-.cx-composer__mention {
-  display: inline-flex;
-  align-items: center;
-  padding: 1px 7px;
-  border-radius: var(--radius-sm);
-
-  background: var(--color-primary-tint);
-  color: var(--color-primary);
-
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
-  line-height: 18px;
+.cx-composer__prompt::placeholder {
+  color: var(--color-text-muted);
 }
+
+/* The repo mention ahead of the prompt, as an inline literal. */
+.cx-composer__mention {
+  margin-right: 6px;
+
+  font-family: var(--font-mono-stack);
+  font-size: 13px;
+  color: var(--color-green);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Attachments                                                                */
+/* -------------------------------------------------------------------------- */
 
 .cx-composer__attachments {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-2);
+  gap: 8px;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Toolbar                                                                    */
+/* -------------------------------------------------------------------------- */
 
 .cx-composer__controls {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: 8px;
 }
 
 .cx-composer__spacer {
-  flex-grow: 1;
+  flex: 1;
 }
 
-/*
- * Send is a 32px round accent button, not the standard primary button: the design gives it
- * radius-full and a fixed square box rather than padding.
- */
+/* The attach button: a 32px bordered pill with a plus. */
+.cx-composer__attach {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-composer__attach:hover:not(:disabled) {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* Ghost 32 actions: mic. */
+.cx-composer__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-composer__action:hover:not(:disabled) {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* The bare-text model picker. */
+.cx-composer__model {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  height: 28px;
+  padding-inline: 4px;
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  font-family: var(--font-sans-stack);
+  font-size: 13px;
+  line-height: 16px;
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+:root[data-theme='dark'] .cx-composer__model {
+  font-weight: 350;
+  font-variation-settings: 'wght' 350;
+}
+
+.cx-composer__model:hover:not(:disabled) {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+/* The green circular send — a decisive moment. */
 .cx-composer__send {
   display: inline-flex;
   align-items: center;
@@ -114,48 +204,25 @@
   height: 32px;
   padding: 0;
   border: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--color-green);
+  color: var(--color-on-green);
   cursor: pointer;
 
-  transition: background-color 100ms ease, opacity 100ms ease;
+  transition: background-color 100ms ease;
 }
 
 .cx-composer__send:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  background: var(--color-green-hover);
 }
 
 .cx-composer__send:disabled {
+  background: color-mix(in srgb, var(--color-green) 40%, transparent);
+  color: color-mix(in srgb, var(--color-on-green) 85%, transparent);
   cursor: default;
-  opacity: var(--opacity-disabled);
 }
 
-/* Icon-only affordances in the control row: attach and dictate. */
-.cx-composer__action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-sm);
-
-  background: transparent;
-  color: var(--color-text-muted);
-  cursor: pointer;
-}
-
-.cx-composer__action:hover:not(:disabled) {
-  background: var(--color-inset);
-  color: var(--color-text);
-}
-
-.cx-composer__action:disabled {
+.cx-composer__controls button:disabled {
   cursor: default;
-  color: var(--color-text-faint);
 }

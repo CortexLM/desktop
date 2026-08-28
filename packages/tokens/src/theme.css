@@ -5,20 +5,23 @@
  * same theme selector, then structural dimensions.
  */
 
+@import './fonts.css';
 @import './tokens.generated.css';
 @import './semantic.css';
 @import './layout.css';
 
 /*
- * Inter and JetBrains Mono are the two families the Paper file loads. They are resolved
- * from the local install with a system fallback rather than fetched: the app is an Electron
- * desktop client, and a webfont round-trip on launch would show unstyled text on the very
- * first frame the user sees.
+ * Inter and JetBrains Mono resolve from the local install with a system fallback
+ * rather than being fetched: the app is an Electron desktop client, and a webfont
+ * round-trip on launch would show unstyled text on the very first frame. Source
+ * Serif 4 — the Concept 03 display face — is bundled by fonts.css because no OS
+ * ships it.
  */
 :root {
   --font-sans-stack: var(--font-sans), 'Inter var', system-ui, -apple-system, 'Segoe UI',
     Roboto, sans-serif;
   --font-mono-stack: var(--font-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-serif-stack: var(--font-serif), 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
 *,

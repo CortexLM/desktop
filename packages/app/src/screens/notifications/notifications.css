@@ -1,0 +1,121 @@
+/*
+ * Paper: C3 / Code / Notifications (G8I-0 light, G8J-0 dark).
+ */
+
+.cx-notifications-page {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  padding: 64px 40px 40px;
+  overflow-y: auto;
+}
+
+.cx-notifications-page__header {
+  width: 100%;
+  max-width: var(--layout-home-column);
+  margin: 0 auto 24px;
+}
+
+.cx-notifications-page__title {
+  font-family: var(--font-serif-stack);
+  font-size: var(--text-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-title);
+  color: var(--color-text);
+}
+
+.cx-notifications-page__list {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: var(--layout-home-column);
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.cx-notifications-page__list li + li {
+  border-top: 1px solid var(--color-border);
+}
+
+.cx-notifications-page__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+
+  font-family: var(--font-sans-stack);
+  text-align: left;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+.cx-notifications-page__row:hover {
+  background: var(--color-hover);
+}
+
+.cx-notifications-page__dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.cx-notifications-page__message {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 14px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+.cx-notifications-page__age {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Empty state                                                                */
+/* -------------------------------------------------------------------------- */
+
+.cx-notifications-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  margin: 96px auto 0;
+  color: var(--color-text-muted);
+}
+
+.cx-notifications-page__empty-title {
+  font-family: var(--font-sans-stack);
+  font-size: 14px;
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+.cx-notifications-page__empty-body {
+  font-family: var(--font-sans-stack);
+  font-size: 13px;
+  line-height: 18px;
+}

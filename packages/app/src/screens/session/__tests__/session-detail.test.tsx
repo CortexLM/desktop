@@ -186,6 +186,56 @@ describe('Session artifacts', () => {
   });
 });
 
+describe('Session permission banner', () => {
+  const request = { requestId: 'perm-1', summary: 'Create NOTES.md', risk: 'caution' as const };
+
+  it('shows the request and resolves it with the chosen decision', () => {
+    const onResolvePermission = vi.fn();
+    renderDetail({ permission: request, onResolvePermission });
+
+    expect(screen.getByText('Permission needed')).toBeInTheDocument();
+    expect(screen.getByText('Create NOTES.md')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Allow' }));
+    expect(onResolvePermission).toHaveBeenCalledExactlyOnceWith('perm-1', 'allow-once');
+  });
+
+  it('offers Always allow and Deny too', () => {
+    const onResolvePermission = vi.fn();
+    renderDetail({ permission: request, onResolvePermission });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Deny' }));
+    expect(onResolvePermission).toHaveBeenCalledExactlyOnceWith('perm-1', 'deny');
+  });
+
+  it('disables the buttons after a decision', () => {
+    // The banner only leaves the screen when the loop reacts; until then a second
+    // click would race the first decision.
+    const onResolvePermission = vi.fn();
+    renderDetail({ permission: request, onResolvePermission });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Allow' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Allow' }));
+
+    expect(onResolvePermission).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: 'Deny' })).toBeDisabled();
+  });
+
+  it('replaces the activity line while it is up', () => {
+    // "Waiting for permission" under a banner that says the same thing with buttons
+    // would be saying it twice.
+    renderDetail({ permission: request, activity: 'Waiting for permission: Create NOTES.md' });
+
+    expect(screen.queryByRole('status')).toBeNull();
+    expect(screen.getByRole('alert')).toHaveTextContent('Permission needed');
+  });
+
+  it('renders no banner when nothing is pending', () => {
+    renderDetail();
+    expect(screen.queryByText('Permission needed')).toBeNull();
+  });
+});
+
 describe('Session follow-up', () => {
   it('sends a follow-up', () => {
     const { onSendFollowUp } = renderDetail({ followUp: 'Also add a regression test' });

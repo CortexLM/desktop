@@ -8,6 +8,7 @@
 
 import { createMemo, createResource, createSignal, type JSX } from 'solid-js';
 
+import { PROVIDER_CATALOG } from '@cortex-ide/cortex-api';
 import type { ProviderSettingsView, WorkspaceRunSettings } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -25,14 +26,10 @@ import {
 } from '../screens/settings/settings-screen.tsx';
 import type { ProviderCredential } from '../screens/settings/settings-screen.tsx';
 
-/** Display names for the providers the registry can build. */
-const PROVIDER_NAMES: Record<string, string> = {
-  openai: 'OpenAI',
-  anthropic: 'Anthropic',
-  openrouter: 'OpenRouter',
-  ollama: 'Ollama',
-  grok: 'Grok',
-};
+/** Display names from the OpenClaw-style catalogue, plus any unknown id. */
+const PROVIDER_NAMES: Record<string, string> = Object.fromEntries(
+  PROVIDER_CATALOG.filter((entry) => entry.id !== 'cortex').map((entry) => [entry.id, entry.name]),
+);
 
 /**
  * Projects a provider onto the row the screen draws.

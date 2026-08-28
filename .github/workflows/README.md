@@ -2,6 +2,12 @@
 
 Ce dossier contient un système de monitoring automatique 24/7 pour Cortex IDE.
 
+### Staging (`staging.yml`)
+- **Trigger:** push to `staging`, or manual
+- **Environment:** GitHub `staging` (production is separate)
+- **Builds:** web (`packages/app/dist`) + Electron Linux unpacked dir
+- **Deploy:** OIDC-ready (`id-token: write`). Off until `STAGING_DEPLOY_ENABLED`. No AWS keys in git.
+
 ## 📋 Workflows Disponibles
 
 ### 1. **Continuous Monitoring** (`continuous-monitoring.yml`)

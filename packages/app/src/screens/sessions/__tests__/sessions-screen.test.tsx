@@ -101,21 +101,13 @@ describe('Sessions inbox', () => {
     ]);
   });
 
-  it('reserves the unread lane on every row and fills it only where there is activity', () => {
-    // Reserved so the titles share a vertical lane down the list.
+  it('gives every row a lane dot in its status tone', () => {
+    // C3 tones: live runs are the copper accent, landed states the brand green.
     const { container } = renderSessions();
 
-    expect(container.querySelectorAll('.cx-inbox__unread')).toHaveLength(3);
-    expect(container.querySelectorAll('.cx-inbox__unread-dot')).toHaveLength(1);
-  });
-
-  it('confines the status colour to the dot and keeps the label muted', () => {
-    // At 12px a coloured label on a white row reads as a link, so the hue stays in the dot.
-    const { container } = renderSessions();
-
-    expect(container.querySelector('.cx-inbox__status-dot--warning')).not.toBeNull();
-    expect(container.querySelector('.cx-inbox__status-dot--success')).not.toBeNull();
-    expect(container.querySelector('.cx-inbox__status-dot--accent')).not.toBeNull();
+    expect(container.querySelectorAll('.cx-inbox__dot')).toHaveLength(3);
+    expect(container.querySelector('.cx-inbox__dot--accent')).not.toBeNull();
+    expect(container.querySelectorAll('.cx-inbox__dot--success').length).toBeGreaterThan(0);
   });
 
   it('formats diff counts with a minus sign', () => {
@@ -149,7 +141,7 @@ describe('Sessions controls', () => {
   it('shows a count only on the filters that have one', () => {
     renderSessions();
 
-    expect(screen.getByRole('button', { name: 'All 24' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /All\s*24/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Archived' })).toBeInTheDocument();
   });
 

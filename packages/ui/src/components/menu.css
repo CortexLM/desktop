@@ -1,47 +1,56 @@
 /*
- * Paper: Components / Tabs Toast Menu, "Dropdown menu" (GZ-0).
- * Reference export: design/paper/jsx/tabs-toast-menu.jsx
+ * Paper: Components 08 — Tabs, chips & contrôles (3VJ-0), "MENU — SÉLECTION PAR
+ * COCHE, ITEM RICHE", and the model dropdown (GF-0).
+ * Reference export: design/paper/jsx/tabs-chips-controls.jsx, composer-apps-row.jsx
  *
- * 240px raised surface: padding 6, gap 2, radius-md, 1px border, shadow-menu. Rows are
- * padding 8px 10px with a 13px icon and a 13px regular label.
- *
- * The trailing slot is a fixed 20px whether or not the row has a shortcut, so labels share
- * a vertical lane down the menu. Paper renders the empty box for the same reason.
+ * A raised surface on a 12px radius with the menu shadow. Items sit on an 8px
+ * radius; selection is a trailing green check — never a filled row — and hover
+ * is the faint ink wash.
  */
 
 .cx-menu {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 
-  width: var(--layout-menu-width, 240px);
+  min-width: 220px;
   padding: 6px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: 12px;
 
-  background: var(--color-surface-raised);
+  background: var(--color-surface);
   box-shadow: var(--shadow-menu);
 }
 
-/* The runtime picker is narrower than the generic menu: 196px with 184px rows. */
-.cx-menu--compact {
-  --layout-menu-width: 196px;
+/* Section label: MODEL, THINKING… */
+.cx-menu__label {
+  padding: 6px 10px 4px;
+
+  font-family: var(--font-sans-stack);
+  font-size: 11px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  letter-spacing: 0.04em;
+  line-height: 14px;
+  text-transform: uppercase;
+
+  color: var(--color-text-muted);
 }
 
 .cx-menu__item {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
 
+  width: 100%;
   padding: 8px 10px;
   border: 0;
   border-radius: var(--radius-sm);
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-regular);
-  line-height: 16px;
+  font-size: 14px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 18px;
   text-align: left;
 
   background: transparent;
@@ -49,9 +58,8 @@
   cursor: pointer;
 }
 
-.cx-menu__item:hover:not(:disabled),
-.cx-menu__item[data-highlighted] {
-  background: var(--color-inset);
+.cx-menu__item:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-text) 4%, transparent);
 }
 
 .cx-menu__item:disabled {
@@ -59,40 +67,37 @@
   color: var(--color-text-faint);
 }
 
-.cx-menu__item:disabled:hover {
-  background: transparent;
+.cx-menu__item .cx-icon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
 }
 
-/* Destructive rows tint the icon as well as the label; the design strokes the trash glyph
- * with --color-error rather than leaving it muted. */
-.cx-menu__item--destructive {
-  color: var(--color-error);
+/* Rich items: a title line and a muted description. */
+.cx-menu__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-.cx-menu__label {
-  flex-grow: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.cx-menu__description {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--color-text-muted);
 }
 
-/*
- * Fixed-width trailing slot. 20px is what the design reserves, and it is present on every
- * row - a shortcut in some, empty in others - so the labels stay aligned.
- */
+/* Selection is a check, not a fill. */
 .cx-menu__trailing {
   flex-shrink: 0;
-  width: 20px;
-
-  font-size: var(--text-2xs);
-  line-height: 14px;
-  text-align: right;
-  color: var(--color-text-faint);
+  margin-left: auto;
+  color: var(--color-green);
 }
 
 .cx-menu__separator {
   height: 1px;
-  margin: 2px 0;
+  margin: 4px 0;
   border: 0;
   background: var(--color-border);
 }

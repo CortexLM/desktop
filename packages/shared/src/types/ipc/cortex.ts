@@ -103,3 +103,19 @@ export type CortexDeviceStatus =
 export interface CortexDeviceStatusEvent {
   status: CortexDeviceStatus;
 }
+
+/**
+ * Renderer → main product call. Path must be a Bot / plugins / skills route.
+ * Main attaches the session cookie. The renderer never sees it.
+ */
+export interface CortexProductRequest {
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  path: string;
+  body?: unknown;
+}
+
+export interface CortexProductResponse {
+  status: number;
+  headers: Record<string, string>;
+  bodyText: string;
+}

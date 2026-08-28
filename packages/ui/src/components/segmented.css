@@ -1,0 +1,96 @@
+/*
+ * Paper: Components 08 — Tabs, chips & contrôles (3VJ-0), "SEGMENTED — ACTIF
+ * RAISED + LABEL ENCRE", and the composer's Search/Reason group (GF-0).
+ * Reference export: design/paper/jsx/tabs-chips-controls.jsx, composer-apps-row.jsx
+ *
+ * A quiet track; the active segment is a raised surface chip — bordered, with the
+ * segment shadow — carrying an ink label a step heavier. Green never marks
+ * selection here.
+ */
+
+.cx-segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+
+  width: fit-content;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+
+  background: var(--color-hover);
+}
+
+/* The composer's variant sits on the surface, so its track is the page colour
+ * with a hairline instead of a wash. */
+.cx-segmented--bordered {
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.cx-segmented__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  height: 28px;
+  padding-inline: 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  font-family: var(--font-sans-stack);
+  font-size: var(--text-caption);
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 16px;
+  white-space: nowrap;
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-segmented--bordered .cx-segmented__option {
+  padding-inline: 12px;
+}
+
+.cx-segmented__option:hover:not([aria-pressed='true']):not(:disabled) {
+  color: var(--color-text);
+}
+
+.cx-segmented__option[aria-pressed='true'] {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-segment);
+
+  font-weight: 560;
+  font-variation-settings: 'wght' 560;
+  color: var(--color-text);
+}
+
+/* Inside the composer the active segment is the neutral wash, not a raised chip. */
+.cx-segmented--bordered .cx-segmented__option[aria-pressed='true'] {
+  border: 0;
+  background: var(--color-active);
+  box-shadow: none;
+}
+
+:root[data-theme='dark'] .cx-segmented__option[aria-pressed='true'] {
+  font-weight: 530;
+  font-variation-settings: 'wght' 530;
+}
+
+:root[data-theme='dark'] .cx-segmented--bordered .cx-segmented__option[aria-pressed='true'] {
+  border: 0;
+}
+
+/* Dark keeps the raised segment bordered on the wash track, without the shadow. */
+:root[data-theme='dark'] .cx-segmented:not(.cx-segmented--bordered) .cx-segmented__option[aria-pressed='true'] {
+  background: var(--color-active);
+  box-shadow: none;
+}
+
+.cx-segmented__option:disabled {
+  cursor: default;
+  opacity: var(--opacity-disabled);
+}

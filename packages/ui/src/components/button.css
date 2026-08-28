@@ -1,26 +1,29 @@
 /*
- * Paper: Components / Buttons (BC-0, BO-0, C0-0, CC-0 and their dark twins).
- * Reference export: design/paper/jsx/button-*.jsx
+ * Paper: Components 07 — Basics (VD-0), "Boutons — primaire encre, secondaire,
+ * ghost, icône". Reference export: design/paper/jsx/basics.jsx
  *
- * All four variants share one box: padding 8px 16px, 13px medium type on a 16px line, and
- * radius-sm. That resolves to 32px tall, except secondary, which is 34px because its 1px
- * border sits outside the padding.
+ * The C3 rules, verbatim from the kit: warm ink is the true primary; solid green
+ * is reserved for decisive moments (send, confirm). Height 36, pill radius,
+ * Inter labels at the optical UI weight (480 light / 440 dark), and every state
+ * is an alpha step of the same hue — never a new tint.
  */
 
 .cx-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);
+  gap: var(--space-2);
 
-  padding: 8px 16px;
+  height: 36px;
+  padding-inline: 18px;
   border: 0;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
 
   font-family: var(--font-sans-stack);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 16px;
+  font-size: 14px;
+  font-weight: 480;
+  font-variation-settings: 'wght' var(--font-wght-ui);
+  line-height: 18px;
   white-space: nowrap;
 
   background: transparent;
@@ -31,80 +34,127 @@
   transition:
     background-color 100ms ease,
     border-color 100ms ease,
+    color 100ms ease,
     opacity 100ms ease;
 }
 
-/* Disabled drops the whole button to 40% rather than swapping colours, which is what the
- * kit does for the filled variants. */
 .cx-button:disabled {
   cursor: default;
-  opacity: var(--opacity-disabled);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Primary                                                                    */
+/* Primary — ink                                                              */
 /* -------------------------------------------------------------------------- */
 
+/*
+ * The fill is the text colour and the label is the page colour, so the pair flips
+ * with the theme on its own. States step the fill's alpha: 82% hover, 68% active,
+ * 14% disabled with a 40%-ink label.
+ */
 .cx-button--primary {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .cx-button--primary:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  background: color-mix(in srgb, var(--color-text) 82%, transparent);
+}
+
+.cx-button--primary:active:not(:disabled) {
+  background: color-mix(in srgb, var(--color-text) 68%, transparent);
+}
+
+.cx-button--primary:disabled {
+  background: color-mix(in srgb, var(--color-text) 14%, transparent);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Secondary                                                                  */
+/* Secondary — bordered                                                       */
 /* -------------------------------------------------------------------------- */
 
 .cx-button--secondary {
-  border: 1px solid var(--color-border-strong);
-  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   color: var(--color-text);
 }
 
 .cx-button--secondary:hover:not(:disabled) {
-  background: var(--color-inset);
+  background: var(--color-hover);
 }
 
-/* Disabled softens the border rather than dropping opacity: the kit shows the outline
- * moving from border-strong to border, keeping the label readable. */
+.cx-button--secondary:active:not(:disabled) {
+  background: var(--color-active);
+}
+
+/* Disabled softens the outline and mutes the label rather than fading the box. */
 .cx-button--secondary:disabled {
-  border-color: var(--color-border);
-  opacity: 1;
-  color: var(--color-text-faint);
+  border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
+  color: color-mix(in srgb, var(--color-text) 35%, transparent);
 }
 
 /* -------------------------------------------------------------------------- */
 /* Ghost                                                                      */
 /* -------------------------------------------------------------------------- */
 
+/* Idle reads muted and tighter (14px inset); hover restores full ink on the
+ * neutral wash. */
 .cx-button--ghost {
-  color: var(--color-text);
+  padding-inline: 14px;
+  color: var(--color-text-muted);
 }
 
 .cx-button--ghost:hover:not(:disabled) {
-  background: var(--color-inset);
+  background: var(--color-hover);
+  color: var(--color-text);
 }
 
-/* Ghost has no fill to fade, so disabled mutes the label instead. */
+.cx-button--ghost:active:not(:disabled) {
+  background: var(--color-active);
+  color: var(--color-text);
+}
+
 .cx-button--ghost:disabled {
-  opacity: 1;
-  color: var(--color-text-faint);
+  color: color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Green — decisive moments (send, confirm)                                   */
+/* -------------------------------------------------------------------------- */
+
+.cx-button--green {
+  background: var(--color-green);
+  color: var(--color-on-green);
+}
+
+.cx-button--green:hover:not(:disabled) {
+  background: var(--color-green-hover);
+}
+
+.cx-button--green:active:not(:disabled) {
+  background: color-mix(in srgb, var(--color-green-hover) 88%, #000000);
+}
+
+.cx-button--green:disabled {
+  background: color-mix(in srgb, var(--color-green) 40%, transparent);
+  color: color-mix(in srgb, var(--color-on-green) 85%, transparent);
 }
 
 /* -------------------------------------------------------------------------- */
 /* Destructive                                                                */
 /* -------------------------------------------------------------------------- */
 
+/* Not on the Basics board; follows the green variant's grammar on the error hue. */
 .cx-button--destructive {
   background: var(--color-error);
-  color: var(--color-on-primary);
+  color: var(--color-on-green);
 }
 
 .cx-button--destructive:hover:not(:disabled) {
   background: var(--color-error-hover);
+}
+
+.cx-button--destructive:disabled {
+  opacity: var(--opacity-disabled);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -112,17 +162,17 @@
 /* -------------------------------------------------------------------------- */
 
 /*
- * The square icon buttons in the chrome. Padding gives way to a fixed box so the glyph
- * stays optically centred; the composer's send button is the 32px round case.
+ * "Icône — ghost 32": a 32px pill with a 16px glyph. The composer's send button
+ * is the same box on the green variant.
  */
 .cx-button--icon {
-  width: var(--layout-button);
-  height: var(--layout-button);
+  width: 32px;
+  height: 32px;
   padding: 0;
 }
 
 .cx-button--round {
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 }
 
 /* Full-width, as used by the auth screens' stacked provider buttons. */

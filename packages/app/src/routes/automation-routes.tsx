@@ -199,7 +199,7 @@ export function AutomationsRoute(): JSX.Element {
       suggested={tiles().length === 0 ? SUGGESTIONS : []}
       onToggle={(id, enabled) => void toggle(id, enabled)}
       onOpen={(id) => navigate(`/automations/${id}`)}
-      onCreate={() => navigate('/automations/new')}
+      onCreate={() => navigate('/code/automations/new')}
       onSignIn={() => navigate('/sign-in')}
     />
   );
@@ -235,7 +235,7 @@ export function NewAutomationRoute(): JSX.Element {
         // "listed and runnable", not "scheduled".
         enabled: true,
       });
-      navigate('/automations');
+      navigate('/code/automations');
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : String(caught));
     } finally {
@@ -248,7 +248,7 @@ export function NewAutomationRoute(): JSX.Element {
       draft={draft()}
       onDraftChange={setDraft}
       onCreate={() => void create()}
-      onCancel={() => navigate('/automations')}
+      onCancel={() => navigate('/code/automations')}
       busy={busy()}
       {...(error() ? { error: error()! } : {})}
     />

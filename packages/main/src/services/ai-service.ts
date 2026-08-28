@@ -9,6 +9,7 @@ import type { MCPToolInvocation, MCPToolResult } from './mcp-service';
 import type { MCPServer, MCPTool } from '@cortex-ide/shared';
 import { getSecretsService } from './secrets-service';
 import { getDatabaseService } from './database-service';
+import { getProviderSettingsService } from './provider-settings-service';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
@@ -24,6 +25,7 @@ import {
   WorkspaceToolExecutor,
   type AgentEvent,
   type AgentMode,
+  type Message as ProviderChatMessage,
   type PermissionDecision,
   type RegistryConfig,
   type ToolCall as AgentToolCall,
@@ -319,6 +321,16 @@ export class AIService extends EventEmitter {
     this.registry.reconfigure(config);
     this.validateRegistry();
     return this.registry.getProviderIds();
+  }
+
+  /**
+   * Le provider par défaut, pour le produit Chat.
+   *
+   * Les conversations parlent au provider directement — un échange linéaire n'a
+   * pas besoin de la boucle d'agent, de ses outils ni de ses permissions.
+   */
+  chatProvider() {
+    return this.registry.getDefault();
   }
 
   /** IDs actuellement résolus par le registry. */
@@ -725,12 +737,18 @@ export class AIService extends EventEmitter {
         skills,
         executor,
         chat: async (messages) => {
-          const mapped: Message[] = messages.map((message) => ({
-            role: message.role === 'tool' ? 'user' : message.role,
-            content:
-              message.role === 'tool'
-                ? `Tool ${message.name ?? 'unknown'} result:\n${message.content}`
-                : message.content,
+          // Passed through natively, not flattened. The old mapping rewrote tool
+          // results as user prose and dropped the assistant's `toolCalls`
+          // entirely, so the model never saw itself call anything — and a model
+          // with no memory of having created the file creates it again, every
+          // iteration, until the cap. Providers already know how to replay
+          // tool calls and pair results by `toolCallId`.
+          const mapped: ProviderChatMessage[] = messages.map((message) => ({
+            role: message.role,
+            content: message.content,
+            ...(message.toolCalls ? { toolCalls: message.toolCalls } : {}),
+            ...(message.toolCallId ? { toolCallId: message.toolCallId } : {}),
+            ...(message.name ? { name: message.name } : {}),
           }));
           const response = await provider.chat(mapped, {
             ...options,
@@ -750,7 +768,12 @@ export class AIService extends EventEmitter {
           chunk: { content: ipc.content ?? '', done: ipc.type === 'done', ipc },
         });
         if (event.type === 'text') visible.push(event.text);
-        yield { content: ipc.content ?? '', done: ipc.type === 'done' };
+        // The full IPC payload rides along, not just the text. The consumer that
+        // matters here is SessionService.recordChunk: with `{ content, done }`
+        // alone, tool calls, permission requests and plans never reached the
+        // timeline — and a permission request nobody can see is a run that waits
+        // forever on a decision that cannot be given.
+        yield { ...ipc, content: ipc.content ?? '', done: ipc.type === 'done' };
         if (event.type === 'error') {
           throw new Error(event.message);
         }
@@ -842,11 +865,37 @@ export class AIService extends EventEmitter {
 let aiServiceInstance: AIService | null = null;
 
 /**
+ * Applique les réglages providers PERSISTÉS au registry fraîchement construit.
+ *
+ * Sans cet appel, une clé enregistrée dans Settings ne survit pas au
+ * redémarrage : le constructeur ne lit que l'environnement (`fromEnv()`), et
+ * `settings:set-provider` — le seul autre endroit qui reconfigure le registry —
+ * ne rejoue rien au boot. Symptôme observé en démo : Settings affiche la clé
+ * masquée, mais tout run à froid échoue avec « No model is configured ».
+ *
+ * En try/catch : la lecture passe par `app.getPath('userData')`, absent dans
+ * certains harnais de test. Un échec ici laisse simplement le registry
+ * env-only, il ne doit pas empêcher le service d'exister.
+ */
+function applyStoredProviderSettings(service: AIService): void {
+  try {
+    const settings = getProviderSettingsService();
+    service.applyRegistryConfig(settings.toRegistryConfig());
+  } catch (error) {
+    console.warn(
+      '[AIService] Stored provider settings were not applied:',
+      error instanceof Error ? error.message : typeof error
+    );
+  }
+}
+
+/**
  * Récupère ou crée l'instance du service AI
  */
 export function getAIService(): AIService {
   if (!aiServiceInstance) {
     aiServiceInstance = new AIService();
+    applyStoredProviderSettings(aiServiceInstance);
   }
   return aiServiceInstance;
 }

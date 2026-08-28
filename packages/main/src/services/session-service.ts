@@ -38,7 +38,6 @@ import { basename } from 'node:path';
 import type {
   RepositoryOption,
   SessionDetail,
-  SessionDiffFile,
   SessionEvent,
   SessionStatus,
   SessionSummary,
@@ -48,6 +47,7 @@ import type {
 import { getDatabaseService } from './database-service';
 import { getAIService, type AIService } from './ai-service';
 import { gitService } from './git-service';
+import { diffForWorkspace, diffTotals } from './session-diff';
 import { activeWorkspaceManager, activeWorkspacePath } from './active-workspace';
 import { toSessionEvent } from './session-events';
 import { SessionStore } from './session-store';
@@ -79,6 +79,32 @@ export class SessionService extends EventEmitter {
   constructor(options: { ai?: AIService } = {}) {
     super();
     this.ai = options.ai ?? getAIService();
+    // Fire-and-forget: recovery must not delay construction, and a failure to
+    // recover must not take the service down with it.
+    void this.recoverInterrupted().catch(() => undefined);
+  }
+
+  /**
+   * Settles runs a previous process left in flight.
+   *
+   * A `running` row whose process is gone is not running — its agent loop, its
+   * abort handle and its permission gate died with the process. Left as-is, the
+   * inbox shows it working forever and the detail screen waits on a permission
+   * nobody can grant. `stopped` rather than `failed`: nothing about the run went
+   * wrong, the app was closed under it.
+   *
+   * Runs in `this.running` are exempt by construction: this executes before the
+   * first `start()` of this process can possibly have registered one.
+   */
+  private async recoverInterrupted(): Promise<void> {
+    const db = getDatabaseService();
+    await db.execute([
+      {
+        query: `UPDATE sessions SET status = 'stopped', finished_at = ?, updated_at = ?
+                WHERE status IN ('queued', 'running')`,
+        params: [Date.now(), Date.now()],
+      },
+    ]);
   }
 
   // ==========================================================================
@@ -113,7 +139,7 @@ export class SessionService extends EventEmitter {
     const detail: SessionDetail = {
       ...toSummary(row),
       events: events.rows.map(toEvent).filter((event): event is SessionEvent => event !== null),
-      files: await this.diffFor(row),
+      files: await diffForWorkspace(row.workspace_id),
     };
     if (row.model) detail.model = row.model;
     if (row.provider) detail.provider = row.provider;
@@ -414,24 +440,6 @@ export class SessionService extends EventEmitter {
   // Diff
   // ==========================================================================
 
-  private async diffFor(row: SessionRow): Promise<SessionDiffFile[]> {
-    if (!row.workspace_id) return [];
-
-    try {
-      const diff = await gitService.diff(row.workspace_id);
-      return diff.diffs.map((file) => ({
-        path: file.path,
-        additions: file.additions,
-        deletions: file.deletions,
-        diff: file.diff,
-      }));
-    } catch {
-      // Not a repository, or git failed. An empty change list is the honest answer
-      // — better than failing to open the session over it.
-      return [];
-    }
-  }
-
   /**
    * Recomputes the diff stat from git.
    *
@@ -445,12 +453,7 @@ export class SessionService extends EventEmitter {
     const row = rows.rows[0];
     if (!row) return {};
 
-    const files = await this.diffFor(row);
-    return {
-      additions: files.reduce((total, file) => total + file.additions, 0),
-      deletions: files.reduce((total, file) => total + file.deletions, 0),
-      files_changed: files.length,
-    };
+    return diffTotals(await diffForWorkspace(row.workspace_id));
   }
 
   // ==========================================================================

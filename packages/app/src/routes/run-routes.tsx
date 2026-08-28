@@ -10,6 +10,9 @@
 import { createMemo, createSignal, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
+import type { RuntimeKind } from '@cortex-ide/cortex-api';
+import type { SessionSummary } from '@cortex-ide/shared';
+
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import {
@@ -27,6 +30,8 @@ import {
 } from '../screens/session/session-detail-screen.tsx';
 import { createSessionDetail } from '../screens/session/session-detail-state.ts';
 import { ShellView } from '../screens/session/shell-view.tsx';
+import { harnessStatus, remoteHost, setRemoteHost } from '../state/harness.ts';
+import { codePermissionBlocked, realtimeStatus } from '../state/realtime-bridge.ts';
 
 /**
  * Starts a run from the current draft.
@@ -58,7 +63,7 @@ function createStartRun(
         ...(draft.model ? { model: draft.model } : {}),
       });
       resetComposerDraft(draft.runtime);
-      navigate(`/sessions/${session.id}`);
+      navigate(`/code/sessions/${session.id}`);
     } catch (error) {
       setError(error instanceof Error ? error.message : String(error));
     } finally {
@@ -159,36 +164,32 @@ function pickRepo(names: readonly string[], openFolder: () => void): void {
   cycleDraftField('repo', names);
 }
 
+/** "What should we build, Ana?" — the greeting knows the first name only. */
+function codeGreeting(displayName?: string): string {
+  return displayName
+    ? `What should we build, ${displayName.split(/\s+/)[0]}?`
+    : 'What should we build?';
+}
+
+function correctDraftRuntime(allowed: readonly RuntimeKind[]): void {
+  if (!allowed.includes(composerDraft().runtime)) {
+    setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'cloud' }));
+  }
+}
+
 export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
   const navigate = useNavigate();
 
-  // The draft lives in `state/composer-draft.ts`, not here: a signal owned by this route is
-  // disposed the moment you navigate away, which silently emptied the composer on the way
-  // back. See that module for why it is not persisted to disk either.
-  //
-  // The runtime is still corrected against capabilities on mount rather than defaulting to
-  // Cloud: signed out, a draft pointing at a runtime the user cannot reach would fail on send.
-  onMount(() => {
-    const allowed = account.capabilities().runtimes;
-    if (!allowed.includes(composerDraft().runtime)) {
-      setComposerDraft((current) => ({ ...current, runtime: allowed[0] ?? 'local' }));
-    }
-  });
+  onMount(() => correctDraftRuntime(account.capabilities().runtimes));
 
   const [startError, setStartError] = createSignal<string>();
   const start = createStartRun(runs, navigate, setStartError);
-
   const recent = createMemo(() =>
-    (runs.sessions() ?? [])
-      .filter((session) => !session.archived)
-      .slice(0, 5)
-      .map((session) => toRecentRow(session)),
+    (runs.sessions() ?? []).filter((session) => !session.archived).slice(0, 5).map(toRecentRow),
   );
-
   const repositoryNames = createMemo(() => (runs.repositories() ?? []).map((repo) => repo.id));
-
   const checklist = createMemo(() =>
     buildChecklist({
       hasRepository: repositoryNames().length > 0,
@@ -196,24 +197,35 @@ export function HomeRoute(): JSX.Element {
       signedIn: account.capabilities().authenticated,
       hasModel: Boolean(composerDraft().model),
       openFolder: () => void runs.openWorkspace(),
-      openSettings: () => navigate('/settings'),
+      openSettings: () => navigate('/code/settings'),
     }),
   );
-
-  const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/settings')));
+  const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/code/settings')));
+  const harness = createMemo(() =>
+    harnessStatus({
+      authenticated: account.capabilities().authenticated,
+      cloudSession: (runs.sessions() ?? []).some((session) => session.status === 'running'),
+      permissionBlocked: codePermissionBlocked(),
+      connecting: realtimeStatus() === 'connecting',
+    }),
+  );
 
   return (
     <HomeScreen
       capabilities={account.capabilities()}
+      greeting={codeGreeting(account.user()?.displayName)}
       draft={composerDraft()}
       onDraftChange={setComposerDraft}
       onStart={() => void start()}
       recentSessions={recent()}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onViewAllSessions={() => navigate('/sessions')}
-      onPickModel={() => navigate('/settings')}
+      onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
+      onViewAllSessions={() => navigate('/code/sessions')}
+      onPickModel={() => navigate('/code/settings')}
       onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
+      harness={harness()}
+      remoteHost={remoteHost()}
+      onRemoteHostChange={setRemoteHost}
       {...(checklist() ? { checklist: checklist()! } : {})}
       {...(limit() ? { limit: limit()! } : {})}
     />
@@ -244,6 +256,32 @@ const EMPTY_STATES: Record<string, { title: string; body: string }> = {
   archived: { title: 'Nothing archived', body: 'Sessions you archive are kept here.' },
 };
 
+/** "6 sessions across 3 repositories · 1 running" — over everything unarchived. */
+function workspaceSummary(sessions: readonly SessionSummary[]): string | undefined {
+  const all = sessions.filter((session) => !session.archived);
+  if (all.length === 0) return undefined;
+  const repos = new Set(all.map((session) => session.repo ?? 'Local folder')).size;
+  const running = all.filter(
+    (session) => session.status === 'running' || session.status === 'queued',
+  ).length;
+  const parts = [
+    `${all.length} session${all.length === 1 ? '' : 's'} across ${repos} repositor${repos === 1 ? 'y' : 'ies'}`,
+  ];
+  if (running > 0) parts.push(`${running} running`);
+  return parts.join(' · ');
+}
+
+function filterCounts(sessions: readonly SessionSummary[]) {
+  const all = sessions.filter((session) => !session.archived);
+  const counts: Record<string, number> = {
+    all: all.length,
+    active: all.filter((s) => s.status === 'queued' || s.status === 'running').length,
+    review: all.filter((s) => s.status === 'review').length,
+    archived: sessions.filter((s) => s.archived).length,
+  };
+  return SESSION_FILTERS.map((entry) => ({ ...entry, count: counts[entry.id] ?? 0 }));
+}
+
 export function SessionsRoute(): JSX.Element {
   const runs = useSessions();
   const navigate = useNavigate();
@@ -273,16 +311,20 @@ export function SessionsRoute(): JSX.Element {
       .map((session) => toInboxSession(session));
   });
 
+  const summary = createMemo(() => workspaceSummary(runs.sessions() ?? []));
+  const filters = createMemo(() => filterCounts(runs.sessions() ?? []));
+
   return (
     <SessionsScreen
       sessions={visible()}
-      filters={SESSION_FILTERS}
+      summary={summary()}
+      filters={filters()}
       activeFilter={filter()}
       onFilterChange={setFilter}
       query={query()}
       onQueryChange={setQuery}
-      onOpenSession={(id) => navigate(`/sessions/${id}`)}
-      onNewSession={() => navigate('/')}
+      onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
+      onNewSession={() => navigate('/code')}
       emptyState={EMPTY_STATES[filter()] ?? EMPTY_STATES.all}
     />
   );
@@ -324,8 +366,11 @@ export function SessionDetailRoute(): JSX.Element {
       followUp={followUp()}
       onFollowUpChange={setFollowUp}
       onSendFollowUp={() => void send()}
-      onBack={() => navigate('/sessions')}
+      onBack={() => navigate('/code/sessions')}
       onStop={() => void runs.stop(params.sessionId)}
+      onResolvePermission={(requestId, decision) =>
+        void runs.host.resolvePermission(params.sessionId, requestId, decision)
+      }
       shell={shell()}
     />
   );

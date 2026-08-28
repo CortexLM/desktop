@@ -35,6 +35,20 @@ function contrastRatio(a: string, b: string): number {
   return (lighter! + 0.05) / (darker! + 0.05);
 }
 
+/**
+ * Follows `var(--color-x)` alias values (`--color-success` is an alias of
+ * `--color-green`) down to the literal hex a contrast check needs.
+ */
+function resolveHex(palette: Record<string, string>, name: string): string {
+  let value = palette[name] ?? '';
+  for (let hop = 0; hop < 4 && value.startsWith('var('); hop += 1) {
+    const target = /^var\((--[a-z0-9-]+)\)$/.exec(value)?.[1];
+    if (!target) break;
+    value = palette[target] ?? '';
+  }
+  return value;
+}
+
 describe('generated Paper tokens', () => {
   it('carries the Paper token content hash so stale generations are detectable', () => {
     expect(paperTokenContentHash).toMatch(/^[0-9a-f]{8}$/);
@@ -72,30 +86,33 @@ describe('generated Paper tokens', () => {
     }
   });
 
-  it('maps the light inset surface onto the dark elevated surface', () => {
-    // Paper names the same role differently per theme; the generator aliases them so
-    // components only ever reference `--color-inset`.
-    expect(lightPalette['--color-inset']).toBe('#F0F0F0');
-    expect(darkPalette['--color-inset']).toBe('#202020');
+  it('rewrites alias values into the collapsed namespace', () => {
+    // Paper's dark aliases point at `--color-dark-green`; after the themes are
+    // collapsed onto one property per role that name no longer exists, and an alias
+    // left pointing at it would silently resolve to nothing.
+    expect(generatedCss).not.toMatch(/var\(--color-dark-/);
+    expect(darkPalette['--color-success']).toBe('var(--color-green)');
   });
 
   it('keeps a theme-invariant role at one value in both palettes', () => {
-    // `--color-on-primary` has no dark counterpart in Paper: white reads on the accent
-    // in both themes. The generator must still define it under dark.
-    expect(lightPalette['--color-on-primary']).toBe('#FFFFFF');
-    expect(darkPalette['--color-on-primary']).toBe(lightPalette['--color-on-primary']);
+    // `--color-on-accent` has no dark counterpart in Paper: the warm white reads on
+    // the copper accent in both themes. The generator must still define it under dark.
+    expect(lightPalette['--color-on-accent']).toBe('#FFF9F2');
+    expect(darkPalette['--color-on-accent']).toBe(lightPalette['--color-on-accent']);
   });
 
   it('exposes the type scale, spacing and radii as theme-neutral tokens', () => {
     expect(scaleTokens).toMatchObject({
       fontSans: '--font-sans',
       fontMono: '--font-mono',
-      textBase: '--text-base',
-      radiusFull: '--radius-full',
+      fontDisplay: '--font-display',
+      textBody: '--text-body',
+      radiusPill: '--radius-pill',
     });
     expect(scaleValues['--font-sans']).toBe('Inter');
     expect(scaleValues['--font-mono']).toBe('JetBrains Mono');
-    expect(scaleValues['--radius-full']).toBe('999px');
+    expect(scaleValues['--font-display']).toBe('Source Serif 4');
+    expect(scaleValues['--radius-pill']).toBe('999px');
   });
 
   it('sizes every font-size token in px, as the design specifies', () => {
@@ -109,13 +126,13 @@ describe('generated Paper tokens', () => {
 
 describe('token accessors', () => {
   it('wraps a token name in var()', () => {
-    expect(cssVar(colorTokens.colorPrimary)).toBe('var(--color-primary)');
-    expect(cssVar(scaleTokens.textBase)).toBe('var(--text-base)');
+    expect(cssVar(colorTokens.colorGreen)).toBe('var(--color-green)');
+    expect(cssVar(scaleTokens.textBody)).toBe('var(--text-body)');
   });
 
   it('resolves a role to the literal hex for each theme', () => {
-    expect(resolveColor(colorTokens.colorBg, 'light')).toBe('#FCFCFC');
-    expect(resolveColor(colorTokens.colorBg, 'dark')).toBe('#141414');
+    expect(resolveColor(colorTokens.colorBg, 'light')).toBe('#FAF8F4');
+    expect(resolveColor(colorTokens.colorBg, 'dark')).toBe('#211F1C');
   });
 
   it('covers exactly the themes the design provides artboards for', () => {
@@ -125,19 +142,16 @@ describe('token accessors', () => {
 
 describe('text contrast', () => {
   /**
-   * Measured floors for the pairings that carry real copy, recorded from the palette as
-   * the design ships it rather than from an aspiration. The point is regression control:
+   * Measured floors for the pairings that carry real copy, recorded from the Concept 03
+   * palette as it ships rather than from an aspiration. The point is regression control:
    * a token edit that darkens a surface or lightens a label has to fail here.
    *
-   * `aa` marks the pairings that clear WCAG AA for body text (4.5:1). The rest are
-   * recorded as known shortfalls so they stay visible instead of being buried in a
-   * loosened global threshold:
+   * `aa` marks the pairings that clear WCAG AA for body text (4.5:1). The recorded
+   * shortfalls stay visible instead of being buried in a loosened global threshold:
    *
-   *   light  --color-text-muted on --color-bg        4.18  secondary label, just under AA
-   *   light  --color-on-primary on --color-primary   4.02  white on the accent fill
-   *   dark   --color-on-primary on --color-primary   2.89  weakest pairing in the palette
-   *   light  --color-text-faint on --color-bg        2.32  placeholder only, never prose
-   *   dark   --color-text-faint on --color-bg        3.46  placeholder only, never prose
+   *   light  --color-on-accent on --color-accent   4.25  send button / CTA label
+   *   light  --color-warning on its tint           3.98  badge text on badge fill
+   *   dark   --color-on-accent on --color-accent   2.69  icon-sized copper accent only
    */
   const expectations: Array<{
     theme: (typeof THEMES)[number];
@@ -146,28 +160,29 @@ describe('text contrast', () => {
     floor: number;
     aa: boolean;
   }> = [
-    { theme: 'light', foreground: '--color-text', background: '--color-bg', floor: 16.9, aa: true },
-    { theme: 'light', foreground: '--color-text', background: '--color-panel', floor: 16.3, aa: true },
-    { theme: 'light', foreground: '--color-text', background: '--color-inset', floor: 15.2, aa: true },
-    { theme: 'light', foreground: '--color-text-muted', background: '--color-bg', floor: 4.1, aa: false },
-    { theme: 'light', foreground: '--color-text-faint', background: '--color-bg', floor: 2.3, aa: false },
-    { theme: 'light', foreground: '--color-on-primary', background: '--color-primary', floor: 4.0, aa: false },
-    { theme: 'dark', foreground: '--color-text', background: '--color-bg', floor: 16.8, aa: true },
-    { theme: 'dark', foreground: '--color-text', background: '--color-panel', floor: 16.1, aa: true },
-    { theme: 'dark', foreground: '--color-text', background: '--color-inset', floor: 14.9, aa: true },
-    { theme: 'dark', foreground: '--color-text-muted', background: '--color-bg', floor: 6.5, aa: true },
-    { theme: 'dark', foreground: '--color-text-faint', background: '--color-bg', floor: 3.4, aa: false },
-    { theme: 'dark', foreground: '--color-on-primary', background: '--color-primary', floor: 2.8, aa: false },
+    { theme: 'light', foreground: '--color-text', background: '--color-bg', floor: 15.8, aa: true },
+    { theme: 'light', foreground: '--color-text', background: '--color-bg-sidebar', floor: 14.7, aa: true },
+    { theme: 'light', foreground: '--color-text', background: '--color-surface', floor: 16.8, aa: true },
+    { theme: 'light', foreground: '--color-text-muted', background: '--color-bg', floor: 5.0, aa: true },
+    { theme: 'light', foreground: '--color-green', background: '--color-bg', floor: 9.4, aa: true },
+    { theme: 'light', foreground: '--color-on-green', background: '--color-green', floor: 10.0, aa: true },
+    { theme: 'light', foreground: '--color-green-on-tint', background: '--color-green-tint-16', floor: 7.2, aa: true },
+    { theme: 'light', foreground: '--color-on-accent', background: '--color-accent', floor: 4.2, aa: false },
+    { theme: 'dark', foreground: '--color-text', background: '--color-bg', floor: 13.6, aa: true },
+    { theme: 'dark', foreground: '--color-text', background: '--color-bg-sidebar', floor: 14.7, aa: true },
+    { theme: 'dark', foreground: '--color-text', background: '--color-surface', floor: 12.3, aa: true },
+    { theme: 'dark', foreground: '--color-text-muted', background: '--color-bg', floor: 5.5, aa: true },
+    { theme: 'dark', foreground: '--color-green', background: '--color-bg', floor: 4.6, aa: true },
+    { theme: 'dark', foreground: '--color-on-green', background: '--color-green', floor: 4.6, aa: true },
+    { theme: 'dark', foreground: '--color-green-on-tint', background: '--color-green-tint-16', floor: 4.6, aa: true },
+    { theme: 'dark', foreground: '--color-on-accent', background: '--color-accent', floor: 2.6, aa: false },
   ];
 
   for (const { theme, foreground, background, floor, aa } of expectations) {
     const palette = theme === 'dark' ? darkPalette : lightPalette;
 
     it(`${theme}: ${foreground} on ${background} holds at ${floor}:1`, () => {
-      const ratio = contrastRatio(
-        palette[foreground as keyof typeof palette],
-        palette[background as keyof typeof palette],
-      );
+      const ratio = contrastRatio(resolveHex(palette, foreground), resolveHex(palette, background));
       expect(ratio).toBeGreaterThanOrEqual(floor);
       if (aa) expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
@@ -176,11 +191,8 @@ describe('text contrast', () => {
   it('keeps primary body text at AAA on every surface it appears on', () => {
     for (const theme of THEMES) {
       const palette = theme === 'dark' ? darkPalette : lightPalette;
-      for (const surface of ['--color-bg', '--color-panel', '--color-inset'] as const) {
-        const ratio = contrastRatio(
-          palette['--color-text' as keyof typeof palette],
-          palette[surface as keyof typeof palette],
-        );
+      for (const surface of ['--color-bg', '--color-bg-sidebar', '--color-surface'] as const) {
+        const ratio = contrastRatio(resolveHex(palette, '--color-text'), resolveHex(palette, surface));
         expect(ratio, `${theme}: --color-text on ${surface}`).toBeGreaterThanOrEqual(7);
       }
     }
@@ -191,10 +203,10 @@ describe('text contrast', () => {
     // where it falls short of AA for prose.
     for (const theme of THEMES) {
       const palette = theme === 'dark' ? darkPalette : lightPalette;
-      for (const status of ['success', 'warning', 'error', 'primary'] as const) {
+      for (const status of ['success', 'warning', 'error'] as const) {
         const ratio = contrastRatio(
-          palette[`--color-${status}` as keyof typeof palette],
-          palette[`--color-${status}-tint` as keyof typeof palette],
+          resolveHex(palette, `--color-${status}`),
+          resolveHex(palette, `--color-${status}-tint`),
         );
         expect(ratio, `${theme}: --color-${status} on its tint`).toBeGreaterThanOrEqual(2.2);
       }
