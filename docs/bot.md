@@ -32,6 +32,8 @@ When a computer is provisioned on the Cortex farm it is:
 
 This repository does not ship a hypervisor. The UI talks to the live API
 when reachable (`packages/cortex-api`) and otherwise shows honest states.
+A VNC signaling ticket is a hash only — never a password. Viewing a mascot
+joins `mascot:{id}`; a miss is `not_found`.
 
 ## Computer states
 

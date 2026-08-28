@@ -37,6 +37,11 @@ even if the local harness is down.
 On the web, starts and Allow/Always/Deny go over `/v1/realtime` when that
 socket is up. There is no HTTP fallback that runs tools in the tab.
 
+A connected host is paired with a one-time code (the service stores a hash;
+the client never does). Heartbeats carry a device token, never SSH or
+provider keys. Viewing a session joins `code_session:{id}`; a miss is
+`not_found`.
+
 See [docs/harness.md](./harness.md) and [docs/realtime.md](./realtime.md).
 
 ## Providers

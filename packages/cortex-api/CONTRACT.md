@@ -271,3 +271,49 @@ Chat/Code/Bot prefer the socket when it is connected. Chat falls back to the
 HTTP turn stream above. Web Code still never runs the harness in the renderer.
 
 `/health` and `GET /v1/providers` now `404`. `/v1/models` remains public.
+
+## Addendum — product control plane (CortexLM/backend PR 36)
+
+`CortexLM/backend` is still not visible to this token. The shapes below follow
+`docs/product-realtime.md` and `packages/api-types/src/realtime.ts` on that
+draft PR. A live 404 stays `not_found`. No keys were invented.
+
+### Transport
+
+| Method | Path | Role |
+| --- | --- | --- |
+| GET | `/v1/realtime` | Authenticated WebSocket. JSON text frames. |
+| GET | `/v1/realtime/events` | SSE fallback. Owner room, listen-only. |
+| POST | `/v1/conversations/{id}/turns` | Observed Chat HTTP stream (unchanged). |
+
+Rooms: implicit signed-in user (owner), plus optional `conversation:`,
+`code_session:`, `mascot:`. A miss is `not_found` (connection-local `error`).
+`hello`, `heartbeat`, `subscribed`, and `error` are connection-local and must
+not leak across tabs or become inbox rows.
+
+Origin is allowlisted. A missing Origin is allowed (Electron). The client
+never puts a cookie or API key on the WebSocket URL.
+
+### Chat
+
+Turn tokens fan out on the owner room. Scheduled-task results use
+`POST /v1/conversations/{id}/scheduled-results` (owner-only, idempotent on
+`user` + `task_id`). The client does not invent a conversation id.
+
+### Code
+
+Cloud and connected-host sessions. A run may prompt Allow / Always / Deny.
+Host pairing returns a code shown once; the service stores a hash the client
+never persists. Heartbeat is `{ device_token, host_id? }` — no SSH or
+provider keys on the wire. Web still rejects `runtime: 'local'`.
+
+### Bot
+
+Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
+`{ ticket_hash }` only — never a password. Videos list at
+`GET /v1/mascots/{id}/videos`.
+
+### Notifications
+
+`GET /v1/notifications`, `POST /v1/notifications/{id}/read`, plus realtime
+`notification` frames on the owner room.

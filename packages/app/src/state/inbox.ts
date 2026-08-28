@@ -35,10 +35,14 @@ function persist(next: InboxItem[]): void {
   writeJson(STORAGE_KEY, next);
 }
 
-export function postInbox(item: Omit<InboxItem, 'id' | 'at' | 'unread'> & { at?: number }): InboxItem {
+export function postInbox(
+  item: Omit<InboxItem, 'id' | 'at' | 'unread'> & { id?: string; at?: number },
+): InboxItem {
+  const existing = item.id ? posted().find((row) => row.id === item.id) : undefined;
+  if (existing) return existing;
   const next: InboxItem = {
     ...item,
-    id: `n_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`,
+    id: item.id ?? `n_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`,
     at: item.at ?? Date.now(),
     unread: true,
   };

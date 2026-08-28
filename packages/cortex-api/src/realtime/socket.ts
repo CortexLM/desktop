@@ -57,6 +57,8 @@ export function createRealtimeSocket(options: RealtimeSocketOptions): RealtimeCl
       return () => state.handlers.delete(handler);
     },
     send: (message: RealtimeClientMessage) => sendOn(state, message),
+    join: (room) => sendOn(state, { type: 'subscribe', room }),
+    leave: (room) => sendOn(state, { type: 'unsubscribe', room }),
   };
 }
 
@@ -132,7 +134,7 @@ function waitForOpen(socket: BrowserWebSocket, timeoutMs: number): Promise<Realt
     }, timeoutMs);
 
     socket.addEventListener('open', () => {
-      socket.send(JSON.stringify({ type: 'hello' }));
+      // Server sends connection-local hello. We do not echo a product event.
       finish('connected');
     });
     socket.addEventListener('error', () => finish('unavailable'));

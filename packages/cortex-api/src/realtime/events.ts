@@ -13,8 +13,10 @@ export const REALTIME_PATH = '/v1/realtime';
 
 export const realtimeEventTypes = [
   'hello',
-  'pong',
+  'heartbeat',
+  'subscribed',
   'error',
+  'chat.started',
   'chat.token',
   'chat.reasoning',
   'chat.disclosure',
@@ -50,6 +52,8 @@ export const realtimeEventSchema = z
     decision: z.string().optional(),
     status: z.string().optional(),
     finish_reason: z.string().optional(),
+    room: z.string().optional(),
+    code: z.string().optional(),
   })
   .passthrough();
 
@@ -66,6 +70,7 @@ export const realtimeClientMessageSchema = z
     model: z.string().optional(),
     request_permission_id: z.string().optional(),
     decision: z.enum(['allow', 'always', 'deny']).optional(),
+    room: z.string().optional(),
   })
   .passthrough();
 
@@ -79,15 +84,18 @@ export interface RealtimeClient {
   disconnect: () => void;
   subscribe: (handler: (event: RealtimeEvent) => void) => () => void;
   send: (message: RealtimeClientMessage) => void;
+  /** Optional room. A miss comes back as connection-local `error` / `not_found`. */
+  join: (room: string) => void;
+  leave: (room: string) => void;
 }
 
-const TURN_TO_REALTIME: Record<string, RealtimeEventType | 'hello'> = {
+const TURN_TO_REALTIME: Record<string, RealtimeEventType> = {
   text_delta: 'chat.token',
   reasoning_delta: 'chat.reasoning',
   disclosure: 'chat.disclosure',
   done: 'chat.done',
   usage: 'chat.usage',
-  turn_started: 'hello',
+  turn_started: 'chat.started',
 };
 
 function asString(value: unknown): string | undefined {

@@ -40,5 +40,49 @@ describe('product surface', () => {
     expect(await surface.listPlanningTasks()).toEqual([
       { id: 'todays-notes', title: "Today's notes", cadence: 'daily' },
     ]);
+    expect(await surface.createVncTicket('mst_1')).toEqual({ ticket_hash: 'ticket-hash-only' });
+    expect(await surface.pairCodeHost()).toEqual({ pairing_code: 'PAIR-TEST' });
+  });
+});
+
+describe('control plane', () => {
+  it('posts a scheduled result onto a known conversation', async () => {
+    const { fetch, calls } = stubFetch([{ body: {} }]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    await surface.postScheduledResult('cnv_01ABC', { task_id: 'todays-notes', message: 'done' });
+    expect(calls[0]!.url).toContain('/v1/conversations/cnv_01ABC/scheduled-results');
+    expect(calls[0]!.body).toEqual({ task_id: 'todays-notes', message: 'done' });
+  });
+
+  it('returns a pairing code and drops a stored hash', async () => {
+    const { fetch } = stubFetch([
+      { body: { pairing_code: 'AB12-CD34', pairing_hash: 'should-not-leave', expires_in: 60 } },
+    ]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    expect(await surface.pairCodeHost()).toEqual({ pairing_code: 'AB12-CD34', expires_in: 60 });
+  });
+
+  it('heartbeats with a device token only', async () => {
+    const { fetch, calls } = stubFetch([{ body: {} }]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    await surface.heartbeatCodeHost({ device_token: 'dev_1', host_id: 'host_1' });
+    expect(calls[0]!.url).toContain('/v1/code/hosts/heartbeat');
+    expect(calls[0]!.body).toEqual({ device_token: 'dev_1', host_id: 'host_1' });
+  });
+
+  it('returns a VNC ticket hash and never a password', async () => {
+    const { fetch } = stubFetch([{ body: { ticket_hash: 'abc', password: 'secret', vnc_password: 'nope' } }]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    expect(await surface.createVncTicket('mst_1')).toEqual({ ticket_hash: 'abc' });
+  });
+
+  it('keeps a live 404 as not_found on control-plane writes', async () => {
+    const { fetch } = stubFetch([
+      { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } },
+    ]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    const error = await surface.markNotificationRead('ntf_1').catch((caught: unknown) => caught);
+    expect(error).toBeInstanceOf(CortexApiError);
+    expect((error as CortexApiError).code).toBe('not_found');
   });
 });

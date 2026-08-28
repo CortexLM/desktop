@@ -7,7 +7,7 @@
 
 import { createSignal } from 'solid-js';
 
-import type { RealtimeEvent, RealtimeStatus } from '@cortex-ide/cortex-api';
+import { isConnectionLocalType, type RealtimeEvent, type RealtimeStatus } from '@cortex-ide/cortex-api';
 
 import { postInbox, type InboxKind } from './inbox.ts';
 import { showOsNotification } from './os-notify.ts';
@@ -34,6 +34,7 @@ const EVENT_HANDLERS: Record<string, (event: RealtimeEvent) => void> = {
 };
 
 export function applyRealtimeEvent(event: RealtimeEvent): void {
+  if (isConnectionLocalType(event.type)) return;
   if (event.type === 'code.run' && event.status === 'done') {
     setCodePermissionBlocked(false);
     postAndNotify('code-run-done', event.message ?? 'A Code session finished', event.href);

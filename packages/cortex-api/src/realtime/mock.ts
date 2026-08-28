@@ -41,6 +41,12 @@ export function createMockRealtime(initial: RealtimeStatus = 'disconnected'): Mo
     send: (message) => {
       sent.push(message);
     },
+    join: (room) => {
+      sent.push({ type: 'subscribe', room });
+    },
+    leave: (room) => {
+      sent.push({ type: 'unsubscribe', room });
+    },
     emit: (event) => {
       for (const handler of handlers) handler(event);
     },

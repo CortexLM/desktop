@@ -15,6 +15,7 @@ import {
   type RealtimeClientMessage,
   type RealtimeEvent,
 } from './events.ts';
+import { isConnectionLocalType } from './rooms.ts';
 
 export interface StreamTransport {
   readonly channel: () => 'realtime' | 'http' | 'none';
@@ -65,10 +66,11 @@ async function* streamOverSocket(
   const pending: RealtimeEvent[] = [];
   let done = false;
   const release = realtime.subscribe((event) => {
+    if (isConnectionLocalType(event.type)) return;
     if (event.request_id && event.request_id !== requestId) return;
     if (conversationId && event.conversation_id && event.conversation_id !== conversationId) return;
     pending.push(event);
-    if (event.type === 'chat.done' || event.type === 'error') done = true;
+    if (event.type === 'chat.done') done = true;
   });
 
   realtime.send({ type: 'chat.turn', request_id: requestId, conversation_id: conversationId, message });

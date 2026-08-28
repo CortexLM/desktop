@@ -8,8 +8,10 @@
 import {
   CortexApiClient,
   createRealtimeSocket,
+  createRealtimeSse,
   createStreamTransport,
   type RealtimeClient,
+  type RealtimeStatus,
   type StreamTransport,
 } from '@cortex-ide/cortex-api';
 
@@ -40,7 +42,20 @@ export async function bootLiveRealtime(): Promise<void> {
   if (!current) return;
   current.realtime.subscribe(applyRealtimeEvent);
   setRealtimeStatus('connecting');
-  setRealtimeStatus(await current.realtime.connect());
+  const socketStatus = await current.realtime.connect();
+  setRealtimeStatus(socketStatus === 'connected' ? socketStatus : await attachSseFallback(current));
+}
+
+/** GET /v1/realtime/events when the WebSocket is down. Owner room only. */
+async function attachSseFallback(current: LiveSession): Promise<RealtimeStatus> {
+  const sse = createRealtimeSse(current.client);
+  sse.subscribe(applyRealtimeEvent);
+  const status = await sse.connect();
+  if (status === 'connected' && session) {
+    session.realtime = sse;
+    session.transport = createStreamTransport(sse, current.client);
+  }
+  return status;
 }
 
 /** Test-only: drop the singleton so the next call rebuilds. */

@@ -8,6 +8,7 @@ import { useNavigate, useParams } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
 import { scheduledTasks, setTaskStatus, markTaskRan } from '../state/planning.ts';
+import { deliverScheduledResult } from '../state/scheduled-results.ts';
 import { addProjectSource, chatProjects, createProject, projectById } from '../state/projects.ts';
 import { libraryItems } from '../state/library.ts';
 import { installPlugin, installedPlugins } from '../state/plugins.ts';
@@ -38,6 +39,8 @@ export function PlanningRoute(): JSX.Element {
       href: '/planning',
     });
     void showOsNotification({ title: 'Planning', body: item.message, kind: 'scheduled-task' });
+    // No conversation id is invented. Local inbox is the result until one is known.
+    void deliverScheduledResult({ taskId: id, message: item.message });
   };
 
   return (
