@@ -38,6 +38,22 @@ export type {
 } from './product-schemas.ts';
 
 export {
+  createHttpProductSurface,
+  createMockProductSurface,
+  type ProductSurface,
+} from './pending.ts';
+
+export type {
+  ApiCodeHost,
+  ApiCodeSession,
+  ApiLibraryItem,
+  ApiMascot,
+  ApiNotification,
+  ApiPlanningTask,
+  ApiPlugin,
+} from './pending-schemas.ts';
+
+export {
   createMockRealtime,
   createRealtimeSocket,
   createStreamTransport,
