@@ -1,4 +1,4 @@
-import { type JSX, Show } from 'solid-js';
+import { Match, Show, Switch, type JSX } from 'solid-js';
 
 import { Icon, Segmented, useTheme } from '@cortex-ide/ui';
 
@@ -106,10 +106,23 @@ function PlanCard(props: { plan: SidebarPlan; onUpgrade?: () => void }): JSX.Ele
   );
 }
 
+/**
+ * `<Switch>` rather than a bare `if` in the function body. A Solid component
+ * runs once, so a ternary here would freeze the Chat apps on screen after the
+ * product switcher moved to Code — the same class of bug as the shell `<Show>`
+ * in `app.tsx`.
+ */
 function ProductSections(props: SidebarProps): JSX.Element {
-  if (props.product === 'bot') return <BotSections {...props} />;
-  if (props.product === 'code') return <CodeSections {...props} />;
-  return <ChatSections {...props} />;
+  return (
+    <Switch fallback={<ChatSections {...props} />}>
+      <Match when={props.product === 'bot'}>
+        <BotSections {...props} />
+      </Match>
+      <Match when={props.product === 'code'}>
+        <CodeSections {...props} />
+      </Match>
+    </Switch>
+  );
 }
 
 /**

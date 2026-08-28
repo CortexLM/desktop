@@ -1,14 +1,26 @@
 /**
  * Terminal Service - Gestion des terminaux PTY
+ *
+ * `node-pty` is loaded on first spawn, not at module evaluation. A static
+ * `import 'node-pty'` would run when main's bundle loads — before
+ * `app.whenReady()` — and a missing Electron-ABI addon would kill the process
+ * with no window. Vitest mocks also stay usable: tests pass `spawn` in.
  */
 
-import * as pty from 'node-pty';
+import { createRequire } from 'node:module';
 import { EventEmitter } from 'events';
 import * as os from 'os';
+import type { IPty, IPtyForkOptions } from 'node-pty';
+
+export type PtySpawnFn = (
+  file: string,
+  args: string[] | string,
+  options?: IPtyForkOptions
+) => IPty;
 
 export interface TerminalInstance {
   id: string;
-  pty: pty.IPty;
+  pty: IPty;
   pid: number;
   cwd: string;
   shell: string;
@@ -20,8 +32,34 @@ export interface TerminalOptions {
   shell?: string;
 }
 
+let nativePtySpawn: PtySpawnFn | undefined;
+
+/**
+ * Loads the native addon the first time a real PTY is created.
+ *
+ * `createRequire` is used instead of `import 'node-pty'` so evaluating this
+ * module (and therefore booting main) cannot load the `.node` binding.
+ */
+function defaultPtySpawn(
+  file: string,
+  args: string[] | string,
+  options?: IPtyForkOptions
+): IPty {
+  if (!nativePtySpawn) {
+    const require = createRequire(import.meta.url);
+    nativePtySpawn = (require('node-pty') as { spawn: PtySpawnFn }).spawn;
+  }
+  return nativePtySpawn(file, args, options);
+}
+
 export class TerminalService extends EventEmitter {
   private terminals: Map<string, TerminalInstance> = new Map();
+  private readonly spawn: PtySpawnFn;
+
+  constructor(spawn: PtySpawnFn = defaultPtySpawn) {
+    super();
+    this.spawn = spawn;
+  }
 
   /**
    * Obtient le shell par défaut selon l'OS
@@ -55,7 +93,7 @@ export class TerminalService extends EventEmitter {
     } as Record<string, string>;
 
     // Création du PTY
-    const ptyProcess = pty.spawn(shell, [], {
+    const ptyProcess = this.spawn(shell, [], {
       name: 'xterm-256color',
       cols: 80,
       rows: 30,
@@ -159,9 +197,14 @@ export class TerminalService extends EventEmitter {
 // Instance singleton
 let terminalService: TerminalService | null = null;
 
-export function getTerminalService(): TerminalService {
+export function getTerminalService(spawn?: PtySpawnFn): TerminalService {
   if (!terminalService) {
-    terminalService = new TerminalService();
+    terminalService = new TerminalService(spawn);
   }
   return terminalService;
+}
+
+/** Drops the singleton. Tests seed a mocked spawn via `getTerminalService(fn)`. */
+export function resetTerminalService(): void {
+  terminalService = null;
 }

@@ -177,6 +177,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['secrets', 'remove', 'secrets:delete'],
   ['cortex', 'createApiKey', 'cortex:create-api-key'],
   ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
+  ['cortex', 'productRequest', 'cortex:product-request'],
 ];
 
 /**
@@ -239,6 +240,12 @@ describe('façade methods invoke the channel main registered', () => {
     // of the `git.push` -> `git:pull` bug, which no type check can see.
     const channels = [...SINGLE_ARG_METHODS, ...NO_ARG_METHODS].map(([, , channel]) => channel);
     expect(new Set(channels).size).toBe(channels.length);
+  });
+
+  it('reports process.platform without crossing IPC', () => {
+    const platform = cortex.platform as unknown as () => string;
+    expect(platform()).toBe(process.platform);
+    expect(invokeMock).not.toHaveBeenCalled();
   });
 
   it('covers every promise-returning façade method', () => {

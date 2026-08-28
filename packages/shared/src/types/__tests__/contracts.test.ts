@@ -223,6 +223,7 @@ describe('contrat IPC_CHANNELS', () => {
     // `types/ipc/channels.ts` (la source de vérité réexportée par le package)
     // doit garder.
     expect(IPC_CHANNELS.AI_STREAM_RESPONSE).toBe('ai:stream-response');
+    expect(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST).toBe('cortex:product-request');
   });
 
   it('couvre les domaines servis par un schéma de validation', () => {

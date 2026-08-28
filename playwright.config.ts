@@ -7,8 +7,10 @@ export default defineConfig({
   testDir: './tests/e2e',
   testMatch: '**/*.spec.ts',
   
-  // Timeout configuration
-  timeout: 60000,
+  // Fixture setup includes Electron launch + firstWindow (each up to 60s).
+  // 60s for the whole test is why CI reported "timeout while setting up
+  // electronApp" even when the binary was only slow to paint.
+  timeout: 120000,
   expect: {
     timeout: 10000
   },

@@ -77,6 +77,8 @@ import type {
   CortexDeviceStartResponse,
   CortexDeviceStatusEvent,
   CortexListModelsResponse,
+  CortexProductRequest,
+  CortexProductResponse,
   ArchiveSessionRequest,
   FollowUpSessionRequest,
   GetSessionRequest,
@@ -245,6 +247,9 @@ export interface CortexAPI {
       name: string;
     }) => Promise<IPCResponse<{ key: { id: string; name: string; key?: string } }>>;
     revokeApiKey: (request: { id: string }) => Promise<IPCResponse<{ revoked: true }>>;
+    productRequest: (
+      request: CortexProductRequest,
+    ) => Promise<IPCResponse<CortexProductResponse>>;
     onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
     onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
   };
@@ -582,6 +587,7 @@ const cortexAPI: CortexAPI = {
     listApiKeys: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_API_KEYS),
     createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
     revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
+    productRequest: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST, request),
     onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
       IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
     ),

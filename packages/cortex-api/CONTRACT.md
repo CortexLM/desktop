@@ -315,6 +315,26 @@ Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
 `{ ticket_hash }` only — never a password. Videos list at
 `GET /v1/mascots/{id}/videos`.
 
+Grok-core routes (parallel backend PR). A live 404 stays `not_found` /
+`backend_too_old` in the UI — never a localStorage stand-in:
+
+| Method | Path |
+| --- | --- |
+| GET/POST | `/v1/mascots/{id}/messages` |
+| POST | `/v1/mascots/{id}/ask-user`, `/respond`, `/secrets` |
+| GET | `/v1/mascots/{id}/computer` |
+| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell` |
+| GET | `/computer/screenshot`, `/cursor`, `/fs`, `/file` |
+| GET/POST/DELETE | `/v1/mascots/{id}/memory?tier=` |
+| CRUD | `/v1/skills` + `POST /v1/mascots/{id}/skills/{slug}/run` |
+| CRUD + pause/resume | `/v1/mascots/{id}/routines` |
+| POST/GET | `/v1/mascots/{id}/tasks` |
+| POST/GET | `/inbox`, `/groups`, `/handoff`, `/teach` |
+| GET | `/v1/plugins`, `/v1/plugins/connections` |
+
+Agent turn events on `/v1/realtime`: `token`, `tool_call`, `tool_result`,
+`send_to_user`, `ask_user`, `computer_offline`.
+
 ### Notifications
 
 `GET /v1/notifications`, `POST /v1/notifications/{id}/read`, plus realtime

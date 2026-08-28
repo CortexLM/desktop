@@ -1,11 +1,23 @@
 /**
- * Chat plugins. The four cards are the product lock; install state is local
- * until Composio is configured. Official brand marks live in the screen.
+ * Chat plugins. Catalog and connection state come from the API.
+ * A 503 is "Composio is not configured". The four brand cards stay as
+ * the product lock; they are never shown as connected unless the API says so.
  */
 
 import { createSignal } from 'solid-js';
 
-import { readJson, writeJson } from './persist.ts';
+import {
+  classifyBotError,
+  connectPlugin,
+  disconnectPlugin,
+  listPluginConnections,
+  listPlugins,
+  PLUGIN_UNAVAILABLE,
+  type ApiPlugin,
+  type ApiPluginConnection,
+} from '@cortex-ide/cortex-api';
+
+import { botClient } from './bot-client.ts';
 
 export type PluginBrand = 'drive' | 'slack' | 'github' | 'paper';
 
@@ -13,7 +25,6 @@ export interface PluginCard {
   id: PluginBrand;
   name: string;
   summary: string;
-  /** Preferred install path, shown on the card. */
   installVia: 'composio';
 }
 
@@ -44,19 +55,57 @@ export const PLUGIN_CARDS: readonly PluginCard[] = [
   },
 ];
 
-const STORAGE_KEY = 'cortex.plugins.v1';
+export type PluginLoadState = 'idle' | 'loading' | 'ready' | 'empty' | 'unavailable' | 'error';
 
-const [installed, setInstalled] = createSignal<PluginBrand[]>(readJson(STORAGE_KEY, []));
+const [catalog, setCatalog] = createSignal<ApiPlugin[]>([]);
+const [connections, setConnections] = createSignal<ApiPluginConnection[]>([]);
+const [pluginState, setPluginState] = createSignal<PluginLoadState>('idle');
+const [pluginError, setPluginError] = createSignal('');
 
-export { installed as installedPlugins };
+export { catalog as pluginCatalog, connections as pluginConnections, pluginState, pluginError };
 
-export function isPluginInstalled(id: PluginBrand): boolean {
-  return installed().includes(id);
+export function isPluginConnected(id: PluginBrand): boolean {
+  if (connections().some((row) => row.brand === id || row.plugin_id === id || row.id === id)) {
+    return true;
+  }
+  return catalog().some((row) => (row.brand === id || row.id === id) && row.connected === true);
 }
 
-export function installPlugin(id: PluginBrand): void {
-  if (installed().includes(id)) return;
-  const next = [...installed(), id];
-  setInstalled(next);
-  writeJson(STORAGE_KEY, next);
+export async function reconcilePlugins(): Promise<void> {
+  const client = botClient();
+  if (!client) {
+    setPluginState('unavailable');
+    setPluginError('The plugin catalog is not reachable from this origin.');
+    setCatalog([]);
+    setConnections([]);
+    return;
+  }
+  setPluginState('loading');
+  try {
+    const [rows, linked] = await Promise.all([listPlugins(client), listPluginConnections(client)]);
+    setCatalog(rows);
+    setConnections(linked);
+    setPluginState(rows.length === 0 && linked.length === 0 ? 'empty' : 'ready');
+    setPluginError('');
+  } catch (error) {
+    const classified = classifyBotError(error);
+    setCatalog([]);
+    setConnections([]);
+    setPluginState(classified.code === PLUGIN_UNAVAILABLE ? 'unavailable' : 'error');
+    setPluginError(classified.message);
+  }
+}
+
+export async function installPlugin(id: PluginBrand): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('Plugins are not reachable.');
+  await connectPlugin(client, id);
+  await reconcilePlugins();
+}
+
+export async function removePlugin(id: PluginBrand): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('Plugins are not reachable.');
+  await disconnectPlugin(client, id);
+  await reconcilePlugins();
 }

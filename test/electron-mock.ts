@@ -109,6 +109,22 @@ export const safeStorageMock = {
   }),
 };
 
+/** OS notification banner — used by notify-handlers. */
+export const notificationInstances: Array<{
+  show: ReturnType<typeof vi.fn>;
+  title: string;
+  body: string;
+}> = [];
+
+export const NotificationMock = Object.assign(
+  vi.fn(function Notification(this: unknown, opts: { title: string; body: string }) {
+    const instance = { show: vi.fn(), title: opts.title, body: opts.body };
+    notificationInstances.push(instance);
+    return instance;
+  }),
+  { isSupported: vi.fn(() => false) },
+);
+
 class BrowserWindowMock {
   static getAllWindows = vi.fn(() => [] as BrowserWindowMock[]);
   static getFocusedWindow = vi.fn(() => null);
@@ -134,6 +150,10 @@ export function resetElectronMock(): void {
   safeStorageMock.isEncryptionAvailable.mockReturnValue(true);
   safeStorageMock.encryptString.mockClear();
   safeStorageMock.decryptString.mockClear();
+  notificationInstances.length = 0;
+  NotificationMock.mockClear();
+  NotificationMock.isSupported.mockReset();
+  NotificationMock.isSupported.mockReturnValue(false);
 }
 
 vi.mock('electron', () => ({
@@ -143,6 +163,7 @@ vi.mock('electron', () => ({
   shell: shellMock,
   safeStorage: safeStorageMock,
   BrowserWindow: BrowserWindowMock,
+  Notification: NotificationMock,
   Menu: { buildFromTemplate: vi.fn(() => ({})), setApplicationMenu: vi.fn(() => {}) },
   nativeTheme: { shouldUseDarkColors: false, on: vi.fn(() => {}) },
   default: {},
