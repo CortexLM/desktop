@@ -1,16 +1,62 @@
 /**
  * Chat destinations that are not Home / Conversation: Planning, projects,
  * library, plugins, research, settings.
+ *
+ * Every one of these reads from the account. They used to read `localStorage`,
+ * which is why each route now has a load effect and passes a lifecycle state
+ * through to its screen rather than an array that was always present.
  */
 
-import { createEffect, createMemo, createSignal, type JSX } from 'solid-js';
+import { createEffect, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
-import { scheduledTasks, setTaskStatus, markTaskRan } from '../state/planning.ts';
-import { deliverScheduledResult } from '../state/scheduled-results.ts';
-import { addProjectSource, chatProjects, createProject, projectById } from '../state/projects.ts';
-import { libraryItems } from '../state/library.ts';
+import {
+  addPlanningTask,
+  availableTemplates,
+  loadPlanning,
+  planningError,
+  planningState,
+  runTaskNow,
+  scheduledTasks,
+  setTaskStatus,
+  type PlanningTemplate,
+} from '../state/planning.ts';
+import {
+  addProjectSource,
+  chatProjects,
+  createProject,
+  loadProject,
+  loadProjects,
+  openProject,
+  projectError,
+  projectsError,
+  projectsState,
+  projectState,
+  removeProjectSource,
+  renameProject,
+} from '../state/projects.ts';
+import {
+  libraryError,
+  libraryItems,
+  libraryState,
+  loadLibrary,
+  removeLibraryItem,
+} from '../state/library.ts';
+import {
+  loadResearch,
+  researchError,
+  researchRuns,
+  researchState,
+  startResearch,
+} from '../state/research.ts';
+import {
+  chatPreferences,
+  loadChatPreferences,
+  preferencesEditable,
+  preferencesError,
+  saveChatPreference,
+} from '../state/chat-preferences.ts';
 import {
   installPlugin,
   isPluginConnected,
@@ -27,39 +73,61 @@ import { ProjectsScreen } from '../screens/chat/projects-screen.tsx';
 import { ProjectScreen, ProjectSourcesScreen } from '../screens/chat/project-detail-screens.tsx';
 import { LibraryScreen, PluginsScreen } from '../screens/chat/library-plugins-screens.tsx';
 import { ChatSettingsScreen, ResearchScreen } from '../screens/chat/research-settings-screens.tsx';
-import { readJson, writeJson } from '../state/persist.ts';
 
 export function PlanningRoute(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
 
-  const run = (id: string) => {
+  createEffect(() => {
+    void loadPlanning();
+  });
+
+  /**
+   * Asks Cortex to run a job now and follows the result.
+   *
+   * The notification is posted from what the service returned, not composed
+   * locally: the previous version bumped a local timestamp and posted "finished"
+   * for work that had never been requested of anything.
+   */
+  const run = async (id: string) => {
     const task = scheduledTasks().find((entry) => entry.id === id);
     if (!task) return;
     if (task.requiresAccount && !account.capabilities().authenticated) {
       navigate('/sign-in');
       return;
     }
-    markTaskRan(id);
-    const item = postInbox({
-      kind: 'scheduled-task',
-      message: `${task.title} finished`,
-      href: '/planning',
-    });
-    void showOsNotification({ title: 'Planning', body: item.message, kind: 'scheduled-task' });
-    // No conversation id is invented. Local inbox is the result until one is known.
-    void deliverScheduledResult({ taskId: id, message: item.message });
+
+    try {
+      const result = await runTaskNow(id);
+      const item = postInbox({
+        kind: 'scheduled-task',
+        message: `${task.title} finished`,
+        href: result.conversationId ? `/chat/${result.conversationId}` : '/planning',
+      });
+      void showOsNotification({ title: 'Planning', body: item.message, kind: 'scheduled-task' });
+    } catch (error) {
+      postInbox({
+        kind: 'scheduled-task',
+        message: `${task.title} could not run: ${error instanceof Error ? error.message : String(error)}`,
+        href: '/planning',
+      });
+    }
   };
 
   return (
     <PlanningScreen
       tasks={scheduledTasks()}
+      state={planningState()}
+      error={planningError()}
       signedIn={account.capabilities().authenticated}
+      templates={availableTemplates()}
       onToggle={(id) => {
         const task = scheduledTasks().find((entry) => entry.id === id);
-        if (task) setTaskStatus(id, task.status === 'active' ? 'paused' : 'active');
+        if (task) void setTaskStatus(id, task.status === 'active' ? 'paused' : 'active');
       }}
-      onRun={run}
+      onRun={(id) => void run(id)}
+      onAdd={(template: PlanningTemplate) => void addPlanningTask(template)}
+      onRetry={() => void loadPlanning()}
       onSignIn={() => navigate('/sign-in')}
     />
   );
@@ -67,11 +135,23 @@ export function PlanningRoute(): JSX.Element {
 
 export function ProjectsRoute(): JSX.Element {
   const navigate = useNavigate();
+
+  createEffect(() => {
+    void loadProjects();
+  });
+
   return (
     <ProjectsScreen
       projects={chatProjects()}
+      state={projectsState()}
+      error={projectsError()}
       onOpen={(id) => navigate(`/projects/${id}`)}
-      onCreate={() => navigate(`/projects/${createProject('Untitled project').id}`)}
+      onCreate={() => {
+        void createProject('Untitled project').then((id) => {
+          if (id) navigate(`/projects/${id}`);
+        });
+      }}
+      onRetry={() => void loadProjects()}
     />
   );
 }
@@ -79,11 +159,21 @@ export function ProjectsRoute(): JSX.Element {
 export function ProjectRoute(): JSX.Element {
   const params = useParams<{ projectId: string }>();
   const navigate = useNavigate();
-  const project = createMemo(() => projectById(params.projectId));
+
+  createEffect(() => {
+    void loadProject(params.projectId);
+  });
+
   return (
     <ProjectScreen
-      project={project()}
+      project={openProject()}
+      state={projectState()}
+      error={projectError()}
       onOpenSources={() => navigate(`/projects/${params.projectId}/sources`)}
+      onSaveBrief={(brief) => {
+        const project = openProject();
+        if (project) void renameProject(project.id, project.title, brief);
+      }}
       onBack={() => navigate('/projects')}
     />
   );
@@ -92,11 +182,18 @@ export function ProjectRoute(): JSX.Element {
 export function ProjectSourcesRoute(): JSX.Element {
   const params = useParams<{ projectId: string }>();
   const navigate = useNavigate();
-  const project = createMemo(() => projectById(params.projectId));
+
+  createEffect(() => {
+    void loadProject(params.projectId);
+  });
+
   return (
     <ProjectSourcesScreen
-      project={project()}
-      onAdd={() => addProjectSource(params.projectId, { label: 'Untitled source', kind: 'url' })}
+      project={openProject()}
+      state={projectState()}
+      error={projectError()}
+      onAdd={(source) => void addProjectSource(params.projectId, source)}
+      onRemove={(sourceId) => void removeProjectSource(params.projectId, sourceId)}
       onBack={() => navigate(`/projects/${params.projectId}`)}
     />
   );
@@ -105,10 +202,19 @@ export function ProjectSourcesRoute(): JSX.Element {
 export function LibraryRoute(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
+
+  createEffect(() => {
+    if (account.capabilities().authenticated) void loadLibrary();
+  });
+
   return (
     <LibraryScreen
       items={libraryItems()}
+      state={libraryState()}
+      error={libraryError()}
       signedIn={account.capabilities().authenticated}
+      onRemove={(id) => void removeLibraryItem(id)}
+      onRetry={() => void loadLibrary()}
       onSignIn={() => navigate('/sign-in')}
     />
   );
@@ -118,9 +224,8 @@ export function PluginsRoute(): JSX.Element {
   createEffect(() => {
     void reconcilePlugins();
   });
-  const connected = createMemo(() =>
-    (['drive', 'slack', 'github', 'paper'] as const).filter((id) => isPluginConnected(id)),
-  );
+  const connected = () =>
+    (['drive', 'slack', 'github', 'paper'] as const).filter((id) => isPluginConnected(id));
   return (
     <PluginsScreen
       connected={connected()}
@@ -136,29 +241,42 @@ export function PluginsRoute(): JSX.Element {
 export function ResearchRoute(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
+
+  createEffect(() => {
+    if (account.capabilities().authenticated) void loadResearch();
+  });
+
   return (
     <ResearchScreen
+      runs={researchRuns()}
+      state={researchState()}
+      error={researchError()}
       signedIn={account.capabilities().authenticated}
+      onStart={(question) => void startResearch(question)}
+      onOpen={(run) => {
+        if (run.conversationId) navigate(`/chat/${run.conversationId}`);
+      }}
+      onRetry={() => void loadResearch()}
       onSignIn={() => navigate('/sign-in')}
     />
   );
 }
 
 export function ChatSettingsRoute(): JSX.Element {
-  const [stream, setStream] = createSignal(readJson('cortex.chat.stream', true));
-  const [mentions, setMentions] = createSignal(readJson('cortex.chat.mentions', true));
+  createEffect(() => {
+    void loadChatPreferences();
+  });
+
   return (
     <ChatSettingsScreen
-      streamReplies={stream()}
-      onStreamReplies={(value) => {
-        setStream(value);
-        writeJson('cortex.chat.stream', value);
-      }}
-      notifyMentions={mentions()}
-      onNotifyMentions={(value) => {
-        setMentions(value);
-        writeJson('cortex.chat.mentions', value);
-      }}
+      streamReplies={chatPreferences().streamReplies}
+      onStreamReplies={(value) => void saveChatPreference({ streamReplies: value }).catch(() => {})}
+      notifyMentions={chatPreferences().notifyOnMentions}
+      onNotifyMentions={(value) =>
+        void saveChatPreference({ notifyOnMentions: value }).catch(() => {})
+      }
+      editable={preferencesEditable()}
+      error={preferencesError()}
     />
   );
 }

@@ -4,57 +4,68 @@ import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
+import { RemoteStateView } from '../shared/remote-state-view.tsx';
 import { BrandLogo } from './brand-logos.tsx';
 import type { LibraryItem } from '../../state/library.ts';
 import { PLUGIN_CARDS, type PluginBrand } from '../../state/plugins.ts';
+import type { RemoteState } from '../../state/remote-collection.ts';
 
 import './product-pages.css';
 
-function libraryEmpty(signedIn: boolean, onSignIn: () => void): JSX.Element {
-  if (!signedIn) {
-    return (
-      <HonestState
-        kind="signed-out"
-        title="Sign in to sync a library"
-        body="Local saves stay on this device. An account carries them across machines."
-        actionLabel="Sign in"
-        onAction={onSignIn}
-      />
-    );
-  }
-  return (
-    <HonestState kind="empty" title="Library is empty" body="Save an answer from a conversation and it will land here." />
-  );
-}
-
 export function LibraryScreen(props: {
   items: readonly LibraryItem[];
-  signedIn: boolean;
-  loading?: boolean;
+  state: RemoteState;
   error?: string;
+  signedIn: boolean;
+  onOpen?: (item: LibraryItem) => void;
+  onRemove?: (id: string) => void;
+  onRetry: () => void;
   onSignIn: () => void;
 }): JSX.Element {
   return (
     <>
       <PageHeader title="Library" subtitle="Answers and uploads you chose to keep." />
       <PageBody width="list">
-        <Show when={!props.loading} fallback={<HonestState kind="loading" title="Loading library" body="Opening saved items." />}>
-          <Show when={!props.error} fallback={<HonestState kind="error" title="Could not load the library" body={props.error ?? ''} />}>
-            <Show when={props.items.length > 0} fallback={libraryEmpty(props.signedIn, props.onSignIn)}>
-              <div class="cx-product-list">
-                <For each={props.items}>
-                  {(item) => (
-                    <div class="cx-product-row">
-                      <div>
-                        <div class="cx-product-row__title">{item.title}</div>
-                        <p class="cx-product-row__meta">{item.kind} · {item.excerpt}</p>
-                      </div>
+        <Show
+          when={props.signedIn}
+          fallback={
+            <HonestState
+              kind="signed-out"
+              title="Sign in to keep a library"
+              body="A saved answer lives on your account so it is there on your other machines."
+              actionLabel="Sign in"
+              onAction={props.onSignIn}
+            />
+          }
+        >
+          <RemoteStateView
+            state={props.state}
+            {...(props.error ? { error: props.error } : {})}
+            label="Your library"
+            emptyTitle="Library is empty"
+            emptyBody="Save an answer from a conversation and it will land here."
+            onRetry={props.onRetry}
+          >
+            <div class="cx-product-list">
+              <For each={props.items}>
+                {(item) => (
+                  <div class="cx-product-row" data-library-item={item.id}>
+                    <div>
+                      <div class="cx-product-row__title">{item.title}</div>
+                      <p class="cx-product-row__meta">{item.kind} · {item.excerpt}</p>
                     </div>
-                  )}
-                </For>
-              </div>
-            </Show>
-          </Show>
+                    <div class="cx-product-row__action">
+                      <Show when={props.onRemove}>
+                        <Button variant="secondary" onClick={() => props.onRemove?.(item.id)}>
+                          Remove
+                        </Button>
+                      </Show>
+                    </div>
+                  </div>
+                )}
+              </For>
+            </div>
+          </RemoteStateView>
         </Show>
       </PageBody>
     </>
