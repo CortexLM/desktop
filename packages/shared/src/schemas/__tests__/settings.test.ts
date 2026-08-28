@@ -30,6 +30,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   GetProviderSettingsRequestSchema,
+  GetWorkspaceRunSettingsRequestSchema,
   ProviderIdSchema,
   SetProviderRequestSchema,
 } from '../settings';
@@ -52,6 +53,12 @@ describe('GetProviderSettingsRequestSchema', () => {
   it('rejette les scalaires', () => {
     expect(GetProviderSettingsRequestSchema.safeParse('nope').success).toBe(false);
     expect(GetProviderSettingsRequestSchema.safeParse(42).success).toBe(false);
+  });
+});
+
+describe('GetWorkspaceRunSettingsRequestSchema', () => {
+  it('accepte undefined (invoke sans argument) et normalise en objet vide', () => {
+    expect(GetWorkspaceRunSettingsRequestSchema.parse(undefined)).toEqual({});
   });
 });
 

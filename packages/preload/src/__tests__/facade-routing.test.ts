@@ -242,6 +242,12 @@ describe('façade methods invoke the channel main registered', () => {
     expect(new Set(channels).size).toBe(channels.length);
   });
 
+  it('reports process.platform without crossing IPC', () => {
+    const platform = cortex.platform as unknown as () => string;
+    expect(platform()).toBe(process.platform);
+    expect(invokeMock).not.toHaveBeenCalled();
+  });
+
   it('covers every promise-returning façade method', () => {
     // Keeps the table honest. A new method added to the bridge with no row here
     // would be untested while this suite still reported green — the silent-skip

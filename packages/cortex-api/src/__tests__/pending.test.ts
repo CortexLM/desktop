@@ -86,4 +86,29 @@ describe('control plane', () => {
     expect(error).toBeInstanceOf(CortexApiError);
     expect((error as CortexApiError).code).toBe('not_found');
   });
+
+  it('lists remaining product rows and writes mascots through the HTTP surface', async () => {
+    const { fetch, calls } = stubFetch([
+      { body: { items: [{ id: 'ses_1', title: 'Fix auth' }], has_more: false } },
+      { body: { items: [{ id: 'todays-notes', title: "Today's notes" }], has_more: false } },
+      { body: { items: [{ id: 'lib_1', title: 'Spec' }], has_more: false } },
+      { body: { items: [], has_more: false } },
+      { body: { id: 'mst_2', name: 'Scout' } },
+      { body: {} },
+      { body: { items: [{ id: 'vid_1', title: 'Clip' }], has_more: false } },
+      { body: { pairing_code: 'ZX99', host_id: 'host_9' } },
+    ]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+
+    expect((await surface.listCodeSessions())[0]?.id).toBe('ses_1');
+    expect((await surface.listPlanningTasks())[0]?.id).toBe('todays-notes');
+    expect((await surface.listLibraryItems())[0]?.title).toBe('Spec');
+    expect(await surface.listPlugins()).toEqual([]);
+    expect((await surface.createMascot({ name: 'Scout' })).id).toBe('mst_2');
+    await surface.deleteMascot('mst_2');
+    expect((await surface.listMascotVideos('mst_2'))[0]?.id).toBe('vid_1');
+    expect(await surface.pairCodeHost()).toEqual({ pairing_code: 'ZX99', host_id: 'host_9' });
+    expect(calls[4]!.method).toBe('POST');
+    expect(calls[5]!.method).toBe('DELETE');
+  });
 });

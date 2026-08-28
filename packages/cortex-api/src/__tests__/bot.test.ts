@@ -5,20 +5,30 @@ import { CortexApiError } from '../errors.ts';
 import { BACKEND_TOO_OLD, classifyBotError, PLUGIN_UNAVAILABLE } from '../bot-errors.ts';
 import {
   createMascot,
+  deleteMascot,
+  getMascot,
   listMascotMessages,
+  listMascots,
+  patchMascot,
+  postAskUser,
   postMascotMessage,
   postRespond,
   postSecret,
 } from '../bot-mascots.ts';
 import {
+  createVncTicket,
   getComputer,
+  getCursor,
   getScreenshot,
+  listComputerFs,
   listMascotVideos,
   postComputerInput,
   postLifecycle,
   postRecord,
   postShell,
+  readComputerFile,
 } from '../bot-computer.ts';
+import { computerRowSchema, mascotRowSchema } from '../bot-schemas.ts';
 import {
   DEFAULT_ROUTINE_CRON,
   createRoutine,
@@ -69,6 +79,26 @@ describe('mascot writes', () => {
     expect(calls[1]!.url).toContain('/respond');
     expect(calls[2]!.url).toContain('/secrets');
   });
+
+  it('lists, reads, patches, asks, and deletes a mascot on the API', async () => {
+    const { client, calls } = clientFor([
+      { body: { items: [{ id: 'mst_1', name: 'Scout' }], has_more: false } },
+      { body: { id: 'mst_1', name: 'Scout' } },
+      { body: { id: 'mst_1', name: 'Scout II' } },
+      { body: { id: 'ask_1', kind: 'ask_user', text: 'Wake?' } },
+      { body: {} },
+    ]);
+    expect((await listMascots(client))[0]?.id).toBe('mst_1');
+    expect((await getMascot(client, 'mst_1')).name).toBe('Scout');
+    expect((await patchMascot(client, 'mst_1', { name: 'Scout II' })).name).toBe('Scout II');
+    expect((await postAskUser(client, 'mst_1', { prompt: 'Wake?', options: ['yes'] })).kind).toBe(
+      'ask_user',
+    );
+    await deleteMascot(client, 'mst_1');
+    expect(calls[2]!.method).toBe('PATCH');
+    expect(calls[3]!.url).toContain('/ask-user');
+    expect(calls[4]!.method).toBe('DELETE');
+  });
 });
 
 describe('computer', () => {
@@ -108,6 +138,42 @@ describe('computer', () => {
     expect(calls[1]!.body).toEqual({ action: 'click', x: 10, y: 20 });
     expect(calls[2]!.body).toEqual({ action: 'drag', x: 10, y: 20, x2: 80, y2: 90 });
     expect(calls[3]!.url).toContain('/computer/shell');
+  });
+
+  it('sends scroll, type, and lists the default fs root', async () => {
+    const { client, calls } = clientFor([
+      { body: {} },
+      { body: {} },
+      { body: { items: [{ name: '.' }], has_more: false } },
+    ]);
+    await postComputerInput(client, 'mst_1', { action: 'scroll', dx: 0, dy: 40 });
+    await postComputerInput(client, 'mst_1', { action: 'type', text: 'ls' });
+    expect((await listComputerFs(client, 'mst_1'))[0]?.name).toBe('.');
+    expect(calls[0]!.body).toEqual({ action: 'scroll', dx: 0, dy: 40 });
+    expect(calls[2]!.url).toContain('/computer/fs?path=%2F');
+  });
+
+  it('reads cursor, files, and a VNC hash-only ticket', async () => {
+    const { client, calls } = clientFor([
+      { body: { x: 12, y: 8 } },
+      { body: { items: [{ name: 'README.md', path: '/README.md' }], has_more: false } },
+      { body: { path: '/README.md', text: 'hi' } },
+      { body: { ticket_hash: 'abc', password: 'drop-me' } },
+    ]);
+    expect((await getCursor(client, 'mst_1')).x).toBe(12);
+    expect((await listComputerFs(client, 'mst_1', '/home'))[0]?.name).toBe('README.md');
+    expect((await readComputerFile(client, 'mst_1', '/README.md')).text).toBe('hi');
+    const ticket = await createVncTicket(client, 'mst_1');
+    expect(ticket).toEqual({ ticket_hash: 'abc' });
+    expect(calls[1]!.url).toContain('/computer/fs?path=%2Fhome');
+    expect(calls[3]!.url).toContain('/vnc-ticket');
+  });
+});
+
+describe('bot schemas', () => {
+  it('accepts extra farm fields without inventing a running box', () => {
+    expect(mascotRowSchema.parse({ id: 'mst_1', extra: 1 }).id).toBe('mst_1');
+    expect(computerRowSchema.parse({ status: 'offline', provider: 'mock' }).provider).toBe('mock');
   });
 });
 
