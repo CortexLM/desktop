@@ -90,6 +90,16 @@ export interface AgentPlan {
   rationale: string;
   steps: PlanStep[];
   approved: boolean;
+  /** Required in plan mode: a mermaid flowchart or sequenceDiagram fence. */
+  mermaid?: string;
+}
+
+export type BackgroundTaskKind = 'explore' | 'plan' | 'worker';
+
+export interface TaskPayload {
+  id: string;
+  summary: string;
+  artifact_id?: string;
 }
 
 export type AgentEvent =
@@ -109,6 +119,10 @@ export type AgentEvent =
   | { type: 'permission'; request: PermissionRequest }
   | { type: 'question'; id: string; prompt: string; options?: string[] }
   | { type: 'plan'; plan: AgentPlan }
+  | { type: 'task_started'; id: string; summary: string }
+  | { type: 'task_progress'; id: string; summary: string }
+  | { type: 'task_completed'; id: string; summary: string; artifact_id?: string }
+  | { type: 'task_failed'; id: string; summary: string }
   | { type: 'context_full'; tokens: number; limit: number }
   | { type: 'done'; finishReason?: string }
   | { type: 'error'; message: string };
@@ -150,6 +164,38 @@ export interface RunAgentTurnOptions {
   contextTokens?: number;
   contextLimit?: number;
   onMessages?: (messages: AgentMessage[]) => void;
+  /** Oversized tool output is offloaded here; Read/Grep page by artifact_id. */
+  artifacts?: ArtifactHost;
+  /** Parent-owned background Task children. Absent: Task cannot spawn. */
+  tasks?: TaskHost;
+  taskTimeoutMs?: number;
+}
+
+export interface ArtifactStub {
+  output: string;
+  artifact_id?: string;
+}
+
+export interface ArtifactHost {
+  offload(tool: string, output: string): ArtifactStub;
+  readPage(id: string, offset?: number, limit?: number): string | undefined;
+  grep(id: string, pattern: string): string | undefined;
+  ids(): string[];
+}
+
+export interface TaskSpawnRequest {
+  kind: BackgroundTaskKind;
+  prompt: string;
+  callId: string;
+}
+
+export interface TaskHost {
+  spawn(request: TaskSpawnRequest): TaskPayload;
+  cancel(id: string): void;
+  cancelAll(): void;
+  drain(): AgentEvent[];
+  openIds(): string[];
+  waitOpen(): Promise<void>;
 }
 
 export interface DroidDefinition {
@@ -192,6 +238,9 @@ export interface AgentSessionRecord {
   agentName?: string;
   messages: AgentMessage[];
   todos: TodoItem[];
+  openArtifactIds?: string[];
+  openTaskIds?: string[];
+  activePlan?: AgentPlan;
   createdAt: number;
   updatedAt: number;
 }

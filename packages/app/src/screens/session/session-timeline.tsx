@@ -39,6 +39,8 @@ export interface SessionTimelineProps {
   /** The agent's reply above its plan. */
   reply?: string;
   plan?: readonly PlanStep[];
+  /** Mermaid flowchart or sequenceDiagram from plan mode. Shown in mono; plan prose is Inter. */
+  planMermaid?: string;
   /** Pre-formatted, e.g. "Worked for 4m 32s". */
   workSummary?: string;
   work?: readonly WorkEntry[];
@@ -208,49 +210,61 @@ export function SessionTimeline(props: SessionTimelineProps): JSX.Element {
     <>
       <div class="cx-timeline">
         <p class="cx-timeline__prompt">{props.prompt}</p>
-
-        <Show when={props.reply || props.plan?.length || props.workSummary}>
-          <div class="cx-timeline__reply">
-            <Show when={props.reply}>{(reply) => <p class="cx-timeline__reply-text">{reply()}</p>}</Show>
-            <Show when={props.plan?.length ? props.plan : undefined}>
-              {(steps) => <PlanList steps={steps()} />}
-            </Show>
-            <Show when={props.workSummary}>
-              {(summary) => <Worklog summary={summary()} entries={props.work ?? []} />}
-            </Show>
-          </div>
-        </Show>
-
+        <TimelineReply {...props} />
         <For each={props.artifacts}>{(artifact) => <ArtifactCard artifact={artifact} />}</For>
       </div>
+      <TimelineFooter {...props} />
+    </>
+  );
+}
 
-      <div class="cx-timeline__footer">
-        <Show when={props.permission}>
-          {(request) => (
-            <PermissionBanner request={request()} onResolve={props.onResolvePermission} />
+function TimelineReply(props: SessionTimelineProps): JSX.Element {
+  return (
+    <Show when={props.reply || props.plan?.length || props.workSummary || props.planMermaid}>
+      <div class="cx-timeline__reply">
+        <Show when={props.reply}>{(reply) => <p class="cx-timeline__reply-text">{reply()}</p>}</Show>
+        <Show when={props.planMermaid}>
+          {(diagram) => (
+            <pre class="cx-plan__mermaid" aria-label="Plan diagram">
+              {diagram()}
+            </pre>
           )}
         </Show>
-
-        {/* Hidden while the permission banner is up: "Waiting for permission" under a
-            banner that says the same thing with buttons would be saying it twice. */}
-        <Show when={!props.permission && props.activity}>
-          <p class="cx-timeline__activity" role="status">
-            <span class="cx-timeline__pulse" aria-hidden="true" />
-            {props.activity}
-          </p>
+        <Show when={props.plan?.length ? props.plan : undefined}>
+          {(steps) => <PlanList steps={steps()} />}
         </Show>
-
-        <Composer
-          value={props.followUp}
-          onValueChange={props.onFollowUpChange}
-          onSubmit={props.onSendFollowUp}
-          placeholder="Ask a follow-up or adjust the plan…"
-          controls={props.followUpControls}
-          disabled={props.followUpDisabled}
-          disabledReason={props.followUpDisabledReason}
-          sendLabel="Send follow-up"
-        />
+        <Show when={props.workSummary}>
+          {(summary) => <Worklog summary={summary()} entries={props.work ?? []} />}
+        </Show>
       </div>
-    </>
+    </Show>
+  );
+}
+
+function TimelineFooter(props: SessionTimelineProps): JSX.Element {
+  return (
+    <div class="cx-timeline__footer">
+      <Show when={props.permission}>
+        {(request) => (
+          <PermissionBanner request={request()} onResolve={props.onResolvePermission} />
+        )}
+      </Show>
+      <Show when={!props.permission && props.activity}>
+        <p class="cx-timeline__activity" role="status">
+          <span class="cx-timeline__pulse" aria-hidden="true" />
+          {props.activity}
+        </p>
+      </Show>
+      <Composer
+        value={props.followUp}
+        onValueChange={props.onFollowUpChange}
+        onSubmit={props.onSendFollowUp}
+        placeholder="Ask a follow-up or adjust the plan…"
+        controls={props.followUpControls}
+        disabled={props.followUpDisabled}
+        disabledReason={props.followUpDisabledReason}
+        sendLabel="Send follow-up"
+      />
+    </div>
   );
 }

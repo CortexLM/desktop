@@ -441,7 +441,7 @@ describe('Factory tool policy', () => {
       messages: [{ role: 'user', content: 'plan it' }],
       chat: async () => ({
         content:
-          '<tool name="ExitSpecMode">{"title":"Harden","rationale":"One path","steps":["Helper","Wire"]}</tool>',
+          '<tool name="ExitSpecMode">{"title":"Harden","rationale":"One path","mermaid":"```mermaid\\nflowchart TD\\n  A-->B\\n```","steps":["Helper","Wire"]}</tool>',
       }),
       tools: CODING_TOOLS,
       executor: new WorkspaceToolExecutor({ workspaceRoot: tmpdir() }),

@@ -904,55 +904,71 @@ export function getAIService(): AIService {
  * Réinitialise l'instance du service AI
  */
 function agentEventToIpc(event: AgentEvent): IpcStreamChunk {
-  switch (event.type) {
-    case 'thinking':
-      return { type: 'thinking', content: event.text };
-    case 'text':
-      return { type: 'chunk', content: event.text };
-    case 'tool_start':
-      return {
-        type: 'tool',
-        tool: {
-          id: event.id,
-          name: event.name,
-          title: event.title,
-          status: 'running',
-          detail: event.detail,
-        },
-      };
-    case 'tool_end':
-      return {
-        type: 'tool',
-        content: event.output,
-        tool: {
-          id: event.id,
-          name: event.name,
-          status: event.ok ? 'done' : 'error',
-          additions: event.additions,
-          deletions: event.deletions,
-          durationMs: event.durationMs,
-        },
-      };
-    case 'permission':
-      return { type: 'permission', permission: event.request };
-    case 'question':
-      return { type: 'question', question: { id: event.id, prompt: event.prompt, options: event.options } };
-    case 'plan':
-      return { type: 'plan', plan: event.plan };
-    case 'context_full':
-      return {
-        type: 'context_full',
-        usage: {
-          promptTokens: event.tokens,
-          completionTokens: 0,
-          totalTokens: event.tokens,
-        },
-      };
-    case 'error':
-      return { type: 'error', error: event.message };
-    case 'done':
-      return { type: 'done' };
+  return mapTextEvent(event) ?? mapToolEvent(event) ?? mapInteractEvent(event) ?? { type: 'done' };
+}
+
+function mapTextEvent(event: AgentEvent): IpcStreamChunk | undefined {
+  if (event.type === 'thinking') return { type: 'thinking', content: event.text };
+  if (event.type === 'text') return { type: 'chunk', content: event.text };
+  if (event.type === 'error') return { type: 'error', error: event.message };
+  if (event.type === 'context_full') {
+    return {
+      type: 'context_full',
+      usage: { promptTokens: event.tokens, completionTokens: 0, totalTokens: event.tokens },
+    };
   }
+  return undefined;
+}
+
+function mapToolEvent(event: AgentEvent): IpcStreamChunk | undefined {
+  if (event.type === 'tool_start') {
+    return {
+      type: 'tool',
+      tool: { id: event.id, name: event.name, title: event.title, status: 'running', detail: event.detail },
+    };
+  }
+  if (event.type === 'tool_end') {
+    return {
+      type: 'tool',
+      content: event.output,
+      tool: {
+        id: event.id,
+        name: event.name,
+        status: event.ok ? 'done' : 'error',
+        additions: event.additions,
+        deletions: event.deletions,
+        durationMs: event.durationMs,
+      },
+    };
+  }
+  return undefined;
+}
+
+function mapInteractEvent(event: AgentEvent): IpcStreamChunk | undefined {
+  if (event.type === 'permission') return { type: 'permission', permission: event.request };
+  if (event.type === 'question') {
+    return { type: 'question', question: { id: event.id, prompt: event.prompt, options: event.options } };
+  }
+  if (event.type === 'plan') return { type: 'plan', plan: event.plan };
+  if (event.type.startsWith('task_')) {
+    return taskEventToIpc(event as Extract<AgentEvent, { type: `task_${string}` }>);
+  }
+  return undefined;
+}
+
+function taskEventToIpc(
+  event: Extract<AgentEvent, { type: `task_${string}` }>,
+): IpcStreamChunk {
+  const phase = event.type.replace('task_', '') as 'started' | 'progress' | 'completed' | 'failed';
+  return {
+    type: 'task',
+    task: {
+      id: event.id,
+      phase,
+      summary: event.summary,
+      artifact_id: event.type === 'task_completed' ? event.artifact_id : undefined,
+    },
+  };
 }
 
 export function resetAIService(): void {

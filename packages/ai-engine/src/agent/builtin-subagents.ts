@@ -1,21 +1,33 @@
-import { EXPLORER_TOOLS } from './tool-names';
-import type { AutonomyLevel, DroidDefinition } from './types';
+import { EXPLORER_TOOLS, PLAN_CHILD_TOOLS } from './tool-names';
+import type { AutonomyLevel, DroidDefinition, BackgroundTaskKind } from './types';
 
 export interface BuiltinSubagent {
-  name: 'explorer' | 'worker';
+  name: BackgroundTaskKind;
   description: string;
   autonomy: AutonomyLevel;
   tools?: string[];
   systemPrompt: string;
 }
 
-export const EXPLORER_SUBAGENT: BuiltinSubagent = {
-  name: 'explorer',
+export const EXPLORE_SUBAGENT: BuiltinSubagent = {
+  name: 'explore',
   description: 'Read-only explorer for cheap, parallel context gathering.',
   autonomy: 'off',
   tools: [...EXPLORER_TOOLS],
   systemPrompt:
-    'You are the Cortex explorer subagent. You may only Read, LS, Grep, and Glob. Do not edit, execute, or ask the user. Return a self-contained report of what you found.',
+    'You are the Cortex explore subagent. You may only Read, LS, Grep, and Glob. Do not edit, execute, or ask the user. Return a self-contained report of what you found.',
+};
+
+/** @deprecated Use EXPLORE_SUBAGENT. Kept so older imports keep resolving. */
+export const EXPLORER_SUBAGENT = EXPLORE_SUBAGENT;
+
+export const PLAN_SUBAGENT: BuiltinSubagent = {
+  name: 'plan',
+  description: 'Read-only planner. Must exit with a mermaid flowchart or sequenceDiagram.',
+  autonomy: 'off',
+  tools: [...PLAN_CHILD_TOOLS],
+  systemPrompt:
+    'You are the Cortex plan subagent. Investigate with read-only tools. Do not mutate. Do not ask the user. Present the plan by calling ExitSpecMode with a mermaid fence (flowchart or sequenceDiagram).',
 };
 
 export const WORKER_SUBAGENT: BuiltinSubagent = {
@@ -27,8 +39,10 @@ export const WORKER_SUBAGENT: BuiltinSubagent = {
 };
 
 export function builtinSubagent(name: string): BuiltinSubagent | undefined {
-  if (name === 'explorer') return EXPLORER_SUBAGENT;
-  if (name === 'worker') return WORKER_SUBAGENT;
+  const kind = name === 'explorer' ? 'explore' : name;
+  if (kind === 'explore') return EXPLORE_SUBAGENT;
+  if (kind === 'plan') return PLAN_SUBAGENT;
+  if (kind === 'worker') return WORKER_SUBAGENT;
   return undefined;
 }
 

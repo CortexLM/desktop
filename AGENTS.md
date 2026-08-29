@@ -164,3 +164,10 @@ API keys are entered; they never appear in logs.
   a write that failed leaves them where they were. `packages/app/src/state/plugin-surfaces.ts`,
   `docs/chat.md` § Chat, Bot, or both, `packages/cortex-api/CONTRACT.md` § Plugins.
 - MCP `event:mcp-*` channels are emitted by `setupMCPEvents` in `packages/main/src/ipc/handlers/mcp-handlers.ts`.
+- The coding-agent loop in `packages/ai-engine` owns Background Task (`explore` /
+  `plan` / `worker` — no nested Task, children must not AskUser), plan-mode
+  mermaid (`flowchart` or `sequenceDiagram` before ExitSpecMode), artifact
+  offload for oversized tool output, and compaction keep-set
+  (`open_artifact_ids`, `active_plan`, `open_task_ids`). Plugin tools are
+  injected from connections (Chat / Bot / both); Code uses a Code-side catalog
+  only when the host supplies one. Do not add a Secrets page for this.
