@@ -17,7 +17,7 @@ import {
   type ApiMascot,
   type ApiMascotVideo,
 } from './bot-schemas.ts';
-import { pluginListSchema, pluginRowSchema, type ApiPlugin } from './bot-grok-schemas.ts';
+import { pluginListSchema, pluginRowSchema, type ApiPlugin } from './bot-runtime-schemas.ts';
 
 export {
   mascotListSchema,

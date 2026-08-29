@@ -10,7 +10,7 @@ import {
   submitBotSecret,
 } from '../state/bot-actions.ts';
 import { createMascot, loadError, loadState, mascots, reconcileMascots } from '../state/bots.ts';
-import { teachFromVideo } from '../state/bot-grok-store.ts';
+import { teachFromVideo } from '../state/bot-runtime-store.ts';
 import {
   fsEntries,
   loadFs,
@@ -36,7 +36,7 @@ export {
   BotMemoryRoute,
   BotRoutinesRoute,
   BotSkillsRoute,
-} from './bot-grok-routes.tsx';
+} from './bot-runtime-routes.tsx';
 
 export function BotHomeRoute(): JSX.Element {
   const navigate = useNavigate();

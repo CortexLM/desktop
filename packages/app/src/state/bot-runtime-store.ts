@@ -30,7 +30,7 @@ import {
 
 import { requireBotClient } from './bot-client.ts';
 
-export type GrokPanelState = 'idle' | 'ready' | 'error' | 'too-old';
+export type BotPanelState = 'idle' | 'ready' | 'error' | 'too-old';
 
 const [memory, setMemory] = createSignal<ApiMemoryFact[]>([]);
 const [skills, setSkills] = createSignal<ApiSkill[]>([]);
@@ -38,7 +38,7 @@ const [routines, setRoutines] = createSignal<ApiRoutine[]>([]);
 const [groups, setGroups] = createSignal<ApiBotGroup[]>([]);
 const [inbox, setInbox] = createSignal<ApiBotInboxItem[]>([]);
 const [skillDoc, setSkillDoc] = createSignal<ApiSkill | undefined>();
-const [panelState, setPanelState] = createSignal<GrokPanelState>('idle');
+const [panelState, setPanelState] = createSignal<BotPanelState>('idle');
 const [panelError, setPanelError] = createSignal('');
 
 export { memory, skills, routines, groups, inbox, skillDoc, panelState, panelError };
@@ -118,7 +118,7 @@ export async function teachFromVideo(mascotId: string, videoId: string): Promise
   await loadSkills();
 }
 
-export function resetGrokForTests(): void {
+export function resetBotRuntimeForTests(): void {
   setMemory([]);
   setSkills([]);
   setRoutines([]);

@@ -96,7 +96,7 @@ export {
   postTeach,
   resumeRoutine,
   runSkill,
-} from './bot-grok.ts';
+} from './bot-runtime.ts';
 
 export {
   connectPlugin,
@@ -156,7 +156,7 @@ export type {
   ApiSkill,
   ApiSkillRun,
   MemoryTier,
-} from './bot-grok-schemas.ts';
+} from './bot-runtime-schemas.ts';
 
 export {
   CONNECTION_LOCAL_TYPES,

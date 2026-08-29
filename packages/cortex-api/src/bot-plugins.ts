@@ -11,7 +11,7 @@ import {
   pluginRowSchema,
   type ApiPlugin,
   type ApiPluginConnection,
-} from './bot-grok-schemas.ts';
+} from './bot-runtime-schemas.ts';
 
 export async function listPlugins(
   client: CortexApiClient,

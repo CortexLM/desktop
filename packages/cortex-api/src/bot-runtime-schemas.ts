@@ -1,5 +1,5 @@
 /**
- * Grok-core Bot shapes. These routes are on the parallel backend PR.
+ * Cortex Bot runtime shapes. These routes are on the parallel backend PR.
  * A 404 is `not_found` / "backend too old" — never a silent local cache.
  */
 
