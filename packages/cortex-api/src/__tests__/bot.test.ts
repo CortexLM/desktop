@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 
 import { CortexApiClient } from '../client.ts';
 import { CortexApiError } from '../errors.ts';
-import { BACKEND_TOO_OLD, classifyBotError, PLUGIN_UNAVAILABLE } from '../bot-errors.ts';
+import {
+  BACKEND_TOO_OLD,
+  classifyBotError,
+  isAccountRequired,
+  PLUGIN_UNAVAILABLE,
+} from '../bot-errors.ts';
 import {
   createMascot,
   deleteMascot,
@@ -38,7 +43,12 @@ import {
   listSkills,
   runSkill,
 } from '../bot-runtime.ts';
-import { connectPlugin, listPluginConnections, listPlugins } from '../bot-plugins.ts';
+import {
+  connectPlugin,
+  getPluginCatalog,
+  listPluginConnections,
+  listPlugins,
+} from '../bot-plugins.ts';
 import { stubFetch } from './fixtures.ts';
 
 function clientFor(responses: Parameters<typeof stubFetch>[0]) {
@@ -219,26 +229,125 @@ describe('bot runtime', () => {
 });
 
 describe('plugins', () => {
-  it('lists catalog and connections without inventing Drive or Slack', async () => {
+  it('reads the marketplace catalogue whole, is_live and provider included', async () => {
+    // Shape observed live 2026-08-29; see CONTRACT.md.
     const { client, calls } = clientFor([
+      {
+        body: {
+          items: [
+            {
+              slug: 'gmail',
+              name: 'Gmail',
+              description: 'Email.',
+              category: 'email',
+              auth: 'oauth2',
+              managed_auth: true,
+              logo_url: 'https://logos.composio.dev/api/gmail',
+              tool_count: 61,
+            },
+          ],
+          is_live: true,
+          provider: 'composio',
+          source: 'marketplace',
+        },
+      },
       { body: { items: [], has_more: false } },
-      { body: { items: [], has_more: false } },
-      { body: { id: 'drive', connected: true } },
+      { body: {} },
     ]);
-    expect(await listPlugins(client)).toEqual([]);
+
+    const catalogue = await getPluginCatalog(client);
     expect(await listPluginConnections(client)).toEqual([]);
-    await connectPlugin(client, 'drive');
-    expect(calls[0]!.url).toBe('https://api.cortex.foundation/v1/plugins');
+    await connectPlugin(client, 'gmail');
+
+    expect(catalogue.is_live).toBe(true);
+    expect(catalogue.provider).toBe('composio');
+    expect(catalogue.items[0]?.slug).toBe('gmail');
+    expect(calls[0]!.url).toBe('https://api.cortex.foundation/v1/plugins/catalog');
     expect(calls[1]!.url).toBe('https://api.cortex.foundation/v1/plugins/connections');
-    expect(calls[2]!.url).toContain('/plugins/drive/connect');
+    expect(calls[2]!.url).toContain('/plugins/gmail/connect');
+  });
+
+  it('carries is_live: false through rather than reading it as an empty catalogue', async () => {
+    const { client } = clientFor([
+      { body: { items: [], is_live: false, provider: 'composio' } },
+    ]);
+    expect((await getPluginCatalog(client)).is_live).toBe(false);
+  });
+
+  it('keeps an unknown item shape rather than dropping the row', async () => {
+    // Only `slug` is required: a card with no description beats a parse failure
+    // that empties the page because one app grew a field.
+    const { client } = clientFor([
+      { body: { items: [{ slug: 'novel', unheard_of: true }], is_live: true } },
+    ]);
+    expect((await getPluginCatalog(client)).items[0]?.slug).toBe('novel');
   });
 
   it('keeps a live 404 as CortexApiError, not an empty catalog', async () => {
     const { client } = clientFor([
       { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } },
     ]);
-    const error = await listPlugins(client).catch((caught: unknown) => caught);
+    const error = await getPluginCatalog(client).catch((caught: unknown) => caught);
     expect(error).toBeInstanceOf(CortexApiError);
     expect((error as CortexApiError).code).toBe('not_found');
+  });
+});
+
+describe('isAccountRequired', () => {
+  /** Both bodies are verbatim from the live service, 2026-08-29. */
+  const guestRefusal = {
+    status: 403,
+    body: {
+      type: 'https://docs.cortex.sh/problems/entitlement_required',
+      title: 'Your plan does not include this',
+      status: 403,
+      code: 'entitlement_required',
+      detail:
+        'Connecting an app needs an account: a guest session cannot be signed back into to revoke it later. Sign in first.',
+    },
+  };
+
+  const noSession = {
+    status: 401,
+    body: {
+      type: 'https://docs.cortex.sh/problems/unauthenticated',
+      title: 'Authentication required',
+      status: 401,
+      code: 'unauthenticated',
+      detail: 'No session. Sign in, or begin a guest session at POST /v1/auth/guest.',
+    },
+  };
+
+  async function connectError(reply: { status: number; body: unknown }) {
+    const { client } = clientFor([reply]);
+    return connectPlugin(client, 'gmail').catch((caught: unknown) => caught);
+  }
+
+  it('recognises the guest refusal on connect', async () => {
+    expect(isAccountRequired(await connectError(guestRefusal))).toBe(true);
+  });
+
+  it('recognises no session at all', async () => {
+    expect(isAccountRequired(await connectError(noSession))).toBe(true);
+  });
+
+  it('does not mistake a plan gate for a missing account', async () => {
+    // Same code, different reason. Sending a signed-in user to a sign-in screen
+    // because their plan is too small is a worse dead end than the message.
+    const planGate = {
+      status: 403,
+      body: {
+        title: 'Your plan does not include this',
+        code: 'entitlement_required',
+        detail: 'This workspace is on the free plan. Upgrade to connect more than one app.',
+      },
+    };
+    expect(isAccountRequired(await connectError(planGate))).toBe(false);
+  });
+
+  it('leaves a server failure alone, since signing in would not fix it', async () => {
+    const down = { status: 503, body: { code: 'unavailable', message: 'Marketplace down' } };
+    expect(isAccountRequired(await connectError(down))).toBe(false);
+    expect(isAccountRequired(new Error('offline'))).toBe(false);
   });
 });

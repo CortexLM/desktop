@@ -101,6 +101,7 @@ export {
 export {
   connectPlugin,
   disconnectPlugin,
+  getPluginCatalog,
   listPluginConnections,
   listPlugins,
 } from './bot-plugins.ts';
@@ -110,6 +111,7 @@ export {
   backendTooOldCopy,
   classifyBotError,
   farmOfflineCopy,
+  isAccountRequired,
   isNotFound,
   isServiceUnavailable,
   PLUGIN_UNAVAILABLE,
@@ -238,6 +240,8 @@ export type {
   ApiBotInboxItem,
   ApiBotTask,
   ApiMemoryFact,
+  ApiPluginCatalog,
+  ApiPluginCatalogEntry,
   ApiPluginConnection,
   ApiRoutine,
   ApiSkill,
