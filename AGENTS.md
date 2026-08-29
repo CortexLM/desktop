@@ -1,5 +1,42 @@
 # AGENTS.md
 
+## Read this first (mandatory)
+
+Every contributor to this repository — human or agent — **must** read this file and
+the rule files in [`.rules/`](./.rules/) **before writing any code**. They are short
+and each one carries bad/good examples taken from real defects in this tree.
+
+| Rule file | Covers |
+| --- | --- |
+| [`.rules/00-overview.md`](./.rules/00-overview.md) | The map, the non-negotiables |
+| [`.rules/01-security.md`](./.rules/01-security.md) | No tokens in the renderer, no secrets in git, guest vs signed-in |
+| [`.rules/02-errors.md`](./.rules/02-errors.md) | Never show a vendor name to a user |
+| [`.rules/03-responsive.md`](./.rules/03-responsive.md) | 390 / 768 / 1440, dark + light, tokens not raw hex |
+| [`.rules/04-structure.md`](./.rules/04-structure.md) | `packages/app` vs `packages/cortex-api`, no fake data, no stand-in screens |
+| [`.rules/05-documentation.md`](./.rules/05-documentation.md) | Docs ship in the same PR as the code |
+| [`.rules/06-product.md`](./.rules/06-product.md) | Chat ≠ Code ≠ Bot; Code is a real cloud dashboard |
+| [`.rules/07-git-and-prs.md`](./.rules/07-git-and-prs.md) | Branches, commits, the required attestation |
+| [`.rules/08-testing.md`](./.rules/08-testing.md) | Which suite proves which claim |
+
+Three obligations that apply to **every** pull request:
+
+1. **Attest.** Fill in the attestation block at the bottom of
+   [`.github/pull_request_template.md`](./.github/pull_request_template.md). Tick a
+   box only if it is true; if a line does not apply, leave it unticked and say why
+   on the line. Do not delete the block. A PR without it is closed unreviewed.
+2. **Keep this file true.** A PR that changes **product surfaces, routes,
+   environment or configuration, or error copy** MUST update `AGENTS.md` in the
+   same PR. Documentation is not a follow-up
+   ([`.rules/05-documentation.md`](./.rules/05-documentation.md)).
+3. **Name things correctly.** The product is **Cortex**, the domain is
+   **`cortex.foundation`**, and UI copy is **English**. No other assistant brand
+   and no internal codename appears in code, docs, UI copy, commit messages,
+   branch names, or PR titles. No vendor name ever reaches a user-facing string
+   ([`.rules/02-errors.md`](./.rules/02-errors.md)).
+
+Cursor picks the same entrypoint up automatically via
+[`.cursor/rules/00-cortex-governance.mdc`](./.cursor/rules/00-cortex-governance.mdc).
+
 ## Cursor Cloud specific instructions
 
 Cortex Code is a single product: an **Electron 32 desktop app** in a **Bun workspaces monorepo**
@@ -81,17 +118,32 @@ API keys are entered; they never appear in logs.
 - `bun run test` (Vitest) is the unit runner. Do not use `bun:test` (see `test:discovery`).
 - `bun run test:e2e` (Playwright + Electron) needs `bunx playwright install chromium`; it already runs
   under `xvfb-run`.
-- ESLint runs via `npx eslint packages` / `bun run quality:check` (the `lint` script is only a
-  placeholder in `test-harness`).
+- ESLint runs via `npx eslint packages` (the root `lint` script only forwards to per-package
+  scripts, one of which is a placeholder). `bun run quality:duplication` and
+  `bun run quality:circular` are the extra quality probes; there is no `quality:check`.
 
 ### Product scope (do not invent a different app)
-- The UI is pixel-matched to the Paper file `01M0S24CY8SPNCXKQEC58TJVWS`. The routed screens are the
-  artboards: home, sessions inbox, session detail, automations, review, usage, settings (+
-  integrations), secrets, sign-in, device code, onboarding flows, SSH connect. `packages/app/src/routes.ts`
-  is the source of truth and a test asserts it against the Paper manifest.
+- One shell hosts three peer products — **Chat**, **Code**, **Bot** — switched by the segmented
+  control in `packages/app/src/shell/sidebar.tsx`. Code is a real cloud dashboard (sessions,
+  review, automations, usage), never a second chat transcript. See
+  [`.rules/06-product.md`](./.rules/06-product.md), `docs/chat.md`, `docs/code.md`, `docs/bot.md`.
+- The UI is pixel-matched to the Paper file *Cortex FF1 v1* (`01M0WGA7TGHQFZ2H22QFE3YZ9C`), page
+  **Concept 03** (group `C3`); `design/paper/screens.json` is the generated manifest and
+  `scripts/paper-sync.ts` is the sync. The routed screens are the artboards: home, sessions inbox,
+  session detail, automations, review, usage, settings (+ integrations), secrets, sign-in, device
+  code, onboarding flows, SSH connect. `packages/app/src/routes.ts` is the source of truth and a
+  test asserts it against the Paper manifest.
 - Design values come from `@cortex-ide/tokens`; do not hardcode colours or spacing. Regenerate with
   the `paper:*` scripts rather than editing generated files by hand.
 - Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
   *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
+- **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
+  library, and each says so honestly. `localStorage` may cache a list the service already returned;
+  it is never a source of truth and never holds invented rows
+  ([`.rules/04-structure.md`](./.rules/04-structure.md)).
+- **Plugins list the services the user connects to** — Google Drive, Slack, GitHub, Paper — with
+  their official brand marks. The middleware we install through is internal plumbing: it is a field
+  on the card type in `packages/app/src/state/plugins.ts`, never a card, a label, a subtitle, or an
+  error body ([`.rules/02-errors.md`](./.rules/02-errors.md)).
 - MCP `event:mcp-*` channels are emitted by `setupMCPEvents` in `packages/main/src/ipc/handlers/mcp-handlers.ts`.
