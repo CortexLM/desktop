@@ -1,7 +1,7 @@
 /*
- * Primitives shared by the data screens: Usage, Review, Automations and Secrets.
+ * Primitives shared by the data screens: Usage, Review and Automations.
  *
- * Paper draws all four out of the same three shapes - a row of stat cards, a card holding a
+ * Paper draws all three out of the same three shapes - a row of stat cards, a card holding a
  * table, and a card holding a grid of tiles - so they live here once rather than being
  * transcribed per screen.
  */
@@ -274,14 +274,6 @@
   font-size: var(--text-sm);
   line-height: 20px;
   color: var(--color-text-muted);
-}
-
-/* The add-secret form inside a settings card. */
-.cx-secret-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-  padding: var(--spacing-4);
 }
 
 /* Inline diff figures inside a table cell. */

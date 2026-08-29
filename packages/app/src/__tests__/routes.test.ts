@@ -35,9 +35,18 @@ describe('route table against the Paper manifest', () => {
     expect(orphaned, `Paper routes with no screen: ${orphaned.join(', ')}`).toEqual([]);
   });
 
-  it('covers all 27 Paper screens', () => {
-    expect(designSlugs).toHaveLength(27);
-    expect(paperSlugs).toHaveLength(27);
+  it('covers all 26 Paper screens', () => {
+    expect(designSlugs).toHaveLength(26);
+    expect(paperSlugs).toHaveLength(26);
+  });
+
+  it('has no Secrets screen, in the manifest or in the route table', () => {
+    // Cortex Code has no Secrets page (`.rules/06-product.md` § 6.2.1). The Paper file
+    // still carries the board it was transcribed from, so `paper-sync` filters the
+    // screen out of the manifest — this asserts neither side grew it back.
+    expect(designSlugs).not.toContain('code-secrets');
+    expect(routeBySlug('code-secrets')).toBeUndefined();
+    expect(navigableRoutes().map((route) => route.path)).not.toContain('/code/secrets');
   });
 
   it('lists each slug exactly once', () => {
@@ -136,7 +145,6 @@ describe('authentication gating', () => {
       'code-sessions',
       'code-session-detail',
       'code-settings',
-      'code-secrets',
     ]) {
       expect(routeBySlug(slug)?.requiresAuth, slug).toBeFalsy();
     }

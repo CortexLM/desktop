@@ -63,7 +63,6 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   // ── Code: configuration ───────────────────────────────────────────────────
   { slug: 'code-settings', kind: 'route', product: 'code', path: '/code/settings', title: 'Settings' },
   { slug: 'code-integrations', kind: 'route', product: 'code', path: '/code/settings/integrations', title: 'Integrations' },
-  { slug: 'code-secrets', kind: 'route', product: 'code', path: '/code/secrets', title: 'Secrets' },
   { slug: 'code-notifications', kind: 'route', product: 'code', path: '/code/notifications', title: 'Notifications' },
   { slug: 'code-new-automation', kind: 'route', product: 'code', path: '/code/automations/new', requiresAuth: true, title: 'New automation' },
   { slug: 'code-ssh-connect', kind: 'route', product: 'code', path: '/code/runtimes/ssh', requiresAuth: true, title: 'Connect a server' },

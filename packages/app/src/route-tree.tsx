@@ -12,7 +12,6 @@ import {
   IntegrationsRoute,
   NotificationsRoute,
   ReviewRoute,
-  SecretsRoute,
   SessionDetailRoute,
   SessionsRoute,
   SettingsRoute,
@@ -80,7 +79,6 @@ function codeRoutes(): JSX.Element {
       <Route path="/code/usage" component={UsageRoute} />
       <Route path="/code/settings" component={SettingsRoute} />
       <Route path="/code/settings/integrations" component={IntegrationsRoute} />
-      <Route path="/code/secrets" component={SecretsRoute} />
       <Route path="/code/notifications" component={NotificationsRoute} />
       <Route path="/code/tickets" component={TicketsRoute} />
       <Route path="/code/tickets/:ticketId" component={TicketDetailRoute} />
