@@ -9,6 +9,7 @@ import { onMount, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
+import { forgetPluginConnect, pendingPluginConnect } from '../state/pending-connect.ts';
 import { SignInScreen } from '../screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from '../screens/auth/device-code-screen.tsx';
 import { createDeviceFlow } from '../screens/auth/device-flow.ts';
@@ -23,7 +24,12 @@ export function SignInRoute(): JSX.Element {
       onContinueWithEmail={() => navigate('/sign-in/device')}
       // The anonymous route is the only one that lands somewhere usable today, which is
       // consistent with it being the path that needs no backend at all.
-      onContinueWithoutAccount={() => navigate('/')}
+      onContinueWithoutAccount={() => {
+        // Declining the account also drops whatever was waiting on one, so it
+        // cannot fire against an account the user signs into much later.
+        forgetPluginConnect();
+        navigate('/');
+      }}
     />
   );
 }
@@ -32,14 +38,19 @@ export function SignInRoute(): JSX.Element {
  * Auth Device Code, driven by the real flow.
  *
  * The state machine lives in `device-flow.ts`; this only binds it to the screen and the
- * router. On approval it goes straight to Home — the account context is corrected by the
- * account-changed event, so the workspace it lands on is already the signed-in one.
+ * router. On approval it goes to Home — the account context is corrected by the
+ * account-changed event, so the workspace it lands on is already the signed-in one —
+ * unless something sent the user here mid-task, in which case it goes back to that
+ * screen so the task can finish rather than leaving the user to find it again.
  */
 export function DeviceCodeRoute(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
 
-  const flow = createDeviceFlow({ host: account.host, onAuthorized: () => navigate('/') });
+  const flow = createDeviceFlow({
+    host: account.host,
+    onAuthorized: () => navigate(pendingPluginConnect()?.returnTo ?? '/'),
+  });
 
   onMount(() => void flow.start());
 

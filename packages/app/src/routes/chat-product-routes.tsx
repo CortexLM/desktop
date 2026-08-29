@@ -7,7 +7,7 @@
  * through to its screen rather than an array that was always present.
  */
 
-import { createEffect, type JSX } from 'solid-js';
+import { createEffect, createSignal, untrack, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -60,12 +60,13 @@ import {
 import {
   installPlugin,
   isPluginConnected,
+  pluginApps,
   pluginError,
   pluginState,
   reconcilePlugins,
   removePlugin,
-  type PluginBrand,
 } from '../state/plugins.ts';
+import { rememberPluginConnect, takePendingPluginConnect } from '../state/pending-connect.ts';
 import { postInbox } from '../state/inbox.ts';
 import { showOsNotification } from '../state/os-notify.ts';
 import { PlanningScreen } from '../screens/chat/planning-screen.tsx';
@@ -220,20 +221,81 @@ export function LibraryRoute(): JSX.Element {
   );
 }
 
+/**
+ * Connect, and the sign-in detour it may take.
+ *
+ * `POST /v1/plugins/{slug}/connect` refuses a guest — a guest session cannot be
+ * signed back into, so the connection could never be revoked later — and that
+ * refusal is not something to show: an account is what the user needs, not the
+ * reason they need one. So Connect on a guest opens the sign-in screen, keeps
+ * the slug, and finishes the connection once the account arrives.
+ */
+function createConnectAction(signedIn: () => boolean, navigate: (path: string) => void) {
+  const [connectError, setConnectError] = createSignal('');
+
+  const signInThenConnect = (slug: string) => {
+    setConnectError('');
+    rememberPluginConnect(slug, '/plugins');
+    navigate('/sign-in');
+  };
+
+  const connect = async (slug: string): Promise<void> => {
+    if (!signedIn()) {
+      signInThenConnect(slug);
+      return;
+    }
+    setConnectError('');
+    try {
+      // The service can still refuse a session this side believes in.
+      if ((await installPlugin(slug)) === 'needs-account') signInThenConnect(slug);
+    } catch (error) {
+      setConnectError(error instanceof Error ? error.message : String(error));
+    }
+  };
+
+  return { connect, connectError };
+}
+
+/** Plugins: the marketplace catalogue, and the account connecting an app needs. */
 export function PluginsRoute(): JSX.Element {
+  const account = useAccount();
+  const navigate = useNavigate();
+
+  // A guest is projected to a null user, so this is already the `is_guest`
+  // answer from `/v1/me` rather than a second, weaker notion of signed in.
+  const signedIn = () => account.capabilities().authenticated;
+  const { connect, connectError } = createConnectAction(signedIn, navigate);
+
   createEffect(() => {
     void reconcilePlugins();
   });
-  const connected = () =>
-    (['drive', 'slack', 'github', 'paper'] as const).filter((id) => isPluginConnected(id));
+
+  // Resumes the connection that sent the user to sign in. `untrack` so clearing
+  // the slug does not re-run the effect that just consumed it.
+  createEffect(() => {
+    if (!signedIn()) return;
+    const resumed = untrack(takePendingPluginConnect);
+    if (resumed) void connect(resumed.slug);
+  });
+
+  const connected = () => pluginApps().map((app) => app.slug).filter(isPluginConnected);
+
   return (
     <PluginsScreen
+      apps={pluginApps()}
       connected={connected()}
       loading={pluginState() === 'loading'}
       unavailable={pluginState() === 'unavailable'}
-      error={pluginState() === 'error' ? pluginError() : undefined}
-      onConnect={(id: PluginBrand) => void installPlugin(id)}
-      onDisconnect={(id: PluginBrand) => void removePlugin(id)}
+      notLive={pluginState() === 'not-live'}
+      error={
+        pluginState() === 'error' || pluginState() === 'not-live' ? pluginError() : undefined
+      }
+      signedIn={signedIn()}
+      connectError={connectError()}
+      onSignIn={() => navigate('/sign-in')}
+      onCreateAccount={() => navigate('/sign-in')}
+      onConnect={(slug: string) => void connect(slug)}
+      onDisconnect={(slug: string) => void removePlugin(slug)}
     />
   );
 }

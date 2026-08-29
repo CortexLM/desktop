@@ -45,9 +45,11 @@ import {
 import {
   installPlugin,
   isPluginConnected,
+  pluginApps,
   pluginState,
   reconcilePlugins,
   removePlugin,
+  resetPluginsForTests,
 } from '../plugins.ts';
 import { ipcProductFetch, productUrlPath, unwrapProductResponse } from '../ipc-fetch.ts';
 
@@ -55,6 +57,7 @@ afterEach(() => {
   globalThis.localStorage?.clear();
   setBotClientForTests(undefined);
   resetBotsForTests();
+  resetPluginsForTests();
 });
 
 function clientFor(responses: Parameters<typeof stubFetch>[0]) {
@@ -167,19 +170,23 @@ describe('bot runtime writes', () => {
 });
 
 describe('computer live and plugins', () => {
-  it('loads screenshot, shell, files, and plugin catalog', async () => {
+  const catalogue = (items: unknown[]) => ({
+    body: { items, is_live: true, provider: 'composio', source: 'marketplace' },
+  });
+
+  it('loads screenshot, shell, files, and the plugin catalogue', async () => {
     const { calls } = clientFor([
       { body: { image_base64: 'aaaa', content_type: 'image/png' } },
       { body: { stdout: 'ok', stderr: '', exit_code: 0 } },
       { body: { items: [{ name: 'README.md', path: '/README.md' }], has_more: false } },
       { body: { path: '/README.md', text: 'hi' } },
-      { body: { items: [{ id: 'drive', connected: true }], has_more: false } },
-      { body: { items: [], has_more: false } },
-      { body: { id: 'drive', connected: true } },
-      { body: { items: [{ id: 'drive', connected: true }], has_more: false } },
+      catalogue([{ slug: 'gmail', name: 'Gmail', connected: true }]),
       { body: { items: [], has_more: false } },
       { body: {} },
+      catalogue([{ slug: 'gmail', name: 'Gmail', connected: true }]),
       { body: { items: [], has_more: false } },
+      { body: {} },
+      catalogue([{ slug: 'gmail', name: 'Gmail' }]),
       { body: { items: [], has_more: false } },
     ]);
     await refreshScreenshot('mst_1');
@@ -190,24 +197,95 @@ describe('computer live and plugins', () => {
     expect(preview()?.text).toBe('hi');
     setRecordingFlagValue(true);
     await reconcilePlugins();
-    expect(isPluginConnected('drive')).toBe(true);
-    await installPlugin('drive');
-    await removePlugin('slack');
-    expect(calls[4]!.url).toContain('/v1/plugins');
+    expect(isPluginConnected('gmail')).toBe(true);
+    expect(await installPlugin('gmail')).toBe('connected');
+    await removePlugin('gmail');
+    expect(calls[4]!.url).toContain('/v1/plugins/catalog');
+    expect(calls[6]!.url).toContain('/v1/plugins/gmail/connect');
   });
 
-  it('surfaces plugin 503 as unavailable and empty catalog as empty', async () => {
+  it('reads the catalogue from the API rather than a list of its own', async () => {
     clientFor([
-      { status: 503, body: { code: 'unavailable', message: 'Composio key missing' } },
-      { status: 503, body: { code: 'unavailable', message: 'Composio key missing' } },
+      catalogue([
+        { slug: 'gmail', name: 'Gmail', description: 'Email.', category: 'email', tool_count: 61 },
+        // The marketplace lists itself. It is the install path, not an app.
+        { slug: 'composio', name: 'Composio', description: 'Tool calling.' },
+      ]),
+      { body: { items: [], has_more: false } },
+    ]);
+
+    await reconcilePlugins();
+
+    expect(pluginState()).toBe('ready');
+    expect(pluginApps().map((app) => app.slug)).toEqual(['gmail']);
+    expect(pluginApps()[0]).toMatchObject({ name: 'Gmail', category: 'email', toolCount: 61 });
+  });
+
+  it('shows nothing when the marketplace is not live', async () => {
+    // Not an empty-ish state to paper over: `is_live: false` means the cached
+    // answer is all there is, and a substitute list would be this client's
+    // invention rather than the service's catalogue.
+    clientFor([
+      { body: { items: [{ slug: 'gmail', name: 'Gmail' }], is_live: false, provider: 'composio' } },
+      { body: { items: [], has_more: false } },
+    ]);
+
+    await reconcilePlugins();
+
+    expect(pluginState()).toBe('not-live');
+    expect(pluginApps()).toEqual([]);
+  });
+
+  it('keeps the catalogue when only the account connections fail to read', async () => {
+    clientFor([
+      catalogue([{ slug: 'gmail', name: 'Gmail' }]),
+      { status: 500, body: { code: 'boom', message: 'down' } },
+    ]);
+
+    await reconcilePlugins();
+
+    expect(pluginState()).toBe('ready');
+    expect(isPluginConnected('gmail')).toBe(false);
+  });
+
+  it('surfaces a 503 catalogue as unavailable', async () => {
+    clientFor([
+      { status: 503, body: { code: 'unavailable', message: 'No marketplace configured' } },
+      { status: 503, body: { code: 'unavailable', message: 'No marketplace configured' } },
     ]);
     await reconcilePlugins();
     expect(pluginState()).toBe('unavailable');
+    expect(pluginApps()).toEqual([]);
   });
 
   it('marks plugins unavailable without a client', async () => {
     await reconcilePlugins();
     expect(pluginState()).toBe('unavailable');
+  });
+
+  it('turns the guest refusal into a sign-in, not an error to display', async () => {
+    // Observed live: 403 `entitlement_required` whose detail explains that a
+    // guest session cannot be signed back into to revoke the app later.
+    clientFor([
+      {
+        status: 403,
+        body: {
+          type: 'https://docs.cortex.sh/problems/entitlement_required',
+          title: 'Your plan does not include this',
+          status: 403,
+          code: 'entitlement_required',
+          detail:
+            'Connecting an app needs an account: a guest session cannot be signed back into to revoke it later. Sign in first.',
+        },
+      },
+    ]);
+
+    await expect(installPlugin('gmail')).resolves.toBe('needs-account');
+  });
+
+  it('still throws a connect failure that signing in would not fix', async () => {
+    clientFor([{ status: 500, body: { code: 'boom', message: 'Composio timed out' } }]);
+    await expect(installPlugin('gmail')).rejects.toThrow(/timed out/i);
   });
 
   it('records computer errors and empty screenshot src', async () => {

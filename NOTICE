@@ -43,9 +43,13 @@ resolves it from the operating system when present; it is not bundled as a
 binary in this repository.
 
 ------------------------------------------------------------------------------
-Plugin brand marks (Google Drive, Slack, GitHub, Paper)
+Plugin names
 
-The Plugins screen draws official brand marks solely to identify those
-services. Those marks are trademarks of their respective owners. Cortex
-does not claim ownership of them. Use of a mark does not imply endorsement
-by the trademark owner.
+The Plugins screen lists whatever the plugin marketplace returns from
+`GET /v1/plugins/catalog`, naming each service solely to identify it. Those
+names are trademarks of their respective owners. Cortex does not claim
+ownership of them, and listing one does not imply endorsement by its owner.
+
+No brand marks are drawn. The catalogue offers a `logo_url` on the provider's
+CDN; the renderer does not load it, both because its CSP is `img-src 'self'
+data:` and because opening the page should not tell a third party that you did.
