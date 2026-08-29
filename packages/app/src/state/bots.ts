@@ -148,9 +148,8 @@ export async function hydrateMascot(id: string): Promise<void> {
   const client = botClient();
   if (!client) return;
   const bundle = await loadMascotBundle(id);
-  const known = mascotById(id);
-  if (!known && !bundle.detail) return;
-  const base = known ?? mapMascot(bundle.detail!);
+  const base = mascotById(id) ?? (bundle.detail ? mapMascot(bundle.detail) : undefined);
+  if (!base) return;
   const hydrated = mergeHydration(base, bundle);
   setMascots((current) =>
     current.some((mascot) => mascot.id === id)
