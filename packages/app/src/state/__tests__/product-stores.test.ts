@@ -109,8 +109,8 @@ describe('Bot computers', () => {
       { body: { id: 'mst_2', name: 'Archivist', shape: 'square', color: 'ink', computer_id: 'pc_2' } },
     ]);
     setBotClientForTests(new CortexApiClient({ fetch }));
-    const first = await createMascot('Scout', 'round', 'green');
-    const second = await createMascot('Archivist', 'square', 'ink');
+    const first = await createMascot('Scout', 'meadow', 'idle');
+    const second = await createMascot('Archivist', 'slate', 'wink');
     expect(first.computer.mascotId).toBe(first.id);
     expect(second.computer.mascotId).toBe(second.id);
     expect(first.computer.id).not.toBe(second.computer.id);

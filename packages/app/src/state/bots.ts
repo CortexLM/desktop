@@ -32,8 +32,8 @@ import {
   mapMessage,
   mapVideo,
   type Mascot,
-  type MascotColor,
-  type MascotShape,
+  type MascotFace,
+  type MascotLook,
 } from './bot-map.ts';
 
 export type {
@@ -42,8 +42,8 @@ export type {
   BotVideo,
   ComputerStatus,
   Mascot,
-  MascotColor,
-  MascotShape,
+  MascotFace,
+  MascotLook,
 } from './bot-map.ts';
 
 export {
@@ -85,32 +85,33 @@ export async function reconcileMascots(): Promise<void> {
 
 export async function createMascot(
   name: string,
-  shape: MascotShape,
-  color: MascotColor,
+  look: MascotLook,
+  face: MascotFace,
 ): Promise<Mascot> {
   const client = botClient();
   if (!client) throw new Error('The Bot API is not connected from this origin.');
-  const created = await apiCreate(client, { name: name.trim() || 'Untitled mascot', shape, color });
+  const created = await apiCreate(client, appearanceWrite(name.trim() || 'Untitled mascot', look, face));
   const mascot = mapMascot(created);
   setMascots((current) => [mascot, ...current.filter((row) => row.id !== mascot.id)]);
   return mascot;
 }
 
 /**
- * Renames a mascot or changes its shape and colour.
+ * Renames a mascot or changes its look and resting face.
  *
- * The settings screen was read-only: it printed the shape and colour as prose with
- * no control to change either, even though `PATCH /v1/mascots/{id}` was already in
- * the client. The API's answer replaces the local row rather than the requested
- * patch being applied optimistically, so what is shown is what the service stored.
+ * The settings screen was read-only: it printed the old shape and colour as prose
+ * with no control to change either, even though `PATCH /v1/mascots/{id}` was
+ * already in the client. The API's answer replaces the local row rather than the
+ * requested patch being applied optimistically, so what is shown is what the
+ * service stored.
  */
 export async function updateMascot(
   id: string,
-  patch: { name?: string; shape?: MascotShape; color?: MascotColor },
+  patch: { name?: string; look?: MascotLook; face?: MascotFace },
 ): Promise<void> {
   const client = botClient();
   if (!client) throw new Error('The Bot API is not connected from this origin.');
-  const updated = await apiPatch(client, id, patch);
+  const updated = await apiPatch(client, id, appearancePatch(patch));
   const mapped = mapMascot(updated);
   setMascots((current) =>
     current.map((mascot) =>
@@ -211,4 +212,17 @@ function applyListError(error: unknown): void {
   setLoadState(isCortexApiError(error) && error.status === 404 ? 'unavailable' : 'error');
   setLoadError(classified.message);
   setMascots([]);
+}
+
+/** Send look/face and keep color/shape aliases so an older backend still stores identity. */
+function appearanceWrite(name: string, look: MascotLook, face: MascotFace) {
+  return { name, look, face, color: look, shape: face };
+}
+
+function appearancePatch(patch: { name?: string; look?: MascotLook; face?: MascotFace }) {
+  return {
+    ...patch,
+    ...(patch.look ? { color: patch.look } : {}),
+    ...(patch.face ? { shape: patch.face } : {}),
+  };
 }

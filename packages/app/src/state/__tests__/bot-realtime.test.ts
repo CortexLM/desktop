@@ -20,7 +20,7 @@ describe('applyBotRealtime', () => {
   it('puts send_to_user in the thread and tools in work', async () => {
     const { fetch } = stubFetch([{ body: { id: 'mst_1', name: 'Scout', computer_id: 'pc_1' } }]);
     setBotClientForTests(new CortexApiClient({ fetch }));
-    await createMascot('Scout', 'round', 'green');
+    await createMascot('Scout', 'meadow', 'idle');
 
     applyBotRealtime(event('send_to_user', { text: 'Ready.' }));
     applyBotRealtime(event('tool_call', { tool: 'shell' }));

@@ -13,6 +13,8 @@ import {
   type BotMessage,
   type Mascot,
 } from '../../state/bot-map.ts';
+import { resolveMascotMotion } from './mascot-looks.ts';
+import { MascotMark } from './mascot-mark.tsx';
 
 import '../chat/product-pages.css';
 
@@ -38,6 +40,8 @@ export function BotConversationScreen(props: {
   onGo: (path: string) => void;
   onBack: () => void;
   sending?: boolean;
+  celebrating?: boolean;
+  onMarkSettled?: () => void;
   error?: string;
 }): JSX.Element {
   return (
@@ -52,6 +56,8 @@ export function BotConversationScreen(props: {
           onSecret={props.onSecret}
           onGo={props.onGo}
           sending={props.sending}
+          celebrating={props.celebrating}
+          onMarkSettled={props.onMarkSettled}
           error={props.error}
         />
       )}
@@ -68,6 +74,8 @@ function ConversationBody(props: {
   onSecret: (name: string, value: string) => void;
   onGo: (path: string) => void;
   sending?: boolean;
+  celebrating?: boolean;
+  onMarkSettled?: () => void;
   error?: string;
 }): JSX.Element {
   const blocked = () =>
@@ -81,6 +89,7 @@ function ConversationBody(props: {
       <PageHeader
         title={props.mascot.name}
         subtitle={`Computer ${computerLabel(props.mascot.computer)}`}
+        mark={<ConversationMark mascot={props.mascot} blocked={blocked()} sending={props.sending} celebrating={props.celebrating} onSettled={props.onMarkSettled} />}
       />
       <PageBody width="list">
         <MascotRail links={mascotLinks(props.mascot.id, 'chat', props.onGo)} />
@@ -100,6 +109,30 @@ function ConversationBody(props: {
         />
       </PageBody>
     </>
+  );
+}
+
+function ConversationMark(props: {
+  mascot: Mascot;
+  blocked: boolean;
+  sending?: boolean;
+  celebrating?: boolean;
+  onSettled?: () => void;
+}): JSX.Element {
+  return (
+    <MascotMark
+      look={props.mascot.look}
+      face={props.mascot.face}
+      seed={props.mascot.id}
+      size={48}
+      state={resolveMascotMotion({
+        computer: props.mascot.computer.status,
+        unread: props.mascot.unread || props.blocked,
+        sending: props.sending,
+        celebrating: props.celebrating,
+      })}
+      onSettled={props.onSettled}
+    />
   );
 }
 

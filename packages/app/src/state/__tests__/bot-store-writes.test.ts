@@ -76,7 +76,7 @@ describe('bot actions and hydrate', () => {
       { body: {} },
       { body: {} },
     ]);
-    await createMascot('Scout', 'round', 'green');
+    await createMascot('Scout', 'meadow', 'idle');
     patchMascotState('mst_1', (mascot) => ({
       ...mascot,
       messages: [
@@ -302,7 +302,7 @@ describe('computer live and plugins', () => {
 describe('realtime extras and ipc fetch helpers', () => {
   it('appends tokens and ignores frames without a mascot', async () => {
     clientFor([{ body: { id: 'mst_1', name: 'Scout', computer_id: 'pc_1' } }]);
-    await createMascot('Scout', 'round', 'green');
+    await createMascot('Scout', 'meadow', 'idle');
     applyBotRealtime({ type: 'bot.token', mascot_id: 'mst_1', delta: 'He' });
     applyBotRealtime({ type: 'token', mascot_id: 'mst_1', delta: 'llo' });
     applyBotRealtime({ type: 'bot.ask_user', mascot_id: 'mst_1', message: 'Wake?' });

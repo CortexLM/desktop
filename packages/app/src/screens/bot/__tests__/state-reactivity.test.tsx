@@ -12,8 +12,9 @@ function mascot(overrides: Partial<Mascot> = {}): Mascot {
   return {
     id: 'mst_1',
     name: 'Scout',
-    shape: 'round',
-    color: 'green',
+    look: 'meadow',
+    face: 'idle',
+    unread: false,
     messages: [],
     videos: [],
     computer: {

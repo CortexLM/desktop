@@ -53,7 +53,7 @@ export async function heartbeatCodeHost(
 
 export function createMascot(
   client: CortexApiClient,
-  body: { name: string; shape?: string; color?: string },
+  body: { name: string; look?: string; face?: string; shape?: string; color?: string },
   signal?: AbortSignal,
 ): Promise<ApiMascot> {
   return createMascotHttp(client, body, signal);

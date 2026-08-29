@@ -66,16 +66,19 @@ describe('product stylesheets are token-driven', () => {
     expect(found).toEqual([...FIXED_BRAND_COLOURS].sort());
   });
 
-  it('themes the mascot desktop and swatches rather than pinning them to one palette', () => {
+  it('themes the mascot desktop and keeps pebble identity on CSS variables', () => {
     const css = readFileSync(join(APP_SRC, 'screens/chat/product-pages.css'), 'utf8');
+    const mark = readFileSync(join(APP_SRC, 'screens/bot/mascot-mark.css'), 'utf8');
     const rule = (selector: string) =>
       css.slice(css.indexOf(selector), css.indexOf('}', css.indexOf(selector)));
 
     expect(rule('.cx-vnc {')).toContain('background: var(--color-surface)');
     expect(rule('.cx-vnc {')).toContain('color: var(--color-text-muted)');
-    expect(rule('.cx-mascot-swatch--ink')).toContain('var(--color-text)');
-    expect(rule('.cx-mascot-swatch--green')).toContain('var(--color-green)');
-    expect(rule('.cx-mascot-swatch--terracotta')).toContain('var(--color-accent)');
+    expect(css).not.toContain('cx-mascot-swatch');
+    expect(mark).toContain('fill: var(--mascot-body)');
+    expect(mark).toContain("[data-theme='dark']");
+    expect(mark).toContain('--mascot-look-dark');
+    expect(mark).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 });
 
