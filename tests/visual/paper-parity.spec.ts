@@ -61,7 +61,6 @@ const ROUTES: Record<string, string> = {
   'code-usage': '/code/usage',
   'code-settings': '/code/settings',
   'code-integrations': '/code/settings/integrations',
-  'code-secrets': '/code/secrets',
   'code-notifications': '/code/notifications',
   'code-ssh-connect': '/code/runtimes/ssh',
   'code-auth-sign-in': '/sign-in',

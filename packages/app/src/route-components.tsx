@@ -4,7 +4,7 @@
  * A barrel rather than an implementation. Every route used to live here and the file
  * became a grab bag: the routes that show runs sat next to the ones that edit
  * settings, and it was the only file in the package that kept hitting the line limit.
- * They are grouped by what they talk to now — runs, settings, automations, secrets,
+ * They are grouped by what they talk to now — runs, settings, automations,
  * insights, onboarding flows, auth — and `app.tsx` still imports from one place.
  */
 
@@ -13,7 +13,6 @@ export { HomeRoute, SessionsRoute, SessionDetailRoute } from './routes/run-route
 export { SettingsRoute, IntegrationsRoute } from './routes/settings-routes.tsx';
 export { NotificationsRoute } from './routes/notification-routes.tsx';
 export { AutomationsRoute, NewAutomationRoute } from './routes/automation-routes.tsx';
-export { SecretsRoute } from './routes/secrets-routes.tsx';
 export { ReviewRoute, UsageRoute } from './routes/insight-routes.tsx';
 export {
   ConnectGitHubRoute,

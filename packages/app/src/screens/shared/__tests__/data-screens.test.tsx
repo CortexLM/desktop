@@ -8,11 +8,6 @@ import {
   type Automation,
   type AutomationsScreenProps,
 } from '../../automations/automations-screen.tsx';
-import {
-  SecretsScreen,
-  type Secret,
-  type SecretsScreenProps,
-} from '../../secrets/secrets-screen.tsx';
 import { UsageScreen, type UsageScreenProps } from '../../usage/usage-screen.tsx';
 import { Stat, Table } from '../data.tsx';
 
@@ -36,11 +31,6 @@ const SUGGESTED: Automation[] = [
     trigger: 'Runs nightly at 02:00',
     enabled: false,
   },
-];
-
-const SECRETS: Secret[] = [
-  { id: 's1', name: 'STRIPE_KEY', scope: 'local', lastUsed: '3d ago' },
-  { id: 's2', name: 'DEPLOY_TOKEN', scope: 'account' },
 ];
 
 function renderUsage(overrides: Partial<UsageScreenProps> = {}) {
@@ -87,24 +77,6 @@ function renderAutomations(overrides: Partial<AutomationsScreenProps> = {}) {
   ));
 
   return { ...result, ...handlers, ...overrides };
-}
-
-function renderSecrets(overrides: Partial<SecretsScreenProps> = {}) {
-  const onCreate = overrides.onCreate ?? vi.fn();
-  const onDelete = overrides.onDelete ?? vi.fn();
-  const { onCreate: _c, onDelete: _d, ...rest } = overrides;
-
-  const result = render(() => (
-    <SecretsScreen
-      capabilities={ANONYMOUS_CAPABILITIES}
-      secrets={SECRETS}
-      {...rest}
-      onCreate={onCreate}
-      onDelete={onDelete}
-    />
-  ));
-
-  return { ...result, onCreate, onDelete };
 }
 
 describe('Stat', () => {
@@ -245,102 +217,5 @@ describe('Automations', () => {
   it('explains the gate in terms of where the work has to run', () => {
     renderAutomations({ capabilities: ANONYMOUS_CAPABILITIES });
     expect(screen.getByText(/somewhere other than this machine/)).toBeInTheDocument();
-  });
-});
-
-describe('Secrets', () => {
-  it('lists names, scope and last use, and nothing else', () => {
-    // A value is write-only: once stored it is never returned to the renderer, so there is
-    // no reveal action and no masked display to imply otherwise.
-    renderSecrets();
-
-    expect(screen.getByText('STRIPE_KEY')).toBeInTheDocument();
-    expect(screen.getByText('3d ago')).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /Reveal/ })).toBeNull();
-  });
-
-  it('says where each secret is stored', () => {
-    // A user who signs in later needs to know which secrets did not follow them.
-    renderSecrets();
-
-    expect(screen.getByText('This machine')).toBeInTheDocument();
-    expect(screen.getByText('Cortex account')).toBeInTheDocument();
-  });
-
-  it('shows Never for a secret nothing has used', () => {
-    renderSecrets();
-    expect(screen.getByText('Never')).toBeInTheDocument();
-  });
-
-  it('masks the value field and keeps the browser from saving it', () => {
-    renderSecrets();
-    const value = screen.getByLabelText('Value');
-
-    expect(value).toHaveAttribute('type', 'password');
-    expect(value).toHaveAttribute('autocomplete', 'off');
-  });
-
-  it('upper-cases the name as it is typed', () => {
-    // So the field always shows the name the session will actually reference.
-    renderSecrets();
-    const name = screen.getByLabelText('Name');
-
-    fireEvent.input(name, { target: { value: 'stripe_key2' } });
-    expect(name).toHaveValue('STRIPE_KEY2');
-  });
-
-  it('rejects a name that is not a valid environment variable', () => {
-    renderSecrets();
-
-    fireEvent.input(screen.getByLabelText('Name'), { target: { value: 'my-key' } });
-    expect(screen.getByText('Use uppercase letters, digits and underscores')).toBeInTheDocument();
-  });
-
-  it('rejects a name already in use', () => {
-    renderSecrets();
-
-    fireEvent.input(screen.getByLabelText('Name'), { target: { value: 'STRIPE_KEY' } });
-    expect(screen.getByText('That name is taken')).toBeInTheDocument();
-  });
-
-  it('holds the add action until both fields are valid', () => {
-    renderSecrets();
-    const add = screen.getByRole('button', { name: 'Add secret' });
-
-    expect(add).toBeDisabled();
-
-    fireEvent.input(screen.getByLabelText('Name'), { target: { value: 'NEW_KEY' } });
-    expect(add).toBeDisabled();
-
-    fireEvent.input(screen.getByLabelText('Value'), { target: { value: 'v' } });
-    expect(add).not.toBeDisabled();
-  });
-
-  it('creates the secret and clears the form', () => {
-    const { onCreate } = renderSecrets();
-
-    fireEvent.input(screen.getByLabelText('Name'), { target: { value: 'NEW_KEY' } });
-    fireEvent.input(screen.getByLabelText('Value'), { target: { value: 'secret-value' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Add secret' }));
-
-    expect(onCreate).toHaveBeenCalledWith('NEW_KEY', 'secret-value');
-    expect(screen.getByLabelText('Name')).toHaveValue('');
-    expect(screen.getByLabelText('Value')).toHaveValue('');
-  });
-
-  it('says the secrets stay on this machine without an account', () => {
-    renderSecrets({ capabilities: ANONYMOUS_CAPABILITIES });
-    expect(screen.getByText('Stored on this machine only')).toBeInTheDocument();
-  });
-
-  it('says they sync once there is an account', () => {
-    renderSecrets({ capabilities: AUTHENTICATED_CAPABILITIES });
-    expect(screen.getByText('Synced to your Cortex account')).toBeInTheDocument();
-  });
-
-  it('deletes by id', () => {
-    const { onDelete } = renderSecrets();
-    fireEvent.click(screen.getAllByRole('button', { name: 'Delete' })[0]!);
-    expect(onDelete).toHaveBeenCalledWith('s1');
   });
 });

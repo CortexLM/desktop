@@ -199,7 +199,6 @@ describe('App', () => {
       '/code/usage',
       '/code/settings',
       '/code/settings/integrations',
-      '/code/secrets',
       '/code/notifications',
       '/code/automations/new',
       '/code/runtimes/ssh',
@@ -214,6 +213,20 @@ describe('App', () => {
       expect(document.body.innerHTML.length, path).toBeGreaterThan(10);
       view.unmount();
     }
+  });
+
+  it('renders no Secrets page for the retired /code/secrets path', async () => {
+    // Cortex Code has no Secrets screen (`.rules/06-product.md` § 6.2.1). The path is not
+    // routed any more, so it falls through to the unknown-path handler rather than to a
+    // form asking the user to paste values.
+    render(() => <App initialPath="/code/secrets" />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
+    });
+
+    expect(screen.queryByRole('heading', { name: 'Secrets' })).toBeNull();
+    expect(screen.queryByLabelText('Value')).toBeNull();
   });
 
   it('renders the sign-in screen without the workspace shell', async () => {
