@@ -120,25 +120,29 @@ export function mapMascot(row: ApiMascot): Mascot {
  */
 export function mapComputer(row: ApiMascot, fallback?: ApiComputer): BotComputer {
   const box = fallback ?? row.computer;
-  const mapped: BotComputer = {
+  return {
     id: computerId(row, box),
     mascotId: box?.mascot_id ?? row.id,
     status: asStatus(box, row),
+    ...computerDetails(box),
   };
-  const spec = computerSpec(box);
-  if (spec) mapped.spec = spec;
-  if (box?.provider) mapped.provider = box.provider;
-  if (box?.last_error) mapped.lastError = box.last_error;
-  if (box?.screenshot_url) mapped.screenshotUrl = box.screenshot_url;
-  return mapped;
 }
 
 function computerId(row: ApiMascot, box?: ApiComputer): string {
   return box?.id ?? row.computer_id ?? `pc_${row.id}`;
 }
 
-function computerSpec(box?: ApiComputer): BotComputer['spec'] {
-  if (!box) return undefined;
+/** Everything that only exists once the farm has described the machine. */
+function computerDetails(box?: ApiComputer): Partial<BotComputer> {
+  if (!box) return {};
+  const details: Partial<BotComputer> = { spec: computerSpec(box) };
+  if (box.provider) details.provider = box.provider;
+  if (box.last_error) details.lastError = box.last_error;
+  if (box.screenshot_url) details.screenshotUrl = box.screenshot_url;
+  return details;
+}
+
+function computerSpec(box: ApiComputer): NonNullable<BotComputer['spec']> {
   return {
     arch: box.arch ?? 'x86_64',
     vcpu: box.vcpu ?? 4,
