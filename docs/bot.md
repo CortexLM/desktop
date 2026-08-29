@@ -12,7 +12,7 @@ creates its machine. Deleting a mascot retires that machine.
 
 Each mascot is one **Kernel pebble** — a flat rounded stone, not a triangle
 and not a gradient. Identity is a **look** (Meadow, Teal, Terracotta, Amber,
-Plum, Slate), a **resting face** (open, narrow, wink), and a resting tilt of
+Plum, Slate), a **resting face** (open eyes, narrow, wink), and a resting tilt of
 ±5° (suppressed below 48px). Eyes stay ivory. The user picks look and face
 on create and in settings; the service stores them.
 
