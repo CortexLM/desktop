@@ -58,6 +58,8 @@ import {
   saveChatPreference,
 } from '../state/chat-preferences.ts';
 import {
+  assignPluginSurfaces,
+  classifyPluginWrite,
   installPlugin,
   isPluginConnected,
   pluginApps,
@@ -65,14 +67,17 @@ import {
   pluginState,
   reconcilePlugins,
   removePlugin,
+  type PluginWriteFailure,
 } from '../state/plugins.ts';
+import type { PluginSurface } from '../state/plugin-surfaces.ts';
 import { rememberPluginConnect, takePendingPluginConnect } from '../state/pending-connect.ts';
 import { postInbox } from '../state/inbox.ts';
 import { showOsNotification } from '../state/os-notify.ts';
 import { PlanningScreen } from '../screens/chat/planning-screen.tsx';
 import { ProjectsScreen } from '../screens/chat/projects-screen.tsx';
 import { ProjectScreen, ProjectSourcesScreen } from '../screens/chat/project-detail-screens.tsx';
-import { LibraryScreen, PluginsScreen } from '../screens/chat/library-plugins-screens.tsx';
+import { LibraryScreen } from '../screens/chat/library-screen.tsx';
+import { PluginsScreen } from '../screens/chat/plugins-screen.tsx';
 import { ChatSettingsScreen, ResearchScreen } from '../screens/chat/research-settings-screens.tsx';
 
 export function PlanningRoute(): JSX.Element {
@@ -222,38 +227,53 @@ export function LibraryRoute(): JSX.Element {
 }
 
 /**
- * Connect, and the sign-in detour it may take.
+ * Connect and re-assign, and the sign-in detour the first of them may take.
  *
  * `POST /v1/plugins/{slug}/connect` refuses a guest — a guest session cannot be
  * signed back into, so the connection could never be revoked later — and that
  * refusal is not something to show: an account is what the user needs, not the
  * reason they need one. So Connect on a guest opens the sign-in screen, keeps
- * the slug, and finishes the connection once the account arrives.
+ * the slug and the Chat / Bot choice, and finishes the job once the account
+ * arrives.
+ *
+ * Failures become a `PluginWriteFailure` rather than a message: the screen owns
+ * the wording, so nothing the service wrote is rendered (`.rules/02-errors.md`).
  */
-function createConnectAction(signedIn: () => boolean, navigate: (path: string) => void) {
-  const [connectError, setConnectError] = createSignal('');
+function createPluginWrites(signedIn: () => boolean, navigate: (path: string) => void) {
+  const [writeError, setWriteError] = createSignal<PluginWriteFailure | undefined>();
 
-  const signInThenConnect = (slug: string) => {
-    setConnectError('');
-    rememberPluginConnect(slug, '/plugins');
+  const signInThenConnect = (slug: string, surfaces: readonly PluginSurface[]) => {
+    setWriteError(undefined);
+    rememberPluginConnect(slug, surfaces, '/plugins');
     navigate('/sign-in');
   };
 
-  const connect = async (slug: string): Promise<void> => {
+  const connect = async (slug: string, surfaces: readonly PluginSurface[]): Promise<void> => {
     if (!signedIn()) {
-      signInThenConnect(slug);
+      signInThenConnect(slug, surfaces);
       return;
     }
-    setConnectError('');
+    setWriteError(undefined);
     try {
       // The service can still refuse a session this side believes in.
-      if ((await installPlugin(slug)) === 'needs-account') signInThenConnect(slug);
+      if ((await installPlugin(slug, surfaces)) === 'needs-account') {
+        signInThenConnect(slug, surfaces);
+      }
     } catch (error) {
-      setConnectError(error instanceof Error ? error.message : String(error));
+      setWriteError(classifyPluginWrite(error, 'connect'));
     }
   };
 
-  return { connect, connectError };
+  const assign = async (slug: string, surfaces: readonly PluginSurface[]): Promise<void> => {
+    setWriteError(undefined);
+    try {
+      await assignPluginSurfaces(slug, surfaces);
+    } catch (error) {
+      setWriteError(classifyPluginWrite(error, 'assign'));
+    }
+  };
+
+  return { connect, assign, writeError };
 }
 
 /** Plugins: the marketplace catalogue, and the account connecting an app needs. */
@@ -264,7 +284,7 @@ export function PluginsRoute(): JSX.Element {
   // A guest is projected to a null user, so this is already the `is_guest`
   // answer from `/v1/me` rather than a second, weaker notion of signed in.
   const signedIn = () => account.capabilities().authenticated;
-  const { connect, connectError } = createConnectAction(signedIn, navigate);
+  const { connect, assign, writeError } = createPluginWrites(signedIn, navigate);
 
   createEffect(() => {
     void reconcilePlugins();
@@ -275,7 +295,7 @@ export function PluginsRoute(): JSX.Element {
   createEffect(() => {
     if (!signedIn()) return;
     const resumed = untrack(takePendingPluginConnect);
-    if (resumed) void connect(resumed.slug);
+    if (resumed) void connect(resumed.slug, resumed.surfaces);
   });
 
   const connected = () => pluginApps().map((app) => app.slug).filter(isPluginConnected);
@@ -291,10 +311,11 @@ export function PluginsRoute(): JSX.Element {
         pluginState() === 'error' || pluginState() === 'not-live' ? pluginError() : undefined
       }
       signedIn={signedIn()}
-      connectError={connectError()}
+      {...(writeError() ? { writeError: writeError()! } : {})}
       onSignIn={() => navigate('/sign-in')}
       onCreateAccount={() => navigate('/sign-in')}
-      onConnect={(slug: string) => void connect(slug)}
+      onConnect={(slug, surfaces) => void connect(slug, surfaces)}
+      onSurfaces={(slug, surfaces) => void assign(slug, surfaces)}
       onDisconnect={(slug: string) => void removePlugin(slug)}
     />
   );

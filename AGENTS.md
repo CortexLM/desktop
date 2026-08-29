@@ -154,8 +154,13 @@ API keys are entered; they never appear in logs.
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows
   ([`.rules/04-structure.md`](./.rules/04-structure.md)).
-- **Plugins list the services the user connects to** — Google Drive, Slack, GitHub, Paper — with
-  their official brand marks. The middleware we install through is internal plumbing: it is a field
-  on the card type in `packages/app/src/state/plugins.ts`, never a card, a label, a subtitle, or an
-  error body ([`.rules/02-errors.md`](./.rules/02-errors.md)).
+- **Plugins list the services the user connects to**, from the live catalogue. The middleware we
+  install through is internal plumbing: it is a field on the catalogue envelope in
+  `packages/app/src/state/plugins.ts`, never a card, a label, a subtitle, or an error body
+  ([`.rules/02-errors.md`](./.rules/02-errors.md)).
+- **Every plugin is assigned to Cortex Chat, Cortex Bot, or both.** The choice is the connection's
+  (`surfaces`), sent on connect and changed with `PATCH /v1/plugins/{slug}/connect`; at least one
+  surface is always kept. The switches follow the account, not the click — a change is a write, and
+  a write that failed leaves them where they were. `packages/app/src/state/plugin-surfaces.ts`,
+  `docs/chat.md` § Chat, Bot, or both, `packages/cortex-api/CONTRACT.md` § Plugins.
 - MCP `event:mcp-*` channels are emitted by `setupMCPEvents` in `packages/main/src/ipc/handlers/mcp-handlers.ts`.

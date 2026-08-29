@@ -304,6 +304,39 @@ The guest case shares `entitlement_required` with the plan gate on
 `isAccountRequired` matches the wording as well, and the UI opens sign-in rather
 than showing either message.
 
+#### Surfaces on a connection (intended, not yet observed)
+
+The web Plugins product lets an account say which product a connected app's
+tools may be used from — Cortex Chat, Cortex Bot, or both — and
+`CortexLM/backend` is adding the same field. Nothing here was invented to fill a
+gap: the shape below is what this client sends and reads, and every part of it
+is still unobserved on the live service (the catalogue probe on 2026-08-29
+carries no `surfaces`, and `/v1/plugins/connections` has only ever answered an
+empty list).
+
+| Method | Path | Body | Role |
+| --- | --- | --- | --- |
+| POST | `/v1/plugins/{slug}/connect` | `{ "surfaces": ["chat"] }` | connect, on the chosen surfaces |
+| PATCH | `/v1/plugins/{slug}/connect` | `{ "surfaces": ["chat","bot"] }` | re-assign an existing connection |
+
+`surfaces` is expected back on a connection row and, alongside `connected`, on a
+catalogue entry:
+
+```json
+{ "id": "con_1", "toolkit_slug": "gmail", "surfaces": ["chat"] }
+```
+
+At least one surface is required — a connection on neither is reachable from
+neither product, and the way to have that is Disconnect. The client enforces it
+before the request rather than letting the service refuse it.
+
+Reads are permissive and writes are strict, deliberately: `surfaces` parses as
+`string[]` so a third surface cannot fail the row and empty the page, while
+`connectPlugin` / `setPluginSurfaces` only accept `chat` and `bot`. An absent
+`surfaces` is read as both — a service that does not filter is not a connection
+switched off everywhere. A `404` or `405` on the PATCH is "this backend has no
+assignment yet", which the page says rather than moving a switch.
+
 ### Not landed (typed + mocked)
 
 `GET/WS /v1/realtime` → `404`. Bot (`/v1/mascots`, `/v1/bots`, `/v1/computers`),

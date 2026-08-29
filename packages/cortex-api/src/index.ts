@@ -105,7 +105,10 @@ export {
   getPluginCatalog,
   listPluginConnections,
   listPlugins,
+  setPluginSurfaces,
 } from './bot-plugins.ts';
+
+export { PLUGIN_SURFACES } from './bot-runtime-schemas.ts';
 
 export {
   BACKEND_TOO_OLD,
@@ -248,6 +251,7 @@ export type {
   ApiSkill,
   ApiSkillRun,
   MemoryTier,
+  PluginSurface,
 } from './bot-runtime-schemas.ts';
 
 export {

@@ -48,6 +48,7 @@ import {
   getPluginCatalog,
   listPluginConnections,
   listPlugins,
+  setPluginSurfaces,
 } from '../bot-plugins.ts';
 import { stubFetch } from './fixtures.ts';
 
@@ -257,7 +258,7 @@ describe('plugins', () => {
 
     const catalogue = await getPluginCatalog(client);
     expect(await listPluginConnections(client)).toEqual([]);
-    await connectPlugin(client, 'gmail');
+    await connectPlugin(client, 'gmail', ['chat', 'bot']);
 
     expect(catalogue.is_live).toBe(true);
     expect(catalogue.provider).toBe('composio');
@@ -293,6 +294,64 @@ describe('plugins', () => {
   });
 });
 
+describe('plugin surfaces', () => {
+  it('connects on the surfaces the caller chose', async () => {
+    const { client, calls } = clientFor([{ body: {} }]);
+
+    await connectPlugin(client, 'gmail', ['chat']);
+
+    expect(calls[0]!.method).toBe('POST');
+    expect(calls[0]!.body).toEqual({ surfaces: ['chat'] });
+  });
+
+  it('re-assigns a connection with PATCH on the same route', async () => {
+    const { client, calls } = clientFor([{ body: {} }]);
+
+    await setPluginSurfaces(client, 'gmail', ['bot']);
+
+    expect(calls[0]!.method).toBe('PATCH');
+    expect(calls[0]!.url).toContain('/v1/plugins/gmail/connect');
+    expect(calls[0]!.body).toEqual({ surfaces: ['bot'] });
+  });
+
+  it('refuses to send a connection assigned to nothing', async () => {
+    // A connection on neither surface is reachable from neither product, so it
+    // is a Disconnect. The request is not made rather than being made and lost.
+    const { client, calls } = clientFor([{ body: {} }]);
+
+    await expect(setPluginSurfaces(client, 'gmail', [])).rejects.toThrow(/at least one surface/i);
+    await expect(connectPlugin(client, 'gmail', [])).rejects.toThrow(/at least one surface/i);
+    expect(calls).toEqual([]);
+  });
+
+  it('reads an assignment off a connection row', async () => {
+    const { client } = clientFor([
+      {
+        body: {
+          items: [{ id: 'con_1', toolkit_slug: 'gmail', surfaces: ['chat'] }],
+          has_more: false,
+        },
+      },
+    ]);
+
+    expect((await listPluginConnections(client))[0]?.surfaces).toEqual(['chat']);
+  });
+
+  it('keeps a row whose surfaces this client has no switch for', async () => {
+    // A third surface must cost the user a switch, not the whole page.
+    const { client } = clientFor([
+      {
+        body: {
+          items: [{ id: 'con_1', toolkit_slug: 'gmail', surfaces: ['chat', 'inbox'] }],
+          has_more: false,
+        },
+      },
+    ]);
+
+    expect((await listPluginConnections(client))[0]?.surfaces).toEqual(['chat', 'inbox']);
+  });
+});
+
 describe('isAccountRequired', () => {
   /** Both bodies are verbatim from the live service, 2026-08-29. */
   const guestRefusal = {
@@ -320,7 +379,7 @@ describe('isAccountRequired', () => {
 
   async function connectError(reply: { status: number; body: unknown }) {
     const { client } = clientFor([reply]);
-    return connectPlugin(client, 'gmail').catch((caught: unknown) => caught);
+    return connectPlugin(client, 'gmail', ['chat', 'bot']).catch((caught: unknown) => caught);
   }
 
   it('recognises the guest refusal on connect', async () => {
