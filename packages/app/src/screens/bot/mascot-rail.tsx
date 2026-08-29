@@ -30,6 +30,9 @@ export function mascotLinks(
 ): MascotRailLink[] {
   const rows: Array<{ id: string; label: string; path: string }> = [
     { id: 'chat', label: 'Conversation', path: `/bot/${id}` },
+    // Messages was a registered, tested route that nothing linked to, which made it
+    // reachable only by typing the URL.
+    { id: 'messages', label: 'Messages', path: `/bot/${id}/messages` },
     { id: 'computer', label: 'Computer', path: `/bot/${id}/computer` },
     { id: 'memory', label: 'Memory', path: `/bot/${id}/memory` },
     { id: 'skills', label: 'Skills', path: `/bot/${id}/skills` },

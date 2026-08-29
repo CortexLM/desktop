@@ -48,7 +48,7 @@ interface FakePty {
 const spawned: FakePty[] = [];
 let nextPid = 1000;
 
-const spawnMock = vi.fn((_shell: string, _args: string[], options: { cwd: string }) => {
+const spawnMock = vi.fn((_shell: string, _args: string[] | string, options: { cwd: string }) => {
   let exitCallback: ((event: { exitCode: number; signal?: number }) => void) | undefined;
 
   const pty: FakePty = {
@@ -140,7 +140,9 @@ describe('terminal handlers', () => {
     // Seed the singleton with the mock spawn so register() never createRequire's
     // the native addon. `vi.mock('node-pty')` does not intercept createRequire.
     resetTerminalService();
-    getTerminalService(spawnMock);
+    // Cast at the seam: `FakePty` implements only the slice of `IPty` these tests
+    // drive, and `PtySpawnFn` takes the full `IPtyForkOptions`.
+    getTerminalService(spawnMock as unknown as Parameters<typeof getTerminalService>[0]);
     registerTerminalHandlers();
   });
 

@@ -17,7 +17,7 @@ import {
 
 import { applyRealtimeEvent, setRealtimeStatus } from './realtime-bridge.ts';
 import { liveApiBase } from './live-api.ts';
-import { hasElectronHost } from './host.ts';
+import { hasElectronHost } from './electron-bridge.ts';
 import { ipcProductFetch } from './ipc-fetch.ts';
 import { CORTEX_API_BASE_URL } from '@cortex-ide/cortex-api';
 

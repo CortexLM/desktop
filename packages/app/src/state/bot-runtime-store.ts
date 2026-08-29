@@ -30,7 +30,14 @@ import {
 
 import { requireBotClient } from './bot-client.ts';
 
-export type BotPanelState = 'idle' | 'ready' | 'error' | 'too-old';
+/**
+ * `loading` is distinct from `idle`.
+ *
+ * Without it every panel sat at `idle` — which the screens render as "nothing here"
+ * — for the whole round trip, so an account with memory showed an empty Memory tab
+ * until the answer landed.
+ */
+export type BotPanelState = 'idle' | 'loading' | 'ready' | 'error' | 'too-old';
 
 const [memory, setMemory] = createSignal<ApiMemoryFact[]>([]);
 const [skills, setSkills] = createSignal<ApiSkill[]>([]);
@@ -130,6 +137,8 @@ export function resetBotRuntimeForTests(): void {
 }
 
 async function runPanel(work: () => Promise<void>): Promise<void> {
+  setPanelState('loading');
+  setPanelError('');
   try {
     await work();
     setPanelState('ready');

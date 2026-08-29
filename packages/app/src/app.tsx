@@ -1,4 +1,4 @@
-import { createMemo, Show, type JSX } from 'solid-js';
+import { Show, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
   HashRouter,
@@ -14,11 +14,15 @@ import { AccountProvider, useAccount } from './state/session-context.tsx';
 import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { ConversationsProvider, useConversations } from './state/conversations-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
+import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
+import { hasElectronHost } from './state/electron-bridge.ts';
+import { realtimeStatus } from './state/realtime-bridge.ts';
+import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
 import { formatAge } from './state/session-view.ts';
 import type { ConversationSummary, SessionSummary } from '@cortex-ide/shared';
 import { appRoutes } from './route-tree.tsx';
@@ -142,54 +146,53 @@ function toUser(current: { displayName?: string; email?: string; organizationId?
   };
 }
 
-function Workspace(props: { children: JSX.Element }): JSX.Element {
+/** The sidebar, wired to the stores and the router. */
+function WorkspaceSidebar(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
   const location = useLocation();
 
   const runs = useSessions();
   const chats = useConversations();
-  const activeSlug = createMemo(() => slugForPath(location.pathname));
-  const product = createMemo(() => productForPath(location.pathname));
-
-  const recentRuns = createMemo(() => toRecentRuns(runs.sessions() ?? []));
-  const recentChats = createMemo(() => toRecentChats(chats.conversations() ?? []));
-
-  // The sidebar's unread dot. Driven by runs that finished and have not been opened,
-  // which is the only thing the app currently has to draw attention to.
-  const unread = createMemo(() => ({
-    'code-sessions': runs.awaitingReview().length > 0,
-  }));
-
-  const user = createMemo(() => toUser(account.user()));
 
   return (
-    <AppShell
-      sidebar={
-        <Sidebar
-          product={product()}
-          onSwitchProduct={(next) => navigate(productHome(next))}
-          capabilities={account.capabilities()}
-          activeSlug={activeSlug()}
-          recentRuns={recentRuns()}
-          recentChats={recentChats()}
-          user={user()}
-          onNavigate={(slug) => {
-            const route = routeBySlug(slug);
-            if (route?.path) navigate(route.path);
-          }}
-          onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
-          onOpenChat={(id) => navigate(`/chat/${id}`)}
-          onNewChat={() => navigate('/')}
-          onNewSession={() => navigate('/code')}
-          onNewMascot={() => navigate('/bot/new')}
-          onOpenSearch={() => openOverlay('palette')}
-          onOpenAccount={() => navigate('/code/settings')}
-          onSignIn={() => navigate('/sign-in')}
-          unread={unread()}
-        />
-      }
-    >
+    <Sidebar
+      product={productForPath(location.pathname)}
+      onSwitchProduct={(next) => navigate(productHome(next))}
+      capabilities={account.capabilities()}
+      activeSlug={slugForPath(location.pathname)}
+      recentRuns={toRecentRuns(runs.sessions() ?? [])}
+      recentChats={toRecentChats(chats.conversations() ?? [])}
+      user={toUser(account.user())}
+      onNavigate={(slug) => {
+        const route = routeBySlug(slug);
+        if (route?.path) navigate(route.path);
+      }}
+      onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
+      onOpenChat={(id) => navigate(`/chat/${id}`)}
+      onNewChat={() => navigate('/')}
+      onNewSession={() => navigate('/code')}
+      onNewMascot={() => navigate('/bot/new')}
+      onOpenSearch={() => openOverlay('palette')}
+      onOpenAccount={() => navigate('/code/settings')}
+      onSignIn={() => navigate('/sign-in')}
+      // The unread dot is driven by runs that finished and have not been opened,
+      // which is the only thing the app currently has to draw attention to.
+      unread={{ 'code-sessions': runs.awaitingReview().length > 0 }}
+    />
+  );
+}
+
+function Workspace(props: { children: JSX.Element }): JSX.Element {
+  return (
+    <AppShell sidebar={<WorkspaceSidebar />}>
+      {/* Above the routes so it is the same strip on every surface rather than
+          something each screen has to remember to render. */}
+      <ConnectionBanner
+        status={realtimeStatus()}
+        live={liveSession() !== undefined && !hasElectronHost()}
+        onRetry={() => void bootLiveRealtime()}
+      />
       {props.children}
       {/* Inside the shell so the overlays can navigate, and above the routes so a
           palette does not unmount on the navigation it just performed. */}

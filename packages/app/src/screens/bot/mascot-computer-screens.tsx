@@ -1,10 +1,10 @@
-import { type JSX, Show } from 'solid-js';
+import { type JSX, Match, Show, Switch } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
-import { ComputerDesktop } from './computer-desktop.tsx';
+import { ComputerDesktop, type DesktopTransport } from './computer-desktop.tsx';
 import { FilesPanel, TerminalPanel } from './computer-panels.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
 import { computerIsOffline, type Mascot } from '../../state/bot-map.ts';
@@ -20,6 +20,7 @@ export function BotComputerScreen(props: {
   preview?: ApiFilePreview;
   recording?: boolean;
   error?: string;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -46,6 +47,7 @@ export function BotComputerScreen(props: {
           preview={props.preview}
           recording={props.recording}
           error={props.error}
+          transport={props.transport}
           onWake={props.onWake}
           onHibernate={props.onHibernate}
           onStop={props.onStop}
@@ -68,6 +70,7 @@ interface ComputerBodyProps {
   preview?: ApiFilePreview;
   recording?: boolean;
   error?: string;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -96,6 +99,7 @@ function ComputerBody(props: ComputerBodyProps): JSX.Element {
           files={props.files}
           preview={props.preview}
           recording={props.recording}
+          transport={props.transport}
           onWake={props.onWake}
           onHibernate={props.onHibernate}
           onStop={props.onStop}
@@ -117,6 +121,7 @@ function ComputerStates(props: {
   files: readonly ApiFsEntry[];
   preview?: ApiFilePreview;
   recording?: boolean;
+  transport?: DesktopTransport;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -125,13 +130,31 @@ function ComputerStates(props: {
   onOpenFile: (path: string) => void;
   onToggleRecord: () => void;
 }): JSX.Element {
-  if (props.offline) {
-    return <HonestState kind="error" title="Computer offline" body="The farm or local daemon is not connected. This is not a live desktop." actionLabel="Retry wake" onAction={props.onWake} />;
-  }
-  if (props.asleep) {
-    return <HonestState kind="empty" title="Hibernated" body="Unused farm machines sleep. Wake to resume this mascot’s dedicated box." actionLabel="Wake" onAction={props.onWake} />;
-  }
-  return <LiveComputerPanels {...props} />;
+  // `Switch` / `Match` rather than early `return`s: a component body runs once in
+  // Solid, so the `if` chain this replaced meant a box that woke never showed its
+  // panels — the screen stayed on whichever state was true at first paint.
+  return (
+    <Switch fallback={<LiveComputerPanels {...props} />}>
+      <Match when={props.offline}>
+        <HonestState
+          kind="error"
+          title="Computer offline"
+          body="The farm or local daemon is not connected. This is not a live desktop."
+          actionLabel="Retry wake"
+          onAction={props.onWake}
+        />
+      </Match>
+      <Match when={props.asleep}>
+        <HonestState
+          kind="empty"
+          title="Hibernated"
+          body="Unused farm machines sleep. Wake to resume this mascot’s dedicated box."
+          actionLabel="Wake"
+          onAction={props.onWake}
+        />
+      </Match>
+    </Switch>
+  );
 }
 
 function LiveComputerPanels(props: {
@@ -140,6 +163,7 @@ function LiveComputerPanels(props: {
   files: readonly ApiFsEntry[];
   preview?: ApiFilePreview;
   recording?: boolean;
+  transport?: DesktopTransport;
   onHibernate: () => void;
   onStop: () => void;
   onInput: (input: ComputerInput) => void;
@@ -149,7 +173,12 @@ function LiveComputerPanels(props: {
 }): JSX.Element {
   return (
     <>
-      <ComputerDesktop src={props.screenshot} offline={false} onInput={props.onInput} />
+      <ComputerDesktop
+        src={props.screenshot}
+        offline={false}
+        transport={props.transport}
+        onInput={props.onInput}
+      />
       <TerminalPanel log={props.shellLog} onRun={props.onShell} />
       <FilesPanel entries={props.files} preview={props.preview} onOpen={props.onOpenFile} />
       <div class="cx-mascot-rail">
@@ -160,27 +189,5 @@ function LiveComputerPanels(props: {
         </Button>
       </div>
     </>
-  );
-}
-
-export function BotSettingsScreen(props: { mascot?: Mascot; onBack: () => void; onGo: (path: string) => void }): JSX.Element {
-  return (
-    <Show
-      when={props.mascot}
-      fallback={<HonestState kind="error" title="Mascot not found" body="Settings need a mascot." actionLabel="Back" onAction={props.onBack} />}
-    >
-      {(mascot) => (
-        <>
-          <PageHeader title="Mascot settings" subtitle={mascot().name} />
-          <PageBody width="settings">
-            <MascotRail links={mascotLinks(mascot().id, 'settings', props.onGo)} />
-            <p class="cx-product-row__meta">
-              Shape {mascot().shape} · colour {mascot().color}. The computer id {mascot().computer.id} is
-              bound to this mascot and cannot be reassigned.
-            </p>
-          </PageBody>
-        </>
-      )}
-    </Show>
   );
 }

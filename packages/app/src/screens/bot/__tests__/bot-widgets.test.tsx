@@ -33,7 +33,7 @@ describe('conversation widgets', () => {
         />
         <AskCard ask={{ prompt: 'Wake?', options: ['yes'], pending: true }} onAnswer={onAnswer} />
         <AskCard ask={{ prompt: 'Type it', pending: true }} onAnswer={onAnswer} />
-        <SecretCard secret={{ name: 'token', reason: 'farm' }} onSubmit={onSecret} />
+        <SecretCard secret={{ name: 'token', reason: 'farm', pending: true }} onSubmit={onSecret} />
         <WorkRail items={[{ tool: 'shell', output: { ok: true } }, { output: 'plain' }]} />
       </>
     ));

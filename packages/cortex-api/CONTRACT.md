@@ -309,6 +309,49 @@ Host pairing returns a code shown once; the service stores a hash the client
 never persists. Heartbeat is `{ device_token, host_id? }` — no SSH or
 provider keys on the wire. Web still rejects `runtime: 'local'`.
 
+The control plane the **web** app needs, so a browser can drive Code without a main
+process. All of it answered 404 on 2026-08-28; each caller renders "not on this
+backend" rather than an empty account, and none of it falls back to a local write:
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| GET/POST | `/v1/code/sessions` | the POST returns the service's id; a client-minted one cannot be followed up on |
+| GET | `/v1/code/sessions/{id}` | timeline, diff, PR, pending permission — what a reloaded tab needs |
+| POST | `/v1/code/sessions/{id}/turns`, `/stop`, `/archive` | |
+| DELETE | `/v1/code/sessions/{id}` | |
+| POST | `/v1/code/sessions/{id}/permissions` | the HTTP half of Allow / Always / Deny, for when the SSE fallback is read-only |
+| GET | `/v1/code/repositories` | no folder picker in a browser |
+| GET/PUT | `/v1/code/settings` | snake-case wire shape; mapped to `WorkspaceRunSettings`. PUT is partial |
+| GET | `/v1/code/providers` | masked keys only, never the value |
+| PUT | `/v1/code/providers/{id}` | key travels once, response carries a mask |
+| GET/POST | `/v1/code/secrets` | write-only: no response ever carries a value |
+| DELETE | `/v1/code/secrets/{id}` | |
+| CRUD + run/logs | `/v1/code/automations` | `file_watch` / `git_hook` triggers round-trip untouched — the service decides which host owns a watch |
+| CRUD | `/v1/code/tickets` | `session_id` links a started ticket to its run |
+| GET | `/v1/code/usage` | credits. Absent means the screen shows `—`, never a zero |
+| DELETE | `/v1/code/hosts/{id}` | unpair |
+| GET/POST/DELETE | `/v1/code/runtimes/ssh` | host, user, port only. **No key and no password on the wire** — the service completes the handshake and reports a fingerprint |
+
+### Chat surfaces beyond conversations
+
+Planning, Library, project sources, Research and preferences. `/v1/projects` is live;
+the rest 404'd on 2026-08-28. These exist because the web app previously kept all of
+it in `localStorage`, which is not a product:
+
+| Method | Path |
+| --- | --- |
+| GET/POST | `/v1/planning/tasks` |
+| PATCH/DELETE | `/v1/planning/tasks/{id}` |
+| POST | `/v1/planning/tasks/{id}/run` — the run names the conversation it landed in |
+| GET | `/v1/planning/tasks/{id}/runs` |
+| GET/POST | `/v1/library` |
+| DELETE | `/v1/library/{id}` |
+| GET/PATCH/DELETE | `/v1/projects/{id}` |
+| GET/POST | `/v1/projects/{id}/sources` |
+| DELETE | `/v1/projects/{id}/sources/{sourceId}` |
+| GET/POST | `/v1/research/tasks` |
+| GET/PUT | `/v1/me/preferences` — PUT is partial, so one tab cannot clobber another |
+
 ### Bot
 
 Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is

@@ -2,12 +2,20 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { CortexApiClient } from '@cortex-ide/cortex-api';
 
-import { PLANNING_SEED, scheduledTasks, setTaskStatus } from '../planning.ts';
+import {
+  availableTemplates,
+  loadPlanning,
+  planningState,
+  PLANNING_TEMPLATES,
+  resetPlanningForTests,
+  scheduledTasks,
+  setTaskStatus,
+} from '../planning.ts';
 import { setBotClientForTests } from '../bot-client.ts';
 import { createMascot, mascotById, mascots, reconcileMascots, resetBotsForTests } from '../bots.ts';
 import { sendBotMessage } from '../bot-actions.ts';
 import { loadMemory, loadRoutines, loadSkills, panelState, resetBotRuntimeForTests } from '../bot-runtime-store.ts';
-import { createProject, projectById } from '../projects.ts';
+import { chatProjects, createProject, loadProjects, resetProjectsForTests } from '../projects.ts';
 import { harnessStatus } from '../harness.ts';
 import { inboxFromSessions, mergeInbox, postInbox } from '../inbox.ts';
 import { PLUGIN_CARDS } from '../plugins.ts';
@@ -18,24 +26,78 @@ afterEach(() => {
   setBotClientForTests(undefined);
   resetBotsForTests();
   resetBotRuntimeForTests();
+  resetPlanningForTests();
+  resetProjectsForTests();
 });
 
-describe('Planning seed', () => {
-  it('keeps four generalist jobs then Subnet 100 last', () => {
-    expect(PLANNING_SEED.map((task) => task.id)).toEqual([
+describe('Planning', () => {
+  it('keeps four generalist templates then Subnet 100 last', () => {
+    expect(PLANNING_TEMPLATES.map((template) => template.id)).toEqual([
       'todays-notes',
       'unread-mentions',
       'week-ahead',
       'evening-recap',
       'subnet-100',
     ]);
-    expect(PLANNING_SEED[4]?.requiresAccount).toBe(true);
-    expect(scheduledTasks().at(-1)?.id).toBe('subnet-100');
+    expect(PLANNING_TEMPLATES[4]?.requiresAccount).toBe(true);
   });
 
-  it('pauses a job without dropping it', () => {
-    setTaskStatus('todays-notes', 'paused');
-    expect(scheduledTasks().find((task) => task.id === 'todays-notes')?.status).toBe('paused');
+  it('reads the schedule from the account rather than seeding one locally', async () => {
+    const { fetch, calls } = stubFetch([
+      {
+        body: {
+          items: [
+            { id: 'todays-notes', title: "Today's notes", cadence: 'daily', status: 'paused' },
+          ],
+        },
+      },
+    ]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+
+    await loadPlanning();
+
+    expect(calls[0]!.url).toContain('/v1/planning/tasks');
+    expect(scheduledTasks().map((task) => task.id)).toEqual(['todays-notes']);
+    expect(scheduledTasks()[0]?.status).toBe('paused');
+    // The four jobs the account has not added are still offered.
+    expect(availableTemplates().map((template) => template.id)).toEqual([
+      'unread-mentions',
+      'week-ahead',
+      'evening-recap',
+      'subnet-100',
+    ]);
+    expect(globalThis.localStorage?.getItem('cortex.planning.v1')).toBeNull();
+  });
+
+  it('reports a missing planning route as unsupported, not as an empty schedule', async () => {
+    const { fetch } = stubFetch([
+      { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } },
+    ]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+
+    await loadPlanning();
+
+    expect(planningState()).toBe('unsupported');
+    expect(scheduledTasks()).toEqual([]);
+  });
+
+  it('says it is disconnected when no client can be reached', async () => {
+    await loadPlanning();
+    expect(planningState()).toBe('disconnected');
+  });
+
+  it('pauses a job through the API and re-reads the schedule', async () => {
+    const { fetch, calls } = stubFetch([
+      { body: { id: 'todays-notes', status: 'paused' } },
+      { body: { items: [{ id: 'todays-notes', status: 'paused' }] } },
+    ]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+
+    await setTaskStatus('todays-notes', 'paused');
+
+    expect(calls[0]!.method).toBe('PATCH');
+    expect(calls[0]!.body).toEqual({ status: 'paused' });
+    expect(scheduledTasks()[0]?.status).toBe('paused');
   });
 });
 
@@ -67,9 +129,25 @@ describe('Bot computers', () => {
 });
 
 describe('Projects', () => {
-  it('starts empty and does not invent a demo project', () => {
-    const created = createProject('Brief for Ana Moreno');
-    expect(projectById(created.id)?.title).toBe('Brief for Ana Moreno');
+  it('creates on the account and re-reads the list', async () => {
+    const { fetch, calls } = stubFetch([
+      { body: { id: 'proj_1', name: 'Brief for Ana Moreno' } },
+      { body: { items: [{ id: 'proj_1', name: 'Brief for Ana Moreno' }] } },
+    ]);
+    setBotClientForTests(new CortexApiClient({ fetch }));
+
+    const id = await createProject('Brief for Ana Moreno');
+
+    expect(id).toBe('proj_1');
+    expect(calls[0]!.body).toEqual({ name: 'Brief for Ana Moreno' });
+    expect(chatProjects()[0]?.title).toBe('Brief for Ana Moreno');
+    expect(globalThis.localStorage?.getItem('cortex.projects.v1')).toBeNull();
+  });
+
+  it('refuses to create without a connection instead of writing locally', async () => {
+    await expect(createProject('Nowhere')).rejects.toThrow(/connection to Cortex/i);
+    await loadProjects();
+    expect(chatProjects()).toEqual([]);
   });
 });
 

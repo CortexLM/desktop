@@ -11,6 +11,7 @@ import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
+import { addSshRuntime } from '../state/code-hosts.ts';
 import {
   ConnectGitHubScreen,
   SshConnectScreen,
@@ -117,23 +118,44 @@ export function WorkspaceSetupRoute(): JSX.Element {
 /**
  * SSH Connect.
  *
- * Reports that it cannot connect, rather than accepting a host and doing nothing.
- * A remote runtime needs an agent process on the far end and a transport to it;
- * neither exists yet, and a form that takes credentials and discards them is worse
- * than one that says so — it invites the user to type a password.
+ * Registers the server with Cortex, which completes the handshake and reports a
+ * fingerprint. The form still asks only for host, user and port: forwarding a
+ * private key through a browser tab would be storing one there, so the service
+ * holds the credential and this screen never sees it.
+ *
+ * On success it lands on Runtimes, where the new server is listed with its status —
+ * so "did that work?" is answered by the list rather than by the form disappearing.
+ * A backend without the route says so instead of accepting input and dropping it,
+ * which is what this screen used to do for every submission.
  */
 export function SshConnectRoute(): JSX.Element {
   const navigate = useNavigate();
   const [error, setError] = createSignal<string>();
+  const [busy, setBusy] = createSignal(false);
+
+  const connect = async (target: { host: string; user: string; port: string }) => {
+    setBusy(true);
+    setError(undefined);
+    try {
+      const port = Number.parseInt(target.port, 10);
+      await addSshRuntime({
+        host: target.host,
+        user: target.user,
+        ...(Number.isFinite(port) ? { port } : {}),
+      });
+      navigate('/code/runtimes');
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : String(caught));
+    } finally {
+      setBusy(false);
+    }
+  };
 
   return (
     <SshConnectScreen
-      onConnect={() =>
-        setError(
-          'Remote runtimes are not available yet. Sessions run on this machine; the runtime picker on Home shows what is reachable.',
-        )
-      }
-      onCancel={() => navigate('/')}
+      onConnect={(target) => void connect(target)}
+      onCancel={() => navigate('/code/runtimes')}
+      busy={busy()}
       {...(error() ? { error: error()! } : {})}
     />
   );

@@ -21,10 +21,15 @@ export class OpenRouterProvider extends OpenAICompatibleProvider {
     });
   }
 
+  /**
+   * OpenRouter attributes requests to the referring app, and shows the title on
+   * its leaderboards. Both name the product's real home; `cortex-ide.com` is not
+   * a Cortex origin.
+   */
   protected override additionalHeaders(): Record<string, string> {
     return {
-      'HTTP-Referer': 'https://cortex-ide.com',
-      'X-Title': 'Cortex IDE',
+      'HTTP-Referer': 'https://cortex.foundation',
+      'X-Title': 'Cortex',
     };
   }
 }

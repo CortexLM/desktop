@@ -68,6 +68,35 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   { slug: 'code-new-automation', kind: 'route', product: 'code', path: '/code/automations/new', requiresAuth: true, title: 'New automation' },
   { slug: 'code-ssh-connect', kind: 'route', product: 'code', path: '/code/runtimes/ssh', requiresAuth: true, title: 'Connect a server' },
 
+  // ── Code: where runs happen, and the work queued for them ────────────────
+  {
+    slug: 'code-runtimes',
+    kind: 'route',
+    product: 'code',
+    source: 'product',
+    path: '/code/runtimes',
+    requiresAuth: true,
+    title: 'Runtimes',
+  },
+  {
+    slug: 'code-tickets',
+    kind: 'route',
+    product: 'code',
+    source: 'product',
+    path: '/code/tickets',
+    requiresAuth: true,
+    title: 'Tickets',
+  },
+  {
+    slug: 'code-ticket-detail',
+    kind: 'route',
+    product: 'code',
+    source: 'product',
+    path: '/code/tickets/:ticketId',
+    requiresAuth: true,
+    title: 'Ticket',
+  },
+
   // ── Bot (Paper page D-0; not on the Concept 03 manifest yet) ─────────────
   { slug: 'bot-home', kind: 'route', product: 'bot', source: 'product', path: '/bot', title: 'Bot' },
   { slug: 'bot-create', kind: 'route', product: 'bot', source: 'product', path: '/bot/new', title: 'New mascot' },

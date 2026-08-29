@@ -8,6 +8,9 @@
 
 import type { IPCResponse, SecretView } from '@cortex-ide/shared';
 
+import { createCloudSecretsHost } from './cloud-secrets-host.ts';
+import { liveSession } from './realtime-session.ts';
+
 export interface SecretsHost {
   list(): Promise<SecretView[]>;
   create(name: string, value: string): Promise<SecretView>;
@@ -41,7 +44,10 @@ export function detachedSecretsHost(): SecretsHost {
 
 export function resolveSecretsHost(): SecretsHost {
   const api = bridge();
-  if (!api) return detachedSecretsHost();
+  if (!api) {
+    const live = liveSession();
+    return live ? createCloudSecretsHost(live.client) : detachedSecretsHost();
+  }
 
   return {
     list: async () => unwrap(await api.list()).secrets,

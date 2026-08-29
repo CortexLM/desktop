@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { AIProviderRegistry } from '../registry';
 import type { AIProvider, ChatResponse, ProviderModel } from '../providers/base';
@@ -9,7 +9,7 @@ function fakeProvider(id: string, available = true): AIProvider {
     name: id,
     config: { defaultModel: `${id}-default` },
     async chat(): Promise<ChatResponse> {
-      return { content: id, model: id, usage: { inputTokens: 0, outputTokens: 0 } };
+      return { content: id, model: id, usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 } };
     },
     async *stream() {
       return;

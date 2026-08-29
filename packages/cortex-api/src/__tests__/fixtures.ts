@@ -120,6 +120,9 @@ export interface StubResponse {
  * Deliberately not a mock of the client: these tests exercise the real request building,
  * error discrimination and schema validation against real payloads. Only the socket is fake.
  */
+/** Statuses the Response constructor refuses to pair with a body. */
+const NO_BODY_STATUSES = new Set([204, 205, 304]);
+
 export function stubFetch(responses: StubResponse[]): {
   fetch: typeof globalThis.fetch;
   calls: StubCall[];
@@ -144,7 +147,13 @@ export function stubFetch(responses: StubResponse[]): {
     if (!next) throw new Error(`stubFetch: no response queued for ${init?.method ?? 'GET'} ${String(input)}`);
 
     const status = next.status ?? 200;
-    const body = next.text ?? JSON.stringify(next.body ?? {});
+
+    // 204 and 304 are defined to carry no body, and the Response constructor
+    // throws rather than ignoring one — which surfaced as a bogus NETWORK_ERROR.
+    // A DELETE answering 204 is the common case, so it has to be expressible.
+    const body = NO_BODY_STATUSES.has(status)
+      ? null
+      : (next.text ?? JSON.stringify(next.body ?? {}));
 
     return new Response(body, {
       status,

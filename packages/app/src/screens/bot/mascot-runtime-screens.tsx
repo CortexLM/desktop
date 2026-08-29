@@ -1,4 +1,4 @@
-import { For, type JSX, Show } from 'solid-js';
+import { For, type JSX, Match, Show, Switch } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
@@ -19,15 +19,34 @@ function Missing(props: { onBack: () => void }): JSX.Element {
   );
 }
 
-function PanelState(props: { state: BotPanelState; error: string; surface: string }): JSX.Element | null {
-  if (props.state === 'too-old') {
-    const copy = backendTooOldCopy(props.surface);
-    return <HonestState kind="error" title={copy.title} body={copy.body} />;
-  }
-  if (props.state === 'error') {
-    return <HonestState kind="error" title={`Could not load ${props.surface}`} body={props.error} />;
-  }
-  return null;
+/**
+ * The panel's own state, above whatever rows it has.
+ *
+ * `Switch` / `Match` rather than early `return`s for the same reason as the mascot
+ * list: a component body runs once in Solid, so an `if` chain freezes the branch that
+ * was true at first paint — which is always the pre-fetch one.
+ */
+function PanelState(props: { state: BotPanelState; error: string; surface: string }): JSX.Element {
+  return (
+    <Switch>
+      <Match when={props.state === 'loading' || props.state === 'idle'}>
+        <HonestState
+          kind="loading"
+          title={`Loading ${props.surface.toLowerCase()}`}
+          body="Reading this mascot's runtime."
+        />
+      </Match>
+      <Match when={props.state === 'too-old'}>
+        {(() => {
+          const copy = backendTooOldCopy(props.surface);
+          return <HonestState kind="error" title={copy.title} body={copy.body} />;
+        })()}
+      </Match>
+      <Match when={props.state === 'error'}>
+        <HonestState kind="error" title={`Could not load ${props.surface}`} body={props.error} />
+      </Match>
+    </Switch>
+  );
 }
 
 export function BotMemoryScreen(props: {
