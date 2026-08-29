@@ -14,7 +14,7 @@ Chat is the general assistant. It is the default product (`/`).
 | `/projects/:id` | Project | Brief, status, link to sources. |
 | `/projects/:id/sources` | Project sources | Files and connections attached to that project. |
 | `/library` | Library | Saved answers and uploads. |
-| `/plugins` | Plugins | Last item in the Chat sidebar. Official brand marks. |
+| `/plugins` | Plugins | Last item in the Chat sidebar. Catalogue comes from the API. |
 | `/settings` | Chat settings | Defaults for Chat. Code settings stay under `/code/settings`. |
 
 Search in the sidebar opens the command palette. It is not a separate page.
@@ -42,10 +42,23 @@ The client never invents that id.
 
 ## Plugins
 
-Cards: Google Drive, Slack, GitHub, Paper. Official logos only — never a
-generic plug icon. Preferred install path is **Composio**. Until Composio is
-configured the card stays installable and says so; it does not fake a
-connection.
+The catalogue is `GET /v1/plugins/catalog` — the marketplace list, cached
+server-side — rendered as it arrives. The client keeps no list of its own, so
+there is nothing to fall back to and nothing to fall out of date: `is_live:
+false` and a `503` are states the page shows, not reasons to substitute apps
+chosen here. The marketplace lists itself (a `composio` row); that row is
+dropped, because the provider is the install path rather than an app to connect.
+
+Rows carry a monogram, not the service's own mark: the catalogue's `logo_url`
+points at the provider's CDN, which the renderer's `img-src 'self' data:` policy
+blocks — and widening it would make every visit fetch dozens of images from a
+third party.
+
+Connecting needs a Cortex account. `POST /v1/plugins/{slug}/connect` refuses a
+guest with `403 entitlement_required` ("a guest session cannot be signed back
+into to revoke it later"), which is correct and which the UI never shows:
+Connect on a guest opens sign-in, remembers the slug, and finishes the
+connection when the account arrives. See `state/pending-connect.ts`.
 
 ## Honest states
 
@@ -65,6 +78,7 @@ guest session via `POST /v1/auth/guest`, turns via `/v1/realtime` when that
 socket is up, otherwise `POST /v1/conversations/turns` (SSE). Localhost and
 tests stay detached so they do not open a production guest session.
 
-Planning, projects, library, plugin install flags: renderer store +
-`localStorage`, shared by web and desktop, so the pages are real before a
-server schema exists.
+Planning, projects, library and plugin connections live on the account and are
+read from the API on each visit. None of them is mirrored into `localStorage`:
+a schedule that runs while the tab is shut, or a connection another machine
+must be able to revoke, is not something a browser store can stand in for.

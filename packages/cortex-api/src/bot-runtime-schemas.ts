@@ -103,6 +103,9 @@ export const pluginConnectionSchema = z
   .object({
     id: z.string(),
     plugin_id: z.string().optional(),
+    /** The catalogue slug. Which of these the service fills is not yet observed. */
+    slug: z.string().optional(),
+    toolkit_slug: z.string().optional(),
     brand: z.string().optional(),
     name: z.string().optional(),
     connected: z.boolean().optional(),
@@ -112,6 +115,52 @@ export const pluginConnectionSchema = z
 
 export type ApiPluginConnection = z.infer<typeof pluginConnectionSchema>;
 export const pluginConnectionListSchema = listEnvelopeSchema(pluginConnectionSchema);
+
+/**
+ * One app in the marketplace catalogue, as `GET /v1/plugins/catalog` returns it
+ * (observed 2026-08-29).
+ *
+ * Only `slug` is required. Everything else is presentation the provider may or
+ * may not carry for a given app, and a card with no description is a better
+ * answer than a parse failure that empties the whole page.
+ */
+export const pluginCatalogEntrySchema = z
+  .object({
+    slug: z.string(),
+    name: z.string().optional(),
+    description: z.string().optional(),
+    category: z.string().optional(),
+    /** `oauth2`, `oauth1`, `api_key`, `none`. */
+    auth: z.string().optional(),
+    managed_auth: z.boolean().optional(),
+    logo_url: z.string().optional(),
+    app_url: z.string().optional(),
+    tool_count: z.number().optional(),
+    connected: z.boolean().optional(),
+  })
+  .passthrough();
+
+export type ApiPluginCatalogEntry = z.infer<typeof pluginCatalogEntrySchema>;
+
+/**
+ * The catalogue envelope.
+ *
+ * `is_live` is the field that matters: the list is cached server-side, so a
+ * response arrives whether or not the marketplace answered. `false` means the
+ * client is looking at something stale or empty and must say so — it is not an
+ * invitation to fall back to a list of apps chosen here.
+ */
+export const pluginCatalogSchema = z
+  .object({
+    items: z.array(pluginCatalogEntrySchema),
+    is_live: z.boolean().optional(),
+    /** Who the marketplace is, e.g. `composio`. Named by the service, not by us. */
+    provider: z.string().optional(),
+    source: z.string().optional(),
+  })
+  .passthrough();
+
+export type ApiPluginCatalog = z.infer<typeof pluginCatalogSchema>;
 
 export const pluginRowSchema = z
   .object({

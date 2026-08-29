@@ -260,10 +260,54 @@ SSE events (verbatim types): `disclosure`, `reasoning_delta`, `reasoning_done`,
 `POST /v1/projects` requires `{ name }`. Guests receive `403 entitlement_required`
 (`required_plan: "free"`). That is a real gate, not a missing route.
 
+### Plugins (observed 2026-08-29)
+
+`GET /v1/plugins/catalog` → `200`, and it is live:
+
+```json
+{ "items": [{ "slug": "gmail", "name": "Gmail", "description": "…",
+    "category": "email", "auth": "oauth2", "managed_auth": true,
+    "logo_url": "https://logos.composio.dev/api/gmail",
+    "app_url": "https://mail.google.com", "tool_count": 61 }],
+  "is_live": true, "provider": "composio", "source": "marketplace" }
+```
+
+Sixty apps on the probe, `slug` the only field present on every one. The list is
+cached server-side, so a response arrives whether or not the marketplace
+answered — `is_live` is how you tell, and `false` means there is nothing to show
+rather than something to replace with a list of the client's own. Note the
+catalogue includes the provider itself as a `composio` row; that is the install
+path, not an app to connect, and the client drops it.
+
+`GET /v1/plugins/connections` → `{ items: [], has_more: false }` for a guest. A
+populated row has not been seen, so which field carries the catalogue slug is
+still unknown.
+
+`GET /v1/plugins` is **not** the catalogue. It answers a bare array of runtime
+capability flags — `[{"key":"browser","name":"Navigateur","available":true}, …]`,
+names in French — which is not what `pluginListSchema` describes. Use
+`getPluginCatalog`.
+
+`POST /v1/plugins/{slug}/connect` needs a real account, and the success shape is
+therefore still unobserved (no probe here has one). Both refusals:
+
+```
+guest      403 {"code":"entitlement_required","title":"Your plan does not include this",
+                "detail":"Connecting an app needs an account: a guest session cannot be
+                          signed back into to revoke it later. Sign in first."}
+no session 401 {"code":"unauthenticated","detail":"No session. Sign in, or begin a guest
+                          session at POST /v1/auth/guest."}
+```
+
+The guest case shares `entitlement_required` with the plan gate on
+`POST /v1/projects`, so the code alone cannot separate "sign in" from "upgrade";
+`isAccountRequired` matches the wording as well, and the UI opens sign-in rather
+than showing either message.
+
 ### Not landed (typed + mocked)
 
 `GET/WS /v1/realtime` → `404`. Bot (`/v1/mascots`, `/v1/bots`, `/v1/computers`),
-Planning, Library, Plugins, Code hosts, and `/v1/notifications` likewise `404`.
+Planning, Library, Code hosts, and `/v1/notifications` likewise `404`.
 `packages/cortex-api` exposes a typed WebSocket client, an SSE fallback, and
 `createHttpProductSurface` for mascots, Code hosts/sessions, Planning, Library,
 Plugins, and notifications. In-process mocks are **not** on the public entry
@@ -373,7 +417,7 @@ Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
 | CRUD + pause/resume | `/v1/mascots/{id}/routines` |
 | POST/GET | `/v1/mascots/{id}/tasks` |
 | POST/GET | `/inbox`, `/groups`, `/handoff`, `/teach` |
-| GET | `/v1/plugins`, `/v1/plugins/connections` |
+| GET | `/v1/plugins/catalog`, `/v1/plugins/connections` — both live, see above |
 
 Agent turn events on `/v1/realtime`: `token`, `tool_call`, `tool_result`,
 `send_to_user`, `ask_user`, `computer_offline`.
