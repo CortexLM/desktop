@@ -18,7 +18,7 @@ import { loadMemory, loadRoutines, loadSkills, panelState, resetBotRuntimeForTes
 import { chatProjects, createProject, loadProjects, resetProjectsForTests } from '../projects.ts';
 import { harnessStatus } from '../harness.ts';
 import { inboxFromSessions, mergeInbox, postInbox } from '../inbox.ts';
-import { PLUGIN_CARDS } from '../plugins.ts';
+import { resetPluginsForTests } from '../plugins.ts';
 import { stubFetch } from '../../../../cortex-api/src/__tests__/fixtures.ts';
 
 afterEach(() => {
@@ -28,6 +28,7 @@ afterEach(() => {
   resetBotRuntimeForTests();
   resetPlanningForTests();
   resetProjectsForTests();
+  resetPluginsForTests();
 });
 
 describe('Planning', () => {
@@ -152,9 +153,16 @@ describe('Projects', () => {
 });
 
 describe('Plugins', () => {
-  it('lists the four official brands and installs via Composio', () => {
-    expect(PLUGIN_CARDS.map((card) => card.id)).toEqual(['drive', 'slack', 'github', 'paper']);
-    expect(PLUGIN_CARDS.every((card) => card.installVia === 'composio')).toBe(true);
+  it('has no catalogue of its own to fall back on', async () => {
+    // There used to be four hardcoded brand cards here. They rendered the same
+    // whether the marketplace was live or down, so an outage looked like a
+    // working page until the user clicked Connect.
+    const module = await import('../plugins.ts');
+    expect(Object.keys(module)).not.toContain('PLUGIN_CARDS');
+
+    // Nothing is listed until the API has answered.
+    expect(module.pluginApps()).toEqual([]);
+    expect(module.pluginState()).toBe('idle');
   });
 });
 

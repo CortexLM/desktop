@@ -156,21 +156,34 @@ describe('hibernated computer and empty videos', () => {
 });
 
 describe('PluginsScreen extra states', () => {
+  const gmail = { slug: 'gmail', name: 'Gmail', summary: "Google's email service." };
+
   it('covers loading, unavailable, error, and disconnect', () => {
-    const loading = render(() => <PluginsScreen connected={[]} onConnect={vi.fn()} loading />);
+    const loading = render(() => (
+      <PluginsScreen apps={[]} connected={[]} onConnect={vi.fn()} loading />
+    ));
     expect(screen.getByText('Loading plugins')).toBeInTheDocument();
     loading.unmount();
     const down = render(() => (
-      <PluginsScreen connected={[]} onConnect={vi.fn()} unavailable error="Composio missing" />
+      <PluginsScreen apps={[]} connected={[]} onConnect={vi.fn()} unavailable error="No marketplace" />
     ));
     expect(screen.getByText('Plugins unavailable')).toBeInTheDocument();
     down.unmount();
-    const errored = render(() => <PluginsScreen connected={[]} onConnect={vi.fn()} error="boom" />);
+    const errored = render(() => (
+      <PluginsScreen apps={[]} connected={[]} onConnect={vi.fn()} error="boom" />
+    ));
     expect(screen.getByText('Could not load plugins')).toBeInTheDocument();
     errored.unmount();
     const onDisconnect = vi.fn();
-    render(() => <PluginsScreen connected={['drive']} onConnect={vi.fn()} onDisconnect={onDisconnect} />);
-    fireEvent.click(screen.getByRole('button', { name: 'Disconnect' }));
-    expect(onDisconnect).toHaveBeenCalledWith('drive');
+    render(() => (
+      <PluginsScreen
+        apps={[gmail]}
+        connected={['gmail']}
+        onConnect={vi.fn()}
+        onDisconnect={onDisconnect}
+      />
+    ));
+    fireEvent.click(screen.getByRole('button', { name: 'Disconnect Gmail' }));
+    expect(onDisconnect).toHaveBeenCalledWith('gmail');
   });
 });

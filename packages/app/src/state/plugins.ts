@@ -1,7 +1,15 @@
 /**
- * Chat plugins. Catalog and connection state come from the API.
- * A 503 is "Composio is not configured". The four brand cards stay as
- * the product lock; they are never shown as connected unless the API says so.
+ * Chat plugins: the marketplace catalogue, and the account's connections to it.
+ *
+ * The catalogue is whatever `GET /v1/plugins/catalog` returns — the provider's
+ * list, cached server-side. Nothing here adds to it, orders it, or stands in
+ * for it.
+ *
+ * This file used to hold four hardcoded brand cards. They rendered identically
+ * whether the marketplace was live, misconfigured, or unreachable, which is
+ * exactly when a plugins page must show nothing: a Drive card that cannot be
+ * connected is worse than an empty screen, because the user spends their click
+ * finding that out. `is_live: false` and a `503` are now states, not fallbacks.
  */
 
 import { createSignal } from 'solid-js';
@@ -10,102 +18,183 @@ import {
   classifyBotError,
   connectPlugin,
   disconnectPlugin,
+  getPluginCatalog,
+  isAccountRequired,
   listPluginConnections,
-  listPlugins,
   PLUGIN_UNAVAILABLE,
-  type ApiPlugin,
+  type ApiPluginCatalogEntry,
   type ApiPluginConnection,
 } from '@cortex-ide/cortex-api';
 
 import { botClient } from './bot-client.ts';
 
-export type PluginBrand = 'drive' | 'slack' | 'github' | 'paper';
-
-export interface PluginCard {
-  id: PluginBrand;
+/** One row on the Plugins page, projected from the catalogue. */
+export interface PluginApp {
+  slug: string;
   name: string;
   summary: string;
-  installVia: 'composio';
+  category?: string;
+  /** `oauth2`, `api_key`, `none` … as the provider labels it. */
+  auth?: string;
+  toolCount?: number;
 }
 
-export const PLUGIN_CARDS: readonly PluginCard[] = [
-  {
-    id: 'drive',
-    name: 'Google Drive',
-    summary: 'Files and folders Ana already has in Drive.',
-    installVia: 'composio',
-  },
-  {
-    id: 'slack',
-    name: 'Slack',
-    summary: 'Channels and mentions, without leaving Cortex.',
-    installVia: 'composio',
-  },
-  {
-    id: 'github',
-    name: 'GitHub',
-    summary: 'Issues and pull requests on repositories you can see.',
-    installVia: 'composio',
-  },
-  {
-    id: 'paper',
-    name: 'Paper',
-    summary: 'Design files from Paper, the same source this UI is drawn from.',
-    installVia: 'composio',
-  },
-];
+/*
+ * The catalogue also carries `logo_url`, pointing at the provider's CDN. It is
+ * deliberately not projected: the renderer's CSP is `img-src 'self' data:`, so
+ * those would not load, and widening it would have every visit to Plugins fetch
+ * sixty images from a third party. A monogram is drawn from the name instead.
+ * Real marks would need the backend to serve them from its own origin.
+ */
 
-export type PluginLoadState = 'idle' | 'loading' | 'ready' | 'empty' | 'unavailable' | 'error';
+export type PluginLoadState =
+  | 'idle'
+  | 'loading'
+  | 'ready'
+  /** The marketplace answered and has nothing for this account. */
+  | 'empty'
+  /** No marketplace configured on this backend, or no way to reach the API. */
+  | 'unavailable'
+  /** The backend answered from its cache and told us the marketplace is down. */
+  | 'not-live'
+  | 'error';
 
-const [catalog, setCatalog] = createSignal<ApiPlugin[]>([]);
+const [apps, setApps] = createSignal<PluginApp[]>([]);
 const [connections, setConnections] = createSignal<ApiPluginConnection[]>([]);
+/** Slugs the catalogue itself marked connected for the calling account. */
+const [catalogConnected, setCatalogConnected] = createSignal<ReadonlySet<string>>(new Set());
+const [provider, setProvider] = createSignal('');
 const [pluginState, setPluginState] = createSignal<PluginLoadState>('idle');
 const [pluginError, setPluginError] = createSignal('');
 
-export { catalog as pluginCatalog, connections as pluginConnections, pluginState, pluginError };
+export {
+  apps as pluginApps,
+  connections as pluginConnections,
+  provider as pluginProvider,
+  pluginState,
+  pluginError,
+};
 
-export function isPluginConnected(id: PluginBrand): boolean {
-  if (connections().some((row) => row.brand === id || row.plugin_id === id || row.id === id)) {
-    return true;
-  }
-  return catalog().some((row) => (row.brand === id || row.id === id) && row.connected === true);
+function toPluginApp(entry: ApiPluginCatalogEntry): PluginApp {
+  const app: PluginApp = {
+    slug: entry.slug,
+    name: entry.name?.trim() || entry.slug,
+    summary: entry.description?.trim() ?? '',
+  };
+  if (entry.category) app.category = entry.category;
+  if (entry.auth) app.auth = entry.auth;
+  if (typeof entry.tool_count === 'number') app.toolCount = entry.tool_count;
+  return app;
+}
+
+/**
+ * The marketplace lists itself — the live catalogue carries a `composio` entry
+ * describing Composio. It is the install path, not an app anyone connects here,
+ * so the provider's own row is dropped. Matched against the `provider` the
+ * response names rather than a hardcoded slug, so this keeps working if the
+ * service ever changes marketplace.
+ */
+function withoutProviderItself(
+  entries: readonly ApiPluginCatalogEntry[],
+  providerSlug: string,
+): ApiPluginCatalogEntry[] {
+  const own = providerSlug.trim().toLowerCase();
+  if (!own) return [...entries];
+  return entries.filter((entry) => entry.slug.trim().toLowerCase() !== own);
+}
+
+/**
+ * Which field of a connection row carries the catalogue slug is not yet
+ * observed — the route has only ever answered an empty list — so every
+ * plausible one is compared rather than one being guessed at.
+ */
+export function isPluginConnected(slug: string): boolean {
+  if (catalogConnected().has(slug)) return true;
+  return connections().some((row) =>
+    [row.slug, row.toolkit_slug, row.plugin_id, row.brand, row.id].includes(slug),
+  );
+}
+
+function clear(state: PluginLoadState, message: string): void {
+  setApps([]);
+  setConnections([]);
+  setCatalogConnected(new Set<string>());
+  setPluginState(state);
+  setPluginError(message);
 }
 
 export async function reconcilePlugins(): Promise<void> {
   const client = botClient();
   if (!client) {
-    setPluginState('unavailable');
-    setPluginError('The plugin catalog is not reachable from this origin.');
-    setCatalog([]);
-    setConnections([]);
+    clear('unavailable', 'The plugin catalogue is not reachable from this origin.');
     return;
   }
+
   setPluginState('loading');
   try {
-    const [rows, linked] = await Promise.all([listPlugins(client), listPluginConnections(client)]);
-    setCatalog(rows);
+    // The connections are the account's and the catalogue is public, so a
+    // failure to read connections must not empty the catalogue with it.
+    const [catalogue, linked] = await Promise.all([
+      getPluginCatalog(client),
+      listPluginConnections(client).catch(() => [] as ApiPluginConnection[]),
+    ]);
+
+    setProvider(catalogue.provider ?? '');
+
+    if (catalogue.is_live === false) {
+      clear('not-live', 'The marketplace did not answer, so there is no catalogue to show.');
+      return;
+    }
+
+    const entries = withoutProviderItself(catalogue.items, catalogue.provider ?? '');
+    setApps(entries.map(toPluginApp));
+    setCatalogConnected(
+      new Set(entries.filter((entry) => entry.connected === true).map((entry) => entry.slug)),
+    );
     setConnections(linked);
-    setPluginState(rows.length === 0 && linked.length === 0 ? 'empty' : 'ready');
+    setPluginState(entries.length === 0 ? 'empty' : 'ready');
     setPluginError('');
   } catch (error) {
     const classified = classifyBotError(error);
-    setCatalog([]);
-    setConnections([]);
-    setPluginState(classified.code === PLUGIN_UNAVAILABLE ? 'unavailable' : 'error');
-    setPluginError(classified.message);
+    clear(
+      classified.code === PLUGIN_UNAVAILABLE ? 'unavailable' : 'error',
+      classified.message,
+    );
   }
 }
 
-export async function installPlugin(id: PluginBrand): Promise<void> {
+export type PluginConnectOutcome = 'connected' | 'needs-account';
+
+/**
+ * Connects one app, or reports that the session cannot.
+ *
+ * `needs-account` is a second line of defence behind the caller's own check on
+ * the account: a session can look signed in here and still be a guest to the
+ * service. Either way the answer is the sign-in screen, so the refusal is
+ * returned rather than thrown — its message explains why a guest is refused,
+ * which is not something to put in front of the user.
+ */
+export async function installPlugin(slug: string): Promise<PluginConnectOutcome> {
   const client = botClient();
   if (!client) throw new Error('Plugins are not reachable.');
-  await connectPlugin(client, id);
+  try {
+    await connectPlugin(client, slug);
+  } catch (error) {
+    if (isAccountRequired(error)) return 'needs-account';
+    throw error;
+  }
+  await reconcilePlugins();
+  return 'connected';
+}
+
+export async function removePlugin(slug: string): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('Plugins are not reachable.');
+  await disconnectPlugin(client, slug);
   await reconcilePlugins();
 }
 
-export async function removePlugin(id: PluginBrand): Promise<void> {
-  const client = botClient();
-  if (!client) throw new Error('Plugins are not reachable.');
-  await disconnectPlugin(client, id);
-  await reconcilePlugins();
+export function resetPluginsForTests(): void {
+  setProvider('');
+  clear('idle', '');
 }
