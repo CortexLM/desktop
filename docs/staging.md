@@ -39,8 +39,8 @@ only behind `CORTEX_ALLOW_TEST_DOUBLES=1` (set in Vitest configs).
 Local `localStorage` stores (Planning seed, library, inbox) are UI caches.
 Bot mascots, messages, computer lifecycle, videos, and plugin connections
 are API-backed. The mascot list cache must reconcile on open. A 404 on a
-Grok-core route is “backend too old”, not a local stand-in. A 503 on
-plugins is “Composio is not configured”. See [bot-grok-core.md](./bot-grok-core.md).
+Cortex Bot runtime route is “backend too old”, not a local stand-in. A 503 on
+plugins is “Composio is not configured”. See [bot-runtime.md](./bot-runtime.md).
 
 ## Product locks
 
@@ -57,7 +57,7 @@ PRs into `staging` run `.github/workflows/test-suite.yml` (same unit / IPC /
 e2e jobs as `main`). Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is
 off while the staging AWS account is CLOSED. No AWS keys in git.
 
-## Linux Grok box
+## Linux Bot box
 
 ```bash
 bun run test:staging-local

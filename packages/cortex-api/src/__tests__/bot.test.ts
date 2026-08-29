@@ -37,7 +37,7 @@ import {
   listRoutines,
   listSkills,
   runSkill,
-} from '../bot-grok.ts';
+} from '../bot-runtime.ts';
 import { connectPlugin, listPluginConnections, listPlugins } from '../bot-plugins.ts';
 import { stubFetch } from './fixtures.ts';
 
@@ -177,7 +177,7 @@ describe('bot schemas', () => {
   });
 });
 
-describe('grok core', () => {
+describe('bot runtime', () => {
   it('lists memory, skills, and routines on the real paths', async () => {
     const { client, calls } = clientFor([
       { body: { items: [{ id: 'f1', tier: 'profile', text: 'Likes tea' }], has_more: false } },

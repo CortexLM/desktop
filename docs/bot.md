@@ -56,5 +56,5 @@ not a generic screen grab shared across bots.
 The mascot list, messages, computer lifecycle, and videos are server-side
 (`packages/cortex-api`). The renderer may cache the last successful **list**
 in `localStorage` and must reconcile on open. Writes never succeed by
-updating that cache alone. See [bot-grok-core.md](./bot-grok-core.md).
+updating that cache alone. See [bot-runtime.md](./bot-runtime.md).
 This client never stores SSH or host keys.

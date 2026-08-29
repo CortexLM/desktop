@@ -24,7 +24,7 @@ import {
   postHandoff,
   postTeach,
   resumeRoutine,
-} from '../bot-grok.ts';
+} from '../bot-runtime.ts';
 import { mascotPath, skillPath as skillPathFn, withQuery } from '../bot-paths.ts';
 import { disconnectPlugin } from '../bot-plugins.ts';
 import {
@@ -32,7 +32,7 @@ import {
   memoryFactSchema,
   routineRowSchema,
   skillRowSchema,
-} from '../bot-grok-schemas.ts';
+} from '../bot-runtime-schemas.ts';
 import { stubFetch } from './fixtures.ts';
 
 function clientFor(responses: Parameters<typeof stubFetch>[0]) {
@@ -49,7 +49,7 @@ describe('bot paths', () => {
   });
 });
 
-describe('grok writes', () => {
+describe('bot runtime writes', () => {
   it('covers memory, skill, routine, task, inbox, groups, handoff, teach', async () => {
     const { client, calls } = clientFor([
       { body: { id: 'f2', tier: 'note', text: 'prefers dark' } },
@@ -114,7 +114,7 @@ describe('plugin disconnect and honest errors', () => {
   });
 });
 
-describe('grok schemas', () => {
+describe('bot runtime schemas', () => {
   it('keeps extra keys and optional fields', () => {
     expect(memoryFactSchema.parse({ id: 'f1', extra: true }).extra).toBe(true);
     expect(skillRowSchema.parse({ slug: 's' }).name).toBeUndefined();

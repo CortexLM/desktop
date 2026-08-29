@@ -1,4 +1,4 @@
-# Bot Grok core — client loop
+# Bot runtime — client loop
 
 The Bot UI talks to `api.cortex.foundation` through `@cortex-ide/cortex-api`.
 localStorage is only a list cache. Create, send, hibernate, videos, memory,
@@ -35,7 +35,7 @@ It does not generate a fake desktop.
 
 A VNC ticket is still `{ ticket_hash }` only.
 
-## Grok surfaces
+## Bot runtime surfaces
 
 | Surface | Routes | Missing backend |
 | --- | --- | --- |

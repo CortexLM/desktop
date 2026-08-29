@@ -8,7 +8,7 @@ import { backendTooOldCopy } from '@cortex-ide/cortex-api';
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
-import type { GrokPanelState } from '../../state/bot-grok-store.ts';
+import type { BotPanelState } from '../../state/bot-runtime-store.ts';
 import type { Mascot } from '../../state/bot-map.ts';
 
 import '../chat/product-pages.css';
@@ -19,7 +19,7 @@ function Missing(props: { onBack: () => void }): JSX.Element {
   );
 }
 
-function PanelState(props: { state: GrokPanelState; error: string; surface: string }): JSX.Element | null {
+function PanelState(props: { state: BotPanelState; error: string; surface: string }): JSX.Element | null {
   if (props.state === 'too-old') {
     const copy = backendTooOldCopy(props.surface);
     return <HonestState kind="error" title={copy.title} body={copy.body} />;
@@ -33,7 +33,7 @@ function PanelState(props: { state: GrokPanelState; error: string; surface: stri
 export function BotMemoryScreen(props: {
   mascot?: Mascot;
   facts: readonly ApiMemoryFact[];
-  state: GrokPanelState;
+  state: BotPanelState;
   error: string;
   onForget: (id: string, tier: 'profile' | 'log') => void;
   onBack: () => void;
@@ -79,7 +79,7 @@ export function BotSkillsScreen(props: {
   mascot?: Mascot;
   skills: readonly ApiSkill[];
   doc?: ApiSkill;
-  state: GrokPanelState;
+  state: BotPanelState;
   error: string;
   onOpen: (slug: string) => void;
   onRun: (slug: string) => void;
@@ -124,7 +124,7 @@ export function BotSkillsScreen(props: {
 export function BotRoutinesScreen(props: {
   mascot?: Mascot;
   routines: readonly ApiRoutine[];
-  state: GrokPanelState;
+  state: BotPanelState;
   error: string;
   draftName: string;
   onDraftName: (value: string) => void;
@@ -161,7 +161,7 @@ function RoutineForm(props: {
   onDraftName: (value: string) => void;
   onCreate: () => void;
   routines: readonly ApiRoutine[];
-  state: GrokPanelState;
+  state: BotPanelState;
   onToggle: (routine: ApiRoutine) => void;
 }): JSX.Element {
   return (
@@ -201,7 +201,7 @@ export function BotGroupsScreen(props: {
   mascot?: Mascot;
   groups: readonly ApiBotGroup[];
   inbox: readonly ApiBotInboxItem[];
-  state: GrokPanelState;
+  state: BotPanelState;
   error: string;
   toId: string;
   note: string;
@@ -259,7 +259,7 @@ function HandoffForm(props: {
 function GroupLists(props: {
   groups: readonly ApiBotGroup[];
   inbox: readonly ApiBotInboxItem[];
-  state: GrokPanelState;
+  state: BotPanelState;
 }): JSX.Element {
   return (
     <>

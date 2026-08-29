@@ -6,7 +6,7 @@ import { PLANNING_SEED, scheduledTasks, setTaskStatus } from '../planning.ts';
 import { setBotClientForTests } from '../bot-client.ts';
 import { createMascot, mascotById, mascots, reconcileMascots, resetBotsForTests } from '../bots.ts';
 import { sendBotMessage } from '../bot-actions.ts';
-import { loadMemory, loadRoutines, loadSkills, panelState, resetGrokForTests } from '../bot-grok-store.ts';
+import { loadMemory, loadRoutines, loadSkills, panelState, resetBotRuntimeForTests } from '../bot-runtime-store.ts';
 import { createProject, projectById } from '../projects.ts';
 import { harnessStatus } from '../harness.ts';
 import { inboxFromSessions, mergeInbox, postInbox } from '../inbox.ts';
@@ -17,7 +17,7 @@ afterEach(() => {
   globalThis.localStorage?.clear();
   setBotClientForTests(undefined);
   resetBotsForTests();
-  resetGrokForTests();
+  resetBotRuntimeForTests();
 });
 
 describe('Planning seed', () => {
@@ -127,7 +127,7 @@ describe('Bot message writes', () => {
   });
 });
 
-describe('Grok panels', () => {
+describe('Bot runtime panels', () => {
   it('loads memory, skills, and routines from the API', async () => {
     const { fetch, calls } = stubFetch([
       { body: { items: [{ id: 'f1', tier: 'profile', text: 'Likes tea' }], has_more: false } },
@@ -145,7 +145,7 @@ describe('Grok panels', () => {
     expect(panelState()).toBe('ready');
   });
 
-  it('does not invent rows when the Grok routes are missing', async () => {
+  it('does not invent rows when the Bot runtime routes are missing', async () => {
     const missing = { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } };
     const { fetch } = stubFetch([missing, missing]);
     setBotClientForTests(new CortexApiClient({ fetch }));
