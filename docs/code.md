@@ -14,12 +14,16 @@ Code is the coding-agent workbench. Every Code route lives under `/code`.
 | `/code/usage` | Usage (account) |
 | `/code/settings` | Providers, workspace defaults, remote host |
 | `/code/settings/integrations` | Integrations |
-| `/code/secrets` | Secrets (values never return to the renderer) |
 | `/code/notifications` | Inbox of notable events |
 | `/code/runtimes/ssh` | Connect a server (keys stay server-side) |
 
 Permissions on a session are **Allow / Always / Deny**. File writes and shell
 commands are not silent.
+
+There is **no Secrets destination**. Code does not offer a screen for storing
+values, and nothing in Code asks for a token to paste
+([`.rules/06-product.md`](../.rules/06-product.md) § 6.2.1). Provider credentials
+are entered in Settings → Providers and go main → keychain.
 
 ## Harness
 
@@ -54,7 +58,7 @@ SSH and host keys are not downloaded to the client.
 
 ## Honest states
 
-Signed-out: Home, Sessions, Session detail, Settings, Secrets work with
+Signed-out: Home, Sessions, Session detail and Settings work with
 local / BYO providers on desktop. Automations, Review, Usage, SSH connect
 are gated.
 

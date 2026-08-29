@@ -23,13 +23,13 @@ Every `resolve*Host()` picks in the same order:
 
 The cloud branch is what makes the web app usable. Without it `resolveHost()` fell
 through to detached, whose `startDeviceFlow()` rejects — so a browser could not sign
-in at all, and Settings, Secrets and Automations were permanently read-only.
+in at all, and Settings and Automations were permanently read-only.
 
-| Host | `host.ts` | `session-host.ts` | `settings-host.ts` | `secrets-host.ts` | `automation-host.ts` |
-| --- | --- | --- | --- | --- | --- |
-| Electron | IPC | IPC | IPC | IPC | IPC |
-| Cloud | `cloud-host.ts` | `cloud-session-host.ts` | `cloud-settings-host.ts` | `cloud-secrets-host.ts` | `cloud-automation-host.ts` |
-| Detached | rejects | empty + rejects | defaults + rejects | empty + rejects | empty + rejects |
+| Host | `host.ts` | `session-host.ts` | `settings-host.ts` | `automation-host.ts` |
+| --- | --- | --- | --- | --- |
+| Electron | IPC | IPC | IPC | IPC |
+| Cloud | `cloud-host.ts` | `cloud-session-host.ts` | `cloud-settings-host.ts` | `cloud-automation-host.ts` |
+| Detached | rejects | empty + rejects | defaults + rejects | empty + rejects |
 
 ## What is shared
 

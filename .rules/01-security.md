@@ -41,10 +41,12 @@ Corollaries:
 - A new preload namespace must be added to the exposure-surface test **on
   purpose**. If a channel would let the renderer read a credential, the channel
   is wrong, not the test.
-- Secrets written on `/code/secrets` are write-only from the renderer's point of
-  view. The form never reads a value back, and the service never returns one.
 - Settings → Providers is the only place API keys are entered. They go
   main → keychain and are never echoed into a signal, a log, or a test snapshot.
+- **Code has no Secrets page**, so there is no renderer surface that collects a
+  value to store (`06-product.md` § 6.2.1). Do not add one back under another
+  name: a field asking the user to paste a token into the least-trusted process is
+  the shape this rule exists to keep out.
 
 ## 1.2 No secrets in git
 
@@ -91,8 +93,7 @@ there is a blocker, not a warning.
 
 Anonymous use is a product requirement, not a degraded mode. Without an account
 the app opens onto a usable workspace: on desktop, Chat with a local or BYO
-provider, and Code Home, Sessions, Session detail, Settings and Secrets all
-work.
+provider, and Code Home, Sessions, Session detail and Settings all work.
 
 Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect
 — are **shown and locked**, never hidden. A locked row explains what an account

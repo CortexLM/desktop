@@ -130,14 +130,21 @@ API keys are entered; they never appear in logs.
 - The UI is pixel-matched to the Paper file *Cortex FF1 v1* (`01M0WGA7TGHQFZ2H22QFE3YZ9C`), page
   **Concept 03** (group `C3`); `design/paper/screens.json` is the generated manifest and
   `scripts/paper-sync.ts` is the sync. The routed screens are the artboards: home, sessions inbox,
-  session detail, automations, review, usage, settings (+ integrations), secrets, sign-in, device
+  session detail, automations, review, usage, settings (+ integrations), sign-in, device
   code, onboarding flows, SSH connect. `packages/app/src/routes.ts` is the source of truth and a
-  test asserts it against the Paper manifest.
+  test asserts it against the Paper manifest. `NON_APP_SCREENS` in `scripts/paper-sync.ts` holds the
+  boards the app deliberately does not draw, so they stay out of the manifest, specs and baselines.
 - Design values come from `@cortex-ide/tokens`; do not hardcode colours or spacing. Regenerate with
   the `paper:*` scripts rather than editing generated files by hand.
 - Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
   *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
+- **No Secrets page in Cortex Code.** There is no `/code/secrets` route and no Secrets screen,
+  sidebar item, Home card, Settings row or command-palette entry — and no field anywhere in Code
+  that asks the user to paste a token. Provider keys are entered only in Settings → Providers and
+  go main → keychain. `/v1/code/secrets` remains in `packages/cortex-api` for other callers; no
+  screen reaches it. Bot's secret-request card (`docs/bot-runtime.md`) is a different surface
+  ([`.rules/06-product.md`](./.rules/06-product.md) § 6.2.1).
 - **Bot mascots are one Kernel pebble.** Identity is a look (Meadow, Teal, Terracotta,
   Amber, Plum, Slate), a resting face, and a ±5° tilt. Live states (idle, thinking,
   working, notify, success) are procedural SVG + CSS/WAAPI in
