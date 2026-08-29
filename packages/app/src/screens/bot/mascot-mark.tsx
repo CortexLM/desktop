@@ -108,7 +108,7 @@ function EyesSmile(): JSX.Element {
 }
 
 function prefersReducedMotion(): boolean {
-  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 }
 
 function runIdleBlink(node: SVGGElement | undefined, face: MascotFace | 'smile', motion: MascotMotion): void {

@@ -38,7 +38,7 @@ export const MASCOT_LOOKS: readonly MascotLookSwatch[] = [
 ];
 
 export const MASCOT_FACES: readonly { id: MascotFace; label: string }[] = [
-  { id: 'idle', label: 'Open' },
+  { id: 'idle', label: 'Open eyes' },
   { id: 'slit', label: 'Narrow' },
   { id: 'wink', label: 'Wink' },
 ];
