@@ -108,7 +108,7 @@ describe('bot actions and hydrate', () => {
     expect(mascotById('mst_1')?.computer.status).toBe('running');
   });
 
-  it('hydrates messages and videos from the API and caches only on list', async () => {
+  it('hydrates messages and videos from the API and writes nothing to the browser', async () => {
     clientFor([
       { body: { items: [{ id: 'mst_1', name: 'Scout' }], has_more: false } },
       { body: { id: 'mst_1', name: 'Scout' } },
@@ -118,9 +118,7 @@ describe('bot actions and hydrate', () => {
     ]);
     await reconcileMascots();
     expect(loadState()).toBe('ready');
-    expect(JSON.parse(globalThis.localStorage?.getItem('cortex.bots.cache.v2') ?? '[]')[0]?.id).toBe(
-      'mst_1',
-    );
+    expect(globalThis.localStorage?.length ?? 0).toBe(0);
     await hydrateMascot('mst_1');
     expect(mascotById('mst_1')?.messages[0]?.content).toBe('hi');
     expect(mascotById('mst_1')?.videos[0]?.id).toBe('vid_1');

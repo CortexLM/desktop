@@ -220,6 +220,36 @@ describe('computer, videos, and settings', () => {
     expect(screen.getByText('Clip')).toBeInTheDocument();
   });
 
+  it('offers no desktop and quotes no hardware for a mascot with no computer', () => {
+    // `mapComputer` used to default an absent computer to a hibernated
+    // 4 vCPU / 16 GiB box, so this screen showed a Wake button and a spec line
+    // for a machine the farm had never allocated.
+    const unprovisioned: Mascot = {
+      ...mascot,
+      computer: { id: 'pc_mst_1', mascotId: 'mst_1', status: 'empty' },
+    };
+    render(() => (
+      <BotComputerScreen
+        mascot={unprovisioned}
+        shellLog=""
+        files={[]}
+        onWake={vi.fn()}
+        onHibernate={vi.fn()}
+        onStop={vi.fn()}
+        onInput={vi.fn()}
+        onShell={vi.fn()}
+        onOpenFile={vi.fn()}
+        onToggleRecord={vi.fn()}
+        onBack={vi.fn()}
+        onGo={vi.fn()}
+      />
+    ));
+
+    expect(screen.getByText('No computer yet')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Wake' })).toBeNull();
+    expect(screen.queryByText(/vCPU/)).toBeNull();
+  });
+
   it('shows the offline farm copy on a missing computer', () => {
     render(() => (
       <BotComputerScreen

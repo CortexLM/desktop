@@ -2,6 +2,8 @@ import { createSignal, onCleanup, onMount, Show, type JSX } from 'solid-js';
 import { FitAddon } from '@xterm/addon-fit';
 import { Terminal } from '@xterm/xterm';
 
+import { resolveColor, THEME_ATTRIBUTE, type Theme } from '@cortex-ide/tokens';
+
 import { resolveTerminalHost, type TerminalHost } from '../../state/terminal-host.ts';
 
 import '@xterm/xterm/css/xterm.css';
@@ -23,23 +25,60 @@ export interface ShellViewProps {
   sessionId: string;
 }
 
+export interface TerminalPalette {
+  background: string;
+  foreground: string;
+  cursor: string;
+}
+
+/** The theme currently on `<html>`, which is what the token CSS is scoped to. */
+function currentTheme(): Theme {
+  return document.documentElement.getAttribute(THEME_ATTRIBUTE) === 'dark' ? 'dark' : 'light';
+}
+
 /**
  * Colours read from the design tokens rather than hardcoded.
  *
- * A terminal with its own palette is the one surface that would ignore the theme
- * toggle, and it is a large one — the mismatch is obvious the moment someone
- * switches to dark.
+ * A terminal owns its palette, so it is the one surface that can ignore the
+ * theme — and it is a large one. Two things used to let it: the fallbacks were
+ * `#ffffff` and `#1a1a1a` whatever the theme, so a terminal built before the
+ * token stylesheet resolved came up as a white slab in dark mode; and this ran
+ * once, at construction. Both are why the Shell tab stayed light after a toggle.
+ *
+ * The fallbacks now come from the palette for the theme in force, so an
+ * unresolved custom property degrades to the right end of the ramp instead of
+ * to white.
  */
-function themeFromTokens(): { background: string; foreground: string; cursor: string } {
+export function themeFromTokens(theme: Theme = currentTheme()): TerminalPalette {
   const styles = getComputedStyle(document.documentElement);
-  const read = (name: string, fallback: string) =>
-    styles.getPropertyValue(name).trim() || fallback;
+  const read = (name: '--color-surface' | '--color-text' | '--color-green') =>
+    styles.getPropertyValue(name).trim() || resolveColor(name, theme);
 
   return {
-    background: read('--color-surface', '#ffffff'),
-    foreground: read('--color-text', '#1a1a1a'),
-    cursor: read('--color-primary', '#1a1a1a'),
+    background: read('--color-surface'),
+    foreground: read('--color-text'),
+    // `--color-primary` is the legacy alias for the brand green; the palette is
+    // keyed by the Paper name, which is what the fallback has to ask for.
+    cursor: read('--color-green'),
   };
+}
+
+/**
+ * Re-themes the terminal whenever `data-theme` changes on `<html>`.
+ *
+ * An observer rather than a Solid effect: the attribute is written by the theme
+ * provider in `@cortex-ide/ui` directly onto the document, so there is no signal
+ * in this module's scope to track.
+ */
+export function followTheme(terminal: Pick<Terminal, 'options'>): () => void {
+  const observer = new MutationObserver(() => {
+    terminal.options.theme = themeFromTokens();
+  });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: [THEME_ATTRIBUTE],
+  });
+  return () => observer.disconnect();
 }
 
 /**
@@ -146,6 +185,7 @@ export function ShellView(props: ShellViewProps): JSX.Element {
     const { terminal, fit } = createEmulator(container);
 
     onCleanup(connect(host, terminal, props.sessionId, setError));
+    onCleanup(followTheme(terminal));
 
     // The workbench pane is resizable, and xterm does not observe its own container.
     const observer = new ResizeObserver(() => fit.fit());

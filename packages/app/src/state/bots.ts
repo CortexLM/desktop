@@ -1,7 +1,13 @@
 /**
- * Bot mascots. The API is the source of truth. localStorage only caches the
- * last successful list (reconcile). Create / send / hibernate / videos never
- * write the cache.
+ * Bot mascots, held only for as long as the API says they exist.
+ *
+ * Nothing about a mascot is persisted in the client. A cache of the last list
+ * used to seed this store at module load, which meant the first paint of /bot
+ * — and every paint after the service started refusing — showed a roster that
+ * came from the browser rather than from the account. Those rows were
+ * clickable, and the mascot they opened had a computer this file had invented.
+ * An empty list next to "New mascot" is the honest answer when the API has not
+ * answered yet.
  */
 
 import { createSignal } from 'solid-js';
@@ -29,7 +35,6 @@ import {
   type MascotColor,
   type MascotShape,
 } from './bot-map.ts';
-import { readJson, writeJson } from './persist.ts';
 
 export type {
   BotComputer,
@@ -47,11 +52,9 @@ export {
   isPendingSecret,
 } from './bot-map.ts';
 
-const CACHE_KEY = 'cortex.bots.cache.v2';
-
 export type BotLoadState = 'idle' | 'loading' | 'ready' | 'error' | 'unavailable';
 
-const [mascots, setMascots] = createSignal<Mascot[]>(readCache());
+const [mascots, setMascots] = createSignal<Mascot[]>([]);
 const [loadState, setLoadState] = createSignal<BotLoadState>('idle');
 const [loadError, setLoadError] = createSignal<string>('');
 
@@ -72,9 +75,7 @@ export async function reconcileMascots(): Promise<void> {
   setLoadState('loading');
   try {
     const rows = await listMascots(client);
-    const next = rows.map(mapMascot);
-    setMascots(next);
-    writeJson(CACHE_KEY, summaries(next));
+    setMascots(rows.map(mapMascot));
     setLoadState('ready');
     setLoadError('');
   } catch (error) {
@@ -133,12 +134,27 @@ export async function removeMascot(id: string): Promise<void> {
   setMascots((current) => current.filter((mascot) => mascot.id !== id));
 }
 
+/**
+ * Loads one mascot and everything hanging off it.
+ *
+ * Adds the row when the list does not have it, rather than only patching an
+ * existing one. Opening /bot/{id} directly — a reload, a bookmark, a link — is
+ * the common case and there is no list in memory yet; the old behaviour patched
+ * nothing and the screen said "Mascot not found" about a mascot the service was
+ * perfectly willing to return. A mascot the service does not know still ends up
+ * absent, which is what that message is for.
+ */
 export async function hydrateMascot(id: string): Promise<void> {
   const client = botClient();
   if (!client) return;
   const bundle = await loadMascotBundle(id);
+  const base = mascotById(id) ?? (bundle.detail ? mapMascot(bundle.detail) : undefined);
+  if (!base) return;
+  const hydrated = mergeHydration(base, bundle);
   setMascots((current) =>
-    current.map((mascot) => (mascot.id === id ? mergeHydration(mascot, bundle) : mascot)),
+    current.some((mascot) => mascot.id === id)
+      ? current.map((mascot) => (mascot.id === id ? hydrated : mascot))
+      : [hydrated, ...current],
   );
 }
 
@@ -182,27 +198,17 @@ function mergeHydration(
   };
 }
 
+/**
+ * Turns a failed list into the state the screen reports.
+ *
+ * The rows go too. Keeping the previous answer on screen under an error banner
+ * would claim the account still owns mascots that the service just declined to
+ * confirm — a farm scaled to zero and an expired session look identical from
+ * here, and neither is evidence that anything exists.
+ */
 function applyListError(error: unknown): void {
   const classified = classifyBotError(error);
   setLoadState(isCortexApiError(error) && error.status === 404 ? 'unavailable' : 'error');
   setLoadError(classified.message);
-}
-
-function summaries(rows: Mascot[]): Array<{ id: string; name: string; shape: string; color: string }> {
-  return rows.map((row) => ({ id: row.id, name: row.name, shape: row.shape, color: row.color }));
-}
-
-function readCache(): Mascot[] {
-  const rows = readJson<Array<{ id: string; name?: string; shape?: string; color?: string }>>(
-    CACHE_KEY,
-    [],
-  );
-  return rows.map((row) =>
-    mapMascot({
-      id: row.id,
-      name: row.name,
-      shape: row.shape,
-      color: row.color,
-    }),
-  );
+  setMascots([]);
 }

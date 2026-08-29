@@ -4,6 +4,7 @@ import { Button, Segmented } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
+import { computerLabel } from '../../state/bot-map.ts';
 import type { Mascot, MascotColor, MascotShape } from '../../state/bots.ts';
 
 import '../chat/product-pages.css';
@@ -94,7 +95,7 @@ function MascotGrid(props: {
             <span class={`cx-mascot-swatch cx-mascot-swatch--${mascot.shape} cx-mascot-swatch--${mascot.color}`} />
             <div>
               <div class="cx-product-row__title">{mascot.name}</div>
-              <p class="cx-product-row__meta">{mascot.computer.status.replace('-', ' ')}</p>
+              <p class="cx-product-row__meta">{computerLabel(mascot.computer)}</p>
             </div>
           </button>
         )}
