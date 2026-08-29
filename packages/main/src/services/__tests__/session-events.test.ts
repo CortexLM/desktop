@@ -166,6 +166,50 @@ describe('plan chunks', () => {
   it('ignores a plan whose steps are not a list', () => {
     expect(toSessionEvent({ plan: { steps: 'soon' } }, AT)).toBeUndefined();
   });
+
+  it('maps engine title/status steps onto the timeline labels', () => {
+    expect(
+      toSessionEvent(
+        {
+          plan: {
+            steps: [{ id: 's1', title: 'Read the tree', status: 'active' }],
+            mermaid: 'flowchart TD\n  A-->B',
+          },
+        },
+        AT,
+      ),
+    ).toEqual({
+      kind: 'plan',
+      at: AT,
+      mermaid: 'flowchart TD\n  A-->B',
+      steps: [{ id: 's1', label: 'Read the tree', state: 'current' }],
+    });
+  });
+
+  it('keeps a mermaid fence on the plan', () => {
+    expect(
+      toSessionEvent(
+        { plan: { steps: [{ label: 'A', state: 'current' }], mermaid: 'flowchart TD\n  A-->B' } },
+        AT,
+      ),
+    ).toMatchObject({ kind: 'plan', mermaid: 'flowchart TD\n  A-->B' });
+  });
+
+  it('records a background task completion', () => {
+    expect(
+      toSessionEvent(
+        { task: { id: 'task_1', phase: 'completed', summary: 'explored', artifact_id: 'art_1' } },
+        AT,
+      ),
+    ).toEqual({
+      kind: 'task',
+      at: AT,
+      id: 'task_1',
+      phase: 'completed',
+      summary: 'explored',
+      artifact_id: 'art_1',
+    });
+  });
 });
 
 describe('text chunks', () => {

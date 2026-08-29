@@ -208,6 +208,7 @@
 .cx-timeline__reply-text {
   margin: 0;
 
+  font-family: var(--font-sans-stack);
   font-size: 13.5px;
   line-height: 20px;
   color: var(--color-text);
@@ -224,6 +225,20 @@
   padding-left: 2px;
   margin: 0;
   list-style: none;
+  font-family: var(--font-sans-stack);
+}
+
+.cx-plan__mermaid {
+  margin: 0;
+  padding: var(--spacing-3);
+  overflow-x: auto;
+  font-family: var(--font-mono-stack);
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text);
+  background: var(--color-inset);
+  border-radius: var(--radius-md);
+  white-space: pre;
 }
 
 .cx-plan__step {
@@ -262,6 +277,7 @@
 }
 
 .cx-plan__label {
+  font-family: var(--font-sans-stack);
   font-size: var(--text-sm);
   line-height: 16px;
   color: var(--color-text-muted);

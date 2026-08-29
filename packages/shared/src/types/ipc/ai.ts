@@ -88,6 +88,14 @@ export interface StreamPlanPayload {
   rationale: string;
   approved: boolean;
   steps: Array<{ id: string; title: string; status: string }>;
+  mermaid?: string;
+}
+
+export interface StreamTaskPayload {
+  id: string;
+  phase: 'started' | 'progress' | 'completed' | 'failed';
+  summary: string;
+  artifact_id?: string;
 }
 
 export interface StreamChunk {
@@ -100,6 +108,7 @@ export interface StreamChunk {
     | 'permission'
     | 'question'
     | 'plan'
+    | 'task'
     | 'context_full';
   content?: string;
   usage?: {
@@ -112,4 +121,5 @@ export interface StreamChunk {
   permission?: StreamPermissionPayload;
   question?: { id: string; prompt: string; options?: string[] };
   plan?: StreamPlanPayload;
+  task?: StreamTaskPayload;
 }

@@ -68,11 +68,19 @@ function replyOf(events: readonly SessionEvent[]): string | undefined {
 
 /** The latest plan. An agent revises its plan; only the current one is useful. */
 function planOf(events: readonly SessionEvent[]): readonly PlanStep[] | undefined {
+  const latest = latestPlan(events);
+  return latest ? latest.steps.map((step) => ({ ...step })) : undefined;
+}
+
+function planMermaidOf(events: readonly SessionEvent[]): string | undefined {
+  return latestPlan(events)?.mermaid;
+}
+
+function latestPlan(events: readonly SessionEvent[]) {
   const plans = events.filter(
     (event): event is SessionEvent & { kind: 'plan' } => event.kind === 'plan',
   );
-  const latest = plans.at(-1);
-  return latest ? latest.steps.map((step) => ({ ...step })) : undefined;
+  return plans.at(-1);
 }
 
 /**
@@ -138,12 +146,19 @@ function workSummaryOf(detail: SessionDetail): string | undefined {
  */
 function artifactsOf(detail: SessionDetail): readonly SessionArtifact[] | undefined {
   const seen = new Map<string, SessionArtifact>();
+  addFileArtifacts(seen, detail.events);
+  addTaskArtifacts(seen, detail.events);
+  return seen.size > 0 ? [...seen.values()] : undefined;
+}
 
-  for (const event of detail.events) {
+function addFileArtifacts(
+  seen: Map<string, SessionArtifact>,
+  events: readonly SessionEvent[],
+): void {
+  for (const event of events) {
     if (event.kind !== 'tool' || !event.detail) continue;
     if (event.additions === undefined && event.deletions === undefined) continue;
     if (seen.has(event.detail)) continue;
-
     const added = event.additions ?? 0;
     const removed = event.deletions ?? 0;
     seen.set(event.detail, {
@@ -152,8 +167,21 @@ function artifactsOf(detail: SessionDetail): readonly SessionArtifact[] | undefi
       meta: `Changed · +${added} −${removed}`,
     });
   }
+}
 
-  return seen.size > 0 ? [...seen.values()] : undefined;
+function addTaskArtifacts(
+  seen: Map<string, SessionArtifact>,
+  events: readonly SessionEvent[],
+): void {
+  for (const event of events) {
+    if (event.kind !== 'task' || !event.artifact_id) continue;
+    if (seen.has(event.artifact_id)) continue;
+    seen.set(event.artifact_id, {
+      id: event.artifact_id,
+      name: event.artifact_id,
+      meta: `Artifact · ${event.summary}`,
+    });
+  }
 }
 
 function toDiffFiles(detail: SessionDetail): DiffFile[] {
@@ -218,6 +246,7 @@ function toView(detail: SessionDetail): DetailView {
 
   assign(view, 'reply', replyOf(detail.events));
   assign(view, 'plan', planOf(detail.events));
+  assign(view, 'planMermaid', planMermaidOf(detail.events));
   assign(view, 'work', work.length > 0 ? work : undefined);
   assign(view, 'artifacts', artifactsOf(detail));
   assign(view, 'activity', activityOf(detail));

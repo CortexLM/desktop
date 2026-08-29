@@ -4,16 +4,17 @@ import type { AgentMode, AutonomyLevel, ToolDefinition } from './types';
 export const CODING_TOOLS: ToolDefinition[] = [
   {
     name: 'Read',
-    description: 'Read a text file. Prefer this over Execute. Path must be absolute.',
+    description:
+      'Read a text file, or page an offloaded tool artifact with artifact_id. Prefer this over Execute.',
     risk: 'safe',
     parameters: {
       type: 'object',
       properties: {
         path: { type: 'string', description: 'Absolute file path' },
+        artifact_id: { type: 'string', description: 'Page an offloaded tool artifact' },
         offset: { type: 'number', description: '1-based start line' },
         limit: { type: 'number', description: 'Max lines to return' },
       },
-      required: ['path'],
     },
   },
   {
@@ -64,6 +65,7 @@ export const CODING_TOOLS: ToolDefinition[] = [
       properties: {
         pattern: { type: 'string' },
         path: { type: 'string', description: 'Absolute directory or file' },
+        artifact_id: { type: 'string', description: 'Search an offloaded tool artifact' },
         glob: { type: 'string' },
       },
       required: ['pattern'],
@@ -173,12 +175,14 @@ export const CODING_TOOLS: ToolDefinition[] = [
   },
   {
     name: 'Task',
-    description: 'Delegate to explorer, worker, or a named custom droid. No nested Task.',
+    description:
+      'Spawn a background child: explore, plan, or worker. Nested Task is forbidden. Children must not AskUser. Returns immediately; the parent later receives task_started / task_progress / task_completed / task_failed.',
     risk: 'safe',
     parameters: {
       type: 'object',
       properties: {
-        subagent: { type: 'string', description: 'explorer | worker' },
+        kind: { type: 'string', description: 'explore | plan | worker' },
+        subagent: { type: 'string', description: 'Alias of kind (explore / explorer / plan / worker)' },
         droid: { type: 'string', description: 'Custom droid name from .cortex/droids' },
         prompt: { type: 'string' },
       },
@@ -199,17 +203,22 @@ export const CODING_TOOLS: ToolDefinition[] = [
   },
   {
     name: 'ExitSpecMode',
-    description: 'Leave spec mode by presenting a complete plan. Forbidden while Option A/B is unresolved.',
+    description:
+      'Leave spec mode with a complete plan. Requires a mermaid fence (flowchart or sequenceDiagram). Forbidden while Option A/B is unresolved. Call this before any write.',
     risk: 'safe',
     parameters: {
       type: 'object',
       properties: {
         title: { type: 'string' },
         rationale: { type: 'string' },
+        mermaid: {
+          type: 'string',
+          description: '```mermaid fence whose body starts with flowchart or sequenceDiagram',
+        },
         steps: { type: 'string', description: 'JSON array of step titles' },
         unresolved_choices: { type: 'boolean' },
       },
-      required: ['title', 'steps'],
+      required: ['title', 'steps', 'mermaid'],
     },
   },
 ];

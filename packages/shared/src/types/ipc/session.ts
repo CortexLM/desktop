@@ -93,7 +93,15 @@ export type SessionEvent =
       deletions?: number;
       durationMs?: number;
     }
-  | { kind: 'plan'; at: number; steps: readonly SessionPlanStep[] }
+  | { kind: 'plan'; at: number; steps: readonly SessionPlanStep[]; mermaid?: string }
+  | {
+      kind: 'task';
+      at: number;
+      id: string;
+      phase: 'started' | 'progress' | 'completed' | 'failed';
+      summary: string;
+      artifact_id?: string;
+    }
   | {
       kind: 'permission';
       at: number;
