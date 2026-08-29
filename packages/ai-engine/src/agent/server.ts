@@ -1,8 +1,11 @@
+import { ArtifactStore } from './artifacts';
+import { compactMessages, type CompactionKeepSet } from './compaction';
 import { CheckpointStore } from './checkpoints';
 import { composeSystemPrompt } from './system-prompt';
 import { runAgentTurn } from './loop';
 import { InMemoryPermissionGate } from './permissions';
 import { resolveAutonomy } from './autonomy';
+import { toolsFromConnections, type PluginConnection, type ProductSurface } from './plugin-tools';
 import { CODING_TOOLS, toolsForMode } from './tools';
 import type {
   AgentEvent,
@@ -32,6 +35,9 @@ export interface AgentTurnContext {
   conventions?: string;
   skills?: SkillDefinition[];
   rules?: PermissionRule[];
+  pluginConnections?: PluginConnection[];
+  product?: ProductSurface;
+  codePluginCatalog?: PluginConnection[];
 }
 
 /**
@@ -139,15 +145,12 @@ export class AgentServer {
   compactSession(id: string, keepLast = 8): AgentSessionRecord {
     const session = this.require(id);
     if (session.messages.length <= keepLast + 1) return session;
-    const system = session.messages.filter((message) => message.role === 'system');
-    const rest = session.messages.filter((message) => message.role !== 'system');
-    const dropped = rest.slice(0, Math.max(0, rest.length - keepLast));
-    const kept = rest.slice(-keepLast);
-    const summary: AgentMessage = {
-      role: 'system',
-      content: `Compacted ${dropped.length} earlier messages. Last dropped: ${dropped.at(-1)?.content.slice(0, 240) ?? ''}`,
+    const keep: CompactionKeepSet = {
+      open_artifact_ids: session.openArtifactIds ?? [],
+      open_task_ids: session.openTaskIds ?? [],
+      active_plan: session.activePlan,
     };
-    session.messages = [...system, summary, ...kept];
+    session.messages = compactMessages(session.messages, keep, { preserveRecent: keepLast });
     session.updatedAt = Date.now();
     void this.persist?.save?.(session);
     return session;
@@ -207,7 +210,17 @@ export class AgentServer {
     void this.persist?.saveMessage?.(session.id, 'user', userText);
 
     const autonomy = resolveAutonomy(session.runtime, session.autonomy);
-    const tools = toolsForMode(session.mode, [...CODING_TOOLS, ...(context.extraTools ?? [])], autonomy);
+    const pluginTools = toolsFromConnections(
+      context.pluginConnections ?? [],
+      context.product ?? 'code',
+      context.codePluginCatalog,
+    );
+    const tools = toolsForMode(
+      session.mode,
+      [...CODING_TOOLS, ...(context.extraTools ?? []), ...pluginTools],
+      autonomy,
+    );
+    const artifacts = new ArtifactStore();
     const snapshots: FileSnapshot[] = [];
     this.checkpoints.create(session.messages, 'before turn', snapshots);
 
@@ -254,6 +267,7 @@ export class AgentServer {
         runtime: session.runtime,
         agentName: session.agentName,
         delegationDepth: session.parentId ? 1 : 0,
+        artifacts,
         onMessages: (transcript) => {
           session.messages = transcript.filter(
             (message, index) => !(index === 0 && message.role === 'system')
@@ -261,6 +275,7 @@ export class AgentServer {
         },
       })) {
         if (event.type === 'text') visible.push(event.text);
+        applyKeepSet(session, event, artifacts);
         yield event;
       }
       session.updatedAt = Date.now();
@@ -278,4 +293,19 @@ export class AgentServer {
     if (!session) throw new Error(`Session "${id}" not found`);
     return session;
   }
+}
+
+function applyKeepSet(
+  session: AgentSessionRecord,
+  event: AgentEvent,
+  artifacts: ArtifactStore,
+): void {
+  if (event.type === 'plan') session.activePlan = event.plan;
+  if (event.type === 'task_started') {
+    session.openTaskIds = [...(session.openTaskIds ?? []), event.id];
+  }
+  if (event.type === 'task_completed' || event.type === 'task_failed') {
+    session.openTaskIds = (session.openTaskIds ?? []).filter((id) => id !== event.id);
+  }
+  session.openArtifactIds = artifacts.ids();
 }

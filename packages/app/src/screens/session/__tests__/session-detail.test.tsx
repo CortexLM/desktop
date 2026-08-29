@@ -129,6 +129,16 @@ describe('Session plan', () => {
     const { container } = renderDetail();
     expect(container.querySelector('.cx-plan')).toBeNull();
   });
+
+  it('shows a mermaid diagram in mono and plan steps in sans', () => {
+    const { container } = renderDetail({
+      plan: PLAN,
+      planMermaid: 'flowchart TD\n  A-->B',
+    });
+    const diagram = screen.getByLabelText('Plan diagram');
+    expect(diagram.textContent).toContain('flowchart TD');
+    expect(container.querySelector('.cx-plan__label')).toBeTruthy();
+  });
 });
 
 describe('Session worklog', () => {

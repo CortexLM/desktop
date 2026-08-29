@@ -253,6 +253,7 @@ export class WorkspaceToolExecutor implements ToolExecutor {
       output: JSON.stringify({
         title: String(args.title ?? 'Plan'),
         rationale: String(args.rationale ?? ''),
+        mermaid: args.mermaid,
         steps: args.steps,
       }),
     };

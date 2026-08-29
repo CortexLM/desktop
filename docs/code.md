@@ -48,6 +48,12 @@ provider keys. Viewing a session joins `code_session:{id}`; a miss is
 
 See [docs/harness.md](./harness.md) and [docs/realtime.md](./realtime.md).
 
+The local coding-agent loop (`packages/ai-engine`) runs Background Task children
+(`explore` / `plan` / `worker`), plan mode with a mermaid fence, and artifact
+offload for oversized tool output. Compaction keeps `open_artifact_ids`,
+`active_plan`, and `open_task_ids`. Session detail shows the mermaid diagram
+and artifact cards. There is no Secrets page change; values stay write-only.
+
 ## Providers
 
 Settings lists an OpenClaw-style catalogue (`PROVIDER_CATALOG` in

@@ -39,6 +39,8 @@ export interface SessionTimelineProps {
   /** The agent's reply above its plan. */
   reply?: string;
   plan?: readonly PlanStep[];
+  /** Mermaid flowchart or sequenceDiagram from plan mode. Shown in mono; plan prose is Inter. */
+  planMermaid?: string;
   /** Pre-formatted, e.g. "Worked for 4m 32s". */
   workSummary?: string;
   work?: readonly WorkEntry[];
@@ -212,6 +214,13 @@ export function SessionTimeline(props: SessionTimelineProps): JSX.Element {
         <Show when={props.reply || props.plan?.length || props.workSummary}>
           <div class="cx-timeline__reply">
             <Show when={props.reply}>{(reply) => <p class="cx-timeline__reply-text">{reply()}</p>}</Show>
+            <Show when={props.planMermaid}>
+              {(diagram) => (
+                <pre class="cx-plan__mermaid" aria-label="Plan diagram">
+                  {diagram()}
+                </pre>
+              )}
+            </Show>
             <Show when={props.plan?.length ? props.plan : undefined}>
               {(steps) => <PlanList steps={steps()} />}
             </Show>

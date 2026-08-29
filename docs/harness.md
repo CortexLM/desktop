@@ -31,6 +31,26 @@ issued. The browser does not receive SSH keys or host keys.
 `packages/app/src/state/harness.ts` is the single reader for this status.
 Screens must not invent a fourth "ready" that the host did not report.
 
+## Agent loop (Task, plan, artifacts)
+
+The coding-agent loop lives in `packages/ai-engine`. It is not a mock:
+
+- **Background Task** kinds are `explore`, `plan`, and `worker`. Nested Task is
+  forbidden. Children must not AskUser. The parent receives `task_started`,
+  `task_progress`, `task_completed`, and `task_failed` with `id`, `summary`, and
+  optional `artifact_id`. A hung child times out as `task_failed`. Cancel aborts
+  open children.
+- **Plan mode** strips MUTATE tools. ExitSpecMode requires a mermaid fence
+  whose body starts with `flowchart` or `sequenceDiagram`. Session detail shows
+  that diagram in mono; plan prose uses Inter.
+- **Artifacts** offload oversized tool output. The agent pages them with Read
+  or Grep and `artifact_id`. Compaction keeps `open_artifact_ids`, `active_plan`,
+  and `open_task_ids`.
+- **Plugin tools** come from connections the user already made (Chat / Bot /
+  both). Code uses a Code-side catalog only when the host supplies one.
+- Parallel tool results stay in call order. Secret values are redacted on
+  `tool_result`.
+
 ## Talking to a remote host
 
 1. Desktop A (or a server) runs Cortex Code and is signed in.

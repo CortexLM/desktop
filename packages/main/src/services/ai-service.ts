@@ -939,6 +939,17 @@ function agentEventToIpc(event: AgentEvent): IpcStreamChunk {
       return { type: 'question', question: { id: event.id, prompt: event.prompt, options: event.options } };
     case 'plan':
       return { type: 'plan', plan: event.plan };
+    case 'task_started':
+      return { type: 'task', task: { id: event.id, phase: 'started', summary: event.summary } };
+    case 'task_progress':
+      return { type: 'task', task: { id: event.id, phase: 'progress', summary: event.summary } };
+    case 'task_completed':
+      return {
+        type: 'task',
+        task: { id: event.id, phase: 'completed', summary: event.summary, artifact_id: event.artifact_id },
+      };
+    case 'task_failed':
+      return { type: 'task', task: { id: event.id, phase: 'failed', summary: event.summary } };
     case 'context_full':
       return {
         type: 'context_full',

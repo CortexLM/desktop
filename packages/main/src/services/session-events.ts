@@ -92,6 +92,11 @@ function toPermissionEvent(
   };
 }
 
+function toTaskPhase(raw: unknown): 'started' | 'progress' | 'completed' | 'failed' {
+  if (raw === 'progress' || raw === 'completed' || raw === 'failed') return raw;
+  return 'started';
+}
+
 function toPlanStep(raw: unknown, index: number): SessionPlanStep {
   const step = asRecord(raw) ?? {};
   return {
@@ -113,7 +118,26 @@ export function toSessionEvent(chunk: unknown, at: number): SessionEvent | undef
 
   const plan = asRecord(record.plan);
   if (plan && Array.isArray(plan.steps)) {
-    return { kind: 'plan', at, steps: plan.steps.map(toPlanStep) };
+    const event: SessionEvent & { kind: 'plan' } = {
+      kind: 'plan',
+      at,
+      steps: plan.steps.map(toPlanStep),
+    };
+    if (typeof plan.mermaid === 'string') event.mermaid = plan.mermaid;
+    return event;
+  }
+
+  const task = asRecord(record.task);
+  if (task && typeof task.id === 'string' && typeof task.summary === 'string') {
+    const event: SessionEvent & { kind: 'task' } = {
+      kind: 'task',
+      at,
+      id: task.id,
+      phase: toTaskPhase(task.phase),
+      summary: task.summary,
+    };
+    if (typeof task.artifact_id === 'string') event.artifact_id = task.artifact_id;
+    return event;
   }
 
   if (typeof record.content === 'string' && record.content.length > 0) {

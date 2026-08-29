@@ -166,6 +166,31 @@ describe('plan chunks', () => {
   it('ignores a plan whose steps are not a list', () => {
     expect(toSessionEvent({ plan: { steps: 'soon' } }, AT)).toBeUndefined();
   });
+
+  it('keeps a mermaid fence on the plan', () => {
+    expect(
+      toSessionEvent(
+        { plan: { steps: [{ label: 'A', state: 'current' }], mermaid: 'flowchart TD\n  A-->B' } },
+        AT,
+      ),
+    ).toMatchObject({ kind: 'plan', mermaid: 'flowchart TD\n  A-->B' });
+  });
+
+  it('records a background task completion', () => {
+    expect(
+      toSessionEvent(
+        { task: { id: 'task_1', phase: 'completed', summary: 'explored', artifact_id: 'art_1' } },
+        AT,
+      ),
+    ).toEqual({
+      kind: 'task',
+      at: AT,
+      id: 'task_1',
+      phase: 'completed',
+      summary: 'explored',
+      artifact_id: 'art_1',
+    });
+  });
 });
 
 describe('text chunks', () => {
