@@ -12,7 +12,7 @@
  * assignment does.
  */
 
-import { createSignal, For, type JSX, Show } from 'solid-js';
+import { createSignal, createUniqueId, For, type JSX, Show } from 'solid-js';
 
 import {
   PLUGIN_SURFACES,
@@ -36,6 +36,7 @@ export interface PluginSurfaceChoiceProps {
 
 export function PluginSurfaceChoice(props: PluginSurfaceChoiceProps): JSX.Element {
   const [refusal, setRefusal] = createSignal('');
+  const labelId = createUniqueId();
 
   const choose = (surface: PluginSurface, input: HTMLInputElement): void => {
     const next = togglePluginSurface(props.surfaces, surface, input.checked);
@@ -43,7 +44,7 @@ export function PluginSurfaceChoice(props: PluginSurfaceChoiceProps): JSX.Elemen
     input.checked = props.surfaces.includes(surface);
     if (!next) {
       setRefusal(
-        `${props.appName} stays on Chat or Bot. Disconnect it to stop using it in both.`,
+        `${props.appName} stays in Chat or Bot. Disconnect it to stop using it in both.`,
       );
       return;
     }
@@ -53,10 +54,16 @@ export function PluginSurfaceChoice(props: PluginSurfaceChoiceProps): JSX.Elemen
 
   return (
     <div class="cx-plugin-card__surfaces">
-      <fieldset class="cx-surface-set">
-        <legend class="cx-surface-set__legend">
-          {props.connected ? `Where ${props.appName} is used` : `Where ${props.appName} will be used`}
-        </legend>
+      {/* `role="group"` rather than a fieldset: a `legend` is positioned by its
+          fieldset and not by the fieldset's flex context, so at narrow widths it
+          held its own line and the second switch wrapped underneath it. */}
+      <div class="cx-surface-set" role="group" aria-labelledby={labelId}>
+        {/* Short, because the card above it already names the app and each
+            switch carries the full "Use Gmail in Cortex Chat" for a screen
+            reader. A sentence here wrapped the pair apart at 768. */}
+        <span class="cx-surface-set__legend" id={labelId}>
+          {props.connected ? 'Used in' : 'Use in'}
+        </span>
         <For each={PLUGIN_SURFACES}>
           {(surface) => (
             <label class="cx-surface-toggle">
@@ -70,7 +77,7 @@ export function PluginSurfaceChoice(props: PluginSurfaceChoiceProps): JSX.Elemen
             </label>
           )}
         </For>
-      </fieldset>
+      </div>
       <Show when={refusal()}>
         {(message) => (
           <p class="cx-plugin-card__hint" role="status">

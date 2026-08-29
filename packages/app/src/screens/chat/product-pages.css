@@ -67,20 +67,10 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin: 0;
-  padding: 0;
-  border: 0;
 }
 
-/*
- * `float` rather than a flex item: a `legend` is laid out by its fieldset, not
- * by the fieldset's flex context, so without this it sits on a line of its own
- * above the switches.
- */
 .cx-surface-set__legend {
-  float: left;
-  margin-right: 8px;
-  padding: 0;
+  margin-right: 2px;
   font-size: var(--text-xs);
   line-height: 22px;
   color: var(--color-text-muted);

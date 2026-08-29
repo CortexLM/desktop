@@ -166,6 +166,24 @@ describe('choosing Chat, Bot, or both', () => {
     expect(surfaceBox('Linear', 'Bot')).toBeChecked();
   });
 
+  it('groups the two switches and names each one after its app and product', () => {
+    render(() => <PluginsScreen {...pluginProps({ apps: [CATALOGUE[0]!] })} />);
+
+    // Two apps on one page mean two "Chat" boxes, so the app has to be in the
+    // name — "Chat" alone would be ambiguous to anyone not looking at the card.
+    expect(screen.getByRole('group', { name: 'Use in' })).toBeInTheDocument();
+    expect(surfaceBox('Gmail', 'Chat')).toBeInTheDocument();
+    expect(surfaceBox('Gmail', 'Bot')).toBeInTheDocument();
+  });
+
+  it('says the assignment is in force once the app is connected', () => {
+    render(() => (
+      <PluginsScreen {...pluginProps({ apps: [CATALOGUE[0]!], connected: ['gmail'] })} />
+    ));
+
+    expect(screen.getByRole('group', { name: 'Used in' })).toBeInTheDocument();
+  });
+
   it('shows the assignment a connected app already has', () => {
     const chatOnly: PluginApp = { ...CATALOGUE[0]!, surfaces: ['chat'] };
     render(() => (
@@ -202,7 +220,7 @@ describe('choosing Chat, Bot, or both', () => {
     expect(onSurfaces).not.toHaveBeenCalled();
     expect(surfaceBox('Gmail', 'Bot')).toBeChecked();
     expect(
-      screen.getByText('Gmail stays on Chat or Bot. Disconnect it to stop using it in both.'),
+      screen.getByText('Gmail stays in Chat or Bot. Disconnect it to stop using it in both.'),
     ).toBeInTheDocument();
   });
 });
