@@ -10,13 +10,15 @@
  * below.
  */
 
-import { createMemo, type JSX } from 'solid-js';
+import { createEffect, createMemo, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
+import type { ApiCodeUsage } from '@cortex-ide/cortex-api';
 import type { SessionSummary } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
+import { accountUsage, loadAccountUsage } from '../state/usage.ts';
 import { formatAge, toBadgeStatus } from '../state/session-view.ts';
 import { ReviewScreen, type ReviewItem } from '../screens/review/review-screen.tsx';
 import { UsageScreen, type UsageRow } from '../screens/usage/usage-screen.tsx';
@@ -93,10 +95,10 @@ function toUsageStats(sessions: readonly SessionSummary[]) {
 /**
  * Sessions grouped by what ran them.
  *
- * Credits are a dash, not a zero. Metering is server-side and the API exposes no
- * usage route (see `packages/cortex-api/CONTRACT.md`), so a number here would be
- * invented — and a billing figure that looks precise and is made up is worse than an
- * honest blank. Session counts and diff sizes are local facts, so those are real.
+ * Credits stay a dash here. Metering is server-side, so a per-runtime credit figure
+ * derived locally would be invented — and a billing number that looks precise and is
+ * made up is worse than an honest blank. The account total comes from
+ * `GET /v1/code/usage` and is reported separately, in `stats`.
  */
 function toUsageRows(sessions: readonly SessionSummary[]): UsageRow[] {
   if (sessions.length === 0) return [];
@@ -120,10 +122,41 @@ function toUsageRows(sessions: readonly SessionSummary[]): UsageRow[] {
     }));
 }
 
+/**
+ * Credits, from the service.
+ *
+ * Appended to the local stats rather than replacing them: sessions and lines changed
+ * are facts this client can see, and credits are a fact only the service has. When
+ * the usage route is absent the row is simply not added — a dash for a figure the
+ * user was never shown is not an improvement.
+ */
+export function creditStats(
+  usage: ApiCodeUsage | undefined,
+): Array<{ label: string; value: string }> {
+  if (!usage) return [];
+
+  const rows: Array<{ label: string; value: string }> = [];
+  if (usage.credits_used !== undefined) {
+    rows.push({
+      label: 'Credits used',
+      value:
+        usage.credits_included === undefined
+          ? String(usage.credits_used)
+          : `${usage.credits_used} of ${usage.credits_included}`,
+    });
+  }
+  if (usage.plan) rows.push({ label: 'Plan', value: usage.plan });
+  return rows;
+}
+
 export function UsageRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
   const navigate = useNavigate();
+
+  createEffect(() => {
+    if (account.capabilities().authenticated) void loadAccountUsage();
+  });
 
   const thisMonth = createMemo(() => {
     const start = new Date();
@@ -132,7 +165,7 @@ export function UsageRoute(): JSX.Element {
     return (runs.sessions() ?? []).filter((session) => session.createdAt >= start.getTime());
   });
 
-  const stats = createMemo(() => toUsageStats(thisMonth()));
+  const stats = createMemo(() => [...toUsageStats(thisMonth()), ...creditStats(accountUsage())]);
   const rows = createMemo(() => toUsageRows(thisMonth()));
 
   const period = createMemo(() => {

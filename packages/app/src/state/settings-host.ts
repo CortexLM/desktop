@@ -21,6 +21,9 @@ import type {
   WorkspaceRunSettings,
 } from '@cortex-ide/shared';
 
+import { createCloudSettingsHost } from './cloud-settings-host.ts';
+import { liveSession } from './realtime-session.ts';
+
 export interface SettingsHost {
   /** Masked credentials plus where the effective key comes from. Never the key. */
   getProviders(): Promise<{ providers: ProviderSettingsView[]; precedence: string }>;
@@ -109,7 +112,18 @@ export function detachedSettingsHost(): SettingsHost {
   };
 }
 
+/**
+ * Electron, then the account over HTTP, then detached.
+ *
+ * The cloud host is not a downgrade: the service is a legitimate place for a
+ * provider credential and a run permission, because it is where the run happens.
+ * What would be a downgrade is `localStorage`, which is why there is no such
+ * branch.
+ */
 export function resolveSettingsHost(): SettingsHost {
   const api = bridge();
-  return api ? electronSettingsHost(api) : detachedSettingsHost();
+  if (api) return electronSettingsHost(api);
+
+  const live = liveSession();
+  return live ? createCloudSettingsHost(live.client) : detachedSettingsHost();
 }

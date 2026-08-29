@@ -9,9 +9,18 @@ import {
   setRecording,
   submitBotSecret,
 } from '../state/bot-actions.ts';
-import { createMascot, loadError, loadState, mascots, reconcileMascots } from '../state/bots.ts';
+import {
+  createMascot,
+  loadError,
+  loadState,
+  mascots,
+  reconcileMascots,
+  removeMascot,
+  updateMascot,
+} from '../state/bots.ts';
 import { teachFromVideo } from '../state/bot-runtime-store.ts';
 import {
+  boxError,
   fsEntries,
   loadFs,
   openFile,
@@ -24,10 +33,12 @@ import {
   shellLog,
   shot,
 } from '../state/bot-computer-live.ts';
+import { desktopTransport, probeDesktopTransport } from '../state/vnc-ticket.ts';
 import { sendBotTurn } from '../state/realtime-session.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import { BotConversationScreen, BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
-import { BotComputerScreen, BotSettingsScreen } from '../screens/bot/mascot-computer-screens.tsx';
+import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
+import { BotSettingsScreen } from '../screens/bot/mascot-settings-screen.tsx';
 import type { Mascot, MascotColor, MascotShape } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
 
@@ -173,7 +184,48 @@ export function BotVideosRoute(): JSX.Element {
 
 export function BotSettingsRoute(): JSX.Element {
   const navigate = useNavigate();
-  return <BotSettingsScreen mascot={useBotMascot()()} onBack={() => navigate('/bot')} onGo={(path) => navigate(path)} />;
+  const mascot = useBotMascot();
+  const [error, setError] = createSignal('');
+  const [saving, setSaving] = createSignal(false);
+
+  /**
+   * Applies one change.
+   *
+   * Errors land on the screen rather than being swallowed: a shape button that
+   * silently did nothing would look like the control was decorative, which is what
+   * this screen used to be.
+   */
+  const apply = (patch: { name?: string; shape?: MascotShape; color?: MascotColor }) => {
+    const id = mascot()?.id;
+    if (!id) return;
+    setSaving(true);
+    setError('');
+    void updateMascot(id, patch)
+      .catch((caught: unknown) => setError(caught instanceof Error ? caught.message : String(caught)))
+      .finally(() => setSaving(false));
+  };
+
+  return (
+    <BotSettingsScreen
+      mascot={mascot()}
+      error={error()}
+      saving={saving()}
+      onRename={(name) => apply({ name })}
+      onShape={(shape) => apply({ shape })}
+      onColor={(color) => apply({ color })}
+      onDelete={() => {
+        const id = mascot()?.id;
+        if (!id) return;
+        void removeMascot(id)
+          .then(() => navigate('/bot'))
+          .catch((caught: unknown) =>
+            setError(caught instanceof Error ? caught.message : String(caught)),
+          );
+      }}
+      onBack={() => navigate('/bot')}
+      onGo={(path) => navigate(path)}
+    />
+  );
 }
 
 export function BotComputerRoute(): JSX.Element {
@@ -189,11 +241,19 @@ function useComputerPoll(mascot: () => Mascot | undefined): void {
     if (!current || current.computer.status !== 'running') return;
     void refreshScreenshot(current.id);
     void loadFs(current.id);
+    // Asked once per box rather than per frame: the answer is a property of the
+    // service and the box, and it does not change between screenshots.
+    void probeDesktopTransport(current.id);
     const timer = setInterval(() => void refreshScreenshot(current.id), 800);
     onCleanup(() => clearInterval(timer));
   });
 }
 
+/**
+ * `boxError` is passed through here for the first time. It was already being set by
+ * `bot-computer-live` on every failed screenshot, shell command and file read, and no
+ * screen ever received it — so a box that had stopped answering looked merely idle.
+ */
 function LiveComputer(props: {
   mascotId: () => string | undefined;
   mascot: Mascot | undefined;
@@ -208,6 +268,8 @@ function LiveComputer(props: {
       files={fsEntries()}
       preview={preview()}
       recording={recording()}
+      error={boxError()}
+      transport={desktopTransport()}
       onWake={() => {
         const current = id();
         if (current) void runLifecycle(current, 'resume');

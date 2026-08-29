@@ -1,4 +1,4 @@
-import { For, type JSX, Show } from 'solid-js';
+import { For, type JSX, Match, Show, Switch } from 'solid-js';
 
 import { Button, Segmented } from '@cortex-ide/ui';
 
@@ -37,6 +37,15 @@ export function MascotListScreen(props: {
   );
 }
 
+/**
+ * Which state the list is in.
+ *
+ * `Switch` / `Match` rather than a chain of early `return`s: a component body runs
+ * once in Solid, so the `if` chain this replaced froze whichever branch was true at
+ * first paint. The first paint is always "no mascots yet", so a signed-in account
+ * with mascots kept showing the empty state after the list arrived — the reconcile
+ * worked and the screen never reflected it.
+ */
 function MascotListBody(props: {
   mascots: readonly Mascot[];
   loading?: boolean;
@@ -45,32 +54,38 @@ function MascotListBody(props: {
   onOpen: (id: string) => void;
   onCreate: () => void;
 }): JSX.Element {
-  if (props.loading) {
-    return <HonestState kind="loading" title="Loading mascots" body="Asking the Bot API." />;
-  }
-  if (props.unavailable) {
-    return (
-      <HonestState
-        kind="error"
-        title="Bot API not connected"
-        body={props.error || 'This origin cannot reach the mascot service. Nothing is stored locally as a stand-in.'}
-      />
-    );
-  }
-  if (props.error) {
-    return <HonestState kind="error" title="Could not load mascots" body={props.error} />;
-  }
-  if (props.mascots.length === 0) {
-    return (
-      <HonestState
-        kind="empty"
-        title="No mascots"
-        body="Create a shape and a colour. Cortex provisions a computer that belongs only to that mascot."
-        actionLabel="New mascot"
-        onAction={props.onCreate}
-      />
-    );
-  }
+  return (
+    <Switch fallback={<MascotGrid mascots={props.mascots} onOpen={props.onOpen} />}>
+      <Match when={props.loading}>
+        <HonestState kind="loading" title="Loading mascots" body="Asking the Bot API." />
+      </Match>
+      <Match when={props.unavailable}>
+        <HonestState
+          kind="error"
+          title="Bot API not connected"
+          body={props.error || 'This origin cannot reach the mascot service. Nothing is stored locally as a stand-in.'}
+        />
+      </Match>
+      <Match when={props.error}>
+        <HonestState kind="error" title="Could not load mascots" body={props.error ?? ''} />
+      </Match>
+      <Match when={props.mascots.length === 0}>
+        <HonestState
+          kind="empty"
+          title="No mascots"
+          body="Create a shape and a colour. Cortex provisions a computer that belongs only to that mascot."
+          actionLabel="New mascot"
+          onAction={props.onCreate}
+        />
+      </Match>
+    </Switch>
+  );
+}
+
+function MascotGrid(props: {
+  mascots: readonly Mascot[];
+  onOpen: (id: string) => void;
+}): JSX.Element {
   return (
     <div class="cx-mascot-grid">
       <For each={props.mascots}>

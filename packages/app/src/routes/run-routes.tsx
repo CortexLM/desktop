@@ -177,6 +177,37 @@ function correctDraftRuntime(allowed: readonly RuntimeKind[]): void {
   }
 }
 
+/** The get-started checklist and the harness banner, both read from live state. */
+function useHomeStatus(
+  account: ReturnType<typeof useAccount>,
+  runs: ReturnType<typeof useSessions>,
+  navigate: (path: string) => void,
+) {
+  const repositoryNames = createMemo(() => (runs.repositories() ?? []).map((repo) => repo.id));
+
+  return {
+    repositoryNames,
+    checklist: createMemo(() =>
+      buildChecklist({
+        hasRepository: repositoryNames().length > 0,
+        hasRun: (runs.sessions() ?? []).length > 0,
+        signedIn: account.capabilities().authenticated,
+        hasModel: Boolean(composerDraft().model),
+        openFolder: () => void runs.openWorkspace(),
+        openSettings: () => navigate('/code/settings'),
+      }),
+    ),
+    harness: createMemo(() =>
+      harnessStatus({
+        authenticated: account.capabilities().authenticated,
+        cloudSession: (runs.sessions() ?? []).some((session) => session.status === 'running'),
+        permissionBlocked: codePermissionBlocked(),
+        connecting: realtimeStatus() === 'connecting',
+      }),
+    ),
+  };
+}
+
 export function HomeRoute(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
@@ -189,26 +220,8 @@ export function HomeRoute(): JSX.Element {
   const recent = createMemo(() =>
     (runs.sessions() ?? []).filter((session) => !session.archived).slice(0, 5).map(toRecentRow),
   );
-  const repositoryNames = createMemo(() => (runs.repositories() ?? []).map((repo) => repo.id));
-  const checklist = createMemo(() =>
-    buildChecklist({
-      hasRepository: repositoryNames().length > 0,
-      hasRun: (runs.sessions() ?? []).length > 0,
-      signedIn: account.capabilities().authenticated,
-      hasModel: Boolean(composerDraft().model),
-      openFolder: () => void runs.openWorkspace(),
-      openSettings: () => navigate('/code/settings'),
-    }),
-  );
+  const { repositoryNames, checklist, harness } = useHomeStatus(account, runs, navigate);
   const limit = createMemo(() => toLimitNotice(startError(), () => navigate('/code/settings')));
-  const harness = createMemo(() =>
-    harnessStatus({
-      authenticated: account.capabilities().authenticated,
-      cloudSession: (runs.sessions() ?? []).some((session) => session.status === 'running'),
-      permissionBlocked: codePermissionBlocked(),
-      connecting: realtimeStatus() === 'connecting',
-    }),
-  );
 
   return (
     <HomeScreen

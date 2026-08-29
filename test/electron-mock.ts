@@ -19,7 +19,7 @@
  * this is the one file to edit.
  */
 
-import { vi } from 'vitest';
+import { vi, type Mock } from 'vitest';
 
 export type IpcHandler = (event: unknown, request: unknown) => Promise<unknown> | unknown;
 
@@ -116,7 +116,15 @@ export const notificationInstances: Array<{
   body: string;
 }> = [];
 
-export const NotificationMock = Object.assign(
+/**
+ * Annotated rather than inferred. `Object.assign` over a `vi.fn` infers a type that
+ * names `@vitest/spy` through Bun's content-addressed store path, which `tsc` refuses
+ * to emit as non-portable (TS2742). Naming `Mock` from `vitest` — a direct dependency
+ * — keeps the spy methods callers use while staying portable.
+ */
+export const NotificationMock: Mock<(opts: { title: string; body: string }) => unknown> & {
+  isSupported: Mock<() => boolean>;
+} = Object.assign(
   vi.fn(function Notification(this: unknown, opts: { title: string; body: string }) {
     const instance = { show: vi.fn(), title: opts.title, body: opts.body };
     notificationInstances.push(instance);

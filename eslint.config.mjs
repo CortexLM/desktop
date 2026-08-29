@@ -2,11 +2,15 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 
 export default [
+  // A top-level `ignores` with no `files` is the global exclusion list. Inside a
+  // config block it would only narrow that block, which left the generated
+  // coverage report to be picked up as an unmatched file.
+  {
+    ignores: ['**/node_modules/**', '**/dist/**', '**/coverage/**', 'quality-reports/**'],
+  },
   {
     files: ['packages/**/*.ts', 'packages/**/*.tsx'],
     ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
       // Suites are exempt from the size and complexity budgets: a thorough test file is
       // long by design, and a table-driven case is nested by design. The `.tsx` and
       // `__tests__` forms were missing, so component suites were being held to the

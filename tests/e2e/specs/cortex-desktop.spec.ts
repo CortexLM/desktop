@@ -69,13 +69,24 @@ test.describe('the app Electron loads', () => {
     await page.evaluate(() => {
       window.location.hash = '#/bot';
     });
-    await expect(page.getByRole('heading', { name: 'Bot' })).toBeVisible();
+    // `exact` because the mascot list's own state is a heading that contains "Bot".
+    // With no reachable mascot service this run shows "Bot API not connected" — which
+    // is the honest answer, and only reaches the screen now that the list reacts to
+    // state arriving after the first paint instead of freezing on "No mascots".
+    await expect(page.getByRole('heading', { name: 'Bot', exact: true })).toBeVisible();
     await expect(page.getByText(/dedicated computer/i)).toBeVisible();
 
     await page.evaluate(() => {
       window.location.hash = '#/planning';
     });
-    await expect(page.getByRole('heading', { name: 'Planning' })).toBeVisible();
+    // `exact` because the signed-out gate is also a heading that contains "Planning".
+    await expect(page.getByRole('heading', { name: 'Planning', exact: true })).toBeVisible();
+
+    // The schedule itself lives on the account — a job has to run when this window is
+    // closed — so signed out this says so instead of listing tasks as if they were
+    // scheduled. The Cortex-authored jobs stay visible as templates, which is the
+    // product rule: shown and locked, never hidden.
+    await expect(page.getByText('Planning needs a Cortex account')).toBeVisible();
     await expect(page.getByText("Today's notes")).toBeVisible();
     await expect(page.getByText('Subnet 100 news')).toBeVisible();
   });

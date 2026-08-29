@@ -1,16 +1,21 @@
 /**
- * The renderer's view of the Electron host.
+ * The renderer's view of the account host.
  *
- * The renderer cannot reach `api.cortex.foundation` itself. It is loaded from `file://`, so
- * its origin is opaque and the CORS preflight rejects the request before it is sent — not
- * something a header can fix. Every call goes through the main process, which has no origin.
+ * In Electron the renderer cannot reach `api.cortex.foundation` itself. It is loaded from
+ * `file://`, so its origin is opaque and the CORS preflight rejects the request before it is
+ * sent — not something a header can fix. Every call goes through the main process, which has
+ * no origin.
+ *
+ * On the web there is no such problem: a `cortex.foundation` origin calls the API directly
+ * through `createCloudHost`. Which host `resolveHost` returns is the difference between a
+ * browser that can sign in and one that cannot.
  *
  * This module is the seam. Screens depend on `CortexHost`, not on `window.cortex`, which is
  * what lets the suites drive them with a fake and keeps `window` out of component code.
  *
  * No method returns a token. Signing in yields a user code and a verification URL — both
  * meant to be displayed — and the outcome arrives through `onDeviceStatus`. The
- * `device_code`, which is exchangeable for a token, never leaves main.
+ * `device_code`, which is exchangeable for a token, never leaves the host that holds it.
  */
 
 import type {
@@ -22,6 +27,10 @@ import type {
   CortexProductResponse,
   IPCResponse,
 } from '@cortex-ide/shared';
+
+import { createCloudHost } from './cloud-host.ts';
+import { hasElectronHost } from './electron-bridge.ts';
+import { liveSession } from './realtime-session.ts';
 
 export interface CortexHost {
   getState(): Promise<CortexAccountState>;
@@ -88,10 +97,7 @@ function bridge(): CortexBridge | undefined {
   return (globalThis as { cortex?: { cortex?: CortexBridge } }).cortex?.cortex;
 }
 
-/** Is the app running inside Electron with the preload bridge installed? */
-export function hasElectronHost(): boolean {
-  return bridge() !== undefined;
-}
+export { hasElectronHost };
 
 function electronHost(api: CortexBridge): CortexHost {
   return {
@@ -141,8 +147,19 @@ export function detachedHost(): CortexHost {
   };
 }
 
-/** The host for the current environment. */
+/**
+ * The host for the current environment.
+ *
+ * Electron first: main already holds the session, encrypted at rest, and its
+ * cookie jar is the one the service set. A browser on an origin allowed to call
+ * the API gets the cloud host — the same `CortexApiClient` the Chat, Code, and
+ * Bot surfaces use, so a device flow completing here authenticates all of them.
+ * Everything else is detached and says so.
+ */
 export function resolveHost(): CortexHost {
   const api = bridge();
-  return api ? electronHost(api) : detachedHost();
+  if (api) return electronHost(api);
+
+  const live = liveSession();
+  return live ? createCloudHost({ client: live.client }) : detachedHost();
 }

@@ -79,6 +79,8 @@ describe('WorkspaceToolExecutor', () => {
   it('writes todos, fetches URLs, and searches the web', async () => {
     const root = await workspace();
     const onTodos = vi.fn((todos) => todos);
+    // Cast at the seam: `typeof fetch` carries `preconnect`, which a stub has no
+    // reason to implement and which nothing under test calls.
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
       if (url.includes('duckduckgo')) {
@@ -86,7 +88,11 @@ describe('WorkspaceToolExecutor', () => {
       }
       return new Response('body', { status: 200 });
     });
-    const executor = new WorkspaceToolExecutor({ workspaceRoot: root, onTodos, fetchImpl });
+    const executor = new WorkspaceToolExecutor({
+      workspaceRoot: root,
+      onTodos,
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+    });
     const todos = await executor.execute(
       call('TodoWrite', { todos: JSON.stringify([{ id: '1', content: 'a', status: 'pending' }]), merge: true }),
     );
@@ -101,7 +107,8 @@ describe('WorkspaceToolExecutor', () => {
     expect(search.output).toContain('Example');
     const plain = new WorkspaceToolExecutor({
       workspaceRoot: root,
-      fetchImpl: async () => new Response('<p>no links</p>', { status: 200 }),
+      fetchImpl: (async () =>
+        new Response('<p>no links</p>', { status: 200 })) as unknown as typeof fetch,
     });
     expect((await plain.execute(call('WebSearch', { query: 'none' }))).output).toContain('no links');
   });
