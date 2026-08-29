@@ -33,7 +33,7 @@ only behind `CORTEX_ALLOW_TEST_DOUBLES=1` (set in Vitest configs).
 | `createCloudChatHost` | live host | `packages/app/src/state/cloud-chat-host.ts` | Yes when `liveApiBase()` is set |
 | `createCloudSessionHost` | live host | `cloud-session-host.ts` | Yes; **rejects `runtime: 'local'`** |
 | `detachedHost` / `detachedSessionHost` / `detached()` chat | honest empty | `host.ts`, `session-host.ts`, `chat-host.ts` | Yes on localhost / Vitest — empty or reject, never a fake farm |
-| `detachedSettingsHost` / `detachedSecretsHost` / `detachedAutomationHost` | honest empty | matching `*-host.ts` | Same |
+| `detachedSettingsHost` / `detachedAutomationHost` | honest empty | matching `*-host.ts` | Same |
 | `@cortex-ide/test-utils` IPC/FS/AI mocks | test harness | `packages/test-utils` | No — benches and integration suites only |
 
 Local `localStorage` stores (Planning seed, library, inbox) are UI caches.

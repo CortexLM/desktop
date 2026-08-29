@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import { CortexApiClient } from '@cortex-ide/cortex-api';
 
 import { createCloudAutomationHost } from '../cloud-automation-host.ts';
-import { createCloudSecretsHost } from '../cloud-secrets-host.ts';
 import { createCloudSettingsHost } from '../cloud-settings-host.ts';
 import {
   toRunSettings,
@@ -188,44 +187,6 @@ describe('cloud settings host', () => {
   it('rethrows a non-404 unchanged', async () => {
     const { client } = api([{ status: 500, body: { code: 'BOOM', message: 'server on fire' } }]);
     await expect(createCloudSettingsHost(client).getWorkspace()).rejects.toThrow(/server on fire/);
-  });
-});
-
-describe('cloud secrets host', () => {
-  it('lists account-scoped secrets and never reads a value back', async () => {
-    const { client } = api([
-      { body: { items: [{ id: 'sec_1', name: 'TOKEN', last_used_at: '2026-08-01T00:00:00Z' }] } },
-    ]);
-
-    const rows = await createCloudSecretsHost(client).list();
-
-    // Held by the service, so every runtime on the account can use it.
-    expect(rows[0]).toMatchObject({ id: 'sec_1', name: 'TOKEN', scope: 'account' });
-    expect(rows[0]).not.toHaveProperty('value');
-    expect(rows[0]?.lastUsedAt).toBe(Date.parse('2026-08-01T00:00:00Z'));
-  });
-
-  it('renders an empty list for a missing route but refuses to write', async () => {
-    const { client } = api([NOT_FOUND, NOT_FOUND, NOT_FOUND]);
-    const host = createCloudSecretsHost(client);
-
-    await expect(host.list()).resolves.toEqual([]);
-    await expect(host.create('A', 'b')).rejects.toThrow(/does not store account secrets/i);
-    await expect(host.remove('sec_1')).rejects.toThrow(/does not store account secrets/i);
-  });
-
-  it('creates and deletes', async () => {
-    const { client, calls } = api([{ body: { id: 'sec_2', name: 'OTHER' } }, { status: 204 }]);
-    const host = createCloudSecretsHost(client);
-
-    await expect(host.create('OTHER', 'shh')).resolves.toMatchObject({ name: 'OTHER' });
-    await host.remove('sec_2');
-    expect(calls[1]!.method).toBe('DELETE');
-  });
-
-  it('rethrows a non-404 from the list', async () => {
-    const { client } = api([{ status: 500, body: { code: 'BOOM', message: 'nope' } }]);
-    await expect(createCloudSecretsHost(client).list()).rejects.toThrow(/nope/);
   });
 });
 

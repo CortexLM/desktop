@@ -17,7 +17,6 @@ import {
   resolveSessionHost,
 } from '../session-host.ts';
 import { detachedSettingsHost, resolveSettingsHost } from '../settings-host.ts';
-import { detachedSecretsHost, resolveSecretsHost } from '../secrets-host.ts';
 import { detachedAutomationHost, resolveAutomationHost } from '../automation-host.ts';
 import { resolveTerminalHost } from '../terminal-host.ts';
 
@@ -42,11 +41,6 @@ describe('failed envelopes throw', () => {
     await expect(resolveSettingsHost().setWorkspace({})).rejects.toThrow('main said no');
   });
 
-  it('secret creation', async () => {
-    install('secrets', { create: vi.fn(async () => failure) });
-    await expect(resolveSecretsHost().create('KEY', 'value')).rejects.toThrow('main said no');
-  });
-
   it('automation creation', async () => {
     install('automation', { create: vi.fn(async () => failure) });
     await expect(
@@ -68,17 +62,15 @@ describe('successful envelopes are unwrapped', () => {
     await expect(resolveSessionHost().list()).resolves.toEqual([{ id: 'a' }]);
   });
 
-  it('a created secret', async () => {
-    install('secrets', {
-      create: vi.fn(async () => ({
+  it('a workspace read', async () => {
+    install('settings', {
+      getWorkspace: vi.fn(async () => ({
         success: true,
-        data: { secret: { id: 's', name: 'KEY', scope: 'local' } },
+        data: { defaults: { branchPrefix: 'from-main/' } },
       })),
     });
-    await expect(resolveSecretsHost().create('KEY', 'v')).resolves.toEqual({
-      id: 's',
-      name: 'KEY',
-      scope: 'local',
+    await expect(resolveSettingsHost().getWorkspace()).resolves.toEqual({
+      defaults: { branchPrefix: 'from-main/' },
     });
   });
 });
@@ -116,14 +108,6 @@ describe('the settings host', () => {
     await expect(
       detachedSettingsHost().setProvider({ id: 'openai', enabled: true }),
     ).rejects.toThrow(/desktop app/i);
-  });
-});
-
-describe('the secrets host', () => {
-  it('never exposes a read path for a value', () => {
-    // The whole design: the only method returning values lives in main and is called
-    // by the agent loop. A `get` here would defeat it.
-    expect(Object.keys(detachedSecretsHost()).sort()).toEqual(['create', 'list', 'remove']);
   });
 });
 

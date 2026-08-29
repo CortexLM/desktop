@@ -31,7 +31,6 @@ describe('anonymous capabilities', () => {
       usageReporting: false,
       review: false,
       automations: false,
-      syncedSecrets: false,
       billing: false,
     });
   });

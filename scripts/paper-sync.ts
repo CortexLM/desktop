@@ -48,10 +48,12 @@ const CHAT_STATES_PAGE = 'Chat states';
  * Concept-03 screens that are not part of the desktop app.
  *
  * `Product Code` is the marketing "coming soon" web page that shares the page with
- * the app artboards. Keeping it out here keeps it out of the manifest, the specs,
- * the baselines and the icon scan all at once.
+ * the app artboards. `Code / Secrets` is a board for a page the product does not
+ * have: Cortex Code stores no secrets of its own and offers no screen to manage
+ * them (`.rules/06-product.md`). Keeping either out here keeps it out of the
+ * manifest, the specs, the baselines and the icon scan all at once.
  */
-const NON_APP_SCREENS = new Set(['Product Code']);
+const NON_APP_SCREENS = new Set(['Product Code', 'Code / Secrets']);
 
 function isAppScreen(screen: string): boolean {
   return !NON_APP_SCREENS.has(screen);

@@ -62,7 +62,6 @@ The destinations, and what each one must actually do:
 | `/code/review` | Review queue (account) |
 | `/code/usage` | Usage and limits (account) |
 | `/code/settings`, `/code/settings/integrations` | Providers, workspace defaults, remote host |
-| `/code/secrets` | Write-only secrets |
 | `/code/notifications` | Notable events |
 | `/code/runtimes`, `/code/runtimes/ssh` | Runtimes; connect a server |
 | `/code/tickets*` | Tickets |
@@ -83,11 +82,49 @@ Behaviour that is part of the product, not an implementation detail:
 - **A connected host is paired with a one-time code** — the service stores a hash,
   the client never does. Heartbeats carry a device token, never SSH or provider
   keys. SSH and host keys are not downloaded to the client.
-- **Signed out on desktop**, Home / Sessions / Session detail / Settings / Secrets
-  work with local or BYO providers. Automations, Review, Usage and SSH connect are
-  shown and locked (`01-security.md` § 1.3).
+- **Signed out on desktop**, Home / Sessions / Session detail / Settings work with
+  local or BYO providers. Automations, Review, Usage and SSH connect are shown and
+  locked (`01-security.md` § 1.3).
 - **There is no in-app Benchmarks screen.** Provider benches live in
   `packages/test-harness` (`cortex-test`).
+- **Cortex Code has no Secrets page.** See § 6.2.1.
+
+### 6.2.1 Cortex Code has no Secrets page
+
+Code is not a vault. There is no `/code/secrets` route, no Secrets screen, no
+Secrets entry in the sidebar, on Home, in Settings or in the command palette, and
+no board for one in the manifest — `paper-sync` filters the retired `Code /
+Secrets` artboard out. The one place a credential is entered is **Settings →
+Providers**, where the user is naming their own account and the key goes
+main → keychain.
+
+**Bad** — the page comes back under a new name, and asks the user to paste a
+credential into the renderer:
+
+```tsx
+<Route path="/code/vault" component={VaultRoute} />
+…
+<TextField label="Personal access token" type="password" placeholder="Paste the value" />
+```
+
+**Good** — the route does not exist, and nothing offers to hold a value:
+
+```tsx
+<Route path="/code/settings" component={SettingsRoute} />
+<Route path="/code/settings/integrations" component={IntegrationsRoute} />
+```
+
+A reintroduction is a product decision, not a refactor: neither Cursor nor any
+comparable coding agent ships this surface, and re-adding it needs the rule
+changed first. Renaming it — Vault, Environment, Variables, Tokens — is the same
+page. `/v1/code/secrets` may stay in `packages/cortex-api` for other callers, but
+no screen in Code reaches it.
+
+**Bot's secret-request card is a different surface.** A mascot runtime may ask for
+one named value in the transcript and the composer blocks until it is answered
+(`POST /v1/mascots/:id/secrets`, `docs/bot-runtime.md`). That is a reply to a
+question the runtime asked, not a page for managing a list. This rule does not
+touch it.
 
 ## 6.3 The Bot switch sits next to Chat and Code
 

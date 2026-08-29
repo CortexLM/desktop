@@ -27,8 +27,6 @@ export interface Capabilities {
   review: boolean;
   /** Automations can be created and scheduled. */
   automations: boolean;
-  /** Secrets sync to the account rather than living only on this machine. */
-  syncedSecrets: boolean;
   /** Billing portal and upgrade flow are reachable. */
   billing: boolean;
 }
@@ -44,7 +42,6 @@ export const ANONYMOUS_CAPABILITIES: Capabilities = {
   usageReporting: false,
   review: false,
   automations: false,
-  syncedSecrets: false,
   billing: false,
 };
 
@@ -55,7 +52,6 @@ export const AUTHENTICATED_CAPABILITIES: Capabilities = {
   usageReporting: true,
   review: true,
   automations: true,
-  syncedSecrets: true,
   billing: true,
 };
 
