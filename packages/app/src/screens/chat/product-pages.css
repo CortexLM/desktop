@@ -153,9 +153,18 @@
 .cx-mascot-swatch--square { border-radius: 8px; }
 .cx-mascot-swatch--tall { width: 36px; height: 56px; border-radius: 18px; }
 .cx-mascot-swatch--wide { width: 56px; height: 36px; border-radius: 18px; }
-.cx-mascot-swatch--green { background: #1f4945; }
-.cx-mascot-swatch--terracotta { background: #b4622d; }
-.cx-mascot-swatch--ink { background: #211f1c; }
+/*
+ * The three mascot colours, through the tokens rather than as literals.
+ *
+ * #1f4945 / #b4622d / #211f1c are the LIGHT values of --color-green,
+ * --color-accent and the near-black background, pasted in. The last one is why
+ * this matters: in dark mode an "ink" mascot was #211f1c on a #2a2724 row, so
+ * its swatch vanished. Ink is the app's text colour and inverts with the theme,
+ * which is exactly what keeps the mascot legible in both.
+ */
+.cx-mascot-swatch--green { background: var(--color-green); }
+.cx-mascot-swatch--terracotta { background: var(--color-accent); }
+.cx-mascot-swatch--ink { background: var(--color-text); }
 
 .cx-harness {
   display: flex;
@@ -176,12 +185,20 @@
   color: var(--color-text);
 }
 
+/*
+ * The mascot's desktop, and the chrome around it before a frame arrives.
+ *
+ * Themed like every other surface in the app. The fill was #1a1815 with #faf8f4
+ * text — the dark palette's sidebar and background written out as literals — so
+ * this pane stayed a black rectangle in light mode and, being off the token
+ * system entirely, could not follow a theme change either way.
+ */
 .cx-vnc {
   min-height: 280px;
   border: 1px dashed var(--color-border);
   border-radius: var(--radius-md);
-  background: #1a1815;
-  color: #faf8f4;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   justify-content: center;

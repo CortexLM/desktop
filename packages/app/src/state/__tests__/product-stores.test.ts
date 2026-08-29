@@ -113,7 +113,7 @@ describe('Bot computers', () => {
     expect(first.computer.mascotId).toBe(first.id);
     expect(second.computer.mascotId).toBe(second.id);
     expect(first.computer.id).not.toBe(second.computer.id);
-    expect(mascotById(first.id)?.computer.spec.vcpu).toBeGreaterThanOrEqual(4);
+    expect(mascotById(first.id)?.computer.id).toBe('pc_1');
     expect(mascots().length).toBeGreaterThanOrEqual(2);
     expect(globalThis.localStorage?.getItem('cortex.bots.cache.v2')).toBeNull();
   });

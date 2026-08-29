@@ -7,6 +7,7 @@ import { HonestState } from '../shared/honest-state.tsx';
 import { AskCard, SecretCard, SendToUserBubble, UserBubble, WorkRail } from './conversation-widgets.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
 import {
+  computerLabel,
   isPendingAsk,
   isPendingSecret,
   type BotMessage,
@@ -79,7 +80,7 @@ function ConversationBody(props: {
     <>
       <PageHeader
         title={props.mascot.name}
-        subtitle={`Computer ${props.mascot.computer.status.replace('-', ' ')}`}
+        subtitle={`Computer ${computerLabel(props.mascot.computer)}`}
       />
       <PageBody width="list">
         <MascotRail links={mascotLinks(props.mascot.id, 'chat', props.onGo)} />
