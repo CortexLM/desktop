@@ -39,7 +39,7 @@ import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-scre
 import { BotConversationScreen, BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
 import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
 import { BotSettingsScreen } from '../screens/bot/mascot-settings-screen.tsx';
-import type { Mascot, MascotColor, MascotShape } from '../state/bot-map.ts';
+import type { Mascot, MascotFace, MascotLook } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
 
 export {
@@ -69,33 +69,33 @@ export function BotHomeRoute(): JSX.Element {
 export function BotCreateRoute(): JSX.Element {
   const navigate = useNavigate();
   const [name, setName] = createSignal('');
-  const [shape, setShape] = createSignal<MascotShape>('round');
-  const [color, setColor] = createSignal<MascotColor>('green');
+  const [look, setLook] = createSignal<MascotLook>('meadow');
+  const [face, setFace] = createSignal<MascotFace>('idle');
   const [error, setError] = createSignal('');
 
   return (
     <CreateMascotScreen
       name={name()}
       onName={setName}
-      shape={shape()}
-      onShape={setShape}
-      color={color()}
-      onColor={setColor}
+      look={look()}
+      onLook={setLook}
+      face={face()}
+      onFace={setFace}
       error={error()}
-      onCreate={() => void createAndGo({ name: name(), shape: shape(), color: color(), navigate, setError })}
+      onCreate={() => void createAndGo({ name: name(), look: look(), face: face(), navigate, setError })}
     />
   );
 }
 
 async function createAndGo(input: {
   name: string;
-  shape: MascotShape;
-  color: MascotColor;
+  look: MascotLook;
+  face: MascotFace;
   navigate: (path: string) => void;
   setError: (value: string) => void;
 }): Promise<void> {
   try {
-    const mascot = await createMascot(input.name, input.shape, input.color);
+    const mascot = await createMascot(input.name, input.look, input.face);
     input.navigate(`/bot/${mascot.id}`);
   } catch (caught) {
     input.setError(caught instanceof Error ? caught.message : String(caught));
@@ -108,6 +108,7 @@ export function BotConversationRoute(): JSX.Element {
   const [draft, setDraft] = createSignal('');
   const [error, setError] = createSignal('');
   const [sending, setSending] = createSignal(false);
+  const [celebrating, setCelebrating] = createSignal(false);
 
   return (
     <BotConversationScreen
@@ -121,9 +122,12 @@ export function BotConversationRoute(): JSX.Element {
           setDraft,
           setError,
           setSending,
+          setCelebrating,
         })
       }
       sending={sending()}
+      celebrating={celebrating()}
+      onMarkSettled={() => setCelebrating(false)}
       error={error()}
       onAnswer={(text, askId) => {
         const id = mascot()?.id;
@@ -145,6 +149,7 @@ async function sendFromComposer(input: {
   setDraft: (value: string) => void;
   setError: (value: string) => void;
   setSending: (value: boolean) => void;
+  setCelebrating: (value: boolean) => void;
 }): Promise<void> {
   const text = input.draft.trim();
   if (!input.mascotId || !text) return;
@@ -154,6 +159,7 @@ async function sendFromComposer(input: {
     await sendBotMessage(input.mascotId, text);
     input.setDraft('');
     sendBotTurn(input.mascotId, text);
+    input.setCelebrating(true);
   } catch (caught) {
     input.setError(caught instanceof Error ? caught.message : String(caught));
   } finally {
@@ -191,11 +197,11 @@ export function BotSettingsRoute(): JSX.Element {
   /**
    * Applies one change.
    *
-   * Errors land on the screen rather than being swallowed: a shape button that
+   * Errors land on the screen rather than being swallowed: a look button that
    * silently did nothing would look like the control was decorative, which is what
    * this screen used to be.
    */
-  const apply = (patch: { name?: string; shape?: MascotShape; color?: MascotColor }) => {
+  const apply = (patch: { name?: string; look?: MascotLook; face?: MascotFace }) => {
     const id = mascot()?.id;
     if (!id) return;
     setSaving(true);
@@ -211,8 +217,8 @@ export function BotSettingsRoute(): JSX.Element {
       error={error()}
       saving={saving()}
       onRename={(name) => apply({ name })}
-      onShape={(shape) => apply({ shape })}
-      onColor={(color) => apply({ color })}
+      onLook={(look) => apply({ look })}
+      onFace={(face) => apply({ face })}
       onDelete={() => {
         const id = mascot()?.id;
         if (!id) return;

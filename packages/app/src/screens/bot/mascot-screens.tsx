@@ -1,11 +1,13 @@
 import { For, type JSX, Match, Show, Switch } from 'solid-js';
 
-import { Button, Segmented } from '@cortex-ide/ui';
+import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
-import { computerLabel } from '../../state/bot-map.ts';
-import type { Mascot, MascotColor, MascotShape } from '../../state/bots.ts';
+import { computerLabel, isPendingAsk, isPendingSecret, type Mascot, type MascotFace, type MascotLook } from '../../state/bot-map.ts';
+import { MascotIdentityFields } from './mascot-identity.tsx';
+import { resolveMascotMotion } from './mascot-looks.ts';
+import { MascotMark } from './mascot-mark.tsx';
 
 import '../chat/product-pages.css';
 
@@ -74,7 +76,7 @@ function MascotListBody(props: {
         <HonestState
           kind="empty"
           title="No mascots"
-          body="Create a shape and a colour. Cortex provisions a computer that belongs only to that mascot."
+          body="Create a look and a face. Cortex provisions a computer that belongs only to that mascot."
           actionLabel="New mascot"
           onAction={props.onCreate}
         />
@@ -92,7 +94,13 @@ function MascotGrid(props: {
       <For each={props.mascots}>
         {(mascot) => (
           <button type="button" class="cx-product-row" onClick={() => props.onOpen(mascot.id)}>
-            <span class={`cx-mascot-swatch cx-mascot-swatch--${mascot.shape} cx-mascot-swatch--${mascot.color}`} />
+            <MascotMark
+              look={mascot.look}
+              face={mascot.face}
+              seed={mascot.id}
+              size={48}
+              state={rowMotion(mascot)}
+            />
             <div>
               <div class="cx-product-row__title">{mascot.name}</div>
               <p class="cx-product-row__meta">{computerLabel(mascot.computer)}</p>
@@ -104,32 +112,27 @@ function MascotGrid(props: {
   );
 }
 
-const SHAPES = [
-  { id: 'round', label: 'Round' },
-  { id: 'square', label: 'Square' },
-  { id: 'tall', label: 'Tall' },
-  { id: 'wide', label: 'Wide' },
-];
-
-const COLOURS = [
-  { id: 'green', label: 'Green' },
-  { id: 'terracotta', label: 'Terracotta' },
-  { id: 'ink', label: 'Ink' },
-];
+function rowMotion(mascot: Mascot) {
+  const waiting = mascot.messages.some((message) => isPendingAsk(message) || isPendingSecret(message));
+  return resolveMascotMotion({
+    computer: mascot.computer.status,
+    unread: mascot.unread || waiting,
+  });
+}
 
 export function CreateMascotScreen(props: {
   name: string;
   onName: (value: string) => void;
-  shape: MascotShape;
-  onShape: (shape: MascotShape) => void;
-  color: MascotColor;
-  onColor: (color: MascotColor) => void;
+  look: MascotLook;
+  onLook: (look: MascotLook) => void;
+  face: MascotFace;
+  onFace: (face: MascotFace) => void;
   onCreate: () => void;
   error?: string;
 }): JSX.Element {
   return (
     <>
-      <PageHeader title="New mascot" subtitle="Shape and colour. A dedicated computer is created with it." />
+      <PageHeader title="New mascot" subtitle="Look and face. A dedicated computer is created with it." />
       <PageBody width="settings">
         <label class="cx-product-row__title" for="mascot-name">Name</label>
         <input
@@ -139,8 +142,7 @@ export function CreateMascotScreen(props: {
           onInput={(event) => props.onName(event.currentTarget.value)}
           placeholder="Ana's researcher"
         />
-        <Segmented label="Shape" value={props.shape} onChange={(id) => props.onShape(id as MascotShape)} options={SHAPES} />
-        <Segmented label="Colour" value={props.color} onChange={(id) => props.onColor(id as MascotColor)} options={COLOURS} />
+        <MascotIdentityFields look={props.look} face={props.face} onLook={props.onLook} onFace={props.onFace} />
         <Show when={props.error}>
           <HonestState kind="error" title="Could not create" body={props.error ?? ''} />
         </Show>

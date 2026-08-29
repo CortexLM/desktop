@@ -5,8 +5,8 @@
 
 import type { ApiBotMessage, ApiComputer, ApiMascot, ApiMascotVideo } from '@cortex-ide/cortex-api';
 
-export type MascotShape = 'round' | 'square' | 'tall' | 'wide';
-export type MascotColor = 'green' | 'terracotta' | 'ink';
+export type MascotLook = 'meadow' | 'teal' | 'terracotta' | 'amber' | 'plum' | 'slate';
+export type MascotFace = 'idle' | 'slit' | 'wink';
 export type ComputerStatus =
   | 'empty'
   | 'hibernated'
@@ -84,24 +84,28 @@ export interface BotComputer {
 export interface Mascot {
   id: string;
   name: string;
-  shape: MascotShape;
-  color: MascotColor;
+  look: MascotLook;
+  face: MascotFace;
+  unread: boolean;
   createdAt: number;
   computer: BotComputer;
   messages: BotMessage[];
   videos: BotVideo[];
 }
 
-const SHAPES: readonly MascotShape[] = ['round', 'square', 'tall', 'wide'];
-const COLOURS: readonly MascotColor[] = ['green', 'terracotta', 'ink'];
+const LOOKS: readonly MascotLook[] = ['meadow', 'teal', 'terracotta', 'amber', 'plum', 'slate'];
+const FACES: readonly MascotFace[] = ['idle', 'slit', 'wink'];
+const LEGACY_LOOK: Record<string, MascotLook> = { green: 'meadow', ink: 'slate' };
+const LEGACY_FACE: Record<string, MascotFace> = { open: 'idle', narrow: 'slit', rest: 'idle' };
 
 export function mapMascot(row: ApiMascot): Mascot {
   const computer = mapComputer(row);
   return {
     id: row.id,
     name: row.name?.trim() || 'Untitled mascot',
-    shape: asShape(row.shape),
-    color: asColor(row.color),
+    look: asLook(row.look ?? row.color),
+    face: asFace(row.face ?? row.resting_face ?? row.shape),
+    unread: asUnread(row),
     createdAt: Date.parse(row.created_at ?? '') || 0,
     computer,
     messages: [],
@@ -199,12 +203,19 @@ export function computerLabel(computer: BotComputer): string {
   return computerIsMissing(computer) ? 'No computer yet' : computer.status.replace('-', ' ');
 }
 
-function asShape(value?: string): MascotShape {
-  return SHAPES.includes(value as MascotShape) ? (value as MascotShape) : 'round';
+function asLook(value?: string): MascotLook {
+  if (LOOKS.includes(value as MascotLook)) return value as MascotLook;
+  return LEGACY_LOOK[value ?? ''] ?? 'meadow';
 }
 
-function asColor(value?: string): MascotColor {
-  return COLOURS.includes(value as MascotColor) ? (value as MascotColor) : 'green';
+function asFace(value?: string): MascotFace {
+  if (FACES.includes(value as MascotFace)) return value as MascotFace;
+  return LEGACY_FACE[value ?? ''] ?? 'idle';
+}
+
+function asUnread(row: ApiMascot): boolean {
+  if (row.unread === true || row.has_unread === true) return true;
+  return (row.unread_count ?? 0) > 0;
 }
 
 const STATUS_MAP: Record<string, ComputerStatus> = {

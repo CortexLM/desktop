@@ -16,8 +16,9 @@ import type { Mascot } from '../../../state/bot-map.ts';
 const mascot: Mascot = {
   id: 'mst_1',
   name: 'Scout',
-  shape: 'round',
-  color: 'green',
+  look: 'meadow',
+  face: 'idle',
+  unread: false,
   createdAt: 1,
   computer: {
     id: 'pc_1',
@@ -54,30 +55,30 @@ describe('mascot list and create', () => {
     expect(screen.getByText('Could not load mascots')).toBeInTheDocument();
   });
 
-  it('collects name, shape, and colour', () => {
+  it('collects name, look, and face', () => {
     const onName = vi.fn();
-    const onShape = vi.fn();
-    const onColor = vi.fn();
+    const onLook = vi.fn();
+    const onFace = vi.fn();
     const onCreate = vi.fn();
     render(() => (
       <CreateMascotScreen
         name=""
         onName={onName}
-        shape="round"
-        onShape={onShape}
-        color="green"
-        onColor={onColor}
+        look="meadow"
+        onLook={onLook}
+        face="idle"
+        onFace={onFace}
         onCreate={onCreate}
         error="denied"
       />
     ));
     fireEvent.input(screen.getByLabelText('Name'), { target: { value: 'Scout' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Tall' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Ink' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Plum' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Wink' }));
     fireEvent.click(screen.getByRole('button', { name: /Create/ }));
     expect(onName).toHaveBeenCalledWith('Scout');
-    expect(onShape).toHaveBeenCalledWith('tall');
-    expect(onColor).toHaveBeenCalledWith('ink');
+    expect(onLook).toHaveBeenCalledWith('plum');
+    expect(onFace).toHaveBeenCalledWith('wink');
     expect(onCreate).toHaveBeenCalled();
     expect(screen.getByText('Could not create')).toBeInTheDocument();
   });
@@ -208,8 +209,8 @@ describe('computer, videos, and settings', () => {
         <BotSettingsScreen
           mascot={mascot}
           onRename={vi.fn()}
-          onShape={vi.fn()}
-          onColor={vi.fn()}
+          onLook={vi.fn()}
+          onFace={vi.fn()}
           onDelete={vi.fn()}
           onBack={vi.fn()}
           onGo={vi.fn()}

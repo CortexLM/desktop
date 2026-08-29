@@ -25,16 +25,20 @@ export interface PageHeaderProps {
   title: string;
   subtitle?: string;
   actions?: JSX.Element;
+  mark?: JSX.Element;
 }
 
 export function PageHeader(props: PageHeaderProps): JSX.Element {
   return (
     <header class="cx-page-header">
-      <div class="cx-page-header__titles">
-        <h1 class="cx-page-header__title">{props.title}</h1>
-        <Show when={props.subtitle}>
-          {(subtitle) => <p class="cx-page-header__subtitle">{subtitle()}</p>}
-        </Show>
+      <div class="cx-page-header__lead">
+        <Show when={props.mark}>{(mark) => <div class="cx-page-header__mark">{mark()}</div>}</Show>
+        <div class="cx-page-header__titles">
+          <h1 class="cx-page-header__title">{props.title}</h1>
+          <Show when={props.subtitle}>
+            {(subtitle) => <p class="cx-page-header__subtitle">{subtitle()}</p>}
+          </Show>
+        </div>
       </div>
       <Show when={props.actions}>
         <div class="cx-page-header__actions">{props.actions}</div>
