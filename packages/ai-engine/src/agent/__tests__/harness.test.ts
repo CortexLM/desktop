@@ -299,19 +299,29 @@ describe('compaction keep-set', () => {
 
 describe('plugin tools from connections', () => {
   it('injects Chat/Bot connections and uses a Code catalog only when supplied', () => {
-    const connections = [
-      {
-        id: 'c1',
-        slug: 'drive',
-        surfaces: ['both' as const],
-        tools: [{ name: 'list', description: 'List files' }],
-      },
-    ];
-    const chat = toolsFromConnections(connections, 'chat');
-    expect(chat.map((tool) => tool.name)).toEqual(['plugin__drive__list']);
-    expect(toolsFromConnections(connections, 'code')).toEqual([]);
-    const code = toolsFromConnections(connections, 'code', connections);
-    expect(code.map((tool) => tool.name)).toEqual(['plugin__drive__list']);
+    const both = {
+      id: 'c1',
+      slug: 'drive',
+      surfaces: ['chat', 'bot'] as const,
+      tools: [{ name: 'list', description: 'List files' }],
+    };
+    const chatOnly = {
+      id: 'c2',
+      slug: 'slack',
+      surfaces: ['chat'] as const,
+      tools: [{ name: 'post', description: 'Post a message' }],
+    };
+    expect(toolsFromConnections([both], 'chat').map((tool) => tool.name)).toEqual([
+      'plugin__drive__list',
+    ]);
+    expect(toolsFromConnections([both], 'bot').map((tool) => tool.name)).toEqual([
+      'plugin__drive__list',
+    ]);
+    expect(toolsFromConnections([chatOnly], 'bot')).toEqual([]);
+    expect(toolsFromConnections([both], 'code')).toEqual([]);
+    expect(toolsFromConnections([both], 'code', [both]).map((tool) => tool.name)).toEqual([
+      'plugin__drive__list',
+    ]);
   });
 });
 
