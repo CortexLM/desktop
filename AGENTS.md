@@ -138,6 +138,11 @@ API keys are entered; they never appear in logs.
 - Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
   *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
+- **Bot mascots are one Kernel pebble.** Identity is a look (Meadow, Teal, Terracotta,
+  Amber, Plum, Slate), a resting face, and a ±5° tilt. Live states (idle, thinking,
+  working, notify, success) are procedural SVG + CSS/WAAPI in
+  `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
+  API is the source of truth. See `docs/bot.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

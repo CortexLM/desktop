@@ -204,30 +204,6 @@
   gap: 12px;
 }
 
-.cx-mascot-swatch {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  flex-shrink: 0;
-}
-
-.cx-mascot-swatch--round { border-radius: 50%; }
-.cx-mascot-swatch--square { border-radius: 8px; }
-.cx-mascot-swatch--tall { width: 36px; height: 56px; border-radius: 18px; }
-.cx-mascot-swatch--wide { width: 56px; height: 36px; border-radius: 18px; }
-/*
- * The three mascot colours, through the tokens rather than as literals.
- *
- * #1f4945 / #b4622d / #211f1c are the LIGHT values of --color-green,
- * --color-accent and the near-black background, pasted in. The last one is why
- * this matters: in dark mode an "ink" mascot was #211f1c on a #2a2724 row, so
- * its swatch vanished. Ink is the app's text colour and inverts with the theme,
- * which is exactly what keeps the mascot legible in both.
- */
-.cx-mascot-swatch--green { background: var(--color-green); }
-.cx-mascot-swatch--terracotta { background: var(--color-accent); }
-.cx-mascot-swatch--ink { background: var(--color-text); }
-
 .cx-harness {
   display: flex;
   align-items: center;

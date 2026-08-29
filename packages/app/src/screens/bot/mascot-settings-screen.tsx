@@ -1,71 +1,22 @@
-import { createSignal, For, type JSX, Show } from 'solid-js';
+import { createSignal, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
-import type { Mascot, MascotColor, MascotShape } from '../../state/bot-map.ts';
+import type { Mascot, MascotFace, MascotLook } from '../../state/bot-map.ts';
+import { MascotIdentityFields } from './mascot-identity.tsx';
 
 import '../chat/product-pages.css';
-
-const SHAPES: readonly MascotShape[] = ['round', 'square', 'tall', 'wide'];
-const COLORS: readonly MascotColor[] = ['green', 'terracotta', 'ink'];
-
-/**
- * Shape and colour, editable.
- *
- * The same segmented controls the create screen uses, so a mascot is not permanently
- * whatever it was made as. `PATCH /v1/mascots/{id}` has always been in the client;
- * this screen simply printed the values as prose and offered no way to change them.
- */
-function Appearance(props: {
-  shape: MascotShape;
-  color: MascotColor;
-  onShape: (shape: MascotShape) => void;
-  onColor: (color: MascotColor) => void;
-}): JSX.Element {
-  return (
-    <>
-      <h3 class="cx-product-section">Shape</h3>
-      <div class="cx-mascot-rail">
-        <For each={SHAPES}>
-          {(shape) => (
-            <Button
-              variant={props.shape === shape ? 'primary' : 'secondary'}
-              aria-pressed={props.shape === shape}
-              onClick={() => props.onShape(shape)}
-            >
-              {shape}
-            </Button>
-          )}
-        </For>
-      </div>
-      <h3 class="cx-product-section">Colour</h3>
-      <div class="cx-mascot-rail">
-        <For each={COLORS}>
-          {(color) => (
-            <Button
-              variant={props.color === color ? 'primary' : 'secondary'}
-              aria-pressed={props.color === color}
-              onClick={() => props.onColor(color)}
-            >
-              {color}
-            </Button>
-          )}
-        </For>
-      </div>
-    </>
-  );
-}
 
 export interface BotSettingsScreenProps {
   mascot?: Mascot;
   error?: string;
   saving?: boolean;
   onRename: (name: string) => void;
-  onShape: (shape: MascotShape) => void;
-  onColor: (color: MascotColor) => void;
+  onLook: (look: MascotLook) => void;
+  onFace: (face: MascotFace) => void;
   onDelete: () => void;
   onBack: () => void;
   onGo: (path: string) => void;
@@ -147,11 +98,11 @@ export function BotSettingsScreen(props: BotSettingsScreenProps): JSX.Element {
             </Show>
 
             <RenameForm mascot={mascot()} saving={props.saving} onRename={props.onRename} />
-            <Appearance
-              shape={mascot().shape}
-              color={mascot().color}
-              onShape={props.onShape}
-              onColor={props.onColor}
+            <MascotIdentityFields
+              look={mascot().look}
+              face={mascot().face}
+              onLook={props.onLook}
+              onFace={props.onFace}
             />
 
             <h3 class="cx-product-section">Computer</h3>

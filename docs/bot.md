@@ -8,6 +8,26 @@ Bot is a first-class product (`/bot`), not a locked card on Chat Home.
 disk, VNC session, or recording with another mascot. Creating a mascot
 creates its machine. Deleting a mascot retires that machine.
 
+## Visual system
+
+Each mascot is one **Kernel pebble** — a flat rounded stone, not a triangle
+and not a gradient. Identity is a **look** (Meadow, Teal, Terracotta, Amber,
+Plum, Slate), a **resting face** (open eyes, narrow, wink), and a resting tilt of
+±5° (suppressed below 48px). Eyes stay ivory. The user picks look and face
+on create and in settings; the service stores them.
+
+Live states are procedural SVG + CSS/WAAPI, not a canned animation file:
+
+| App signal | Mascot state |
+| --- | --- |
+| idle | blink every 4–7s and a micro eye drift |
+| computer waking | thinking — eyes up-left, 2.5° sway, 3.2s loop |
+| busy / sending / computer running | working — slit eyes, squash pulse, 1.6s loop |
+| unread or waiting on you | notify — wink |
+| a send that landed | success — smile and a 900ms pop, then idle |
+
+Looks lift one step on a dark canvas. There are no seeded mascots.
+
 ## Destinations
 
 | Route | Screen |

@@ -57,6 +57,7 @@ export {
   postMascotMessage,
   postRespond,
   postSecret,
+  type MascotWriteBody,
 } from './bot-mascots.ts';
 
 export {

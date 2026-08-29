@@ -79,8 +79,8 @@ them.
 ```ts
 // packages/app/src/state/bots.ts
 const SEED: Mascot[] = [
-  { id: 'seed-1', name: 'Pip',  shape: 'round',  color: 'green' },
-  { id: 'seed-2', name: 'Nib',  shape: 'square', color: 'clay'  },
+  { id: 'seed-1', name: 'Pip',  look: 'meadow', face: 'idle' },
+  { id: 'seed-2', name: 'Nib',  look: 'terracotta', face: 'wink' },
 ];
 
 export function loadMascots(): void {

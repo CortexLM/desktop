@@ -28,9 +28,18 @@ export function getMascot(
   return client.request(mascotPath(id), mascotRowSchema, { signal });
 }
 
+/** Identity the user picks. `color`/`shape` stay as aliases for older backends. */
+export interface MascotWriteBody {
+  name?: string;
+  look?: string;
+  face?: string;
+  color?: string;
+  shape?: string;
+}
+
 export function createMascot(
   client: CortexApiClient,
-  body: { name: string; shape?: string; color?: string },
+  body: MascotWriteBody & { name: string },
   signal?: AbortSignal,
 ): Promise<ApiMascot> {
   return client.request('/v1/mascots', mascotRowSchema, { method: 'POST', body, signal });
@@ -39,7 +48,7 @@ export function createMascot(
 export function patchMascot(
   client: CortexApiClient,
   id: string,
-  body: { name?: string; shape?: string; color?: string },
+  body: MascotWriteBody,
   signal?: AbortSignal,
 ): Promise<ApiMascot> {
   return client.request(mascotPath(id), mascotRowSchema, { method: 'PATCH', body, signal });

@@ -16,8 +16,9 @@ describe('mapMascot', () => {
   it('fills honest defaults and keeps farm extras off the model', () => {
     const mascot = mapMascot({ id: 'mst_1', extra: true });
     expect(mascot.name).toBe('Untitled mascot');
-    expect(mascot.shape).toBe('round');
-    expect(mascot.color).toBe('green');
+    expect(mascot.look).toBe('meadow');
+    expect(mascot.face).toBe('idle');
+    expect(mascot.unread).toBe(false);
     expect(mascot.computer.id).toBe('pc_mst_1');
   });
 
@@ -36,12 +37,13 @@ describe('mapMascot', () => {
     expect(computerLabel(mascot.computer)).toBe('hibernated');
   });
 
-  it('maps known shape, colour, and nested computer fields', () => {
+  it('maps a look, resting face, and nested computer fields', () => {
     const mascot = mapMascot({
       id: 'mst_2',
       name: '  Scout  ',
-      shape: 'tall',
-      color: 'ink',
+      look: 'plum',
+      face: 'wink',
+      unread: true,
       created_at: '2026-01-01T00:00:00.000Z',
       computer: {
         id: 'pc_9',
@@ -56,13 +58,22 @@ describe('mapMascot', () => {
       },
     });
     expect(mascot.name).toBe('Scout');
-    expect(mascot.shape).toBe('tall');
-    expect(mascot.color).toBe('ink');
+    expect(mascot.look).toBe('plum');
+    expect(mascot.face).toBe('wink');
+    expect(mascot.unread).toBe(true);
     expect(mascot.createdAt).toBeGreaterThan(0);
     expect(mascot.computer.provider).toBe('farm');
     expect(mascot.computer.lastError).toBe('none');
     expect(mascot.computer.screenshotUrl).toBe('https://shot');
     expect(mascot.computer.spec?.vcpu).toBe(8);
+  });
+
+  it('maps legacy colour and shape onto look and face', () => {
+    expect(mapMascot({ id: 'a', color: 'green', shape: 'round' }).look).toBe('meadow');
+    expect(mapMascot({ id: 'b', color: 'ink', shape: 'tall' }).face).toBe('idle');
+    expect(mapMascot({ id: 'c', color: 'teal', shape: 'narrow' }).look).toBe('teal');
+    expect(mapMascot({ id: 'd', look: 'amber', resting_face: 'wink' }).face).toBe('wink');
+    expect(mapMascot({ id: 'e', unread_count: 2 }).unread).toBe(true);
   });
 });
 
