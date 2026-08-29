@@ -94,7 +94,7 @@ export interface AgentPlan {
   mermaid?: string;
 }
 
-export type TaskKind = 'explore' | 'plan' | 'worker';
+export type BackgroundTaskKind = 'explore' | 'plan' | 'worker';
 
 export interface TaskPayload {
   id: string;
@@ -184,7 +184,7 @@ export interface ArtifactHost {
 }
 
 export interface TaskSpawnRequest {
-  kind: TaskKind;
+  kind: BackgroundTaskKind;
   prompt: string;
   callId: string;
 }

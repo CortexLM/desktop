@@ -97,12 +97,27 @@ function toTaskPhase(raw: unknown): 'started' | 'progress' | 'completed' | 'fail
   return 'started';
 }
 
+function toPlanState(raw: unknown): SessionPlanStep['state'] {
+  if (raw === 'done' || raw === 'completed') return 'done';
+  if (raw === 'current' || raw === 'active') return 'current';
+  return 'pending';
+}
+
 function toPlanStep(raw: unknown, index: number): SessionPlanStep {
+  if (typeof raw === 'string') {
+    return { id: `step-${index}`, label: raw, state: 'pending' };
+  }
   const step = asRecord(raw) ?? {};
+  const label =
+    typeof step.label === 'string'
+      ? step.label
+      : typeof step.title === 'string'
+        ? step.title
+        : `Step ${index + 1}`;
   return {
     id: typeof step.id === 'string' ? step.id : `step-${index}`,
-    label: typeof step.label === 'string' ? step.label : String(raw),
-    state: step.state === 'done' || step.state === 'current' ? step.state : 'pending',
+    label,
+    state: toPlanState(step.state ?? step.status),
   };
 }
 
@@ -116,33 +131,36 @@ export function toSessionEvent(chunk: unknown, at: number): SessionEvent | undef
   const permission = asRecord(record.permission);
   if (permission) return toPermissionEvent(permission, at);
 
+  return toPlanEvent(record, at) ?? toTaskEvent(record, at) ?? toReplyEvent(record, at);
+}
+
+function toPlanEvent(record: Record<string, unknown>, at: number): SessionEvent | undefined {
   const plan = asRecord(record.plan);
-  if (plan && Array.isArray(plan.steps)) {
-    const event: SessionEvent & { kind: 'plan' } = {
-      kind: 'plan',
-      at,
-      steps: plan.steps.map(toPlanStep),
-    };
-    if (typeof plan.mermaid === 'string') event.mermaid = plan.mermaid;
-    return event;
-  }
+  if (!plan || !Array.isArray(plan.steps)) return undefined;
+  const event: SessionEvent & { kind: 'plan' } = {
+    kind: 'plan',
+    at,
+    steps: plan.steps.map(toPlanStep),
+  };
+  if (typeof plan.mermaid === 'string') event.mermaid = plan.mermaid;
+  return event;
+}
 
+function toTaskEvent(record: Record<string, unknown>, at: number): SessionEvent | undefined {
   const task = asRecord(record.task);
-  if (task && typeof task.id === 'string' && typeof task.summary === 'string') {
-    const event: SessionEvent & { kind: 'task' } = {
-      kind: 'task',
-      at,
-      id: task.id,
-      phase: toTaskPhase(task.phase),
-      summary: task.summary,
-    };
-    if (typeof task.artifact_id === 'string') event.artifact_id = task.artifact_id;
-    return event;
-  }
+  if (!task || typeof task.id !== 'string' || typeof task.summary !== 'string') return undefined;
+  const event: SessionEvent & { kind: 'task' } = {
+    kind: 'task',
+    at,
+    id: task.id,
+    phase: toTaskPhase(task.phase),
+    summary: task.summary,
+  };
+  if (typeof task.artifact_id === 'string') event.artifact_id = task.artifact_id;
+  return event;
+}
 
-  if (typeof record.content === 'string' && record.content.length > 0) {
-    return { kind: 'reply', at, text: record.content };
-  }
-
-  return undefined;
+function toReplyEvent(record: Record<string, unknown>, at: number): SessionEvent | undefined {
+  if (typeof record.content !== 'string' || record.content.length === 0) return undefined;
+  return { kind: 'reply', at, text: record.content };
 }

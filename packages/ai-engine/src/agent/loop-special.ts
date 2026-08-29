@@ -9,7 +9,7 @@ import type {
   AgentMessage,
   QuestionGate,
   TaskHost,
-  TaskKind,
+  BackgroundTaskKind,
   ToolCall,
   ToolResult,
 } from './types';
@@ -24,7 +24,7 @@ export function denyNestedTask(depth: number): string | null {
   return null;
 }
 
-export function denyPlanWorker(mode: string | undefined, kind: TaskKind): string | null {
+export function denyPlanWorker(mode: string | undefined, kind: BackgroundTaskKind): string | null {
   if ((mode === 'plan' || mode === 'ask') && kind === 'worker') {
     return 'Plan/ask mode forbids a worker Task. Use explore or plan.';
   }
@@ -43,7 +43,7 @@ export async function answerAskUser(
 
 export function spawnTaskResult(
   call: ToolCall,
-  kind: TaskKind,
+  kind: BackgroundTaskKind,
   tasks?: TaskHost,
 ): { result: ToolResult; started?: AgentEvent } {
   if (!tasks) {

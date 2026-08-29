@@ -8,7 +8,7 @@ import { builtinSubagent } from './builtin-subagents';
 import { composeSystemPrompt } from './system-prompt';
 import { toolsForMode } from './tools';
 import { canonicalToolName } from './tool-names';
-import type { AgentEvent, RunAgentTurnOptions, TaskKind, ToolDefinition } from './types';
+import type { AgentEvent, RunAgentTurnOptions, BackgroundTaskKind, ToolDefinition } from './types';
 
 type RunTurn = (options: RunAgentTurnOptions) => AsyncGenerator<AgentEvent>;
 
@@ -34,7 +34,7 @@ function childRunner(parent: RunAgentTurnOptions, runTurn: RunTurn): ChildRunner
 
 function childOptions(
   parent: RunAgentTurnOptions,
-  input: { kind: TaskKind; prompt: string; signal: AbortSignal },
+  input: { kind: BackgroundTaskKind; prompt: string; signal: AbortSignal },
 ): RunAgentTurnOptions {
   const builtin = builtinSubagent(input.kind);
   const tools = toolsForKind(input.kind, parent.tools);
@@ -65,7 +65,7 @@ function childOptions(
   };
 }
 
-function toolsForKind(kind: TaskKind, tools: ToolDefinition[]): ToolDefinition[] {
+function toolsForKind(kind: BackgroundTaskKind, tools: ToolDefinition[]): ToolDefinition[] {
   const builtin = builtinSubagent(kind);
   if (!builtin?.tools) return toolsForMode(kind === 'plan' ? 'plan' : 'agent', tools, builtin?.autonomy);
   const allow = new Set(builtin.tools.map((name) => canonicalToolName(name)));

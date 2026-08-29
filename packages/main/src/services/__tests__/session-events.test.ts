@@ -167,6 +167,25 @@ describe('plan chunks', () => {
     expect(toSessionEvent({ plan: { steps: 'soon' } }, AT)).toBeUndefined();
   });
 
+  it('maps engine title/status steps onto the timeline labels', () => {
+    expect(
+      toSessionEvent(
+        {
+          plan: {
+            steps: [{ id: 's1', title: 'Read the tree', status: 'active' }],
+            mermaid: 'flowchart TD\n  A-->B',
+          },
+        },
+        AT,
+      ),
+    ).toEqual({
+      kind: 'plan',
+      at: AT,
+      mermaid: 'flowchart TD\n  A-->B',
+      steps: [{ id: 's1', label: 'Read the tree', state: 'current' }],
+    });
+  });
+
   it('keeps a mermaid fence on the plan', () => {
     expect(
       toSessionEvent(

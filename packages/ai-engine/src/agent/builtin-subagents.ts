@@ -1,8 +1,8 @@
 import { EXPLORER_TOOLS, PLAN_CHILD_TOOLS } from './tool-names';
-import type { AutonomyLevel, DroidDefinition, TaskKind } from './types';
+import type { AutonomyLevel, DroidDefinition, BackgroundTaskKind } from './types';
 
 export interface BuiltinSubagent {
-  name: TaskKind;
+  name: BackgroundTaskKind;
   description: string;
   autonomy: AutonomyLevel;
   tools?: string[];

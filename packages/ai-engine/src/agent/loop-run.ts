@@ -41,20 +41,20 @@ export function prepareCall(
   };
 }
 
-export async function readArtifact(call: ToolCall, artifacts?: ArtifactHost): Promise<ToolResult | undefined> {
+export function readArtifact(call: ToolCall, artifacts?: ArtifactHost): ToolResult | undefined {
   const id = typeof call.arguments.artifact_id === 'string' ? call.arguments.artifact_id : '';
   if (!id || !artifacts) return undefined;
-  if (call.name === 'Grep') {
-    const page = artifacts.grep(id, String(call.arguments.pattern ?? ''));
-    return page === undefined ? { ok: false, output: `Unknown artifact "${id}"` } : { ok: true, output: page };
-  }
+  if (call.name === 'Grep') return pageOrMissing(artifacts.grep(id, String(call.arguments.pattern ?? '')), id);
   if (call.name === 'Read') {
     const offset = typeof call.arguments.offset === 'number' ? call.arguments.offset : 1;
     const limit = typeof call.arguments.limit === 'number' ? call.arguments.limit : 80;
-    const page = artifacts.readPage(id, offset, limit);
-    return page === undefined ? { ok: false, output: `Unknown artifact "${id}"` } : { ok: true, output: page };
+    return pageOrMissing(artifacts.readPage(id, offset, limit), id);
   }
   return undefined;
+}
+
+function pageOrMissing(page: string | undefined, id: string): ToolResult {
+  return page === undefined ? { ok: false, output: `Unknown artifact "${id}"` } : { ok: true, output: page };
 }
 
 export async function decideAndRun(
@@ -76,8 +76,7 @@ export async function decideAndRun(
   }
 
   const executed = await runParallel(allowed.map((item) => item.call), async (call) => {
-    const paged = await readArtifact(call, artifacts);
-    return paged ?? execute(call);
+    return readArtifact(call, artifacts) ?? execute(call);
   });
   allowed.forEach((item, index) => {
     results.set(item.call.id, finishResult(item.call.name, executed[index]!, artifacts));

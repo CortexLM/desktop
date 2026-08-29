@@ -3,19 +3,19 @@
  * The parent receives started / progress / completed / failed with id + summary.
  */
 
-import type { ArtifactHost, TaskHost, TaskKind, TaskPayload, TaskSpawnRequest, AgentEvent } from './types';
+import type { ArtifactHost, TaskHost, BackgroundTaskKind, TaskPayload, TaskSpawnRequest, AgentEvent } from './types';
 
 export const DEFAULT_TASK_TIMEOUT_MS = 120_000;
 
 export type ChildRunner = (input: {
   id: string;
-  kind: TaskKind;
+  kind: BackgroundTaskKind;
   prompt: string;
   signal: AbortSignal;
   onProgress: (summary: string) => void;
 }) => Promise<{ summary: string; output: string }>;
 
-export function resolveTaskKind(args: Record<string, unknown>): TaskKind | undefined {
+export function resolveTaskKind(args: Record<string, unknown>): BackgroundTaskKind | undefined {
   const raw = String(args.kind ?? args.subagent ?? args.droid ?? '')
     .trim()
     .toLowerCase();

@@ -101,6 +101,37 @@ describe('background Task', () => {
     }
     expect(events.some((event) => event.type === 'task_failed')).toBe(true);
   });
+
+  it('cancels an open child as task_failed', async () => {
+    const events: AgentEvent[] = [];
+    const abort = new AbortController();
+    const run = runAgentTurn({
+      messages: [{ role: 'user', content: 'hang' }],
+      chat: async (messages) => {
+        const last = messages.at(-1);
+        if (last?.role === 'user' && last.content === 'never') {
+          await new Promise(() => undefined);
+        }
+        return { content: '<tool name="Task">{"kind":"explore","prompt":"never"}</tool>' };
+      },
+      tools: CODING_TOOLS,
+      executor: { execute: async () => ({ ok: true, output: '' }) },
+      permissions: new InMemoryPermissionGate({ autoAllowSafe: true }),
+      systemPrompt: 'test',
+      abortSignal: abort.signal,
+      taskTimeoutMs: 5_000,
+      maxIterations: 3,
+    });
+
+    const started = (async () => {
+      for await (const event of run) {
+        events.push(event);
+        if (event.type === 'task_started') abort.abort();
+      }
+    })();
+    await started;
+    expect(events.some((event) => event.type === 'task_failed')).toBe(true);
+  });
 });
 
 describe('artifacts', () => {
@@ -138,6 +169,45 @@ describe('artifacts', () => {
     expect(store.ids()).toEqual(['art_1']);
     expect(store.readPage('art_1', 1, 2)).toContain('1|');
     expect(store.grep('art_1', 'line-3')).toContain('line-3');
+  });
+
+  it('pages an offloaded artifact through Read', async () => {
+    const store = new ArtifactStore({ threshold: 80, previewLines: 2 });
+    const bulky = Array.from({ length: 12 }, (_, i) => `line-${i}`).join('\n');
+    let phase = 0;
+    const chat: ChatFn = async (messages) => {
+      const last = messages.at(-1);
+      if (phase === 0) {
+        phase = 1;
+        return { content: '', toolCalls: [{ id: 'g1', name: 'Grep', arguments: { pattern: 'line' } }] };
+      }
+      if (last?.role === 'tool' && phase === 1) {
+        phase = 2;
+        expect(last.content).toMatch(/art_1/);
+        return {
+          content: '',
+          toolCalls: [{ id: 'r1', name: 'Read', arguments: { artifact_id: 'art_1', offset: 2, limit: 1 } }],
+        };
+      }
+      return { content: 'paged' };
+    };
+
+    const events: AgentEvent[] = [];
+    for await (const event of runAgentTurn({
+      messages: [{ role: 'user', content: 'page it' }],
+      chat,
+      tools: CODING_TOOLS,
+      executor: { execute: async () => ({ ok: true, output: bulky }) },
+      permissions: new InMemoryPermissionGate({ autoAllowSafe: true }),
+      systemPrompt: 'test',
+      artifacts: store,
+    })) {
+      events.push(event);
+    }
+
+    const page = events.filter((event) => event.type === 'tool_end').at(-1);
+    expect(page && page.type === 'tool_end' && page.output).toContain('line-1');
+    expect(page && page.type === 'tool_end' && page.output).toContain('2|');
   });
 });
 

@@ -13,7 +13,6 @@ import type {
   AgentMode,
   AgentSessionRecord,
   ChatFn,
-  FileSnapshot,
   PermissionDecision,
   PermissionRule,
   QuestionGate,
@@ -49,6 +48,7 @@ export class AgentServer {
   private sessions = new Map<string, AgentSessionRecord>();
   private gates = new Map<string, InMemoryPermissionGate>();
   private questions = new Map<string, (answer: string) => void>();
+  private artifactStores = new Map<string, ArtifactStore>();
   readonly checkpoints = new CheckpointStore();
   private persist?: AgentServerPersistence;
 
@@ -200,6 +200,17 @@ export class AgentServer {
   }
 
   async *runTurn(sessionId: string, userText: string, context: AgentTurnContext): AsyncGenerator<AgentEvent> {
+    const session = this.beginTurn(sessionId, userText);
+    const prepared = this.prepareTurn(session, context);
+    try {
+      yield* this.pumpTurn(session, context, prepared);
+    } catch (error) {
+      session.messages.pop();
+      yield { type: 'error', message: error instanceof Error ? error.message : String(error) };
+    }
+  }
+
+  private beginTurn(sessionId: string, userText: string): AgentSessionRecord {
     const session = this.require(sessionId);
     const last = session.messages.at(-1);
     if (!(last?.role === 'user' && last.content === userText)) {
@@ -208,7 +219,10 @@ export class AgentServer {
     session.title = session.title === 'New session' ? userText.slice(0, 42) : session.title;
     session.updatedAt = Date.now();
     void this.persist?.saveMessage?.(session.id, 'user', userText);
+    return session;
+  }
 
+  private prepareTurn(session: AgentSessionRecord, context: AgentTurnContext) {
     const autonomy = resolveAutonomy(session.runtime, session.autonomy);
     const pluginTools = toolsFromConnections(
       context.pluginConnections ?? [],
@@ -220,10 +234,8 @@ export class AgentServer {
       [...CODING_TOOLS, ...(context.extraTools ?? []), ...pluginTools],
       autonomy,
     );
-    const artifacts = new ArtifactStore();
-    const snapshots: FileSnapshot[] = [];
-    this.checkpoints.create(session.messages, 'before turn', snapshots);
-
+    const artifacts = this.storeFor(session.id);
+    this.checkpoints.create(session.messages, 'before turn', []);
     const gate = new InMemoryPermissionGate({
       autoAllowSafe: true,
       agentName: session.agentName,
@@ -231,61 +243,65 @@ export class AgentServer {
       onRequest: () => undefined,
     });
     this.gates.set(session.id, gate);
+    return { autonomy, tools, artifacts, gate };
+  }
 
+  private async *pumpTurn(
+    session: AgentSessionRecord,
+    context: AgentTurnContext,
+    prepared: ReturnType<AgentServer['prepareTurn']>,
+  ): AsyncGenerator<AgentEvent> {
     const questions: QuestionGate = {
-      ask: (id, _prompt, _options) =>
+      ask: (id) =>
         new Promise((resolve) => {
           this.questions.set(`${session.id}:${id}`, resolve);
         }),
     };
-
-    const systemPrompt = composeSystemPrompt({
-      mode: session.mode,
-      workspaceRoot: session.workspacePath,
-      projectConventions: context.conventions,
-      skills: context.skills,
-      tools,
-      autonomy,
-      runtime: session.runtime,
-      droid: session.agentName
-        ? { name: session.agentName, description: '', systemPrompt: `You are the ${session.agentName} agent.` }
-        : undefined,
-    });
-
     const visible: string[] = [];
-    try {
-      for await (const event of runAgentTurn({
-        messages: session.messages,
-        chat: context.chat,
-        tools,
-        executor: context.executor,
-        permissions: gate,
-        questions,
-        systemPrompt,
+    for await (const event of runAgentTurn({
+      messages: session.messages,
+      chat: context.chat,
+      tools: prepared.tools,
+      executor: context.executor,
+      permissions: prepared.gate,
+      questions,
+      systemPrompt: composeSystemPrompt({
         mode: session.mode,
-        autonomy,
+        workspaceRoot: session.workspacePath,
+        projectConventions: context.conventions,
+        skills: context.skills,
+        tools: prepared.tools,
+        autonomy: prepared.autonomy,
         runtime: session.runtime,
-        agentName: session.agentName,
-        delegationDepth: session.parentId ? 1 : 0,
-        artifacts,
-        onMessages: (transcript) => {
-          session.messages = transcript.filter(
-            (message, index) => !(index === 0 && message.role === 'system')
-          );
-        },
-      })) {
-        if (event.type === 'text') visible.push(event.text);
-        applyKeepSet(session, event, artifacts);
-        yield event;
-      }
-      session.updatedAt = Date.now();
-      void this.persist?.save?.(session);
-      const assistant = visible.join('\n') || '(agent turn)';
-      void this.persist?.saveMessage?.(session.id, 'assistant', assistant);
-    } catch (error) {
-      session.messages.pop();
-      yield { type: 'error', message: error instanceof Error ? error.message : String(error) };
+        droid: session.agentName
+          ? { name: session.agentName, description: '', systemPrompt: `You are the ${session.agentName} agent.` }
+          : undefined,
+      }),
+      mode: session.mode,
+      autonomy: prepared.autonomy,
+      runtime: session.runtime,
+      agentName: session.agentName,
+      delegationDepth: session.parentId ? 1 : 0,
+      artifacts: prepared.artifacts,
+      onMessages: (transcript) => {
+        session.messages = transcript.filter((message, index) => !(index === 0 && message.role === 'system'));
+      },
+    })) {
+      if (event.type === 'text') visible.push(event.text);
+      applyKeepSet(session, event, prepared.artifacts);
+      yield event;
     }
+    session.updatedAt = Date.now();
+    void this.persist?.save?.(session);
+    void this.persist?.saveMessage?.(session.id, 'assistant', visible.join('\n') || '(agent turn)');
+  }
+
+  private storeFor(id: string): ArtifactStore {
+    const existing = this.artifactStores.get(id);
+    if (existing) return existing;
+    const store = new ArtifactStore();
+    this.artifactStores.set(id, store);
+    return store;
   }
 
   private require(id: string): AgentSessionRecord {

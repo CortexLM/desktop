@@ -53,5 +53,5 @@ export const SPEC_SAFE_TOOLS = new Set([
 
 export const EXPLORER_TOOLS = new Set(['Read', 'LS', 'Grep', 'Glob']);
 
-/** Plan-mode children: read tools plus the spec exit. */
-export const PLAN_CHILD_TOOLS = new Set([...EXPLORER_TOOLS, 'AskUser', 'ExitSpecMode', 'TodoWrite']);
+/** Plan-mode children: read tools plus the spec exit. Children must not AskUser. */
+export const PLAN_CHILD_TOOLS = new Set([...EXPLORER_TOOLS, 'ExitSpecMode', 'TodoWrite']);

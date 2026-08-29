@@ -2,7 +2,7 @@
  * Per-call guards and parallel execution. Results stay in the original call order.
  */
 
-import { canonicalToolName, MUTATE_TOOLS, SPEC_SAFE_TOOLS } from './tool-names';
+import { MUTATE_TOOLS, SPEC_SAFE_TOOLS } from './tool-names';
 import type { AgentMode, ToolCall, ToolDefinition, ToolResult } from './types';
 
 export function writeTarget(name: string, args: Record<string, unknown>): string | undefined {
