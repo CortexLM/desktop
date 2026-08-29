@@ -14,7 +14,7 @@ Chat is the general assistant. It is the default product (`/`).
 | `/projects/:id` | Project | Brief, status, link to sources. |
 | `/projects/:id/sources` | Project sources | Files and connections attached to that project. |
 | `/library` | Library | Saved answers and uploads. |
-| `/plugins` | Plugins | Last item in the Chat sidebar. Catalogue comes from the API. |
+| `/plugins` | Plugins | Last item in the Chat sidebar. Catalogue comes from the API; each card is assigned to Chat, Bot, or both. |
 | `/settings` | Chat settings | Defaults for Chat. Code settings stay under `/code/settings`. |
 
 Search in the sidebar opens the command palette. It is not a separate page.
@@ -57,8 +57,30 @@ third party.
 Connecting needs a Cortex account. `POST /v1/plugins/{slug}/connect` refuses a
 guest with `403 entitlement_required` ("a guest session cannot be signed back
 into to revoke it later"), which is correct and which the UI never shows:
-Connect on a guest opens sign-in, remembers the slug, and finishes the
-connection when the account arrives. See `state/pending-connect.ts`.
+Connect on a guest opens sign-in, remembers the slug and the Chat / Bot choice,
+and finishes the connection when the account arrives. See
+`state/pending-connect.ts`.
+
+### Chat, Bot, or both
+
+Every card carries two switches. They are the connection's **surfaces**: a
+Cortex Chat turn may use the tools of a plugin assigned to `chat`, and a Cortex
+Bot mascot the tools of one assigned to `bot`. The choice travels in the connect
+call, and a connected app is re-assigned with `PATCH
+/v1/plugins/{slug}/connect`. A connection keeps at least one surface — switching
+off the last one is refused and the card says to disconnect instead.
+
+The client does not pick tools for a turn: it neither sends a tool list on
+`chat.turn` nor on `bot.turn`, so the assignment is state the service filters
+on. What this page owes the user is therefore that the switches describe the
+account and not the click — they move when the service has agreed, and a write
+that failed says so and leaves them where they were.
+
+An answer with no `surfaces` on it is read as both, because a service that does
+not filter by surface really does reach those tools from either product. A
+backend with no `PATCH` on the route says so on the page ("Cortex cannot yet
+choose where a plugin is used on this workspace") rather than pretending the
+change was saved. See `packages/cortex-api/CONTRACT.md` § Plugins.
 
 ## Honest states
 

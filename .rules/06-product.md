@@ -140,15 +140,14 @@ Bot rules:
 
 ### Plugins list services, never our installer
 
-Plugin cards name the service the user is connecting to, with its official brand
-mark: **Google Drive, Slack, GitHub, Paper**
-(`packages/app/src/state/plugins.ts`, `brand-logos.tsx`). The middleware we install
-through is internal plumbing: it is a field on the card type, never a card, never a
+Plugin cards name the service the user is connecting to, from the live catalogue
+(`packages/app/src/state/plugins.ts`). The middleware we install through is
+internal plumbing: it is a field on the catalogue envelope, never a card, never a
 label, never a subtitle, never in an error body.
 
 **Bad** — our integration vendor rendered as though it were an app the user wants,
-in three places on one screen (real copy in
-`packages/app/src/screens/chat/library-plugins-screens.tsx`):
+in three places on one screen (real copy, since fixed, in
+`packages/app/src/screens/chat/plugins-screen.tsx`):
 
 ```tsx
 subtitle="Connect the services you already use. Install path is Composio."
@@ -169,8 +168,26 @@ body={props.error || 'Plugins are not available on this workspace yet. Nothing i
 ```
 
 A 503 from the plugin catalogue means "plugins are not available on this
-workspace". It does not mean an empty list, and the four cards are never shown as
+workspace". It does not mean an empty list, and no card is ever shown as
 connected unless the API says so.
+
+### A plugin is assigned to Chat, Bot, or both
+
+The account decides which product may use a connected plugin's tools. That is the
+connection's `surfaces` — `chat`, `bot`, or both — chosen on the card before
+Connect and changed on the card afterwards. Locked behaviour:
+
+- **At least one surface, always.** A connection on neither is reachable from
+  neither product; the way to have that is Disconnect, and the card says so
+  rather than sending a change the service would refuse.
+- **The switches describe the account, not the click.** A change on a connected
+  plugin is a write, and the switch moves when the service has agreed. A failed
+  write leaves it where it was and says nothing was changed — a switch that
+  moved locally would claim a filter no turn is applying.
+- **Silence is not "off".** A connection the service describes without
+  `surfaces` is not filtered, so it reads as both. Drawing two empty switches
+  over a connection whose tools both products can reach is the lie this rule
+  exists to prevent.
 
 ## 6.5 Naming
 

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 
-import { LibraryScreen } from '../library-plugins-screens.tsx';
+import { LibraryScreen } from '../library-screen.tsx';
 import { ProjectsScreen } from '../projects-screen.tsx';
 import { ProjectScreen, ProjectSourcesScreen } from '../project-detail-screens.tsx';
 import { ChatSettingsScreen, ResearchScreen } from '../research-settings-screens.tsx';

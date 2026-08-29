@@ -196,7 +196,7 @@ describe('computer live and plugins', () => {
     setRecordingFlagValue(true);
     await reconcilePlugins();
     expect(isPluginConnected('gmail')).toBe(true);
-    expect(await installPlugin('gmail')).toBe('connected');
+    expect(await installPlugin('gmail', ['chat', 'bot'])).toBe('connected');
     await removePlugin('gmail');
     expect(calls[4]!.url).toContain('/v1/plugins/catalog');
     expect(calls[6]!.url).toContain('/v1/plugins/gmail/connect');
@@ -278,12 +278,12 @@ describe('computer live and plugins', () => {
       },
     ]);
 
-    await expect(installPlugin('gmail')).resolves.toBe('needs-account');
+    await expect(installPlugin('gmail', ['chat'])).resolves.toBe('needs-account');
   });
 
   it('still throws a connect failure that signing in would not fix', async () => {
     clientFor([{ status: 500, body: { code: 'boom', message: 'Composio timed out' } }]);
-    await expect(installPlugin('gmail')).rejects.toThrow(/timed out/i);
+    await expect(installPlugin('gmail', ['chat', 'bot'])).rejects.toThrow(/timed out/i);
   });
 
   it('records computer errors and empty screenshot src', async () => {

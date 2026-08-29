@@ -1,87 +1,27 @@
-import { For, type JSX, Show } from 'solid-js';
+import { createSignal, For, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
-import { RemoteStateView } from '../shared/remote-state-view.tsx';
-import type { LibraryItem } from '../../state/library.ts';
-import type { PluginApp } from '../../state/plugins.ts';
-import type { RemoteState } from '../../state/remote-collection.ts';
+import { PluginSurfaceChoice } from './plugin-surface-choice.tsx';
+import type { PluginApp, PluginWriteFailure } from '../../state/plugins.ts';
+import type { PluginSurface } from '../../state/plugin-surfaces.ts';
 
 import './product-pages.css';
 
-function LibraryList(props: {
-  items: readonly LibraryItem[];
-  onRemove?: (id: string) => void;
-}): JSX.Element {
-  return (
-    <div class="cx-product-list">
-      <For each={props.items}>
-        {(item) => (
-          <div class="cx-product-row" data-library-item={item.id}>
-            <div>
-              <div class="cx-product-row__title">{item.title}</div>
-              <p class="cx-product-row__meta">{item.kind} · {item.excerpt}</p>
-            </div>
-            <div class="cx-product-row__action">
-              <Show when={props.onRemove}>
-                <Button variant="secondary" onClick={() => props.onRemove?.(item.id)}>
-                  Remove
-                </Button>
-              </Show>
-            </div>
-          </div>
-        )}
-      </For>
-    </div>
-  );
-}
-
-export function LibraryScreen(props: {
-  items: readonly LibraryItem[];
-  state: RemoteState;
-  error?: string;
-  signedIn: boolean;
-  onOpen?: (item: LibraryItem) => void;
-  onRemove?: (id: string) => void;
-  onRetry: () => void;
-  onSignIn: () => void;
-}): JSX.Element {
-  return (
-    <>
-      <PageHeader title="Library" subtitle="Answers and uploads you chose to keep." />
-      <PageBody width="list">
-        <Show
-          when={props.signedIn}
-          fallback={
-            <HonestState
-              kind="signed-out"
-              title="Sign in to keep a library"
-              body="A saved answer lives on your account so it is there on your other machines."
-              actionLabel="Sign in"
-              onAction={props.onSignIn}
-            />
-          }
-        >
-          <RemoteStateView
-            state={props.state}
-            {...(props.error ? { error: props.error } : {})}
-            label="Your library"
-            emptyTitle="Library is empty"
-            emptyBody="Save an answer from a conversation and it will land here."
-            onRetry={props.onRetry}
-          >
-            <LibraryList
-              items={props.items}
-              {...(props.onRemove ? { onRemove: props.onRemove } : {})}
-            />
-          </RemoteStateView>
-        </Show>
-      </PageBody>
-    </>
-  );
-}
+/**
+ * What a failed write says. The service's own message is not shown: it is
+ * written by whoever threw it, and it has been seen naming the marketplace we
+ * install through. Each line says what is affected and what state it left.
+ */
+const WRITE_FAILURE_COPY: Record<PluginWriteFailure, string> = {
+  unavailable: 'Plugins are not available on this workspace right now. Nothing changed.',
+  connect: 'Cortex could not connect that app. Nothing changed — try again.',
+  assign: 'Cortex could not save where that plugin is used. Nothing changed — try again.',
+  'assign-unsupported':
+    'Cortex cannot yet choose where a plugin is used on this workspace. The plugin stays connected everywhere it already was.',
+};
 
 /**
  * Why Connect will ask for an account first.
@@ -144,8 +84,10 @@ export interface PluginsScreenProps {
   /** The catalogue, exactly as the API returned it. Never padded out locally. */
   apps: readonly PluginApp[];
   connected: readonly string[];
-  onConnect: (slug: string) => void;
+  onConnect: (slug: string, surfaces: readonly PluginSurface[]) => void;
   onDisconnect?: (slug: string) => void;
+  /** Re-assigns a connection between Cortex Chat and Cortex Bot. */
+  onSurfaces?: (slug: string, surfaces: readonly PluginSurface[]) => void;
   loading?: boolean;
   /** No marketplace configured on this backend, or the API is out of reach. */
   unavailable?: boolean;
@@ -159,14 +101,20 @@ export interface PluginsScreenProps {
   signedIn?: boolean;
   onSignIn?: () => void;
   onCreateAccount?: () => void;
-  /** A connect that genuinely failed. The guest refusal never lands here. */
-  connectError?: string;
+  /**
+   * A connect or an assignment that genuinely failed. The guest refusal never
+   * lands here — that one opens sign-in instead.
+   */
+  writeError?: PluginWriteFailure;
 }
 
 export function PluginsScreen(props: PluginsScreenProps): JSX.Element {
   return (
     <>
-      <PageHeader title="Plugins" subtitle="Connect the services you already use." />
+      <PageHeader
+        title="Plugins"
+        subtitle="Connect the services you already use, in Cortex Chat, Cortex Bot, or both."
+      />
       <PageBody width="list">
         <Show when={!props.loading} fallback={<HonestState kind="loading" title="Loading plugins" body="Asking the catalogue." />}>
           <Show when={props.signedIn === false && props.onSignIn && props.onCreateAccount}>
@@ -175,10 +123,10 @@ export function PluginsScreen(props: PluginsScreenProps): JSX.Element {
               onCreateAccount={() => props.onCreateAccount?.()}
             />
           </Show>
-          <Show when={props.connectError}>
-            {(message) => (
+          <Show when={props.writeError}>
+            {(failure) => (
               <p class="cx-product-error" role="alert">
-                {message()}
+                {WRITE_FAILURE_COPY[failure()]}
               </p>
             )}
           </Show>
@@ -232,12 +180,7 @@ function PluginsBody(props: PluginsScreenProps): JSX.Element {
               />
             }
           >
-            <PluginCards
-              apps={props.apps}
-              connected={props.connected}
-              onConnect={props.onConnect}
-              onDisconnect={props.onDisconnect}
-            />
+            <PluginCards {...props} />
           </Show>
         </Show>
       </Show>
@@ -245,52 +188,100 @@ function PluginsBody(props: PluginsScreenProps): JSX.Element {
   );
 }
 
-function PluginCards(props: {
-  apps: readonly PluginApp[];
-  connected: readonly string[];
-  onConnect: (slug: string) => void;
-  onDisconnect?: (slug: string) => void;
-}): JSX.Element {
+function PluginCards(props: PluginsScreenProps): JSX.Element {
   return (
     <div class="cx-product-list">
       <For each={props.apps}>
         {(app) => (
-          <div class="cx-plugin-card" data-plugin={app.slug}>
-            <PluginLogo app={app} />
-            <div class="cx-plugin-card__text">
-              <div class="cx-plugin-card__name">{app.name}</div>
-              <Show when={cardMeta(app)}>
-                {(meta) => <p class="cx-plugin-card__meta">{meta()}</p>}
-              </Show>
-              <Show when={app.summary}>
-                <p class="cx-plugin-card__summary">{app.summary}</p>
-              </Show>
-            </div>
-            <div class="cx-product-row__action">
-              <Show
-                when={!props.connected.includes(app.slug)}
-                fallback={
-                  <Button
-                    variant="secondary"
-                    onClick={() => props.onDisconnect?.(app.slug)}
-                    aria-label={`Disconnect ${app.name}`}
-                  >
-                    Disconnect
-                  </Button>
-                }
-              >
-                <Button
-                  variant="primary"
-                  onClick={() => props.onConnect(app.slug)}
-                  aria-label={`Connect ${app.name}`}
-                >
-                  Connect
-                </Button>
-              </Show>
-            </div>
-          </div>
+          <PluginCard
+            app={app}
+            connected={props.connected.includes(app.slug)}
+            onConnect={props.onConnect}
+            {...(props.onDisconnect ? { onDisconnect: props.onDisconnect } : {})}
+            {...(props.onSurfaces ? { onSurfaces: props.onSurfaces } : {})}
+          />
         )}
       </For>
+    </div>
+  );
+}
+
+/**
+ * One catalogue row, with the Chat / Bot choice it will be connected on.
+ *
+ * Before the connection exists the choice is local — there is nothing on the
+ * account to write it to yet, so it travels in the connect call. Afterwards it
+ * is the account's, and every change is a write.
+ */
+function PluginCard(props: {
+  app: PluginApp;
+  connected: boolean;
+  onConnect: (slug: string, surfaces: readonly PluginSurface[]) => void;
+  onDisconnect?: (slug: string) => void;
+  onSurfaces?: (slug: string, surfaces: readonly PluginSurface[]) => void;
+}): JSX.Element {
+  const [draft, setDraft] = createSignal<readonly PluginSurface[]>(props.app.surfaces);
+  const surfaces = () => (props.connected ? props.app.surfaces : draft());
+
+  return (
+    <div class="cx-plugin-card" data-plugin={props.app.slug}>
+      <PluginLogo app={props.app} />
+      <div class="cx-plugin-card__text">
+        <div class="cx-plugin-card__name">{props.app.name}</div>
+        <Show when={cardMeta(props.app)}>
+          {(meta) => <p class="cx-plugin-card__meta">{meta()}</p>}
+        </Show>
+        <Show when={props.app.summary}>
+          <p class="cx-plugin-card__summary">{props.app.summary}</p>
+        </Show>
+        <PluginSurfaceChoice
+          appName={props.app.name}
+          surfaces={surfaces()}
+          connected={props.connected}
+          onChange={(next) => {
+            if (props.connected) props.onSurfaces?.(props.app.slug, next);
+            else setDraft(next);
+          }}
+        />
+      </div>
+      <PluginAction
+        app={props.app}
+        connected={props.connected}
+        onConnect={() => props.onConnect(props.app.slug, surfaces())}
+        {...(props.onDisconnect ? { onDisconnect: props.onDisconnect } : {})}
+      />
+    </div>
+  );
+}
+
+function PluginAction(props: {
+  app: PluginApp;
+  connected: boolean;
+  onConnect: () => void;
+  onDisconnect?: (slug: string) => void;
+}): JSX.Element {
+  return (
+    <div class="cx-product-row__action">
+      <Show
+        when={!props.connected}
+        fallback={
+          <Button
+            variant="secondary"
+            onClick={() => props.onDisconnect?.(props.app.slug)}
+            aria-label={`Disconnect ${props.app.name}`}
+          >
+            Disconnect
+          </Button>
+        }
+      >
+        <Button
+          variant="primary"
+          onClick={() => props.onConnect()}
+          aria-label={`Connect ${props.app.name}`}
+        >
+          Connect
+        </Button>
+      </Show>
     </div>
   );
 }

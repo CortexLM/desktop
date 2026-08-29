@@ -22,11 +22,14 @@ import {
   isAccountRequired,
   listPluginConnections,
   PLUGIN_UNAVAILABLE,
+  setPluginSurfaces,
   type ApiPluginCatalogEntry,
   type ApiPluginConnection,
+  type PluginSurface,
 } from '@cortex-ide/cortex-api';
 
 import { botClient } from './bot-client.ts';
+import { readPluginSurfaces } from './plugin-surfaces.ts';
 
 /** One row on the Plugins page, projected from the catalogue. */
 export interface PluginApp {
@@ -37,6 +40,12 @@ export interface PluginApp {
   /** `oauth2`, `api_key`, `none` … as the provider labels it. */
   auth?: string;
   toolCount?: number;
+  /**
+   * Chat, Bot, or both — the account's assignment for this connection. Only
+   * meaningful once the app is connected; a catalogue row nobody has connected
+   * carries the pair the page would ask for.
+   */
+  surfaces: readonly PluginSurface[];
 }
 
 /*
@@ -75,16 +84,30 @@ export {
   pluginError,
 };
 
-function toPluginApp(entry: ApiPluginCatalogEntry): PluginApp {
+function toPluginApp(
+  entry: ApiPluginCatalogEntry,
+  linked: readonly ApiPluginConnection[],
+): PluginApp {
+  const connection = linked.find((row) => carriesSlug(row, entry.slug));
   const app: PluginApp = {
     slug: entry.slug,
     name: entry.name?.trim() || entry.slug,
     summary: entry.description?.trim() ?? '',
+    surfaces: readPluginSurfaces(connection?.surfaces ?? entry.surfaces),
   };
   if (entry.category) app.category = entry.category;
   if (entry.auth) app.auth = entry.auth;
   if (typeof entry.tool_count === 'number') app.toolCount = entry.tool_count;
   return app;
+}
+
+/**
+ * Which field of a connection row carries the catalogue slug is not yet
+ * observed — the route has only ever answered an empty list — so every
+ * plausible one is compared rather than one being guessed at.
+ */
+function carriesSlug(row: ApiPluginConnection, slug: string): boolean {
+  return [row.slug, row.toolkit_slug, row.plugin_id, row.brand, row.id].includes(slug);
 }
 
 /**
@@ -103,16 +126,9 @@ function withoutProviderItself(
   return entries.filter((entry) => entry.slug.trim().toLowerCase() !== own);
 }
 
-/**
- * Which field of a connection row carries the catalogue slug is not yet
- * observed — the route has only ever answered an empty list — so every
- * plausible one is compared rather than one being guessed at.
- */
 export function isPluginConnected(slug: string): boolean {
   if (catalogConnected().has(slug)) return true;
-  return connections().some((row) =>
-    [row.slug, row.toolkit_slug, row.plugin_id, row.brand, row.id].includes(slug),
-  );
+  return connections().some((row) => carriesSlug(row, slug));
 }
 
 function clear(state: PluginLoadState, message: string): void {
@@ -147,7 +163,7 @@ export async function reconcilePlugins(): Promise<void> {
     }
 
     const entries = withoutProviderItself(catalogue.items, catalogue.provider ?? '');
-    setApps(entries.map(toPluginApp));
+    setApps(entries.map((entry) => toPluginApp(entry, linked)));
     setCatalogConnected(
       new Set(entries.filter((entry) => entry.connected === true).map((entry) => entry.slug)),
     );
@@ -163,6 +179,38 @@ export async function reconcilePlugins(): Promise<void> {
   }
 }
 
+/**
+ * Why a write to the plugin service failed, in terms the page can put copy to.
+ *
+ * The service's own message never reaches the screen: it is written by whoever
+ * threw it, and on this route it has already been seen carrying the name of the
+ * marketplace we install through (`.rules/02-errors.md`).
+ */
+export type PluginWriteFailure =
+  /** Plugins are not configured or not answering on this workspace. */
+  | 'unavailable'
+  /** The connection could not be opened. */
+  | 'connect'
+  /** The Chat / Bot assignment could not be saved. */
+  | 'assign'
+  /** This backend has no notion of assigning a connection to a surface yet. */
+  | 'assign-unsupported';
+
+export function classifyPluginWrite(
+  error: unknown,
+  intent: 'connect' | 'assign',
+): PluginWriteFailure {
+  const classified = classifyBotError(error);
+  if (classified.code === PLUGIN_UNAVAILABLE) return 'unavailable';
+  // 404 is a route this backend does not have; 405 is one that does not take a
+  // PATCH. Either way the assignment is not a thing here yet, which is a
+  // different sentence from "the save failed, try again".
+  if (intent === 'assign' && (classified.status === 404 || classified.status === 405)) {
+    return 'assign-unsupported';
+  }
+  return intent;
+}
+
 export type PluginConnectOutcome = 'connected' | 'needs-account';
 
 /**
@@ -174,17 +222,38 @@ export type PluginConnectOutcome = 'connected' | 'needs-account';
  * returned rather than thrown — its message explains why a guest is refused,
  * which is not something to put in front of the user.
  */
-export async function installPlugin(slug: string): Promise<PluginConnectOutcome> {
+export async function installPlugin(
+  slug: string,
+  surfaces: readonly PluginSurface[],
+): Promise<PluginConnectOutcome> {
   const client = botClient();
   if (!client) throw new Error('Plugins are not reachable.');
   try {
-    await connectPlugin(client, slug);
+    await connectPlugin(client, slug, surfaces);
   } catch (error) {
     if (isAccountRequired(error)) return 'needs-account';
     throw error;
   }
   await reconcilePlugins();
   return 'connected';
+}
+
+/**
+ * Moves a connection between Chat and Bot.
+ *
+ * The service is asked first and the page re-read afterwards, so the switches
+ * show the assignment the account actually holds. A write that fails leaves
+ * them where they were — a switch that moved locally would claim a filter the
+ * agent loops are not applying.
+ */
+export async function assignPluginSurfaces(
+  slug: string,
+  surfaces: readonly PluginSurface[],
+): Promise<void> {
+  const client = botClient();
+  if (!client) throw new Error('Plugins are not reachable.');
+  await setPluginSurfaces(client, slug, surfaces);
+  await reconcilePlugins();
 }
 
 export async function removePlugin(slug: string): Promise<void> {

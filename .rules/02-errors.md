@@ -50,8 +50,8 @@ body="WorkOS returned 401. Check your WorkOS session."
 body="Your sign-in expired. Sign in again to continue."
 ```
 
-**Bad** — this is a real defect in the tree today,
-`packages/app/src/screens/chat/library-plugins-screens.tsx`:
+**Bad** — a real defect this tree carried, in
+`packages/app/src/screens/chat/plugins-screen.tsx`:
 
 ```tsx
 <PageHeader

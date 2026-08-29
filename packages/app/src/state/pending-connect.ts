@@ -15,9 +15,16 @@
 
 import { createSignal } from 'solid-js';
 
+import { PLUGIN_SURFACES, type PluginSurface } from './plugin-surfaces.ts';
+
 export interface PendingPluginConnect {
   /** A catalogue slug, e.g. `gmail`. Not validated here: the catalogue owns it. */
   slug: string;
+  /**
+   * Chat, Bot, or both, as the user set them before signing in — otherwise the
+   * detour through the account would quietly reset the choice they had made.
+   */
+  surfaces: readonly PluginSurface[];
   /** Where to land once there is an account, so the retry has a screen to run on. */
   returnTo: string;
 }
@@ -26,8 +33,12 @@ const [pending, setPending] = createSignal<PendingPluginConnect | undefined>();
 
 export const pendingPluginConnect = pending;
 
-export function rememberPluginConnect(slug: string, returnTo = '/plugins'): void {
-  setPending({ slug, returnTo });
+export function rememberPluginConnect(
+  slug: string,
+  surfaces: readonly PluginSurface[] = PLUGIN_SURFACES,
+  returnTo = '/plugins',
+): void {
+  setPending({ slug, surfaces, returnTo });
 }
 
 /** Reads and clears in one step, so a resume cannot run twice. */

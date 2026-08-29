@@ -17,7 +17,19 @@ import {
   type ApiPlugin,
   type ApiPluginCatalog,
   type ApiPluginConnection,
+  type PluginSurface,
 } from './bot-runtime-schemas.ts';
+
+/**
+ * A connection is assigned to at least one surface, so an empty list is a
+ * request the service would be right to refuse and this client does not send.
+ */
+function surfaceBody(surfaces: readonly PluginSurface[]): { surfaces: PluginSurface[] } {
+  if (surfaces.length === 0) {
+    throw new Error('A plugin connection needs at least one surface.');
+  }
+  return { surfaces: [...surfaces] };
+}
 
 /**
  * `GET /v1/plugins/catalog` (observed 2026-08-29): `{ items, is_live, provider,
@@ -56,7 +68,7 @@ export async function listPluginConnections(
 }
 
 /**
- * Starts a connection for one catalogue slug.
+ * Starts a connection for one catalogue slug, on the surfaces the user picked.
  *
  * The success shape has not been observed — every probe of this route so far
  * has been refused before it got that far, because it needs an account and the
@@ -64,14 +76,38 @@ export async function listPluginConnections(
  * response is parsed permissively and the caller re-reads the connections
  * afterwards rather than trusting a body this client has never seen.
  */
-export function connectPlugin(
+// `async` so the empty-surface refusal below arrives as a rejection like every
+// other failure on these functions, rather than throwing at the call site.
+export async function connectPlugin(
   client: CortexApiClient,
   slug: string,
+  surfaces: readonly PluginSurface[],
   signal?: AbortSignal,
 ): Promise<unknown> {
   return client.request(`/v1/plugins/${encodeURIComponent(slug)}/connect`, unknownSchema, {
     method: 'POST',
-    body: {},
+    body: surfaceBody(surfaces),
+    signal,
+  });
+}
+
+/**
+ * Re-assigns an existing connection to Chat, Bot, or both.
+ *
+ * `PATCH` on the same route the connection was opened on, keyed by the
+ * catalogue slug the page already holds. A service that has not grown the
+ * assignment yet answers `404`/`405`, and the caller says the change could not
+ * be saved rather than showing a switch that moved for nothing.
+ */
+export async function setPluginSurfaces(
+  client: CortexApiClient,
+  slug: string,
+  surfaces: readonly PluginSurface[],
+  signal?: AbortSignal,
+): Promise<unknown> {
+  return client.request(`/v1/plugins/${encodeURIComponent(slug)}/connect`, unknownSchema, {
+    method: 'PATCH',
+    body: surfaceBody(surfaces),
     signal,
   });
 }
