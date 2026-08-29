@@ -99,6 +99,25 @@ export const inboxItemSchema = z
 export type ApiBotInboxItem = z.infer<typeof inboxItemSchema>;
 export const inboxListSchema = listEnvelopeSchema(inboxItemSchema);
 
+/**
+ * Where a connected plugin's tools may be used: Cortex Chat, Cortex Bot, or
+ * both. A connection carries at least one — a connection assigned to neither
+ * would be a connection nothing can reach.
+ */
+export const pluginSurfaceSchema = z.enum(['chat', 'bot']);
+export type PluginSurface = z.infer<typeof pluginSurfaceSchema>;
+
+/** Both surfaces, in the order they are offered. */
+export const PLUGIN_SURFACES: readonly PluginSurface[] = ['chat', 'bot'];
+
+/**
+ * Read as plain strings and narrowed by the caller, deliberately: a service
+ * that grows a third surface would otherwise fail the parse and empty the whole
+ * plugins page over a value this client simply has no switch for. Writes are
+ * narrow — `setPluginSurfaces` only accepts what this client understands.
+ */
+const surfaceListSchema = z.array(z.string());
+
 export const pluginConnectionSchema = z
   .object({
     id: z.string(),
@@ -110,6 +129,8 @@ export const pluginConnectionSchema = z
     name: z.string().optional(),
     connected: z.boolean().optional(),
     status: z.string().optional(),
+    /** Absent on a service that does not carry the assignment yet. */
+    surfaces: surfaceListSchema.optional(),
   })
   .passthrough();
 
@@ -137,6 +158,11 @@ export const pluginCatalogEntrySchema = z
     app_url: z.string().optional(),
     tool_count: z.number().optional(),
     connected: z.boolean().optional(),
+    /**
+     * The calling account's assignment, when the catalogue carries it alongside
+     * `connected`. `/v1/plugins/connections` is the other place it arrives.
+     */
+    surfaces: surfaceListSchema.optional(),
   })
   .passthrough();
 

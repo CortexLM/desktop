@@ -160,7 +160,11 @@ describe('connecting an app as a guest', () => {
     // The point of the fix: the refusal is never provoked, so it can never be shown.
     expect(connectCalls(calls)).toEqual([]);
     expect(screen.queryByText(/guest session/i)).toBeNull();
-    expect(pendingPluginConnect()).toEqual({ slug: 'gmail', returnTo: '/plugins' });
+    expect(pendingPluginConnect()).toEqual({
+      slug: 'gmail',
+      surfaces: ['chat', 'bot'],
+      returnTo: '/plugins',
+    });
   });
 
   it('says up front why Connect will ask for an account', async () => {
@@ -255,7 +259,11 @@ describe('connecting an app with an account', () => {
 
     (await screen.findByRole('button', { name: 'Connect Gmail' })).click();
 
-    expect(await screen.findByRole('alert')).toHaveTextContent('The marketplace is not answering.');
+    // The service's own message never reaches the page — it has been seen
+    // carrying the name of the marketplace we install through.
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent('Plugins are not available on this workspace right now.');
+    expect(alert.textContent ?? '').not.toMatch(/marketplace is not answering/i);
     expect(screen.queryByRole('heading', { name: 'Sign in' })).toBeNull();
   });
 });
