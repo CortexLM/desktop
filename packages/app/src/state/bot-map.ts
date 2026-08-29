@@ -75,7 +75,8 @@ export interface BotComputer {
   mascotId: string;
   status: ComputerStatus;
   provider?: string;
-  spec: { arch: string; vcpu: number; memoryGiB: number; browser: true };
+  /** Absent until the service describes the machine. Never guessed. */
+  spec?: { arch: string; vcpu: number; memoryGiB: number; browser: true };
   lastError?: string;
   screenshotUrl?: string;
 }
@@ -108,14 +109,24 @@ export function mapMascot(row: ApiMascot): Mascot {
   };
 }
 
+/**
+ * Maps the machine a mascot owns, or records that there is not one yet.
+ *
+ * A row the service returned without any computer field, and without even a
+ * `computer_id` to point at one, gets `empty` and no spec. It used to get
+ * `hibernated` and a 4 vCPU / 16 GiB x86_64 box, all four values invented here
+ * — so a mascot with nothing provisioned rendered a machine that could be woken
+ * and a header quoting hardware nobody had allocated.
+ */
 export function mapComputer(row: ApiMascot, fallback?: ApiComputer): BotComputer {
   const box = fallback ?? row.computer;
   const mapped: BotComputer = {
     id: computerId(row, box),
     mascotId: box?.mascot_id ?? row.id,
-    status: asStatus(box),
-    spec: computerSpec(box),
+    status: asStatus(box, row),
   };
+  const spec = computerSpec(box);
+  if (spec) mapped.spec = spec;
   if (box?.provider) mapped.provider = box.provider;
   if (box?.last_error) mapped.lastError = box.last_error;
   if (box?.screenshot_url) mapped.screenshotUrl = box.screenshot_url;
@@ -127,10 +138,11 @@ function computerId(row: ApiMascot, box?: ApiComputer): string {
 }
 
 function computerSpec(box?: ApiComputer): BotComputer['spec'] {
+  if (!box) return undefined;
   return {
-    arch: box?.arch ?? 'x86_64',
-    vcpu: box?.vcpu ?? 4,
-    memoryGiB: box?.memory_gib ?? 16,
+    arch: box.arch ?? 'x86_64',
+    vcpu: box.vcpu ?? 4,
+    memoryGiB: box.memory_gib ?? 16,
     browser: true,
   };
 }
@@ -173,6 +185,16 @@ export function computerIsOffline(computer: BotComputer): boolean {
   return computer.provider === 'mock';
 }
 
+/** No machine has been provisioned for this mascot. Not the same as a sleeping one. */
+export function computerIsMissing(computer: BotComputer): boolean {
+  return computer.status === 'empty';
+}
+
+/** How a computer's state reads in a list row or a header. */
+export function computerLabel(computer: BotComputer): string {
+  return computerIsMissing(computer) ? 'No computer yet' : computer.status.replace('-', ' ');
+}
+
 function asShape(value?: string): MascotShape {
   return SHAPES.includes(value as MascotShape) ? (value as MascotShape) : 'round';
 }
@@ -193,9 +215,10 @@ const STATUS_MAP: Record<string, ComputerStatus> = {
   connecting: 'waking',
 };
 
-function asStatus(box?: ApiComputer): ComputerStatus {
+function asStatus(box: ApiComputer | undefined, row: ApiMascot): ComputerStatus {
   if (box?.offline || box?.provider === 'mock') return 'offline';
-  return STATUS_MAP[box?.status ?? ''] ?? 'hibernated';
+  if (!box) return row.computer_id ? 'hibernated' : 'empty';
+  return STATUS_MAP[box.status ?? ''] ?? 'hibernated';
 }
 
 const KIND_MAP: Record<string, BotMessageKind> = {

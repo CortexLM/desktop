@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  computerIsMissing,
   computerIsOffline,
+  computerLabel,
   isPendingAsk,
   isPendingSecret,
   mapComputer,
@@ -17,8 +19,21 @@ describe('mapMascot', () => {
     expect(mascot.shape).toBe('round');
     expect(mascot.color).toBe('green');
     expect(mascot.computer.id).toBe('pc_mst_1');
+  });
+
+  it('claims no computer when the service described none', () => {
+    const mascot = mapMascot({ id: 'mst_1' });
+    expect(mascot.computer.status).toBe('empty');
+    expect(mascot.computer.spec).toBeUndefined();
+    expect(computerIsMissing(mascot.computer)).toBe(true);
+    expect(computerLabel(mascot.computer)).toBe('No computer yet');
+  });
+
+  it('treats a bare computer_id as a machine that exists but is asleep', () => {
+    const mascot = mapMascot({ id: 'mst_1', computer_id: 'pc_9' });
     expect(mascot.computer.status).toBe('hibernated');
-    expect(mascot.computer.spec).toEqual({ arch: 'x86_64', vcpu: 4, memoryGiB: 16, browser: true });
+    expect(computerIsMissing(mascot.computer)).toBe(false);
+    expect(computerLabel(mascot.computer)).toBe('hibernated');
   });
 
   it('maps known shape, colour, and nested computer fields', () => {
@@ -47,7 +62,7 @@ describe('mapMascot', () => {
     expect(mascot.computer.provider).toBe('farm');
     expect(mascot.computer.lastError).toBe('none');
     expect(mascot.computer.screenshotUrl).toBe('https://shot');
-    expect(mascot.computer.spec.vcpu).toBe(8);
+    expect(mascot.computer.spec?.vcpu).toBe(8);
   });
 });
 
