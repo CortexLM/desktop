@@ -94,7 +94,9 @@ jobs:
           path: |
             dist/*.AppImage
             dist/*.deb
+            dist/*.blockmap
             dist/latest-linux.yml
+            dist/latest-linux-arm64.yml
           retention-days: 5
 
   release:
@@ -128,6 +130,45 @@ jobs:
             artifacts/**/*.deb
             artifacts/**/*.blockmap
             artifacts/**/*.yml
+            artifacts/**/RELEASES
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Production update feed. The packaged app checks
+  # https://releases.cortex.foundation/ (electron-builder.yml publish.url).
+  # Staging must not write this origin. No AWS keys in git — OIDC only.
+  publish-feed:
+    name: Publish production update feed
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    if: startsWith(github.ref, 'refs/tags/') && vars.PRODUCTION_DEPLOY_ENABLED == 'true'
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Flatten feed files
+        run: |
+          mkdir -p feed
+          find artifacts -type f \( \
+            -name '*.yml' -o -name 'RELEASES' -o -name '*.blockmap' -o \
+            -name '*.dmg' -o -name '*.zip' -o -name '*.exe' -o \
+            -name '*.AppImage' -o -name '*.deb' \
+          \) -exec cp -n {} feed/ \;
+          ls -la feed
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.PRODUCTION_AWS_ROLE_ARN }}
+          aws-region: ${{ vars.PRODUCTION_AWS_REGION }}
+
+      - name: Upload feed to production origin
+        run: aws s3 sync feed "s3://${{ vars.PRODUCTION_RELEASES_BUCKET }}/" --no-progress

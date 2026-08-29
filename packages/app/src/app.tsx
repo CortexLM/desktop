@@ -15,6 +15,7 @@ import { SessionsProvider, useSessions } from './state/sessions-context.tsx';
 import { ConversationsProvider, useConversations } from './state/conversations-context.tsx';
 import { AppShell } from './shell/app-shell.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
+import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
@@ -243,6 +244,7 @@ export function App(props: AppProps): JSX.Element {
   const root = (routeProps: RouteSectionProps): JSX.Element => (
     <div class="cx-root">
       <TitleBar />
+      <UpdateBanner />
       <div class="cx-root__content">
         <Show
           when={!isBarePath(routeProps.location.pathname)}

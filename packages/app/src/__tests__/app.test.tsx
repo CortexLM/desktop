@@ -118,6 +118,16 @@ describe('App', () => {
     expect(screen.queryByRole('button', { name: /Local/ })).toBeNull();
   });
 
+  it('does not pretend the web build can auto-update', async () => {
+    render(() => <App />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
+    });
+    expect(screen.queryByRole('button', { name: 'Restart now' })).toBeNull();
+    expect(screen.queryByText(/ready to install/)).toBeNull();
+  });
+
   it('offers Bot as a first-class product', async () => {
     render(() => <App initialPath="/bot" />);
 

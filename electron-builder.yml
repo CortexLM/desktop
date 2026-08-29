@@ -115,10 +115,13 @@ deb:
     - libxtst6
     - libnss3
 
-# Auto-update configuration
+# Auto-update feed. Packaged apps read this into app-update.yml.
+# CI uploads latest.yml / latest-mac.yml / latest-linux.yml (and
+# RELEASES if present) to this origin — see build.yml publish-feed.
+# Do not add a second updater channel.
 publish:
   provider: generic
-  url: https://releases.cortex-ide.com/
+  url: https://releases.cortex.foundation/
   channel: latest
 
 # Code signing (for production, use environment variables)
