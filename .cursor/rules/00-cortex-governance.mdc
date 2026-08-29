@@ -1,0 +1,47 @@
+---
+description: Cortex governance entrypoint — read AGENTS.md and .rules/ before writing code
+alwaysApply: true
+---
+
+# Cortex — read the rules before you code
+
+This repository is governed by two things you must read before editing anything:
+
+1. [`AGENTS.md`](mdc:AGENTS.md) — how to build, run and test this app, plus the
+   non-obvious traps (native modules under two ABIs, why the renderer cannot call
+   the API directly, product scope).
+2. [`.rules/`](mdc:.rules/00-overview.md) — the coding rules, each with bad and
+   good examples. Start at `00-overview.md`, then open the file for the surface
+   you are touching:
+
+   - [`01-security.md`](mdc:.rules/01-security.md) — no tokens in the renderer, no secrets in git, guest vs signed-in
+   - [`02-errors.md`](mdc:.rules/02-errors.md) — never show a vendor name to a user
+   - [`03-responsive.md`](mdc:.rules/03-responsive.md) — 390 / 768 / 1440, dark + light, tokens not hex
+   - [`04-structure.md`](mdc:.rules/04-structure.md) — `packages/app` vs `packages/cortex-api`, no fake data
+   - [`05-documentation.md`](mdc:.rules/05-documentation.md) — docs ship with the code
+   - [`06-product.md`](mdc:.rules/06-product.md) — Chat ≠ Code ≠ Bot
+   - [`07-git-and-prs.md`](mdc:.rules/07-git-and-prs.md) — branches, commits, required attestation
+   - [`08-testing.md`](mdc:.rules/08-testing.md) — which suite proves which claim
+
+## The short version
+
+- The product is **Cortex**; the domain is **`cortex.foundation`**; UI copy is
+  **English**. No other assistant brand and no internal codename in code, copy,
+  docs, commits, branches, or PR titles.
+- **Never name a vendor in user-facing copy.** Say which Cortex capability is
+  affected and what the user can do next.
+- **One renderer: `packages/app`, SolidJS.** No React. Design values come from
+  `@cortex-ide/tokens` through `@cortex-ide/ui` — no raw hex, no magic spacing.
+- **Honest states.** Empty, loading, error and signed-out are real states. Never
+  fake success, never seed fake rows, never present a cache as a live answer.
+- **Secrets stay in main.** Nothing that authenticates anything reaches the
+  renderer or the repository.
+- **Chat, Code and Bot are peers.** Code is a real cloud dashboard (sessions,
+  review, automations) per Paper Concept 03 — not a chat clone.
+- **Every PR carries the attestation** in
+  [`.github/pull_request_template.md`](mdc:.github/pull_request_template.md), and
+  a PR that changes product surfaces, routes, environment, or error copy updates
+  `AGENTS.md` in the same PR.
+
+Before opening a PR: `bun run typecheck`, `npx eslint packages`, `bun run test`,
+`bun run test:discovery`.
