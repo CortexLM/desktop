@@ -77,6 +77,11 @@ export function resetLiveSession(): void {
 export function sendBotTurn(mascotId: string, message: string): boolean {
   const current = liveSession();
   if (!current || current.transport.channel() !== 'realtime') return false;
-  current.transport.send({ type: 'bot.turn', mascot_id: mascotId, message });
+  current.transport.send(botTurnPayload(mascotId, message));
   return true;
+}
+
+/** The client never attaches a loop cap. The farm runs until the mascot is done. */
+export function botTurnPayload(mascotId: string, message: string) {
+  return { type: 'bot.turn' as const, mascot_id: mascotId, message };
 }

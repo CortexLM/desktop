@@ -6,10 +6,13 @@ import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
 import { computerLabel, isPendingAsk, isPendingSecret, type Mascot, type MascotFace, type MascotLook } from '../../state/bot-map.ts';
 import { MascotIdentityFields } from './mascot-identity.tsx';
+import { ComputerHostPicker } from './computer-host-picker.tsx';
+import type { ComputerHostOption, ComputerKind } from './computer-host.ts';
 import { resolveMascotMotion } from './mascot-looks.ts';
 import { MascotMark } from './mascot-mark.tsx';
 
 import '../chat/product-pages.css';
+import './bot-workbench.css';
 
 export function MascotListScreen(props: {
   mascots: readonly Mascot[];
@@ -129,10 +132,14 @@ export function CreateMascotScreen(props: {
   onFace: (face: MascotFace) => void;
   onCreate: () => void;
   error?: string;
+  computerKind?: ComputerKind;
+  onComputerKind?: (kind: ComputerKind) => void;
+  hosts?: readonly ComputerHostOption[];
 }): JSX.Element {
+  const locked = () => props.hosts?.find((host) => host.id === props.computerKind)?.lockedReason;
   return (
     <>
-      <PageHeader title="New mascot" subtitle="Look and face. A dedicated computer is created with it." />
+      <PageHeader title="New mascot" subtitle="Look, face, and where its computer runs." />
       <PageBody width="settings">
         <label class="cx-product-row__title" for="mascot-name">Name</label>
         <input
@@ -140,13 +147,26 @@ export function CreateMascotScreen(props: {
           class="cx-product-row"
           value={props.name}
           onInput={(event) => props.onName(event.currentTarget.value)}
-          placeholder="Ana's researcher"
+          placeholder="Name this teammate"
         />
         <MascotIdentityFields look={props.look} face={props.face} onLook={props.onLook} onFace={props.onFace} />
+        <Show when={props.hosts && props.onComputerKind}>
+          <ComputerHostPicker
+            value={props.computerKind}
+            options={props.hosts ?? []}
+            onChange={(kind) => props.onComputerKind?.(kind)}
+          />
+        </Show>
         <Show when={props.error}>
           <HonestState kind="error" title="Could not create" body={props.error ?? ''} />
         </Show>
-        <Button variant="primary" onClick={() => props.onCreate()}>Create mascot</Button>
+        <Button
+          variant="primary"
+          disabled={Boolean(props.hosts) && (!props.name.trim() || !props.computerKind || Boolean(locked()))}
+          onClick={() => props.onCreate()}
+        >
+          Create mascot
+        </Button>
       </PageBody>
     </>
   );

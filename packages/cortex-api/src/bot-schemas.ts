@@ -35,6 +35,13 @@ export const computerRowSchema = z
     vcpu: z.number().optional(),
     memory_gib: z.number().optional(),
     screenshot_url: z.string().optional(),
+    kind: z.string().optional(),
+    computer_kind: z.string().optional(),
+    runtime: z.string().optional(),
+    stream_url: z.string().optional(),
+    novnc_url: z.string().optional(),
+    embed_url: z.string().optional(),
+    url: z.string().optional(),
   })
   .passthrough();
 
@@ -103,6 +110,8 @@ export const botMessageSchema = z
     tool: z.string().optional(),
     tool_input: z.unknown().optional(),
     tool_output: z.unknown().optional(),
+    bubbles: z.array(z.string()).optional(),
+    parts: z.array(z.string()).optional(),
   })
   .passthrough();
 

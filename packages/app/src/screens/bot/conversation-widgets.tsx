@@ -2,7 +2,7 @@ import { For, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
-import type { BotAsk, BotMessage, BotSecretAsk, BotWork } from '../../state/bot-map.ts';
+import type { BotAsk, BotSecretAsk, BotWork } from '../../state/bot-map.ts';
 
 export function UserBubble(props: { text: string }): JSX.Element {
   return (
@@ -15,17 +15,12 @@ export function UserBubble(props: { text: string }): JSX.Element {
   );
 }
 
-export function SendToUserBubble(props: { name: string; message: BotMessage }): JSX.Element {
+export function SendToUserBubble(props: { name: string; text: string }): JSX.Element {
   return (
-    <div class="cx-product-row">
+    <div class="cx-product-row cx-bot-bubble">
       <div>
         <div class="cx-product-row__title">{props.name}</div>
-        <p class="cx-product-row__meta">{props.message.content}</p>
-        <Show when={props.message.attachments?.length}>
-          <For each={props.message.attachments}>
-            {(file) => <p class="cx-product-row__meta">{file.name ?? file.kind ?? 'attachment'}</p>}
-          </For>
-        </Show>
+        <p class="cx-product-row__meta">{props.text}</p>
       </div>
     </div>
   );

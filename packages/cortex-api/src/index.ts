@@ -239,6 +239,9 @@ export type {
   ApiShellResult,
 } from './bot-schemas.ts';
 
+export { COMPUTER_KIND_LABEL, computerKindLabel, parseComputerKind, type ComputerKind } from './bot-computer-kind.ts';
+export { pickStreamUrl, publicVncTicket, sanitizeStreamUrl } from './public-vnc-ticket.ts';
+
 export type {
   ApiBotGroup,
   ApiBotInboxItem,
@@ -310,12 +313,7 @@ export {
   type RuntimeKind,
 } from './capabilities.ts';
 
-export {
-  PROVIDER_CATALOG,
-  providerById,
-  type CatalogAuthKind,
-  type ProviderCatalogEntry,
-} from './provider-catalog.ts';
+export { PROVIDER_CATALOG, providerById, type CatalogAuthKind, type ProviderCatalogEntry } from './provider-catalog.ts';
 
 export type {
   ChatCompletion,

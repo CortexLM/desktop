@@ -7,6 +7,7 @@ import type { z } from 'zod';
 import type { CortexApiClient } from './client.ts';
 import { unknownSchema } from './schemas.ts';
 import { mascotPath } from './bot-paths.ts';
+import type { ComputerKind } from './bot-computer-kind.ts';
 import {
   botMessageListSchema,
   botMessageSchema,
@@ -35,6 +36,11 @@ export interface MascotWriteBody {
   face?: string;
   color?: string;
   shape?: string;
+  /**
+   * Where the dedicated computer should run. The client never sends a loop cap
+   * (`max_rounds`, `max_tool_rounds`) on this or any other Bot write.
+   */
+  computer_kind?: ComputerKind;
 }
 
 export function createMascot(

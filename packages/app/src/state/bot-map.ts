@@ -3,7 +3,15 @@
  * Permissive: extra keys are ignored. Missing farm fields become honest defaults.
  */
 
-import type { ApiBotMessage, ApiComputer, ApiMascot, ApiMascotVideo } from '@cortex-ide/cortex-api';
+import {
+  parseComputerKind,
+  pickStreamUrl,
+  type ApiBotMessage,
+  type ApiComputer,
+  type ApiMascot,
+  type ApiMascotVideo,
+  type ComputerKind,
+} from '@cortex-ide/cortex-api';
 
 export type MascotLook = 'meadow' | 'teal' | 'terracotta' | 'amber' | 'plum' | 'slate';
 export type MascotFace = 'idle' | 'slit' | 'wink';
@@ -61,6 +69,8 @@ export interface BotMessage {
   ask?: BotAsk;
   secret?: BotSecretAsk;
   work?: BotWork;
+  /** SendToUser paragraphs when the service already split the turn. */
+  bubbles?: string[];
 }
 
 export interface BotVideo {
@@ -79,6 +89,8 @@ export interface BotComputer {
   spec?: { arch: string; vcpu: number; memoryGiB: number; browser: true };
   lastError?: string;
   screenshotUrl?: string;
+  streamUrl?: string;
+  kind?: ComputerKind;
 }
 
 export interface Mascot {
@@ -143,6 +155,10 @@ function computerDetails(box?: ApiComputer): Partial<BotComputer> {
   if (box.provider) details.provider = box.provider;
   if (box.last_error) details.lastError = box.last_error;
   if (box.screenshot_url) details.screenshotUrl = box.screenshot_url;
+  const kind = parseComputerKind(box.kind ?? box.computer_kind ?? box.runtime ?? box.provider);
+  if (kind) details.kind = kind;
+  const stream = pickStreamUrl(box);
+  if (stream) details.streamUrl = stream;
   return details;
 }
 
@@ -168,6 +184,7 @@ export function mapMessage(row: ApiBotMessage, index: number): BotMessage {
     ask: mapAsk(row),
     secret: mapSecret(row),
     work: mapWork(row, kind),
+    bubbles: row.bubbles ?? row.parts,
   };
 }
 
@@ -200,7 +217,12 @@ export function computerIsMissing(computer: BotComputer): boolean {
 
 /** How a computer's state reads in a list row or a header. */
 export function computerLabel(computer: BotComputer): string {
-  return computerIsMissing(computer) ? 'No computer yet' : computer.status.replace('-', ' ');
+  if (computerIsMissing(computer)) return 'No computer yet';
+  const status = computer.status.replace('-', ' ');
+  if (computer.kind === 'local') return `This PC · ${status}`;
+  if (computer.kind === 'ssh') return `SSH · ${status}`;
+  if (computer.kind === 'cloud') return `Cloud · ${status}`;
+  return status;
 }
 
 function asLook(value?: string): MascotLook {

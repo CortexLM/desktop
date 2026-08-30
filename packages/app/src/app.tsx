@@ -1,4 +1,4 @@
-import { Show, type JSX } from 'solid-js';
+import { Show, createEffect, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
   HashRouter,
@@ -18,11 +18,12 @@ import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
-import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
+import { Sidebar, type RecentChat, type RecentRun, type SidebarMascot } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
 import { hasElectronHost } from './state/electron-bridge.ts';
 import { realtimeStatus } from './state/realtime-bridge.ts';
 import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
+import { computerLabel, mascots, reconcileMascots, type Mascot } from './state/bots.ts';
 import { formatAge } from './state/session-view.ts';
 import type { ConversationSummary, SessionSummary } from '@cortex-ide/shared';
 import { appRoutes } from './route-tree.tsx';
@@ -151,18 +152,24 @@ function WorkspaceSidebar(): JSX.Element {
   const account = useAccount();
   const navigate = useNavigate();
   const location = useLocation();
+  const product = () => productForPath(location.pathname);
 
   const runs = useSessions();
   const chats = useConversations();
 
+  createEffect(() => {
+    if (product() === 'bot') void reconcileMascots();
+  });
+
   return (
     <Sidebar
-      product={productForPath(location.pathname)}
+      product={product()}
       onSwitchProduct={(next) => navigate(productHome(next))}
       capabilities={account.capabilities()}
       activeSlug={slugForPath(location.pathname)}
       recentRuns={toRecentRuns(runs.sessions() ?? [])}
       recentChats={toRecentChats(chats.conversations() ?? [])}
+      mascots={toSidebarMascots(mascots())}
       user={toUser(account.user())}
       onNavigate={(slug) => {
         const route = routeBySlug(slug);
@@ -170,6 +177,7 @@ function WorkspaceSidebar(): JSX.Element {
       }}
       onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
       onOpenChat={(id) => navigate(`/chat/${id}`)}
+      onOpenMascot={(id) => navigate(`/bot/${id}`)}
       onNewChat={() => navigate('/')}
       onNewSession={() => navigate('/code')}
       onNewMascot={() => navigate('/bot/new')}
@@ -181,6 +189,18 @@ function WorkspaceSidebar(): JSX.Element {
       unread={{ 'code-sessions': runs.awaitingReview().length > 0 }}
     />
   );
+}
+
+function toSidebarMascots(rows: readonly Mascot[]): SidebarMascot[] {
+  return rows.map((mascot) => ({
+    id: mascot.id,
+    name: mascot.name,
+    look: mascot.look,
+    face: mascot.face,
+    unread: mascot.unread,
+    computerLabel: computerLabel(mascot.computer),
+    running: mascot.computer.status === 'running',
+  }));
 }
 
 function Workspace(props: { children: JSX.Element }): JSX.Element {

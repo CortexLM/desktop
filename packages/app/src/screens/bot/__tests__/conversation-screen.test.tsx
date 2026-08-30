@@ -118,6 +118,53 @@ describe('BotConversationScreen', () => {
     ));
     expect(screen.getByText('Mascot not found')).toBeInTheDocument();
   });
+
+  it('renders one SendToUser turn as several bubbles and opens the computer rail', () => {
+    const onGo = vi.fn();
+    const mascot = baseMascot({
+      computer: {
+        id: 'pc_1',
+        mascotId: 'mst_1',
+        status: 'running',
+        kind: 'cloud',
+        spec: { arch: 'x86_64', vcpu: 4, memoryGiB: 16, browser: true },
+      },
+      messages: [
+        {
+          id: 't',
+          seq: 1,
+          role: 'assistant',
+          kind: 'send_to_user',
+          content: 'Hello.\n\nReady when you are.',
+          at: 1,
+        },
+      ],
+    });
+    render(() => (
+      <BotConversationScreen
+        mascot={mascot}
+        draft=""
+        onDraft={vi.fn()}
+        onSend={vi.fn()}
+        onAnswer={vi.fn()}
+        onSecret={vi.fn()}
+        onGo={onGo}
+        onBack={vi.fn()}
+        computerOpen
+        streamUrl="https://farm.example/novnc/abc"
+        transport="novnc"
+        onWake={vi.fn()}
+        onHibernate={vi.fn()}
+        onInput={vi.fn()}
+      />
+    ));
+    expect(screen.getByText('Hello.')).toBeInTheDocument();
+    expect(screen.getByText('Ready when you are.')).toBeInTheDocument();
+    expect(screen.getAllByText(/Cloud · running/).length).toBeGreaterThan(0);
+    expect(screen.getByTitle('Live desktop')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Open computer' }));
+    expect(onGo).toHaveBeenCalledWith('/bot/mst_1/computer');
+  });
 });
 
 describe('hibernated computer and empty videos', () => {

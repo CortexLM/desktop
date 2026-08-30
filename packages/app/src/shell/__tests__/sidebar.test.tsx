@@ -19,6 +19,7 @@ function renderSidebar(overrides: Partial<SidebarProps> = {}) {
   const onNavigate = overrides.onNavigate ?? vi.fn();
   const onOpenRun = overrides.onOpenRun ?? vi.fn();
   const onSwitchProduct = overrides.onSwitchProduct ?? vi.fn();
+  const onOpenMascot = overrides.onOpenMascot ?? vi.fn();
 
   const result = render(() => (
     <ThemeProvider initial="light">
@@ -28,7 +29,9 @@ function renderSidebar(overrides: Partial<SidebarProps> = {}) {
         activeSlug="code-home"
         recentRuns={RUNS}
         recentChats={[]}
+        mascots={[]}
         onOpenChat={vi.fn()}
+        onOpenMascot={onOpenMascot}
         onNewChat={vi.fn()}
         onNewSession={vi.fn()}
         onNewMascot={vi.fn()}
@@ -40,7 +43,7 @@ function renderSidebar(overrides: Partial<SidebarProps> = {}) {
     </ThemeProvider>
   ));
 
-  return { ...result, onNavigate, onOpenRun, onSwitchProduct };
+  return { ...result, onNavigate, onOpenRun, onSwitchProduct, onOpenMascot };
 }
 
 describe('Sidebar navigation', () => {
@@ -102,6 +105,26 @@ describe('Sidebar product switcher', () => {
     expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
   });
 
+  it('lists mascots in the Bot sidebar and opens one by id', () => {
+    const { onOpenMascot } = renderSidebar({
+      product: 'bot',
+      mascots: [
+        {
+          id: 'mst_1',
+          name: 'Scout',
+          look: 'meadow',
+          face: 'idle',
+          computerLabel: 'This PC · running',
+          unread: true,
+        },
+      ],
+    });
+    expect(screen.getByText('Scout')).toBeInTheDocument();
+    expect(screen.getByText('This PC · running')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Scout').closest('button')!);
+    expect(onOpenMascot).toHaveBeenCalledWith('mst_1');
+  });
+
   it('replaces Chat sections when the product prop changes after mount', () => {
     // A bare `if (props.product)` in the component body freezes the first
     // product's sections. E2E starts on Chat and then sets `#/code`.
@@ -114,7 +137,9 @@ describe('Sidebar product switcher', () => {
           activeSlug="home"
           recentRuns={[]}
           recentChats={[]}
+          mascots={[]}
           onOpenChat={vi.fn()}
+          onOpenMascot={vi.fn()}
           onNewChat={vi.fn()}
           onNewSession={vi.fn()}
           onNewMascot={vi.fn()}

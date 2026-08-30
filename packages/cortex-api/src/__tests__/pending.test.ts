@@ -77,6 +77,17 @@ describe('control plane', () => {
     expect(await surface.createVncTicket('mst_1')).toEqual({ ticket_hash: 'abc' });
   });
 
+  it('keeps an iframe-safe stream URL on a VNC ticket', async () => {
+    const { fetch } = stubFetch([
+      { body: { ticket_hash: 'abc', password: 'secret', stream_url: '/novnc/abc' } },
+    ]);
+    const surface = createHttpProductSurface(new CortexApiClient({ fetch }));
+    expect(await surface.createVncTicket('mst_1')).toEqual({
+      ticket_hash: 'abc',
+      stream_url: '/novnc/abc',
+    });
+  });
+
   it('keeps a live 404 as not_found on control-plane writes', async () => {
     const { fetch } = stubFetch([
       { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } },

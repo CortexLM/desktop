@@ -1,0 +1,161 @@
+/*
+ * Bot conversation workbench: thread + computer rail, host picker, bubbles.
+ * Widths: 390 stacks the rail, 768 sits it beside the thread, 1440 uses the
+ * full --layout-bot-rail. Tokens only — no raw hex, no magic spacing.
+ */
+
+.cx-bot-workbench-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  padding: var(--space-6);
+}
+
+.cx-bot-workbench {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.cx-bot-workbench__thread {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cx-computer-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.cx-computer-rail__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.cx-computer-rail .cx-vnc,
+.cx-computer-rail .cx-vnc__frame {
+  min-height: 200px;
+}
+
+.cx-vnc__frame {
+  width: 100%;
+  min-height: 280px;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: var(--color-surface);
+}
+
+.cx-bot-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cx-bot-bubble {
+  border-color: var(--color-green-tint-16);
+}
+
+.cx-first-bot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--layout-home-column);
+}
+
+.cx-host-picker {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cx-host-picker__legend {
+  font-size: var(--text-body);
+  color: var(--color-text);
+  padding: 0;
+}
+
+.cx-host-picker__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.cx-host-picker__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  text-align: left;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.cx-host-picker__card[aria-checked='true'] {
+  border-color: var(--color-green);
+  background: var(--color-green-tint-16);
+}
+
+.cx-host-picker__card[aria-disabled='true'],
+.cx-host-picker__card:disabled {
+  cursor: not-allowed;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+}
+
+.cx-host-picker__label {
+  font-size: var(--text-body);
+  color: inherit;
+}
+
+.cx-host-picker__body {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Tablet / narrow window (--breakpoint-tablet): thread and rail sit side by side. */
+@media (min-width: 768px) {
+  .cx-bot-workbench {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .cx-computer-rail {
+    width: min(100%, var(--layout-bot-rail));
+    flex-shrink: 0;
+  }
+
+  .cx-host-picker__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Paper artboard width (--breakpoint-desktop): rail uses the measured token. */
+@media (min-width: 1440px) {
+  .cx-computer-rail {
+    width: var(--layout-bot-rail);
+  }
+}

@@ -107,12 +107,21 @@ export const hostHeartbeatSchema = z
 
 export type HostHeartbeat = z.infer<typeof hostHeartbeatSchema>;
 
-/** Signaling ticket. Hash only — passwords in the payload are dropped. */
-export const vncTicketSchema = z.object({
-  ticket_hash: z.string(),
-});
+/**
+ * Signaling ticket. Hash is required. An optional stream URL is kept when the
+ * farm minted one. Passwords in the payload are dropped in `publicVncTicket`.
+ */
+export const vncTicketSchema = z
+  .object({
+    ticket_hash: z.string(),
+    stream_url: z.string().optional(),
+    novnc_url: z.string().optional(),
+    embed_url: z.string().optional(),
+    url: z.string().optional(),
+  })
+  .passthrough();
 
-export type VncTicket = z.infer<typeof vncTicketSchema>;
+export type { VncTicket } from './public-vnc-ticket.ts';
 
 export const scheduledResultSchema = z
   .object({

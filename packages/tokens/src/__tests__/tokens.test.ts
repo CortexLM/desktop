@@ -244,4 +244,8 @@ describe('layout dimensions', () => {
   it('keeps the sidebar content width inside the sidebar', () => {
     expect(layout.sidebar.content).toBeLessThan(layout.sidebar.width);
   });
+
+  it('keeps the Bot computer rail inside the main pane', () => {
+    expect(layout.bot.rail).toBeLessThan(layout.main.width);
+  });
 });

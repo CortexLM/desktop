@@ -149,7 +149,11 @@ API keys are entered; they never appear in logs.
   Amber, Plum, Slate), a resting face, and a ±5° tilt. Live states (idle, thinking,
   working, notify, success) are procedural SVG + CSS/WAAPI in
   `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
-  API is the source of truth. See `docs/bot.md`.
+  API is the source of truth. An empty signed-in roster opens first-bot setup
+  (name, look, face, This PC / SSH / Cloud). Signed-out Bot is shown and locked.
+  The conversation mounts a Computer rail (noVNC when the farm mints a stream
+  URL; screenshots otherwise). The client never sends a loop cap. See
+  `docs/bot.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

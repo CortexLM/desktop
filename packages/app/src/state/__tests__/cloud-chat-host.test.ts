@@ -7,7 +7,7 @@ import { createCloudChatHost } from '../cloud-chat-host.ts';
 import { liveApiBase } from '../live-api.ts';
 import { applyRealtimeEvent } from '../realtime-bridge.ts';
 import { mergeInbox } from '../inbox.ts';
-import { resetLiveSession, sendBotTurn } from '../realtime-session.ts';
+import { resetLiveSession, sendBotTurn, botTurnPayload } from '../realtime-session.ts';
 import { subscribeRoom } from '../realtime-rooms.ts';
 import { deliverScheduledResult, isLiveConversationId } from '../scheduled-results.ts';
 
@@ -68,6 +68,12 @@ describe('Bot turns', () => {
   it('stays local when the realtime socket is not connected', () => {
     resetLiveSession();
     expect(sendBotTurn('m1', 'hello')).toBe(false);
+  });
+
+  it('never caps the Bot tool loop on a turn', () => {
+    const payload = botTurnPayload('mst_1', 'hello');
+    expect(payload).toEqual({ type: 'bot.turn', mascot_id: 'mst_1', message: 'hello' });
+    expect(JSON.stringify(payload)).not.toMatch(/max_rounds|max_tool_rounds/);
   });
 });
 

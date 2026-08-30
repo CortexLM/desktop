@@ -94,7 +94,7 @@ describe('bot actions and hydrate', () => {
           seq: 1,
           role: 'assistant',
           kind: 'secret',
-          content: '',
+          content: 'token',
           at: 1,
           secret: { name: 'token', pending: true },
         },
@@ -109,6 +109,18 @@ describe('bot actions and hydrate', () => {
     expect(calls[2]!.url).toContain('/secrets');
     expect(calls[3]!.url).toContain('/lifecycle');
     expect(mascotById('mst_1')?.computer.status).toBe('running');
+  });
+
+  it('creates with computer_kind and never a loop cap', async () => {
+    const { calls } = clientFor([{ body: { id: 'mst_2', name: 'Scout', computer_id: 'pc_2' } }]);
+    await createMascot('Scout', 'meadow', 'idle', 'cloud');
+    expect(calls[0]!.body).toMatchObject({
+      name: 'Scout',
+      look: 'meadow',
+      face: 'idle',
+      computer_kind: 'cloud',
+    });
+    expect(JSON.stringify(calls[0]!.body)).not.toMatch(/max_rounds|max_tool_rounds/);
   });
 
   it('hydrates messages and videos from the API and writes nothing to the browser', async () => {

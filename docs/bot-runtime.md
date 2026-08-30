@@ -10,8 +10,9 @@ skills, and routines never succeed by writing the cache.
 2. If `/v1/realtime` is up, the client also sends `{ type: 'bot.turn' }` so the
    agent loop can stream.
 3. The conversation renders **SendToUser only**: assistant text, attachments,
-   `ask_user` widgets, and secret-request cards. `tool_call` / `tool_result`
-   land in the collapsible Work rail.
+   `ask_user` widgets, and secret-request cards. One turn may be several
+   bubbles (`bubbles` from the service, or a blank line). `tool_call` /
+   `tool_result` land in the collapsible Work rail.
 4. A pending ask or secret **blocks the composer** until
    `POST /respond` or `POST /secrets`.
 
@@ -20,12 +21,14 @@ Realtime frames on the existing socket: `token`, `tool_call`, `tool_result`,
 
 ## Computer
 
-One dedicated box per mascot. The Computer page:
+One dedicated box per mascot. Host is This PC, SSH, or Cloud, chosen at
+create. The conversation Computer rail and the Computer page:
 
-- Polls `GET /computer/screenshot` while status is `running`
-- Forwards click / drag / scroll / type to `POST /computer/input`
-- Runs a real box shell via `POST /computer/shell`
-- Lists and previews files via `/computer/fs` and `/computer/file`
+- Poll `GET /computer/screenshot` while status is `running`
+- Embed a noVNC iframe when the ticket or computer row carries a stream URL
+- Forward click / drag / scroll / type to `POST /computer/input` on screenshots
+- Run a real box shell via `POST /computer/shell`
+- List and preview files via `/computer/fs` and `/computer/file`
 - Hibernate / wake / stop via `POST /computer/lifecycle`
 - Record start/stop via `POST /computer/record`; clips from `GET /videos`
 
@@ -33,7 +36,9 @@ If the provider is `mock`, the status is `offline`, or a
 `computer_offline` event arrives, the page shows one honest empty state.
 It does not generate a fake desktop.
 
-A VNC ticket is still `{ ticket_hash }` only.
+A VNC ticket is `{ ticket_hash }` plus an optional `stream_url` /
+`novnc_url`. Passwords never leave `publicVncTicket`. The client never
+sends a loop cap on create, messages, or `bot.turn`.
 
 ## Bot runtime surfaces
 

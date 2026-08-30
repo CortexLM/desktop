@@ -22,7 +22,8 @@ import {
   type ApiScreenshot,
   type ApiShellResult,
 } from './bot-schemas.ts';
-import { vncTicketSchema, type VncTicket } from './pending-schemas.ts';
+import { vncTicketSchema } from './pending-schemas.ts';
+import { publicVncTicket, type VncTicket } from './public-vnc-ticket.ts';
 
 export type LifecycleAction = 'resume' | 'hibernate' | 'stop' | 'snapshot' | 'recreate';
 
@@ -110,7 +111,7 @@ export async function createVncTicket(
     body: {},
     signal,
   });
-  return { ticket_hash: raw.ticket_hash };
+  return publicVncTicket(raw);
 }
 
 export async function postRecord(

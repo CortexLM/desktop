@@ -19,18 +19,7 @@ describe('conversation widgets', () => {
     render(() => (
       <>
         <UserBubble text="hello" />
-        <SendToUserBubble
-          name="Scout"
-          message={{
-            id: 'm1',
-            seq: 0,
-            role: 'assistant',
-            kind: 'send_to_user',
-            content: 'Ready.',
-            at: 1,
-            attachments: [{ name: 'clip.mp4' }],
-          }}
-        />
+        <SendToUserBubble name="Scout" text="Ready." />
         <AskCard ask={{ prompt: 'Wake?', options: ['yes'], pending: true }} onAnswer={onAnswer} />
         <AskCard ask={{ prompt: 'Type it', pending: true }} onAnswer={onAnswer} />
         <SecretCard secret={{ name: 'token', reason: 'farm', pending: true }} onSubmit={onSecret} />
@@ -56,6 +45,21 @@ describe('computer chrome', () => {
 
     render(() => <ComputerDesktop offline={false} onInput={vi.fn()} />);
     expect(screen.getByRole('img', { name: 'Dedicated computer' })).toBeInTheDocument();
+  });
+
+  it('embeds a noVNC page titled Live desktop', () => {
+    render(() => (
+      <ComputerDesktop
+        offline={false}
+        transport="novnc"
+        streamUrl="https://farm.example/novnc/abc"
+        onInput={vi.fn()}
+      />
+    ));
+    const frame = screen.getByTitle('Live desktop');
+    expect(frame.tagName).toBe('IFRAME');
+    expect(frame).toHaveAttribute('src', 'https://farm.example/novnc/abc');
+    expect(frame).toHaveAttribute('sandbox', 'allow-scripts allow-pointer-lock');
   });
 
   it('sends click, drag, scroll, and keys on a live frame', () => {

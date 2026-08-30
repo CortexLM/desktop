@@ -54,6 +54,17 @@ export const layout = {
     controls: 30,
   },
 
+  /**
+   * Responsive breakpoints. Mobile-first min-widths. Desktop (1440) already
+   * lives on `--breakpoint-desktop` from the Paper token dump.
+   */
+  breakpoint: {
+    /** Phone baseline (390 CSS px). */
+    mobile: 390,
+    /** Tablet / narrow window. */
+    tablet: 768,
+  },
+
   sessionDetail: {
     /** Agent timeline pane. Provisional split of the 1180 main pane; re-measure
      * against design/paper/spec/code-session-detail.light.json when it lands. */
@@ -151,6 +162,11 @@ export const layout = {
     /** Oversized logo tile used as the Home greeting mark. */
     logoTileLarge: 44,
   },
+
+  bot: {
+    /** Conversation computer rail. Remainder of main is the thread. */
+    rail: 400,
+  },
 } as const;
 
 export type Layout = typeof layout;
@@ -182,6 +198,9 @@ export const layoutCssVariables = {
   '--layout-dot': `${layout.control.dot}px`,
   '--layout-avatar': `${layout.control.avatar}px`,
   '--layout-logo-tile': `${layout.control.logoTile}px`,
+  '--layout-bot-rail': `${layout.bot.rail}px`,
+  '--breakpoint-mobile': `${layout.breakpoint.mobile}px`,
+  '--breakpoint-tablet': `${layout.breakpoint.tablet}px`,
 } as const;
 
 export type LayoutCssVariable = keyof typeof layoutCssVariables;

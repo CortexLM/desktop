@@ -57,7 +57,14 @@ export interface ProductSurface {
     signal?: AbortSignal,
   ) => Promise<void>;
   createMascot: (
-    body: { name: string; look?: string; face?: string; shape?: string; color?: string },
+    body: {
+      name: string;
+      look?: string;
+      face?: string;
+      shape?: string;
+      color?: string;
+      computer_kind?: 'local' | 'ssh' | 'cloud';
+    },
     signal?: AbortSignal,
   ) => Promise<ApiMascot>;
   deleteMascot: (id: string, signal?: AbortSignal) => Promise<void>;

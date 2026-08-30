@@ -2,7 +2,8 @@ import { For, type JSX, Show } from 'solid-js';
 
 import { Icon, NavItem } from '@cortex-ide/ui';
 
-import type { SidebarProps } from './sidebar-types.ts';
+import type { SidebarMascot, SidebarProps } from './sidebar-types.ts';
+import { MascotMark } from '../screens/bot/mascot-mark.tsx';
 
 interface Destination {
   slug: string;
@@ -133,7 +134,26 @@ export function BotSections(props: SidebarProps): JSX.Element {
           )}
         </For>
       </div>
+      <Show when={props.mascots.length > 0}>
+        <div class="cx-sidebar__section-title">Mascots</div>
+        <div class="cx-sidebar__recent">
+          <For each={props.mascots}>{(mascot) => <MascotRow mascot={mascot} onOpen={props.onOpenMascot} />}</For>
+        </div>
+      </Show>
     </>
+  );
+}
+
+function MascotRow(props: { mascot: SidebarMascot; onOpen: (id: string) => void }): JSX.Element {
+  return (
+    <button type="button" class="cx-sidebar__run" onClick={() => props.onOpen(props.mascot.id)}>
+      <MascotMark look={props.mascot.look} face={props.mascot.face} seed={props.mascot.id} size={22} />
+      <span class="cx-sidebar__run-title">{props.mascot.name}</span>
+      <Show when={props.mascot.unread}>
+        <span class="cx-sidebar__run-live" role="img" aria-label="Unread" />
+      </Show>
+      <span class="cx-sidebar__run-age">{props.mascot.computerLabel}</span>
+    </button>
   );
 }
 

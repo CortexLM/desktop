@@ -67,6 +67,18 @@ describe('mascot writes', () => {
     expect(created.id).toBe('mst_1');
   });
 
+  it('sends computer_kind on create and never a loop cap', async () => {
+    const { client, calls } = clientFor([{ body: { id: 'mst_1', name: 'Scout', computer_id: 'pc_1' } }]);
+    await createMascot(client, { name: 'Scout', look: 'meadow', face: 'idle', computer_kind: 'cloud' });
+    expect(calls[0]!.body).toEqual({
+      name: 'Scout',
+      look: 'meadow',
+      face: 'idle',
+      computer_kind: 'cloud',
+    });
+    expect(JSON.stringify(calls[0]!.body)).not.toMatch(/max_rounds|max_tool_rounds/);
+  });
+
   it('posts a message to the mascot, not a local store', async () => {
     const { client, calls } = clientFor([
       { body: { id: 'msg_1', role: 'user', kind: 'user', text: 'hello' } },
@@ -75,6 +87,7 @@ describe('mascot writes', () => {
     expect(calls[0]!.url).toBe('https://api.cortex.foundation/v1/mascots/mst_1/messages');
     expect(calls[0]!.method).toBe('POST');
     expect(calls[0]!.body).toEqual({ text: 'hello' });
+    expect(JSON.stringify(calls[0]!.body)).not.toMatch(/max_rounds|max_tool_rounds/);
   });
 
   it('lists messages and answers an ask-user', async () => {
@@ -178,6 +191,20 @@ describe('computer', () => {
     expect(ticket).toEqual({ ticket_hash: 'abc' });
     expect(calls[1]!.url).toContain('/computer/fs?path=%2Fhome');
     expect(calls[3]!.url).toContain('/vnc-ticket');
+  });
+
+  it('keeps a noVNC stream URL on the ticket and drops the password', async () => {
+    const { client } = clientFor([
+      {
+        body: {
+          ticket_hash: 'abc',
+          password: 'drop-me',
+          stream_url: 'https://farm.example/novnc/abc?token=secret',
+        },
+      },
+    ]);
+    const ticket = await createVncTicket(client, 'mst_1');
+    expect(ticket).toEqual({ ticket_hash: 'abc', stream_url: 'https://farm.example/novnc/abc' });
   });
 });
 

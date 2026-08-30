@@ -32,12 +32,12 @@ Looks lift one step on a dark canvas. There are no seeded mascots.
 
 | Route | Screen |
 | --- | --- |
-| `/bot` | Mascot list |
-| `/bot/new` | Create — shape + color |
-| `/bot/:id` | Conversation |
+| `/bot` | Roster, or first-bot setup when the account has none |
+| `/bot/new` | Create — look, face, This PC / SSH / Cloud |
+| `/bot/:id` | Conversation + Computer rail |
 | `/bot/:id/messages` | Message history |
 | `/bot/:id/videos` | Recordings (cursor + click-zoom) |
-| `/bot/:id/computer` | VNC / computer |
+| `/bot/:id/computer` | Full computer page (noVNC or screenshots) |
 | `/bot/:id/settings` | Settings rail for that mascot |
 
 ## Farm machines
@@ -52,8 +52,16 @@ When a computer is provisioned on the Cortex farm it is:
 
 This repository does not ship a hypervisor. The UI talks to the live API
 when reachable (`packages/cortex-api`) and otherwise shows honest states.
-A VNC signaling ticket is a hash only — never a password. Viewing a mascot
-joins `mascot:{id}`; a miss is `not_found`.
+A VNC signaling ticket is a hash plus an optional iframe-safe stream URL —
+never a password. Viewing a mascot joins `mascot:{id}`; a miss is `not_found`.
+The client never sends `max_rounds` or `max_tool_rounds`.
+
+## Computer hosts
+
+The dedicated box is **This PC**, **SSH**, or **Cloud** — the same kinds as
+Code runtimes. This PC is desktop-only. Cloud and SSH need a Cortex account.
+SSH keys stay on the service; this app never collects them. There are no
+seeded mascot names.
 
 ## Computer states
 
@@ -62,7 +70,7 @@ joins `mascot:{id}`; a miss is `not_found`.
 | Empty | No machine yet (should only exist mid-create). |
 | Hibernated | Asleep to save the farm. Wake is offered. |
 | Waking / Connecting | Wake requested. |
-| Running | Dedicated box is up. VNC surface mounts when a stream URL exists. |
+| Running | Dedicated box is up. The Computer rail embeds noVNC when a stream URL exists; otherwise it polls screenshots. |
 | Wake failed | The farm did not come back. Retry + `farm-wake-fail` notification. |
 | Ask user | The mascot is blocked on a question. `bot-ask-user` notification. |
 

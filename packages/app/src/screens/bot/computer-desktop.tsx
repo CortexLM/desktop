@@ -2,27 +2,28 @@ import { type JSX, Show } from 'solid-js';
 
 import type { ComputerInput } from '@cortex-ide/cortex-api';
 
+import { NovncFrame } from './novnc-frame.tsx';
+
 /**
  * How the desktop is being delivered.
  *
- * `screenshot` is the path that works today: a poll plus an input channel, which is
- * interactive but not a stream. `vnc` means the service issued a signalling ticket,
- * so a continuous stream is available for this box. `unavailable` means it declined
- * or has no such route.
- *
- * Named rather than implied because the two feel different at the keyboard, and a
- * user typing into a one-frame-per-second image deserves to know that is what it is.
+ * `screenshot` — poll a frame, send input back.
+ * `vnc` — a signalling ticket exists; still frames until a page URL arrives.
+ * `novnc` — the farm minted a noVNC page; that iframe is the live rail.
+ * `unavailable` — no ticket and no stream.
  */
-export type DesktopTransport = 'screenshot' | 'vnc' | 'unavailable';
+export type DesktopTransport = 'screenshot' | 'vnc' | 'novnc' | 'unavailable';
 
 const TRANSPORT_NOTE: Record<DesktopTransport, string> = {
   screenshot: 'Screenshot stream. Clicks, drags, scrolls and keys are sent to the box.',
-  vnc: 'Live desktop stream available for this box.',
+  vnc: 'Live desktop ticket issued. Waiting for a stream page from the farm.',
+  novnc: 'Live desktop. This is the mascot’s computer, not a screenshot.',
   unavailable: 'This Cortex backend does not offer a live desktop stream. Screenshots only.',
 };
 
 export function ComputerDesktop(props: {
   src?: string;
+  streamUrl?: string;
   offline: boolean;
   transport?: DesktopTransport;
   onInput: (input: ComputerInput) => void;
@@ -36,19 +37,49 @@ export function ComputerDesktop(props: {
         </div>
       }
     >
-      <Show
-        when={props.src}
-        fallback={
-          <div class="cx-vnc" role="img" aria-label="Dedicated computer">
-            Waiting for a screenshot from this mascot's computer.
-          </div>
-        }
-      >
-        <LiveFrame src={props.src!} onInput={props.onInput} />
+      <DesktopSurface
+        src={props.src}
+        streamUrl={props.streamUrl}
+        transport={props.transport}
+        onInput={props.onInput}
+      />
+    </Show>
+  );
+}
+
+function DesktopSurface(props: {
+  src?: string;
+  streamUrl?: string;
+  transport?: DesktopTransport;
+  onInput: (input: ComputerInput) => void;
+}): JSX.Element {
+  const live = () => props.transport === 'novnc' && Boolean(props.streamUrl);
+  return (
+    <>
+      <Show when={live()} fallback={<ScreenshotOrWait src={props.src} onInput={props.onInput} />}>
+        <NovncFrame src={props.streamUrl!} />
       </Show>
       <Show when={props.transport}>
         {(transport) => <p class="cx-product-note">{TRANSPORT_NOTE[transport()]}</p>}
       </Show>
+    </>
+  );
+}
+
+function ScreenshotOrWait(props: {
+  src?: string;
+  onInput: (input: ComputerInput) => void;
+}): JSX.Element {
+  return (
+    <Show
+      when={props.src}
+      fallback={
+        <div class="cx-vnc" role="img" aria-label="Dedicated computer">
+          Waiting for a screenshot from this mascot's computer.
+        </div>
+      }
+    >
+      <LiveFrame src={props.src!} onInput={props.onInput} />
     </Show>
   );
 }

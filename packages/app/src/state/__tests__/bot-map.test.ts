@@ -68,6 +68,24 @@ describe('mapMascot', () => {
     expect(mascot.computer.spec?.vcpu).toBe(8);
   });
 
+  it('maps computer kind, stream URL, and message bubbles from the service', () => {
+    const mascot = mapMascot({
+      id: 'mst_3',
+      computer: { id: 'pc_3', status: 'running', kind: 'local', stream_url: 'https://farm.example/novnc/x' },
+    });
+    expect(mascot.computer.kind).toBe('local');
+    expect(mascot.computer.streamUrl).toBe('https://farm.example/novnc/x');
+    expect(computerLabel(mascot.computer)).toBe('This PC · running');
+    expect(computerLabel(mapComputer({ id: 'm' }, { status: 'running', kind: 'ssh' }))).toBe('SSH · running');
+    expect(computerLabel(mapComputer({ id: 'm' }, { status: 'hibernated', kind: 'cloud' }))).toBe(
+      'Cloud · hibernated',
+    );
+    expect(mapMessage({ kind: 'send_to_user', text: 'a\n\nb', bubbles: ['Hi', 'There'] }, 0).bubbles).toEqual([
+      'Hi',
+      'There',
+    ]);
+  });
+
   it('maps legacy colour and shape onto look and face', () => {
     expect(mapMascot({ id: 'a', color: 'green', shape: 'round' }).look).toBe('meadow');
     expect(mapMascot({ id: 'b', color: 'ink', shape: 'tall' }).face).toBe('idle');

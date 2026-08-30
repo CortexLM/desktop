@@ -12,7 +12,7 @@ import type { ApiFilePreview, ApiFsEntry, ComputerInput } from '@cortex-ide/cort
 
 import '../chat/product-pages.css';
 
-export function BotComputerScreen(props: {
+interface ComputerScreenProps {
   mascot?: Mascot;
   screenshot?: string;
   shellLog: string;
@@ -21,6 +21,7 @@ export function BotComputerScreen(props: {
   recording?: boolean;
   error?: string;
   transport?: DesktopTransport;
+  streamUrl?: string;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -30,35 +31,28 @@ export function BotComputerScreen(props: {
   onToggleRecord: () => void;
   onBack: () => void;
   onGo: (path: string) => void;
-}): JSX.Element {
+}
+
+export function BotComputerScreen(props: ComputerScreenProps): JSX.Element {
   return (
     <Show
       when={props.mascot}
-      fallback={
-        <HonestState kind="error" title="Mascot not found" body="No computer without a mascot." actionLabel="Back" onAction={props.onBack} />
-      }
+      fallback={<MissingComputer onBack={props.onBack} />}
     >
-      {(mascot) => (
-        <ComputerBody
-          mascot={mascot()}
-          screenshot={props.screenshot}
-          shellLog={props.shellLog}
-          files={props.files}
-          preview={props.preview}
-          recording={props.recording}
-          error={props.error}
-          transport={props.transport}
-          onWake={props.onWake}
-          onHibernate={props.onHibernate}
-          onStop={props.onStop}
-          onInput={props.onInput}
-          onShell={props.onShell}
-          onOpenFile={props.onOpenFile}
-          onToggleRecord={props.onToggleRecord}
-          onGo={props.onGo}
-        />
-      )}
+      {(mascot) => <ComputerBody {...props} mascot={mascot()} />}
     </Show>
+  );
+}
+
+function MissingComputer(props: { onBack: () => void }): JSX.Element {
+  return (
+    <HonestState
+      kind="error"
+      title="Mascot not found"
+      body="No computer without a mascot."
+      actionLabel="Back"
+      onAction={props.onBack}
+    />
   );
 }
 
@@ -71,6 +65,7 @@ interface ComputerBodyProps {
   recording?: boolean;
   error?: string;
   transport?: DesktopTransport;
+  streamUrl?: string;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -113,6 +108,7 @@ function ComputerBody(props: ComputerBodyProps): JSX.Element {
           preview={props.preview}
           recording={props.recording}
           transport={props.transport}
+          streamUrl={props.streamUrl}
           onWake={props.onWake}
           onHibernate={props.onHibernate}
           onStop={props.onStop}
@@ -136,6 +132,7 @@ function ComputerStates(props: {
   preview?: ApiFilePreview;
   recording?: boolean;
   transport?: DesktopTransport;
+  streamUrl?: string;
   onWake: () => void;
   onHibernate: () => void;
   onStop: () => void;
@@ -185,6 +182,7 @@ function LiveComputerPanels(props: {
   preview?: ApiFilePreview;
   recording?: boolean;
   transport?: DesktopTransport;
+  streamUrl?: string;
   onHibernate: () => void;
   onStop: () => void;
   onInput: (input: ComputerInput) => void;
@@ -196,6 +194,7 @@ function LiveComputerPanels(props: {
     <>
       <ComputerDesktop
         src={props.screenshot}
+        streamUrl={props.streamUrl}
         offline={false}
         transport={props.transport}
         onInput={props.onInput}

@@ -23,6 +23,7 @@ import {
   listMascotMessages,
   listMascots,
   listMascotVideos,
+  type ComputerKind,
 } from '@cortex-ide/cortex-api';
 
 import { botClient } from './bot-client.ts';
@@ -48,6 +49,8 @@ export type {
 
 export {
   computerIsOffline,
+  computerIsMissing,
+  computerLabel,
   isPendingAsk,
   isPendingSecret,
 } from './bot-map.ts';
@@ -87,10 +90,14 @@ export async function createMascot(
   name: string,
   look: MascotLook,
   face: MascotFace,
+  computerKind?: ComputerKind,
 ): Promise<Mascot> {
   const client = botClient();
   if (!client) throw new Error('The Bot API is not connected from this origin.');
-  const created = await apiCreate(client, appearanceWrite(name.trim() || 'Untitled mascot', look, face));
+  const created = await apiCreate(
+    client,
+    appearanceWrite(name.trim() || 'Untitled mascot', look, face, computerKind),
+  );
   const mascot = mapMascot(created);
   setMascots((current) => [mascot, ...current.filter((row) => row.id !== mascot.id)]);
   return mascot;
@@ -215,8 +222,20 @@ function applyListError(error: unknown): void {
 }
 
 /** Send look/face and keep color/shape aliases so an older backend still stores identity. */
-function appearanceWrite(name: string, look: MascotLook, face: MascotFace) {
-  return { name, look, face, color: look, shape: face };
+function appearanceWrite(
+  name: string,
+  look: MascotLook,
+  face: MascotFace,
+  computerKind?: ComputerKind,
+) {
+  return {
+    name,
+    look,
+    face,
+    color: look,
+    shape: face,
+    ...(computerKind ? { computer_kind: computerKind } : {}),
+  };
 }
 
 function appearancePatch(patch: { name?: string; look?: MascotLook; face?: MascotFace }) {

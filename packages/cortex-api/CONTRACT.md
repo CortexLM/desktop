@@ -431,8 +431,12 @@ it in `localStorage`, which is not a product:
 
 ### Bot
 
-Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
-`{ ticket_hash }` only — never a password. Videos list at
+Mascot CRUD, ask-user, one computer per mascot. Create accepts optional
+`computer_kind` (`local` | `ssh` | `cloud`). The client never sends a loop
+cap (`max_rounds`, `max_tool_rounds`) on any Bot write or realtime frame.
+
+VNC signaling ticket is `{ ticket_hash }` plus an optional iframe-safe
+`stream_url` / `novnc_url` — never a password. Videos list at
 `GET /v1/mascots/{id}/videos`.
 
 Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
@@ -445,6 +449,7 @@ Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
 | GET | `/v1/mascots/{id}/computer` |
 | POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell` |
 | GET | `/computer/screenshot`, `/cursor`, `/fs`, `/file` |
+| POST | `/v1/mascots/{id}/computer/vnc-ticket` |
 | GET/POST/DELETE | `/v1/mascots/{id}/memory?tier=` |
 | CRUD | `/v1/skills` + `POST /v1/mascots/{id}/skills/{slug}/run` |
 | CRUD + pause/resume | `/v1/mascots/{id}/routines` |

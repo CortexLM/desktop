@@ -1,22 +1,27 @@
 import { For, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
+import type { ComputerInput } from '@cortex-ide/cortex-api';
 
 import { PageBody, PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
-import { AskCard, SecretCard, SendToUserBubble, UserBubble, WorkRail } from './conversation-widgets.tsx';
-import { MascotRail, mascotLinks } from './mascot-rail.tsx';
+import { ComputerRail } from './computer-rail.tsx';
+import type { DesktopTransport } from './computer-desktop.tsx';
 import {
-  computerLabel,
-  isPendingAsk,
-  isPendingSecret,
-  type BotMessage,
-  type Mascot,
-} from '../../state/bot-map.ts';
+  Composer,
+  ConversationAlerts,
+  Thread,
+  conversationBlocked,
+  visibleMessages,
+  workItems,
+} from './conversation-thread.tsx';
+import { MascotRail, mascotLinks } from './mascot-rail.tsx';
+import { computerLabel, type Mascot } from '../../state/bot-map.ts';
 import { resolveMascotMotion } from './mascot-looks.ts';
 import { MascotMark } from './mascot-mark.tsx';
 
 import '../chat/product-pages.css';
+import './bot-workbench.css';
 
 function Missing(props: { onBack: () => void }): JSX.Element {
   return (
@@ -43,29 +48,41 @@ export function BotConversationScreen(props: {
   celebrating?: boolean;
   onMarkSettled?: () => void;
   error?: string;
+  computerOpen?: boolean;
+  onToggleComputer?: () => void;
+  screenshot?: string;
+  streamUrl?: string;
+  transport?: DesktopTransport;
+  computerError?: string;
+  onWake?: () => void;
+  onHibernate?: () => void;
+  onInput?: (input: ComputerInput) => void;
 }): JSX.Element {
   return (
     <Show when={props.mascot} fallback={<Missing onBack={props.onBack} />}>
-      {(mascot) => (
-        <ConversationBody
-          mascot={mascot()}
-          draft={props.draft}
-          onDraft={props.onDraft}
-          onSend={props.onSend}
-          onAnswer={props.onAnswer}
-          onSecret={props.onSecret}
-          onGo={props.onGo}
-          sending={props.sending}
-          celebrating={props.celebrating}
-          onMarkSettled={props.onMarkSettled}
-          error={props.error}
-        />
-      )}
+      {(mascot) => <ConversationBody {...props} mascot={mascot()} />}
     </Show>
   );
 }
 
-function ConversationBody(props: {
+function ConversationBody(props: ConversationBodyProps): JSX.Element {
+  const blocked = () => conversationBlocked(props.mascot);
+  return (
+    <>
+      <ConversationHeader mascot={props.mascot} blocked={blocked()} rest={props} />
+      <PageBody width="bleed" class="cx-bot-workbench-page">
+        <div class="cx-bot-workbench">
+          <ThreadColumn mascot={props.mascot} blocked={blocked()} rest={props} />
+          <Show when={props.computerOpen}>
+            <WorkbenchRail mascot={props.mascot} rest={props} />
+          </Show>
+        </div>
+      </PageBody>
+    </>
+  );
+}
+
+interface ConversationBodyProps {
   mascot: Mascot;
   draft: string;
   onDraft: (value: string) => void;
@@ -77,38 +94,84 @@ function ConversationBody(props: {
   celebrating?: boolean;
   onMarkSettled?: () => void;
   error?: string;
-}): JSX.Element {
-  const blocked = () =>
-    props.mascot.messages.some((message) => isPendingAsk(message) || isPendingSecret(message));
-  const visible = () => props.mascot.messages.filter((message) => message.kind !== 'work');
-  const work = () =>
-    props.mascot.messages.filter((message) => message.kind === 'work').map((message) => message.work!);
+  computerOpen?: boolean;
+  onToggleComputer?: () => void;
+  screenshot?: string;
+  streamUrl?: string;
+  transport?: DesktopTransport;
+  computerError?: string;
+  onWake?: () => void;
+  onHibernate?: () => void;
+  onInput?: (input: ComputerInput) => void;
+}
 
+function ConversationHeader(props: {
+  mascot: Mascot;
+  blocked: boolean;
+  rest: ConversationBodyProps;
+}): JSX.Element {
   return (
-    <>
-      <PageHeader
-        title={props.mascot.name}
-        subtitle={`Computer ${computerLabel(props.mascot.computer)}`}
-        mark={<ConversationMark mascot={props.mascot} blocked={blocked()} sending={props.sending} celebrating={props.celebrating} onSettled={props.onMarkSettled} />}
+    <PageHeader
+      title={props.mascot.name}
+      subtitle={`Computer ${computerLabel(props.mascot.computer)}`}
+      mark={
+        <ConversationMark
+          mascot={props.mascot}
+          blocked={props.blocked}
+          sending={props.rest.sending}
+          celebrating={props.rest.celebrating}
+          onSettled={props.rest.onMarkSettled}
+        />
+      }
+      actions={
+        <Button variant="secondary" onClick={() => props.rest.onToggleComputer?.()}>
+          {props.rest.computerOpen ? 'Hide computer' : 'Computer'}
+        </Button>
+      }
+    />
+  );
+}
+
+function ThreadColumn(props: {
+  mascot: Mascot;
+  blocked: boolean;
+  rest: ConversationBodyProps;
+}): JSX.Element {
+  return (
+    <div class="cx-bot-workbench__thread">
+      <MascotRail links={mascotLinks(props.mascot.id, 'chat', props.rest.onGo)} />
+      <ConversationAlerts error={props.rest.error} blocked={props.blocked} work={workItems(props.mascot)} />
+      <Thread
+        name={props.mascot.name}
+        messages={visibleMessages(props.mascot)}
+        onAnswer={props.rest.onAnswer}
+        onSecret={props.rest.onSecret}
       />
-      <PageBody width="list">
-        <MascotRail links={mascotLinks(props.mascot.id, 'chat', props.onGo)} />
-        <ConversationAlerts error={props.error} blocked={blocked()} work={work()} />
-        <Thread
-          name={props.mascot.name}
-          messages={visible()}
-          onAnswer={props.onAnswer}
-          onSecret={props.onSecret}
-        />
-        <Composer
-          draft={props.draft}
-          blocked={blocked()}
-          sending={props.sending}
-          onDraft={props.onDraft}
-          onSend={props.onSend}
-        />
-      </PageBody>
-    </>
+      <Composer
+        draft={props.rest.draft}
+        blocked={props.blocked}
+        sending={props.rest.sending}
+        onDraft={props.rest.onDraft}
+        onSend={props.rest.onSend}
+      />
+    </div>
+  );
+}
+
+function WorkbenchRail(props: { mascot: Mascot; rest: ConversationBodyProps }): JSX.Element {
+  return (
+    <ComputerRail
+      mascot={props.mascot}
+      screenshot={props.rest.screenshot}
+      streamUrl={props.rest.streamUrl}
+      transport={props.rest.transport}
+      error={props.rest.computerError}
+      onWake={() => props.rest.onWake?.()}
+      onHibernate={() => props.rest.onHibernate?.()}
+      onInput={(input) => props.rest.onInput?.(input)}
+      onOpenPage={() => props.rest.onGo(`/bot/${props.mascot.id}/computer`)}
+      onClose={props.rest.onToggleComputer}
+    />
   );
 }
 
@@ -136,100 +199,18 @@ function ConversationMark(props: {
   );
 }
 
-function ConversationAlerts(props: {
-  error?: string;
-  blocked: boolean;
-  work: NonNullable<BotMessage['work']>[];
+export function BotMessagesScreen(props: {
+  mascot?: Mascot;
+  onBack: () => void;
+  onGo: (path: string) => void;
 }): JSX.Element {
-  return (
-    <>
-      <Show when={props.error}>
-        <HonestState kind="error" title="Could not send" body={props.error ?? ''} />
-      </Show>
-      <Show when={props.blocked}>
-        <HonestState
-          kind="error"
-          title="Waiting on you"
-          body="Answer the question or save the secret. The composer stays locked until then."
-        />
-      </Show>
-      <Show when={props.work.length > 0}>
-        <WorkRail items={props.work} />
-      </Show>
-    </>
-  );
-}
-
-function Composer(props: {
-  draft: string;
-  blocked: boolean;
-  sending?: boolean;
-  onDraft: (value: string) => void;
-  onSend: () => void;
-}): JSX.Element {
-  return (
-    <input
-      class="cx-product-row"
-      value={props.draft}
-      disabled={props.blocked || props.sending}
-      onInput={(event) => props.onDraft(event.currentTarget.value)}
-      placeholder={props.blocked ? 'Answer the question above first' : 'Message this mascot'}
-      onKeyDown={(event) => {
-        if (event.key === 'Enter' && !props.blocked) props.onSend();
-      }}
-    />
-  );
-}
-
-function Thread(props: {
-  name: string;
-  messages: BotMessage[];
-  onAnswer: (text: string, askId?: string) => void;
-  onSecret: (name: string, value: string) => void;
-}): JSX.Element {
-  return (
-    <Show
-      when={props.messages.length > 0}
-      fallback={
-        <HonestState
-          kind="empty"
-          title="No messages yet"
-          body="Talk to this mascot. Only what it sends to you appears here — tool traces stay in Work."
-        />
-      }
-    >
-      <div class="cx-product-list">
-        <For each={props.messages}>{(message) => <Turn name={props.name} message={message} onAnswer={props.onAnswer} onSecret={props.onSecret} />}</For>
-      </div>
-    </Show>
-  );
-}
-
-function Turn(props: {
-  name: string;
-  message: BotMessage;
-  onAnswer: (text: string, askId?: string) => void;
-  onSecret: (name: string, value: string) => void;
-}): JSX.Element {
-  const message = props.message;
-  if (message.kind === 'user') return <UserBubble text={message.content} />;
-  if (message.kind === 'ask_user' && message.ask) {
-    return <AskCard ask={message.ask} onAnswer={(text) => props.onAnswer(text, message.ask?.id)} />;
-  }
-  if (message.kind === 'secret' && message.secret) {
-    return <SecretCard secret={message.secret} onSubmit={props.onSecret} />;
-  }
-  return <SendToUserBubble name={props.name} message={message} />;
-}
-
-export function BotMessagesScreen(props: { mascot?: Mascot; onBack: () => void; onGo: (path: string) => void }): JSX.Element {
   return (
     <Show when={props.mascot} fallback={<Missing onBack={props.onBack} />}>
       {(mascot) => (
         <>
           <PageHeader title="Messages" subtitle={mascot().name} />
           <PageBody width="list">
-            <MascotRail links={mascotLinks(mascot().id, 'chat', props.onGo)} />
+            <MascotRail links={mascotLinks(mascot().id, 'messages', props.onGo)} />
             <Show
               when={mascot().messages.some((message) => message.kind !== 'work')}
               fallback={<HonestState kind="empty" title="No messages" body="The conversation is still empty." />}
