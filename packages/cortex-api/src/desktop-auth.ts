@@ -28,12 +28,17 @@ const PROVIDER_QUERY: Record<BrowserLoginProvider, string> = {
 };
 
 /** Query the service's hosted login, asking to return through the desktop bridge. */
-export function browserLoginUrl(baseUrl: string, provider: BrowserLoginProvider): string {
+export function browserLoginUrl(
+  baseUrl: string,
+  provider: BrowserLoginProvider,
+  state?: string,
+): string {
   const params = new URLSearchParams({
     provider: PROVIDER_QUERY[provider],
     client: 'desktop',
     redirect_uri: DESKTOP_BRIDGE_URL,
   });
+  if (state) params.set('state', state);
   return `${baseUrl.replace(/\/+$/, '')}/v1/auth/login?${params.toString()}`;
 }
 

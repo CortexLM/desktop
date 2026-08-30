@@ -69,7 +69,9 @@ more than one bubble. `tool_call` / `tool_result` stay off the thread.
 The right rail is **Computer**: a noVNC stream when the ticket includes an
 https `stream_url`, otherwise a screenshot. Take control / Release. Runtime
 This PC (desktop app), SSH, and Cloud (account). This is not a Terminal / Files
-tab navbar.
+tab navbar. Opening another mascot drops the previous computer's stream and
+screenshot immediately; the rail stays empty until this mascot's computer
+answers, including when that refresh fails.
 
 ## Farm machines
 

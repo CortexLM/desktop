@@ -37,6 +37,19 @@ describe('parseAuthCallback', () => {
     });
   });
 
+  it('carries state when the identity service echoes it', () => {
+    expect(parseAuthCallback(`${CALLBACK}?code=authcode-1&state=nonce-1`)).toEqual({
+      kind: 'code',
+      code: 'authcode-1',
+      state: 'nonce-1',
+    });
+    expect(parseAuthCallback(`${CALLBACK}?session=sealed&state=nonce-2`)).toEqual({
+      kind: 'session',
+      token: 'sealed',
+      state: 'nonce-2',
+    });
+  });
+
   it('prefers a sealed session over a leftover code', () => {
     const url = `${CALLBACK}?code=leftover&session=sealed-session-value`;
     expect(parseAuthCallback(url)).toEqual({

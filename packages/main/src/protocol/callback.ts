@@ -17,8 +17,8 @@ export const DESKTOP_BRIDGE_PATH = '/desktop/open';
 export type BrowserLoginProvider = 'google' | 'github';
 
 export type AuthCallbackResult =
-  | { kind: 'code'; code: string }
-  | { kind: 'session'; token: string }
+  | { kind: 'code'; code: string; state?: string }
+  | { kind: 'session'; token: string; state?: string }
   | { kind: 'error'; message: string }
   | { kind: 'ignored' };
 
@@ -62,13 +62,15 @@ export function parseAuthCallback(url: string): AuthCallbackResult {
     return { kind: 'error', message: callbackErrorMessage(error) };
   }
 
+  const state = parsed.searchParams.get('state')?.trim();
+
   for (const name of SESSION_PARAMS) {
     const value = parsed.searchParams.get(name)?.trim();
-    if (value) return { kind: 'session', token: value };
+    if (value) return withState({ kind: 'session', token: value }, state);
   }
 
   const code = parsed.searchParams.get('code')?.trim();
-  if (code) return { kind: 'code', code };
+  if (code) return withState({ kind: 'code', code }, state);
 
   return {
     kind: 'error',
@@ -87,6 +89,13 @@ function parseUrl(url: string): URL | undefined {
   } catch {
     return undefined;
   }
+}
+
+function withState<T extends { kind: 'code' | 'session' }>(
+  result: T,
+  state: string | undefined,
+): T {
+  return state ? { ...result, state } : result;
 }
 
 function callbackErrorMessage(code: string): string {

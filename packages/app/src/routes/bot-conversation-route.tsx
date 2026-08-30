@@ -9,8 +9,14 @@ import {
   submitBotSecret,
 } from '../state/bot-actions.ts';
 import { pickComputerRuntime, runComputerControl } from '../state/bot-control.ts';
-import { screenshotSrc, refreshScreenshot, shot, boxError } from '../state/bot-computer-live.ts';
-import { probeDesktopTransport, streamUrl } from '../state/vnc-ticket.ts';
+import {
+  attachComputer,
+  boxError,
+  refreshScreenshot,
+  screenshotSrc,
+  shotFor,
+} from '../state/bot-computer-live.ts';
+import { attachDesktopStream, probeDesktopTransport, streamUrlFor } from '../state/vnc-ticket.ts';
 import { sendBotTurn } from '../state/realtime-session.ts';
 import { BotConversationScreen } from '../screens/bot/conversation-screen.tsx';
 import { useAccount } from '../state/session-context.tsx';
@@ -50,8 +56,8 @@ function ConversationLive(props: {
       celebrating={thread.celebrating()}
       onMarkSettled={() => thread.setCelebrating(false)}
       error={thread.error()}
-      screenshot={screenshotSrc(shot())}
-      streamUrl={streamUrl() ?? props.mascot?.computer.streamUrl}
+      screenshot={screenshotSrc(shotFor(id()))}
+      streamUrl={streamUrlFor(id()) ?? props.mascot?.computer.streamUrl}
       hasControl={props.mascot?.computer.controlHolder === 'user'}
       computerError={computerError() || boxError()}
       onAnswer={(text, askId) => void ifId(id(), (current) => answerAsk(current, text, askId))}
@@ -82,6 +88,8 @@ function ifId(id: string | undefined, work: (id: string) => Promise<unknown> | v
 function useComputerStream(mascot: () => Mascot | undefined): void {
   createEffect(() => {
     const current = mascot();
+    attachComputer(current?.id);
+    attachDesktopStream(current?.id);
     if (!current || current.computer.status !== 'running') return;
     void refreshScreenshot(current.id);
     void probeDesktopTransport(current.id);

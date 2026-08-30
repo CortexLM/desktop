@@ -24,6 +24,12 @@ describe('browserLoginUrl', () => {
     expect(url).toContain('provider=GoogleOAuth');
     expect(url).toContain(`redirect_uri=${encodeURIComponent(DESKTOP_BRIDGE_URL)}`);
     expect(url).toContain('client=desktop');
+    expect(url).not.toContain('state=');
+  });
+
+  it('includes a login state when one is issued', () => {
+    const url = browserLoginUrl('https://api.cortex.foundation', 'google', 'nonce-1');
+    expect(url).toContain('state=nonce-1');
   });
 
   it('names GitHub as the GitHubOAuth provider query', () => {

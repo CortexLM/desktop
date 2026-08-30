@@ -18,6 +18,7 @@ import type { CortexAccountState } from '@cortex-ide/shared';
 
 import { openExternalSafe } from '../security';
 import { parseAuthCallback } from '../protocol/callback';
+import { beginBrowserLogin, consumeBrowserLogin } from '../protocol/login-transaction';
 
 export interface AccountLoginHost {
   getApiClient(): CortexApiClient;
@@ -28,7 +29,8 @@ export async function startBrowserLogin(
   service: AccountLoginHost,
   provider: BrowserLoginProvider,
 ): Promise<{ opened: boolean }> {
-  const url = browserLoginUrl(service.getApiClient().baseUrl, provider);
+  const state = beginBrowserLogin(provider);
+  const url = browserLoginUrl(service.getApiClient().baseUrl, provider, state);
   return { opened: await openExternalSafe(url) };
 }
 
@@ -42,6 +44,11 @@ export async function completeAuthCallback(
   }
   if (parsed.kind === 'error') {
     throw new Error(parsed.message);
+  }
+  if (!consumeBrowserLogin(parsed.state)) {
+    throw new Error(
+      'This sign-in link is not from a login you started in Cortex. Open the app and continue with Google or GitHub.',
+    );
   }
 
   const token =

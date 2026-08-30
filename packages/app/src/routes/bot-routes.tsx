@@ -18,6 +18,7 @@ import {
 } from '../state/bots.ts';
 import { teachFromVideo } from '../state/bot-runtime-store.ts';
 import {
+  attachComputer,
   boxError,
   fsEntries,
   loadFs,
@@ -29,9 +30,9 @@ import {
   screenshotSrc,
   setRecordingFlagValue,
   shellLog,
-  shot,
+  shotFor,
 } from '../state/bot-computer-live.ts';
-import { probeDesktopTransport, streamUrl } from '../state/vnc-ticket.ts';
+import { attachDesktopStream, probeDesktopTransport, streamUrlFor } from '../state/vnc-ticket.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import { BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
 import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
@@ -180,6 +181,8 @@ export function BotComputerRoute(): JSX.Element {
 function useComputerPoll(mascot: () => Mascot | undefined): void {
   createEffect(() => {
     const current = mascot();
+    attachComputer(current?.id);
+    attachDesktopStream(current?.id);
     if (!current || current.computer.status !== 'running') return;
     void refreshScreenshot(current.id);
     void loadFs(current.id);
@@ -199,8 +202,8 @@ function LiveComputer(props: {
   return (
     <BotComputerScreen
       mascot={props.mascot}
-      screenshot={screenshotSrc(shot())}
-      streamUrl={streamUrl() ?? props.mascot?.computer.streamUrl}
+      screenshot={screenshotSrc(shotFor(id()))}
+      streamUrl={streamUrlFor(id()) ?? props.mascot?.computer.streamUrl}
       hasControl={props.mascot?.computer.controlHolder === 'user'}
       signedIn={props.signedIn}
       shellLog={shellLog()}

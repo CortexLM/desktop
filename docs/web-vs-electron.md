@@ -47,14 +47,11 @@ in at all, and Settings and Automations were permanently read-only.
 - Opening a local folder.
 - **This PC** as a Cortex Code runtime (folder-bound on desktop). Not offered
   on the web, and never as a Cortex Bot computer host.
-<<<<<<< HEAD
 - Auto-update against `https://releases.cortex.foundation/` (see [releases.md](./releases.md)).
-=======
 - Google/GitHub sign-in in the **system browser**, returning on
   `cortex://auth/callback` (HTTPS bridge at `https://cortex.foundation/desktop/open`).
   Email + password stays on the in-app form. The session cookie never crosses
   to the renderer.
->>>>>>> 85d78ca (feat(bot): complete desktop teammate workbench and computer rail)
 
 ## What web does instead
 

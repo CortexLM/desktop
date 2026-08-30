@@ -20,8 +20,21 @@ export interface DesktopStream {
 
 const [desktopTransport, setDesktopTransport] = createSignal<DesktopTransport>('screenshot');
 const [streamUrl, setStreamUrl] = createSignal<string | undefined>();
+const [streamOwner, setStreamOwner] = createSignal<string | undefined>();
 
 export { desktopTransport, streamUrl };
+
+export function attachDesktopStream(mascotId: string | undefined): void {
+  if (streamOwner() === mascotId) return;
+  setStreamOwner(mascotId);
+  setDesktopTransport('screenshot');
+  setStreamUrl(undefined);
+}
+
+export function streamUrlFor(mascotId: string | undefined): string | undefined {
+  if (!mascotId || streamOwner() !== mascotId) return undefined;
+  return streamUrl();
+}
 
 export async function requestDesktopStream(mascotId: string): Promise<DesktopStream> {
   const client = botClient();
@@ -29,20 +42,31 @@ export async function requestDesktopStream(mascotId: string): Promise<DesktopStr
   try {
     const ticket = await createVncTicket(client, mascotId);
     const url = httpsUrl(ticket.stream_url ?? ticket.embed_url);
-    const transport: DesktopTransport = url ? 'vnc' : 'unavailable';
-    setDesktopTransport(transport);
-    setStreamUrl(url);
-    return { transport, streamUrl: url };
+    return applyStream(mascotId, { transport: url ? 'vnc' : 'unavailable', streamUrl: url });
   } catch (error) {
-    if (isCortexApiError(error) && error.code === 'not_found') {
-      setDesktopTransport('unavailable');
-      setStreamUrl(undefined);
-      return { transport: 'unavailable' };
-    }
-    setDesktopTransport('screenshot');
-    setStreamUrl(undefined);
-    return { transport: 'screenshot' };
+    return applyStreamError(mascotId, error);
   }
+}
+
+function stillOnStream(mascotId: string): boolean {
+  const owner = streamOwner();
+  return !owner || owner === mascotId;
+}
+
+function applyStream(mascotId: string, result: DesktopStream): DesktopStream {
+  if (!stillOnStream(mascotId)) return result;
+  setDesktopTransport(result.transport);
+  setStreamUrl(result.streamUrl);
+  return result;
+}
+
+function applyStreamError(mascotId: string, error: unknown): DesktopStream {
+  if (!stillOnStream(mascotId)) return { transport: 'screenshot' };
+  const missing = isCortexApiError(error) && error.code === 'not_found';
+  const transport: DesktopTransport = missing ? 'unavailable' : 'screenshot';
+  setDesktopTransport(transport);
+  setStreamUrl(undefined);
+  return { transport };
 }
 
 /** @deprecated Use requestDesktopStream. Kept for existing callers. */
@@ -56,6 +80,7 @@ export async function probeDesktopTransport(mascotId: string): Promise<void> {
 }
 
 export function resetDesktopTransportForTests(): void {
+  setStreamOwner(undefined);
   setDesktopTransport('screenshot');
   setStreamUrl(undefined);
 }
