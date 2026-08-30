@@ -146,7 +146,7 @@ describe('Home composer', () => {
 
   it('shows the worktree chip from the draft', () => {
     renderHome({ draft: { prompt: '', runtime: 'local', repo: 'app', worktree: 'app' } });
-    expect(screen.getByRole('button', { name: /app/ })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /app/ }).length).toBeGreaterThanOrEqual(2);
   });
 });
 

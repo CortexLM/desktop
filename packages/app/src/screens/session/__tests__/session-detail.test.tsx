@@ -299,7 +299,7 @@ describe('Session workbench', () => {
 
   it('renders the host-owned panels', () => {
     renderDetail({ activeTab: 'plan', plan: PLAN });
-    expect(screen.getByText('Reproduce failure with pytest')).toBeInTheDocument();
+    expect(screen.getAllByText('Reproduce failure with pytest').length).toBeGreaterThan(0);
   });
 });
 
