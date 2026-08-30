@@ -18,6 +18,10 @@ GitHub Releases provider for production.
 4. It flattens those files and **rclone copy** (not sync — older versioned
    installers stay) to R2 bucket **`cortex-releases`**, objects at the bucket
    root, via `https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`.
+   rclone **v1.70.3** linux-amd64 is installed only after `sha256sum -c
+   --strict` matches the SHA-256 pinned in `.github/workflows/build.yml`
+   (`RCLONE_SHA256`). A mismatch fails the job before unzip; the binary is
+   never run.
 5. Custom domain **`releases.cortex.foundation`** is bound to that bucket, so
    electron-updater fetches `/latest.yml`, `/latest-mac.yml`,
    `/latest-linux.yml` (and the installer each file names) at the host root.

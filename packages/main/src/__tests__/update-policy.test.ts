@@ -39,6 +39,9 @@ describe('resolveUpdateFeedUrl', () => {
     expect(buildWorkflow).not.toContain('configure-aws-credentials');
     expect(buildWorkflow).not.toContain('rclone sync');
     expect(buildWorkflow).not.toMatch(/provider:\s*github/);
+    expect(buildWorkflow).toContain('RCLONE_SHA256');
+    expect(buildWorkflow).toContain('7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad');
+    expect(buildWorkflow).toContain('sha256sum -c --strict');
   });
 
   it('keeps staging from writing the production R2 feed', () => {

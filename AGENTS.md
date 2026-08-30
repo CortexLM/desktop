@@ -90,7 +90,7 @@ packaging change by running the binary, not just by building it:
 ### Desktop auto-update feed
 Packaged Electron checks `https://releases.cortex.foundation/` (generic provider in `electron-builder.yml` `publish.url`, same value as `DEFAULT_UPDATE_FEED_URL` in `packages/main/src/update-policy.ts`). There is no GitHub update provider for production.
 
-On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` would make the app request `/latest.yml` and miss the object; do not use one here.
+On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. rclone is installed from a pinned SHA-256 (`RCLONE_SHA256`); a checksum mismatch fails the job before extract. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` would make the app request `/latest.yml` and miss the object; do not use one here.
 
 Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. Staging (`staging.yml`) must not write this origin.
 

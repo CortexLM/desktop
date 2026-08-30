@@ -183,10 +183,15 @@ jobs:
       - name: Install rclone
         env:
           RCLONE_VERSION: '1.70.3'
+          # SHA-256 of rclone-v1.70.3-linux-amd64.zip from
+          # https://downloads.rclone.org/v1.70.3/SHA256SUMS — pinned in this
+          # repo. Do not trust a checksum downloaded with the archive.
+          RCLONE_SHA256: '7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad'
         run: |
           set -euo pipefail
           curl -fsSL -o rclone.zip \
             "https://github.com/rclone/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-amd64.zip"
+          echo "${RCLONE_SHA256}  rclone.zip" | sha256sum -c --strict
           unzip -q rclone.zip
           sudo install -m 755 "rclone-v${RCLONE_VERSION}-linux-amd64/rclone" /usr/local/bin/rclone
           rclone version
