@@ -25,9 +25,9 @@ describe('computer hosts', () => {
     const onChange = vi.fn();
     const options = computerHostOptions(ANONYMOUS_CAPABILITIES, 'browser');
     render(() => <ComputerHostPicker value="cloud" options={options} onChange={onChange} />);
-    expect(screen.getByRole('radio', { name: /This PC/ })).toBeDisabled();
-    expect(screen.getByRole('radio', { name: /Cloud/ })).toBeDisabled();
-    fireEvent.click(screen.getByRole('radio', { name: /Cloud/ }));
+    expect(screen.getByRole('radio', { name: 'This PC' })).toBeDisabled();
+    expect(screen.getByRole('radio', { name: 'Cloud' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('radio', { name: 'Cloud' }));
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.queryByText(/Sprite|Finch|Pebble/i)).toBeNull();
   });

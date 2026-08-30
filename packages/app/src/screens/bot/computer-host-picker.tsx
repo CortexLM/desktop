@@ -30,6 +30,7 @@ function HostCard(props: {
       class="cx-host-picker__card"
       aria-checked={props.selected}
       aria-disabled={locked() ? 'true' : undefined}
+      aria-label={props.option.label}
       title={props.option.lockedReason}
       disabled={locked()}
       onClick={() => {
