@@ -56,6 +56,7 @@ import { ipcProductFetch, productUrlPath, unwrapProductResponse } from '../ipc-f
 
 afterEach(() => {
   globalThis.localStorage?.clear();
+  attachComputer(undefined);
   setBotClientForTests(undefined);
   resetBotsForTests();
   resetPluginsForTests();
