@@ -72,6 +72,9 @@ async function startSessionFromEmptyHome(
   await expect(cta).toBeEnabled();
   await cta.click();
   await expect(page).toHaveURL(/#\/code\/sessions\/session_/, { timeout: 20_000 });
+  // The turn fails closed with no provider. Wait for that so main is not still
+  // running the agent when the fixture tears the window down.
+  await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15_000 });
 }
 
 test.describe('the app Electron loads', () => {
