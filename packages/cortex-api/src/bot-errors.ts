@@ -83,6 +83,6 @@ export function backendTooOldCopy(surface: string): { title: string; body: strin
 export function farmOfflineCopy(): { title: string; body: string } {
   return {
     title: 'Computer offline',
-    body: 'The farm or local daemon is not connected. This is not a live desktop.',
+    body: 'This mascot’s cloud computer is not connected. Wake it, or try again in a few minutes.',
   };
 }

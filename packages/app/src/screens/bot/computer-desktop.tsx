@@ -1,6 +1,6 @@
 import { type JSX, Show } from 'solid-js';
 
-import type { ComputerInput } from '@cortex-ide/cortex-api';
+import { farmOfflineCopy, type ComputerInput } from '@cortex-ide/cortex-api';
 
 /**
  * How the desktop is being delivered.
@@ -32,7 +32,7 @@ export function ComputerDesktop(props: {
       when={!props.offline}
       fallback={
         <div class="cx-vnc" role="status">
-          The farm or local daemon is not connected. This is not a live desktop.
+          {farmOfflineCopy().body}
         </div>
       }
     >

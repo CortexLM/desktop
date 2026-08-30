@@ -36,6 +36,7 @@ describe('RuntimesScreen', () => {
     expect(screen.getByText('deploy@build-01')).toBeInTheDocument();
     // An unknown status is reported as unknown, not as offline.
     expect(screen.getByText(/Status unknown/)).toBeInTheDocument();
+    expect((document.body.textContent ?? '').toLowerCase()).not.toMatch(/\bthis pc\b|\bthis desktop\b/);
   });
 
   it('shows a pairing code with where to type it', () => {

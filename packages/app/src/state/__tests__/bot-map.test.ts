@@ -117,5 +117,8 @@ describe('videos and pending flags', () => {
     expect(computerIsOffline({ status: 'offline' } as never)).toBe(true);
     expect(computerIsOffline({ status: 'running', provider: 'mock' } as never)).toBe(true);
     expect(computerIsOffline({ status: 'running' } as never)).toBe(false);
+    expect(computerLabel({ status: 'running' } as never).toLowerCase()).not.toMatch(
+      /\bthis pc\b|\bthis desktop\b/,
+    );
   });
 });

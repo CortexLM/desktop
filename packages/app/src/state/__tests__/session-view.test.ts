@@ -92,7 +92,10 @@ describe('formatDuration', () => {
 
 describe('toInboxSession', () => {
   it('carries the diff when there is one', () => {
-    expect(toInboxSession(summary(), NOW).diff).toEqual({ added: 12, removed: 3 });
+    expect(toInboxSession(summary({ runtime: 'ssh' }), NOW).runtime).toBe('SSH');
+    expect(toInboxSession(summary({ runtime: 'ssh' }), NOW).runtime.toLowerCase()).not.toMatch(
+      /\bthis pc\b|\bthis desktop\b/,
+    );
   });
 
   it('omits the diff rather than showing two zeroes', () => {

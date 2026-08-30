@@ -25,6 +25,13 @@ values, and nothing in Code asks for a token to paste
 ([`.rules/06-product.md`](../.rules/06-product.md) § 6.2.1). Provider credentials
 are entered in Settings → Providers and go main → keychain.
 
+## This PC
+
+On the **desktop app**, the local Code runtime is labelled **This PC**. The
+native folder picker may bind a session to a directory on this machine. Web
+Code never offers This PC. This PC is not a Cortex Bot host, and SSH chrome
+never uses that name — SSH stays SSH.
+
 ## Harness
 
 The harness is the process that can touch a disk, a PTY, and Git.

@@ -174,6 +174,10 @@ Bot rules (service and leftover `/bot` screens; the dedicated Bot desktop app ow
   mascots, or a demo roster — see `04-structure.md` § 4.2 for the exact
   anti-pattern.
 - An offline computer says it is offline. It does not pretend to be thinking.
+- **The computer is a cloud farm box.** Cortex Bot never offers This PC, This
+  desktop, or SSH as a host. This PC is Cortex Code on the desktop app. SSH
+  stays SSH, on Code (`/code/runtimes/ssh`). A Bot host picker with those
+  options is a defect, not a simplification.
 
 ## 6.4 Chat is locked too
 

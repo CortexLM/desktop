@@ -11,6 +11,11 @@ home cards.
 disk, VNC session, or recording with another mascot. Creating a mascot
 creates its machine. Deleting a mascot retires that machine.
 
+That machine is a **cloud farm box**. Cortex Bot does not run on This PC, and
+it does not offer SSH as a host. This PC is a Cortex Code runtime on the
+desktop app. SSH is SSH, on Code. Copy never says “This desktop” on Bot or
+on SSH chrome.
+
 ## Visual system
 
 Each mascot is one **Kernel pebble** — a flat rounded stone, not a triangle

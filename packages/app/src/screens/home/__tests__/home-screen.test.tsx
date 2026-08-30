@@ -99,15 +99,24 @@ describe('Home composer', () => {
   });
 
   it('disables the runtime picker when there is only one runtime to pick', () => {
-    // Signed out there is only Local, so an enabled picker would promise a choice that does
+    // Signed out there is only This PC, so an enabled picker would promise a choice that does
     // not exist - even with a handler wired.
     renderHome({ capabilities: ANONYMOUS_CAPABILITIES, onPickRuntime: vi.fn() });
-    expect(screen.getByRole('button', { name: /Local/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /This PC/ })).toBeDisabled();
   });
 
   it('enables the runtime picker once there is more than one runtime', () => {
     renderHome({ capabilities: AUTHENTICATED_CAPABILITIES, onPickRuntime: vi.fn() });
-    expect(screen.getByRole('button', { name: /Local/ })).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: /This PC/ })).not.toBeDisabled();
+  });
+
+  it('names SSH as SSH, never as This PC or This desktop', () => {
+    renderHome({
+      capabilities: AUTHENTICATED_CAPABILITIES,
+      draft: { prompt: '', runtime: 'ssh' },
+    });
+    expect(screen.getByRole('button', { name: /SSH server/ })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /This desktop/i })).toBeNull();
   });
 
   it('renders an unwired picker as a disabled button rather than inert text', () => {

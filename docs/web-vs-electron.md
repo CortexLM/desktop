@@ -45,6 +45,8 @@ in at all, and Settings and Automations were permanently read-only.
 - SQLite conversation and session databases.
 - Electron `Notification`.
 - Opening a local folder.
+- **This PC** as a Cortex Code runtime (folder-bound on desktop). Not offered
+  on the web, and never as a Cortex Bot computer host.
 
 ## What web does instead
 

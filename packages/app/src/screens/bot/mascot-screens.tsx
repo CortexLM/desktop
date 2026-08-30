@@ -23,7 +23,7 @@ export function MascotListScreen(props: {
     <>
       <PageHeader
         title="Bot"
-        subtitle="Each mascot owns one dedicated computer. Machines are never shared."
+        subtitle="Each mascot owns one dedicated cloud computer. Machines are never shared."
         actions={<Button variant="primary" onClick={() => props.onCreate()}>New mascot</Button>}
       />
       <PageBody width="list">
@@ -76,7 +76,7 @@ function MascotListBody(props: {
         <HonestState
           kind="empty"
           title="No mascots"
-          body="Create a look and a face. Cortex provisions a computer that belongs only to that mascot."
+          body="Create a look and a face. Cortex provisions a cloud computer that belongs only to that mascot."
           actionLabel="New mascot"
           onAction={props.onCreate}
         />
@@ -132,7 +132,7 @@ export function CreateMascotScreen(props: {
 }): JSX.Element {
   return (
     <>
-      <PageHeader title="New mascot" subtitle="Look and face. A dedicated computer is created with it." />
+      <PageHeader title="New mascot" subtitle="Look and face. Cortex provisions a cloud computer that belongs only to that mascot." />
       <PageBody width="settings">
         <label class="cx-product-row__title" for="mascot-name">Name</label>
         <input

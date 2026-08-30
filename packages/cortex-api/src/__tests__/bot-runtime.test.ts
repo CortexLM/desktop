@@ -111,6 +111,9 @@ describe('plugin disconnect and honest errors', () => {
       body: 'Skills needs a newer Cortex API. This client will not invent a local copy.',
     });
     expect(farmOfflineCopy().title).toBe('Computer offline');
+    expect(farmOfflineCopy().body.toLowerCase()).toMatch(/cloud computer/);
+    expect(farmOfflineCopy().body.toLowerCase()).not.toMatch(/\bthis pc\b|\bthis desktop\b/);
+    expect(farmOfflineCopy().body.toLowerCase()).not.toContain('local daemon');
   });
 });
 

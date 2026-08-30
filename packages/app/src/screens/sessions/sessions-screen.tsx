@@ -14,7 +14,7 @@ export interface InboxSession {
   status: SessionStatus;
   /** "Running · 12m" — status plus elapsed time, joined by the caller. */
   statusLabel?: string;
-  /** Where the run executes: "Local", "Cloud", "SSH". */
+  /** Where the run executes: "This PC", "Cloud", "SSH". */
   runtime?: string;
   diff?: { added: number; removed: number };
   /** Pre-formatted, e.g. "4m ago". */

@@ -51,7 +51,8 @@ describe('conversation widgets', () => {
 describe('computer chrome', () => {
   it('shows the honest offline state and a waiting screenshot', () => {
     const offline = render(() => <ComputerDesktop offline onInput={vi.fn()} />);
-    expect(offline.getByRole('status')).toHaveTextContent('farm or local daemon');
+    expect(offline.getByRole('status')).toHaveTextContent('cloud computer');
+    expect(offline.getByRole('status').textContent?.toLowerCase()).not.toMatch(/\bthis pc\b|\bthis desktop\b/);
     offline.unmount();
 
     render(() => <ComputerDesktop offline={false} onInput={vi.fn()} />);
