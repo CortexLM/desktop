@@ -10,7 +10,6 @@ import type { MCPServer, MCPTool } from '@cortex-ide/shared';
 import { getSecretsService } from './secrets-service';
 import { getDatabaseService } from './database-service';
 import { getProviderSettingsService } from './provider-settings-service';
-import { requireThisPcFolder } from './session-this-pc';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
@@ -545,10 +544,31 @@ export class AIService extends EventEmitter {
       session.workspacePath = agent.workspacePath;
     }
 
+    const root = agent?.workspacePath ?? session.workspacePath;
+    if (!root) {
+      yield* this.streamTextOnly(session, provider, options);
+      return;
+    }
+
     yield* this.streamAgentTurn(session, provider, content, options, {
-      workspacePath: requireThisPcFolder(agent?.workspacePath ?? session.workspacePath),
+      workspacePath: root,
       mode: agent?.mode,
     });
+  }
+
+  /** Chat without a disk workspace — automations, not This PC Code. */
+  private async *streamTextOnly(
+    session: AISession,
+    provider: NonNullable<ReturnType<AIProviderRegistry['getProvider']>>,
+    options?: ChatOptions,
+  ): AsyncIterableIterator<StreamChunk> {
+    const response = await provider.chat(
+      session.messages.map((message) => ({ role: message.role, content: message.content })),
+      { ...options, model: session.model },
+    );
+    session.messages.push({ role: 'assistant', content: response.content });
+    session.updatedAt = Date.now();
+    yield { content: response.content, done: true };
   }
 
   /**

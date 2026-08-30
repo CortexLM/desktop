@@ -316,8 +316,9 @@ export class SessionService extends EventEmitter {
     try {
       await this.ensureAgentSession(id, options);
 
+      const folder = requireThisPcFolder(options.workspacePath);
       const stream = this.ai.streamMessage(id, prompt, undefined, {
-        ...(options.workspacePath ? { workspacePath: options.workspacePath } : {}),
+        workspacePath: folder,
         ...(options.mode ? { mode: options.mode } : {}),
       });
       for await (const chunk of stream) {
