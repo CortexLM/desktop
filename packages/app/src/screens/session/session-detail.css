@@ -533,3 +533,24 @@
   color: var(--color-error);
   background: var(--color-error-tint);
 }
+
+.cx-session__files {
+  margin: 0;
+  padding: 12px 16px;
+  list-style: none;
+}
+
+.cx-session__file {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-mono-stack);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+.cx-session__empty {
+  margin: 16px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}

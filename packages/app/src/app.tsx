@@ -18,8 +18,9 @@ import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
+import { enterProduct, guestBlocked } from './state/guest-lock.ts';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
-import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
+import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
 import { mascotIdFromPath, openBotStudio, rosterForSidebar } from './shell/bot-sidebar.ts';
 import { reconcileMascots } from './state/bots.ts';
 import { hasElectronHost } from './state/electron-bridge.ts';
@@ -112,7 +113,7 @@ function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
     .map((session) => ({
       id: session.id,
       title: session.title,
-      repo: session.repo ?? 'Local folder',
+      repo: session.repo ?? 'This PC',
       age: formatAge(session.updatedAt),
       running: session.status === 'running' || session.status === 'queued',
     }));
@@ -165,7 +166,9 @@ function WorkspaceSidebar(): JSX.Element {
   return (
     <Sidebar
       product={productForPath(pathname())}
-      onSwitchProduct={(next) => navigate(productHome(next))}
+      onSwitchProduct={(next) =>
+        enterProduct(next, account.capabilities().authenticated, navigate)
+      }
       capabilities={account.capabilities()}
       activeSlug={slugForPath(pathname())}
       recentRuns={toRecentRuns(runs.sessions() ?? [])}
@@ -180,8 +183,14 @@ function WorkspaceSidebar(): JSX.Element {
       onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
       onOpenChat={(id) => navigate(`/chat/${id}`)}
       onNewChat={() => navigate('/')}
-      onNewSession={() => navigate('/code')}
-      onNewMascot={() => navigate('/bot/new')}
+      onNewSession={() => enterProduct('code', account.capabilities().authenticated, navigate)}
+      onNewMascot={() => {
+        if (guestBlocked(account.capabilities().authenticated)) {
+          navigate('/bot');
+          return;
+        }
+        navigate('/bot/new');
+      }}
       onOpenMascot={(id) => navigate(`/bot/${id}`)}
       onOpenStudio={(panel) => openBotStudio(panel, pathname(), navigate)}
       onOpenSearch={() => openOverlay('palette')}

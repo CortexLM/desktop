@@ -38,6 +38,7 @@ import { BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail
 import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
 import { BotSettingsScreen } from '../screens/bot/mascot-settings-screen.tsx';
 import { useAccount } from '../state/session-context.tsx';
+import { guestBlocked } from '../state/guest-lock.ts';
 import type { Mascot, MascotFace, MascotLook } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
 
@@ -53,6 +54,7 @@ export { BotApprovalsRoute } from './bot-approvals-route.tsx';
 
 export function BotHomeRoute(): JSX.Element {
   const navigate = useNavigate();
+  const account = useAccount();
   createEffect(() => {
     void reconcileMascots();
   });
@@ -63,13 +65,17 @@ export function BotHomeRoute(): JSX.Element {
       unavailable={loadState() === 'unavailable'}
       error={loadState() === 'error' ? loadError() : undefined}
       onOpen={(id) => navigate(`/bot/${id}`)}
-      onCreate={() => navigate('/bot/new')}
+      onCreate={() => {
+        if (guestBlocked(account.capabilities().authenticated)) return;
+        navigate('/bot/new');
+      }}
     />
   );
 }
 
 export function BotCreateRoute(): JSX.Element {
   const navigate = useNavigate();
+  const account = useAccount();
   const [name, setName] = createSignal('');
   const [look, setLook] = createSignal<MascotLook>('meadow');
   const [face, setFace] = createSignal<MascotFace>('idle');
@@ -84,7 +90,10 @@ export function BotCreateRoute(): JSX.Element {
       face={face()}
       onFace={setFace}
       error={error()}
-      onCreate={() => void createAndGo({ name: name(), look: look(), face: face(), navigate, setError })}
+      onCreate={() => {
+        if (guestBlocked(account.capabilities().authenticated)) return;
+        void createAndGo({ name: name(), look: look(), face: face(), navigate, setError });
+      }}
     />
   );
 }

@@ -1,22 +1,26 @@
 import { For, type JSX, Show } from 'solid-js';
 
 import { Chip, Composer, Icon, Segmented, type IconName } from '@cortex-ide/ui';
+import type { ChatMode } from '@cortex-ide/shared';
 
 import './chat-home.css';
 
-export type ChatMode = 'search' | 'reason';
+export type { ChatMode };
 
 export interface ChatApp {
   id: string;
   title: string;
   description: string;
   icon: IconName;
-  /** Why the app cannot be opened yet, when it cannot. */
   lockedReason?: string;
 }
 
+export interface ChatRecent {
+  id: string;
+  title: string;
+}
+
 export interface ChatHomeScreenProps {
-  /** "Good evening, Ana." — assembled by the caller, which knows the clock and the name. */
   greeting: string;
   draft: string;
   onDraftChange: (value: string) => void;
@@ -31,7 +35,15 @@ export interface ChatHomeScreenProps {
   onOpenApp: (id: string) => void;
   suggestions: readonly string[];
   onPickSuggestion: (suggestion: string) => void;
+  recents?: readonly ChatRecent[];
+  onOpenRecent?: (id: string) => void;
 }
+
+const CHAT_MODES = [
+  { id: 'search', label: 'Search', icon: 'search' as const },
+  { id: 'reason', label: 'Reason', icon: 'reason' as const },
+  { id: 'research', label: 'Research', icon: 'research' as const },
+];
 
 function AppCard(props: { app: ChatApp; onOpen: (id: string) => void }): JSX.Element {
   return (
@@ -55,47 +67,59 @@ function AppCard(props: { app: ChatApp; onOpen: (id: string) => void }): JSX.Ele
   );
 }
 
-/**
- * The Chat product's home: greeting, composer, the apps row, suggestions.
- *
- * Pure view — the caller owns the draft, the conversation start and the app
- * registry, so this screen cannot invent behaviour the host does not have.
- */
+function ChatComposer(props: ChatHomeScreenProps): JSX.Element {
+  return (
+    <Composer
+      class="cx-chat-home__composer"
+      value={props.draft}
+      onValueChange={props.onDraftChange}
+      onSubmit={props.onSubmit}
+      placeholder="Ask anything, or pick an app below…"
+      sendLabel="Send"
+      disabled={props.disabled}
+      disabledReason={props.disabledReason}
+      modelLabel={props.modelLabel}
+      onPickModel={props.onPickModel}
+      leading={
+        <Segmented
+          bordered
+          label="Mode"
+          value={props.mode}
+          onChange={(id) => props.onModeChange(id as ChatMode)}
+          options={CHAT_MODES}
+        />
+      }
+    />
+  );
+}
+
+function ChatRecents(props: {
+  recents: readonly ChatRecent[];
+  onOpen: (id: string) => void;
+}): JSX.Element {
+  return (
+    <section class="cx-chat-home__recents" aria-label="Recent chats">
+      <h2 class="cx-chat-home__recents-title">Recents</h2>
+      <For each={props.recents}>
+        {(row) => (
+          <button type="button" class="cx-chat-home__recent" onClick={() => props.onOpen(row.id)}>
+            {row.title}
+          </button>
+        )}
+      </For>
+    </section>
+  );
+}
+
 export function ChatHomeScreen(props: ChatHomeScreenProps): JSX.Element {
   return (
     <div class="cx-chat-home">
       <div class="cx-chat-home__column">
         <h1 class="cx-chat-home__greeting">{props.greeting}</h1>
-
-        <Composer
-          class="cx-chat-home__composer"
-          value={props.draft}
-          onValueChange={props.onDraftChange}
-          onSubmit={props.onSubmit}
-          placeholder="Ask anything, or pick an app below…"
-          sendLabel="Send"
-          disabled={props.disabled}
-          disabledReason={props.disabledReason}
-          modelLabel={props.modelLabel}
-          onPickModel={props.onPickModel}
-          leading={
-            <Segmented
-              bordered
-              label="Mode"
-              value={props.mode}
-              onChange={(id) => props.onModeChange(id as ChatMode)}
-              options={[
-                { id: 'search', label: 'Search', icon: 'search' },
-                { id: 'reason', label: 'Reason', icon: 'reason' },
-              ]}
-            />
-          }
-        />
-
+        <ChatComposer {...props} />
         <div class="cx-chat-home__apps">
           <For each={props.apps}>{(app) => <AppCard app={app} onOpen={props.onOpenApp} />}</For>
         </div>
-
         <Show when={props.suggestions.length > 0}>
           <div class="cx-chat-home__suggestions">
             <For each={props.suggestions}>
@@ -107,8 +131,10 @@ export function ChatHomeScreen(props: ChatHomeScreenProps): JSX.Element {
             </For>
           </div>
         </Show>
+        <Show when={props.recents?.length ? props.recents : undefined}>
+          {(rows) => <ChatRecents recents={rows()} onOpen={(id) => props.onOpenRecent?.(id)} />}
+        </Show>
       </div>
-
       <span class="cx-chat-home__spacer" />
       <p class="cx-chat-home__disclaimer">Cortex can make mistakes. Check important info.</p>
     </div>

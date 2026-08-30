@@ -183,6 +183,13 @@
 /* -------------------------------------------------------------------------- */
 
 .cx-conversation__composer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+
   width: 100%;
   max-width: var(--container-reading);
+  padding-top: 12px;
+
+  background: var(--color-bg);
 }

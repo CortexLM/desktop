@@ -84,9 +84,13 @@ Behaviour that is part of the product, not an implementation detail:
 - **A connected host is paired with a one-time code** — the service stores a hash,
   the client never does. Heartbeats carry a device token, never SSH or provider
   keys. SSH and host keys are not downloaded to the client.
-- **Signed out on desktop**, Home / Sessions / Session detail / Settings work with
-  local or BYO providers. Automations, Review, Usage and SSH connect are shown and
+- **Signed out on desktop**, Chat works with a local or BYO provider. Code and
+  Bot stay shown and locked: starting a session or creating a Bot raises a
+  sign-in modal. Automations, Review, Usage and SSH connect are also shown and
   locked (`01-security.md` § 1.3).
+- **This PC Code sessions** start only after the native folder picker. The
+  coding agent runs against that tree via the desktop harness. Cloud and SSH
+  go through the control plane and never silently run locally.
 - **There is no in-app Benchmarks screen.** Provider benches live in
   `packages/test-harness` (`cortex-test`).
 - **Cortex Code has no Secrets page.** See § 6.2.1.

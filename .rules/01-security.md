@@ -91,13 +91,17 @@ there is a blocker, not a warning.
 
 ## 1.3 Guest vs signed-in
 
-Anonymous use is a product requirement, not a degraded mode. Without an account
-the app opens onto a usable workspace: on desktop, Chat with a local or BYO
-provider, and Code Home, Sessions, Session detail and Settings all work.
+Anonymous Chat is a product requirement, not a degraded mode. Without an
+account the app opens onto a usable Chat workspace: a local or BYO provider, the
+composer, and the conversation list.
 
-Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect
-— are **shown and locked**, never hidden. A locked row explains what an account
-buys. An empty list explains nothing and reads like a bug.
+**Code and Bot need an account.** Those surfaces stay **shown and locked**, never
+hidden. Switching to Code or Bot, starting a Code session, or creating a Bot
+raises a sign-in modal. Chat still works unsigned.
+
+Account-gated Code dashboard rows — Automations, Review, Usage, cloud
+runtimes, SSH connect — are also shown and locked. A locked row explains what
+an account buys. An empty list explains nothing and reads like a bug.
 
 **Bad** — the guest cannot tell whether the feature is missing, broken, or paid:
 
@@ -122,7 +126,7 @@ buys. An empty list explains nothing and reads like a bug.
     <HonestState
       kind="signed-out"
       title="Automations need a Cortex account"
-      body="Automations run in the cloud on a schedule. Sign in to create one; your local sessions keep working either way."
+      body="Automations run in the cloud on a schedule. Sign in to create one. Chat still works unsigned."
       action={{ label: 'Sign in', href: '/sign-in' }}
     />
   }

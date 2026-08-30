@@ -47,7 +47,7 @@ const IdSchema = z.object({ id: z.string().min(1) });
 /** Same bound as a session prompt: a cap on one renderer call's database write. */
 const StartSchema = z.object({
   prompt: z.string().min(1).max(32_000),
-  mode: z.enum(['search', 'reason']).optional(),
+  mode: z.enum(['search', 'reason', 'research']).optional(),
 });
 
 const SendSchema = z.object({

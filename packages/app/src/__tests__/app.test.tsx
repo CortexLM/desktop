@@ -28,7 +28,7 @@ describe('App', () => {
   });
 
   it('mounts without a Cortex account', async () => {
-    // Anonymous use is the default path, so the app has to come up with no credentials and
+    // Anonymous Chat is the default path, so the app has to come up with no credentials and
     // no successful network call.
     render(() => <App />);
 

@@ -35,7 +35,7 @@ function toReviewItem(session: SessionSummary, now: number): ReviewItem {
   return {
     id: session.id,
     title: session.title,
-    repo: session.repo ?? 'Local folder',
+    repo: session.repo ?? 'This PC',
     status: toBadgeStatus(session.status),
     diff: { added: session.additions, removed: session.deletions },
     age: formatAge(session.finishedAt ?? session.updatedAt, now),

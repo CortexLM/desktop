@@ -34,8 +34,10 @@ export interface PendingPermission {
 }
 
 export interface SessionTimelineProps {
-  /** What the user asked for. */
+  /** What the user asked for. No "You" label — the bubble is the turn. */
   prompt: string;
+  /** Collapsed reasoning from `thinking` events. */
+  reasoning?: string;
   /** The agent's reply above its plan. */
   reply?: string;
   plan?: readonly PlanStep[];
@@ -65,7 +67,7 @@ const STEP_LABELS: Record<PlanStepState, string> = {
   pending: 'Not started',
 };
 
-function PlanList(props: { steps: readonly PlanStep[] }): JSX.Element {
+export function PlanList(props: { steps: readonly PlanStep[] }): JSX.Element {
   return (
     <ol class="cx-plan">
       <For each={props.steps}>
@@ -220,8 +222,15 @@ export function SessionTimeline(props: SessionTimelineProps): JSX.Element {
 
 function TimelineReply(props: SessionTimelineProps): JSX.Element {
   return (
-    <Show when={props.reply || props.plan?.length || props.workSummary || props.planMermaid}>
+    <Show
+      when={
+        props.reply || props.plan?.length || props.workSummary || props.planMermaid || props.reasoning
+      }
+    >
       <div class="cx-timeline__reply">
+        <Show when={props.reasoning}>
+          {(text) => <Worklog summary="Reasoning" entries={[{ id: 'thinking', text: text() }]} />}
+        </Show>
         <Show when={props.reply}>{(reply) => <p class="cx-timeline__reply-text">{reply()}</p>}</Show>
         <Show when={props.planMermaid}>
           {(diagram) => (

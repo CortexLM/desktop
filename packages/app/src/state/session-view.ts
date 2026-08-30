@@ -104,7 +104,7 @@ export function toInboxSession(summary: SessionSummary, now = Date.now()): Inbox
     title: summary.title,
     // The inbox groups by repo, so a run with no repository still needs a lane to
     // sit in rather than being dropped from the list.
-    repo: summary.repo ?? 'Local folder',
+    repo: summary.repo ?? 'This PC',
     branch: summary.branch ?? '—',
     status: toBadgeStatus(summary.status),
     statusLabel: statusLabelOf(summary, now),
@@ -119,7 +119,7 @@ export function toRecentRow(summary: SessionSummary, now = Date.now()): RecentSe
   return {
     id: summary.id,
     title: summary.title,
-    context: [summary.repo, summary.branch].filter(Boolean).join(' · ') || 'Local folder',
+    context: [summary.repo, summary.branch].filter(Boolean).join(' · ') || 'This PC',
     status: toBadgeStatus(summary.status),
     age: formatAge(summary.updatedAt, now),
     ...(diff ? { diff } : {}),

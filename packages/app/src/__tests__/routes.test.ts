@@ -136,8 +136,8 @@ describe('route shape', () => {
 
 describe('authentication gating', () => {
   it('leaves the surfaces that work signed out ungated', () => {
-    // Anonymous use is a product requirement: local sessions with the user's own provider
-    // keys have to work with no account at all.
+    // Anonymous Chat is a product requirement: conversations with the user's own provider
+    // keys have to work with no account at all. Code and Bot stay shown and locked.
     for (const slug of [
       'home',
       'conversation',

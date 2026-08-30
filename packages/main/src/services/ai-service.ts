@@ -10,6 +10,7 @@ import type { MCPServer, MCPTool } from '@cortex-ide/shared';
 import { getSecretsService } from './secrets-service';
 import { getDatabaseService } from './database-service';
 import { getProviderSettingsService } from './provider-settings-service';
+import { requireThisPcFolder } from './session-this-pc';
 
 // Imported as a value, not `import type`: the no-registry constructor path
 // instantiates it (see `AIProviderRegistry.fromEnv()` below).
@@ -545,7 +546,7 @@ export class AIService extends EventEmitter {
     }
 
     yield* this.streamAgentTurn(session, provider, content, options, {
-      workspacePath: agent?.workspacePath ?? session.workspacePath ?? process.cwd(),
+      workspacePath: requireThisPcFolder(agent?.workspacePath ?? session.workspacePath),
       mode: agent?.mode,
     });
   }

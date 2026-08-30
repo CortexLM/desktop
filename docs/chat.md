@@ -6,7 +6,7 @@ Chat is the general assistant. It is the default product (`/`).
 
 | Route | Screen | Notes |
 | --- | --- | --- |
-| `/` | Home | Greeting, composer (Search / Reason), product cards, suggestions. |
+| `/` | Home | Greeting, composer (Search / Reason / Research), product cards, recents, suggestions. |
 | `/chat/:id` | Conversation | Streamed thread. Backed by SQLite on desktop. |
 | `/research` | Research | Honest empty / loading / error / signed-out. |
 | `/planning` | Planning | **Scheduled tasks**, not a project plan. ChatGPT-style recurring jobs with original Cortex copy. |
@@ -81,6 +81,10 @@ not filter by surface really does reach those tools from either product. A
 backend with no `PATCH` on the route says so on the page ("Cortex cannot yet
 choose where a plugin is used on this workspace") rather than pretending the
 change was saved. See `packages/cortex-api/CONTRACT.md` § Plugins.
+
+Search, Reason and Research are composer modes on the same Chat thread.
+Research is Deep Research in that conversation, not a git or Code chip.
+The dedicated `/research` page remains for saved research jobs.
 
 ## Honest states
 

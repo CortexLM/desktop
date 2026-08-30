@@ -160,6 +160,8 @@ export interface StartSessionRequest {
   repo?: string;
   branch?: string;
   model?: string;
+  /** Ask reads; Plan writes a mermaid plan before edits. */
+  mode?: 'ask' | 'plan' | 'agent';
 }
 
 export interface StartSessionResponse {
@@ -216,6 +218,8 @@ export interface RepositoryOption {
   name: string;
   /** La branche courante. */
   branch?: string;
+  /** Working-tree folder name on This PC. */
+  worktree?: string;
   branches: readonly string[];
   /** Le dépôt a-t-il des changements non commités ? */
   dirty: boolean;

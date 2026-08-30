@@ -35,9 +35,9 @@ export interface UpgradeReason {
 
 const DEFAULT_UPGRADE: UpgradeReason = {
   title: 'Sign in to use Cortex models',
-  body: 'Cortex models, cloud runtimes and usage reporting need an account. Everything else works without one.',
+  body: 'Cortex models, cloud runtimes and usage reporting need an account. Chat still works unsigned. Code and Bot need a sign-in.',
   benefits: [
-    'Cortex Codex and Cortex Opus',
+    'Cortex models on your account',
     'Cloud and SSH runtimes',
     'Usage and review across your team',
   ],

@@ -71,9 +71,31 @@ SSH and host keys are not downloaded to the client.
 
 ## Honest states
 
-Signed-out: Home, Sessions, Session detail and Settings work with
-local / BYO providers on desktop. Automations, Review, Usage, SSH connect
-are gated.
+Signed-out: Chat works with local / BYO providers. Code and Bot stay shown and
+locked — starting a session or creating a Bot raises a sign-in modal.
+
+This PC: the native folder picker is required. Cancel leaves no session and
+does not invent a path. Cloud and SSH fail closed if the control-plane route
+is missing (`POST /v1/code/sessions` historically 404).
 
 Web signed-out: no `local` runtime. The composer says Cloud needs an
 account, or offers connecting a remote Cortex Code host.
+
+## This PC
+
+On desktop, **This PC** is a session bound to a directory on the user's
+machine.
+
+1. The user picks a folder in the OS directory dialog (`openDirectory`).
+2. That folder becomes the workspace. The renderer never sees the absolute
+   path — only a repository id (the folder name).
+3. The coding agent runs tools against that tree in the Electron main harness.
+
+There is no fallback to the process working directory, and a This PC start
+never silently becomes a Cloud session.
+
+Cloud and SSH starts call `POST /v1/code/sessions`. If that route is missing
+the start fails with a product-language error and the user can stay on This
+PC.
+
+Ask reads; Plan writes a mermaid plan before edits; Agent is the default loop.
