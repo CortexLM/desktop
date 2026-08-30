@@ -22,6 +22,7 @@ import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
 import { mascotIdFromPath, openBotStudio, rosterForSidebar } from './shell/bot-sidebar.ts';
 import { reconcileMascots } from './state/bots.ts';
+import { hasElectronHost } from './state/electron-bridge.ts';
 import { realtimeStatus } from './state/realtime-bridge.ts';
 import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
 import { formatAge } from './state/session-view.ts';

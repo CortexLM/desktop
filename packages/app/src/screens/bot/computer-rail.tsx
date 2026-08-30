@@ -1,4 +1,4 @@
-import { For, type JSX, Show } from 'solid-js';
+import { For, Match, Switch, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
 
@@ -20,7 +20,7 @@ const RUNTIMES: readonly { id: ComputerRuntime; label: string }[] = [
   { id: 'cloud', label: 'Cloud' },
 ];
 
-export function ComputerRail(props: {
+type ComputerRailProps = {
   mascot: Mascot;
   screenshot?: string;
   streamUrl?: string;
@@ -32,7 +32,9 @@ export function ComputerRail(props: {
   onWake: () => void;
   onRuntime: (runtime: ComputerRuntime) => void;
   onInput: (input: ComputerInput) => void;
-}): JSX.Element {
+};
+
+export function ComputerRail(props: ComputerRailProps): JSX.Element {
   const asleep = () =>
     props.mascot.computer.status === 'hibernated' || props.mascot.computer.status === 'stopped';
   const offline = () => computerIsOffline(props.mascot.computer);
@@ -89,17 +91,28 @@ function RailBody(props: {
   onWake: () => void;
   onInput: (input: ComputerInput) => void;
 }): JSX.Element {
-  if (props.missing) return <MissingComputer />;
-  if (props.offline) return <OfflineComputer onWake={props.onWake} />;
-  if (props.asleep) return <AsleepComputer onWake={props.onWake} />;
   return (
-    <ComputerDesktop
-      src={props.screenshot}
-      streamUrl={props.streamUrl}
-      offline={false}
-      interactive={props.hasControl}
-      onInput={props.onInput}
-    />
+    <Switch
+      fallback={
+        <ComputerDesktop
+          src={props.screenshot}
+          streamUrl={props.streamUrl}
+          offline={false}
+          interactive={props.hasControl}
+          onInput={props.onInput}
+        />
+      }
+    >
+      <Match when={props.missing}>
+        <MissingComputer />
+      </Match>
+      <Match when={props.offline}>
+        <OfflineComputer onWake={props.onWake} />
+      </Match>
+      <Match when={props.asleep}>
+        <AsleepComputer onWake={props.onWake} />
+      </Match>
+    </Switch>
   );
 }
 

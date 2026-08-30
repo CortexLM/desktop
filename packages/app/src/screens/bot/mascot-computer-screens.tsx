@@ -50,7 +50,7 @@ export function BotComputerScreen(props: {
         />
       }
     >
-      {(mascot) => <ComputerBody mascot={mascot()} {...props} />}
+      <ComputerBody {...props} mascot={props.mascot!} />
     </Show>
   );
 }

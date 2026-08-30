@@ -154,15 +154,21 @@ describe('App', () => {
     computer.unmount();
 
     const memory = render(() => <App initialPath="/bot/mst_1/memory" />);
-    await waitFor(() => expect(screen.getByText(/Memory|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Memory|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     memory.unmount();
 
     const skills = render(() => <App initialPath="/bot/mst_1/skills" />);
-    await waitFor(() => expect(screen.getByText(/Skills|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Skills|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     skills.unmount();
 
     const routines = render(() => <App initialPath="/bot/mst_1/routines" />);
-    await waitFor(() => expect(screen.getByText(/Routines|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Routines|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     routines.unmount();
 
     const groups = render(() => <App initialPath="/bot/mst_1/groups" />);

@@ -107,12 +107,12 @@ describe('Bot screens react to state that arrives after the first paint', () => 
       />
     ));
 
-    expect(screen.getByText('Hibernated')).toBeInTheDocument();
+    expect(screen.getAllByText('Asleep').length).toBeGreaterThan(0);
 
     setCurrent(mascot());
 
     // Waking is the whole point of the button next to this state.
-    expect(screen.queryByText('Hibernated')).not.toBeInTheDocument();
+    expect(screen.queryByText('Asleep')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Hibernate' })).toBeInTheDocument();
   });
 

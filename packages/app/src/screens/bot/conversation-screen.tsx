@@ -1,7 +1,5 @@
 import { For, type JSX, Show } from 'solid-js';
 
-import { Button } from '@cortex-ide/ui';
-
 import { PageHeader } from '../../shell/app-shell.tsx';
 import { HonestState } from '../shared/honest-state.tsx';
 import { AskCard, SecretCard, SendToUserBubble, UserBubble } from './conversation-widgets.tsx';
@@ -60,7 +58,7 @@ export function BotConversationScreen(props: {
 }): JSX.Element {
   return (
     <Show when={props.mascot} fallback={<Missing onBack={props.onBack} />}>
-      {(mascot) => <ConversationBody mascot={mascot()} {...props} />}
+      <ConversationBody {...props} mascot={props.mascot!} />
     </Show>
   );
 }
@@ -92,7 +90,7 @@ function ConversationBody(props: {
 
   return (
     <div class="cx-bot-workbench">
-      <ThreadColumn mascot={props.mascot} blocked={blocked()} {...props} />
+      <ThreadColumn {...props} blocked={blocked()} />
       <ComputerRail
         mascot={props.mascot}
         screenshot={props.screenshot}

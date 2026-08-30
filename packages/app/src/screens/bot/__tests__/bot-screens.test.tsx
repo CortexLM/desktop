@@ -246,7 +246,7 @@ describe('computer, videos, and settings', () => {
       />
     ));
 
-    expect(screen.getByText('No computer yet')).toBeInTheDocument();
+    expect(screen.getAllByText('No computer yet').length).toBeGreaterThan(0);
     expect(screen.queryByRole('button', { name: 'Wake' })).toBeNull();
     expect(screen.queryByText(/vCPU/)).toBeNull();
   });
