@@ -18,8 +18,12 @@
  * hash route survives a reload. Layout is covered by the Paper parity suite.
  */
 
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
 import { test, expect } from '../fixtures';
-import type { Page } from '@playwright/test';
+import type { ElectronApplication, Page } from '@playwright/test';
 
 /** The envelope every IPC handler returns. */
 type Envelope<T> = { success: true; data: T } | { success: false; error: { message: string } };
@@ -46,6 +50,46 @@ async function openCode(page: Page): Promise<void> {
     window.location.hash = '#/code';
   });
   await expect(page.getByRole('button', { name: 'Home' })).toBeVisible();
+}
+
+/**
+ * Binds This PC to a temp folder (native picker is stubbed) and starts a run
+ * through the session bridge. The Home composer will not start unsigned — Code
+ * needs an account — so persistence and the Terminal tab go through main.
+ */
+async function startThisPcRun(
+  electronApp: ElectronApplication,
+  page: Page,
+  prompt: string,
+): Promise<string> {
+  const folder = mkdtempSync(join(tmpdir(), 'cortex-e2e-ws-'));
+  await electronApp.evaluate(async ({ dialog }, path) => {
+    dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [path] });
+  }, folder);
+  const result = await page.evaluate(async (text) => {
+    const bridge = (
+      window as unknown as {
+        cortex?: {
+          session?: {
+            openWorkspace: () => Promise<Envelope<{ cancelled: boolean; repositories: { id: string }[] }>>;
+            start: (request: {
+              prompt: string;
+              runtime: 'local';
+              repo?: string;
+            }) => Promise<Envelope<{ session: { id: string } }>>;
+          };
+        };
+      }
+    ).cortex?.session;
+    if (!bridge) throw new Error('window.cortex.session is not exposed');
+    const opened = await bridge.openWorkspace();
+    if (!opened.success) throw new Error(opened.error.message);
+    const repo = opened.data.repositories[0]?.id;
+    if (!repo) throw new Error('This PC did not bind a folder');
+    return bridge.start({ prompt: text, runtime: 'local', repo });
+  }, prompt);
+  if (!result.success) throw new Error(result.error.message);
+  return result.data.session.id;
 }
 
 test.describe('the app Electron loads', () => {
@@ -324,45 +368,40 @@ test.describe('routing from a file:// origin', () => {
 });
 
 test.describe('runs', () => {
-  test('starts one, records it, and lists it', async ({ page }) => {
-    // No provider is configured in a fresh userData, and that is the case worth
-    // covering: the old path threw out of `start`, surfaced a raw error and recorded
-    // nothing, so the user had a toast to re-read and no trace of the attempt.
+  test('asks a guest to sign in instead of starting a Code session', async ({ page }) => {
     await openCode(page);
     await page.getByPlaceholder(/Describe a task/i).fill('Add a hello function');
-    // The submit is a glyph button; its accessible name is what makes it findable.
     await page.getByRole('button', { name: 'Start session' }).click();
 
-    // Lands on the run's own screen, which means the id existed before navigation.
+    await expect(
+      page.getByRole('heading', { name: 'Sign in to use Cortex Code and Cortex Bot' }),
+    ).toBeVisible();
+    await expect(page).toHaveURL(/#\/code$/);
+  });
+
+  test('starts one, records it, and lists it', async ({ page, electronApp }) => {
+    await openCode(page);
+    const id = await startThisPcRun(electronApp, page, 'Add a hello function');
+    await page.evaluate((sessionId) => {
+      window.location.hash = `#/code/sessions/${sessionId}`;
+    }, id);
     await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
-    // The failure is recorded and says what to do about it, rather than being a
-    // generic "something went wrong".
     await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15000 });
 
-    // And it is in the inbox, which is what persistence buys. Scoped to the main
-    // pane: the title also appears in the sidebar's recent list, and an unscoped
-    // locator matches both.
-    // `exact` because the detail screen's back button is labelled 'Back to sessions',
-    // which a substring match also finds.
     await page.getByRole('button', { name: 'Sessions', exact: true }).click();
     await expect(page.getByRole('main').getByText('Add a hello function')).toBeVisible();
   });
 
-  test('survives a reload, because the run is in the database', async ({ page }) => {
+  test('survives a reload, because the run is in the database', async ({ page, electronApp }) => {
     await openCode(page);
-    await page.getByPlaceholder(/Describe a task/i).fill('Persisted across reload');
-    await page.getByRole('button', { name: 'Start session' }).click();
-    await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
+    await startThisPcRun(electronApp, page, 'Persisted across reload');
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
       window.location.hash = '#/code/sessions';
     });
 
-    // The old in-memory store showed an empty list on every launch while the rows
-    // sat in SQLite unread. Scoped to the main pane, since the sidebar's recent list
-    // carries the same title.
     await expect(
       page.getByRole('main').getByText('Persisted across reload'),
     ).toBeVisible({ timeout: 15000 });
@@ -415,16 +454,16 @@ test.describe('settings', () => {
   });
 });
 
-test.describe('the Shell tab', () => {
-  test('runs a real shell', async ({ page }) => {
-    // The tab rendered nothing before: the workbench declared it and passed
-    // `undefined` as its content, so the design's four tabs were three.
+test.describe('the Terminal tab', () => {
+  test('runs a real shell', async ({ page, electronApp }) => {
     await openCode(page);
-    await page.getByPlaceholder(/Describe a task/i).fill('shell');
-    await page.getByRole('button', { name: 'Start session' }).click();
+    const id = await startThisPcRun(electronApp, page, 'shell');
+    await page.evaluate((sessionId) => {
+      window.location.hash = `#/code/sessions/${sessionId}`;
+    }, id);
     await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
-    await page.getByRole('tab', { name: /Shell/ }).click();
+    await page.getByRole('tab', { name: /Terminal/ }).click();
 
     // The PTY lives in main. Its id is assigned there and reported once, at
     // creation — filtering output on a locally-invented id is what made an earlier
