@@ -34,7 +34,7 @@ describe('mapMascot', () => {
     const mascot = mapMascot({ id: 'mst_1', computer_id: 'pc_9' });
     expect(mascot.computer.status).toBe('hibernated');
     expect(computerIsMissing(mascot.computer)).toBe(false);
-    expect(computerLabel(mascot.computer)).toBe('hibernated');
+    expect(computerLabel(mascot.computer)).toBe('Asleep');
   });
 
   it('maps a look, resting face, and nested computer fields', () => {
@@ -78,6 +78,22 @@ describe('mapMascot', () => {
 });
 
 describe('mapComputer', () => {
+  it('maps stream url, control holder, and runtime', () => {
+    const computer = mapComputer(
+      { id: 'm' },
+      {
+        status: 'running',
+        stream_url: 'https://farm.example/vnc',
+        control_holder: 'user',
+        runtime: 'this_pc',
+      },
+    );
+    expect(computer.streamUrl).toBe('https://farm.example/vnc');
+    expect(computer.controlHolder).toBe('user');
+    expect(computer.runtime).toBe('this_pc');
+    expect(computerLabel(computer)).toBe('This PC');
+  });
+
   it('treats mock and offline boxes as offline', () => {
     expect(mapComputer({ id: 'm' }, { provider: 'mock' }).status).toBe('offline');
     expect(mapComputer({ id: 'm' }, { offline: true }).status).toBe('offline');

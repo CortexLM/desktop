@@ -116,6 +116,7 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
   { slug: 'bot-skills', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/skills', title: 'Skills' },
   { slug: 'bot-routines', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/routines', title: 'Routines' },
   { slug: 'bot-groups', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/groups', title: 'Groups' },
+  { slug: 'bot-approvals', kind: 'route', product: 'bot', source: 'product', path: '/bot/approvals', title: 'Approvals' },
   { slug: 'bot-settings', kind: 'route', product: 'bot', source: 'product', path: '/bot/:mascotId/settings', title: 'Mascot settings' },
 
   // ── Onboarding and account ────────────────────────────────────────────────

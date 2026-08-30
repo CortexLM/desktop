@@ -8,6 +8,7 @@ import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import { formatAge } from '../state/session-view.ts';
 import { markInboxRead, mergeInbox } from '../state/inbox.ts';
+import { hydrateRemoteNotifications } from '../state/notifications-sync.ts';
 import { navigableRoutes, routeBySlug } from '../routes.ts';
 
 /**
@@ -62,12 +63,10 @@ export function requestUpgrade(reason: UpgradeReason = DEFAULT_UPGRADE): void {
 }
 
 /**
- * Notifications, derived from runs rather than from their own store.
+ * Notifications from the inbox plus session-derived Code items.
  *
- * A run finishing is the only thing the app currently has to tell anyone about, and
- * inventing a second store to hold a restatement of the run list would mean two
- * things to keep in sync. When there are notifications with no run behind them, this
- * gains a real store.
+ * Realtime and the remote list feed `postInbox`. Hydrated once here so the
+ * overlay is not empty until someone opens `/code/notifications`.
  */
 function toNotifications(
   sessions: readonly { id: string; title: string; status: string; updatedAt: number }[],
@@ -191,59 +190,73 @@ export function OverlayHost(): JSX.Element {
   const account = useAccount();
   const runs = useSessions();
   const navigate = useNavigate();
+  bindOverlayLifecycle();
+  const notifications = createMemo(() => toNotifications(runs.sessions() ?? [], Date.now()));
+  const commands = createMemo(() =>
+    buildCommands(account.capabilities().authenticated, runs.sessions() ?? [], notifications().length),
+  );
+  const run = (id: string) => {
+    setOpen(null);
+    dispatch(id, { navigate, openFolder: () => void runs.openWorkspace(), setOpen });
+  };
+  return (
+    <>
+      <PaletteLayer commands={commands()} onRun={run} />
+      <InboxLayer notifications={notifications()} navigate={navigate} />
+      <Upgrade authenticated={account.capabilities().authenticated} navigate={navigate} />
+    </>
+  );
+}
 
+function bindOverlayLifecycle(): void {
   onMount(() => {
+    void hydrateRemoteNotifications();
     const onKeyDown = (event: KeyboardEvent) => {
-      // Cmd/Ctrl+K, the shortcut every tool with a palette uses. Registered on the
-      // document rather than on a focused element: the point of a palette is to be
-      // reachable without first clicking anything.
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
         event.preventDefault();
         setOpen((current) => (current === 'palette' ? null : 'palette'));
       }
     };
-
     document.addEventListener('keydown', onKeyDown);
     onCleanup(() => document.removeEventListener('keydown', onKeyDown));
   });
+}
 
-  const notifications = createMemo(() => toNotifications(runs.sessions() ?? [], Date.now()));
-
-  const commands = createMemo(() =>
-    buildCommands(account.capabilities().authenticated, runs.sessions() ?? [], notifications().length),
-  );
-
-  const run = (id: string) => {
-    setOpen(null);
-    dispatch(id, { navigate, openFolder: () => void runs.openWorkspace(), setOpen });
-  };
-
+function PaletteLayer(props: { commands: PaletteCommand[]; onRun: (id: string) => void }): JSX.Element {
   return (
-    <>
-      <Show when={open() === 'palette'}>
-        <CommandPalette
-          commands={commands()}
-          onRun={run}
-          onDismiss={() => setOpen(null)}
-          placeholder="Search sessions and commands"
-        />
-      </Show>
-
-      <Show when={open() === 'notifications'}>
-        <Notifications
-          notifications={notifications()}
-          onOpen={(id) => {
-            setOpen(null);
-            markInboxRead(id);
-            const item = notifications().find((entry) => entry.id === id);
-            navigate(item?.href ?? '/code/notifications');
-          }}
-          onDismiss={() => setOpen(null)}
-        />
-      </Show>
-
-      <Upgrade authenticated={account.capabilities().authenticated} navigate={navigate} />
-
-    </>
+    <Show when={open() === 'palette'}>
+      <CommandPalette
+        commands={props.commands}
+        onRun={props.onRun}
+        onDismiss={() => setOpen(null)}
+        placeholder="Search sessions and commands"
+      />
+    </Show>
   );
+}
+
+function InboxLayer(props: {
+  notifications: AppNotification[];
+  navigate: (path: string) => void;
+}): JSX.Element {
+  return (
+    <Show when={open() === 'notifications'}>
+      <Notifications
+        notifications={props.notifications}
+        onOpen={(id) => openInboxItem(id, props.notifications, props.navigate)}
+        onDismiss={() => setOpen(null)}
+      />
+    </Show>
+  );
+}
+
+function openInboxItem(
+  id: string,
+  notifications: AppNotification[],
+  navigate: (path: string) => void,
+): void {
+  setOpen(null);
+  markInboxRead(id);
+  const item = notifications.find((entry) => entry.id === id);
+  navigate(item?.href ?? '/code/notifications');
 }

@@ -110,6 +110,8 @@ export const IPC_CHANNELS = {
   // il n'y a rien à valider si rien n'est transmis.
   CORTEX_OPEN_VERIFICATION: 'cortex:open-verification',
   CORTEX_SIGN_OUT: 'cortex:sign-out',
+  CORTEX_BROWSER_LOGIN: 'cortex:browser-login',
+  CORTEX_EMAIL_LOGIN: 'cortex:email-login',
   // Clés d'API du compte. Authentifié : la route exige une session.
   CORTEX_LIST_API_KEYS: 'cortex:list-api-keys',
   CORTEX_CREATE_API_KEY: 'cortex:create-api-key',
@@ -181,6 +183,7 @@ export const IPC_CHANNELS = {
   EVENT_MCP_PERMISSION_REVOKED: 'event:mcp-permission-revoked',
   EVENT_CORTEX_DEVICE_STATUS: 'event:cortex-device-status',
   EVENT_CORTEX_ACCOUNT_CHANGED: 'event:cortex-account-changed',
+  EVENT_CORTEX_AUTH_COMPLETE: 'event:cortex-auth-complete',
   EVENT_SESSION_PROGRESS: 'event:session-progress',
   EVENT_CHAT_PROGRESS: 'event:chat-progress',
   EVENT_WINDOW_MAXIMIZED: 'event:window-maximized',

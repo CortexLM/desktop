@@ -26,6 +26,10 @@ import { vncTicketSchema, type VncTicket } from './pending-schemas.ts';
 
 export type LifecycleAction = 'resume' | 'hibernate' | 'stop' | 'snapshot' | 'recreate';
 
+export type ComputerRuntime = 'this_pc' | 'ssh' | 'cloud';
+
+export type ComputerControlAction = 'take' | 'release';
+
 export type ComputerInputAction =
   | 'move'
   | 'click'
@@ -62,12 +66,12 @@ export function postLifecycle(
   client: CortexApiClient,
   id: string,
   action: LifecycleAction,
-  signal?: AbortSignal,
+  options?: { runtime?: ComputerRuntime; signal?: AbortSignal },
 ): Promise<ApiComputer> {
   return client.request(mascotPath(id, '/computer/lifecycle'), computerRowSchema, {
     method: 'POST',
-    body: { action },
-    signal,
+    body: options?.runtime ? { action, runtime: options.runtime } : { action },
+    signal: options?.signal,
   });
 }
 
@@ -110,7 +114,26 @@ export async function createVncTicket(
     body: {},
     signal,
   });
-  return { ticket_hash: raw.ticket_hash };
+  const ticket: VncTicket = { ticket_hash: raw.ticket_hash };
+  if (raw.stream_url) ticket.stream_url = raw.stream_url;
+  if (raw.embed_url) ticket.embed_url = raw.embed_url;
+  return ticket;
+}
+
+/**
+ * Take or release the dedicated box. A live 404 is `backend_too_old`.
+ */
+export function postComputerControl(
+  client: CortexApiClient,
+  id: string,
+  action: ComputerControlAction,
+  signal?: AbortSignal,
+): Promise<ApiComputer> {
+  return client.request(mascotPath(id, '/computer/control'), computerRowSchema, {
+    method: 'POST',
+    body: { action },
+    signal,
+  });
 }
 
 export async function postRecord(

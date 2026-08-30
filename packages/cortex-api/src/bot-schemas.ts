@@ -35,6 +35,11 @@ export const computerRowSchema = z
     vcpu: z.number().optional(),
     memory_gib: z.number().optional(),
     screenshot_url: z.string().optional(),
+    stream_url: z.string().optional(),
+    embed_url: z.string().optional(),
+    control_holder: z.string().optional(),
+    runtime: z.string().optional(),
+    mode: z.string().optional(),
   })
   .passthrough();
 

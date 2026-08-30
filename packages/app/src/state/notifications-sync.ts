@@ -40,6 +40,6 @@ export async function hydrateRemoteNotifications(): Promise<void> {
 function remoteKind(kind: string | undefined): InboxKind {
   if (kind === 'scheduled-task' || kind === 'mention') return kind;
   if (kind === 'code-run-done' || kind === 'code-run-blocked') return kind;
-  if (kind === 'bot-ask-user' || kind === 'farm-wake-fail') return kind;
+  if (kind === 'bot-ask-user' || kind === 'bot-message' || kind === 'farm-wake-fail') return kind;
   return 'mention';
 }

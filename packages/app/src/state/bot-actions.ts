@@ -4,6 +4,7 @@
  */
 
 import {
+  postComputerControl,
   postComputerInput,
   postLifecycle,
   postMascotMessage,
@@ -11,6 +12,7 @@ import {
   postRespond,
   postSecret,
   type ComputerInput,
+  type ComputerRuntime,
   type LifecycleAction,
 } from '@cortex-ide/cortex-api';
 
@@ -52,8 +54,40 @@ export async function submitBotSecret(
   }));
 }
 
-export async function runLifecycle(mascotId: string, action: LifecycleAction): Promise<void> {
-  const computer = await postLifecycle(requireBotClient(), mascotId, action);
+export async function runLifecycle(
+  mascotId: string,
+  action: LifecycleAction,
+  runtime?: ComputerRuntime,
+): Promise<void> {
+  const computer = await postLifecycle(
+    requireBotClient(),
+    mascotId,
+    action,
+    runtime ? { runtime } : undefined,
+  );
+  patchMascotState(mascotId, (mascot) => ({
+    ...mascot,
+    computer: mapComputer({ id: mascotId, computer_id: mascot.computer.id }, computer),
+  }));
+}
+
+export async function takeComputerControl(mascotId: string): Promise<void> {
+  const mascot = mascotById(mascotId);
+  if (
+    mascot &&
+    (mascot.computer.status === 'hibernated' || mascot.computer.status === 'stopped')
+  ) {
+    await runLifecycle(mascotId, 'resume');
+  }
+  const computer = await postComputerControl(requireBotClient(), mascotId, 'take');
+  patchMascotState(mascotId, (current) => ({
+    ...current,
+    computer: mapComputer({ id: mascotId, computer_id: current.computer.id }, computer),
+  }));
+}
+
+export async function releaseComputerControl(mascotId: string): Promise<void> {
+  const computer = await postComputerControl(requireBotClient(), mascotId, 'release');
   patchMascotState(mascotId, (mascot) => ({
     ...mascot,
     computer: mapComputer({ id: mascotId, computer_id: mascot.computer.id }, computer),

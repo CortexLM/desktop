@@ -39,6 +39,7 @@ import {
   BotComputerRoute,
   BotConversationRoute,
   BotCreateRoute,
+  BotApprovalsRoute,
   BotGroupsRoute,
   BotHomeRoute,
   BotMemoryRoute,
@@ -95,6 +96,7 @@ function botRoutes(): JSX.Element {
     <>
       <Route path="/bot" component={BotHomeRoute} />
       <Route path="/bot/new" component={BotCreateRoute} />
+      <Route path="/bot/approvals" component={BotApprovalsRoute} />
       <Route path="/bot/:mascotId" component={BotConversationRoute} />
       <Route path="/bot/:mascotId/messages" component={BotMessagesRoute} />
       <Route path="/bot/:mascotId/videos" component={BotVideosRoute} />

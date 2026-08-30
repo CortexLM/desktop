@@ -46,6 +46,9 @@ export interface CortexHost {
    */
   openVerificationPage(): Promise<boolean>;
   signOut(): Promise<CortexAccountState>;
+  startBrowserLogin(provider: 'google' | 'github'): Promise<boolean>;
+  /** In-app email form. Password crosses to main once and is never returned. */
+  signInWithEmail(email: string, password: string): Promise<CortexAccountState>;
   /** The account's API keys. Empty when signed out — the screen gates the section. */
   listApiKeys(): Promise<Array<{ id: string; name: string; lastFour?: string }>>;
   /**
@@ -59,6 +62,7 @@ export interface CortexHost {
   productRequest(request: CortexProductRequest): Promise<CortexProductResponse>;
   onDeviceStatus(listener: (status: CortexDeviceStatus) => void): () => void;
   onAccountChanged(listener: (state: CortexAccountState) => void): () => void;
+  onAuthComplete(listener: (event: { ok: boolean; message?: string }) => void): () => void;
 }
 
 /** The shape the preload bridge exposes. Declared structurally to avoid importing preload. */
@@ -69,6 +73,13 @@ interface CortexBridge {
   deviceCancel(): Promise<IPCResponse<{ cancelled: true }>>;
   openVerification(): Promise<IPCResponse<{ opened: boolean }>>;
   signOut(): Promise<IPCResponse<CortexAccountState>>;
+  startBrowserLogin(request: {
+    provider: 'google' | 'github';
+  }): Promise<IPCResponse<{ opened: boolean }>>;
+  signInWithEmail(request: {
+    email: string;
+    password: string;
+  }): Promise<IPCResponse<CortexAccountState>>;
   listApiKeys(): Promise<
     IPCResponse<{ keys: Array<{ id: string; name: string; lastFour?: string }> }>
   >;
@@ -79,6 +90,7 @@ interface CortexBridge {
   productRequest(request: CortexProductRequest): Promise<IPCResponse<CortexProductResponse>>;
   onDeviceStatus(callback: (event: { status: CortexDeviceStatus }) => void): () => void;
   onAccountChanged(callback: (state: CortexAccountState) => void): () => void;
+  onAuthComplete(callback: (event: { ok: boolean; message?: string }) => void): () => void;
 }
 
 /**
@@ -109,6 +121,9 @@ function electronHost(api: CortexBridge): CortexHost {
     },
     openVerificationPage: async () => unwrap(await api.openVerification()).opened,
     signOut: async () => unwrap(await api.signOut()),
+    startBrowserLogin: async (provider) => unwrap(await api.startBrowserLogin({ provider })).opened,
+    signInWithEmail: async (email, password) =>
+      unwrap(await api.signInWithEmail({ email, password })),
     listApiKeys: async () => unwrap(await api.listApiKeys()).keys,
     createApiKey: async (name) => unwrap(await api.createApiKey({ name })).key,
     revokeApiKey: async (id) => {
@@ -117,6 +132,7 @@ function electronHost(api: CortexBridge): CortexHost {
     productRequest: async (request) => unwrap(await api.productRequest(request)),
     onDeviceStatus: (listener) => api.onDeviceStatus((event) => listener(event.status)),
     onAccountChanged: (listener) => api.onAccountChanged(listener),
+    onAuthComplete: (listener) => api.onAuthComplete(listener),
   };
 }
 
@@ -138,12 +154,15 @@ export function detachedHost(): CortexHost {
     cancelDeviceFlow: async () => {},
     openVerificationPage: async () => false,
     signOut: async () => ({ user: null, reachable: false, credentialsEncrypted: false }),
+    startBrowserLogin: () => Promise.reject(unavailable()),
+    signInWithEmail: () => Promise.reject(unavailable()),
     listApiKeys: async () => [],
     createApiKey: () => Promise.reject(unavailable()),
     revokeApiKey: () => Promise.reject(unavailable()),
     productRequest: () => Promise.reject(unavailable()),
     onDeviceStatus: () => () => {},
     onAccountChanged: () => () => {},
+    onAuthComplete: () => () => {},
   };
 }
 

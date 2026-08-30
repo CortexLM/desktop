@@ -30,6 +30,9 @@ function installBridge(overrides: Partial<Bridge> = {}): Bridge {
     signOut: ok({ user: null, reachable: true, credentialsEncrypted: true }),
     onDeviceStatus: vi.fn(() => () => {}),
     onAccountChanged: vi.fn(() => () => {}),
+    onAuthComplete: vi.fn(() => () => {}),
+    startBrowserLogin: ok({ opened: true }),
+    signInWithEmail: ok({ user: null, reachable: true, credentialsEncrypted: true }),
     ...overrides,
   };
 
@@ -90,6 +93,12 @@ describe('unwrapping the IPC envelope', () => {
     await expect(resolveHost().openVerificationPage()).resolves.toBe(false);
   });
 
+  it('opens system-browser login through the bridge', async () => {
+    const bridge = installBridge();
+    await expect(resolveHost().startBrowserLogin('github')).resolves.toBe(true);
+    expect(bridge.startBrowserLogin).toHaveBeenCalledWith({ provider: 'github' });
+  });
+
   it('forwards no argument to the bridge', async () => {
     const bridge = installBridge();
 
@@ -142,5 +151,7 @@ describe('the detached host', () => {
     await expect(host.openVerificationPage()).resolves.toBe(false);
     expect(() => host.onDeviceStatus(() => {})()).not.toThrow();
     expect(() => host.onAccountChanged(() => {})()).not.toThrow();
+    expect(() => host.onAuthComplete(() => {})()).not.toThrow();
+    await expect(host.startBrowserLogin('github')).rejects.toThrow(/desktop app/i);
   });
 });

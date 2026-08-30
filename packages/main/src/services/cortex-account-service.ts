@@ -57,6 +57,11 @@ import type {
 } from '@cortex-ide/shared';
 
 import { openExternalSafe } from '../security';
+import {
+  completeAuthCallback as completeDesktopCallback,
+  signInEmail,
+  startBrowserLogin as openBrowserLogin,
+} from './cortex-account-login';
 
 /** Le jeton tel qu'il est persisté sur disque. */
 interface StoredSession {
@@ -396,15 +401,8 @@ export class CortexAccountService {
         },
       });
 
-      this.client.setCredentials({ accessToken: token.access_token });
-
-      const user = toUserView(await this.client.currentUser());
-      this.user = user;
-      this.reachable = true;
-      this.writeStored(token.access_token, user.organizationId);
-
-      this.emitDevice({ kind: 'authorized', user });
-      this.emitAccountChanged();
+      await this.acceptAccessToken(token.access_token);
+      this.emitDevice({ kind: 'authorized', user: this.user! });
     } catch (error) {
       // Une annulation est un geste de l'utilisateur, pas un échec à signaler.
       if (error instanceof DeviceFlowAbortedError || abort.signal.aborted) return;
@@ -433,6 +431,26 @@ export class CortexAccountService {
     if (!this.verificationUri) return { opened: false };
     return { opened: await openExternalSafe(this.verificationUri) };
   }
+
+  /**
+   * Stores a sealed session and verifies it against `/v1/me`.
+   *
+   * Shared by the device flow, the browser callback, and in-app email. The
+   * token never leaves this process.
+   */
+  async acceptAccessToken(token: string): Promise<CortexAccountState> {
+    this.client.setCredentials({ accessToken: token });
+    const user = toUserView(await this.client.currentUser());
+    this.user = user;
+    this.reachable = true;
+    this.writeStored(token, user.organizationId);
+    this.emitAccountChanged();
+    return this.state();
+  }
+
+  startBrowserLogin = (provider: 'google' | 'github') => openBrowserLogin(this, provider);
+  completeAuthCallback = (url: string) => completeDesktopCallback(this, url);
+  signInWithEmail = (email: string, password: string) => signInEmail(this, email, password);
 
   // ==========================================================================
   // Déconnexion

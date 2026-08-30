@@ -10,7 +10,7 @@ import './auth.css';
 export interface SignInScreenProps {
   onContinueWithGitHub: () => void;
   onContinueWithGoogle: () => void;
-  onContinueWithEmail: (email: string) => void;
+  onContinueWithEmail: (email: string, password: string) => void;
   /**
    * Enters the app with no account: local runtime and the user's own provider keys.
    *
@@ -58,9 +58,13 @@ function ProviderButtons(props: {
   );
 }
 
-function EmailForm(props: { busy?: boolean; onSubmit: (email: string) => void }): JSX.Element {
+function EmailForm(props: {
+  busy?: boolean;
+  onSubmit: (email: string, password: string) => void;
+}): JSX.Element {
   const [email, setEmail] = createSignal('');
-  const canSubmit = () => !props.busy && looksLikeEmail(email());
+  const [password, setPassword] = createSignal('');
+  const canSubmit = () => !props.busy && looksLikeEmail(email()) && password().length > 0;
 
   return (
     <form
@@ -68,7 +72,7 @@ function EmailForm(props: { busy?: boolean; onSubmit: (email: string) => void })
       style={{ 'margin-top': '0' }}
       onSubmit={(event) => {
         event.preventDefault();
-        if (canSubmit()) props.onSubmit(email().trim());
+        if (canSubmit()) props.onSubmit(email().trim(), password());
       }}
     >
       <div class="cx-auth__email">
@@ -79,7 +83,20 @@ function EmailForm(props: { busy?: boolean; onSubmit: (email: string) => void })
           value={email()}
           disabled={props.busy}
           aria-label="Email address"
+          autocomplete="username"
           onInput={(event) => setEmail(event.currentTarget.value)}
+        />
+      </div>
+      <div class="cx-auth__email">
+        <input
+          type="password"
+          class="cx-auth__email-input"
+          placeholder="Password"
+          value={password()}
+          disabled={props.busy}
+          aria-label="Password"
+          autocomplete="current-password"
+          onInput={(event) => setPassword(event.currentTarget.value)}
         />
       </div>
       <button
@@ -133,7 +150,7 @@ export function SignInScreen(props: SignInScreenProps): JSX.Element {
         </span>
 
         <h1 class="cx-auth__title">Sign in</h1>
-        <p class="cx-auth__subtitle">Continue to Cortex Code</p>
+        <p class="cx-auth__subtitle">Continue to Cortex</p>
 
         <Show when={props.error}>
           {(error) => (
@@ -158,7 +175,7 @@ export function SignInScreen(props: SignInScreenProps): JSX.Element {
         <EmailForm busy={props.busy} onSubmit={props.onContinueWithEmail} />
 
         <p class="cx-auth__legal">
-          By continuing, you agree to the Cortex Code Terms of Service and acknowledge the
+        By continuing, you agree to the Cortex Terms of Service and acknowledge the
           Privacy Policy.
         </p>
 

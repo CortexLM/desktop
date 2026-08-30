@@ -16,7 +16,7 @@ the service contract stays intact; they are not a third tab in the chrome.
 | Purpose | Conversation, research, planning, a library | A coding-agent cloud workbench | A persistent mascot with its own computer |
 | Paths | `/`, `/chat/:id`, `/research`, `/planning`, `/projects*`, `/library`, `/plugins`, `/settings` | everything under `/code` | everything under `/bot` (not in this shell's switcher) |
 | Unit of work | a conversation | a **session** (repo, branch, plan, permissions, diff) | a **mascot** |
-| Shape | transcript + composer | dashboard: inbox, detail, review, automations, usage | roster + per-mascot rail |
+| Shape | transcript + composer | dashboard: inbox, detail, review, automations, usage | leftover roster + conversation workbench + computer rail |
 | Sidebar | `ChatSections` | `CodeSections` | not in this desktop chrome |
 
 The switch is by URL prefix through `productForPath()` in
@@ -173,6 +173,15 @@ Bot rules (service and leftover `/bot` screens; the dedicated Bot desktop app ow
   state that explains how to create one. Never ship starter mascots, sample
   mascots, or a demo roster — see `04-structure.md` § 4.2 for the exact
   anti-pattern.
+- **Leftover `/bot` screens still have a Bot sidebar** when those routes are
+  opened (including first-bot setup at `/bot/new`). It is not in this app's
+  Chat | Code switcher. The list is the live roster (honest empty, no Sprite /
+  Finch / Pebble), plus Studio: Routines, Memory, Approvals (`/bot/approvals`).
+- **Conversation is a teammate workbench.** The header is the mascot / session
+  name, never a user first name, never “Running”, never “View PR”. Messages are
+  employee-style bubbles; tool dumps stay off the thread. The right rail is the
+  **cloud** computer: a noVNC stream (screenshot fallback) and Take control /
+  Release. This PC and SSH belong to Cortex Code, never to Bot.
 - An offline computer says it is offline. It does not pretend to be thinking.
 - **The computer is a cloud farm box.** Cortex Bot never offers This PC, This
   desktop, or SSH as a host. This PC is Cortex Code on the desktop app. SSH

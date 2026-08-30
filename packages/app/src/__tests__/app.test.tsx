@@ -173,6 +173,10 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByText(/Videos|Mascot not found/)).toBeInTheDocument());
     videos.unmount();
 
+    const approvals = render(() => <App initialPath="/bot/approvals" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Approvals' })).toBeInTheDocument());
+    approvals.unmount();
+
     const settings = render(() => <App initialPath="/bot/mst_1/settings" />);
     await waitFor(() =>
       expect(screen.getByRole('heading', { name: /Mascot settings|Mascot not found/i })).toBeInTheDocument(),
@@ -203,6 +207,7 @@ describe('App', () => {
       '/code/settings',
       '/code/settings/integrations',
       '/code/notifications',
+      '/bot/approvals',
       '/code/automations/new',
       '/code/runtimes/ssh',
       '/onboarding',

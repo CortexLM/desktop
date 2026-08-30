@@ -169,6 +169,13 @@ API keys are entered; they never appear in logs.
   cloud farm box. Those screens never offer This PC, This desktop, or SSH as a
   host. SSH stays SSH, on Code. Web Code never offers This PC
   (`docs/web-vs-electron.md`).
+- **Leftover `/bot` screens are a teammate workbench**, not a third product tab.
+  Those routes keep a Bot sidebar (live roster, honest empty, Studio at
+  `/bot/approvals`). Conversation: mascot name in the header, employee bubbles
+  (tool dumps hidden), and a right Computer rail that is a **cloud** noVNC stream
+  with Take control / Release. Google/GitHub sign-in opens the system browser and
+  returns on `cortex://auth/callback`; email stays on the in-app form. See
+  `docs/bot.md`, `docs/web-vs-electron.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

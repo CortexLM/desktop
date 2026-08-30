@@ -24,8 +24,10 @@
 
 import {
   CortexDeviceFlowError,
+  browserLoginUrl,
   isCortexApiError,
   pollDeviceToken,
+  signInWithEmail,
   type CortexApiClient,
   type CortexModel,
   type CortexUser,
@@ -288,8 +290,22 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
     productRequest: (request: CortexProductRequest): Promise<CortexProductResponse> =>
       exchange(client, request),
 
+    startBrowserLogin: async (provider) => {
+      (options.openUrl ?? defaultOpen)(browserLoginUrl(client.baseUrl, provider));
+      return true;
+    },
+
+    signInWithEmail: async (email, password) => {
+      const token = await signInWithEmail(client, email, password);
+      client.setCredentials({ accessToken: token });
+      const state = await readState(client);
+      account.emit(state);
+      return state;
+    },
+
     onDeviceStatus: device.subscribe,
     onAccountChanged: account.subscribe,
+    onAuthComplete: () => () => {},
   };
 }
 

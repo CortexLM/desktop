@@ -101,6 +101,25 @@ describe('Sidebar product switcher', () => {
     expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
     expect(screen.getByText('New mascot')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Routines' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Memory' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Approvals' })).toBeInTheDocument();
+    expect(screen.getByText('No mascots yet. Create one to start.')).toBeInTheDocument();
+    expect(screen.queryByText('Sprite')).toBeNull();
+    expect(screen.queryByText('Finch')).toBeNull();
+    expect(screen.queryByText('Pebble')).toBeNull();
+  });
+
+  it('lists live mascots on the Bot sidebar and opens one', () => {
+    const onOpenMascot = vi.fn();
+    renderSidebar({
+      product: 'bot',
+      mascots: [{ id: 'mst_1', name: 'Scout', unread: true }],
+      activeMascotId: 'mst_1',
+      onOpenMascot,
+    });
+    fireEvent.click(screen.getByText('Scout').closest('button')!);
+    expect(onOpenMascot).toHaveBeenCalledWith('mst_1');
   });
 
   it('replaces Chat sections when the product prop changes after mount', () => {

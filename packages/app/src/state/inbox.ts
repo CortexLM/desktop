@@ -13,6 +13,7 @@ export type InboxKind =
   | 'code-run-done'
   | 'code-run-blocked'
   | 'bot-ask-user'
+  | 'bot-message'
   | 'farm-wake-fail';
 
 export interface InboxItem {

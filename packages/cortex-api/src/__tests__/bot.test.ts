@@ -28,6 +28,7 @@ import {
   listComputerFs,
   listMascotVideos,
   postComputerInput,
+  postComputerControl,
   postLifecycle,
   postRecord,
   postShell,
@@ -178,6 +179,23 @@ describe('computer', () => {
     expect(ticket).toEqual({ ticket_hash: 'abc' });
     expect(calls[1]!.url).toContain('/computer/fs?path=%2Fhome');
     expect(calls[3]!.url).toContain('/vnc-ticket');
+  });
+
+  it('takes computer control and keeps an https stream URL on the ticket', async () => {
+    const { client, calls } = clientFor([
+      { body: { id: 'pc_1', status: 'running', control_holder: 'user' } },
+      { body: { ticket_hash: 'abc', stream_url: 'https://farm.example/vnc' } },
+      { body: { id: 'pc_1', status: 'running', runtime: 'cloud' } },
+    ]);
+    const taken = await postComputerControl(client, 'mst_1', 'take');
+    const ticket = await createVncTicket(client, 'mst_1');
+    const woken = await postLifecycle(client, 'mst_1', 'resume', { runtime: 'cloud' });
+    expect(taken.control_holder).toBe('user');
+    expect(ticket).toEqual({ ticket_hash: 'abc', stream_url: 'https://farm.example/vnc' });
+    expect(woken.runtime).toBe('cloud');
+    expect(calls[0]!.url).toContain('/computer/control');
+    expect(calls[0]!.body).toEqual({ action: 'take' });
+    expect(calls[2]!.body).toEqual({ action: 'resume', runtime: 'cloud' });
   });
 });
 

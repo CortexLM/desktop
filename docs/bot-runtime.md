@@ -10,30 +10,39 @@ skills, and routines never succeed by writing the cache.
 2. If `/v1/realtime` is up, the client also sends `{ type: 'bot.turn' }` so the
    agent loop can stream.
 3. The conversation renders **SendToUser only**: assistant text, attachments,
-   `ask_user` widgets, and secret-request cards. `tool_call` / `tool_result`
-   land in the collapsible Work rail.
+   `ask_user` widgets, and secret-request cards. Double newlines split a turn into
+   employee-style bubbles. `tool_call` / `tool_result` stay off the thread.
 4. A pending ask or secret **blocks the composer** until
-   `POST /respond` or `POST /secrets`.
+   `POST /respond` or `POST /secrets`. The Approvals screen (`/bot/approvals`)
+   lists the same pending cards across mascots.
 
 Realtime frames on the existing socket: `token`, `tool_call`, `tool_result`,
 `send_to_user`, `ask_user`, `computer_offline` (and the `bot.*` aliases).
 
 ## Computer
 
-One dedicated box per mascot. The Computer page:
+One dedicated box per mascot. The conversation's right rail and the Computer
+page:
 
-- Polls `GET /computer/screenshot` while status is `running`
-- Forwards click / drag / scroll / type to `POST /computer/input`
-- Runs a real box shell via `POST /computer/shell`
-- Lists and previews files via `/computer/fs` and `/computer/file`
+- Prefer a live noVNC embed when `POST /computer/vnc-ticket` returns an https
+  `stream_url` or `embed_url`. The ticket hash is a capability probe only and is
+  never stored in the renderer.
+- Take control / Release via `POST /computer/control` `{ action: take|release }`.
+  Input is forwarded only while the user holds control. A live 404 is
+  “backend too old”, never a fake desktop.
+- Runtime This PC / SSH / Cloud is sent on `POST /computer/lifecycle`
+  `{ action, runtime }`. This PC is locked outside the desktop app; Cloud and
+  SSH need an account.
+- Polls `GET /computer/screenshot` while status is `running` if there is no stream
+- Forwards click / drag / scroll / type to `POST /computer/input` only with control
+- Shell and files stay on the dedicated Computer page as secondary details, not
+  a tab navbar on the conversation rail
 - Hibernate / wake / stop via `POST /computer/lifecycle`
 - Record start/stop via `POST /computer/record`; clips from `GET /videos`
 
 If the computer is offline, or a `computer_offline` event arrives, the page
 shows one honest empty state. It does not generate a fake desktop. Bot does
 not offer This PC or SSH as a host; the box is a cloud farm machine.
-
-A VNC ticket is still `{ ticket_hash }` only.
 
 ## Bot runtime surfaces
 

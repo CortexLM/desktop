@@ -2,13 +2,11 @@ import { createEffect, createSignal, onCleanup, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
 import {
-  answerAsk,
   runLifecycle,
-  sendBotMessage,
   sendComputerInput,
   setRecording,
-  submitBotSecret,
 } from '../state/bot-actions.ts';
+import { pickComputerRuntime, runComputerControl } from '../state/bot-control.ts';
 import {
   createMascot,
   loadError,
@@ -33,12 +31,12 @@ import {
   shellLog,
   shot,
 } from '../state/bot-computer-live.ts';
-import { desktopTransport, probeDesktopTransport } from '../state/vnc-ticket.ts';
-import { sendBotTurn } from '../state/realtime-session.ts';
+import { probeDesktopTransport, streamUrl } from '../state/vnc-ticket.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
-import { BotConversationScreen, BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
+import { BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
 import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
 import { BotSettingsScreen } from '../screens/bot/mascot-settings-screen.tsx';
+import { useAccount } from '../state/session-context.tsx';
 import type { Mascot, MascotFace, MascotLook } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
 
@@ -48,6 +46,9 @@ export {
   BotRoutinesRoute,
   BotSkillsRoute,
 } from './bot-runtime-routes.tsx';
+
+export { BotConversationRoute } from './bot-conversation-route.tsx';
+export { BotApprovalsRoute } from './bot-approvals-route.tsx';
 
 export function BotHomeRoute(): JSX.Element {
   const navigate = useNavigate();
@@ -102,71 +103,6 @@ async function createAndGo(input: {
   }
 }
 
-export function BotConversationRoute(): JSX.Element {
-  const navigate = useNavigate();
-  const mascot = useBotMascot();
-  const [draft, setDraft] = createSignal('');
-  const [error, setError] = createSignal('');
-  const [sending, setSending] = createSignal(false);
-  const [celebrating, setCelebrating] = createSignal(false);
-
-  return (
-    <BotConversationScreen
-      mascot={mascot()}
-      draft={draft()}
-      onDraft={setDraft}
-      onSend={() =>
-        void sendFromComposer({
-          mascotId: mascot()?.id,
-          draft: draft(),
-          setDraft,
-          setError,
-          setSending,
-          setCelebrating,
-        })
-      }
-      sending={sending()}
-      celebrating={celebrating()}
-      onMarkSettled={() => setCelebrating(false)}
-      error={error()}
-      onAnswer={(text, askId) => {
-        const id = mascot()?.id;
-        if (id) void answerAsk(id, text, askId);
-      }}
-      onSecret={(name, value) => {
-        const id = mascot()?.id;
-        if (id) void submitBotSecret(id, name, value);
-      }}
-      onGo={(path) => navigate(path)}
-      onBack={() => navigate('/bot')}
-    />
-  );
-}
-
-async function sendFromComposer(input: {
-  mascotId: string | undefined;
-  draft: string;
-  setDraft: (value: string) => void;
-  setError: (value: string) => void;
-  setSending: (value: boolean) => void;
-  setCelebrating: (value: boolean) => void;
-}): Promise<void> {
-  const text = input.draft.trim();
-  if (!input.mascotId || !text) return;
-  input.setSending(true);
-  input.setError('');
-  try {
-    await sendBotMessage(input.mascotId, text);
-    input.setDraft('');
-    sendBotTurn(input.mascotId, text);
-    input.setCelebrating(true);
-  } catch (caught) {
-    input.setError(caught instanceof Error ? caught.message : String(caught));
-  } finally {
-    input.setSending(false);
-  }
-}
-
 export function BotMessagesRoute(): JSX.Element {
   const navigate = useNavigate();
   return <BotMessagesScreen mascot={useBotMascot()()} onBack={() => navigate('/bot')} onGo={(path) => navigate(path)} />;
@@ -194,13 +130,6 @@ export function BotSettingsRoute(): JSX.Element {
   const [error, setError] = createSignal('');
   const [saving, setSaving] = createSignal(false);
 
-  /**
-   * Applies one change.
-   *
-   * Errors land on the screen rather than being swallowed: a look button that
-   * silently did nothing would look like the control was decorative, which is what
-   * this screen used to be.
-   */
   const apply = (patch: { name?: string; look?: MascotLook; face?: MascotFace }) => {
     const id = mascot()?.id;
     if (!id) return;
@@ -236,9 +165,16 @@ export function BotSettingsRoute(): JSX.Element {
 
 export function BotComputerRoute(): JSX.Element {
   const navigate = useNavigate();
+  const account = useAccount();
   const mascot = useBotMascot();
   useComputerPoll(mascot);
-  return <LiveComputer mascotId={() => mascot()?.id} mascot={mascot()} navigate={navigate} />;
+  return (
+    <LiveComputer
+      mascot={mascot()}
+      signedIn={Boolean(account.user())}
+      navigate={navigate}
+    />
+  );
 }
 
 function useComputerPoll(mascot: () => Mascot | undefined): void {
@@ -247,64 +183,49 @@ function useComputerPoll(mascot: () => Mascot | undefined): void {
     if (!current || current.computer.status !== 'running') return;
     void refreshScreenshot(current.id);
     void loadFs(current.id);
-    // Asked once per box rather than per frame: the answer is a property of the
-    // service and the box, and it does not change between screenshots.
     void probeDesktopTransport(current.id);
     const timer = setInterval(() => void refreshScreenshot(current.id), 800);
     onCleanup(() => clearInterval(timer));
   });
 }
 
-/**
- * `boxError` is passed through here for the first time. It was already being set by
- * `bot-computer-live` on every failed screenshot, shell command and file read, and no
- * screen ever received it — so a box that had stopped answering looked merely idle.
- */
 function LiveComputer(props: {
-  mascotId: () => string | undefined;
   mascot: Mascot | undefined;
+  signedIn: boolean;
   navigate: (path: string) => void;
 }): JSX.Element {
-  const id = () => props.mascotId();
+  const [controlError, setComputerError] = createSignal('');
+  const id = () => props.mascot?.id;
   return (
     <BotComputerScreen
       mascot={props.mascot}
       screenshot={screenshotSrc(shot())}
+      streamUrl={streamUrl() ?? props.mascot?.computer.streamUrl}
+      hasControl={props.mascot?.computer.controlHolder === 'user'}
+      signedIn={props.signedIn}
       shellLog={shellLog()}
       files={fsEntries()}
       preview={preview()}
       recording={recording()}
-      error={boxError()}
-      transport={desktopTransport()}
-      onWake={() => {
-        const current = id();
-        if (current) void runLifecycle(current, 'resume');
-      }}
-      onHibernate={() => {
-        const current = id();
-        if (current) void runLifecycle(current, 'hibernate');
-      }}
-      onStop={() => {
-        const current = id();
-        if (current) void runLifecycle(current, 'stop');
-      }}
-      onInput={(input) => {
-        const current = id();
-        if (current) void sendComputerInput(current, input);
-      }}
-      onShell={(command) => {
-        const current = id();
-        if (current) void runShell(current, command);
-      }}
-      onOpenFile={(path) => {
-        const current = id();
-        if (current) void openFile(current, path);
-      }}
+      error={controlError() || boxError()}
+      onWake={() => void withId(id(), (current) => runLifecycle(current, 'resume'))}
+      onHibernate={() => void withId(id(), (current) => runLifecycle(current, 'hibernate'))}
+      onStop={() => void withId(id(), (current) => runLifecycle(current, 'stop'))}
+      onTakeControl={() => void runComputerControl(id(), 'take', setComputerError)}
+      onRelease={() => void runComputerControl(id(), 'release', setComputerError)}
+      onRuntime={(runtime) => void pickComputerRuntime(id(), runtime, setComputerError)}
+      onInput={(input) => void withId(id(), (current) => sendComputerInput(current, input))}
+      onShell={(command) => void withId(id(), (current) => runShell(current, command))}
+      onOpenFile={(path) => void withId(id(), (current) => openFile(current, path))}
       onToggleRecord={() => void toggleRecord(id())}
       onBack={() => props.navigate('/bot')}
       onGo={(path) => props.navigate(path)}
     />
   );
+}
+
+function withId(id: string | undefined, work: (id: string) => Promise<unknown> | void): void {
+  if (id) void work(id);
 }
 
 async function toggleRecord(mascotId: string | undefined): Promise<void> {

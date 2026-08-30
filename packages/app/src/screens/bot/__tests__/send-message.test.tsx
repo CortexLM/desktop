@@ -7,7 +7,7 @@ import { stubFetch } from '../../../../../cortex-api/src/__tests__/fixtures.ts';
 import { setBotClientForTests } from '../../../state/bot-client.ts';
 import { resetBotsForTests } from '../../../state/bots.ts';
 import { sendBotMessage } from '../../../state/bot-actions.ts';
-import { BotConversationScreen } from '../mascot-detail-screens.tsx';
+import { BotConversationScreen } from '../conversation-screen.tsx';
 import type { Mascot } from '../../../state/bot-map.ts';
 
 afterEach(() => {

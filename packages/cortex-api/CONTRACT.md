@@ -432,7 +432,8 @@ it in `localStorage`, which is not a product:
 ### Bot
 
 Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
-`{ ticket_hash }` only — never a password. Videos list at
+`{ ticket_hash }` plus optional https `stream_url` / `embed_url` for the
+desktop embed — never a password. Videos list at
 `GET /v1/mascots/{id}/videos`.
 
 Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
@@ -443,7 +444,8 @@ Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
 | GET/POST | `/v1/mascots/{id}/messages` |
 | POST | `/v1/mascots/{id}/ask-user`, `/respond`, `/secrets` |
 | GET | `/v1/mascots/{id}/computer` |
-| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell` |
+| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell`, `/control` |
+| POST | `/computer/vnc-ticket` — hash plus optional `stream_url` |
 | GET | `/computer/screenshot`, `/cursor`, `/fs`, `/file` |
 | GET/POST/DELETE | `/v1/mascots/{id}/memory?tier=` |
 | CRUD | `/v1/skills` + `POST /v1/mascots/{id}/skills/{slug}/run` |

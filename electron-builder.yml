@@ -82,6 +82,11 @@ nsis:
   installerIcon: build/icon.ico
   uninstallerIcon: build/icon.ico
 
+protocols:
+  - name: Cortex
+    schemes:
+      - cortex
+
 # Linux configuration
 linux:
   icon: build/icon.png

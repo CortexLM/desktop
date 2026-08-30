@@ -250,8 +250,18 @@ export interface CortexAPI {
     productRequest: (
       request: CortexProductRequest,
     ) => Promise<IPCResponse<CortexProductResponse>>;
+    /** Opens Google or GitHub in the system browser. Takes no URL. */
+    startBrowserLogin: (request: {
+      provider: 'google' | 'github';
+    }) => Promise<IPCResponse<{ opened: boolean }>>;
+    /** In-app email form. Password is not returned. */
+    signInWithEmail: (request: {
+      email: string;
+      password: string;
+    }) => Promise<IPCResponse<CortexAccountState>>;
     onDeviceStatus: (callback: (event: CortexDeviceStatusEvent) => void) => () => void;
     onAccountChanged: (callback: (state: CortexAccountState) => void) => () => void;
+    onAuthComplete: (callback: (event: { ok: boolean; message?: string }) => void) => () => void;
   };
 
   /**
@@ -588,11 +598,16 @@ const cortexAPI: CortexAPI = {
     createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
     revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
     productRequest: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST, request),
+    startBrowserLogin: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_BROWSER_LOGIN, request),
+    signInWithEmail: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_EMAIL_LOGIN, request),
     onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
       IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
     ),
     onAccountChanged: createEventListener<CortexAccountState>(
       IPC_CHANNELS.EVENT_CORTEX_ACCOUNT_CHANGED,
+    ),
+    onAuthComplete: createEventListener<{ ok: boolean; message?: string }>(
+      IPC_CHANNELS.EVENT_CORTEX_AUTH_COMPLETE,
     ),
   },
 

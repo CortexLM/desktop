@@ -139,6 +139,7 @@ const PAYLOAD_LISTENERS: [group: string, method: string, channel: string][] = [
   // is process-wide, so a sign-in from one window has to reach every other one.
   ['cortex', 'onDeviceStatus', 'event:cortex-device-status'],
   ['cortex', 'onAccountChanged', 'event:cortex-account-changed'],
+  ['cortex', 'onAuthComplete', 'event:cortex-auth-complete'],
   // Pushed, not polled: a run advances in main at its own pace, and the event
   // carries the updated summary so the inbox row and the timeline move together.
   ['session', 'onProgress', 'event:session-progress'],

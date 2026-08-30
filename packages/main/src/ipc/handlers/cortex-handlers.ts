@@ -24,7 +24,10 @@ import { z } from 'zod';
 import { IPC_CHANNELS } from '@cortex-ide/shared';
 import type {
   CortexAccountState,
+  CortexBrowserLoginRequest,
+  CortexBrowserLoginResponse,
   CortexDeviceStartResponse,
+  CortexEmailLoginRequest,
   CortexListModelsResponse,
   CortexProductRequest,
   CortexProductResponse,
@@ -41,6 +44,8 @@ export const CORTEX_CHANNELS = [
   IPC_CHANNELS.CORTEX_DEVICE_CANCEL,
   IPC_CHANNELS.CORTEX_OPEN_VERIFICATION,
   IPC_CHANNELS.CORTEX_SIGN_OUT,
+  IPC_CHANNELS.CORTEX_BROWSER_LOGIN,
+  IPC_CHANNELS.CORTEX_EMAIL_LOGIN,
   IPC_CHANNELS.CORTEX_LIST_API_KEYS,
   IPC_CHANNELS.CORTEX_CREATE_API_KEY,
   IPC_CHANNELS.CORTEX_REVOKE_API_KEY,
@@ -109,6 +114,21 @@ export const handleSignOut = createHandler<Record<string, never>, CortexAccountS
   async () => getCortexAccountService().signOut(),
 );
 
+export const handleBrowserLogin = createHandler<
+  CortexBrowserLoginRequest,
+  CortexBrowserLoginResponse
+>(z.object({ provider: z.enum(['google', 'github']) }), async (request) =>
+  getCortexAccountService().startBrowserLogin(request.provider),
+);
+
+export const handleEmailLogin = createHandler<CortexEmailLoginRequest, CortexAccountState>(
+  z.object({
+    email: z.string().email().max(320),
+    password: z.string().min(1).max(256),
+  }),
+  async (request) => getCortexAccountService().signInWithEmail(request.email, request.password),
+);
+
 const ProductRequestSchema = z.object({
   method: z.enum(['GET', 'POST', 'PUT', 'DELETE', 'PATCH']),
   path: z.string().min(1).max(512),
@@ -157,6 +177,8 @@ export function registerCortexHandlers(): void {
   ipcMain.handle(IPC_CHANNELS.CORTEX_DEVICE_CANCEL, handleDeviceCancel);
   ipcMain.handle(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION, handleOpenVerification);
   ipcMain.handle(IPC_CHANNELS.CORTEX_SIGN_OUT, handleSignOut);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_BROWSER_LOGIN, handleBrowserLogin);
+  ipcMain.handle(IPC_CHANNELS.CORTEX_EMAIL_LOGIN, handleEmailLogin);
   ipcMain.handle(IPC_CHANNELS.CORTEX_LIST_API_KEYS, handleListApiKeys);
   ipcMain.handle(IPC_CHANNELS.CORTEX_CREATE_API_KEY, handleCreateApiKey);
   ipcMain.handle(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, handleRevokeApiKey);

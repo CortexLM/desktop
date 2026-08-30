@@ -1,4 +1,4 @@
-import { Show, type JSX } from 'solid-js';
+import { Show, createEffect, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
   HashRouter,
@@ -20,7 +20,8 @@ import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
-import { hasElectronHost } from './state/electron-bridge.ts';
+import { mascotIdFromPath, openBotStudio, rosterForSidebar } from './shell/bot-sidebar.ts';
+import { reconcileMascots } from './state/bots.ts';
 import { realtimeStatus } from './state/realtime-bridge.ts';
 import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
 import { formatAge } from './state/session-view.ts';
@@ -154,16 +155,23 @@ function WorkspaceSidebar(): JSX.Element {
 
   const runs = useSessions();
   const chats = useConversations();
+  const pathname = () => location.pathname;
+
+  createEffect(() => {
+    if (productForPath(pathname()) === 'bot') void reconcileMascots();
+  });
 
   return (
     <Sidebar
-      product={productForPath(location.pathname)}
+      product={productForPath(pathname())}
       onSwitchProduct={(next) => navigate(productHome(next))}
       capabilities={account.capabilities()}
-      activeSlug={slugForPath(location.pathname)}
+      activeSlug={slugForPath(pathname())}
       recentRuns={toRecentRuns(runs.sessions() ?? [])}
       recentChats={toRecentChats(chats.conversations() ?? [])}
       user={toUser(account.user())}
+      mascots={rosterForSidebar()}
+      activeMascotId={mascotIdFromPath(pathname())}
       onNavigate={(slug) => {
         const route = routeBySlug(slug);
         if (route?.path) navigate(route.path);
@@ -173,11 +181,11 @@ function WorkspaceSidebar(): JSX.Element {
       onNewChat={() => navigate('/')}
       onNewSession={() => navigate('/code')}
       onNewMascot={() => navigate('/bot/new')}
+      onOpenMascot={(id) => navigate(`/bot/${id}`)}
+      onOpenStudio={(panel) => openBotStudio(panel, pathname(), navigate)}
       onOpenSearch={() => openOverlay('palette')}
       onOpenAccount={() => navigate('/code/settings')}
       onSignIn={() => navigate('/sign-in')}
-      // The unread dot is driven by runs that finished and have not been opened,
-      // which is the only thing the app currently has to draw attention to.
       unread={{ 'code-sessions': runs.awaitingReview().length > 0 }}
     />
   );

@@ -27,6 +27,8 @@ const service = {
   cancelDeviceFlow: vi.fn(),
   openVerificationPage: vi.fn(),
   signOut: vi.fn(),
+  startBrowserLogin: vi.fn(),
+  signInWithEmail: vi.fn(),
   onDeviceStatus: vi.fn(() => () => {}),
   onAccountChanged: vi.fn(() => () => {}),
 };
@@ -64,6 +66,8 @@ beforeEach(() => {
   });
   service.openVerificationPage.mockResolvedValue({ opened: true });
   service.signOut.mockResolvedValue(ANONYMOUS);
+  service.startBrowserLogin.mockResolvedValue({ opened: true });
+  service.signInWithEmail.mockResolvedValue(ANONYMOUS);
   registerCortexHandlers();
 });
 
@@ -73,6 +77,17 @@ afterEach(() => {
 });
 
 const CHANNELS = [
+  'cortex:get-state',
+  'cortex:list-models',
+  'cortex:device-start',
+  'cortex:device-cancel',
+  'cortex:open-verification',
+  'cortex:sign-out',
+  'cortex:browser-login',
+  'cortex:email-login',
+] as const;
+
+const NO_PAYLOAD = [
   'cortex:get-state',
   'cortex:list-models',
   'cortex:device-start',
@@ -97,8 +112,8 @@ describe('channel registration', () => {
   });
 });
 
-describe('every channel accepts an absent payload', () => {
-  it.each(CHANNELS)('%s succeeds when invoked with no argument', async (channel) => {
+describe('every channel without a payload accepts an absent argument', () => {
+  it.each(NO_PAYLOAD)('%s succeeds when invoked with no argument', async (channel) => {
     // La propriété qui compte : le preload n'envoie rien, donc un rejet de
     // validation ici casserait la fonctionnalité sans erreur de compilation.
     await expect(invoke(channel)).resolves.toMatchObject({ success: true });

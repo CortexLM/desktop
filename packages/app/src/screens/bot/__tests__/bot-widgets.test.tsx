@@ -61,7 +61,14 @@ describe('computer chrome', () => {
 
   it('sends click, drag, scroll, and keys on a live frame', () => {
     const onInput = vi.fn();
-    render(() => <ComputerDesktop offline={false} src="data:image/png;base64,aa" onInput={onInput} />);
+    render(() => (
+      <ComputerDesktop
+        offline={false}
+        src="data:image/png;base64,aa"
+        interactive
+        onInput={onInput}
+      />
+    ));
     const frame = screen.getByRole('button');
     Object.defineProperty(frame, 'getBoundingClientRect', {
       value: () => ({ left: 0, top: 0, width: 1280, height: 800 }),
@@ -79,6 +86,18 @@ describe('computer chrome', () => {
     expect(onInput).toHaveBeenCalledWith(expect.objectContaining({ action: 'scroll' }));
     expect(onInput).toHaveBeenCalledWith(expect.objectContaining({ action: 'type', text: 'a' }));
     expect(onInput).toHaveBeenCalledWith(expect.objectContaining({ action: 'key', key: 'Enter' }));
+  });
+
+  it('embeds a live stream as a Computer iframe', () => {
+    render(() => (
+      <ComputerDesktop
+        offline={false}
+        streamUrl="https://farm.example/vnc"
+        interactive={false}
+        onInput={vi.fn()}
+      />
+    ));
+    expect(screen.getByTitle('Computer').tagName).toBe('IFRAME');
   });
 
   it('classifies a double-click from releaseFrom', () => {

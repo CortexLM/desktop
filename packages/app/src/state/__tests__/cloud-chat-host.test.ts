@@ -75,9 +75,11 @@ describe('realtime inbox bridge', () => {
   it('posts Bot ask-user and Code permission events', () => {
     applyRealtimeEvent({ type: 'bot.ask_user', mascot_id: 'm1', message: 'Scout needs you' });
     applyRealtimeEvent({ type: 'code.permission', message: 'Allow git push?' });
+    applyRealtimeEvent({ type: 'bot.send_to_user', mascot_id: 'm1', message: 'Ready.' });
     const kinds = mergeInbox([]).map((item) => item.kind);
     expect(kinds).toContain('bot-ask-user');
     expect(kinds).toContain('code-run-blocked');
+    expect(kinds).toContain('bot-message');
   });
 
   it('ignores connection-local hello, heartbeat, subscribed, and error', () => {

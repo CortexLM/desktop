@@ -6,27 +6,23 @@ import type { BotAsk, BotMessage, BotSecretAsk, BotWork } from '../../state/bot-
 
 export function UserBubble(props: { text: string }): JSX.Element {
   return (
-    <div class="cx-product-row">
-      <div>
-        <div class="cx-product-row__title">You</div>
-        <p class="cx-product-row__meta">{props.text}</p>
-      </div>
+    <div class="cx-teammate-bubble cx-teammate-bubble--user">
+      <div class="cx-teammate-bubble__name">You</div>
+      <p class="cx-teammate-bubble__body">{props.text}</p>
     </div>
   );
 }
 
 export function SendToUserBubble(props: { name: string; message: BotMessage }): JSX.Element {
   return (
-    <div class="cx-product-row">
-      <div>
-        <div class="cx-product-row__title">{props.name}</div>
-        <p class="cx-product-row__meta">{props.message.content}</p>
-        <Show when={props.message.attachments?.length}>
-          <For each={props.message.attachments}>
-            {(file) => <p class="cx-product-row__meta">{file.name ?? file.kind ?? 'attachment'}</p>}
-          </For>
-        </Show>
-      </div>
+    <div class="cx-teammate-bubble cx-teammate-bubble--bot">
+      <div class="cx-teammate-bubble__name">{props.name}</div>
+      <p class="cx-teammate-bubble__body">{props.message.content}</p>
+      <Show when={props.message.attachments?.length}>
+        <For each={props.message.attachments}>
+          {(file) => <p class="cx-teammate-bubble__body">{file.name ?? file.kind ?? 'attachment'}</p>}
+        </For>
+      </Show>
     </div>
   );
 }
