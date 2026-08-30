@@ -56,6 +56,9 @@ artifacts, upload them, GitHub Environment `staging`, OIDC (`id-token: write`).
 PRs into `staging` run `.github/workflows/test-suite.yml` (same unit / IPC /
 e2e jobs as `main`). Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is
 off while the staging AWS account is CLOSED. No AWS keys in git.
+Staging must not publish the production desktop update feed
+(`releases.cortex.foundation` / R2 `cortex-releases`); that path is tag-only
+in `.github/workflows/build.yml` `publish-feed`. See [releases.md](./releases.md).
 
 ## Linux Bot box
 

@@ -87,6 +87,15 @@ the `files` globs, so a native addon declared only by a workspace package is lin
 packaging change by running the binary, not just by building it:
 `npx electron-builder --dir --linux && DISPLAY=:1 ./dist/linux-unpacked/cortex-ide --no-sandbox`.
 
+### Desktop auto-update feed
+Packaged Electron checks `https://releases.cortex.foundation/` (generic provider in `electron-builder.yml` `publish.url`, same value as `DEFAULT_UPDATE_FEED_URL` in `packages/main/src/update-policy.ts`). There is no GitHub update provider for production.
+
+On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` would make the app request `/latest.yml` and miss the object; do not use one here.
+
+Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. Staging (`staging.yml`) must not write this origin.
+
+Secrets (Environment `production` only, never repo-wide if staging can read them, never in git): `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`. Optional var: `PRODUCTION_RELEASES_BUCKET` (default `cortex-releases`). See [`docs/releases.md`](./docs/releases.md).
+
 ### Running the Electron app
 - Build first: `bun run build` (builds `main`, `preload`, `app`, `test-harness`). `main` loads
   `packages/app/dist/index.html`, so a stale `app` build is the failure mode where you test the

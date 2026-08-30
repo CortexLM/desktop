@@ -110,6 +110,9 @@ Maintainers squash-merge. Do not merge your own cloud-agent PR unless asked.
 See [SECURITY.md](./SECURITY.md). Never paste keys, tokens, or session
 cookies into issues, PRs, or logs.
 
+Tagged desktop releases publish the auto-update feed to R2
+(`releases.cortex.foundation`). See [docs/releases.md](./docs/releases.md).
+
 ## Questions
 
 GitHub Issues for bugs. GitHub Discussions for design questions when enabled.

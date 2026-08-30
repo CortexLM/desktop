@@ -116,9 +116,10 @@ deb:
     - libnss3
 
 # Auto-update feed. Packaged apps read this into app-update.yml.
-# CI uploads latest.yml / latest-mac.yml / latest-linux.yml (and
-# RELEASES if present) to this origin — see build.yml publish-feed.
-# Do not add a second updater channel.
+# CI copies latest.yml / latest-mac.yml / latest-linux.yml, blockmaps,
+# and installers to R2 bucket cortex-releases (objects at the bucket
+# root; custom domain releases.cortex.foundation) — see build.yml
+# publish-feed. Generic provider only; do not add a GitHub channel.
 publish:
   provider: generic
   url: https://releases.cortex.foundation/

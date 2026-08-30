@@ -7,6 +7,9 @@
 # - Do not run electron-builder and then vitest in the same job (ABI shadow)
 # - Deploy stays off until vars.STAGING_DEPLOY_ENABLED is set; the staging
 #   AWS account is still CLOSED.
+# - Must not write the production desktop update feed (R2 bucket
+#   cortex-releases / releases.cortex.foundation). That origin is tag-only
+#   via build.yml publish-feed.
 
 name: Staging
 
