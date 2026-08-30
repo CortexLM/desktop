@@ -36,6 +36,10 @@ The same shape applies on desktop: `window.cortex.cortex.signIn()` resolves to a
 account summary, and the token stays in
 `packages/main/src/services/cortex-account-service.ts`.
 
+Desktop Google/GitHub login is a one-shot transaction in main: `state` plus a
+PKCE verifier. `parseAuthCallback` rejects a credential with no `state`. The
+PKCE verifier is sent only on `GET /v1/auth/callback` from main.
+
 Corollaries:
 
 - A new preload namespace must be added to the exposure-surface test **on

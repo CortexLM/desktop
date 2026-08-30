@@ -5,7 +5,8 @@
  * (`open-url` on macOS, second-instance argv on Windows and Linux) and
  * extracts either an authorization code or a sealed session value. The
  * session value is a credential: this module returns it to the account
- * service and never logs it.
+ * service and never logs it. A credential without the login `state` is
+ * rejected here — a deep-link is not enough to switch the signed-in account.
  */
 
 export const PROTOCOL_SCHEME = 'cortex';
@@ -13,12 +14,15 @@ export const AUTH_CALLBACK_PATH = '/callback';
 export const DESKTOP_BRIDGE_ORIGIN = 'https://cortex.foundation';
 export const DESKTOP_BRIDGE_PATH = '/desktop/open';
 
+export const AUTH_CALLBACK_NOT_STARTED =
+  'This sign-in link is not from a login you started in Cortex. Open the app and continue with Google or GitHub.';
+
 /** Providers the desktop browser-login path can start. */
 export type BrowserLoginProvider = 'google' | 'github';
 
 export type AuthCallbackResult =
-  | { kind: 'code'; code: string; state?: string }
-  | { kind: 'session'; token: string; state?: string }
+  | { kind: 'code'; code: string; state: string }
+  | { kind: 'session'; token: string; state: string }
   | { kind: 'error'; message: string }
   | { kind: 'ignored' };
 
@@ -46,9 +50,8 @@ export function isAuthCallbackUrl(url: string): boolean {
 /**
  * Reads a callback URL without echoing credentials.
  *
- * Preference: a sealed session in the query wins (the HTTPS bridge puts it
- * there after the identity service has already exchanged the code). A bare
- * `code` is the authorization code main must exchange itself. An `error`
+ * Preference: an authorization code (exchanged in main with PKCE) over a
+ * sealed session in the query. Either still requires `state`. An `error`
  * query is a declined or failed sign-in, reported in product language.
  */
 export function parseAuthCallback(url: string): AuthCallbackResult {
@@ -63,14 +66,21 @@ export function parseAuthCallback(url: string): AuthCallbackResult {
   }
 
   const state = parsed.searchParams.get('state')?.trim();
-
-  for (const name of SESSION_PARAMS) {
-    const value = parsed.searchParams.get(name)?.trim();
-    if (value) return withState({ kind: 'session', token: value }, state);
+  if (!state) {
+    return { kind: 'error', message: AUTH_CALLBACK_NOT_STARTED };
   }
 
-  const code = parsed.searchParams.get('code')?.trim();
-  if (code) return withState({ kind: 'code', code }, state);
+  return credentialFromParams(parsed.searchParams, state);
+}
+
+function credentialFromParams(params: URLSearchParams, state: string): AuthCallbackResult {
+  const code = params.get('code')?.trim();
+  if (code) return { kind: 'code', code, state };
+
+  for (const name of SESSION_PARAMS) {
+    const value = params.get(name)?.trim();
+    if (value) return { kind: 'session', token: value, state };
+  }
 
   return {
     kind: 'error',
@@ -89,13 +99,6 @@ function parseUrl(url: string): URL | undefined {
   } catch {
     return undefined;
   }
-}
-
-function withState<T extends { kind: 'code' | 'session' }>(
-  result: T,
-  state: string | undefined,
-): T {
-  return state ? { ...result, state } : result;
 }
 
 function callbackErrorMessage(code: string): string {

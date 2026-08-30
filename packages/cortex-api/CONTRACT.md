@@ -237,6 +237,12 @@ service — no API keys were invented or stored.
 `POST /v1/auth/logout` → `204`.
 `GET /v1/auth/login` → `307` to WorkOS AuthKit (`redirect_uri=…/v1/auth/callback`).
 
+Desktop login adds `client=desktop`, `redirect_uri=https://cortex.foundation/desktop/open`,
+a one-time `state`, and PKCE `code_challenge` / `S256`. Main exchanges
+`GET /v1/auth/callback?code=&code_verifier=` and never puts the verifier or
+session cookie in the renderer. A `cortex://auth/callback` without `state` is
+not a valid desktop login.
+
 The cookie name for guests is `cortex_gt`, not `wos-session`. The client sends
 whichever it has; it still never uses `Authorization: Bearer`.
 

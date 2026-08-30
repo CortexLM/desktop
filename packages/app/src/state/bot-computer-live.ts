@@ -101,8 +101,7 @@ export async function openFile(mascotId: string, path: string): Promise<void> {
 }
 
 function stillOn(mascotId: string): boolean {
-  const owner = ownerId();
-  return owner === undefined || owner === mascotId;
+  return ownerId() === mascotId;
 }
 
 export function screenshotSrc(image: ApiScreenshot | undefined): string | undefined {

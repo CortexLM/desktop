@@ -1,5 +1,5 @@
-import { createEffect, createSignal, onCleanup, type JSX } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { createEffect, createSignal, type JSX } from 'solid-js';
+import { useNavigate, useParams } from '@solidjs/router';
 
 import {
   runLifecycle,
@@ -18,21 +18,16 @@ import {
 } from '../state/bots.ts';
 import { teachFromVideo } from '../state/bot-runtime-store.ts';
 import {
-  attachComputer,
   boxError,
   fsEntries,
-  loadFs,
   openFile,
   preview,
   recording,
-  refreshScreenshot,
   runShell,
-  screenshotSrc,
   setRecordingFlagValue,
   shellLog,
-  shotFor,
 } from '../state/bot-computer-live.ts';
-import { attachDesktopStream, probeDesktopTransport, streamUrlFor } from '../state/vnc-ticket.ts';
+import { liveRailPaint } from '../state/computer-rail-paint.ts';
 import { CreateMascotScreen, MascotListScreen } from '../screens/bot/mascot-screens.tsx';
 import { BotMessagesScreen, BotVideosScreen } from '../screens/bot/mascot-detail-screens.tsx';
 import { BotComputerScreen } from '../screens/bot/mascot-computer-screens.tsx';
@@ -41,6 +36,7 @@ import { useAccount } from '../state/session-context.tsx';
 import { guestBlocked } from '../state/guest-lock.ts';
 import type { Mascot, MascotFace, MascotLook } from '../state/bot-map.ts';
 import { useBotMascot } from './bot-mascot.ts';
+import { bindComputerLive } from './bot-computer-bind.ts';
 
 export {
   BotGroupsRoute,
@@ -176,10 +172,12 @@ export function BotSettingsRoute(): JSX.Element {
 export function BotComputerRoute(): JSX.Element {
   const navigate = useNavigate();
   const account = useAccount();
+  const params = useParams<{ mascotId: string }>();
   const mascot = useBotMascot();
-  useComputerPoll(mascot);
+  bindComputerLive(() => params.mascotId, { files: true });
   return (
     <LiveComputer
+      routeId={params.mascotId}
       mascot={mascot()}
       signedIn={Boolean(account.user())}
       navigate={navigate}
@@ -187,33 +185,21 @@ export function BotComputerRoute(): JSX.Element {
   );
 }
 
-function useComputerPoll(mascot: () => Mascot | undefined): void {
-  createEffect(() => {
-    const current = mascot();
-    attachComputer(current?.id);
-    attachDesktopStream(current?.id);
-    if (!current || current.computer.status !== 'running') return;
-    void refreshScreenshot(current.id);
-    void loadFs(current.id);
-    void probeDesktopTransport(current.id);
-    const timer = setInterval(() => void refreshScreenshot(current.id), 800);
-    onCleanup(() => clearInterval(timer));
-  });
-}
-
 function LiveComputer(props: {
+  routeId: string | undefined;
   mascot: Mascot | undefined;
   signedIn: boolean;
   navigate: (path: string) => void;
 }): JSX.Element {
   const [controlError, setComputerError] = createSignal('');
-  const id = () => props.mascot?.id;
+  const id = () => props.routeId;
+  const rail = () => liveRailPaint(id(), props.mascot);
   return (
     <BotComputerScreen
       mascot={props.mascot}
-      screenshot={screenshotSrc(shotFor(id()))}
-      streamUrl={streamUrlFor(id()) ?? props.mascot?.computer.streamUrl}
-      hasControl={props.mascot?.computer.controlHolder === 'user'}
+      screenshot={rail().screenshotUrl}
+      streamUrl={rail().streamUrl}
+      hasControl={props.mascot?.id === id() && props.mascot?.computer.controlHolder === 'user'}
       signedIn={props.signedIn}
       shellLog={shellLog()}
       files={fsEntries()}

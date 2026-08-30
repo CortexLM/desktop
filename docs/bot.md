@@ -71,7 +71,8 @@ https `stream_url`, otherwise a screenshot. Take control / Release. Runtime
 This PC (desktop app), SSH, and Cloud (account). This is not a Terminal / Files
 tab navbar. Opening another mascot drops the previous computer's stream and
 screenshot immediately; the rail stays empty until this mascot's computer
-answers, including when that refresh fails.
+answers, including when that refresh fails. The rail never falls back to a
+stream URL stored on a different mascot.
 
 ## Farm machines
 

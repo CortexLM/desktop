@@ -32,6 +32,7 @@ export function browserLoginUrl(
   baseUrl: string,
   provider: BrowserLoginProvider,
   state?: string,
+  codeChallenge?: string,
 ): string {
   const params = new URLSearchParams({
     provider: PROVIDER_QUERY[provider],
@@ -39,6 +40,10 @@ export function browserLoginUrl(
     redirect_uri: DESKTOP_BRIDGE_URL,
   });
   if (state) params.set('state', state);
+  if (codeChallenge) {
+    params.set('code_challenge', codeChallenge);
+    params.set('code_challenge_method', 'S256');
+  }
   return `${baseUrl.replace(/\/+$/, '')}/v1/auth/login?${params.toString()}`;
 }
 
@@ -46,11 +51,18 @@ export function browserLoginUrl(
  * Exchanges an authorization code for the sealed session cookie.
  *
  * GET `/v1/auth/callback?code=` is the observed callback. Main calls it
- * because a `file://` renderer cannot. No cookie in the response is a hard
- * failure — there is nothing honest to store.
+ * because a `file://` renderer cannot. Desktop login also sends the PKCE
+ * `code_verifier` stored with the pending transaction. No cookie in the
+ * response is a hard failure — there is nothing honest to store.
  */
-export async function exchangeAuthCode(client: CortexApiClient, code: string): Promise<string> {
-  const path = `/v1/auth/callback?code=${encodeURIComponent(code)}`;
+export async function exchangeAuthCode(
+  client: CortexApiClient,
+  code: string,
+  codeVerifier?: string,
+): Promise<string> {
+  const search = new URLSearchParams({ code });
+  if (codeVerifier) search.set('code_verifier', codeVerifier);
+  const path = `/v1/auth/callback?${search.toString()}`;
   const response = await client.open(path, { anonymous: true });
   const token = tokenFromResponse(response);
   if (!token) {

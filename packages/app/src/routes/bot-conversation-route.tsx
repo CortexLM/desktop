@@ -1,5 +1,5 @@
-import { createEffect, createSignal, onCleanup, type JSX } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { createSignal, type JSX } from 'solid-js';
+import { useNavigate, useParams } from '@solidjs/router';
 
 import {
   answerAsk,
@@ -9,27 +9,24 @@ import {
   submitBotSecret,
 } from '../state/bot-actions.ts';
 import { pickComputerRuntime, runComputerControl } from '../state/bot-control.ts';
-import {
-  attachComputer,
-  boxError,
-  refreshScreenshot,
-  screenshotSrc,
-  shotFor,
-} from '../state/bot-computer-live.ts';
-import { attachDesktopStream, probeDesktopTransport, streamUrlFor } from '../state/vnc-ticket.ts';
+import { boxError } from '../state/bot-computer-live.ts';
 import { sendBotTurn } from '../state/realtime-session.ts';
+import { liveRailPaint } from '../state/computer-rail-paint.ts';
 import { BotConversationScreen } from '../screens/bot/conversation-screen.tsx';
 import { useAccount } from '../state/session-context.tsx';
 import { useBotMascot } from './bot-mascot.ts';
+import { bindComputerLive } from './bot-computer-bind.ts';
 import type { Mascot } from '../state/bot-map.ts';
 
 export function BotConversationRoute(): JSX.Element {
   const navigate = useNavigate();
   const account = useAccount();
+  const params = useParams<{ mascotId: string }>();
   const mascot = useBotMascot();
-  useComputerStream(mascot);
+  bindComputerLive(() => params.mascotId);
   return (
     <ConversationLive
+      routeId={params.mascotId}
       mascot={mascot()}
       signedIn={Boolean(account.user())}
       navigate={navigate}
@@ -38,13 +35,15 @@ export function BotConversationRoute(): JSX.Element {
 }
 
 function ConversationLive(props: {
+  routeId: string | undefined;
   mascot: Mascot | undefined;
   signedIn: boolean;
   navigate: (path: string) => void;
 }): JSX.Element {
   const thread = useThreadState();
   const [computerError, setComputerError] = createSignal('');
-  const id = () => props.mascot?.id;
+  const id = () => props.routeId;
+  const rail = () => liveRailPaint(id(), props.mascot);
   return (
     <BotConversationScreen
       mascot={props.mascot}
@@ -56,9 +55,9 @@ function ConversationLive(props: {
       celebrating={thread.celebrating()}
       onMarkSettled={() => thread.setCelebrating(false)}
       error={thread.error()}
-      screenshot={screenshotSrc(shotFor(id()))}
-      streamUrl={streamUrlFor(id()) ?? props.mascot?.computer.streamUrl}
-      hasControl={props.mascot?.computer.controlHolder === 'user'}
+      screenshot={rail().screenshotUrl}
+      streamUrl={rail().streamUrl}
+      hasControl={props.mascot?.id === id() && props.mascot?.computer.controlHolder === 'user'}
       computerError={computerError() || boxError()}
       onAnswer={(text, askId) => void ifId(id(), (current) => answerAsk(current, text, askId))}
       onSecret={(name, value) => void ifId(id(), (current) => submitBotSecret(current, name, value))}
@@ -83,19 +82,6 @@ function useThreadState() {
 
 function ifId(id: string | undefined, work: (id: string) => Promise<unknown> | void): void {
   if (id) void work(id);
-}
-
-function useComputerStream(mascot: () => Mascot | undefined): void {
-  createEffect(() => {
-    const current = mascot();
-    attachComputer(current?.id);
-    attachDesktopStream(current?.id);
-    if (!current || current.computer.status !== 'running') return;
-    void refreshScreenshot(current.id);
-    void probeDesktopTransport(current.id);
-    const timer = setInterval(() => void refreshScreenshot(current.id), 800);
-    onCleanup(() => clearInterval(timer));
-  });
 }
 
 async function sendFromComposer(input: {

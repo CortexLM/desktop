@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  AUTH_CALLBACK_NOT_STARTED,
   authCallbackFromArgv,
   isAuthCallbackUrl,
   parseAuthCallback,
@@ -30,14 +31,29 @@ describe('isAuthCallbackUrl', () => {
 });
 
 describe('parseAuthCallback', () => {
-  it('reads an authorization code', () => {
-    expect(parseAuthCallback(`${CALLBACK}?code=authcode-1`)).toEqual({
-      kind: 'code',
-      code: 'authcode-1',
+  it('rejects a bare session deep-link with no login state', () => {
+    expect(parseAuthCallback(`${CALLBACK}?session=attacker-session`)).toEqual({
+      kind: 'error',
+      message: AUTH_CALLBACK_NOT_STARTED,
+    });
+    expect(parseAuthCallback(`${CALLBACK}?access_token=tok-a`)).toEqual({
+      kind: 'error',
+      message: AUTH_CALLBACK_NOT_STARTED,
+    });
+    expect(parseAuthCallback(`${BRIDGE}?wos_session=tok-b`)).toEqual({
+      kind: 'error',
+      message: AUTH_CALLBACK_NOT_STARTED,
     });
   });
 
-  it('carries state when the identity service echoes it', () => {
+  it('rejects an authorization code with no login state', () => {
+    expect(parseAuthCallback(`${CALLBACK}?code=authcode-1`)).toEqual({
+      kind: 'error',
+      message: AUTH_CALLBACK_NOT_STARTED,
+    });
+  });
+
+  it('reads an authorization code only with state', () => {
     expect(parseAuthCallback(`${CALLBACK}?code=authcode-1&state=nonce-1`)).toEqual({
       kind: 'code',
       code: 'authcode-1',
@@ -50,22 +66,25 @@ describe('parseAuthCallback', () => {
     });
   });
 
-  it('prefers a sealed session over a leftover code', () => {
-    const url = `${CALLBACK}?code=leftover&session=sealed-session-value`;
+  it('prefers exchanging a code over a session in the same URL', () => {
+    const url = `${CALLBACK}?code=auth-code&session=sealed-session-value&state=nonce-3`;
     expect(parseAuthCallback(url)).toEqual({
-      kind: 'session',
-      token: 'sealed-session-value',
+      kind: 'code',
+      code: 'auth-code',
+      state: 'nonce-3',
     });
   });
 
-  it('accepts access_token and wos-session aliases', () => {
-    expect(parseAuthCallback(`${CALLBACK}?access_token=tok-a`)).toEqual({
+  it('accepts access_token and wos-session aliases when state is present', () => {
+    expect(parseAuthCallback(`${CALLBACK}?access_token=tok-a&state=nonce-a`)).toEqual({
       kind: 'session',
       token: 'tok-a',
+      state: 'nonce-a',
     });
-    expect(parseAuthCallback(`${BRIDGE}?wos_session=tok-b`)).toEqual({
+    expect(parseAuthCallback(`${BRIDGE}?wos_session=tok-b&state=nonce-b`)).toEqual({
       kind: 'session',
       token: 'tok-b',
+      state: 'nonce-b',
     });
   });
 

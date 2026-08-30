@@ -66,6 +66,18 @@ describe('live computer ownership', () => {
     expect(shotFor('mst_a')).toBeUndefined();
     expect(shotFor('mst_b')).toBeUndefined();
   });
+
+  it('does not keep an in-flight screenshot after the workbench unbinds', async () => {
+    const later = deferredJson({ image_base64: 'aaaa', content_type: 'image/png' });
+    setBotClientForTests(new CortexApiClient({ fetch: later.fetch }));
+    attachComputer('mst_a');
+    const pending = refreshScreenshot('mst_a');
+    attachComputer(undefined);
+    later.resolve();
+    await pending;
+    expect(shot()).toBeUndefined();
+    expect(shotFor('mst_a')).toBeUndefined();
+  });
 });
 
 function deferredJson(body: unknown): { fetch: typeof globalThis.fetch; resolve: () => void } {

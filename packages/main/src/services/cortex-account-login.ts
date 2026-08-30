@@ -17,7 +17,7 @@ import {
 import type { CortexAccountState } from '@cortex-ide/shared';
 
 import { openExternalSafe } from '../security';
-import { parseAuthCallback } from '../protocol/callback';
+import { AUTH_CALLBACK_NOT_STARTED, parseAuthCallback } from '../protocol/callback';
 import { beginBrowserLogin, consumeBrowserLogin } from '../protocol/login-transaction';
 
 export interface AccountLoginHost {
@@ -29,8 +29,8 @@ export async function startBrowserLogin(
   service: AccountLoginHost,
   provider: BrowserLoginProvider,
 ): Promise<{ opened: boolean }> {
-  const state = beginBrowserLogin(provider);
-  const url = browserLoginUrl(service.getApiClient().baseUrl, provider, state);
+  const { state, challenge } = beginBrowserLogin(provider);
+  const url = browserLoginUrl(service.getApiClient().baseUrl, provider, state, challenge);
   return { opened: await openExternalSafe(url) };
 }
 
@@ -45,16 +45,15 @@ export async function completeAuthCallback(
   if (parsed.kind === 'error') {
     throw new Error(parsed.message);
   }
-  if (!consumeBrowserLogin(parsed.state)) {
-    throw new Error(
-      'This sign-in link is not from a login you started in Cortex. Open the app and continue with Google or GitHub.',
-    );
+  const pending = consumeBrowserLogin(parsed.state);
+  if (!pending) {
+    throw new Error(AUTH_CALLBACK_NOT_STARTED);
   }
 
   const token =
     parsed.kind === 'session'
       ? parsed.token
-      : await exchangeAuthCode(service.getApiClient(), parsed.code);
+      : await exchangeAuthCode(service.getApiClient(), parsed.code, pending.verifier);
 
   return service.acceptAccessToken(token);
 }

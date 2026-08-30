@@ -32,6 +32,12 @@ describe('browserLoginUrl', () => {
     expect(url).toContain('state=nonce-1');
   });
 
+  it('includes the PKCE challenge when one is issued', () => {
+    const url = browserLoginUrl('https://api.cortex.foundation', 'google', 'nonce-1', 'challenge-1');
+    expect(url).toContain('code_challenge=challenge-1');
+    expect(url).toContain('code_challenge_method=S256');
+  });
+
   it('names GitHub as the GitHubOAuth provider query', () => {
     const url = browserLoginUrl('https://api.cortex.foundation/', 'github');
     expect(url).toContain('provider=GitHubOAuth');
@@ -61,6 +67,21 @@ describe('exchangeAuthCode', () => {
     };
     const token = await exchangeAuthCode(new CortexApiClient({ fetch }), 'auth-code');
     expect(token).toBe('sealed-from-code');
+  });
+
+  it('sends the PKCE verifier with the code', async () => {
+    const fetch = async (input: RequestInfo | URL) => {
+      const url = String(input);
+      expect(url).toContain('/v1/auth/callback?');
+      expect(url).toContain('code=auth-code');
+      expect(url).toContain('code_verifier=verifier-1');
+      return jsonResponse(
+        { ok: true },
+        { headers: { 'set-cookie': 'wos-session=sealed-from-pkce; HttpOnly' } },
+      );
+    };
+    const token = await exchangeAuthCode(new CortexApiClient({ fetch }), 'auth-code', 'verifier-1');
+    expect(token).toBe('sealed-from-pkce');
   });
 
   it('fails closed when the callback has no session cookie', async () => {

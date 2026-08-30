@@ -49,8 +49,7 @@ export async function requestDesktopStream(mascotId: string): Promise<DesktopStr
 }
 
 function stillOnStream(mascotId: string): boolean {
-  const owner = streamOwner();
-  return !owner || owner === mascotId;
+  return streamOwner() === mascotId;
 }
 
 function applyStream(mascotId: string, result: DesktopStream): DesktopStream {

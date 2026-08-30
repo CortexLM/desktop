@@ -3,17 +3,26 @@
  *
  * A `cortex://auth/callback` is only accepted when it carries the state issued
  * by a login the user started in this app, and only once, within the TTL.
- * The state is not a session credential; it never reaches the renderer.
+ * The authorization code is exchanged with the PKCE verifier stored here.
+ * State, challenge and verifier never reach the renderer.
  */
 
-import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 
 export const LOGIN_TTL_MS = 10 * 60 * 1000;
 
 export interface PendingBrowserLogin {
   state: string;
+  verifier: string;
+  challenge: string;
   provider: 'google' | 'github';
   expiresAt: number;
+}
+
+export interface StartedBrowserLogin {
+  state: string;
+  challenge: string;
+  verifier: string;
 }
 
 let pending: PendingBrowserLogin | undefined;
@@ -21,19 +30,25 @@ let pending: PendingBrowserLogin | undefined;
 export function beginBrowserLogin(
   provider: PendingBrowserLogin['provider'],
   now = Date.now(),
-): string {
+): StartedBrowserLogin {
   const state = randomBytes(32).toString('base64url');
-  pending = { state, provider, expiresAt: now + LOGIN_TTL_MS };
-  return state;
+  const verifier = randomBytes(32).toString('base64url');
+  const challenge = createHash('sha256').update(verifier).digest('base64url');
+  pending = { state, verifier, challenge, provider, expiresAt: now + LOGIN_TTL_MS };
+  return { state, challenge, verifier };
 }
 
-/** True only for a matching, unexpired, unused transaction. Always consumes. */
-export function consumeBrowserLogin(state: string | undefined, now = Date.now()): boolean {
+/** Matching, unexpired, unused transaction, or undefined. Always consumes. */
+export function consumeBrowserLogin(
+  state: string | undefined,
+  now = Date.now(),
+): PendingBrowserLogin | undefined {
   const current = pending;
   pending = undefined;
-  if (!current || !state) return false;
-  if (now > current.expiresAt) return false;
-  return statesEqual(current.state, state);
+  if (!current || !state) return undefined;
+  if (now > current.expiresAt) return undefined;
+  if (!statesEqual(current.state, state)) return undefined;
+  return current;
 }
 
 export function resetBrowserLoginForTests(): void {
