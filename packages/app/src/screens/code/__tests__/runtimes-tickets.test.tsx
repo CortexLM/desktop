@@ -88,7 +88,8 @@ describe('RuntimesScreen', () => {
     const onSignIn = vi.fn();
     render(() => <RuntimesScreen {...runtimesProps({ signedIn: false, onSignIn })} />);
 
-    expect(screen.getByText('Runtimes need a Cortex account')).toBeInTheDocument();
+    expect(screen.getByText('This PC')).toBeInTheDocument();
+    expect(screen.getByText('Cloud and SSH need a Cortex account')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Pair a machine' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Sign in' }));
     expect(onSignIn).toHaveBeenCalled();

@@ -7,20 +7,21 @@ import type { SidebarProps } from './sidebar-types.ts';
 interface Destination {
   slug: string;
   label: string;
-  icon: 'home' | 'sessions' | 'automations' | 'review' | 'usage' | 'docs' | 'server';
+  icon: 'home' | 'sessions' | 'automations' | 'review' | 'usage' | 'docs' | 'server' | 'clock' | 'settings';
   capability?: keyof SidebarProps['capabilities'];
 }
 
-const CODE_DESTINATIONS: readonly Destination[] = [
-  { slug: 'code-home', label: 'Home', icon: 'home' },
+/** Top of the Code rail: start a session, scheduled runs, then settings. */
+const CODE_ACTIONS: readonly Destination[] = [
+  { slug: 'code-automations', label: 'Routines', icon: 'clock', capability: 'automations' },
+  { slug: 'code-settings', label: 'Personalize', icon: 'settings' },
+];
+
+const CODE_WORKSPACE: readonly Destination[] = [
   { slug: 'code-sessions', label: 'Sessions', icon: 'sessions' },
   { slug: 'code-tickets', label: 'Tickets', icon: 'docs' },
-  { slug: 'code-automations', label: 'Automations', icon: 'automations', capability: 'automations' },
   { slug: 'code-review', label: 'Review', icon: 'review', capability: 'review' },
   { slug: 'code-usage', label: 'Usage', icon: 'usage', capability: 'usageReporting' },
-  // Where runs happen. Last because it is configuration rather than a destination
-  // you work in, but in the nav because the browser cannot run a harness and this
-  // is the screen that says what to do about it.
   { slug: 'code-runtimes', label: 'Runtimes', icon: 'server' },
 ];
 
@@ -99,9 +100,23 @@ export function CodeSections(props: SidebarProps): JSX.Element {
   return (
     <>
       <NewButton label="New session" shortcut="⌘N" onPress={() => props.onNewSession()} />
+      <div class="cx-sidebar__nav">
+        <For each={CODE_ACTIONS}>
+          {(destination) => (
+            <NavItem
+              icon={destination.icon}
+              label={destination.label}
+              active={props.activeSlug === destination.slug}
+              unread={props.unread?.[destination.slug]}
+              lockedReason={lockReason(destination)}
+              onClick={() => props.onNavigate(destination.slug)}
+            />
+          )}
+        </For>
+      </div>
       <div class="cx-sidebar__section-title">Workspace</div>
       <div class="cx-sidebar__nav">
-        <For each={CODE_DESTINATIONS}>
+        <For each={CODE_WORKSPACE}>
           {(destination) => (
             <NavItem
               icon={destination.icon}
@@ -115,7 +130,7 @@ export function CodeSections(props: SidebarProps): JSX.Element {
         </For>
       </div>
       <Show when={props.recentRuns.length > 0}>
-        <div class="cx-sidebar__section-title">Recent sessions</div>
+        <div class="cx-sidebar__section-title">Recents</div>
         <RecentRuns runs={props.recentRuns} onOpen={props.onOpenRun} />
       </Show>
     </>

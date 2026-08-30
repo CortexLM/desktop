@@ -6,7 +6,8 @@ Code is the coding-agent workbench. Every Code route lives under `/code`.
 
 | Route | Screen |
 | --- | --- |
-| `/code` | Home — composer, recent sessions, harness status |
+| `/code` | Home — empty session preview when nothing has run; composer and recents once there is history |
+| `/welcome` | First-launch splash (desktop) |
 | `/code/sessions` | Inbox |
 | `/code/sessions/:id` | Session detail (plan, permissions, terminal, changes) |
 | `/code/automations` | Automations (account) |
@@ -79,8 +80,14 @@ This PC: the native folder picker is required. Cancel leaves no session and
 does not invent a path. Cloud and SSH fail closed if the control-plane route
 is missing (`POST /v1/code/sessions` historically 404).
 
-Web signed-out: no `local` runtime. The composer says Cloud needs an
-account, or offers connecting a remote Cortex Code host.
+`/code` with no session history is the empty home: a framed CLI preview and a
+This PC / SSH / Cloud picker that starts a real session. Empty home still shows
+those hosts when a host cannot run — This PC locked as desktop-only on the web,
+Cloud/SSH locked behind an account — and the CTA does not start a session that
+cannot run. Once there is history the composer is back.
+
+Web signed-out: no `local` runtime. The composer (once there is history) says
+Cloud needs an account, or offers connecting a remote Cortex Code host.
 
 ## This PC
 

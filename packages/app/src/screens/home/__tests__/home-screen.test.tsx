@@ -115,7 +115,7 @@ describe('Home composer', () => {
       capabilities: AUTHENTICATED_CAPABILITIES,
       draft: { prompt: '', runtime: 'ssh' },
     });
-    expect(screen.getByRole('button', { name: /SSH server/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^SSH$/ })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /This desktop/i })).toBeNull();
   });
 
@@ -284,5 +284,6 @@ describe('Home recent sessions', () => {
   it('omits the whole table when there is nothing recent', () => {
     const { container } = renderHome({ recentSessions: [] });
     expect(container.querySelector('.cx-recent')).toBeNull();
+    expect(screen.getByRole('heading', { name: 'Ship features, not lines.' })).toBeInTheDocument();
   });
 });

@@ -22,10 +22,22 @@ interface StartRunOptions {
   signedIn: () => boolean;
 }
 
-export function createStartRun(options: StartRunOptions): () => Promise<void> {
+export type StartDraft = {
+  prompt: string;
+  runtime: RuntimeKind;
+  repo?: string;
+  branch?: string;
+  model?: string;
+  mode?: 'ask' | 'plan' | 'agent';
+};
+
+export function createStartRun(options: StartRunOptions): (draft?: StartDraft) => Promise<void> {
   let inFlight = false;
 
-  return async () => {
+  return async (override) => {
+    if (override) {
+      setComposerDraft((current) => ({ ...current, ...override }));
+    }
     const draft = composerDraft();
     if (!draft.prompt.trim() || inFlight) return;
     if (draft.runtime !== 'local' && guestBlocked(options.signedIn())) return;

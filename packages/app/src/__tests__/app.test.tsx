@@ -52,11 +52,11 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByLabelText('Prompt')).toBeInTheDocument());
   });
 
-  it('renders the Code sidebar with the five workspace destinations', async () => {
+  it('renders the Code sidebar with Routines, Personalize and workspace destinations', async () => {
     render(() => <App initialPath="/code" />);
 
     await waitFor(() => {
-      for (const label of ['Home', 'Sessions', 'Automations', 'Review', 'Usage']) {
+      for (const label of ['Routines', 'Personalize', 'Sessions', 'Review', 'Usage']) {
         expect(screen.getByRole('button', { name: label }), label).toBeInTheDocument();
       }
     });
@@ -75,7 +75,7 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Code' }));
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Routines' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
     });
     expect(screen.queryByText('New chat')).toBeNull();
@@ -115,7 +115,7 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByText(/Cloud only/)).toBeInTheDocument();
     });
-    expect(screen.queryByRole('button', { name: /This PC/ })).toBeNull();
+    expect(screen.getByRole('button', { name: 'This PC' })).toBeDisabled();
     expect(screen.queryByRole('button', { name: /Local/ })).toBeNull();
   });
 
@@ -217,6 +217,8 @@ describe('App', () => {
       '/code/automations/new',
       '/code/runtimes/ssh',
       '/onboarding',
+      '/welcome',
+      '/sign-in',
       '/sign-in/device',
       '/sign-in/github',
       '/sign-in/workspace',

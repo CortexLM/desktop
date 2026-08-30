@@ -46,6 +46,7 @@ export interface CortexHost {
    */
   openVerificationPage(): Promise<boolean>;
   signOut(): Promise<CortexAccountState>;
+  /** Opens Google or GitHub in the system browser. Main builds the URL. */
   startBrowserLogin(provider: 'google' | 'github'): Promise<boolean>;
   /** In-app email form. Password crosses to main once and is never returned. */
   signInWithEmail(email: string, password: string): Promise<CortexAccountState>;

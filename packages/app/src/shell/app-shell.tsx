@@ -5,6 +5,7 @@ import './app-shell.css';
 export interface AppShellProps {
   sidebar: JSX.Element;
   children: JSX.Element;
+  sidebarHidden?: boolean;
 }
 
 /**
@@ -14,7 +15,7 @@ export interface AppShellProps {
  */
 export function AppShell(props: AppShellProps): JSX.Element {
   return (
-    <div class="cx-app">
+    <div class={props.sidebarHidden ? 'cx-app cx-app--sidebar-hidden' : 'cx-app'}>
       {props.sidebar}
       <main class="cx-app__main">{props.children}</main>
     </div>

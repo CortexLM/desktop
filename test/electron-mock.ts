@@ -58,9 +58,12 @@ export const appMock = {
   getAppPath: vi.fn(() => '/app/cortex-ide'),
   on: vi.fn(() => appMock),
   once: vi.fn(() => appMock),
+  removeListener: vi.fn(() => appMock),
   whenReady: vi.fn(async () => undefined),
   quit: vi.fn(() => undefined),
   isPackaged: false,
+  setAsDefaultProtocolClient: vi.fn(() => true),
+  requestSingleInstanceLock: vi.fn(() => true),
 };
 
 export const dialogMock = {
@@ -143,6 +146,9 @@ class BrowserWindowMock {
   on = vi.fn(() => this);
   show = vi.fn(() => {});
   close = vi.fn(() => {});
+  focus = vi.fn(() => {});
+  restore = vi.fn(() => {});
+  isMinimized = vi.fn(() => false);
   isDestroyed = vi.fn(() => false);
 }
 

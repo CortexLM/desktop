@@ -20,3 +20,4 @@ export {
   WorkspaceSetupRoute,
 } from './routes/flow-routes.tsx';
 export { SignInRoute, DeviceCodeRoute } from './routes/auth-routes.tsx';
+export { WelcomeRoute } from './routes/welcome-route.tsx';

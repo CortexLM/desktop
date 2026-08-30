@@ -5,6 +5,7 @@ import type { Capabilities, RuntimeKind } from '@cortex-ide/cortex-api';
 
 import { PageBody } from '../../shell/app-shell.tsx';
 import { Checklist, type ChecklistStep } from './checklist.tsx';
+import { CodeEmptyHome } from './code-empty-home.tsx';
 import { RecentSessions, type RecentSessionRow } from './recent-sessions.tsx';
 import { HarnessBanner } from '../code/harness-banner.tsx';
 import type { HarnessStatus } from '../../state/harness.ts';
@@ -56,7 +57,7 @@ export interface HomeScreenProps {
 const RUNTIME_LABELS: Record<RuntimeKind, string> = {
   local: 'This PC',
   cloud: 'Cloud',
-  ssh: 'SSH server',
+  ssh: 'SSH',
 };
 
 const RUNTIME_ICONS: Record<RuntimeKind, ComposerControl['icon']> = {
@@ -134,65 +135,138 @@ function CodeMode(props: HomeScreenProps): JSX.Element {
 export function HomeScreen(props: HomeScreenProps): JSX.Element {
   const [checklistDismissed, setChecklistDismissed] = createSignal(false);
   const blocked = () => props.limit?.kind === 'reached';
+  const controls = () => draftControls(props);
+  const empty = () => props.recentSessions.length === 0;
 
   return (
     <PageBody width="centred">
-      <div class="cx-home">
-        <h1 class="cx-home__greeting">{props.greeting}</h1>
-        <Show when={props.harness}>
-          {(status) => (
-            <HarnessBanner
-              status={status()}
-              remoteHost={props.remoteHost}
-              onRemoteHostChange={props.onRemoteHostChange}
-            />
-          )}
-        </Show>
-        <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
-        <HomeComposer props={props} blocked={blocked()} />
-        <Show when={checklistDismissed() ? undefined : props.checklist}>
-          {(checklist) => (
-            <Checklist
-              title={checklist().title}
-              steps={checklist().steps}
-              onDismiss={() => setChecklistDismissed(true)}
-            />
-          )}
-        </Show>
-        <Show when={props.recentSessions.length > 0}>
-          <RecentSessions
-            rows={props.recentSessions}
-            onOpen={props.onOpenSession}
-            onViewAll={props.onViewAllSessions}
+      <Show
+        when={empty()}
+        fallback={
+          <PopulatedHome
+            {...props}
+            checklistDismissed={checklistDismissed}
+            setChecklistDismissed={setChecklistDismissed}
+            blocked={blocked}
+            controls={controls}
           />
-        </Show>
-      </div>
+        }
+      >
+        <EmptyHomeFrame
+          harness={props.harness}
+          remoteHost={props.remoteHost}
+          onRemoteHostChange={props.onRemoteHostChange}
+          capabilities={props.capabilities}
+          draft={props.draft}
+          onDraftChange={props.onDraftChange}
+          onStart={props.onStart}
+        />
+      </Show>
     </PageBody>
   );
 }
 
-function HomeComposer(props: { props: HomeScreenProps; blocked: boolean }): JSX.Element {
-  const screen = () => props.props;
+function EmptyHomeFrame(
+  props: Pick<
+    HomeScreenProps,
+    | 'harness'
+    | 'remoteHost'
+    | 'onRemoteHostChange'
+    | 'capabilities'
+    | 'draft'
+    | 'onDraftChange'
+    | 'onStart'
+  >,
+): JSX.Element {
   return (
-    <div class="cx-home__composer">
-      <Composer
-        value={screen().draft.prompt}
-        onValueChange={(prompt) => screen().onDraftChange({ ...screen().draft, prompt })}
-        onSubmit={() => screen().onStart(screen().draft)}
-        placeholder="Describe a task, or paste an issue link"
-        controls={draftControls(screen())}
-        leading={<CodeMode {...screen()} />}
-        modelLabel={screen().draft.model ?? 'Choose a model'}
-        onPickModel={screen().onPickModel}
-        onAttach={screen().onAttach}
-        onDictate={screen().onDictate}
-        disabled={props.blocked}
-        disabledReason={props.blocked ? screen().limit?.message : undefined}
+    <>
+      <Show when={props.harness}>
+        {(status) => (
+          <HarnessBanner
+            status={status()}
+            remoteHost={props.remoteHost}
+            onRemoteHostChange={props.onRemoteHostChange}
+          />
+        )}
+      </Show>
+      <CodeEmptyHome
+        capabilities={props.capabilities}
+        draft={props.draft}
+        onDraftChange={props.onDraftChange}
+        onStart={props.onStart}
       />
+    </>
+  );
+}
+
+function PopulatedHome(
+  props: HomeScreenProps & {
+    checklistDismissed: () => boolean;
+    setChecklistDismissed: (value: boolean) => void;
+    blocked: () => boolean;
+    controls: () => ComposerControl[];
+  },
+): JSX.Element {
+  return (
+    <div class="cx-home">
+      <h1 class="cx-home__greeting">{props.greeting}</h1>
+
+      <Show when={props.harness}>
+        {(status) => (
+          <HarnessBanner
+            status={status()}
+            remoteHost={props.remoteHost}
+            onRemoteHostChange={props.onRemoteHostChange}
+          />
+        )}
+      </Show>
+
+      <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
+
+      <div class="cx-home__composer">
+        <Composer
+          value={props.draft.prompt}
+          onValueChange={(prompt) => props.onDraftChange({ ...props.draft, prompt })}
+          onSubmit={() => props.onStart(props.draft)}
+          placeholder="Describe a task, or paste an issue link"
+          controls={props.controls()}
+          leading={<CodeMode {...props} />}
+          modelLabel={props.draft.model ?? 'Choose a model'}
+          onPickModel={props.onPickModel}
+          onAttach={props.onAttach}
+          onDictate={props.onDictate}
+          disabled={props.blocked()}
+          disabledReason={props.blocked() ? props.limit?.message : undefined}
+        />
+      </div>
+
+      <Show when={props.checklistDismissed() ? undefined : props.checklist}>
+        {(checklist) => (
+          <Checklist
+            title={checklist().title}
+            steps={checklist().steps}
+            onDismiss={() => props.setChecklistDismissed(true)}
+          />
+        )}
+      </Show>
+
+      <Show when={props.recentSessions.length > 0}>
+        <RecentSessions
+          rows={props.recentSessions}
+          onOpen={props.onOpenSession}
+          onViewAll={props.onViewAllSessions}
+        />
+      </Show>
     </div>
   );
 }
 
+/**
+ * The usage warning and limit-reached notice.
+ *
+ * `role="alert"` for a reached limit and `role="status"` for a warning: the first is
+ * blocking and worth interrupting for, the second is information the user can act on later.
+ */
 function LimitBanner(props: { limit: LimitNotice }): JSX.Element {
   const reached = () => props.limit.kind === 'reached';
 

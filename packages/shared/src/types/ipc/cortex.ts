@@ -120,6 +120,7 @@ export interface CortexProductResponse {
   bodyText: string;
 }
 
+/** Google or GitHub in the system browser. No URL from the renderer. */
 export interface CortexBrowserLoginRequest {
   provider: 'google' | 'github';
 }

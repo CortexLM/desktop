@@ -105,6 +105,17 @@ function SshForm(props: {
   );
 }
 
+function ThisPcRow(): JSX.Element {
+  return (
+    <div class="cx-product-row" data-host="this-pc">
+      <div>
+        <div class="cx-product-row__title">This PC</div>
+        <p class="cx-product-row__meta">The Cortex app on this machine. Ready without an account.</p>
+      </div>
+    </div>
+  );
+}
+
 function PairedHosts(props: RuntimesScreenProps): JSX.Element {
   return (
     <>
@@ -205,13 +216,17 @@ export function RuntimesScreen(props: RuntimesScreenProps): JSX.Element {
         }
       />
       <PageBody width="list">
+        <h3 class="cx-product-section">This machine</h3>
+        <div class="cx-product-list">
+          <ThisPcRow />
+        </div>
         <Show
           when={props.signedIn}
           fallback={
             <HonestState
               kind="signed-out"
-              title="Runtimes need a Cortex account"
-              body="A paired machine is registered against your account, so Cortex knows where to send a run."
+              title="Cloud and SSH need a Cortex account"
+              body="This PC is ready now. Pairing a machine or adding a server is registered against your account."
               actionLabel="Sign in"
               onAction={props.onSignIn}
             />

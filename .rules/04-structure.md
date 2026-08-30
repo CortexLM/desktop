@@ -65,6 +65,7 @@ one needs a reviewer to agree in the PR:
 | `cortex.inbox.v1` | `state/inbox.ts` | Locally posted notifications |
 | `cortex.bots.cache.v2` | `state/bots.ts` | Cache of the last successful list, reconciled on open |
 | `cortex.harness.remote-host` | `state/harness.ts` | A host URL this device connects to |
+| `cortex.welcome-seen` | `screens/welcome/welcome-screen.tsx` | Whether this device has dismissed the first-launch splash |
 
 ### No fake rosters
 

@@ -41,7 +41,8 @@ in at all, and Settings and Automations were permanently read-only.
 
 - Local Code harness (tools, PTY, Git on this disk).
 - OS keychain for provider keys.
-- Custom window chrome (`TitleBar`) and `windowControls`.
+- Custom window chrome (`TitleBar`) with Chat | Code, and `windowControls`.
+- `cortex://` protocol and the HTTPS bridge at `https://cortex.foundation/desktop/open`.
 - SQLite conversation and session databases.
 - Electron `Notification`.
 - Opening a local folder.
@@ -72,9 +73,10 @@ and written through `packages/cortex-api`. They used to be `localStorage` signal
 which reads as working and is not: a job that only fires while a tab is open has not
 been scheduled, and a library one cleared cache deletes was never saved.
 
-`localStorage` now holds exactly three things, none of them a source of truth: the
-theme, the notification inbox, and the Bot mascot **list** cache (reconciled on open;
-writes never go to it).
+`localStorage` now holds device preferences and caches, none of them a source of
+truth: the theme, the notification inbox, the Bot mascot **list** cache (reconciled
+on open; writes never go to it), the optional remote-host URL, and whether this
+device has seen the first-launch splash (`cortex.welcome-seen`).
 
 Each remote list carries a lifecycle (`state/remote-collection.ts`), because getting
 it wrong is what makes a broken screen look empty:
