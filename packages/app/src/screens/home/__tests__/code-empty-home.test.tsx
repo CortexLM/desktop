@@ -39,11 +39,17 @@ describe('Code empty home', () => {
   });
 
   it('starts a session on This PC with a real starter prompt', () => {
-    const { onStart } = renderEmpty();
+    const { onStart, onDraftChange } = renderEmpty();
 
     fireEvent.click(screen.getByRole('button', { name: 'Start a session' }));
 
     expect(onStart).toHaveBeenCalledWith(
+      expect.objectContaining({
+        runtime: 'local',
+        prompt: 'Look around this workspace and summarise the layout.',
+      }),
+    );
+    expect(onDraftChange).toHaveBeenCalledWith(
       expect.objectContaining({
         runtime: 'local',
         prompt: 'Look around this workspace and summarise the layout.',

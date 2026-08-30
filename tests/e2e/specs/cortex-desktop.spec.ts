@@ -68,8 +68,10 @@ async function startSessionFromEmptyHome(
   await electronApp.evaluate(async ({ dialog }, path) => {
     dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [path] });
   }, folder);
-  await page.getByRole('button', { name: 'Start a session' }).click();
-  await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
+  const cta = page.getByRole('main').getByRole('button', { name: 'Start a session' });
+  await expect(cta).toBeEnabled();
+  await cta.click();
+  await expect(page).toHaveURL(/#\/code\/sessions\/session_/, { timeout: 20_000 });
 }
 
 test.describe('the app Electron loads', () => {
@@ -379,6 +381,9 @@ test.describe('routing from a file:// origin', () => {
 
 test.describe('runs', () => {
   test('starts one, records it, and lists it', async ({ page, electronApp }) => {
+    // No provider is configured in a fresh userData, and that is the case worth
+    // covering: the old path threw out of `start`, surfaced a raw error and recorded
+    // nothing, so the user had a toast to re-read and no trace of the attempt.
     await startSessionFromEmptyHome(page, electronApp);
     // Lands on the run's own screen, which means the id existed before navigation.
     await expect(page).toHaveURL(/#\/code\/sessions\/session_/);

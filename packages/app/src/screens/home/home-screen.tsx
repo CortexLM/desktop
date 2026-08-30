@@ -160,6 +160,7 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
           draft={props.draft}
           onDraftChange={props.onDraftChange}
           onStart={props.onStart}
+          limit={props.limit}
         />
       </Show>
     </PageBody>
@@ -176,6 +177,7 @@ function EmptyHomeFrame(
     | 'draft'
     | 'onDraftChange'
     | 'onStart'
+    | 'limit'
   >,
 ): JSX.Element {
   return (
@@ -189,6 +191,7 @@ function EmptyHomeFrame(
           />
         )}
       </Show>
+      <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
       <CodeEmptyHome
         capabilities={props.capabilities}
         draft={props.draft}

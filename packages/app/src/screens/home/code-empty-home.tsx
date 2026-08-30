@@ -56,7 +56,9 @@ export function CodeEmptyHome(props: CodeEmptyHomeProps): JSX.Element {
 
   const start = () => {
     const prompt = props.draft.prompt.trim() || copy['code.empty.starter'];
-    props.onStart({ ...props.draft, prompt });
+    const next = { ...props.draft, prompt };
+    props.onDraftChange(next);
+    props.onStart(next);
   };
 
   return (

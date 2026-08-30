@@ -286,4 +286,21 @@ describe('Home recent sessions', () => {
     expect(container.querySelector('.cx-recent')).toBeNull();
     expect(screen.getByRole('heading', { name: 'Ship features, not lines.' })).toBeInTheDocument();
   });
+
+  it('starts from the empty CTA and shows a failed start next to it', () => {
+    const { onStart } = renderHome({
+      recentSessions: [],
+      limit: { kind: 'reached', message: 'No model is configured' },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Start a session' }));
+
+    expect(onStart).toHaveBeenCalledWith(
+      expect.objectContaining({
+        runtime: 'local',
+        prompt: 'Look around this workspace and summarise the layout.',
+      }),
+    );
+    expect(screen.getByRole('alert')).toHaveTextContent('No model is configured');
+  });
 });
