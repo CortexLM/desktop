@@ -46,7 +46,7 @@ export function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
         <BrandMark width={48} height={24} />
       </span>
       <p class="cx-welcome__product">{productLine()}</p>
-      <h1 class="cx-welcome__title">Chat, Code and Bot — on this machine.</h1>
+      <h1 class="cx-welcome__title">Chat and Code — on this machine.</h1>
       <p class="cx-welcome__body">
         Sign in for Cortex models and cloud runtimes, or continue on This PC with your own
         provider keys.

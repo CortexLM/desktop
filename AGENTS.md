@@ -140,7 +140,11 @@ API keys are entered; they never appear in logs.
 ### Tests / lint / build
 - `bun run test` (Vitest) is the unit runner. Do not use `bun:test` (see `test:discovery`).
 - `bun run test:e2e` (Playwright + Electron) needs `bunx playwright install chromium`; it already runs
-  under `xvfb-run`.
+  under `xvfb-run`. The fixture clicks through `/welcome` rather than seeding
+  `cortex.welcome-seen` (`firstWindow` has already loaded, so an init script is too late).
+  Chat | Code | Bot exists in both the title bar and the sidebar — scope queries to
+  `navigation[name=Primary]`. `/code` with no history has no composer: the CTA is
+  **Start a session**, and the rail has **New session**, not Home.
 - ESLint runs via `npx eslint packages` (the root `lint` script only forwards to per-package
   scripts, one of which is a placeholder). `bun run quality:duplication` and
   `bun run quality:circular` are the extra quality probes; there is no `quality:check`.

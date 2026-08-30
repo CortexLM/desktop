@@ -1,4 +1,4 @@
-import { test as base, _electron as electron, ElectronApplication, Page } from '@playwright/test';
+import { test as base, expect, _electron as electron, ElectronApplication, Page } from '@playwright/test';
 import { createRequire } from 'node:module';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -52,6 +52,35 @@ async function closeElectronApp(app: ElectronApplication, timeoutMs = 10_000): P
     }
     await Promise.race([closed, new Promise<void>((resolve) => setTimeout(resolve, 2_000))]);
   }
+}
+
+/**
+ * Desktop first launch paints the workspace, then `ChromeShell` replaces it with
+ * `/welcome`. Seeding `cortex.welcome-seen` in an init script is too late —
+ * `firstWindow` has already loaded — and would skip the product path besides.
+ *
+ * Click through the splash when it is there. Wait a beat after the rail appears,
+ * because the rail can show before the redirect.
+ */
+async function enterWorkspace(page: Page): Promise<void> {
+  const skip = page.getByRole('button', { name: 'Continue without an account' });
+  const nav = page.getByRole('navigation', { name: 'Primary' });
+
+  await expect(skip.or(nav).first()).toBeVisible({ timeout: 30_000 });
+
+  if (!(await skip.isVisible())) {
+    try {
+      await skip.waitFor({ state: 'visible', timeout: 2_500 });
+    } catch {
+      // Already past the splash.
+    }
+  }
+
+  if (await skip.isVisible()) {
+    await skip.click();
+  }
+
+  await expect(nav).toBeVisible({ timeout: 15_000 });
 }
 
 /**
@@ -150,11 +179,11 @@ export const test = base.extend<ElectronFixtures>({
     //
     // Nothing is seeded into `localStorage` here. The retired React renderer gated its
     // workbench behind `cortex:workspace-path` and a set of onboarding flags, which this
-    // fixture had to fake before any view was reachable. The current renderer opens
-    // straight onto a usable, signed-out workspace — being usable with no account is a
-    // product requirement — so there is no gate left to unlock, and faking one would test
-    // a state the app no longer has.
+    // fixture had to fake before any view was reachable. Desktop first launch now shows
+    // `/welcome`; skip enters a usable signed-out workspace. Being usable with no account
+    // is still a product requirement — the splash is a door, not a lock.
     await page.waitForSelector('#root', { timeout: 60000 });
+    await enterWorkspace(page);
 
     await use(page);
   }

@@ -16,8 +16,9 @@ describe('Welcome splash', () => {
     expect(onSkip).toHaveBeenCalledOnce();
   });
 
-  it('names the three products in English', () => {
+  it('names Chat and Code in English', () => {
     render(() => <WelcomeScreen onGetStarted={() => {}} onSkip={() => {}} />);
-    expect(screen.getByText(/Chat, Code and Bot/)).toBeInTheDocument();
+    expect(screen.getByText(/Chat and Code/)).toBeInTheDocument();
+    expect(screen.queryByText(/Bot/)).toBeNull();
   });
 });

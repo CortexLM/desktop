@@ -115,7 +115,7 @@ function buildCommands(
   return [
     ...navigation,
     ...recent,
-    { id: 'action:new-session', label: 'New session', section: 'Actions', hint: 'Home' },
+    { id: 'action:new-session', label: 'New session', section: 'Actions', hint: 'Code' },
     { id: 'action:open-folder', label: 'Open a folder…', section: 'Actions' },
     // Notifications are reached from here rather than from a bell in the chrome row.
     // The design's icon set has no bell, and inventing a glyph would put something on
