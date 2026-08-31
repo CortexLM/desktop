@@ -1,9 +1,9 @@
 /**
- * Response fixtures captured verbatim from https://api.cortex.foundation.
+ * Response fixtures for the Cortex API client tests.
  *
- * These are real payloads, not invented ones. That matters for the two places the contract
- * is easy to get wrong: credit multipliers arrive as decimal strings, and the device
- * endpoints report "not approved yet" as an HTTP 400.
+ * Credit multipliers and the device "not approved yet" HTTP 400 match the live
+ * contract. Device-flow `user_code` / `device_code` values are invented fixtures,
+ * not live credentials.
  */
 
 export const HEALTH_RESPONSE = {
@@ -75,8 +75,9 @@ export const PROVIDERS_RESPONSE = [
 ] as const;
 
 export const DEVICE_CODE_RESPONSE = {
-  user_code: 'AWTFR9HR',
-  device_code: 'd1d93c54f2f73ac1112073976d9038cb9337ddac7126617e12b3e79a59e0b60a',
+  user_code: 'TESTCODE',
+  // Invented 64-hex matching CONTRACT.md; not a live credential.
+  device_code: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   verification_uri: 'https://auth.cortex.foundation/device',
   expires_in: 900,
   interval: 5,

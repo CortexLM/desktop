@@ -135,7 +135,9 @@ API keys are entered; they never appear in logs.
   test asserts it against the Paper manifest. `NON_APP_SCREENS` in `scripts/paper-sync.ts` holds the
   boards the app deliberately does not draw, so they stay out of the manifest, specs and baselines.
 - Design values come from `@cortex-ide/tokens`; do not hardcode colours or spacing. Regenerate with
-  the `paper:*` scripts rather than editing generated files by hand.
+  the `paper:*` scripts rather than editing generated files by hand. Paper MCP credentials come from
+  `PAPER_MCP_URL` / `PAPER_MCP_AUTH` (or a local `.cursor/mcp.json` that is gitignored). Never commit
+  that file.
 - Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
   *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).

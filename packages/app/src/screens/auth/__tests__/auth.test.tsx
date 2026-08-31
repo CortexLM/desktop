@@ -30,7 +30,7 @@ function renderDeviceCode(overrides: Partial<DeviceCodeScreenProps> = {}) {
 
   const result = render(() => (
     <DeviceCodeScreen
-      userCode="AWTFR9HR"
+      userCode="TESTCODE"
       verificationUri="https://auth.cortex.foundation/device"
       status="waiting"
       secondsRemaining={900}
@@ -146,14 +146,14 @@ describe('Device code', () => {
   it('shows the code and where to enter it', () => {
     renderDeviceCode();
 
-    expect(screen.getByText('AWTFR9HR')).toBeInTheDocument();
+    expect(screen.getByText('TESTCODE')).toBeInTheDocument();
     expect(screen.getByText('https://auth.cortex.foundation/device')).toBeInTheDocument();
   });
 
   it('spells the code out for assistive technology', () => {
     // Read letter by letter it is transcribable; read as a word it is not.
     renderDeviceCode();
-    expect(screen.getByLabelText('Device code A W T F R 9 H R')).toBeInTheDocument();
+    expect(screen.getByLabelText('Device code T E S T C O D E')).toBeInTheDocument();
   });
 
   it('formats the expiry as minutes and seconds', () => {
