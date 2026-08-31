@@ -28,6 +28,9 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+# Local MCP server config carries credentials. Keep `.cursor/rules/` tracked.
+.cursor/mcp.json
+.cursor/mcp*.json
 *.swp
 *.swo
 

@@ -30,7 +30,7 @@ function renderDeviceCode(overrides: Partial<DeviceCodeScreenProps> = {}) {
 
   const result = render(() => (
     <DeviceCodeScreen
-      userCode="AWTFR9HR"
+      userCode="TESTCODE"
       verificationUri="https://auth.cortex.foundation/device"
       status="waiting"
       secondsRemaining={900}
@@ -146,7 +146,7 @@ describe('Device code', () => {
   it('shows the code and where to enter it', () => {
     renderDeviceCode();
 
-    expect(screen.getByText('AWTFR9HR')).toBeInTheDocument();
+    expect(screen.getByText('TESTCODE')).toBeInTheDocument();
     expect(screen.getByText('https://auth.cortex.foundation/device')).toBeInTheDocument();
   });
 

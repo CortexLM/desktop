@@ -336,7 +336,7 @@ describe('device authorisation', () => {
     expect(calls[0]!.method).toBe('POST');
     expect(calls[0]!.url).toBe('https://api.cortex.foundation/auth/device/code');
     expect(calls[0]!.headers['x-api-key']).toBeUndefined();
-    expect(code.user_code).toBe('AWTFR9HR');
+    expect(code.user_code).toBe('TESTCODE');
     expect(code.verification_uri).toBe('https://auth.cortex.foundation/device');
   });
 

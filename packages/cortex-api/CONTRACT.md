@@ -64,7 +64,7 @@ This is the path the desktop app uses, and what the Auth Device Code screen show
 
 | Method | Path | Observed |
 | --- | --- | --- |
-| POST | `/auth/device/code` | `200 {"user_code":"AWTFR9HR","device_code":"<64 hex>","verification_uri":"https://auth.cortex.foundation/device","expires_in":900,"interval":5}` |
+| POST | `/auth/device/code` | `200 {"user_code":"TESTCODE","device_code":"<64 hex>","verification_uri":"https://auth.cortex.foundation/device","expires_in":900,"interval":5}` |
 | POST | `/auth/device/token` | `400 {"error":"authorization_pending","error_description":"User has not yet authorized this device"}` while the user has not approved |
 | POST | `/auth/device/token` | `400 {"error":"invalid_grant","error_description":"Invalid device code"}` for a code the service does not know |
 
