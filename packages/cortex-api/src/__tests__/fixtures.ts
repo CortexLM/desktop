@@ -76,7 +76,8 @@ export const PROVIDERS_RESPONSE = [
 
 export const DEVICE_CODE_RESPONSE = {
   user_code: 'TESTCODE',
-  device_code: 'test-device-code-not-a-real-credential',
+  // Invented 64-hex matching CONTRACT.md; not a live credential.
+  device_code: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   verification_uri: 'https://auth.cortex.foundation/device',
   expires_in: 900,
   interval: 5,
