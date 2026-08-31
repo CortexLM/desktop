@@ -153,7 +153,7 @@ describe('Device code', () => {
   it('spells the code out for assistive technology', () => {
     // Read letter by letter it is transcribable; read as a word it is not.
     renderDeviceCode();
-    expect(screen.getByLabelText('Device code A W T F R 9 H R')).toBeInTheDocument();
+    expect(screen.getByLabelText('Device code T E S T C O D E')).toBeInTheDocument();
   });
 
   it('formats the expiry as minutes and seconds', () => {
