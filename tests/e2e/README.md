@@ -70,7 +70,7 @@ disabled.
 
 | Runtime               | ABI |
 | --------------------- | --- |
-| Electron 32 (the app) | 128 |
+| Electron 42 (the app) | 146 |
 | Node 24 (vitest)      | 137 |
 
 Building for one breaks the other. Build both:

@@ -72,7 +72,7 @@ Start with [ARCHITECTURE.md](./ARCHITECTURE.md). Product docs live under [`docs/
 | Layer | Choice |
 | --- | --- |
 | UI | SolidJS, `@solidjs/router` (HashRouter), `@cortex-ide/ui` |
-| Desktop | Electron 32, better-sqlite3, node-pty |
+| Desktop | Electron 42, better-sqlite3, node-pty |
 | AI | Multi-provider registry (OpenAI, Anthropic, Grok, Ollama, OpenRouter, Cortex) |
 | Package manager | Bun |
 

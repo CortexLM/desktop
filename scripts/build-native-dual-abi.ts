@@ -7,14 +7,14 @@
  * one `NODE_MODULE_VERSION` (ABI). This repo loads it from two runtimes that do
  * not share an ABI:
  *
- *   - the Electron main process  → Electron 32 → ABI 128
+ *   - the Electron main process  → Electron 42 → ABI 146
  *   - the vitest suite (plain Node) → Node 24 → ABI 137
  *
  * A single build therefore breaks whichever runtime it was not built for. Both
  * failures are real and were both observed:
  *
  *   - built for Node, run under Electron → `app.whenReady()` logs
- *     "Database initialization failed ... requires NODE_MODULE_VERSION 128",
+ *     "Database initialization failed ... requires NODE_MODULE_VERSION 146",
  *     and every DB-backed feature (chat history, notes, plans) silently
  *     degrades.
  *   - built for Electron, run under vitest → 185 database tests fail at
@@ -61,8 +61,27 @@ function electronTarget(): { version: string; abi: string } {
     ).version
   );
 
-  // Electron's ABI map ships with the module; fall back to a known table if the
-  // helper is unavailable so this script fails loudly rather than guessing.
+  // Prefer the installed binary: Chromium major and NODE_MODULE_VERSION are
+  // not always the same number (Electron 42 is Chromium 148 / ABI 146).
+  const electronBin = join(process.cwd(), 'node_modules', '.bin', 'electron');
+  try {
+    const probed = execFileSync(
+      electronBin,
+      ['-e', 'process.stdout.write(String(process.versions.modules))'],
+      {
+        encoding: 'utf8',
+        env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      }
+    ).trim();
+    if (/^\d+$/.test(probed)) {
+      return { version, abi: probed };
+    }
+  } catch {
+    // Binary missing or not yet downloaded — fall back to the table below.
+  }
+
+  // Fallback so this script fails loudly rather than guessing an ABI.
   const major = version.split('.')[0];
   const KNOWN: Record<string, string> = {
     '30': '123',
@@ -73,6 +92,7 @@ function electronTarget(): { version: string; abi: string } {
     '35': '133',
     '36': '135',
     '37': '137',
+    '42': '146',
   };
   const abi = KNOWN[major];
   if (!abi) {

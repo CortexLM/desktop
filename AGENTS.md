@@ -39,7 +39,7 @@ Cursor picks the same entrypoint up automatically via
 
 ## Cursor Cloud specific instructions
 
-Cortex Code is a single product: an **Electron 32 desktop app** in a **Bun workspaces monorepo**
+Cortex Code is a single product: an **Electron 42 desktop app** in a **Bun workspaces monorepo**
 (`packages/main` = Electron main, `packages/preload` = the context-bridge,
 `packages/app` = **SolidJS** UI, `packages/tokens` + `packages/ui` = the design system,
 `packages/cortex-api` = the `api.cortex.foundation` client, `packages/shared`,
