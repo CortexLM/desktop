@@ -70,8 +70,8 @@ disabled.
 
 | Runtime               | ABI |
 | --------------------- | --- |
-| Electron 32 (the app) | 128 |
-| Node 24 (vitest)      | 137 |
+| Electron 39 (the app) | 140 |
+| Host Node (vitest)    | computed at `bun run build:native-dual-abi` |
 
 Building for one breaks the other. Build both:
 

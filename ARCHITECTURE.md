@@ -14,7 +14,7 @@ One application with three products behind a single shell:
 
 It ships as:
 
-- an **Electron 32** desktop app (`packages/main` + `packages/preload` + `packages/app`);
+- an **Electron 39** desktop app (`packages/main` + `packages/preload` + `packages/app`);
 - the **same UI** served as a web app (`packages/app` via Vite). The Code
   harness does not run in the browser. See [docs/web-vs-electron.md](./docs/web-vs-electron.md).
 

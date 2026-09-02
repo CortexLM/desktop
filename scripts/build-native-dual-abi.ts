@@ -7,14 +7,14 @@
  * one `NODE_MODULE_VERSION` (ABI). This repo loads it from two runtimes that do
  * not share an ABI:
  *
- *   - the Electron main process  → Electron 32 → ABI 128
- *   - the vitest suite (plain Node) → Node 24 → ABI 137
+ *   - the Electron main process  → Electron 39 → ABI 140
+ *   - the vitest suite (plain Node) → the host Node → ABI computed at build time
  *
  * A single build therefore breaks whichever runtime it was not built for. Both
  * failures are real and were both observed:
  *
  *   - built for Node, run under Electron → `app.whenReady()` logs
- *     "Database initialization failed ... requires NODE_MODULE_VERSION 128",
+ *     "Database initialization failed ... requires NODE_MODULE_VERSION <electron-abi>",
  *     and every DB-backed feature (chat history, notes, plans) silently
  *     degrades.
  *   - built for Electron, run under vitest → 185 database tests fail at
@@ -61,8 +61,22 @@ function electronTarget(): { version: string; abi: string } {
     ).version
   );
 
-  // Electron's ABI map ships with the module; fall back to a known table if the
-  // helper is unavailable so this script fails loudly rather than guessing.
+  // Prefer the ABI the installed binary actually reports. ELECTRON_RUN_AS_NODE
+  // uses the same NODE_MODULE_VERSION as the main process without a display.
+  try {
+    const electronBin = join(process.cwd(), 'node_modules', '.bin', 'electron');
+    const probed = execFileSync(electronBin, ['-e', 'process.stdout.write(process.versions.modules)'], {
+      encoding: 'utf8',
+      env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' },
+    }).trim();
+    if (/^\d+$/.test(probed)) {
+      return { version, abi: probed };
+    }
+  } catch {
+    // Fall through to the known table when the binary is not installed yet.
+  }
+
+  // Fallback when install.js has not been run. Fail loudly rather than guessing.
   const major = version.split('.')[0];
   const KNOWN: Record<string, string> = {
     '30': '123',
@@ -73,11 +87,13 @@ function electronTarget(): { version: string; abi: string } {
     '35': '133',
     '36': '135',
     '37': '137',
+    '38': '139',
+    '39': '140',
   };
   const abi = KNOWN[major];
   if (!abi) {
     throw new Error(
-      `Unknown ABI for Electron ${version}. Add major ${major} to the KNOWN table in scripts/build-native-dual-abi.ts.`
+      `Unknown ABI for Electron ${version}. Install the Electron binary and re-run, or add major ${major} to the KNOWN table in scripts/build-native-dual-abi.ts.`
     );
   }
   return { version, abi };

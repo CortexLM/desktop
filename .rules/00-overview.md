@@ -21,7 +21,7 @@ are about to touch. Every pull request carries the attestation in
 
 ## What this product is
 
-Cortex is one Electron 32 desktop app plus the same UI on the web, in a Bun
+Cortex is one Electron 39 desktop app plus the same UI on the web, in a Bun
 workspaces monorepo. One shell hosts three products — **Chat**, **Code**, and
 **Bot** — and the switcher between them lives in
 `packages/app/src/shell/sidebar.tsx`. There is exactly one renderer,

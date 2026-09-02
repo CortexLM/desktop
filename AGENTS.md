@@ -39,7 +39,7 @@ Cursor picks the same entrypoint up automatically via
 
 ## Cursor Cloud specific instructions
 
-Cortex Code is a single product: an **Electron 32 desktop app** in a **Bun workspaces monorepo**
+Cortex Code is a single product: an **Electron 39 desktop app** in a **Bun workspaces monorepo**
 (`packages/main` = Electron main, `packages/preload` = the context-bridge,
 `packages/app` = **SolidJS** UI, `packages/tokens` + `packages/ui` = the design system,
 `packages/cortex-api` = the `api.cortex.foundation` client, `packages/shared`,
@@ -67,6 +67,7 @@ native dependency version changes or `node_modules` is wiped:
 - **better-sqlite3** must load under two ABIs — Node (vitest) and Electron (the app). Build both with
   `bun run build:native-dual-abi` and check with `bun run verify:native-abi`. `@electron/rebuild` does
   NOT work here (Bun's content-addressed store); see the header comment in `scripts/build-native-dual-abi.ts`.
+  Pin 12.11.1 or newer: 11.x cannot compile against Electron 39 (V8 14.2 removed `Context::GetIsolate`).
 - **Running `electron-builder` breaks the unit suite.** It invokes `@electron/rebuild`, which
   recreates `better-sqlite3/build/Release/better_sqlite3.node` for Electron's ABI — the exact file
   `build:native-dual-abi` moves aside because it *shadows* the ABI-keyed builds. Vitest then fails
