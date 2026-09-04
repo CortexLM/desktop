@@ -36,8 +36,9 @@ This repository is governed by two things you must read before editing anything:
   fake success, never seed fake rows, never present a cache as a live answer.
 - **Secrets stay in main.** Nothing that authenticates anything reaches the
   renderer or the repository.
-- **Chat, Code and Bot are peers.** Code is a real cloud dashboard (sessions,
-  review, automations) per Paper Concept 03 — not a chat clone.
+- **Chat and Code are peers.** Code is a real cloud dashboard (sessions,
+  review, automations) per Paper Concept 03 — not a chat clone. Bot is a
+  separate desktop app, not a third tab here.
 - **Every PR carries the attestation** in
   [`.github/pull_request_template.md`](mdc:.github/pull_request_template.md), and
   a PR that changes product surfaces, routes, environment, or error copy updates

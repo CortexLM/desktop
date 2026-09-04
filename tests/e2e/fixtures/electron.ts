@@ -26,6 +26,35 @@ export interface ElectronFixtures {
 }
 
 /**
+ * Close the launched Electron process without hanging the worker.
+ *
+ * Resolves as soon as Playwright's close finishes, or after `timeoutMs` plus a
+ * SIGKILL. Close errors are swallowed: a leftover process is cleaned up; a
+ * hung close would otherwise fail a test that already passed.
+ */
+async function closeElectronApp(app: ElectronApplication, timeoutMs = 10_000): Promise<void> {
+  const child = app.process();
+  const closed = app.close().then(() => 'closed' as const).catch(() => 'closed' as const);
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const outcome = await Promise.race([
+    closed,
+    new Promise<'timeout'>((resolve) => {
+      timer = setTimeout(() => resolve('timeout'), timeoutMs);
+    }),
+  ]);
+  if (timer) clearTimeout(timer);
+
+  if (outcome === 'timeout') {
+    try {
+      if (child.pid && !child.killed) child.kill('SIGKILL');
+    } catch {
+      // Already gone.
+    }
+    await Promise.race([closed, new Promise<void>((resolve) => setTimeout(resolve, 2_000))]);
+  }
+}
+
+/**
  * Removes a disposable directory created for one test.
  *
  * `maxRetries` covers the userData case: Electron has just been asked to close, and on a
@@ -103,8 +132,12 @@ export const test = base.extend<ElectronFixtures>({
 
     await use(app);
 
-    // Cleanup: close the app
-    await app.close();
+    // `page.reload()` in Electron can leave the CDP session stuck so `app.close()`
+    // never resolves. Playwright then spends the whole test timeout on fixture
+    // teardown, reports "error was not a part of any test", and fails the shard
+    // even when the assertion passed and the retry is green. Bound the close and
+    // SIGKILL if it stalls.
+    await closeElectronApp(app);
   },
 
   page: async ({ electronApp }, use) => {

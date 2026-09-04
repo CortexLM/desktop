@@ -59,7 +59,7 @@ describe('the composer draft', () => {
     setComposerDraft({
       prompt: 'Ship the release',
       runtime: 'local',
-      repo: 'cortex/agent-coding',
+      repo: 'cortex/desktop',
       branch: 'main',
     });
 
@@ -70,7 +70,7 @@ describe('the composer draft', () => {
     expect(composerDraft()).toEqual({
       prompt: 'Ship the release now',
       runtime: 'local',
-      repo: 'cortex/agent-coding',
+      repo: 'cortex/desktop',
       branch: 'main',
     });
   });
@@ -81,7 +81,7 @@ describe('resetting after a session starts', () => {
     setComposerDraft({
       prompt: 'Fix the flaky auth test',
       runtime: 'local',
-      repo: 'cortex/agent-coding',
+      repo: 'cortex/desktop',
       model: 'cortex-codex',
     });
 

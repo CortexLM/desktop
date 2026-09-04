@@ -128,13 +128,15 @@ describe('App', () => {
     expect(screen.queryByText(/ready to install/)).toBeNull();
   });
 
-  it('offers Bot as a first-class product', async () => {
-    render(() => <App initialPath="/bot" />);
+  it('does not offer Bot in the product switcher', async () => {
+    render(() => <App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'true');
-      expect(screen.getByRole('heading', { name: 'Bot' })).toBeInTheDocument();
+      expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
     });
+    expect(screen.getByRole('button', { name: 'Chat' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Code' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
   });
 
   it('opens Bot create and mascot surfaces', async () => {

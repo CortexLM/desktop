@@ -13,6 +13,15 @@ export type ScreenKind = 'route' | 'overlay' | 'state';
 
 export type Product = 'chat' | 'code' | 'bot';
 
+/**
+ * Products in this desktop shell's switcher. Cortex is Chat + Code.
+ * Bot is a separate app; `/bot` routes stay for the API client and deep links.
+ */
+export const SHELL_PRODUCTS = [
+  { id: 'chat' as const, label: 'Chat', icon: 'chat' as const },
+  { id: 'code' as const, label: 'Code', icon: 'code' as const },
+];
+
 export type RouteSource = 'paper' | 'product';
 
 export interface ScreenRoute {

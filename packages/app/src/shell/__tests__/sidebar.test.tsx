@@ -72,19 +72,19 @@ describe('Sidebar navigation', () => {
 });
 
 describe('Sidebar product switcher', () => {
-  it('offers all three products with the Code side active here', () => {
+  it('offers Chat and Code with the Code side active here', () => {
     renderSidebar();
     expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'false');
     expect(screen.getByRole('button', { name: 'Code' })).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('button', { name: 'Bot' })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
   });
 
   it('switches products', () => {
     const { onSwitchProduct } = renderSidebar();
     fireEvent.click(screen.getByRole('button', { name: 'Chat' }));
     expect(onSwitchProduct).toHaveBeenCalledWith('chat');
-    fireEvent.click(screen.getByRole('button', { name: 'Bot' }));
-    expect(onSwitchProduct).toHaveBeenCalledWith('bot');
+    fireEvent.click(screen.getByRole('button', { name: 'Code' }));
+    expect(onSwitchProduct).toHaveBeenCalledWith('code');
   });
 
   it('shows the chat sections when the Chat product is active', () => {
@@ -96,8 +96,9 @@ describe('Sidebar product switcher', () => {
     expect(screen.getByRole('button', { name: 'Plugins' })).toBeInTheDocument();
   });
 
-  it('shows Bot as a first-class product, not a locked card', () => {
+  it('keeps Bot out of the switcher even when a /bot path is active', () => {
     renderSidebar({ product: 'bot' });
+    expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
     expect(screen.getByText('New mascot')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Mascots' })).toBeInTheDocument();
   });

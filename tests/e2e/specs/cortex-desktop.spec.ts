@@ -58,24 +58,14 @@ test.describe('the app Electron loads', () => {
     await expect(page.getByRole('navigation')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Bot', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Bot', exact: true })).toHaveCount(0);
 
     // The Code product keeps the five workspace destinations.
     await openCode(page);
     await expect(page.getByRole('button', { name: 'Sessions' })).toBeVisible();
   });
 
-  test('opens Bot and Planning as real pages', async ({ page }) => {
-    await page.evaluate(() => {
-      window.location.hash = '#/bot';
-    });
-    // `exact` because the mascot list's own state is a heading that contains "Bot".
-    // With no reachable mascot service this run shows "Bot API not connected" — which
-    // is the honest answer, and only reaches the screen now that the list reacts to
-    // state arriving after the first paint instead of freezing on "No mascots".
-    await expect(page.getByRole('heading', { name: 'Bot', exact: true })).toBeVisible();
-    await expect(page.getByText(/dedicated computer/i)).toBeVisible();
-
+  test('opens Planning as a real page', async ({ page }) => {
     await page.evaluate(() => {
       window.location.hash = '#/planning';
     });

@@ -6,11 +6,13 @@ exist were removed rather than patched.
 
 ## What Cortex is
 
-One application with three products behind a single shell:
+One application with two products behind a single shell:
 
 - **Chat** — conversations, scheduled tasks, projects, library, plugins.
 - **Code** — session-first coding agent (plan, permissions, terminal, diff).
-- **Bot** — mascots, each with exactly one dedicated computer.
+
+Bot is a separate desktop app. This tree keeps Bot API clients and `/bot` routes
+for the service contract; they are not in the product switcher.
 
 It ships as:
 
@@ -44,7 +46,7 @@ reached through `packages/cortex-api`. Cloning that repository is not required.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  packages/app  (SolidJS, file:// or http://localhost:5173)  │
-│  Chat | Code | Bot shell · never holds API keys             │
+│  Chat | Code shell · never holds API keys                   │
 └───────────────────────────┬─────────────────────────────────┘
                             │  preload allowlist (window.cortex)
 ┌───────────────────────────▼─────────────────────────────────┐
