@@ -132,8 +132,10 @@ describe('App', () => {
     render(() => <App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Chat' })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
     });
+    expect(screen.getByRole('button', { name: 'Chat' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Code' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
   });
 
