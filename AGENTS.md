@@ -123,10 +123,12 @@ API keys are entered; they never appear in logs.
   `bun run quality:circular` are the extra quality probes; there is no `quality:check`.
 
 ### Product scope (do not invent a different app)
-- One shell hosts three peer products — **Chat**, **Code**, **Bot** — switched by the segmented
-  control in `packages/app/src/shell/sidebar.tsx`. Code is a real cloud dashboard (sessions,
-  review, automations, usage), never a second chat transcript. See
-  [`.rules/06-product.md`](./.rules/06-product.md), `docs/chat.md`, `docs/code.md`, `docs/bot.md`.
+- One shell hosts two peer products — **Chat** and **Code** — switched by the
+  segmented control in `packages/app/src/shell/sidebar.tsx`. Code is a real cloud
+  dashboard (sessions, review, automations, usage), never a second chat
+  transcript. Bot is a separate app (`CortexLM/bot-desktop`); this repo does not
+  put it in the switcher. See [`.rules/06-product.md`](./.rules/06-product.md),
+  `docs/chat.md`, `docs/code.md`, `docs/bot.md`.
 - The UI is pixel-matched to the Paper file *Cortex FF1 v1* (`01M0WGA7TGHQFZ2H22QFE3YZ9C`), page
   **Concept 03** (group `C3`); `design/paper/screens.json` is the generated manifest and
   `scripts/paper-sync.ts` is the sync. The routed screens are the artboards: home, sessions inbox,
@@ -147,11 +149,12 @@ API keys are entered; they never appear in logs.
   go main → keychain. `/v1/code/secrets` remains in `packages/cortex-api` for other callers; no
   screen reaches it. Bot's secret-request card (`docs/bot-runtime.md`) is a different surface
   ([`.rules/06-product.md`](./.rules/06-product.md) § 6.2.1).
-- **Bot mascots are one Kernel pebble.** Identity is a look (Meadow, Teal, Terracotta,
+- **Bot mascots are one Kernel pebble** in the leftover `/bot` screens and in
+  the dedicated Bot app. Identity is a look (Meadow, Teal, Terracotta,
   Amber, Plum, Slate), a resting face, and a ±5° tilt. Live states (idle, thinking,
   working, notify, success) are procedural SVG + CSS/WAAPI in
-  `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
-  API is the source of truth. See `docs/bot.md`.
+  `packages/app/src/screens/bot/mascot-mark.tsx`. This desktop chrome does not
+  switch to Bot. See `docs/bot.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

@@ -22,12 +22,11 @@ export function greetingFor(hour: number, name?: string): string {
 }
 
 /**
- * The apps row. Code is the working product; the rest are the roadmap, shown
- * locked with an honest reason rather than hidden or pretending to work.
+ * The apps row. Code is the other product in this shell; Planning and Projects
+ * are Chat destinations. Bot is a separate app, not a card here.
  */
 const CHAT_APPS: readonly ChatApp[] = [
   { id: 'code', title: 'Code', description: 'The Cortex agent working inside your repos.', icon: 'code' },
-  { id: 'bot', title: 'Bot', description: 'A mascot with its own dedicated computer.', icon: 'bot' },
   { id: 'planning', title: 'Planning', description: 'Recurring jobs that run on a cadence.', icon: 'clock' },
   { id: 'projects', title: 'Projects', description: 'A brief and the sources that belong to it.', icon: 'folder' },
 ];
@@ -69,7 +68,6 @@ export function ChatHomeRoute(): JSX.Element {
       apps={CHAT_APPS}
       onOpenApp={(id) => {
         if (id === 'code') navigate('/code');
-        if (id === 'bot') navigate('/bot');
         if (id === 'planning') navigate('/planning');
         if (id === 'projects') navigate('/projects');
       }}

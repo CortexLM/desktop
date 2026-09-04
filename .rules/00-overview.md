@@ -22,11 +22,11 @@ are about to touch. Every pull request carries the attestation in
 ## What this product is
 
 Cortex is one Electron 42 desktop app plus the same UI on the web, in a Bun
-workspaces monorepo. One shell hosts three products — **Chat**, **Code**, and
-**Bot** — and the switcher between them lives in
-`packages/app/src/shell/sidebar.tsx`. There is exactly one renderer,
-`packages/app`, and it is SolidJS. The live service is
-`https://api.cortex.foundation`, reached through `packages/cortex-api`.
+workspaces monorepo. One shell hosts two products — **Chat** and **Code** — and
+the switcher between them lives in `packages/app/src/shell/sidebar.tsx`. Bot is
+a separate app. There is exactly one renderer, `packages/app`, and it is
+SolidJS. The live service is `https://api.cortex.foundation`, reached through
+`packages/cortex-api`.
 
 ## Non-negotiables
 

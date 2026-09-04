@@ -1,6 +1,9 @@
 # Bot
 
-Bot is a first-class product (`/bot`), not a locked card on Chat Home.
+Bot is a separate desktop app. This repository is Cortex Chat + Code; `/bot`
+routes and the mascot API client remain here so the service contract is not
+deleted, but they are not in the product switcher, command palette, or Chat
+home cards.
 
 ## Rule
 

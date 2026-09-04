@@ -1,21 +1,23 @@
 # 06 — Product
 
-The product is **Cortex**. One shell, three products, one renderer. This file is
-the boundary between them. Anything here is locked: do not reopen it in a
+The product is **Cortex**. This desktop app is Chat + Code, one renderer. This
+file is the boundary between them. Anything here is locked: do not reopen it in a
 drive-by PR, and do not "simplify" one product into another.
 
 ## 6.1 Chat is not Code is not Bot
 
-They share the shell, the tokens, the sidebar and the theme. They do not share
-purpose, and they do not share screens.
+Chat and Code share this shell, the tokens, the sidebar and the theme. They do
+not share purpose, and they do not share screens. Bot is a separate desktop app
+(`CortexLM/bot-desktop`). This repo keeps Bot API clients and `/bot` routes so
+the service contract stays intact; they are not a third tab in the chrome.
 
 | | Chat | Code | Bot |
 | --- | --- | --- | --- |
 | Purpose | Conversation, research, planning, a library | A coding-agent cloud workbench | A persistent mascot with its own computer |
-| Paths | `/`, `/chat/:id`, `/research`, `/planning`, `/projects*`, `/library`, `/plugins`, `/settings` | everything under `/code` | everything under `/bot` |
+| Paths | `/`, `/chat/:id`, `/research`, `/planning`, `/projects*`, `/library`, `/plugins`, `/settings` | everything under `/code` | everything under `/bot` (not in this shell's switcher) |
 | Unit of work | a conversation | a **session** (repo, branch, plan, permissions, diff) | a **mascot** |
 | Shape | transcript + composer | dashboard: inbox, detail, review, automations, usage | roster + per-mascot rail |
-| Sidebar | `ChatSections` | `CodeSections` | `BotSections` |
+| Sidebar | `ChatSections` | `CodeSections` | not in this desktop chrome |
 
 The switch is by URL prefix through `productForPath()` in
 `packages/app/src/routes.ts`. Sidebar sections come from
@@ -126,11 +128,10 @@ one named value in the transcript and the composer blocks until it is answered
 question the runtime asked, not a page for managing a list. This rule does not
 touch it.
 
-## 6.3 The Bot switch sits next to Chat and Code
+## 6.3 The switcher is Chat | Code
 
-Bot is a peer product, not a mode of Chat and not a settings page. The switcher is
-a three-option segmented control in `packages/app/src/shell/sidebar.tsx`, in this
-order, with these labels:
+This desktop app's switcher is a two-option segmented control in
+`packages/app/src/shell/sidebar.tsx`, in this order, with these labels:
 
 ```tsx
 <Segmented
@@ -138,26 +139,32 @@ order, with these labels:
   label="Product"
   value={props.product}
   onChange={(id) => props.onSwitchProduct(id as Product)}
-  options={[
-    { id: 'chat', label: 'Chat', icon: 'chat' },
-    { id: 'code', label: 'Code', icon: 'code' },
-    { id: 'bot', label: 'Bot', icon: 'bot' },
-  ]}
+  options={SHELL_PRODUCTS}
 />
 ```
 
-**Bad** — Bot demoted out of the switch:
+`SHELL_PRODUCTS` is Chat then Code. Do not add Bot back to the chrome.
+
+**Bad** — Bot restored as a third tab in this app:
+
+```tsx
+options={[
+  { id: 'chat', label: 'Chat', icon: 'chat' },
+  { id: 'code', label: 'Code', icon: 'code' },
+  { id: 'bot', label: 'Bot', icon: 'bot' },
+]}
+```
+
+**Good** — Chat and Code only; Bot lives in its own app:
 
 ```tsx
 options={[
   { id: 'chat', label: 'Chat', icon: 'chat' },
   { id: 'code', label: 'Code', icon: 'code' },
 ]}
-…
-<NavItem href="/settings/bot" label="Bot (beta)" />   {/* not a peer */}
 ```
 
-Bot rules:
+Bot rules (service and leftover `/bot` screens; the dedicated Bot desktop app owns chrome):
 
 - **Exactly one computer per mascot.** Not zero, not a pool.
 - **The API is the source of truth for mascots.** `localStorage` caches the last
@@ -228,9 +235,9 @@ Connect and changed on the card afterwards. Locked behaviour:
 
 ## 6.5 Naming
 
-- The product is **Cortex**. Cortex Code, Cortex Chat, Cortex Bot are the
-  surfaces. No other assistant brand and no internal codename appears in code,
-  copy, docs, branch names, commit messages, or PR titles.
+- The product is **Cortex**. Cortex Code and Cortex Chat are this desktop app.
+  Cortex Bot is a separate app. No other assistant brand and no internal
+  codename appears in code, copy, docs, branch names, commit messages, or PR titles.
 - The domain is **`cortex.foundation`** (`api.cortex.foundation` for the service).
 - UI copy is **English**, sentence case.
 - Model providers the user brings a key for may be named in Settings, because the

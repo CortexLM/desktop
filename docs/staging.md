@@ -1,6 +1,6 @@
 # Staging
 
-`staging` is the long-lived integration branch for Chat | Code | Bot (Apache-2.0,
+`staging` is the long-lived integration branch for Chat | Code (Apache-2.0,
 web + Electron). It tracks the backend staging contract (CortexLM/backend
 `staging` / PR 36): **WS `/v1/realtime` first**, then **SSE
 `/v1/realtime/events`**, then **HTTP conversation turns**. A live 404 stays

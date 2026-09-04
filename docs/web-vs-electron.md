@@ -17,7 +17,7 @@ Every `resolve*Host()` picks in the same order:
 1. **Electron** — the preload bridge. Main holds the session and the keys.
 2. **Cloud** — a browser on an origin `liveApiBase()` allows, talking to
    `api.cortex.foundation` directly through the one `CortexApiClient` in
-   `realtime-session.ts`. Signing in here authenticates Chat, Code and Bot at once.
+   `realtime-session.ts`. Signing in here authenticates Chat and Code at once.
 3. **Detached** — the suites and the preview server. Reads answer empty, writes
    reject with a message naming the cause.
 
@@ -33,7 +33,7 @@ in at all, and Settings and Automations were permanently read-only.
 
 ## What is shared
 
-- Routes, shell, Chat | Code | Bot switcher, tokens, components.
+- Routes, shell, Chat | Code switcher, tokens, components.
 - HashRouter — required so `/code/sessions/:id` works under `file://`.
 - The connection banner (`shell/connection-banner.tsx`), on every surface.
 

@@ -28,6 +28,7 @@ app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: 'Cortex',
     // 1440x900 is the viewport every Paper artboard is drawn at, so the window
     // opens showing the layout as designed rather than a reflowed approximation.
     width: 1440,

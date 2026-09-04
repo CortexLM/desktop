@@ -1,18 +1,19 @@
 # Cortex
 
-**Chat. Code. Bot.** One product, two surfaces: a web app and an Electron desktop app.
+**Chat. Code.** One product, two surfaces: a web app and an Electron desktop app.
 
-Cortex is a local-first workspace for talking to models, running a coding agent in your repos, and giving each mascot its own computer. The same SolidJS shell runs in the browser and inside Electron. Persistence is an embedded SQLite database on desktop. There is no required cloud account for Chat or local Code.
+Cortex is a local-first workspace for talking to models and running a coding agent in your repos. The same SolidJS shell runs in the browser and inside Electron. Persistence is an embedded SQLite database on desktop. There is no required cloud account for Chat or local Code.
 
-## The three products
+Bot (mascots) is a separate desktop app, not a tab in this shell.
+
+## The two products
 
 | Product | What it is |
 | --- | --- |
 | **Chat** | General assistant. Home, conversations, scheduled tasks (Planning), projects and sources, library, plugins, settings. |
-| **Code** | Coding-agent workbench. Sessions with a plan, permissions (Allow / Always / Deny), a real terminal, and a changes diff. |
-| **Bot** | Mascots. Each mascot owns exactly one dedicated computer — never a shared VM, disk, VNC session, or recording. |
+| **Code** | Coding-agent workbench. Sessions with a plan, permissions (Allow / Always / Deny), a real terminal, and a changes diff. This PC, SSH, and Cloud Code runtimes stay here. |
 
-The product switcher in the sidebar is **Chat | Code | Bot**. Design source of truth is the Paper file *Cortex FF1 v1* (Concept 03 for Chat + Code; page D-0 for Bot).
+The product switcher in the sidebar is **Chat | Code**. Design source of truth is the Paper file *Cortex FF1 v1* (Concept 03 for Chat + Code).
 
 ## Web vs desktop
 
@@ -54,7 +55,7 @@ Optional: configure **Ollama** (`http://127.0.0.1:11434`) or a provider key in *
 
 ```
 packages/
-  app/            SolidJS UI — Chat, Code, Bot (web + Electron)
+  app/            SolidJS UI — Chat, Code (web + Electron)
   main/           Electron main: SQLite, IPC, agent loop, local harness
   preload/        Typed bridge. Allowlisted channels only.
   shared/         Types, Zod schemas, IPC channel names

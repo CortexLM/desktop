@@ -17,8 +17,8 @@ Be kind. See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 ## Setup
 
 ```bash
-git clone https://github.com/CortexLM/agent-coding.git
-cd agent-coding
+git clone https://github.com/CortexLM/desktop.git
+cd desktop
 bun install
 bun run build:native-dual-abi   # if native addons are missing
 bun run build
@@ -61,7 +61,7 @@ follow `cursor/<name>-<id>` and are managed by that workflow.
 
 Product lock (do not reopen in a drive-by PR):
 
-- One shell: Chat | Code | Bot.
+- One shell: Chat | Code. Bot is a separate app.
 - Chat sidebar order: Search, Research, Planning, Projects, Library, Plugins last.
 - Planning = scheduled tasks, not a project plan.
 - Plugin cards use official brand marks (Google Drive, Slack, GitHub, Paper).

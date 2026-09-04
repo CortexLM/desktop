@@ -2,7 +2,7 @@ import { Match, Show, Switch, type JSX } from 'solid-js';
 
 import { Icon, Segmented, useTheme } from '@cortex-ide/ui';
 
-import type { Product } from '../routes.ts';
+import { SHELL_PRODUCTS, type Product } from '../routes.ts';
 import { BotSections, ChatSections, CodeSections } from './sidebar-sections.tsx';
 import type { SidebarPlan, SidebarProps, SidebarUser } from './sidebar-types.ts';
 
@@ -126,7 +126,7 @@ function ProductSections(props: SidebarProps): JSX.Element {
 }
 
 /**
- * The 260px sidebar: bird mark, Chat | Code | Bot, then the active product.
+ * The 260px sidebar: bird mark, Chat | Code, then the active product.
  */
 export function Sidebar(props: SidebarProps): JSX.Element {
   const theme = useTheme();
@@ -139,11 +139,7 @@ export function Sidebar(props: SidebarProps): JSX.Element {
         label="Product"
         value={props.product}
         onChange={(id) => props.onSwitchProduct(id as Product)}
-        options={[
-          { id: 'chat', label: 'Chat', icon: 'chat' },
-          { id: 'code', label: 'Code', icon: 'code' },
-          { id: 'bot', label: 'Bot', icon: 'bot' },
-        ]}
+        options={SHELL_PRODUCTS}
       />
       <ProductSections {...props} />
       <div class="cx-sidebar__spacer" />

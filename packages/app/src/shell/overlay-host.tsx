@@ -85,10 +85,9 @@ function toNotifications(
 /**
  * The palette's commands.
  *
- * Built from the route table, so a destination cannot exist in the sidebar and be
- * missing here. Locked destinations appear disabled rather than absent — the same
- * reasoning as the sidebar: a hidden command is indistinguishable from one that does
- * not exist.
+ * Built from the Chat and Code route table, so a destination cannot exist in
+ * the sidebar and be missing here. Bot destinations are omitted: that product
+ * is a separate app. Locked destinations appear disabled rather than absent.
  */
 function buildCommands(
   authenticated: boolean,
@@ -96,7 +95,7 @@ function buildCommands(
   unreadCount: number,
 ): PaletteCommand[] {
   const navigation = navigableRoutes()
-    .filter((route) => route.path)
+    .filter((route) => route.path && route.product !== 'bot')
     .map((route) => ({
       id: `go:${route.slug}`,
       label: route.title,

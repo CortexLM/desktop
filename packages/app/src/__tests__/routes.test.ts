@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { navigableRoutes, paperRoutes, routeBySlug, SCREEN_ROUTES } from '../routes.ts';
+import { navigableRoutes, paperRoutes, routeBySlug, SCREEN_ROUTES, SHELL_PRODUCTS } from '../routes.ts';
 
 /**
  * Ties the route table to the design.
@@ -51,6 +51,10 @@ describe('route table against the Paper manifest', () => {
 
   it('lists each slug exactly once', () => {
     expect(new Set(routedSlugs).size).toBe(routedSlugs.length);
+  });
+
+  it('lists Chat and Code as the shell switcher products', () => {
+    expect(SHELL_PRODUCTS.map((product) => product.id)).toEqual(['chat', 'code']);
   });
 
   it('keeps Chat and Bot product destinations out of the Paper manifest check', () => {
