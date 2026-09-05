@@ -54,8 +54,7 @@ async function openCode(page: Page): Promise<void> {
 
 /**
  * Binds This PC to a temp folder (native picker is stubbed) and starts a run
- * through the session bridge. The Home composer will not start unsigned — Code
- * needs an account — so persistence and the Terminal tab go through main.
+ * through the session bridge. Unsigned This PC is allowed; Cloud and SSH are not.
  */
 async function startThisPcRun(
   electronApp: ElectronApplication,
@@ -368,17 +367,6 @@ test.describe('routing from a file:// origin', () => {
 });
 
 test.describe('runs', () => {
-  test('asks a guest to sign in instead of starting a Code session', async ({ page }) => {
-    await openCode(page);
-    await page.getByPlaceholder(/Describe a task/i).fill('Add a hello function');
-    await page.getByRole('button', { name: 'Start session' }).click();
-
-    await expect(
-      page.getByRole('heading', { name: 'Sign in to use Cortex Code and Cortex Bot' }),
-    ).toBeVisible();
-    await expect(page).toHaveURL(/#\/code$/);
-  });
-
   test('starts one, records it, and lists it', async ({ page, electronApp }) => {
     await openCode(page);
     const id = await startThisPcRun(electronApp, page, 'Add a hello function');

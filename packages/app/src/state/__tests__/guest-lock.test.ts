@@ -18,7 +18,7 @@ describe('guestBlocked', () => {
     expect(requestUpgrade).not.toHaveBeenCalled();
   });
 
-  it('raises the sign-in modal and blocks unsigned Code/Bot use', () => {
+  it('raises the sign-in modal and blocks unsigned Cloud/Bot use', () => {
     expect(guestBlocked(false)).toBe(true);
     expect(requestUpgrade).toHaveBeenCalledWith(GUEST_CODE_BOT);
   });
@@ -29,10 +29,17 @@ describe('enterProduct', () => {
     requestUpgrade.mockReset();
   });
 
-  it('still opens Code so the surface stays shown and locked', () => {
+  it('still opens Code so This PC stays usable unsigned', () => {
     const go = vi.fn();
     enterProduct('code', false, go);
     expect(go).toHaveBeenCalledWith('/code');
+    expect(requestUpgrade).not.toHaveBeenCalled();
+  });
+
+  it('modals leftover Bot create without hiding the surface', () => {
+    const go = vi.fn();
+    enterProduct('bot', false, go);
+    expect(go).toHaveBeenCalledWith('/bot');
     expect(requestUpgrade).toHaveBeenCalledWith(GUEST_CODE_BOT);
   });
 

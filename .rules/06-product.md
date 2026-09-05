@@ -84,10 +84,10 @@ Behaviour that is part of the product, not an implementation detail:
 - **A connected host is paired with a one-time code** — the service stores a hash,
   the client never does. Heartbeats carry a device token, never SSH or provider
   keys. SSH and host keys are not downloaded to the client.
-- **Signed out on desktop**, Chat works with a local or BYO provider. Code and
-  Bot stay shown and locked: starting a session or creating a Bot raises a
-  sign-in modal. Automations, Review, Usage and SSH connect are also shown and
-  locked (`01-security.md` § 1.3).
+- **Signed out on desktop**, Home / Sessions / Session detail / Settings work
+  with **This PC** or BYO providers. Automations, Review, Usage and SSH connect
+  are shown and locked (`01-security.md` § 1.3). Creating a Bot on leftover
+  `/bot` routes needs an account.
 - **This PC Code sessions** start only after the native folder picker. The
   coding agent runs against that tree via the desktop harness. Cloud and SSH
   go through the control plane and never silently run locally.

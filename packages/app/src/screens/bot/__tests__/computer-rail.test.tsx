@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ComputerRail, lockReason } from '../computer-rail.tsx';
+import { ComputerRail } from '../computer-rail.tsx';
 import type { Mascot } from '../../../state/bot-map.ts';
 
 import '../bot-teammate.css';
@@ -81,9 +81,21 @@ describe('ComputerRail', () => {
     expect(screen.queryByRole('button', { name: 'Files' })).toBeNull();
   });
 
-  it('locks This PC outside Electron and Cloud without an account', () => {
-    expect(lockReason('this_pc', true)).toMatch(/desktop app/);
-    expect(lockReason('cloud', false)).toMatch(/account/);
-    expect(lockReason('ssh', true)).toBeUndefined();
+  it('does not offer This PC or SSH as a host', () => {
+    render(() => (
+      <ComputerRail
+        mascot={mascot()}
+        hasControl={false}
+        onTakeControl={vi.fn()}
+        onRelease={vi.fn()}
+        onWake={vi.fn()}
+        onRuntime={vi.fn()}
+        onInput={vi.fn()}
+      />
+    ));
+    const text = document.body.textContent ?? '';
+    expect(text).not.toMatch(/\bThis PC\b|\bThis desktop\b/i);
+    expect(screen.queryByRole('button', { name: /^This PC$/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /^SSH$/i })).toBeNull();
   });
 });

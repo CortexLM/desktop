@@ -183,7 +183,7 @@ function WorkspaceSidebar(): JSX.Element {
       onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
       onOpenChat={(id) => navigate(`/chat/${id}`)}
       onNewChat={() => navigate('/')}
-      onNewSession={() => enterProduct('code', account.capabilities().authenticated, navigate)}
+      onNewSession={() => navigate('/code')}
       onNewMascot={() => {
         if (guestBlocked(account.capabilities().authenticated)) {
           navigate('/bot');

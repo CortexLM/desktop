@@ -28,7 +28,7 @@ export function createStartRun(options: StartRunOptions): () => Promise<void> {
   return async () => {
     const draft = composerDraft();
     if (!draft.prompt.trim() || inFlight) return;
-    if (guestBlocked(options.signedIn())) return;
+    if (draft.runtime !== 'local' && guestBlocked(options.signedIn())) return;
 
     inFlight = true;
     options.setError(undefined);

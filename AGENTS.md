@@ -151,6 +151,13 @@ API keys are entered; they never appear in logs.
   that file.
 - Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
   *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
+  Cloud, SSH, Automations, Review and Usage need a Cortex account. **This PC** Code
+  sessions still work unsigned with the user's own provider keys. Leftover `/bot`
+  screens stay shown; creating a Bot needs an account.
+- **This PC Code sessions** bind to a folder the user picks in the native OS directory dialog. The
+  coding agent runs tools against that tree in the desktop harness. There is no working-directory
+  fallback and no silent Cloud run. Cloud and SSH starts go through `POST /v1/code/sessions` and
+  fail closed if that route is missing. This PC is never a Bot host.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
 - **No Secrets page in Cortex Code.** There is no `/code/secrets` route and no Secrets screen,
   sidebar item, Home card, Settings row or command-palette entry — and no field anywhere in Code
@@ -165,22 +172,10 @@ API keys are entered; they never appear in logs.
   `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
   API is the source of truth. This desktop chrome does not switch to Bot. See
   `docs/bot.md`.
-- **This PC is Cortex Code on the desktop app.** The leftover `/bot` computer is a
-  cloud farm box. Those screens never offer This PC, This desktop, or SSH as a
-  host. SSH stays SSH, on Code. Web Code never offers This PC
-  (`docs/web-vs-electron.md`).
 - **Leftover `/bot` screens are a teammate workbench**, not a third product tab.
   Those routes keep a Bot sidebar (live roster, honest empty, Studio at
   `/bot/approvals`). Conversation: mascot name in the header, employee bubbles
   (tool dumps hidden), and a right Computer rail that is a **cloud** noVNC stream
-<<<<<<< HEAD
-  with Take control / Release. The rail is bound to the open mascot — switching
-  drops the previous stream and screenshot. Google/GitHub sign-in opens the
-  system browser and returns on `cortex://auth/callback` only when the URL
-  carries the one-time `state` issued for a login started in this app; email
-  stays on the in-app form. See
-  `docs/bot.md`, `docs/web-vs-electron.md`.
-=======
   with Take control / Release. This PC is Cortex Code only. The rail is bound to
   the open mascot — switching clears screenshot and stream before the next
   computer loads, and a failed refresh leaves the rail empty rather than the
@@ -189,7 +184,6 @@ API keys are entered; they never appear in logs.
   codes are exchanged with PKCE in main. A bare `?session=` deep-link is
   rejected. Email stays on the in-app form. See `docs/bot.md`,
   `docs/web-vs-electron.md`.
->>>>>>> 600d3b0 (fix: bind desktop login to PKCE and isolate the Bot computer rail)
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

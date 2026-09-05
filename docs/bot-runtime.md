@@ -30,9 +30,8 @@ page:
 - Take control / Release via `POST /computer/control` `{ action: take|release }`.
   Input is forwarded only while the user holds control. A live 404 is
   “backend too old”, never a fake desktop.
-- Runtime This PC / SSH / Cloud is sent on `POST /computer/lifecycle`
-  `{ action, runtime }`. This PC is locked outside the desktop app; Cloud and
-  SSH need an account.
+- The computer is a cloud farm box. Lifecycle is wake / hibernate / stop.
+  This PC and SSH are Cortex Code hosts, never Bot runtimes.
 - Polls `GET /computer/screenshot` while status is `running` if there is no stream
 - Forwards click / drag / scroll / type to `POST /computer/input` only with control
 - Shell and files stay on the dedicated Computer page as secondary details, not

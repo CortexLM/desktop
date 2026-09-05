@@ -71,8 +71,9 @@ SSH and host keys are not downloaded to the client.
 
 ## Honest states
 
-Signed-out: Chat works with local / BYO providers. Code and Bot stay shown and
-locked — starting a session or creating a Bot raises a sign-in modal.
+Signed-out: Chat and **This PC** Code work with local / BYO providers.
+Automations, Review, Usage, Cloud and SSH stay shown and locked. Leftover
+`/bot` create needs an account.
 
 This PC: the native folder picker is required. Cancel leaves no session and
 does not invent a path. Cloud and SSH fail closed if the control-plane route
@@ -84,7 +85,7 @@ account, or offers connecting a remote Cortex Code host.
 ## This PC
 
 On desktop, **This PC** is a session bound to a directory on the user's
-machine.
+machine. It is not a Cortex Bot host. SSH chrome stays SSH.
 
 1. The user picks a folder in the OS directory dialog (`openDirectory`).
 2. That folder becomes the workspace. The renderer never sees the absolute

@@ -240,14 +240,7 @@ export function computerLabel(computer: BotComputer): string {
   if (computer.status === 'hibernated' || computer.status === 'stopped') return 'Asleep';
   if (computer.status === 'waking') return 'Waking';
   if (computer.status === 'offline' || computer.status === 'wake-failed') return 'Offline';
-  return runtimeLabel(computer.runtime);
-}
-
-export function runtimeLabel(runtime?: ComputerRuntime): string {
-  if (runtime === 'this_pc') return 'This PC';
-  if (runtime === 'ssh') return 'SSH';
-  if (runtime === 'cloud') return 'Cloud';
-  return 'Dedicated computer';
+  return 'Cloud computer';
 }
 
 function asLook(value?: string): MascotLook {

@@ -1,6 +1,7 @@
-import { For, Match, Switch, type JSX, Show } from 'solid-js';
+import { Match, Switch, type JSX, Show } from 'solid-js';
 
 import { Button } from '@cortex-ide/ui';
+import { farmOfflineCopy, type ComputerInput } from '@cortex-ide/cortex-api';
 
 import { HonestState } from '../shared/honest-state.tsx';
 import { ComputerDesktop } from './computer-desktop.tsx';
@@ -11,14 +12,6 @@ import {
   type ComputerRuntime,
   type Mascot,
 } from '../../state/bot-map.ts';
-import type { ComputerInput } from '@cortex-ide/cortex-api';
-import { hasElectronHost } from '../../state/electron-bridge.ts';
-
-const RUNTIMES: readonly { id: ComputerRuntime; label: string }[] = [
-  { id: 'this_pc', label: 'This PC' },
-  { id: 'ssh', label: 'SSH' },
-  { id: 'cloud', label: 'Cloud' },
-];
 
 type ComputerRailProps = {
   mascot: Mascot;
@@ -30,7 +23,7 @@ type ComputerRailProps = {
   onTakeControl: () => void;
   onRelease: () => void;
   onWake: () => void;
-  onRuntime: (runtime: ComputerRuntime) => void;
+  onRuntime?: (runtime: ComputerRuntime) => void;
   onInput: (input: ComputerInput) => void;
 };
 
@@ -66,11 +59,6 @@ export function ComputerRail(props: ComputerRailProps): JSX.Element {
         missing={missing()}
         onTakeControl={props.onTakeControl}
         onRelease={props.onRelease}
-      />
-      <RuntimePicker
-        current={props.mascot.computer.runtime}
-        signedIn={props.signedIn === true}
-        onRuntime={props.onRuntime}
       />
     </aside>
   );
@@ -121,17 +109,18 @@ function MissingComputer(): JSX.Element {
     <HonestState
       kind="empty"
       title="No computer yet"
-      body="Cortex has not provisioned a machine for this mascot."
+      body="Cortex has not provisioned a cloud computer for this mascot."
     />
   );
 }
 
 function OfflineComputer(props: { onWake: () => void }): JSX.Element {
+  const copy = farmOfflineCopy();
   return (
     <HonestState
       kind="error"
-      title="Computer offline"
-      body="The farm or local daemon is not connected. This is not a live desktop."
+      title={copy.title}
+      body={copy.body}
       actionLabel="Retry wake"
       onAction={props.onWake}
     />
@@ -174,43 +163,3 @@ function RailActions(props: {
   );
 }
 
-function RuntimePicker(props: {
-  current?: ComputerRuntime;
-  signedIn: boolean;
-  onRuntime: (runtime: ComputerRuntime) => void;
-}): JSX.Element {
-  return (
-    <div class="cx-runtime-picker" role="group" aria-label="Runtime">
-      <For each={RUNTIMES}>
-        {(runtime) => {
-          const locked = lockReason(runtime.id, props.signedIn);
-          return (
-            <button
-              type="button"
-              class="cx-runtime-picker__option"
-              aria-pressed={props.current === runtime.id}
-              aria-disabled={Boolean(locked)}
-              title={locked}
-              disabled={Boolean(locked)}
-              onClick={() => {
-                if (!locked) props.onRuntime(runtime.id);
-              }}
-            >
-              {runtime.label}
-            </button>
-          );
-        }}
-      </For>
-    </div>
-  );
-}
-
-export function lockReason(runtime: ComputerRuntime, signedIn: boolean): string | undefined {
-  if (runtime === 'this_pc' && !hasElectronHost()) {
-    return 'This PC runs in the Cortex desktop app.';
-  }
-  if ((runtime === 'ssh' || runtime === 'cloud') && !signedIn) {
-    return 'Cloud and SSH need a Cortex account.';
-  }
-  return undefined;
-}

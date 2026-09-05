@@ -153,7 +153,8 @@ describe('BotConversationScreen', () => {
       />
     ));
     expect(screen.getByRole('heading', { name: 'Scout' })).toBeInTheDocument();
-    expect(screen.getAllByText('Cloud').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Cloud computer').length).toBeGreaterThan(0);
+    expect(screen.queryByText(/This PC/)).toBeNull();
     expect(screen.queryByText(/Running/)).toBeNull();
     expect(screen.queryByText(/View PR/)).toBeNull();
     expect(screen.getByText('First.')).toBeInTheDocument();

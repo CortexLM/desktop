@@ -60,16 +60,16 @@ Studio: Routines, Memory, Approvals.
 ## Conversation
 
 The header is the **mascot name**. The subtitle is the computer's honest state
-(Asleep, Waking, Offline, This PC / SSH / Cloud, Dedicated computer). It never
-says Running, never View PR, and never a user's first name.
+(Asleep, Waking, Offline, Cloud computer). It never says Running, never View PR,
+never a user's first name, and never This PC or SSH.
 
 Messages are employee-style bubbles. A SendToUser turn with blank lines becomes
 more than one bubble. `tool_call` / `tool_result` stay off the thread.
 
 The right rail is **Computer**: a noVNC stream when the ticket includes an
-https `stream_url`, otherwise a screenshot. Take control / Release. Runtime
-This PC (desktop app), SSH, and Cloud (account). This is not a Terminal / Files
-tab navbar. Opening another mascot drops the previous computer's stream and
+https `stream_url`, otherwise a screenshot. Take control / Release. The
+computer is a cloud farm box — not This PC, not SSH. This is not a Terminal /
+Files tab navbar. Opening another mascot drops the previous computer's stream and
 screenshot immediately; the rail stays empty until this mascot's computer
 answers, including when that refresh fails. The rail never falls back to a
 stream URL stored on a different mascot.

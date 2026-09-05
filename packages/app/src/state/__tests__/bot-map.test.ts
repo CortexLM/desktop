@@ -91,7 +91,7 @@ describe('mapComputer', () => {
     expect(computer.streamUrl).toBe('https://farm.example/vnc');
     expect(computer.controlHolder).toBe('user');
     expect(computer.runtime).toBe('this_pc');
-    expect(computerLabel(computer)).toBe('This PC');
+    expect(computerLabel(computer)).toBe('Cloud computer');
   });
 
   it('treats mock and offline boxes as offline', () => {
