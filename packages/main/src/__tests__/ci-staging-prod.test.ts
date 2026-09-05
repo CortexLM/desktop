@@ -51,4 +51,10 @@ describe('CodeBuild runner labels for long Electron dist', () => {
     expect(runbook).toContain('Do not touch CortexLM/cortex');
     expect(runbook).toContain('git tag vX.Y.Z');
   });
+
+  it('does not pass a workflow_dispatch SHA into actions/checkout ref', () => {
+    expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*needs\.verify-sha\.outputs\.sha/);
+    expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*github\.event\.inputs\.sha/);
+    expect(publishStaging).toContain('git switch --detach');
+  });
 });

@@ -82,6 +82,9 @@ describe('resolveUpdateFeedUrl', () => {
     expect(publishStaging).toContain(STAGING_UPDATE_FEED_URL);
     expect(publishStaging).toContain('/staging');
     expect(publishStaging).toContain('merge-base --is-ancestor');
+    expect(publishStaging).toContain('git switch --detach');
+    expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*needs\.verify-sha\.outputs\.sha/);
+    expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*github\.event\.inputs\.sha/);
     expect(publishStaging).toContain("environment: staging");
     expect(publishStaging).not.toContain('environment: production');
     expect(publishStaging).toContain("bucket-check: cortex-releases");

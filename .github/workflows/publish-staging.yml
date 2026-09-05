@@ -30,8 +30,6 @@ jobs:
   verify-sha:
     name: SHA is on origin/main
     runs-on: ubuntu-latest
-    outputs:
-      sha: ${{ steps.check.outputs.sha }}
     steps:
       - name: Checkout main for ancestry
         uses: actions/checkout@v4
@@ -41,7 +39,6 @@ jobs:
           persist-credentials: false
 
       - name: Reject anything that is not a main commit
-        id: check
         env:
           INPUT_SHA: ${{ github.event.inputs.sha }}
         run: |
@@ -56,7 +53,6 @@ jobs:
             echo "$SHA is not an ancestor of origin/main"
             exit 1
           fi
-          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
 
   dist-linux:
     name: Linux Electron dist (CodeBuild)
@@ -65,14 +61,35 @@ jobs:
     timeout-minutes: 180
     environment: staging
     steps:
-      - name: Checkout the requested main SHA
+      # Checkout github.sha (the dispatched workflow ref), never the input SHA.
+      # Passing github.event.inputs.sha / job output into actions/checkout `ref`
+      # is the CodeQL cache-poisoning sink on a default-branch workflow_dispatch.
+      - name: Checkout the workflow ref
         uses: actions/checkout@v4
         with:
-          ref: ${{ needs.verify-sha.outputs.sha }}
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Linux native toolchain
         uses: ./.github/actions/linux-native-toolchain
+
+      - name: Detach at a commit that is on origin/main
+        env:
+          INPUT_SHA: ${{ github.event.inputs.sha }}
+        run: |
+          set -euo pipefail
+          SHA="$(printf '%s' "${INPUT_SHA}" | tr 'A-F' 'a-f')"
+          if [[ ! "$SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "sha must be a full 40-character commit id"
+            exit 1
+          fi
+          git fetch --filter=blob:none origin main
+          git fetch --filter=blob:none origin "$SHA"
+          if ! git merge-base --is-ancestor "$SHA" origin/main; then
+            echo "$SHA is not an ancestor of origin/main"
+            exit 1
+          fi
+          git switch --detach "$SHA"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -108,7 +125,7 @@ jobs:
 
   publish-feed:
     name: Publish staging update feed
-    needs: [verify-sha, dist-linux]
+    needs: dist-linux
     if: ${{ github.event.inputs.publish_feed == 'true' && vars.STAGING_FEED_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     environment: staging

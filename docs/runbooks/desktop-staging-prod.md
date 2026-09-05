@@ -98,6 +98,9 @@ role in the environment. Do not run `aws sso login`.
 `.github/workflows/publish-staging.yml` is `workflow_dispatch` only:
 
 - Input `sha` — full 40-character commit that **must be on `origin/main`**.
+  `actions/checkout` always uses the workflow ref (`github.sha`); the job then
+  `git switch --detach` to that SHA after the ancestry check (so a
+  `workflow_dispatch` input never becomes `checkout.ref`).
 - Input `publish_feed` — upload to `software.cortex.foundation/staging/` after
   a green Linux dist (still gated on `vars.STAGING_FEED_ENABLED == 'true'`).
 
