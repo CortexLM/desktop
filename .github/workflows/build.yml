@@ -189,10 +189,12 @@ jobs:
           RCLONE_SHA256: '7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad'
         run: |
           set -euo pipefail
-          curl -fsSL -o rclone.zip \
-            "https://github.com/rclone/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-amd64.zip"
-          echo "${RCLONE_SHA256}  rclone.zip" | sha256sum -c --strict
-          unzip -q rclone.zip
+          ARCHIVE="rclone-v${RCLONE_VERSION}-linux-amd64.zip"
+          curl -fsSL -o "${ARCHIVE}" \
+            "https://downloads.rclone.org/v${RCLONE_VERSION}/${ARCHIVE}"
+          printf '%s  %s\n' "${RCLONE_SHA256}" "${ARCHIVE}" > "${ARCHIVE}.sha256"
+          sha256sum -c --strict "${ARCHIVE}.sha256"
+          unzip -q "${ARCHIVE}"
           sudo install -m 755 "rclone-v${RCLONE_VERSION}-linux-amd64/rclone" /usr/local/bin/rclone
           rclone version
 

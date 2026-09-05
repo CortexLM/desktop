@@ -42,6 +42,10 @@ describe('resolveUpdateFeedUrl', () => {
     expect(buildWorkflow).toContain('RCLONE_SHA256');
     expect(buildWorkflow).toContain('7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad');
     expect(buildWorkflow).toContain('sha256sum -c --strict');
+    const install = buildWorkflow.split('- name: Install rclone')[1]?.split('- name:')[0] ?? '';
+    expect(install).toContain('downloads.rclone.org');
+    expect(install.indexOf('sha256sum -c --strict')).toBeGreaterThan(0);
+    expect(install.indexOf('sha256sum -c --strict')).toBeLessThan(install.indexOf('unzip'));
   });
 
   it('keeps staging from writing the production R2 feed', () => {
