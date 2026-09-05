@@ -172,6 +172,10 @@ API keys are entered; they never appear in logs.
   `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
   API is the source of truth. This desktop chrome does not switch to Bot. See
   `docs/bot.md`.
+- **This PC is Cortex Code on the desktop app.** The leftover `/bot` computer is a
+  cloud farm box. Those screens never offer This PC, This desktop, or SSH as a
+  host. SSH stays SSH, on Code. Web Code never offers This PC
+  (`docs/web-vs-electron.md`).
 - **Leftover `/bot` screens are a teammate workbench**, not a third product tab.
   Those routes keep a Bot sidebar (live roster, honest empty, Studio at
   `/bot/approvals`). Conversation: mascot name in the header, employee bubbles
