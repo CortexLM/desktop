@@ -53,12 +53,17 @@ plugins is “Composio is not configured”. See [bot-runtime.md](./bot-runtime.
 
 Push to `staging` runs `.github/workflows/staging.yml`: build web + Electron
 artifacts, upload them, GitHub Environment `staging`, OIDC (`id-token: write`).
-PRs into `staging` run `.github/workflows/test-suite.yml` (same unit / IPC /
-e2e jobs as `main`). Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is
-off while the staging AWS account is CLOSED. No AWS keys in git.
+Linux Electron packaging uses a CodeBuild runner
+(`codebuild-cortex-gha-arm64-…` or `x64`). PRs into `staging` run
+`.github/workflows/test-suite.yml` (same unit / IPC / e2e jobs as `main`).
+Deploy is gated on `vars.STAGING_DEPLOY_ENABLED` and is off while the staging
+AWS account is CLOSED. No AWS keys in git.
 Staging must not publish the production desktop update feed
 (`releases.cortex.foundation` / R2 `cortex-releases`); that path is tag-only
-in `.github/workflows/build.yml` `publish-feed`. See [releases.md](./releases.md).
+in `.github/workflows/build.yml` `publish-feed`. The staging channel is
+`https://software.cortex.foundation/staging/`, from
+`publish-staging.yml`. See [releases.md](./releases.md) and
+[runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md).
 
 ## Linux Bot box
 

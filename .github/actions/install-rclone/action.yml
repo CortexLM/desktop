@@ -1,0 +1,27 @@
+name: Install rclone
+description: >
+  Download rclone linux-amd64 from downloads.rclone.org and install it only
+  after sha256sum -c --strict matches the SHA-256 pinned in this action.
+  A mismatch fails before unzip.
+
+runs:
+  using: composite
+  steps:
+    - name: Download and verify rclone
+      shell: bash
+      env:
+        RCLONE_VERSION: '1.70.3'
+        # SHA-256 of rclone-v1.70.3-linux-amd64.zip from
+        # https://downloads.rclone.org/v1.70.3/SHA256SUMS — pinned here.
+        # Do not trust a checksum downloaded with the archive.
+        RCLONE_SHA256: '7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad'
+      run: |
+        set -euo pipefail
+        ARCHIVE="rclone-v${RCLONE_VERSION}-linux-amd64.zip"
+        curl -fsSL -o "${ARCHIVE}" \
+          "https://downloads.rclone.org/v${RCLONE_VERSION}/${ARCHIVE}"
+        printf '%s  %s\n' "${RCLONE_SHA256}" "${ARCHIVE}" > "${ARCHIVE}.sha256"
+        sha256sum -c --strict "${ARCHIVE}.sha256"
+        unzip -q "${ARCHIVE}"
+        sudo install -m 755 "rclone-v${RCLONE_VERSION}-linux-amd64/rclone" /usr/local/bin/rclone
+        rclone version

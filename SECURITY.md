@@ -25,7 +25,8 @@ disclosure.
 | Cortex session | Main-process store, never logged | `packages/cortex-api` source, screenshots, issues |
 | SSH / host keys | Server-side only | The client, the renderer, this repository |
 | Paper MCP auth | Local `.env` / MCP config (gitignored) | Commits, docs, CI logs |
-| R2 API token (desktop update feed) | GitHub Environment `production` secrets (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`) | Git, renderer, repo-wide secrets shared with `staging`, workflow logs |
+| R2 API token (production desktop feed) | GitHub Environment `production` secrets (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`) | Git, renderer, repo-wide secrets, workflow logs, Environment `staging` |
+| R2 API token (staging desktop feed) | GitHub Environment `staging` secrets (same names; token must not be able to write `cortex-releases`) | Git, renderer, Environment `production`, workflow logs |
 
 `.env.example` is example-only. Values there are placeholders.
 

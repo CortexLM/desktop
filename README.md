@@ -112,6 +112,7 @@ Details are in [AGENTS.md](./AGENTS.md).
 - [docs/notifications.md](./docs/notifications.md) · [docs/harness.md](./docs/harness.md)
 - [docs/web-vs-electron.md](./docs/web-vs-electron.md) · [docs/realtime.md](./docs/realtime.md)
 - [docs/releases.md](./docs/releases.md) — desktop auto-update feed (`releases.cortex.foundation`)
+- [docs/runbooks/desktop-staging-prod.md](./docs/runbooks/desktop-staging-prod.md) — staging vs prod channels, CodeBuild, agent checklist
 - [packages/cortex-api/CONTRACT.md](./packages/cortex-api/CONTRACT.md) — live API contract
 
 ## License

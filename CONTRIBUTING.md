@@ -111,7 +111,10 @@ See [SECURITY.md](./SECURITY.md). Never paste keys, tokens, or session
 cookies into issues, PRs, or logs.
 
 Tagged desktop releases publish the auto-update feed to R2
-(`releases.cortex.foundation`). See [docs/releases.md](./docs/releases.md).
+(`releases.cortex.foundation`). Staging feeds are
+`software.cortex.foundation/staging/`. See
+[docs/releases.md](./docs/releases.md) and
+[docs/runbooks/desktop-staging-prod.md](./docs/runbooks/desktop-staging-prod.md).
 
 ## Questions
 

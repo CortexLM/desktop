@@ -1,11 +1,18 @@
 /**
- * Production auto-update feed.
+ * Auto-update feed URLs.
  *
- * Packaged Electron reads this URL from electron-builder.yml (`publish.url`)
- * into `app-update.yml`. `CORTEX_UPDATE_FEED_URL` overrides it for a local
- * feed. That is a test hook, not a second production channel.
+ * Production packaged Electron reads `DEFAULT_UPDATE_FEED_URL` from
+ * electron-builder.yml (`publish.url`) into `app-update.yml`. Staging
+ * installers bake `STAGING_UPDATE_FEED_URL` at package time. The named
+ * `latest/` prefix on software.cortex.foundation is an optional mirror of
+ * production, not a second baked-in production channel.
+ *
+ * `CORTEX_UPDATE_FEED_URL` overrides the feed for a local test. That is a
+ * test hook, not a third public channel.
  */
 export const DEFAULT_UPDATE_FEED_URL = 'https://releases.cortex.foundation/';
+export const STAGING_UPDATE_FEED_URL = 'https://software.cortex.foundation/staging/';
+export const LATEST_CHANNEL_FEED_URL = 'https://software.cortex.foundation/latest/';
 
 export function resolveUpdateFeedUrl(
   env: Record<string, string | undefined> = process.env,

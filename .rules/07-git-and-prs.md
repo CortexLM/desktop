@@ -89,6 +89,9 @@ comments are things the author would have caught on that read.
 coverage, integration, E2E in four Playwright shards, performance budgets, visual
 regression, and the test-discovery guard. `security-audit.yml` runs a dependency
 audit and a secret scan. `continuous-monitoring.yml` builds, typechecks and lints.
+Linux Electron packaging (`build.yml`, `staging.yml`, `publish-staging.yml`)
+runs on CodeBuild GitHub Actions runners (`codebuild-cortex-gha-arm64-…` or
+`x64`), not `ubuntu-latest`. See [`docs/runbooks/desktop-staging-prod.md`](../docs/runbooks/desktop-staging-prod.md).
 
 A red check is your problem, including when it looks unrelated. One documented
 exception: running `electron-builder` locally rebuilds `better-sqlite3` for

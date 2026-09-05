@@ -90,11 +90,16 @@ packaging change by running the binary, not just by building it:
 ### Desktop auto-update feed
 Packaged Electron checks `https://releases.cortex.foundation/` (generic provider in `electron-builder.yml` `publish.url`, same value as `DEFAULT_UPDATE_FEED_URL` in `packages/main/src/update-policy.ts`). There is no GitHub update provider for production.
 
-On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. rclone is installed from a pinned SHA-256 (`RCLONE_SHA256`); a checksum mismatch fails the job before extract. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` would make the app request `/latest.yml` and miss the object; do not use one here.
+On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. rclone is installed from a pinned SHA-256 (`RCLONE_SHA256` in `.github/actions/install-rclone`); a checksum mismatch fails the job before extract. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` on that host would make the app request `/latest.yml` and miss the object; do not use one there.
 
-Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. Staging (`staging.yml`) must not write this origin.
+Staging is a second generic feed, **`https://software.cortex.foundation/staging/`** (`STAGING_UPDATE_FEED_URL`), objects at prefix `staging/` on bucket `cortex-software`. Agents publish it with `workflow_dispatch` on `.github/workflows/publish-staging.yml` from a **full commit SHA that is on `origin/main`**. Optional production mirror: `https://software.cortex.foundation/latest/` when `PRODUCTION_SOFTWARE_BUCKET` is set. See [`docs/runbooks/desktop-staging-prod.md`](./docs/runbooks/desktop-staging-prod.md).
 
-Secrets (Environment `production` only, never repo-wide if staging can read them, never in git): `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`. Optional var: `PRODUCTION_RELEASES_BUCKET` (default `cortex-releases`). See [`docs/releases.md`](./docs/releases.md).
+Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. `staging.yml` (push to the `staging` branch) must not write R2. Staging feed credentials stay on Environment `staging`.
+
+Secrets (environment-scoped, never repo-wide, never in git): `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`. Optional vars: `PRODUCTION_RELEASES_BUCKET` (default `cortex-releases`), `STAGING_SOFTWARE_BUCKET` (default `cortex-software`). See [`docs/releases.md`](./docs/releases.md).
+
+### Linux Electron dist runs on CodeBuild
+Long `electron-builder` jobs (Linux matrix in `build.yml`, `staging.yml` artifacts, `publish-staging.yml` dist) use the GitHub Actions runner label `codebuild-cortex-gha-arm64-${{ github.run_id }}-${{ github.run_attempt }}`, or `x64` when repository variable `CODEBUILD_RUNNER_ARCH` is `x64`. They must not use `ubuntu-latest`. macOS and Windows dist stay on GitHub-hosted runners. If the project is missing, create it with `infra/codebuild-gha/` or `scripts/create-codebuild-gha-runner.sh` (CodeConnections + OIDC; no `aws sso login`).
 
 ### Running the Electron app
 - Build first: `bun run build` (builds `main`, `preload`, `app`, `test-harness`). `main` loads

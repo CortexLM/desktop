@@ -10,6 +10,8 @@
 # - Must not write the production desktop update feed (R2 bucket
 #   cortex-releases / releases.cortex.foundation). That origin is tag-only
 #   via build.yml publish-feed.
+# - Linux electron-builder runs on CodeBuild (cortex-gha-arm64 or x64), not
+#   ubuntu-latest. The staging *feed* is publish-staging.yml from a main SHA.
 
 name: Staging
 
@@ -29,11 +31,15 @@ permissions:
 jobs:
   artifacts:
     name: Build web and Electron artifacts
-    runs-on: ubuntu-latest
+    runs-on: codebuild-cortex-gha-${{ vars.CODEBUILD_RUNNER_ARCH == 'x64' && 'x64' || 'arm64' }}-${{ github.run_id }}-${{ github.run_attempt }}
+    timeout-minutes: 180
     environment: staging
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Linux native toolchain
+        uses: ./.github/actions/linux-native-toolchain
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2

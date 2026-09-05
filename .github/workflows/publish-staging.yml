@@ -1,0 +1,141 @@
+# Publish a Linux staging feed from a commit that is already on main.
+# Agents: docs/runbooks/desktop-staging-prod.md
+#
+# Linux electron-builder runs on CodeBuild (cortex-gha-arm64 or cortex-gha-x64).
+# This workflow never writes cortex-releases / releases.cortex.foundation.
+
+name: Publish staging feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Full 40-character commit SHA that is on origin/main
+        required: true
+        type: string
+      publish_feed:
+        description: Upload installers to software.cortex.foundation/staging/ after a green dist
+        required: true
+        type: boolean
+        default: true
+
+concurrency:
+  group: publish-staging-feed
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify-sha:
+    name: SHA is on origin/main
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.check.outputs.sha }}
+    steps:
+      - name: Checkout main for ancestry
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Reject anything that is not a main commit
+        id: check
+        env:
+          INPUT_SHA: ${{ github.event.inputs.sha }}
+        run: |
+          set -euo pipefail
+          SHA="$(printf '%s' "${INPUT_SHA}" | tr 'A-F' 'a-f')"
+          if [[ ! "$SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "sha must be a full 40-character commit id"
+            exit 1
+          fi
+          git fetch --filter=blob:none origin "$SHA"
+          if ! git merge-base --is-ancestor "$SHA" origin/main; then
+            echo "$SHA is not an ancestor of origin/main"
+            exit 1
+          fi
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+  dist-linux:
+    name: Linux Electron dist (CodeBuild)
+    needs: verify-sha
+    runs-on: codebuild-cortex-gha-${{ vars.CODEBUILD_RUNNER_ARCH == 'x64' && 'x64' || 'arm64' }}-${{ github.run_id }}-${{ github.run_attempt }}
+    timeout-minutes: 180
+    environment: staging
+    steps:
+      - name: Checkout the requested main SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.verify-sha.outputs.sha }}
+          persist-credentials: false
+
+      - name: Linux native toolchain
+        uses: ./.github/actions/linux-native-toolchain
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build packages and Linux installers (staging feed URL)
+        env:
+          VITE_CORTEX_API_BASE_URL: ${{ vars.VITE_CORTEX_API_BASE_URL }}
+          CORTEX_API_BASE_URL: ${{ vars.CORTEX_API_BASE_URL }}
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+          STAGING_FEED_URL: 'https://software.cortex.foundation/staging/'
+        run: |
+          set -euo pipefail
+          bun run build
+          npx electron-builder --linux --publish never \
+            -c.publish.url="${STAGING_FEED_URL}"
+
+      - name: Upload Linux staging artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cortex-ide-linux-staging
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.blockmap
+            dist/latest-linux.yml
+            dist/latest-linux-arm64.yml
+          retention-days: 14
+
+  publish-feed:
+    name: Publish staging update feed
+    needs: [verify-sha, dist-linux]
+    if: ${{ github.event.inputs.publish_feed == 'true' && vars.STAGING_FEED_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    environment: staging
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          persist-credentials: false
+          sparse-checkout: .github/actions
+          sparse-checkout-cone-mode: true
+
+      - name: Download Linux artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: cortex-ide-linux-staging
+          path: artifacts/linux
+
+      - name: Upload staging prefix on software.cortex.foundation
+        uses: ./.github/actions/publish-r2-feed
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        with:
+          artifacts-dir: artifacts
+          destination: r2:${{ vars.STAGING_SOFTWARE_BUCKET || 'cortex-software' }}/staging
+          bucket-check: cortex-releases
