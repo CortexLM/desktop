@@ -43,6 +43,12 @@ describe('browserLoginUrl', () => {
     expect(url).toContain('provider=GitHubOAuth');
   });
 
+  it('strips trailing slashes from the API origin without a regex', () => {
+    const url = browserLoginUrl('https://api.cortex.foundation///', 'google');
+    expect(url.startsWith('https://api.cortex.foundation/v1/auth/login?')).toBe(true);
+    expect(url).not.toContain('foundation///');
+  });
+
   it('points the custom protocol at cortex://auth/callback', () => {
     expect(DESKTOP_AUTH_CALLBACK).toBe('cortex://auth/callback');
   });

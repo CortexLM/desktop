@@ -44,7 +44,16 @@ export function browserLoginUrl(
     params.set('code_challenge', codeChallenge);
     params.set('code_challenge_method', 'S256');
   }
-  return `${baseUrl.replace(/\/+$/, '')}/v1/auth/login?${params.toString()}`;
+  return `${withoutTrailingSlashes(baseUrl)}/v1/auth/login?${params.toString()}`;
+}
+
+/** Strip trailing `/` without a regex so a long run of slashes cannot stall URL construction. */
+function withoutTrailingSlashes(value: string): string {
+  let end = value.length;
+  while (end > 0 && value.charCodeAt(end - 1) === 47) {
+    end -= 1;
+  }
+  return value.slice(0, end);
 }
 
 /**
