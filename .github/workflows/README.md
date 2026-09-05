@@ -7,6 +7,15 @@ Ce dossier contient un système de monitoring automatique 24/7 pour Cortex IDE.
 - **Environment:** GitHub `staging` (production is separate)
 - **Builds:** web (`packages/app/dist`) + Electron Linux unpacked dir
 - **Deploy:** OIDC-ready (`id-token: write`). Off until `STAGING_DEPLOY_ENABLED`. No AWS keys in git.
+- **Must not** write the production desktop update feed (R2 `cortex-releases` / `releases.cortex.foundation`).
+
+### Build and Release (`build.yml`)
+- **Trigger:** version tag `v*.*.*`, or manual
+- **Jobs:** matrix package (mac / win / linux) → GitHub Release → `publish-feed`
+- **Feed:** rclone copy to R2 bucket `cortex-releases` (objects at the bucket root). Custom domain `releases.cortex.foundation`. Generic provider URL in `electron-builder.yml`.
+- **Gate:** GitHub Environment `production` and `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`
+- **Secrets (production environment):** `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`
+- See [`docs/releases.md`](../../docs/releases.md)
 
 ## 📋 Workflows Disponibles
 
