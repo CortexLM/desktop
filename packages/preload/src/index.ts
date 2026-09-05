@@ -600,8 +600,6 @@ const cortexAPI: CortexAPI = {
     createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),
     revokeApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_REVOKE_API_KEY, request),
     productRequest: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_PRODUCT_REQUEST, request),
-    startBrowserLogin: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_BROWSER_LOGIN, request),
-    signInWithEmail: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_EMAIL_LOGIN, request),
     onDeviceStatus: createEventListener<CortexDeviceStatusEvent>(
       IPC_CHANNELS.EVENT_CORTEX_DEVICE_STATUS,
     ),
