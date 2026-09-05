@@ -59,7 +59,9 @@ jobs:
     needs: verify-sha
     runs-on: codebuild-cortex-gha-${{ vars.CODEBUILD_RUNNER_ARCH == 'x64' && 'x64' || 'arm64' }}-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 180
-    environment: staging
+    # No GitHub Environment here: this job runs `bun install` from the requested
+    # SHA. Staging R2 secrets stay on publish-feed. Staging API hosts are repo
+    # `vars` (or empty, which keeps production api.cortex.foundation).
     steps:
       # Checkout github.sha (the dispatched workflow ref), never the input SHA.
       # Passing github.event.inputs.sha / job output into actions/checkout `ref`

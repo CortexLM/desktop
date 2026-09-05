@@ -10,8 +10,8 @@ the live API contract changes.
 Desktop staging → prod (Chat+Code, no Bot). Do not touch CortexLM/cortex.
 
 [ ] 1. If this change needs an API, land CortexLM/backend on staging first and
-      set GitHub Environment `staging` vars VITE_CORTEX_API_BASE_URL and
-      CORTEX_API_BASE_URL to that host. Local unit tests leave them unset.
+      set repository vars VITE_CORTEX_API_BASE_URL and CORTEX_API_BASE_URL
+      to that host. Local unit tests leave them unset.
 [ ] 2. Land the desktop PR on main. Do not merge your own cloud-agent PR
       unless asked. Do not enable auto-merge.
 [ ] 3. SHA=$(git rev-parse origin/main)   # full 40 hex chars
@@ -127,8 +127,9 @@ version tag `v*.*.*`.
 | `CLOUDFLARE_ACCOUNT_ID` | secret | R2 S3 endpoint account id |
 | `STAGING_FEED_ENABLED` | variable | Must be `true` or the staging feed upload is skipped |
 | `STAGING_SOFTWARE_BUCKET` | variable | Optional. Defaults to `cortex-software` |
-| `VITE_CORTEX_API_BASE_URL` | variable | Staging API for the web artifact / renderer build |
-| `CORTEX_API_BASE_URL` | variable | Same host for Electron main |
+
+Linux dist does **not** use this environment, so a `bun install` from the
+requested SHA cannot read these secrets.
 
 ### Environment `production`
 
@@ -140,3 +141,5 @@ See [releases.md](../releases.md). Extra optional variable:
 | Name | Purpose |
 | --- | --- |
 | `CODEBUILD_RUNNER_ARCH` | `x64` to use `cortex-gha-x64`; any other value uses `arm64` |
+| `VITE_CORTEX_API_BASE_URL` | Staging API host for the renderer build (optional) |
+| `CORTEX_API_BASE_URL` | Same host for Electron main |

@@ -56,5 +56,8 @@ describe('CodeBuild runner labels for long Electron dist', () => {
     expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*needs\.verify-sha\.outputs\.sha/);
     expect(publishStaging).not.toMatch(/ref:\s*\$\{\{\s*github\.event\.inputs\.sha/);
     expect(publishStaging).toContain('git switch --detach');
+    const distJob = publishStaging.split('dist-linux:')[1]?.split('publish-feed:')[0] ?? '';
+    expect(distJob).not.toContain('environment: staging');
+    expect(publishStaging.split('publish-feed:')[1] ?? '').toContain('environment: staging');
   });
 });
