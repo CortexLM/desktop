@@ -216,3 +216,27 @@ describe('events', () => {
     registerCortexHandlers();
   });
 });
+
+describe('browser and email login', () => {
+  it('registers the browser and email channels', () => {
+    expect(registeredHandlers.has('cortex:browser-login')).toBe(true);
+    expect(registeredHandlers.has('cortex:email-login')).toBe(true);
+  });
+
+  it('opens Google in the system browser without taking a URL from the renderer', async () => {
+    const handler = registeredHandlers.get('cortex:browser-login');
+    const response = await handler?.({}, { provider: 'google' });
+    expect(service.startBrowserLogin).toHaveBeenCalledWith('google');
+    expect(response).toEqual({ success: true, data: { opened: true } });
+    expect(JSON.stringify(response)).not.toMatch(/accessToken|access_token|password/);
+  });
+
+  it('accepts an in-app email sign-in and returns no secret', async () => {
+    const handler = registeredHandlers.get('cortex:email-login');
+    const response = await handler?.({}, { email: 'ada@example.com', password: 'secret-pass' });
+    expect(service.signInWithEmail).toHaveBeenCalledWith('ada@example.com', 'secret-pass');
+    expect(response).toEqual({ success: true, data: ANONYMOUS });
+    expect(JSON.stringify(response)).not.toMatch(/secret-pass|accessToken|access_token/);
+  });
+});
+

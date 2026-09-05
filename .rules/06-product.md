@@ -21,7 +21,12 @@ the service contract stays intact; they are not a third tab in the chrome.
 
 The switch is by URL prefix through `productForPath()` in
 `packages/app/src/routes.ts`. Sidebar sections come from
-`packages/app/src/shell/sidebar-sections.tsx`.
+`packages/app/src/shell/sidebar-sections.tsx`. Code's rail is **New session**,
+**Routines** (automations), **Personalize** (settings), then Workspace
+destinations, then **Recents** of Code sessions — not Chat transcripts.
+
+The Chat | Code | Bot switcher is in the sidebar and, on desktop, also in the
+custom title bar (`packages/app/src/shell/title-bar-chrome.tsx`).
 
 **Bad** — Code implemented as a second Chat:
 
@@ -57,7 +62,8 @@ The destinations, and what each one must actually do:
 
 | Route | Must show |
 | --- | --- |
-| `/code` | Composer, recent sessions, harness status |
+| `/code` | Empty home (TUI preview + host picker) when no session has run; composer, recents and harness once there is history |
+| `/welcome` | First-launch splash (desktop). Get started → sign-in; skip → workspace |
 | `/code/sessions` | The inbox — sessions grouped by repository, with real state |
 | `/code/sessions/:id` | Plan, permissions, terminal, changes; `/focus` variant |
 | `/code/automations` | Scheduled cloud runs (account) |
@@ -135,7 +141,8 @@ touch it.
 ## 6.3 The switcher is Chat | Code
 
 This desktop app's switcher is a two-option segmented control in
-`packages/app/src/shell/sidebar.tsx`, in this order, with these labels:
+`packages/app/src/shell/sidebar.tsx` and the desktop title bar
+(`packages/app/src/shell/title-bar-chrome.tsx`), in this order, with these labels:
 
 ```tsx
 <Segmented

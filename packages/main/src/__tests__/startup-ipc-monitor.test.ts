@@ -52,6 +52,9 @@ const appMock = {
   getVersion: vi.fn(() => '0.1.0'),
   getAppPath: vi.fn(() => '/app'),
   quit: vi.fn(),
+  setAsDefaultProtocolClient: vi.fn(() => true),
+  requestSingleInstanceLock: vi.fn(() => true),
+  removeListener: vi.fn(),
 };
 
 class BrowserWindowMock {
@@ -67,6 +70,11 @@ class BrowserWindowMock {
   loadURL = vi.fn();
   loadFile = vi.fn();
   on = vi.fn();
+  show = vi.fn();
+  focus = vi.fn();
+  restore = vi.fn();
+  isMinimized = vi.fn(() => false);
+  isDestroyed = vi.fn(() => false);
 
   constructor() {
     calls.push('createWindow');

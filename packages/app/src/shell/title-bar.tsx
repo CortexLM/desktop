@@ -1,6 +1,7 @@
 import { createSignal, onCleanup, onMount, Show, type JSX } from 'solid-js';
 
 import { chromePlatform, windowControls } from '../state/platform.ts';
+import { TitleBarChrome } from './title-bar-chrome.tsx';
 
 import './title-bar.css';
 
@@ -48,6 +49,7 @@ export function TitleBar(): JSX.Element {
 
   return (
     <header class="cx-titlebar" data-platform={platform} onDblClick={onDoubleClick}>
+      <TitleBarChrome />
       <span class="cx-titlebar__drag" aria-hidden="true" />
 
       <Show when={platform !== 'darwin' && controls}>

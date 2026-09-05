@@ -121,6 +121,7 @@ export const SCREEN_ROUTES: readonly ScreenRoute[] = [
 
   // ── Onboarding and account ────────────────────────────────────────────────
   { slug: 'code-onboarding', kind: 'route', product: 'code', path: '/onboarding', title: 'Get started' },
+  { slug: 'welcome', kind: 'route', product: 'code', source: 'product', path: '/welcome', title: 'Cortex' },
   { slug: 'code-auth-sign-in', kind: 'route', product: 'code', path: '/sign-in', title: 'Sign in' },
   { slug: 'code-auth-device-code', kind: 'route', product: 'code', path: '/sign-in/device', title: 'Sign in' },
   { slug: 'code-auth-connect-github', kind: 'route', product: 'code', path: '/sign-in/github', title: 'Connect GitHub' },

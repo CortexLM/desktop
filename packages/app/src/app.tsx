@@ -16,6 +16,7 @@ import { ConversationsProvider, useConversations } from './state/conversations-c
 import { AppShell } from './shell/app-shell.tsx';
 import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
+import { ChromeShell, useChrome } from './shell/chrome-context.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
 import { enterProduct, guestBlocked } from './state/guest-lock.ts';
@@ -196,14 +197,18 @@ function WorkspaceSidebar(): JSX.Element {
       onOpenSearch={() => openOverlay('palette')}
       onOpenAccount={() => navigate('/code/settings')}
       onSignIn={() => navigate('/sign-in')}
+      onToggleSidebar={useChrome()?.toggleSidebar}
+      // The unread dot is driven by runs that finished and have not been opened,
+      // which is the only thing the app currently has to draw attention to.
       unread={{ 'code-sessions': runs.awaitingReview().length > 0 }}
     />
   );
 }
 
 function Workspace(props: { children: JSX.Element }): JSX.Element {
+  const chrome = useChrome();
   return (
-    <AppShell sidebar={<WorkspaceSidebar />}>
+    <AppShell sidebar={<WorkspaceSidebar />} sidebarHidden={chrome?.sidebarHidden()}>
       {/* Above the routes so it is the same strip on every surface rather than
           something each screen has to remember to render. */}
       <ConnectionBanner
@@ -220,7 +225,7 @@ function Workspace(props: { children: JSX.Element }): JSX.Element {
 }
 
 /** Routes that render on a bare page rather than inside the workspace shell. */
-const BARE_PATHS = ['/sign-in', '/onboarding', '/code/runtimes/ssh'];
+const BARE_PATHS = ['/sign-in', '/onboarding', '/code/runtimes/ssh', '/welcome'];
 
 function isBarePath(pathname: string): boolean {
   return BARE_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
@@ -263,18 +268,20 @@ export function App(props: AppProps): JSX.Element {
    * its drag region and controls.
    */
   const root = (routeProps: RouteSectionProps): JSX.Element => (
-    <div class="cx-root">
-      <TitleBar />
-      <UpdateBanner />
-      <div class="cx-root__content">
-        <Show
-          when={!isBarePath(routeProps.location.pathname)}
-          fallback={routeProps.children}
-        >
-          <Workspace>{routeProps.children}</Workspace>
-        </Show>
+    <ChromeShell>
+      <div class="cx-root">
+        <TitleBar />
+        <UpdateBanner />
+        <div class="cx-root__content">
+          <Show
+            when={!isBarePath(routeProps.location.pathname)}
+            fallback={routeProps.children}
+          >
+            <Workspace>{routeProps.children}</Workspace>
+          </Show>
+        </div>
       </div>
-    </div>
+    </ChromeShell>
   );
 
   return (

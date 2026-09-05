@@ -44,14 +44,14 @@ function renderSidebar(overrides: Partial<SidebarProps> = {}) {
 }
 
 describe('Sidebar navigation', () => {
-  it('lists the five destinations in the design order', () => {
+  it('lists New session, Routines and Personalize above the workspace destinations', () => {
     renderSidebar();
-    const labels = screen
-      .getAllByRole('button')
-      .map((button) => button.textContent?.trim())
-      .filter((text) => text && ['Home', 'Sessions', 'Automations', 'Review', 'Usage'].includes(text));
-
-    expect(labels).toEqual(['Home', 'Sessions', 'Automations', 'Review', 'Usage']);
+    expect(screen.getByRole('button', { name: /New session/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Routines' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Personalize' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Review' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Usage' })).toBeInTheDocument();
   });
 
   it('marks the active destination', () => {
@@ -149,8 +149,8 @@ describe('Sidebar product switcher', () => {
 
     setProduct('code');
 
-    expect(screen.getByRole('button', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Sessions' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Routines' })).toBeInTheDocument();
     expect(screen.queryByText('New chat')).toBeNull();
   });
 });
@@ -163,7 +163,7 @@ describe('Sidebar gating', () => {
 
     // `aria-disabled` rather than `disabled`: the row stays focusable so a keyboard user can
     // reach it and read why, which a `disabled` button makes impossible.
-    for (const label of ['Automations', 'Review', 'Usage']) {
+    for (const label of ['Routines', 'Review', 'Usage']) {
       const row = screen.getByRole('button', { name: label });
       expect(row).toHaveAttribute('aria-disabled', 'true');
       expect(row).toHaveAttribute('title', `Sign in to Cortex to use ${label}`);
@@ -173,8 +173,8 @@ describe('Sidebar gating', () => {
   it('leaves the surfaces that work signed out enabled', () => {
     renderSidebar({ capabilities: ANONYMOUS_CAPABILITIES });
 
-    expect(screen.getByRole('button', { name: 'Home' })).not.toHaveAttribute('aria-disabled');
     expect(screen.getByRole('button', { name: 'Sessions' })).not.toHaveAttribute('aria-disabled');
+    expect(screen.getByRole('button', { name: 'Personalize' })).not.toHaveAttribute('aria-disabled');
   });
 
   it('explains why a locked destination is unavailable', () => {
@@ -188,7 +188,7 @@ describe('Sidebar gating', () => {
   it('unlocks everything once signed in', () => {
     renderSidebar({ capabilities: AUTHENTICATED_CAPABILITIES });
 
-    for (const label of ['Automations', 'Review', 'Usage']) {
+    for (const label of ['Routines', 'Review', 'Usage']) {
       expect(screen.getByRole('button', { name: label }), label).not.toBeDisabled();
     }
   });
@@ -236,7 +236,7 @@ describe('Sidebar recent sessions', () => {
     // An empty "Recent sessions" heading is worse than no heading: it reads as a failure to
     // load rather than as a fresh install.
     renderSidebar({ recentRuns: [] });
-    expect(screen.queryByText('Recent sessions')).toBeNull();
+    expect(screen.queryByText('Recents')).toBeNull();
   });
 });
 

@@ -108,8 +108,10 @@ Long `electron-builder` jobs (Linux matrix in `build.yml`, `staging.yml` artifac
 - Root `package.json` sets `"main": "packages/main/dist/index.js"`, so `bun run start` / `electron .`
   works after a build. In a headless VM, disable the sandbox:
   `DISPLAY=:1 ./node_modules/.bin/electron packages/main/dist/index.js --no-sandbox`
-  (the `Failed to connect to the bus` / GPU-process messages are harmless). The app opens straight
-  onto a usable signed-out workspace — being usable with no account is a product requirement.
+  (the `Failed to connect to the bus` / GPU-process messages are harmless). Desktop first-launch
+  lands on `/welcome`; skip or finish sign-in enters a usable signed-out workspace — being usable
+  with no account is a product requirement. The local runtime is labelled **This PC**. Cloud and
+  SSH starts go through `POST /v1/code/sessions` and do not silently run as a local session.
 - `bun run dev` rebuilds `main` in watch mode; you still launch Electron against the built entry as above.
 
 ### The renderer cannot call the Cortex API (this trips everyone once)
@@ -121,6 +123,13 @@ exposed as `window.cortex.cortex`). The session token stays in main — encrypte
 device flow's `device_code`. See `packages/shared/src/types/ipc/cortex.ts` for the contract and
 `packages/cortex-api/CONTRACT.md` for what was established by probing the live service (notably: the
 service refuses `Authorization: Bearer`; the sealed session cookie is named `wos-session`).
+Desktop Google/GitHub sign-in opens the **system browser** (never an identity webview) and
+returns through `https://cortex.foundation/desktop/open` → `cortex://auth/callback`. Main
+stores the session; the renderer never sees the URL or the cookie. Email/password stays on
+the in-app form (`POST /v1/auth/login`, fail closed if the route is missing). The device
+flow remains at `/sign-in/device`. The `cortex` scheme is declared in `electron-builder.yml`.
+English is the UI source copy; `packages/app/src/i18n/catalogs/fr.json` is for translators
+and is not loaded at runtime.
 
 ### Provider setup (agent loop)
 The session workbench talks to whatever provider is saved in Settings. For a local/dev loop without
@@ -131,25 +140,33 @@ API keys are entered; they never appear in logs.
 ### Tests / lint / build
 - `bun run test` (Vitest) is the unit runner. Do not use `bun:test` (see `test:discovery`).
 - `bun run test:e2e` (Playwright + Electron) needs `bunx playwright install chromium`; it already runs
-  under `xvfb-run`.
+  under `xvfb-run`. The fixture clicks through `/welcome` rather than seeding
+  `cortex.welcome-seen` (`firstWindow` has already loaded, so an init script is too late).
+  Chat | Code | Bot exists in both the title bar and the sidebar — scope queries to
+  `navigation[name=Primary]`. `/code` with no history has no composer: the CTA is
+  **Start a session**, and the rail has **New session**, not Home.
 - ESLint runs via `npx eslint packages` (the root `lint` script only forwards to per-package
   scripts, one of which is a placeholder). `bun run quality:duplication` and
   `bun run quality:circular` are the extra quality probes; there is no `quality:check`.
 
 ### Product scope (do not invent a different app)
 - One shell hosts two peer products — **Chat** and **Code** — switched by the
-  segmented control in `packages/app/src/shell/sidebar.tsx`. Code is a real cloud
-  dashboard (sessions, review, automations, usage), never a second chat
-  transcript. Bot is a separate app (`CortexLM/bot-desktop`); this repo does not
-  put it in the switcher. See [`.rules/06-product.md`](./.rules/06-product.md),
+  segmented control in `packages/app/src/shell/sidebar.tsx` and, on desktop, in
+  the custom title bar (`packages/app/src/shell/title-bar-chrome.tsx`). Code is a
+  real cloud dashboard (sessions, review, automations, usage), never a second
+  chat transcript. Bot is a separate app (`CortexLM/bot-desktop`); this repo does
+  not put it in the switcher. `/code` with no session history is the empty home
+  (framed CLI preview + This PC / SSH / Cloud picker that starts a session), not
+  a Chat-style composer. See [`.rules/06-product.md`](./.rules/06-product.md),
   `docs/chat.md`, `docs/code.md`, `docs/bot.md`.
 - The UI is pixel-matched to the Paper file *Cortex FF1 v1* (`01M0WGA7TGHQFZ2H22QFE3YZ9C`), page
   **Concept 03** (group `C3`); `design/paper/screens.json` is the generated manifest and
   `scripts/paper-sync.ts` is the sync. The routed screens are the artboards: home, sessions inbox,
   session detail, automations, review, usage, settings (+ integrations), sign-in, device
-  code, onboarding flows, SSH connect. `packages/app/src/routes.ts` is the source of truth and a
-  test asserts it against the Paper manifest. `NON_APP_SCREENS` in `scripts/paper-sync.ts` holds the
-  boards the app deliberately does not draw, so they stay out of the manifest, specs and baselines.
+  code, onboarding flows, SSH connect, plus the product splash `/welcome`. `packages/app/src/routes.ts`
+  is the source of truth and a test asserts it against the Paper manifest. `NON_APP_SCREENS` in
+  `scripts/paper-sync.ts` holds the boards the app deliberately does not draw, so they stay out of
+  the manifest, specs and baselines.
 - Design values come from `@cortex-ide/tokens`; do not hardcode colours or spacing. Regenerate with
   the `paper:*` scripts rather than editing generated files by hand. Paper MCP credentials come from
   `PAPER_MCP_URL` / `PAPER_MCP_AUTH` (or a local `.cursor/mcp.json` that is gitignored). Never commit

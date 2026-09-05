@@ -18,6 +18,7 @@ import {
   SignInRoute,
   SshConnectRoute,
   UsageRoute,
+  WelcomeRoute,
   WorkspaceSetupRoute,
 } from './route-components.tsx';
 import {
@@ -113,6 +114,7 @@ function botRoutes(): JSX.Element {
 function authRoutes(): JSX.Element {
   return (
     <>
+      <Route path="/welcome" component={WelcomeRoute} />
       <Route path="/sign-in" component={SignInRoute} />
       <Route path="/sign-in/device" component={DeviceCodeRoute} />
       <Route path="/sign-in/github" component={ConnectGitHubRoute} />

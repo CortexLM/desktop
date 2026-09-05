@@ -22,10 +22,31 @@ interface StartRunOptions {
   signedIn: () => boolean;
 }
 
-export function createStartRun(options: StartRunOptions): () => Promise<void> {
+export type StartDraft = {
+  prompt: string;
+  runtime: RuntimeKind;
+  repo?: string;
+  branch?: string;
+  model?: string;
+  mode?: 'ask' | 'plan' | 'agent';
+};
+
+/** Native-module and path fragments stay in main's logs, not on the screen. */
+export function userFacingStartError(error: unknown): string {
+  const raw = error instanceof Error ? error.message : String(error);
+  if (/node_modules|self-register|NODE_MODULE_VERSION|\.node\b|better-sqlite/i.test(raw)) {
+    return 'This workspace could not be opened. Try restarting Cortex.';
+  }
+  return raw;
+}
+
+export function createStartRun(options: StartRunOptions): (draft?: StartDraft) => Promise<void> {
   let inFlight = false;
 
-  return async () => {
+  return async (override) => {
+    if (override) {
+      setComposerDraft((current) => ({ ...current, ...override }));
+    }
     const draft = composerDraft();
     if (!draft.prompt.trim() || inFlight) return;
     if (draft.runtime !== 'local' && guestBlocked(options.signedIn())) return;
@@ -35,7 +56,7 @@ export function createStartRun(options: StartRunOptions): () => Promise<void> {
     try {
       await startDraft(options, draft.runtime);
     } catch (error) {
-      options.setError(error instanceof Error ? error.message : String(error));
+      options.setError(userFacingStartError(error));
     } finally {
       inFlight = false;
     }

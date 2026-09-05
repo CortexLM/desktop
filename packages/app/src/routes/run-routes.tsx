@@ -157,7 +157,7 @@ export function HomeRoute(): JSX.Element {
       greeting={codeGreeting(account.user()?.displayName)}
       draft={composerDraft()}
       onDraftChange={setComposerDraft}
-      onStart={() => void start()}
+      onStart={(draft) => void start(draft)}
       recentSessions={recent()}
       onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
       onViewAllSessions={() => navigate('/code/sessions')}

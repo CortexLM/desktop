@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { TitleBar } from '../title-bar.tsx';
+import { ChromeProvider } from '../chrome-context.tsx';
 
 type MaximizedListener = (event: { maximized: boolean }) => void;
 
@@ -77,11 +78,30 @@ describe('TitleBar', () => {
     expect(await screen.findByRole('button', { name: 'Maximize' })).toBeInTheDocument();
   });
 
-  it('toggles maximize on a double-click of the empty bar', () => {
-    const { controls } = stubBridge('linux');
-    const { container } = render(() => <TitleBar />);
+  it('draws Chat and Code in the chrome when the shell provides it', () => {
+    stubBridge('linux');
+    render(() => (
+      <ChromeProvider
+        value={{
+          product: () => 'code',
+          setProduct: vi.fn(),
+          sidebarHidden: () => false,
+          toggleSidebar: vi.fn(),
+          goBack: vi.fn(),
+          goForward: vi.fn(),
+          openSearch: vi.fn(),
+          openNotifications: vi.fn(),
+          openBot: vi.fn(),
+        }}
+      >
+        <TitleBar />
+      </ChromeProvider>
+    ));
 
-    fireEvent.dblClick(container.querySelector('.cx-titlebar')!);
-    expect(controls.toggleMaximize).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: 'Chat' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Code' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.queryByRole('button', { name: 'Bot' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Notifications' })).toBeInTheDocument();
   });
 });

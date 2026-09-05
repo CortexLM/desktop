@@ -36,6 +36,11 @@ export const extraGeometry = {
     body: '<circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="__STROKE__" />',
     strokeWidths: ['1.4'],
   },
+  menu: {
+    viewBox: '0 0 16 16',
+    body: '<path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="__STROKE__" stroke-linecap="round" />',
+    strokeWidths: ['1.5'],
+  },
   bot: {
     viewBox: '0 0 16 16',
     body: '<rect x="3" y="4" width="10" height="9" rx="3" fill="none" stroke="currentColor" stroke-width="__STROKE__" /><circle cx="6.2" cy="8" r="0.9" fill="currentColor" /><circle cx="9.8" cy="8" r="0.9" fill="currentColor" /><path d="M8 2.2v1.8M5.5 12.2c.8.7 2.2.7 3 0" fill="none" stroke="currentColor" stroke-width="__STROKE__" stroke-linecap="round" />',
@@ -89,6 +94,7 @@ export const icons = {
 
   // Chrome
   sidebarToggle: { key: '7f4a9043', size: 16, strokeWidth: 1.75 },
+  menu: { key: 'menu', size: 16, strokeWidth: 1.5 },
   theme: { key: 'sun', size: 15, strokeWidth: 1.75 },
   settings: { key: '92c25a0d', size: 15, strokeWidth: 1.75 },
   back: { key: '4eaf7005', size: 13, strokeWidth: 1.5 },

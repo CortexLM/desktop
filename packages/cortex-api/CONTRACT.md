@@ -58,6 +58,17 @@ The WorkOS client id is baked into the redirect, so the desktop app does not nee
 it. `provider=authkit` is what produces the GitHub / Google / email options the Auth Sign In
 screen draws.
 
+### Desktop browser login (partially unverified)
+
+The Electron app opens `GET /v1/auth/login?provider=GoogleOAuth|GitHubOAuth&client=desktop&redirect_uri=https://cortex.foundation/desktop/open` in the **system browser**, never an identity webview. After approval, the HTTPS bridge (`desktop/open/index.html` in this repo) must be served at `https://cortex.foundation/desktop/open` and set `location.href` to `cortex://auth/callback` plus the query. Main parses that URL and stores the session; the renderer never sees it.
+
+**Blocked on CortexLM/backend:**
+
+- Allowlist `https://cortex.foundation/desktop/open` and `cortex://auth/callback` (today the hosted login bakes `redirect_uri` to `https://api.cortex.foundation/auth/callback`).
+- Serve the bridge page on the marketing origin.
+- `POST /v1/auth/login` with `{ email, password }` is **unobserved**. The typed client fails closed on 404/405 rather than inventing a session.
+- `GET /v1/auth/callback?code=` returning `Set-Cookie: wos-session` is inferred from the cookie-name probe, not observed end-to-end from a desktop callback.
+
 ### Device flow (RFC 8628)
 
 This is the path the desktop app uses, and what the Auth Device Code screen shows.

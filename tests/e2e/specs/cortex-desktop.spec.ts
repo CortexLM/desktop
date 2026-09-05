@@ -44,51 +44,37 @@ async function viaBridge<T>(page: Page, method: string): Promise<Envelope<T>> {
   }, method);
 }
 
+const STARTER_PROMPT = 'Look around this workspace and summarise the layout.';
+
+function primaryNav(page: Page) {
+  return page.getByRole('navigation', { name: 'Primary' });
+}
+
 /** Switches the shell to the Code product and waits for its sidebar. */
 async function openCode(page: Page): Promise<void> {
   await page.evaluate(() => {
     window.location.hash = '#/code';
   });
-  await expect(page.getByRole('button', { name: 'Home' })).toBeVisible();
+  await expect(primaryNav(page).getByRole('button', { name: /New session/ })).toBeVisible();
 }
 
-/**
- * Binds This PC to a temp folder (native picker is stubbed) and starts a run
- * through the session bridge. Unsigned This PC is allowed; Cloud and SSH are not.
- */
-async function startThisPcRun(
-  electronApp: ElectronApplication,
+/** Empty `/code` has no composer. The CTA starts a This PC session after a folder is bound. */
+async function startSessionFromEmptyHome(
   page: Page,
-  prompt: string,
-): Promise<string> {
+  electronApp: ElectronApplication,
+): Promise<void> {
+  await openCode(page);
   const folder = mkdtempSync(join(tmpdir(), 'cortex-e2e-ws-'));
   await electronApp.evaluate(async ({ dialog }, path) => {
     dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [path] });
   }, folder);
-  const result = await page.evaluate(async (text) => {
-    const bridge = (
-      window as unknown as {
-        cortex?: {
-          session?: {
-            openWorkspace: () => Promise<Envelope<{ cancelled: boolean; repositories: { id: string }[] }>>;
-            start: (request: {
-              prompt: string;
-              runtime: 'local';
-              repo?: string;
-            }) => Promise<Envelope<{ session: { id: string } }>>;
-          };
-        };
-      }
-    ).cortex?.session;
-    if (!bridge) throw new Error('window.cortex.session is not exposed');
-    const opened = await bridge.openWorkspace();
-    if (!opened.success) throw new Error(opened.error.message);
-    const repo = opened.data.repositories[0]?.id;
-    if (!repo) throw new Error('This PC did not bind a folder');
-    return bridge.start({ prompt: text, runtime: 'local', repo });
-  }, prompt);
-  if (!result.success) throw new Error(result.error.message);
-  return result.data.session.id;
+  const cta = page.getByRole('main').getByRole('button', { name: 'Start a session' });
+  await expect(cta).toBeEnabled();
+  await cta.click();
+  await expect(page).toHaveURL(/#\/code\/sessions\/session_/, { timeout: 20_000 });
+  // The turn fails closed with no provider. Wait for that so main is not still
+  // running the agent when the fixture tears the window down.
+  await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15_000 });
 }
 
 test.describe('the app Electron loads', () => {
@@ -98,14 +84,17 @@ test.describe('the app Electron loads', () => {
     await expect(page.locator('#root')).toBeAttached();
 
     // The C3 shell: a navigation rail carrying the Chat|Code product switcher.
-    await expect(page.getByRole('navigation')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Bot', exact: true })).toHaveCount(0);
+    // The title bar repeats the same switcher, so unscoped name queries are
+    // strict-mode failures.
+    const nav = primaryNav(page);
+    await expect(nav).toBeVisible();
+    await expect(nav.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
+    await expect(nav.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
+    await expect(nav.getByRole('button', { name: 'Bot', exact: true })).toHaveCount(0);
 
-    // The Code product keeps the five workspace destinations.
+    // The Code product keeps the workspace destinations under the New session action.
     await openCode(page);
-    await expect(page.getByRole('button', { name: 'Sessions' })).toBeVisible();
+    await expect(nav.getByRole('button', { name: 'Sessions' })).toBeVisible();
   });
 
   test('opens leftover Bot routes as a cloud computer, not This PC', async ({ page }) => {
@@ -137,11 +126,14 @@ test.describe('the app Electron loads', () => {
 
   test('is usable with no account at all', async ({ page }) => {
     // The anonymous path is a product requirement, not a fallback: the Chat composer
-    // greets first, and the Code composer has to be reachable without signing in too.
+    // greets first, and Code home with no history starts a session on This PC.
     await expect(page.getByPlaceholder(/Ask anything/i)).toBeVisible();
 
     await openCode(page);
-    await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Ship features, not lines.' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'This PC' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Start a session' })).toBeEnabled();
+    await expect(page.getByText('Cloud and SSH need a Cortex account.')).toBeVisible();
   });
 
   test('gates what an account is needed for, and says why', async ({ page }) => {
@@ -149,8 +141,9 @@ test.describe('the app Electron loads', () => {
 
     // Locked rather than hidden: hiding these would make the signed-out app look like a
     // smaller product, whereas a locked row advertises what an account adds.
-    for (const label of ['Automations', 'Review', 'Usage']) {
-      const item = page.getByRole('button', { name: label });
+    const nav = primaryNav(page);
+    for (const label of ['Routines', 'Review', 'Usage']) {
+      const item = nav.getByRole('button', { name: label });
       await expect(item).toHaveAttribute('aria-disabled', 'true');
       await expect(item).toHaveAttribute('title', `Sign in to Cortex to use ${label}`);
 
@@ -165,13 +158,14 @@ test.describe('the app Electron loads', () => {
     // refuses to click an `aria-disabled` control — which is itself the confirmation that the
     // state is expressed properly. Forcing past it proves the click guard, not just the
     // attribute: `aria-disabled` is advisory and the browser does still fire the event.
-    await page.getByRole('button', { name: 'Usage' }).click({ force: true });
-    await expect(page.getByPlaceholder(/Describe a task/i)).toBeVisible();
+    await nav.getByRole('button', { name: 'Usage' }).click({ force: true });
+    await expect(page.getByRole('heading', { name: 'Ship features, not lines.' })).toBeVisible();
 
-
-    // And the destinations that need nothing stay usable.
-    await expect(page.getByRole('button', { name: 'Home' })).toBeEnabled();
-    await expect(page.getByRole('button', { name: 'Sessions' })).toBeEnabled();
+    // And the destinations that need nothing stay usable. There is no Home item:
+    // `/code` is reached from New session.
+    await expect(nav.getByRole('button', { name: /New session/ })).toBeEnabled();
+    await expect(nav.getByRole('button', { name: 'Sessions' })).toBeEnabled();
+    await expect(nav.getByRole('button', { name: 'Personalize' })).toBeEnabled();
   });
 
   test('offers a way to sign in from inside the workspace', async ({ page }) => {
@@ -194,17 +188,19 @@ test.describe('the app Electron loads', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   });
 
-  test('keeps a typed prompt when you leave Home and come back', async ({ page }) => {
+  test('keeps a typed prompt when you leave Code home and come back', async ({ page, electronApp }) => {
     // The draft used to live in the route's own scope, which Solid disposes on navigation, so
-    // checking Sessions mid-thought silently emptied the composer.
+    // checking Sessions mid-thought silently emptied the composer. Empty home has no
+    // composer — start once so `/code` shows it, then type.
+    await startSessionFromEmptyHome(page, electronApp);
     await openCode(page);
     const composer = page.getByPlaceholder(/Describe a task/i);
     await composer.fill('Fix the flaky auth test');
 
-    await page.getByRole('button', { name: 'Sessions' }).click();
+    await primaryNav(page).getByRole('button', { name: 'Sessions', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Sessions' })).toBeVisible();
 
-    await page.getByRole('button', { name: 'Home' }).click();
+    await primaryNav(page).getByRole('button', { name: /New session/ }).click();
 
     await expect(page.getByPlaceholder(/Describe a task/i)).toHaveValue(
       'Fix the flaky auth test',
@@ -249,6 +245,11 @@ test.describe('the custom window chrome', () => {
     await expect(page.getByRole('button', { name: 'Minimize' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Maximize' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Close window' })).toBeVisible();
+
+    const chrome = page.getByRole('banner');
+    await expect(chrome.getByRole('button', { name: 'Chat', exact: true })).toBeVisible();
+    await expect(chrome.getByRole('button', { name: 'Code', exact: true })).toBeVisible();
+    await expect(chrome.getByRole('button', { name: 'Bot', exact: true })).toHaveCount(0);
   });
 
   test('reports the OS verdict on maximize rather than assuming it', async ({ page }) => {
@@ -281,6 +282,21 @@ test.describe('the custom window chrome', () => {
     });
     await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Close window' })).toBeVisible();
+  });
+
+  test('first launch returns to the splash if the seen flag is cleared', async ({ page }) => {
+    await page.evaluate(() => {
+      localStorage.removeItem('cortex.welcome-seen');
+    });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+
+    await expect(
+      page.getByRole('heading', { name: /Chat and Code/ }),
+    ).toBeVisible({ timeout: 20_000 });
+    await expect(primaryNav(page)).toHaveCount(0);
+
+    await page.getByRole('button', { name: 'Continue without an account' }).click();
+    await expect(primaryNav(page)).toBeVisible();
   });
 });
 
@@ -368,22 +384,27 @@ test.describe('routing from a file:// origin', () => {
 
 test.describe('runs', () => {
   test('starts one, records it, and lists it', async ({ page, electronApp }) => {
-    await openCode(page);
-    const id = await startThisPcRun(electronApp, page, 'Add a hello function');
-    await page.evaluate((sessionId) => {
-      window.location.hash = `#/code/sessions/${sessionId}`;
-    }, id);
+    // No provider is configured in a fresh userData, and that is the case worth
+    // covering: the old path threw out of `start`, surfaced a raw error and recorded
+    // nothing, so the user had a toast to re-read and no trace of the attempt.
+    await startSessionFromEmptyHome(page, electronApp);
+    // Lands on the run's own screen, which means the id existed before navigation.
     await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15000 });
 
-    await page.getByRole('button', { name: 'Sessions', exact: true }).click();
-    await expect(page.getByRole('main').getByText('Add a hello function')).toBeVisible();
+    // And it is in the inbox, which is what persistence buys. Scoped to the main
+    // pane: the title also appears in the sidebar's recent list, and an unscoped
+    // locator matches both.
+    // `exact` because the detail screen's back button is labelled 'Back to sessions',
+    // which a substring match also finds.
+    await primaryNav(page).getByRole('button', { name: 'Sessions', exact: true }).click();
+    await expect(page.getByRole('main').getByText(STARTER_PROMPT)).toBeVisible();
   });
 
   test('survives a reload, because the run is in the database', async ({ page, electronApp }) => {
-    await openCode(page);
-    await startThisPcRun(electronApp, page, 'Persisted across reload');
+    await startSessionFromEmptyHome(page, electronApp);
+    await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
@@ -391,7 +412,7 @@ test.describe('runs', () => {
     });
 
     await expect(
-      page.getByRole('main').getByText('Persisted across reload'),
+      page.getByRole('main').getByText(STARTER_PROMPT),
     ).toBeVisible({ timeout: 15000 });
   });
 });
@@ -444,11 +465,9 @@ test.describe('settings', () => {
 
 test.describe('the Terminal tab', () => {
   test('runs a real shell', async ({ page, electronApp }) => {
-    await openCode(page);
-    const id = await startThisPcRun(electronApp, page, 'shell');
-    await page.evaluate((sessionId) => {
-      window.location.hash = `#/code/sessions/${sessionId}`;
-    }, id);
+    // The tab rendered nothing before: the workbench declared it and passed
+    // `undefined` as its content, so the design's four tabs were three.
+    await startSessionFromEmptyHome(page, electronApp);
     await expect(page).toHaveURL(/#\/code\/sessions\/session_/);
 
     await page.getByRole('tab', { name: /Terminal/ }).click();

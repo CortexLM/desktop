@@ -128,7 +128,7 @@ describe('route shape', () => {
       if (route.product !== 'code' || !route.path) continue;
       // The auth and onboarding screens are drawn on the Code page but serve both
       // products, so their paths stay unprefixed.
-      if (route.slug.startsWith('code-auth-') || route.slug === 'code-onboarding') continue;
+      if (route.slug.startsWith('code-auth-') || route.slug === 'code-onboarding' || route.slug === 'welcome') continue;
       expect(route.path, route.slug).toMatch(/^\/code(\/|$)/);
     }
   });
