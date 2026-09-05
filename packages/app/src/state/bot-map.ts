@@ -198,7 +198,12 @@ export function computerIsMissing(computer: BotComputer): boolean {
   return computer.status === 'empty';
 }
 
-/** How a computer's state reads in a list row or a header. */
+/**
+ * How a computer's state reads in a list row or a header.
+ *
+ * A mascot computer is a cloud farm box. The label is the machine's status,
+ * never a Code workspace host and never an SSH target.
+ */
 export function computerLabel(computer: BotComputer): string {
   return computerIsMissing(computer) ? 'No computer yet' : computer.status.replace('-', ' ');
 }

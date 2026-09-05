@@ -153,8 +153,13 @@ API keys are entered; they never appear in logs.
   the dedicated Bot app. Identity is a look (Meadow, Teal, Terracotta,
   Amber, Plum, Slate), a resting face, and a ±5° tilt. Live states (idle, thinking,
   working, notify, success) are procedural SVG + CSS/WAAPI in
-  `packages/app/src/screens/bot/mascot-mark.tsx`. This desktop chrome does not
-  switch to Bot. See `docs/bot.md`.
+  `packages/app/src/screens/bot/mascot-mark.tsx`. The user picks look and face; the
+  API is the source of truth. This desktop chrome does not switch to Bot. See
+  `docs/bot.md`.
+- **This PC is Cortex Code on the desktop app.** The leftover `/bot` computer is a
+  cloud farm box. Those screens never offer This PC, This desktop, or SSH as a
+  host. SSH stays SSH, on Code. Web Code never offers This PC
+  (`docs/web-vs-electron.md`).
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows

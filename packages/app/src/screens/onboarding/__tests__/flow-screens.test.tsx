@@ -168,6 +168,13 @@ describe('SSH connect', () => {
     expect(onCancel).toHaveBeenCalledOnce();
   });
 
+  it('calls the target SSH, never This PC or This desktop', () => {
+    const view = render(() => <SshConnectScreen onConnect={vi.fn()} onCancel={vi.fn()} />);
+    const text = view.container.textContent ?? '';
+    expect(text).toMatch(/SSH/);
+    expect(text.toLowerCase()).not.toMatch(/\bthis pc\b|\bthis desktop\b/);
+  });
+
   it('announces a connection failure', () => {
     render(() => (
       <SshConnectScreen

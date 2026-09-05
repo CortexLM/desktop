@@ -95,6 +95,13 @@ describe('toInboxSession', () => {
     expect(toInboxSession(summary(), NOW).diff).toEqual({ added: 12, removed: 3 });
   });
 
+  it('labels local as This PC and SSH as SSH', () => {
+    const ssh = toInboxSession(summary({ runtime: 'ssh' }), NOW).runtime ?? '';
+    expect(toInboxSession(summary(), NOW).runtime).toBe('This PC');
+    expect(ssh).toBe('SSH');
+    expect(ssh.toLowerCase()).not.toMatch(/\bthis pc\b|\bthis desktop\b/);
+  });
+
   it('omits the diff rather than showing two zeroes', () => {
     // The design hides the cell when nothing changed. `+0 −0` claims a diff was
     // computed and came out empty, which is not the same as one not existing yet.

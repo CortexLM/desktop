@@ -29,9 +29,9 @@ One dedicated box per mascot. The Computer page:
 - Hibernate / wake / stop via `POST /computer/lifecycle`
 - Record start/stop via `POST /computer/record`; clips from `GET /videos`
 
-If the provider is `mock`, the status is `offline`, or a
-`computer_offline` event arrives, the page shows one honest empty state.
-It does not generate a fake desktop.
+If the computer is offline, or a `computer_offline` event arrives, the page
+shows one honest empty state. It does not generate a fake desktop. Bot does
+not offer This PC or SSH as a host; the box is a cloud farm machine.
 
 A VNC ticket is still `{ ticket_hash }` only.
 

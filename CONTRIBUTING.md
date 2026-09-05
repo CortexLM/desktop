@@ -65,7 +65,9 @@ Product lock (do not reopen in a drive-by PR):
 - Chat sidebar order: Search, Research, Planning, Projects, Library, Plugins last.
 - Planning = scheduled tasks, not a project plan.
 - Plugin cards use official brand marks (Google Drive, Slack, GitHub, Paper).
-- Bot: exactly one computer per mascot.
+- Bot: exactly one computer per mascot, and that computer is a cloud farm box
+  (never This PC, never SSH).
+- This PC is Cortex Code on the desktop app. SSH stays SSH.
 - Web Code never runs the harness in the browser.
 - SSH / host keys stay server-side.
 

@@ -65,6 +65,17 @@ test.describe('the app Electron loads', () => {
     await expect(page.getByRole('button', { name: 'Sessions' })).toBeVisible();
   });
 
+  test('opens leftover Bot routes as a cloud computer, not This PC', async ({ page }) => {
+    await page.evaluate(() => {
+      window.location.hash = '#/bot';
+    });
+    await expect(page.getByRole('heading', { name: 'Bot', exact: true })).toBeVisible();
+    await expect(page.getByText(/cloud computer/i)).toBeVisible();
+    await expect(page.getByText(/\bThis PC\b/i)).toHaveCount(0);
+    await expect(page.getByText(/\bThis desktop\b/i)).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Bot', exact: true })).toHaveCount(0);
+  });
+
   test('opens Planning as a real page', async ({ page }) => {
     await page.evaluate(() => {
       window.location.hash = '#/planning';

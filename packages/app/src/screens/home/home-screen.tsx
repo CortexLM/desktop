@@ -52,7 +52,7 @@ export interface HomeScreenProps {
 }
 
 const RUNTIME_LABELS: Record<RuntimeKind, string> = {
-  local: 'Local',
+  local: 'This PC',
   cloud: 'Cloud',
   ssh: 'SSH server',
 };

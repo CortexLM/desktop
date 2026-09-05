@@ -8,7 +8,7 @@ import { ComputerDesktop, type DesktopTransport } from './computer-desktop.tsx';
 import { FilesPanel, TerminalPanel } from './computer-panels.tsx';
 import { MascotRail, mascotLinks } from './mascot-rail.tsx';
 import { computerIsMissing, computerIsOffline, type Mascot } from '../../state/bot-map.ts';
-import type { ApiFilePreview, ApiFsEntry, ComputerInput } from '@cortex-ide/cortex-api';
+import { farmOfflineCopy, type ApiFilePreview, type ApiFsEntry, type ComputerInput } from '@cortex-ide/cortex-api';
 
 import '../chat/product-pages.css';
 
@@ -159,8 +159,8 @@ function ComputerStates(props: {
       <Match when={props.offline}>
         <HonestState
           kind="error"
-          title="Computer offline"
-          body="The farm or local daemon is not connected. This is not a live desktop."
+          title={farmOfflineCopy().title}
+          body={farmOfflineCopy().body}
           actionLabel="Retry wake"
           onAction={props.onWake}
         />

@@ -115,6 +115,7 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByText(/Cloud only/)).toBeInTheDocument();
     });
+    expect(screen.queryByRole('button', { name: /This PC/ })).toBeNull();
     expect(screen.queryByRole('button', { name: /Local/ })).toBeNull();
   });
 
@@ -149,7 +150,7 @@ describe('App', () => {
     chat.unmount();
 
     const computer = render(() => <App initialPath="/bot/mst_1/computer" />);
-    await waitFor(() => expect(screen.getByText(/Computer|Mascot not found|farm or local daemon/)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/Computer|Mascot not found|cloud computer/)).toBeInTheDocument());
     computer.unmount();
 
     const memory = render(() => <App initialPath="/bot/mst_1/memory" />);

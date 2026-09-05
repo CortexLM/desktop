@@ -84,7 +84,7 @@ function diffOf(summary: SessionSummary): { added: number; removed: number } | u
   return { added: summary.additions, removed: summary.deletions };
 }
 
-const RUNTIME_LABELS: Record<string, string> = { local: 'Local', cloud: 'Cloud', ssh: 'SSH' };
+const RUNTIME_LABELS: Record<string, string> = { local: 'This PC', cloud: 'Cloud', ssh: 'SSH' };
 
 /**
  * "Running · 12m" while live, the plain label otherwise. The duration reads off
