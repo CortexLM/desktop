@@ -30,7 +30,10 @@ GitHub Releases provider for production.
 
 This repo does not create the bucket or the DNS record. Bind
 `releases.cortex.foundation` to R2 bucket `cortex-releases` (public bucket
-access or an equivalent custom-domain setup). No Terraform lives here.
+access or an equivalent custom-domain setup). Bind
+`software.cortex.foundation` to `cortex-software` for the `latest/` and
+`staging/` prefixes. Terraform for CodeBuild runners lives in
+`infra/codebuild-gha/`; it does not create R2 buckets.
 
 ## Why a dedicated bucket at the root
 
@@ -63,12 +66,17 @@ No AWS access keys. No OIDC role for this job.
 | --- | --- |
 | `PRODUCTION_DEPLOY_ENABLED` | Must be the string `true` or `publish-feed` is skipped |
 | `PRODUCTION_RELEASES_BUCKET` | Optional. Defaults to `cortex-releases` |
+| `PRODUCTION_SOFTWARE_BUCKET` | Optional. When set, also copy the feed to `<bucket>/latest/` (`software.cortex.foundation/latest/`) |
 
 ## Staging
 
 `staging.yml` builds artifacts on the `staging` environment and must not
-upload to `cortex-releases` or `releases.cortex.foundation`. A local feed
-override is `CORTEX_UPDATE_FEED_URL` (test hook only).
+upload to `cortex-releases` or `releases.cortex.foundation`. The staging
+**update feed** is `https://software.cortex.foundation/staging/` (prefix
+`staging/` on bucket `cortex-software`), published by
+`.github/workflows/publish-staging.yml` from a main SHA. A local feed
+override is `CORTEX_UPDATE_FEED_URL` (test hook only). Agent path:
+[runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md).
 
 ## Cache
 

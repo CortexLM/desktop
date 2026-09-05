@@ -47,18 +47,14 @@ in at all, and Settings and Automations were permanently read-only.
 - Opening a local folder.
 - **This PC** as a Cortex Code runtime (folder-bound on desktop). Not offered
   on the web, and never as a Cortex Bot computer host.
-- Auto-update against `https://releases.cortex.foundation/` (see [releases.md](./releases.md)).
+- Auto-update against `https://releases.cortex.foundation/` (see [releases.md](./releases.md)). Staging installers check `https://software.cortex.foundation/staging/` ([runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md)).
 - Google/GitHub sign-in in the **system browser**, returning on
   `cortex://auth/callback` (HTTPS bridge at `https://cortex.foundation/desktop/open`).
   Email + password stays on the in-app form. The session cookie never crosses
-<<<<<<< HEAD
-  to the renderer.
-=======
   to the renderer. A callback is accepted only when it carries the one-time
   `state` issued when that login was started in this app, and a code is
   exchanged with the PKCE verifier kept in main. A `?session=` link with no
   `state` is rejected.
->>>>>>> 3b1ba41 (fix: bind desktop login to PKCE and isolate the Bot computer rail)
 
 ## What web does instead
 

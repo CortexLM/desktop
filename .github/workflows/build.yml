@@ -1,3 +1,7 @@
+# Production tag build. Linux electron-builder uses CodeBuild
+# (codebuild-cortex-gha-arm64-… or x64). macOS/Windows stay on GitHub-hosted
+# runners for signing. See docs/runbooks/desktop-staging-prod.md.
+
 name: Build and Release
 
 on:
@@ -11,25 +15,31 @@ permissions:
 
 jobs:
   build:
-    name: Build ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 180
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: macos-latest
+          - runner: macos-latest
             platform: mac
             arch: x64,arm64
-          - os: windows-latest
+          - runner: windows-latest
             platform: win
             arch: x64
-          - os: ubuntu-latest
+          # Long Linux dist: CodeBuild, not ubuntu-latest.
+          - runner: codebuild-cortex-gha-${{ vars.CODEBUILD_RUNNER_ARCH == 'x64' && 'x64' || 'arm64' }}-${{ github.run_id }}-${{ github.run_attempt }}
             platform: linux
             arch: x64,arm64
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Linux native toolchain
+        if: matrix.platform == 'linux'
+        uses: ./.github/actions/linux-native-toolchain
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -142,7 +152,8 @@ jobs:
   # Tag → flatten yml/blockmap/installers → rclone copy to R2 bucket
   # `cortex-releases` (objects at the bucket root) → custom domain
   # releases.cortex.foundation → electron-updater GET /latest.yml.
-  # Staging must not write this origin. No AWS keys. R2 only.
+  # Optional mirror to software.cortex.foundation/latest/ when
+  # PRODUCTION_SOFTWARE_BUCKET is set. Staging must not write this origin.
   publish-feed:
     name: Publish production update feed
     needs: build
@@ -156,85 +167,35 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout actions
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/actions
+          sparse-checkout-cone-mode: true
+
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
 
-      - name: Flatten feed files
-        run: |
-          set -euo pipefail
-          mkdir -p feed
-          find artifacts -type f \( \
-            -name '*.yml' -o -name 'RELEASES' -o -name '*.blockmap' -o \
-            -name '*.dmg' -o -name '*.zip' -o -name '*.exe' -o \
-            -name '*.AppImage' -o -name '*.deb' \
-          \) -exec cp -n {} feed/ \;
-          ls -la feed
-          if [ -z "$(ls -A feed)" ]; then
-            echo "No feed files to publish"
-            exit 1
-          fi
-          if ! ls feed/latest*.yml >/dev/null 2>&1; then
-            echo "Missing electron-builder latest*.yml in the feed"
-            exit 1
-          fi
-
-      - name: Install rclone
-        env:
-          RCLONE_VERSION: '1.70.3'
-          # SHA-256 of rclone-v1.70.3-linux-amd64.zip from
-          # https://downloads.rclone.org/v1.70.3/SHA256SUMS — pinned in this
-          # repo. Do not trust a checksum downloaded with the archive.
-          RCLONE_SHA256: '7d69057e69385f6514a9684c7eaa424d972096b130284bb34dd967c4ed4f9dad'
-        run: |
-          set -euo pipefail
-          ARCHIVE="rclone-v${RCLONE_VERSION}-linux-amd64.zip"
-          curl -fsSL -o "${ARCHIVE}" \
-            "https://downloads.rclone.org/v${RCLONE_VERSION}/${ARCHIVE}"
-          printf '%s  %s\n' "${RCLONE_SHA256}" "${ARCHIVE}" > "${ARCHIVE}.sha256"
-          sha256sum -c --strict "${ARCHIVE}.sha256"
-          unzip -q "${ARCHIVE}"
-          sudo install -m 755 "rclone-v${RCLONE_VERSION}-linux-amd64/rclone" /usr/local/bin/rclone
-          rclone version
-
-      # Copy, not sync: previous versioned installers stay in the bucket.
-      # Secrets live on GitHub Environment `production` so staging cannot read them.
-      - name: Upload feed to production R2
+      - name: Upload feed to production R2 (bucket root)
+        uses: ./.github/actions/publish-r2-feed
         env:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          PRODUCTION_RELEASES_BUCKET: ${{ vars.PRODUCTION_RELEASES_BUCKET }}
-        run: |
-          set -euo pipefail
-          : "${R2_ACCESS_KEY_ID:?missing secret R2_ACCESS_KEY_ID}"
-          : "${R2_SECRET_ACCESS_KEY:?missing secret R2_SECRET_ACCESS_KEY}"
-          : "${CLOUDFLARE_ACCOUNT_ID:?missing secret CLOUDFLARE_ACCOUNT_ID}"
-          BUCKET="${PRODUCTION_RELEASES_BUCKET:-cortex-releases}"
-          ENDPOINT="https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com"
+        with:
+          artifacts-dir: artifacts
+          destination: r2:${{ vars.PRODUCTION_RELEASES_BUCKET || 'cortex-releases' }}
 
-          export RCLONE_CONFIG_R2_TYPE=s3
-          export RCLONE_CONFIG_R2_PROVIDER=Cloudflare
-          export RCLONE_CONFIG_R2_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
-          export RCLONE_CONFIG_R2_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
-          export RCLONE_CONFIG_R2_ENDPOINT="$ENDPOINT"
-          export RCLONE_CONFIG_R2_ACL=private
-          export RCLONE_CONFIG_R2_NO_CHECK_BUCKET=true
-
-          rclone copy feed "r2:${BUCKET}" \
-            --exclude "*.yml" \
-            --exclude "RELEASES" \
-            --header-upload "Cache-Control: public, max-age=31536000, immutable" \
-            --checksum \
-            --transfers 4 \
-            --stats-one-line \
-            --stats 30s
-
-          rclone copy feed "r2:${BUCKET}" \
-            --include "*.yml" \
-            --include "RELEASES" \
-            --exclude "*" \
-            --header-upload "Cache-Control: public, max-age=60, must-revalidate" \
-            --checksum \
-            --stats-one-line
+      - name: Mirror feed to software.cortex.foundation/latest/
+        if: ${{ vars.PRODUCTION_SOFTWARE_BUCKET != '' }}
+        uses: ./.github/actions/publish-r2-feed
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        with:
+          artifacts-dir: artifacts
+          destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET }}/latest

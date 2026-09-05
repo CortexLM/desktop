@@ -121,10 +121,12 @@ deb:
     - libnss3
 
 # Auto-update feed. Packaged apps read this into app-update.yml.
-# CI copies latest.yml / latest-mac.yml / latest-linux.yml, blockmaps,
-# and installers to R2 bucket cortex-releases (objects at the bucket
-# root; custom domain releases.cortex.foundation) — see build.yml
-# publish-feed. Generic provider only; do not add a GitHub channel.
+# Production CI copies latest.yml / latest-mac.yml / latest-linux.yml,
+# blockmaps, and installers to R2 bucket cortex-releases (objects at the
+# bucket root; custom domain releases.cortex.foundation) — see build.yml
+# publish-feed. Staging dist overrides publish.url to
+# https://software.cortex.foundation/staging/. Generic provider only; do not
+# add a GitHub channel.
 publish:
   provider: generic
   url: https://releases.cortex.foundation/

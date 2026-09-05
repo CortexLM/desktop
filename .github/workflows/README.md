@@ -5,14 +5,20 @@ Ce dossier contient un système de monitoring automatique 24/7 pour Cortex IDE.
 ### Staging (`staging.yml`)
 - **Trigger:** push to `staging`, or manual
 - **Environment:** GitHub `staging` (production is separate)
-- **Builds:** web (`packages/app/dist`) + Electron Linux unpacked dir
+- **Builds:** web (`packages/app/dist`) + Electron Linux unpacked dir on CodeBuild (`codebuild-cortex-gha-arm64-…` or `x64`)
 - **Deploy:** OIDC-ready (`id-token: write`). Off until `STAGING_DEPLOY_ENABLED`. No AWS keys in git.
 - **Must not** write the production desktop update feed (R2 `cortex-releases` / `releases.cortex.foundation`).
 
+### Publish staging feed (`publish-staging.yml`)
+- **Trigger:** `workflow_dispatch` with a full 40-character SHA that is on `origin/main`
+- **Dist:** Linux electron-builder on CodeBuild, `publish.url` baked to `https://software.cortex.foundation/staging/`
+- **Feed:** rclone copy to R2 `cortex-software/staging/` when `STAGING_FEED_ENABLED`. Refuses destination containing `cortex-releases`
+- See [`docs/runbooks/desktop-staging-prod.md`](../../docs/runbooks/desktop-staging-prod.md)
+
 ### Build and Release (`build.yml`)
 - **Trigger:** version tag `v*.*.*`, or manual
-- **Jobs:** matrix package (mac / win / linux) → GitHub Release → `publish-feed`
-- **Feed:** rclone copy to R2 bucket `cortex-releases` (objects at the bucket root). Custom domain `releases.cortex.foundation`. Generic provider URL in `electron-builder.yml`.
+- **Jobs:** matrix package (mac / win on GitHub-hosted; linux on CodeBuild) → GitHub Release → `publish-feed`
+- **Feed:** rclone copy to R2 bucket `cortex-releases` (objects at the bucket root). Custom domain `releases.cortex.foundation`. Optional mirror to `software.cortex.foundation/latest/`. Generic provider URL in `electron-builder.yml`.
 - **Gate:** GitHub Environment `production` and `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`
 - **Secrets (production environment):** `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`
 - See [`docs/releases.md`](../../docs/releases.md)
