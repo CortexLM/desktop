@@ -61,7 +61,7 @@ describe('Sign in providers', () => {
     expect(onContinueWithGoogle).toHaveBeenCalledOnce();
   });
 
-  it('holds the email action until the address looks plausible', () => {
+  it('holds the email action until the address and password are present', () => {
     renderSignIn();
     const submit = screen.getByRole('button', { name: 'Continue with email' });
     const input = screen.getByLabelText('Email address');
@@ -72,6 +72,9 @@ describe('Sign in providers', () => {
     expect(submit).toBeDisabled();
 
     fireEvent.input(input, { target: { value: 'alex@example.com' } });
+    expect(submit).toBeDisabled();
+
+    fireEvent.input(screen.getByLabelText('Password'), { target: { value: 'secret' } });
     expect(submit).not.toBeDisabled();
   });
 
@@ -81,9 +84,10 @@ describe('Sign in providers', () => {
     fireEvent.input(screen.getByLabelText('Email address'), {
       target: { value: '  alex@example.com  ' },
     });
+    fireEvent.input(screen.getByLabelText('Password'), { target: { value: 'secret' } });
     fireEvent.click(screen.getByRole('button', { name: 'Continue with email' }));
 
-    expect(onContinueWithEmail).toHaveBeenCalledWith('alex@example.com');
+    expect(onContinueWithEmail).toHaveBeenCalledWith('alex@example.com', 'secret');
   });
 
   it('does not reload the page on native form submit', () => {
@@ -91,6 +95,7 @@ describe('Sign in providers', () => {
     fireEvent.input(screen.getByLabelText('Email address'), {
       target: { value: 'alex@example.com' },
     });
+    fireEvent.input(screen.getByLabelText('Password'), { target: { value: 'secret' } });
 
     const submitted = fireEvent.submit(container.querySelector('form')!);
 

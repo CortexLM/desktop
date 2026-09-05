@@ -15,7 +15,17 @@ export {
   type RequestOptions,
 } from './client.ts';
 
-export { guestTokenFromSetCookie } from './cookies.ts';
+export { guestTokenFromSetCookie, sessionTokenFromSetCookie } from './cookies.ts';
+
+export {
+  browserLoginUrl,
+  DESKTOP_AUTH_CALLBACK,
+  DESKTOP_BRIDGE_URL,
+  exchangeAuthCode,
+  signInWithEmail,
+  verifySession,
+  type BrowserLoginProvider,
+} from './desktop-auth.ts';
 
 export {
   createProject,
@@ -69,9 +79,12 @@ export {
   postLifecycle,
   postRecord,
   postShell,
+  postComputerControl,
   readComputerFile,
+  type ComputerControlAction,
   type ComputerInput,
   type ComputerInputAction,
+  type ComputerRuntime,
   type LifecycleAction,
 } from './bot-computer.ts';
 

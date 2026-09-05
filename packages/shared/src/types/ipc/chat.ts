@@ -6,7 +6,7 @@
  * and receives streaming progress over `EVENT_CHAT_PROGRESS`.
  */
 
-export type ChatMode = 'search' | 'reason';
+export type ChatMode = 'search' | 'reason' | 'research';
 
 export type ChatRole = 'user' | 'assistant';
 

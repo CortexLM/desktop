@@ -1,37 +1,95 @@
 /**
  * Sign in, and the device code screen.
  *
- * The only screens in the app that run before there is an account, so they depend on
- * the account context and nothing else.
+ * Google and GitHub open the system browser. Email stays on this form. The
+ * device-code route remains as a fallback. None of these paths put a token in
+ * the renderer.
  */
 
-import { onMount, type JSX } from 'solid-js';
+import { createSignal, onCleanup, onMount, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
 import { useAccount } from '../state/session-context.tsx';
+import type { CortexHost } from '../state/host.ts';
 import { forgetPluginConnect, pendingPluginConnect } from '../state/pending-connect.ts';
 import { SignInScreen } from '../screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from '../screens/auth/device-code-screen.tsx';
 import { createDeviceFlow } from '../screens/auth/device-flow.ts';
 
+function afterAccount(): string {
+  return pendingPluginConnect()?.returnTo ?? '/';
+}
+
+async function withBusy(
+  setBusy: (value: boolean) => void,
+  setError: (value: string | undefined) => void,
+  work: () => Promise<void>,
+): Promise<void> {
+  setBusy(true);
+  setError(undefined);
+  try {
+    await work();
+  } catch (caught) {
+    setError(caught instanceof Error ? caught.message : 'Sign-in did not complete.');
+  } finally {
+    setBusy(false);
+  }
+}
+
 export function SignInRoute(): JSX.Element {
   const navigate = useNavigate();
+  const account = useAccount();
+  const [busy, setBusy] = createSignal(false);
+  const [error, setError] = createSignal<string>();
+
+  onMount(() => {
+    if (account.user()) navigate(afterAccount());
+    onCleanup(listenForAuth(account.host, navigate, setError));
+  });
 
   return (
     <SignInScreen
-      onContinueWithGitHub={() => navigate('/sign-in/device')}
-      onContinueWithGoogle={() => navigate('/sign-in/device')}
-      onContinueWithEmail={() => navigate('/sign-in/device')}
-      // The anonymous route is the only one that lands somewhere usable today, which is
-      // consistent with it being the path that needs no backend at all.
+      busy={busy()}
+      error={error()}
+      onContinueWithGitHub={() =>
+        void withBusy(setBusy, setError, async () => {
+          const opened = await account.host.startBrowserLogin('github');
+          if (!opened) {
+            setError('Could not open the browser. Try again, or continue without an account.');
+          }
+        })
+      }
+      onContinueWithGoogle={() =>
+        void withBusy(setBusy, setError, async () => {
+          const opened = await account.host.startBrowserLogin('google');
+          if (!opened) {
+            setError('Could not open the browser. Try again, or continue without an account.');
+          }
+        })
+      }
+      onContinueWithEmail={(address, password) =>
+        void withBusy(setBusy, setError, async () => {
+          await account.host.signInWithEmail(address, password);
+          navigate(afterAccount());
+        })
+      }
       onContinueWithoutAccount={() => {
-        // Declining the account also drops whatever was waiting on one, so it
-        // cannot fire against an account the user signs into much later.
         forgetPluginConnect();
         navigate('/');
       }}
     />
   );
+}
+
+function listenForAuth(
+  host: CortexHost,
+  navigate: (path: string) => void,
+  setError: (message: string | undefined) => void,
+): () => void {
+  return host.onAuthComplete((event) => {
+    if (event.ok) navigate(afterAccount());
+    else setError(event.message ?? 'Sign-in did not complete. Try again from the Cortex app.');
+  });
 }
 
 /**
@@ -49,7 +107,7 @@ export function DeviceCodeRoute(): JSX.Element {
 
   const flow = createDeviceFlow({
     host: account.host,
-    onAuthorized: () => navigate(pendingPluginConnect()?.returnTo ?? '/'),
+    onAuthorized: () => navigate(afterAccount()),
   });
 
   onMount(() => void flow.start());

@@ -1,13 +1,13 @@
-import { type JSX, Show } from 'solid-js';
+import { For, type JSX, Show } from 'solid-js';
 
 import { Button, Icon, TabPanel, Tabs, type TabDefinition } from '@cortex-ide/ui';
 
 import { DiffView, type DiffFile } from './diff-view.tsx';
-import { SessionTimeline, type SessionTimelineProps } from './session-timeline.tsx';
+import { PlanList, SessionTimeline, type SessionTimelineProps } from './session-timeline.tsx';
 
 import './session-detail.css';
 
-export type WorkbenchTab = 'shell' | 'changes' | 'pr' | 'browser';
+export type WorkbenchTab = 'shell' | 'files' | 'changes' | 'plan';
 
 export interface SessionDetailScreenProps extends SessionTimelineProps {
   title: string;
@@ -18,39 +18,19 @@ export interface SessionDetailScreenProps extends SessionTimelineProps {
   activeTab: WorkbenchTab;
   onTabChange: (tab: WorkbenchTab) => void;
   files: readonly DiffFile[];
-  /** Rendered in the Shell tab. Owned by the host, which has the pty. */
+  /** Rendered in the Terminal tab. Owned by the host, which has the pty. */
   shell?: JSX.Element;
-  /** Rendered in the PR tab. */
-  pullRequest?: JSX.Element;
-  /** Rendered in the Browser tab. */
-  browser?: JSX.Element;
-  /** Present once the agent has opened one. */
-  pullRequestNumber?: number;
-  onBack: () => void;
-  /**
-   * Why the run failed.
-   *
-   * Rendered rather than left in the timeline: the reason is the only thing worth
-   * reading on a failed run, and burying it among the tool calls meant a run whose
-   * cause was recorded still looked like it had silently stopped.
-   */
   error?: string;
   onStop?: () => void;
-  onOpenPullRequest?: () => void;
+  onBack: () => void;
 }
 
-/**
- * The workbench tabs.
- *
- * Changes carries the file count so the badge is a fact rather than a decoration; the other
- * three have nothing countable, and inventing a zero would be noise.
- */
 function workbenchTabs(fileCount: number): TabDefinition[] {
   return [
-    { id: 'shell', label: 'Shell', icon: 'terminal' },
-    { id: 'changes', label: 'Changes', icon: 'changes', count: fileCount },
-    { id: 'pr', label: 'PR', icon: 'pullRequest' },
-    { id: 'browser', label: 'Browser', icon: 'browser' },
+    { id: 'shell', label: 'Terminal', icon: 'terminal' },
+    { id: 'files', label: 'Files', icon: 'file', count: fileCount },
+    { id: 'changes', label: 'Diff', icon: 'changes', count: fileCount },
+    { id: 'plan', label: 'Plan', icon: 'reason' },
   ];
 }
 
@@ -58,10 +38,8 @@ function SessionHeader(props: {
   title: string;
   meta: string;
   running: boolean;
-  pullRequestNumber?: number;
   onBack: () => void;
   onStop?: () => void;
-  onOpenPullRequest?: () => void;
 }): JSX.Element {
   return (
     <header class="cx-session__header">
@@ -80,8 +58,6 @@ function SessionHeader(props: {
       </div>
 
       <div class="cx-session__actions">
-        {/* Stop only exists while there is something to stop. Leaving it visible but
-            disabled on a finished session would suggest the agent might still be running. */}
         <Show when={props.running && props.onStop}>
           {(stop) => (
             <Button variant="ghost" onClick={() => stop()()}>
@@ -89,23 +65,41 @@ function SessionHeader(props: {
             </Button>
           )}
         </Show>
-        <Show when={props.pullRequestNumber !== undefined}>
-          <Button variant="secondary" icon="pullRequest" onClick={() => props.onOpenPullRequest?.()}>
-            View PR #{props.pullRequestNumber}
-          </Button>
-        </Show>
       </div>
     </header>
   );
 }
 
-/**
- * Session Detail: the agent timeline beside the workbench.
- *
- * The Session Detail (Focus) artboard is this screen at the full window width with the
- * sidebar hidden. That is a shell decision, not a different screen, so there is one
- * component for both.
- */
+function FilesPanel(props: { files: readonly DiffFile[] }): JSX.Element {
+  return (
+    <Show when={props.files.length > 0} fallback={<p class="cx-session__empty">No file changes yet.</p>}>
+      <ul class="cx-session__files">
+        <For each={props.files}>{(file) => <li class="cx-session__file">{file.path}</li>}</For>
+      </ul>
+    </Show>
+  );
+}
+
+function PlanPanel(props: SessionTimelineProps): JSX.Element {
+  return (
+    <Show
+      when={props.plan?.length || props.planMermaid}
+      fallback={<p class="cx-session__empty">No plan yet. Start in Plan mode to write one.</p>}
+    >
+      <Show when={props.planMermaid}>
+        {(diagram) => (
+          <pre class="cx-plan__mermaid" aria-label="Plan diagram">
+            {diagram()}
+          </pre>
+        )}
+      </Show>
+      <Show when={props.plan?.length ? props.plan : undefined}>
+        {(steps) => <PlanList steps={steps()} />}
+      </Show>
+    </Show>
+  );
+}
+
 export function SessionDetailScreen(props: SessionDetailScreenProps): JSX.Element {
   return (
     <div class="cx-session">
@@ -113,14 +107,10 @@ export function SessionDetailScreen(props: SessionDetailScreenProps): JSX.Elemen
         title={props.title}
         meta={props.meta}
         running={props.running}
-        pullRequestNumber={props.pullRequestNumber}
         onBack={props.onBack}
         onStop={props.onStop}
-        onOpenPullRequest={props.onOpenPullRequest}
       />
 
-      {/* `role="alert"` because on a failed run this is the only line worth reading,
-          and the screen is otherwise indistinguishable from one that just stopped. */}
       <Show when={props.error}>
         {(message) => (
           <p class="cx-session__error" role="alert">
@@ -145,14 +135,14 @@ export function SessionDetailScreen(props: SessionDetailScreenProps): JSX.Elemen
           <TabPanel tabId="shell" active={props.activeTab}>
             {props.shell}
           </TabPanel>
+          <TabPanel tabId="files" active={props.activeTab}>
+            <FilesPanel files={props.files} />
+          </TabPanel>
           <TabPanel tabId="changes" active={props.activeTab}>
             <DiffView files={props.files} />
           </TabPanel>
-          <TabPanel tabId="pr" active={props.activeTab}>
-            {props.pullRequest}
-          </TabPanel>
-          <TabPanel tabId="browser" active={props.activeTab}>
-            {props.browser}
+          <TabPanel tabId="plan" active={props.activeTab}>
+            <PlanPanel {...props} />
           </TabPanel>
         </div>
       </div>

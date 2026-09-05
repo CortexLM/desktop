@@ -1,6 +1,6 @@
 import { createSignal, type JSX, Show } from 'solid-js';
 
-import { Composer, type ComposerControl } from '@cortex-ide/ui';
+import { Composer, Segmented, type ComposerControl } from '@cortex-ide/ui';
 import type { Capabilities, RuntimeKind } from '@cortex-ide/cortex-api';
 
 import { PageBody } from '../../shell/app-shell.tsx';
@@ -16,8 +16,10 @@ export interface SessionDraft {
   prompt: string;
   repo?: string;
   branch?: string;
+  worktree?: string;
   model?: string;
   runtime: RuntimeKind;
+  mode?: 'ask' | 'plan' | 'agent';
 }
 
 export interface LimitNotice {
@@ -63,22 +65,20 @@ const RUNTIME_ICONS: Record<RuntimeKind, ComposerControl['icon']> = {
   ssh: 'server',
 };
 
+const CODE_MODES = [
+  { id: 'ask', label: 'Ask' },
+  { id: 'plan', label: 'Plan' },
+  { id: 'agent', label: 'Agent' },
+];
+
 interface PickerSpec {
   id: string;
   label: string;
   icon?: ComposerControl['icon'];
   onPress?: () => void;
-  /** Forces the control off even when a handler exists. */
   unavailable?: boolean;
 }
 
-/**
- * Builds a composer picker.
- *
- * A picker with no handler wired is rendered as a *disabled button*, not as inert text. An
- * inert chip looks identical to a live one and silently does nothing when clicked; a
- * disabled control says what it is and that it cannot be used yet.
- */
 function picker(spec: PickerSpec): ComposerControl {
   return {
     id: spec.id,
@@ -90,23 +90,14 @@ function picker(spec: PickerSpec): ComposerControl {
   };
 }
 
-/**
- * Home: the composer plus what has happened recently.
- *
- * The Limits Usage Warning and Limits Limit Reached artboards are this screen with a notice
- * above the composer, not separate screens. A reached limit disables the composer as well as
- * showing the notice - offering a send button that cannot work would be worse than saying so.
- */
+function repoLabel(draft: SessionDraft): string {
+  if (draft.repo) return draft.repo;
+  return draft.runtime === 'local' ? 'Open a folder' : 'Choose a repository';
+}
+
 function draftControls(props: HomeScreenProps): ComposerControl[] {
-  // The model is not a chip: C3 puts it on the composer's right as bare text
-  // (`modelLabel`), so the left row carries only where the run happens.
   return [
-    picker({
-      id: 'repo',
-      label: props.draft.repo ?? 'Choose a repository',
-      icon: 'repo',
-      onPress: props.onPickRepo,
-    }),
+    picker({ id: 'repo', label: repoLabel(props.draft), icon: 'repo', onPress: props.onPickRepo }),
     picker({
       id: 'branch',
       label: props.draft.branch ?? 'Default branch',
@@ -114,52 +105,51 @@ function draftControls(props: HomeScreenProps): ComposerControl[] {
       onPress: props.onPickBranch,
     }),
     picker({
+      id: 'worktree',
+      label: props.draft.worktree ?? 'Worktree',
+      icon: 'folder',
+    }),
+    picker({
       id: 'runtime',
       label: RUNTIME_LABELS[props.draft.runtime],
       icon: RUNTIME_ICONS[props.draft.runtime],
       onPress: props.onPickRuntime,
-      // With only one runtime available there is nothing to pick between, so the control
-      // reports the runtime rather than pretending to offer a choice.
       unavailable: props.capabilities.runtimes.length < 2,
     }),
   ];
 }
 
+function CodeMode(props: HomeScreenProps): JSX.Element {
+  return (
+    <Segmented
+      bordered
+      label="Mode"
+      value={props.draft.mode ?? 'agent'}
+      onChange={(id) => props.onDraftChange({ ...props.draft, mode: id as SessionDraft['mode'] })}
+      options={CODE_MODES}
+    />
+  );
+}
+
 export function HomeScreen(props: HomeScreenProps): JSX.Element {
   const [checklistDismissed, setChecklistDismissed] = createSignal(false);
-
   const blocked = () => props.limit?.kind === 'reached';
-  const controls = () => draftControls(props);
 
   return (
     <PageBody width="centred">
       <div class="cx-home">
         <h1 class="cx-home__greeting">{props.greeting}</h1>
-
         <Show when={props.harness}>
-          {(status) => <HarnessBanner status={status()} remoteHost={props.remoteHost} onRemoteHostChange={props.onRemoteHostChange} />}
+          {(status) => (
+            <HarnessBanner
+              status={status()}
+              remoteHost={props.remoteHost}
+              onRemoteHostChange={props.onRemoteHostChange}
+            />
+          )}
         </Show>
-
         <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
-
-        <div class="cx-home__composer">
-          <Composer
-            value={props.draft.prompt}
-            onValueChange={(prompt) => props.onDraftChange({ ...props.draft, prompt })}
-            onSubmit={() => props.onStart(props.draft)}
-            placeholder="Describe a task, or paste an issue link"
-            controls={controls()}
-            modelLabel={props.draft.model ?? 'Choose a model'}
-            onPickModel={props.onPickModel}
-            onAttach={props.onAttach}
-            onDictate={props.onDictate}
-            disabled={blocked()}
-            disabledReason={blocked() ? props.limit?.message : undefined}
-          />
-        </div>
-
-        {/* `when={props.checklist && !dismissed()}` would hand the child accessor the
-            boolean rather than the checklist, because `&&` yields its last truthy operand. */}
+        <HomeComposer props={props} blocked={blocked()} />
         <Show when={checklistDismissed() ? undefined : props.checklist}>
           {(checklist) => (
             <Checklist
@@ -169,7 +159,6 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
             />
           )}
         </Show>
-
         <Show when={props.recentSessions.length > 0}>
           <RecentSessions
             rows={props.recentSessions}
@@ -182,12 +171,28 @@ export function HomeScreen(props: HomeScreenProps): JSX.Element {
   );
 }
 
-/**
- * The usage warning and limit-reached notice.
- *
- * `role="alert"` for a reached limit and `role="status"` for a warning: the first is
- * blocking and worth interrupting for, the second is information the user can act on later.
- */
+function HomeComposer(props: { props: HomeScreenProps; blocked: boolean }): JSX.Element {
+  const screen = () => props.props;
+  return (
+    <div class="cx-home__composer">
+      <Composer
+        value={screen().draft.prompt}
+        onValueChange={(prompt) => screen().onDraftChange({ ...screen().draft, prompt })}
+        onSubmit={() => screen().onStart(screen().draft)}
+        placeholder="Describe a task, or paste an issue link"
+        controls={draftControls(screen())}
+        leading={<CodeMode {...screen()} />}
+        modelLabel={screen().draft.model ?? 'Choose a model'}
+        onPickModel={screen().onPickModel}
+        onAttach={screen().onAttach}
+        onDictate={screen().onDictate}
+        disabled={props.blocked}
+        disabledReason={props.blocked ? screen().limit?.message : undefined}
+      />
+    </div>
+  );
+}
+
 function LimitBanner(props: { limit: LimitNotice }): JSX.Element {
   const reached = () => props.limit.kind === 'reached';
 

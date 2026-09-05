@@ -78,8 +78,13 @@ export interface BotComputer {
   /** Absent until the service describes the machine. Never guessed. */
   spec?: { arch: string; vcpu: number; memoryGiB: number; browser: true };
   lastError?: string;
-  screenshotUrl?: string;
+    screenshotUrl?: string;
+  streamUrl?: string;
+  controlHolder?: 'user' | 'bot' | 'none';
+  runtime?: ComputerRuntime;
 }
+
+export type ComputerRuntime = 'this_pc' | 'ssh' | 'cloud';
 
 export interface Mascot {
   id: string;
@@ -143,7 +148,33 @@ function computerDetails(box?: ApiComputer): Partial<BotComputer> {
   if (box.provider) details.provider = box.provider;
   if (box.last_error) details.lastError = box.last_error;
   if (box.screenshot_url) details.screenshotUrl = box.screenshot_url;
+  const stream = streamFrom(box);
+  if (stream) details.streamUrl = stream;
+  const holder = controlFrom(box);
+  if (holder) details.controlHolder = holder;
+  const runtime = runtimeFrom(box);
+  if (runtime) details.runtime = runtime;
   return details;
+}
+
+function streamFrom(box: ApiComputer): string | undefined {
+  const raw = box as ApiComputer & { embed_url?: string };
+  const value = box.stream_url ?? raw.embed_url;
+  return typeof value === 'string' && value.startsWith('https:') ? value : undefined;
+}
+
+function controlFrom(box: ApiComputer): BotComputer['controlHolder'] {
+  const value = box.control_holder;
+  if (value === 'user' || value === 'bot' || value === 'none') return value;
+  return undefined;
+}
+
+function runtimeFrom(box: ApiComputer): ComputerRuntime | undefined {
+  const value = box.runtime ?? box.mode;
+  if (value === 'this_pc' || value === 'desktop' || value === 'local') return 'this_pc';
+  if (value === 'ssh') return 'ssh';
+  if (value === 'cloud' || value === 'farm') return 'cloud';
+  return undefined;
 }
 
 function computerSpec(box: ApiComputer): NonNullable<BotComputer['spec']> {
@@ -205,7 +236,11 @@ export function computerIsMissing(computer: BotComputer): boolean {
  * never a Code workspace host and never an SSH target.
  */
 export function computerLabel(computer: BotComputer): string {
-  return computerIsMissing(computer) ? 'No computer yet' : computer.status.replace('-', ' ');
+  if (computerIsMissing(computer)) return 'No computer yet';
+  if (computer.status === 'hibernated' || computer.status === 'stopped') return 'Asleep';
+  if (computer.status === 'waking') return 'Waking';
+  if (computer.status === 'offline' || computer.status === 'wake-failed') return 'Offline';
+  return 'Cloud computer';
 }
 
 function asLook(value?: string): MascotLook {

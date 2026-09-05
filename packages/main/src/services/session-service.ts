@@ -31,12 +31,9 @@
  * qui est la seule autorité sur ce que le disque contient réellement.
  */
 
-import { dialog } from 'electron';
 import { EventEmitter } from 'node:events';
-import { basename } from 'node:path';
 
 import type {
-  RepositoryOption,
   SessionDetail,
   SessionEvent,
   SessionStatus,
@@ -46,9 +43,7 @@ import type {
 
 import { getDatabaseService } from './database-service';
 import { getAIService, type AIService } from './ai-service';
-import { gitService } from './git-service';
 import { diffForWorkspace, diffTotals } from './session-diff';
-import { activeWorkspaceManager, activeWorkspacePath } from './active-workspace';
 import { toSessionEvent } from './session-events';
 import { SessionStore } from './session-store';
 import {
@@ -59,13 +54,13 @@ import {
   type EventRow,
   type SessionRow,
 } from './session-rows';
-
-/** Ce que le renderer peut demander sans qu'on lui donne un chemin disque. */
-interface RepoBinding {
-  id: string;
-  path: string;
-  branch?: string;
-}
+import { isRemoteRuntime, requireThisPcFolder } from './session-this-pc';
+import { activeRepoBinding, listBoundRepositories, openBoundWorkspace } from './session-folder';
+import {
+  followUpRemoteCodeSession,
+  remoteSessionRow,
+  startRemoteCodeSession,
+} from './session-remote-start';
 
 
 export class SessionService extends EventEmitter {
@@ -146,66 +141,12 @@ export class SessionService extends EventEmitter {
     return detail;
   }
 
-  /**
-   * The repositories the composer can offer.
-   *
-   * Only the active workspace today: a picker listing folders the user has not
-   * opened would be offering to run an agent somewhere they have not pointed the
-   * app at. Returns an empty list rather than throwing when no folder is open —
-   * the composer then shows its own empty state.
-   */
-  async listRepositories(): Promise<
-    Array<{ id: string; name: string; branch?: string; branches: string[]; dirty: boolean }>
-  > {
-    const binding = await this.activeRepo();
-    if (!binding) return [];
-
-    try {
-      const [status, branchSummary] = await Promise.all([
-        gitService.status(binding.path),
-        gitService.branches(binding.path),
-      ]);
-      return [
-        {
-          id: binding.id,
-          name: binding.id,
-          branch: status.branch,
-          // Local heads only: remote-tracking refs would list every branch anyone
-          // has ever pushed, which is not a set the user can start work on here.
-          branches: branchSummary.all.filter((name) => !name.startsWith('remotes/')),
-          dirty: !status.isClean,
-        },
-      ];
-    } catch {
-      // Not a git repository, or git is unavailable. Still offerable as a plain
-      // folder — the agent does not need git to read and edit files.
-      return [{ id: binding.id, name: binding.id, branches: [], dirty: false }];
-    }
+  async listRepositories() {
+    return listBoundRepositories();
   }
 
-  /**
-   * Opens the native folder picker and adopts the choice as the active workspace.
-   *
-   * Both steps in one call. The renderer has no use for a disk path — it addresses
-   * repositories by id — so handing it one just to hand it back would be sending
-   * the user's directory layout through the least-trusted process for nothing.
-   */
-  async openWorkspace(): Promise<{ cancelled: boolean; repositories: RepositoryOption[] }> {
-    const result = await dialog.showOpenDialog({
-      properties: ['openDirectory', 'createDirectory'],
-      title: 'Open a folder to run agents in',
-    });
-
-    const path = result.filePaths[0];
-    if (result.canceled || !path) {
-      return { cancelled: true, repositories: await this.listRepositories() };
-    }
-
-    const manager = await activeWorkspaceManager();
-    const workspace = await manager.addWorkspace(path);
-    await manager.switchWorkspace(workspace.id);
-
-    return { cancelled: false, repositories: await this.listRepositories() };
+  async openWorkspace() {
+    return openBoundWorkspace();
   }
 
   // ==========================================================================
@@ -220,22 +161,25 @@ export class SessionService extends EventEmitter {
    * The turn then runs in the background and reports through `progress`.
    */
   async start(request: StartSessionRequest): Promise<SessionSummary> {
-    const binding = await this.activeRepo();
+    if (isRemoteRuntime(request.runtime)) {
+      return this.startRemote(request);
+    }
+    return this.startOnThisPc(request);
+  }
+
+  /**
+   * This PC: the open folder is the workspace the agent may read and write.
+   * No folder is a hard failure — never process.cwd, never a silent Cloud run.
+   */
+  private async startOnThisPc(request: StartSessionRequest): Promise<SessionSummary> {
+    const binding = await activeRepoBinding();
+    const folder = requireThisPcFolder(binding?.path);
     const now = Date.now();
-
-    // The row is written *before* the provider is resolved, and that ordering is
-    // the point. `AIService.createSession` throws "No default AI provider
-    // configured" when no key is set — which is the state a new install is in. If
-    // that threw out of here, the composer would surface a raw error, throw away
-    // nothing it could recover, and leave no trace of the attempt. Instead the run
-    // exists, lands in `failed` with a message that names the fix, and the user has
-    // a row to click rather than a toast to re-read.
     const id = `session_${now}_${Math.random().toString(36).slice(2, 11)}`;
-
     const summary = newRun(id, request, now, binding);
 
     await this.upsert(id, {
-      workspace_id: binding?.path ?? null,
+      workspace_id: folder,
       title: summary.title,
       prompt: request.prompt,
       status: 'queued',
@@ -248,12 +192,20 @@ export class SessionService extends EventEmitter {
     });
 
     await this.append(id, { kind: 'prompt', at: now, text: request.prompt });
-
     void this.run(id, request.prompt, {
       model: request.model,
-      workspacePath: binding?.path,
+      workspacePath: folder,
+      mode: request.mode,
     });
     return summary;
+  }
+
+  private async startRemote(request: StartSessionRequest): Promise<SessionSummary> {
+    const created = await startRemoteCodeSession(request);
+    const now = Date.now();
+    await this.upsert(created.id, remoteSessionRow(created, request, null, now));
+    await this.append(created.id, { kind: 'prompt', at: now, text: request.prompt });
+    return created;
   }
 
   /** Adds a turn to a session that has already finished one. */
@@ -262,8 +214,12 @@ export class SessionService extends EventEmitter {
     if (!existing) return null;
     if (this.running.has(id)) return existing;
 
+    if (isRemoteRuntime(existing.runtime)) {
+      return followUpRemoteCodeSession(id, prompt, existing.runtime);
+    }
+
     await this.append(id, { kind: 'prompt', at: Date.now(), text: prompt });
-    void this.run(id, prompt);
+    void this.run(id, prompt, { workspacePath: await this.workspacePathOf(id) });
     return existing;
   }
 
@@ -335,6 +291,12 @@ export class SessionService extends EventEmitter {
     });
   }
 
+  private async workspacePathOf(id: string): Promise<string | undefined> {
+    const db = getDatabaseService();
+    const rows = await db.query<SessionRow>('SELECT workspace_id FROM sessions WHERE id = ?', [id]);
+    return rows.rows[0]?.workspace_id ?? undefined;
+  }
+
   /**
    * Drives one agent turn and records it.
    *
@@ -344,7 +306,7 @@ export class SessionService extends EventEmitter {
   private async run(
     id: string,
     prompt: string,
-    options: { model?: string; workspacePath?: string } = {},
+    options: { model?: string; workspacePath?: string; mode?: StartSessionRequest['mode'] } = {},
   ): Promise<void> {
     const abort = new AbortController();
     this.running.set(id, abort);
@@ -354,7 +316,11 @@ export class SessionService extends EventEmitter {
     try {
       await this.ensureAgentSession(id, options);
 
-      const stream = this.ai.streamMessage(id, prompt);
+      const folder = requireThisPcFolder(options.workspacePath);
+      const stream = this.ai.streamMessage(id, prompt, undefined, {
+        workspacePath: folder,
+        ...(options.mode ? { mode: options.mode } : {}),
+      });
       for await (const chunk of stream) {
         if (abort.signal.aborted) break;
         await this.recordChunk(id, chunk);
@@ -454,28 +420,6 @@ export class SessionService extends EventEmitter {
     if (!row) return {};
 
     return diffTotals(await diffForWorkspace(row.workspace_id));
-  }
-
-  // ==========================================================================
-  // Workspace
-  // ==========================================================================
-
-  /**
-   * The repository the active workspace points at.
-   *
-   * Returns the path for main's own use and an id for the renderer. The path never
-   * crosses IPC: it is main's business, and sending it would leak the user's
-   * directory layout into the process that renders content.
-   *
-   * Goes through `activeWorkspacePath` rather than the manager directly, because
-   * the manager has to be initialised before it will answer — an uninitialised one
-   * reports no active workspace even when a folder is registered, which is how the
-   * composer's repository picker came to be permanently empty.
-   */
-  private async activeRepo(): Promise<RepoBinding | undefined> {
-    const path = await activeWorkspacePath();
-    if (!path) return undefined;
-    return { id: basename(path), path };
   }
 
   dispose(): void {

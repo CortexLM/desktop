@@ -32,6 +32,8 @@ const EVENT_HANDLERS: Record<string, (event: RealtimeEvent) => void> = {
       event.message ?? 'A computer failed to wake',
       event.href ?? botHref(event.mascot_id),
     ),
+  send_to_user: notifyBotMessage,
+  'bot.send_to_user': notifyBotMessage,
 };
 
 export function applyRealtimeEvent(event: RealtimeEvent): void {
@@ -52,6 +54,12 @@ export function applyRealtimeEvent(event: RealtimeEvent): void {
   }
 }
 
+function notifyBotMessage(event: RealtimeEvent): void {
+  const text = event.message;
+  if (!text) return;
+  postAndNotify('bot-message', text, event.href ?? botHref(event.mascot_id));
+}
+
 function applyCodeBlocked(event: RealtimeEvent): void {
   setCodePermissionBlocked(true);
   postAndNotify(
@@ -69,7 +77,7 @@ function postAndNotify(kind: InboxKind, message: string, href?: string): void {
 function inboxKind(kind: string | undefined): InboxKind {
   if (kind === 'scheduled-task' || kind === 'mention') return kind;
   if (kind === 'code-run-done' || kind === 'code-run-blocked') return kind;
-  if (kind === 'bot-ask-user' || kind === 'farm-wake-fail') return kind;
+  if (kind === 'bot-ask-user' || kind === 'bot-message' || kind === 'farm-wake-fail') return kind;
   return 'mention';
 }
 

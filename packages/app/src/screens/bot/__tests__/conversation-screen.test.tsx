@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 
-import { BotConversationScreen } from '../mascot-detail-screens.tsx';
+import { BotConversationScreen } from '../conversation-screen.tsx';
 import { BotComputerScreen } from '../mascot-computer-screens.tsx';
 import { BotVideosScreen } from '../mascot-detail-screens.tsx';
 import type { Mascot } from '../../../state/bot-map.ts';
@@ -86,6 +86,8 @@ describe('BotConversationScreen', () => {
     ));
     expect(screen.getAllByText('Waiting on you').length).toBeGreaterThan(0);
     expect(screen.getByPlaceholderText('Answer the question above first')).toBeDisabled();
+    expect(screen.queryByText('Work')).toBeNull();
+    expect(screen.queryByText('ok')).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: 'yes' }));
     expect(onAnswer).toHaveBeenCalledWith('yes', 'ask_1');
   });
@@ -117,6 +119,47 @@ describe('BotConversationScreen', () => {
       />
     ));
     expect(screen.getByText('Mascot not found')).toBeInTheDocument();
+  });
+
+  it('titles the session with the mascot name and hides Running / View PR', () => {
+    render(() => (
+      <BotConversationScreen
+        mascot={baseMascot({
+          computer: {
+            id: 'pc_1',
+            mascotId: 'mst_1',
+            status: 'running',
+            runtime: 'cloud',
+            spec: { arch: 'x86_64', vcpu: 4, memoryGiB: 16, browser: true },
+          },
+          messages: [
+            {
+              id: 't',
+              seq: 0,
+              role: 'assistant',
+              kind: 'send_to_user',
+              content: 'First.\n\nSecond.',
+              at: 1,
+            },
+          ],
+        })}
+        draft=""
+        onDraft={vi.fn()}
+        onSend={vi.fn()}
+        onAnswer={vi.fn()}
+        onSecret={vi.fn()}
+        onGo={vi.fn()}
+        onBack={vi.fn()}
+      />
+    ));
+    expect(screen.getByRole('heading', { name: 'Scout' })).toBeInTheDocument();
+    expect(screen.getAllByText('Cloud computer').length).toBeGreaterThan(0);
+    expect(screen.queryByText(/This PC/)).toBeNull();
+    expect(screen.queryByText(/Running/)).toBeNull();
+    expect(screen.queryByText(/View PR/)).toBeNull();
+    expect(screen.getByText('First.')).toBeInTheDocument();
+    expect(screen.getByText('Second.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Take control' })).toBeInTheDocument();
   });
 });
 

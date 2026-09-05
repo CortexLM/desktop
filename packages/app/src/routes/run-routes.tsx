@@ -3,11 +3,10 @@
  *
  * Split out of `route-components.tsx` because they are the only routes with real
  * behaviour rather than prop plumbing — starting a run, filtering an inbox,
- * projecting a timeline — and because that file had grown into a grab bag of
- * every screen's adapter.
+ * projecting a timeline.
  */
 
-import { createMemo, createSignal, onMount, type JSX } from 'solid-js';
+import { createEffect, createMemo, createSignal, onMount, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import type { RuntimeKind } from '@cortex-ide/cortex-api';
@@ -15,11 +14,7 @@ import type { SessionSummary } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
-import {
-  composerDraft,
-  resetComposerDraft,
-  setComposerDraft,
-} from '../state/composer-draft.ts';
+import { composerDraft, setComposerDraft } from '../state/composer-draft.ts';
 import { toInboxSession, toRecentRow } from '../state/session-view.ts';
 import { HomeScreen } from '../screens/home/home-screen.tsx';
 import type { ChecklistStep } from '../screens/home/checklist.tsx';
@@ -32,47 +27,9 @@ import { createSessionDetail } from '../screens/session/session-detail-state.ts'
 import { ShellView } from '../screens/session/shell-view.tsx';
 import { harnessStatus, remoteHost, setRemoteHost } from '../state/harness.ts';
 import { codePermissionBlocked, realtimeStatus } from '../state/realtime-bridge.ts';
+import { createStartRun, cycleDraftField, cycleRuntime, pickRepo } from './start-run.ts';
+import { EMPTY_STATES, filterCounts, workspaceSummary } from './sessions-inbox.ts';
 
-/**
- * Starts a run from the current draft.
- *
- * Extracted from `HomeRoute` because it owns a lifecycle rather than markup: an
- * in-flight guard, an error the screen surfaces, and the ordering that matters —
- * the draft is cleared only once the run exists, so a failed start does not throw
- * away the prompt at exactly the moment the user still needs it.
- */
-function createStartRun(
-  runs: ReturnType<typeof useSessions>,
-  navigate: (path: string) => void,
-  setError: (message: string | undefined) => void,
-): () => Promise<void> {
-  let inFlight = false;
-
-  return async () => {
-    const draft = composerDraft();
-    if (!draft.prompt.trim() || inFlight) return;
-
-    inFlight = true;
-    setError(undefined);
-    try {
-      const session = await runs.start({
-        prompt: draft.prompt.trim(),
-        runtime: draft.runtime,
-        ...(draft.repo ? { repo: draft.repo } : {}),
-        ...(draft.branch ? { branch: draft.branch } : {}),
-        ...(draft.model ? { model: draft.model } : {}),
-      });
-      resetComposerDraft(draft.runtime);
-      navigate(`/code/sessions/${session.id}`);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : String(error));
-    } finally {
-      inFlight = false;
-    }
-  };
-}
-
-/** The branches of whichever repository the draft points at. */
 function branchNames(runs: ReturnType<typeof useSessions>): readonly string[] {
   const draft = composerDraft();
   const repositories = runs.repositories() ?? [];
@@ -80,30 +37,6 @@ function branchNames(runs: ReturnType<typeof useSessions>): readonly string[] {
   return repo?.branches ?? [];
 }
 
-/**
- * Advances a draft field to the next option.
- *
- * Cycling rather than opening a menu: the common case is a single repository — the
- * open workspace — and a dropdown holding one row is a worse affordance than a
- * chip that shows what is selected. It becomes a menu when there is more than one
- * workspace to choose between.
- */
-function cycleDraftField(field: 'repo' | 'branch', options: readonly string[]): void {
-  if (options.length === 0) return;
-
-  const current = composerDraft()[field] ?? '';
-  const next = options[(options.indexOf(current) + 1) % options.length];
-  setComposerDraft((draft) => ({ ...draft, [field]: next }));
-}
-
-/**
- * The get-started checklist, from actual state.
- *
- * Returns `undefined` once everything is done, rather than a list of ticks: a
- * completed checklist is a permanent congratulation occupying the space above the
- * composer. Dismissing it is not offered for the same reason — it goes away on its
- * own.
- */
 function buildChecklist(state: {
   hasRepository: boolean;
   hasRun: boolean;
@@ -122,8 +55,6 @@ function buildChecklist(state: {
     {
       id: 'model',
       label: 'Choose a model, or add a provider key',
-      // Signing in grants the Cortex models and a provider key is the other route to
-      // the same place, so either satisfies the step.
       done: state.signedIn || state.hasModel,
       ...(state.signedIn ? {} : { action: 'Settings', onAction: state.openSettings }),
     },
@@ -133,12 +64,6 @@ function buildChecklist(state: {
   return steps.every((step) => step.done) ? undefined : { title: 'Get started', steps };
 }
 
-/**
- * A failed start, in the design's banner above the composer.
- *
- * Not a toast: the prompt is still in the box, and the message explains why it did
- * not go anywhere — so it belongs next to it, with the action that fixes it.
- */
 function toLimitNotice(message: string | undefined, openSettings: () => void) {
   return message
     ? {
@@ -150,21 +75,6 @@ function toLimitNotice(message: string | undefined, openSettings: () => void) {
     : undefined;
 }
 
-/**
- * Advances the repository, or opens a folder when there is nothing to advance to.
- *
- * With an empty list the picker used to cycle nothing, silently. Opening a folder is
- * the action that actually helps at that point.
- */
-function pickRepo(names: readonly string[], openFolder: () => void): void {
-  if (names.length === 0) {
-    openFolder();
-    return;
-  }
-  cycleDraftField('repo', names);
-}
-
-/** "What should we build, Ana?" — the greeting knows the first name only. */
 function codeGreeting(displayName?: string): string {
   return displayName
     ? `What should we build, ${displayName.split(/\s+/)[0]}?`
@@ -177,7 +87,19 @@ function correctDraftRuntime(allowed: readonly RuntimeKind[]): void {
   }
 }
 
-/** The get-started checklist and the harness banner, both read from live state. */
+function syncDraftWorkspace(runs: ReturnType<typeof useSessions>): void {
+  const first = (runs.repositories() ?? [])[0];
+  if (!first) return;
+  setComposerDraft((draft) => ({
+    ...draft,
+    repo: draft.repo && (runs.repositories() ?? []).some((row) => row.id === draft.repo)
+      ? draft.repo
+      : first.id,
+    branch: draft.branch ?? first.branch,
+    worktree: first.worktree ?? first.id,
+  }));
+}
+
 function useHomeStatus(
   account: ReturnType<typeof useAccount>,
   runs: ReturnType<typeof useSessions>,
@@ -214,9 +136,15 @@ export function HomeRoute(): JSX.Element {
   const navigate = useNavigate();
 
   onMount(() => correctDraftRuntime(account.capabilities().runtimes));
+  createEffect(() => syncDraftWorkspace(runs));
 
   const [startError, setStartError] = createSignal<string>();
-  const start = createStartRun(runs, navigate, setStartError);
+  const start = createStartRun({
+    runs,
+    navigate,
+    setError: setStartError,
+    signedIn: () => account.capabilities().authenticated,
+  });
   const recent = createMemo(() =>
     (runs.sessions() ?? []).filter((session) => !session.archived).slice(0, 5).map(toRecentRow),
   );
@@ -236,6 +164,7 @@ export function HomeRoute(): JSX.Element {
       onPickModel={() => navigate('/code/settings')}
       onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
+      onPickRuntime={() => cycleRuntime(account.capabilities().runtimes)}
       harness={harness()}
       remoteHost={remoteHost()}
       onRemoteHostChange={setRemoteHost}
@@ -245,85 +174,13 @@ export function HomeRoute(): JSX.Element {
   );
 }
 
-const SESSION_FILTERS = [
-  { id: 'all', label: 'All' },
-  { id: 'active', label: 'Active' },
-  { id: 'review', label: 'Needs review' },
-  { id: 'archived', label: 'Archived' },
-];
-
-/** Copy that names the filter, so an empty list explains itself. */
-const EMPTY_STATES: Record<string, { title: string; body: string }> = {
-  all: {
-    title: 'No sessions yet',
-    body: 'Start one from the composer on Home, and it will show up here as it runs.',
-  },
-  active: {
-    title: 'Nothing running',
-    body: 'Sessions appear here while an agent is working on them.',
-  },
-  review: {
-    title: 'Nothing to review',
-    body: 'Finished sessions with changes land here for you to look over.',
-  },
-  archived: { title: 'Nothing archived', body: 'Sessions you archive are kept here.' },
-};
-
-/** "6 sessions across 3 repositories · 1 running" — over everything unarchived. */
-function workspaceSummary(sessions: readonly SessionSummary[]): string | undefined {
-  const all = sessions.filter((session) => !session.archived);
-  if (all.length === 0) return undefined;
-  const repos = new Set(all.map((session) => session.repo ?? 'Local folder')).size;
-  const running = all.filter(
-    (session) => session.status === 'running' || session.status === 'queued',
-  ).length;
-  const parts = [
-    `${all.length} session${all.length === 1 ? '' : 's'} across ${repos} repositor${repos === 1 ? 'y' : 'ies'}`,
-  ];
-  if (running > 0) parts.push(`${running} running`);
-  return parts.join(' · ');
-}
-
-function filterCounts(sessions: readonly SessionSummary[]) {
-  const all = sessions.filter((session) => !session.archived);
-  const counts: Record<string, number> = {
-    all: all.length,
-    active: all.filter((s) => s.status === 'queued' || s.status === 'running').length,
-    review: all.filter((s) => s.status === 'review').length,
-    archived: sessions.filter((s) => s.archived).length,
-  };
-  return SESSION_FILTERS.map((entry) => ({ ...entry, count: counts[entry.id] ?? 0 }));
-}
-
 export function SessionsRoute(): JSX.Element {
   const runs = useSessions();
   const navigate = useNavigate();
   const [filter, setFilter] = createSignal('all');
   const [query, setQuery] = createSignal('');
 
-  const visible = createMemo(() => {
-    const term = query().trim().toLowerCase();
-    const active = filter();
-
-    return (runs.sessions() ?? [])
-      .filter((session) => {
-        if (active === 'archived') return session.archived;
-        if (session.archived) return false;
-        if (active === 'active') return session.status === 'queued' || session.status === 'running';
-        if (active === 'review') return session.status === 'review';
-        return true;
-      })
-      .filter((session) => {
-        if (term === '') return true;
-        // Repo and branch are searched as well as the title: "the thing I ran on
-        // the release branch" is how people look for a run they cannot name.
-        return [session.title, session.repo, session.branch]
-          .filter(Boolean)
-          .some((field) => field!.toLowerCase().includes(term));
-      })
-      .map((session) => toInboxSession(session));
-  });
-
+  const visible = createMemo(() => inboxRows(runs.sessions() ?? [], filter(), query()));
   const summary = createMemo(() => workspaceSummary(runs.sessions() ?? []));
   const filters = createMemo(() => filterCounts(runs.sessions() ?? []));
 
@@ -343,6 +200,29 @@ export function SessionsRoute(): JSX.Element {
   );
 }
 
+function inboxRows(sessions: readonly SessionSummary[], active: string, query: string) {
+  const term = query.trim().toLowerCase();
+  return sessions
+    .filter((session) => matchesFilter(session, active))
+    .filter((session) => matchesQuery(session, term))
+    .map((session) => toInboxSession(session));
+}
+
+function matchesFilter(session: SessionSummary, active: string): boolean {
+  if (active === 'archived') return session.archived;
+  if (session.archived) return false;
+  if (active === 'active') return session.status === 'queued' || session.status === 'running';
+  if (active === 'review') return session.status === 'review';
+  return true;
+}
+
+function matchesQuery(session: SessionSummary, term: string): boolean {
+  if (term === '') return true;
+  return [session.title, session.repo, session.branch]
+    .filter(Boolean)
+    .some((field) => field!.toLowerCase().includes(term));
+}
+
 export function SessionDetailRoute(): JSX.Element {
   const runs = useSessions();
   const navigate = useNavigate();
@@ -351,15 +231,6 @@ export function SessionDetailRoute(): JSX.Element {
   const [followUp, setFollowUp] = createSignal('');
 
   const detail = createSessionDetail(() => params.sessionId, runs);
-
-  /**
-   * The Shell tab's contents.
-   *
-   * Mounted only while its tab is showing: an xterm instance per visited session,
-   * all live at once, is a lot of canvas for panes nobody is looking at. Main keeps
-   * the PTY alive across the unmount, so reopening the tab reattaches to the same
-   * shell rather than spawning a second one.
-   */
   const shell = createMemo(() =>
     tab() === 'shell' ? <ShellView sessionId={params.sessionId} /> : undefined,
   );

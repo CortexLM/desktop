@@ -113,7 +113,7 @@ describe('toInboxSession', () => {
     // The inbox groups by repo, so a run without one must not be dropped from the
     // list entirely.
     const row = toInboxSession(summary({ repo: undefined, branch: undefined }), NOW);
-    expect(row.repo).toBe('Local folder');
+    expect(row.repo).toBe('This PC');
     expect(row.branch).toBe('—');
   });
 });
@@ -125,7 +125,7 @@ describe('toRecentRow', () => {
 
   it('names the fallback when there is neither', () => {
     expect(toRecentRow(summary({ repo: undefined, branch: undefined }), NOW).context).toBe(
-      'Local folder',
+      'This PC',
     );
   });
 });

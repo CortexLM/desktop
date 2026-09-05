@@ -16,7 +16,7 @@ the service contract stays intact; they are not a third tab in the chrome.
 | Purpose | Conversation, research, planning, a library | A coding-agent cloud workbench | A persistent mascot with its own computer |
 | Paths | `/`, `/chat/:id`, `/research`, `/planning`, `/projects*`, `/library`, `/plugins`, `/settings` | everything under `/code` | everything under `/bot` (not in this shell's switcher) |
 | Unit of work | a conversation | a **session** (repo, branch, plan, permissions, diff) | a **mascot** |
-| Shape | transcript + composer | dashboard: inbox, detail, review, automations, usage | roster + per-mascot rail |
+| Shape | transcript + composer | dashboard: inbox, detail, review, automations, usage | leftover roster + conversation workbench + computer rail |
 | Sidebar | `ChatSections` | `CodeSections` | not in this desktop chrome |
 
 The switch is by URL prefix through `productForPath()` in
@@ -84,9 +84,13 @@ Behaviour that is part of the product, not an implementation detail:
 - **A connected host is paired with a one-time code** — the service stores a hash,
   the client never does. Heartbeats carry a device token, never SSH or provider
   keys. SSH and host keys are not downloaded to the client.
-- **Signed out on desktop**, Home / Sessions / Session detail / Settings work with
-  local or BYO providers. Automations, Review, Usage and SSH connect are shown and
-  locked (`01-security.md` § 1.3).
+- **Signed out on desktop**, Home / Sessions / Session detail / Settings work
+  with **This PC** or BYO providers. Automations, Review, Usage and SSH connect
+  are shown and locked (`01-security.md` § 1.3). Creating a Bot on leftover
+  `/bot` routes needs an account.
+- **This PC Code sessions** start only after the native folder picker. The
+  coding agent runs against that tree via the desktop harness. Cloud and SSH
+  go through the control plane and never silently run locally.
 - **There is no in-app Benchmarks screen.** Provider benches live in
   `packages/test-harness` (`cortex-test`).
 - **Cortex Code has no Secrets page.** See § 6.2.1.
@@ -173,6 +177,15 @@ Bot rules (service and leftover `/bot` screens; the dedicated Bot desktop app ow
   state that explains how to create one. Never ship starter mascots, sample
   mascots, or a demo roster — see `04-structure.md` § 4.2 for the exact
   anti-pattern.
+- **Leftover `/bot` screens still have a Bot sidebar** when those routes are
+  opened (including first-bot setup at `/bot/new`). It is not in this app's
+  Chat | Code switcher. The list is the live roster (honest empty, no Sprite /
+  Finch / Pebble), plus Studio: Routines, Memory, Approvals (`/bot/approvals`).
+- **Conversation is a teammate workbench.** The header is the mascot / session
+  name, never a user first name, never “Running”, never “View PR”. Messages are
+  employee-style bubbles; tool dumps stay off the thread. The right rail is the
+  **cloud** computer: a noVNC stream (screenshot fallback) and Take control /
+  Release. This PC and SSH belong to Cortex Code, never to Bot.
 - An offline computer says it is offline. It does not pretend to be thinking.
 - **The computer is a cloud farm box.** Cortex Bot never offers This PC, This
   desktop, or SSH as a host. This PC is Cortex Code on the desktop app. SSH

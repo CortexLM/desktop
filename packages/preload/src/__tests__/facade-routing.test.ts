@@ -178,6 +178,8 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['cortex', 'createApiKey', 'cortex:create-api-key'],
   ['cortex', 'revokeApiKey', 'cortex:revoke-api-key'],
   ['cortex', 'productRequest', 'cortex:product-request'],
+  ['cortex', 'startBrowserLogin', 'cortex:browser-login'],
+  ['cortex', 'signInWithEmail', 'cortex:email-login'],
 ];
 
 /**

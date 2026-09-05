@@ -26,6 +26,12 @@ export interface SidebarUser {
   initials: string;
 }
 
+export interface SidebarMascot {
+  id: string;
+  name: string;
+  unread?: boolean;
+}
+
 export interface SidebarProps {
   product: Product;
   onSwitchProduct: (product: Product) => void;
@@ -42,6 +48,10 @@ export interface SidebarProps {
   onNewChat: () => void;
   onNewSession: () => void;
   onNewMascot: () => void;
+  mascots?: readonly SidebarMascot[];
+  activeMascotId?: string;
+  onOpenMascot?: (id: string) => void;
+  onOpenStudio?: (panel: 'routines' | 'memory' | 'approvals') => void;
   onOpenSearch?: () => void;
   onOpenAccount?: () => void;
   onSignIn?: () => void;

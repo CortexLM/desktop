@@ -41,12 +41,38 @@ Looks lift one step on a dark canvas. There are no seeded mascots.
 | Route | Screen |
 | --- | --- |
 | `/bot` | Mascot list |
-| `/bot/new` | Create — shape + color |
-| `/bot/:id` | Conversation |
+| `/bot/new` | Create — look + face. The Bot sidebar stays on. |
+| `/bot/:id` | Conversation workbench (thread + computer rail) |
 | `/bot/:id/messages` | Message history |
 | `/bot/:id/videos` | Recordings (cursor + click-zoom) |
-| `/bot/:id/computer` | VNC / computer |
+| `/bot/:id/computer` | Dedicated computer page (stream + take control) |
+| `/bot/:id/memory` | Memory |
+| `/bot/:id/skills` | Skills |
+| `/bot/:id/routines` | Routines |
+| `/bot/:id/groups` | Groups |
 | `/bot/:id/settings` | Settings rail for that mascot |
+| `/bot/approvals` | Pending questions and secrets across mascots |
+
+The Bot sidebar is always present on these routes. It lists the live roster
+(honest empty when the account has none — never Sprite, Finch, or Pebble) and
+Studio: Routines, Memory, Approvals.
+
+## Conversation
+
+The header is the **mascot name**. The subtitle is the computer's honest state
+(Asleep, Waking, Offline, Cloud computer). It never says Running, never View PR,
+never a user's first name, and never This PC or SSH.
+
+Messages are employee-style bubbles. A SendToUser turn with blank lines becomes
+more than one bubble. `tool_call` / `tool_result` stay off the thread.
+
+The right rail is **Computer**: a noVNC stream when the ticket includes an
+https `stream_url`, otherwise a screenshot. Take control / Release. The
+computer is a cloud farm box — not This PC, not SSH. This is not a Terminal /
+Files tab navbar. Opening another mascot drops the previous computer's stream and
+screenshot immediately; the rail stays empty until this mascot's computer
+answers, including when that refresh fails. The rail never falls back to a
+stream URL stored on a different mascot.
 
 ## Farm machines
 
@@ -70,7 +96,7 @@ joins `mascot:{id}`; a miss is `not_found`.
 | Empty | No machine yet (should only exist mid-create). |
 | Hibernated | Asleep to save the farm. Wake is offered. |
 | Waking / Connecting | Wake requested. |
-| Running | Dedicated box is up. VNC surface mounts when a stream URL exists. |
+| Running | Dedicated box is up. The computer rail mounts a noVNC stream when an https URL exists; otherwise it polls screenshots. Take control to type and click. |
 | Wake failed | The farm did not come back. Retry + `farm-wake-fail` notification. |
 | Ask user | The mascot is blocked on a question. `bot-ask-user` notification. |
 

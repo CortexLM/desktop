@@ -102,6 +102,23 @@ export const layout = {
     runtime: 28,
   },
 
+  bot: {
+    /**
+     * Right-hand computer rail on the Bot conversation workbench.
+     * Measured to fit a 16:10 stream beside the thread at the 1440 artboard.
+     */
+    computerRail: 400,
+  },
+
+  breakpoint: {
+    /** Phone baseline. Below this we do not design. */
+    mobile: 390,
+    /** Tablet / narrow window. */
+    tablet: 768,
+    /** Paper artboard width; the desktop layout. */
+    desktop: 1440,
+  },
+
   overlay: {
     /** Command palette. */
     paletteWidth: 560,
@@ -182,6 +199,10 @@ export const layoutCssVariables = {
   '--layout-dot': `${layout.control.dot}px`,
   '--layout-avatar': `${layout.control.avatar}px`,
   '--layout-logo-tile': `${layout.control.logoTile}px`,
+  '--layout-bot-computer-rail': `${layout.bot.computerRail}px`,
+  '--layout-breakpoint-mobile': `${layout.breakpoint.mobile}px`,
+  '--layout-breakpoint-tablet': `${layout.breakpoint.tablet}px`,
+  '--layout-breakpoint-desktop': `${layout.breakpoint.desktop}px`,
 } as const;
 
 export type LayoutCssVariable = keyof typeof layoutCssVariables;

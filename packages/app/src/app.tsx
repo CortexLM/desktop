@@ -1,4 +1,4 @@
-import { Show, type JSX } from 'solid-js';
+import { Show, createEffect, type JSX } from 'solid-js';
 import {
   createMemoryHistory,
   HashRouter,
@@ -18,8 +18,11 @@ import { ConnectionBanner } from './shell/connection-banner.tsx';
 import { TitleBar } from './shell/title-bar.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
+import { enterProduct, guestBlocked } from './state/guest-lock.ts';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
-import { navigableRoutes, productForPath, productHome, routeBySlug } from './routes.ts';
+import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
+import { mascotIdFromPath, openBotStudio, rosterForSidebar } from './shell/bot-sidebar.ts';
+import { reconcileMascots } from './state/bots.ts';
 import { hasElectronHost } from './state/electron-bridge.ts';
 import { realtimeStatus } from './state/realtime-bridge.ts';
 import { bootLiveRealtime, liveSession } from './state/realtime-session.ts';
@@ -110,7 +113,7 @@ function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
     .map((session) => ({
       id: session.id,
       title: session.title,
-      repo: session.repo ?? 'Local folder',
+      repo: session.repo ?? 'This PC',
       age: formatAge(session.updatedAt),
       running: session.status === 'running' || session.status === 'queued',
     }));
@@ -154,16 +157,25 @@ function WorkspaceSidebar(): JSX.Element {
 
   const runs = useSessions();
   const chats = useConversations();
+  const pathname = () => location.pathname;
+
+  createEffect(() => {
+    if (productForPath(pathname()) === 'bot') void reconcileMascots();
+  });
 
   return (
     <Sidebar
-      product={productForPath(location.pathname)}
-      onSwitchProduct={(next) => navigate(productHome(next))}
+      product={productForPath(pathname())}
+      onSwitchProduct={(next) =>
+        enterProduct(next, account.capabilities().authenticated, navigate)
+      }
       capabilities={account.capabilities()}
-      activeSlug={slugForPath(location.pathname)}
+      activeSlug={slugForPath(pathname())}
       recentRuns={toRecentRuns(runs.sessions() ?? [])}
       recentChats={toRecentChats(chats.conversations() ?? [])}
       user={toUser(account.user())}
+      mascots={rosterForSidebar()}
+      activeMascotId={mascotIdFromPath(pathname())}
       onNavigate={(slug) => {
         const route = routeBySlug(slug);
         if (route?.path) navigate(route.path);
@@ -172,12 +184,18 @@ function WorkspaceSidebar(): JSX.Element {
       onOpenChat={(id) => navigate(`/chat/${id}`)}
       onNewChat={() => navigate('/')}
       onNewSession={() => navigate('/code')}
-      onNewMascot={() => navigate('/bot/new')}
+      onNewMascot={() => {
+        if (guestBlocked(account.capabilities().authenticated)) {
+          navigate('/bot');
+          return;
+        }
+        navigate('/bot/new');
+      }}
+      onOpenMascot={(id) => navigate(`/bot/${id}`)}
+      onOpenStudio={(panel) => openBotStudio(panel, pathname(), navigate)}
       onOpenSearch={() => openOverlay('palette')}
       onOpenAccount={() => navigate('/code/settings')}
       onSignIn={() => navigate('/sign-in')}
-      // The unread dot is driven by runs that finished and have not been opened,
-      // which is the only thing the app currently has to draw attention to.
       unread={{ 'code-sessions': runs.awaitingReview().length > 0 }}
     />
   );

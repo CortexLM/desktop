@@ -36,6 +36,10 @@ The same shape applies on desktop: `window.cortex.cortex.signIn()` resolves to a
 account summary, and the token stays in
 `packages/main/src/services/cortex-account-service.ts`.
 
+Desktop Google/GitHub login is a one-shot transaction in main: `state` plus a
+PKCE verifier. `parseAuthCallback` rejects a credential with no `state`. The
+PKCE verifier is sent only on `GET /v1/auth/callback` from main.
+
 Corollaries:
 
 - A new preload namespace must be added to the exposure-surface test **on
@@ -93,11 +97,13 @@ there is a blocker, not a warning.
 
 Anonymous use is a product requirement, not a degraded mode. Without an account
 the app opens onto a usable workspace: on desktop, Chat with a local or BYO
-provider, and Code Home, Sessions, Session detail and Settings all work.
+provider, and Code Home, Sessions, Session detail and Settings all work —
+including **This PC** sessions bound to a folder on this machine.
 
-Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect
-— are **shown and locked**, never hidden. A locked row explains what an account
-buys. An empty list explains nothing and reads like a bug.
+Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect,
+and leftover `/bot` create — are **shown and locked**, never hidden. A locked
+row explains what an account buys. An empty list explains nothing and reads like
+a bug. This PC is Cortex Code only; Bot computers are cloud farm boxes.
 
 **Bad** — the guest cannot tell whether the feature is missing, broken, or paid:
 
@@ -122,7 +128,7 @@ buys. An empty list explains nothing and reads like a bug.
     <HonestState
       kind="signed-out"
       title="Automations need a Cortex account"
-      body="Automations run in the cloud on a schedule. Sign in to create one; your local sessions keep working either way."
+      body="Automations run in the cloud on a schedule. Sign in to create one. Chat still works unsigned."
       action={{ label: 'Sign in', href: '/sign-in' }}
     />
   }

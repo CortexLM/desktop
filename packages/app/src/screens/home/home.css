@@ -36,7 +36,14 @@
 /* -------------------------------------------------------------------------- */
 
 .cx-home__composer {
+  position: sticky;
+  bottom: 16px;
+  z-index: 1;
+
   width: var(--layout-composer);
+  padding-top: 8px;
+
+  background: var(--color-bg);
 }
 
 /* The Code home draws the card with a softer ring and a deeper, larger shadow

@@ -47,6 +47,10 @@ export function ChatHomeRoute(): JSX.Element {
     return greetingFor(new Date().getHours(), name);
   });
 
+  const recents = createMemo(() =>
+    (chats.conversations() ?? []).slice(0, 8).map((chat) => ({ id: chat.id, title: chat.title })),
+  );
+
   const send = async () => {
     const text = chatDraft().trim();
     if (!text) return;
@@ -73,6 +77,8 @@ export function ChatHomeRoute(): JSX.Element {
       }}
       suggestions={SUGGESTIONS}
       onPickSuggestion={(suggestion) => setChatDraft(suggestion)}
+      recents={recents()}
+      onOpenRecent={(id) => navigate(`/chat/${id}`)}
     />
   );
 }

@@ -96,18 +96,10 @@ describe('Session header', () => {
     expect(onStop).toHaveBeenCalledOnce();
   });
 
-  it('links to the pull request once one exists', () => {
-    const onOpenPullRequest = vi.fn();
-    renderDetail({ pullRequestNumber: 482, onOpenPullRequest });
-
-    const link = screen.getByRole('button', { name: 'View PR #482' });
-    fireEvent.click(link);
-    expect(onOpenPullRequest).toHaveBeenCalledOnce();
-  });
-
-  it('shows no pull-request action before one is opened', () => {
+  it('does not show a View PR action — that chrome is not a live session control', () => {
     renderDetail();
     expect(screen.queryByRole('button', { name: /View PR/ })).toBeNull();
+    expect(screen.queryByText(/You/)).toBeNull();
   });
 });
 
@@ -146,6 +138,15 @@ describe('Session worklog', () => {
     { id: '1', text: 'pytest tests/auth -x --count=50' },
     { id: '2', text: 'Read src/auth/token_refresh.py' },
   ];
+
+  it('keeps reasoning collapsed until opened', () => {
+    renderDetail({ reasoning: 'Checking the lock around token refresh' });
+    expect(screen.getByRole('button', { name: /Reasoning/ })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+    expect(screen.queryByText('Checking the lock around token refresh')).toBeNull();
+  });
 
   it('keeps the summary visible and the detail collapsed', () => {
     // The detail is what you go looking for when something went wrong, not what you read
@@ -275,9 +276,9 @@ describe('Session follow-up', () => {
 });
 
 describe('Session workbench', () => {
-  it('counts changed files on the Changes tab only', () => {
+  it('counts changed files on Files and Diff', () => {
     const { container } = renderDetail();
-    expect(container.querySelectorAll('.cx-tabs__count')).toHaveLength(1);
+    expect(container.querySelectorAll('.cx-tabs__count')).toHaveLength(2);
     expect(container.querySelector('.cx-tabs__count')).toHaveTextContent('1');
   });
 
@@ -290,15 +291,15 @@ describe('Session workbench', () => {
     const { tab } = renderDetail({ activeTab: 'changes', shell: <p>shell output</p> });
 
     expect(screen.queryByText('shell output')).toBeNull();
-    fireEvent.click(screen.getByRole('tab', { name: /Shell/ }));
+    fireEvent.click(screen.getByRole('tab', { name: /Terminal/ }));
 
     expect(tab()).toBe('shell');
     expect(screen.getByText('shell output')).toBeInTheDocument();
   });
 
   it('renders the host-owned panels', () => {
-    renderDetail({ activeTab: 'pr', pullRequest: <p>pr summary</p> });
-    expect(screen.getByText('pr summary')).toBeInTheDocument();
+    renderDetail({ activeTab: 'plan', plan: PLAN });
+    expect(screen.getAllByText('Reproduce failure with pytest').length).toBeGreaterThan(0);
   });
 });
 

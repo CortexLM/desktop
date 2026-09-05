@@ -11,7 +11,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { CreateMascotScreen, MascotListScreen } from '../mascot-screens.tsx';
 import { BotComputerScreen } from '../mascot-computer-screens.tsx';
-import { BotConversationScreen } from '../mascot-detail-screens.tsx';
+import { BotConversationScreen } from '../conversation-screen.tsx';
 import { ComputerDesktop } from '../computer-desktop.tsx';
 import {
   computerLabel,

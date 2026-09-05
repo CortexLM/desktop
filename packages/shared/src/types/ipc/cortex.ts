@@ -119,3 +119,22 @@ export interface CortexProductResponse {
   headers: Record<string, string>;
   bodyText: string;
 }
+
+export interface CortexBrowserLoginRequest {
+  provider: 'google' | 'github';
+}
+
+export interface CortexBrowserLoginResponse {
+  opened: boolean;
+}
+
+/** In-app email form. Password crosses IPC once, never logged, never returned. */
+export interface CortexEmailLoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface CortexAuthCompleteEvent {
+  ok: boolean;
+  message?: string;
+}

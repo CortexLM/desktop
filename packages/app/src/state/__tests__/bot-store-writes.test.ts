@@ -12,6 +12,7 @@ import {
 } from '../bot-actions.ts';
 import { requireBotClient, setBotClientForTests } from '../bot-client.ts';
 import {
+  attachComputer,
   loadFs,
   openFile,
   preview,
@@ -55,6 +56,7 @@ import { ipcProductFetch, productUrlPath, unwrapProductResponse } from '../ipc-f
 
 afterEach(() => {
   globalThis.localStorage?.clear();
+  attachComputer(undefined);
   setBotClientForTests(undefined);
   resetBotsForTests();
   resetPluginsForTests();
@@ -187,6 +189,7 @@ describe('computer live and plugins', () => {
       catalogue([{ slug: 'gmail', name: 'Gmail' }]),
       { body: { items: [], has_more: false } },
     ]);
+    attachComputer('mst_1');
     await refreshScreenshot('mst_1');
     expect(screenshotSrc(shot())?.startsWith('data:image/png')).toBe(true);
     await runShell('mst_1', 'ls');
@@ -291,6 +294,7 @@ describe('computer live and plugins', () => {
       { status: 404, body: { code: 'not_found', title: 'Not found', detail: 'No such endpoint.' } },
       { status: 500, body: { code: 'boom', message: 'down' } },
     ]);
+    attachComputer('mst_1');
     await refreshScreenshot('mst_1');
     await runShell('mst_1', 'ls');
     expect(screenshotSrc(undefined)).toBeUndefined();

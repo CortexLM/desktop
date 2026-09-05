@@ -28,7 +28,7 @@ describe('App', () => {
   });
 
   it('mounts without a Cortex account', async () => {
-    // Anonymous use is the default path, so the app has to come up with no credentials and
+    // Anonymous Chat is the default path, so the app has to come up with no credentials and
     // no successful network call.
     render(() => <App />);
 
@@ -154,15 +154,21 @@ describe('App', () => {
     computer.unmount();
 
     const memory = render(() => <App initialPath="/bot/mst_1/memory" />);
-    await waitFor(() => expect(screen.getByText(/Memory|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Memory|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     memory.unmount();
 
     const skills = render(() => <App initialPath="/bot/mst_1/skills" />);
-    await waitFor(() => expect(screen.getByText(/Skills|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Skills|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     skills.unmount();
 
     const routines = render(() => <App initialPath="/bot/mst_1/routines" />);
-    await waitFor(() => expect(screen.getByText(/Routines|Mascot not found|Backend too old/)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getAllByText(/Routines|Mascot not found|Backend too old/).length).toBeGreaterThan(0),
+    );
     routines.unmount();
 
     const groups = render(() => <App initialPath="/bot/mst_1/groups" />);
@@ -172,6 +178,10 @@ describe('App', () => {
     const videos = render(() => <App initialPath="/bot/mst_1/videos" />);
     await waitFor(() => expect(screen.getByText(/Videos|Mascot not found/)).toBeInTheDocument());
     videos.unmount();
+
+    const approvals = render(() => <App initialPath="/bot/approvals" />);
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Approvals' })).toBeInTheDocument());
+    approvals.unmount();
 
     const settings = render(() => <App initialPath="/bot/mst_1/settings" />);
     await waitFor(() =>
@@ -203,6 +213,7 @@ describe('App', () => {
       '/code/settings',
       '/code/settings/integrations',
       '/code/notifications',
+      '/bot/approvals',
       '/code/automations/new',
       '/code/runtimes/ssh',
       '/onboarding',

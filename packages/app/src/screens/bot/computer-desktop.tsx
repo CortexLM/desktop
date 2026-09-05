@@ -5,25 +5,16 @@ import { farmOfflineCopy, type ComputerInput } from '@cortex-ide/cortex-api';
 /**
  * How the desktop is being delivered.
  *
- * `screenshot` is the path that works today: a poll plus an input channel, which is
- * interactive but not a stream. `vnc` means the service issued a signalling ticket,
- * so a continuous stream is available for this box. `unavailable` means it declined
- * or has no such route.
- *
- * Named rather than implied because the two feel different at the keyboard, and a
- * user typing into a one-frame-per-second image deserves to know that is what it is.
+ * `vnc` is a live noVNC stream. `screenshot` is a poll plus an input channel.
+ * `unavailable` means the service declined a stream.
  */
 export type DesktopTransport = 'screenshot' | 'vnc' | 'unavailable';
 
-const TRANSPORT_NOTE: Record<DesktopTransport, string> = {
-  screenshot: 'Screenshot stream. Clicks, drags, scrolls and keys are sent to the box.',
-  vnc: 'Live desktop stream available for this box.',
-  unavailable: 'This Cortex backend does not offer a live desktop stream. Screenshots only.',
-};
-
 export function ComputerDesktop(props: {
   src?: string;
+  streamUrl?: string;
   offline: boolean;
+  interactive?: boolean;
   transport?: DesktopTransport;
   onInput: (input: ComputerInput) => void;
 }): JSX.Element {
@@ -36,46 +27,83 @@ export function ComputerDesktop(props: {
         </div>
       }
     >
-      <Show
-        when={props.src}
-        fallback={
-          <div class="cx-vnc" role="img" aria-label="Dedicated computer">
-            Waiting for a screenshot from this mascot's computer.
-          </div>
-        }
-      >
-        <LiveFrame src={props.src!} onInput={props.onInput} />
-      </Show>
-      <Show when={props.transport}>
-        {(transport) => <p class="cx-product-note">{TRANSPORT_NOTE[transport()]}</p>}
+      <Show when={props.streamUrl} fallback={<ScreenshotFrame {...props} />}>
+        <NovncFrame src={props.streamUrl!} interactive={props.interactive === true} />
       </Show>
     </Show>
   );
 }
 
-function LiveFrame(props: { src: string; onInput: (input: ComputerInput) => void }): JSX.Element {
+function ScreenshotFrame(props: {
+  src?: string;
+  interactive?: boolean;
+  transport?: DesktopTransport;
+  onInput: (input: ComputerInput) => void;
+}): JSX.Element {
+  return (
+    <Show
+      when={props.src}
+      fallback={
+        <div class="cx-vnc" role="img" aria-label="Dedicated computer">
+          Waiting for a screenshot from this mascot's computer.
+        </div>
+      }
+    >
+      <LiveFrame
+        src={props.src!}
+        interactive={props.interactive === true}
+        onInput={props.onInput}
+      />
+    </Show>
+  );
+}
+
+function NovncFrame(props: { src: string; interactive: boolean }): JSX.Element {
+  return (
+    <iframe
+      title="Computer"
+      src={withViewOnly(props.src, !props.interactive)}
+      class="cx-vnc cx-vnc--live cx-vnc--stream"
+      sandbox="allow-scripts allow-same-origin"
+      allow="clipboard-read; clipboard-write; fullscreen"
+      style={{ 'pointer-events': props.interactive ? 'auto' : 'none' }}
+    />
+  );
+}
+
+function LiveFrame(props: {
+  src: string;
+  interactive: boolean;
+  onInput: (input: ComputerInput) => void;
+}): JSX.Element {
   let origin: { x: number; y: number } | undefined;
   return (
     <button
       type="button"
       class="cx-vnc cx-vnc--live"
+      disabled={!props.interactive}
       onPointerDown={(event) => {
-        origin = pointFrom(event);
+        if (props.interactive) origin = pointFrom(event);
       }}
       onPointerUp={(event) => {
         const start = origin;
         origin = undefined;
-        if (start) props.onInput(releaseFrom(start, event));
+        if (start && props.interactive) props.onInput(releaseFrom(start, event));
       }}
       onAuxClick={(event) => {
         event.preventDefault();
-        props.onInput({ action: 'click', button: 'right', ...pointFrom(event) });
+        if (props.interactive) {
+          props.onInput({ action: 'click', button: 'right', ...pointFrom(event) });
+        }
       }}
       onWheel={(event) => {
         event.preventDefault();
-        props.onInput({ action: 'scroll', dx: event.deltaX, dy: event.deltaY });
+        if (props.interactive) {
+          props.onInput({ action: 'scroll', dx: event.deltaX, dy: event.deltaY });
+        }
       }}
       onKeyDown={(event) => {
+        if (!props.interactive) return;
         if (event.key.length === 1) props.onInput({ action: 'type', text: event.key });
         else props.onInput({ action: 'key', key: event.key });
       }}
@@ -100,4 +128,14 @@ function pointFrom(event: MouseEvent): { x: number; y: number } {
   const x = Math.round(((event.clientX - box.left) / box.width) * 1280);
   const y = Math.round(((event.clientY - box.top) / box.height) * 800);
   return { x, y };
+}
+
+function withViewOnly(url: string, viewOnly: boolean): string {
+  try {
+    const parsed = new URL(url);
+    parsed.searchParams.set('view_only', viewOnly ? 'true' : 'false');
+    return parsed.toString();
+  } catch {
+    return url;
+  }
 }

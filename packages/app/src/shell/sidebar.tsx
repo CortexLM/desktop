@@ -6,7 +6,14 @@ import { SHELL_PRODUCTS, type Product } from '../routes.ts';
 import { BotSections, ChatSections, CodeSections } from './sidebar-sections.tsx';
 import type { SidebarPlan, SidebarProps, SidebarUser } from './sidebar-types.ts';
 
-export type { RecentChat, RecentRun, SidebarPlan, SidebarProps, SidebarUser } from './sidebar-types.ts';
+export type {
+  RecentChat,
+  RecentRun,
+  SidebarMascot,
+  SidebarPlan,
+  SidebarProps,
+  SidebarUser,
+} from './sidebar-types.ts';
 
 import './sidebar.css';
 

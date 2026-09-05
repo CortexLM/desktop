@@ -85,7 +85,7 @@ describe('Home composer', () => {
   it('names the pickers from the draft, and prompts when a slot is empty', () => {
     renderHome({ draft: { prompt: '', runtime: 'local' } });
 
-    expect(screen.getByRole('button', { name: /Choose a repository/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Open a folder/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Default branch/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Choose a model/ })).toBeInTheDocument();
   });
@@ -122,7 +122,7 @@ describe('Home composer', () => {
   it('renders an unwired picker as a disabled button rather than inert text', () => {
     // Inert text looks identical to a live control and silently does nothing when clicked.
     renderHome({ capabilities: AUTHENTICATED_CAPABILITIES });
-    expect(screen.getByRole('button', { name: /Choose a repository/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /Open a folder/ })).toBeDisabled();
   });
 
   it('opens each picker', () => {
@@ -130,11 +130,23 @@ describe('Home composer', () => {
     const onPickModel = vi.fn();
     renderHome({ onPickRepo, onPickModel });
 
-    fireEvent.click(screen.getByRole('button', { name: /Choose a repository/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Open a folder/ }));
     fireEvent.click(screen.getByRole('button', { name: /Choose a model/ }));
 
     expect(onPickRepo).toHaveBeenCalledOnce();
     expect(onPickModel).toHaveBeenCalledOnce();
+  });
+
+  it('offers Ask, Plan and Agent on the composer', () => {
+    renderHome();
+    expect(screen.getByRole('button', { name: 'Ask' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Plan' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Agent' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('shows the worktree chip from the draft', () => {
+    renderHome({ draft: { prompt: '', runtime: 'local', repo: 'app', worktree: 'app' } });
+    expect(screen.getAllByRole('button', { name: /app/ }).length).toBeGreaterThanOrEqual(2);
   });
 });
 

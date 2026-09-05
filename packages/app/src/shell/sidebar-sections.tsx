@@ -37,6 +37,12 @@ const BOT_DESTINATIONS = [
   { slug: 'bot-home', label: 'Mascots', icon: 'bot' as const },
 ];
 
+const BOT_STUDIO = [
+  { id: 'routines' as const, label: 'Routines', icon: 'clock' as const },
+  { id: 'memory' as const, label: 'Memory', icon: 'docs' as const },
+  { id: 'approvals' as const, label: 'Approvals', icon: 'review' as const },
+];
+
 function NewButton(props: { label: string; shortcut: string; onPress: () => void }): JSX.Element {
   return (
     <button type="button" class="cx-sidebar__new" onClick={() => props.onPress()}>
@@ -117,10 +123,12 @@ export function CodeSections(props: SidebarProps): JSX.Element {
 }
 
 export function BotSections(props: SidebarProps): JSX.Element {
+  const roster = () => props.mascots ?? [];
+
   return (
     <>
       <NewButton label="New mascot" shortcut="⌘N" onPress={() => props.onNewMascot()} />
-      <div class="cx-sidebar__section-title">Studio</div>
+      <div class="cx-sidebar__section-title">Mascots</div>
       <div class="cx-sidebar__nav">
         <For each={BOT_DESTINATIONS}>
           {(destination) => (
@@ -133,7 +141,62 @@ export function BotSections(props: SidebarProps): JSX.Element {
           )}
         </For>
       </div>
+      <MascotRoster
+        mascots={roster()}
+        activeId={props.activeMascotId}
+        onOpen={(id) => props.onOpenMascot?.(id)}
+      />
+      <div class="cx-sidebar__section-title">Studio</div>
+      <div class="cx-sidebar__nav">
+        <For each={BOT_STUDIO}>
+          {(item) => (
+            <NavItem
+              icon={item.icon}
+              label={item.label}
+              active={studioActive(item.id, props.activeSlug)}
+              onClick={() => props.onOpenStudio?.(item.id)}
+            />
+          )}
+        </For>
+      </div>
     </>
+  );
+}
+
+function studioActive(id: 'routines' | 'memory' | 'approvals', slug: string): boolean {
+  if (id === 'routines') return slug === 'bot-routines';
+  if (id === 'memory') return slug === 'bot-memory';
+  return slug === 'bot-approvals';
+}
+
+function MascotRoster(props: {
+  mascots: readonly { id: string; name: string; unread?: boolean }[];
+  activeId?: string;
+  onOpen: (id: string) => void;
+}): JSX.Element {
+  return (
+    <Show
+      when={props.mascots.length > 0}
+      fallback={<p class="cx-sidebar__empty">No mascots yet. Create one to start.</p>}
+    >
+      <div class="cx-sidebar__recent">
+        <For each={props.mascots}>
+          {(mascot) => (
+            <button
+              type="button"
+              class="cx-sidebar__run"
+              aria-current={props.activeId === mascot.id ? 'page' : undefined}
+              onClick={() => props.onOpen(mascot.id)}
+            >
+              <span class="cx-sidebar__run-title">{mascot.name}</span>
+              <Show when={mascot.unread}>
+                <span class="cx-sidebar__run-live" role="img" aria-label="Unread" />
+              </Show>
+            </button>
+          )}
+        </For>
+      </div>
+    </Show>
   );
 }
 

@@ -25,8 +25,25 @@ const [preview, setPreview] = createSignal<ApiFilePreview | undefined>();
 const [shellLog, setShellLog] = createSignal('');
 const [boxError, setBoxError] = createSignal('');
 const [recording, setRecordingFlag] = createSignal(false);
+const [ownerId, setOwnerId] = createSignal<string | undefined>();
 
 export { shot, fsEntries, preview, shellLog, boxError, recording };
+
+export function attachComputer(mascotId: string | undefined): void {
+  if (ownerId() === mascotId) return;
+  setOwnerId(mascotId);
+  setShot(undefined);
+  setFsEntries([]);
+  setPreview(undefined);
+  setShellLog('');
+  setBoxError('');
+  setRecordingFlag(false);
+}
+
+export function shotFor(mascotId: string | undefined): ApiScreenshot | undefined {
+  if (!mascotId || ownerId() !== mascotId) return undefined;
+  return shot();
+}
 
 export function setRecordingFlagValue(value: boolean): void {
   setRecordingFlag(value);
@@ -34,9 +51,12 @@ export function setRecordingFlagValue(value: boolean): void {
 
 export async function refreshScreenshot(mascotId: string): Promise<void> {
   try {
-    setShot(await getScreenshot(requireBotClient(), mascotId));
+    const image = await getScreenshot(requireBotClient(), mascotId);
+    if (!stillOn(mascotId)) return;
+    setShot(image);
     setBoxError('');
   } catch (error) {
+    if (!stillOn(mascotId)) return;
     setBoxError(classifyBotError(error).message);
   }
 }
@@ -44,11 +64,13 @@ export async function refreshScreenshot(mascotId: string): Promise<void> {
 export async function runShell(mascotId: string, command: string): Promise<ApiShellResult | undefined> {
   try {
     const result = await postShell(requireBotClient(), mascotId, command);
+    if (!stillOn(mascotId)) return result;
     const chunk = [result.stdout, result.stderr].filter(Boolean).join('\n');
     setShellLog((current) => `${current}$ ${command}\n${chunk}\n`);
     setBoxError('');
     return result;
   } catch (error) {
+    if (!stillOn(mascotId)) return undefined;
     setBoxError(classifyBotError(error).message);
     return undefined;
   }
@@ -56,20 +78,30 @@ export async function runShell(mascotId: string, command: string): Promise<ApiSh
 
 export async function loadFs(mascotId: string, path = '/'): Promise<void> {
   try {
-    setFsEntries(await listComputerFs(requireBotClient(), mascotId, path));
+    const entries = await listComputerFs(requireBotClient(), mascotId, path);
+    if (!stillOn(mascotId)) return;
+    setFsEntries(entries);
     setBoxError('');
   } catch (error) {
+    if (!stillOn(mascotId)) return;
     setBoxError(classifyBotError(error).message);
   }
 }
 
 export async function openFile(mascotId: string, path: string): Promise<void> {
   try {
-    setPreview(await readComputerFile(requireBotClient(), mascotId, path));
+    const file = await readComputerFile(requireBotClient(), mascotId, path);
+    if (!stillOn(mascotId)) return;
+    setPreview(file);
     setBoxError('');
   } catch (error) {
+    if (!stillOn(mascotId)) return;
     setBoxError(classifyBotError(error).message);
   }
+}
+
+function stillOn(mascotId: string): boolean {
+  return ownerId() === mascotId;
 }
 
 export function screenshotSrc(image: ApiScreenshot | undefined): string | undefined {

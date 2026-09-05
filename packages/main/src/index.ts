@@ -3,6 +3,13 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { IPC_CHANNELS } from '@cortex-ide/shared';
 import { installAppMenu, windowChromeOptions } from './window/chrome';
+import {
+  acquireInstanceLock,
+  consumeLaunchArgv,
+  focusMainWindow,
+  listenForAuthCallbacks,
+  registerProtocolClient,
+} from './protocol/register';
 import { registerIPCHandlers, unregisterIPCHandlers } from './ipc/handlers/index';
 import { startMCPEvents, stopMCPEvents } from './ipc/handlers/mcp-handlers';
 import { updateManager } from './updater';
@@ -25,6 +32,9 @@ let mainWindow: BrowserWindow | null = null;
 
 // Enable V8 code caching and GC exposure
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
+registerProtocolClient();
+const isPrimaryInstance = acquireInstanceLock();
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -152,6 +162,7 @@ function reportDegradedServices() {
   }
 }
 
+if (isPrimaryInstance) {
 app.whenReady().then(async () => {
   // Security and IPC must be in place before the renderer loads, otherwise the
   // renderer's first invoke() calls hit unregistered channels. Both are
@@ -175,9 +186,19 @@ app.whenReady().then(async () => {
   // The frame is ours: drop the native menu strip (kept minimal on macOS,
   // where the accelerators live in the system bar).
   await startupStep('Application menu', () => installAppMenu());
+  await startupStep('Protocol', () =>
+    listenForAuthCallbacks({
+      getMainWindow: () => mainWindow,
+      focusWindow: focusMainWindow,
+    }),
+  );
 
   // Open the window before touching anything slow or fallible.
   createWindow();
+  consumeLaunchArgv(process.argv, {
+    getMainWindow: () => mainWindow,
+    focusWindow: focusMainWindow,
+  });
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -229,6 +250,7 @@ app.whenReady().then(async () => {
 
   reportDegradedServices();
 });
+}
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

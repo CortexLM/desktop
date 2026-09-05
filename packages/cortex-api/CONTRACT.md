@@ -237,6 +237,12 @@ service — no API keys were invented or stored.
 `POST /v1/auth/logout` → `204`.
 `GET /v1/auth/login` → `307` to WorkOS AuthKit (`redirect_uri=…/v1/auth/callback`).
 
+Desktop login adds `client=desktop`, `redirect_uri=https://cortex.foundation/desktop/open`,
+a one-time `state`, and PKCE `code_challenge` / `S256`. Main exchanges
+`GET /v1/auth/callback?code=&code_verifier=` and never puts the verifier or
+session cookie in the renderer. A `cortex://auth/callback` without `state` is
+not a valid desktop login.
+
 The cookie name for guests is `cortex_gt`, not `wos-session`. The client sends
 whichever it has; it still never uses `Authorization: Bearer`.
 
@@ -432,7 +438,8 @@ it in `localStorage`, which is not a product:
 ### Bot
 
 Mascot CRUD, ask-user, one computer per mascot. VNC signaling ticket is
-`{ ticket_hash }` only — never a password. Videos list at
+`{ ticket_hash }` plus optional https `stream_url` / `embed_url` for the
+desktop embed — never a password. Videos list at
 `GET /v1/mascots/{id}/videos`.
 
 Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
@@ -443,7 +450,8 @@ Cortex Bot runtime routes (parallel backend PR). A live 404 stays `not_found` /
 | GET/POST | `/v1/mascots/{id}/messages` |
 | POST | `/v1/mascots/{id}/ask-user`, `/respond`, `/secrets` |
 | GET | `/v1/mascots/{id}/computer` |
-| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell` |
+| POST | `/v1/mascots/{id}/computer/lifecycle`, `/input`, `/record`, `/shell`, `/control` |
+| POST | `/computer/vnc-ticket` — hash plus optional `stream_url` |
 | GET | `/computer/screenshot`, `/cursor`, `/fs`, `/file` |
 | GET/POST/DELETE | `/v1/mascots/{id}/memory?tier=` |
 | CRUD | `/v1/skills` + `POST /v1/mascots/{id}/skills/{slug}/run` |

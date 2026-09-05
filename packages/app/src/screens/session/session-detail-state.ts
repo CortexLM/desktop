@@ -193,6 +193,14 @@ function toDiffFiles(detail: SessionDetail): DiffFile[] {
   }));
 }
 
+function reasoningOf(events: readonly SessionEvent[]): string | undefined {
+  const parts = events
+    .filter((event): event is SessionEvent & { kind: 'thinking' } => event.kind === 'thinking')
+    .map((event) => event.text.trim())
+    .filter((text) => text.length > 0);
+  return parts.length > 0 ? parts.join('\n\n') : undefined;
+}
+
 /** The view for a run that could not be loaded. */
 function missing(id: string): DetailView {
   return {
@@ -252,8 +260,7 @@ function toView(detail: SessionDetail): DetailView {
   assign(view, 'activity', activityOf(detail));
   assign(view, 'permission', pendingPermissionOf(detail));
   assign(view, 'workSummary', workSummaryOf(detail));
-  // The recorded reason, or the last error event when the row has none — a run can
-  // fail mid-turn and be recorded on the timeline before the status catches up.
+  assign(view, 'reasoning', reasoningOf(detail.events));
   assign(
     view,
     'error',
@@ -262,11 +269,6 @@ function toView(detail: SessionDetail): DetailView {
         .reverse()
         .find((event): event is SessionEvent & { kind: 'error' } => event.kind === 'error')
         ?.message,
-  );
-  assign(
-    view,
-    'pullRequestNumber',
-    detail.pullRequestUrl ? pullRequestNumberOf(detail.pullRequestUrl) : undefined,
   );
 
   // A run in flight accepts no follow-up: the agent is mid-turn and a second
@@ -277,12 +279,6 @@ function toView(detail: SessionDetail): DetailView {
   }
 
   return view;
-}
-
-/** `https://github.com/o/r/pull/42` -> `42`. */
-function pullRequestNumberOf(url: string): number | undefined {
-  const match = /\/pull\/(\d+)/.exec(url);
-  return match ? Number(match[1]) : undefined;
 }
 
 export interface SessionDetailState {

@@ -79,6 +79,7 @@ const StartSchema = z.object({
   repo: z.string().optional(),
   branch: z.string().optional(),
   model: z.string().optional(),
+  mode: z.enum(['ask', 'plan', 'agent']).optional(),
 });
 
 const FollowUpSchema = z.object({

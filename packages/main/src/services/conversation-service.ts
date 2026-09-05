@@ -43,7 +43,7 @@ interface MessageRow {
   created_at: number;
 }
 
-/** What each mode asks of the model. Both are honest: no live web access yet. */
+/** What each mode asks of the model. Honest: no live web access except research. */
 const MODE_PROMPTS: Record<ChatMode, string> = {
   search:
     'You are Cortex. Answer directly and concisely. When a claim depends on facts you are ' +
@@ -51,13 +51,21 @@ const MODE_PROMPTS: Record<ChatMode, string> = {
   reason:
     'You are Cortex in extended thinking mode. Work through the problem step by step ' +
     'before answering, and show the reasoning that matters.',
+  research:
+    'You are Cortex in Deep Research. Investigate thoroughly, compare sources, and say ' +
+    'what is unknown. Prefer a structured brief over a short reply.',
 };
+
+function asChatMode(value: string): ChatMode {
+  if (value === 'reason' || value === 'research') return value;
+  return 'search';
+}
 
 function toSummary(row: ConversationRow): ConversationSummary {
   const summary: ConversationSummary = {
     id: row.id,
     title: row.title,
-    mode: row.mode === 'reason' ? 'reason' : 'search',
+    mode: asChatMode(row.mode),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
