@@ -64,6 +64,12 @@ The Electron app opens `GET /v1/auth/login?provider=GoogleOAuth|GitHubOAuth&clie
 
 **Blocked on CortexLM/backend:**
 
+Desktop security requirement: the bridge returns `code` plus the pending
+`state`, and main exchanges the code with the stored PKCE verifier. Direct
+`session`, `access_token`, `wos_session`, or `wos-session` URL credentials are
+rejected even with state. The service must enforce PKCE; route presence alone
+does not verify that behavior or establish repository authorization.
+
 - Allowlist `https://cortex.foundation/desktop/open` and `cortex://auth/callback` (today the hosted login bakes `redirect_uri` to `https://api.cortex.foundation/auth/callback`).
 - Serve the bridge page on the marketing origin.
 - `POST /v1/auth/login` with `{ email, password }` is **unobserved**. The typed client fails closed on 404/405 rather than inventing a session.

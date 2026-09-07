@@ -19,9 +19,8 @@ export function isRemoteRuntime(runtime: string): boolean {
 
 /** The disk root the local agent may touch. Throws rather than falling back to cwd. */
 export function requireThisPcFolder(path: string | undefined): string {
-  const trimmed = path?.trim();
-  if (!trimmed) throw new Error(THIS_PC_NEEDS_FOLDER);
-  return trimmed;
+  if (!path?.trim()) throw new Error(THIS_PC_NEEDS_FOLDER);
+  return path;
 }
 
 /** Native directory picker. Undefined means the user cancelled. */

@@ -32,30 +32,22 @@ describe('completeAuthCallback', () => {
   });
 
   it('rejects a bare session even when a login is already pending', async () => {
-    const { state } = beginBrowserLogin('github');
+    beginBrowserLogin('github');
     const acceptAccessToken = vi.fn(async () => ANONYMOUS);
     await expect(
       completeAuthCallback(host(acceptAccessToken), 'cortex://auth/callback?session=attacker-session'),
     ).rejects.toThrow(/not from a login you started/i);
     expect(acceptAccessToken).not.toHaveBeenCalled();
-    await completeAuthCallback(
-      host(acceptAccessToken),
-      `cortex://auth/callback?session=sealed-session&state=${state}`,
-    );
-    expect(acceptAccessToken).toHaveBeenCalledTimes(1);
   });
 
-  it('persists a session only when the callback state matches the pending login', async () => {
+  it('rejects session injection even when callback state matches the pending login', async () => {
     const { state } = beginBrowserLogin('github');
-    const acceptAccessToken = vi.fn(async (token: string) => {
-      expect(token).toBe('sealed-session');
-      return ANONYMOUS;
-    });
-    await completeAuthCallback(
+    const acceptAccessToken = vi.fn(async () => ANONYMOUS);
+    await expect(completeAuthCallback(
       host(acceptAccessToken),
       `cortex://auth/callback?session=sealed-session&state=${state}`,
-    );
-    expect(acceptAccessToken).toHaveBeenCalledTimes(1);
+    )).rejects.toThrow('Sign-in did not return a session.');
+    expect(acceptAccessToken).not.toHaveBeenCalled();
   });
 
   it('exchanges a code with the PKCE verifier from the pending login', async () => {

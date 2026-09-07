@@ -37,7 +37,8 @@ account summary, and the token stays in
 `packages/main/src/services/cortex-account-service.ts`.
 
 Desktop Google/GitHub login is a one-shot transaction in main: `state` plus a
-PKCE verifier. `parseAuthCallback` rejects a credential with no `state`. The
+PKCE verifier. `parseAuthCallback` accepts only a code with `state`, never a
+session credential in the URL (even with matching state). The
 PKCE verifier is sent only on `GET /v1/auth/callback` from main.
 
 Corollaries:
