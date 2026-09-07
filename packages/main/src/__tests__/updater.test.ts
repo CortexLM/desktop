@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { BrowserWindow } from 'electron';
 
-import { DEFAULT_UPDATE_FEED_URL } from '../update-policy';
+import { DEFAULT_UPDATE_FEED_URL, STAGING_UPDATE_FEED_URL } from '../update-policy';
 import { UpdateManager, type AutoUpdaterPort, type UpdateLogger } from '../updater';
 
 vi.mock('electron-log', () => ({
@@ -83,16 +83,21 @@ describe('UpdateManager', () => {
     vi.useRealTimers();
   });
 
-  it('points packaged checks at the production generic feed', () => {
-    const manager = new UpdateManager({}, { autoUpdater: updater, log, isPackaged: () => true });
+  it.each([DEFAULT_UPDATE_FEED_URL, STAGING_UPDATE_FEED_URL])('preserves the packaged feed %s', async (url) => {
+    let effectiveFeed = url;
+    updater.setFeedURL.mockImplementation((options) => { effectiveFeed = options.url; });
+    const manager = new UpdateManager(
+      { checkOnStart: false, checkInterval: 0 },
+      { autoUpdater: updater, log, isPackaged: () => true, env: {} },
+    );
     const { window } = fakeWindow();
 
     manager.initialize(window);
 
-    expect(updater.setFeedURL).toHaveBeenCalledWith({
-      provider: 'generic',
-      url: DEFAULT_UPDATE_FEED_URL,
-    });
+    await manager.checkForUpdates();
+    expect(updater.setFeedURL).not.toHaveBeenCalled();
+    expect(effectiveFeed).toBe(url);
+    expect(updater.checkForUpdates).toHaveBeenCalledOnce();
     expect(updater.autoDownload).toBe(true);
     expect(updater.autoInstallOnAppQuit).toBe(true);
   });
@@ -226,10 +231,14 @@ describe('UpdateManager', () => {
     manager.initialize(window);
 
     updater.emit('update-not-available', { version: '0.1.0' });
-    updater.emit('error', new Error('sha512 mismatch'));
+    updater.emit('error', new Error('https://example.com/?credential=test-secret sha512 mismatch'));
 
     expect(send).toHaveBeenCalledWith('update:not-available', { version: '0.1.0' });
-    expect(send).toHaveBeenCalledWith('update:error', { message: 'sha512 mismatch' });
+    expect(send).toHaveBeenCalledWith('update:error', {
+      message: 'Cortex could not check or download an update. Try again in a few minutes.',
+    });
+    expect(JSON.stringify(send.mock.calls)).not.toContain('test-secret');
+    expect(JSON.stringify((log.error as ReturnType<typeof vi.fn>).mock.calls)).not.toContain('test-secret');
   });
 
   it('does not send to a destroyed window', () => {

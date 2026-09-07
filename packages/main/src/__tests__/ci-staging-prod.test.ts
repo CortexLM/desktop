@@ -18,6 +18,31 @@ const publishStaging = read('.github/workflows/publish-staging.yml');
 const createScript = read('scripts/create-codebuild-gha-runner.sh');
 const terraformMain = read('infra/codebuild-gha/main.tf');
 const runbook = read('docs/runbooks/desktop-staging-prod.md');
+const monitoring = read('.github/workflows/continuous-monitoring.yml');
+const builder = read('electron-builder.yml');
+
+describe('production release gates', () => {
+  it('requires a production signing identity and notarization credentials before building', () => {
+    const build = buildWorkflow.split('  release:')[0];
+    expect(build).toContain('environment: production');
+    expect(build).toContain('${MACOS_CERTIFICATE:?');
+    expect(build).toContain('${WINDOWS_CERTIFICATE:?');
+    expect(build).toContain('${APPLE_APP_SPECIFIC_PASSWORD:?');
+    expect(build).toContain('${APPLE_TEAM_ID:?');
+    expect(build).toContain('--mac --publish never -c.forceCodeSigning=true');
+    expect(build).toContain('--win --x64 --publish never -c.forceCodeSigning=true');
+    expect(builder).toContain('notarize: true');
+    expect(builder).toContain('verifyUpdateCodeSignature: true');
+    expect(builder).not.toContain('entitlements: build/entitlements.mac.plist');
+  });
+
+  it('does not swallow build or typecheck failures in monitoring', () => {
+    const checks = monitoring.split('      - name: Build check')[1]?.split('      - name: Lint check')[0];
+    expect(checks).toContain('bun run build');
+    expect(checks).toContain('bun run typecheck');
+    expect(checks).not.toContain('continue-on-error');
+  });
+});
 
 describe('CodeBuild runner labels for long Electron dist', () => {
   it('uses the cortex-gha-arm64 (or x64) label with run_id and run_attempt', () => {

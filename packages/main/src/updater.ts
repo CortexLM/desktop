@@ -94,7 +94,7 @@ export class UpdateManager {
   private readonly autoUpdater: AutoUpdaterPort;
   private readonly log: UpdateLogger;
   private readonly isPackaged: () => boolean;
-  private readonly feedUrl: string;
+  private readonly feedUrl: string | undefined;
   private readonly env: Record<string, string | undefined>;
   private readonly scheduler: UpdateScheduler;
   private readonly subscriptions: Array<() => void> = [];
@@ -150,11 +150,13 @@ export class UpdateManager {
   }
 
   private applyFeedUrl(): void {
-    this.autoUpdater.setFeedURL?.({ provider: 'generic', url: this.feedUrl });
+    if (this.feedUrl) {
+      this.autoUpdater.setFeedURL?.({ provider: 'generic', url: this.feedUrl });
+    }
     if (this.env.CORTEX_FORCE_UPDATE_CHECK === '1') {
       this.autoUpdater.forceDevUpdateConfig = true;
     }
-    this.log.info('Update feed:', this.feedUrl);
+    this.log.info('Update feed:', this.feedUrl ?? 'packaged configuration');
   }
 
   private onChecking(): void {
@@ -175,8 +177,8 @@ export class UpdateManager {
   }
 
   private onError(error: unknown): void {
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    this.log.error('Error in auto-updater:', error);
+    const message = 'Cortex could not check or download an update. Try again in a few minutes.';
+    this.log.error('Error in auto-updater:', error instanceof Error ? error.name : typeof error);
     this.sendToRenderer('update:error', { message });
   }
 

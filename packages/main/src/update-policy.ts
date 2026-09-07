@@ -3,22 +3,28 @@
  *
  * Production packaged Electron reads `DEFAULT_UPDATE_FEED_URL` from
  * electron-builder.yml (`publish.url`) into `app-update.yml`. Staging
- * installers bake `STAGING_UPDATE_FEED_URL` at package time. The named
- * `latest/` prefix on software.cortex.foundation is an optional mirror of
- * production, not a second baked-in production channel.
+ * installers bake `STAGING_UPDATE_FEED_URL` at package time. Runtime must
+ * leave that packaged configuration intact unless a test override is set.
  *
  * `CORTEX_UPDATE_FEED_URL` overrides the feed for a local test. That is a
  * test hook, not a third public channel.
  */
-export const DEFAULT_UPDATE_FEED_URL = 'https://releases.cortex.foundation/';
+export const DEFAULT_UPDATE_FEED_URL = 'https://software.cortex.foundation/latest/';
 export const STAGING_UPDATE_FEED_URL = 'https://software.cortex.foundation/staging/';
 export const LATEST_CHANNEL_FEED_URL = 'https://software.cortex.foundation/latest/';
 
 export function resolveUpdateFeedUrl(
   env: Record<string, string | undefined> = process.env,
-): string {
+): string | undefined {
   const override = env.CORTEX_UPDATE_FEED_URL?.trim();
-  return override ? override : DEFAULT_UPDATE_FEED_URL;
+  if (!override) return undefined;
+  const url = new URL(override);
+  const loopback = ['127.0.0.1', '[::1]', 'localhost'].includes(url.hostname);
+  if ([url.username, url.password, url.search, url.hash].some(Boolean) ||
+      (url.protocol !== 'https:' && !(url.protocol === 'http:' && loopback))) {
+    throw new Error('Update feed must use HTTPS or a loopback test server, without credentials.');
+  }
+  return url.href;
 }
 
 /**
