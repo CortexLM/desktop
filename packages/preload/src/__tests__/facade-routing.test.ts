@@ -180,6 +180,7 @@ const SINGLE_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['cortex', 'productRequest', 'cortex:product-request'],
   ['cortex', 'startBrowserLogin', 'cortex:browser-login'],
   ['cortex', 'signInWithEmail', 'cortex:email-login'],
+  ['cortex', 'openLegalPage', 'cortex:open-legal'],
 ];
 
 /**
@@ -208,6 +209,7 @@ const NO_ARG_METHODS: [group: string, method: string, channel: string][] = [
   ['cortex', 'deviceCancel', 'cortex:device-cancel'],
   ['cortex', 'openVerification', 'cortex:open-verification'],
   ['cortex', 'signOut', 'cortex:sign-out'],
+  ['cortex', 'startGitHubInstall', 'cortex:github-install'],
 ];
 
 type AnyFn = (...args: unknown[]) => Promise<unknown>;

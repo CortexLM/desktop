@@ -195,6 +195,11 @@
   color: var(--color-text-faint);
 }
 
+.cx-auth__legal a {
+  color: var(--color-text-muted);
+  text-underline-offset: 2px;
+}
+
 .cx-auth__error {
   width: 100%;
   margin-top: var(--spacing-4);

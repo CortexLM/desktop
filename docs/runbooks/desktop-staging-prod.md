@@ -39,7 +39,7 @@ feed, baked into staging installers only.
 | Channel | Public URL | R2 objects | Who writes |
 | --- | --- | --- | --- |
 | **latest** (prod) | `https://releases.cortex.foundation/` | bucket `cortex-releases` at `/` (`/latest.yml`) | `build.yml` `publish-feed` on a `v*.*.*` tag |
-| **latest** (named) | `https://software.cortex.foundation/latest/` | bucket `cortex-software` at `latest/` | same job, optional mirror when `PRODUCTION_SOFTWARE_BUCKET` is set |
+| **latest** (named) | `https://software.cortex.foundation/latest/` | bucket `cortex-software` at `latest/` | same job, always (default bucket `cortex-software`) |
 | **staging** | `https://software.cortex.foundation/staging/` | bucket `cortex-software` at `staging/` | `publish-staging.yml` from a **main** SHA |
 
 Constants: `DEFAULT_UPDATE_FEED_URL` and `STAGING_UPDATE_FEED_URL` in
@@ -134,7 +134,7 @@ requested SHA cannot read these secrets.
 ### Environment `production`
 
 See [releases.md](../releases.md). Extra optional variable:
-`PRODUCTION_SOFTWARE_BUCKET` (default empty = skip the `latest/` mirror).
+`PRODUCTION_SOFTWARE_BUCKET` (default `cortex-software` for the `latest/` mirror).
 
 ### Repository
 

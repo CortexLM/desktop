@@ -66,7 +66,7 @@ No AWS access keys. No OIDC role for this job.
 | --- | --- |
 | `PRODUCTION_DEPLOY_ENABLED` | Must be the string `true` or `publish-feed` is skipped |
 | `PRODUCTION_RELEASES_BUCKET` | Optional. Defaults to `cortex-releases` |
-| `PRODUCTION_SOFTWARE_BUCKET` | Optional. When set, also copy the feed to `<bucket>/latest/` (`software.cortex.foundation/latest/`) |
+| `PRODUCTION_SOFTWARE_BUCKET` | Optional. Defaults to `cortex-software`. The same job always copies the feed to `<bucket>/latest/` (`software.cortex.foundation/latest/`) |
 
 ## Staging
 

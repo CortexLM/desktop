@@ -92,7 +92,7 @@ Packaged Electron checks `https://releases.cortex.foundation/` (generic provider
 
 On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. rclone is installed from a pinned SHA-256 (`RCLONE_SHA256` in `.github/actions/install-rclone`); a checksum mismatch fails the job before extract. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` on that host would make the app request `/latest.yml` and miss the object; do not use one there.
 
-Staging is a second generic feed, **`https://software.cortex.foundation/staging/`** (`STAGING_UPDATE_FEED_URL`), objects at prefix `staging/` on bucket `cortex-software`. Agents publish it with `workflow_dispatch` on `.github/workflows/publish-staging.yml` from a **full commit SHA that is on `origin/main`**. Optional production mirror: `https://software.cortex.foundation/latest/` when `PRODUCTION_SOFTWARE_BUCKET` is set. See [`docs/runbooks/desktop-staging-prod.md`](./docs/runbooks/desktop-staging-prod.md).
+Staging is a second generic feed, **`https://software.cortex.foundation/staging/`** (`STAGING_UPDATE_FEED_URL`), objects at prefix `staging/` on bucket `cortex-software`. Agents publish it with `workflow_dispatch` on `.github/workflows/publish-staging.yml` from a **full commit SHA that is on `origin/main`**. Production also always mirrors **`https://software.cortex.foundation/latest/`** (default bucket `cortex-software`). Already-shipped apps keep checking `releases.cortex.foundation` until a coordinated cutover. See [`docs/runbooks/desktop-staging-prod.md`](./docs/runbooks/desktop-staging-prod.md). `electron-builder.yml` sets `afterSign: scripts/notarize.js`; the script skips when `APPLE_ID` / `APPLE_APP_SPECIFIC_PASSWORD` / `APPLE_TEAM_ID` are unset.
 
 Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. `staging.yml` (push to the `staging` branch) must not write R2. Staging feed credentials stay on Environment `staging`.
 
@@ -123,10 +123,14 @@ exposed as `window.cortex.cortex`). The session token stays in main — encrypte
 device flow's `device_code`. See `packages/shared/src/types/ipc/cortex.ts` for the contract and
 `packages/cortex-api/CONTRACT.md` for what was established by probing the live service (notably: the
 service refuses `Authorization: Bearer`; the sealed session cookie is named `wos-session`).
-Desktop Google/GitHub sign-in opens the **system browser** (never an identity webview) and
+Desktop Google / GitHub / Apple / SSO sign-in opens the **system browser** (never an identity webview) and
 returns through `https://cortex.foundation/desktop/open` → `cortex://auth/callback`. Main
 stores the session; the renderer never sees the URL or the cookie. Email/password stays on
-the in-app form (`POST /v1/auth/login`, fail closed if the route is missing). The device
+the in-app form (`POST /v1/auth/login`, fail closed if the route is missing). Privacy and Terms
+are opened by main (`cortex:open-legal` with a page id only — the renderer never sends a URL).
+Code Connect GitHub starts `GET /v1/integrations/github/install` in the system browser
+(`cortex:github-install`); a missing route fails closed. There is no PAT field. Skip still
+means This PC / a local folder. The device
 flow remains at `/sign-in/device`. The `cortex` scheme is declared in `electron-builder.yml`.
 English is the UI source copy; `packages/app/src/i18n/catalogs/fr.json` is for translators
 and is not loaded at runtime.
@@ -205,7 +209,7 @@ API keys are entered; they never appear in logs.
   with Take control / Release. This PC is Cortex Code only. The rail is bound to
   the open mascot — switching clears screenshot and stream before the next
   computer loads, and a failed refresh leaves the rail empty rather than the
-  previous teammate. Google/GitHub sign-in opens the system browser and returns
+  previous teammate. Google / GitHub / Apple / SSO sign-in opens the system browser and returns
   on `cortex://auth/callback` only with an unexpired pending login `state`;
   codes are exchanged with PKCE in main. A bare `?session=` deep-link is
   rejected. Email stays on the in-app form. See `docs/bot.md`,

@@ -55,6 +55,12 @@ describe('resolveUpdateFeedUrl', () => {
     expect(buildWorkflow).toContain('publish-r2-feed');
     expect(buildWorkflow).toContain("destination: r2:${{ vars.PRODUCTION_RELEASES_BUCKET || 'cortex-releases' }}");
     expect(buildWorkflow).toContain('software.cortex.foundation/latest/');
+    expect(buildWorkflow).toContain(
+      "destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET || 'cortex-software' }}/latest",
+    );
+    expect(buildWorkflow).not.toContain("if: ${{ vars.PRODUCTION_SOFTWARE_BUCKET != '' }}");
+    expect(builderYml).toMatch(/afterSign:\s*scripts\/notarize\.js/);
+    expect(builderYml).not.toMatch(/# afterSign:/);
     expect(buildWorkflow).not.toContain('aws s3');
     expect(buildWorkflow).not.toContain('configure-aws-credentials');
     expect(buildWorkflow).not.toMatch(/provider:\s*github/);

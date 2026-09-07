@@ -1,13 +1,17 @@
 /**
  * The onboarding flows, and SSH.
  *
- * All three used to pass hardcoded steps and no-op actions. Two of them now do
- * something real. The third says plainly that it cannot yet, which is the honest
- * option and better than a form that accepts input and drops it.
+ * Connect GitHub starts the GitHub App install in the system browser. A
+ * missing install route fails closed — it does not open a folder and pretend
+ * the app was installed. Skip is still This PC / local repositories. SSH
+ * registers the server; a missing route says so instead of accepting input
+ * and dropping it.
  */
 
 import { createMemo, createSignal, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+
+import { describeGitHubInstallError, describeSshConnectError } from '@cortex-ide/cortex-api';
 
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
@@ -24,7 +28,7 @@ import {
  *
  * It used to be a constant with Account already ticked, which was a claim about the
  * user rather than a reading of anything. Signed out, "Account" is exactly what has
- * *not* been done.
+ * *not* been done. GitHub stays undone until the service can say the app is installed.
  */
 function useSteps(): () => FlowStep[] {
   const account = useAccount();
@@ -32,8 +36,6 @@ function useSteps(): () => FlowStep[] {
 
   return createMemo(() => [
     { id: 'account', label: 'Account', done: account.capabilities().authenticated },
-    // GitHub is not connectable yet, so it is never done. Marking it done because the
-    // user clicked past it would be the checklist lying to make itself look finished.
     { id: 'github', label: 'GitHub', done: false },
     { id: 'workspace', label: 'Workspace', done: (runs.repositories() ?? []).length > 0 },
   ]);
@@ -42,28 +44,28 @@ function useSteps(): () => FlowStep[] {
 /**
  * Auth Connect GitHub.
  *
- * `onConnect` opens a folder instead of starting an OAuth dance, and the copy is
- * carried by the screen's own error slot to say why.
- *
- * The reason is worth stating rather than hiding behind a spinner: connecting a
- * GitHub account needs a registered OAuth app and a callback the desktop app can
- * receive, and `api.cortex.foundation` exposes no endpoint for either — the device
- * flow it does expose signs you into Cortex, not into GitHub. Rather than a button
- * that appears to work, this offers the thing that does: opening a local repository,
- * which is all an agent needs to read and edit code.
+ * Install opens the GitHub App in the system browser. There is no PAT field.
+ * Skip still means local / This PC. A missing install route is an honest
+ * failure, not a folder picker.
  */
 export function ConnectGitHubRoute(): JSX.Element {
-  const runs = useSessions();
+  const account = useAccount();
   const navigate = useNavigate();
   const steps = useSteps();
 
   const [busy, setBusy] = createSignal(false);
+  const [error, setError] = createSignal<string>();
 
-  const openFolder = async () => {
+  const install = async () => {
     setBusy(true);
+    setError(undefined);
     try {
-      const opened = await runs.openWorkspace();
-      if (opened) navigate('/');
+      const opened = await account.host.startGitHubInstall();
+      if (!opened) {
+        setError('Could not start GitHub. Open a folder on This PC, or try again.');
+      }
+    } catch (caught) {
+      setError(describeGitHubInstallError(caught));
     } finally {
       setBusy(false);
     }
@@ -72,10 +74,10 @@ export function ConnectGitHubRoute(): JSX.Element {
   return (
     <ConnectGitHubScreen
       steps={steps()}
-      onConnect={() => void openFolder()}
+      onConnect={() => void install()}
       onSkip={() => navigate('/')}
       busy={busy()}
-      error="Connecting a GitHub account is not available yet. Open a local repository instead — an agent needs nothing else to read and edit code."
+      {...(error() ? { error: error()! } : {})}
     />
   );
 }
@@ -145,7 +147,7 @@ export function SshConnectRoute(): JSX.Element {
       });
       navigate('/code/runtimes');
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : String(caught));
+      setError(describeSshConnectError(caught));
     } finally {
       setBusy(false);
     }

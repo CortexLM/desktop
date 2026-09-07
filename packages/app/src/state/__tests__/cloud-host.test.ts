@@ -259,4 +259,24 @@ describe('cloud account host', () => {
     expect(host.onDeviceStatus(() => {})()).toBe(true);
     expect(host.onAccountChanged(() => {})()).toBe(true);
   });
+
+  it('opens Apple login and Privacy without a token in the URL', async () => {
+    const openUrl = vi.fn();
+    const { host } = hostWith([], openUrl);
+
+    await expect(host.startBrowserLogin('apple')).resolves.toBe(true);
+    expect(openUrl).toHaveBeenCalledWith(expect.stringContaining('provider=AppleOAuth'));
+    expect(String(openUrl.mock.calls[0]?.[0])).not.toMatch(/token|pat|ghp_/i);
+
+    await expect(host.openLegalPage('privacy')).resolves.toBe(true);
+    expect(openUrl).toHaveBeenCalledWith('https://cortex.foundation/privacy');
+  });
+
+  it('fails GitHub install closed when the route is missing', async () => {
+    const openUrl = vi.fn();
+    const { host } = hostWith([{ status: 404, body: { code: 'not_found' } }], openUrl);
+
+    await expect(host.startGitHubInstall()).rejects.toThrow(/This PC/);
+    expect(openUrl).not.toHaveBeenCalled();
+  });
 });

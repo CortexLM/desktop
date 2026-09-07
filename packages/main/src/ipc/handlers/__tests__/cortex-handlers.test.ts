@@ -28,6 +28,8 @@ const service = {
   openVerificationPage: vi.fn(),
   signOut: vi.fn(),
   startBrowserLogin: vi.fn(),
+  startGitHubInstall: vi.fn(),
+  openLegalPage: vi.fn(),
   signInWithEmail: vi.fn(),
   onDeviceStatus: vi.fn(() => () => {}),
   onAccountChanged: vi.fn(() => () => {}),
@@ -67,6 +69,8 @@ beforeEach(() => {
   service.openVerificationPage.mockResolvedValue({ opened: true });
   service.signOut.mockResolvedValue(ANONYMOUS);
   service.startBrowserLogin.mockResolvedValue({ opened: true });
+  service.startGitHubInstall.mockResolvedValue({ opened: true });
+  service.openLegalPage.mockResolvedValue({ opened: true });
   service.signInWithEmail.mockResolvedValue(ANONYMOUS);
   registerCortexHandlers();
 });
@@ -85,6 +89,8 @@ const CHANNELS = [
   'cortex:sign-out',
   'cortex:browser-login',
   'cortex:email-login',
+  'cortex:github-install',
+  'cortex:open-legal',
 ] as const;
 
 const NO_PAYLOAD = [
@@ -229,6 +235,29 @@ describe('browser and email login', () => {
     expect(service.startBrowserLogin).toHaveBeenCalledWith('google');
     expect(response).toEqual({ success: true, data: { opened: true } });
     expect(JSON.stringify(response)).not.toMatch(/accessToken|access_token|password/);
+  });
+
+  it('accepts Apple and SSO as browser-login providers', async () => {
+    const handler = registeredHandlers.get('cortex:browser-login');
+    await handler?.({}, { provider: 'apple' });
+    await handler?.({}, { provider: 'sso' });
+    expect(service.startBrowserLogin).toHaveBeenCalledWith('apple');
+    expect(service.startBrowserLogin).toHaveBeenCalledWith('sso');
+  });
+
+  it('starts GitHub App install without a token from the renderer', async () => {
+    const handler = registeredHandlers.get('cortex:github-install');
+    const response = await handler?.({}, undefined);
+    expect(service.startGitHubInstall).toHaveBeenCalledOnce();
+    expect(response).toEqual({ success: true, data: { opened: true } });
+    expect(JSON.stringify(response)).not.toMatch(/token|pat|ghp_/i);
+  });
+
+  it('opens Privacy and Terms by page id, never a free-form URL', async () => {
+    const handler = registeredHandlers.get('cortex:open-legal');
+    const response = await handler?.({}, { page: 'privacy' });
+    expect(service.openLegalPage).toHaveBeenCalledWith('privacy');
+    expect(response).toEqual({ success: true, data: { opened: true } });
   });
 
   it('accepts an in-app email sign-in and returns no secret', async () => {

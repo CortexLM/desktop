@@ -69,6 +69,15 @@ describe('Connect GitHub', () => {
     expect(onConnect).toHaveBeenCalledOnce();
   });
 
+  it('never asks for a GitHub token or password', () => {
+    const { container } = render(() => (
+      <ConnectGitHubScreen steps={STEPS} onConnect={vi.fn()} onSkip={vi.fn()} />
+    ));
+    const text = container.textContent ?? '';
+    expect(container.querySelector('input')).toBeNull();
+    expect(text.toLowerCase()).not.toMatch(/personal access|paste a token|ghp_/);
+  });
+
   it('blocks the action while a flow is in flight', () => {
     render(() => (
       <ConnectGitHubScreen steps={STEPS} onConnect={vi.fn()} onSkip={vi.fn()} busy />

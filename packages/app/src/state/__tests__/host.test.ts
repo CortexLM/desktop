@@ -32,6 +32,8 @@ function installBridge(overrides: Partial<Bridge> = {}): Bridge {
     onAccountChanged: vi.fn(() => () => {}),
     onAuthComplete: vi.fn(() => () => {}),
     startBrowserLogin: ok({ opened: true }),
+    startGitHubInstall: ok({ opened: true }),
+    openLegalPage: ok({ opened: true }),
     signInWithEmail: ok({ user: null, reachable: true, credentialsEncrypted: true }),
     ...overrides,
   };
@@ -97,6 +99,12 @@ describe('unwrapping the IPC envelope', () => {
     const bridge = installBridge();
     await expect(resolveHost().startBrowserLogin('github')).resolves.toBe(true);
     expect(bridge.startBrowserLogin).toHaveBeenCalledWith({ provider: 'github' });
+    await expect(resolveHost().startBrowserLogin('apple')).resolves.toBe(true);
+    expect(bridge.startBrowserLogin).toHaveBeenCalledWith({ provider: 'apple' });
+    await expect(resolveHost().startGitHubInstall()).resolves.toBe(true);
+    expect(bridge.startGitHubInstall).toHaveBeenCalledOnce();
+    await expect(resolveHost().openLegalPage('terms')).resolves.toBe(true);
+    expect(bridge.openLegalPage).toHaveBeenCalledWith({ page: 'terms' });
   });
 
   it('forwards no argument to the bridge', async () => {

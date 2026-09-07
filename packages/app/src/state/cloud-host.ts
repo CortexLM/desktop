@@ -25,8 +25,12 @@
 import {
   CortexDeviceFlowError,
   browserLoginUrl,
+  describeGitHubInstallError,
+  githubAppInstallUrl,
   isCortexApiError,
+  LEGAL_PAGE_URLS,
   pollDeviceToken,
+  probeGitHubInstall,
   signInWithEmail,
   type CortexApiClient,
   type CortexModel,
@@ -292,6 +296,21 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
 
     startBrowserLogin: async (provider) => {
       (options.openUrl ?? defaultOpen)(browserLoginUrl(client.baseUrl, provider));
+      return true;
+    },
+
+    startGitHubInstall: async () => {
+      try {
+        await probeGitHubInstall(client);
+      } catch (error) {
+        throw new Error(describeGitHubInstallError(error));
+      }
+      (options.openUrl ?? defaultOpen)(githubAppInstallUrl(client.baseUrl));
+      return true;
+    },
+
+    openLegalPage: async (page) => {
+      (options.openUrl ?? defaultOpen)(LEGAL_PAGE_URLS[page]);
       return true;
     },
 

@@ -112,6 +112,8 @@ export const IPC_CHANNELS = {
   CORTEX_SIGN_OUT: 'cortex:sign-out',
   CORTEX_BROWSER_LOGIN: 'cortex:browser-login',
   CORTEX_EMAIL_LOGIN: 'cortex:email-login',
+  CORTEX_GITHUB_INSTALL: 'cortex:github-install',
+  CORTEX_OPEN_LEGAL: 'cortex:open-legal',
   // Clés d'API du compte. Authentifié : la route exige une session.
   CORTEX_LIST_API_KEYS: 'cortex:list-api-keys',
   CORTEX_CREATE_API_KEY: 'cortex:create-api-key',

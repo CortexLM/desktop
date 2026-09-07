@@ -26,6 +26,11 @@ values, and nothing in Code asks for a token to paste
 ([`.rules/06-product.md`](../.rules/06-product.md) § 6.2.1). Provider credentials
 are entered in Settings → Providers and go main → keychain.
 
+Connect GitHub (`/sign-in/github` and Settings → Integrations) starts the Cortex
+GitHub App in the system browser (`GET /v1/integrations/github/install`). The
+client probes that route and fails closed if it is missing. Skip still means
+This PC / a local folder. There is no personal-access-token field.
+
 ## This PC
 
 On the **desktop app**, the local Code runtime is labelled **This PC**. The

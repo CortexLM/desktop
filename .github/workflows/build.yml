@@ -152,8 +152,9 @@ jobs:
   # Tag → flatten yml/blockmap/installers → rclone copy to R2 bucket
   # `cortex-releases` (objects at the bucket root) → custom domain
   # releases.cortex.foundation → electron-updater GET /latest.yml.
-  # Optional mirror to software.cortex.foundation/latest/ when
-  # PRODUCTION_SOFTWARE_BUCKET is set. Staging must not write this origin.
+  # Always mirror to software.cortex.foundation/latest/ (default bucket
+  # cortex-software). Already-shipped apps keep checking
+  # releases.cortex.foundation. Staging must not write this origin.
   publish-feed:
     name: Publish production update feed
     needs: build
@@ -190,7 +191,6 @@ jobs:
           destination: r2:${{ vars.PRODUCTION_RELEASES_BUCKET || 'cortex-releases' }}
 
       - name: Mirror feed to software.cortex.foundation/latest/
-        if: ${{ vars.PRODUCTION_SOFTWARE_BUCKET != '' }}
         uses: ./.github/actions/publish-r2-feed
         env:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -198,4 +198,4 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
           artifacts-dir: artifacts
-          destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET }}/latest
+          destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET || 'cortex-software' }}/latest

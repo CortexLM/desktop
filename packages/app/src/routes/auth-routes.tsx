@@ -1,13 +1,16 @@
 /**
  * Sign in, and the device code screen.
  *
- * Google and GitHub open the system browser. Email stays on this form. The
- * device-code route remains as a fallback. None of these paths put a token in
- * the renderer.
+ * Google, GitHub, Apple and SSO open the system browser. Email stays on this
+ * form. The device-code route remains as a fallback. None of these paths put
+ * a token in the renderer. Privacy and Terms are opened by main; this route
+ * never sends a URL.
  */
 
 import { createSignal, onCleanup, onMount, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+
+import { describeSignInError, type BrowserLoginProvider, type LegalPage } from '@cortex-ide/cortex-api';
 
 import { useAccount } from '../state/session-context.tsx';
 import type { CortexHost } from '../state/host.ts';
@@ -15,6 +18,8 @@ import { forgetPluginConnect, pendingPluginConnect } from '../state/pending-conn
 import { SignInScreen } from '../screens/auth/sign-in-screen.tsx';
 import { DeviceCodeScreen } from '../screens/auth/device-code-screen.tsx';
 import { createDeviceFlow } from '../screens/auth/device-flow.ts';
+
+const BROWSER_CLOSED = 'Could not open the browser. Try again, or continue without an account.';
 
 function afterAccount(): string {
   return pendingPluginConnect()?.returnTo ?? '/';
@@ -30,10 +35,22 @@ async function withBusy(
   try {
     await work();
   } catch (caught) {
-    setError(caught instanceof Error ? caught.message : 'Sign-in did not complete.');
+    setError(describeSignInError(caught));
   } finally {
     setBusy(false);
   }
+}
+
+function startBrowser(
+  host: CortexHost,
+  provider: BrowserLoginProvider,
+  setBusy: (value: boolean) => void,
+  setError: (value: string | undefined) => void,
+): void {
+  void withBusy(setBusy, setError, async () => {
+    const opened = await host.startBrowserLogin(provider);
+    if (!opened) setError(BROWSER_CLOSED);
+  });
 }
 
 export function SignInRoute(): JSX.Element {
@@ -47,32 +64,25 @@ export function SignInRoute(): JSX.Element {
     onCleanup(listenForAuth(account.host, navigate, setError));
   });
 
+  const openLegal = (page: LegalPage) => {
+    void account.host.openLegalPage(page);
+  };
+
   return (
     <SignInScreen
       busy={busy()}
       error={error()}
-      onContinueWithGitHub={() =>
-        void withBusy(setBusy, setError, async () => {
-          const opened = await account.host.startBrowserLogin('github');
-          if (!opened) {
-            setError('Could not open the browser. Try again, or continue without an account.');
-          }
-        })
-      }
-      onContinueWithGoogle={() =>
-        void withBusy(setBusy, setError, async () => {
-          const opened = await account.host.startBrowserLogin('google');
-          if (!opened) {
-            setError('Could not open the browser. Try again, or continue without an account.');
-          }
-        })
-      }
+      onContinueWithGitHub={() => startBrowser(account.host, 'github', setBusy, setError)}
+      onContinueWithGoogle={() => startBrowser(account.host, 'google', setBusy, setError)}
+      onContinueWithApple={() => startBrowser(account.host, 'apple', setBusy, setError)}
+      onContinueWithSso={() => startBrowser(account.host, 'sso', setBusy, setError)}
       onContinueWithEmail={(address, password) =>
         void withBusy(setBusy, setError, async () => {
           await account.host.signInWithEmail(address, password);
           navigate(afterAccount());
         })
       }
+      onOpenLegal={openLegal}
       onContinueWithoutAccount={() => {
         forgetPluginConnect();
         navigate('/');

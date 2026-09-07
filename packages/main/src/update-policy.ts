@@ -4,8 +4,9 @@
  * Production packaged Electron reads `DEFAULT_UPDATE_FEED_URL` from
  * electron-builder.yml (`publish.url`) into `app-update.yml`. Staging
  * installers bake `STAGING_UPDATE_FEED_URL` at package time. The named
- * `latest/` prefix on software.cortex.foundation is an optional mirror of
- * production, not a second baked-in production channel.
+ * `latest/` prefix on software.cortex.foundation is a first-class
+ * production mirror; already-shipped apps keep the releases host until a
+ * coordinated cutover.
  *
  * `CORTEX_UPDATE_FEED_URL` overrides the feed for a local test. That is a
  * test hook, not a third public channel.

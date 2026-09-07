@@ -18,13 +18,21 @@ export {
 export { guestTokenFromSetCookie, sessionTokenFromSetCookie } from './cookies.ts';
 
 export {
+  BROWSER_LOGIN_PROVIDERS,
   browserLoginUrl,
+  describeGitHubInstallError,
+  describeSignInError,
+  describeSshConnectError,
   DESKTOP_AUTH_CALLBACK,
   DESKTOP_BRIDGE_URL,
   exchangeAuthCode,
+  githubAppInstallUrl,
+  LEGAL_PAGE_URLS,
+  probeGitHubInstall,
   signInWithEmail,
   verifySession,
   type BrowserLoginProvider,
+  type LegalPage,
 } from './desktop-auth.ts';
 
 export {

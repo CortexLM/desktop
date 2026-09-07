@@ -44,3 +44,24 @@ export function GoogleMark(props: { size?: number }): JSX.Element {
     </svg>
   );
 }
+
+/** Apple's mark is a silhouette, so currentColor is enough. */
+export function AppleMark(props: { size?: number }): JSX.Element {
+  const size = props.size ?? 16;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{ 'flex-shrink': '0' }}
+    >
+      <path
+        fill="currentColor"
+        d="M13.16 9.36c-.02 2.16 1.9 2.88 1.92 2.9-.02.05-.3 1.03-.99 2.04-.6.88-1.21 1.75-2.18 1.77-.95.02-1.26-.57-2.35-.57-1.09 0-1.43.55-2.34.59-.94.03-1.65-.95-2.26-1.82C3.73 12.5 2.79 9.25 4.05 7.05c.63-1.1 1.74-1.79 2.95-1.81.92-.02 1.8.62 2.35.62.55 0 1.61-.77 2.71-.66.46.02 1.76.19 2.6 1.4-.07.04-1.55.91-1.5 2.76zM10.9 4.94c.5-.6.84-1.44.75-2.28-.72.03-1.59.48-2.11 1.08-.46.54-.87 1.39-.76 2.21.81.06 1.64-.41 2.12-1.01z"
+      />
+    </svg>
+  );
+}

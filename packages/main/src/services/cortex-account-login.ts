@@ -2,17 +2,24 @@
  * Desktop browser and email sign-in, kept off the account service so that
  * file stays about persistence and the device flow.
  *
- * Google/GitHub open the system browser at the Cortex login URL. Email posts
- * to the API from main. Neither path puts a token in an event or a log.
+ * Google, GitHub, Apple and SSO open the system browser at the Cortex login
+ * URL. Email posts to the API from main. GitHub App install is a separate
+ * browser start. None of these paths put a token in an event or a log.
  */
 
 import {
   browserLoginUrl,
+  describeGitHubInstallError,
+  describeSignInError,
   exchangeAuthCode,
+  githubAppInstallUrl,
   isCortexApiError,
+  LEGAL_PAGE_URLS,
+  probeGitHubInstall,
   signInWithEmail,
   type BrowserLoginProvider,
   type CortexApiClient,
+  type LegalPage,
 } from '@cortex-ide/cortex-api';
 import type { CortexAccountState } from '@cortex-ide/shared';
 
@@ -32,6 +39,29 @@ export async function startBrowserLogin(
   const { state, challenge } = beginBrowserLogin(provider);
   const url = browserLoginUrl(service.getApiClient().baseUrl, provider, state, challenge);
   return { opened: await openExternalSafe(url) };
+}
+
+/**
+ * Starts the GitHub App install in the system browser.
+ *
+ * Probes the install route first so a missing backend does not open a 404
+ * tab and pretend the app was installed. No PAT is collected.
+ */
+export async function startGitHubInstall(
+  service: AccountLoginHost,
+): Promise<{ opened: boolean }> {
+  try {
+    await probeGitHubInstall(service.getApiClient());
+  } catch (error) {
+    throw new Error(describeGitHubInstallError(error));
+  }
+  const { state, challenge } = beginBrowserLogin('github-app');
+  const url = githubAppInstallUrl(service.getApiClient().baseUrl, state, challenge);
+  return { opened: await openExternalSafe(url) };
+}
+
+export async function openLegalPage(page: LegalPage): Promise<{ opened: boolean }> {
+  return { opened: await openExternalSafe(LEGAL_PAGE_URLS[page]) };
 }
 
 export async function completeAuthCallback(
@@ -73,10 +103,10 @@ export async function signInEmail(
 
 export function describeEmailError(error: unknown): string {
   if (isCortexApiError(error) && (error.code === 'not_found' || error.status === 404 || error.status === 405)) {
-    return 'Email sign-in is not available on this workspace yet. Use Google or GitHub, or continue without an account.';
+    return 'Email sign-in is not available on this workspace yet. Use Google, Apple, GitHub, or SSO, or continue without an account.';
   }
   if (isCortexApiError(error) && error.isAuthFailure) {
     return 'That email or password was not accepted. Check them and try again.';
   }
-  return 'Email sign-in did not complete. Try again, or continue without an account.';
+  return describeSignInError(error);
 }

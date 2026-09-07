@@ -133,5 +133,8 @@ publish:
   url: https://releases.cortex.foundation/
   channel: latest
 
-# Code signing (for production, use environment variables)
-# afterSign: scripts/notarize.js  # Uncomment for macOS notarization
+# macOS notarization after signing. scripts/notarize.js returns without
+# error when APPLE_ID / APPLE_APP_SPECIFIC_PASSWORD / APPLE_TEAM_ID are
+# unset (local and unsigned CI). Set those names on Environment production
+# to notarize a tagged macOS build.
+afterSign: scripts/notarize.js

@@ -59,8 +59,10 @@ import type {
 import { openExternalSafe } from '../security';
 import {
   completeAuthCallback as completeDesktopCallback,
+  openLegalPage,
   signInEmail,
   startBrowserLogin as openBrowserLogin,
+  startGitHubInstall,
 } from './cortex-account-login';
 
 /** Le jeton tel qu'il est persisté sur disque. */
@@ -448,7 +450,10 @@ export class CortexAccountService {
     return this.state();
   }
 
-  startBrowserLogin = (provider: 'google' | 'github') => openBrowserLogin(this, provider);
+  startBrowserLogin = (provider: 'google' | 'github' | 'apple' | 'sso') =>
+    openBrowserLogin(this, provider);
+  startGitHubInstall = () => startGitHubInstall(this);
+  openLegalPage = (page: 'privacy' | 'terms') => openLegalPage(page);
   completeAuthCallback = (url: string) => completeDesktopCallback(this, url);
   signInWithEmail = (email: string, password: string) => signInEmail(this, email, password);
 
