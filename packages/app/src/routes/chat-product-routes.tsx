@@ -10,6 +10,8 @@
 import { createEffect, createSignal, untrack, type JSX } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
+import { describeWorkspaceError } from '@cortex-ide/cortex-api';
+
 import { useAccount } from '../state/session-context.tsx';
 import {
   addPlanningTask,
@@ -114,7 +116,7 @@ export function PlanningRoute(): JSX.Element {
     } catch (error) {
       postInbox({
         kind: 'scheduled-task',
-        message: `${task.title} could not run: ${error instanceof Error ? error.message : String(error)}`,
+        message: `${task.title} could not run. ${describeWorkspaceError(error)}`,
         href: '/planning',
       });
     }

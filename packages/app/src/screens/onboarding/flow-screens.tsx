@@ -143,42 +143,52 @@ export function ConnectGitHubScreen(props: ConnectGitHubScreenProps): JSX.Elemen
 
 export interface WorkspaceSetupScreenProps {
   steps: readonly FlowStep[];
-  onCreate: (name: string) => void;
+  onCreate: () => void;
   onSkip?: () => void;
   busy?: boolean;
+  error?: string;
+  /** False on web: This PC is the desktop folder picker. */
+  thisPcAvailable?: boolean;
 }
 
-/** Auth Workspace Setup. */
+/**
+ * Auth Workspace Setup.
+ *
+ * This PC *is* the folder. A name field would be ignored — the directory
+ * already has a name, and the renderer never sees the path.
+ */
 export function WorkspaceSetupScreen(props: WorkspaceSetupScreenProps): JSX.Element {
-  const [name, setName] = createSignal('');
-  const canCreate = () => !props.busy && name().trim().length > 1;
+  const available = props.thisPcAvailable !== false;
 
   return (
     <FlowShell
-      title="Name your workspace"
-      subtitle="Sessions, secrets and automations are scoped to it"
+      title="Open a folder on This PC"
+      subtitle={
+        available
+          ? 'This PC runs against that tree. The folder already has a name.'
+          : 'This PC is available in the Cortex desktop app. Cloud and SSH start from Home once you have an account.'
+      }
       steps={props.steps}
       onSkip={props.onSkip}
     >
-      <form
-        class="cx-flow__form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (canCreate()) props.onCreate(name().trim());
-        }}
-      >
-        <TextField
-          label="Workspace name"
-          prose
-          placeholder="Acme engineering"
-          value={name()}
-          hint="You can rename it later."
-          onInput={(event) => setName(event.currentTarget.value)}
-        />
-        <Button type="submit" variant="primary" block disabled={!canCreate()}>
-          Create workspace
+      <Show when={props.error}>
+        {(error) => (
+          <p class="cx-auth__error" role="alert">
+            {error()}
+          </p>
+        )}
+      </Show>
+      <Show when={available}>
+        <Button
+          type="button"
+          variant="primary"
+          block
+          disabled={props.busy}
+          onClick={() => props.onCreate()}
+        >
+          Choose folder
         </Button>
-      </form>
+      </Show>
     </FlowShell>
   );
 }

@@ -31,8 +31,6 @@ const APP_SRC = join(import.meta.dirname, '..');
 const FIXED_BRAND_COLOURS = [
   'shell/title-bar.css:color:#ffffff',
   'overlays/overlay.css:background:rgb(0 0 0 / 24%)',
-  'screens/auth/auth.css:background:#1f4944',
-  'screens/auth/auth.css:color:#f8f5ea',
 ];
 
 function stylesheets(dir: string): string[] {

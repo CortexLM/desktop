@@ -18,6 +18,7 @@ import {
   listCodeTickets,
   patchCodeTicket,
   type ApiCodeTicket,
+  describeWorkspaceError,
 } from '@cortex-ide/cortex-api';
 
 import { botClient } from './bot-client.ts';
@@ -113,7 +114,7 @@ export async function loadTicket(id: string): Promise<void> {
   } catch (error) {
     setOpenTicket(undefined);
     setTicketState('error');
-    setTicketError(error instanceof Error ? error.message : String(error));
+    setTicketError(describeWorkspaceError(error));
   }
 }
 

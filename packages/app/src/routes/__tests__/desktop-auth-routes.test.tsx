@@ -9,7 +9,7 @@ import { SessionsProvider } from '../../state/sessions-context.tsx';
 import { detachedHost, type CortexHost } from '../../state/host.ts';
 import { detachedSessionHost } from '../../state/session-host.ts';
 import { SignInRoute } from '../auth-routes.tsx';
-import { ConnectGitHubRoute } from '../flow-routes.tsx';
+import { ConnectGitHubRoute, WorkspaceSetupRoute } from '../flow-routes.tsx';
 import { IntegrationsRoute } from '../settings-routes.tsx';
 
 function accountHost(
@@ -40,6 +40,7 @@ function mount(path: string, host: CortexHost) {
         <MemoryRouter history={history}>
           <Route path="/sign-in" component={SignInRoute} />
           <Route path="/sign-in/github" component={ConnectGitHubRoute} />
+          <Route path="/sign-in/workspace" component={WorkspaceSetupRoute} />
           <Route path="/code/settings/integrations" component={IntegrationsRoute} />
           <Route path="/" component={() => <p>Home</p>} />
         </MemoryRouter>
@@ -95,6 +96,15 @@ describe('Connect GitHub route', () => {
     await waitFor(() => {
       expect(screen.getByRole('alert').textContent).toMatch(/This PC/);
     });
+  });
+});
+
+describe('Workspace setup route', () => {
+  it('never asks for a workspace name', () => {
+    mount('/sign-in/workspace', accountHost(null));
+    expect(screen.queryByLabelText('Workspace name')).toBeNull();
+    expect(screen.queryByRole('textbox')).toBeNull();
+    expect(screen.getByText(/folder already has a name|desktop app/i)).toBeInTheDocument();
   });
 });
 

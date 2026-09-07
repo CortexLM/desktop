@@ -69,12 +69,12 @@ Code Connect GitHub starts `GET /v1/integrations/github/install?client=desktop&r
 **Blocked on CortexLM/backend:**
 
 - Allowlist `https://cortex.foundation/desktop/open` and `cortex://auth/callback` (today the hosted login bakes `redirect_uri` to `https://api.cortex.foundation/auth/callback`).
-- Serve the bridge page on the marketing origin.
-- AuthKit Apple and SSO connections, if those providers are not yet enabled.
-- `POST /v1/auth/login` with `{ email, password }` is **unobserved**. The typed client fails closed on 404/405 rather than inventing a session.
+- AuthKit Apple and SSO connections: live `GET /v1/auth/login?provider=AppleOAuth|SSO&client=desktop` still 307s to the generic hosted login (provider query ignored).
+- `POST /v1/auth/login` with `{ email, password }` is **405**. The typed client fails closed rather than inventing a session.
 - `GET /v1/auth/callback?code=` returning `Set-Cookie: wos-session` is inferred from the cookie-name probe, not observed end-to-end from a desktop callback.
-- `GET /v1/integrations/github/install` is **unobserved**. Desktop probes and fails closed rather than opening a folder.
-- Public Privacy and Terms pages on `cortex.foundation`.
+- `GET /v1/integrations/github/install` is **404**. Desktop probes and fails closed rather than opening a folder.
+
+Observed on the marketing origin: `/privacy`, `/terms`, and `/desktop/open` all return `200`. Workspace write failures classify through `describeWorkspaceError` (missing route, auth, or generic retry) — never a vendor body.
 
 ### Device flow (RFC 8628)
 

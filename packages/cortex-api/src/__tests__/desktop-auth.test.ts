@@ -8,6 +8,7 @@ import {
   describeGitHubInstallError,
   describeSignInError,
   describeSshConnectError,
+  describeWorkspaceError,
   DESKTOP_AUTH_CALLBACK,
   DESKTOP_BRIDGE_URL,
   exchangeAuthCode,
@@ -182,5 +183,25 @@ describe('sign-in copy', () => {
     const copy = describeSshConnectError(error);
     expect(copy).toMatch(/This PC/);
     expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('maps a workspace miss to product language', () => {
+    const error = new CortexApiError('not_found', 'WorkOS is not configured', { status: 404 });
+    const copy = describeWorkspaceError(error);
+    expect(copy).toMatch(/not available on this workspace/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('maps an expired session to sign-in, not a vendor body', () => {
+    const error = new CortexApiError('AUTH_REQUIRED', 'WorkOS session expired', { status: 401 });
+    const copy = describeWorkspaceError(error);
+    expect(copy).toMatch(/Sign in to Cortex/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('keeps a generic write failure free of status codes', () => {
+    const copy = describeWorkspaceError(new Error('Request failed with status code 503'));
+    expect(copy).toBe('That did not complete. Try again.');
+    expect(copy).not.toMatch(/503|status/i);
   });
 });

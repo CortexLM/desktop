@@ -99,10 +99,14 @@ Cloud needs an account, or offers connecting a remote Cortex Code host.
 On desktop, **This PC** is a session bound to a directory on the user's
 machine. It is not a Cortex Bot host. SSH chrome stays SSH.
 
-1. The user picks a folder in the OS directory dialog (`openDirectory`).
+1. The user picks a folder in the OS directory dialog (`openDirectory`),
+   including from `/sign-in/workspace`. There is no workspace-name field.
 2. That folder becomes the workspace. The renderer never sees the absolute
    path — only a repository id (the folder name).
 3. The coding agent runs tools against that tree in the Electron main harness.
+
+Web never offers the picker. `/sign-in/workspace` says This PC needs the
+desktop app; Cloud and SSH start from Home once the user has an account.
 
 There is no fallback to the process working directory, and a This PC start
 never silently becomes a Cloud session.

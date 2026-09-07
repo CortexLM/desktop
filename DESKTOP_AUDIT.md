@@ -42,11 +42,10 @@ Variables:
 Backend HOLD (not a desktop secret; Oding’s lane):
 
 - Allowlist `https://cortex.foundation/desktop/open` and `cortex://auth/callback`
-- Serve the desktop bridge on the marketing origin
-- `POST /v1/auth/login` (email) if that route is still missing
-- AuthKit Apple and SSO connections
-- `GET /v1/integrations/github/install` (GitHub App, no PAT)
-- Public Privacy and Terms pages at `cortex.foundation`
+  (the marketing origin already serves `/desktop/open`, `/privacy`, and `/terms`)
+- `POST /v1/auth/login` (email) — live probe: **405**
+- AuthKit Apple and SSO connections — live probe: provider query is ignored
+- `GET /v1/integrations/github/install` (GitHub App, no PAT) — live probe: **404**
 
 ## Already true
 
@@ -85,25 +84,39 @@ Backend HOLD (not a desktop secret; Oding’s lane):
 | P1-4 | Docs described GitHub connect as unavailable and the latest/ mirror as optional. | Update `AGENTS.md`, `docs/code.md`, `docs/releases.md`, `CONTRACT.md`. |
 | P1-5 | Tests did not pin Apple/SSO, legal links, no-PAT, or GitHub App start. | Add them. |
 
+## Live probe (public, no secrets)
+
+| Probe | Result |
+| --- | --- |
+| `GET /v1/auth/login?provider=AppleOAuth\|SSO&client=desktop` | `307` to hosted login; provider query ignored |
+| `POST /v1/auth/login` | `405` |
+| `GET /v1/integrations/github/install?client=desktop` | `404` `not_found` — fail-closed path is correct |
+| `https://cortex.foundation/privacy` | `200` |
+| `https://cortex.foundation/terms` | `200` |
+| `https://cortex.foundation/desktop/open` | `200` HTML mentioning `cortex://` |
+
+This environment is a personal desktop checkout, not Cursor env `staging-soak`. Staging AssumeRole was not used.
+
 ## P2 — follow-up, not a tag blocker
 
-| ID | Finding |
-| --- | --- |
-| P2-1 | Paper Sign In still draws GitHub + Google + email only. Apple and SSO are a product requirement beyond that artboard. Sync Paper when the board is updated. |
-| P2-2 | Narrow 390 / 768 layouts are still desktop-first (`.rules/03-responsive.md`). |
-| P2-3 | Auth card mark uses raw hex (`#1f4944`, `#f8f5ea`) instead of tokens. |
-| P2-4 | Workspace setup accepts a name and then opens the folder picker (the folder already has a name). |
-| P2-5 | Several product routes still surface `error.message` (Chat, automations, tickets). Same classify rule as P0-4, wider blast radius. |
-| P2-6 | Device-flow `/auth/device/*` drift on some deployments. Desktop already maps `not_found` to honest copy. |
-| P2-7 | Visual Paper parity is reporting-only (JPEG baselines). |
-| P2-8 | Leftover `/bot` screens are not in this shell’s switcher; they stay for the API client and deep links. |
-| P2-9 | Cutting already-shipped apps over from `releases.cortex.foundation` to `software.cortex.foundation/latest/` is a coordinated release, not a silent URL swap. |
+| ID | Finding | State |
+| --- | --- | --- |
+| P2-1 | Paper Sign In still draws GitHub + Google + email only (last export). Apple and SSO are in the app. Live Concept 03 currently has no artboards, so the board cannot be patched in place. | Open |
+| P2-2 | Auth card now reflows at 768 / 390 (`--breakpoint-tablet` / `--breakpoint-mobile`). Other screens remain desktop-first. | Auth done |
+| P2-3 | Auth card mark uses `--color-green` / `--color-on-green`. | Done |
+| P2-4 | `/sign-in/workspace` opens the folder picker. No name field. Web says This PC needs the desktop app. | Done |
+| P2-5 | Chat save, automations, tickets, settings, planning, and Code start classify through `describeWorkspaceError`. Leftover `/bot` routes and a few other writers still pass `error.message`. | Partial |
+| P2-6 | Device-flow `/auth/device/*` drift on some deployments. Desktop already maps `not_found` to honest copy. | Open |
+| P2-7 | Visual Paper parity is reporting-only (JPEG baselines). | Open |
+| P2-8 | Leftover `/bot` screens are not in this shell’s switcher; they stay for the API client and deep links. | Intentional |
+| P2-9 | Cutting already-shipped apps over from `releases.cortex.foundation` to `software.cortex.foundation/latest/` is a coordinated release, not a silent URL swap. | Open |
 
 ## How to try it
 
 Desktop: `bun run build && bun run start`
 
 - `/welcome` → Get started → `/sign-in`: GitHub, Google, Apple, SSO, email, Privacy/Terms, continue without an account.
+- `/sign-in/workspace`: Choose folder (desktop) or an honest desktop-only note (web). No name field.
 - `/code` unsigned: This PC starts after the folder picker. Cloud and SSH stay locked.
 - `/sign-in/github` and Settings → Integrations → GitHub: Install opens the system browser, or an honest “not available yet”. No token field.
 - Skip on Connect GitHub: local / This PC path.

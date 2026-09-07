@@ -205,3 +205,17 @@ export function describeSshConnectError(error: unknown): string {
   }
   return 'Could not add that server. Check the host and try again.';
 }
+
+/**
+ * Product copy for Chat, Automations, Review and Settings writes.
+ * Never a vendor body, status code, or stack fragment.
+ */
+export function describeWorkspaceError(error: unknown): string {
+  if (isMissingRoute(error)) {
+    return 'That is not available on this workspace yet.';
+  }
+  if (isCortexApiError(error) && error.isAuthFailure) {
+    return 'Sign in to Cortex and try again.';
+  }
+  return 'That did not complete. Try again.';
+}

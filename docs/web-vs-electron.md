@@ -4,7 +4,8 @@ One UI package (`packages/app`) renders both surfaces. Detection is
 runtime: `window.cortex` exists only when the preload script ran.
 
 ```ts
-import { chromePlatform, hasElectronHost } from './state/platform.ts';
+import { chromePlatform } from './state/platform.ts';
+import { hasElectronHost } from './state/electron-bridge.ts';
 
 chromePlatform();     // 'darwin' | 'win32' | 'linux' | 'browser'
 hasElectronHost();    // true only inside Electron
@@ -47,7 +48,8 @@ in at all, and Settings and Automations were permanently read-only.
 - Electron `Notification`.
 - Opening a local folder.
 - **This PC** as a Cortex Code runtime (folder-bound on desktop). Not offered
-  on the web, and never as a Cortex Bot computer host.
+  on the web, and never as a Cortex Bot computer host. `/sign-in/workspace`
+  is the folder picker on desktop and an honest desktop-only note on the web.
 - Auto-update against `https://releases.cortex.foundation/` (see [releases.md](./releases.md)). Staging installers check `https://software.cortex.foundation/staging/` ([runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md)).
 - Google / GitHub / Apple / SSO sign-in in the **system browser**, returning on
   `cortex://auth/callback` (HTTPS bridge at `https://cortex.foundation/desktop/open`).

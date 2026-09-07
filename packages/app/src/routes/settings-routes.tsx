@@ -8,7 +8,11 @@
 
 import { createMemo, createResource, createSignal, type JSX } from 'solid-js';
 
-import { describeGitHubInstallError, PROVIDER_CATALOG } from '@cortex-ide/cortex-api';
+import {
+  describeGitHubInstallError,
+  describeWorkspaceError,
+  PROVIDER_CATALOG,
+} from '@cortex-ide/cortex-api';
 import type { ProviderSettingsView, WorkspaceRunSettings } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -126,8 +130,7 @@ function createSettingsWriters(
   sources: ReturnType<typeof createSettingsSources>,
   setError: (message: string | undefined) => void,
 ) {
-  const report = (error: unknown) =>
-    setError(error instanceof Error ? error.message : String(error));
+  const report = (error: unknown) => setError(describeWorkspaceError(error));
 
   return {
     patch: async (
@@ -246,8 +249,7 @@ function createApiKeyActions(
   refetch: () => void,
   setMessage: (message: string | undefined) => void,
 ) {
-  const report = (error: unknown) =>
-    setMessage(error instanceof Error ? error.message : String(error));
+  const report = (error: unknown) => setMessage(describeWorkspaceError(error));
 
   return {
     create: async (): Promise<void> => {

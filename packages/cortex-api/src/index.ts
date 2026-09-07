@@ -23,6 +23,7 @@ export {
   describeGitHubInstallError,
   describeSignInError,
   describeSshConnectError,
+  describeWorkspaceError,
   DESKTOP_AUTH_CALLBACK,
   DESKTOP_BRIDGE_URL,
   exchangeAuthCode,

@@ -13,6 +13,7 @@ import { useNavigate } from '@solidjs/router';
 
 import { describeGitHubInstallError, describeSshConnectError } from '@cortex-ide/cortex-api';
 
+import { hasElectronHost } from '../state/electron-bridge.ts';
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import { addSshRuntime } from '../state/code-hosts.ts';
@@ -85,19 +86,20 @@ export function ConnectGitHubRoute(): JSX.Element {
 /**
  * Auth Workspace Setup.
  *
- * Creating a workspace *is* choosing a folder, so the name field is not what does
- * the work — the native picker is. The name is accepted and ignored rather than
- * removed, because the design draws the field; what it would name is the folder,
- * which already has a name.
+ * This PC is the folder the user picks. There is no name field — the directory
+ * already has one, and the renderer never sees the path. Web says so instead of
+ * offering a picker that cannot run.
  */
 export function WorkspaceSetupRoute(): JSX.Element {
   const runs = useSessions();
   const navigate = useNavigate();
   const steps = useSteps();
+  const thisPcAvailable = hasElectronHost();
 
   const [busy, setBusy] = createSignal(false);
 
   const create = async () => {
+    if (!thisPcAvailable) return;
     setBusy(true);
     try {
       const opened = await runs.openWorkspace();
@@ -113,6 +115,7 @@ export function WorkspaceSetupRoute(): JSX.Element {
       onCreate={() => void create()}
       onSkip={() => navigate('/')}
       busy={busy()}
+      thisPcAvailable={thisPcAvailable}
     />
   );
 }

@@ -13,6 +13,7 @@
 
 import { createSignal, onCleanup, type Accessor } from 'solid-js';
 
+import { describeSignInError } from '@cortex-ide/cortex-api';
 import type { CortexDeviceStatus } from '@cortex-ide/shared';
 
 import type { DeviceCodeStatus } from './device-code-screen.tsx';
@@ -84,7 +85,7 @@ export function createDeviceFlow(options: DeviceFlowOptions): DeviceFlow {
     } catch (error) {
       // A flow that cannot start has to say so. Left in `starting`, the screen would spin on
       // a code that is never coming.
-      setErrorMessage(error instanceof Error ? error.message : String(error));
+      setErrorMessage(describeSignInError(error));
       setStatus('error');
     }
   };

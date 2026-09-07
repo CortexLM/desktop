@@ -182,7 +182,9 @@ API keys are entered; they never appear in logs.
   screens stay shown; creating a Bot needs an account.
 - **This PC Code sessions** bind to a folder the user picks in the native OS directory dialog. The
   coding agent runs tools against that tree in the desktop harness. There is no working-directory
-  fallback and no silent Cloud run. Cloud and SSH starts go through `POST /v1/code/sessions` and
+  fallback and no silent Cloud run. `/sign-in/workspace` is that picker — there is no workspace-name
+  field, because the folder already has a name. Web says This PC needs the desktop app instead of
+  offering a picker that cannot run. Cloud and SSH starts go through `POST /v1/code/sessions` and
   fail closed if that route is missing. This PC is never a Bot host.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
 - **No Secrets page in Cortex Code.** There is no `/code/secrets` route and no Secrets screen,
