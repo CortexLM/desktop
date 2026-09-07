@@ -13,7 +13,7 @@
 
 import { createSignal, onCleanup, type Accessor } from 'solid-js';
 
-import { describeSignInError } from '@cortex-ide/cortex-api';
+import { describeSignInError, isCortexApiError } from '@cortex-ide/cortex-api';
 import type { CortexDeviceStatus } from '@cortex-ide/shared';
 
 import type { DeviceCodeStatus } from './device-code-screen.tsx';
@@ -60,6 +60,12 @@ function screenStatusFor(kind: CortexDeviceStatus['kind']): DeviceCodeStatus | u
   }
 }
 
+/** Host copy stays when it is already product language; API errors are classified. */
+function describeDeviceStartError(error: unknown): string {
+  if (isCortexApiError(error)) return describeSignInError(error);
+  return error instanceof Error ? error.message : describeSignInError(error);
+}
+
 /**
  * Wires the flow up. Must be called during a component's initialisation, since it registers
  * cleanups on the owning scope.
@@ -83,9 +89,8 @@ export function createDeviceFlow(options: DeviceFlowOptions): DeviceFlow {
       setSecondsRemaining(flow.expiresIn);
       setStatus('waiting');
     } catch (error) {
-      // A flow that cannot start has to say so. Left in `starting`, the screen would spin on
-      // a code that is never coming.
-      setErrorMessage(describeSignInError(error));
+      // Left in `starting`, the screen would spin on a code that is never coming.
+      setErrorMessage(describeDeviceStartError(error));
       setStatus('error');
     }
   };
