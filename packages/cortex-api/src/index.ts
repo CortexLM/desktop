@@ -17,24 +17,7 @@ export {
 
 export { guestTokenFromSetCookie, sessionTokenFromSetCookie } from './cookies.ts';
 
-export {
-  BROWSER_LOGIN_PROVIDERS,
-  browserLoginUrl,
-  describeGitHubInstallError,
-  describeSignInError,
-  describeSshConnectError,
-  describeWorkspaceError,
-  DESKTOP_AUTH_CALLBACK,
-  DESKTOP_BRIDGE_URL,
-  exchangeAuthCode,
-  githubAppInstallUrl,
-  LEGAL_PAGE_URLS,
-  probeGitHubInstall,
-  signInWithEmail,
-  verifySession,
-  type BrowserLoginProvider,
-  type LegalPage,
-} from './desktop-auth.ts';
+export * from './desktop-auth.ts';
 
 export {
   createProject,
@@ -305,15 +288,7 @@ export {
   type PollDeviceTokenOptions,
 } from './device-flow.ts';
 
-export {
-  CortexApiError,
-  CortexDeviceFlowError,
-  DEVICE_FLOW_ERRORS,
-  isCortexApiError,
-  isCortexDeviceFlowError,
-  isDeviceFlowErrorCode,
-  type DeviceFlowErrorCode,
-} from './errors.ts';
+export * from './errors.ts';
 
 export {
   annotateCatalogue,
