@@ -58,14 +58,16 @@ describe('Sign in route', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: /Continue with Apple/ }));
-    fireEvent.click(screen.getByRole('button', { name: /Continue with SSO/ }));
-    fireEvent.click(screen.getByRole('link', { name: 'Privacy Policy' }));
+    await waitFor(() => expect(startBrowserLogin).toHaveBeenCalledWith('apple'));
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: /Continue with SSO/ })).not.toBeDisabled(),
+    );
 
-    await waitFor(() => {
-      expect(startBrowserLogin).toHaveBeenCalledWith('apple');
-      expect(startBrowserLogin).toHaveBeenCalledWith('sso');
-      expect(openLegalPage).toHaveBeenCalledWith('privacy');
-    });
+    fireEvent.click(screen.getByRole('button', { name: /Continue with SSO/ }));
+    await waitFor(() => expect(startBrowserLogin).toHaveBeenCalledWith('sso'));
+
+    fireEvent.click(screen.getByRole('link', { name: 'Privacy Policy' }));
+    await waitFor(() => expect(openLegalPage).toHaveBeenCalledWith('privacy'));
   });
 });
 

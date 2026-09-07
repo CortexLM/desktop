@@ -251,6 +251,44 @@ function deviceFlowMethods(
   };
 }
 
+function browserAuthMethods(
+  options: CloudHostOptions,
+  emitAccount: (state: CortexAccountState) => void,
+): Pick<
+  CortexHost,
+  'startBrowserLogin' | 'startGitHubInstall' | 'openLegalPage' | 'signInWithEmail'
+> {
+  const { client } = options;
+  const open = options.openUrl ?? defaultOpen;
+
+  return {
+    startBrowserLogin: async (provider) => {
+      open(browserLoginUrl(client.baseUrl, provider));
+      return true;
+    },
+    startGitHubInstall: async () => {
+      try {
+        await probeGitHubInstall(client);
+      } catch (error) {
+        throw new Error(describeGitHubInstallError(error));
+      }
+      open(githubAppInstallUrl(client.baseUrl));
+      return true;
+    },
+    openLegalPage: async (page) => {
+      open(LEGAL_PAGE_URLS[page]);
+      return true;
+    },
+    signInWithEmail: async (email, password) => {
+      const token = await signInWithEmail(client, email, password);
+      client.setCredentials({ accessToken: token });
+      const state = await readState(client);
+      emitAccount(state);
+      return state;
+    },
+  };
+}
+
 export function createCloudHost(options: CloudHostOptions): CortexHost {
   const { client } = options;
   const device = channel<CortexDeviceStatus>();
@@ -259,27 +297,21 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
   return {
     ...apiKeyMethods(client),
     ...deviceFlowMethods(options, device.emit, account.emit),
-
+    ...browserAuthMethods(options, account.emit),
     getState: () => readState(client),
-
     listModels: async () => {
       try {
         const models = await client.listModels();
         return { models: models.map(toModelView) };
       } catch (error) {
-        // The catalogue failing must not take the app down: the picker falls back
-        // to whatever the account can already use, same as the anonymous path.
         return { models: [], error: messageFor(error) };
       }
     },
-
     signOut: async () => {
       try {
         await client.logout();
       } catch {
-        // A failed logout call still means this client should forget what it has;
-        // leaving the credentials in place would show a signed-in UI for a
-        // session the user asked to end.
+        // Forget locally even when logout fails, so the UI cannot stay signed in.
       }
       client.clearCredentials();
       const state: CortexAccountState = {
@@ -290,38 +322,8 @@ export function createCloudHost(options: CloudHostOptions): CortexHost {
       account.emit(state);
       return state;
     },
-
     productRequest: (request: CortexProductRequest): Promise<CortexProductResponse> =>
       exchange(client, request),
-
-    startBrowserLogin: async (provider) => {
-      (options.openUrl ?? defaultOpen)(browserLoginUrl(client.baseUrl, provider));
-      return true;
-    },
-
-    startGitHubInstall: async () => {
-      try {
-        await probeGitHubInstall(client);
-      } catch (error) {
-        throw new Error(describeGitHubInstallError(error));
-      }
-      (options.openUrl ?? defaultOpen)(githubAppInstallUrl(client.baseUrl));
-      return true;
-    },
-
-    openLegalPage: async (page) => {
-      (options.openUrl ?? defaultOpen)(LEGAL_PAGE_URLS[page]);
-      return true;
-    },
-
-    signInWithEmail: async (email, password) => {
-      const token = await signInWithEmail(client, email, password);
-      client.setCredentials({ accessToken: token });
-      const state = await readState(client);
-      account.emit(state);
-      return state;
-    },
-
     onDeviceStatus: device.subscribe,
     onAccountChanged: account.subscribe,
     onAuthComplete: () => () => {},
