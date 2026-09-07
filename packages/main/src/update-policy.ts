@@ -15,14 +15,15 @@ export const LATEST_CHANNEL_FEED_URL = 'https://software.cortex.foundation/lates
 
 export function resolveUpdateFeedUrl(
   env: Record<string, string | undefined> = process.env,
-): string | undefined {
+): string | null | undefined {
   const override = env.CORTEX_UPDATE_FEED_URL?.trim();
   if (!override) return undefined;
-  const url = new URL(override);
+  const url = URL.parse(override);
+  if (!url) return null;
   const loopback = ['127.0.0.1', '[::1]', 'localhost'].includes(url.hostname);
   if ([url.username, url.password, url.search, url.hash].some(Boolean) ||
       (url.protocol !== 'https:' && !(url.protocol === 'http:' && loopback))) {
-    throw new Error('Update feed must use HTTPS or a loopback test server, without credentials.');
+    return null;
   }
   return url.href;
 }

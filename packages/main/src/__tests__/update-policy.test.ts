@@ -105,10 +105,10 @@ describe('resolveUpdateFeedUrl', () => {
   });
 
   it.each([
-    'http://example.com/', 'file:///tmp/feed', 'https://user:password@example.com/',
+    'not a URL', 'http://example.com/', 'file:///tmp/feed', 'https://user:password@example.com/',
     'https://example.com/?token=test-secret', 'https://example.com/#test-secret',
   ])('rejects unsafe test feed %s', (url) => {
-    expect(() => resolveUpdateFeedUrl({ CORTEX_UPDATE_FEED_URL: url })).toThrow();
+    expect(resolveUpdateFeedUrl({ CORTEX_UPDATE_FEED_URL: url })).toBeNull();
   });
 });
 

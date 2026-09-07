@@ -139,6 +139,20 @@ describe('UpdateManager', () => {
     expect(updater.checkForUpdates).not.toHaveBeenCalled();
   });
 
+  it.each(['not a URL', 'http://example.com/'])('disables an invalid override without blocking startup: %s', async (url) => {
+    const manager = new UpdateManager(
+      { checkOnStart: false, checkInterval: 0 },
+      { autoUpdater: updater, log, isPackaged: () => true, env: { CORTEX_UPDATE_FEED_URL: url } },
+    );
+    manager.initialize(fakeWindow().window);
+    await manager.checkForUpdates();
+    await expect(manager.downloadUpdate()).rejects.toThrow('Update configuration is unavailable.');
+    expect(updater.checkForUpdates).not.toHaveBeenCalled();
+    expect(updater.downloadUpdate).not.toHaveBeenCalled();
+    expect(updater.setFeedURL).not.toHaveBeenCalled();
+    expect(updater.logger).toBeNull();
+  });
+
   it('checks the feed when packaged, and when a test feed is forced', async () => {
     const packaged = new UpdateManager(
       { checkOnStart: false, checkInterval: 0 },
@@ -258,7 +272,7 @@ describe('UpdateManager', () => {
     updater.downloadUpdate.mockRejectedValueOnce(new Error('disk full'));
     const manager = new UpdateManager({ checkOnStart: false, checkInterval: 0 }, { autoUpdater: updater, log });
 
-    await expect(manager.downloadUpdate()).rejects.toThrow('disk full');
+    await expect(manager.downloadUpdate()).rejects.toThrow('Cortex could not download the update.');
   });
 
   it('installs the downloaded update on the next turn', async () => {
