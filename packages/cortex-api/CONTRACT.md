@@ -60,7 +60,11 @@ screen draws.
 
 ### Desktop browser login (partially unverified)
 
-The Electron app opens `GET /v1/auth/login?provider=GoogleOAuth|GitHubOAuth&client=desktop&redirect_uri=https://cortex.foundation/desktop/open` in the **system browser**, never an identity webview. After approval, the HTTPS bridge (`desktop/open/index.html` in this repo) must be served at `https://cortex.foundation/desktop/open` and set `location.href` to `cortex://auth/callback` plus the query. Main parses that URL and stores the session; the renderer never sees it.
+The Electron app opens `GET /v1/auth/login?provider=GoogleOAuth|GitHubOAuth|AppleOAuth|SSO&client=desktop&redirect_uri=https://cortex.foundation/desktop/open` in the **system browser**, never an identity webview. After approval, the HTTPS bridge (`desktop/open/index.html` in this repo) must be served at `https://cortex.foundation/desktop/open` and set `location.href` to `cortex://auth/callback` plus the query. Main parses that URL and stores the session; the renderer never sees it.
+
+Privacy and Terms are `https://cortex.foundation/privacy` and `https://cortex.foundation/terms`. Main opens them (`cortex:open-legal`); the renderer sends a page id, never a URL.
+
+Code Connect GitHub starts `GET /v1/integrations/github/install?client=desktop&redirect_uri=…` in the system browser. The client probes that route and fails closed on 404/405. There is no personal-access-token field.
 
 **Blocked on CortexLM/backend:**
 
@@ -71,9 +75,12 @@ rejected even with state. The service must enforce PKCE; route presence alone
 does not verify that behavior or establish repository authorization.
 
 - Allowlist `https://cortex.foundation/desktop/open` and `cortex://auth/callback` (today the hosted login bakes `redirect_uri` to `https://api.cortex.foundation/auth/callback`).
-- Serve the bridge page on the marketing origin.
-- `POST /v1/auth/login` with `{ email, password }` is **unobserved**. The typed client fails closed on 404/405 rather than inventing a session.
+- AuthKit Apple and SSO connections: live `GET /v1/auth/login?provider=AppleOAuth|SSO&client=desktop` still 307s to the generic hosted login (provider query ignored).
+- `POST /v1/auth/login` with `{ email, password }` is **405**. The typed client fails closed rather than inventing a session.
 - `GET /v1/auth/callback?code=` returning `Set-Cookie: wos-session` is inferred from the cookie-name probe, not observed end-to-end from a desktop callback.
+- `GET /v1/integrations/github/install` is **404**. Desktop probes and fails closed rather than opening a folder.
+
+Observed on the marketing origin: `/privacy`, `/terms`, and `/desktop/open` all return `200`. Workspace write failures classify through `describeWorkspaceError` (missing route, auth, or generic retry) — never a vendor body.
 
 ### Device flow (RFC 8628)
 
@@ -180,7 +187,7 @@ Not reachable without credentials, so deliberately not modelled:
 - Billing beyond `/billing/portal` existing.
 - Cloud session execution. `/v1/agents` exists but its shape is unknown, and nothing under
   `/v1/sessions` responded.
-- GitHub app installation, which the Auth Connect GitHub screen implies.
+- GitHub App install (`GET /v1/integrations/github/install`). Desktop starts it in the system browser after a probe; a missing route fails closed.
 
 Those gaps are why `CortexApiClient` covers auth, models and providers concretely and
 exposes a typed escape hatch (`request`) for the rest, rather than inventing endpoints that

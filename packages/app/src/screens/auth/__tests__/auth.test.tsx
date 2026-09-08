@@ -12,7 +12,10 @@ function renderSignIn(overrides: Partial<SignInScreenProps> = {}) {
   const handlers = {
     onContinueWithGitHub: vi.fn(),
     onContinueWithGoogle: vi.fn(),
+    onContinueWithApple: vi.fn(),
+    onContinueWithSso: vi.fn(),
     onContinueWithEmail: vi.fn(),
+    onOpenLegal: vi.fn(),
     onContinueWithoutAccount: vi.fn(),
   };
 
@@ -43,22 +46,43 @@ function renderDeviceCode(overrides: Partial<DeviceCodeScreenProps> = {}) {
 }
 
 describe('Sign in providers', () => {
-  it('offers GitHub, Google and email', () => {
+  it('offers GitHub, Google, Apple, SSO and email', () => {
     renderSignIn();
 
     expect(screen.getByRole('button', { name: /Continue with GitHub/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Continue with Google/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Continue with Apple/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Continue with SSO/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Continue with email' })).toBeInTheDocument();
   });
 
-  it('starts the GitHub and Google flows', () => {
-    const { onContinueWithGitHub, onContinueWithGoogle } = renderSignIn();
+  it('starts the GitHub, Google, Apple and SSO flows', () => {
+    const { onContinueWithGitHub, onContinueWithGoogle, onContinueWithApple, onContinueWithSso } =
+      renderSignIn();
 
     fireEvent.click(screen.getByRole('button', { name: /Continue with GitHub/ }));
     fireEvent.click(screen.getByRole('button', { name: /Continue with Google/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Continue with Apple/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Continue with SSO/ }));
 
     expect(onContinueWithGitHub).toHaveBeenCalledOnce();
     expect(onContinueWithGoogle).toHaveBeenCalledOnce();
+    expect(onContinueWithApple).toHaveBeenCalledOnce();
+    expect(onContinueWithSso).toHaveBeenCalledOnce();
+  });
+
+  it('links Privacy and Terms to the Cortex origin without sending a URL', () => {
+    const { onOpenLegal } = renderSignIn();
+    const terms = screen.getByRole('link', { name: 'Terms of Service' });
+    const privacy = screen.getByRole('link', { name: 'Privacy Policy' });
+
+    expect(terms).toHaveAttribute('href', 'https://cortex.foundation/terms');
+    expect(privacy).toHaveAttribute('href', 'https://cortex.foundation/privacy');
+
+    fireEvent.click(terms);
+    fireEvent.click(privacy);
+    expect(onOpenLegal).toHaveBeenCalledWith('terms');
+    expect(onOpenLegal).toHaveBeenCalledWith('privacy');
   });
 
   it('holds the email action until the address and password are present', () => {
@@ -108,6 +132,8 @@ describe('Sign in providers', () => {
 
     expect(screen.getByRole('button', { name: /Continue with GitHub/ })).toBeDisabled();
     expect(screen.getByRole('button', { name: /Continue with Google/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /Continue with Apple/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /Continue with SSO/ })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Continue without an account' })).toBeDisabled();
   });
 

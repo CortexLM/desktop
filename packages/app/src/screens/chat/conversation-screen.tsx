@@ -1,5 +1,6 @@
 import { createEffect, createResource, createSignal, For, type JSX, Show } from 'solid-js';
 
+import { describeWorkspaceError } from '@cortex-ide/cortex-api';
 import { Composer, Icon } from '@cortex-ide/ui';
 import type { ChatMessage } from '@cortex-ide/shared';
 
@@ -128,9 +129,7 @@ function useLibrarySaves(conversationId: () => string): LibrarySaves {
         conversationId: conversationId(),
       })
         .then(() => setSaved((current) => [...current, text]))
-        .catch((caught: unknown) =>
-          setError(caught instanceof Error ? caught.message : String(caught)),
-        );
+        .catch((caught: unknown) => setError(describeWorkspaceError(caught)));
     },
   };
 }

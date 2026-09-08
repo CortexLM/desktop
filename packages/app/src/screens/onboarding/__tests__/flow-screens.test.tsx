@@ -69,6 +69,15 @@ describe('Connect GitHub', () => {
     expect(onConnect).toHaveBeenCalledOnce();
   });
 
+  it('never asks for a GitHub token or password', () => {
+    const { container } = render(() => (
+      <ConnectGitHubScreen steps={STEPS} onConnect={vi.fn()} onSkip={vi.fn()} />
+    ));
+    const text = container.textContent ?? '';
+    expect(container.querySelector('input')).toBeNull();
+    expect(text.toLowerCase()).not.toMatch(/personal access|paste a token|ghp_/);
+  });
+
   it('blocks the action while a flow is in flight', () => {
     render(() => (
       <ConnectGitHubScreen steps={STEPS} onConnect={vi.fn()} onSkip={vi.fn()} busy />
@@ -104,41 +113,32 @@ describe('Connect GitHub', () => {
 });
 
 describe('Workspace setup', () => {
-  it('holds the action until the name is long enough to be meaningful', () => {
-    render(() => <WorkspaceSetupScreen steps={STEPS} onCreate={vi.fn()} />);
-    const create = screen.getByRole('button', { name: 'Create workspace' });
-
-    expect(create).toBeDisabled();
-
-    fireEvent.input(screen.getByLabelText('Workspace name'), { target: { value: 'A' } });
-    expect(create).toBeDisabled();
-
-    fireEvent.input(screen.getByLabelText('Workspace name'), { target: { value: 'Acme' } });
-    expect(create).not.toBeDisabled();
-  });
-
-  it('trims the name', () => {
+  it('opens the folder picker instead of asking for a name', () => {
     const onCreate = vi.fn();
     render(() => <WorkspaceSetupScreen steps={STEPS} onCreate={onCreate} />);
 
-    fireEvent.input(screen.getByLabelText('Workspace name'), {
-      target: { value: '  Acme engineering  ' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'Create workspace' }));
-
-    expect(onCreate).toHaveBeenCalledWith('Acme engineering');
+    expect(screen.queryByLabelText('Workspace name')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Choose folder' }));
+    expect(onCreate).toHaveBeenCalledOnce();
   });
 
-  it('says the name is not permanent, so the choice is low-stakes', () => {
+  it('says the folder already has a name', () => {
     render(() => <WorkspaceSetupScreen steps={STEPS} onCreate={vi.fn()} />);
-    expect(screen.getByText('You can rename it later.')).toBeInTheDocument();
+    expect(screen.getByText(/folder already has a name/i)).toBeInTheDocument();
   });
 
-  it('sets the name in sans, since it is prose rather than an identifier', () => {
+  it('holds the action while the picker is open', () => {
+    render(() => <WorkspaceSetupScreen steps={STEPS} onCreate={vi.fn()} busy />);
+    expect(screen.getByRole('button', { name: 'Choose folder' })).toBeDisabled();
+  });
+
+  it('explains This PC is desktop-only when the picker cannot run', () => {
     const { container } = render(() => (
-      <WorkspaceSetupScreen steps={STEPS} onCreate={vi.fn()} />
+      <WorkspaceSetupScreen steps={STEPS} onCreate={vi.fn()} thisPcAvailable={false} />
     ));
-    expect(container.querySelector('input')).toHaveClass('cx-field__input--prose');
+    expect(screen.queryByRole('button', { name: 'Choose folder' })).toBeNull();
+    expect(container.textContent).toMatch(/desktop app/i);
+    expect(container.querySelector('input')).toBeNull();
   });
 });
 

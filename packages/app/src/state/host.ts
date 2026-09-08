@@ -18,6 +18,7 @@
  * `device_code`, which is exchangeable for a token, never leaves the host that holds it.
  */
 
+import { LEGAL_PAGE_URLS } from '@cortex-ide/cortex-api';
 import type {
   CortexAccountState,
   CortexDeviceStartResponse,
@@ -46,8 +47,12 @@ export interface CortexHost {
    */
   openVerificationPage(): Promise<boolean>;
   signOut(): Promise<CortexAccountState>;
-  /** Opens Google or GitHub in the system browser. Main builds the URL. */
-  startBrowserLogin(provider: 'google' | 'github'): Promise<boolean>;
+  /** Opens Google, GitHub, Apple or SSO in the system browser. Main builds the URL. */
+  startBrowserLogin(provider: 'google' | 'github' | 'apple' | 'sso'): Promise<boolean>;
+  /** Starts GitHub App install. No token from the renderer. */
+  startGitHubInstall(): Promise<boolean>;
+  /** Opens Privacy or Terms. Main owns the URL. */
+  openLegalPage(page: 'privacy' | 'terms'): Promise<boolean>;
   /** In-app email form. Password crosses to main once and is never returned. */
   signInWithEmail(email: string, password: string): Promise<CortexAccountState>;
   /** The account's API keys. Empty when signed out — the screen gates the section. */
@@ -75,7 +80,11 @@ interface CortexBridge {
   openVerification(): Promise<IPCResponse<{ opened: boolean }>>;
   signOut(): Promise<IPCResponse<CortexAccountState>>;
   startBrowserLogin(request: {
-    provider: 'google' | 'github';
+    provider: 'google' | 'github' | 'apple' | 'sso';
+  }): Promise<IPCResponse<{ opened: boolean }>>;
+  startGitHubInstall(): Promise<IPCResponse<{ opened: boolean }>>;
+  openLegalPage(request: {
+    page: 'privacy' | 'terms';
   }): Promise<IPCResponse<{ opened: boolean }>>;
   signInWithEmail(request: {
     email: string;
@@ -123,6 +132,8 @@ function electronHost(api: CortexBridge): CortexHost {
     openVerificationPage: async () => unwrap(await api.openVerification()).opened,
     signOut: async () => unwrap(await api.signOut()),
     startBrowserLogin: async (provider) => unwrap(await api.startBrowserLogin({ provider })).opened,
+    startGitHubInstall: async () => unwrap(await api.startGitHubInstall()).opened,
+    openLegalPage: async (page) => unwrap(await api.openLegalPage({ page })).opened,
     signInWithEmail: async (email, password) =>
       unwrap(await api.signInWithEmail({ email, password })),
     listApiKeys: async () => unwrap(await api.listApiKeys()).keys,
@@ -156,6 +167,11 @@ export function detachedHost(): CortexHost {
     openVerificationPage: async () => false,
     signOut: async () => ({ user: null, reachable: false, credentialsEncrypted: false }),
     startBrowserLogin: () => Promise.reject(unavailable()),
+    startGitHubInstall: () => Promise.reject(unavailable()),
+    openLegalPage: async (page) => {
+      window.open(LEGAL_PAGE_URLS[page], '_blank', 'noopener,noreferrer');
+      return true;
+    },
     signInWithEmail: () => Promise.reject(unavailable()),
     listApiKeys: async () => [],
     createApiKey: () => Promise.reject(unavailable()),

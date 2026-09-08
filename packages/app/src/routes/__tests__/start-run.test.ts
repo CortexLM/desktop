@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { RuntimeKind } from '@cortex-ide/cortex-api';
+import { CortexApiError, type RuntimeKind } from '@cortex-ide/cortex-api';
 
 import { composerDraft, resetComposerDraft, setComposerDraft } from '../../state/composer-draft.ts';
 import {
@@ -63,5 +63,12 @@ describe('userFacingStartError', () => {
     expect(message).toBe('This workspace could not be opened. Try restarting Cortex.');
     expect(message.toLowerCase()).not.toContain('sqlite');
     expect(message).not.toContain('node_modules');
+  });
+
+  it('classifies a missing control-plane route, not a vendor body', () => {
+    const error = new CortexApiError('not_found', 'WorkOS refused the host', { status: 404 });
+    const message = userFacingStartError(error);
+    expect(message).toMatch(/not available on this workspace/);
+    expect(message.toLowerCase()).not.toContain('workos');
   });
 });

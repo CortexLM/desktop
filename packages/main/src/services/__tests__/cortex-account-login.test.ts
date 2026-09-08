@@ -1,9 +1,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { completeAuthCallback } from '../cortex-account-login';
-import { beginBrowserLogin, resetBrowserLoginForTests } from '../../protocol/login-transaction';
+import { CortexApiError } from '@cortex-ide/cortex-api';
 import type { CortexApiClient } from '@cortex-ide/cortex-api';
 import type { CortexAccountState } from '@cortex-ide/shared';
+
+import { beginBrowserLogin, resetBrowserLoginForTests } from '../../protocol/login-transaction';
+import {
+  completeAuthCallback,
+  describeEmailError,
+  startGitHubInstall,
+} from '../cortex-account-login';
 
 afterEach(() => {
   resetBrowserLoginForTests();
@@ -71,5 +77,30 @@ describe('completeAuthCallback', () => {
     );
     expect(open).toHaveBeenCalledTimes(1);
     expect(acceptAccessToken).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('describeEmailError', () => {
+  it('names Apple and SSO when email is missing', () => {
+    const copy = describeEmailError(new CortexApiError('not_found', 'missing', { status: 404 }));
+    expect(copy).toMatch(/Apple/);
+    expect(copy).toMatch(/SSO/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+});
+
+describe('startGitHubInstall', () => {
+  it('fails closed when the install route is missing', async () => {
+    const exchange = vi.fn(async () => new Response('{}', { status: 404 }));
+    await expect(
+      startGitHubInstall({
+        getApiClient: () =>
+          ({
+            baseUrl: 'https://api.cortex.foundation',
+            exchange,
+          }) as unknown as CortexApiClient,
+        acceptAccessToken: async () => ANONYMOUS,
+      }),
+    ).rejects.toThrow(/This PC/);
   });
 });

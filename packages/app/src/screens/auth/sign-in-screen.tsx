@@ -1,16 +1,20 @@
 import { createSignal, type JSX, Show } from 'solid-js';
 
+import { LEGAL_PAGE_URLS, type LegalPage } from '@cortex-ide/cortex-api';
 import { Icon } from '@cortex-ide/ui';
 
 import { BrandMark } from '../../shell/brand-mark.tsx';
-import { GoogleMark } from '../../shell/provider-marks.tsx';
+import { AppleMark, GoogleMark } from '../../shell/provider-marks.tsx';
 
 import './auth.css';
 
 export interface SignInScreenProps {
   onContinueWithGitHub: () => void;
   onContinueWithGoogle: () => void;
+  onContinueWithApple: () => void;
+  onContinueWithSso: () => void;
   onContinueWithEmail: (email: string, password: string) => void;
+  onOpenLegal: (page: LegalPage) => void;
   /**
    * Enters the app with no account: local runtime and the user's own provider keys.
    *
@@ -28,32 +32,47 @@ function looksLikeEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
+function ProviderButton(props: {
+  busy?: boolean;
+  variant: 'primary' | 'outlined';
+  label: string;
+  onClick: () => void;
+  children: JSX.Element;
+}): JSX.Element {
+  return (
+    <button
+      type="button"
+      class={`cx-auth__provider cx-auth__provider--${props.variant}`}
+      disabled={props.busy}
+      onClick={() => props.onClick()}
+    >
+      {props.children}
+      {props.label}
+    </button>
+  );
+}
+
 function ProviderButtons(props: {
   busy?: boolean;
   onGitHub: () => void;
   onGoogle: () => void;
+  onApple: () => void;
+  onSso: () => void;
 }): JSX.Element {
   return (
     <div class="cx-auth__providers">
-      <button
-        type="button"
-        class="cx-auth__provider cx-auth__provider--primary"
-        disabled={props.busy}
-        onClick={() => props.onGitHub()}
-      >
+      <ProviderButton busy={props.busy} variant="primary" label="Continue with GitHub" onClick={props.onGitHub}>
         <Icon name="github" size={16} />
-        Continue with GitHub
-      </button>
-
-      <button
-        type="button"
-        class="cx-auth__provider cx-auth__provider--outlined"
-        disabled={props.busy}
-        onClick={() => props.onGoogle()}
-      >
+      </ProviderButton>
+      <ProviderButton busy={props.busy} variant="outlined" label="Continue with Google" onClick={props.onGoogle}>
         <GoogleMark size={16} />
-        Continue with Google
-      </button>
+      </ProviderButton>
+      <ProviderButton busy={props.busy} variant="outlined" label="Continue with Apple" onClick={props.onApple}>
+        <AppleMark size={16} />
+      </ProviderButton>
+      <ProviderButton busy={props.busy} variant="outlined" label="Continue with SSO" onClick={props.onSso}>
+        <Icon name="lock" size={16} />
+      </ProviderButton>
     </div>
   );
 }
@@ -113,9 +132,9 @@ function EmailForm(props: {
 /**
  * The anonymous route.
  *
- * Sits below the legal copy behind a rule, matching the design. That line governs the three
- * sign-in actions above it, so putting the anonymous path next to them would read as a
- * fourth sign-in method covered by the same terms.
+ * Sits below the legal copy behind a rule, matching the design. That line governs the
+ * sign-in actions above it, so putting the anonymous path next to them would read as
+ * another sign-in method covered by the same terms.
  *
  * The note states what it costs. "Continue without an account" on its own invites a user to
  * pick it and then wonder why the model picker is empty.
@@ -137,6 +156,27 @@ function AnonymousRoute(props: { busy?: boolean; onContinue: () => void }): JSX.
         account.
       </p>
     </div>
+  );
+}
+
+function LegalNotice(props: { onOpenLegal: (page: LegalPage) => void }): JSX.Element {
+  const open = (page: LegalPage) => (event: MouseEvent) => {
+    event.preventDefault();
+    props.onOpenLegal(page);
+  };
+
+  return (
+    <p class="cx-auth__legal">
+      By continuing, you agree to the Cortex{' '}
+      <a href={LEGAL_PAGE_URLS.terms} onClick={open('terms')}>
+        Terms of Service
+      </a>{' '}
+      and acknowledge the{' '}
+      <a href={LEGAL_PAGE_URLS.privacy} onClick={open('privacy')}>
+        Privacy Policy
+      </a>
+      .
+    </p>
   );
 }
 
@@ -164,6 +204,8 @@ export function SignInScreen(props: SignInScreenProps): JSX.Element {
           busy={props.busy}
           onGitHub={props.onContinueWithGitHub}
           onGoogle={props.onContinueWithGoogle}
+          onApple={props.onContinueWithApple}
+          onSso={props.onContinueWithSso}
         />
 
         <div class="cx-auth__divider">
@@ -174,10 +216,7 @@ export function SignInScreen(props: SignInScreenProps): JSX.Element {
 
         <EmailForm busy={props.busy} onSubmit={props.onContinueWithEmail} />
 
-        <p class="cx-auth__legal">
-        By continuing, you agree to the Cortex Terms of Service and acknowledge the
-          Privacy Policy.
-        </p>
+        <LegalNotice onOpenLegal={props.onOpenLegal} />
 
         <AnonymousRoute busy={props.busy} onContinue={props.onContinueWithoutAccount} />
       </div>

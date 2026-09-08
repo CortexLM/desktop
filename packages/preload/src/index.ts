@@ -250,10 +250,14 @@ export interface CortexAPI {
     productRequest: (
       request: CortexProductRequest,
     ) => Promise<IPCResponse<CortexProductResponse>>;
-    /** Opens Google or GitHub in the system browser. Takes no URL. */
+    /** Opens Google, GitHub, Apple or SSO in the system browser. Takes no URL. */
     startBrowserLogin: (request: {
-      provider: 'google' | 'github';
+      provider: 'google' | 'github' | 'apple' | 'sso';
     }) => Promise<IPCResponse<{ opened: boolean }>>;
+    /** Starts GitHub App install. No token from the renderer. */
+    startGitHubInstall: () => Promise<IPCResponse<{ opened: boolean }>>;
+    /** Opens Privacy or Terms. Main owns the URL. */
+    openLegalPage: (request: { page: 'privacy' | 'terms' }) => Promise<IPCResponse<{ opened: boolean }>>;
     /** In-app email form. Password is not returned. */
     signInWithEmail: (request: {
       email: string;
@@ -595,6 +599,8 @@ const cortexAPI: CortexAPI = {
     openVerification: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_OPEN_VERIFICATION),
     signOut: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_SIGN_OUT),
     startBrowserLogin: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_BROWSER_LOGIN, request),
+    startGitHubInstall: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_GITHUB_INSTALL),
+    openLegalPage: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_OPEN_LEGAL, request),
     signInWithEmail: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_EMAIL_LOGIN, request),
     listApiKeys: () => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_LIST_API_KEYS),
     createApiKey: (request) => ipcRenderer.invoke(IPC_CHANNELS.CORTEX_CREATE_API_KEY, request),

@@ -120,9 +120,14 @@ export interface CortexProductResponse {
   bodyText: string;
 }
 
-/** Google or GitHub in the system browser. No URL from the renderer. */
+/** Google, GitHub, Apple, or SSO in the system browser. No URL from the renderer. */
 export interface CortexBrowserLoginRequest {
-  provider: 'google' | 'github';
+  provider: 'google' | 'github' | 'apple' | 'sso';
+}
+
+/** Privacy or Terms. Main maps the id to a cortex.foundation URL. */
+export interface CortexOpenLegalRequest {
+  page: 'privacy' | 'terms';
 }
 
 export interface CortexBrowserLoginResponse {

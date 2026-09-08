@@ -104,6 +104,14 @@ L'architecture IPC de Cortex IDE suit un pattern **type-safe** avec validation Z
 - `db:query` - Exécuter une requête SELECT
 - `db:execute` - Exécuter INSERT/UPDATE/DELETE
 
+### Cortex account
+Live channel names are in `packages/shared/src/types/ipc/channels.ts`. Desktop
+sign-in and legal pages never send a URL from the renderer:
+
+- `cortex:browser-login` — Google / GitHub / Apple / SSO (`provider` only)
+- `cortex:github-install` — GitHub App install (no payload, no PAT)
+- `cortex:open-legal` — Privacy or Terms (`page` id only)
+
 ## Pattern de validation
 
 Tous les handlers utilisent le pattern `createHandler()` :

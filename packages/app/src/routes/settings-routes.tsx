@@ -8,7 +8,11 @@
 
 import { createMemo, createResource, createSignal, type JSX } from 'solid-js';
 
-import { PROVIDER_CATALOG } from '@cortex-ide/cortex-api';
+import {
+  describeGitHubInstallError,
+  describeWorkspaceError,
+  PROVIDER_CATALOG,
+} from '@cortex-ide/cortex-api';
 import type { ProviderSettingsView, WorkspaceRunSettings } from '@cortex-ide/shared';
 
 import { useAccount } from '../state/session-context.tsx';
@@ -126,8 +130,7 @@ function createSettingsWriters(
   sources: ReturnType<typeof createSettingsSources>,
   setError: (message: string | undefined) => void,
 ) {
-  const report = (error: unknown) =>
-    setError(error instanceof Error ? error.message : String(error));
+  const report = (error: unknown) => setError(describeWorkspaceError(error));
 
   return {
     patch: async (
@@ -204,24 +207,32 @@ export function SettingsRoute(): JSX.Element {
 }
 
 /**
- * GitHub, as it actually stands.
- *
- * The description says what is true rather than dangling a Connect button that does
- * nothing: connecting an account needs a registered OAuth app and a callback the
- * desktop can receive, and `api.cortex.foundation` exposes neither — the device flow
- * it does expose signs you into Cortex, not into GitHub. Opening a local repository
- * is the path that works, and Home offers it.
+ * GitHub App install. There is no PAT field — Connect starts the same
+ * browser install as `/sign-in/github`. A missing route fails closed.
  */
 const GITHUB_INTEGRATION = [
   {
     id: 'github',
     name: 'GitHub',
-    description: 'Not available yet — open a local repository from Home instead',
+    description: 'Install the Cortex GitHub app so Code can open pull requests',
     icon: 'github' as const,
     connected: false,
     requiresAccount: true,
   },
 ];
+
+async function startGitHubFromIntegrations(
+  host: { startGitHubInstall: () => Promise<boolean> },
+  setMessage: (message: string | undefined) => void,
+): Promise<void> {
+  setMessage(undefined);
+  try {
+    const opened = await host.startGitHubInstall();
+    if (!opened) setMessage('Could not start GitHub. Open a folder on This PC, or try again.');
+  } catch (error) {
+    setMessage(describeGitHubInstallError(error));
+  }
+}
 
 /** `2026-08-25T…` -> `25 Aug 2026`, or a dash when the service sent nothing. */
 function formatCreated(raw: unknown): string {
@@ -238,8 +249,7 @@ function createApiKeyActions(
   refetch: () => void,
   setMessage: (message: string | undefined) => void,
 ) {
-  const report = (error: unknown) =>
-    setMessage(error instanceof Error ? error.message : String(error));
+  const report = (error: unknown) => setMessage(describeWorkspaceError(error));
 
   return {
     create: async (): Promise<void> => {
@@ -298,11 +308,7 @@ export function IntegrationsRoute(): JSX.Element {
     <IntegrationsScreen
       capabilities={account.capabilities()}
       integrations={GITHUB_INTEGRATION}
-      onConnect={() =>
-        setMessage(
-          'Connecting a GitHub account is not available yet. Open a local repository from Home.',
-        )
-      }
+      onConnect={() => void startGitHubFromIntegrations(account.host, setMessage)}
       onDisconnect={() => undefined}
       apiKeys={apiKeys()}
       onCreateKey={() => void actions.create()}

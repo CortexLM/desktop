@@ -185,6 +185,7 @@ jobs:
   # releases.cortex.foundation → electron-updater GET /latest.yml.
   # New installers use software.cortex.foundation/latest/. Keep publishing the
   # legacy root as well so already-installed apps can upgrade.
+  # Staging must not write this origin.
   publish-feed:
     name: Publish production update feed
     needs: build

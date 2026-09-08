@@ -14,10 +14,10 @@ export const DESKTOP_BRIDGE_ORIGIN = 'https://cortex.foundation';
 export const DESKTOP_BRIDGE_PATH = '/desktop/open';
 
 export const AUTH_CALLBACK_NOT_STARTED =
-  'This sign-in link is not from a login you started in Cortex. Open the app and continue with Google or GitHub.';
+  'This sign-in link is not from a login you started in Cortex. Open the app and continue with Google, Apple, GitHub, or SSO.';
 
 /** Providers the desktop browser-login path can start. */
-export type BrowserLoginProvider = 'google' | 'github';
+export type BrowserLoginProvider = 'google' | 'github' | 'apple' | 'sso';
 
 export type AuthCallbackResult =
   | { kind: 'code'; code: string; state: string }

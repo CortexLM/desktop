@@ -18,6 +18,7 @@
 import { render, waitFor } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
 
+import { CortexApiError } from '@cortex-ide/cortex-api';
 import type { CortexDeviceStatus } from '@cortex-ide/shared';
 
 import { createDeviceFlow, type DeviceFlow } from '../device-flow.ts';
@@ -111,6 +112,20 @@ describe('starting a flow', () => {
     // The message is shown verbatim: "unreachable" and "declined" call for different actions,
     // and generic copy would hide which one happened.
     expect(flow.errorMessage()).toBe('service unreachable');
+  });
+
+  it('classifies a missing device route, not a vendor body', async () => {
+    const { flow } = mount({
+      startDeviceFlow: vi.fn(() =>
+        Promise.reject(new CortexApiError('not_found', 'WorkOS is not configured', { status: 404 })),
+      ),
+    } as Partial<CortexHost>);
+
+    await flow.start();
+
+    expect(flow.status()).toBe('error');
+    expect(flow.errorMessage()).toMatch(/not available on this workspace/);
+    expect(flow.errorMessage()?.toLowerCase()).not.toContain('workos');
   });
 
   it('clears a previous error when retried', async () => {

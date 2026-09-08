@@ -8,8 +8,9 @@ test('repository onboarding keeps installation separate from the native folder p
   await page.evaluate(() => { window.location.hash = '#/sign-in/github'; });
   const install = page.getByRole('button', { name: 'Install the Cortex GitHub app' });
   const open = page.getByRole('button', { name: 'Open a local repository' });
-  await expect(install).toBeDisabled();
-  await expect(page.getByRole('alert')).toContainText('not available');
+  await expect(install).toBeEnabled();
+  await expect(open).toBeEnabled();
+  await expect(page.getByRole('alert')).toHaveCount(0);
 
   await electronApp.evaluate(({ dialog }) => {
     dialog.showOpenDialog = async () => ({ canceled: true, filePaths: [] });

@@ -9,6 +9,7 @@
 import { createMemo, createResource, createSignal, type JSX } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 
+import { describeWorkspaceError } from '@cortex-ide/cortex-api';
 import type { Automation as StoredAutomation, Trigger } from '@cortex-ide/shared';
 import type { IconName } from '@cortex-ide/ui';
 
@@ -237,7 +238,7 @@ export function NewAutomationRoute(): JSX.Element {
       });
       navigate('/code/automations');
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : String(caught));
+      setError(describeWorkspaceError(caught));
     } finally {
       setBusy(false);
     }

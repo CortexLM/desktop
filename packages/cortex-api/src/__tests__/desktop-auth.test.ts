@@ -2,11 +2,19 @@ import { describe, expect, it } from 'vitest';
 
 import { CortexApiClient } from '../client.ts';
 import { sessionTokenFromSetCookie } from '../cookies.ts';
+import { CortexApiError } from '../errors.ts';
 import {
   browserLoginUrl,
+  describeGitHubInstallError,
+  describeSignInError,
+  describeSshConnectError,
+  describeWorkspaceError,
   DESKTOP_AUTH_CALLBACK,
   DESKTOP_BRIDGE_URL,
   exchangeAuthCode,
+  githubAppInstallUrl,
+  LEGAL_PAGE_URLS,
+  probeGitHubInstall,
   signInWithEmail,
 } from '../desktop-auth.ts';
 
@@ -38,9 +46,30 @@ describe('browserLoginUrl', () => {
     expect(url).toContain('code_challenge_method=S256');
   });
 
-  it('names GitHub as the GitHubOAuth provider query', () => {
-    const url = browserLoginUrl('https://api.cortex.foundation/', 'github');
-    expect(url).toContain('provider=GitHubOAuth');
+  it('names GitHub, Apple and SSO as AuthKit provider queries', () => {
+    expect(browserLoginUrl('https://api.cortex.foundation/', 'github')).toContain(
+      'provider=GitHubOAuth',
+    );
+    expect(browserLoginUrl('https://api.cortex.foundation/', 'apple')).toContain(
+      'provider=AppleOAuth',
+    );
+    expect(browserLoginUrl('https://api.cortex.foundation/', 'sso')).toContain('provider=SSO');
+  });
+
+  it('builds a GitHub App install URL without a token field', () => {
+    const url = githubAppInstallUrl('https://api.cortex.foundation/', 'nonce-1', 'challenge-1');
+    expect(url.startsWith('https://api.cortex.foundation/v1/integrations/github/install?')).toBe(
+      true,
+    );
+    expect(url).toContain('client=desktop');
+    expect(url).toContain(`redirect_uri=${encodeURIComponent(DESKTOP_BRIDGE_URL)}`);
+    expect(url).toContain('state=nonce-1');
+    expect(url).not.toMatch(/token|pat|ghp_/i);
+  });
+
+  it('points Privacy and Terms at the Cortex origin', () => {
+    expect(LEGAL_PAGE_URLS.privacy).toBe('https://cortex.foundation/privacy');
+    expect(LEGAL_PAGE_URLS.terms).toBe('https://cortex.foundation/terms');
   });
 
   it('strips trailing slashes from the API origin without a regex', () => {
@@ -118,5 +147,61 @@ describe('signInWithEmail', () => {
       'test-password',
     );
     expect(token).toBe('email-session');
+  });
+});
+
+describe('probeGitHubInstall', () => {
+  it('fails closed when the install route is missing', async () => {
+    const fetch = async () => jsonResponse({ title: 'Not Found', status: 404 }, { status: 404 });
+    await expect(probeGitHubInstall(new CortexApiClient({ fetch }))).rejects.toThrow(
+      /Open a folder on This PC/,
+    );
+  });
+
+  it('accepts a live route so the browser can open', async () => {
+    const fetch = async () => jsonResponse({ ok: true }, { status: 200 });
+    await expect(probeGitHubInstall(new CortexApiClient({ fetch }))).resolves.toBeUndefined();
+  });
+});
+
+describe('sign-in copy', () => {
+  it('maps a missing route to product language, not a vendor body', () => {
+    const error = new CortexApiError('not_found', 'WorkOS is not configured', { status: 404 });
+    const copy = describeSignInError(error);
+    expect(copy).toMatch(/not available on this workspace/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('tells a GitHub install miss to use This PC', () => {
+    const error = new CortexApiError('not_found', 'missing', { status: 404 });
+    expect(describeGitHubInstallError(error)).toMatch(/This PC/);
+    expect(describeGitHubInstallError(error).toLowerCase()).not.toContain('pat');
+  });
+
+  it('maps a missing SSH route to This PC, not a vendor body', () => {
+    const error = new CortexApiError('not_found', 'WorkOS refused the host', { status: 404 });
+    const copy = describeSshConnectError(error);
+    expect(copy).toMatch(/This PC/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('maps a workspace miss to product language', () => {
+    const error = new CortexApiError('not_found', 'WorkOS is not configured', { status: 404 });
+    const copy = describeWorkspaceError(error);
+    expect(copy).toMatch(/not available on this workspace/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('maps an expired session to sign-in, not a vendor body', () => {
+    const error = new CortexApiError('AUTH_REQUIRED', 'WorkOS session expired', { status: 401 });
+    const copy = describeWorkspaceError(error);
+    expect(copy).toMatch(/Sign in to Cortex/);
+    expect(copy.toLowerCase()).not.toContain('workos');
+  });
+
+  it('keeps a generic write failure free of status codes', () => {
+    const copy = describeWorkspaceError(new Error('Request failed with status code 503'));
+    expect(copy).toBe('That did not complete. Try again.');
+    expect(copy).not.toMatch(/503|status/i);
   });
 });

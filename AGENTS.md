@@ -128,10 +128,14 @@ exposed as `window.cortex.cortex`). The session token stays in main — encrypte
 device flow's `device_code`. See `packages/shared/src/types/ipc/cortex.ts` for the contract and
 `packages/cortex-api/CONTRACT.md` for what was established by probing the live service (notably: the
 service refuses `Authorization: Bearer`; the sealed session cookie is named `wos-session`).
-Desktop Google/GitHub sign-in opens the **system browser** (never an identity webview) and
+Desktop Google / GitHub / Apple / SSO sign-in opens the **system browser** (never an identity webview) and
 returns through `https://cortex.foundation/desktop/open` → `cortex://auth/callback`. Main
 stores the session; the renderer never sees the URL or the cookie. Email/password stays on
-the in-app form (`POST /v1/auth/login`, fail closed if the route is missing). The device
+the in-app form (`POST /v1/auth/login`, fail closed if the route is missing). Privacy and Terms
+are opened by main (`cortex:open-legal` with a page id only — the renderer never sends a URL).
+Code Connect GitHub starts `GET /v1/integrations/github/install` in the system browser
+(`cortex:github-install`); a missing route fails closed. There is no PAT field. Skip still
+means This PC / a local folder. The device
 flow remains at `/sign-in/device`. The `cortex` scheme is declared in `electron-builder.yml`.
 English is the UI source copy; `packages/app/src/i18n/catalogs/fr.json` is for translators
 and is not loaded at runtime.
@@ -184,7 +188,9 @@ API keys are entered; they never appear in logs.
   screens stay shown; creating a Bot needs an account.
 - **This PC Code sessions** bind to a folder the user picks in the native OS directory dialog. The
   coding agent runs tools against that tree in the desktop harness. There is no working-directory
-  fallback and no silent Cloud run. Cloud and SSH starts go through `POST /v1/code/sessions` and
+  fallback and no silent Cloud run. `/sign-in/workspace` is that picker — there is no workspace-name
+  field, because the folder already has a name. Web says This PC needs the desktop app instead of
+  offering a picker that cannot run. Cloud and SSH starts go through `POST /v1/code/sessions` and
   fail closed if that route is missing. This PC is never a Bot host.
 - **No in-app Benchmarks screen.** Provider benches live in `packages/test-harness` (`cortex-test`).
 - **No Secrets page in Cortex Code.** There is no `/code/secrets` route and no Secrets screen,
@@ -211,7 +217,7 @@ API keys are entered; they never appear in logs.
   with Take control / Release. This PC is Cortex Code only. The rail is bound to
   the open mascot — switching clears screenshot and stream before the next
   computer loads, and a failed refresh leaves the rail empty rather than the
-  previous teammate. Google/GitHub sign-in opens the system browser and returns
+  previous teammate. Google / GitHub / Apple / SSO sign-in opens the system browser and returns
   on `cortex://auth/callback` only with an unexpired pending login `state`;
   codes are exchanged with PKCE in main. Session credentials in deep links
   are rejected even with matching state; only a code exchange may establish
@@ -222,10 +228,11 @@ API keys are entered; they never appear in logs.
   it is never a source of truth and never holds invented rows
   ([`.rules/04-structure.md`](./.rules/04-structure.md)).
 - **GitHub repository onboarding is not account sign-in.** `/sign-in/github`
-  keeps installation disabled until a service contract is established. Desktop
-  offers a separate **Open a local repository** action and returns to `/code`;
-  web never offers a native folder picker. Picker failures use Cortex copy
-  without raw filesystem errors. This PC preserves the selected directory path
+  starts the GitHub App in the system browser (`GET /v1/integrations/github/install`)
+  and fails closed if that route is missing. Desktop also offers a separate
+  **Open a local repository** action and returns to `/code`; web never offers a
+  native folder picker. Install never opens a folder. Picker failures use Cortex
+  copy without raw filesystem errors. This PC preserves the selected directory path
   exactly, including trailing spaces in a directory name.
 - **Plugins list the services the user connects to**, from the live catalogue. The middleware we
   install through is internal plumbing: it is a field on the catalogue envelope in

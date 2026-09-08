@@ -15,7 +15,7 @@ export interface PendingBrowserLogin {
   state: string;
   verifier: string;
   challenge: string;
-  provider: 'google' | 'github';
+  provider: 'google' | 'github' | 'apple' | 'sso' | 'github-app';
   expiresAt: number;
 }
 

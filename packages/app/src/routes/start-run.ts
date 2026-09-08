@@ -6,7 +6,11 @@
  * session.
  */
 
-import type { RuntimeKind } from '@cortex-ide/cortex-api';
+import {
+  describeWorkspaceError,
+  isCortexApiError,
+  type RuntimeKind,
+} from '@cortex-ide/cortex-api';
 
 import type { useSessions } from '../state/sessions-context.tsx';
 import { composerDraft, resetComposerDraft, setComposerDraft } from '../state/composer-draft.ts';
@@ -37,6 +41,8 @@ export function userFacingStartError(error: unknown): string {
   if (/node_modules|self-register|NODE_MODULE_VERSION|\.node\b|better-sqlite/i.test(raw)) {
     return 'This workspace could not be opened. Try restarting Cortex.';
   }
+  if (raw === THIS_PC_NEEDS_FOLDER) return raw;
+  if (isCortexApiError(error)) return describeWorkspaceError(error);
   return raw;
 }
 
