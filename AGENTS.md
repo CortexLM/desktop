@@ -56,6 +56,9 @@ cover only the non-obvious things.
 - **Bun** is the package manager/runner (`bun.lock`). Install with `curl -fsSL https://bun.sh/install | bash`
   if `/usr/local/bin/bun` or `~/.bun/bin/bun` is missing.
 - Node 22 + a C/C++ toolchain (`gcc/g++/make/python3`) are present for compiling native addons.
+- Test-data builders require `@faker-js/faker` 10.5.0 or newer (locked to 10.6.0)
+  for the `helpers.fake` arbitrary-code-execution fix. Use Node 22.13+ for this
+  test dependency; do not downgrade to the vulnerable 9.x series.
 
 ### Native modules (the main gotcha)
 Three native/binary artifacts are built during environment setup and captured in the snapshot;
