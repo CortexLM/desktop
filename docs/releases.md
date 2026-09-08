@@ -1,6 +1,6 @@
 # Desktop auto-update feed
 
-Packaged Cortex checks **`https://releases.cortex.foundation/`** (generic
+New packaged Cortex builds check **`https://software.cortex.foundation/latest/`** (generic
 electron-builder / electron-updater provider). That URL is the only production
 channel. It is set in `electron-builder.yml` (`publish.url`) and
 `packages/main/src/update-policy.ts` (`DEFAULT_UPDATE_FEED_URL`). Do not add a
@@ -17,16 +17,17 @@ GitHub Releases provider for production.
    **`production`**.
 4. It flattens those files and **rclone copy** (not sync — older versioned
    installers stay) to R2 bucket **`cortex-releases`**, objects at the bucket
-   root, via `https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`.
+   root for legacy clients and **`cortex-software/latest/`** for new clients,
+   via `https://${CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`.
    rclone **v1.70.3** linux-amd64 is downloaded from `downloads.rclone.org`
    and installed only after `sha256sum -c --strict` matches the SHA-256
-   pinned in `.github/workflows/build.yml` (`RCLONE_SHA256`). A mismatch
+   pinned in `.github/actions/install-rclone/action.yml` (`RCLONE_SHA256`). A mismatch
    fails the job before unzip; the binary is never run.
 5. Custom domain **`releases.cortex.foundation`** is bound to that bucket, so
    electron-updater fetches `/latest.yml`, `/latest-mac.yml`,
    `/latest-linux.yml` (and the installer each file names) at the host root.
-6. A packaged app calls `setFeedURL({ provider: 'generic', url })` with
-   `https://releases.cortex.foundation/` and downloads from that origin.
+6. A packaged app reads the feed embedded in `app-update.yml`; startup does
+   not replace it. Only an explicit local test override calls `setFeedURL`.
 
 This repo does not create the bucket or the DNS record. Bind
 `releases.cortex.foundation` to R2 bucket `cortex-releases` (public bucket
@@ -57,6 +58,9 @@ read them. Restrict that environment to tags if the GitHub UI allows it.
 | `R2_ACCESS_KEY_ID` | R2 API token access key |
 | `R2_SECRET_ACCESS_KEY` | R2 API token secret |
 | `CLOUDFLARE_ACCOUNT_ID` | Account id in the R2 S3 endpoint |
+| `MACOS_CERTIFICATE`, `MACOS_CERTIFICATE_PASSWORD` | Developer ID signing identity and password |
+| `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` | Built-in macOS notarization |
+| `WINDOWS_CERTIFICATE`, `WINDOWS_CERTIFICATE_PASSWORD` | Windows Authenticode identity and password |
 
 No AWS access keys. No OIDC role for this job.
 
@@ -66,7 +70,15 @@ No AWS access keys. No OIDC role for this job.
 | --- | --- |
 | `PRODUCTION_DEPLOY_ENABLED` | Must be the string `true` or `publish-feed` is skipped |
 | `PRODUCTION_RELEASES_BUCKET` | Optional. Defaults to `cortex-releases` |
-| `PRODUCTION_SOFTWARE_BUCKET` | Optional. When set, also copy the feed to `<bucket>/latest/` (`software.cortex.foundation/latest/`) |
+| `PRODUCTION_SOFTWARE_BUCKET` | Optional bucket override, defaults to `cortex-software`; production always writes `latest/` |
+
+The build job uses this environment too. macOS/Windows credentials are checked
+before dependency installation, and packaging passes `forceCodeSigning=true`.
+macOS notarization uses electron-builder 25.1.8's built-in integration and
+default Electron entitlements. Windows update signature verification stays
+enabled. Missing credentials fail the build instead of releasing unsigned
+installers. Linux's SHA-512 feed checks are integrity checks, not an independent
+publisher signature; a verified Linux signing policy is still a release gate.
 
 ## Staging
 

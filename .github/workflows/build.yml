@@ -17,6 +17,7 @@ jobs:
   build:
     name: Build ${{ matrix.platform }}
     runs-on: ${{ matrix.runner }}
+    environment: production
     timeout-minutes: 180
     strategy:
       fail-fast: false
@@ -36,6 +37,33 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Require production signing credentials
+        if: matrix.platform != 'linux'
+        shell: bash
+        env:
+          PLATFORM: ${{ matrix.platform }}
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          set -euo pipefail
+          if [[ "$PLATFORM" == mac ]]; then
+            : "${MACOS_CERTIFICATE:?missing macOS signing certificate}"
+            : "${MACOS_CERTIFICATE_PASSWORD:?missing macOS signing password}"
+            : "${APPLE_ID:?missing notarization account}"
+            : "${APPLE_APP_SPECIFIC_PASSWORD:?missing notarization password}"
+            : "${APPLE_TEAM_ID:?missing notarization team}"
+          else
+            : "${WINDOWS_CERTIFICATE:?missing Windows signing certificate}"
+            : "${WINDOWS_CERTIFICATE_PASSWORD:?missing Windows signing password}"
+          fi
 
       - name: Linux native toolchain
         if: matrix.platform == 'linux'
@@ -60,24 +88,25 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: bun run dist:mac
+        run: bunx electron-builder --mac --publish never -c.forceCodeSigning=true
 
       - name: Build Electron app (Windows)
         if: matrix.platform == 'win'
         env:
           CSC_LINK: ${{ secrets.WINDOWS_CERTIFICATE }}
           CSC_KEY_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
-        run: bun run dist:win
+        run: bunx electron-builder --win --x64 --publish never -c.forceCodeSigning=true
 
       - name: Build Electron app (Linux)
         if: matrix.platform == 'linux'
-        run: bun run dist:linux
+        run: bunx electron-builder --linux --publish never
 
       - name: Upload artifacts (macOS)
         if: matrix.platform == 'mac'
         uses: actions/upload-artifact@v4
         with:
           name: cortex-ide-mac
+          if-no-files-found: error
           path: |
             dist/*.dmg
             dist/*.zip
@@ -90,6 +119,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cortex-ide-windows
+          if-no-files-found: error
           path: |
             dist/*.exe
             dist/*.blockmap
@@ -101,6 +131,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cortex-ide-linux
+          if-no-files-found: error
           path: |
             dist/*.AppImage
             dist/*.deb
@@ -152,8 +183,8 @@ jobs:
   # Tag → flatten yml/blockmap/installers → rclone copy to R2 bucket
   # `cortex-releases` (objects at the bucket root) → custom domain
   # releases.cortex.foundation → electron-updater GET /latest.yml.
-  # Optional mirror to software.cortex.foundation/latest/ when
-  # PRODUCTION_SOFTWARE_BUCKET is set. Staging must not write this origin.
+  # New installers use software.cortex.foundation/latest/. Keep publishing the
+  # legacy root as well so already-installed apps can upgrade.
   publish-feed:
     name: Publish production update feed
     needs: build
@@ -189,8 +220,7 @@ jobs:
           artifacts-dir: artifacts
           destination: r2:${{ vars.PRODUCTION_RELEASES_BUCKET || 'cortex-releases' }}
 
-      - name: Mirror feed to software.cortex.foundation/latest/
-        if: ${{ vars.PRODUCTION_SOFTWARE_BUCKET != '' }}
+      - name: Publish feed to software.cortex.foundation/latest/
         uses: ./.github/actions/publish-r2-feed
         env:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -198,4 +228,4 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
           artifacts-dir: artifacts
-          destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET }}/latest
+          destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET || 'cortex-software' }}/latest

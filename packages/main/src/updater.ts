@@ -94,7 +94,7 @@ export class UpdateManager {
   private readonly autoUpdater: AutoUpdaterPort;
   private readonly log: UpdateLogger;
   private readonly isPackaged: () => boolean;
-  private readonly feedUrl: string;
+  private readonly feedUrl: string | null | undefined;
   private readonly env: Record<string, string | undefined>;
   private readonly scheduler: UpdateScheduler;
   private readonly subscriptions: Array<() => void> = [];
@@ -133,7 +133,9 @@ export class UpdateManager {
   private setupAutoUpdater(): void {
     this.autoUpdater.autoDownload = this.config.autoDownload;
     this.autoUpdater.autoInstallOnAppQuit = this.config.autoInstallOnAppQuit;
-    this.autoUpdater.logger = this.log;
+    // The library logs raw download URLs and error stacks. Only our summaries
+    // below may reach the log or renderer.
+    this.autoUpdater.logger = null;
     this.listen('checking-for-update', () => this.onChecking());
     this.listen('update-available', (info) => this.onAvailable(info));
     this.listen('update-not-available', (info) => this.onNotAvailable(info));
@@ -150,11 +152,13 @@ export class UpdateManager {
   }
 
   private applyFeedUrl(): void {
-    this.autoUpdater.setFeedURL?.({ provider: 'generic', url: this.feedUrl });
+    if (this.feedUrl) {
+      this.autoUpdater.setFeedURL?.({ provider: 'generic', url: this.feedUrl });
+    }
     if (this.env.CORTEX_FORCE_UPDATE_CHECK === '1') {
       this.autoUpdater.forceDevUpdateConfig = true;
     }
-    this.log.info('Update feed:', this.feedUrl);
+    this.log.info('Update feed:', this.feedUrl ?? 'packaged configuration');
   }
 
   private onChecking(): void {
@@ -175,8 +179,8 @@ export class UpdateManager {
   }
 
   private onError(error: unknown): void {
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    this.log.error('Error in auto-updater:', error);
+    const message = 'Cortex could not check or download an update. Try again in a few minutes.';
+    this.log.error('Error in auto-updater:', error instanceof Error ? error.name : typeof error);
     this.sendToRenderer('update:error', { message });
   }
 
@@ -214,6 +218,10 @@ export class UpdateManager {
   }
 
   async checkForUpdates(): Promise<void> {
+    if (this.feedUrl === null) {
+      this.onError(new Error('Invalid update feed configuration'));
+      return;
+    }
     if (!shouldCheckForUpdates(this.env, this.isPackaged())) {
       this.log.info('Skipping update check (unpackaged or development)');
       return;
@@ -222,16 +230,17 @@ export class UpdateManager {
     try {
       await this.autoUpdater.checkForUpdates();
     } catch (error) {
-      this.log.error('Failed to check for updates:', error);
+      this.onError(error);
     }
   }
 
   async downloadUpdate(): Promise<void> {
+    if (this.feedUrl === null) throw new Error('Update configuration is unavailable.');
     try {
       await this.autoUpdater.downloadUpdate();
     } catch (error) {
-      this.log.error('Failed to download update:', error);
-      throw error;
+      this.onError(error);
+      throw new Error('Cortex could not download the update. Try again in a few minutes.');
     }
   }
 
