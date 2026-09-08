@@ -56,6 +56,9 @@ cover only the non-obvious things.
 - **Bun** is the package manager/runner (`bun.lock`). Install with `curl -fsSL https://bun.sh/install | bash`
   if `/usr/local/bin/bun` or `~/.bun/bin/bun` is missing.
 - Node 22 + a C/C++ toolchain (`gcc/g++/make/python3`) are present for compiling native addons.
+- Test-data builders require `@faker-js/faker` 10.5.0 or newer (locked to 10.6.0)
+  for the `helpers.fake` arbitrary-code-execution fix. Use Node 22.13+ for this
+  test dependency; do not downgrade to the vulnerable 9.x series.
 
 ### Native modules (the main gotcha)
 Three native/binary artifacts are built during environment setup and captured in the snapshot;
@@ -88,15 +91,17 @@ packaging change by running the binary, not just by building it:
 `npx electron-builder --dir --linux && DISPLAY=:1 ./dist/linux-unpacked/cortex-ide --no-sandbox`.
 
 ### Desktop auto-update feed
-Packaged Electron checks `https://releases.cortex.foundation/` (generic provider in `electron-builder.yml` `publish.url`, same value as `DEFAULT_UPDATE_FEED_URL` in `packages/main/src/update-policy.ts`). There is no GitHub update provider for production.
+New packaged Electron builds check `https://software.cortex.foundation/latest/` (generic provider in `electron-builder.yml` `publish.url`, same value as `DEFAULT_UPDATE_FEED_URL` in `packages/main/src/update-policy.ts`). Main preserves the installer's `app-update.yml`, so staging stays on staging. Only an explicit `CORTEX_UPDATE_FEED_URL` test override calls `setFeedURL`; it requires HTTPS or loopback HTTP and rejects credentials, queries, and fragments. There is no GitHub update provider for production. Updater errors sent to the renderer use fixed Cortex copy, never raw download URLs.
 
 On a `v*.*.*` tag, `.github/workflows/build.yml` job `publish-feed` copies electron-builder `latest*.yml`, blockmaps, and installers to R2 bucket **`cortex-releases`** with objects at the bucket root. rclone is installed from a pinned SHA-256 (`RCLONE_SHA256` in `.github/actions/install-rclone`); a checksum mismatch fails the job before extract. Bind the custom domain `releases.cortex.foundation` to that bucket so `https://releases.cortex.foundation/latest.yml` is the object `latest.yml`. A prefix such as `desktop/` on that host would make the app request `/latest.yml` and miss the object; do not use one there.
 
-Staging is a second generic feed, **`https://software.cortex.foundation/staging/`** (`STAGING_UPDATE_FEED_URL`), objects at prefix `staging/` on bucket `cortex-software`. Agents publish it with `workflow_dispatch` on `.github/workflows/publish-staging.yml` from a **full commit SHA that is on `origin/main`**. Production also always mirrors **`https://software.cortex.foundation/latest/`** (default bucket `cortex-software`). Already-shipped apps keep checking `releases.cortex.foundation` until a coordinated cutover. See [`docs/runbooks/desktop-staging-prod.md`](./docs/runbooks/desktop-staging-prod.md). `electron-builder.yml` sets `afterSign: scripts/notarize.js`; the script skips when `APPLE_ID` / `APPLE_APP_SPECIFIC_PASSWORD` / `APPLE_TEAM_ID` are unset.
+Staging is a second generic feed, **`https://software.cortex.foundation/staging/`** (`STAGING_UPDATE_FEED_URL`), objects at prefix `staging/` on bucket `cortex-software`. Agents publish it with `workflow_dispatch` on `.github/workflows/publish-staging.yml` from a **full commit SHA that is on `origin/main`**. Production always publishes both `cortex-software/latest/` (`PRODUCTION_SOFTWARE_BUCKET` overrides the bucket) and the legacy releases bucket root for already-installed clients. See [`docs/runbooks/desktop-staging-prod.md`](./docs/runbooks/desktop-staging-prod.md).
 
 Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`, and a version tag. `staging.yml` (push to the `staging` branch) must not write R2. Staging feed credentials stay on Environment `staging`.
 
 Secrets (environment-scoped, never repo-wide, never in git): `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`. Optional vars: `PRODUCTION_RELEASES_BUCKET` (default `cortex-releases`), `STAGING_SOFTWARE_BUCKET` (default `cortex-software`). See [`docs/releases.md`](./docs/releases.md).
+
+Release builds use Environment `production`. macOS/Windows fail before packaging when signing credentials are absent, and pass `forceCodeSigning=true`. macOS uses electron-builder's built-in notarization and maintained default entitlements; supply `MACOS_CERTIFICATE`, `MACOS_CERTIFICATE_PASSWORD`, `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, and `APPLE_TEAM_ID`. Windows requires `WINDOWS_CERTIFICATE` and `WINDOWS_CERTIFICATE_PASSWORD`; update signature verification remains enabled. This configuration is not proof that signing credentials, published manifests, or a verified Linux publisher-signature path exist.
 
 ### Linux Electron dist runs on CodeBuild
 Long `electron-builder` jobs (Linux matrix in `build.yml`, `staging.yml` artifacts, `publish-staging.yml` dist) use the GitHub Actions runner label `codebuild-cortex-gha-arm64-${{ github.run_id }}-${{ github.run_attempt }}`, or `x64` when repository variable `CODEBUILD_RUNNER_ARCH` is `x64`. They must not use `ubuntu-latest`. macOS and Windows dist stay on GitHub-hosted runners. If the project is missing, create it with `infra/codebuild-gha/` or `scripts/create-codebuild-gha-runner.sh` (CodeConnections + OIDC; no `aws sso login`).
@@ -143,6 +148,7 @@ API keys are entered; they never appear in logs.
 
 ### Tests / lint / build
 - `bun run test` (Vitest) is the unit runner. Do not use `bun:test` (see `test:discovery`).
+  If the agent host exports `NODE_ENV=production`, run `NODE_ENV=test bun run test`; otherwise Solid dependencies can resolve to mismatched production/development builds and fail reactivity tests. Continuous Monitoring now fails on build/typecheck errors; its legacy lint step remains advisory, and `npx eslint packages` is the authoritative lint probe.
 - `bun run test:e2e` (Playwright + Electron) needs `bunx playwright install chromium`; it already runs
   under `xvfb-run`. The fixture clicks through `/welcome` rather than seeding
   `cortex.welcome-seen` (`firstWindow` has already loaded, so an init script is too late).
@@ -213,13 +219,21 @@ API keys are entered; they never appear in logs.
   computer loads, and a failed refresh leaves the rail empty rather than the
   previous teammate. Google / GitHub / Apple / SSO sign-in opens the system browser and returns
   on `cortex://auth/callback` only with an unexpired pending login `state`;
-  codes are exchanged with PKCE in main. A bare `?session=` deep-link is
-  rejected. Email stays on the in-app form. See `docs/bot.md`,
+  codes are exchanged with PKCE in main. Session credentials in deep links
+  are rejected even with matching state; only a code exchange may establish
+  the session. Email stays on the in-app form. See `docs/bot.md`,
   `docs/web-vs-electron.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows
   ([`.rules/04-structure.md`](./.rules/04-structure.md)).
+- **GitHub repository onboarding is not account sign-in.** `/sign-in/github`
+  starts the GitHub App in the system browser (`GET /v1/integrations/github/install`)
+  and fails closed if that route is missing. Desktop also offers a separate
+  **Open a local repository** action and returns to `/code`; web never offers a
+  native folder picker. Install never opens a folder. Picker failures use Cortex
+  copy without raw filesystem errors. This PC preserves the selected directory path
+  exactly, including trailing spaces in a directory name.
 - **Plugins list the services the user connects to**, from the live catalogue. The middleware we
   install through is internal plumbing: it is a field on the catalogue envelope in
   `packages/app/src/state/plugins.ts`, never a card, a label, a subtitle, or an error body

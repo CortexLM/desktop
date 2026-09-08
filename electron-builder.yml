@@ -37,8 +37,8 @@ mac:
   icon: build/icon.icns
   hardenedRuntime: true
   gatekeeperAssess: false
-  entitlements: build/entitlements.mac.plist
-  entitlementsInherit: build/entitlements.mac.plist
+  # Use electron-builder's maintained Electron entitlements.
+  notarize: true
   target:
     - target: dmg
       arch:
@@ -63,6 +63,7 @@ dmg:
 # Windows configuration
 win:
   icon: build/icon.ico
+  verifyUpdateCodeSignature: true
   target:
     - target: nsis
       arch:
@@ -124,17 +125,16 @@ deb:
 # Auto-update feed. Packaged apps read this into app-update.yml.
 # Production CI copies latest.yml / latest-mac.yml / latest-linux.yml,
 # blockmaps, and installers to R2 bucket cortex-releases (objects at the
-# bucket root; custom domain releases.cortex.foundation) — see build.yml
-# publish-feed. Staging dist overrides publish.url to
+# bucket root for legacy clients) and cortex-software/latest — see build.yml
+# publish-feed. New installers use software.cortex.foundation/latest/.
+# Staging dist overrides publish.url to
 # https://software.cortex.foundation/staging/. Generic provider only; do not
 # add a GitHub channel.
 publish:
   provider: generic
-  url: https://releases.cortex.foundation/
+  url: https://software.cortex.foundation/latest/
   channel: latest
 
-# macOS notarization after signing. scripts/notarize.js returns without
-# error when APPLE_ID / APPLE_APP_SPECIFIC_PASSWORD / APPLE_TEAM_ID are
-# unset (local and unsigned CI). Set those names on Environment production
-# to notarize a tagged macOS build.
-afterSign: scripts/notarize.js
+# build.yml requires signing and notarization credentials before macOS/Windows
+# production builds and passes forceCodeSigning=true. Local builds stay usable
+# without a signing identity. Notarization uses electron-builder's built-in hook.

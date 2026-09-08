@@ -85,6 +85,20 @@ describe('Connect GitHub', () => {
     expect(screen.getByRole('button', { name: /Install the Cortex GitHub app/ })).toBeDisabled();
   });
 
+  it('never labels opening a local folder as an installation', () => {
+    const onOpenFolder = vi.fn();
+    render(() => <ConnectGitHubScreen steps={STEPS} onOpenFolder={onOpenFolder} onSkip={vi.fn()} />);
+    expect(screen.getByRole('button', { name: 'Install the Cortex GitHub app' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Open a local repository' }));
+    expect(onOpenFolder).toHaveBeenCalledOnce();
+  });
+
+  it('does not offer a folder picker without a desktop action', () => {
+    render(() => <ConnectGitHubScreen steps={STEPS} onSkip={vi.fn()} />);
+    expect(screen.getByRole('button', { name: 'Install the Cortex GitHub app' })).toBeDisabled();
+    expect(screen.queryByRole('button', { name: 'Open a local repository' })).toBeNull();
+  });
+
   it('announces a failure assertively', () => {
     render(() => (
       <ConnectGitHubScreen

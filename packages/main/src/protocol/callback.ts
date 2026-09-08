@@ -3,10 +3,9 @@
  *
  * The renderer never sees these URLs. Main receives them from the OS
  * (`open-url` on macOS, second-instance argv on Windows and Linux) and
- * extracts either an authorization code or a sealed session value. The
- * session value is a credential: this module returns it to the account
- * service and never logs it. A credential without the login `state` is
- * rejected here — a deep-link is not enough to switch the signed-in account.
+ * accepts only an authorization code with login state. Session credentials
+ * in URLs are rejected even with state: only the main-process PKCE exchange
+ * may obtain a session, and an intercepted deep-link must not bypass it.
  */
 
 export const PROTOCOL_SCHEME = 'cortex';
@@ -22,11 +21,8 @@ export type BrowserLoginProvider = 'google' | 'github' | 'apple' | 'sso';
 
 export type AuthCallbackResult =
   | { kind: 'code'; code: string; state: string }
-  | { kind: 'session'; token: string; state: string }
   | { kind: 'error'; message: string }
   | { kind: 'ignored' };
-
-const SESSION_PARAMS = ['session', 'access_token', 'wos_session', 'wos-session'] as const;
 
 /**
  * True when `url` is a Cortex desktop deep-link we should handle.
@@ -50,8 +46,8 @@ export function isAuthCallbackUrl(url: string): boolean {
 /**
  * Reads a callback URL without echoing credentials.
  *
- * Preference: an authorization code (exchanged in main with PKCE) over a
- * sealed session in the query. Either still requires `state`. An `error`
+ * Only an authorization code (exchanged in main with PKCE) with `state`
+ * is accepted. An `error`
  * query is a declined or failed sign-in, reported in product language.
  */
 export function parseAuthCallback(url: string): AuthCallbackResult {
@@ -76,11 +72,6 @@ export function parseAuthCallback(url: string): AuthCallbackResult {
 function credentialFromParams(params: URLSearchParams, state: string): AuthCallbackResult {
   const code = params.get('code')?.trim();
   if (code) return { kind: 'code', code, state };
-
-  for (const name of SESSION_PARAMS) {
-    const value = params.get(name)?.trim();
-    if (value) return { kind: 'session', token: value, state };
-  }
 
   return {
     kind: 'error',

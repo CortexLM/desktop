@@ -59,11 +59,6 @@ describe('parseAuthCallback', () => {
       code: 'authcode-1',
       state: 'nonce-1',
     });
-    expect(parseAuthCallback(`${CALLBACK}?session=sealed&state=nonce-2`)).toEqual({
-      kind: 'session',
-      token: 'sealed',
-      state: 'nonce-2',
-    });
   });
 
   it('prefers exchanging a code over a session in the same URL', () => {
@@ -75,17 +70,10 @@ describe('parseAuthCallback', () => {
     });
   });
 
-  it('accepts access_token and wos-session aliases when state is present', () => {
-    expect(parseAuthCallback(`${CALLBACK}?access_token=tok-a&state=nonce-a`)).toEqual({
-      kind: 'session',
-      token: 'tok-a',
-      state: 'nonce-a',
-    });
-    expect(parseAuthCallback(`${BRIDGE}?wos_session=tok-b&state=nonce-b`)).toEqual({
-      kind: 'session',
-      token: 'tok-b',
-      state: 'nonce-b',
-    });
+  it.each(['session', 'access_token', 'wos_session', 'wos-session'])('rejects %s even with state', (name) => {
+    const result = parseAuthCallback(`${CALLBACK}?${name}=test-session-token&state=nonce-a`);
+    expect(result.kind).toBe('error');
+    expect(JSON.stringify(result)).not.toContain('test-session-token');
   });
 
   it('maps a declined sign-in to product copy, without the vendor code', () => {

@@ -71,7 +71,7 @@ Backend HOLD (not a desktop secret; Oding’s lane):
 | P0-2 | Connect GitHub labelled “Install the Cortex GitHub app” but opened a local folder. | Start a GitHub App install in the system browser (`GET /v1/integrations/github/install`). Fail closed if the route is missing. Skip still means This PC / local repos. No PAT field. |
 | P0-3 | Integrations → GitHub Connect was a no-op message. | Same GitHub App install as P0-2. |
 | P0-4 | Sign-in and SSH could render `error.message` (vendor names, status codes). | Classify to product copy. |
-| P0-5 | macOS notarization (`afterSign`) was commented out, so a tagged build could ship unsigned for Gatekeeper. | Enable `scripts/notarize.js`. It skips when Apple secrets are absent (local/CI) and notarizes when they are set. |
+| P0-5 | macOS notarization (`afterSign`) was commented out, so a tagged build could ship unsigned for Gatekeeper. | Landed on `main` via #31: production macOS/Windows fail closed without signing credentials, `forceCodeSigning=true`, electron-builder built-in notarization. This PR does not reintroduce `scripts/notarize.js`. |
 | P0-6 | `software.cortex.foundation/latest/` mirror ran only when `PRODUCTION_SOFTWARE_BUCKET` was set. | Always publish that prefix (default bucket `cortex-software`) so the software host is a first-class production channel. Already-shipped apps keep checking `releases.cortex.foundation`. |
 
 ## P1 — should ship before a public tag

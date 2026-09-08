@@ -18,7 +18,7 @@ Ce dossier contient un système de monitoring automatique 24/7 pour Cortex IDE.
 ### Build and Release (`build.yml`)
 - **Trigger:** version tag `v*.*.*`, or manual
 - **Jobs:** matrix package (mac / win on GitHub-hosted; linux on CodeBuild) → GitHub Release → `publish-feed`
-- **Feed:** rclone copy to R2 bucket `cortex-releases` (objects at the bucket root). Custom domain `releases.cortex.foundation`. Always also mirrors to `software.cortex.foundation/latest/`. Generic provider URL in `electron-builder.yml`. `afterSign` runs `scripts/notarize.js` (skips when Apple secrets are unset).
+- **Feed:** rclone copy to R2 bucket `cortex-releases` (objects at the bucket root). Custom domain `releases.cortex.foundation`. Always also publishes `software.cortex.foundation/latest/`. Generic provider URL in `electron-builder.yml`. Production macOS/Windows fail closed without signing credentials; notarization uses electron-builder's built-in hook.
 - **Gate:** GitHub Environment `production` and `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`
 - **Secrets (production environment):** `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_ACCOUNT_ID`
 - See [`docs/releases.md`](../../docs/releases.md)

@@ -29,12 +29,12 @@ const publishStaging = readFileSync(
 );
 
 describe('resolveUpdateFeedUrl', () => {
-  it('uses the production generic feed', () => {
-    expect(resolveUpdateFeedUrl({})).toBe('https://releases.cortex.foundation/');
-    expect(DEFAULT_UPDATE_FEED_URL).toBe('https://releases.cortex.foundation/');
+  it('leaves feed selection to the packaged configuration', () => {
+    expect(resolveUpdateFeedUrl({})).toBeUndefined();
+    expect(DEFAULT_UPDATE_FEED_URL).toBe('https://software.cortex.foundation/latest/');
   });
 
-  it('names the software.cortex.foundation channel prefixes without baking them into production', () => {
+  it('bakes the production software channel, not staging, into new installers', () => {
     expect(STAGING_UPDATE_FEED_URL).toBe('https://software.cortex.foundation/staging/');
     expect(LATEST_CHANNEL_FEED_URL).toBe('https://software.cortex.foundation/latest/');
     expect(builderYml).toContain(`url: ${DEFAULT_UPDATE_FEED_URL}`);
@@ -55,12 +55,8 @@ describe('resolveUpdateFeedUrl', () => {
     expect(buildWorkflow).toContain('publish-r2-feed');
     expect(buildWorkflow).toContain("destination: r2:${{ vars.PRODUCTION_RELEASES_BUCKET || 'cortex-releases' }}");
     expect(buildWorkflow).toContain('software.cortex.foundation/latest/');
-    expect(buildWorkflow).toContain(
-      "destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET || 'cortex-software' }}/latest",
-    );
+    expect(buildWorkflow).toContain("destination: r2:${{ vars.PRODUCTION_SOFTWARE_BUCKET || 'cortex-software' }}/latest");
     expect(buildWorkflow).not.toContain("if: ${{ vars.PRODUCTION_SOFTWARE_BUCKET != '' }}");
-    expect(builderYml).toMatch(/afterSign:\s*scripts\/notarize\.js/);
-    expect(builderYml).not.toMatch(/# afterSign:/);
     expect(buildWorkflow).not.toContain('aws s3');
     expect(buildWorkflow).not.toContain('configure-aws-credentials');
     expect(buildWorkflow).not.toMatch(/provider:\s*github/);
@@ -105,7 +101,14 @@ describe('resolveUpdateFeedUrl', () => {
   });
 
   it('ignores a blank override rather than inventing a second channel', () => {
-    expect(resolveUpdateFeedUrl({ CORTEX_UPDATE_FEED_URL: '   ' })).toBe(DEFAULT_UPDATE_FEED_URL);
+    expect(resolveUpdateFeedUrl({ CORTEX_UPDATE_FEED_URL: '   ' })).toBeUndefined();
+  });
+
+  it.each([
+    'not a URL', 'http://example.com/', 'file:///tmp/feed', 'https://user:password@example.com/',
+    'https://example.com/?token=test-secret', 'https://example.com/#test-secret',
+  ])('rejects unsafe test feed %s', (url) => {
+    expect(resolveUpdateFeedUrl({ CORTEX_UPDATE_FEED_URL: url })).toBeNull();
   });
 });
 

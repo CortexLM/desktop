@@ -28,7 +28,8 @@ are entered in Settings → Providers and go main → keychain.
 
 Connect GitHub (`/sign-in/github` and Settings → Integrations) starts the Cortex
 GitHub App in the system browser (`GET /v1/integrations/github/install`). The
-client probes that route and fails closed if it is missing. Skip still means
+client probes that route and fails closed if it is missing. Opening a local
+folder is a separate desktop action, not the install. Skip still means
 This PC / a local folder. There is no personal-access-token field.
 
 ## This PC
@@ -110,6 +111,15 @@ desktop app; Cloud and SSH start from Home once the user has an account.
 
 There is no fallback to the process working directory, and a This PC start
 never silently becomes a Cloud session.
+
+The selected directory path is preserved exactly, including spaces at the end
+of a folder name. Validation never silently selects a differently named folder.
+
+`/sign-in/github` starts the GitHub App install in the system browser. Opening a
+local folder is a separate desktop action and is never the install. Cancel stays
+on the screen; picker failures show a retry message without a filesystem path.
+Web does not offer the native picker. Signing into Cortex with GitHub is not
+the same as granting repository access.
 
 Cloud and SSH starts call `POST /v1/code/sessions`. If that route is missing
 the start fails with a product-language error and the user can stay on This

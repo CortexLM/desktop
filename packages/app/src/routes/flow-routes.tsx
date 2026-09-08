@@ -46,11 +46,13 @@ function useSteps(): () => FlowStep[] {
  * Auth Connect GitHub.
  *
  * Install opens the GitHub App in the system browser. There is no PAT field.
+ * Opening a local folder is a separate action — it is not the install.
  * Skip still means local / This PC. A missing install route is an honest
  * failure, not a folder picker.
  */
 export function ConnectGitHubRoute(): JSX.Element {
   const account = useAccount();
+  const runs = useSessions();
   const navigate = useNavigate();
   const steps = useSteps();
 
@@ -72,11 +74,25 @@ export function ConnectGitHubRoute(): JSX.Element {
     }
   };
 
+  const openFolder = async () => {
+    setBusy(true);
+    setError(undefined);
+    try {
+      const opened = await runs.openWorkspace();
+      if (opened) navigate('/code');
+    } catch {
+      setError('This repository could not be opened. Try choosing the folder again.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
     <ConnectGitHubScreen
       steps={steps()}
       onConnect={() => void install()}
-      onSkip={() => navigate('/')}
+      onOpenFolder={hasElectronHost() ? () => void openFolder() : undefined}
+      onSkip={() => navigate('/code')}
       busy={busy()}
       {...(error() ? { error: error()! } : {})}
     />

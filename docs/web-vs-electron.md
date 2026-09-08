@@ -50,12 +50,13 @@ in at all, and Settings and Automations were permanently read-only.
 - **This PC** as a Cortex Code runtime (folder-bound on desktop). Not offered
   on the web, and never as a Cortex Bot computer host. `/sign-in/workspace`
   is the folder picker on desktop and an honest desktop-only note on the web.
-- Auto-update against `https://releases.cortex.foundation/` (see [releases.md](./releases.md)). Staging installers check `https://software.cortex.foundation/staging/` ([runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md)).
+- Auto-update: new installers check `https://software.cortex.foundation/latest/` (see [releases.md](./releases.md)). The legacy feed `https://releases.cortex.foundation/` stays published for already-installed apps. Staging installers check `https://software.cortex.foundation/staging/` ([runbooks/desktop-staging-prod.md](./runbooks/desktop-staging-prod.md)).
 - Google / GitHub / Apple / SSO sign-in in the **system browser**, returning on
   `cortex://auth/callback` (HTTPS bridge at `https://cortex.foundation/desktop/open`).
   Email + password stays on the in-app form. Privacy and Terms open from main
   (`cortex:open-legal`). Code Connect GitHub starts the App install
-  (`GET /v1/integrations/github/install`) — no PAT field. The session cookie never crosses
+  (`GET /v1/integrations/github/install`) — no PAT field. Opening a local folder
+  is a separate desktop action. The session cookie never crosses
   to the renderer. A callback is accepted only when it carries the one-time
   `state` issued when that login was started in this app, and a code is
   exchanged with the PKCE verifier kept in main. A `?session=` link with no

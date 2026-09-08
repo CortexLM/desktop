@@ -31,25 +31,26 @@ Desktop staging → prod (Chat+Code, no Bot). Do not touch CortexLM/cortex.
 ## Update feed channels
 
 R2 custom domains attach to a **bucket**, not a key prefix. Prefixes are
-object keys under that host. Packaged production Electron still checks
-**`https://releases.cortex.foundation/`** (bucket `cortex-releases`, objects at
-the root) so already-shipped apps keep working. Staging is a second generic
+object keys under that host. New packaged production Electron checks
+**`https://software.cortex.foundation/latest/`**. The legacy releases feed
+remains published so already-shipped apps keep working. Staging is a second generic
 feed, baked into staging installers only.
 
 | Channel | Public URL | R2 objects | Who writes |
 | --- | --- | --- | --- |
-| **latest** (prod) | `https://releases.cortex.foundation/` | bucket `cortex-releases` at `/` (`/latest.yml`) | `build.yml` `publish-feed` on a `v*.*.*` tag |
-| **latest** (named) | `https://software.cortex.foundation/latest/` | bucket `cortex-software` at `latest/` | same job, always (default bucket `cortex-software`) |
+| **latest** (legacy) | `https://releases.cortex.foundation/` | bucket `cortex-releases` at `/` (`/latest.yml`) | `build.yml` `publish-feed` on a `v*.*.*` tag |
+| **latest** (prod) | `https://software.cortex.foundation/latest/` | bucket `cortex-software` at `latest/` | same job, always published |
 | **staging** | `https://software.cortex.foundation/staging/` | bucket `cortex-software` at `staging/` | `publish-staging.yml` from a **main** SHA |
 
 Constants: `DEFAULT_UPDATE_FEED_URL` and `STAGING_UPDATE_FEED_URL` in
 `packages/main/src/update-policy.ts`. Production `electron-builder.yml`
-`publish.url` stays the releases host. Staging dist passes
+`publish.url` uses the software host's `latest/` prefix. Staging dist passes
 `-c.publish.url=https://software.cortex.foundation/staging/` so
 `app-update.yml` in that build points at the staging prefix.
 
-`CORTEX_UPDATE_FEED_URL` remains a local-feed test hook, not a third public
-channel.
+Main leaves the packaged feed intact. `CORTEX_UPDATE_FEED_URL` remains a
+local-feed test hook, not a third public channel. HTTPS or loopback HTTP only;
+credentials, query strings and fragments are rejected.
 
 ### Why two hosts
 
@@ -60,8 +61,8 @@ packaged app.
 
 `software.cortex.foundation` is bound to `cortex-software`. Channel prefixes
 `latest/` and `staging/` are then `/latest/latest.yml` and
-`/staging/latest.yml`. Staging installers use the staging prefix. Production
-installers do not.
+`/staging/latest.yml`. Staging installers use the staging prefix; new production
+installers use `latest/`.
 
 Staging credentials live on GitHub Environment **`staging`**. Production
 credentials stay on **`production`**. Staging must not be able to write
@@ -111,7 +112,7 @@ A push to the `staging` branch still runs `.github/workflows/staging.yml`
 
 Staging Linux is not a production feed. Promote by **tagging the same SHA**
 so `build.yml` builds mac + win + linux and `publish-feed` writes
-`cortex-releases` (and optionally `cortex-software/latest/`).
+`cortex-releases` and `cortex-software/latest/`.
 
 Gates: GitHub Environment `production`, `vars.PRODUCTION_DEPLOY_ENABLED == 'true'`,
 version tag `v*.*.*`.
@@ -133,8 +134,11 @@ requested SHA cannot read these secrets.
 
 ### Environment `production`
 
-See [releases.md](../releases.md). Extra optional variable:
-`PRODUCTION_SOFTWARE_BUCKET` (default `cortex-software` for the `latest/` mirror).
+See [releases.md](../releases.md) for required signing/notarization credentials.
+`PRODUCTION_SOFTWARE_BUCKET` defaults to `cortex-software`; it overrides the
+bucket, not whether `latest/` is published. macOS/Windows builds fail closed
+without signing credentials. Validate signed installers and an actual upgrade
+before declaring the release ready.
 
 ### Repository
 

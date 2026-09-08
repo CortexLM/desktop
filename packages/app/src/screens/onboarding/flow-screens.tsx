@@ -81,7 +81,8 @@ export function FlowShell(props: FlowShellProps): JSX.Element {
 
 export interface ConnectGitHubScreenProps {
   steps: readonly FlowStep[];
-  onConnect: () => void;
+  onConnect?: () => void;
+  onOpenFolder?: () => void;
   onSkip: () => void;
   busy?: boolean;
   error?: string;
@@ -131,12 +132,17 @@ export function ConnectGitHubScreen(props: ConnectGitHubScreenProps): JSX.Elemen
       <button
         type="button"
         class="cx-auth__provider cx-auth__provider--primary"
-        disabled={props.busy}
-        onClick={() => props.onConnect()}
+        disabled={props.busy || !props.onConnect}
+        onClick={() => props.onConnect?.()}
       >
         <Icon name="github" size={16} />
         Install the Cortex GitHub app
       </button>
+      <Show when={props.onOpenFolder}>
+        <Button variant="secondary" block disabled={props.busy} onClick={() => props.onOpenFolder?.()}>
+          Open a local repository
+        </Button>
+      </Show>
     </FlowShell>
   );
 }
