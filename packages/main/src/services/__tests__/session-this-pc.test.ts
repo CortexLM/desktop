@@ -22,6 +22,7 @@ describe('This PC workspace', () => {
 
   it('binds the agent to the chosen folder path', () => {
     expect(requireThisPcFolder('/Users/ada/src/app')).toBe('/Users/ada/src/app');
+    expect(requireThisPcFolder('/tmp/project with trailing space ')).toBe('/tmp/project with trailing space ');
   });
 
   it('treats Cloud and SSH as remote, never as This PC', () => {

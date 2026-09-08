@@ -50,10 +50,7 @@ export async function completeAuthCallback(
     throw new Error(AUTH_CALLBACK_NOT_STARTED);
   }
 
-  const token =
-    parsed.kind === 'session'
-      ? parsed.token
-      : await exchangeAuthCode(service.getApiClient(), parsed.code, pending.verifier);
+  const token = await exchangeAuthCode(service.getApiClient(), parsed.code, pending.verifier);
 
   return service.acceptAccessToken(token);
 }

@@ -12,6 +12,7 @@ import { useNavigate } from '@solidjs/router';
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import { addSshRuntime } from '../state/code-hosts.ts';
+import { hasElectronHost } from '../state/electron-bridge.ts';
 import {
   ConnectGitHubScreen,
   SshConnectScreen,
@@ -42,8 +43,8 @@ function useSteps(): () => FlowStep[] {
 /**
  * Auth Connect GitHub.
  *
- * `onConnect` opens a folder instead of starting an OAuth dance, and the copy is
- * carried by the screen's own error slot to say why.
+ * The installation action stays unavailable until the service has a verified
+ * repository authorization contract. Folder selection is a separate action.
  *
  * The reason is worth stating rather than hiding behind a spinner: connecting a
  * GitHub account needs a registered OAuth app and a callback the desktop app can
@@ -58,12 +59,16 @@ export function ConnectGitHubRoute(): JSX.Element {
   const steps = useSteps();
 
   const [busy, setBusy] = createSignal(false);
+  const [error, setError] = createSignal<string>();
 
   const openFolder = async () => {
     setBusy(true);
+    setError(undefined);
     try {
       const opened = await runs.openWorkspace();
-      if (opened) navigate('/');
+      if (opened) navigate('/code');
+    } catch {
+      setError('This repository could not be opened. Try choosing the folder again.');
     } finally {
       setBusy(false);
     }
@@ -72,10 +77,10 @@ export function ConnectGitHubRoute(): JSX.Element {
   return (
     <ConnectGitHubScreen
       steps={steps()}
-      onConnect={() => void openFolder()}
-      onSkip={() => navigate('/')}
+      onOpenFolder={hasElectronHost() ? () => void openFolder() : undefined}
+      onSkip={() => navigate('/code')}
       busy={busy()}
-      error="Connecting a GitHub account is not available yet. Open a local repository instead — an agent needs nothing else to read and edit code."
+      error={error() ?? 'GitHub repository access is not available on this workspace yet. You can continue with a local repository in the Cortex desktop app.'}
     />
   );
 }

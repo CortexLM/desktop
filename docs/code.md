@@ -102,6 +102,16 @@ machine. It is not a Cortex Bot host. SSH chrome stays SSH.
 There is no fallback to the process working directory, and a This PC start
 never silently becomes a Cloud session.
 
+The selected directory path is preserved exactly, including spaces at the end
+of a folder name. Validation never silently selects a differently named folder.
+
+`/sign-in/github` does not install a GitHub app yet: the service contract for
+repository authorization is not established. The installation action is
+disabled. Desktop offers **Open a local repository** as a separate action,
+returning to Code after selection; cancel stays on the screen, and failures
+show a retry message. Web does not offer the native picker. Signing into
+Cortex with GitHub is not the same as granting repository access.
+
 Cloud and SSH starts call `POST /v1/code/sessions`. If that route is missing
 the start fails with a product-language error and the user can stay on This
 PC.

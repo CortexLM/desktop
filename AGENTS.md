@@ -210,13 +210,20 @@ API keys are entered; they never appear in logs.
   computer loads, and a failed refresh leaves the rail empty rather than the
   previous teammate. Google/GitHub sign-in opens the system browser and returns
   on `cortex://auth/callback` only with an unexpired pending login `state`;
-  codes are exchanged with PKCE in main. A bare `?session=` deep-link is
-  rejected. Email stays on the in-app form. See `docs/bot.md`,
+  codes are exchanged with PKCE in main. Session credentials in deep links
+  are rejected even with matching state; only a code exchange may establish
+  the session. Email stays on the in-app form. See `docs/bot.md`,
   `docs/web-vs-electron.md`.
 - **No seeded data.** A new account has an empty roster, an empty session inbox and an empty
   library, and each says so honestly. `localStorage` may cache a list the service already returned;
   it is never a source of truth and never holds invented rows
   ([`.rules/04-structure.md`](./.rules/04-structure.md)).
+- **GitHub repository onboarding is not account sign-in.** `/sign-in/github`
+  keeps installation disabled until a service contract is established. Desktop
+  offers a separate **Open a local repository** action and returns to `/code`;
+  web never offers a native folder picker. Picker failures use Cortex copy
+  without raw filesystem errors. This PC preserves the selected directory path
+  exactly, including trailing spaces in a directory name.
 - **Plugins list the services the user connects to**, from the live catalogue. The middleware we
   install through is internal plumbing: it is a field on the catalogue envelope in
   `packages/app/src/state/plugins.ts`, never a card, a label, a subtitle, or an error body
