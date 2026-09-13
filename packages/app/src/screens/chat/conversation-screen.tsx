@@ -1,10 +1,12 @@
 import { createEffect, createResource, createSignal, For, type JSX, Show } from 'solid-js';
 
 import { describeWorkspaceError } from '@cortex-ide/cortex-api';
-import { Composer, Icon } from '@cortex-ide/ui';
+import { Composer, Icon, Segmented } from '@cortex-ide/ui';
 import type { ChatMessage } from '@cortex-ide/shared';
 
 import type { ConversationsContextValue } from '../../state/conversations-context.tsx';
+import { chatMode, setChatMode } from '../../state/chat-draft.ts';
+import type { ChatMode } from './chat-home-screen.tsx';
 import { saveToLibrary } from '../../state/library.ts';
 
 import './conversation.css';
@@ -214,6 +216,7 @@ export function ConversationScreen(props: ConversationScreenProps): JSX.Element 
 
       <Composer
         class="cx-conversation__composer"
+        floating
         value={followUp()}
         onValueChange={setFollowUp}
         onSubmit={() => void send()}
@@ -222,6 +225,19 @@ export function ConversationScreen(props: ConversationScreenProps): JSX.Element 
         disabled={props.chats.replying(props.conversationId())}
         disabledReason="Wait for the current reply to finish"
         modelLabel={props.chats.modelLabel()}
+        leading={
+          <Segmented
+            bordered
+            label="Mode"
+            value={chatMode()}
+            onChange={(id) => setChatMode(id as ChatMode)}
+            options={[
+              { id: 'search', label: 'Search' },
+              { id: 'reason', label: 'Reason' },
+              { id: 'research', label: 'Research' },
+            ]}
+          />
+        }
       />
     </div>
   );

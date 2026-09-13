@@ -6,7 +6,7 @@ import { test, expect } from '../fixtures';
 
 test('repository onboarding keeps installation separate from the native folder picker', async ({ page, electronApp }) => {
   await page.evaluate(() => { window.location.hash = '#/sign-in/github'; });
-  const install = page.getByRole('button', { name: 'Install the Cortex GitHub app' });
+  const install = page.getByRole('button', { name: 'Connect GitHub' });
   const open = page.getByRole('button', { name: 'Open a local repository' });
   await expect(install).toBeEnabled();
   await expect(open).toBeEnabled();

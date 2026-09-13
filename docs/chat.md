@@ -6,7 +6,7 @@ Chat is the general assistant. It is the default product (`/`).
 
 | Route | Screen | Notes |
 | --- | --- | --- |
-| `/` | Home | Greeting, composer (Search / Reason / Research), product cards, recents, suggestions. |
+| `/` | Home | Greeting, apps, Recents / Pinned, floating composer (Search / Reason / Research). |
 | `/chat/:id` | Conversation | Streamed thread. Backed by SQLite on desktop. |
 | `/research` | Research | Honest empty / loading / error / signed-out. |
 | `/planning` | Planning | **Scheduled tasks**, not a project plan. ChatGPT-style recurring jobs with original Cortex copy. |
@@ -22,6 +22,12 @@ Search in the sidebar opens the command palette. It is not a separate page.
 ## Sidebar order
 
 Search → Research → Planning → Projects → Library → Plugins (last).
+
+Pinned chats sit above Recents. Pins are a local preference over live
+conversations — never invented rows.
+
+The home composer is a floating dock (Search / Reason / Research) so Recents
+stay readable above it.
 
 ## Planning
 

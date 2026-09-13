@@ -23,10 +23,11 @@ The switch is by URL prefix through `productForPath()` in
 `packages/app/src/routes.ts`. Sidebar sections come from
 `packages/app/src/shell/sidebar-sections.tsx`. Code's rail is **New session**,
 **Routines** (automations), **Personalize** (settings), then Workspace
-destinations, then **Recents** of Code sessions — not Chat transcripts.
+destinations, then **Pinned** and **Recents** of Code sessions — not Chat transcripts.
 
-The Chat | Code | Bot switcher is in the sidebar and, on desktop, also in the
-custom title bar (`packages/app/src/shell/title-bar-chrome.tsx`).
+The Chat | Code switcher is in the sidebar and, on desktop, also in the
+custom title bar (`packages/app/src/shell/title-bar-chrome.tsx`). Bot is a
+separate app.
 
 **Bad** — Code implemented as a second Chat:
 
@@ -90,8 +91,9 @@ Behaviour that is part of the product, not an implementation detail:
 - **A connected host is paired with a one-time code** — the service stores a hash,
   the client never does. Heartbeats carry a device token, never SSH or provider
   keys. SSH and host keys are not downloaded to the client.
-- **Signed out on desktop**, Home / Sessions / Session detail / Settings work
-  with **This PC** or BYO providers. Automations, Review, Usage and SSH connect
+- **Signed out on desktop**, Chat works with a local or BYO provider. Code Home
+  stays visible (This PC / SSH / Cloud picker, recents, chips) and starting a
+  session raises the sign-in modal. Automations, Review, Usage and SSH connect
   are shown and locked (`01-security.md` § 1.3). Creating a Bot on leftover
   `/bot` routes needs an account.
 - **This PC Code sessions** start only after the native folder picker. The

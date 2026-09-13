@@ -68,12 +68,26 @@ async function startSessionFromEmptyHome(
   await electronApp.evaluate(async ({ dialog }, path) => {
     dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [path] });
   }, folder);
-  const cta = page.getByRole('main').getByRole('button', { name: 'Start a session' });
-  await expect(cta).toBeEnabled();
-  await cta.click();
+  const started = await page.evaluate(async (prompt) => {
+    const api = (window as unknown as {
+      cortex?: {
+        session?: {
+          openWorkspace: () => Promise<{ success: boolean }>;
+          start: (request: { prompt: string; runtime: string }) => Promise<
+            { success: true; data: { session: { id: string } } } | { success: false }
+          >;
+        };
+      };
+    }).cortex?.session;
+    if (!api) throw new Error('window.cortex.session is not exposed');
+    await api.openWorkspace();
+    return api.start({ prompt, runtime: 'local' });
+  }, STARTER_PROMPT);
+  if (!started.success) throw new Error('session start failed');
+  await page.evaluate((id) => {
+    window.location.hash = `#/code/sessions/${id}`;
+  }, started.data.session.id);
   await expect(page).toHaveURL(/#\/code\/sessions\/session_/, { timeout: 20_000 });
-  // The turn fails closed with no provider. Wait for that so main is not still
-  // running the agent when the fixture tears the window down.
   await expect(page.getByText(/No model is configured/i)).toBeVisible({ timeout: 15_000 });
 }
 
@@ -125,15 +139,17 @@ test.describe('the app Electron loads', () => {
   });
 
   test('is usable with no account at all', async ({ page }) => {
-    // The anonymous path is a product requirement, not a fallback: the Chat composer
-    // greets first, and Code home with no history starts a session on This PC.
+    // Chat still works unsigned. Code is shown and locked behind the sign-in modal.
     await expect(page.getByPlaceholder(/Ask anything/i)).toBeVisible();
 
     await openCode(page);
     await expect(page.getByRole('heading', { name: 'Ship features, not lines.' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'This PC' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Start a session' })).toBeEnabled();
-    await expect(page.getByText('Cloud and SSH need a Cortex account.')).toBeVisible();
+    await expect(page.getByText('Code needs a Cortex account. Sign in to start a session.')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Start a session' }).click();
+    await expect(page.getByRole('heading', { name: 'Sign in to use Code' })).toBeVisible();
   });
 
   test('gates what an account is needed for, and says why', async ({ page }) => {

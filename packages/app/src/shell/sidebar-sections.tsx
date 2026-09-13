@@ -74,14 +74,31 @@ export function ChatSections(props: SidebarProps): JSX.Element {
           )}
         </For>
       </div>
+      <Show when={(props.pinnedChats ?? []).length > 0}>
+        <div class="cx-sidebar__section-title">Pinned</div>
+        <div class="cx-sidebar__recent">
+          <For each={props.pinnedChats}>
+            {(chat) => (
+              <SidebarRow
+                title={chat.title}
+                pinned
+                onOpen={() => props.onOpenChat(chat.id)}
+                onTogglePin={() => props.onTogglePinChat?.(chat.id)}
+              />
+            )}
+          </For>
+        </div>
+      </Show>
       <Show when={props.recentChats.length > 0}>
         <div class="cx-sidebar__section-title">Recents</div>
         <div class="cx-sidebar__recent">
           <For each={props.recentChats}>
             {(chat) => (
-              <button type="button" class="cx-sidebar__run" onClick={() => props.onOpenChat(chat.id)}>
-                <span class="cx-sidebar__run-title">{chat.title}</span>
-              </button>
+              <SidebarRow
+                title={chat.title}
+                onOpen={() => props.onOpenChat(chat.id)}
+                onTogglePin={() => props.onTogglePinChat?.(chat.id)}
+              />
             )}
           </For>
         </div>
@@ -129,9 +146,22 @@ export function CodeSections(props: SidebarProps): JSX.Element {
           )}
         </For>
       </div>
+      <Show when={(props.pinnedRuns ?? []).length > 0}>
+        <div class="cx-sidebar__section-title">Pinned</div>
+        <RecentRuns
+          runs={props.pinnedRuns ?? []}
+          pinned
+          onOpen={props.onOpenRun}
+          onTogglePin={props.onTogglePinRun}
+        />
+      </Show>
       <Show when={props.recentRuns.length > 0}>
         <div class="cx-sidebar__section-title">Recents</div>
-        <RecentRuns runs={props.recentRuns} onOpen={props.onOpenRun} />
+        <RecentRuns
+          runs={props.recentRuns}
+          onOpen={props.onOpenRun}
+          onTogglePin={props.onTogglePinRun}
+        />
       </Show>
     </>
   );
@@ -225,7 +255,48 @@ function groupByRepo(runs: SidebarProps['recentRuns']) {
   return groups;
 }
 
-function RecentRuns(props: { runs: SidebarProps['recentRuns']; onOpen: (id: string) => void }): JSX.Element {
+function SidebarRow(props: {
+  title: string;
+  age?: string;
+  running?: boolean;
+  pinned?: boolean;
+  onOpen: () => void;
+  onTogglePin?: () => void;
+}): JSX.Element {
+  return (
+    <div class="cx-sidebar__row">
+      <button type="button" class="cx-sidebar__run" onClick={() => props.onOpen()}>
+        <span class="cx-sidebar__run-title">{props.title}</span>
+        <Show when={props.running}>
+          <span class="cx-sidebar__run-live" role="img" aria-label="Running" />
+        </Show>
+        <Show when={props.age}>
+          {(age) => <span class="cx-sidebar__run-age">{age()}</span>}
+        </Show>
+      </button>
+      <Show when={props.onTogglePin}>
+        {(toggle) => (
+          <button
+            type="button"
+            class={props.pinned ? 'cx-sidebar__pin cx-sidebar__pin--on' : 'cx-sidebar__pin'}
+            aria-pressed={props.pinned ? 'true' : 'false'}
+            aria-label={props.pinned ? 'Unpin' : 'Pin'}
+            onClick={() => toggle()()}
+          >
+            {props.pinned ? 'Unpin' : 'Pin'}
+          </button>
+        )}
+      </Show>
+    </div>
+  );
+}
+
+function RecentRuns(props: {
+  runs: SidebarProps['recentRuns'];
+  pinned?: boolean;
+  onOpen: (id: string) => void;
+  onTogglePin?: (id: string) => void;
+}): JSX.Element {
   return (
     <div class="cx-sidebar__recent">
       <For each={groupByRepo(props.runs)}>
@@ -237,13 +308,14 @@ function RecentRuns(props: { runs: SidebarProps['recentRuns']; onOpen: (id: stri
             </div>
             <For each={group.runs}>
               {(run) => (
-                <button type="button" class="cx-sidebar__run" onClick={() => props.onOpen(run.id)}>
-                  <span class="cx-sidebar__run-title">{run.title}</span>
-                  <Show when={run.running}>
-                    <span class="cx-sidebar__run-live" role="img" aria-label="Running" />
-                  </Show>
-                  <span class="cx-sidebar__run-age">{run.age}</span>
-                </button>
+                <SidebarRow
+                  title={run.title}
+                  age={run.age}
+                  running={run.running}
+                  pinned={props.pinned}
+                  onOpen={() => props.onOpen(run.id)}
+                  onTogglePin={props.onTogglePin ? () => props.onTogglePin?.(run.id) : undefined}
+                />
               )}
             </For>
           </>

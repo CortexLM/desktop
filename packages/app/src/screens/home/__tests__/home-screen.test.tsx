@@ -86,8 +86,10 @@ describe('Home composer', () => {
     renderHome({ draft: { prompt: '', runtime: 'local' } });
 
     expect(screen.getByRole('button', { name: /Open a folder/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Default branch/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^main$/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Choose a model/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Local$/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^This PC$/ })).toBeInTheDocument();
   });
 
   it('shows the chosen runtime', () => {
@@ -102,12 +104,13 @@ describe('Home composer', () => {
     // Signed out there is only This PC, so an enabled picker would promise a choice that does
     // not exist - even with a handler wired.
     renderHome({ capabilities: ANONYMOUS_CAPABILITIES, onPickRuntime: vi.fn() });
-    expect(screen.getByRole('button', { name: /This PC/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /^Local$/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /^This PC$/ })).toBeDisabled();
   });
 
   it('enables the runtime picker once there is more than one runtime', () => {
     renderHome({ capabilities: AUTHENTICATED_CAPABILITIES, onPickRuntime: vi.fn() });
-    expect(screen.getByRole('button', { name: /This PC/ })).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: /^Local$/ })).not.toBeDisabled();
   });
 
   it('names SSH as SSH, never as This PC or This desktop', () => {

@@ -180,6 +180,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  flex: 1;
+  min-width: 0;
 
   height: 28px;
   padding-inline: 8px;
@@ -196,6 +198,33 @@
   cursor: pointer;
 }
 
+.cx-sidebar__row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cx-sidebar__pin {
+  flex-shrink: 0;
+  height: 22px;
+  padding-inline: 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-sans-stack);
+  font-size: 10px;
+  line-height: 12px;
+
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.cx-sidebar__pin:hover,
+.cx-sidebar__pin--on {
+  color: var(--color-green);
+}
+
 .cx-sidebar__run:hover {
   background: var(--color-hover);
 }
@@ -208,8 +237,8 @@
 }
 
 /* Runs under a repo group indent past the group's icon. */
-.cx-sidebar__repo + .cx-sidebar__run,
-.cx-sidebar__run + .cx-sidebar__run {
+.cx-sidebar__repo + .cx-sidebar__row .cx-sidebar__run,
+.cx-sidebar__row + .cx-sidebar__row .cx-sidebar__run {
   padding-left: 25px;
 }
 

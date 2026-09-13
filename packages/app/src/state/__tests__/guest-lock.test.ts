@@ -6,7 +6,7 @@ vi.mock('../../shell/overlay-host.tsx', () => ({
   requestUpgrade: (...args: unknown[]) => requestUpgrade(...args),
 }));
 
-const { enterProduct, guestBlocked, GUEST_CODE_BOT } = await import('../guest-lock.ts');
+const { enterProduct, guestBlocked, GUEST_CODE, GUEST_CODE_BOT } = await import('../guest-lock.ts');
 
 describe('guestBlocked', () => {
   beforeEach(() => {
@@ -18,9 +18,9 @@ describe('guestBlocked', () => {
     expect(requestUpgrade).not.toHaveBeenCalled();
   });
 
-  it('raises the sign-in modal and blocks unsigned Cloud/Bot use', () => {
+  it('raises the sign-in modal and blocks unsigned Code use', () => {
     expect(guestBlocked(false)).toBe(true);
-    expect(requestUpgrade).toHaveBeenCalledWith(GUEST_CODE_BOT);
+    expect(requestUpgrade).toHaveBeenCalledWith(GUEST_CODE);
   });
 });
 
@@ -29,9 +29,16 @@ describe('enterProduct', () => {
     requestUpgrade.mockReset();
   });
 
-  it('still opens Code so This PC stays usable unsigned', () => {
+  it('opens Code and raises the sign-in modal when unsigned', () => {
     const go = vi.fn();
     enterProduct('code', false, go);
+    expect(go).toHaveBeenCalledWith('/code');
+    expect(requestUpgrade).toHaveBeenCalledWith(GUEST_CODE);
+  });
+
+  it('does not modal Code once signed in', () => {
+    const go = vi.fn();
+    enterProduct('code', true, go);
     expect(go).toHaveBeenCalledWith('/code');
     expect(requestUpgrade).not.toHaveBeenCalled();
   });

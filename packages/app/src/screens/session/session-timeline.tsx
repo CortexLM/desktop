@@ -1,6 +1,6 @@
 import { createSignal, For, type JSX, Show } from 'solid-js';
 
-import { Button, Composer, Icon, type ComposerControl } from '@cortex-ide/ui';
+import { Button, Composer, Icon, Segmented, type ComposerControl } from '@cortex-ide/ui';
 
 export type PlanStepState = 'done' | 'current' | 'pending';
 
@@ -59,6 +59,8 @@ export interface SessionTimelineProps {
   /** Blocks the follow-up, e.g. once the session has finished. */
   followUpDisabled?: boolean;
   followUpDisabledReason?: string;
+  followUpMode?: 'ask' | 'plan' | 'agent';
+  onFollowUpModeChange?: (mode: 'ask' | 'plan' | 'agent') => void;
 }
 
 const STEP_LABELS: Record<PlanStepState, string> = {
@@ -265,6 +267,7 @@ function TimelineFooter(props: SessionTimelineProps): JSX.Element {
         </p>
       </Show>
       <Composer
+        floating
         value={props.followUp}
         onValueChange={props.onFollowUpChange}
         onSubmit={props.onSendFollowUp}
@@ -273,6 +276,19 @@ function TimelineFooter(props: SessionTimelineProps): JSX.Element {
         disabled={props.followUpDisabled}
         disabledReason={props.followUpDisabledReason}
         sendLabel="Send follow-up"
+        leading={
+          <Segmented
+            bordered
+            label="Mode"
+            value={props.followUpMode ?? 'agent'}
+            onChange={(id) => props.onFollowUpModeChange?.(id as 'ask' | 'plan' | 'agent')}
+            options={[
+              { id: 'ask', label: 'Ask' },
+              { id: 'plan', label: 'Plan' },
+              { id: 'agent', label: 'Agent' },
+            ]}
+          />
+        }
       />
     </div>
   );

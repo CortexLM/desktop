@@ -227,6 +227,28 @@ describe('Sidebar recent sessions', () => {
     expect(onOpenRun).toHaveBeenCalledWith('run-1');
   });
 
+  it('pins a run from Recents into Pinned', () => {
+    const onTogglePinRun = vi.fn();
+    renderSidebar({
+      recentRuns: RUNS,
+      pinnedRuns: [],
+      onTogglePinRun,
+    });
+    fireEvent.click(screen.getAllByRole('button', { name: 'Pin' })[0]!);
+    expect(onTogglePinRun).toHaveBeenCalledWith('run-1');
+  });
+
+  it('lists pinned runs in their own section', () => {
+    renderSidebar({
+      recentRuns: [RUNS[1]!],
+      pinnedRuns: [RUNS[0]!],
+      onTogglePinRun: vi.fn(),
+    });
+    expect(screen.getByText('Pinned')).toBeInTheDocument();
+    expect(screen.getByText('Recents')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Unpin' })).toBeInTheDocument();
+  });
+
   it('marks the runs still in progress with the copper dot', () => {
     const { container } = renderSidebar();
     expect(container.querySelectorAll('.cx-sidebar__run-live')).toHaveLength(1);

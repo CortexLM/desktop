@@ -35,7 +35,7 @@ export interface UpgradeReason {
 
 const DEFAULT_UPGRADE: UpgradeReason = {
   title: 'Sign in to use Cortex models',
-  body: 'Cortex models, cloud runtimes and usage reporting need an account. Chat still works unsigned. Code and Bot need a sign-in.',
+  body: 'Cortex models, cloud runtimes and usage reporting need an account. Chat still works unsigned. Code needs a sign-in.',
   benefits: [
     'Cortex models on your account',
     'Cloud and SSH runtimes',
@@ -133,6 +133,7 @@ interface DispatchTargets {
   navigate: (path: string) => void;
   openFolder: () => void;
   setOpen: (overlay: Overlay | null) => void;
+  authenticated: boolean;
 }
 
 function dispatch(id: string, targets: DispatchTargets): void {
@@ -146,7 +147,8 @@ function dispatch(id: string, targets: DispatchTargets): void {
     return;
   }
   if (id === 'action:new-session') {
-    targets.navigate('/');
+    if (!targets.authenticated) requestUpgrade();
+    targets.navigate('/code');
     return;
   }
   if (id === 'action:notifications') {
@@ -197,7 +199,12 @@ export function OverlayHost(): JSX.Element {
   );
   const run = (id: string) => {
     setOpen(null);
-    dispatch(id, { navigate, openFolder: () => void runs.openWorkspace(), setOpen });
+    dispatch(id, {
+      navigate,
+      openFolder: () => void runs.openWorkspace(),
+      setOpen,
+      authenticated: account.capabilities().authenticated,
+    });
   };
   return (
     <>

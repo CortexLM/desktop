@@ -45,6 +45,7 @@ export interface HomeScreenProps {
   limit?: LimitNotice;
   onPickRepo?: () => void;
   onPickBranch?: () => void;
+  onPickWorktree?: () => void;
   onPickModel?: () => void;
   onPickRuntime?: () => void;
   onAttach?: () => void;
@@ -96,28 +97,47 @@ function repoLabel(draft: SessionDraft): string {
   return draft.runtime === 'local' ? 'Open a folder' : 'Choose a repository';
 }
 
+function locationLabel(runtime: RuntimeKind): string {
+  if (runtime === 'local') return 'Local';
+  return RUNTIME_LABELS[runtime];
+}
+
 function draftControls(props: HomeScreenProps): ComposerControl[] {
-  return [
+  const runtime = props.draft.runtime;
+  const chips: ComposerControl[] = [
+    picker({
+      id: 'location',
+      label: locationLabel(runtime),
+      icon: RUNTIME_ICONS[runtime],
+      onPress: props.onPickRuntime,
+      unavailable: props.capabilities.runtimes.length < 2,
+    }),
+  ];
+  if (runtime === 'local') {
+    chips.push(
+      picker({
+        id: 'host',
+        label: 'This PC',
+        icon: 'desktop',
+      }),
+    );
+  }
+  chips.push(
     picker({ id: 'repo', label: repoLabel(props.draft), icon: 'repo', onPress: props.onPickRepo }),
     picker({
       id: 'branch',
-      label: props.draft.branch ?? 'Default branch',
+      label: props.draft.branch ?? 'main',
       icon: 'branch',
       onPress: props.onPickBranch,
     }),
     picker({
       id: 'worktree',
-      label: props.draft.worktree ?? 'Worktree',
+      label: props.draft.worktree ?? props.draft.repo ?? 'Worktree',
       icon: 'folder',
+      onPress: props.onPickWorktree,
     }),
-    picker({
-      id: 'runtime',
-      label: RUNTIME_LABELS[props.draft.runtime],
-      icon: RUNTIME_ICONS[props.draft.runtime],
-      onPress: props.onPickRuntime,
-      unavailable: props.capabilities.runtimes.length < 2,
-    }),
-  ];
+  );
+  return chips;
 }
 
 function CodeMode(props: HomeScreenProps): JSX.Element {
@@ -226,23 +246,6 @@ function PopulatedHome(
 
       <Show when={props.limit}>{(limit) => <LimitBanner limit={limit()} />}</Show>
 
-      <div class="cx-home__composer">
-        <Composer
-          value={props.draft.prompt}
-          onValueChange={(prompt) => props.onDraftChange({ ...props.draft, prompt })}
-          onSubmit={() => props.onStart(props.draft)}
-          placeholder="Describe a task, or paste an issue link"
-          controls={props.controls()}
-          leading={<CodeMode {...props} />}
-          modelLabel={props.draft.model ?? 'Choose a model'}
-          onPickModel={props.onPickModel}
-          onAttach={props.onAttach}
-          onDictate={props.onDictate}
-          disabled={props.blocked()}
-          disabledReason={props.blocked() ? props.limit?.message : undefined}
-        />
-      </div>
-
       <Show when={props.checklistDismissed() ? undefined : props.checklist}>
         {(checklist) => (
           <Checklist
@@ -260,6 +263,24 @@ function PopulatedHome(
           onViewAll={props.onViewAllSessions}
         />
       </Show>
+
+      <div class="cx-home__composer">
+        <Composer
+          floating
+          value={props.draft.prompt}
+          onValueChange={(prompt) => props.onDraftChange({ ...props.draft, prompt })}
+          onSubmit={() => props.onStart(props.draft)}
+          placeholder="Describe a task, or paste an issue link"
+          controls={props.controls()}
+          leading={<CodeMode {...props} />}
+          modelLabel={props.draft.model ?? 'Choose a model'}
+          onPickModel={props.onPickModel}
+          onAttach={props.onAttach}
+          onDictate={props.onDictate}
+          disabled={props.blocked()}
+          disabledReason={props.blocked() ? props.limit?.message : undefined}
+        />
+      </div>
     </div>
   );
 }

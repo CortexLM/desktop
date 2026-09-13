@@ -1,13 +1,10 @@
 /**
  * What the app is allowed to do, given who is signed in.
  *
- * The product requirement is that Cortex Code is fully usable without an account, minus
- * anything that is Cortex's to give: Cortex models, cloud runtimes, usage metering, review.
- * Rather than scatter `if (signedIn)` through the UI, every screen reads this one record.
- *
- * The server already enforces the same split - the model catalogue is public but every
- * inference route is authenticated, and premium models come back with `locked: true` - so
- * this is the client-side mirror of a real boundary, not a decoration.
+ * Chat is usable without an account (local or BYO providers). Code is shown to
+ * guests and locked: starting a session raises the sign-in modal. Cloud
+ * runtimes, usage, review and automations stay shown and locked until there is
+ * an account.
  */
 
 import type { CortexModel } from './schemas.ts';
@@ -32,8 +29,9 @@ export interface Capabilities {
 }
 
 /**
- * Anonymous mode. Local runtime plus user-supplied provider keys, which is a complete
- * product on its own - what is missing is everything that requires an account to exist.
+ * Anonymous mode. Chat plus the labelled This PC runtime. Starting a Code
+ * session is gated in the UI; the runtime list still includes `local` so the
+ * chips stay shown and locked rather than hidden.
  */
 export const ANONYMOUS_CAPABILITIES: Capabilities = {
   authenticated: false,

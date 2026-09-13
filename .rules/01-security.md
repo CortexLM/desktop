@@ -96,15 +96,14 @@ there is a blocker, not a warning.
 
 ## 1.3 Guest vs signed-in
 
-Anonymous use is a product requirement, not a degraded mode. Without an account
-the app opens onto a usable workspace: on desktop, Chat with a local or BYO
-provider, and Code Home, Sessions, Session detail and Settings all work —
-including **This PC** sessions bound to a folder on this machine.
+Anonymous use is a product requirement for **Chat**, not a degraded mode. Without an
+account the app opens onto a usable Chat workspace (local or BYO providers). **Code is
+shown and locked**: switching to Code or starting a session raises the sign-in modal.
+This PC, Cloud and SSH stay visible so a guest can see what an account buys; they do
+not start a session until the account is there.
 
 Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect,
-and leftover `/bot` create — are **shown and locked**, never hidden. A locked
-row explains what an account buys. An empty list explains nothing and reads like
-a bug. This PC is Cortex Code only; Bot computers are cloud farm boxes.
+Code sessions, and leftover `/bot` create — are **shown and locked**, never hidden.
 
 **Bad** — the guest cannot tell whether the feature is missing, broken, or paid:
 

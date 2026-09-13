@@ -2,12 +2,19 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { CortexApiError, type RuntimeKind } from '@cortex-ide/cortex-api';
 
+const requestUpgrade = vi.fn();
+
+vi.mock('../../shell/overlay-host.tsx', () => ({
+  requestUpgrade: (...args: unknown[]) => requestUpgrade(...args),
+}));
+
 import { composerDraft, resetComposerDraft, setComposerDraft } from '../../state/composer-draft.ts';
 import {
   cycleRuntime,
   pickRepo,
   THIS_PC_NEEDS_FOLDER,
   userFacingStartError,
+  createStartRun,
 } from '../start-run.ts';
 
 describe('cycleRuntime', () => {
@@ -70,5 +77,26 @@ describe('userFacingStartError', () => {
     const message = userFacingStartError(error);
     expect(message).toMatch(/not available on this workspace/);
     expect(message.toLowerCase()).not.toContain('workos');
+  });
+});
+
+describe('createStartRun guest lock', () => {
+  it('does not start a This PC session when unsigned', async () => {
+    requestUpgrade.mockReset();
+    setComposerDraft({ prompt: 'Look around', runtime: 'local' });
+    const startFn = vi.fn();
+    const start = createStartRun({
+      runs: {
+        start: startFn,
+        openWorkspace: vi.fn(),
+        repositories: () => [],
+      } as never,
+      navigate: vi.fn(),
+      setError: vi.fn(),
+      signedIn: () => false,
+    });
+    await start();
+    expect(startFn).not.toHaveBeenCalled();
+    expect(requestUpgrade).toHaveBeenCalled();
   });
 });

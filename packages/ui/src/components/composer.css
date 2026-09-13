@@ -107,8 +107,15 @@
 /* Toolbar                                                                    */
 /* -------------------------------------------------------------------------- */
 
+.cx-composer--floating {
+  box-shadow:
+    color-mix(in srgb, var(--color-text) 8%, transparent) 0 12px 40px,
+    color-mix(in srgb, var(--color-text) 6%, transparent) 0 2px 8px;
+}
+
 .cx-composer__controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
