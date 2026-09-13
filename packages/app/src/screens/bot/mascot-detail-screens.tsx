@@ -75,7 +75,7 @@ export function BotVideosScreen(props: {
     <Show when={props.mascot} fallback={<Missing onBack={props.onBack} />}>
       {(mascot) => (
         <>
-          <PageHeader title="Videos" subtitle="Cursor and click-zoom recordings from this mascot's computer only." />
+          <PageHeader title="Videos" subtitle="Pointer and click-zoom recordings from this mascot's computer only." />
           <PageBody width="list">
             <MascotRail links={mascotLinks(mascot().id, 'videos', props.onGo)} />
             <Show
