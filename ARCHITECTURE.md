@@ -92,6 +92,8 @@ prefers authenticated `/v1/realtime` for tokens and falls back to
 detached host so they never open a production guest session. See
 [packages/cortex-api/CONTRACT.md](./packages/cortex-api/CONTRACT.md).
 
+Chat home docks a floating composer. The sidebar lists Pinned then Recents.
+
 Planning, projects, library, and plugins are product stores in the renderer
 (`packages/app/src/state/`). They persist to `localStorage` so web and desktop
 share the same behaviour without a second SQLite schema for UI-only lists.

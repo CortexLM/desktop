@@ -38,6 +38,13 @@ describe('Code empty home', () => {
     expect(screen.queryByRole('button', { name: /download|get /i })).toBeNull();
   });
 
+  it('offers Ask, Plan and Agent before the session exists', () => {
+    renderEmpty();
+    expect(screen.getByRole('button', { name: 'Ask' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Plan' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Agent' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
   it('starts a session on This PC with a real starter prompt', () => {
     const { onStart, onDraftChange } = renderEmpty();
 
@@ -63,7 +70,7 @@ describe('Code empty home', () => {
     expect(screen.getByRole('button', { name: 'This PC' })).not.toBeDisabled();
     expect(screen.getByRole('button', { name: 'SSH' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Cloud' })).toBeDisabled();
-    expect(screen.getByText('Cloud and SSH need a Cortex account.')).toBeInTheDocument();
+    expect(screen.getByText('Code needs a Cortex account. Sign in to start a session.')).toBeInTheDocument();
   });
 
   it('lets a signed-in account pick Cloud', () => {
@@ -72,7 +79,7 @@ describe('Code empty home', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Cloud' }));
     expect(onDraftChange).toHaveBeenCalledWith(expect.objectContaining({ runtime: 'cloud' }));
-    expect(screen.queryByText('Cloud and SSH need a Cortex account.')).toBeNull();
+    expect(screen.queryByText('Code needs a Cortex account. Sign in to start a session.')).toBeNull();
   });
 
   it('does not tell a signed-in web account that Cloud needs a sign-in', () => {
@@ -84,7 +91,7 @@ describe('Code empty home', () => {
     expect(screen.getByRole('button', { name: 'This PC' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Cloud' })).not.toBeDisabled();
     expect(screen.getByText('This PC runs in the Cortex desktop app.')).toBeInTheDocument();
-    expect(screen.queryByText('Cloud and SSH need a Cortex account.')).toBeNull();
+    expect(screen.queryByText('Code needs a Cortex account. Sign in to start a session.')).toBeNull();
   });
 
   it('explains both missing hosts when the tab has none', () => {
@@ -93,7 +100,7 @@ describe('Code empty home', () => {
       draft: { prompt: '', runtime: 'cloud' },
     });
 
-    expect(screen.getByText(/This PC is the Cortex desktop app/)).toBeInTheDocument();
+    expect(screen.getByText('Code needs a Cortex account. Sign in to start a session.')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Start a session' })).toBeDisabled();
   });
 

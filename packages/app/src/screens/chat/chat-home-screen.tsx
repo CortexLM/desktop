@@ -37,6 +37,8 @@ export interface ChatHomeScreenProps {
   onPickSuggestion: (suggestion: string) => void;
   recents?: readonly ChatRecent[];
   onOpenRecent?: (id: string) => void;
+  pinned?: readonly ChatRecent[];
+  onOpenPinned?: (id: string) => void;
 }
 
 const CHAT_MODES = [
@@ -71,6 +73,7 @@ function ChatComposer(props: ChatHomeScreenProps): JSX.Element {
   return (
     <Composer
       class="cx-chat-home__composer"
+      floating
       value={props.draft}
       onValueChange={props.onDraftChange}
       onSubmit={props.onSubmit}
@@ -93,14 +96,16 @@ function ChatComposer(props: ChatHomeScreenProps): JSX.Element {
   );
 }
 
-function ChatRecents(props: {
-  recents: readonly ChatRecent[];
+function ChatList(props: {
+  title: string;
+  label: string;
+  rows: readonly ChatRecent[];
   onOpen: (id: string) => void;
 }): JSX.Element {
   return (
-    <section class="cx-chat-home__recents" aria-label="Recent chats">
-      <h2 class="cx-chat-home__recents-title">Recents</h2>
-      <For each={props.recents}>
+    <section class="cx-chat-home__recents" aria-label={props.label}>
+      <h2 class="cx-chat-home__recents-title">{props.title}</h2>
+      <For each={props.rows}>
         {(row) => (
           <button type="button" class="cx-chat-home__recent" onClick={() => props.onOpen(row.id)}>
             {row.title}
@@ -116,7 +121,6 @@ export function ChatHomeScreen(props: ChatHomeScreenProps): JSX.Element {
     <div class="cx-chat-home">
       <div class="cx-chat-home__column">
         <h1 class="cx-chat-home__greeting">{props.greeting}</h1>
-        <ChatComposer {...props} />
         <div class="cx-chat-home__apps">
           <For each={props.apps}>{(app) => <AppCard app={app} onOpen={props.onOpenApp} />}</For>
         </div>
@@ -131,12 +135,31 @@ export function ChatHomeScreen(props: ChatHomeScreenProps): JSX.Element {
             </For>
           </div>
         </Show>
+        <Show when={props.pinned?.length ? props.pinned : undefined}>
+          {(rows) => (
+            <ChatList
+              title="Pinned"
+              label="Pinned chats"
+              rows={rows()}
+              onOpen={(id) => props.onOpenPinned?.(id) ?? props.onOpenRecent?.(id)}
+            />
+          )}
+        </Show>
         <Show when={props.recents?.length ? props.recents : undefined}>
-          {(rows) => <ChatRecents recents={rows()} onOpen={(id) => props.onOpenRecent?.(id)} />}
+          {(rows) => (
+            <ChatList
+              title="Recents"
+              label="Recent chats"
+              rows={rows()}
+              onOpen={(id) => props.onOpenRecent?.(id)}
+            />
+          )}
         </Show>
       </div>
-      <span class="cx-chat-home__spacer" />
-      <p class="cx-chat-home__disclaimer">Cortex can make mistakes. Check important info.</p>
+      <div class="cx-chat-home__dock">
+        <ChatComposer {...props} />
+        <p class="cx-chat-home__disclaimer">Cortex can make mistakes. Check important info.</p>
+      </div>
     </div>
   );
 }

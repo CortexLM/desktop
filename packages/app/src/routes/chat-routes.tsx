@@ -12,6 +12,8 @@ import { useAccount } from '../state/session-context.tsx';
 import { useConversations } from '../state/conversations-context.tsx';
 import { watchLiveRoom } from '../state/realtime-rooms.ts';
 import { chatDraft, chatMode, resetChatDraft, setChatDraft, setChatMode } from '../state/chat-draft.ts';
+import { enterProduct } from '../state/guest-lock.ts';
+import { splitPinned } from '../state/pins.ts';
 import { ChatHomeScreen, type ChatApp } from '../screens/chat/chat-home-screen.tsx';
 import { ConversationScreen } from '../screens/chat/conversation-screen.tsx';
 
@@ -47,9 +49,11 @@ export function ChatHomeRoute(): JSX.Element {
     return greetingFor(new Date().getHours(), name);
   });
 
-  const recents = createMemo(() =>
-    (chats.conversations() ?? []).slice(0, 8).map((chat) => ({ id: chat.id, title: chat.title })),
-  );
+  const lists = createMemo(() => {
+    const rows = (chats.conversations() ?? []).map((chat) => ({ id: chat.id, title: chat.title }));
+    const { pinned, recents } = splitPinned(rows, 'chats');
+    return { pinned, recents: recents.slice(0, 8) };
+  });
 
   const send = async () => {
     const text = chatDraft().trim();
@@ -71,14 +75,19 @@ export function ChatHomeRoute(): JSX.Element {
       modelLabel={chats.modelLabel()}
       apps={CHAT_APPS}
       onOpenApp={(id) => {
-        if (id === 'code') navigate('/code');
+        if (id === 'code') {
+          enterProduct('code', account.capabilities().authenticated, navigate);
+          return;
+        }
         if (id === 'planning') navigate('/planning');
         if (id === 'projects') navigate('/projects');
       }}
       suggestions={SUGGESTIONS}
       onPickSuggestion={(suggestion) => setChatDraft(suggestion)}
-      recents={recents()}
+      recents={lists().recents}
+      pinned={lists().pinned}
       onOpenRecent={(id) => navigate(`/chat/${id}`)}
+      onOpenPinned={(id) => navigate(`/chat/${id}`)}
     />
   );
 }

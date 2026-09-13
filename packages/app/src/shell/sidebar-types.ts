@@ -39,12 +39,16 @@ export interface SidebarProps {
   activeSlug: string;
   recentRuns: readonly RecentRun[];
   recentChats: readonly RecentChat[];
+  pinnedRuns?: readonly RecentRun[];
+  pinnedChats?: readonly RecentChat[];
   plan?: SidebarPlan;
   user?: SidebarUser;
   unread?: Partial<Record<string, boolean>>;
   onNavigate: (slug: string) => void;
   onOpenRun: (id: string) => void;
   onOpenChat: (id: string) => void;
+  onTogglePinChat?: (id: string) => void;
+  onTogglePinRun?: (id: string) => void;
   onNewChat: () => void;
   onNewSession: () => void;
   onNewMascot: () => void;

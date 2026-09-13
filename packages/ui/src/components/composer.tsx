@@ -45,6 +45,8 @@ export interface ComposerProps extends Omit<JSX.HTMLAttributes<HTMLFormElement>,
   /** Announced reason the composer cannot submit, e.g. a reached limit. */
   disabledReason?: string;
   sendLabel?: string;
+  /** Raised card that docks to the viewport — Chat and Code homes, follow-up. */
+  floating?: boolean;
 }
 
 interface AttachmentRowProps {
@@ -193,11 +195,21 @@ const OWNED_PROPS = [
   'disabled',
   'disabledReason',
   'sendLabel',
+  'floating',
   'class',
 ] as const satisfies ReadonlyArray<keyof ComposerProps>;
 
-function composerClasses(disabled: boolean | undefined, extra: string | undefined): string {
-  return ['cx-composer', disabled ? 'cx-composer--disabled' : '', extra ?? '']
+function composerClasses(
+  disabled: boolean | undefined,
+  floating: boolean | undefined,
+  extra: string | undefined,
+): string {
+  return [
+    'cx-composer',
+    disabled ? 'cx-composer--disabled' : '',
+    floating ? 'cx-composer--floating' : '',
+    extra ?? '',
+  ]
     .filter(Boolean)
     .join(' ');
 }
@@ -258,7 +270,7 @@ export function Composer(props: ComposerProps): JSX.Element {
 
   return (
     <form
-      class={composerClasses(local.disabled, local.class)}
+      class={composerClasses(local.disabled, local.floating, local.class)}
       onSubmit={(event) => {
         event.preventDefault();
         submit();

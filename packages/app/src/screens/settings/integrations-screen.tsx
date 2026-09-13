@@ -88,7 +88,7 @@ function ConnectedApps(props: {
                     disabled={Boolean(lockReason(integration))}
                     onClick={() => props.onConnect(integration.id)}
                   >
-                    Connect
+                    {integration.id === 'github' ? 'Connect GitHub' : 'Connect'}
                   </Button>
                 }
               >

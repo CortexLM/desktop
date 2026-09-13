@@ -13,6 +13,7 @@ export interface EmptyHomeDraft {
   repo?: string;
   branch?: string;
   model?: string;
+  mode?: 'ask' | 'plan' | 'agent';
 }
 
 export interface CodeEmptyHomeProps {
@@ -22,6 +23,12 @@ export interface CodeEmptyHomeProps {
   onStart: (draft: EmptyHomeDraft) => void;
 }
 
+const CODE_MODES = [
+  { id: 'ask', label: 'Ask' },
+  { id: 'plan', label: 'Plan' },
+  { id: 'agent', label: 'Agent' },
+];
+
 const HOSTS: readonly { id: RuntimeKind; label: string }[] = [
   { id: 'local', label: copy['code.empty.host.local'] },
   { id: 'ssh', label: copy['code.empty.host.ssh'] },
@@ -29,7 +36,11 @@ const HOSTS: readonly { id: RuntimeKind; label: string }[] = [
 ];
 
 /** Honest lock copy: what is missing, not a generic "needs an account". */
-export function hostLockMessage(allowed: readonly RuntimeKind[]): string | undefined {
+export function hostLockMessage(
+  allowed: readonly RuntimeKind[],
+  authenticated = true,
+): string | undefined {
+  if (!authenticated) return copy['code.empty.host.locked.code'];
   const local = allowed.includes('local');
   const remote = allowed.includes('cloud') && allowed.includes('ssh');
   if (local && remote) return undefined;
@@ -47,7 +58,7 @@ export function hostLockMessage(allowed: readonly RuntimeKind[]): string | undef
  */
 export function CodeEmptyHome(props: CodeEmptyHomeProps): JSX.Element {
   const allowed = () => props.capabilities.runtimes;
-  const lock = () => hostLockMessage(allowed());
+  const lock = () => hostLockMessage(allowed(), props.capabilities.authenticated);
 
   const pickHost = (id: string) => {
     if (!allowed().includes(id as RuntimeKind)) return;
@@ -76,6 +87,13 @@ export function CodeEmptyHome(props: CodeEmptyHomeProps): JSX.Element {
           label: host.label,
           disabled: !allowed().includes(host.id),
         }))}
+      />
+      <Segmented
+        class="cx-code-empty__modes"
+        label="Mode"
+        value={props.draft.mode ?? 'agent'}
+        onChange={(id) => props.onDraftChange({ ...props.draft, mode: id as EmptyHomeDraft['mode'] })}
+        options={CODE_MODES}
       />
       <Show when={lock()}>
         {(message) => <p class="cx-code-empty__lock">{message()}</p>}

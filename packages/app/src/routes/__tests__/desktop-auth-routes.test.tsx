@@ -79,7 +79,7 @@ describe('Connect GitHub route', () => {
     const host = accountHost({ id: 'usr_1', email: 'ada@example.com' }, { startGitHubInstall });
 
     mount('/sign-in/github', host);
-    fireEvent.click(screen.getByRole('button', { name: /Install the Cortex GitHub app/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Connect GitHub/ }));
 
     await waitFor(() => expect(startGitHubInstall).toHaveBeenCalledOnce());
     expect(openWorkspace).not.toHaveBeenCalled();
@@ -91,7 +91,7 @@ describe('Connect GitHub route', () => {
     const startGitHubInstall = vi.fn().mockRejectedValue(new Error('not_found'));
     mount('/sign-in/github', accountHost(null, { startGitHubInstall }));
 
-    fireEvent.click(screen.getByRole('button', { name: /Install the Cortex GitHub app/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Connect GitHub/ }));
 
     await waitFor(() => {
       expect(screen.getByRole('alert').textContent).toMatch(/This PC/);
@@ -116,7 +116,7 @@ describe('Integrations GitHub', () => {
       accountHost({ id: 'usr_1', email: 'ada@example.com' }, { startGitHubInstall }),
     );
 
-    const connect = await screen.findByRole('button', { name: 'Connect' });
+    const connect = await screen.findByRole('button', { name: 'Connect GitHub' });
     await waitFor(() => expect(connect).not.toBeDisabled());
     fireEvent.click(connect);
     await waitFor(() => expect(startGitHubInstall).toHaveBeenCalledOnce());

@@ -114,8 +114,9 @@ Long `electron-builder` jobs (Linux matrix in `build.yml`, `staging.yml` artifac
   works after a build. In a headless VM, disable the sandbox:
   `DISPLAY=:1 ./node_modules/.bin/electron packages/main/dist/index.js --no-sandbox`
   (the `Failed to connect to the bus` / GPU-process messages are harmless). Desktop first-launch
-  lands on `/welcome`; skip or finish sign-in enters a usable signed-out workspace — being usable
-  with no account is a product requirement. The local runtime is labelled **This PC**. Cloud and
+  lands on `/welcome`; skip or finish sign-in enters Chat unsigned — being usable
+  with no account is a Chat requirement. **Code is shown and locked** until sign-in
+  (modal on switch or Start). The local runtime is labelled **This PC**. Cloud and
   SSH starts go through `POST /v1/code/sessions` and do not silently run as a local session.
 - `bun run dev` rebuilds `main` in watch mode; you still launch Electron against the built entry as above.
 
@@ -181,10 +182,10 @@ API keys are entered; they never appear in logs.
   the `paper:*` scripts rather than editing generated files by hand. Paper MCP credentials come from
   `PAPER_MCP_URL` / `PAPER_MCP_AUTH` (or a local `.cursor/mcp.json` that is gitignored). Never commit
   that file.
-- Anonymous use is supported by design: without an account the Cortex models and cloud runtimes are
-  *shown and locked*, not hidden — a locked row explains what an account buys, an empty list does not.
-  Cloud, SSH, Automations, Review and Usage need a Cortex account. **This PC** Code
-  sessions still work unsigned with the user's own provider keys. Leftover `/bot`
+- Anonymous use is supported by design: without an account **Chat** works with a local
+  or BYO provider. Code, Cortex models and cloud runtimes are *shown and locked*, not hidden
+  — a locked row or the sign-in modal explains what an account buys. Cloud, SSH, Automations,
+  Review, Usage and Code sessions need a Cortex account. Leftover `/bot`
   screens stay shown; creating a Bot needs an account.
 - **This PC Code sessions** bind to a folder the user picks in the native OS directory dialog. The
   coding agent runs tools against that tree in the desktop harness. There is no working-directory

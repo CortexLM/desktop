@@ -19,7 +19,8 @@ import { TitleBar } from './shell/title-bar.tsx';
 import { ChromeShell, useChrome } from './shell/chrome-context.tsx';
 import { UpdateBanner } from './shell/update-banner.tsx';
 import { OverlayHost, openOverlay } from './shell/overlay-host.tsx';
-import { enterProduct, guestBlocked } from './state/guest-lock.ts';
+import { enterProduct, guestBlocked, GUEST_CODE_BOT } from './state/guest-lock.ts';
+import { splitPinned, togglePin } from './state/pins.ts';
 import { Sidebar, type RecentChat, type RecentRun } from './shell/sidebar.tsx';
 import { navigableRoutes, productForPath, routeBySlug } from './routes.ts';
 import { mascotIdFromPath, openBotStudio, rosterForSidebar } from './shell/bot-sidebar.ts';
@@ -110,7 +111,6 @@ export function slugForPath(pathname: string): string {
 function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
   return sessions
     .filter((session) => !session.archived)
-    .slice(0, 5)
     .map((session) => ({
       id: session.id,
       title: session.title,
@@ -120,9 +120,8 @@ function toRecentRuns(sessions: readonly SessionSummary[]): RecentRun[] {
     }));
 }
 
-/** The five most recent conversations, for the Chat sidebar's RECENTS. */
 function toRecentChats(conversations: readonly ConversationSummary[]): RecentChat[] {
-  return conversations.slice(0, 5).map((chat) => ({ id: chat.id, title: chat.title }));
+  return conversations.map((chat) => ({ id: chat.id, title: chat.title }));
 }
 
 /**
@@ -164,16 +163,26 @@ function WorkspaceSidebar(): JSX.Element {
     if (productForPath(pathname()) === 'bot') void reconcileMascots();
   });
 
+  const signedIn = () => account.capabilities().authenticated;
+  const chatRail = () => {
+    const { pinned, recents } = splitPinned(toRecentChats(chats.conversations() ?? []), 'chats');
+    return { pinned, recents: recents.slice(0, 5) };
+  };
+  const runRail = () => {
+    const { pinned, recents } = splitPinned(toRecentRuns(runs.sessions() ?? []), 'sessions');
+    return { pinned, recents: recents.slice(0, 5) };
+  };
+
   return (
     <Sidebar
       product={productForPath(pathname())}
-      onSwitchProduct={(next) =>
-        enterProduct(next, account.capabilities().authenticated, navigate)
-      }
+      onSwitchProduct={(next) => enterProduct(next, signedIn(), navigate)}
       capabilities={account.capabilities()}
       activeSlug={slugForPath(pathname())}
-      recentRuns={toRecentRuns(runs.sessions() ?? [])}
-      recentChats={toRecentChats(chats.conversations() ?? [])}
+      recentRuns={runRail().recents}
+      pinnedRuns={runRail().pinned}
+      recentChats={chatRail().recents}
+      pinnedChats={chatRail().pinned}
       user={toUser(account.user())}
       mascots={rosterForSidebar()}
       activeMascotId={mascotIdFromPath(pathname())}
@@ -183,10 +192,12 @@ function WorkspaceSidebar(): JSX.Element {
       }}
       onOpenRun={(id) => navigate(`/code/sessions/${id}`)}
       onOpenChat={(id) => navigate(`/chat/${id}`)}
+      onTogglePinChat={(id) => togglePin('chats', id)}
+      onTogglePinRun={(id) => togglePin('sessions', id)}
       onNewChat={() => navigate('/')}
-      onNewSession={() => navigate('/code')}
+      onNewSession={() => enterProduct('code', signedIn(), navigate)}
       onNewMascot={() => {
-        if (guestBlocked(account.capabilities().authenticated)) {
+        if (guestBlocked(signedIn(), GUEST_CODE_BOT)) {
           navigate('/bot');
           return;
         }

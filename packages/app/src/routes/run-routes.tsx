@@ -15,6 +15,7 @@ import type { SessionSummary } from '@cortex-ide/shared';
 import { useAccount } from '../state/session-context.tsx';
 import { useSessions } from '../state/sessions-context.tsx';
 import { composerDraft, setComposerDraft } from '../state/composer-draft.ts';
+import { enterProduct } from '../state/guest-lock.ts';
 import { toInboxSession, toRecentRow } from '../state/session-view.ts';
 import { HomeScreen } from '../screens/home/home-screen.tsx';
 import type { ChecklistStep } from '../screens/home/checklist.tsx';
@@ -164,6 +165,7 @@ export function HomeRoute(): JSX.Element {
       onPickModel={() => navigate('/code/settings')}
       onPickRepo={() => pickRepo(repositoryNames(), () => void runs.openWorkspace())}
       onPickBranch={() => cycleDraftField('branch', branchNames(runs))}
+      onPickWorktree={() => cycleDraftField('worktree', repositoryNames())}
       onPickRuntime={() => cycleRuntime(account.capabilities().runtimes)}
       harness={harness()}
       remoteHost={remoteHost()}
@@ -176,6 +178,7 @@ export function HomeRoute(): JSX.Element {
 
 export function SessionsRoute(): JSX.Element {
   const runs = useSessions();
+  const account = useAccount();
   const navigate = useNavigate();
   const [filter, setFilter] = createSignal('all');
   const [query, setQuery] = createSignal('');
@@ -194,7 +197,7 @@ export function SessionsRoute(): JSX.Element {
       query={query()}
       onQueryChange={setQuery}
       onOpenSession={(id) => navigate(`/code/sessions/${id}`)}
-      onNewSession={() => navigate('/code')}
+      onNewSession={() => enterProduct('code', account.capabilities().authenticated, navigate)}
       emptyState={EMPTY_STATES[filter()] ?? EMPTY_STATES.all}
     />
   );
@@ -229,6 +232,7 @@ export function SessionDetailRoute(): JSX.Element {
   const params = useParams<{ sessionId: string }>();
   const [tab, setTab] = createSignal<WorkbenchTab>('changes');
   const [followUp, setFollowUp] = createSignal('');
+  const [followUpMode, setFollowUpMode] = createSignal<'ask' | 'plan' | 'agent'>('agent');
 
   const detail = createSessionDetail(() => params.sessionId, runs);
   const shell = createMemo(() =>
@@ -249,6 +253,8 @@ export function SessionDetailRoute(): JSX.Element {
       onTabChange={setTab}
       followUp={followUp()}
       onFollowUpChange={setFollowUp}
+      followUpMode={followUpMode()}
+      onFollowUpModeChange={setFollowUpMode}
       onSendFollowUp={() => void send()}
       onBack={() => navigate('/code/sessions')}
       onStop={() => void runs.stop(params.sessionId)}

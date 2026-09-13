@@ -136,7 +136,7 @@ export function ConnectGitHubScreen(props: ConnectGitHubScreenProps): JSX.Elemen
         onClick={() => props.onConnect?.()}
       >
         <Icon name="github" size={16} />
-        Install the Cortex GitHub app
+        Connect GitHub
       </button>
       <Show when={props.onOpenFolder}>
         <Button variant="secondary" block disabled={props.busy} onClick={() => props.onOpenFolder?.()}>

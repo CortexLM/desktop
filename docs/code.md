@@ -28,9 +28,10 @@ are entered in Settings → Providers and go main → keychain.
 
 Connect GitHub (`/sign-in/github` and Settings → Integrations) starts the Cortex
 GitHub App in the system browser (`GET /v1/integrations/github/install`). The
-client probes that route and fails closed if it is missing. Opening a local
-folder is a separate desktop action, not the install. Skip still means
-This PC / a local folder. There is no personal-access-token field.
+primary control is labelled **Connect GitHub**. The client probes that route and
+fails closed if it is missing. Opening a local folder is a separate desktop action,
+not the install. Skip still means This PC / a local folder. There is no
+personal-access-token field.
 
 ## This PC
 
@@ -78,22 +79,24 @@ SSH and host keys are not downloaded to the client.
 
 ## Honest states
 
-Signed-out: Chat and **This PC** Code work with local / BYO providers.
-Automations, Review, Usage, Cloud and SSH stay shown and locked. Leftover
-`/bot` create needs an account.
+Signed-out: **Chat** works with local / BYO providers. Code Home stays visible
+(This PC / SSH / Cloud, Ask / Plan / Agent) and starting a session raises the
+sign-in modal. Automations, Review, Usage, Cloud and SSH stay shown and locked.
+Leftover `/bot` create needs an account.
 
-This PC: the native folder picker is required. Cancel leaves no session and
-does not invent a path. Cloud and SSH fail closed if the control-plane route
-is missing (`POST /v1/code/sessions` historically 404).
+This PC: the native folder picker is required after sign-in. Cancel leaves no
+session and does not invent a path. Cloud and SSH fail closed if the
+control-plane route is missing (`POST /v1/code/sessions` historically 404).
 
 `/code` with no session history is the empty home: a framed CLI preview and a
-This PC / SSH / Cloud picker that starts a real session. Empty home still shows
-those hosts when a host cannot run — This PC locked as desktop-only on the web,
-Cloud/SSH locked behind an account — and the CTA does not start a session that
-cannot run. Once there is history the composer is back.
+This PC / SSH / Cloud picker. Empty home still shows those hosts when a host
+cannot run — This PC locked as desktop-only on the web, every host locked behind
+an account — and the CTA raises the sign-in modal instead of starting a guest
+session. Once there is history the floating composer is back (Local / This PC /
+repo / main / worktree chips).
 
 Web signed-out: no `local` runtime. The composer (once there is history) says
-Cloud needs an account, or offers connecting a remote Cortex Code host.
+Code needs an account, or offers connecting a remote Cortex Code host.
 
 ## This PC
 
@@ -126,3 +129,5 @@ the start fails with a product-language error and the user can stay on This
 PC.
 
 Ask reads; Plan writes a mermaid plan before edits; Agent is the default loop.
+Ask / Plan / Agent are on the empty home, the floating Code composer, and the
+session follow-up.

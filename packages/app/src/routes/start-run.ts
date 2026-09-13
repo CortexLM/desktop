@@ -2,8 +2,7 @@
  * Starts a Code run from the Home composer draft.
  *
  * This PC refuses to start until a folder is open. Cloud and SSH never fall
- * back to a local path. Guests get the sign-in modal rather than a silent Cloud
- * session.
+ * back to a local path. Guests get the sign-in modal rather than a session.
  */
 
 import {
@@ -55,7 +54,7 @@ export function createStartRun(options: StartRunOptions): (draft?: StartDraft) =
     }
     const draft = composerDraft();
     if (!draft.prompt.trim() || inFlight) return;
-    if (draft.runtime !== 'local' && guestBlocked(options.signedIn())) return;
+    if (guestBlocked(options.signedIn())) return;
 
     inFlight = true;
     options.setError(undefined);
@@ -107,7 +106,7 @@ export function cycleRuntime(allowed: readonly RuntimeKind[]): void {
   setComposerDraft((draft) => ({ ...draft, runtime: next }));
 }
 
-export function cycleDraftField(field: 'repo' | 'branch', options: readonly string[]): void {
+export function cycleDraftField(field: 'repo' | 'branch' | 'worktree', options: readonly string[]): void {
   if (options.length === 0) return;
   const current = composerDraft()[field] ?? '';
   const next = options[(options.indexOf(current) + 1) % options.length];

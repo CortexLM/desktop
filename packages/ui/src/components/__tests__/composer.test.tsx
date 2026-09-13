@@ -69,6 +69,11 @@ describe('Composer submission', () => {
     expect(send).not.toBeDisabled();
   });
 
+  it('marks a floating composer', () => {
+    const { container } = renderComposer({ floating: true, value: 'Hi' });
+    expect(container.querySelector('.cx-composer--floating')).not.toBeNull();
+  });
+
   it('sends when the send button is pressed', () => {
     const { onSubmit } = renderComposer({ value: 'Do the thing' });
     fireEvent.click(screen.getByRole('button', { name: 'Start session' }));

@@ -214,7 +214,7 @@ const GITHUB_INTEGRATION = [
   {
     id: 'github',
     name: 'GitHub',
-    description: 'Install the Cortex GitHub app so Code can open pull requests',
+    description: 'Connect GitHub so Code can open pull requests',
     icon: 'github' as const,
     connected: false,
     requiresAccount: true,
