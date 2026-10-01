@@ -1,0 +1,22 @@
+{
+  "user": { "initials": "CL" },
+  "bot": { "name": "Nova", "doing": "sorting your email" },
+  "projects": [
+    { "name": "Spring launch", "to": "project", "chats": [
+      { "title": "April 14 launch plan", "to": "chat", "active": true },
+      { "title": "Customer email sequence", "to": "chat", "dim": true },
+      { "title": "Preview feedback", "to": "chat", "dim": true },
+      { "title": "Show more", "to": "project", "dim": true }
+    ] },
+    { "name": "Studio Nord", "meta": "3 tasks", "status": "yellow", "to": "project", "chats": [] }
+  ],
+  "repos": [
+    { "name": "cortex-web", "tasks": [
+      { "title": "Fix invoice pagination", "status": "blue", "to": "code-session" },
+      { "title": "Move sign-in to passkeys", "meta": "+214 −37", "to": "code-diff" },
+      { "title": "Add CSV exports", "status": "green", "to": "code-pr" }
+    ] },
+    { "name": "cortex-ios", "tasks": [ { "title": "Fix the crash on wake", "status": "red", "to": "code-terminal" } ] }
+  ],
+  "envs": [ { "name": "Cloud · ubuntu-24", "icon": "cpu", "meta": "ready", "status": "green" }, { "name": "Local MacBook Pro", "icon": "terminal", "meta": "offline" } ]
+}

@@ -10,8 +10,10 @@ export type ScreenDef = {
   mode: Mode;
   /** i18n key of the gallery group */
   group: string;
-  /** [variantId, i18n key]; the first one is the default state */
-  variants?: [string, string][];
+  /** [variantId, i18n key, design variant id in /root/cortex-ui]; the first one is the default state */
+  variants?: [string, string, string?][];
+  /** Design route id when it differs from `id` (for the shot comparison). */
+  design?: string;
   render: () => React.ReactNode;
 };
 

@@ -528,3 +528,14 @@ a.chip { display: inline-flex; align-items: center; text-decoration: none; }
 .input[aria-invalid="true"] { border-color: var(--red); }
 
 [data-theme="dark"] .color { box-shadow: inset 0 0 0 1px #ffffff26; }
+
+/* ---------- Desktop host ---------- */
+/* In Electron the window itself is the frame: no wallpaper, no inset window, native traffic lights on macOS. */
+[data-host="desktop"].desk { background: transparent; }
+[data-host="desktop"] .window { width: 100vw; height: 100vh; border-radius: 0; box-shadow: none; }
+[data-host="desktop"] .titlebar { -webkit-app-region: drag; }
+[data-host="desktop"] .titlebar button, [data-host="desktop"] .titlebar [role="tablist"], [data-host="desktop"] .titlebar a { -webkit-app-region: no-drag; }
+[data-host="desktop"][data-platform="win32"] .lights, [data-host="desktop"][data-platform="linux"] .lights { display: none; }
+.lights-space { width: 61px; height: 14px; flex-shrink: 0; }
+.sb-empty { padding: 6px 13px; color: var(--t3); font-size: 12px; }
+[data-host="desktop"][data-platform="win32"] .titlebar .side.end, [data-host="desktop"][data-platform="linux"] .titlebar .side.end { padding-right: 140px; }

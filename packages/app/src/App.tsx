@@ -36,7 +36,7 @@ export default function App() {
 export { NavCtx, type Route };
 
 /** Floating state picker for the current screen (preview only). */
-export function VariantPicker({ variants }: { variants: [string, string][] }) {
+export function VariantPicker({ variants }: { variants: [string, string, string?][] }) {
   const t = useT();
   const [v, setV] = useVariant(variants[0][0]);
   const cur = variants.find((x) => x[0] === v) ?? variants[0];
