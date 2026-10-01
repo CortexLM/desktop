@@ -3,7 +3,7 @@ import tseslint from "typescript-eslint";
 import hooks from "eslint-plugin-react-hooks";
 
 export default tseslint.config(
-  { ignores: ["**/dist/**", "**/node_modules/**", "out/**", "evidence/**", ".cortex-dev/**", "test-results/**", "playwright-report/**"] },
+  { ignores: ["**/dist/**", "**/node_modules/**", "out/**", "evidence/**", ".cortex-dev/**", "test-results/**", "playwright-report/**", "scripts/tmp-*"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -18,5 +18,7 @@ export default tseslint.config(
   },
   { files: ["**/test/**", "tests/**"], rules: { "@typescript-eslint/no-explicit-any": "off", "@typescript-eslint/no-unused-expressions": "off" } },
   { files: ["scripts/dev-smoke.mjs"], languageOptions: { globals: { document: "readonly" } } },
+  { files: ["scripts/smoke.mjs"], languageOptions: { globals: { WebSocket: "readonly" } } },
+  { files: ["tests/e2e/**"], rules: { "react-hooks/rules-of-hooks": "off", "no-empty-pattern": "off" } },
   { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: { process: "readonly", console: "readonly", URL: "readonly", Buffer: "readonly", setTimeout: "readonly", fetch: "readonly" } } },
 );
