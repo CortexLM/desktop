@@ -1,3 +1,4 @@
+import { isComputerUseInput } from "./computer-use"
 import { newId, type Permission, type PermissionReply, type PermissionRule } from "@cortex/schema"
 import type { Bus } from "./bus"
 import { CortexError } from "./error"
@@ -97,7 +98,7 @@ export class PermissionService {
       // a rejection also cancels the other pending asks of the same session
       for (const other of this.list()) if (other.sessionID === sessionID) this.settle(other.id, new CortexError("permission_rejected", `User rejected ${other.tool}`))
     } else {
-      if (reply === "always") {
+      if (reply === "always" && !isComputerUseInput(tool)) {
         this.storage.putDoc("approval", `${p.project}\u0000${tool}\u0000${pattern}`, { tool, pattern, action: "allow" }, p.project)
         for (const other of [...this.pending.values()])
           if (other.project === p.project && other.info.id !== id && other.info.tool === tool && wildcard(pattern, other.info.pattern)) this.settle(other.info.id)

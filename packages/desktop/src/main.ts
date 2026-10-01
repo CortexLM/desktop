@@ -1,7 +1,7 @@
 // Electron main: hosts the local engine in-process and serves it to the renderer over IPC.
 import path from "node:path";
 import { app, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, shell } from "electron";
-import { createCore } from "@cortex/core";
+import { createCore, findCuaDriver } from "@cortex/core";
 import { createServer } from "@cortex/server";
 import { createTranslator, resolveLocale } from "@cortex/i18n";
 import { nodeCatalogs } from "@cortex/i18n/node";
@@ -28,7 +28,7 @@ async function boot() {
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
-  await core.start();
+  await core.start({ computerUse: findCuaDriver() });
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
   const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
   if (testBase) { const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url }); }

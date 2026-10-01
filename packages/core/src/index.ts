@@ -7,6 +7,7 @@ import { BotService } from "./bot"
 import { Bus } from "./bus"
 import { Catalog } from "./catalog"
 import { ConnectionService, type RemoteProbe } from "./connection"
+import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
 import { PluginRegistry, type PluginDirs } from "./plugin"
@@ -92,7 +93,9 @@ export function createCore(opts: CoreOptions) {
     space,
     connection,
     /** Load plugins, connect enabled MCP servers, start the scheduler tick. Catalog loads lazily. */
-    async start(o: { schedulerIntervalMs?: number } = {}) {
+    async start(o: { schedulerIntervalMs?: number; computerUse?: string } = {}) {
+      // Register the computer-use preset once when the host found Cua Driver; the user enables it in Plugins.
+      if (o.computerUse && !mcp.get(COMPUTER_USE_SERVER)) await mcp.add(computerUsePreset(o.computerUse))
       await plugins.scan()
       await mcp.connectAll()
       scheduler.start(o.schedulerIntervalMs)
@@ -110,6 +113,7 @@ export * from "./agent"
 export * from "./bot"
 export * from "./bus"
 export * from "./catalog"
+export * from "./computer-use"
 export * from "./connection"
 export * from "./cron"
 export * from "./error"
