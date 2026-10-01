@@ -8,7 +8,6 @@ import {
   type ErrorInfo,
   type Message,
   type MessageWithParts,
-  type ModelRef,
   type Part,
   type PermissionRule,
   type PromptPartInput,
@@ -147,7 +146,7 @@ export class SessionService {
       const text = p.parts.find((x) => x.type === "text")?.text.trim()
       if (text) session = this.update(sessionID, { title: text.split("\n")[0]!.slice(0, 60) })
     }
-    void this.run(session, resolved, controller)
+    void this.run(session, resolved, controller, p.reasoning ?? true)
       .catch(() => undefined)
       .finally(() => {
         this.running.delete(sessionID)
@@ -262,7 +261,7 @@ export class SessionService {
     return out
   }
 
-  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController) {
+  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController, thinking = true) {
     const { bus } = this.d
     const agent = getAgent(session.agent)!
     const bot = session.botID ? this.d.botContext?.(session.botID) : undefined
@@ -295,7 +294,7 @@ export class SessionService {
       put(p)
     }
     try {
-      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []))
+      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []), thinking)
       const params: ChatParams = { sessionID: session.id, agent: agent.name, model: session.model, maxOutputTokens: opts.maxOutputTokens, providerOptions: opts.providerOptions }
       await this.d.plugins.trigger("chat.params", params)
       const toolset = opts.useTools

@@ -6,6 +6,10 @@ const cat = parseCatalog(fixture())
 const m = (p: string, id: string) => cat[p]!.models[id]!
 
 describe("capability-gated call options", () => {
+  it("leaves thinking off when the user turns it off", () => {
+    expect(callOptions(m("anthropic", "claude-x"), "anthropic", 0, false).providerOptions).toEqual({})
+    expect(callOptions(m("openai", "gpt-x"), "openai", 0, false).providerOptions).toEqual({})
+  })
   it("enables anthropic thinking only for reasoning models", () => {
     const r = callOptions(m("anthropic", "claude-x"), "anthropic")
     expect(r.providerOptions.anthropic).toMatchObject({ thinking: { type: "enabled" } })

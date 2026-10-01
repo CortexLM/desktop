@@ -127,10 +127,10 @@ export class Storage {
   sessions(filter: { kind?: string; botID?: string; parentID?: string | null } = {}): Session[] {
     const where: string[] = []
     const args: string[] = []
-    if (filter.kind) where.push("kind = ?"), args.push(filter.kind)
-    if (filter.botID) where.push("bot_id = ?"), args.push(filter.botID)
+    if (filter.kind) { where.push("kind = ?"); args.push(filter.kind) }
+    if (filter.botID) { where.push("bot_id = ?"); args.push(filter.botID) }
     if (filter.parentID === null) where.push("parent_id IS NULL")
-    else if (filter.parentID) where.push("parent_id = ?"), args.push(filter.parentID)
+    else if (filter.parentID) { where.push("parent_id = ?"); args.push(filter.parentID) }
     const sql = `SELECT data FROM session ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY updated DESC`
     return (this.db.prepare(sql).all(...args) as { data: string }[]).map((r) => JSON.parse(r.data))
   }

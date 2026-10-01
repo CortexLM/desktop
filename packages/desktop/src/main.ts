@@ -1,12 +1,13 @@
 // Electron main: hosts the local engine in-process and serves it to the renderer over IPC.
 import path from "node:path";
-import { app, BrowserWindow, ipcMain, nativeTheme, protocol, net, safeStorage, shell } from "electron";
+import { app, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, shell } from "electron";
 import { createCore } from "@cortex/core";
 import { createServer } from "@cortex/server";
 import { createTranslator, resolveLocale } from "@cortex/i18n";
 import { nodeCatalogs } from "@cortex/i18n/node";
 import { fileCredentials } from "./credentials";
 import { buildMenu } from "./menu";
+import { probeRemote } from "./remote";
 
 const APP_NAME = "Cortex";
 app.setName(APP_NAME);
@@ -23,10 +24,14 @@ async function boot() {
     dataDir,
     credentials: fileCredentials(path.join(dataDir, "credentials.json"), safeStorage),
     catalogUrl: process.env.CORTEX_CATALOG_URL,
+    remoteProbe: (url) => probeRemote(url),
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
   await core.start();
+  // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
+  const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
+  if (testBase) { const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url }); }
   const server = createServer(core);
 
   // Renderer → engine. Requests are rebuilt in main; only /api paths are routed.
@@ -37,9 +42,13 @@ async function boot() {
     return { status: res.status, headers: [...res.headers], body: await res.text() };
   });
   // Server-sent events cannot cross invoke(); they are pumped over a dedicated channel.
+  const streams = new Map<number, ReadableStreamDefaultReader<Uint8Array>>();
+  ipcMain.on("cortex:events:stop", (e) => { void streams.get(e.sender.id)?.cancel(); streams.delete(e.sender.id); });
   ipcMain.on("cortex:events", async (e) => {
+    void streams.get(e.sender.id)?.cancel();
     const res = await server.fetch(new Request("http://local/api/events"));
     const reader = res.body!.getReader();
+    streams.set(e.sender.id, reader);
     const dec = new TextDecoder();
     e.sender.once("destroyed", () => void reader.cancel());
     for (;;) {
@@ -47,6 +56,11 @@ async function boot() {
       if (done || e.sender.isDestroyed()) break;
       e.sender.send("cortex:events:chunk", dec.decode(value));
     }
+  });
+  ipcMain.handle("cortex:pick-directory", async () => {
+    if (process.env.CORTEX_TEST_PICK_DIRECTORY) return process.env.CORTEX_TEST_PICK_DIRECTORY;
+    const r = await dialog.showOpenDialog(win!, { properties: ["openDirectory", "createDirectory"] });
+    return r.canceled ? null : r.filePaths[0];
   });
   ipcMain.on("cortex:open-external", (_e, url: string) => { if (/^https:\/\//.test(url)) void shell.openExternal(url); });
 
@@ -71,7 +85,7 @@ function createWindow() {
     titleBarStyle: mac ? "hiddenInset" : "hidden",
     trafficLightPosition: { x: 20, y: 15 },
     ...(mac ? {} : { titleBarOverlay: { color: "#00000000", symbolColor: nativeTheme.shouldUseDarkColors ? "#ffffff" : "#000000", height: 44 } }),
-    webPreferences: { preload: path.join(__dirname, "preload.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, spellcheck: true },
+    webPreferences: { additionalArguments: [`--cortex-version=${app.getVersion()}`], preload: path.join(__dirname, "preload.cjs"), contextIsolation: true, sandbox: true, nodeIntegration: false, spellcheck: true },
   });
   win.once("ready-to-show", () => win?.show());
   win.webContents.setWindowOpenHandler(({ url }) => { if (/^https:\/\//.test(url)) void shell.openExternal(url); return { action: "deny" }; });

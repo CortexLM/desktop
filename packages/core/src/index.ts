@@ -6,7 +6,7 @@ import { AGENTS } from "./agent"
 import { BotService } from "./bot"
 import { Bus } from "./bus"
 import { Catalog } from "./catalog"
-import { ConnectionService } from "./connection"
+import { ConnectionService, type RemoteProbe } from "./connection"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
 import { PluginRegistry, type PluginDirs } from "./plugin"
@@ -21,6 +21,8 @@ export interface CoreOptions {
   /** Directory for the database and caches. Use ":memory:" for an in-memory database (tests). */
   dataDir: string
   credentials: Credentials
+  /** Probes Cortex Cloud / self-hosted backends (desktop: Cortex SDK). */
+  remoteProbe?: RemoteProbe
   fetch?: typeof fetch
   catalogUrl?: string
   /** Catalog cache directory; defaults to `<dataDir>/cache`. No cache when dataDir is ":memory:" unless given. */
@@ -70,7 +72,7 @@ export function createCore(opts: CoreOptions) {
   const scheduler = new Scheduler(storage, bus, sessions)
   bots.scheduler = scheduler
   const space = new SpaceService(storage)
-  const connection = new ConnectionService(storage, opts.fetch)
+  const connection = new ConnectionService(storage, opts.fetch, opts.remoteProbe)
   bus.subscribe((e) => void plugins.trigger("event", e).catch(() => undefined))
 
   return {

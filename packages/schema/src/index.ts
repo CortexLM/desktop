@@ -352,7 +352,12 @@ export const SpaceItem = z.object({
 export type SpaceItem = z.infer<typeof SpaceItem>
 export const ConnectionMode = z.object({ mode: z.enum(["local", "cloud", "selfhost"]), url: z.string().url().optional(), signedIn: z.boolean() })
 export type ConnectionMode = z.infer<typeof ConnectionMode>
-export const ConnectionProbe = z.object({ status: z.enum(["reachable", "unreachable", "incompatible", "not_applicable"]), httpStatus: z.number().optional() })
+export const ConnectionProbe = z.object({
+  status: z.enum(["reachable", "unreachable", "incompatible", "not_applicable"]),
+  httpStatus: z.number().optional(),
+  authRequired: z.boolean().optional(),
+  models: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
+})
 export type ConnectionProbe = z.infer<typeof ConnectionProbe>
 
 // ---------- request inputs ----------
@@ -373,7 +378,13 @@ export const PromptPartInput = z.discriminatedUnion("type", [
   z.object({ type: z.literal("file"), mime: z.string(), filename: z.string().optional(), url: z.string().optional(), data: z.string().optional() }),
 ])
 export type PromptPartInput = z.infer<typeof PromptPartInput>
-export const PromptInput = z.object({ parts: z.array(PromptPartInput).min(1), agent: z.string().optional(), model: ModelRef.optional() })
+export const PromptInput = z.object({
+  parts: z.array(PromptPartInput).min(1),
+  agent: z.string().optional(),
+  model: ModelRef.optional(),
+  /** Extended thinking. Ignored (never sent) for models without the reasoning capability; defaults to on for them. */
+  reasoning: z.boolean().optional(),
+})
 export type PromptInput = z.infer<typeof PromptInput>
 export const ProviderUpdateInput = z.object({ enabled: z.boolean().optional(), baseURL: z.string().url().nullable().optional() })
 export type ProviderUpdateInput = z.infer<typeof ProviderUpdateInput>

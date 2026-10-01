@@ -25,8 +25,8 @@ function field(src: string, [lo, hi]: [number, number]): Set<number> {
     const m = /^(\*|(\d+)(?:-(\d+))?)(?:\/(\d+))?$/.exec(item)
     if (!m) throw new Error(`invalid cron field: ${item}`)
     const step = m[4] ? Number(m[4]) : 1
-    let a = m[1] === "*" ? lo : Number(m[2])
-    let b = m[1] === "*" ? hi : m[3] !== undefined ? Number(m[3]) : m[4] ? hi : a
+    const a = m[1] === "*" ? lo : Number(m[2])
+    const b = m[1] === "*" ? hi : m[3] !== undefined ? Number(m[3]) : m[4] ? hi : a
     if (a < lo || b > hi || a > b || step < 1) throw new Error(`cron field out of range: ${item}`)
     for (let v = a; v <= b; v += step) out.add(v)
   }

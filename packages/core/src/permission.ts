@@ -80,7 +80,8 @@ export class PermissionService {
     const p = this.pending.get(id)
     if (!p) return
     this.pending.delete(id)
-    err ? p.reject(err) : p.resolve()
+    if (err) p.reject(err)
+    else p.resolve()
   }
 
   list(): Permission[] {

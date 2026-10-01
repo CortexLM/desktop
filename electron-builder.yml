@@ -1,4 +1,4 @@
-appId: com.cortex.ide
+appId: foundation.cortex.desktop
 productName: Cortex
 copyright: Copyright © 2026 Cortex Foundation / CortexLM
 asar: true
@@ -7,34 +7,26 @@ directories:
   output: dist
   buildResources: build
 
+# Main and preload are single esbuild bundles (engine, AI SDK and MCP client inlined); the renderer is a Vite build.
+# No native addons: persistence uses node:sqlite.
 files:
-  - packages/main/dist/**/*
+  - packages/desktop/dist/**/*
   - packages/app/dist/**/*
-  - packages/preload/dist/**/*
-  - node_modules/**/*
   - package.json
+  - "!**/node_modules/**/*"
 
-# Native addons cannot be loaded from inside an asar: `dlopen` needs a real path on
-# disk. Both of these ship a `.node` binary, so they are unpacked beside it.
-#
-# They are also why `node-pty` and `better-sqlite3` are declared in the ROOT
-# package.json rather than only in `packages/main`. electron-builder resolves
-# node_modules from the root manifest, not from the `files` globs, so a native addon
-# declared only by a workspace package is linked under `packages/main/node_modules/`
-# and silently left out — the packaged app then died at import with
-# `ERR_MODULE_NOT_FOUND: Cannot find package 'node-pty'`, while the dev build stayed
-# fine because it resolves from the workspace instead of the asar.
-asarUnpack:
-  - node_modules/node-pty/**/*
-  - node_modules/better-sqlite3/**/*
+extraResources:
+  - from: packages/i18n/locales
+    to: locales
+    filter: ["**/*.json", "!**/*.source.json", "!fixtures/**"]
 
 extraMetadata:
-  main: packages/main/dist/index.js
+  main: packages/desktop/dist/main.cjs
 
 # macOS configuration
 mac:
-  category: public.app-category.developer-tools
-  icon: build/icon.icns
+  category: public.app-category.productivity
+  darkModeSupport: true
   hardenedRuntime: true
   gatekeeperAssess: false
   # Use electron-builder's maintained Electron entitlements.
@@ -62,7 +54,6 @@ dmg:
 
 # Windows configuration
 win:
-  icon: build/icon.ico
   verifyUpdateCodeSignature: true
   target:
     - target: nsis
@@ -80,8 +71,6 @@ nsis:
   createDesktopShortcut: always
   createStartMenuShortcut: true
   shortcutName: Cortex
-  installerIcon: build/icon.ico
-  uninstallerIcon: build/icon.ico
 
 protocols:
   - name: Cortex
@@ -90,7 +79,6 @@ protocols:
 
 # Linux configuration
 linux:
-  icon: build/icon.png
   category: Development
   target:
     - target: AppImage
@@ -103,24 +91,16 @@ linux:
         - arm64
   maintainer: Cortex Foundation / CortexLM
   desktop:
-    Name: Cortex
-    Comment: Cortex Chat + Code
-    Terminal: false
-    Type: Application
-    Categories: Development;IDE;
-    MimeType: x-scheme-handler/cortex
+    entry:
+      Name: Cortex
+      Comment: Cortex
+      Terminal: "false"
+      Categories: Office;
+      MimeType: x-scheme-handler/cortex
 
 appImage:
   license: LICENSE
 
-deb:
-  depends:
-    - gconf2
-    - gconf-service
-    - libnotify4
-    - libappindicator1
-    - libxtst6
-    - libnss3
 
 # Auto-update feed. Packaged apps read this into app-update.yml.
 # Production CI copies latest.yml / latest-mac.yml / latest-linux.yml,

@@ -32,13 +32,13 @@ export interface CallOptions {
 }
 
 /** Capability-gated call options: tools only with tool_call, thinking only with reasoning, output clamped. */
-export function callOptions(model: Model, family: SdkFamily, estimatedInput = 0): CallOptions {
+export function callOptions(model: Model, family: SdkFamily, estimatedInput = 0, thinking = true): CallOptions {
   const caps = capabilities(model)
   let maxOutputTokens: number | undefined = DEFAULT_MAX_OUTPUT
   if (caps.maxOutput > 0) maxOutputTokens = Math.min(maxOutputTokens, caps.maxOutput)
   if (caps.contextWindow > 0) maxOutputTokens = Math.max(1, Math.min(maxOutputTokens, caps.contextWindow - estimatedInput))
   const providerOptions: CallOptions["providerOptions"] = {}
-  if (caps.reasoning) {
+  if (caps.reasoning && thinking) {
     const opts = model.reasoning_options ?? []
     if (family === "anthropic") {
       const b = opts.find((o) => o.type === "budget_tokens")
