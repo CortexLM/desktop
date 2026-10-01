@@ -4,8 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-concurrency: { group: ci-${{ github.ref }}, cancel-in-progress: true }
-permissions: { contents: read }
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
 
 jobs:
   checks:
@@ -40,7 +43,11 @@ jobs:
       - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: e2e-linux, path: "test-results/\nplaywright-report/" }
+        with:
+          name: e2e-linux
+          path: |
+            test-results/
+            playwright-report/
 
   macos:
     name: macOS build, package, launch
@@ -74,4 +81,7 @@ jobs:
             test-results/
             playwright-report/
       - uses: actions/upload-artifact@v4
-        with: { name: cortex-mac-arm64-zip, path: "dist/*.zip", retention-days: 7 }
+        with:
+          name: cortex-mac-arm64-zip
+          path: dist/*.zip
+          retention-days: 7
