@@ -78,8 +78,16 @@ Cancelling the stream reader does not cancel backend generation. Supported reaso
 and cancel-turn behavior has been requested from the contract owner, who confirmed both
 are absent at backend `73b934c7`. A remote UI must distinguish detachment from cancellation;
 reconnection repeats the same POST/body, Idempotency-Key and Last-Event-ID. Password/MFA
-continuation designs are requested in the shared design board. None of these probes proves
+continuation designs are delivered as Platform drafts in the shared design board. The
+eight-route, 94-variant receipt and later scoped corrections have separate source pins;
+whole-page acceptance and immutable integration delivery remain pending. See the
+[verified receipt](../evidence/recovery-followup/platform-receipt.json). Its simulated auth,
+diagnostic and stream states establish no backend availability. None of these probes proves
 the pending authentication or remote inference integration.
+The [route contract map](../evidence/recovery-followup/platform-contract-map.md) distinguishes
+local provider settings from remote operator routing and records untyped remote turn/approval
+payloads. The draft's automatic attachment removal on incompatible model selection conflicts
+with desktop's retained-draft/file contract and requires a design correction or exclusion.
 
 The backend's `none` mode also validates browser Origin headers on mutations. Main-process
 SDK requests are origin-pinned server requests without a browser Origin; a separate browser

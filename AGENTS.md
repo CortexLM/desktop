@@ -165,6 +165,10 @@ only by Work → Automations and bot routines), **Plugins & skills** (`/api/plug
 yet). Approved delivery remains pending in `/root/cortex-ui/DESIGN-REQUESTS.md` (outside this repo);
 the design owner's live drafts are not integration inputs.
 Their native Go entries are disabled. Do not build stand-in screens; say "not yet" honestly.
+Platform's eight-route/94-variant draft receipt is verified separately in
+[`evidence/recovery-followup/platform-receipt.json`](./evidence/recovery-followup/platform-receipt.json).
+Its original captures and later scoped correction hashes are distinct; simulated authentication,
+diagnostics, streams and approvals establish no API availability.
 
 Cortex Cloud sign-in has no engine route yet: the live login submit says it is unavailable
 (`packages/app/src/screens/system/account.tsx`).

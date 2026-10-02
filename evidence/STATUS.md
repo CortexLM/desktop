@@ -86,7 +86,13 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
   plugin/skill lifecycle, task consent/timezone, Space cover and MCP secret-handling contracts.
 - **Additional design approval:** Providers, Connection, model capability picker and
-  inline tool approval requests remain open. Existing functional controls need design review.
+  inline tool approval drafts now have an eight-route/94-variant Platform receipt. Read-only
+  verification checks 396 capture hashes, 376 distinct passing views (372 initial plus four
+  unchanged confirmations), 52 targeted groups and all three served build assets. Current
+  Platform sources match later scoped corrective hashes, not that original receipt. Existing
+  functional controls still need approved integration; prototype behavior is not API availability.
+  The [eight-route contract map](recovery-followup/platform-contract-map.md) identifies automatic
+  attachment deletion as a desktop contract conflict. A retained-attachment refusal state is requested.
 - **Reference revision:** 205 reference versus 213 app states reconciled to eight extra
   Settings variants. Source freeze `2026-10-02-7b388e2d9674` and Components scope delivered;
   Home A7-final/B7-final approve their verified/inherited scope. Integration and matching frozen

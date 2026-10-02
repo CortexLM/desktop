@@ -107,3 +107,16 @@ The [Productivity contract map](productivity-contract-map.md) records nine local
 288 matching receipt-image hashes, current TSX drift and missing lifecycle/secret-handling
 contracts. Eight later scoped design corrections are acknowledged separately from whole-page
 acceptance and the pending immutable integration package.
+
+Platform's [receipt verification](platform-receipt.json) checks the original source snapshot,
+396 images, twelve evidence files, three on-disk and HTTP-served build assets, eight routes
+and 94 variants. It records 376 distinct passing views: 372 initially, four confirmed on
+unchanged source/build, with cause unproven; all 52 targeted groups passed. The live TSX/CSS
+match the later corrective snapshot and A/B disposition, so the original captures are not
+reattributed. The later reports were read and hashed; their browser journeys were not rerun.
+No sample credentials or prototype source is imported into the desktop.
+The [Platform contract map](platform-contract-map.md) identifies the draft's incompatible-model
+attachment deletion as a conflict with accepted desktop retention. Both pinned and current source
+still contain that behavior; a correction/exclusion is requested. Model Test availability, untyped
+remote turn/approval payloads, origin/account-bound main-only auth and local/remote permission
+semantics remain explicit binding gates. No source behavior is changed by this receipt.
