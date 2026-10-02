@@ -75,9 +75,12 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/composer-safety.spec.ts` — both themes at 960×640: Code directory cancellation,
   missing models, Code/Work/Bot engine refusal, locked pending admission, duplicate-submit
   suppression and accepted-send clearing. Work's empty-board transition preserves its draft.
-  Code and Chat refusal checks require immediate composer control access while the toast remains
-  visible; Chat changes the model while keeping the draft/image. Small-window transcript toasts
-  move above the composer rather than hiding its recovery controls.
+  Code, Chat and Work refusal checks require immediate composer control access while the toast remains
+  visible; Chat changes the model while keeping the draft/image. Transcript toasts anchor
+  above the actual composer dock, including nested Work transcripts and attachment rows;
+  popup menus render above notifications so model selection remains reachable.
+  Live Work tests distinguish refused/empty tasks from successful, subsequently failed and aborted tasks,
+  verifying both the board and transcript badges after reload.
 - `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
   handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
   demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced
@@ -89,6 +92,7 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   Leaving onboarding cancels delayed navigation, including a departure from preview into live mode.
   Work task previews publish their activity to the sidebar, then restore prior background activity;
   an explicit pause, saved appearance and draft survive this temporary activity.
+  Saved-look toasts must leave every Chat composer control reachable at both window sizes.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.

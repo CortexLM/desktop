@@ -132,13 +132,15 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
 one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
 Toast Undo remains an accessible action. See [`docs/testing.md`](./docs/testing.md).
-Work columns wrap within narrow content panes; small-window transcript toasts sit above
-the composer so retained drafts, model selection and send controls remain reachable.
+Work columns wrap within narrow content panes; transcript toasts anchor above the actual
+composer dock, including attachments and nested Work transcripts at every window width.
 Components is a preview-only catalog: 94 blocks, 31 screen families, 30 motion entries;
 at most three thumbnails mount. Bot Studio keeps refused saves editable; preview Bot appearance,
 activity and drafts share temporary renderer state, cleared on reload, locale change or exit.
 Work preview task activity temporarily updates the sidebar Bot; leaving restores its prior
 activity while preserving an explicit pause and saved appearance.
+Live Work marks Done only after a persisted successful assistant completion; refused,
+failed, interrupted and unread tasks remain outside Done, including after reload.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |

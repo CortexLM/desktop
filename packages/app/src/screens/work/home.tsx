@@ -18,6 +18,12 @@ import type { WorkFx } from "./fixtures";
 type Col = "todo" | "doing" | "review" | "done";
 const COLS: [Col, string][] = [["todo", ""], ["doing", "run"], ["review", "wait"], ["done", "ok"]];
 type Task = { id: string; t: string; bot: string; col: Col; meta: string; prog?: number };
+const taskOutcome = (messages: MessageWithParts[]) => {
+  const last = messages.at(-1)?.info;
+  if (last?.role !== "assistant") return "todo";
+  if (last.error) return last.error.code === "aborted" ? "paused" : "failed";
+  return last.time.completed === undefined ? "todo" : "done";
+};
 
 /* ====================================================================== */
 /* 1. Work home                                                           */
@@ -37,11 +43,20 @@ export function WorkHome() {
   const bots = useBots();
   const perms = usePermissions();
   const status = useStatuses();
+  const liveSessions = sessions.state === "ready" ? sessions.data : undefined;
+  // ponytail: one history read per root Bot session; use a bulk summary when the API provides one.
+  const outcomes = useQuery(async () => ({
+    sessions: liveSessions, status,
+    values: Object.fromEntries(await Promise.all((preview ? [] : liveSessions ?? []).filter((s) => !s.parentID).map(async (s) =>
+      [s.id, await api.sessions.messages(s.id).then(taskOutcome, () => "todo" as const)] as const))),
+  }), [preview, liveSessions, status]);
+  // A changed session/status snapshot invalidates completion while its history is being read.
+  const results = outcomes.state === "ready" && outcomes.data.sessions === liveSessions && outcomes.data.status === status ? outcomes.data.values : {};
   const liveBots = bots.state === "ready" ? bots.data : [];
   const asking = new Set(perms.state === "ready" ? perms.data.map((p) => p.sessionID) : []);
   const liveTasks: Task[] = sessions.state === "ready" ? sessions.data.filter((s) => !s.parentID).map((s) => ({
     id: s.id, t: s.title, bot: liveBots.find((b) => b.id === s.botID)?.name ?? name0,
-    col: asking.has(s.id) ? "review" : status[s.id] === "busy" || status[s.id] === "retry" ? "doing" : "done", meta: date.short(s.time.updated),
+    col: asking.has(s.id) ? "review" : status[s.id] === "busy" || status[s.id] === "retry" ? "doing" : status[s.id] !== "error" && results[s.id] === "done" ? "done" : "todo", meta: date.short(s.time.updated),
   })) : [];
   const [tasks, setTasks] = React.useState<Task[]>(() => (v === "empty" ? [] : fx.tasks ?? []));
   React.useEffect(() => { if (preview) setTasks(v === "empty" ? [] : fx.tasks ?? []); }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -244,7 +259,8 @@ const BADGE: Record<string, string> = { done: "ok", failed: "err", blocked: "err
 
 export function WorkTask() {
   const { params } = useNav();
-  return isPreview() ? <WorkTaskPreview /> : <WorkTaskLive id={params.get("id") ?? ""} />;
+  const id = params.get("id") ?? "";
+  return isPreview() ? <WorkTaskPreview /> : <WorkTaskLive key={id} id={id} />;
 }
 
 function WorkTaskPreview() {
@@ -399,8 +415,8 @@ function WorkTaskLive({ id }: { id: string }) {
   const main = useMainBot();
   const cfg = bot ? { ...main!.cfg, name: bot.name } : main?.cfg;
   const asking = perms.state === "ready" && perms.data.some((p) => p.sessionID === id);
-  const v = asking ? "approval" : status === "busy" || status === "retry" ? "running" : status === "error" ? "failed" : "done";
-  const state = ({ approval: "waiting", running: "working", failed: "blocked", done: "done" } as Record<string, State>)[v];
+  const v = asking ? "approval" : status === "busy" || status === "retry" ? "running" : status === "error" ? "failed" : taskOutcome(msgs);
+  const state = ({ approval: "waiting", running: "working", failed: "blocked", done: "done", todo: "idle", paused: "asleep" } as Record<string, State>)[v];
   const name = bot?.name ?? cfg?.name ?? "";
   const steps: [string, StepS, string][] = msgs.flatMap((m) => m.parts.filter((p): p is ToolPart => p.type === "tool")).map((p) => [
     toolTitle(t, p), p.state.status === "completed" ? "ok" : p.state.status === "error" ? "err" : "run", dur(p)]);
@@ -418,7 +434,7 @@ function WorkTaskLive({ id }: { id: string }) {
     <div className="content-top">
       <IconBtn icon="arrow-left" label={t("work.task.back")} onClick={() => go("work-home")} />
       <span className="title travail-ell" style={{ maxWidth: 360 }}>{s?.title}</span>
-      {s && <span className={"badge " + (BADGE[v] ?? "run")} style={{ marginLeft: 6 }}>{v === "running" && <span className="spin" />}{t(`work.task.status.${v}`)}</span>}
+      {s && <span className={"badge " + (v === "todo" ? "" : BADGE[v] ?? "run")} style={{ marginLeft: 6 }}>{v === "running" && <span className="spin" />}{v === "todo" ? t("work.col.todo") : t(`work.task.status.${v}`)}</span>}
       <div className="spacer" />
       {v === "running" && <IconBtn icon="stop" label={t("work.task.stop")} onClick={() => api.sessions.abort(id).then(() => toast.add({ title: t("work.task.toastStopped"), data: { icon: "stop" } }), () => {})} />}
     </div>

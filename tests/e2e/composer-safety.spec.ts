@@ -109,7 +109,16 @@ for (const theme of ["light", "dark"]) {
       const tasks = await call<Session[]>(page, "/api/sessions?kind=bot");
       expect(tasks).toHaveLength(1);
       expect(await call<MessageWithParts[]>(page, `/api/sessions/${tasks[0].id}/messages`)).toEqual([]);
+      const todo = page.locator('.travail-col[data-col="todo"] .travail-kcard');
+      const done = page.locator('.travail-col[data-col="done"] .travail-kcard');
+      await expect(todo).toHaveCount(1);
+      await expect(todo).toContainText(draft.trim());
+      await expect(done).toHaveCount(0);
+      await expect(page.getByText("Couldn’t send that. Try again.", { exact: true })).toBeVisible();
       await capture(page, `work-draft-kept-${theme}`);
+      await page.reload();
+      await expect(todo).toHaveCount(1);
+      await expect(done).toHaveCount(0);
 
       const bot = await call<Bot>(page, "/api/bots", "POST", { name: "Draft bot", model });
       for (const route of [`work-task?id=${tasks[0].id}`, `bot?id=${bot.id}`]) {
@@ -121,6 +130,12 @@ for (const theme of ["light", "dark"]) {
         await expect(input).toHaveValue(draft);
         await expect(input).toBeEnabled();
         await expect(input).toBeInViewport({ ratio: 1 });
+        for (const control of await page.locator(".composer").locator("input, button").all()) await control.click({ trial: true, timeout: 1500 });
+        await expect(page.getByText("Couldn’t send that. Try again.", { exact: true })).toBeVisible();
+        if (route.startsWith("work-task")) {
+          await expect(page.locator(".content-top .badge")).toHaveText("To do");
+          await expect(page.locator(".msg-user, .msg-bot")).toHaveCount(0);
+        }
         await capture(page, `${route.split("?")[0]}-draft-kept-${theme}`);
       }
       const botSessions = await call<Session[]>(page, `/api/bots/${bot.id}/sessions`);
@@ -137,6 +152,57 @@ for (const theme of ["light", "dark"]) {
       const messages = await call<MessageWithParts[]>(page, `/api/sessions/${botSessions[0].id}/messages`);
       expect(messages.filter((m) => m.info.role === "user")).toHaveLength(1);
       expect(fake.requests).toHaveLength(1);
+
+      await page.goto(`${page.url().split("#")[0]}#/work-task?id=${tasks[0].id}&theme=${theme}`);
+      await page.reload();
+      const badge = page.locator(".content-top .badge");
+      await expect(badge).toHaveText("To do");
+      await input.fill(draft);
+      await input.press("Enter");
+      await expect(input).toHaveValue("");
+      await expect(badge).toHaveText("Done");
+      await expect(page.locator(".msg-bot")).toContainText("Everything works.");
+      await page.reload();
+      await expect(badge).toHaveText("Done");
+      const workMessages = await call<MessageWithParts[]>(page, `/api/sessions/${tasks[0].id}/messages`);
+      expect(workMessages.filter((m) => m.info.role === "user")).toHaveLength(1);
+      expect(workMessages.at(-1)?.info.time.completed).toBeDefined();
+      expect(workMessages.at(-1)?.info.error).toBeUndefined();
+      await page.getByRole("button", { name: "Back to the board", exact: true }).click();
+      await page.reload();
+      await expect(done.filter({ hasText: "Task bot" })).toContainText(draft.trim());
+      await expect(todo).toHaveCount(0);
+
+      const failing = await startFakeProvider({ rejectFirst: true });
+      try {
+        await call(page, "/api/providers/fake", "PATCH", { baseURL: failing.url });
+        await page.goto(`${page.url().split("#")[0]}#/work-task?id=${tasks[0].id}&theme=${theme}`);
+        await page.reload();
+        await expect(badge).toHaveText("Done");
+        await input.fill("A later attempt fails");
+        await input.press("Enter");
+        await expect(input).toHaveValue("");
+        await expect(badge).toHaveText("Failed");
+        await page.reload();
+        await expect(badge).toHaveText("Failed");
+        expect((await call<MessageWithParts[]>(page, `/api/sessions/${tasks[0].id}/messages`)).at(-1)?.info.error).toBeDefined();
+        await page.getByRole("button", { name: "Back to the board", exact: true }).click();
+        await page.reload();
+        await expect(todo.filter({ hasText: "Task bot" })).toContainText(draft.trim());
+        await expect(done.filter({ hasText: "Task bot" })).toHaveCount(0);
+        expect(failing.requests).toHaveLength(1);
+      } finally { await failing.close(); }
+      await call(page, "/api/providers/fake", "PATCH", { baseURL: fake.url });
+      await call(page, `/api/sessions/${tasks[0].id}/prompt`, "POST", { parts: [{ type: "text", text: "Interrupt this attempt" }] });
+      await call(page, `/api/sessions/${tasks[0].id}/abort`, "POST");
+      await page.goto(`${page.url().split("#")[0]}#/work-task?id=${tasks[0].id}&theme=${theme}`);
+      await page.reload();
+      await expect(badge).toHaveText("Paused");
+      expect((await call<MessageWithParts[]>(page, `/api/sessions/${tasks[0].id}/messages`)).at(-1)?.info.error?.code).toBe("aborted");
+      await page.getByRole("button", { name: "Back to the board", exact: true }).click();
+      await page.reload();
+      await expect(todo.filter({ hasText: "Task bot" })).toContainText(draft.trim());
+      await expect(done.filter({ hasText: "Task bot" })).toHaveCount(0);
       expect(errors).toEqual([]);
     } finally { await app.close(); await fake.close(); }
   });

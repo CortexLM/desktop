@@ -72,6 +72,9 @@ cancels the session's other pending asks). Computer-use input tools never save `
   Onboarding completion navigation is cancelled if the user leaves before its display delay ends.
   Work preview activity temporarily replaces the sidebar status; leaving the task restores prior
   activity without resuming an explicitly paused Bot. No engine Bot or session is written.
+  Live Work completion comes from the latest persisted assistant message, not an idle process.
+  Refused/empty and failed/interrupted tasks stay outside Done; transcript failures remain visible
+  after reload. The board currently reads each root Bot session's history until a bulk summary exists.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not
   backfilled; the timer lives only while the app runs. Work → Automations and bot routines

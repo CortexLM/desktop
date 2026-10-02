@@ -135,6 +135,8 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) {
       await expect(chatBot).toHaveAttribute("aria-label", /Preview bot/);
       await expect(chatBot).toHaveAttribute("data-state", "asleep");
       await expect(chatBot.locator(".m-shape")).toHaveAttribute("fill", "#FF6A13");
+      for (const control of await page.locator(".dock .composer").locator("input, button").all()) await control.click({ trial: true, timeout: 1500 });
+      await expect(page.locator(".toast").filter({ hasText: "Look saved" }).first()).toBeVisible();
       await capture(page, `preview-bot-shared-${width}-${theme}`);
       await show(page, "work-home?v=empty", theme);
       await expect(page.getByRole("heading", { name: "Hand your first task to Preview bot" })).toBeVisible();

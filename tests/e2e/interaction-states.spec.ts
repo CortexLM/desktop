@@ -89,6 +89,7 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) {
         await expect(blocks.last().locator(".chat-reason-t")).toHaveAttribute("aria-expanded", "true");
         await trigger.click();
         await expect(panel.locator("li")).toHaveCount(2);
+        await expect(panel.locator("li").last()).toBeInViewport({ ratio: 1 });
         if (width === 960) await capture(page, `reasoning-expanded-${width}-${theme}`);
       });
 
