@@ -103,6 +103,27 @@ describe("skills", () => {
   })
 })
 
+describe("tools", () => {
+  it("webfetch separates removed script/style content without reconstructing tags", async () => {
+    const url = "https://page.test/text"
+    const html = "before<script>ignored()</script>after<style>body{}</style>end<p>tail</p><scr<script>ignored()</script>ipt <sty<style>body{}</style>le"
+    const output = "before after end tail <scr ipt <sty le"
+    const srv = await fakeOpenAI([{ deltas: [toolCall("fetch1", "webfetch", { url })], finish: "tool_calls" }, { deltas: [{ content: "done" }], finish: "stop" }])
+    const core = testCore(srv.url, {
+      fetch: async (input, init) => String(input) === url ? new Response(html, { headers: { "content-type": "text/html" } }) : fetch(input, init),
+    })
+    try {
+      const s = core.sessions.create({ model: { providerID: "fake", modelID: "reasoner" } })
+      await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "Fetch the page" }] })
+      expect(core.sessions.messages(s.id)[1]!.parts.find((p) => p.type === "tool")).toMatchObject({ tool: "webfetch", state: { status: "completed", output } })
+      expect(JSON.parse(srv.requests[1].messages.find((m: any) => m.role === "tool").content).output).toBe(output)
+    } finally {
+      await core.close()
+      await srv.close()
+    }
+  })
+})
+
 describe("plugins", () => {
   it("loads a plugin dir, exposes its tool and hooks, and can be disabled", async () => {
     const dir = mkdtempSync(join(tmpdir(), "cortex-plugin-"))

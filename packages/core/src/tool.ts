@@ -189,7 +189,7 @@ const webfetch = defineTool({
     const text = await res.text()
     const type = res.headers.get("content-type") ?? ""
     // ponytail: best-effort model text, not HTML sanitization; use an HTML parser if extraction fidelity is needed.
-    const body = type.includes("html") ? text.replace(/<(script|style)[\s\S]*?<\/\1>/gi, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() : text
+    const body = type.includes("html") ? text.replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() : text
     return { title: url, output: truncate(body), metadata: { status: res.status } }
   },
 })

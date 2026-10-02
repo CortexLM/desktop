@@ -11,7 +11,7 @@ export function newId(kind: IdKind): string {
   const now = Date.now()
   counter = now === lastTime ? counter + 1 : 0
   lastTime = now
-  const rand = Math.random().toString(36).slice(2, 10).padEnd(8, "0")
+  const rand = Array.from(crypto.getRandomValues(new Uint8Array(8)), (b) => b.toString(16).padStart(2, "0")).join("")
   return `${PREFIX[kind]}_${now.toString(16).padStart(12, "0")}${counter.toString(16).padStart(4, "0")}${rand}`
 }
 

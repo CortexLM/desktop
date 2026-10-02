@@ -1,10 +1,15 @@
-import { describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { Event, EVENT_TYPES, McpConfig, newId, Part, Schedule } from "../src/index"
 
 describe("schema", () => {
-  it("ids are prefixed and ascending", () => {
+  afterEach(() => vi.restoreAllMocks())
+
+  it("ids stay unique, prefixed and ascending without Math.random", () => {
+    vi.spyOn(Date, "now").mockReturnValue(Date.now())
+    vi.spyOn(Math, "random").mockImplementation(() => { throw new Error("Insecure randomness is disabled") })
     const ids = Array.from({ length: 50 }, () => newId("message"))
-    expect(ids.every((i) => i.startsWith("msg_"))).toBe(true)
+    expect(ids.every((i) => /^msg_[0-9a-f]{32}$/.test(i))).toBe(true)
+    expect(new Set(ids).size).toBe(ids.length)
     expect([...ids].sort()).toEqual(ids)
   })
   it("parses events and parts", () => {

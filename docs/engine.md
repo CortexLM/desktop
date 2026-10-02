@@ -17,6 +17,8 @@ Service table and file map: [`packages/core/README.md`](../packages/core/README.
   `mcp.status`, `task.run` are live-only.
 - `GET /api/events` is the SSE stream of the bus. The renderer keeps one subscription
   (`packages/app/src/state/live.ts`).
+- New record IDs retain the prefix/time/counter format with a 64-bit Web Crypto random
+  suffix; old IDs remain valid. They identify records, not authentication sessions.
 
 ## Sessions
 
@@ -89,5 +91,6 @@ those screens; the computer-use preset cannot be enabled from the UI yet.
 - Pending asks and running loops are in memory; a restart drops them.
 - `bash` has no sandbox.
 - `webfetch` strips markup for model text; it is not an HTML sanitizer. Tool/model text
-  must remain escaped if displayed. Session IDs are record identifiers, not auth tokens.
+  must remain escaped if displayed. Removed script/style blocks become spaces so adjacent
+  text and tag fragments do not concatenate.
 - Error `message` is developer English; the UI maps `code` ([`.rules/02-errors.md`](../.rules/02-errors.md)).
