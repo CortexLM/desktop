@@ -1,0 +1,642 @@
+{
+ "bot": "Nova",
+ "sources": [
+  {
+   "m": "SH",
+   "c": "blue",
+   "site": "salon-habitat.fr",
+   "t": "Tarifs exposants 2026 : stands équipés et stands nus",
+   "d": "Le mètre carré équipé passe à 420 € HT, montage inclus au-delà de 24 m².",
+   "date": "12 mars 2026"
+  },
+  {
+   "m": "JA",
+   "c": "green",
+   "site": "journal-artisans.fr",
+   "t": "Combien coûte vraiment un stand de salon ?",
+   "d": "Compter 15 à 25 % du budget pour l’éclairage et le mobilier, souvent absents des devis.",
+   "date": "4 février 2026"
+  },
+  {
+   "m": "OC",
+   "c": "yellow",
+   "site": "observatoire-ceramique.fr",
+   "t": "Baromètre 2026 des métiers d’art",
+   "d": "Les salons restent le premier canal d’acquisition pour 61 % des ateliers.",
+   "date": "20 janvier 2026"
+  },
+  {
+   "m": "SN",
+   "c": "red",
+   "site": "studionord.fr",
+   "t": "Studio Nord — scénographie de stands",
+   "d": "Conception et fabrication de stands sur mesure, livraison J-3 garantie.",
+   "date": "2026"
+  },
+  {
+   "m": "IN",
+   "c": "blue",
+   "site": "insee.fr",
+   "t": "Artisanat d’art : chiffres clés 2025",
+   "d": "38 000 entreprises et 1,6 milliard d’euros de chiffre d’affaires.",
+   "date": "9 décembre 2025"
+  },
+  {
+   "m": "AM",
+   "c": "green",
+   "site": "ateliermorel.fr",
+   "t": "Atelier Morel — fiche technique du stand modulable",
+   "d": "Structure aluminium, éclairage LED intégré, montage en 6 heures.",
+   "date": "2026"
+  },
+  {
+   "m": "EP",
+   "c": "yellow",
+   "site": "expoplus.fr",
+   "t": "Expo Plus — conditions générales de location",
+   "d": "Livraison la veille de l’ouverture, assurance en option.",
+   "date": "2025"
+  },
+  {
+   "m": "CM",
+   "c": "red",
+   "site": "cma-france.fr",
+   "t": "Aides régionales à la participation aux salons",
+   "d": "Jusqu’à 50 % des frais de stand pris en charge pour les ateliers de moins de 10 salariés.",
+   "date": "3 mars 2026"
+  },
+  {
+   "m": "PD",
+   "c": "blue",
+   "site": "paris-design-week.fr",
+   "t": "Calendrier 2026 des salons de la décoration",
+   "d": "Huit salons majeurs entre janvier et septembre à Paris.",
+   "date": "15 janvier 2026"
+  },
+  {
+   "m": "LM",
+   "c": "green",
+   "site": "lemag-deco.fr",
+   "t": "Exposer pour la première fois : 9 erreurs à éviter",
+   "d": "Réserver tôt, vérifier l’éclairage, prévoir un stock tampon.",
+   "date": "28 février 2026"
+  },
+  {
+   "m": "BF",
+   "c": "yellow",
+   "site": "bpifrance-creation.fr",
+   "t": "Financer sa présence sur un salon",
+   "d": "Prêt d’honneur et assurance prospection pour les salons internationaux.",
+   "date": "2025"
+  },
+  {
+   "m": "RC",
+   "c": "red",
+   "site": "revue-ceramique.fr",
+   "t": "Le retour des céramistes sur les grands salons",
+   "d": "Les visiteurs professionnels ont progressé de 12 % en 2025.",
+   "date": "6 novembre 2025"
+  },
+  {
+   "m": "LO",
+   "c": "blue",
+   "site": "lyon-objets.fr",
+   "t": "Salon des créateurs de Lyon : bilan 2025",
+   "d": "212 exposants et 41 000 visiteurs en trois jours.",
+   "date": "2 octobre 2025"
+  },
+  {
+   "m": "AT",
+   "c": "green",
+   "site": "atelier-tarifs.fr",
+   "t": "Comparateur de devis de scénographie",
+   "d": "Prix médian constaté : 610 € HT le mètre carré, tout compris.",
+   "date": "18 mars 2026"
+  }
+ ],
+ "home": {
+  "suggestions": [
+   [
+    "bot",
+    "Chaque lundi, résume les nouveautés IA qui méritent mon attention"
+   ],
+   [
+    "documents",
+    "Synthétise les dernières mises à jour du dossier Lancement printemps"
+   ]
+  ]
+ },
+ "chat": {
+  "title": "Plan de lancement du 14 avril",
+  "q": "Prépare un plan de lancement pour le 14 avril, avec les jalons et les responsables.",
+  "reply": [
+   "Voici une proposition de plan pour le lancement du 14 avril, construite à partir du brief et des retours de l’avant-première.",
+   "Semaine 1 — teasing : trois publications et une séquence d’e-mails aux inscrits de la liste d’attente.",
+   "Semaine 2 — lancement : démonstration en direct le mardi à 18 h, puis ouverture des comptes par vagues de 500."
+  ],
+  "ack": "C’est noté. J’ajoute ce point au plan et je préviens Léa, responsable des e-mails.",
+  "h": "Jalons et responsables",
+  "file": "planning.csv",
+  "csv": "date,jalon,responsable\n2026-03-31,Teasing réseaux,Inès\n2026-04-07,Séquence e-mails,Léa\n2026-04-14,Démo en direct,Hugo"
+ },
+ "states": {
+  "title": "Devis du stand · salon de septembre",
+  "ack": "C’est noté. J’ajoute ce point à la comparaison et je préviens Léa, qui suit le budget du salon.",
+  "prev": {
+   "user": "Voici les trois devis reçus pour le stand.",
+   "files": [
+    [
+     "devis-atelier-morel.pdf",
+     "PDF · 3 pages"
+    ],
+    [
+     "devis-studio-nord.pdf",
+     "PDF · 2 pages"
+    ],
+    [
+     "devis-expo-plus.pdf",
+     "PDF · 4 pages"
+    ]
+   ],
+   "bot": "Bien reçu, je les ai lus tous les trois. Tu veux une comparaison détaillée ou directement une recommandation ?"
+  },
+  "q": "Compare les trois devis pour le stand du salon de septembre et recommande-en un.",
+  "answer": "Après comparaison, je recommande le devis d’Atelier Morel : c’est le plus cher des trois (18 400 € HT), mais le seul qui inclut le montage, l’éclairage et l’assurance.\nStudio Nord propose 15 900 € HT, hors éclairage : en ajoutant les 2 100 € de location de spots, l’écart tombe à 400 €.\nLe devis Expo Plus (13 200 € HT) reste le moins cher, mais la livraison est prévue la veille de l’ouverture : c’est trop juste pour monter le stand sereinement.",
+  "reason": [
+   "Lire les trois devis et repérer ce qui est inclus",
+   "Ramener les prix à un périmètre identique (montage, éclairage, assurance)",
+   "Vérifier les dates de livraison par rapport au 11 septembre",
+   "Pondérer le risque de retard face à l’écart de prix"
+  ],
+  "budget": {
+   "q": "Quel est le budget total du salon avec les déplacements ?",
+   "steps": [
+    "Additionner stand, transport des pièces et hébergement",
+    "Appliquer la remise de 8 % négociée avec Studio Nord"
+   ],
+   "a": "Le budget total s’élève à 24 900 € HT, dont 4 300 € de déplacements pour trois personnes."
+  },
+  "market": "Les prix de ces devis sont-ils dans la moyenne du marché ?",
+  "queries": [
+   "prix moyen stand salon décoration 2026",
+   "devis scénographie stand éclairage inclus",
+   "délais livraison stand salon Paris"
+  ],
+  "cited": [
+   "Oui, ils sont cohérents avec le marché. Pour un stand équipé, le mètre carré se situe autour de 420 € HT en 2026",
+   " et l’éclairage représente souvent 15 à 25 % du budget sans figurer dans les devis",
+   "Rapporté à vos 36 m², le devis d’Atelier Morel (511 € le m²) reste sous le prix médian constaté de 610 €, tout compris",
+   "Studio Nord garantit en plus une livraison trois jours avant l’ouverture",
+   "À noter : la chambre des métiers peut prendre en charge jusqu’à 50 % des frais de stand pour un atelier de moins de 10 salariés"
+  ],
+  "rich": {
+   "q": "Fais-moi une synthèse complète, avec un tableau et le calcul du retour sur investissement.",
+   "title": "Synthèse des trois devis",
+   "intro": "Les trois offres couvrent un stand de 36 m² pour le salon du 11 au 15 septembre. Elles diffèrent surtout par ce qu’elles incluent :",
+   "items": [
+    [
+     "Atelier Morel",
+     "tout compris : montage, éclairage LED, assurance."
+    ],
+    [
+     "Studio Nord",
+     "structure sur mesure, éclairage en location à part."
+    ],
+    [
+     "Expo Plus",
+     "le moins cher, mais livré la veille de l’ouverture."
+    ]
+   ],
+   "h": {
+    "table": "Comparatif",
+    "calc": "Calcul",
+    "roi": "Retour sur investissement"
+   },
+   "tableLabel": "Comparatif des devis",
+   "head": [
+    "Prestataire",
+    "Prix HT",
+    "Options",
+    "Total",
+    "Livraison"
+   ],
+   "rows": [
+    [
+     "Atelier Morel",
+     "18 400 €",
+     "—",
+     "18 400 €",
+     "8 sept."
+    ],
+    [
+     "Studio Nord",
+     "15 900 €",
+     "2 100 €",
+     "18 000 €",
+     "8 sept."
+    ],
+    [
+     "Expo Plus",
+     "13 200 €",
+     "3 400 €",
+     "16 600 €",
+     "10 sept."
+    ]
+   ],
+   "file": "comparatif.js",
+   "code": "const devis = [\n  { nom: \"Atelier Morel\", ht: 18400, options: 0 },\n  { nom: \"Studio Nord\", ht: 15900, options: 2100 },\n  { nom: \"Expo Plus\", ht: 13200, options: 3400 },\n];\nconst total = (d) => d.ht + d.options;\ndevis.sort((a, b) => total(a) - total(b));",
+   "mathLabel": "ROI égale chiffre d’affaires attendu moins coût, divisé par coût",
+   "math": {
+    "roi": "ROI",
+    "rev": "CA",
+    "sub": "salon",
+    "c": "C",
+    "num": "52 000 − 18 400",
+    "den": "18 400",
+    "res": "1,83"
+   },
+   "outro": "Avec 52 000 € de commandes attendues, chaque euro investi dans le stand en rapporterait 1,83."
+  },
+  "tool": {
+   "file": "catalogue-atelier-morel.pdf",
+   "meta": "PDF · 18 pages · 6,2 Mo",
+   "q": "Résume l’évolution des prix dans ce catalogue.",
+   "extracted": "46 références et 3 tableaux extraits",
+   "answer": "Le catalogue compte 46 références. Les prix ont augmenté de 6 % en moyenne par rapport à 2025, surtout sur les grands plats (page 12)."
+  },
+  "files": {
+   "pdf": [
+    "devis-studio-nord-v2.pdf",
+    "PDF · 1,8 Mo"
+   ],
+   "img": [
+    "maquette-stand.png",
+    "Image · 2 400 × 1 600"
+   ],
+   "up": [
+    "plan-salle-B.pdf",
+    "PDF · 4,1 Mo"
+   ],
+   "err": [
+    "video-stand-2025.mov",
+    "Trop lourd · 412 Mo sur 100 Mo"
+   ]
+  },
+  "edit": {
+   "v1": [
+    "Compare les devis.",
+    "Compare les trois devis en ne gardant que ceux qui incluent le montage."
+   ],
+   "a": "Seuls Atelier Morel et Studio Nord incluent le montage. Atelier Morel l’emporte : l’éclairage et l’assurance sont compris, pour 400 € de plus.",
+   "v2": [
+    "Et si on prend un stand de 24 m² au lieu de 36 ?"
+   ]
+  },
+  "regen": [
+   "Je recommande Atelier Morel : c’est le seul devis tout compris, et l’écart avec Studio Nord n’est que de 400 € une fois l’éclairage ajouté.",
+   "Studio Nord est le meilleur compromis : 18 000 € éclairage compris, une livraison garantie trois jours avant et une structure réutilisable pour le salon de Lyon.",
+   "En bref : Atelier Morel pour la tranquillité, Studio Nord pour le prix, et Expo Plus à éviter à cause de la livraison la veille."
+  ],
+  "limitTime": "18 h 40",
+  "long": {
+   "q": "Rédige une note de décision complète sur le choix du prestataire, pour la direction.",
+   "title": "Note de décision · prestataire du stand",
+   "note": "Ce point a été vérifié dans les devis signables reçus le 2 juin ; les montants s’entendent hors taxes et hors frais de déplacement de l’équipe.",
+   "sections": [
+    [
+     "Contexte",
+     "Le salon se tient du 11 au 15 septembre, hall 5. Le stand de 36 m² est en angle, avec deux faces ouvertes sur l’allée principale."
+    ],
+    [
+     "Critères retenus",
+     "Prix total à périmètre égal, date de livraison, qualité de l’éclairage, réutilisation possible de la structure et conditions d’annulation."
+    ],
+    [
+     "Atelier Morel",
+     "Devis tout compris à 18 400 € HT. Structure aluminium modulable, éclairage LED intégré, assurance et montage en 6 heures par deux techniciens."
+    ],
+    [
+     "Studio Nord",
+     "15 900 € HT hors éclairage. Structure bois sur mesure, très soignée, mais non réutilisable. Livraison garantie trois jours avant l’ouverture."
+    ],
+    [
+     "Expo Plus",
+     "13 200 € HT, éclairage et mobilier en option pour 3 400 €. La livraison est prévue le 10 septembre au soir, sans marge en cas de retard."
+    ],
+    [
+     "Conditions d’annulation",
+     "Atelier Morel rembourse 80 % jusqu’à 30 jours avant. Studio Nord facture la conception quoi qu’il arrive. Expo Plus ne rembourse rien après signature."
+    ],
+    [
+     "Risques",
+     "Le principal risque est logistique : une livraison la veille impose un montage de nuit, avec un surcoût de 1 200 € de main-d’œuvre."
+    ],
+    [
+     "Recommandation",
+     "Atelier Morel, pour la sérénité du montage et la réutilisation de la structure au salon de Lyon en février."
+    ],
+    [
+     "Prochaines étapes",
+     "Valider le devis avant le 15 juin pour bloquer l’acompte de 30 %, puis envoyer le plan du stand au prestataire."
+    ]
+   ]
+  },
+  "suggestions": [
+   [
+    "documents",
+    "Compare les devis du dossier Salon de septembre"
+   ],
+   [
+    "recherche-web",
+    "Trouve les aides régionales pour exposer en salon"
+   ],
+   [
+    "images",
+    "Imagine trois ambiances pour le stand Atelier Morel"
+   ]
+  ]
+ },
+ "voice": {
+  "user": "Tu peux me rappeler ce qu’il reste à valider pour le stand avant vendredi ?",
+  "bot": "Il reste deux choses : signer le devis d’Atelier Morel et envoyer le plan du stand. Je peux préparer l’e-mail pour Camille, si tu veux.",
+  "when": "4 min 12 s · aujourd’hui à 16 h 05",
+  "summary": [
+   "Deux validations restent à faire avant vendredi : le devis d’Atelier Morel et le plan du stand.",
+   "Nova prépare un e-mail pour Camille Laurent avec le devis en pièce jointe.",
+   "Rappel ajouté : jeudi à 10 h, vérifier la livraison des présentoirs."
+  ],
+  "transcriptDesc": "Ajoutée au chat Devis du stand",
+  "interrupt": "Attends, ajoute aussi la facture du transporteur."
+ },
+ "canvas": {
+  "doc": [
+   "Lyon, le 3 octobre 2026 — Atelier Morel, maison de céramique fondée à Limoges en 2014, inaugure le 17 octobre sa première boutique, au 12 rue Auguste-Comte.",
+   "Sur 80 m², la boutique réunit les collections de table, une sélection de pièces uniques et un atelier ouvert où le public pourra voir tourner les céramistes chaque samedi.",
+   "« Nous voulions un lieu où l’on touche la matière avant de l’acheter », explique Camille Laurent, directrice de la marque. Une vente inaugurale est prévue du 17 au 19 octobre.",
+   "Contact presse : Inès Garnier — presse@ateliermorel.fr"
+  ],
+  "sel": "un atelier ouvert où le public pourra voir tourner les céramistes chaque samedi",
+  "sel2": "un atelier vitré où chacun pourra regarder les céramistes au tour, tous les samedis de 10 h à 13 h",
+  "selBefore": "Sur 80 m², la boutique réunit les collections de table, une sélection de pièces uniques et ",
+  "title": "Communiqué de presse · boutique de Lyon",
+  "head": "Communiqué · Atelier Morel à Lyon",
+  "file": "compte-a-rebours.ts",
+  "code": "// Compte à rebours jusqu’à l’ouverture de la boutique\nconst OUVERTURE = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function tempsRestant(maintenant = new Date()) {\n  const ms = Math.max(0, OUVERTURE.getTime() - maintenant.getTime());\n  const jours = Math.floor(ms / 86_400_000);\n  const heures = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${jours} j ${heures} h`;\n}\n\nconsole.log(tempsRestant());",
+  "output": "13 j 21 h",
+  "docQ": "Rédige un communiqué pour l’ouverture de la boutique Atelier Morel à Lyon, le 17 octobre.",
+  "codeQ": "Écris une petite fonction qui affiche le temps restant avant l’ouverture.",
+  "docA": "J’ai rédigé une première version dans le canevas. Sélectionne un passage pour me demander une modification ciblée.",
+  "codeA": "Voici la fonction : elle renvoie un texte du type « 13 j 21 h ». Tu peux l’exécuter directement dans le canevas.",
+  "compareQ": "Montre-moi ce qui a changé depuis la version 2.",
+  "time": "14 h 32",
+  "versions": [
+   [
+    3,
+    "Actuelle · 14 h 32"
+   ],
+   [
+    2,
+    "Ajout de la citation · 14 h 20"
+   ],
+   [
+    1,
+    "Premier jet · 14 h 12"
+   ]
+  ],
+  "h1": "Atelier Morel ouvre sa première boutique à Lyon",
+  "cmp": {
+   "a": "Sur 80 m², la boutique réunit les collections de table",
+   "del": ", quelques pièces anciennes",
+   "ins": ", une sélection de pièces uniques",
+   "b": " et un atelier ouvert où le public pourra voir tourner les céramistes chaque samedi.",
+   "removed": "Une vente privée est prévue le 16 octobre."
+  }
+ },
+ "search": {
+  "q": "Salons déco à Paris en 2026 : dates et tarifs exposants",
+  "emptyBody": "Je n’ai trouvé aucune source récente qui donne les tarifs exposants 2026. Les organisateurs ne les ont peut-être pas encore publiés.",
+  "chips": [
+   "Inclure les tarifs 2025",
+   "Élargir à toute la France",
+   "Chercher en anglais"
+  ],
+  "p1": "Huit salons majeurs de la décoration se tiennent à Paris en 2026, dont trois entre janvier et mars et la plupart des autres en septembre",
+  "h": "Tarifs exposants",
+  "items": [
+   "Stand équipé : environ 420 € HT le m², montage inclus au-delà de 24 m²",
+   "Prix médian tout compris constaté : 610 € HT le m²",
+   "Jusqu’à 50 % pris en charge par les aides régionales pour les petits ateliers"
+  ],
+  "p2": "Pour un premier salon, réserve avant la fin du premier trimestre : les emplacements en angle partent en priorité",
+  "related": [
+   "Quels salons pour la céramique artisanale ?",
+   "Comment obtenir l’aide régionale aux salons ?",
+   "Quel budget prévoir pour un premier stand ?"
+  ]
+ },
+ "deep": {
+  "q": "Fais une recherche approfondie sur le marché de la céramique artisanale en France, pour préparer l’ouverture de Lyon.",
+  "topic": "Marché de la céramique artisanale en France, 2023–2026",
+  "meta": "48 sources · 7 min 40 s · 3 octobre 2026",
+  "plan": [
+   "Taille et croissance du marché de la céramique artisanale en France (2023–2026)",
+   "Profils d’acheteurs : particuliers, hôtellerie, concept stores",
+   "Canaux de vente : salons, boutiques, vente en ligne",
+   "Prix moyens par catégorie de pièces",
+   "Principaux acteurs et positionnement d’Atelier Morel"
+  ],
+  "toc": [
+   "Synthèse",
+   "Taille du marché",
+   "Acheteurs",
+   "Canaux de vente",
+   "Prix",
+   "Concurrence",
+   "Recommandations"
+  ],
+  "body": [
+   "Le marché français de la céramique artisanale atteint 410 millions d’euros en 2025, en hausse de 7 % par an depuis 2023. La demande est portée par l’hôtellerie et les concept stores.",
+   "Avec 38 000 entreprises de métiers d’art, la céramique représente près de 11 % du secteur ; les ateliers de moins de 5 personnes en forment l’essentiel.",
+   "Les particuliers de 30 à 50 ans restent le cœur de clientèle, mais les achats professionnels progressent deux fois plus vite.",
+   "Les salons demeurent le premier canal d’acquisition pour 61 % des ateliers ; la vente en ligne dépasse désormais 30 % du chiffre d’affaires des marques établies.",
+   "Le prix moyen d’une assiette artisanale s’établit à 38 €, celui d’un grand plat à 120 €, avec un écart de 1 à 3 selon la notoriété.",
+   "Une dizaine de maisons structurent le haut de gamme ; Atelier Morel se distingue par ses séries limitées et ses délais courts.",
+   "Ouvrir la boutique de Lyon avec un atelier visible, renforcer la présence sur deux salons professionnels et lancer une offre dédiée à l’hôtellerie."
+  ]
+ },
+ "image": {
+  "title": "Visuels du stand",
+  "prompt": "Stand de salon pour Atelier Morel : céramiques blanches sur étagères en chêne clair, lumière douce, ambiance atelier.",
+  "refusedQ": "Fais une affiche du stand avec le logo officiel d’une grande marque de luxe et le visage d’une actrice connue.",
+  "alternatives": [
+   "Une affiche avec le logo d’Atelier Morel",
+   "Un mannequin fictif devant le stand",
+   "Une composition uniquement typographique"
+  ],
+  "fileBase": "stand-atelier-morel",
+  "editAsk": "Remplace le vase par une pile d’assiettes bleues"
+ },
+ "share": {
+  "url": "cortex.app/s/7f3a-k29q",
+  "team": "Équipe Studio Nord",
+  "teamSub": "Les 12 membres de l’espace de travail",
+  "title": "Plan de lancement du 14 avril",
+  "user": "Prépare un plan de lancement pour le 14 avril, avec les jalons et les responsables.",
+  "bot": [
+   "Voici une proposition de plan pour le lancement du 14 avril, construite à partir du brief et des retours de l’avant-première.",
+   "Semaine 1 — teasing : trois publications et une séquence d’e-mails aux inscrits de la liste d’attente."
+  ],
+  "org": "Studio Nord",
+  "previewUser": "Prépare un plan de lancement pour le 14 avril…",
+  "owner": "Camille Laurent",
+  "admin": "Hugo Martin, administrateur"
+ },
+ "temp": {
+  "q": "Aide-moi à formuler un refus poli au devis d’Expo Plus, sans fermer la porte.",
+  "a": "Bonjour, merci pour votre proposition détaillée. Après comparaison, nous avons retenu une autre offre pour le salon de septembre, principalement pour des questions de délai de livraison. Nous serions ravis de vous consulter pour nos prochains événements.",
+  "short": "Voici une version plus courte : « Merci pour votre devis. Nous avons retenu une autre offre cette fois-ci, mais gardons volontiers le contact. »"
+ },
+ "library": [
+  {
+   "kind": "projects",
+   "img": "aube",
+   "mono": "LP",
+   "title": "Lancement printemps",
+   "desc": "Plan, jalons et supports pour la sortie du 14 avril.",
+   "who": "Camille",
+   "when": "il y a 2 h"
+  },
+  {
+   "kind": "files",
+   "img": "lagon",
+   "mono": "SN",
+   "title": "Brief Studio Nord",
+   "desc": "Objectifs, cibles et contraintes de la refonte du site.",
+   "who": "Julien",
+   "when": "il y a 5 h"
+  },
+  {
+   "kind": "images",
+   "img": "crepuscule",
+   "mono": "VC",
+   "title": "Visuels campagne",
+   "desc": "Douze déclinaisons pour les réseaux et l’affichage.",
+   "who": "Camille",
+   "when": "hier"
+  },
+  {
+   "kind": "links",
+   "img": "prairie",
+   "mono": "IA",
+   "title": "Veille IA",
+   "desc": "Articles et annonces retenus par Nova cette semaine.",
+   "who": "Nova",
+   "when": "lundi"
+  },
+  {
+   "kind": "projects",
+   "img": "atelier",
+   "mono": "AM",
+   "title": "Atelier Morel",
+   "desc": "Devis, échanges et planning du chantier de mai.",
+   "who": "Camille",
+   "when": "il y a 3 j"
+  },
+  {
+   "kind": "files",
+   "img": "marche",
+   "mono": "Q2",
+   "title": "Étude de marché Q2",
+   "desc": "Tableaux comparatifs des ventes par canal.",
+   "who": "Inès",
+   "when": "il y a 4 j"
+  },
+  {
+   "kind": "images",
+   "img": "montagne",
+   "mono": "RM",
+   "title": "Repérages montagne",
+   "desc": "Photos de lieux pour le tournage d’été.",
+   "who": "Julien",
+   "when": "il y a 1 sem."
+  },
+  {
+   "kind": "links",
+   "img": "ceramique",
+   "mono": "FC",
+   "title": "Fournisseurs céramique",
+   "desc": "Contacts, tarifs et délais des ateliers sélectionnés.",
+   "who": "Camille",
+   "when": "il y a 2 sem."
+  }
+ ],
+ "history": [
+  {
+   "id": "1",
+   "title": "Plan de lancement du 14 avril",
+   "sub": "Jalons, responsables et séquence d’e-mails",
+   "when": "14:32",
+   "group": "Aujourd’hui"
+  },
+  {
+   "id": "2",
+   "title": "Tri des e-mails du matin",
+   "sub": "Nova · 3 e-mails triés, 2 à valider",
+   "when": "08:00",
+   "group": "Aujourd’hui",
+   "task": "ok"
+  },
+  {
+   "id": "3",
+   "title": "Comparer les ventes de mars et d’avril",
+   "sub": "Analyse par canal en cours",
+   "when": "11:05",
+   "group": "Aujourd’hui",
+   "task": "run"
+  },
+  {
+   "id": "4",
+   "title": "Réponse au devis Atelier Morel",
+   "sub": "Brouillon prêt à relire",
+   "when": "18:20",
+   "group": "Hier"
+  },
+  {
+   "id": "5",
+   "title": "Résumé du brief Studio Nord",
+   "sub": "Objectifs et contraintes en cinq points",
+   "when": "15:47",
+   "group": "Hier"
+  },
+  {
+   "id": "6",
+   "title": "Export des factures de mars",
+   "sub": "Échec : accès au dossier refusé",
+   "when": "09:12",
+   "group": "Hier",
+   "task": "err"
+  },
+  {
+   "id": "7",
+   "title": "Idées de légendes pour Instagram",
+   "sub": "Douze propositions, ton chaleureux",
+   "when": "jeudi",
+   "group": "7 derniers jours"
+  },
+  {
+   "id": "8",
+   "title": "Veille IA de la semaine",
+   "sub": "Nova · 5 annonces retenues sur 38",
+   "when": "lundi",
+   "group": "7 derniers jours",
+   "task": "ok"
+  },
+  {
+   "id": "9",
+   "title": "Traduire la page tarifs en anglais",
+   "sub": "Version relue et validée",
+   "when": "lundi",
+   "group": "7 derniers jours"
+  }
+ ]
+}

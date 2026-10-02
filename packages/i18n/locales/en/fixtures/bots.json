@@ -1,0 +1,419 @@
+{
+ "main": {
+  "name": "Nova",
+  "doing": "sorting your email"
+ },
+ "team": [
+  {
+   "cfg": {
+    "name": "Iris",
+    "shape": "drop",
+    "color": "#1E7BFF",
+    "eyes": "commas",
+    "mouth": "none",
+    "glasses": "round"
+   },
+   "role": "Assistant",
+   "state": "thinking",
+   "doing": "Preparing the 3 pm sync"
+  },
+  {
+   "cfg": {
+    "name": "Margaux",
+    "shape": "squircle",
+    "color": "#FF6A13",
+    "eyes": "ovals",
+    "mouth": "smile",
+    "hat": "cap"
+   },
+   "role": "Sales",
+   "state": "working",
+   "doing": "Updating 12 CRM records"
+  },
+  {
+   "cfg": {
+    "name": "Sam",
+    "shape": "hexagon",
+    "color": "#12B8A0",
+    "eyes": "commas",
+    "mouth": "none",
+    "symbol": "bug"
+   },
+   "role": "Support",
+   "state": "blocked",
+   "doing": "Access denied to the supplier portal"
+  },
+  {
+   "cfg": {
+    "name": "Hugo",
+    "shape": "cloud",
+    "color": "#14B85A",
+    "eyes": "commas",
+    "mouth": "none",
+    "symbol": "mail"
+   },
+   "role": "Inbox",
+   "state": "working",
+   "doing": "Sorting 23 new emails",
+   "lead": "Iris"
+  },
+  {
+   "cfg": {
+    "name": "Léo",
+    "shape": "triangle",
+    "color": "#EE3A97",
+    "eyes": "dots",
+    "mouth": "none"
+   },
+   "role": "Expenses",
+   "state": "waiting",
+   "doing": "Waiting for you to approve 2 receipts",
+   "lead": "Iris"
+  },
+  {
+   "cfg": {
+    "name": "Max",
+    "shape": "round",
+    "color": "#5F6B7E",
+    "eyes": "pixels",
+    "mouth": "none",
+    "glasses": "aviator"
+   },
+   "role": "Payroll",
+   "state": "done",
+   "doing": "October payslips ready",
+   "lead": "Iris"
+  },
+  {
+   "cfg": {
+    "name": "Zoé",
+    "shape": "pebble",
+    "color": "#F2263F",
+    "eyes": "ovals",
+    "mouth": "o",
+    "hat": "beanie"
+   },
+   "role": "Social media",
+   "state": "idle",
+   "doing": "Waiting for Julien’s visual",
+   "lead": "Margaux"
+  },
+  {
+   "cfg": {
+    "name": "Paul",
+    "shape": "pill",
+    "color": "#FFAA00",
+    "eyes": "dots",
+    "mouth": "none",
+    "hat": "headphones"
+   },
+   "role": "Watch",
+   "state": "asleep",
+   "doing": "Paused until Monday 08:00",
+   "lead": "Margaux"
+  },
+  {
+   "cfg": {
+    "name": "Inès",
+    "shape": "drop",
+    "color": "#93603A",
+    "eyes": "dots",
+    "mouth": "smile",
+    "extra": "scarf"
+   },
+   "role": "Customer tickets",
+   "state": "working",
+   "doing": "Answering ticket #4182",
+   "lead": "Sam"
+  }
+ ],
+ "page": {
+  "heroTip": "Sorting 3 emails received at 9:12",
+  "hello": "Hello Camille",
+  "summary": "I’ve handled 14 items since this morning. Two are waiting for your decision.",
+  "team": [
+   "Iris",
+   "Hugo",
+   "Léo",
+   "Sam"
+  ],
+  "feed": [
+   [
+    "mail",
+    "3 emails sorted",
+    "Two quote requests to handle before Thursday.",
+    "12 min ago"
+   ],
+   [
+    "calendar",
+    "Meeting prepared",
+    "Studio Nord sync at 3 pm: notes and agenda ready.",
+    "40 min ago"
+   ],
+   [
+    "globe",
+    "This week’s AI watch",
+    "5 announcements kept out of 38, summary ready to read.",
+    "Monday 08:00"
+   ]
+  ],
+  "approve": {
+   "t": "Reply to Atelier Morel",
+   "d": "Hello Julien, thank you for your quote and the timelines you shared",
+   "to": "To Julien Morel"
+  },
+  "routines": [
+   [
+    "a",
+    "Morning sort",
+    "Every day at 08:00",
+    true
+   ],
+   [
+    "b",
+    "AI watch",
+    "Every Monday at 08:00",
+    true
+   ],
+   [
+    "c",
+    "Weekly review",
+    "Friday at 17:30",
+    false
+   ]
+  ],
+  "memory": [
+   "Prefers short answers, in French",
+   "Working on the April 14 launch",
+   "No meetings on Wednesdays"
+  ]
+ },
+ "roster": {
+  "templates": [
+   [
+    "Accountant",
+    "Reconciles invoices, statements and expenses.",
+    "Accounting",
+    [
+     "Accounting",
+     "Email"
+    ],
+    {
+     "name": "Compta",
+     "shape": "squircle",
+     "color": "#14B85A",
+     "eyes": "dots",
+     "mouth": "none",
+     "glasses": "square"
+    }
+   ],
+   [
+    "Recruiter",
+    "Sorts applications and schedules interviews.",
+    "HR",
+    [
+     "Email",
+     "Calendar"
+    ],
+    {
+     "name": "Recrut",
+     "shape": "round",
+     "color": "#8448FF",
+     "eyes": "ovals",
+     "mouth": "smile",
+     "extra": "bow-tie"
+    }
+   ],
+   [
+    "Community manager",
+    "Prepares and schedules posts.",
+    "Social media",
+    [
+     "Drive"
+    ],
+    {
+     "name": "Social",
+     "shape": "pebble",
+     "color": "#EE3A97",
+     "eyes": "commas",
+     "mouth": "o",
+     "hat": "beanie"
+    }
+   ],
+   [
+    "Support agent",
+    "Answers simple tickets, escalates the rest.",
+    "Support",
+    [
+     "Tickets",
+     "CRM"
+    ],
+    {
+     "name": "Support",
+     "shape": "hexagon",
+     "color": "#1E7BFF",
+     "eyes": "dots",
+     "mouth": "none",
+     "hat": "headphones"
+    }
+   ],
+   [
+    "Analyst",
+    "Builds the week’s dashboards.",
+    "Data",
+    [
+     "Drive",
+     "CRM"
+    ],
+    {
+     "name": "Data",
+     "shape": "pill",
+     "color": "#FFAA00",
+     "eyes": "pixels",
+     "mouth": "none",
+     "glasses": "round"
+    }
+   ],
+   [
+    "Watcher",
+    "Monitors competitors, prices and announcements.",
+    "Watch",
+    [
+     "Web search"
+    ],
+    {
+     "name": "Veille",
+     "shape": "triangle",
+     "color": "#12B8A0",
+     "eyes": "commas",
+     "mouth": "none",
+     "hat": "antenna"
+    }
+   ]
+  ],
+  "chiefDoing": "sorting your email",
+  "more": "+ 40 more",
+  "moreSub": "12 of them inactive"
+ },
+ "settings": {
+  "identity": "Chief of Staff · direct tone · created September 2",
+  "channels": [
+   [
+    "Sl",
+    "Slack",
+    "#studio-nord · direct messages",
+    true
+   ],
+   [
+    "Te",
+    "Teams",
+    "Spring launch team",
+    false
+   ],
+   [
+    "SM",
+    "SMS",
+    "+33 6 •• •• •• 42 · urgent only",
+    true
+   ]
+  ],
+  "log": [
+   [
+    "10:42",
+    "Sent the follow-up to Julien Morel",
+    "mail"
+   ],
+   [
+    "10:41",
+    "Created the “Quote follow-up” routine",
+    "clock-loop"
+   ],
+   [
+    "10:38",
+    "Opened crm.studionord.fr",
+    "globe"
+   ],
+   [
+    "08:14",
+    "Sorted 23 emails",
+    "mail"
+   ]
+  ],
+  "rules": [
+   [
+    "mail",
+    "Send an email",
+    "Email",
+    "ask"
+   ],
+   [
+    "calendar",
+    "Accept an invitation",
+    "Calendar",
+    "allow"
+   ],
+   [
+    "key",
+    "Make a payment",
+    "Payroll, Accounting",
+    "ask"
+   ],
+   [
+    "share",
+    "Post on social media",
+    "Social media",
+    "ask"
+   ],
+   [
+    "trash",
+    "Delete a file",
+    "Drive",
+    "deny"
+   ],
+   [
+    "edit",
+    "Edit a CRM record",
+    "CRM",
+    "allow"
+   ],
+   [
+    "globe",
+    "Browse the web",
+    "Browser",
+    "allow"
+   ]
+  ],
+  "alwaysRules": [
+   [
+    "Pay Atelier Morel up to 1,500 €",
+    "Added October 1 from “To approve”"
+   ],
+   [
+    "Reply to Studio Nord emails",
+    "Added September 18"
+   ]
+  ],
+  "memory": [
+   "Prefers short answers, in French",
+   "Working on the April 14 launch",
+   "No meetings on Wednesdays",
+   "Julien Morel is the main contact at Atelier Morel",
+   "Quotes are followed up after 7 days"
+  ],
+  "usage": [
+   [
+    "1,284",
+    "actions this month"
+   ],
+   [
+    "€31.40",
+    "of a {budget} € budget"
+   ],
+   [
+    "47 h",
+    "of work saved (estimate)"
+   ]
+  ],
+  "spent": 31.4
+ }
+}
