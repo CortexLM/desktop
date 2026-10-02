@@ -2,10 +2,11 @@
 
 Cortex desktop: Chat, Work, Bots, Files and Cortex Code on a local agent engine.
 
-One Electron 44 app. The engine runs inside the app's main process, stores everything in a
-local SQLite database (`node:sqlite`), and talks to the model providers you configure with
-your own keys. No account is needed; Cortex Cloud (`cortex.foundation`) and self-hosted
-servers are optional connection modes.
+One Electron 44 app. The engine runs inside the app's main process, stores sessions and
+settings in local SQLite (`node:sqlite`), and talks to the model providers you configure.
+Provider keys use a separate main-process credential store. No account is needed.
+Cortex Cloud (`cortex.foundation`) and self-hosted settings currently save a preference
+and probe servers; prompts still use the local engine. Remote sign-in is not wired.
 
 ## Quick start
 
@@ -57,10 +58,14 @@ bun run build && bun run test:e2e
 ## Status
 
 - Live: Chat, Work tasks and approvals, Bots, Cortex Code on a local folder, Settings →
-  Providers & models and Connection.
+  Providers & models; Connection selection and probing.
 - Preview only: file viewers and other screens without engine wiring (see `#/gallery`).
 - Not built yet (waiting on design): Space, Scheduled, Plugins & skills. Cortex Cloud
   sign-in has no engine route yet.
+- Catalogs and preview fixtures exist for `en fr es de ja zh-Hans pt-BR ko`; builtin
+  `summarize` ships in `skills/`.
+- E2E covers 426 registered theme/state renders and UI streaming through a **local fake
+  provider**. Real-provider inference and full visual acceptance remain unproven.
 - Release and code signing are not configured; CI builds unsigned packages only.
 
 ## Documentation

@@ -59,18 +59,27 @@ cancels the session's other pending asks). Computer-use input tools never save `
   as reference data, routines = scheduled tasks with `botID`.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not
-  backfilled; the timer lives only while the app runs.
+  backfilled; the timer lives only while the app runs. Work → Automations and bot routines
+  use these routes; the standalone Scheduled screen still awaits design.
 - Space (`space.ts`): pages, sites, images and recents. No screen yet.
-- Connection (`connection.ts`): [connection-modes.md](./connection-modes.md).
+- Connection (`connection.ts`): saved mode and remote probes only. Sessions still use local
+  provider settings in every mode; remote auth/inference is not wired
+  ([connection-modes.md](./connection-modes.md)).
 
 ## Skills, plugins, MCP
 
 - Skills: `SKILL.md` frontmatter discovery, builtin → public → personal → project
-  `.cortex/skills`; later shadows earlier. `/api/skills`.
+  `.cortex/skills`; later shadows earlier. `/api/skills`. Desktop configures builtin and
+  personal directories; `skills/summarize/SKILL.md` ships as a builtin, enabled by default.
+  Core supports a public directory but desktop does not configure one.
 - Plugins: a directory with `package.json` and a module exporting hooks (`tools`,
   `chat.params`, `tool.execute.before`, `tool.execute.after`, `event`). In-process, host
   privileges. `/api/plugins`.
 - MCP (`mcp.ts`): stdio and streamable HTTP via `@modelcontextprotocol/sdk`. `/api/mcp`.
+
+Space, standalone Scheduled and Plugins & skills designs remain absent in
+`/root/cortex-ui/DESIGN-REQUESTS.md`. Engine routes and the builtin skill do not provide
+those screens; the computer-use preset cannot be enabled from the UI yet.
 
 ## Limits
 

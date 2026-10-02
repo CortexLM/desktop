@@ -1,8 +1,19 @@
 # Vendored packages
 
-`@cortex/sdk` and `@cortex/api-types` are published by the Cortex SDK workstream (CortexLM/backend, `packages/sdk`, `npm run pack:vendor`).
-They are vendored because this repository's CI cannot see the backend checkout.
+`@cortex/sdk` 0.2.0 and `@cortex/api-types` 0.1.0 are vendored unmodified from the
+Cortex SDK workstream (`CortexLM/backend`, `packages/sdk`) because this repository's CI
+cannot see that checkout.
 
-Since 0.2.0 the SDK declares `@cortex/api-types` as an optional peer, so both tarballs are vendored unmodified and
-`packages/desktop/package.json` depends on both directly. Re-vendor with `npm run pack:vendor -- <out>` in the backend's `packages/sdk`. Used only from Electron main
-(`packages/desktop/src/remote.ts`) in the Cortex Cloud and self-hosted connection modes.
+The SDK declares `@cortex/api-types` `^0.1.0` as an optional peer;
+`packages/desktop/package.json` depends on both tarballs directly. Re-vendor with
+`npm run pack:vendor -- <out>` in the backend's `packages/sdk`.
+
+Only Electron main imports the SDK. `probeRemote` in `packages/desktop/src/remote.ts`
+checks readiness/instance metadata, then calls `client.models.list()` for cloud or
+self-hosted probes. Main supplies no auth token. The SDK does not route desktop prompts
+or authenticate users; see [connection-modes.md](../docs/connection-modes.md).
+
+`packages/desktop/test/remote.test.ts` exercises the SDK against a local stub. Its optional
+real-backend case (`CORTEX_TEST_BACKEND_URL`) asserts reachability; the recorded
+[`evidence/sdk-real-backend.log`](../evidence/sdk-real-backend.log) contains returned model
+metadata, not a generated response or authenticated-session proof.

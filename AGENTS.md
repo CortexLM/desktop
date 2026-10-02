@@ -47,8 +47,8 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
 | `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe |
 
-`vendor/` holds the `@cortex/sdk` and `@cortex/api-types` tarballs, used only by
-`packages/desktop/src/remote.ts` ([`vendor/README.md`](./vendor/README.md)).
+`vendor/` holds unmodified `@cortex/sdk` 0.2.0 and its optional peer `@cortex/api-types`
+0.1.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 
 ## Toolchain
 
@@ -73,7 +73,9 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `bun run pack` / `bun run dist:mac` | electron-builder, `--publish never` |
 
 If the host exports `NODE_ENV=production`, run tests with `NODE_ENV=test`.
-Full matrix: [`docs/testing.md`](./docs/testing.md).
+Full matrix and acceptance limits: [`docs/testing.md`](./docs/testing.md). E2E enumerates
+426 registered theme/state renders; CI inference flows use a local fake. A separate real
+image/reasoning exchange is recorded in `evidence/real-provider.json`; visual acceptance remains partial.
 
 ## Running the app
 
@@ -102,7 +104,8 @@ preview fixtures.
 | `E2E_WORKERS` | `playwright.config.ts` | Playwright workers (default 4) |
 
 `scripts/translate-locales.mjs` reads `TRANSLATE_BASE_URL`, `TRANSLATE_API_KEY`,
-`TRANSLATE_MODEL`. There is no `.env.example`.
+`TRANSLATE_MODEL`; `scripts/verify-real-provider.mjs` reads `CORTEX_REAL_BASE_URL` and
+`CORTEX_REAL_API_KEY` (main-only, never logged). There is no `.env.example`.
 
 ## Renderer ↔ engine (the boundary everyone must respect)
 
@@ -139,7 +142,7 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 **Space** (`/api/space`), **Scheduled** (the standalone list; `/api/tasks` is used today
 only by Work → Automations and bot routines), **Plugins & skills** (`/api/plugins`,
 `/api/skills`, `/api/mcp`; the computer-use preset therefore cannot be enabled from the UI
-yet). Requests are filed in the design reference's `DESIGN-REQUESTS.md` (outside this repo).
+yet). Requests remain unanswered in `/root/cortex-ui/DESIGN-REQUESTS.md` (outside this repo).
 Do not build stand-in screens; say "not yet" honestly.
 
 Cortex Cloud sign-in has no engine route yet: the live login submit says it is unavailable
@@ -148,22 +151,24 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
 - **No seeded data in live mode.** Fixtures live in
   `packages/i18n/locales/<locale>/fixtures/*.json` and are loaded only in preview
   (`#/gallery`, `?preview`, `?shot`) via `packages/app/src/preview.tsx`; the title bar then
-  shows a state picker. (That file's header mentions a "Preview" badge; no badge is rendered yet.)
-- **Connection modes**: `local` (default, no account), `cloud` (`https://api.cortex.foundation`,
-  optional sign-in), `selfhost` (URL). See [`docs/connection-modes.md`](./docs/connection-modes.md).
+  shows a state picker.
+- **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
+  `selfhost` (URL). Selection/probing only: prompts still use the local engine and provider
+  settings; remote auth is not wired. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
   See [`docs/providers.md`](./docs/providers.md).
 - **Computer use** via Cua Driver is registered disabled; input actions always ask and
   "always" is never stored. See [`docs/computer-use.md`](./docs/computer-use.md).
-- **i18n**: English source, eight locales declared, only `en` and `fr` catalogs present.
-  See [`docs/i18n.md`](./docs/i18n.md).
+- **i18n**: English source; catalogs and preview fixtures exist for all eight locales:
+  `en fr es de ja zh-Hans pt-BR ko`. Translation review limits and source-stamp exclusion:
+  [`docs/i18n.md`](./docs/i18n.md).
 
 ## Design reference
 
 The UI is ported from a local design reference (a separate checkout, not in this repo).
 `ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs` pixel-diffs
-gallery states against the reference shots into `evidence/compare/`. Theme values are CSS
-variables in `packages/app/src/kit/styles.css`.
+gallery states plus five interaction shots against the reference into `evidence/compare/`.
+Theme values are CSS variables in `packages/app/src/kit/styles.css`.
 
 ## CI, packaging and releases
 
@@ -176,13 +181,14 @@ variables in `packages/app/src/kit/styles.css`.
 | `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 package, `node scripts/smoke.mjs mac` |
 
 **Release and signing are not configured.** The old build/publish workflows were removed;
-Apple and Windows signing secrets are absent; CI packages with `--publish never` and
-`-c.mac.identity=null`. No auto-updater is wired in main. The `publish:` block in
-`electron-builder.yml` and `.github/actions/{install-rclone,publish-r2-feed}` are leftovers
-no workflow calls. `.github/workflows/README.md` still describes removed workflows.
+CI packages with `--publish never`, `-c.mac.identity=null`, `-c.mac.notarize=false`.
+The old publish actions, `publish:` block and workflow README are removed. No auto-updater
+is wired in main; no Windows CI job exists. Workflow configuration is not a passing run.
 
-electron-builder packs `packages/desktop/dist` + `packages/app/dist`; locales (without
-fixtures) go to `resources/locales`. Verify a packaging change by running the binary:
+electron-builder packs `packages/desktop/dist` + `packages/app/dist`, copies locales to
+`resources/locales` without source stamps or fixtures; `skills/summarize/SKILL.md` goes to
+`resources/skills`. Catalog/preview loaders exclude source stamps ([i18n.md](./docs/i18n.md)).
+Verify a packaging change by running the binary:
 `bun run pack && node scripts/smoke.mjs linux`.
 
 ## Engine behaviour worth knowing

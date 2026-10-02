@@ -510,7 +510,7 @@ export function FileXlsx() {
                 <tr key={r}><th scope="row" data-on={(r >= r0 && r <= r1) || undefined}>{r + 1}</th>
                   {row.map((x, c) => {
                     const inR = c >= c0 && c <= c1 && r >= r0 && r <= r1, isAct = c === a[0] && r === a[1], e = errs ? fx.errs[ref(c, r)] : undefined;
-                    const show = e && ref(c, r) === "D8" ? "#REF!" : e && ref(c, r) === "B6" ? "" : typeof x === "number" ? (c === 0 || sh === 1 ? num(x) : eur(x)) : x;
+                    const show = e && ref(c, r) === "D8" ? t("files.xlsx.refError") : e && ref(c, r) === "B6" ? "" : typeof x === "number" ? (c === 0 || sh === 1 ? num(x) : eur(x)) : x;
                     return <td key={c} role="gridcell" aria-selected={inR} data-sel={(inR && multi) || undefined} data-act={isAct || undefined} data-head={r === 0 || undefined} data-tot={(sh === 0 && r === S.rows.length) || undefined}
                       data-num={typeof x === "number" || undefined} data-neg={(typeof x === "number" && x < 0) || undefined} data-err={e ? true : undefined} title={e}
                       onMouseDown={(ev) => { if (ev.shiftKey) setB([c, r]); else { setA([c, r]); setB([c, r]); } setDrag(true); }} onMouseEnter={() => drag && setB([c, r])}>{show}</td>;

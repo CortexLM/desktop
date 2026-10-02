@@ -23,6 +23,11 @@
 There is no listening socket in the app. `listen()` in `packages/server` is used only by
 `scripts/dev-api.ts` and tests.
 
+Connection selection does not change this data path: all prompts still reach the local
+`SessionService`, models.dev catalog and provider settings. The vendored SDK is used only
+by the main-process remote probe; no remote session/auth transport is wired.
+See [connection-modes.md](./connection-modes.md).
+
 ## Packages
 
 | Package | Depends on | Notes |
@@ -43,9 +48,11 @@ There is no listening socket in the app. `listen()` in `packages/server` is used
   `dist/main.cjs` and `dist/preload.cjs` (CJS, node22, workspace packages inlined,
   `electron` external).
 - electron-builder (`electron-builder.yml`) packs both `dist` folders and `package.json`
-  into the asar, excludes `node_modules`, and copies `packages/i18n/locales` (no fixtures,
-  no `.source.json`) to `resources/locales`. `appId` `foundation.cortex.desktop`, product
-  name `Cortex`, `cortex` URL scheme declared.
+  into the asar, excludes `node_modules`, and copies `packages/i18n/locales` to
+  `resources/locales` with `!**/*.source.json` and `!**/fixtures/**` filters. Preview fixtures
+  remain bundled by Vite; catalog/preview loaders exclude source stamps ([i18n.md](./i18n.md)).
+  `skills/` is copied to `resources/skills`. `appId` `foundation.cortex.desktop`, product
+  name `Cortex`, `cortex` URL scheme declared. No publish configuration remains.
 
 ## Renderer
 
@@ -68,8 +75,10 @@ There is no listening socket in the app. `listen()` in `packages/server` is used
 | `credentials.json` | Provider keys, `0600`, `safeStorage`-encrypted when available |
 
 Skills are discovered under `<resources>/skills` (builtin), `~/.cortex/skills` (personal) and
-`<project>/.cortex/skills`; plugins under `~/.cortex/plugins`. No builtin `skills/` folder
-ships in this tree today.
+`<project>/.cortex/skills`; plugins under `~/.cortex/plugins`. The builtin
+[`skills/summarize/SKILL.md`](../skills/summarize/SKILL.md) ships in packaged resources;
+development Electron builds read the repository's `skills/` directory. The standalone
+`scripts/dev-api.ts` does not configure skill directories.
 
 ## Security boundary
 
