@@ -139,6 +139,9 @@ CI stall or establish its cause.
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
 image-inference proof is recorded by these tests.
+Provider key save/reload/removal checks use a deterministic catalog, both themes and
+960/1024/1440 widths. Text ranges and hit testing reject clipped/covered key labels and saved
+hints; the wide row stays inline. This regression first failed in both themes at 960px.
 
 ### Real-provider verification
 

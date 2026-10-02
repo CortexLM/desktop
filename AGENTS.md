@@ -191,6 +191,7 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
   origins without credentials, paths, queries or fragments; probes refuse redirects. Self-host
   discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
+  The key row wraps within narrow Settings panes so its label and saved last-four hint stay readable.
   Chat retains drafts/attachments when the engine rejects a send; retry includes the original
   files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
   Code/Work/Bot text drafts also wait for accepted sends; missing models, cancelled folder

@@ -215,10 +215,12 @@ function ProviderDetail({ p, cfg, onChange, toast }: { p: Prov; cfg?: ProviderCo
   return (<>
     <h3 className="h3" style={{ marginTop: 24 }}>{p.name}</h3>
     <div className="list">
-      <form className="li" onSubmit={(e) => { e.preventDefault(); if (key.trim()) run(() => api.providers.setKey(p.id, key.trim()), t("system.providers.keySaved")); }}>
+      <form className="li systeme-provider-key" onSubmit={(e) => { e.preventDefault(); if (key.trim()) run(() => api.providers.setKey(p.id, key.trim()), t("system.providers.keySaved")); }}>
         <span className="grow"><div className="ttl">{t("system.providers.key")}</div><div className="sub">{cfg?.hasKey ? t("system.providers.keySet", { hint: cfg.keyHint ?? "••••" }) : t("system.providers.keyNone")}</div></span>
-        <input data-testid="provider-key-input" className="input" type="password" autoComplete="off" spellCheck={false} value={key} onChange={(e) => setKey(e.target.value)} placeholder={t("system.providers.keyPh")} aria-label={t("system.providers.keyLabel", { name: p.name })} style={{ width: 200 }} disabled={!p.supported} />
-        <button data-testid="provider-key-save" className="btn secondary" disabled={!key.trim() || busy || !p.supported}>{t("system.common.save")}</button>
+        <div className="systeme-provider-key-controls">
+          <input data-testid="provider-key-input" className="input" type="password" autoComplete="off" spellCheck={false} value={key} onChange={(e) => setKey(e.target.value)} placeholder={t("system.providers.keyPh")} aria-label={t("system.providers.keyLabel", { name: p.name })} style={{ width: 200 }} disabled={!p.supported} />
+          <button data-testid="provider-key-save" className="btn secondary" disabled={!key.trim() || busy || !p.supported}>{t("system.common.save")}</button>
+        </div>
       </form>
       {cfg?.hasKey && <div className="li"><span className="grow"><div className="ttl">{t("system.providers.enable")}</div><div className="sub">{t("system.providers.enableDesc")}</div></span>
         <Switch checked={cfg.enabled} onCheckedChange={(x) => run(() => api.providers.update(p.id, { enabled: x }), x ? t("system.providers.enabled") : t("system.providers.disabled"))} aria-label={t("system.providers.enable")} /></div>}

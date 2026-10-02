@@ -16,11 +16,74 @@ async function saveKey(page: import("@playwright/test").Page, provider: string) 
   await expect(page.getByTestId("provider-key-input")).toHaveValue("");
 }
 
-test("a provider key saved in Settings shows only its last four characters", async () => {
-  const { app, page } = await launch({ hash: "#/settings?section=providers" });
-  await saveKey(page, "zai");
-  expect(await page.content()).not.toContain(KEY);
-  await app.close();
+for (const theme of ["light", "dark"]) test(`provider key save, reload and removal stay readable — ${theme}`, async () => {
+  const { app, page } = await launch({ hash: `#/settings?section=providers&theme=${theme}`, env: {
+    CORTEX_CATALOG_URL: `data:application/json,${encodeURIComponent(JSON.stringify(catalog))}`,
+  } });
+  try {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+    await saveKey(page, "fake");
+    expect(await page.content()).not.toContain(KEY);
+    await page.reload();
+    await page.getByTestId("provider-search").fill("fake");
+    await page.locator('[data-testid=provider-row][data-provider-id=fake]').click();
+    const input = page.getByTestId("provider-key-input"), save = page.getByTestId("provider-key-save");
+    const form = page.locator("form").filter({ has: input });
+    await expect(form.locator(".sub")).toHaveText(`Saved · ${KEY.slice(-4)}`);
+    await expect(input).toHaveValue("");
+    await expect(input).toHaveAttribute("placeholder", "Paste a key");
+    await page.evaluate(() => document.fonts.ready);
+
+    for (const width of [960, 1024, 1440]) await test.step(`${width}px`, async () => {
+      await app.evaluate(({ BrowserWindow }, w) => BrowserWindow.getAllWindows()[0].setSize(w, w === 1440 ? 900 : 640), width);
+      await expect.poll(() => page.evaluate(() => innerWidth)).toBe(width);
+      await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "shown");
+      await input.fill(KEY);
+      await save.click();
+      await expect(input).toHaveValue("");
+      await expect(form.locator(".sub")).toHaveText(`Saved · ${KEY.slice(-4)}`);
+      expect(await page.content()).not.toContain(KEY);
+      await page.locator("main .content-top").hover();
+      await expect(page.locator(".toast")).toHaveCount(0);
+      await form.scrollIntoViewIfNeeded();
+      await expect.poll(() => form.evaluate((el, width) => {
+        const issues: string[] = [], row = el.getBoundingClientRect();
+        for (const selector of [".ttl", ".sub"]) {
+          const text = el.querySelector(selector)!, box = text.getBoundingClientRect(), range = document.createRange();
+          range.selectNodeContents(text);
+          const rects = Array.from(range.getClientRects());
+          if (!rects.length || !rects.every((r) => r.width > 0 && r.height > 0
+            && r.left >= box.left - 1 && r.right <= box.right + 1 && r.top >= box.top - 1 && r.bottom <= box.bottom + 1
+            && [r.left + 1, r.x + r.width / 2, r.right - 1].every((x) => text.contains(document.elementFromPoint(x, r.y + r.height / 2))))) {
+            issues.push(`${text.textContent}: text is clipped or covered`);
+          }
+        }
+        const boxes = [".grow", "[data-testid=provider-key-input]", "[data-testid=provider-key-save]"].map((selector) => el.querySelector(selector)!.getBoundingClientRect());
+        for (const [i, r] of boxes.entries()) {
+          if (r.width <= 0 || r.height <= 0 || r.left < row.left || r.right > row.right + 1 || r.top < row.top || r.bottom > row.bottom + 1
+            || r.left < 0 || r.right > innerWidth || r.top < 0 || r.bottom > innerHeight) issues.push(`Row item ${i} escapes its row or viewport`);
+          if (boxes.slice(i + 1).some((b) => r.left < b.right && r.right > b.left && r.top < b.bottom && r.bottom > b.top)) issues.push(`Row item ${i} overlaps another item`);
+        }
+        if (width === 1440 && boxes.some((r) => Math.abs(r.y + r.height / 2 - boxes[0].y - boxes[0].height / 2) > 1)) issues.push("Wide row is no longer inline");
+        for (const area of [document.documentElement, document.body, el.closest(".page")!]) {
+          if (area.scrollWidth > area.clientWidth + 1 || area.scrollLeft !== 0) issues.push("Horizontal page overflow");
+        }
+        return issues;
+      }, width), { message: `${width}px ${theme}: key label, saved hint and controls remain readable` }).toEqual([]);
+      const shot = test.info().outputPath(`provider-key-${width}-${theme}.png`);
+      await page.screenshot({ path: shot, animations: "disabled" });
+      await test.info().attach(`provider-key-${width}-${theme}`, { path: shot, contentType: "image/png" });
+    });
+
+    await page.getByRole("button", { name: "Remove", exact: true }).click();
+    await expect(form.locator(".sub")).toHaveText("Stored on this device, never shown again");
+    await page.reload();
+    await page.getByTestId("provider-search").fill("fake");
+    await page.locator('[data-testid=provider-row][data-provider-id=fake]').click();
+    await expect(form.locator(".sub")).toHaveText("Stored on this device, never shown again");
+    await expect(page.getByRole("button", { name: "Remove", exact: true })).toHaveCount(0);
+  } finally { await app.close(); }
 });
 
 test("streamed exchange with thinking and an image, driven from the composer", async () => {

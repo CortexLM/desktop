@@ -31,6 +31,13 @@
 .systeme-sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .systeme-sec-head .h3 { margin: 0; flex: 1; }
 
+/* Keep the key status readable when Settings has a narrow content pane. */
+.systeme-provider-key { flex-wrap: wrap; }
+.systeme-provider-key .grow { flex-basis: 120px; }
+.systeme-provider-key .sub { white-space: normal; }
+.systeme-provider-key-controls { display: flex; align-items: center; gap: 12px; max-width: 100%; min-width: 0; }
+.systeme-provider-key-controls .input { min-width: 0; }
+
 /* ---------- Global search ---------- */
 .systeme-search { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 8px 0 14px; border-radius: 22px; background: var(--field); border: 1px solid var(--field-border); box-shadow: var(--shadow-float); color: var(--t3);
   transition: border-color var(--d-micro) linear; }

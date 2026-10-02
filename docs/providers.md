@@ -1,5 +1,8 @@
 # Providers and models
 
+The key entry row wraps its controls when the Settings pane is narrow, keeping the label and
+saved last-four hint readable at the minimum window width. Key material remains write-only.
+
 ## Catalog
 
 The model list is the public models.dev catalog, `https://models.dev/api.json`

@@ -4,7 +4,15 @@
 Current prerequisite: G3's corrected, versioned SDK/api-types pair. G2's five typed auth/upload
 bodies are delivered. Desktop session acquisition, remote prompt routing and proof remain G1-owned.
 
-## Current SDK observation — 20:01–20:07 UTC
+## Current SDK observation — 20:52–20:53 UTC
+
+PR #447 remains `7633f7e2fa4df197a3bd19e5316943be20ec6722`, with no new comments since
+20:07 or announced canonical versioned SDK/api-types pair. Existing archives/worktree were not
+re-audited. Design's combined candidate/attachment A/B disposition is unchanged; no explicit G1
+source/state import authorization appears in the inspected requests or confirmation ledger.
+The earlier readbacks below retain their own timestamps and verification scope.
+
+## Earlier SDK observation — 20:01–20:07 UTC
 
 Read-only snapshot: **2 October 2026, 20:01–20:07 UTC**. One PR #447 metadata/comments query:
 head `7633f7e2fa4df197a3bd19e5316943be20ec6722`, open, last updated **16:45:11 UTC**;

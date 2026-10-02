@@ -2,9 +2,15 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Latest application CI and CodeQL pass at `f2754be`. This validates the implemented scope,
-not the complete objective. Renderer source remains `cc758a6`. A local MCP credential-boundary
-correction is under verification; that prior CI does not establish the new behavior.
+Latest CI [37063183382](https://github.com/CortexLM/desktop/actions/runs/37063183382) passes at
+`de623fd` (application `ca08282`, serial macOS test harness). Independent artifact review and
+installed-package verification are underway. Renderer source remains `cc758a6`.
+
+Installed `de623fd` verifies MCP encrypted persistence/decryption/removal and provider key
+redaction, with native light/dark captures. It also exposed a minimum-width key-row overlap:
+label/hint width zero with the sidebar shown. A [targeted layout correction](mcp-followup/provider-layout.md)
+passes local both-theme regressions; new CI/native correction proof remains pending. Credential
+captures with the sidebar hidden do not establish minimum-width correction acceptance.
 
 ## Current MCP contract correction
 
@@ -18,8 +24,9 @@ regressions plus a later save/disable case, all reproduced and corrected. Update
 targeted engine/provider UI and Linux packaged checks pass. [Evidence](mcp-followup/README.md).
 Final scoped source review passes. [CI 37061251022](https://github.com/CortexLM/desktop/actions/runs/37061251022)
 passes static checks and 51/51 Linux E2Es; macOS passes 50/51 including MCP, then navigation
-stalls waiting for element stability. Serial macOS execution is under verification; no assertion
-or timeout is relaxed.
+stalls waiting for element stability. The next run at `de623fd` passes 51/51 per OS with macOS
+serialized, including package/smoke; no assertion or timeout was relaxed. This does not establish
+the earlier stalls' cause or erase those failed attempts.
 The intervening documentation-only [CI 37057583278](https://github.com/CortexLM/desktop/actions/runs/37057583278)
 failed one macOS screenshot capture at `keyboard.spec.ts:187` after fonts loaded (49/50).
 Application/test inputs matched `f2754be`; trace review confirms capture timeout, cause unproven,
@@ -159,7 +166,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-   at 20:01–20:07 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+   at 20:52–20:53 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.
