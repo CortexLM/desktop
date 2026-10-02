@@ -1,0 +1,722 @@
+{
+ "home": {
+  "repos": [
+   "cortex-web",
+   "cortex-ios",
+   "cortex-api"
+  ],
+  "branches": [
+   "main",
+   "release/2.4",
+   "feat/passkeys"
+  ],
+  "envCloud": "Cloud · ubuntu-24",
+  "envLocal": "MacBook Pro local",
+  "envCloudShort": "Cloud",
+  "envLocalShort": "Local",
+  "tasks": [
+   [
+    "Corriger la pagination des factures",
+    "cortex-web · il y a 4 min",
+    "run"
+   ],
+   [
+    "Migrer l’authentification vers les clés d’accès",
+    "cortex-web · +214 −37",
+    "wait"
+   ],
+   [
+    "Ajouter les exports CSV",
+    "cortex-web · fusionnée",
+    "ok"
+   ],
+   [
+    "Réparer le crash au réveil",
+    "cortex-ios · 2 tests en échec",
+    "err"
+   ]
+  ]
+ },
+ "session": {
+  "title": "Corriger la pagination des factures",
+  "prRef": "cortex-web #482",
+  "prompt": "La page 2 des factures affiche les mêmes lignes que la page 1. Corrige et ajoute un test.",
+  "log": [
+   [
+    "search",
+    "Lecture de src/billing/invoices.ts"
+   ],
+   [
+    "terminal",
+    "pnpm test billing — 2 échecs"
+   ],
+   [
+    "edit",
+    "Correction de l’offset (page commence à 1)"
+   ],
+   [
+    "edit",
+    "Tri stable par id en second critère"
+   ],
+   [
+    "check-circle",
+    "pnpm test billing — 48 réussis"
+   ]
+  ],
+  "running": "Exécution des tests…",
+  "answer": "L’offset partait de la page 0 alors que l’API reçoit des pages à partir de 1. J’ai aussi ajouté un tri stable : deux factures créées à la même seconde pouvaient changer de page.",
+  "answerBold": "2 fichiers modifiés, 48 tests réussis.",
+  "file": "src/billing/invoices.ts",
+  "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+  "terminal": "$ pnpm test billing\n ✓ listInvoices › renvoie la page 1 (12 ms)\n ✓ listInvoices › renvoie la page 2 sans doublon (9 ms)\n ✓ listInvoices › tri stable à horodatage égal (7 ms)\n\nTests : 48 réussis, 48 au total\nDurée : 3,42 s"
+ },
+ "tasks": {
+  "repos": [
+   "cortex-web",
+   "cortex-api",
+   "cortex-ios"
+  ],
+  "list": [
+   {
+    "t": "Corriger la pagination des factures",
+    "repo": "cortex-web",
+    "br": "fix/pagination-factures",
+    "st": "run",
+    "a": 3,
+    "d": 2,
+    "dur": "4 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "il y a 4 min"
+   },
+   {
+    "t": "Accélérer le rendu de la liste des factures",
+    "repo": "cortex-web",
+    "br": "perf/liste-factures",
+    "st": "run",
+    "a": 0,
+    "d": 0,
+    "dur": "7 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "il y a 7 min",
+    "n": 4
+   },
+   {
+    "t": "Migrer l’authentification vers les clés d’accès",
+    "repo": "cortex-web",
+    "br": "feat/passkeys",
+    "st": "review",
+    "a": 214,
+    "d": 37,
+    "dur": "18 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "il y a 1 h"
+   },
+   {
+    "t": "Ajouter les exports CSV",
+    "repo": "cortex-web",
+    "br": "feat/export-csv",
+    "st": "merged",
+    "a": 96,
+    "d": 4,
+    "dur": "11 min",
+    "env": "Cloud · ubuntu-24",
+    "when": "hier"
+   },
+   {
+    "t": "Documenter les webhooks de paiement",
+    "repo": "cortex-api",
+    "br": "docs/webhooks",
+    "st": "review",
+    "a": 142,
+    "d": 8,
+    "dur": "6 min",
+    "env": "Cloud · python-3.12",
+    "when": "il y a 2 h"
+   },
+   {
+    "t": "Limiter le débit de /v1/exports",
+    "repo": "cortex-api",
+    "br": "feat/rate-limit",
+    "st": "merged",
+    "a": 61,
+    "d": 12,
+    "dur": "9 min",
+    "env": "Cloud · python-3.12",
+    "when": "lundi"
+   },
+   {
+    "t": "Réparer le crash au réveil",
+    "repo": "cortex-ios",
+    "br": "fix/crash-reveil",
+    "st": "fail",
+    "a": 18,
+    "d": 5,
+    "dur": "14 min",
+    "env": "MacBook Pro local",
+    "when": "il y a 3 h"
+   },
+   {
+    "t": "Passer à Swift 6",
+    "repo": "cortex-ios",
+    "br": "chore/swift-6",
+    "st": "archived",
+    "a": 402,
+    "d": 388,
+    "dur": "32 min",
+    "env": "MacBook Pro local",
+    "when": "12 sept."
+   }
+  ]
+ },
+ "attempts": {
+  "title": "Accélérer le rendu de la liste des factures",
+  "repo": "cortex-web",
+  "branch": "perf/liste-factures",
+  "env": "Cloud · ubuntu-24 · 4 conteneurs",
+  "recommendBody": "Rendu le plus rapide (p95 118 ms) et tous les tests passent.",
+  "durations": [
+   "6 min 12 s",
+   "7 min 40 s",
+   "9 min 05 s"
+  ],
+  "items": [
+   {
+    "done": 4,
+    "a": 38,
+    "d": 21,
+    "files": 3,
+    "tests": "212 sur 212",
+    "p95": "118 ms",
+    "note": "Virtualise la liste : seules les 40 lignes visibles sont rendues.",
+    "diff": [
+     "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+     "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+     "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+    ]
+   },
+   {
+    "done": 6,
+    "a": 24,
+    "d": 9,
+    "files": 2,
+    "tests": "212 sur 212",
+    "p95": "164 ms",
+    "note": "Mémoïse les lignes et déplace le tri côté serveur.",
+    "diff": [
+     "-export function InvoiceRow({ f }: Props) {",
+     "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+     "+  const total = useMemo(() => format(f.total), [f.total]);"
+    ]
+   },
+   {
+    "done": 9,
+    "fail": true,
+    "a": 71,
+    "d": 33,
+    "files": 5,
+    "tests": "209 sur 212",
+    "p95": "—",
+    "note": "Pagination infinie ; 3 tests e2e échouent sur le retour arrière.",
+    "diff": [
+     "-  const { data } = useInvoices(page);",
+     "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+     "+  useIntersection(sentinel, fetchNextPage);"
+    ]
+   },
+   {
+    "done": 13,
+    "a": 0,
+    "d": 0,
+    "files": 0,
+    "tests": "—",
+    "p95": "—",
+    "note": "Profile le rendu puis découpe le tableau en sous-composants.",
+    "diff": []
+   }
+  ]
+ },
+ "review": {
+  "title": "Revue · cortex-web #479",
+  "prTitle": "Paginer la liste des factures côté API",
+  "author": [
+   "HM",
+   "Hugo Martin"
+  ],
+  "branch": "hugo/pagination-api",
+  "base": "main",
+  "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+  "pageOld": "+  const page = Math.max(1, q.page);",
+  "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+  "test": "@@ -0,0 +1,5 @@\n+test(\"renvoie la page 2 sans doublon\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+  "srcFile": "src/billing/invoices.ts",
+  "testFile": "tests/billing/invoices.test.ts",
+  "c1": "`q.page` arrive de la query string. Avec `?page=abc`, `Math.max` renvoie `NaN` et Prisma reçoit `skip: NaN` : la requête échoue en 500.",
+  "c2": "Ce tri a besoin d’un index `(orgId, createdAt, id)`. Sans lui, la requête parcourt toute la table : 1,4 s mesurée sur la copie de production.",
+  "c3": "Ajoute un cas avec deux factures créées à la même seconde : c’est précisément ce que le second critère de tri corrige.",
+  "commit": "3f2a9c1",
+  "commitBranch": "hugo/pagination-api",
+  "prRef": "cortex-web #479"
+ },
+ "diff": {
+  "title": "Migrer l’authentification vers les clés d’accès",
+  "branch": "feat/passkeys",
+  "files": [
+   {
+    "path": "src/auth/passkeys.ts",
+    "st": "A",
+    "a": 128,
+    "d": 0,
+    "more": "113 lignes ajoutées de plus",
+    "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+   },
+   {
+    "path": "src/auth/session.ts",
+    "st": "M",
+    "a": 41,
+    "d": 22,
+    "hidden": true,
+    "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Identifiants invalides\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Compte introuvable\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Identifiants invalides\");\n   return createSession(user.id);\n }"
+   },
+   {
+    "path": "src/auth/magic-link.ts",
+    "st": "D",
+    "a": 0,
+    "d": 6,
+    "src": "@@ -1,6 +0,0 @@\n-// Ancienne connexion par lien magique, remplacée par les clés d’accès.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Ton lien de connexion\", linkFor(token));\n-  return token;\n-}"
+   },
+   {
+    "path": "src/routes/login.tsx",
+    "st": "M",
+    "a": 32,
+    "d": 9,
+    "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"E-mail\" name=\"email\" type=\"email\" />\n-      <Field label=\"Mot de passe\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Se connecter</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Mot de passe\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continuer avec une clé d’accès\" : \"Se connecter\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Utiliser un mot de passe\" : \"Utiliser une clé d’accès\"}\n+      </button>\n     </form>\n   );\n }"
+   },
+   {
+    "path": "tests/auth/passkeys.test.ts",
+    "st": "A",
+    "a": 13,
+    "d": 0,
+    "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"refuse une clé inconnue\", async () => {\n+    expect(await verifyPasskey(userSansCle, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepte une clé enregistrée et incrémente le compteur\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+   }
+  ],
+  "hidden": [
+   [
+    "export type SignInInput = {",
+    "  email: string;",
+    "  password: string;",
+    "  remember?: boolean;",
+    "};",
+    "",
+    "export class AuthError extends Error {",
+    "  status = 401;",
+    "}",
+    "",
+    "// Ouvre une session de 30 jours après une authentification réussie."
+   ]
+  ],
+  "tree": [
+   [
+    "src/auth",
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   [
+    "src/routes",
+    [
+     3
+    ]
+   ],
+   [
+    "tests/auth",
+    [
+     4
+    ]
+   ]
+  ],
+  "me": [
+   "CL",
+   "Camille Laurent"
+  ],
+  "comment": "On révèle qu’un compte existe pour cet e-mail. Garde un message unique pour les deux cas ?",
+  "reply": "D’accord, je remets « Identifiants invalides » pour les deux cas et j’ajoute un test.",
+  "conflictFile": "src/auth/session.ts",
+  "conflictBody": "1 conflit dans src/auth/session.ts : main a réduit la durée de session pendant ta tâche.",
+  "ours": [
+   "const SESSION_TTL = 60 * 60 * 24 * 30;",
+   "const PASSKEY_TIMEOUT = 60_000;"
+  ],
+  "theirs": [
+   "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 jours, demandé par la sécurité"
+  ],
+  "cortex": [
+   "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 jours, demandé par la sécurité",
+   "const PASSKEY_TIMEOUT = 60_000;"
+  ],
+  "oursLabel": "feat/passkeys (ta branche)",
+  "baseBranch": "main"
+ },
+ "terminal": {
+  "title": "Corriger la pagination des factures",
+  "base": [
+   [
+    "cmd",
+    "pnpm install --frozen-lockfile"
+   ],
+   [
+    "dim",
+    "Lockfile à jour, résolution ignorée"
+   ],
+   [
+    "dim",
+    "Paquets : +1 284"
+   ],
+   [
+    "ok",
+    "Terminé en 6,8 s"
+   ],
+   [
+    "cmd",
+    "pnpm lint"
+   ],
+   [
+    "ok",
+    "0 problème"
+   ],
+   [
+    "cmd",
+    "pnpm test billing"
+   ]
+  ],
+  "run": [
+   [
+    "ok",
+    " ✓ listInvoices › renvoie la page 1 (12 ms)"
+   ],
+   [
+    "ok",
+    " ✓ listInvoices › renvoie la page 2 sans doublon (9 ms)"
+   ],
+   [
+    "ok",
+    " ✓ listInvoices › tri stable à horodatage égal (7 ms)"
+   ],
+   [
+    "ok",
+    " ✓ exportCsv › échappe les points-virgules (4 ms)"
+   ],
+   [
+    "dim",
+    "Tests : 48 réussis, 48 au total · 3,42 s"
+   ],
+   [
+    "ask",
+    "rm -rf dist"
+   ],
+   [
+    "cmd",
+    "rm -rf dist"
+   ],
+   [
+    "cmd",
+    "pnpm build"
+   ],
+   [
+    "dim",
+    "vite v6.2.0 compile pour la production…"
+   ],
+   [
+    "dim",
+    "✓ 1 412 modules transformés"
+   ],
+   [
+    "dim",
+    "dist/assets/index-4f2a.js   412,8 ko │ gzip : 128,3 ko"
+   ],
+   [
+    "ok",
+    "✓ compilé en 8,91 s"
+   ]
+  ],
+  "fail": [
+   [
+    "ok",
+    " ✓ listInvoices › renvoie la page 1 (12 ms)"
+   ],
+   [
+    "err",
+    " ✗ listInvoices › renvoie la page 2 sans doublon (14 ms)"
+   ],
+   [
+    "dim",
+    "     attendu : F-2026-0113 · reçu : F-2026-0101"
+   ],
+   [
+    "err",
+    " ✗ listInvoices › tri stable à horodatage égal (8 ms)"
+   ],
+   [
+    "dim",
+    "     les factures F-2026-0118 et F-2026-0119 changent de page"
+   ],
+   [
+    "ok",
+    " ✓ exportCsv › échappe les points-virgules (4 ms)"
+   ],
+   [
+    "dim",
+    "Tests : 2 en échec, 46 réussis, 48 au total · 3,61 s"
+   ],
+   [
+    "err",
+    "Commande terminée avec le code 1"
+   ]
+  ],
+  "build": "pnpm build",
+  "buildAlt": "pnpm build --outDir dist-next",
+  "user": "Camille Laurent",
+  "env": "Cloud · ubuntu-24",
+  "branch": "fix/pagination-factures",
+  "network": "Liste blanche",
+  "approvals": "Commandes destructives",
+  "failSub": "L’offset part toujours de la page 0.",
+  "doneSub": "48 tests réussis · compilation en 8,9 s",
+  "repo": "cortex-web",
+  "times": [
+   "09:41:02",
+   "09:41:11",
+   "09:41:20",
+   "09:41:29",
+   "09:41:38"
+  ]
+ },
+ "env": {
+  "envs": [
+   {
+    "name": "Cloud · ubuntu-24",
+    "ic": "cpu",
+    "image": "cortex/universal:24.04",
+    "stack": "Node 22 · pnpm 9 · Python 3.12",
+    "repos": "cortex-web, cortex-api",
+    "net": "Liste blanche",
+    "cache": "1,2 Go · il y a 2 h",
+    "ready": true
+   },
+   {
+    "name": "Cloud · python-3.12",
+    "ic": "cpu",
+    "image": "cortex/python:3.12-slim",
+    "stack": "Python 3.12 · uv 0.5",
+    "repos": "cortex-api",
+    "net": "Aucun",
+    "cache": "340 Mo · hier",
+    "ready": true
+   },
+   {
+    "name": "MacBook Pro local",
+    "ic": "terminal",
+    "image": "macOS 15 · Xcode 17",
+    "stack": "Swift 6 · Node 22",
+    "repos": "cortex-ios",
+    "net": "Complet",
+    "cache": "Désactivé",
+    "ready": false
+   }
+  ],
+  "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+  "boot": [
+   "Récupération de l’image cortex/universal:24.04",
+   "Image en cache · 1,8 Go",
+   "Clonage de studio-nord/cortex-web (main)",
+   "Restauration du cache pnpm · 1,2 Go",
+   "$ corepack enable",
+   "$ pnpm install --frozen-lockfile",
+   "Paquets : +1 284 · terminé en 11,2 s",
+   "$ pnpm prisma generate",
+   "Client Prisma généré (v6.4.1)",
+   "$ pnpm exec playwright install --with-deps chromium",
+   "Chromium 131 installé",
+   "✓Environnement prêt · 3 secrets chargés · réseau : liste blanche (3 domaines)"
+  ],
+  "images": [
+   "cortex/universal:24.04",
+   "cortex/node:22",
+   "cortex/python:3.12-slim"
+  ],
+  "domains": [
+   "npm.studio-nord.fr",
+   "api.studio-nord.fr",
+   "files.pythonhosted.org"
+  ],
+  "secrets": [
+   [
+    "NPM_TOKEN",
+    "a91f",
+    "12 sept."
+   ],
+   [
+    "DATABASE_URL",
+    "5432",
+    "3 août"
+   ],
+   [
+    "MONITORING_DSN",
+    "e07b",
+    "3 août"
+   ]
+  ],
+  "stackHint": "Node 22, pnpm 9, Python 3.12 et Playwright sont préinstallés.",
+  "cacheSub": "Dépendances et compilations · 1,2 Go · expire après 12 h",
+  "cacheFreed": "1,2 Go libérés",
+  "current": "Cloud · ubuntu-24",
+  "repo": "cortex-web · main",
+  "netSummary": "Liste blanche · 3 domaines",
+  "secretsSummary": "3 chargés",
+  "bootTime": "40 s",
+  "errLine": "Ligne 4 du script : pnpm install",
+  "errBody": "pnpm n’a pas pu lire le registre privé : le jeton NPM_TOKEN semble expiré.",
+  "domainPlaceholder": "ajouter.un-domaine.fr",
+  "bootErr": [
+   "Récupération de l’image cortex/universal:24.04",
+   "Image en cache · 1,8 Go",
+   "Clonage de studio-nord/cortex-web (main)",
+   "Restauration du cache pnpm · 1,2 Go",
+   "$ corepack enable",
+   "$ pnpm install --frozen-lockfile",
+   "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: interdit (403)",
+   "Le jeton NPM_TOKEN a expiré ou n’a pas accès au registre privé.",
+   "!Script de configuration terminé avec le code 1"
+  ]
+ },
+ "pr": {
+  "title": "Corriger la pagination des factures",
+  "ref": "cortex-web #482",
+  "desc": "## Problème\nLa page 2 des factures affichait les mêmes lignes que la page 1 : l’offset partait de 0 alors que l’API compte les pages à partir de 1.\n\n## Changements\n- Offset calculé à partir de la page 1 dans listInvoices\n- Tri stable par id en second critère\n- 3 tests de non-régression\n\n## Vérifications\n- pnpm test billing : 48 réussis",
+  "reviewers": [
+   [
+    "HM",
+    "Hugo Martin"
+   ],
+   [
+    "LD",
+    "Léa Dubois"
+   ]
+  ],
+  "more": [
+   [
+    "NR",
+    "Nina Roux"
+   ],
+   [
+    "TB",
+    "Théo Bernard"
+   ]
+  ],
+  "branch": "fix/pagination-factures",
+  "checks": [
+   [
+    "Lint",
+    "pnpm lint",
+    "12 s"
+   ],
+   [
+    "Types",
+    "tsc -b",
+    "24 s"
+   ],
+   [
+    "Tests unitaires",
+    "vitest · 48 tests",
+    "1 min 08 s"
+   ],
+   [
+    "Tests e2e",
+    "playwright · 3 navigateurs",
+    "2 min 41 s"
+   ],
+   [
+    "Aperçu",
+    "déploiement de prévisualisation",
+    "48 s"
+   ]
+  ],
+  "ciLog": "✗ factures › pagination › la page 2 se charge (webkit)\n  Délai de 30 000 ms dépassé\n  tests/e2e/factures.spec.ts:42",
+  "sha": "9c41e07",
+  "user": "Camille Laurent",
+  "files": 2,
+  "a": 31,
+  "d": 2,
+  "reviewerHint": "Suggérés d’après AGENTS.md : facturation, revue par Hugo Martin.",
+  "e2eFail": "Un test e2e échoue sur WebKit. Je peux le corriger.",
+  "approvedBy": "Hugo Martin"
+ },
+ "settings": {
+  "org": "Studio Nord",
+  "repos": [
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-web",
+    "s": "main · synchronisé il y a 2 min",
+    "on": true
+   },
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-api",
+    "s": "main · synchronisé il y a 1 h",
+    "on": true
+   },
+   {
+    "o": "SN",
+    "r": "studio-nord/cortex-ios",
+    "s": "develop · synchronisé il y a 3 h",
+    "on": true
+   },
+   {
+    "o": "AM",
+    "r": "atelier-morel/site-vitrine",
+    "s": "main · lecture seule",
+    "on": false
+   }
+  ],
+  "avail": [
+   "studio-nord/design-tokens",
+   "studio-nord/infra"
+  ],
+  "agents": "# Consignes pour Cortex · cortex-web\n\n## Vérifications\n- Lance pnpm lint et pnpm test avant chaque PR.\n- Ne modifie jamais une migration existante de prisma/migrations : crée-en une nouvelle.\n\n## Style\n- TypeScript strict, pas de any.\n- Textes d’interface en français, avec espaces insécables.\n\n## Pull requests\n- Titre au présent, moins de 70 caractères.\n- Ajoute Hugo Martin en relecteur pour tout ce qui touche à la facturation.",
+  "repoNames": [
+   "cortex-web",
+   "cortex-api",
+   "cortex-ios"
+  ],
+  "allow": [
+   "pnpm test",
+   "pnpm lint",
+   "git status",
+   "rm -rf dist"
+  ],
+  "fromTask": "rm -rf dist",
+  "usage": [
+   [
+    "cortex-web",
+    26,
+    268,
+    31
+   ],
+   [
+    "cortex-api",
+    9,
+    94,
+    6
+   ],
+   [
+    "cortex-ios",
+    6,
+    50,
+    3
+   ]
+  ],
+  "reset": "Réinitialisation lundi 5 octobre."
+ }
+}
