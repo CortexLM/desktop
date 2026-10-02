@@ -18,8 +18,11 @@ test("anchors, native menus and history preserve routes, variants and chat ident
     await expect(forward).toBeDisabled();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
     await page.getByRole("button", { name: "Hide sidebar", exact: true }).click();
-    await page.getByRole("radiogroup", { name: "Theme", exact: true }).hover();
-    await page.getByRole("radio", { name: "Dark", exact: true }).click();
+    const dark = page.getByRole("radio", { name: "Dark", exact: true });
+    // Keyboard focus keeps the expanding rail control open across parallel native windows.
+    await dark.focus();
+    await dark.press("Space");
+    await expect(dark).toHaveAttribute("aria-checked", "true");
 
     await rules.click();
     await expect(page).toHaveURL(/#\/about$/);
