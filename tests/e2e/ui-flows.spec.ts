@@ -35,6 +35,7 @@ test("streamed exchange with thinking and an image, driven from the composer", a
   if ((await toggle.getAttribute("aria-checked")) !== "true") await toggle.click();
   await expect(toggle).toHaveAttribute("aria-checked", "true");
   await page.keyboard.press("Escape");
+  await expect(page.getByTestId("thinking-toggle")).toBeHidden();
 
   await page.getByTestId("attach-input").setInputFiles({ name: "dot.png", mimeType: "image/png", buffer: PNG });
   await expect(page.locator(".chat-att-img")).toBeVisible();

@@ -3,4 +3,4 @@
 # Usage: scripts/mac/artifact-url.sh <run-id> <artifact-name>
 set -euo pipefail
 id=$(gh api "repos/CortexLM/desktop/actions/runs/$1/artifacts" --jq ".artifacts[] | select(.name==\"$2\") | .id")
-gh api -i "repos/CortexLM/desktop/actions/artifacts/$id/zip" 2>/dev/null | awk 'tolower($1)=="location:" {print $2}' | tr -d '\r'
+curl -s -o /dev/null -w "%{redirect_url}" -H "Authorization: Bearer $(gh auth token)" "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/$id/zip"

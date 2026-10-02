@@ -1,4 +1,4 @@
-/* global window, localStorage, URLSearchParams */
+/* global window, document, localStorage, URLSearchParams */
 // Side-by-side comparison with the design screenshots (/root/cortex-ui/shots).
 // Renders every registered screen state with the French locale (the design's copy) in preview mode at 1440×900 @2x,
 // pixel-diffs it against the design shot, and writes evidence/compare/{index.html,report.json,<id>-<theme>.{app,diff}.png}.
