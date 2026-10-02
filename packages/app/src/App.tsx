@@ -25,7 +25,7 @@ export default function App() {
     navigation.addEventListener("currententrychange", f);
     // Catch navigation between the initial render and subscription.
     const current = readHash();
-    setH((previous) => previous.route === current.route && previous.params.toString() === current.params.toString() ? previous : current);
+    setH((previous) => previous.entryKey === current.entryKey && previous.route === current.route && previous.params.toString() === current.params.toString() ? previous : current);
     return () => navigation.removeEventListener("currententrychange", f);
   }, [h.route]);
   React.useEffect(() => window.cortex?.onMenu?.((cmd) => {

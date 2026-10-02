@@ -131,6 +131,9 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 (`packages/app/src/kit/ui.tsx` `Mode`). Screens live in
 `packages/app/src/screens/<area>/index.tsx`, each exporting `SCREENS`, collected by
 `packages/app/src/registry.tsx`. Hash routes use native browser history, preserving query parameters.
+Route and history-entry identity are one React snapshot; deferred navigation keeps the outgoing
+screen and its draft mounted until the new route commits.
+An earlier tab's route commit preserves a newer pending selection.
 Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
 one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
 Reduced motion disables CSS transitions entirely to avoid stale inherited theme colors;

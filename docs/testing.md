@@ -62,12 +62,19 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   themes: no horizontal page overflow, vertical-wheel access to all columns/cards, opening
   task content and reaching empty drop zones; 1440 retains four columns. These regressions
   wait for renderer width/layout after native resizing and for the prior React screen to
-  detach after hash navigation. They do not certify every screen.
+  detach after hash navigation. Review's inline comment can remount independently; its wheel
+  distance is sampled only from a connected element. Viewport/hit assertions are unchanged.
+  These cases do not certify every screen.
 - `tests/e2e/navigation.spec.ts` — real anchor and native-menu navigation, distinct engine
   chat identities through back/forward, variant parameters, history branching and Gallery
   return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.
   Gallery checks bound loaded frames, retain the top scroll position, unload scrolled previews
   and require the exit link to respond within five seconds.
+  A held view-transition callback proves unrelated shell updates preserve the outgoing Work
+  tree/draft, then restore the prior sidebar Bot activity when navigation commits.
+  A second held callback proves a newer keyboard tab choice survives an older route commit;
+  Back to another entry with the same tab label cancels that pending choice. These three
+  regressions fail on their respective pre-fix builds.
   Capture manifests are revision-specific; a later targeted capture does not refresh the full sweep.
 - `tests/e2e/keyboard.spec.ts` — both themes at 960×640: theme radio arrow/Home/End selection
   with one Tab stop, reduced-motion theme changes, hidden sidebar/focus controls and collapsed
@@ -75,6 +82,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   Undo preserves the real engine session. A motion-enabled case covers interrupted tab selection,
   settled indicator geometry and retained keyboard focus, vertical theme selection, OS appearance
   changes and mode-menu closure. Focus mode excludes the native drag region above content actions.
+  Settled keyboard route sequences await the rendered target and selected tab; the URL changes
+  earlier than React's view-transition commit. The separate held-callback regression covers
+  input during that gap.
 - `tests/e2e/composer-safety.spec.ts` — both themes at 960×640: Code directory cancellation,
   missing models, Code/Work/Bot engine refusal, locked pending admission, duplicate-submit
   suppression and accepted-send clearing. Work's empty-board transition preserves its draft.

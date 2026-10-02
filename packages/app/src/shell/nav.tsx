@@ -23,9 +23,10 @@ export function go(route: Route, params?: Record<string, string>, conversation: 
   dispatchEvent(new Event("cortex-variant"));
 }
 
-export function readHash(): { route: Route; theme: "light" | "dark" | "system" | null; shot: boolean; params: URLSearchParams } {
+// A deferred route commit must not borrow a newer history entry's identity.
+export function readHash(): { route: Route; entryKey: string; theme: "light" | "dark" | "system" | null; shot: boolean; params: URLSearchParams } {
   const [path, q] = location.hash.replace(/^#\/?/, "").split("?");
   const p = new URLSearchParams(q);
   const theme = p.get("theme");
-  return { route: path || "home", theme: theme === "light" || theme === "dark" || theme === "system" ? theme : null, shot: p.has("shot"), params: p };
+  return { route: path || "home", entryKey: navigation.currentEntry.key, theme: theme === "light" || theme === "dark" || theme === "system" ? theme : null, shot: p.has("shot"), params: p };
 }

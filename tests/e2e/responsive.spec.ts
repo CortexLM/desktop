@@ -126,12 +126,16 @@ test("review, diff, canvas and computer controls remain reachable in small deskt
         await test.step(`${width} ${theme}: review suggestion`, async () => {
           await show("code-review", "review");
           const apply = page.getByRole("button", { name: "Apply suggestion", exact: true });
-          const distance = await apply.evaluate((el) => {
-            const button = el.getBoundingClientRect(), pane = el.closest(".code-main")!.getBoundingClientRect();
+          let distance: number | null = null;
+          // Review can replace its inline Comment between locator resolution and evaluation.
+          await expect.poll(async () => distance = await apply.evaluate((el) => {
+            const parent = el.closest(".code-main");
+            if (!el.isConnected || !parent) return null;
+            const button = el.getBoundingClientRect(), pane = parent.getBoundingClientRect();
             return button.y + button.height / 2 - pane.y - pane.height / 2;
-          });
+          })).not.toBeNull();
           await page.locator(".code-main").hover();
-          await page.mouse.wheel(0, Math.max(0, distance));
+          await page.mouse.wheel(0, Math.max(0, distance!));
           await reachable(apply);
           await apply.click();
           await expect(page.locator(".code-cmt-done")).toContainText("Suggestion applied");

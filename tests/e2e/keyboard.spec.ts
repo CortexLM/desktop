@@ -139,6 +139,8 @@ test("frozen shell motion settles, latest tab wins and hidden menus close", asyn
     await chat.click();
     await work.click();
     await expect(page).toHaveURL(/#\/work-home\?/);
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    await expect(work).toHaveAttribute("aria-selected", "true");
     await expect(work).toBeFocused();
     await expect.poll(() => page.locator(".titlebar .seg").evaluate((el) => {
       const selected = el.querySelector('[aria-selected="true"]')!.getBoundingClientRect();
@@ -150,11 +152,16 @@ test("frozen shell motion settles, latest tab wins and hidden menus close", asyn
     await expect(chat).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/#\/home\?/);
+    // History changes before the view-transition callback commits the route.
+    await expect(page.locator(".home")).toBeVisible();
+    await expect(chat).toHaveAttribute("aria-selected", "true");
     await expect(chat).toBeFocused();
     await chat.press("ArrowRight");
     await expect(work).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/#\/work-home\?/);
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    await expect(work).toHaveAttribute("aria-selected", "true");
     await expect(work).toBeFocused();
 
     const themes = page.getByRole("radiogroup", { name: "Theme", exact: true });

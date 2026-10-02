@@ -48,11 +48,19 @@ export const Section = ({ title, action }: { title: string; action?: React.React
   <div className="sb-section"><span>{title}</span>{action}</div>
 );
 
-export function Segmented({ items, value: external, onChange, resetKey }: { items: string[]; value: string; onChange: (v: string) => void; resetKey?: string }) {
+export function Segmented({ items, value: external, onChange, resetKey }: { items: string[]; value: string; onChange: (v: string) => string | void; resetKey?: string }) {
   const [value, setValue] = React.useState(external);
   const pending = React.useRef<number | undefined>(undefined);
+  const committed = React.useRef(external);
+  const requested = React.useRef<{ value: string; key?: string } | undefined>(undefined);
   React.useEffect(() => () => clearTimeout(pending.current), []);
-  React.useEffect(() => { clearTimeout(pending.current); setValue(external); }, [external, resetKey]);
+  React.useEffect(() => {
+    const ownCommit = external === requested.current?.value && resetKey === requested.current?.key;
+    committed.current = external; requested.current = undefined;
+    // A previous selection may commit while a newer choice is still animating.
+    if (ownCommit && pending.current !== undefined) return;
+    clearTimeout(pending.current); pending.current = undefined; setValue(external);
+  }, [external, resetKey]);
   const list = React.useRef<HTMLDivElement>(null);
   const ind = React.useRef<HTMLSpanElement>(null);
   const placed = React.useRef(false);
@@ -83,8 +91,12 @@ export function Segmented({ items, value: external, onChange, resetKey }: { item
     <Tabs.Root value={value} onValueChange={(v) => {
       const next = v as string;
       setValue(next); clearTimeout(pending.current);
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { if (next !== external) onChange(next); }
-      else pending.current = window.setTimeout(() => { if (next !== external) onChange(next); }, 610);
+      const commit = () => {
+        pending.current = undefined;
+        if (next !== (requested.current?.value ?? committed.current)) requested.current = { value: next, key: onChange(next) ?? undefined };
+      };
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) commit();
+      else pending.current = window.setTimeout(commit, 610);
     }}>
       <Tabs.List className="seg" ref={list}>
         {items.map((t) => <Tabs.Tab key={t} value={t} data-value={t} className="seg-tab">{t}</Tabs.Tab>)}

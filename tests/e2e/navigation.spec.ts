@@ -1,6 +1,120 @@
 import { test, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 
+test("Back cancels a pending tab choice even when its label matches an older request", async () => {
+  const { app, page } = await launch({ hash: "#/home?preview&theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  try {
+    await expect(page.locator(".home")).toBeVisible();
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    const chat = page.locator(".titlebar").getByRole("tab", { name: "Chat", exact: true });
+    const work = page.locator(".titlebar").getByRole("tab", { name: "Work", exact: true });
+    const first = await page.evaluate(() => (window as unknown as { navigation: { currentEntry: { key: string } } }).navigation.currentEntry.key);
+    await work.click();
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    const commit = await page.evaluateHandle(() => {
+      const start = document.startViewTransition;
+      let release: (() => void) | undefined;
+      document.startViewTransition = (update) => {
+        document.startViewTransition = start;
+        const done = new Promise<void>((resolve) => { release = resolve; }).then(() => typeof update === "function" ? update() : update?.update?.());
+        return { finished: done, ready: done, updateCallbackDone: done, types: new Set<string>(), skipTransition() {} };
+      };
+      return () => { if (!release) throw new Error("Route update was not held"); release(); };
+    });
+    await chat.click();
+    await expect(page).toHaveURL(/#\/home\?/);
+    await work.click();
+    await expect(work).toHaveAttribute("aria-selected", "true");
+    await page.evaluate(() => history.go(-2));
+    await expect(page.locator(".home")).toBeVisible();
+    await commit.evaluate((release) => release());
+    // Observe beyond the 610ms debounce; a stale timer must not override the Back action.
+    expect(await page.evaluate(async (key) => {
+      const nav = (window as unknown as { navigation: EventTarget & { currentEntry: { key: string } } }).navigation;
+      let changed = nav.currentEntry.key !== key;
+      const check = () => { if (nav.currentEntry.key !== key) changed = true; };
+      nav.addEventListener("currententrychange", check);
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      nav.removeEventListener("currententrychange", check);
+      return changed;
+    }, first)).toBe(false);
+    await expect(chat).toHaveAttribute("aria-selected", "true");
+    await commit.dispose();
+  } finally { await app.close(); }
+});
+
+test("a newer keyboard tab choice survives the previous route commit", async () => {
+  const { app, page } = await launch({ hash: "#/work-home?preview&theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  try {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    const chat = page.locator(".titlebar").getByRole("tab", { name: "Chat", exact: true });
+    const work = page.locator(".titlebar").getByRole("tab", { name: "Work", exact: true });
+    const commit = await page.evaluateHandle(() => {
+      const start = document.startViewTransition;
+      let release: (() => void) | undefined;
+      document.startViewTransition = (update) => {
+        document.startViewTransition = start;
+        const done = new Promise<void>((resolve) => { release = resolve; }).then(() => typeof update === "function" ? update() : update?.update?.());
+        return { finished: done, ready: done, updateCallbackDone: done, types: new Set<string>(), skipTransition() {} };
+      };
+      return () => { if (!release) throw new Error("Route update was not held"); release(); };
+    });
+    await work.press("ArrowLeft");
+    await chat.press("Enter");
+    await expect(page).toHaveURL(/#\/home\?/);
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    await chat.press("ArrowRight");
+    await work.press("Enter");
+    await expect(work).toHaveAttribute("aria-selected", "true");
+    await commit.evaluate((release) => release());
+    await expect(page).toHaveURL(/#\/work-home\?/);
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    await expect(work).toHaveAttribute("aria-selected", "true");
+    await expect(work).toBeFocused();
+    await commit.dispose();
+  } finally { await app.close(); }
+});
+
+test("a pending route commit preserves the outgoing Work tree and restores Bot activity", async () => {
+  const { app, page } = await launch({ hash: "#/work-task?preview&theme=light&v=computer", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  try {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    const bot = page.locator(".sidebar .row").filter({ hasText: "Nova" });
+    await expect(page.locator(".travail-pane")).toHaveAttribute("aria-hidden", "false");
+    await expect(bot.locator(".meta")).toHaveText("is browsing the CRM");
+    const draft = page.getByTestId("composer-input");
+    await draft.fill("Keep this outgoing task draft");
+    const outgoing = await page.locator("main.content").elementHandle();
+    const commit = await page.evaluateHandle(() => {
+      const start = document.startViewTransition;
+      let release: (() => void) | undefined;
+      // Hold only the route update, making the browser/React snapshot gap deterministic.
+      document.startViewTransition = (update) => {
+        document.startViewTransition = start;
+        const done = new Promise<void>((resolve) => { release = resolve; }).then(() => typeof update === "function" ? update() : update?.update?.());
+        return { finished: done, ready: done, updateCallbackDone: done, types: new Set<string>(), skipTransition() {} };
+      };
+      history.pushState(null, "", "#/home?preview&theme=light");
+      return () => { if (!release) throw new Error("Route update was not held"); release(); };
+    });
+    await expect(page).toHaveURL(/#\/home\?/);
+    // A shell-only update must not remount Work under Home's history entry.
+    await page.getByRole("button", { name: "Hide sidebar", exact: true }).click();
+    await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "hidden");
+    expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(true);
+    await expect(draft).toHaveValue("Keep this outgoing task draft");
+    await expect(page.locator(".home")).toHaveCount(0);
+    await commit.evaluate((release) => release());
+    await expect(page.locator(".home")).toBeVisible();
+    expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(false);
+    await expect(bot.locator(".meta")).toHaveText("sorting your email");
+    await expect(bot.locator(".mascot")).toHaveAttribute("data-state", "working");
+    await outgoing!.dispose();
+    await commit.dispose();
+  } finally { await app.close(); }
+});
+
 test("anchors, native menus and history preserve routes, variants and chat identities", async () => {
   const initialHash = "#/image-gen?preview&v=refused&theme=light";
   const { app, page } = await launch({ hash: initialHash, env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });

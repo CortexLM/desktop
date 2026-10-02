@@ -94,7 +94,7 @@ export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
                 <IconBtn icon="arrow-right" label={t("shell.forward")} kbd="⌘]" onClick={forward} disabled={!navigation.canGoForward} />
               </div>
             </div>
-            <div className="hide-focus" inert={focus}>{work && <Segmented resetKey={navigation.currentEntry.key} items={[t("shell.tab.chat"), t("shell.tab.work")]} value={route === "work-home" ? t("shell.tab.work") : t("shell.tab.chat")} onChange={(x) => go(x === t("shell.tab.work") ? "work-home" : "home")} />}</div>
+            <div className="hide-focus" inert={focus}>{work && <Segmented resetKey={hash.entryKey} items={[t("shell.tab.chat"), t("shell.tab.work")]} value={route === "work-home" ? t("shell.tab.work") : t("shell.tab.chat")} onChange={(x) => { go(x === t("shell.tab.work") ? "work-home" : "home"); return navigation.currentEntry.key; }} />}</div>
             <div className="side end">
               {!focus && isPreview() && def?.variants && <VariantPicker key={route} variants={def.variants} />}
               <IconBtn icon="share" label={t("shell.share")} className="hide-focus" inert={focus} onClick={() => go("share")} />
@@ -115,7 +115,7 @@ export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
                 </div>
                 <GettingStarted route={route} go={go} />
               </div></aside>
-              <main className="content" key={isPreview() || route === "home" || route === "code" ? navigation.currentEntry.key : undefined} style={{ viewTransitionName: "content" }}>{screen}</main>
+              <main className="content" key={params.has("preview") || hash.shot || route === "home" || route === "code" ? hash.entryKey : undefined} style={{ viewTransitionName: "content" }}>{screen}</main>
             </div>
           </div>
         </div>
