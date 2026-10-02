@@ -6,6 +6,38 @@ async function reachable(control: Locator) {
   await control.click({ trial: true });
 }
 
+test("preview navigation loads fixtures and catches startup URL changes", async () => {
+  const { app, page } = await launch({ env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  try {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(page.locator(".desk")).toBeVisible();
+    // currententrychange must gate fixtures even without a later hashchange event.
+    await page.evaluate(() => history.pushState(null, "", "#/code-review?theme=light&shot&v=review"));
+    await expect(page.getByRole("button", { name: "Apply suggestion", exact: true })).toBeVisible();
+    await page.goBack();
+    await expect(page).toHaveURL(/index\.html$/);
+    await page.addInitScript(() => {
+      const navigation = (window as unknown as { navigation: EventTarget }).navigation;
+      const add = navigation.addEventListener;
+      navigation.addEventListener = function (type, listener, options) {
+        if (type === "currententrychange") {
+          navigation.addEventListener = add;
+          // Navigate between App's first render and its subscription, without a timing delay.
+          location.hash = "#/code-review?theme=light&shot&v=review";
+        }
+        add.call(this, type, listener, options);
+      };
+    });
+    await page.reload();
+    await expect(page.getByRole("button", { name: "Apply suggestion", exact: true })).toBeVisible();
+    expect(errors).toEqual([]);
+  } finally {
+    await app.close();
+  }
+});
+
 test("review, diff, canvas and computer controls remain reachable in small desktop windows", async () => {
   const { app, page } = await launch();
   const base = page.url().split("#")[0];

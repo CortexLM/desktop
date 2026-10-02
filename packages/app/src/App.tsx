@@ -16,13 +16,16 @@ export type ThemePref = Theme | "system";
 
 export default function App() {
   const [h, setH] = React.useState(readHash);
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const f = (event: Event) => {
       const run = () => setH(readHash());
       // Keep screen transitions; snapshotting the gallery's hundreds of frames blocks input.
       if (h.route !== "gallery" && readHash().route !== "gallery" && (event as Event & { navigationType: string }).navigationType !== "replace" && document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(run); else run();
     };
     navigation.addEventListener("currententrychange", f);
+    // Catch navigation between the initial render and subscription.
+    const current = readHash();
+    setH((previous) => previous.route === current.route && previous.params.toString() === current.params.toString() ? previous : current);
     return () => navigation.removeEventListener("currententrychange", f);
   }, [h.route]);
   React.useEffect(() => window.cortex?.onMenu?.((cmd) => {
