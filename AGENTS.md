@@ -131,6 +131,8 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 `packages/app/src/registry.tsx`. Hash routes use native browser history, preserving query parameters.
 Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
 one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
+Reduced motion disables CSS transitions entirely to avoid stale inherited theme colors;
+animations retain 1ms so completion hooks fire.
 Toast Undo remains an accessible action. See [`docs/testing.md`](./docs/testing.md).
 Work columns wrap within narrow content panes; transcript toasts anchor above the actual
 composer dock, including attachments and nested Work transcripts at every window width.

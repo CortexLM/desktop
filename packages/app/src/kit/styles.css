@@ -55,7 +55,7 @@ svg { display: block; flex-shrink: 0; }
 ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 140ms; }
 ::view-transition-group(content), ::view-transition-old(content), ::view-transition-new(content) { animation-duration: var(--d-swap); animation-timing-function: var(--ease-out); }
 html[data-vt="theme"]::view-transition-group(content), html[data-vt="theme"]::view-transition-old(content), html[data-vt="theme"]::view-transition-new(content) { animation-duration: 140ms; }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; } .thinking, .shimmer span { animation: none !important; color: var(--t2) !important; background: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0s !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; } .thinking, .shimmer span { animation: none !important; color: var(--t2) !important; background: none !important; } }
 @media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 1ms !important; } }
 
 .gel { display: inline-block; flex-shrink: 0; background-size: 112%; background-position: center; }

@@ -52,6 +52,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.
+  A reduced-motion startup case checks inherited heading colors in both themes, zero-duration
+  transitions and retained 1ms animations. This is a separately delivered accessibility fix;
+  the original frozen design files are unchanged.
 - `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
   suggestion, read split-diff line endings, use Canvas selection/version controls, operate
   Work computer controls. Also forces preview navigation before startup subscription to
