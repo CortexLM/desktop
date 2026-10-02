@@ -13,9 +13,11 @@ export type ComposerProps = {
   /** Preview-only labels for the model menu; live mode lists configured models. */
   models?: string[];
   disabled?: boolean;
+  /** data-testid prefix: `<id>-input`, `<id>-send`. */
+  testId?: string;
 };
 
-export function Composer({ placeholder, onSend, models, disabled }: ComposerProps) {
+export function Composer({ placeholder, onSend, models, disabled, testId = "composer" }: ComposerProps) {
   const t = useT();
   const list = models ?? [t("composer.model.fast"), t("composer.model.thinking"), t("composer.model.pro")];
   const hints = [t("composer.model.fastHint"), t("composer.model.thinkingHint"), t("composer.model.proHint")];
@@ -31,7 +33,7 @@ export function Composer({ placeholder, onSend, models, disabled }: ComposerProp
         <MItem icon="globe">{t("composer.webSearch")}</MItem>
         <MItem icon="bot">{t("composer.handToBot")}</MItem>
       </Pop>
-      <input value={text} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} />
+      <input data-testid={`${testId}-input`} value={text} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} />
       <Menu.Root>
         <Menu.Trigger className="model" type="button">{model}<Icon name="chevron-down" size={12} /></Menu.Trigger>
         <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 220 }}>
@@ -47,7 +49,7 @@ export function Composer({ placeholder, onSend, models, disabled }: ComposerProp
       </Menu.Root>
       <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" />
       <Tip label={text ? t("composer.send") : t("composer.voice")} kbd={text ? "↵" : undefined}>
-        <button type="submit" className="send" data-has-text={text ? "" : undefined} aria-label={text ? t("composer.send") : t("composer.voice")}>
+        <button type="submit" data-testid={`${testId}-send`} className="send" data-has-text={text ? "" : undefined} aria-label={text ? t("composer.send") : t("composer.voice")}>
           <span className="swap"><Icon name="voice-wave" className="wave" /><Icon name="arrow-up" className="up" /></span>
         </button>
       </Tip>
