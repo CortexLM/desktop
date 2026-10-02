@@ -13,6 +13,19 @@ const streamOf = (chunks: string[]) =>
   })
 
 describe("client", () => {
+  it("trims only trailing URL slashes without backtracking", async () => {
+    const base = `https://engine.test/${"/".repeat(100_000)}prefix`
+    const urls: string[] = []
+    const start = performance.now()
+    const client = createClient({
+      baseUrl: base + "/".repeat(100_000),
+      fetch: (r) => { urls.push(r.url); return Response.json({ ok: true }) },
+    })
+    expect(performance.now() - start).toBeLessThan(1000)
+    await client.health()
+    expect(urls).toEqual([`${base}/api/health`])
+  })
+
   it("parses SSE split across arbitrary chunks, skipping comments and junk", async () => {
     const e1 = JSON.stringify({ type: "session.deleted", properties: { sessionID: "s1" } })
     const e2 = JSON.stringify({ type: "part.delta", properties: { sessionID: "s", messageID: "m", partID: "p", field: "text", delta: "a\nb" } })

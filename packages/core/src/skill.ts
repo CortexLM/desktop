@@ -9,8 +9,8 @@ export function frontmatter(text: string): { data: Record<string, string>; body:
   if (!m) return { data: {}, body: text }
   const data: Record<string, string> = {}
   for (const line of m[1]!.split(/\r?\n/)) {
-    const kv = /^([A-Za-z0-9_-]+)\s*:\s*(.*)$/.exec(line)
-    if (kv) data[kv[1]!] = kv[2]!.trim().replace(/^(['"])(.*)\1$/, "$2")
+    const kv = /^([A-Za-z0-9_-]+)\s*:\s*(\S.*)?$/.exec(line)
+    if (kv) data[kv[1]!] = (kv[2] ?? "").trim().replace(/^(['"])(.*)\1$/, "$2")
   }
   return { data, body: text.slice(m[0].length) }
 }

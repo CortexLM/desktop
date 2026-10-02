@@ -92,7 +92,7 @@ export async function* parseSSE(body: ReadableStream<Uint8Array>, signal?: Abort
 
 export function createClient(opts: ClientOptions) {
   const doFetch = opts.fetch ?? ((r: Request) => fetch(r))
-  const base = opts.baseUrl.replace(/\/+$/, "")
+  const base = opts.baseUrl.replace(/(?<!\/)\/+$/, "")
 
   async function call<T>(method: string, path: string, body?: unknown, query?: Record<string, string | number | undefined>): Promise<T> {
     const qs = query ? Object.entries(query).filter(([, v]) => v !== undefined).map(([k, v]) => `${enc(k)}=${enc(String(v))}`).join("&") : ""

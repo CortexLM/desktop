@@ -18,6 +18,7 @@ import {
   Storage,
 } from "../src/index"
 import { fakeOpenAI, testCore, toolCall } from "./helpers"
+import { frontmatter } from "../src/skill"
 
 describe("permissions", () => {
   it("last matching rule wins, default ask", () => {
@@ -72,6 +73,14 @@ describe("cron", () => {
 })
 
 describe("skills", () => {
+  it("parses frontmatter with long malformed lines without backtracking", () => {
+    const text = `---\r\nname: 'notes'\r\ndescription : "Keep: this"\r\nempty:   \r\n-:${" ".repeat(100_000)}x\u2028x\r\n---\r\n# Body`
+    const start = performance.now()
+    const result = frontmatter(text)
+    expect(performance.now() - start).toBeLessThan(1000)
+    expect(result).toEqual({ data: { name: "notes", description: "Keep: this", empty: "" }, body: "# Body" })
+  })
+
   it("discovers SKILL.md from builtin/personal/project with shadowing and toggles", async () => {
     const root = mkdtempSync(join(tmpdir(), "cortex-skills-"))
     const mk = (dir: string, name: string, desc: string) => {
@@ -205,7 +214,7 @@ describe("scheduler, bots, space, connection, providers", () => {
     const core = createCore({
       dataDir: ":memory:",
       credentials: memoryCredentials(),
-      fetch: async (u) => (String(u).startsWith("https://ok.test") ? Response.json({ status: "ok" }) : String(u).startsWith("https://old.test") ? new Response("", { status: 404 }) : Promise.reject(new Error("down"))),
+      fetch: async (u) => (String(u) === "https://ok.test/readyz" ? Response.json({ status: "ok" }) : String(u) === "https://old.test/readyz" ? new Response("", { status: 404 }) : Promise.reject(new Error("down"))),
     })
     const a = core.space.create({ kind: "page", title: "A", content: "# A" })
     const b = core.space.create({ kind: "image", title: "B", url: "file:///b.png" })
@@ -220,6 +229,10 @@ describe("scheduler, bots, space, connection, providers", () => {
     expect((await core.connection.probe()).status).toBe("incompatible")
     core.connection.set({ mode: "selfhost", url: "https://down.test", signedIn: false })
     expect((await core.connection.probe()).status).toBe("unreachable")
+    for (const url of ["https://ok.test.evil.test", "https://old.test.evil.test"]) {
+      core.connection.set({ mode: "selfhost", url, signedIn: false })
+      expect((await core.connection.probe()).status).toBe("unreachable")
+    }
     expect(() => core.connection.set({ mode: "selfhost", signedIn: false })).toThrow()
   })
 

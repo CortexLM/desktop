@@ -72,6 +72,8 @@ cancels the session's other pending asks). Computer-use input tools never save `
   `.cortex/skills`; later shadows earlier. `/api/skills`. Desktop configures builtin and
   personal directories; `skills/summarize/SKILL.md` ships as a builtin, enabled by default.
   Core supports a public directory but desktop does not configure one.
+- Frontmatter supports single-line `key: value` entries, empty values and paired quotes;
+  malformed lines are ignored. Large malformed whitespace input has a regression check.
 - Plugins: a directory with `package.json` and a module exporting hooks (`tools`,
   `chat.params`, `tool.execute.before`, `tool.execute.after`, `event`). In-process, host
   privileges. `/api/plugins`.
@@ -86,4 +88,6 @@ those screens; the computer-use preset cannot be enabled from the UI yet.
 - Deltas are not replayed; a crash mid-stream loses the unflushed tail.
 - Pending asks and running loops are in memory; a restart drops them.
 - `bash` has no sandbox.
+- `webfetch` strips markup for model text; it is not an HTML sanitizer. Tool/model text
+  must remain escaped if displayed. Session IDs are record identifiers, not auth tokens.
 - Error `message` is developer English; the UI maps `code` ([`.rules/02-errors.md`](../.rules/02-errors.md)).
