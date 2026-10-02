@@ -81,6 +81,10 @@ cancels the session's other pending asks). Computer-use input tools never save `
   Live Work completion comes from the latest persisted assistant message, not an idle process.
   Refused/empty and failed/interrupted tasks stay outside Done; transcript failures remain visible
   after reload. The board currently reads each root Bot session's history until a bulk summary exists.
+  Global Search reads saved Bot names/personas and session titles through the existing list routes.
+  Matching is case/accent-insensitive; opening a Bot carries its exact ID. Grouped keyboard navigation
+  follows visual order. Either list failure replaces results with retryable, localized error copy;
+  recently opened items remain session-only. This is not a transcript/full-text index.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not
   backfilled; the timer lives only while the app runs. Work → Automations and bot routines
@@ -90,6 +94,16 @@ cancels the session's other pending asks). Computer-use input tools never save `
   Running until a completed outcome arrives. Prompt-and-wait callers receive cancellation errors.
   Startup marks persisted, no-longer-active Running records interrupted; it does not replay them.
   Deleting a routine removes its history; an already-running session may finish but cannot recreate it.
+  Work task options can prefill the existing routine editor from a root Bot session. It uses the
+  first user request's non-synthetic text, the source Bot, model, agent and directory; follow-ups
+  are not concatenated. The name is capped to the editor's 60-character limit without renaming
+  the session. Create is explicit, Cancel writes nothing, pending saves reject duplicate clicks.
+  File-bearing histories, missing sources and deleted source Bots refuse conversion. Source files
+  are checked again before Create; refused saves retain the editable draft. Reassigning a new
+  routine to another Bot uses that Bot's model without inheriting the source agent/directory.
+  Editing with the same assigned Bot preserves the persisted model, agent and directory.
+  Create stays disabled until the selected Bot is available; a failed Bot list offers Retry while
+  retaining the editable draft.
 - Space (`space.ts`): pages, sites, images and recents. No screen yet.
 - Connection (`connection.ts`): saved mode and remote probes only. Sessions still use local
   provider settings in every mode; remote auth/inference is not wired

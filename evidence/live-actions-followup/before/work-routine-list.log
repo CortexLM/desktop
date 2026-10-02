@@ -1,0 +1,53 @@
+$ playwright test "tests/e2e/work-routine-source.spec.ts" --grep "waits for its Bot list" "--workers=1" "--output=/tmp/opencode/work-routine-list-before-artifacts"
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry (4.7s)
+
+
+  1) tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('button', { name: 'Create routine', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  2500ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('button', { name: 'Create routine', exact: true }) with timeout 2500ms
+      - waiting for getByRole('button', { name: 'Create routine', exact: true })
+        9 × locator resolved to <button class="btn primary" data-testid="routine-save">Create routine</button>
+          - unexpected value "enabled"
+
+
+      367 |     await expect(assigned.getByRole("radio")).toHaveCount(0);
+      368 |     await capture(page, "routine-source-list-unavailable");
+    > 369 |     await expect(create).toBeDisabled({ timeout: 2500 });
+          |                          ^
+      370 |     const alert = page.getByRole("alert");
+      371 |     await expect(alert).toContainText("Couldn’t load this");
+      372 |     await expect(alert.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-routine-source.spec.ts:369:26
+
+    attachment #1: routine-source-list-unavailable (image/png) ─────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-list-before-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/attachments/routine-source-list-unavailable-2498ee0bb819296c77e1bba9dad7ef1c2168f372.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-list-before-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/work-routine-list-before-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-routine-list-before-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/work-routine-list-before-artifacts/work-routine-source-Routin-b2b7c-ough-list-failure-and-retry/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry
+error: script "test:e2e" exited with code 1

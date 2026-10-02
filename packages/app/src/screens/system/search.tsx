@@ -19,27 +19,34 @@ export function SearchScreen() {
   const preview = isPreview();
   const ago = useAgo();
   const sessions = useSessions();
+  const bots = useBots();
   const [v] = useVariant("results");
   const [q, setQ] = React.useState(() => (preview ? fx.search.q[v] ?? "" : ""));
   const [kind, setKind] = React.useState<(typeof KINDS)[number]>("all");
-  const loading = preview ? v === "loading" : sessions.state === "loading";
-  const pool: Hit[] = preview ? fx.search.hits
-    : sessions.state === "ready" ? sessions.data.map((s) => ({ kind: "chats", icon: s.kind === "code" ? "code" : s.kind === "bot" ? "bot" : "compose", title: s.title || t("system.untitled"), sub: t(`system.search.kind.${s.kind}`), meta: ago(s.time.updated), to: s.kind === "code" ? "code-session" : "chat", id: s.id } as Hit & { id: string })) : [];
-  const open = (h: Hit) => go(h.to, (h as Hit & { id?: string }).id ? { id: (h as Hit & { id: string }).id } : undefined);
+  const loading = preview ? v === "loading" : sessions.state === "loading" || bots.state === "loading";
+  const sourceError = !preview && (sessions.state === "error" || bots.state === "error");
+  type SearchHit = Hit & { id?: string };
+  const pool: SearchHit[] = preview ? fx.search.hits
+    : [
+      ...(sessions.state === "ready" ? sessions.data.map((s) => ({ kind: "chats" as const, icon: s.kind === "code" ? "code" : s.kind === "bot" ? "bot" : "compose", title: s.title || t("system.untitled"), sub: t(`system.search.kind.${s.kind}`), meta: ago(s.time.updated), to: s.kind === "code" ? "code-session" : "chat", id: s.id })) : []),
+      ...(bots.state === "ready" ? bots.data.map((b) => ({ kind: "bots" as const, icon: "bot", title: b.name, sub: b.persona, meta: t("system.search.k.bots"), to: "bot", id: b.id })) : []),
+    ];
+  const open = (h: SearchHit) => go(h.to, h.id ? { id: h.id } : undefined);
   const found = pool.filter((h) => (kind === "all" || h.kind === kind) && q.trim() && norm(h.title + " " + h.sub).includes(norm(q.trim())));
   const recentQ = preview ? fx.search.recent : [];
-  const opened = preview ? fx.search.hits.filter((h) => fx.search.opened.includes(h.title)) : pool.slice(0, 3);
+  const opened = preview ? fx.search.hits.filter((h) => fx.search.opened.includes(h.title)) : pool.filter((h) => h.kind === "chats").slice(0, 3);
   const recent = !q.trim();
-  const flat = recent ? recentQ : found;
-  const nav = useListNav(loading ? 0 : flat.length, (i) => (recent ? setQ(recentQ[i][0]) : open(found[i])));
   const groups = KINDS.slice(1).map((k) => [k, found.filter((h) => h.kind === k)] as const).filter(([, xs]) => xs.length);
+  const orderedFound = groups.flatMap(([, xs]) => xs);
+  const flat = recent ? recentQ : orderedFound;
+  const nav = useListNav(loading || sourceError ? 0 : flat.length, (i) => (recent ? setQ(recentQ[i][0]) : open(orderedFound[i])));
   let n = 0;
   return (<>
     <Top title={t("system.search.title")} />
     <div className="page"><div className="systeme-narrow">
       <label className="systeme-search">
         <Icon name="search" />
-        <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={nav.onKeyDown} placeholder={t("system.search.placeholder")} aria-label={t("system.search.label")} role="combobox" aria-expanded aria-controls="systeme-res" aria-activedescendant={flat.length ? `systeme-hit-${nav.active}` : undefined} />
+        <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={nav.onKeyDown} placeholder={t("system.search.placeholder")} aria-label={t("system.search.label")} role="combobox" aria-expanded aria-controls="systeme-res" aria-activedescendant={!loading && !sourceError && flat.length ? `systeme-hit-${nav.active}` : undefined} />
         {q && <button type="button" className="systeme-clear" aria-label={t("system.clear")} onClick={() => setQ("")}><Icon name="close" size={12} /></button>}
       </label>
       <div className="systeme-filters" role="group" aria-label={t("system.search.filter")}>
@@ -49,6 +56,9 @@ export function SearchScreen() {
         {loading ? <section><h3 className="h3"><span className="thinking">{preview ? t("system.search.searching", { total: fx.search.total }) : t("system.search.searchingLive")}</span></h3>
           {[0, 1, 2, 3, 4].map((i) => <div key={i} className="systeme-skel-hit"><span className="skel" style={{ width: 32, height: 32, borderRadius: 10 }} /><span style={{ flex: 1, display: "grid", gap: 6 }}><span className="skel title" style={{ width: `${50 - i * 5}%` }} /><span className="skel line" style={{ width: `${80 - i * 7}%` }} /></span></div>)}
         </section>
+        : sourceError ? <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}>
+          <button className="btn secondary" onClick={() => { sessions.reload(); bots.reload(); }}>{t("common.retry")}</button>
+        </BotEmpty>
         : recent ? <section className="systeme-recent">
           {recentQ.length > 0 && <h3 className="h3">{t("system.search.recentSearches")}</h3>}
           {recentQ.map(([r, w], i) => <button key={r} id={`systeme-hit-${i}`} data-nav-i={i} role="option" aria-selected={nav.active === i} className="systeme-row systeme-rise" style={css(i)} data-active={nav.active === i || undefined} onMouseMove={() => nav.setActive(i)} onClick={() => setQ(r)}>
@@ -75,7 +85,7 @@ export function SearchScreen() {
             <div style={{ display: "flex", gap: 8 }}>{kind !== "all" && <button className="btn secondary" onClick={() => setKind("all")}>{t("system.search.everywhere")}</button>}<button className="btn secondary" onClick={() => go("deep-research")}><Icon name="globe" />{t("system.search.web")}</button></div>
           </BotEmpty>}
       </div>
-      {!loading && flat.length > 0 && <div className="systeme-searchfoot"><div className="systeme-hint"><span><Keys k={["↑", "↓"]} />{t("system.key.navigate")}</span><span><Keys k={["↵"]} />{t("system.key.open")}</span><span><Keys k={["⌘", "K"]} />{t("system.key.palette")}</span></div></div>}
+      {!loading && !sourceError && flat.length > 0 && <div className="systeme-searchfoot"><div className="systeme-hint"><span><Keys k={["↑", "↓"]} />{t("system.key.navigate")}</span><span><Keys k={["↵"]} />{t("system.key.open")}</span><span><Keys k={["⌘", "K"]} />{t("system.key.palette")}</span></div></div>}
     </div></div>
   </>);
 }

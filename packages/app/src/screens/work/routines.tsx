@@ -154,18 +154,23 @@ function nextRuns(kind: string, time: string, locale: string, today: string): st
 }
 
 export function AutomationEdit() {
+  const { params } = useNav();
+  const editID = isPreview() ? "" : params.get("id") ?? "";
+  const sourceID = isPreview() || editID ? "" : params.get("source") ?? "";
+  return <AutomationEditor key={`${editID}:${sourceID}`} editID={editID} sourceID={sourceID} />;
+}
+
+function AutomationEditor({ editID, sourceID }: { editID: string; sourceID: string }) {
   const t = useT();
   const { locale } = useI18n();
   const go = useGo();
   const toast = useToast();
-  const { params } = useNav();
   const preview = isPreview();
   const fx = useFixtures<WorkFx>("work");
   const fxb = useFixtures<BotsFx>("bots");
   const main = useMainBot();
   const bots = useBots();
   const liveBots: Bot[] = bots.state === "ready" ? bots.data : [];
-  const editID = preview ? "" : params.get("id") ?? "";
   const [v, setV] = useVariant("schedule");
   const evMode = (x: string) => (["event", "test", "passed"].includes(x) ? "event" : "schedule");
   const [mode, setMode] = React.useState(evMode(v));
@@ -178,42 +183,77 @@ export function AutomationEdit() {
   const [ask, setAsk] = React.useState(true);
   const [test, setTest] = React.useState(v === "test" ? 2 : v === "passed" ? 4 : -1);
   const [busy, setBusy] = React.useState(false);
+  const saving = React.useRef(false);
+  const mounted = React.useRef(true);
+  const [original, setOriginal] = React.useState<Pick<ScheduledTask, "model" | "agent" | "directory" | "botID"> | null>(null);
+  const [sourceError, setSourceError] = React.useState(false);
+  React.useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   React.useEffect(() => {
     setMode(evMode(v)); setTest(v === "test" ? 2 : v === "passed" ? 4 : -1);
     if (preview && evMode(v) === "event") { setEv("ticket"); setWho(fx.edit.eventBot); setName(fx.edit.eventName); setInstr(fx.edit.eventInstr); }
   }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => { if (test < 0 || test >= 4 || v === "test") return; const id = setTimeout(() => setTest((x) => x + 1), 900); return () => clearTimeout(id); }, [test, v]);
-  // Live: load the routine being edited, default the Bot to the main one.
+  // Preserve execution context when editing a routine without changing its assigned Bot.
   React.useEffect(() => {
     if (preview) return;
-    if (editID) api.tasks.get(editID).then((x) => { setName(x.title); setInstr(x.prompt); const [k, tm] = fromSchedule(x.schedule); setSched(k); setTime(tm); setWho(x.botID ?? ""); }, () => {});
+    let live = true;
+    if (editID) api.tasks.get(editID).then((x) => { if (!live) return; setName(x.title); setInstr(x.prompt); const [k, tm] = fromSchedule(x.schedule); setSched(k); setTime(tm); setWho(x.botID ?? ""); setOriginal(x); }, () => {});
+    return () => { live = false; };
   }, [editID]); // eslint-disable-line react-hooks/exhaustive-deps
-  React.useEffect(() => { if (!preview && !who && liveBots[0]) setWho(liveBots[0].id); }, [liveBots.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  React.useEffect(() => {
+    if (!sourceID) return;
+    let live = true;
+    void (async () => {
+      const [s, messages] = await Promise.all([api.sessions.get(sourceID), api.sessions.messages(sourceID)]);
+      const users = messages.filter((m) => m.info.role === "user");
+      const first = users[0]?.parts.map((p) => p.type === "text" && !p.synthetic ? p.text : "").join("").trim() ?? "";
+      // ponytail: routines accept one text prompt; refuse file histories until tasks support attachments.
+      if (s.kind !== "bot" || !s.botID || s.parentID || users.some((m) => m.parts.some((p) => p.type === "file")) || !first) throw new Error();
+      await api.bots.get(s.botID);
+      if (!live) return;
+      setName(s.title.slice(0, 60)); setInstr(first); setWho(s.botID); setOriginal(s);
+    })().catch(() => { if (live) setSourceError(true); });
+    return () => { live = false; };
+  }, [sourceID]);
+  React.useEffect(() => { if (!preview && !sourceID && !editID && !who && liveBots[0]) setWho(liveBots[0].id); }, [liveBots.length]); // eslint-disable-line react-hooks/exhaustive-deps
   const runs = mode === "schedule" ? nextRuns(sched, time, locale, t("work.edit.today")) : [];
   const runTest = () => { setTest(0); if (v === "test") setV("passed"); };
   const pct = test < 0 ? 0 : (test / 4) * 100;
   const pick: [string, string][] = preview ? [[fxb.main.name, main?.cfg.name ?? ""], ...fx.edit.bots.map((b) => [b, b] as [string, string])] : liveBots.map((b) => [b.id, b.name]);
+  const bot = liveBots.find((b) => b.id === who);
   const schedLabel = (k: string) => t(`work.sched.${k}`);
   const evLabel = (k: string) => t(`work.edit.ev.${k}`);
   const save = async () => {
+    if (saving.current || ((sourceID || editID) && !original)) return;
     const desc = `${name} · ${mode === "schedule" ? schedLabel(sched).toLowerCase() : evLabel(ev).toLowerCase()}`;
     if (preview) { toast.add({ title: t("work.edit.toastCreated"), description: desc, data: { icon: "clock-loop" } }); go("automations"); return; }
-    const bot = liveBots.find((b) => b.id === who);
-    if (!bot) { go("bot-new"); return; }
+    if (!bot) { if (sourceID) toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); else go("bot-new"); return; }
+    saving.current = true;
     setBusy(true);
-    const body = { title: name.trim(), prompt: instr.trim(), schedule: toSchedule(sched, time), model: bot.model, botID: bot.id };
+    const context = original?.botID === bot.id ? { model: original.model, agent: original.agent, directory: original.directory } : { model: bot.model };
+    const body = { title: name.trim(), prompt: instr.trim(), schedule: toSchedule(sched, time), ...context, botID: bot.id };
     try {
+      if (sourceID) {
+        const [messages] = await Promise.all([api.sessions.messages(sourceID), api.bots.get(bot.id)]);
+        if (messages.some((m) => m.info.role === "user" && m.parts.some((p) => p.type === "file"))) throw new Error();
+      }
+      if (!mounted.current) return;
       if (editID) await api.tasks.update(editID, body); else await api.tasks.create(body);
+      if (!mounted.current) return;
       toast.add({ title: editID ? t("work.edit.toastSaved") : t("work.edit.toastCreated"), description: desc, data: { icon: "clock-loop" } });
       go("automations");
-    } catch { toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); } finally { setBusy(false); }
+    } catch {
+      saving.current = false;
+      if (mounted.current) { setBusy(false); toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); }
+    }
   };
   return (<>
-    <div className="content-top"><IconBtn icon="arrow-left" label={t("work.edit.back")} onClick={() => go("automations")} /><span className="title">{editID ? t("work.edit.titleEdit") : t("work.routines.new")}</span><div className="spacer" />
-      <button className="btn secondary" style={{ height: 28 }} onClick={() => go("automations")}>{t("common.cancel")}</button>
-      <button className="btn primary" style={{ height: 28, marginLeft: 4 }} data-testid="routine-save" disabled={!name.trim() || !instr.trim() || busy || (!preview && !who)} onClick={save}>{editID ? t("common.save") : t("work.edit.create")}</button></div>
-    <div className="page"><div className="travail-mid travail-form">
+    <div className="content-top"><IconBtn icon="arrow-left" label={t("work.edit.back")} disabled={busy} onClick={() => go("automations")} /><span className="title">{editID ? t("work.edit.titleEdit") : t("work.routines.new")}</span><div className="spacer" />
+      <button className="btn secondary" style={{ height: 28 }} disabled={busy} onClick={() => go("automations")}>{t("common.cancel")}</button>
+      <button className="btn primary" style={{ height: 28, marginLeft: 4 }} data-testid="routine-save" disabled={!name.trim() || !instr.trim() || busy || (!preview && !bot) || (!!(sourceID || editID) && !original)} onClick={save}>{editID ? t("common.save") : t("work.edit.create")}</button></div>
+    {sourceError ? <Empty state="blocked" title={t("work.error.loadTitle")} text={null} /> : sourceID && !original ? <div className="page" role="status" aria-busy="true">{t("chat.history.loading")}</div> : <div className="page"><div className="travail-mid travail-form">
       <form onSubmit={(e) => e.preventDefault()}>
+        <fieldset disabled={busy} style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}>
         <div className="field"><label htmlFor="travail-rn">{t("work.edit.name")}</label><input id="travail-rn" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={60} /></div>
         {preview && <div className="field"><span style={{ fontWeight: 500 }}>{t("work.edit.trigger")}</span><div style={{ display: "flex" }}><Segmented items={[t("work.edit.schedule"), t("work.edit.event")]} value={mode === "schedule" ? t("work.edit.schedule") : t("work.edit.event")} onChange={(m) => { const x = m === t("work.edit.schedule") ? "schedule" : "event"; setMode(x); setV(x); }} /></div></div>}
         {mode === "schedule" ? <div className="field travail-rise">
@@ -228,8 +268,10 @@ export function AutomationEdit() {
         <div className="field"><label htmlFor="travail-ri">{t("work.edit.instructions")}</label><textarea id="travail-ri" className="input" style={{ height: 104 }} value={instr} onChange={(e) => setInstr(e.target.value)} /></div>
         <div className="field"><span style={{ fontWeight: 500 }} id="travail-rb">{t("work.edit.assigned")}</span>
           <div className="travail-botpick" role="radiogroup" aria-labelledby="travail-rb">{pick.map(([id, l]) => <button key={id} type="button" role="radio" aria-checked={who === id} className="travail-opt" onClick={() => setWho(id)}><BotFace name={id} size={20} state={who === id ? "listening" : "idle"} bots={liveBots} />{l}</button>)}</div>
+          {!preview && bots.state === "error" && <div className="sub" role="alert">{t("work.error.loadTitle")} <button type="button" className="travail-press" style={{ textDecoration: "underline" }} onClick={bots.reload}>{t("common.retry")}</button></div>}
           {!preview && bots.state === "ready" && !liveBots.length && <span className="travail-meta">{t("work.edit.noBot")} <button type="button" className="travail-press" style={{ textDecoration: "underline" }} onClick={() => go("bot-new")}>{t("bots.new.title")}</button></span>}</div>
         {preview && <label className="li" style={{ padding: "4px 0", border: 0 }}><span className="grow"><div className="ttl" style={{ fontSize: 12 }}>{t("work.edit.askFirst")}</div><div className="sub">{t("work.edit.askFirstSub")}</div></span><Switch checked={ask} onCheckedChange={setAsk} aria-label={t("work.edit.askFirstShort")} /></label>}
+        </fieldset>
       </form>
       <aside className="travail-side">
         <div className="travail-next-card">
@@ -247,6 +289,6 @@ export function AutomationEdit() {
             </>}
         </div>}
       </aside>
-    </div></div>
+    </div></div>}
   </>);
 }

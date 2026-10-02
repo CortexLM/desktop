@@ -4,7 +4,16 @@
 Current prerequisite: G3's corrected, versioned SDK/api-types pair. G2's five typed auth/upload
 bodies are delivered. Desktop session acquisition, remote prompt routing and proof remain G1-owned.
 
-## Current SDK observation — 22:53 UTC
+## Current SDK observation — 23:42 UTC
+
+At 23:42:53 UTC, one metadata/comments query again records PR #447 at
+`7633f7e2fa4df197a3bd19e5316943be20ec6722`, with zero returned comments since 22:53.
+No canonical versioned SDK/api-types package pair is announced in that query or the checked
+coordination tail. Design requests remain at line 88; the current disposition tails grant
+no named G1 source/state import permission. New G4 locale delivery does not alter these gates.
+No old archive/hash/build/native checks were replayed.
+
+## Earlier SDK observation — 22:53 UTC
 
 At 22:53:18 UTC, one fresh PR #447 readback still records
 `7633f7e2fa4df197a3bd19e5316943be20ec6722`, with zero comments since 21:55 and no canonical

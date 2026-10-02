@@ -437,6 +437,9 @@ function WorkTaskLive({ id }: { id: string }) {
       {s && <span className={"badge " + (v === "todo" ? "" : BADGE[v] ?? "run")} style={{ marginLeft: 6 }}>{v === "running" && <span className="spin" />}{v === "todo" ? t("work.col.todo") : t(`work.task.status.${v}`)}</span>}
       <div className="spacer" />
       {v === "running" && <IconBtn icon="stop" label={t("work.task.stop")} onClick={() => api.sessions.abort(id).then(() => toast.add({ title: t("work.task.toastStopped"), data: { icon: "stop" } }), () => {})} />}
+      {s?.kind === "bot" && s.botID && !s.parentID && <Pop align="end" trigger={<button className="ibtn" aria-label={t("work.task.options")}><Icon name="more-dots" size={16} /></button>}>
+        <MItem icon="clock-loop" onClick={() => go("automation-edit", "", { source: id })}>{t("work.task.toRoutine")}</MItem>
+      </Pop>}
     </div>
     <div className="travail-task">
       <div className="travail-tl">

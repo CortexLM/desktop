@@ -2,6 +2,14 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
+The [Work conversion/Bot search batch](live-actions-followup/README.md) passes 178 Node 22 unit
+tests plus one optional backend skip, an initial 69-case Electron suite/426 renders and twelve
+final targeted cases after original-request text-fragment preservation. Lint/types/i18n and Linux
+packaged smoke pass. Independent review found an enabled Create while the Bot list is unavailable;
+the correction passes thirteen scoped cases plus rebuild/package/smoke. Updated CI/native
+verification remain pending. New 32-state comparison outliers (max 8.19%) are dominated by
+uncontrolled clock-selected Work wallpaper; [review](live-actions-followup/compare-review.md)
+preserves the original run and remaining residuals. Corrected editor comparison is 8/8, max 0.06%.
 The [live-behavior correction](live-behavior-followup/README.md) wires Code model/reasoning choice
 and truthful routine outcomes. CI 37074187552 passes 61/61 Electron cases on Linux/macOS,
 426 renders and macOS package/smoke, but fails eight locale-render unit cases because their
@@ -196,7 +204,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-    at 22:53 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+    at 23:42 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.

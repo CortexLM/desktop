@@ -161,6 +161,11 @@ refuses duplicate manual starts before creating another session.
 Startup marks abandoned persisted runs interrupted; deleted routine history cannot reappear on completion.
 Live Cortex Code sends its selected catalog model and reasoning choice. Reopening restores the session's
 model; unavailable selections retain the draft instead of silently choosing another model.
+Global Search matches saved Bot names and personas alongside session titles; results open the exact
+Bot, and keyboard order follows visible category groups. Failed source lists offer Retry.
+Live Work's **Turn into a routine** opens the existing editor with the original text request,
+assigned Bot and execution context. Only Create writes a routine; file-dependent histories refuse
+conversion. Re-saving with the same Bot preserves the model, agent and folder.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |

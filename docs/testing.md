@@ -121,6 +121,17 @@ Cancellation checks inspect the durable event journal as well as the current mes
   start refusal, aborted Failed state after reload, latest-eight chronological outcome dots and
   accepted-only run feedback. Deleted-task run/delete refusals use the real engine; delayed request
   serialization tests pending duplicate suppression without substituting an API response.
+- `tests/e2e/search-bots.spec.ts` — both themes at 960×640: real Bot name/persona matching,
+  case/accent normalization, mixed category keyboard order, exact identity navigation, filtering
+  and deletion/reload. Separate real missing-record refusals cover each source list and Retry;
+  request URLs change, engine responses are not substituted.
+- `tests/e2e/work-routine-source.spec.ts` — both themes at 960×640: original Work instructions,
+  nondefault Bot/model/agent/folder, Cancel, explicit Create, pending duplicate suppression,
+  reload/edit preservation and a real scheduled run through the controlled provider. Reassignment,
+  deleted sources/Bots and attachment refusal preserve source data. Held response parsing checks
+  stale source navigation and late-save completion without replacing engine responses.
+  A real Bot-list refusal plus held retry verifies disabled Create, editable retained instructions,
+  localized recovery and correct-Bot persistence after the list returns.
 - `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
   handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
   demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced
