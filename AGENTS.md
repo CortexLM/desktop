@@ -126,6 +126,12 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
   `ProviderConfig` carries `hasKey` + `keyHint` (last 4) only. Main stores keys in
   `<dataDir>/credentials.json` (mode `0600`) encrypted with `safeStorage` when available.
   See [`.rules/01-security.md`](./.rules/01-security.md).
+- **MCP connection configuration is write-only.** Main stores command/arguments/environment/URL/
+  headers in separate `mcp-credentials.json`; SQLite holds metadata and an opaque reference.
+  `McpServer` returns name/type/enabled/status/tool metadata only. Legacy records migrate after
+  successful credential storage; failed migration preserves data and refuses connection. Hosts
+  with persistent storage must supply `mcpCredentials`; in-memory engines use an in-memory store.
+  See [`docs/engine.md`](./docs/engine.md).
 
 ## Product scope (do not invent a different app)
 

@@ -79,9 +79,9 @@ confirmations and source changes must retain their own pins. The desktop integra
 kept separate from acceptance; the original freeze is not extended by draft route inventory.
 Backend contract blob `d6d46014` is independently hash-verified (422 operations). The desktop
 SDK remains unchanged pending its owner's regenerated package and runtime handoff.
-The [19:10–19:15 UTC SDK snapshot](remote-integration-readback.md) keeps remote auth/inference
+The [20:01–20:07 UTC SDK snapshot](remote-integration-readback.md) keeps remote auth/inference
 active: G3's canonical versioned pair and owner checks remain undelivered. The earlier 18:23–18:24
-readback is preserved; PM heads remain 15:05-only.
+and 19:10–19:15 readbacks are preserved; PM heads remain 15:05-only.
 The delivered G2 body correction, local-provider inference and native Mac supplements have
 separate revision scopes. Existing passing tests were not repeated.
 
@@ -98,8 +98,10 @@ checked; the obsolete current 59/3/1 interpretation is corrected without editing
 Product's combined review covers **17 routes and eight groups**, now double-confirmed on
 the corrective snapshot `41545`. MCP detection remains bounded to known formats and field
 boundaries; an empty registry blocks until explicit demo entry. PUBLIC A1–A5 also has two
-corrected-source confirmations. Whole-page acceptance and an approved unified package remain
-pending. Original nine-route Productivity and eight-route Platform receipt counts remain intact.
+corrected-source confirmations. Complete combined candidate `3e99a045` / `45839` is delivered;
+whole-page acceptance and approved source/state imports remain pending. Its counts and
+owner-reported package checks are in the [scoped readback](scoped-design-closures.md).
+Original nine-route Productivity and eight-route Platform receipt counts remain intact.
 
 The corrected Public pin's 511 source files, 342 build artifacts, 151 recorded passing checks
 and 14 image hashes are verified read-only. All 45 icon additions remain separately usable;
@@ -144,9 +146,10 @@ their scoped disposition. Original captures are not reattributed. The reports we
 hashed; their browser journeys were not rerun.
 No sample credentials or prototype source is imported into the desktop.
 The [Platform contract map](platform-contract-map.md) records the historical draft's incompatible-model
-attachment deletion as a conflict with accepted desktop retention. At **19:15 UTC on 2 October 2026**,
-candidate `b1b9130` has owner-confirmed retention/refusal behavior; independent approval and final
-integration disposition remain missing. Model Test availability, untyped
+attachment deletion as a conflict with accepted desktop retention. The **20:01–20:07 UTC readback**
+records double scoped retention/refusal confirmation on `b1b9130`: A67 raw UI checks, 66 positive,
+one preserved collector negative plus offline adjudication; B66 positive; two PNGs each.
+Final import disposition remains missing. Model Test availability, untyped
 remote turn/approval payloads, origin/account-bound main-only auth and local/remote permission
 semantics remain explicit binding gates. No source behavior is changed by this receipt.
 
@@ -163,5 +166,6 @@ are tracked separately. The **19:15 UTC snapshot** confirms Studio `da5fd54b` ha
 A/B closure for R01 and Studio-session-draft-only R02; principal-store shape and external storage
 events remain outside closure. Receipt/report hashes are independently checked in the
 [scoped readback](scoped-design-closures.md); earlier negative suites remain intact.
-Attachment candidate `b1b9130` is owner-confirmed, not independently approved at that snapshot.
+Attachment approval was pending at that earlier snapshot; later A/B closure and combined-package
+delivery are additive. M01, M21, M11, M02 and M05 remain unapproved for desktop import.
 G4's Code options/worklog/complete Bot-form requests remain distinct and open.

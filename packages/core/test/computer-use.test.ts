@@ -23,7 +23,7 @@ describe("computer use (Cua Driver over MCP)", () => {
     const core = createCore({ dataDir: ":memory:", credentials: memoryCredentials() })
     await core.start({ computerUse: "/opt/bin/cua-driver" })
     const preset = core.mcp.get(COMPUTER_USE_SERVER)!
-    expect(preset).toMatchObject({ type: "stdio", command: "/opt/bin/cua-driver", args: ["mcp"], enabled: false, status: "disabled" })
+    expect(preset).toEqual({ name: COMPUTER_USE_SERVER, type: "stdio", enabled: false, status: "disabled", tools: [] })
     expect(computerUsePreset("x").enabled).toBe(false)
 
     // Fake driver: one input tool, one observe tool.
@@ -32,7 +32,10 @@ describe("computer use (Cua Driver over MCP)", () => {
     server.tool("screenshot", {}, async () => ({ content: [{ type: "text", text: "png" }] }))
     const [a, b] = InMemoryTransport.createLinkedPair()
     await server.connect(b)
-    core.mcp.transportFactory = () => a
+    core.mcp.transportFactory = (cfg) => {
+      expect(cfg).toMatchObject({ command: "/opt/bin/cua-driver", args: ["mcp"] })
+      return a
+    }
     await core.mcp.setEnabled(COMPUTER_USE_SERVER, true)
     expect(core.mcp.tools().map((t) => t.name).sort()).toEqual(["computer-use_click", "computer-use_screenshot"])
 

@@ -2,9 +2,38 @@
 import { test as base, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 import { startFakeProvider } from "./fake-provider";
+import { readFileSync, existsSync } from "node:fs";
+import path from "node:path";
 
 const PNG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
 const test = base;
+
+test("MCP connection material stays in main across save, reload and removal", async () => {
+  const { app, page } = await launch();
+  try {
+    const saved = await page.evaluate(async () => {
+      const r = await (window as unknown as { __bridgeFetch: typeof fetch }).__bridgeFetch("cortex://local/api/mcp", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: "private", type: "remote", url: "https://private.test/private-path", headers: { Authorization: "private-header-value" }, enabled: false }),
+      });
+      return { status: r.status, body: await r.json() };
+    });
+    expect(saved).toEqual({ status: 201, body: { name: "private", type: "remote", enabled: false, status: "disabled", tools: [] } });
+    const directory = await app.evaluate(() => process.env.CORTEX_DATA_DIR!);
+    expect(existsSync(path.join(directory, "mcp-credentials.json"))).toBe(true);
+    for (const file of ["cortex.db", "cortex.db-wal", "mcp-credentials.json"].filter((file) => existsSync(path.join(directory, file)))) {
+      const bytes = readFileSync(path.join(directory, file));
+      expect(bytes.includes(Buffer.from("private-header-value"))).toBe(false);
+      expect(bytes.includes(Buffer.from("private.test"))).toBe(false);
+    }
+    await page.reload();
+    const listed = await page.evaluate(async () => (await (window as unknown as { __bridgeFetch: typeof fetch }).__bridgeFetch("cortex://local/api/mcp")).json());
+    expect(listed).toEqual([saved.body]);
+    const removed = await page.evaluate(async () => (await (window as unknown as { __bridgeFetch: typeof fetch }).__bridgeFetch("cortex://local/api/mcp/private", { method: "DELETE" })).ok);
+    expect(removed).toBe(true);
+    expect(JSON.parse(readFileSync(path.join(directory, "mcp-credentials.json"), "utf8"))).toEqual({});
+  } finally { await app.close(); }
+});
 
 test("models.dev catalog is listed and searchable through the bridge", async () => {
   const { app, page } = await launch();

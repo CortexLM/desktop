@@ -3,7 +3,20 @@
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
 Latest application CI and CodeQL pass at `f2754be`. This validates the implemented scope,
-not the complete objective. Renderer source remains `cc758a6`.
+not the complete objective. Renderer source remains `cc758a6`. A local MCP credential-boundary
+correction is under verification; that prior CI does not establish the new behavior.
+
+## Current MCP contract correction
+
+Complete connection configuration moves from SQLite/API responses to main-only credentials;
+public reads expose metadata only. Credential-file updates preserve the prior store on corrupt
+input or failed write. Migration, pending lifecycle cancellation and redirect refusal have
+deterministic regressions. The first full local run passes 169 units plus one optional backend
+skip and 51 Electron cases/426 renders; independent review added three more lifecycle/redirect
+regressions plus a later save/disable case, all reproduced and corrected. Updated units pass
+**173 + one optional skip**,
+targeted engine/provider UI and Linux packaged checks pass. [Evidence](mcp-followup/README.md).
+Final scoped source review passes; new CI remains pending.
 
 ## Current admission correction
 
@@ -96,15 +109,16 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 
 - **Design input:** Space welcome/pages/sites/images/recents, standalone Scheduled tasks
   with suggestions, Plugins & skills installed/public/personal/MCP. The design owner has
-  delivered documented drafts; independent approval and immutable integration delivery remain pending in
+  delivered complete combined candidate `3e99a045` / `45839`; approved source/state integration remains pending in
   `/root/cortex-ui/DESIGN-REQUESTS.md`.
   Latest Product handoff: all eight groups on 17 reviewed routes have scoped A/B confirmation.
   MCP detection remains bounded to recognized credential formats; empty registry blocks until
   explicit demo entry. PUBLIC A1–A5 is also double-confirmed. The
   [scoped closure readback](recovery-followup/scoped-design-closures.md) resolves the earlier
-  disposition conflict; approved unified package and whole-page acceptance remain pending.
+  disposition conflict; approved source/state imports and whole-page acceptance remain pending.
   The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
-  plugin/skill lifecycle, task consent/timezone, Space cover and MCP secret-handling contracts.
+  plugin/skill lifecycle, task consent/timezone and Space cover gaps. The MCP secret boundary is
+  under correction above; save-versus-connect semantics remain a separate integration question.
 - **Additional design approval:** Providers, Connection, model capability picker and
   inline tool approval drafts now have an eight-route/94-variant Platform receipt. Read-only
   verification checks 396 capture hashes, 376 distinct passing views (372 initial plus four
@@ -112,8 +126,9 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   readback, Platform sources matched later scoped corrective hashes, not the original receipt. Existing
   functional controls still need approved integration; prototype behavior is not API availability.
   The [eight-route contract map](recovery-followup/platform-contract-map.md) identifies historical
-  attachment deletion as a desktop contract conflict. The 19:15 UTC owner-confirmed `b1b9130`
-  retention/refusal candidate still awaits independent approval and final integration disposition.
+  attachment deletion as a desktop contract conflict. `b1b9130` now has double scoped retention/
+  refusal confirmation; the combined candidate preserves its exact runtime bytes. Source/state
+  import permission remains pending; A's collector negative/offline adjudication is preserved.
 - **Reference revision:** 205 reference versus 213 app states reconciled to eight extra
   Settings variants. Source freeze `2026-10-02-7b388e2d9674` and Components scope delivered;
   Home A7-final/B7-final approve their verified/inherited scope. Integration and matching frozen
@@ -130,15 +145,14 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
    scoped A/B confirmation for R01 cleanup and R02 Studio session-draft validation. Principal-store
    shape and external storage events remain outside that closure.
   Independent reconciliation confirms **85 scoped defect closures** across the four matrices;
-   the quoted `10744dc` ledger already contained them. At the 19:15 UTC snapshot, attachment
-   candidate `b1b9130` has owner-confirmed retention/refusal; independent approval and final
-   integration disposition remain pending. G4 Code options/worklog/full Bot-form requests remain
+   the quoted `10744dc` ledger already contained them. Attachment `b1b9130` is double scoped-confirmed;
+   approved integration disposition remains pending. G4 Code options/worklog/full Bot-form requests remain
    distinct from these closures.
   iOS reviews of 38 new routes are assigned; no native acceptance follows.
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-   at 19:10–19:15 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+   at 20:01–20:07 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.

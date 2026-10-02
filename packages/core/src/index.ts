@@ -11,7 +11,7 @@ import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
 import { PluginRegistry, type PluginDirs } from "./plugin"
-import { ProviderSettings, type Credentials } from "./provider"
+import { memoryCredentials, ProviderSettings, type Credentials } from "./provider"
 import { Scheduler } from "./scheduler"
 import { SessionService } from "./session"
 import { SkillService, type SkillDirs } from "./skill"
@@ -22,6 +22,8 @@ export interface CoreOptions {
   /** Directory for the database and caches. Use ":memory:" for an in-memory database (tests). */
   dataDir: string
   credentials: Credentials
+  /** Separate main-only MCP connection store; required for persistent hosts using MCP. */
+  mcpCredentials?: Credentials
   /** Probes Cortex Cloud / self-hosted backends (desktop: Cortex SDK). */
   remoteProbe?: RemoteProbe
   fetch?: typeof fetch
@@ -46,7 +48,7 @@ export function createCore(opts: CoreOptions) {
   const permissions = new PermissionService(bus, storage)
   const skills = new SkillService(opts.skills ?? {}, storage)
   const plugins = new PluginRegistry(opts.plugins ?? {}, storage)
-  const mcp = new McpService(bus, storage)
+  const mcp = new McpService(bus, storage, opts.mcpCredentials ?? (memory ? memoryCredentials() : undefined))
   const bots = new BotService(storage)
   const permissionRules = {
     get: (): Rule[] => storage.getDoc<Rule[]>("settings", "permission") ?? [],

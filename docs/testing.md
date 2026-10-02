@@ -20,6 +20,8 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `packages/core/test/{catalog,capabilities,session,services,computer-use}.test.ts` | catalog cache/offline, capability gates, session loop, services, computer use |
 | `packages/protocol/test/protocol.test.ts` · `packages/server/test/server.test.ts` · `packages/client/test/client.test.ts` | routes, binding, client + SSE |
 | `packages/desktop/test/remote.test.ts` | SDK probe; real backend only with `CORTEX_TEST_BACKEND_URL` |
+| `packages/desktop/test/credentials.test.ts` | Credential round trips, restrictive permissions, corrupt-store refusal and failed-write preservation |
+| `packages/core/test/mcp.test.ts` | Main-only connection storage, legacy migration/refusal, metadata-write failure, pending reconnect/removal races and redirect-header refusal |
 | `tests/unit/locales.test.ts` · `tests/unit/audit-i18n.test.ts` | locale parity, Node source-stamp exclusion, audit behaviour |
 | `tests/unit/runtime-copy.test.ts` | mascot accessible names and structured tool titles/error copy across eight locales |
 
@@ -44,6 +46,8 @@ Cancellation checks inspect the durable event journal as well as the current mes
   thinking- and image-capable catalog model through the **local fake provider**, image
   refusal for a model without image input. Checks request serialization, key redaction,
   reasoning/text deltas and persisted parts.
+  MCP save/list/reload/delete also verifies sanitized IPC responses and no raw connection material
+  in fresh SQLite/WAL or the host credential file; it does not certify secure deletion of legacy pages.
 - `tests/e2e/ui-flows.spec.ts` — Settings key entry/masking, composer model and thinking
   selection, image attachment and streamed reply through the **same local fake**. The
   predetermined answer is not evidence that a real model understood an image.

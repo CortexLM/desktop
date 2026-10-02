@@ -24,6 +24,8 @@ When found, `core.start({ computerUse })` adds the MCP preset once:
 
 It is **disabled** until the user enables it (`PATCH /api/mcp/computer-use`). Its tools
 appear as `computer-use_<tool>`.
+The command and arguments stay in the main-only MCP credential store. Public preset reads
+expose its name/type/enabled/status/tools, not connection configuration.
 
 ## Permissions
 

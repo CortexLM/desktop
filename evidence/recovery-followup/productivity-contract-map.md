@@ -2,6 +2,16 @@
 
 **Draft reference; independent review pending. Direct import has contract blockers.** Scope: nine routes, 72 receipt states. Mapping uses the current desktop working tree, HEAD `99249111df0db5a1e086d9f5783afc9ad27b3dfa`, and existing local schema/protocol/core only. Remote G4 contracts and G2 auth/upload schema blob `d6d46014` supply no local capability here.
 
+## Later local MCP contract correction
+
+The table below is the historical readback. Current correction moves complete MCP configuration
+to main's separate credential store; SQLite keeps metadata/reference, every route returns only
+name/type/enabled/status/tools/error. This removes the raw env/header/argument/URL return/storage
+conflict. Legacy migration preserves data on failed writes; it does not erase prior database pages
+or backups. POST still upserts and can connect; it is not a validation-only operation. Save-versus-
+connect, independent design integration and the remaining lifecycle/consent contracts stay open.
+See [engine contract](../../docs/engine.md#skills-plugins-mcp).
+
 ## Evidence attestation
 
 Read `/root/cortex-ui/review/productivity-delivery.md`, `/tmp/opencode/productivity/results.json`, `/tmp/opencode/productivity/build-source.json`. Hash verification: **2026-10-02T16:42:52Z**.

@@ -28,6 +28,10 @@ return { providerID: id, enabled: c.enabled, hasKey: !!key, keyHint: key ? c.key
 
 Cortex Cloud session material follows the same rule: `packages/desktop/src/remote.ts`
 runs in main and nothing it holds crosses to the renderer.
+MCP connection material is also write-only: command, arguments, environment, URL and headers
+are stored in main's separate `mcp-credentials.json`. Public `McpServer` exposes only name,
+transport type, enabled/status, tool metadata and neutral errors. Do not spread `McpConfig`
+into responses; arguments and URLs can contain credentials too.
 
 ## 1.2 The renderer is sandboxed
 

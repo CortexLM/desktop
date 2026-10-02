@@ -1,0 +1,13 @@
+$ playwright test "tests/e2e/engine.spec.ts" "tests/e2e/ui-flows.spec.ts"
+
+Running 7 tests using 4 workers
+
+  ✓  1 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.2s)
+  ✓  4 tests/e2e/engine.spec.ts:38:1 › models.dev catalog is listed and searchable through the bridge (1.5s)
+  ✓  2 tests/e2e/engine.spec.ts:104:1 › an image is refused for a model without image input (1.5s)
+  ✓  3 tests/e2e/engine.spec.ts:52:1 › streamed exchange with a thinking- and image-capable model (2.4s)
+  ✓  5 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (1.8s)
+  ✓  6 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (5.3s)
+  ✓  7 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (14.5s)
+
+  7 passed (16.7s)

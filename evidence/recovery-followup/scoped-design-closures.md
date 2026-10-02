@@ -4,7 +4,8 @@
 new-suite nine.** The final independent reconciliation resolves the earlier 59/3/1 interpretation.
 These are defect units, not pages. [The earlier discrepancy receipt](handoff-correction.json)
 remains historical.
-Whole-page fidelity, live API behavior and an approved unified integration package remain open.
+The complete combined candidate is delivered; whole-page fidelity, live API behavior and approved
+source/state integration remain open.
 
 ## Confirmed reference scope
 
@@ -21,9 +22,10 @@ Whole-page fidelity, live API behavior and an approved unified integration packa
   explicit demo entry. These simulations establish no remote availability or desktop binding.
 
 The [desktop crosswalk](corrected-reference-map.md) still identifies five application integration
-candidates. Reference closure does not fix the separate desktop implementation automatically.
+candidates: **M01, M21, M11, M02 and M05 remain unapproved for desktop import**. Reference closure
+does not fix the separate desktop implementation automatically.
 The [Platform attachment-retention conflict](platform-contract-map.md) remains outside these
-eight Product groups; it is not implicitly closed.
+eight Product groups; its later bounded confirmation is recorded separately below.
 
 Independent bounded source/receipt readback supports those closures. It reconciled named
 legacy rows to M01–M63 exactly, rehashed 23 scoped legacy sources plus build resources,
@@ -161,7 +163,7 @@ Its author's 58 checks/four images and later A69/71/B94/96 remain distinct. The 
 Any future product port uses English source/code comments and existing locale catalogs;
 this candidate does not authorize whole-page or simulated-service import.
 
-### Separate requests remain open
+### Attachment-retention delivery and remaining requests
 
 At the **19:15 UTC snapshot on 2 October 2026**, the G1 attachment-retention repair has an
 owner-confirmed candidate, superseding the earlier pending-pin status. Desktop pin:
@@ -174,10 +176,44 @@ capabilities. `/tmp/opencode/model-attachment-retention/confirm/receipt.json`, S
 Independent approval and the final approved-state/integration disposition were not delivered in
 that snapshot. Original Product and Studio pins remain separate; no page import is authorized.
 
+The **20:01–20:07 UTC readback** records subsequent double scoped confirmation on `b1b9130` /
+`44607`. A's 19:43:24–19:43:39 collection retains **67 raw UI assertions: 66 positive, one collector
+contrast-predicate negative**, plus one passing offline adjudication from already recorded values;
+two PNGs. B's 19:31:51–19:31:56 collection records **66 positive assertions**, two PNGs.
+These totals span desktop and iOS web; they remain distinct, with A's raw negative preserved.
+
+| Independent report under `/root/cortex-ui/review/` | SHA-256 |
+| --- | --- |
+| `confirmed-model-retention-A.md` | `2aafff98aa44775e378f3f06d178cadf10cabe31ea781656431fb6ae049d3c64` |
+| `confirmed-model-retention-B.md` | `81cbde5d4256a7d4c049c4781536d2ff6ce0365478b09d866966f7feb619ecb6` |
+
+Seven selected seal-file matches and recorded assertion counts were checked in that readback;
+no full manifest sweep or UI replay. A's `recovery/remaining/runtime.json` and `recovery/adjudication.json`
+under `/var/tmp/opencode/model-retention-A/` retain the negative and its disposition. Confirmation
+covers filename/text preview retention in memory, refusal and recovery, not binary persistence,
+upload, native behavior or the whole Platform. A's minor old-iOS-CSS typography reservation remains.
+
+The designated combined candidate is `/var/tmp/opencode/desktop-retention-package-20261002/source`,
+preview **45839**, fingerprint
+`3e99a0452ff7ede092ff3af8fe11cd56bfe13fa5da7a6f18447b59bd5de4dd0a`:
+**165 sources, 1,578 inputs, 1,399 outputs — 30 exact compiler outputs plus 1,369 unchanged
+documentary outputs**. The owner reports source/output/provenance verification, **ten HTTP
+bindings** and gallery/resize/deep-link/sequence-navigation checks **PASS**, without a new
+build/capture. Those package checks were not replayed here; only the target Platform bytes were
+independently matched. The duplicate `desktop-release-2026-10-02` package is not another acceptance.
+
+Subsequent additive entries in `/root/cortex-ui/review/desktop-retention-package.md` and
+`confirmation-status.md` now acknowledge A/B completion and the reused runtime bytes. Their
+earlier A-pending statements, and earlier pending-package wording, describe historical stages.
+Studio R01 and Studio-session-draft-only R02 retain their existing scope; principal-store shape
+and external storage events stay excluded. Approved state/pin/contract-exclusion disposition is
+still missing, including for the five existing candidates above; no source/state import is authorized.
+
 G4's requests in `/root/cortex-ui/DESIGN-REQUESTS.md:81–83`—Code composer context options,
-worklog argument expansion and the complete one-page Bot form—remain separate, unanswered
-design requests. They are not included in the 85 scoped defect closures and confer no current
-layout approval. Product ports keep English source/copy with existing locale boundaries.
+worklog argument expansion and the complete one-page Bot form—remain separate pending
+design deliveries; source preparation is assigned in staging roots. They are not included in the
+85 scoped defect closures and confer no current layout approval. Product ports keep English
+source/copy with existing locale boundaries.
 
 Earlier ledger observation: `/root/cortex-ui/review/confirmation-status.md`, SHA-256
 `635b10590a8d62f229161a40b58d3ea85b026a6a0be42a2947e077349730d276`.

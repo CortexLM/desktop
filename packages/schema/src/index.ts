@@ -263,7 +263,7 @@ export const McpConfig = z.discriminatedUnion("type", [
   z.object({
     name: z.string().regex(/^[A-Za-z0-9_-]+$/),
     type: z.literal("stdio"),
-    command: z.string(),
+    command: z.string().min(1),
     args: z.array(z.string()).default([]),
     env: z.record(z.string(), z.string()).optional(),
     enabled: z.boolean().default(true),
@@ -271,17 +271,22 @@ export const McpConfig = z.discriminatedUnion("type", [
   z.object({
     name: z.string().regex(/^[A-Za-z0-9_-]+$/),
     type: z.literal("remote"),
-    url: z.string().url(),
+    url: z.url({ protocol: /^https?$/ }),
     headers: z.record(z.string(), z.string()).optional(),
     enabled: z.boolean().default(true),
   }),
 ])
 export type McpConfig = z.infer<typeof McpConfig>
 export const McpStatus = z.enum(["connected", "failed", "disabled", "disconnected"])
-export const McpServer = z.intersection(
-  McpConfig,
-  z.object({ status: McpStatus, tools: z.array(z.object({ name: z.string(), description: z.string().optional() })), error: ErrorInfo.optional() }),
-)
+// Connection material is write-only, including URLs/arguments which may embed credentials.
+export const McpServer = z.object({
+  name: z.string(),
+  type: z.enum(["stdio", "remote"]),
+  enabled: z.boolean(),
+  status: McpStatus,
+  tools: z.array(z.object({ name: z.string(), description: z.string().optional() })),
+  error: ErrorInfo.optional(),
+})
 export type McpServer = z.infer<typeof McpServer>
 
 // ---------- scheduler ----------

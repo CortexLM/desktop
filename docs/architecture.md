@@ -86,6 +86,15 @@ evaluation probes under the renderer's strict CSP; validation uses the interpret
 | `cortex.db` | SQLite (WAL): event log, session/message/part projections, docs |
 | `cache/models.json` | Last good models.dev catalog |
 | `credentials.json` | Provider keys, `0600`, `safeStorage`-encrypted when available |
+| `mcp-credentials.json` | Complete MCP connection configurations, same main-only credential storage |
+
+MCP SQLite documents hold name/type/enabled and an opaque connection reference. The host passes
+a separate `mcpCredentials` store to `createCore`; in-memory engines default to an in-memory store.
+Persistent hosts without one refuse MCP writes/migration instead of losing connection material
+on restart. Public MCP reads never include command/arguments/environment/URL/headers.
+Credential-file writes use an exclusive `0600` temporary file plus same-directory rename.
+Invalid/unreadable stores are refused instead of silently replaced. Failed writes preserve
+the previous file; this is not a cross-process locking or power-loss durability guarantee.
 
 Skills are discovered under `<resources>/skills` (builtin), `~/.cortex/skills` (personal) and
 `<project>/.cortex/skills`; plugins under `~/.cortex/plugins`. The builtin

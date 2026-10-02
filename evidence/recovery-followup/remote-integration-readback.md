@@ -4,7 +4,23 @@
 Current prerequisite: G3's corrected, versioned SDK/api-types pair. G2's five typed auth/upload
 bodies are delivered. Desktop session acquisition, remote prompt routing and proof remain G1-owned.
 
-## Current SDK observation — 19:10–19:15 UTC
+## Current SDK observation — 20:01–20:07 UTC
+
+Read-only snapshot: **2 October 2026, 20:01–20:07 UTC**. One PR #447 metadata/comments query:
+head `7633f7e2fa4df197a3bd19e5316943be20ec6722`, open, last updated **16:45:11 UTC**;
+zero returned issue comments created/updated since 19:15. The canonical versioned SDK/api-types
+pair remained absent from the inspected delivery at **20:07 UTC**.
+
+Local metadata at 20:02–20:03 still shows `df4aca1836b5298cba01c302d9fdfea1bf141457`, four
+tracked generated/public-error modifications and SDK0.2.0/api-types0.1.0. The worktree schema
+is still blob `d3837ef436a5888b329aa0e5b3eb3bcc3f0b3b5d`, not canonical `d6d46014`.
+At **20:03:13 UTC**, `/tmp/opencode/pack/` contains only the October 1 pair, independently
+rehashed to the package hashes below. No new version/path/hash announcement was found;
+generated contents and runtime behavior were not re-audited. Receipt:
+`/tmp/opencode/desktop-current-gates-2000.md`. This SDK timestamp is separate from later
+design-ledger updates and conveys no new runtime verification.
+
+## Earlier SDK observation — 19:10–19:15 UTC
 
 Read-only snapshot: **2026-10-02T19:10:53Z–19:15:55Z**. PR #447 metadata was queried once:
 head remains `7633f7e2fa4df197a3bd19e5316943be20ec6722`, open, last updated 16:45:11 UTC;

@@ -102,6 +102,19 @@ cancels the session's other pending asks). Computer-use input tools never save `
   `chat.params`, `tool.execute.before`, `tool.execute.after`, `event`). In-process, host
   privileges. `/api/plugins`.
 - MCP (`mcp.ts`): stdio and streamable HTTP via `@modelcontextprotocol/sdk`. `/api/mcp`.
+  `POST` accepts complete connection configuration; every response exposes metadata only.
+  Command/arguments/environment/URL/headers live in the host's separate credential store;
+  SQLite stores an opaque reference. Remote URLs must be HTTP(S); redirects are refused so custom
+  credential headers cannot be forwarded to another origin. Legacy inline configurations
+  are immediately redacted on reads and migrated at startup before connection; failed credential
+  writes preserve the original document and report failed status. Migration does not erase old
+  SQLite pages, WAL history or external backups. Disabled records are migrated without execution.
+  Replacement persists a new credential record before switching the SQLite reference. Failed
+  metadata writes preserve the prior connection; concurrent replacement/removal rejects stale saves.
+  Removal/disable invalidates pending connections before waiting for transport shutdown; stale
+  shutdown/connection results cannot override a newer saved configuration or status.
+  Superseded credential cleanup is best effort;
+  a failed cleanup can retain an unreferenced credential, never a public value.
 
 Space, standalone Scheduled and Plugins & skills designs remain absent in
 `/root/cortex-ui/DESIGN-REQUESTS.md`. Engine routes and the builtin skill do not provide

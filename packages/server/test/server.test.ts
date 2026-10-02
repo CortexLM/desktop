@@ -46,6 +46,30 @@ describe("server via app.fetch", () => {
     expect(JSON.parse(body)).toMatchObject({ hasKey: true, keyHint: "9876" })
   })
 
+  it("MCP routes never return connection URLs, commands, arguments or credentials", async () => {
+    const core = testCore("http://x")
+    const app = createServer(core)
+    close = () => core.close()
+    for (const cfg of [
+      { name: "stdio", type: "stdio", command: "private-command", args: ["private-argument"], env: { TOKEN: "private-env" }, enabled: false },
+      { name: "remote", type: "remote", url: "https://private.test/private-path", headers: { Authorization: "private-header" }, enabled: false },
+    ]) {
+      const response = await app.fetch(json("POST", "/api/mcp", cfg))
+      expect(response.status).toBe(201)
+      expect(await response.json()).toEqual({ name: cfg.name, type: cfg.type, enabled: false, status: "disabled", tools: [] })
+      for (const request of [json("GET", "/api/mcp"), json("PATCH", `/api/mcp/${cfg.name}`, { enabled: false }), json("POST", `/api/mcp/${cfg.name}/disconnect`)]) {
+        const r = await app.fetch(request)
+        expect(r.ok).toBe(true)
+        expect(await r.text()).not.toContain("private-")
+      }
+    }
+    for (const url of ["not a URL", "file:///tmp/socket", "ftp://private.test"]) {
+      const response = await app.fetch(json("POST", "/api/mcp", { name: "bad", type: "remote", url, enabled: false }))
+      expect(response.status).toBe(400)
+      expect((await response.json()).error.code).toBe("invalid_request")
+    }
+  })
+
   it("prompt returns 202 and SSE carries the run", async () => {
     const srv = await fakeOpenAI([{ deltas: [{ reasoning_content: "hm" }, { content: "Hello" }], finish: "stop" }])
     const core = testCore(srv.url)
