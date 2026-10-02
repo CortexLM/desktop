@@ -65,6 +65,8 @@ See [connection-modes.md](./connection-modes.md).
 - Screens: `packages/app/src/screens/<area>/index.tsx` export `SCREENS: ScreenDef[]`;
   `registry.tsx` globs them. Unknown ids render `shell/not-found.tsx`.
 - `#/gallery` (`shell/gallery.tsx`) renders every screen × variant × theme in iframes.
+  A viewport observer loads visible frames and unloads offscreen ones; iframe visits use
+  replacement navigation so preview loading does not pollute the parent history.
 - Preview mode (`preview.tsx`) loads fixtures from
   `packages/i18n/locales/<locale>/fixtures/*.json`; live mode never does.
 - Kit: `kit/ui.tsx` (components over `@base-ui/react`), `kit/styles.css` (theme variables).

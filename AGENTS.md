@@ -85,7 +85,7 @@ means you are testing the previous UI. A dev renderer can be loaded with
 
 The app opens on Chat home with **no account** (local mode). The design gallery
 (`#/gallery`, e.g. `CORTEX_START_HASH='#/gallery'`) renders every screen state with
-preview fixtures.
+preview fixtures. Only visible gallery iframes load; offscreen previews unload to keep navigation responsive.
 
 ## Environment variables
 

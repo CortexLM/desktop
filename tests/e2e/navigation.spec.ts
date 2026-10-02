@@ -84,6 +84,17 @@ test("anchors, native menus and history preserve routes, variants and chat ident
 
     await menu("Design Gallery");
     await expect(page.locator(".gal")).toBeVisible();
+    await expect(page.frameLocator(".gal iframe").first().locator(".desk")).toBeVisible();
+    await expect(page.locator(".gal")).toHaveJSProperty("scrollTop", 0);
+    expect(page.frames().filter((frame) => frame !== page.mainFrame() && frame.url().includes("&shot")).length).toBeLessThan(12);
+    await expect(page.locator('.gal-head a[href="#/home"]')).toBeInViewport({ ratio: 1 });
+    const canvasPreview = page.locator('[data-gallery-item="canvas~selection-dark"]');
+    await canvasPreview.scrollIntoViewIfNeeded();
+    await expect(canvasPreview.frameLocator("iframe").locator(".chat-selbar input")).toBeVisible();
+    expect(page.frames().filter((frame) => frame !== page.mainFrame() && frame.url().includes("&shot")).length).toBeLessThan(12);
+    await page.locator(".gal-head").scrollIntoViewIfNeeded();
+    await expect.poll(() => canvasPreview.locator("iframe").evaluate((frame: HTMLIFrameElement) => frame.contentDocument?.URL)).toBe("about:blank");
+    await expect(page.locator(".gal")).toHaveJSProperty("scrollTop", 0);
     await menu("Back");
     await expect(page.locator(".pg-panel .page-title")).toHaveText("Connection");
     await expect(forward).toBeEnabled();
@@ -92,7 +103,11 @@ test("anchors, native menus and history preserve routes, variants and chat ident
     await expect(forward).toBeDisabled();
     await menu("Design Gallery");
     await expect(page.locator(".gal")).toBeVisible();
-    await page.locator('.gal-head a[href="#/home"]').click({ timeout: 60_000 });
+    await expect(page.frameLocator(".gal iframe").first().locator(".desk")).toBeVisible();
+    await expect(page.locator(".gal")).toHaveJSProperty("scrollTop", 0);
+    expect(page.frames().filter((frame) => frame !== page.mainFrame() && frame.url().includes("&shot")).length).toBeLessThan(12);
+    await expect(page.locator('.gal-head a[href="#/home"]')).toBeInViewport({ ratio: 1 });
+    await page.locator('.gal-head a[href="#/home"]').click({ timeout: 5_000 });
     await expect(page).toHaveURL(/#\/home$/);
     await expect(page.locator(".desk")).toBeVisible();
   } finally {

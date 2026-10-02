@@ -52,6 +52,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/navigation.spec.ts` — real anchor and native-menu navigation, distinct engine
   chat identities through back/forward, variant parameters, history branching and Gallery
   return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.
+  Gallery checks bound loaded frames, retain the top scroll position, unload scrolled previews
+  and require the exit link to respond within five seconds.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
