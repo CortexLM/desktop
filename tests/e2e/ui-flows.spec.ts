@@ -64,8 +64,10 @@ test("streamed exchange with thinking and an image, driven from the composer", a
 test("rejected sends keep the draft and attachments; retry resends the image", async () => {
   for (const theme of ["light", "dark"]) {
     const fake = await startFakeProvider({ rejectFirst: true });
+    const models = structuredClone(catalog);
+    models.fake.models["text-only"].limit.context = 100000;
     const { app, page } = await launch({ hash: `#/home?theme=${theme}`, env: {
-      CORTEX_CATALOG_URL: `data:application/json,${encodeURIComponent(JSON.stringify(catalog))}`,
+      CORTEX_CATALOG_URL: `data:application/json,${encodeURIComponent(JSON.stringify(models))}`,
       CORTEX_TEST_PROVIDER_BASEURL: `fake=${fake.url}`,
     } });
     const errors: string[] = [];
@@ -134,6 +136,16 @@ test("rejected sends keep the draft and attachments; retry resends the image", a
       await expect(page.getByTestId("composer-send")).toBeVisible();
 
       await select("Plain Text");
+      await input.fill("Follow up on the earlier image");
+      await page.getByTestId("composer-send").click();
+      await expect(page.getByText("This model can’t read images.", { exact: true }).first()).toBeVisible();
+      await expect(input).toHaveValue("Follow up on the earlier image");
+      await expect(input).toBeEnabled();
+      await expect(page.locator(".chat-att-img")).toHaveCount(0);
+      expect(fake.requests).toHaveLength(3);
+      const historyShot = test.info().outputPath(`history-image-refusal-${theme}.png`);
+      await page.screenshot({ path: historyShot, animations: "disabled" });
+      await test.info().attach(`history-image-refusal-${theme}`, { path: historyShot, contentType: "image/png" });
       await page.getByTestId("attach-input").setInputFiles({ name: "again.png", mimeType: "image/png", buffer: PNG });
       await expect(page.locator(".chat-att-img")).toBeVisible();
       await input.fill(draft);

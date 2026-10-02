@@ -1,0 +1,119 @@
+$ vitest run packages/core/test/session.test.ts packages/core/test/capabilities.test.ts -t "parent admission|synchronous cancellation|history contains"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/session.test.ts (11 tests | 2 failed | 9 skipped) 110ms
+   ❯ session runner (fake OpenAI-compatible SSE) (11)
+     ↓ admits only one concurrent prompt per session, then permits a follow-up
+     ↓ abort during admission prevents a late prompt or session resurrection
+     ↓ delete during admission prevents a late prompt or session resurrection
+     × cancels parent admission before waiting for child deletion 94ms
+     × honors synchronous cancellation from a model-update listener before persisting a turn 14ms
+     ↓ streams reasoning + text, runs one tool, persists parts and usage
+     ↓ asks permission for write; once → executes, reject → stops the loop
+     ↓ abort stops a pending permission wait
+     ↓ task runs a subagent child session without nested task
+     ↓ bot sessions use persona and memory as system prompt
+     ↓ surfaces provider errors with a neutral code
+ ❯ packages/core/test/capabilities.test.ts (11 tests | 2 failed | 9 skipped) 122ms
+   ↓ capability-gated call options (5)
+     ↓ leaves thinking off when the user turns it off
+     ↓ enables anthropic thinking only for reasoning models
+     ↓ openai reasoningEffort, google thinkingConfig, compatible forwards deltas only
+     ↓ clamps maxOutputTokens to limit.output and remaining context
+     ↓ tools only with tool_call
+   ❯ capability enforcement in the runner (6)
+     ↓ rejects image parts on a text-only model before admitting anything
+     ↓ refuses prompts larger than the context window
+     ↓ omits tools from the request when the model lacks tool_call
+     ↓ accepts images on a vision model and sends them
+     × refuses a text-only model when history contains image/png 96ms
+     × refuses a text-only model when history contains application/pdf 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/capabilities.test.ts > capability enforcement in the runner > refuses a text-only model when history contains image/png
+AssertionError: promise resolved "{ …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "done": Promise {},
++   "messageID": "msg_01a0fe14c156000028b53ad9a9a26280",
+  }
+
+ ❯ packages/core/test/capabilities.test.ts:96:150
+     94|       const history = core.sessions.messages(s.id)
+     95|       const events = core.storage.events(s.id)
+     96|       await expect(core.sessions.prompt(s.id, { model: { providerID: "…
+       |                                                                                                                                                      ^
+     97|         .rejects.toMatchObject({ code: mime === "image/png" ? "model_n…
+     98|       expect(core.sessions.messages(s.id)).toEqual(history)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/core/test/capabilities.test.ts > capability enforcement in the runner > refuses a text-only model when history contains application/pdf
+AssertionError: promise resolved "{ …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "done": Promise {},
++   "messageID": "msg_01a0fe14c17a00008bda47a97319dfc1",
+  }
+
+ ❯ packages/core/test/capabilities.test.ts:96:150
+     94|       const history = core.sessions.messages(s.id)
+     95|       const events = core.storage.events(s.id)
+     96|       await expect(core.sessions.prompt(s.id, { model: { providerID: "…
+       |                                                                                                                                                      ^
+     97|         .rejects.toMatchObject({ code: mime === "image/png" ? "model_n…
+     98|       expect(core.sessions.messages(s.id)).toEqual(history)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/core/test/session.test.ts > session runner (fake OpenAI-compatible SSE) > cancels parent admission before waiting for child deletion
+AssertionError: expected 'admitted' to be 'aborted' // Object.is equality
+
+Expected: "aborted"
+Received: "admitted"
+
+ ❯ packages/core/test/session.test.ts:100:23
+     98|       gates[1]!.release()
+     99|       await Promise.all([second, deleting])
+    100|       expect(outcome).toBe("aborted")
+       |                       ^
+    101|       expect(srv.requests).toHaveLength(0)
+    102|       expect(core.sessions.list()).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/core/test/session.test.ts > session runner (fake OpenAI-compatible SSE) > honors synchronous cancellation from a model-update listener before persisting a turn
+AssertionError: expected 'admitted' to be 'aborted' // Object.is equality
+
+Expected: "aborted"
+Received: "admitted"
+
+ ❯ packages/core/test/session.test.ts:130:23
+    128|       await abort
+    129|       expect(await nested).toBe("session_busy")
+    130|       expect(outcome).toBe("aborted")
+       |                       ^
+    131|       expect(srv.requests).toHaveLength(0)
+    132|       expect(core.storage.events(s.id).some((e) => e.type === "message…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 18 skipped (22)
+   Start at  19:26:07
+   Duration  778ms (import 52%, transform 29%, tests 19%, worker 1%)
+
+error: script "test" exited with code 1

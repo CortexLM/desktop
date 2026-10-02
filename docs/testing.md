@@ -25,6 +25,12 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 
 Engine tests use `createCore({ dataDir: ":memory:", credentials: memoryCredentials() })`
 and the catalog fixture `packages/core/test/fixtures/catalog.json`.
+Session admission regressions submit concurrent prompts and hold credential lookup while
+aborting/deleting. They verify one admitted turn, no late persisted prompt/provider request,
+no leaked busy state and successful follow-up after release. All three fail before the fix.
+Additional regressions fail before their fixes for parent cancellation while child deletion waits,
+synchronous model-update listener cancellation, and historical image/PDF capability refusal.
+Cancellation checks inspect the durable event journal as well as the current message projection.
 
 ## E2E
 
@@ -43,7 +49,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   predetermined answer is not evidence that a real model understood an image.
   Both themes also cover draft/file retention after capability refusal on home and in a
   conversation, pending/failed file reads, then a rejected provider response and historical
-  image-preserving retry after another prompt. That 960×640 regression
+  image-preserving retry after another prompt. A text-only follow-up after selecting a non-image
+  model is refused when history contains an image, retaining its draft without a provider request.
+  That 960×640 regression
   uses the repository catalog fixture and retains screenshots as test attachments.
 - `tests/e2e/screens.spec.ts` — enumerates every registered screen/variant in dark and
   light, currently **426 theme/state renders**. Checks theme selection, nonempty body,

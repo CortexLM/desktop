@@ -31,6 +31,12 @@ Existing titles stay data, including legacy English defaults whose origin cannot
 from user-authored titles. They can be renamed through the UI.
 The first admitted text prompt still sets an automatic title; capability refusals do not
 persist messages or change it.
+Admission reserves the session before asynchronous catalog/key lookup. A concurrent prompt
+receives `session_busy`; validation failures release the reservation. Abort and deletion wait
+for pending admission to settle and prevent it from writing a late prompt or starting inference.
+Parent deletion cancels its own admission before waiting for descendants; synchronous model-update
+listeners can also cancel before the first message is persisted. Capability checks include every
+historical user attachment that will be replayed, not just newly attached files.
 
 Capability gates (`llm.ts`), from the catalog entry of the model:
 

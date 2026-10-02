@@ -77,4 +77,31 @@ describe("capability enforcement in the runner", () => {
     expect(content.some((c: any) => c.type === "image_url")).toBe(true)
     expect(srv.requests[0].tools.length).toBeGreaterThan(0)
   })
+
+  it.each(["image/png", "application/pdf"])("refuses a text-only model when history contains %s", async (mime) => {
+    const srv = await fakeOpenAI([{ deltas: [{ content: "file received" }], finish: "stop" }])
+    close = srv.close
+    const core = testCore(srv.url)
+    const catalog = fixture()
+    catalog.fake.api = srv.url
+    catalog.fake.models["text-only"].limit.context = 100000
+    catalog.fake.models.reasoner.modalities.input.push("pdf")
+    core.catalog.set(catalog)
+    const model = { providerID: "fake", modelID: "reasoner" }
+    const s = core.sessions.create({ model })
+    try {
+      await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "read this" }, { type: "file", mime, data: "AA==", filename: "attachment" }] })
+      const history = core.sessions.messages(s.id)
+      const events = core.storage.events(s.id)
+      await expect(core.sessions.prompt(s.id, { model: { providerID: "fake", modelID: "text-only" }, parts: [{ type: "text", text: "follow-up" }] }))
+        .rejects.toMatchObject({ code: mime === "image/png" ? "model_no_image_input" : "model_no_pdf_input" })
+      expect(core.sessions.messages(s.id)).toEqual(history)
+      expect(core.storage.events(s.id)).toEqual(events)
+      expect(core.sessions.get(s.id).model).toEqual(model)
+      expect(core.sessions.isBusy(s.id)).toBe(false)
+      expect(srv.requests).toHaveLength(1)
+    } finally {
+      await core.close()
+    }
+  })
 })

@@ -70,8 +70,10 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 
 Remote authentication, remote model selection and Cortex inference remain an active delivery
 goal. The [current SDK handoff readback](../evidence/recovery-followup/remote-integration-readback.md)
-is separate from the PM report's 15:05 observation. As of 18:24 UTC, G3 has not announced the
-replacement versioned SDK/api-types pair; desktop's unchanged 0.2.0/0.1.0 pair remains probe-only.
+preserves the PM report's 15:05 observation and earlier 18:23–18:24 readback. In the
+**2 October 2026, 19:10–19:15 UTC snapshot**, PR #447 remains at `7633f7e2`; G3's canonical
+versioned pair and owner checks remain undelivered. Desktop's unchanged 0.2.0/0.1.0 pair remains
+probe-only; local generated edits are not a package release.
 
 Delivery order:
 
@@ -118,8 +120,10 @@ diagnostic and stream states establish no backend availability. None of these pr
 the pending authentication or remote inference integration.
 The [route contract map](../evidence/recovery-followup/platform-contract-map.md) distinguishes
 local provider settings from remote operator routing and records untyped remote turn/approval
-payloads. The draft's automatic attachment removal on incompatible model selection conflicts
-with desktop's retained-draft/file contract and requires a design correction or exclusion.
+payloads. The historical draft's automatic attachment removal conflicts with desktop's retained-file
+contract. At the **19:15 UTC snapshot**, candidate `b1b9130` has owner-confirmed retention/refusal
+behavior; independent approval and final integration disposition remain missing. Exact pin and
+receipt: [scoped design readback](../evidence/recovery-followup/scoped-design-closures.md).
 
 The backend's `none` mode also validates browser Origin headers on mutations. Main-process
 SDK requests are origin-pinned server requests without a browser Origin; a separate browser

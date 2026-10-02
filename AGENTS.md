@@ -243,3 +243,7 @@ Verify a packaging change by running the binary:
 See [`docs/engine.md`](./docs/engine.md). In short: event log + projections in SQLite,
 deltas are live-only, pending permission asks and running loops die with the process,
 `bash` runs with the user's rights (no sandbox), plugins run in-process with host privileges.
+Prompt admission reserves the session before asynchronous catalog/key lookup; concurrent sends
+receive `session_busy`. Refusals release it; abort/delete prevent pending admission from writing
+a late prompt or starting inference.
+Model capability gates include attachments replayed from history, including text-only follow-ups.

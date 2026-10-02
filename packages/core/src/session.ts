@@ -99,6 +99,7 @@ export class SessionService {
   }
   async delete(id: string) {
     this.get(id)
+    this.running.get(id)?.controller.abort()
     for (const child of this.list({ parentID: id })) await this.delete(child.id)
     await this.abort(id)
     this.todos.delete(id)
@@ -127,32 +128,38 @@ export class SessionService {
     const candidate = { ...session, ...stripUndefined({ model: p.model, agent: p.agent }) }
     if (!getAgent(candidate.agent)) throw new CortexError("invalid_request", `Unknown agent ${candidate.agent}`)
     session = candidate
-    const model = await this.d.catalog.model(session.model.providerID, session.model.modelID)
-    if (!model) throw new CortexError("model_not_found", `Unknown model ${session.model.providerID}/${session.model.modelID}`)
-    const caps = capabilities(model)
-    assertInputSupported(caps, p.parts)
-    const history = this.d.storage.messages(sessionID)
-    assertContextFits(caps, estimateHistory(history, p.parts))
-    const resolved = await resolveModel((await this.d.catalog.provider(session.model.providerID))!, model, this.d.providers, this.d.fetch)
-
-    if (p.model || p.agent) session = this.update(sessionID, { model: session.model, agent: session.agent })
     const controller = new AbortController()
-    let finish!: () => void
-    const done = new Promise<void>((r) => (finish = r))
+    let complete!: () => void
+    const done = new Promise<void>((r) => (complete = r))
+    const finish = () => { this.running.delete(sessionID); complete() }
+    // Reserve before asynchronous validation; abort/delete must also see pending admission.
     this.running.set(sessionID, { controller, done })
+    try {
+      const model = await this.d.catalog.model(session.model.providerID, session.model.modelID)
+      if (!model) throw new CortexError("model_not_found", `Unknown model ${session.model.providerID}/${session.model.modelID}`)
+      const caps = capabilities(model)
+      assertInputSupported(caps, p.parts)
+      const history = this.d.storage.messages(sessionID)
+      for (const m of history) if (m.info.role === "user") assertInputSupported(caps, m.parts.filter((part) => part.type === "file"))
+      assertContextFits(caps, estimateHistory(history, p.parts))
+      const resolved = await resolveModel((await this.d.catalog.provider(session.model.providerID))!, model, this.d.providers, this.d.fetch)
+      if (controller.signal.aborted) throw new CortexError("aborted", "Request aborted")
 
-    const user = this.admit(session, p.parts)
-    if (session.title === DEFAULT_TITLE) {
-      const text = p.parts.find((x) => x.type === "text")?.text.trim()
-      if (text) session = this.update(sessionID, { title: text.split("\n")[0]!.slice(0, 60) })
+      if (p.model || p.agent) session = this.update(sessionID, { model: session.model, agent: session.agent })
+      if (controller.signal.aborted) throw new CortexError("aborted", "Request aborted")
+      const user = this.admit(session, p.parts)
+      if (session.title === DEFAULT_TITLE) {
+        const text = p.parts.find((x) => x.type === "text")?.text.trim()
+        if (text) session = this.update(sessionID, { title: text.split("\n")[0]!.slice(0, 60) })
+      }
+      void this.run(session, resolved, controller, p.reasoning ?? true)
+        .catch(() => undefined)
+        .finally(finish)
+      return { messageID: user.id, done }
+    } catch (err) {
+      finish()
+      throw err
     }
-    void this.run(session, resolved, controller, p.reasoning ?? true)
-      .catch(() => undefined)
-      .finally(() => {
-        this.running.delete(sessionID)
-        finish()
-      })
-    return { messageID: user.id, done }
   }
 
   /** Prompt and wait for completion; returns the final assistant text. */

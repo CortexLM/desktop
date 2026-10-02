@@ -2,8 +2,22 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Application CI and CodeQL pass at `cc758a6`. This validates the implemented scope,
-not the complete objective.
+Latest retained CI and CodeQL pass at `cc758a6`. This validates the implemented scope,
+not the complete objective. The current local-engine admission correction below awaits new CI.
+
+## Current admission correction
+
+The engine now reserves a session before asynchronous admission, rejects concurrent prompts,
+and honors abort/delete before persistence, including parent deletion and synchronous event
+listeners. Image/PDF capability checks include replayed history when changing models.
+Seven deterministic regressions failed before their respective corrections. Local **138 unit
+tests pass**, one optional backend test skipped without its URL; lint/types pass. New Electron
+checks pass **50/50**, 426 registered renders, plus the added history-refusal UI assertions in both
+themes; Linux packaged smoke passes. [Logs and regression evidence](admission-followup/README.md).
+Revision-matched CI and installed-Mac checks remain pending. Renderer source remains `cc758a6`; its native/frozen images
+retain their original package revisions.
+
+## Retained application evidence
 
 Frozen-source integration is pushed at `5ced8aa`. Local static checks and Linux packaged smoke
 pass. The full Electron suite passes **40/40**, zero retries/flaky/skipped cases, including
@@ -109,16 +123,19 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   candidate gaps in command-model handoff and preview prompt/task/specialist identity.
   All 63 historical design defects now have double scoped confirmation, including M02 on
   `5daa8d29`. This does not close the five desktop integration candidates. Earlier Studio
-  `DESK-B-R01/R02` failures remain recorded; residual candidate `da5fd54b` has verified author
-  receipts (68 GUI checks, 18 validator cases, two PNGs), with independent A/B pending.
+   `DESK-B-R01/R02` failures remain recorded; residual candidate `da5fd54b` now has independent
+   scoped A/B confirmation for R01 cleanup and R02 Studio session-draft validation. Principal-store
+   shape and external storage events remain outside that closure.
   Independent reconciliation confirms **85 scoped defect closures** across the four matrices;
-  the quoted `10744dc` ledger already contained them. Attachment repair has a separate owner/new
-  pin pending. G4 Code options/worklog/full Bot-form requests remain distinct from these closures.
+   the quoted `10744dc` ledger already contained them. At the 19:15 UTC snapshot, attachment
+   candidate `b1b9130` has owner-confirmed retention/refusal; independent approval and final
+   integration disposition remain pending. G4 Code options/worklog/full Bot-form requests remain
+   distinct from these closures.
   iOS reviews of 38 new routes are assigned; no native acceptance follows.
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-  at 18:23–18:24 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+   at 19:10–19:15 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.

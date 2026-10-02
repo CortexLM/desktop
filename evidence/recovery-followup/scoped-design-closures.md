@@ -1,6 +1,6 @@
 # Scoped design closures — 2 October 2026
 
-**Current disposition: 85 scoped defect closures — 63 legacy, PUBLIC five, Product eight,
+**Historical matrices: 85 scoped defect closures — 63 legacy, PUBLIC five, Product eight,
 new-suite nine.** The final independent reconciliation resolves the earlier 59/3/1 interpretation.
 These are defect units, not pages. [The earlier discrepancy receipt](handoff-correction.json)
 remains historical.
@@ -101,26 +101,41 @@ The read ledger records all nine new-suite findings as scoped-closed. A later St
 is separate: `confirmed-atomic-bot-save-A.md` retains **69/71**, B retains **94/96** positives.
 Both close principal-write atomicity, but `DESK-B-R01` records draft cleanup after navigation
 and `DESK-B-R02` records incomplete schema coverage. Their suites remain negative; the newer
-residual correction below awaits independent confirmation. Reports were read and hashed,
+residual correction has the bounded confirmation below. Reports were read and hashed,
 not their browser journeys rerun.
 Studio report hashes: A `d4745b8265a156db072ba2a7074b1d8161f4e29bb187110bb022a565ff8bfcda`,
 B `a94cc3c319d442e84fb74b8671d8543c8fde84e9ffd685a0e3b941466f5c4e8d`.
 
-### New Studio residual candidate — independent confirmation pending
+### Studio residual correction — 19:15 UTC scoped confirmation
 
 `/tmp/opencode/desktop-studio-residual/pin`, preview `36665`, source fingerprint
 `da5fd54bb12a74b75f54c1e9b96547413193ef9b44a6fb2e53d2b459320f169a`.
-The read-only verifier passed: **165 source files, 1,578 inputs, 1,399 build files, 68 recorded
+Earlier author-receipt verification passed: **165 source files, 1,578 inputs, 1,399 build files, 68 recorded
 author GUI checks, 18 validator cases, two PNGs and 900 protected historical files**.
 Manifest SHA-256: `f902d1bd40e57b40e5a5b67b99ed178bc6b55be9dc6398dea0665d1847eb1fdb`.
 Checker SHA-256: `67ef8460dab42dd540cc2e66fe865d07f5d0d863a99655f6c4b7e5c8d4e88b40`.
 
-This authenticates stored results; no new GUI/schema execution or live-tree comparison ran.
-The author's live-exact claim remains attributed. R01 synchronous cleanup and R02 draft-shape
-validation await A/B confirmation. The principal stored Bot schema, external storage events
-and native runtime are outside this correction. Package `35647` / `3eeb6235`, gallery `41363` /
-`d814599e` and the original freeze stay immutable. The separately assigned document-only
-59/3/1 reconciliation is not duplicated.
+That verification authenticates stored results; no new GUI/schema execution or live-tree comparison
+ran. The author's live-exact claim remains attributed; A/B confirmation was pending then.
+
+The **2026-10-02T19:10:53Z–19:15:55Z** snapshot supersedes that pending disposition: both
+independent confirmations bind Studio source
+`e574eb5b5110380fc4473a273e893bc210ba02be346f77c94a5d913c9eeb29d9` on `36665` / `da5fd54b`.
+A records eight groups, 146 GUI assertions and two PNGs; B records eight groups, 96 browser checks,
+six source cases and two PNGs. Report hashes independently match their receipt bindings:
+
+| Authority | SHA-256 |
+| --- | --- |
+| `/tmp/opencode/desktop-studio-residual-A/summary.json` | `4150d5b9f7a9cb3ef0e90135b4860285585a4e498f8752f5d3ab6879ed5132f5` |
+| `/root/cortex-ui/review/confirmed-studio-residual-A.md` | `96a7dc0a833d4533377215f48243854821ba56bffd3617fc75744446c75383a0` |
+| `/tmp/opencode/desktop-studio-residual-B/manifest.json` | `c9d8562717f8ab42c9c1fcf65121895b2b395c654b9bffd84f9c66ec7dea3925` |
+| `/root/cortex-ui/review/confirmed-studio-residual-B.md` | `357e11ef2821d2e9ba8c1b042019f510f13a0e5c941a998d4a29a5a227b0c1f1` |
+
+**R01 closes within the tested Studio cleanup/exit paths; R02 closes only for Studio session
+drafts.** Principal-store shape, external storage events and native runtime remain outside closure.
+The old A69/71/B94/96 suites stay negative. No journeys were replayed for this readback.
+Package `35647` / `3eeb6235`, gallery `41363` / `d814599e` and the original freeze stay immutable;
+this scoped confirmation does not authorize whole-page or live-service integration.
 
 ### Complete predecessor package — `3eeb6235` / `35647`
 
@@ -148,17 +163,23 @@ this candidate does not authorize whole-page or simulated-service import.
 
 ### Separate requests remain open
 
-The G1 attachment-retention conflict is accepted for owner repair: prototype Platform's
-incompatible-model selection and the iOS catalogue clear a file. The exclusive repair owner
-will preserve draft/file and block preparation; its new exact pin is pending. Original Product
-and later Studio pins are not changed by that request. No fix is inferred before delivery.
+At the **19:15 UTC snapshot on 2 October 2026**, the G1 attachment-retention repair has an
+owner-confirmed candidate, superseding the earlier pending-pin status. Desktop pin:
+`/tmp/opencode/model-attachment-retention/desktop/pin`, preview `44607`; `src/screens/lot-platform.tsx`
+SHA-256 `b1b91301463b3563425cdcd8e0aa44b14aecdd4ce0eb705c5cc2e8a5d500a811` matches its manifest.
+It retains the filename-only attachment preview and blocks preparation for incompatible/unknown
+capabilities. `/tmp/opencode/model-attachment-retention/confirm/receipt.json`, SHA-256
+`5083409711299cc728877fb2b87a426e4831850ccb68e529941d7511c85ea087`, records 94 desktop and
+104 iOS owner assertions, all passing, plus two matching PNG hashes. No replay ran here.
+Independent approval and the final approved-state/integration disposition were not delivered in
+that snapshot. Original Product and Studio pins remain separate; no page import is authorized.
 
 G4's requests in `/root/cortex-ui/DESIGN-REQUESTS.md:81–83`—Code composer context options,
 worklog argument expansion and the complete one-page Bot form—remain separate, unanswered
 design requests. They are not included in the 85 scoped defect closures and confer no current
 layout approval. Product ports keep English source/copy with existing locale boundaries.
 
-Ledger at this readback: `/root/cortex-ui/review/confirmation-status.md`, SHA-256
+Earlier ledger observation: `/root/cortex-ui/review/confirmation-status.md`, SHA-256
 `635b10590a8d62f229161a40b58d3ea85b026a6a0be42a2947e077349730d276`.
 No source imports, builds, application tests, native captures or API calls establish new product
 behavior here. Frozen `7b388e2d9674` remains the desktop comparison authority.

@@ -79,9 +79,10 @@ confirmations and source changes must retain their own pins. The desktop integra
 kept separate from acceptance; the original freeze is not extended by draft route inventory.
 Backend contract blob `d6d46014` is independently hash-verified (422 operations). The desktop
 SDK remains unchanged pending its owner's regenerated package and runtime handoff.
-The [18:23–18:24 UTC SDK readback](remote-integration-readback.md) keeps remote auth/inference
-active: no replacement pair announced in the inspected handoff. PM heads remain 15:05-only;
-the delivered G2 body correction, local-provider inference and native Mac supplements have
+The [19:10–19:15 UTC SDK snapshot](remote-integration-readback.md) keeps remote auth/inference
+active: G3's canonical versioned pair and owner checks remain undelivered. The earlier 18:23–18:24
+readback is preserved; PM heads remain 15:05-only.
+The delivered G2 body correction, local-provider inference and native Mac supplements have
 separate revision scopes. Existing passing tests were not repeated.
 
 ### Handoff correction and scoped resolution
@@ -142,9 +143,10 @@ receipt readback, TSX/CSS matched the later corrective snapshot; its A/B reports
 their scoped disposition. Original captures are not reattributed. The reports were read and
 hashed; their browser journeys were not rerun.
 No sample credentials or prototype source is imported into the desktop.
-The [Platform contract map](platform-contract-map.md) identifies the draft's incompatible-model
-attachment deletion as a conflict with accepted desktop retention. Both pinned and current source
-still contain that behavior; a correction/exclusion is requested. Model Test availability, untyped
+The [Platform contract map](platform-contract-map.md) records the historical draft's incompatible-model
+attachment deletion as a conflict with accepted desktop retention. At **19:15 UTC on 2 October 2026**,
+candidate `b1b9130` has owner-confirmed retention/refusal behavior; independent approval and final
+integration disposition remain missing. Model Test availability, untyped
 remote turn/approval payloads, origin/account-bound main-only auth and local/remote permission
 semantics remain explicit binding gates. No source behavior is changed by this receipt.
 
@@ -157,7 +159,9 @@ The [corrected-reference crosswalk](corrected-reference-map.md) maps the 63-unit
 existing live safeguards and five bounded candidate gaps, keeping prototype-only operations
 separate from functional engine delivery. The 63 scoped reference closures do not close those
 desktop gaps. Its source inspection ran no tests. Later Bot/Security and Planning receipts
-are tracked separately; Studio residual candidate `da5fd54b` awaits independent confirmation
-after read-only author-receipt verification. Earlier negative suites remain intact.
-Attachment retention has a separate repair owner, new pin pending; G4's Code options/worklog/
-complete Bot-form requests are distinct from the scoped closures and remain open.
+are tracked separately. The **19:15 UTC snapshot** confirms Studio `da5fd54b` has independent
+A/B closure for R01 and Studio-session-draft-only R02; principal-store shape and external storage
+events remain outside closure. Receipt/report hashes are independently checked in the
+[scoped readback](scoped-design-closures.md); earlier negative suites remain intact.
+Attachment candidate `b1b9130` is owner-confirmed, not independently approved at that snapshot.
+G4's Code options/worklog/complete Bot-form requests remain distinct and open.

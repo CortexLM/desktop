@@ -3,11 +3,139 @@ import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { afterEach, describe, expect, it } from "vitest"
 import type { Event } from "@cortex/schema"
+import { memoryCredentials } from "../src/provider"
 import { fakeOpenAI, testCore, toolCall } from "./helpers"
 
 describe("session runner (fake OpenAI-compatible SSE)", () => {
   let close: (() => Promise<void>) | undefined
   afterEach(async () => close?.())
+
+  it("admits only one concurrent prompt per session, then permits a follow-up", async () => {
+    const srv = await fakeOpenAI([{ deltas: [{ content: "accepted" }], finish: "stop" }])
+    close = srv.close
+    const core = testCore(srv.url)
+    const s = core.sessions.create({ model: { providerID: "fake", modelID: "reasoner" } })
+    try {
+      const results = await Promise.allSettled(["first", "second"].map((text) => core.sessions.prompt(s.id, { parts: [{ type: "text", text }] })))
+      for (const result of results) if (result.status === "fulfilled") await result.value.done
+      expect(results.map((r) => r.status)).toEqual(["fulfilled", "rejected"])
+      expect(results[1]).toMatchObject({ reason: { code: "session_busy" } })
+      expect(srv.requests).toHaveLength(1)
+      expect(core.sessions.messages(s.id).map((m) => m.info.role)).toEqual(["user", "assistant"])
+      expect(core.sessions.isBusy(s.id)).toBe(false)
+      await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "follow-up" }] })
+      expect(srv.requests).toHaveLength(2)
+    } finally {
+      await core.close()
+    }
+  })
+
+  it.each(["abort", "delete"] as const)("%s during admission prevents a late prompt or session resurrection", async (action) => {
+    const srv = await fakeOpenAI([{ deltas: [{ content: "must not run" }], finish: "stop" }])
+    close = srv.close
+    let entered!: () => void
+    let release!: () => void
+    const reading = new Promise<void>((r) => { entered = r })
+    const gate = new Promise<void>((r) => { release = r })
+    const core = testCore(srv.url, { credentials: {
+      ...memoryCredentials(),
+      get: async () => { entered(); await gate; return "sk-test-1234" },
+    } })
+    const model = { providerID: "fake", modelID: "reasoner" }
+    const s = core.sessions.create({ model })
+    try {
+      const pending = core.sessions.prompt(s.id, { parts: [{ type: "text", text: "late prompt" }] })
+        .then(async ({ done }) => { await done; return "admitted" }, (err) => err.code)
+      await reading
+      const ending = core.sessions[action](s.id)
+      release()
+      const [outcome] = await Promise.all([pending, ending])
+      expect(outcome).toBe("aborted")
+      expect(srv.requests).toHaveLength(0)
+      expect(core.storage.messages(s.id)).toEqual([])
+      expect(core.storage.events(s.id).some((e) => e.type === "message.updated" || e.type === "part.updated")).toBe(false)
+      expect(core.sessions.isBusy(s.id)).toBe(false)
+      if (action === "delete") expect(core.sessions.list()).toEqual([])
+      else {
+        expect(core.sessions.get(s.id).title).toBe("")
+        await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "retry" }] })
+        expect(srv.requests).toHaveLength(1)
+      }
+    } finally {
+      release()
+      await core.close()
+    }
+  })
+
+  it("cancels parent admission before waiting for child deletion", async () => {
+    const srv = await fakeOpenAI([])
+    close = srv.close
+    const gates = [0, 1].map(() => {
+      let entered!: () => void, release!: () => void
+      const reading = new Promise<void>((r) => { entered = r })
+      const wait = new Promise<void>((r) => { release = r })
+      return { reading, wait, entered, release }
+    })
+    let reads = 0
+    const core = testCore(srv.url, { credentials: { ...memoryCredentials(), get: async () => {
+      const gate = gates[reads++]
+      if (gate) { gate.entered(); await gate.wait }
+      return "sk-test-1234"
+    } } })
+    const model = { providerID: "fake", modelID: "reasoner" }
+    const parent = core.sessions.create({ model })
+    const child = core.sessions.create({ model, parentID: parent.id })
+    const prompt = (id: string) => core.sessions.prompt(id, { parts: [{ type: "text", text: "pending" }] })
+      .then(async ({ done }) => { await done; return "admitted" }, (err) => err.code)
+    try {
+      const first = prompt(parent.id)
+      await gates[0]!.reading
+      const second = prompt(child.id)
+      await gates[1]!.reading
+      const deleting = core.sessions.delete(parent.id)
+      gates[0]!.release()
+      const outcome = await first
+      gates[1]!.release()
+      await Promise.all([second, deleting])
+      expect(outcome).toBe("aborted")
+      expect(srv.requests).toHaveLength(0)
+      expect(core.sessions.list()).toEqual([])
+      for (const id of [parent.id, child.id]) {
+        expect(core.storage.events(id).some((e) => e.type === "message.updated" || e.type === "part.updated")).toBe(false)
+        expect(core.sessions.isBusy(id)).toBe(false)
+      }
+    } finally {
+      gates.forEach((g) => g.release())
+      await core.close()
+    }
+  })
+
+  it("honors synchronous cancellation from a model-update listener before persisting a turn", async () => {
+    const srv = await fakeOpenAI([])
+    close = srv.close
+    const core = testCore(srv.url)
+    const model = { providerID: "fake", modelID: "reasoner" }
+    const s = core.sessions.create({ model })
+    const input = { model, parts: [{ type: "text", text: "pending" }] }
+    let nested: Promise<unknown> | undefined, abort: Promise<void> | undefined
+    const off = core.bus.on("session.updated", () => {
+      off()
+      nested = core.sessions.prompt(s.id, input).then(() => "admitted", (err) => err.code)
+      abort = core.sessions.abort(s.id)
+    })
+    try {
+      const outcome = await core.sessions.prompt(s.id, input).then(async ({ done }) => { await done; return "admitted" }, (err) => err.code)
+      await abort
+      expect(await nested).toBe("session_busy")
+      expect(outcome).toBe("aborted")
+      expect(srv.requests).toHaveLength(0)
+      expect(core.storage.events(s.id).some((e) => e.type === "message.updated" || e.type === "part.updated")).toBe(false)
+      expect(core.sessions.isBusy(s.id)).toBe(false)
+    } finally {
+      off()
+      await core.close()
+    }
+  })
 
   it("streams reasoning + text, runs one tool, persists parts and usage", async () => {
     const dir = mkdtempSync(join(tmpdir(), "cortex-run-"))

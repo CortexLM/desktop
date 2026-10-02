@@ -53,6 +53,8 @@ Composers pick from enabled providers that have a key.
 Chat clears its draft and attachments only after the engine accepts the prompt. Changing to
 a model without image input produces the engine's capability error with the draft intact;
 images are never silently removed. Retrying a failed reply resends the original text and files.
+The same capability gate covers images/PDFs replayed from conversation history, including a
+text-only follow-up after changing models. Refusal preserves the selected session model and history.
 Send waits for selected files to finish reading; failed reads name the file and ask to select
 it again. Historical retry uses the selected reply's preceding prompt, not a later message.
 

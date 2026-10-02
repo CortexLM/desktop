@@ -36,3 +36,4 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 - `bash` runs with the user's own rights. There is no sandbox.
 - Error `message` strings are neutral English for developers; the UI maps `code` to copy.
 - New untitled sessions use an empty title for localized renderer fallbacks. Existing titles remain intact; first admitted text supplies an automatic title only for new untitled sessions.
+- Prompt admission reserves the session before asynchronous validation. Concurrent prompts receive `session_busy`; refusals release it. Abort/delete also cover pending admission, preventing late writes and inference.
