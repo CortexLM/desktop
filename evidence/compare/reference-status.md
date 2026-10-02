@@ -98,21 +98,24 @@ unmatched scroll/timer samples and three source-proven port differences. Their s
 
 ## Later correction and integration receipts
 
-The latest handoff disposition is **59 double-confirmed units, three B-only, one open P1
-M02** within the original 63-unit inventory. M02's blank-specialist path is reported to replace
-the primary Bot; focused design-owner repair is reported underway. The
-[reconciliation receipt](../recovery-followup/handoff-correction.json) records a discrepancy:
-the on-disk ledger still reports 63 scoped closures, including M02 on `5daa8d29`. That earlier
-readback remains historical; integration stays on hold pending owner reconciliation of exact
-pins and counts. No per-lot redistribution or identities for the three B-only units are inferred.
+Latest scoped handoff confirms **all 63 historical corrective units**, including M02 on
+`5daa8d29` with A's 36 and B's 60 checks. This resolves the earlier count/repair discrepancy
+recorded in [handoff-correction.json](../recovery-followup/handoff-correction.json); that receipt
+remains historical. [Scoped closure readback](../recovery-followup/scoped-design-closures.md)
+records the named pins and limits. Whole-page acceptance and the approved unified package
+remain pending.
+Final independent reconciliation confirms the quoted `10744dc` ledger prefix already contained
+63/5/8/9 scoped closures: **85 defect units, not pages**. The 59/3/1 current-status interpretation
+is superseded; original negative suites remain unchanged. Attachment retention and G4's three
+new layout requests remain outside those closures.
 Author counts (48 confirmations, 32 consolidated Work cases, 47 Readers/Code actions and
 92 renders) remain separate. This readback does not rerun the 63 corrective journeys.
 The [bounded desktop crosswalk](../recovery-followup/corrected-reference-map.md) identifies
 existing overlap and five remaining candidates: M01 command-model handoff, M21 preview image
 prompt retention, M11 first Work-task identity, M02 specialist identity and M05 Code-task
 identity. These are anchored static mismatches, not new runtime-test results or blanket
-authorization to import live design sources. M02's earlier specialist-zero closure is not a
-current integration input while its repair disposition is disputed.
+authorization to import live design sources. M02's reference correction is closed at its pin;
+desktop's distinct preview-specialist identity gap remains an integration candidate.
 
 [Read-only delivery verification](../recovery-followup/design-update-receipt.json) records
 the separate `bd0a487691a4` / 5609 prototype: 163 source hashes, 26 stored integration checks,
@@ -125,6 +128,10 @@ The later `d814599e9654` candidate's read-only verifier passes 1,574 source/asse
 16 public-host configurations, 43 Security checks and bounded gallery previews. This is a
 prototype assembly, not an Electron build or whole-page approval. Subsequent live changes
 retain their own pins. The original `7b388e2d9674` reference remains immutable.
+The complete `3eeb6235` candidate on `35647` is also verified: 1,574 inputs, 1,399 outputs,
+342 exact reused compiler files, 1,057 restored documentary files and nine HTTP resources.
+Its saved gallery/registry checks are separate from the prior 48-image gallery and the later
+`da5fd54b` residual correction. [Package attribution](../recovery-followup/scoped-design-closures.md#complete-predecessor-package--3eeb6235--35647).
 
 Two new glyphs (`plug-zap`, `settings-2`) have matching raw/normalized/installed hashes and
 four verified proof images. The design inventory is **121 SVG files, 124 usable names,
@@ -135,9 +142,11 @@ preferences request. Their usability does not authorize the associated prototype
 
 The corrected Public pin is separately verified: **511 source files, 342 build artifacts,
 151 recorded passing checks and 14 image hashes**. This read-only validation does not rerun
-browser journeys. Latest Product handoff covers 17 routes and eight defects, including P1
-MCP argument secret-copy and empty-registry sample fallback; owner repairs and an approved
-immutable package remain pending. Earlier scoped A/B reports retain their original pins.
+browser journeys. PUBLIC A1–A5 and all eight Product groups now have two scoped confirmations.
+Product's MCP promise is limited to recognized credential formats and stated field boundaries;
+an empty registry blocks selection until explicit demo entry. The later `79f725c9` Productivity
+file differs by exactly eight French display-string substitutions, verified byte-for-byte;
+earlier four-source captures retain their `41545` pin. Final package approval remains pending.
 
 The independent iOS **web** reference `bbf640ff95cc` passes its read-only freeze verifier:
 278 source files, 954 1179×2556 PNGs, 3,816 recorded browser views. Twenty-two checks confirm

@@ -38,3 +38,8 @@ ordinary installed app restored, shared Mac lease released.
 This targeted run supplements the [5ced8aa full native sweep](../5ced8aa/README.md).
 Its 426 captures, native menus and window-action evidence retain their original revision.
 This run does not establish exhaustive minimum-window, live workflow or whole-product acceptance.
+
+The independent product-delivery readback later rehashed the application ZIP/ASAR, 59 embedded
+build members and all 18 original/retained image pairs. It confirms receipt integrity and
+source binding, not new native interactions or remote inference. Report pin and limits:
+[scoped readback](../../recovery-followup/scoped-design-closures.md#product-packagenative-readback).

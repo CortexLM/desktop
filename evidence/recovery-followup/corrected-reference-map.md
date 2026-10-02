@@ -5,12 +5,15 @@ Coordinator-provided baseline: desktop `3d3bad8`, app `cc758a6`; 50 E2E tests pe
 
 ## Current handoff supersession
 
-Latest disposition: **59 double-confirmed, three B-only, one open P1 M02**, still 63 units.
-M02's blank-specialist path is reported to replace the primary Bot; focused owner repair is
-underway. The [reconciliation receipt](handoff-correction.json) records the conflicting on-disk
-63-closure ledger. Owner-approved pins/counts remain unresolved. The historical table below
-is preserved as the original readback, not current integration approval; no per-lot allocation
-of the three B-only units is inferred. Static desktop anchors remain bounded observations.
+Latest disposition: **all 63 historical defects double-confirmed within their named scopes**.
+M02's `5daa8d29` correction has A's 36 and B's 60 checks. The
+[scoped closure readback](scoped-design-closures.md) resolves the earlier
+[59/3/1 handoff discrepancy](handoff-correction.json); that receipt remains historical.
+The table below preserves the original readback. Neither scoped closure nor this crosswalk
+approves whole pages or imports; desktop anchors remain bounded static observations.
+Final documentary reconciliation confirms the old quoted ledger prefix already contained the
+closures. The superseded three B-only units were M04/M17/M28; M04's scope addendum preserves
+all eight noncontractual query failures rather than turning them into passes.
 
 ## Historical counts and disposition at the baseline readback
 
@@ -46,14 +49,14 @@ Source-present behavior below establishes overlap, not corrective-patch ancestry
 
 ## Five remaining candidate integration questions — no approved import
 
-Static source mismatches only. Each asks whether the named prototype behavior belongs in an approved, bounded desktop delivery. M02's earlier specialist-zero pin is subject to the current repair hold above.
+Static source mismatches only. Each asks whether the named prototype behavior belongs in an approved, bounded desktop delivery. M02 is closed at its reference pin; its desktop integration remains separate.
 
 | Design unit / delivered correction | Current desktop anchor | Integration question |
 | --- | --- | --- |
 | M01 / A01+D03 — model choice consumed by editable new-chat prompt (`fixes-chat-system.md:19`) | `packages/app/src/screens/system/search.tsx:127,131–136`: three model commands; selection only changes theme for theme IDs, then reports success. | Should the corrected new-chat model-selection flow replace this toast-only command, with its live engine contract explicitly resolved? |
 | M21 / D06 — `Box` clears only on explicit acceptance; image prompt retained (`fixes-chat-system.md:20`) | `packages/app/src/screens/chat/shared.tsx:121,129–135` clears after optional handler; `packages/app/src/screens/chat/extras.tsx:73` supplies no handler; live guard at `:27`. | Should the corrected acceptance/prompt-retention behavior be adopted for preview image generation, preserving existing live draft/file safeguards? |
 | M11 / D08 — first task survives Empty→Board and retains identity (`fixes-travail.md:13`) | `packages/app/src/screens/work/home.tsx:61–77`: variant effect reloads fixtures; add prepends task then changes variant; preview open passes no task ID (`:72`). | Should the corrected preview collection/identity behavior replace this reset path, keeping engine-backed live tasks separate? |
-| M02 / A02+D04 — distinct specialists; earlier blank-specialist pin now held pending repair reconciliation (`fixes-travail.md:10–11`; `confirmation-status.md:24–28`) | `packages/app/src/screens/bots/team.tsx:78,110,149–150`: preview template opens generic Studio; specialist tiles omit identity; preview settings read primary Bot. | After the owner resolves the repair/pin discrepancy, should approved preview specialist identity be carried through roster/settings/creation without mutating the primary Bot's shared preview state? |
+| M02 / A02+D04 — distinct specialists; blank-specialist correction scoped-confirmed on `5daa8d29` (`fixes-travail.md:10–11`; `confirmation-status.md:24–28`) | `packages/app/src/screens/bots/team.tsx:78,110,149–150`: preview template opens generic Studio; specialist tiles omit identity; preview settings read primary Bot. | Should approved preview specialist identity be carried through roster/settings/creation without mutating the primary Bot's shared preview state? |
 | M05 / A04 — selected Code task opens its own review or identified unavailable preview (`fixes-readers-code.md:14,74,104`) | `packages/app/src/screens/code/lot-code.tsx:86` routes by status without task identity; review uses fixed fixture at `:219–222`; live list passes session ID at `:145`. | Should corrected task-specific preview routing be ported for the supplied task content, retaining identified unavailable results where no content exists? |
 
 ## Prototype-only / not applicable to live feature delivery

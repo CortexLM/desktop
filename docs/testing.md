@@ -102,6 +102,11 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/bot-safety.spec.ts` — 960/1440 × both themes: real rejected Bot writes preserve the
   studio draft/dialog; pending writes lock controls and reject duplicate submission. Shared preview
   appearance/activity/pause, draft restoration, onboarding and locale/live isolation are separate cases.
+  Live Studio awaits `api.bots.update` before saved state, success feedback or guard navigation.
+  Preview appearance/draft state is memory-only; desktop has no prototype `useBot` localStorage
+  setter. These cases do not simulate a SQLite write failure or a browser-storage quota error.
+  Core Bot updates synchronously persist the new document before returning it; they publish no
+  Bot event. The persistence ordering is a source observation, not an injected-failure E2E claim.
   Leaving onboarding cancels delayed navigation, including a departure from preview into live mode.
   Work task previews publish their activity to the sidebar, then restore prior background activity;
   an explicit pause, saved appearance and draft survive this temporary activity.

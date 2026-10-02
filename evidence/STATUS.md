@@ -82,10 +82,11 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   with suggestions, Plugins & skills installed/public/personal/MCP. The design owner has
   delivered documented drafts; independent approval and immutable integration delivery remain pending in
   `/root/cortex-ui/DESIGN-REQUESTS.md`.
-  Latest Product handoff: 17 reviewed routes, eight defects; owner repairs remain pending,
-  including P1 MCP argument secret-copy and empty-registry sample fallback. Earlier A/B
-  confirmations remain revision-bound history. The [reconciliation receipt](recovery-followup/handoff-correction.json)
-  records the conflicting ledger; no approved immutable package has been received.
+  Latest Product handoff: all eight groups on 17 reviewed routes have scoped A/B confirmation.
+  MCP detection remains bounded to recognized credential formats; empty registry blocks until
+  explicit demo entry. PUBLIC A1–A5 is also double-confirmed. The
+  [scoped closure readback](recovery-followup/scoped-design-closures.md) resolves the earlier
+  disposition conflict; approved unified package and whole-page acceptance remain pending.
   The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
   plugin/skill lifecycle, task consent/timezone, Space cover and MCP secret-handling contracts.
 - **Additional design approval:** Providers, Connection, model capability picker and
@@ -106,9 +107,14 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   freeze's 22 checks confirm three corrections, without native-iPhone certification.
   A [bounded correction crosswalk](recovery-followup/corrected-reference-map.md) records five
   candidate gaps in command-model handoff and preview prompt/task/specialist identity.
-  Latest legacy disposition: 59 double-confirmed, three B-only, one open P1 M02, out of 63
-  units. The on-disk ledger's 63-closure claim awaits owner reconciliation; M02 adoption stays
-  on hold. Two independent iOS per-route reviews are reported underway, without inferred results.
+  All 63 historical design defects now have double scoped confirmation, including M02 on
+  `5daa8d29`. This does not close the five desktop integration candidates. Earlier Studio
+  `DESK-B-R01/R02` failures remain recorded; residual candidate `da5fd54b` has verified author
+  receipts (68 GUI checks, 18 validator cases, two PNGs), with independent A/B pending.
+  Independent reconciliation confirms **85 scoped defect closures** across the four matrices;
+  the quoted `10744dc` ledger already contained them. Attachment repair has a separate owner/new
+  pin pending. G4 Code options/worklog/full Bot-form requests remain distinct from these closures.
+  iOS reviews of 38 new routes are assigned; no native acceptance follows.
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)

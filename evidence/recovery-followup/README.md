@@ -84,18 +84,21 @@ active: no replacement pair announced in the inspected handoff. PM heads remain 
 the delivered G2 body correction, local-provider inference and native Mac supplements have
 separate revision scopes. Existing passing tests were not repeated.
 
-### Latest handoff correction
+### Handoff correction and scoped resolution
 
-[Reconciliation](handoff-correction.json) records **59 double-confirmed legacy units, three
-B-only, one open P1 M02**, within the original 63. The blank-specialist path is reported to
-replace the primary Bot; focused owner repair is underway. The on-disk ledger still claims
-63 closures on later pins. These conflicting dispositions require owner reconciliation;
-the latest handoff controls the integration hold. Historical source-bound receipts are retained.
+[Historical reconciliation](handoff-correction.json) records the earlier 59/3/1 disposition
+and its conflicting ledger. The latest [scoped closure readback](scoped-design-closures.md)
+resolves that conflict: **63 historical defects double-confirmed**, including M02 on `5daa8d29`
+with A's 36 and B's 60 checks. Earlier receipts retain their timestamps and source pins.
+Final independent reconciliation confirms that the quoted `10744dc` ledger already contained
+63/5/8/9 closures, totaling **85 scoped defect units**. Its exact 105-line/14,162-byte prefix was
+checked; the obsolete current 59/3/1 interpretation is corrected without editing its receipt.
 
-Product's combined review covers **17 routes and eight defects**, including P1 MCP argument
-secret-copy and empty-registry sample fallback. Repairs belong to one design owner; an
-approved immutable package remains pending. This supersedes present-tense closure claims,
-not the original nine-route Productivity or eight-route Platform receipt counts.
+Product's combined review covers **17 routes and eight groups**, now double-confirmed on
+the corrective snapshot `41545`. MCP detection remains bounded to known formats and field
+boundaries; an empty registry blocks until explicit demo entry. PUBLIC A1–A5 also has two
+corrected-source confirmations. Whole-page acceptance and an approved unified package remain
+pending. Original nine-route Productivity and eight-route Platform receipt counts remain intact.
 
 The corrected Public pin's 511 source files, 342 build artifacts, 151 recorded passing checks
 and 14 image hashes are verified read-only. All 45 icon additions remain separately usable;
@@ -127,8 +130,9 @@ its earlier findings are preserved as superseded states, not deleted from the re
 
 The [Productivity contract map](productivity-contract-map.md) records nine local-route mappings,
 288 matching receipt-image hashes, current TSX drift and missing lifecycle/secret-handling
-contracts. The earlier eight scoped design confirmations remain attributed to their receipt
-pin; current repair/package disposition is stated above.
+contracts. The eight scoped design confirmations remain attributed to their receipt pin;
+current package disposition is stated above. Exactly eight later French display-string
+substitutions produce `79f725c9` without another byte change; old captures retain their old pin.
 
 Platform's [receipt verification](platform-receipt.json) checks the original source snapshot,
 396 images, twelve evidence files, three on-disk and HTTP-served build assets, eight routes
@@ -151,5 +155,9 @@ later scoped confirmations and native-product acceptance stay revision-bound; br
 were read back, not rerun. Detailed boundaries: [reference status](../compare/reference-status.md).
 The [corrected-reference crosswalk](corrected-reference-map.md) maps the 63-unit inventory,
 existing live safeguards and five bounded candidate gaps, keeping prototype-only operations
-separate from functional engine delivery. Its historical closure table is superseded by the
-current 59/3/1 handoff hold. Its source inspection ran no tests.
+separate from functional engine delivery. The 63 scoped reference closures do not close those
+desktop gaps. Its source inspection ran no tests. Later Bot/Security and Planning receipts
+are tracked separately; Studio residual candidate `da5fd54b` awaits independent confirmation
+after read-only author-receipt verification. Earlier negative suites remain intact.
+Attachment retention has a separate repair owner, new pin pending; G4's Code options/worklog/
+complete Bot-form requests are distinct from the scoped closures and remain open.

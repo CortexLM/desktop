@@ -2,11 +2,12 @@
 
 **Status: draft reference only; integration blocked.** Eight routes / 94 variants. No API/service availability, native acceptance or whole-page approval follows from this prototype.
 
-**Handoff supersession:** the latest combined Product review covers 17 routes and eight defects,
-including P1 MCP argument secret-copy and empty-registry sample fallback. Single-owner repairs
-and the approved immutable package remain pending. Earlier scoped confirmations below remain
-pin-specific history; [reconciliation](handoff-correction.json) records the conflicting ledger.
-The independent attachment-retention conflict remains unresolved.
+**Handoff supersession:** all eight Product groups across the 17-route review now have scoped
+A/B confirmation on `/tmp/opencode/fixes-new-product/delta/snapshot`. MCP credential detection
+remains bounded to recognized formats/fields; an empty registry blocks until explicit demo entry.
+[Scoped closure readback](scoped-design-closures.md) resolves the earlier ledger discrepancy.
+The approved unified package remains pending. The separate attachment-retention conflict is
+accepted for exclusive owner repair; a new exact correction pin is still pending.
 
 Inputs: `/root/cortex-ui/review-platform.md`, `/tmp/opencode/platform/manifest.json`, canonical `/tmp/opencode/cortex-contract-d6d46014.json`; desktop `AGENTS.md` and all `.rules/` read. Remote operation IDs/paths below come from that schema; missing bodies remain missing contracts.
 Receipt source pins: TSX `48fa7c7a…`, CSS `5ef7f364…`. Reported: 376 passing views (372 first pass + four unchanged-source confirmations after timeouts), 52 interaction checks (13 groups × four configurations), 396 capture hashes. Provenance/hash verification belongs to the coordinator; not repeated here.
