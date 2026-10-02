@@ -20,7 +20,7 @@ extraResources:
     to: skills
   - from: packages/i18n/locales
     to: locales
-    filter: ["**/*.json", "!**/*.source.json", "!fixtures/**"]
+    filter: ["**/*.json", "!**/*.source.json", "!**/fixtures/**"]
 
 extraMetadata:
   main: packages/desktop/dist/main.cjs
@@ -104,6 +104,4 @@ appImage:
   license: LICENSE
 
 
-# build.yml requires signing and notarization credentials before macOS/Windows
-# production builds and passes forceCodeSigning=true. Local builds stay usable
-# without a signing identity. Notarization uses electron-builder's built-in hook.
+# CI packages unsigned with notarization disabled; production signing is not configured.

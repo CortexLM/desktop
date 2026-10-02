@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { LOCALES } from "@cortex/i18n";
+import { nodeCatalogs } from "@cortex/i18n/node";
 
 const dir = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../packages/i18n/locales");
 const ns = (l: string) => (fs.existsSync(path.join(dir, l)) ? fs.readdirSync(path.join(dir, l)).filter((f) => f.endsWith(".json")) : []);
@@ -11,6 +12,11 @@ const vars = (s: string) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort(
 describe("locale catalogs", () => {
   it("declares the backend's locale list", () => {
     expect(LOCALES).toEqual(["en", "fr", "es", "de", "ja", "zh-Hans", "pt-BR", "ko"]);
+  });
+  it("does not load translation source stamps as runtime catalogs", () => {
+    const catalogs = nodeCatalogs(dir)("fr");
+    expect(catalogs.chat["image.ready"]).toContain("quatre");
+    expect(Object.keys(catalogs).some((name) => name.endsWith(".source"))).toBe(false);
   });
   for (const l of LOCALES.filter((x) => x !== "en")) it(`${l} has every English key with the same placeholders`, () => {
     for (const f of ns("en")) {

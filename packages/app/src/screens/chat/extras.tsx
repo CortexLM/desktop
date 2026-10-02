@@ -46,7 +46,7 @@ function ImageIn({ v, setV }: { v: string; setV: (v: string) => void }) {
           <div className="chat-related">{(fx.alternatives as string[]).map((q) => <button key={q} className="chat-relq" onClick={() => setV("generating")}><span>{q}</span><Icon name="arrow-right" size={16} /></button>)}</div>
           <a className="chat-link" href="#/about">{t("chat.image.rules")}</a>
         </BotRow> : <BotRow st={done ? "done" : "working"}>
-          {done ? <p>{t("chat.image.ready", { count: 4, ratio: "3:2" })}</p> : <div className="chat-tool-h"><span className="thinking">{t("chat.image.creating", { count: 4 })}</span><span className="chat-meta">{p}{NB}%</span></div>}
+          {done ? <p>{t("chat.image.ready", { ratio: "3:2" })}</p> : <div className="chat-tool-h"><span className="thinking">{t("chat.image.creating", { count: 4 })}</span><span className="chat-meta">{p}{NB}%</span></div>}
           <div className="chat-gen" data-fmt={fmt}>
             {IMGS.map((m, i) => {
               const q = Math.min(100, Math.max(0, p * 1.15 - i * 6));

@@ -8,7 +8,7 @@ import { useI18n } from "./i18n";
 export const isPreview = () => /[?&](preview|shot)\b/.test(location.hash);
 
 type FixtureModule = { default: Record<string, unknown> };
-const loaders = import.meta.glob("../../i18n/locales/*/fixtures/*.json") as Record<string, () => Promise<FixtureModule>>;
+const loaders = import.meta.glob(["../../i18n/locales/*/fixtures/*.json", "!../../i18n/locales/*/fixtures/*.source.json"]) as Record<string, () => Promise<FixtureModule>>;
 const file = (locale: string, area: string) => `../../i18n/locales/${locale}/fixtures/${area}.json`;
 
 const cache = new Map<string, Record<string, unknown>>();
