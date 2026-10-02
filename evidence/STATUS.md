@@ -82,14 +82,17 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   with suggestions, Plugins & skills installed/public/personal/MCP. The design owner has
   delivered documented drafts; independent approval and immutable integration delivery remain pending in
   `/root/cortex-ui/DESIGN-REQUESTS.md`.
-  Eight new-product defects have scoped A/B confirmation, not whole-page approval.
+  Latest Product handoff: 17 reviewed routes, eight defects; owner repairs remain pending,
+  including P1 MCP argument secret-copy and empty-registry sample fallback. Earlier A/B
+  confirmations remain revision-bound history. The [reconciliation receipt](recovery-followup/handoff-correction.json)
+  records the conflicting ledger; no approved immutable package has been received.
   The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
   plugin/skill lifecycle, task consent/timezone, Space cover and MCP secret-handling contracts.
 - **Additional design approval:** Providers, Connection, model capability picker and
   inline tool approval drafts now have an eight-route/94-variant Platform receipt. Read-only
   verification checks 396 capture hashes, 376 distinct passing views (372 initial plus four
-  unchanged confirmations), 52 targeted groups and all three served build assets. Current
-  Platform sources match later scoped corrective hashes, not that original receipt. Existing
+  unchanged confirmations), 52 targeted groups and all three served build assets. At that
+  readback, Platform sources matched later scoped corrective hashes, not the original receipt. Existing
   functional controls still need approved integration; prototype behavior is not API availability.
   The [eight-route contract map](recovery-followup/platform-contract-map.md) identifies automatic
   attachment deletion as a desktop contract conflict. A retained-attachment refusal state is requested.
@@ -103,6 +106,9 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   freeze's 22 checks confirm three corrections, without native-iPhone certification.
   A [bounded correction crosswalk](recovery-followup/corrected-reference-map.md) records five
   candidate gaps in command-model handoff and preview prompt/task/specialist identity.
+  Latest legacy disposition: 59 double-confirmed, three B-only, one open P1 M02, out of 63
+  units. The on-disk ledger's 63-closure claim awaits owner reconciliation; M02 adoption stays
+  on hold. Two independent iOS per-route reviews are reported underway, without inferred results.
 - **Connection behavior:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing are
   unfinished. A successful backend probe is not proof of a complete remote connection mode.

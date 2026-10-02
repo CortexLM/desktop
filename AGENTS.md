@@ -210,6 +210,8 @@ original-reference fidelity and missing-surface drafts remain outside that appro
 [`evidence/compare/reference-status.md`](./evidence/compare/reference-status.md).
 Later design correction/assembly, glyph and iOS-web receipts are tracked there with separate
 source pins; they do not expand desktop's approved frozen reference or live product scope.
+Conflicting handoff/ledger closure counts remain an integration hold; see
+[`evidence/recovery-followup/handoff-correction.json`](./evidence/recovery-followup/handoff-correction.json).
 For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
 session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
 

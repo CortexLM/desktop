@@ -80,6 +80,24 @@ kept separate from acceptance; the original freeze is not extended by draft rout
 Backend contract blob `d6d46014` is independently hash-verified (422 operations). The desktop
 SDK remains unchanged pending its owner's regenerated package and runtime handoff.
 
+### Latest handoff correction
+
+[Reconciliation](handoff-correction.json) records **59 double-confirmed legacy units, three
+B-only, one open P1 M02**, within the original 63. The blank-specialist path is reported to
+replace the primary Bot; focused owner repair is underway. The on-disk ledger still claims
+63 closures on later pins. These conflicting dispositions require owner reconciliation;
+the latest handoff controls the integration hold. Historical source-bound receipts are retained.
+
+Product's combined review covers **17 routes and eight defects**, including P1 MCP argument
+secret-copy and empty-registry sample fallback. Repairs belong to one design owner; an
+approved immutable package remains pending. This supersedes present-tense closure claims,
+not the original nine-route Productivity or eight-route Platform receipt counts.
+
+The corrected Public pin's 511 source files, 342 build artifacts, 151 recorded passing checks
+and 14 image hashes are verified read-only. All 45 icon additions remain separately usable;
+the `settings-2` placement is recorded under its preferences request. Two independent iOS
+per-route reviews are reported underway; the verified web freeze establishes no native acceptance.
+
 ## Route identity and pending tab intent
 
 The route and history-entry key now travel in the same React snapshot. An unrelated shell
@@ -105,15 +123,16 @@ its earlier findings are preserved as superseded states, not deleted from the re
 
 The [Productivity contract map](productivity-contract-map.md) records nine local-route mappings,
 288 matching receipt-image hashes, current TSX drift and missing lifecycle/secret-handling
-contracts. Eight later scoped design corrections are acknowledged separately from whole-page
-acceptance and the pending immutable integration package.
+contracts. The earlier eight scoped design confirmations remain attributed to their receipt
+pin; current repair/package disposition is stated above.
 
 Platform's [receipt verification](platform-receipt.json) checks the original source snapshot,
 396 images, twelve evidence files, three on-disk and HTTP-served build assets, eight routes
 and 94 variants. It records 376 distinct passing views: 372 initially, four confirmed on
-unchanged source/build, with cause unproven; all 52 targeted groups passed. The live TSX/CSS
-match the later corrective snapshot and A/B disposition, so the original captures are not
-reattributed. The later reports were read and hashed; their browser journeys were not rerun.
+unchanged source/build, with cause unproven; all 52 targeted groups passed. At the earlier
+receipt readback, TSX/CSS matched the later corrective snapshot; its A/B reports recorded
+their scoped disposition. Original captures are not reattributed. The reports were read and
+hashed; their browser journeys were not rerun.
 No sample credentials or prototype source is imported into the desktop.
 The [Platform contract map](platform-contract-map.md) identifies the draft's incompatible-model
 attachment deletion as a conflict with accepted desktop retention. Both pinned and current source
@@ -126,6 +145,7 @@ The later [design update receipt](design-update-receipt.json) verifies historica
 two distinct Quiver glyph variants and the separate iOS web freeze. Original report counts,
 later scoped confirmations and native-product acceptance stay revision-bound; browser results
 were read back, not rerun. Detailed boundaries: [reference status](../compare/reference-status.md).
-The [corrected-reference crosswalk](corrected-reference-map.md) maps the 63-unit disposition,
+The [corrected-reference crosswalk](corrected-reference-map.md) maps the 63-unit inventory,
 existing live safeguards and five bounded candidate gaps, keeping prototype-only operations
-separate from functional engine delivery. Its source inspection ran no tests.
+separate from functional engine delivery. Its historical closure table is superseded by the
+current 59/3/1 handoff hold. Its source inspection ran no tests.
