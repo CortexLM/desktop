@@ -2,6 +2,21 @@
 
 Application correction: `41998a8`. Integrated route-identity verification follows separately.
 
+Final application source: `cc758a69fe9349d17f6a4bf7accd978421035519`, fingerprint
+`8321a20fdcb25b29b884969901e6ba60ffdbcacb3c93f7b84e7f92e91c763462` (473 files).
+Local integrated checks: **50/50 Electron cases**, zero retries/flaky/skips, 426 registered
+state renders; lint/types, 131 units plus one optional backend skip, i18n and Linux package/smoke.
+`final/` retains those results, 44 pixel-verified lossless screenshots and two inspected contact
+sheets. `compare-final/` retains 32 captures / 30 frozen comparisons, two Home-menu gaps,
+maximum difference 0.45%, inspected contact sheet, selected images and source attribution.
+[CI 37039827971](https://github.com/CortexLM/desktop/actions/runs/37039827971), CodeQL and
+unsigned macOS package/smoke pass. [Installed Mac proof](../mac/cc758a6/README.md) records
+eighteen native captures, both appearances, with explicit timer and interaction limits.
+[Independent CI review](final/ci-review.md) verifies **50/50 per OS**, zero retries/flaky/skips,
+all 88 E2E images inspected on twelve sheets, 26 also full-resolution. The selected images
+are retained losslessly with original PNG hashes. No changed-regression blocker was found;
+renderer captures and native captures retain their distinct scopes.
+
 The [8b90a8e CI review](../fidelity-followup/ci-review.md) exposed two gaps beyond the earlier
 small-window correction:
 
@@ -37,3 +52,58 @@ query invalidation, task identity reset, preview isolation, popup stacking, Undo
 and reload assertions. That review ran no tests and did not inspect the concurrent navigation fix.
 `log-normalization.json` records original and retained hashes for saved logs whose ANSI/BOM
 formatting or trailing whitespace was removed; assertions, errors and timestamps are preserved.
+
+## Separate reduced-motion delivery
+
+Application revision: `9924911`.
+
+The design owner delivered a live-only accessibility correction: global reduced-motion
+transitions use `0s`, preventing Chromium from retaining stale inherited text colors during
+dark initialization. Animations remain `1ms` for completion hooks. Only that CSS value is
+ported; the frozen source remains immutable. The startup regression checks both theme colors
+and effective durations. Its pre-fix run failed on the old 1ms transition, not on text color;
+the original intermittent color failure is owner-verified rather than reproduced by that run.
+The corrected source passes twenty targeted Electron cases, including both cold-reload themes,
+native-menu assertions and composer/Bot lifecycle flows. Independent source review found no
+app-owned transition-end dependency; explicit animation completion paths remain intact.
+The reduced-motion build also passes packaged Linux launch smoke.
+[CI 37035107514](https://github.com/CortexLM/desktop/actions/runs/37035107514) at `9924911`
+passes 47/47 Electron cases per Linux/macOS, zero retries/flaky/skips, static checks and
+unsigned macOS package/smoke. The earlier navigation failure remains an explicit investigation.
+
+## Incoming references
+
+Productivity's original nine-route, 72-state receipt is an isolated design build, excluding an
+unfinished Public module; it is not a full integrated product build. Later scoped defect
+confirmations and source changes must retain their own pins. The desktop integration map is
+kept separate from acceptance; the original freeze is not extended by draft route inventory.
+Backend contract blob `d6d46014` is independently hash-verified (422 operations). The desktop
+SDK remains unchanged pending its owner's regenerated package and runtime handoff.
+
+## Route identity and pending tab intent
+
+The route and history-entry key now travel in the same React snapshot. An unrelated shell
+update during a deferred navigation cannot remount the outgoing Work tree under the new key.
+The deterministic regression failed before this fix, disconnecting the old tree and losing
+its draft; it passes after the fix and checks restored sidebar Bot activity.
+
+Independent review then identified a distinct tab-intent race. A newer Work choice made
+after Home's URL update but before Home's React commit was discarded. A held-callback
+regression reproduces the stuck-Home result. Segmented controls now distinguish their own
+prior requested value from external resets, preserving the newer pending timer and checking
+the latest committed/requested value rather than a stale closure. Ownership also matches
+the exact history-entry key: a Back action to a different Chat entry cancels the timer even
+though its label matches the earlier request. That third regression fails before key binding.
+All three regressions and the existing navigation/keyboard cases pass (six targeted cases).
+
+Settled keyboard sequences explicitly wait for rendered-route readiness. The pending-input
+requirement has its own deterministic test. The responsive test separately retries geometry
+from a connected inline Review comment; viewport, hit testing and applied-result assertions
+remain intact. These findings do not establish the exact cause of every historical CI failure.
+Independent [source review](navigation-review.md) confirms both identified tab-intent fixes;
+its earlier findings are preserved as superseded states, not deleted from the record.
+
+The [Productivity contract map](productivity-contract-map.md) records nine local-route mappings,
+288 matching receipt-image hashes, current TSX drift and missing lifecycle/secret-handling
+contracts. Eight later scoped design corrections are acknowledged separately from whole-page
+acceptance and the pending immutable integration package.

@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/navigation.spec.ts:4:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.5s)
+
+
+  1) tests/e2e/navigation.spec.ts:4:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      28 |     await page.getByRole("button", { name: "Hide sidebar", exact: true }).click();
+      29 |     await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "hidden");
+    > 30 |     expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(true);
+         |                                                              ^
+      31 |     await expect(draft).toHaveValue("Keep this outgoing task draft");
+      32 |     await expect(page.locator(".home")).toHaveCount(0);
+      33 |     await commit.evaluate((release) => release());
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:30:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-nav-before/navigation-a-pending-route-4fe68-e-and-restores-Bot-activity/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/desktop-nav-before/navigation-a-pending-route-4fe68-e-and-restores-Bot-activity/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/desktop-nav-before/navigation-a-pending-route-4fe68-e-and-restores-Bot-activity/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/desktop-nav-before/navigation-a-pending-route-4fe68-e-and-restores-Bot-activity/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/navigation.spec.ts:4:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity

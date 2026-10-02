@@ -1,0 +1,25 @@
+
+Running 20 tests using 4 workers
+
+  ✓   1 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.0s)
+  ✓   4 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (2.0s)
+  ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (2.1s)
+  ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (2.2s)
+  ✓   2 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (8.6s)
+  ✓   3 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (8.7s)
+  ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (7.9s)
+  ✓   9 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (1.5s)
+  ✓  10 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (2.1s)
+  ✓  11 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.2s)
+  ✓  12 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (1.3s)
+  ✓  13 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (1.4s)
+  ✓  14 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (2.5s)
+  ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (7.8s)
+  ✓  16 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.4s)
+  ✓  18 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (2.3s)
+  ✓  15 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (6.9s)
+  ✓  19 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (5.3s)
+  ✓  17 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (6.9s)
+  ✓  20 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (11.7s)
+
+  20 passed (28.8s)

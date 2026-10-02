@@ -22,3 +22,6 @@ Application revision: `5ced8aa1d2eb04ed3131ffb40c0d360e5706526d`.
 These captures cover this revision. Work-board minimum-window overflow and refusal-toast
 overlap found during CI review require subsequent corrections; this baseline does not prove
 them. Native rendering is not exhaustive live interaction acceptance.
+The independent [review](review.md) records partial contact-sheet screening and five named
+full-resolution frames, plus all 426 file/hash/dimension checks. Opening all eleven sheets
+is explicitly not counted as exhaustive visual review.

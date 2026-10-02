@@ -2,7 +2,7 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Application CI and CodeQL pass at `8b90a8e`. This validates the implemented scope,
+Application CI and CodeQL pass at `cc758a6`. This validates the implemented scope,
 not the complete objective.
 
 Frozen-source integration is pushed at `5ced8aa`. Local static checks and Linux packaged smoke
@@ -35,6 +35,22 @@ integrated verification at `41998a8`; the green run above does not establish tho
 records dock anchoring, persisted completion and the new regression assertions.
 [CI 37032922991](https://github.com/CortexLM/desktop/actions/runs/37032922991) passes 46/46
 on Linux and 45/46 on macOS; the remaining failure is rapid keyboard Work navigation.
+The separately authorized reduced-motion correction is pushed at `9924911`: CSS transitions
+use 0s, animations retain 1ms. Twenty targeted Electron cases pass, including startup text
+colors in both themes. Draft Code automation screens still await independent acceptance.
+[CI 37035107514](https://github.com/CortexLM/desktop/actions/runs/37035107514) passes **47/47**
+per Linux/macOS, zero retries/flaky/skips, static checks, macOS package/smoke. The earlier
+rapid-selection failure remains under source investigation despite this passing run.
+Navigation correction `cc758a6` passes **50/50** local Electron cases, 426 state renders,
+static checks and Linux packaged smoke. Three held-transition regressions reproduce and fix
+premature Work remount, discarded newer tab intent and a Back action overridden by a stale
+timer. Each pre-fix failure is retained. [CI 37039827971](https://github.com/CortexLM/desktop/actions/runs/37039827971)
+passes **50/50 per Linux/macOS**, zero retries/flaky/skips, checks and macOS packaging/smoke.
+Independent artifact review inspected all 88 E2E images, 26 also full-resolution; no blocking
+regression found within that scope. Final source comparison adds 32 captures / 30 references,
+two explicit Home-menu gaps, maximum difference 0.45%.
+[Installed Mac cc758a6](mac/cc758a6/README.md) adds eighteen native captures in both themes,
+covering reduced-motion text, Work layout/activity and Chat/Code/Work refusal recovery.
 
 The historical table below remains pinned to `0e63f87`; newer evidence is linked above.
 
@@ -66,6 +82,9 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   with suggestions, Plugins & skills installed/public/personal/MCP. The design owner has
   delivered documented drafts; independent approval and immutable integration delivery remain pending in
   `/root/cortex-ui/DESIGN-REQUESTS.md`.
+  Eight new-product defects have scoped A/B confirmation, not whole-page approval.
+  The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
+  plugin/skill lifecycle, task consent/timezone, Space cover and MCP secret-handling contracts.
 - **Additional design approval:** Providers, Connection, model capability picker and
   inline tool approval requests remain open. Existing functional controls need design review.
 - **Reference revision:** 205 reference versus 213 app states reconciled to eight extra
@@ -80,6 +99,9 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   detach/reconnect and password/MFA drafts await independent design acceptance; regenerated SDK
   types remain requested. Legacy English session titles remain intact because
   default and user-authored titles were stored indistinguishably.
+  G2's current immutable schema is `d6d46014` at backend `70a3056f` (422 operations);
+  its five auth/upload body omissions are corrected. Desktop still awaits the SDK owner's
+  regenerated package and runtime fixes before authenticated remote integration.
 - **Interaction coverage:** several ported surfaces remain preview-only; projects, sign-in,
   billing, updater and file viewers do not become live features merely by rendering in the gallery.
 - **Responsive acceptance:** the full native sweep at 1024×685 and comparisons at 1440×900 do not

@@ -24,7 +24,7 @@ models** (live), **Connection** (live), Bot, Notifications, Privacy, Shortcuts, 
 
 ## 6.2 Blocked on design — say so, build nothing
 
-These have engine routes but no design, so the app has **no screen** for them:
+These have engine routes but no approved integration package, so the app has **no screen** for them:
 
 | Surface | Engine | Design request |
 | --- | --- | --- |
@@ -32,7 +32,10 @@ These have engine routes but no design, so the app has **no screen** for them:
 | **Scheduled** (standalone list, suggestions, run history) | `/api/tasks` | filed |
 | **Plugins & skills** (installed/public/personal, MCP add) | `/api/plugins`, `/api/skills`, `/api/mcp` | filed |
 
-Requests live in the design reference's `DESIGN-REQUESTS.md` (outside this repo).
+Requests and draft-delivery dispositions live in the design reference's `DESIGN-REQUESTS.md`
+(outside this repo). Scoped defect confirmations do not approve an entire page or its live
+engine contract. The local-contract gaps are recorded in
+[`evidence/recovery-followup/productivity-contract-map.md`](../evidence/recovery-followup/productivity-contract-map.md).
 **Bad**: a quick unstyled list at `#/space`. **Good**: nothing until the design lands; the
 rail's "More" entry stays as it is.
 
