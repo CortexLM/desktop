@@ -26,6 +26,10 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `tests/unit/locales.test.ts` · `tests/unit/audit-i18n.test.ts` | locale parity, Node source-stamp exclusion, audit behaviour |
 | `tests/unit/runtime-copy.test.ts` | mascot accessible names and structured tool titles/error copy across eight locales |
 
+The static Code render fixture includes the real model composer: translator, typed session model,
+empty catalog and read-only browser preferences. It restores stubbed globals after each test;
+Node 22 has no implicit `localStorage`, unlike some newer Node environments.
+
 Engine tests use `createCore({ dataDir: ":memory:", credentials: memoryCredentials() })`
 and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 Session admission regressions submit concurrent prompts and hold credential lookup while

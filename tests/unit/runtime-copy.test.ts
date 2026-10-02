@@ -1,6 +1,6 @@
 import * as React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createTranslator, LOCALES, type Locale } from "@cortex/i18n";
 import { nodeCatalogs } from "@cortex/i18n/node";
 import type { ToolPart } from "@cortex/schema";
@@ -15,7 +15,7 @@ vi.mock("../../packages/app/src/i18n", async () => {
   const { createTranslator } = await import("@cortex/i18n");
   const { nodeCatalogs } = await import("@cortex/i18n/node");
   const load = nodeCatalogs(new URL("../../packages/i18n/locales", import.meta.url).pathname);
-  return { useT: () => createTranslator(view.locale, load), useI18n: () => ({ locale: view.locale }) };
+  return { useT: () => createTranslator(view.locale, load), useI18n: () => ({ t: createTranslator(view.locale, load), locale: view.locale }) };
 });
 vi.mock("../../packages/app/src/api", () => ({ api: {} }));
 vi.mock("../../packages/app/src/preview", () => ({ isPreview: () => false, useFixtures: () => ({}) }));
@@ -24,7 +24,7 @@ vi.mock("../../packages/app/src/kit/ui", async (original) => ({
   ...await original<typeof import("../../packages/app/src/kit/ui")>(), useToast: () => ({ add: vi.fn() }),
 }));
 vi.mock("../../packages/app/src/state/live", () => ({
-  useQuery: () => ({ state: "ready", data: { title: "User task" } }),
+  useQuery: (_load: unknown, [key]: unknown[]) => ({ state: "ready", data: key === "session" ? { title: "User task", model: { providerID: "fake", modelID: "reasoner" } } : [] }),
   useMessages: () => ({ status: "idle", msgs: [{ info: { id: "message", role: "assistant" }, parts: view.parts }] }),
   usePermissions: () => ({ state: "ready", data: [] }),
 }));
@@ -41,7 +41,9 @@ const part = (tool: string, state: ToolPart["state"]): ToolPart => ({ id: tool, 
 const todos = part("todowrite", { status: "completed", input: { todos: [{ status: "pending" }, { status: "completed" }] }, title: "1 todos", output: "[]", time: { start: 0, end: 1 } });
 const failed = part("bash", { status: "error", input: { command: "pwd" }, error: "PRIVATE_ENGINE_ERROR: Tool execution was interrupted", time: { start: 0, end: 1 } });
 
-afterEach(() => { view.terminal = false; view.parts = []; });
+// ponytail: static markup only reads preferences; add storage writes for interaction tests.
+beforeEach(() => { vi.stubGlobal("localStorage", { getItem: () => null }); });
+afterEach(() => { view.terminal = false; view.parts = []; vi.unstubAllGlobals(); });
 
 describe("runtime copy", () => {
   it.each(LOCALES)("renders translated mascot accessibility in %s", (locale) => {

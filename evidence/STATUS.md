@@ -3,9 +3,11 @@
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
 The [live-behavior correction](live-behavior-followup/README.md) wires Code model/reasoning choice
-and truthful routine outcomes. Local checks pass: 178 units plus one optional backend skip,
-59 initial full Electron cases/426 renders, 17 final targeted cases after attachment/capture fixes,
-lint/types/i18n and Linux packaged smoke. New CI and installed-Mac verification remain pending.
+and truthful routine outcomes. CI 37074187552 passes 61/61 Electron cases on Linux/macOS,
+426 renders and macOS package/smoke, but fails eight locale-render unit cases because their
+mock browser environment lacks `localStorage`. The earlier 178-unit pass predates Code integration.
+The test-harness correction now passes 178 units on Node 22; green CI remains pending.
+Installed-Mac assertions pass on the exact `d635fcf` artifact; capture review is underway.
 Earlier application `9d704ee` corrects the narrow provider key row;
 [CI 37066222793](https://github.com/CortexLM/desktop/actions/runs/37066222793) passes, installed
 normal-sidebar verification passes in both themes at 960×640.
@@ -26,9 +28,9 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | Current local checks pass: 178 units plus one optional backend skip. New CI pending; earlier `9d704ee` CI has 173 unit passes. |
-| Every design screen plus provider/image/reasoning flows | Partial: 59 initial full local cases/426 renders plus 17 final targeted cases; current full suite registers 61. New platform CI pending. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | Proven for `9d704ee`; new batch pending. Unsigned arm64 only. |
+| Lint, types, units | Initial CI lint/types pass; units 170 pass/eight harness failures/one optional skip. Corrected Node 22 local suite: 178 pass/one optional skip. Green CI pending. |
+| Every design screen plus provider/image/reasoning flows | Partial: current CI 61/61 per OS, 426 renders. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | Current `d635fcf` job passes; overall CI remains failed. Unsigned arm64 only. |
 | Installed Mac, every screen/theme/native chrome/menu | Historical complete sweeps remain pinned; current credential and key-row verification is targeted, not a fresh all-screen sweep. |
 | No unjustified reference gap | Unproven: new scoped 10/10 comparisons max 0.05%; historical full comparison retains 21 gaps. Providers lacks an approved frozen image; new-surface imports remain unauthorized. |
 | Automated i18n audit | Current local scope: 63 files, 2,266 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
@@ -190,7 +192,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-   at 21:52–21:55 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+    at 22:53 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.

@@ -1,0 +1,227 @@
+Lint, typecheck, unit tests, i18n audit	Run bun run test	﻿2026-10-02T22:47:01.4166286Z ##[group]Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.4166779Z bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.4255070Z shell: /usr/bin/bash -e {0}
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.4255532Z ##[endgroup]
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.4381299Z $ vitest run
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.7511164Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.7515380Z  RUN  v5.0.3 /home/runner/work/desktop/desktop
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:01.7516728Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:02.2650959Z (node:2190) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:02.2652689Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:02.7853049Z  ✓ packages/core/test/services.test.ts (15 tests) 283ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:03.2232201Z (node:2203) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:03.2239055Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:09.5083640Z  ✓ packages/core/test/session.test.ts (11 tests) 6283ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:09.5085680Z    ✓ session runner (fake OpenAI-compatible SSE) (11)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:09.5092132Z      ✓ surfaces provider errors with a neutral code 6010ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:09.9510799Z (node:2216) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:09.9515394Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:10.0459383Z  ✓ packages/core/test/mcp.test.ts (11 tests) 91ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:15.5492932Z  ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5195ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:15.5495382Z    ✓ remote backend through the Cortex SDK (45)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:15.5497377Z      ✓ times out a model listing whose JSON body never completes 5002ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:15.7715352Z  ✓ packages/desktop/test/credentials.test.ts (23 tests) 41ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:16.2643799Z (node:2241) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:16.2656004Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:16.4415454Z  ✓ packages/server/test/server.test.ts (7 tests) 174ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:16.8784151Z (node:2249) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:16.8787053Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:17.0236331Z  ✓ packages/core/test/capabilities.test.ts (11 tests) 140ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9626769Z  ❯ tests/unit/runtime-copy.test.ts (24 tests | 8 failed) 994ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9628254Z    ❯ runtime copy (24)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9629768Z      ✓ renders translated mascot accessibility in en 67ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9631448Z      ✓ renders translated mascot accessibility in fr 95ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9633288Z      ✓ renders translated mascot accessibility in es 94ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9635247Z      ✓ renders translated mascot accessibility in de 95ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9636844Z      ✓ renders translated mascot accessibility in ja 97ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9638456Z      ✓ renders translated mascot accessibility in zh-Hans 101ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9640146Z      ✓ renders translated mascot accessibility in pt-BR 99ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9642396Z      ✓ renders translated mascot accessibility in ko 101ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9644094Z      ✓ localizes built-in tool metadata while preserving data in en 6ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9646288Z      ✓ localizes built-in tool metadata while preserving data in fr 9ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9648064Z      ✓ localizes built-in tool metadata while preserving data in es 10ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9649842Z      ✓ localizes built-in tool metadata while preserving data in de 9ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9651453Z      ✓ localizes built-in tool metadata while preserving data in ja 9ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9652975Z      ✓ localizes built-in tool metadata while preserving data in zh-Hans 9ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9654750Z      ✓ localizes built-in tool metadata while preserving data in pt-BR 8ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9656359Z      ✓ localizes built-in tool metadata while preserving data in ko 9ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9658029Z      × renders Code tool titles and excludes raw tool errors in en 28ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9659604Z      × renders Code tool titles and excludes raw tool errors in fr 19ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9661276Z      × renders Code tool titles and excludes raw tool errors in es 26ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9663384Z      × renders Code tool titles and excludes raw tool errors in de 21ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9695844Z      × renders Code tool titles and excludes raw tool errors in ja 18ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9697891Z      × renders Code tool titles and excludes raw tool errors in zh-Hans 19ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9735825Z      × renders Code tool titles and excludes raw tool errors in pt-BR 17ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:18.9870412Z      × renders Code tool titles and excludes raw tool errors in ko 26ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:19.3832021Z (node:2264) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:19.3834057Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:19.5407217Z  ✓ packages/core/test/scheduler.test.ts (4 tests) 151ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:19.8876011Z  ✓ tests/unit/audit-i18n.test.ts (1 test) 217ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:20.3193235Z (node:2286) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:20.3195549Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:20.4381493Z  ✓ packages/client/test/client.test.ts (3 tests) 114ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:20.8470316Z (node:2294) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:20.8472206Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.3809192Z  ✓ packages/core/test/catalog.test.ts (6 tests) 532ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.3830731Z    ✓ catalog (6)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.3843697Z      ✓ live: fetches models.dev (skipped offline) 508ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.7817326Z (node:2306) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.7818678Z (Use `node --trace-warnings ...` to show where the warning was created)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:21.8152898Z  ✓ packages/core/test/computer-use.test.ts (3 tests) 36ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.2861710Z  ✓ tests/unit/locales.test.ts (9 tests) 340ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.4897499Z  ✓ packages/schema/test/schema.test.ts (3 tests) 19ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7400125Z  ✓ packages/protocol/test/protocol.test.ts (3 tests) 44ms
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7485331Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7486798Z ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7512714Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7517579Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in en
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7520599Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in fr
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7523319Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in es
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7526673Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in de
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7529496Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in ja
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7532492Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in zh-Hans
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7535736Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in pt-BR
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7538728Z  FAIL  tests/unit/runtime-copy.test.ts > runtime copy > renders Code tool titles and excludes raw tool errors in ko
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7540646Z ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7542536Z  ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7764568Z      26|     return lists.flat();
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7765533Z      27|   }, [allowKeyless], (e) => e.type.startsWith("provider."));
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7766686Z      28|   const [sel, setSel] = React.useState<string>(() => initialModel ? `$…
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7768366Z        |                                                                                                                            ^
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7769416Z      29|   const models = q.state === "ready" ? q.data : [];
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7770381Z      30|   const key = (m: ModelInfo) => `${m.providerID}/${m.id}`;
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7772471Z  ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7775655Z  ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7778298Z  ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7780057Z  ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7781428Z  ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7782935Z  ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7789264Z  ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7792646Z  ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7801690Z  ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7802956Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7803475Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7803853Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7803886Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7805071Z  Test Files  1 failed | 15 passed (16)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7808696Z       Tests  8 failed | 170 passed | 1 skipped (179)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7810032Z    Start at  22:47:01
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7811160Z    Duration  20.98s (tests 76%, import 18%, transform 5%)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7811886Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7813009Z     Isolate  16 workers spawned · ~99ms startup each (spawn + environment, per file)
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7815446Z              at least ~1.49s faster with isolate: false — reuses workers across files instead of one per file
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7822023Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7840487Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7932438Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7954746Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7973321Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7982297Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.7998912Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8008292Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8026000Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8035159Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8052481Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8062068Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8080799Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8089869Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8104182Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8110350Z
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8119734Z ##[error]ReferenceError: localStorage is not defined
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ packages/app/src/screens/chat/model-composer.tsx:28:124
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useReducer node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:4086:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.useState node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10277:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.process.env.NODE_ENV.exports.useState node_modules/.bun/react@19.3.0/node_modules/react/cjs/react.development.js:1309:34
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Proxy.useState tests/unit/runtime-copy.test.ts:35:25
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ useModels packages/app/src/screens/chat/model-composer.tsx:28:31
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ LiveComposer packages/app/src/screens/chat/model-composer.tsx:64:15
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ Object.react_stack_bottom_frame node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderWithHooks node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19
+Lint, typecheck, unit tests, i18n audit	Run bun run test	 ❯ renderElement node_modules/.bun/react-dom@19.3.0+62547eec5a2188e3/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8165539Z error: script "test" exited with code 1
+Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-02T22:47:22.8175958Z ##[error]Process completed with exit code 1.

@@ -71,7 +71,7 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 Remote authentication, remote model selection and Cortex inference remain an active delivery
 goal. The [current SDK handoff readback](../evidence/recovery-followup/remote-integration-readback.md)
 preserves the PM report's 15:05 observation and earlier readbacks. In the
-**2 October 2026, 21:52–21:55 UTC snapshot**, PR #447 remains at `7633f7e2`; G3's canonical
+**2 October 2026, 22:53 UTC snapshot**, PR #447 remains at `7633f7e2`; G3's canonical
 versioned pair and owner checks remain undelivered. Desktop's unchanged 0.2.0/0.1.0 pair remains
 probe-only; local generated edits are not a package release.
 
