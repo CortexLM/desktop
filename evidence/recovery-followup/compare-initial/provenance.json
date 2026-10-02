@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-02T16:20:35.025Z",
+  "reference": {
+    "root": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674",
+    "shots": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "sourceFileCount": 106,
+    "freezeSha256": "f05453f8776c681217a3e386d4e04e59908e0fad2170745ad58b63ecaedc7253",
+    "manifestSha256": "3e215fb4b16115a89d12010a7432cb81f174b1b8292c02981aa18dc56f28bfa1",
+    "registrySha256": "a1f8e68bb0431fde8056ff150d5c2b003838dc7f2173706d0faa8a640f2faac5",
+    "coverageSha256": "71519590059226b8c3c9cc9328864b2106abe5449085837f77728a649c7e993c",
+    "motionIndexSha256": "1d291913221ad1b97511b52630e5af7bc0a63e581c4fc3a8c87c6a3e04471d79"
+  },
+  "application": {
+    "revision": "41998a8603dc19d705f941a64768d0481d728cee",
+    "sourceFingerprint": "ee40a6defe9c0a2e295044cbd26b5a166b775280e9517fd3bc756d81524e0db0",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "comparatorSha256": "0e357581864bd88304b58e83c26bf14cadea62f3758bb38bb02f3d5d0a081f14",
+  "render": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "locale": "fr-FR",
+    "catalogLocale": "fr",
+    "pixelmatchThreshold": 0.15
+  },
+  "counts": {
+    "registered": 426,
+    "optionalInteractions": 5,
+    "capturedThisRun": 28,
+    "retainedRows": 28,
+    "compared": 28,
+    "noDesignShot": 0
+  },
+  "runs": [
+    {
+      "id": "2026-10-02T16-19-02-208Z-s3F2vG",
+      "capturedAt": "2026-10-02T16:20:35.025Z",
+      "applicationRevision": "41998a8603dc19d705f941a64768d0481d728cee",
+      "baseUrl": "http://127.0.0.1:5399/",
+      "jobCount": 28,
+      "only": [
+        "chat",
+        "work-home",
+        "work-task",
+        "code-session"
+      ],
+      "build": {
+        "sha256": "30960ec1b5e883760a6a235db92de4ee31e400903e73a1cc1648e06070012259",
+        "files": [
+          {
+            "url": "http://127.0.0.1:5399/",
+            "sha256": "4b711e5130ca9a97396581cdde71587fb587a2a66fcfff5d947852e5a697ad96",
+            "bytes": 664
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/bots-Dhnxap2k.js",
+            "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+            "bytes": 5242
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/chat-DPP7jha6.js",
+            "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+            "bytes": 21015
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/code-l1ImvW5S.js",
+            "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+            "bytes": 17357
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/files-DIk1qP8R.js",
+            "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+            "bytes": 23724
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/index-Bl8OhAEP.js",
+            "sha256": "ed19476140c33ecd7690e533b4dc13ad7c397bef033b15895466f50f4513492d",
+            "bytes": 2421244
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/index-D1CcQ-mS.css",
+            "sha256": "ffc6148005067dfb8a8f37b676fda7bae3cea285744e7ed4f4388a6e630474c8",
+            "bytes": 204634
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/shell-CYBsECV8.js",
+            "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+            "bytes": 1030
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/system-D9_n4Goj.js",
+            "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+            "bytes": 9120
+          },
+          {
+            "url": "http://127.0.0.1:5399/assets/work-CXx4q0-W.js",
+            "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+            "bytes": 14410
+          },
+          {
+            "url": "http://127.0.0.1:5399/fonts/Geist-Variable.woff2",
+            "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+            "bytes": 69652
+          },
+          {
+            "url": "http://127.0.0.1:5399/fonts/GeistMono-Variable.woff2",
+            "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+            "bytes": 71368
+          },
+          {
+            "url": "http://127.0.0.1:5399/gel/automatisations.png",
+            "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+            "bytes": 77526
+          },
+          {
+            "url": "http://127.0.0.1:5399/gel/documents.png",
+            "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+            "bytes": 75789
+          },
+          {
+            "url": "http://127.0.0.1:5399/gel/images.png",
+            "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+            "bytes": 77289
+          },
+          {
+            "url": "http://127.0.0.1:5399/gel/recherche-web.png",
+            "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+            "bytes": 81327
+          },
+          {
+            "url": "http://127.0.0.1:5399/img/aube.png",
+            "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+            "bytes": 1405580
+          },
+          {
+            "url": "http://127.0.0.1:5399/img/crepuscule.png",
+            "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+            "bytes": 1405004
+          },
+          {
+            "url": "http://127.0.0.1:5399/img/lagon.png",
+            "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+            "bytes": 1246039
+          },
+          {
+            "url": "http://127.0.0.1:5399/img/prairie.png",
+            "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+            "bytes": 1242519
+          }
+        ],
+        "httpCache": "disabled via context.route"
+      },
+      "ignoredPreviewApiErrors": []
+    }
+  ],
+  "reportSha256": "2a2da8f9ceb59db2537099eaf06cd143c2d6d4fbf2ec60af02c27161860e7fd9",
+  "limits": [
+    "Browser preview fixtures, not native or live-engine acceptance.",
+    "Settled frames, not motion or exhaustive interaction coverage.",
+    "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.",
+    "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.",
+    "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."
+  ]
+}

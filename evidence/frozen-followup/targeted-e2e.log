@@ -1,0 +1,19 @@
+
+Running 14 tests using 4 workers
+
+  ✓   1 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.0s)
+  ✓   3 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (5.5s)
+  ✓   5 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (5.8s)
+  ✓   2 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (9.6s)
+  ✓   7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (3.0s)
+  ✓   4 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (12.1s)
+  ✓   9 tests/e2e/bot-safety.spec.ts:179:1 › Preview Bot locale reset and live-mode boundary (5.5s)
+  ✓   6 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (11.2s)
+  ✓  10 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (4.8s)
+  ✓   8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (8.2s)
+  ✓  11 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (4.8s)
+  ✓  12 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (9.9s)
+  ✓  13 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (12.8s)
+  ✓  14 tests/e2e/navigation.spec.ts:4:1 › anchors, native menus and history preserve routes, variants and chat identities (14.3s)
+
+  14 passed (32.9s)

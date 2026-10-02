@@ -2,19 +2,52 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Application CI and CodeQL pass at `0e63f87`, with zero open
-PR CodeQL alerts. This validates the implemented scope, not the complete objective.
+Application CI and CodeQL pass at `8b90a8e`. This validates the implemented scope,
+not the complete objective.
 
-## Latest correction batch
+Frozen-source integration is pushed at `5ced8aa`. Local static checks and Linux packaged smoke
+pass. The full Electron suite passes **40/40**, zero retries/flaky/skipped cases, including
+**426 registered state renders**. [Follow-up evidence](frozen-followup/README.md).
+[CI 37015801908](https://github.com/CortexLM/desktop/actions/runs/37015801908) passes on both
+platforms, including the unsigned macOS package/smoke. [Installed Mac](mac/5ced8aa/README.md)
+records 426 native captures, 14 menus and native actions. [Frozen comparison](compare-7b388e2d9674/README.md)
+records 410 comparisons, mean 0.0517%, max 1.74%, 21 explicit reference gaps.
+CI screenshot review found narrow Work-board overflow and refusal-toast occlusion. Their
+subsequent responsive patch `5610ee9` passes **46/46** local Electron tests, 426 state renders,
+static checks and Linux packaged smoke. [Responsive proof](responsive-followup/README.md);
+[CI 37021275153](https://github.com/CortexLM/desktop/actions/runs/37021275153) passes.
+The three outlier corrections are pushed at `dc7f529`: Work preview activity, Code instruction
+typography and inactive sidebar dimming. [Fidelity proof](fidelity-followup/README.md) records
+46/46 local Electron cases, all static checks, Linux package/smoke and 62 targeted frozen
+comparisons. [CI 37024188829](https://github.com/CortexLM/desktop/actions/runs/37024188829)
+found two responsive-test synchronization races: geometry sampled before native resize
+settled, and a control evaluated while React replaced the previous hash route. Renderer-ready
+waits preserve both layout assertions.
+Test-only correction `8b90a8e` passes all eight responsive cases locally;
+[CI 37025236580](https://github.com/CortexLM/desktop/actions/runs/37025236580) passes **46/46**
+Electron cases per Linux/macOS, static checks, unsigned macOS packaging and launch smoke.
+[Installed Mac correction proof](mac/8b90a8e/README.md): twelve native captures at 960×640,
+both appearances, covering wrapped boards, preview activity, typography and refusal recovery.
+Native capture pauses the Chat toast clock; CI recovery checks use real timers.
+Final artifact review found further existing gaps: nested Work and wide-Chat toasts cover
+composer controls, and never-admitted Work tasks claim Done. Their corrections are under
+integrated verification at `41998a8`; the green run above does not establish those fixes. [Recovery follow-up](recovery-followup/README.md)
+records dock anchoring, persisted completion and the new regression assertions.
+[CI 37032922991](https://github.com/CortexLM/desktop/actions/runs/37032922991) passes 46/46
+on Linux and 45/46 on macOS; the remaining failure is rapid keyboard Work navigation.
 
-The current correction batch preserves drafts and image attachments across capability
+The historical table below remains pinned to `0e63f87`; newer evidence is linked above.
+
+## Previously verified correction batch — 0e63f87
+
+The previously verified correction batch preserves drafts and image attachments across capability
 refusals, pending/failed file reads and historical retries; removes nine identified runtime
 copy leaks; strengthens static/accessibility audits; fixes configured-only self-host discovery
 and validates origin/authentication metadata. Local verification: 131 unit passes (one optional
 backend skip), 12 Electron E2Es, 426 state renders, types/lint/audit, Linux packaged smoke.
 The discovery suite separately passes 44 stub cases plus one real-backend check. [CI 36997513479](https://github.com/CortexLM/desktop/actions/runs/36997513479)
 passes all checks, 12 E2Es each on Linux/macOS, unsigned macOS package/smoke. [Logs and scoped
-screenshots](followup/README.md). [Current installed-Mac sweep](mac/0e63f87/README.md):
+screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/README.md):
 426 native captures, 14 menus, fullscreen/minimize and native Gallery navigation observations.
 
 | Required proof | Evidence | Limits |
@@ -30,24 +63,26 @@ screenshots](followup/README.md). [Current installed-Mac sweep](mac/0e63f87/READ
 ## Missing inputs and unfinished work
 
 - **Design input:** Space welcome/pages/sites/images/recents, standalone Scheduled tasks
-  with suggestions, Plugins & skills installed/public/personal/MCP. Requests remain
-  unanswered in `/root/cortex-ui/DESIGN-REQUESTS.md`; no stand-in screens were added.
+  with suggestions, Plugins & skills installed/public/personal/MCP. The design owner has
+  delivered documented drafts; independent approval and immutable integration delivery remain pending in
+  `/root/cortex-ui/DESIGN-REQUESTS.md`.
 - **Additional design approval:** Providers, Connection, model capability picker and
   inline tool approval requests remain open. Existing functional controls need design review.
 - **Reference revision:** 205 reference versus 213 app states reconciled to eight extra
-  Settings variants. Current Home/Components source differs from retained PNGs; source fingerprint,
-  matching regenerated coverage and A6/B6 decisions remain pending. No reference page is approved.
+  Settings variants. Source freeze `2026-10-02-7b388e2d9674` and Components scope delivered;
+  Home A7-final/B7-final approve their verified/inherited scope. Integration and matching frozen
+  screenshot coverage are recorded separately from the historical report.
   [Exact reconciliation and drift](compare/reference-status.md).
 - **Connection behavior:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing are
   unfinished. A successful backend probe is not proof of a complete remote connection mode.
   Backend owner confirms no portable reasoning-off or Chat cancel operation. Remote effort/
-  detach/reconnect controls need designs; regenerated SDK types and password/MFA designs remain
-  requested. Legacy English session titles remain intact because
+  detach/reconnect and password/MFA drafts await independent design acceptance; regenerated SDK
+  types remain requested. Legacy English session titles remain intact because
   default and user-authored titles were stored indistinguishably.
 - **Interaction coverage:** several ported surfaces remain preview-only; projects, sign-in,
   billing, updater and file viewers do not become live features merely by rendering in the gallery.
-- **Responsive acceptance:** current native captures at 1024×686 and comparisons at 1440×900 do not
+- **Responsive acceptance:** the full native sweep at 1024×685 and comparisons at 1440×900 do not
   prove every control usable at the 960×640 minimum. Targeted Code/Canvas/Work clipping
   regressions are fixed and pass at 960/1024×640 in both themes; exhaustive coverage remains open.
 - **Release:** signing/notarization and Windows CI are not configured. Unsigned test builds

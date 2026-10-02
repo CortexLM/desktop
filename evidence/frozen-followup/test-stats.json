@@ -1,0 +1,493 @@
+{
+  "applicationRevision": "5ced8aa1d2eb04ed3131ffb40c0d360e5706526d",
+  "stats": {
+    "startTime": "2026-10-02T13:45:24.477Z",
+    "duration": 250553.19999999998,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 960 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5640,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 960 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 8429,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 960 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5657,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 960 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 12064,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 1440 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 4207,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 1440 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 10666,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 1440 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 2737,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 1440 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 8180,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot onboarding does not navigate after leaving preview",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 4996,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot locale reset and live-mode boundary",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5556,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "chrome.spec.ts",
+      "title": "native window chrome and en menu",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 4814,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "chrome.spec.ts",
+      "title": "native window chrome and fr menu",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 2014,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: families, variants and three-preview ceiling (light)",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 76412,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: families, variants and three-preview ceiling (dark)",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 103077,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: keyboard, clipboard and local demos at minimum window (light)",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 6997,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: keyboard, clipboard and local demos at minimum window (dark)",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 7558,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Code keeps cancelled and no-model drafts, locks pending submits \u2014 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 10052,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Work and Bot drafts survive engine refusal; accepted sends clear once \u2014 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 7446,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Code keeps cancelled and no-model drafts, locks pending submits \u2014 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 10106,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Work and Bot drafts survive engine refusal; accepted sends clear once \u2014 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 7392,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "models.dev catalog is listed and searchable through the bridge",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5058,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "streamed exchange with a thinking- and image-capable model",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5918,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "an image is refused for a model without image input",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5147,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "frozen preview actions and same-URL Chat/Code history \u2014 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 11226,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "live composer capsule geometry, locale labels and attachment safety \u2014 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 9328,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "frozen preview actions and same-URL Chat/Code history \u2014 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 11112,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "live composer capsule geometry, locale labels and attachment safety \u2014 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 9296,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 960 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 14569,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 960 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 14286,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 1440 light",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 15659,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 1440 dark",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 15483,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "keyboard.spec.ts",
+      "title": "hidden navigation cannot receive focus; theme radios and Undo work from the keyboard",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5850,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "keyboard.spec.ts",
+      "title": "frozen shell motion settles, latest tab wins and hidden menus close",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 9490,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "anchors, native menus and history preserve routes, variants and chat identities",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 17013,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "preview navigation loads fixtures and catches startup URL changes",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5060,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "review, diff, canvas and computer controls remain reachable in small desktop windows",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 29488,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "screens.spec.ts",
+      "title": "every design screen and state renders",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 140163,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "a provider key saved in Settings shows only its last four characters",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 5328,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "streamed exchange with thinking and an image, driven from the composer",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 8791,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "rejected sends keep the draft and attachments; retry resends the image",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "duration": 21107,
+          "retry": 0
+        }
+      ]
+    }
+  ]
+}

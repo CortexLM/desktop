@@ -1,0 +1,12 @@
+
+Running 7 tests using 4 workers
+
+  ✓  2 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (11.0s)
+  ✓  1 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (11.4s)
+  ✓  3 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (12.4s)
+  ✓  4 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (12.7s)
+  ✓  5 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (1.8s)
+  ✓  6 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (5.5s)
+  ✓  7 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (12.0s)
+
+  7 passed (25.3s)

@@ -1,8 +1,40 @@
-# Reference status at the 0e63f87 follow-up
+# Frozen reference and historical comparison status
 
-Read-only reconciliation of `/root/cortex-ui` and application revision
-`0e63f876bbe3d0fe893c6c698ff3fadb6dcec702`, 2026-10-02. The design checkout is actively
-changing; this records observed source, not owner approval.
+## Delivered source freeze
+
+The design owner delivered `/root/cortex-ui-freezes/2026-10-02-7b388e2d9674` on 2026-10-02.
+Its 106 source files independently reproduce fingerprint
+`7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768` using `shoot.mjs`'s
+sorted `relative path:SHA-256` algorithm. Preview: `http://127.0.0.1:5198`.
+
+Home reviews `review-home-A7-final.md` and `review-home-B7-final.md` give 10/10 on their
+verified/inherited scope. They retain unavailable original-reference fidelity and multi-turn
+preview persistence limits. This is not approval of every product screen. Components is
+delivered with 12 sections, 94 blocks, 30 motion entries, 31 real-screen families, 80 glyphs
+and 19 accessories; at most three screen-preview iframes mount simultaneously.
+
+Source integration uses this freeze. Frozen screenshot/sequence provenance must be checked
+before each comparison; live mixed-revision shots are not accepted substitutes. Missing
+Space, Scheduled, Plugins & skills and platform/auth/stream-control designs remain live drafts
+until the design owner delivers their routes, variants and approval.
+
+Independent artifact read-back at 12:15:32 UTC verifies 410/410 registered screenshots and
+44/44 sequence/theme boards (220 frames), without missing, duplicate or mismatched hashes.
+The owner subsequently finalized `freeze.json.captures`: 410 images, 205 comparison plates,
+44 sequences, 220 motion frames, status `passed`. Its coverage manifest now exists; source
+and image hashes establish capture provenance, not global design approval.
+Sequence frames independently replay each action; their delays do not measure continuous motion.
+The fingerprint covers `src/`, not public assets, dependencies or capture configuration.
+The desktop comparison's 431 jobs therefore have 410 frozen references and 21 missing images:
+16 extra Settings renders plus five clicked extras. Older PNGs cannot fill those gaps.
+
+The [completed frozen run](../compare-7b388e2d9674/README.md) at `5ced8aa`-equivalent source
+records 410 comparisons, mean 0.0517%, maximum 1.74%. All 431 renders have per-row hashes;
+21 reference gaps remain explicit. This establishes comparison provenance, not global approval.
+
+The sections below retain the earlier reconciliation against application
+`0e63f876bbe3d0fe893c6c698ff3fadb6dcec702`. The old `report.json` is not a comparison of the
+new integration against the freeze.
 
 ## Registry counts
 
@@ -22,7 +54,7 @@ variant IDs. Reference Settings registers one state; the app registers nine. The
 Source: reference `src/screens/pages.tsx:141–227`; app
 `packages/app/src/screens/system/index.tsx:27–30`. Counts do not establish live functionality.
 
-## Confirmed current-source drift
+## Drift observed at 0e63f87
 
 - Reference Activity icon is `mentions`; app uses `bell`.
 - Reference Home suggestion glyphs are 16 px, gap 16 px, horizontal padding 5 px;
@@ -35,21 +67,31 @@ Source: reference `src/screens/pages.tsx:141–227`; app
 - Reference Components now has 12 sections, 30 motion entries and 31 family definitions
   observed in source; the app has 14 earlier static blocks and 12 motion entries. Its old
   reference PNG matching 0.00% does not establish current-source parity.
-- Reference's 610 ms segmented-navigation delay remains under review. It is not recorded
-  as an approved timing requirement.
+- Reference's 610 ms segmented-navigation delay was still under review at that snapshot;
+  it is present in the subsequently delivered freeze.
 
 Reference paths: `src/App.tsx`, `src/styles.css`, `src/ui.tsx`,
 `src/screens/{chat,components}.tsx`; acceptance notes in `review/acceptance-status.md`.
 
-## Missing acceptance inputs
+## Historical coverage limits
 
-The design owner records A5 = 6/10, B5 = 8/10; A6/B6 pending, no page approved. Its
-205-state coverage distinguishes 61 motif references and 144 shell-only references,
+The earlier status summary said A6/B6 pending; the actual reports and delivered A7-final/B7-final
+supersede that stale summary. Historical 205-state coverage distinguishes 61 motif references and 144 shell-only references,
 all `unproven`; this is not certification of full-screen content. That coverage already
 predates refreshed Home/Notifications image hashes and current source fingerprints.
 
-Needed: frozen reference source fingerprint, matching regenerated shots/coverage, A6/B6
-decisions, completed Components scope, delivered route/state IDs for Space, standalone
-Scheduled, Plugins & skills and the open provider/connection/auth/composer/approval requests.
-Until then, `report.json` remains a mixed-revision pixel comparison with explicit provenance,
-not complete visual or interaction acceptance.
+The source freeze and Components scope have since arrived. Matching frozen shots/coverage,
+integration checks and missing-surface delivery remain separate acceptance requirements.
+Historical `report.json` remains a mixed-revision pixel comparison, not complete visual or
+interaction acceptance.
+
+## Subsequent interaction corrections
+
+The follow-up adopts `inert` for hidden chrome/sidebar/project rows, arrow/Home/End theme
+navigation, reduced-motion theme changes and `Toast.Action` Undo. Frozen shell integration
+adds vertical theme motion, appearance-aware System glyph, mode-switch feedback, sidebar
+fade/spacing, segmented motion and capsule composer geometry. Targeted Electron assertions
+cover keyboard and final motion states. The completed frozen comparison is linked above;
+the [outlier disposition](../compare-7b388e2d9674/outliers.md) separates intentional copy,
+unmatched scroll/timer samples and three source-proven port differences. Their subsequent
+[corrections](../fidelity-followup/README.md) preserve this run's original scores.

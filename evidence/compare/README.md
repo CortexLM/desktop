@@ -1,6 +1,11 @@
 # Design comparison
 
-`node scripts/compare-shots.mjs` — every registered state, French (the design's copy), 1440×900 @2x, pixelmatch threshold 0.15, against `/root/cortex-ui/shots`.
+This is the **historical mixed-revision report**, captured against `/root/cortex-ui/shots`.
+New comparisons use the delivered `2026-10-02-7b388e2d9674` freeze and its hashed manifest;
+see [reference-status.md](reference-status.md). The totals below do not describe that integration.
+The [new frozen report](../compare-7b388e2d9674/README.md) is kept separately.
+
+Every registered state, French (the design's copy), 1440×900 @2x, pixelmatch threshold 0.15.
 
 - Renders: **431** (426 registered theme/states plus five click-opened states).
 - Reference shots compared: **421**, mean differing pixels **0.04%**, max **0.78%**.
