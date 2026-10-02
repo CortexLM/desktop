@@ -42,6 +42,7 @@ GUI-starting the helper recovered connection without app changes. `reopen.log` p
 are distinct. No credentials were lost; the disabled record was reset before repeating save/reopen.
 
 Native pixels came from OS `screencapture` via a GUI-authorized helper; CDP only drove assertions.
-No renderer errors observed after each attachment. Debug/capture/server ports 9444/9445/9456 and
-SSH forwards closed, ordinary app reopened, Mac lease released. `cleanup.json` records that state.
+No renderer errors observed after each attachment. `cleanup.json` records ports 9444/9445/9456
+closed and the installed ASAR hash. Operator observations separately confirm SSH forward shutdown,
+ordinary app restoration and Mac lease release.
 This is targeted credential proof; previous full-screen/native comparisons remain revision-scoped.

@@ -21,3 +21,5 @@ system animation styles. Green CI `37066222793` passes 52/52 per OS and macOS pa
 smoke. Installed Mac `9d704ee` proof passes at 960×640 with sidebar shown in both themes; see
 [native evidence](../mac/9d704ee/README.md). The frozen Providers reference remains absent.
 [Retained checks and six width/theme captures](provider-layout/retained-files.json).
+[Independent CI review](provider-layout/ci/README.md) verifies all 12 provider captures across
+Linux/macOS plus four minimum-window images and packaged renderer; no scoped blocker found.

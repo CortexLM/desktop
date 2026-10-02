@@ -5,6 +5,8 @@ The full objective is **not complete**. Evidence below is scoped to implemented 
 Current application `9d704ee` corrects the narrow provider key row;
 [CI 37066222793](https://github.com/CortexLM/desktop/actions/runs/37066222793) passes, installed
 normal-sidebar verification passes in both themes at 960×640.
+[Independent review](mcp-followup/provider-layout/ci/README.md) verifies 52/52 per OS,
+321 artifact members and 17 full-size images within its stated scope.
 Earlier [CI 37063183382](https://github.com/CortexLM/desktop/actions/runs/37063183382) passes at
 `de623fd` (application `ca08282`, serial macOS test harness). Installed credential proof is retained;
 independent [artifact review](mcp-followup/ci-de623fd/README.md) passes. The renderer has changed
