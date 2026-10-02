@@ -1,1239 +1,1239 @@
 {
- "bot": "Nova",
- "pdf": {
-  "name": "Étude de marché T2.pdf",
-  "meta": "PDF · 12 pages · 2,4 Mo",
-  "kicker": "Studio Nord · Juillet 2026",
-  "pages": [
-   {
-    "h": "Étude de marché T2 2026",
-    "p": [
-     "Marché de la céramique et des arts de la table en France — synthèse préparée pour le projet « Lancement printemps ».",
-     "Rédigée par Camille Laurent avec l’appui de Studio Nord. Données arrêtées au 30 juin 2026."
-    ]
-   },
-   {
-    "h": "1. Synthèse",
-    "p": [
-     "Le marché des arts de la table progresse de 6,8 % sur un an, porté par la vente directe et les boutiques indépendantes.",
-     "La marge brute moyenne des ateliers atteint 41 %, en hausse de deux points grâce à la baisse du coût de l’énergie.",
-     "Les clients de 25 à 40 ans représentent désormais 38 % des achats en ligne."
-    ]
-   },
-   {
-    "h": "2. Taille du marché",
-    "p": [
-     "Le chiffre d’affaires du segment atteint 1,6 milliard d’euros au deuxième trimestre, soit une croissance de 6,8 % par rapport au T2 2025.",
-     "La vente en ligne pèse 27 % du total ; elle était de 21 % il y a deux ans. Les salons restent le premier canal d’acquisition pour 61 % des ateliers."
-    ],
-    "chart": [
-     42,
-     48,
-     51,
-     57,
-     63,
-     71
-    ]
-   },
-   {
-    "h": "3. Concurrence",
-    "p": [
-     "Trois acteurs dominent la distribution : deux réseaux de boutiques et une place de marché spécialisée.",
-     "Atelier Morel se distingue par une marge supérieure de 6 points à la moyenne, grâce à la fabrication en petites séries."
-    ]
-   },
-   {
-    "h": "4. Clientèle",
-    "p": [
-     "Le panier moyen s’établit à 86 €, en hausse de 9 %. Les achats cadeaux représentent 44 % des ventes du trimestre.",
-     "La fidélité progresse : 31 % des clients achètent au moins deux fois par an."
-    ]
-   },
-   {
-    "h": "5. Prix et marge",
-    "p": [
-     "Les prix publics ont augmenté de 3,2 % en moyenne, sans effet visible sur les volumes.",
-     "La marge brute reste sous pression sur les pièces émaillées, dont le coût de cuisson a doublé depuis 2023."
-    ],
-    "chart": [
-     36,
-     38,
-     39,
-     41,
-     40,
-     41
-    ]
-   },
-   {
-    "h": "6. Canaux de vente",
-    "p": [
-     "Les boutiques indépendantes restent le premier canal, devant la vente en ligne et les salons.",
-     "Les ventes en ligne progressent surtout le soir et le week-end ; 64 % sont passées sur mobile."
-    ]
-   },
-   {
-    "h": "7. Saisonnalité",
-    "p": [
-     "Le printemps concentre 28 % des ventes annuelles, juste derrière la période des fêtes.",
-     "Un lancement fin mars permet de profiter de la fête des Mères et des listes de mariage."
-    ]
-   },
-   {
-    "h": "8. Risques",
-    "p": [
-     "Hausse possible du coût des matières premières au second semestre.",
-     "Délais de livraison des fours : jusqu’à 14 semaines chez les principaux fabricants."
-    ]
-   },
-   {
-    "h": "9. Recommandations",
-    "p": [
-     "Lancer la collection fin mars, avec une avant-première réservée aux clients fidèles.",
-     "Préserver la marge en limitant les références émaillées à 30 % de la gamme."
-    ]
-   },
-   {
-    "h": "10. Méthodologie",
-    "p": [
-     "Enquête en ligne auprès de 1 240 clients et entretiens avec 22 ateliers, menés du 2 au 26 juin 2026.",
-     "Les chiffres de marché proviennent de l’Observatoire des métiers d’art et de l’Insee."
-    ]
-   },
-   {
-    "h": "Annexes",
-    "p": [
-     "Tableaux détaillés par région, questionnaire complet et liste des ateliers interrogés.",
-     "Contact : Camille Laurent, cheffe de projet, camille.laurent@studionord.fr."
-    ]
-   }
-  ],
-  "months": [
-   "Janv.",
-   "Févr.",
-   "Mars",
-   "Avr.",
-   "Mai",
-   "Juin"
-  ],
-  "search": "marge",
-  "selection": "La marge brute moyenne des ateliers atteint 41 %",
-  "notes": {
-   "2": [
-    {
-     "y": "38%",
-     "who": "Léa Fontaine",
-     "t": "À reprendre dans le deck, diapo 4."
-    }
-   ],
-   "4": [
-    {
-     "y": "30%",
-     "who": "Camille Laurent",
-     "t": "Vérifier ce chiffre avec Atelier Morel avant diffusion."
-    }
-   ]
-  },
-  "ask": {
-   "sugg": [
-    "Résume le rapport en 5 points",
-    "Quelle est la marge brute moyenne ?",
-    "Quels risques pour le lancement ?",
-    "Fais un tableau des chiffres clés"
-   ],
-   "answers": [
-    {
-     "re": "marge",
-     "a": "La marge brute moyenne des ateliers atteint 41 % (page 2), en hausse de deux points. Atelier Morel fait 6 points de mieux (page 4)."
-    },
-    {
-     "re": "risque",
-     "a": "Deux risques principaux (page 9) : la hausse du coût des matières au second semestre et des délais de livraison des fours jusqu’à 14 semaines."
-    }
-   ],
-   "fallback": "En bref : marché en hausse de 6,8 %, marge de 41 %, vente en ligne à 27 %, printemps = 28 % des ventes annuelles. Recommandation : lancer fin mars (page 10)."
-  },
-  "summary": [
-   {
-    "u": "Résume le rapport en 5 points"
-   },
-   {
-    "st": "talking",
-    "b": "Voici l’essentiel des 12 pages :\n1. Le marché progresse de 6,8 % sur un an (p. 3).\n2. La marge brute moyenne atteint 41 % (p. 2).\n3. La vente en ligne pèse 27 % des ventes, dont 64 % sur mobile (p. 7).\n4. Le printemps concentre 28 % des ventes annuelles (p. 8).\n5. Recommandation : lancer fin mars et limiter l’émaillé à 30 % de la gamme (p. 10)."
-   }
-  ],
-  "summaryPoints": [
-   "Marché en hausse de 6,8 % sur un an",
-   "Marge brute moyenne de 41 %",
-   "Lancement recommandé fin mars"
-  ],
-  "act": {
-   "explain": "La marge brute, c’est le chiffre d’affaires moins le coût des pièces vendues (terre, émail, cuisson). À 41 %, un bol vendu 30 € laisse 12,30 € pour payer l’atelier, le loyer et les salaires.",
-   "summarize": "Les ateliers gardent en moyenne 41 centimes de marge brute par euro vendu, deux points de mieux qu’en 2025.",
-   "quote": "« La marge brute moyenne des ateliers atteint 41 %, en hausse de deux points. » — Étude de marché T2 2026, p. 2."
-  },
-  "protectedBody": "Saisis le mot de passe transmis par Studio Nord pour l’ouvrir. Cortex ne le conserve pas."
- },
- "pptx": {
-  "name": "Lancement printemps.pptx",
-  "meta": "Présentation · 18 diapos · 8,1 Mo",
-  "slides": [
-   {
-    "k": "cover",
-    "t": "Lancement printemps",
-    "s": "Collection céramique 2027 · Atelier Morel × Studio Nord",
-    "img": "ceramique",
-    "n": "Accueillir l’équipe, rappeler l’objectif : valider le plan de lancement avant le 14 avril."
-   },
-   {
-    "k": "bullets",
-    "t": "Ordre du jour",
-    "b": [
-     "Le marché en 3 chiffres",
-     "La collection",
-     "Le plan de lancement",
-     "Budget et calendrier"
-    ],
-    "n": "20 minutes de présentation, 10 de questions."
-   },
-   {
-    "k": "stat",
-    "t": "Le marché progresse",
-    "s": "+6,8 % sur un an",
-    "b": [
-     "1,6 Md€ au T2",
-     "27 % des ventes en ligne",
-     "Printemps : 28 % des ventes annuelles"
-    ],
-    "n": "Source : Étude de marché T2, page 3."
-   },
-   {
-    "k": "img",
-    "t": "La collection",
-    "s": "24 pièces, 3 émaux, fabriquées à la main",
-    "img": "atelier",
-    "n": "Insister sur la fabrication en petites séries."
-   },
-   {
-    "k": "split",
-    "t": "Notre client",
-    "b": [
-     "25–40 ans, urbain",
-     "Achète en ligne le soir",
-     "Offre souvent : 44 % de cadeaux"
-    ],
-    "img": "marche",
-    "n": "Persona construite à partir de 1 240 réponses."
-   },
-   {
-    "k": "bullets",
-    "t": "Positionnement",
-    "b": [
-     "Pièces durables, prix juste",
-     "Fabriqué en France, à Limoges",
-     "Édition limitée à chaque saison"
-    ]
-   },
-   {
-    "k": "img",
-    "t": "Univers visuel",
-    "s": "Lumière d’aube, matières brutes, couleurs pastel",
-    "img": "aube"
-   },
-   {
-    "k": "bullets",
-    "t": "Canaux",
-    "b": [
-     "Boutique en ligne",
-     "18 revendeurs indépendants",
-     "Salon Maison & Objet en septembre"
-    ]
-   },
-   {
-    "k": "stat",
-    "t": "Objectif de ventes",
-    "s": "4 800 pièces",
-    "b": [
-     "Au premier trimestre",
-     "Panier moyen visé : 92 €"
-    ]
-   },
-   {
-    "k": "bullets",
-    "t": "Avant-première",
-    "b": [
-     "Réservée aux 600 clients fidèles",
-     "Le 21 mars, 48 h avant l’ouverture",
-     "Envoi d’un e-mail en trois temps"
-    ]
-   },
-   {
-    "k": "split",
-    "t": "Campagne",
-    "b": [
-     "Shooting en lumière naturelle",
-     "Six vidéos courtes",
-     "Partenariat avec deux créatrices"
-    ],
-    "img": "lagon"
-   },
-   {
-    "k": "bullets",
-    "t": "Relations presse",
-    "b": [
-     "Dossier de presse le 3 mars",
-     "12 rédactions déco ciblées",
-     "Envoi d’échantillons"
-    ]
-   },
-   {
-    "k": "stat",
-    "t": "Budget",
-    "s": "38 500 €",
-    "b": [
-     "Dont 14 200 € de production",
-     "Dont 9 800 € d’événementiel"
-    ]
-   },
-   {
-    "k": "bullets",
-    "t": "Calendrier",
-    "b": [
-     "3 mars : presse",
-     "21 mars : avant-première",
-     "24 mars : ouverture",
-     "14 avril : premier bilan"
-    ]
-   },
-   {
-    "k": "bullets",
-    "t": "Risques",
-    "b": [
-     "Délais de cuisson",
-     "Rupture sur l’émail bleu",
-     "Retard du transporteur"
-    ]
-   },
-   {
-    "k": "bullets",
-    "t": "Indicateurs",
-    "b": [
-     "Taux de conversion ≥ 2,4 %",
-     "Retour clients ≥ 4,6/5",
-     "Marge brute ≥ 41 %"
-    ]
-   },
-   {
-    "k": "img",
-    "t": "Merci à l’équipe",
-    "s": "Camille, Léa, Hugo, Inès et tout l’atelier",
-    "img": "prairie"
-   },
-   {
-    "k": "end",
-    "t": "Questions ?",
-    "s": "camille.laurent@studionord.fr"
-   }
-  ],
-  "ask": {
-   "sugg": [
-    "Résume le deck en une phrase",
-    "Quelle diapo manque de clarté ?",
-    "Écris les notes de la diapo 6",
-    "Traduis le deck en anglais"
-   ],
-   "answers": [
-    {
-     "re": "clart|manque",
-     "a": "La diapo 8 « Canaux » liste trois canaux sans les chiffrer. Ajoute la part de ventes attendue par canal, par exemple 55 % en ligne."
-    },
-    {
-     "re": "notes",
-     "a": "Proposition pour la diapo 6 : « Notre promesse tient en trois mots : durable, juste, français. Chaque saison, une édition limitée crée le rendez-vous. »"
-    }
-   ],
-   "fallback": "Atelier Morel lance fin mars une collection de 24 pièces pour 38 500 €, avec l’objectif de vendre 4 800 pièces au premier trimestre."
-  }
- },
- "docx": {
-  "name": "Brief agence Studio Nord.docx",
-  "meta": "Document · 4 pages · 312 Ko · modifié par Léa Fontaine",
-  "author": "Léa Fontaine",
-  "comments": [
-   {
-    "id": 1,
-    "who": "Léa Fontaine",
-    "at": "Hier, 16:42",
-    "t": "On peut avancer la remise des maquettes au 10 février ? L’imprimeur demande trois semaines."
-   },
-   {
-    "id": 2,
-    "who": "Hugo Bernard",
-    "at": "Aujourd’hui, 9:15",
-    "t": "Ajouter le format vertical pour les vidéos courtes."
-   },
-   {
-    "id": 3,
-    "who": "Camille Laurent",
-    "at": "Aujourd’hui, 10:02",
-    "t": "Budget validé par Atelier Morel, on peut figer ce tableau."
-   }
-  ],
-  "ask": {
-   "sugg": [
-    "Résume le brief en 3 lignes",
-    "Liste les livrables et leurs dates",
-    "Accepte les modifications de Léa",
-    "Rédige une réponse à Hugo"
-   ],
-   "answers": [
-    {
-     "re": "livrable|date",
-     "a": "Trois livrables : identité visuelle le 14 février, shooting le 28 février, kit réseaux sociaux le 7 mars. Le total s’élève à 21 600 € HT."
-    },
-    {
-     "re": "hugo|réponse",
-     "a": "Proposition : « Bonne idée, Hugo : j’ajoute le format 9:16 au kit réseaux sociaux, sans surcoût d’après le devis de Studio Nord. »"
-    }
-   ],
-   "fallback": "Atelier Morel confie à Studio Nord l’identité et la campagne du lancement de printemps : trois livrables entre le 14 février et le 7 mars, pour 21 600 € HT."
-  },
-  "doc": {
-   "kicker": "Atelier Morel · Brief créatif · v3",
-   "title": "Brief agence — Lancement printemps",
-   "intro": "Ce brief décrit les attentes d’Atelier Morel pour l’identité et la campagne de la collection de printemps. Il sert de référence à Studio Nord jusqu’à la livraison.",
-   "h1": "1. Objectifs",
-   "h2": "2. Livrables",
-   "h3": "3. Budget",
-   "obj": [
-    "Faire connaître la collection auprès des 25–40 ans",
-    "Vendre 4 800 pièces au premier trimestre",
-    {
-     "pre": "Recruter ",
-     "del": "2 000",
-     "ins": "3 000",
-     "post": " abonnés à la lettre d’information"
-    }
-   ],
-   "deliv": [
-    "Identité visuelle de la collection : logo, palette, typographie",
-    {
-     "pre": "Shooting produit et ambiance, remise le ",
-     "del": "14 février",
-     "ins": "10 février"
-    },
-    {
-     "text": "Kit réseaux sociaux : 12 visuels et 6 vidéos courtes",
-     "ins": ", au format vertical"
-    }
-   ],
-   "table": {
-    "head": [
-     "Poste",
-     "Responsable",
-     "Montant HT"
-    ],
-    "rows": [
-     [
-      "Identité visuelle",
-      "Studio Nord",
-      7800
-     ],
-     [
-      "Shooting",
-      "Studio Nord",
-      9400
-     ],
-     [
-      "Kit réseaux sociaux",
-      "Studio Nord",
-      4400
-     ]
-    ],
-    "total": "Total"
-   },
-   "contact": "Contact : Camille Laurent, cheffe de projet. Validation finale : Inès Morel."
-  }
- },
- "xlsx": {
-  "name": "Budget lancement printemps.xlsx",
-  "meta": "Tableur · 3 feuilles · 184 Ko",
-  "sheets": [
-   {
-    "name": "Budget",
-    "head": [
-     "Poste",
-     "Prévu",
-     "Engagé",
-     "Écart",
-     "Responsable",
-     "Statut"
-    ],
-    "rows": [
-     [
-      "Identité visuelle",
-      7800,
-      7800,
-      0,
-      "Studio Nord",
-      "Payé"
-     ],
-     [
-      "Shooting produit",
-      9400,
-      9950,
-      -550,
-      "Studio Nord",
-      "Engagé"
-     ],
-     [
-      "Vidéos courtes",
-      4400,
-      4100,
-      300,
-      "Studio Nord",
-      "Engagé"
-     ],
-     [
-      "Avant-première",
-      5200,
-      6100,
-      -900,
-      "Léa Fontaine",
-      "Engagé"
-     ],
-     [
-      "Salon Maison & Objet",
-      4600,
-      0,
-      4600,
-      "Hugo Bernard",
-      "À venir"
-     ],
-     [
-      "Relations presse",
-      2800,
-      2650,
-      150,
-      "Inès Morel",
-      "Payé"
-     ],
-     [
-      "Échantillons",
-      1900,
-      2240,
-      -340,
-      "Atelier Morel",
-      "Payé"
-     ],
-     [
-      "Publicité en ligne",
-      2400,
-      1180,
-      1220,
-      "Camille Laurent",
-      "En cours"
-     ],
-     [
-      "Total",
-      38500,
-      34020,
-      4480,
-      "",
-      ""
-     ]
-    ],
-    "f": {
-     "B10": "=SOMME(B2:B9)",
-     "C10": "=SOMME(C2:C9)",
-     "D10": "=SOMME(D2:D9)",
-     "D2": "=B2-C2",
-     "D3": "=B3-C3",
-     "D4": "=B4-C4",
-     "D5": "=B5-C5"
-    }
-   },
-   {
-    "name": "Ventes",
-    "head": [
-     "Semaine",
-     "En ligne",
-     "Revendeurs",
-     "Total",
-     "Objectif",
-     "Atteint"
-    ],
-    "rows": [
-     [
-      "S12",
-      312,
-      140,
-      452,
-      400,
-      "113 %"
-     ],
-     [
-      "S13",
-      288,
-      176,
-      464,
-      400,
-      "116 %"
-     ],
-     [
-      "S14",
-      241,
-      198,
-      439,
-      400,
-      "110 %"
-     ],
-     [
-      "S15",
-      205,
-      160,
-      365,
-      400,
-      "91 %"
-     ],
-     [
-      "S16",
-      230,
-      151,
-      381,
-      400,
-      "95 %"
-     ],
-     [
-      "S17",
-      266,
-      172,
-      438,
-      400,
-      "110 %"
-     ]
-    ],
-    "f": {
-     "D2": "=B2+C2",
-     "F2": "=D2/E2"
-    }
-   },
-   {
-    "name": "Calendrier",
-    "head": [
-     "Date",
-     "Étape",
-     "Responsable",
-     "Statut",
-     "",
-     ""
-    ],
-    "rows": [
-     [
-      "03/03/2027",
-      "Dossier de presse",
-      "Inès Morel",
-      "Prévu",
-      "",
-      ""
-     ],
-     [
-      "21/03/2027",
-      "Avant-première",
-      "Léa Fontaine",
-      "Prévu",
-      "",
-      ""
-     ],
-     [
-      "24/03/2027",
-      "Ouverture des ventes",
-      "Camille Laurent",
-      "Prévu",
-      "",
-      ""
-     ],
-     [
-      "14/04/2027",
-      "Premier bilan",
-      "Camille Laurent",
-      "Prévu",
-      "",
-      ""
-     ]
-    ]
-   }
-  ],
-  "errs": {
-   "C5": "Texte « 6 1OO » converti : la lettre O a été lue à la place d’un zéro.",
-   "B6": "Date « 31/02/2027 » impossible, cellule laissée vide.",
-   "D8": "#REF! : la formule pointait vers une feuille supprimée."
-  },
-  "ask": {
-   "sugg": [
-    "Quels postes dépassent le budget ?",
-    "Fais un graphique Prévu / Engagé",
-    "Combien reste-t-il à engager ?",
-    "Corrige les erreurs d’import"
-   ],
-   "answers": [
-    {
-     "re": "dépass",
-     "a": "Trois postes dépassent : l’avant-première (−900 €, C5), le shooting (−550 €, C3) et les échantillons (−340 €, C8). Total des dépassements : 1 790 €."
-    },
-    {
-     "re": "reste",
-     "a": "Il reste 4 480 € à engager (D10), dont 4 600 € pour le salon Maison & Objet qui n’a encore rien engagé."
-    }
-   ],
-   "fallback": "C’est fait : j’ai ajouté un graphique en barres Prévu / Engagé à côté du tableau, à partir de la plage A2:C9."
-  }
- },
- "upload": {
-  "project": "Lancement printemps",
-  "demo": [
-   {
+  "bot": "Nova",
+  "pdf": {
     "name": "Étude de marché T2.pdf",
-    "size": 2400000.0,
-    "pct": 100
-   },
-   {
-    "name": "Lancement printemps.pptx",
-    "size": 8100000.0,
-    "pct": 64
-   },
-   {
-    "name": "Budget lancement printemps.xlsx",
-    "size": 184000.0,
-    "pct": 100
-   },
-   {
-    "name": "Brief agence Studio Nord.docx",
-    "size": 312000.0,
-    "pct": 22
-   },
-   {
-    "name": "shooting-atelier-03.jpg",
-    "size": 4700000.0,
-    "pct": 0
-   }
-  ],
-  "errors": [
-   {
-    "name": "Étude de marché T2.pdf",
-    "size": 2400000.0,
-    "pct": 100
-   },
-   {
-    "name": "Installateur Cortex.dmg",
-    "size": 96000000.0,
-    "pct": 0,
-    "err": "type"
-   },
-   {
-    "name": "rushes-video-brut.mp4",
-    "size": 1800000000.0,
-    "pct": 0,
-    "err": "size"
-   },
-   {
-    "name": "Retours avant-première.docx",
-    "size": 220000.0,
-    "pct": 38,
-    "err": "connection"
-   }
-  ],
-  "drive": [
-   {
-    "name": "Planning shooting.xlsx",
-    "size": 96000.0
-   },
-   {
-    "name": "Moodboard printemps.pdf",
-    "size": 6200000.0
-   }
-  ]
- },
- "image": {
-  "name": "vitrine-atelier-morel.png",
-  "size": "4,2 Mo",
-  "type": "Image PNG",
-  "alt": "Vitrine de l’Atelier Morel",
-  "exif": [
-   [
-    "Fichier",
-    [
-     [
-      "Dimensions",
-      "4032 × 2688"
-     ],
-     [
-      "Résolution",
-      "300 ppp"
-     ],
-     [
-      "Profil",
-      "Display P3"
-     ],
-     [
-      "Créé le",
-      "12 mars 2026, 08:14"
-     ]
-    ]
-   ],
-   [
-    "Prise de vue",
-    [
-     [
-      "Appareil",
-      "Boîtier hybride X-T5"
-     ],
-     [
-      "Objectif",
-      "23 mm f/1,4"
-     ],
-     [
-      "Ouverture",
-      "f/2,8"
-     ],
-     [
-      "Exposition",
-      "1/125 s"
-     ],
-     [
-      "ISO",
-      "400"
-     ],
-     [
-      "Focale",
-      "23 mm"
-     ]
-    ]
-   ],
-   [
-    "Lieu",
-    [
-     [
-      "Ville",
-      "Lyon, 1er arr."
-     ],
-     [
-      "Coordonnées",
-      "45,767 N · 4,834 E"
-     ]
-    ]
-   ]
-  ],
-  "ask": {
-   "sugg": [
-    "Décris cette image",
-    "Propose un texte alternatif",
-    "Quelles retouches suggères-tu ?"
-   ],
-   "answers": [
-    "La photo montre la vitrine de l’Atelier Morel au petit matin : céramiques sur trois étagères, lumière chaude venant de la gauche.",
-    "Texte alternatif : « Vitrine d’atelier de céramique, bols et vases émaillés bleu et sable sur étagères en chêne. »",
-    "Je redresserais l’horizon de 1,5°, j’éclaircirais les ombres de 20 % et je recadrerais en 4:5 pour Instagram."
-   ]
-  }
- },
- "code": {
-  "name": "panier.ts",
-  "size": "3,1 Ko",
-  "type": "TypeScript",
-  "src": "// Panier de la boutique Atelier Morel : totaux, remises et frais de port.\nimport { arrondir, type Article } from \"./prix\";\n\nexport const SEUIL_PORT_OFFERT = 80;\nconst FRAIS_PORT = 6.9;\n\nexport type Ligne = { article: Article; quantite: number };\n\nexport function sousTotal(lignes: Ligne[]): number {\n  return lignes.reduce((s, l) => s + l.article.prix * l.quantite, 0);\n}\n\n// Remise « printemps » : 10 % dès trois pièces de céramique.\nexport function remise(lignes: Ligne[]): number {\n  const pieces = lignes.filter((l) => l.article.categorie === \"ceramique\");\n  const n = pieces.reduce((s, l) => s + l.quantite, 0);\n  return n >= 3 ? sousTotal(pieces) * 0.1 : 0;\n}\n\nexport function fraisPort(total: number): number {\n  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;\n}\n\nexport function total(lignes: Ligne[]) {\n  const st = sousTotal(lignes);\n  const r = remise(lignes);\n  const port = fraisPort(st - r);\n  return {\n    sousTotal: arrondir(st),\n    remise: arrondir(r),\n    port,\n    total: arrondir(st - r + port),\n  };\n}\n\nexport function ajouter(lignes: Ligne[], article: Article): Ligne[] {\n  const i = lignes.findIndex((l) => l.article.id === article.id);\n  if (i === -1) return [...lignes, { article, quantite: 1 }];\n  return lignes.map((l, j) => (j === i ? { ...l, quantite: l.quantite + 1 } : l));\n}\n\nexport function retirer(lignes: Ligne[], id: string): Ligne[] {\n  return lignes.filter((l) => l.article.id !== id);\n}",
-  "diff": [
-   [
-    " ",
-    "export function fraisPort(total: number): number {"
-   ],
-   [
-    "-",
-    "  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;"
-   ],
-   [
-    "+",
-    "  if (total <= 0) return 0;"
-   ],
-   [
-    "+",
-    "  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;"
-   ],
-   [
-    " ",
-    "}"
-   ],
-   [
-    " ",
-    ""
-   ],
-   [
-    " ",
-    "export function total(lignes: Ligne[]) {"
-   ],
-   [
-    " ",
-    "  const st = sousTotal(lignes);"
-   ],
-   [
-    "-",
-    "  const r = remise(lignes);"
-   ],
-   [
-    "+",
-    "  const r = Math.min(remise(lignes), st);"
-   ],
-   [
-    " ",
-    "  const port = fraisPort(st - r);"
-   ],
-   [
-    " ",
-    "  return {"
-   ],
-   [
-    " ",
-    "    sousTotal: arrondir(st),"
-   ],
-   [
-    " ",
-    "    remise: arrondir(r),"
-   ],
-   [
-    " ",
-    "    port,"
-   ],
-   [
-    " ",
-    "    total: arrondir(st - r + port),"
-   ],
-   [
-    " ",
-    "  };"
-   ],
-   [
-    " ",
-    "}"
-   ],
-   [
-    " ",
-    ""
-   ],
-   [
-    " ",
-    "export function ajouter(lignes: Ligne[], article: Article): Ligne[] {"
-   ],
-   [
-    "-",
-    "  const i = lignes.findIndex((l) => l.article.id === article.id);"
-   ],
-   [
-    "-",
-    "  if (i === -1) return [...lignes, { article, quantite: 1 }];"
-   ],
-   [
-    "-",
-    "  return lignes.map((l, j) => (j === i ? { ...l, quantite: l.quantite + 1 } : l));"
-   ],
-   [
-    "+",
-    "  const existe = lignes.some((l) => l.article.id === article.id);"
-   ],
-   [
-    "+",
-    "  if (!existe) return [...lignes, { article, quantite: 1 }];"
-   ],
-   [
-    "+",
-    "  return lignes.map((l) => (l.article.id === article.id ? { ...l, quantite: l.quantite + 1 } : l));"
-   ],
-   [
-    " ",
-    "}"
-   ]
-  ],
-  "diffMeta": "Modifications de Camille Laurent · il y a 2 h · comparé à la version du 10 mars",
-  "ask": {
-   "sugg": [
-    "Explique ce fichier",
-    "Trouve des bugs potentiels",
-    "Écris des tests pour total()"
-   ],
-   "answers": [
-    "Ce module calcule le panier de la boutique : sous-total, remise printemps de 10 % dès trois céramiques, puis frais de port offerts au-delà de 80 €.",
-    "Deux risques : la remise peut dépasser le sous-total si les prix sont négatifs, et fraisPort facture 6,90 € pour un panier vide.",
-    "Je propose trois cas : panier vide, deux céramiques sans remise, et trois céramiques à 30 € avec port offert."
-   ]
-  }
- },
- "audio": {
-  "name": "reunion-lancement-printemps.m4a",
-  "size": "18,6 Mo",
-  "type": "Audio M4A · 24:12",
-  "lang": "français",
-  "speakers": [
-   [
-    "Camille Laurent",
-    "CL",
-    "blue"
-   ],
-   [
-    "Julien Morel",
-    "JM",
-    "green"
-   ],
-   [
-    "Inès Garnier",
-    "IG",
-    "yellow"
-   ]
-  ],
-  "segs": [
-   {
-    "t": 0,
-    "who": 0,
-    "text": "Bonjour à tous, merci d’être là. On fait le point sur le lancement printemps : calendrier, stand et budget."
-   },
-   {
-    "t": 74,
-    "who": 1,
-    "text": "Côté atelier, les 120 pièces de la collection « Lagon » seront prêtes le 2 avril, émaillage compris."
-   },
-   {
-    "t": 161,
-    "who": 2,
-    "text": "Studio Nord nous a envoyé le devis du stand : 9 800 € HT, montage inclus. C’est 600 € au-dessus du budget."
-   },
-   {
-    "t": 248,
-    "who": 0,
-    "text": "On peut compenser en retirant l’éclairage d’appoint. Julien, tu valides ?"
-   },
-   {
-    "t": 312,
-    "who": 1,
-    "text": "Oui, la lumière du hall suffit si on garde les étagères en chêne clair."
-   },
-   {
-    "t": 405,
-    "who": 2,
-    "text": "Pour la communication, je propose trois publications par semaine à partir du 24 mars, avec les photos de Camille."
-   },
-   {
-    "t": 538,
-    "who": 0,
-    "text": "Décision : lancement le 14 avril, stand validé sans éclairage, Inès pilote le calendrier des publications."
-   },
-   {
-    "t": 640,
-    "who": 1,
-    "text": "Je m’occupe d’envoyer les visuels de la vitrine d’ici vendredi."
-   },
-   {
-    "t": 702,
-    "who": 2,
-    "text": "Prochain point le 21 mars à 10 h, même salle."
-   }
-  ],
-  "ask": {
-   "sugg": [
-    "Résume la réunion",
-    "Liste les décisions prises",
-    "Qui doit faire quoi ?"
-   ],
-   "answers": [
-    "Réunion du 14 mars sur le lancement printemps : collection prête le 2 avril, stand Studio Nord validé sans éclairage d’appoint, communication dès le 24 mars.",
-    "Trois décisions : lancement le 14 avril, devis du stand accepté à 9 800 € HT sans éclairage, Inès pilote les publications.",
-    "Julien envoie les visuels de la vitrine vendredi, Inès prépare le calendrier, Camille fournit les photos. Prochain point le 21 mars."
-   ]
-  }
- },
- "video": {
-  "name": "film-atelier-morel.mp4",
-  "size": "212 Mo",
-  "type": "Vidéo MP4 · 1080p · 6:40",
-  "chapters": [
-   {
-    "t": 0,
-    "title": "L’atelier au lever du jour",
-    "img": "montagne"
-   },
-   {
-    "t": 62,
-    "title": "Tourner la terre",
-    "img": "atelier"
-   },
-   {
-    "t": 148,
-    "title": "Émaux et cuisson",
-    "img": "ceramique"
-   },
-   {
-    "t": 236,
-    "title": "Le marché de la Croix-Rousse",
-    "img": "marche"
-   },
-   {
-    "t": 318,
-    "title": "La collection « Lagon »",
-    "img": "lagon"
-   }
-  ],
-  "segs": [
-   {
-    "t": 8,
-    "who": 1,
-    "text": "J’arrive à l’atelier vers six heures, avant que la lumière ne tourne."
-   },
-   {
-    "t": 66,
-    "who": 1,
-    "text": "Chaque bol est tourné à la main, il faut à peu près douze minutes par pièce."
-   },
-   {
-    "t": 151,
-    "who": 2,
-    "text": "L’émail bleu vient d’une recette de grès que Julien a mise au point en 2019."
-   },
-   {
-    "t": 240,
-    "who": 0,
-    "text": "Le samedi, on vend directement au marché : c’est là qu’on teste les nouvelles formes."
-   },
-   {
-    "t": 322,
-    "who": 1,
-    "text": "« Lagon », c’est la mer vue d’en haut. Quarante pièces, pas une identique."
-   }
-  ],
-  "ask": {
-   "sugg": [
-    "Résume la vidéo",
-    "Extrais les citations",
-    "Propose un découpage pour Instagram"
-   ],
-   "answers": [
-    "Film de 6 min 40 sur l’Atelier Morel, en cinq chapitres : l’atelier, le tournage, les émaux, le marché et la collection « Lagon ».",
-    "« Lagon, c’est la mer vue d’en haut » (5:22) et « Chaque bol est tourné à la main » (1:06) sont les plus fortes.",
-    "Trois extraits de 30 s : 1:02 à 1:32 (tournage), 2:28 à 2:58 (émaux), 5:18 à 5:48 (collection)."
-   ]
-  }
- },
- "zip": {
-  "name": "lancement-printemps-livrables.zip",
-  "size": "31,8 Mo",
-  "type": "Archive ZIP · 16 fichiers",
-  "extractedTo": "Documents › lancement-printemps-livrables",
-  "extractingFile": "02-photos/brutes/DSCF40",
-  "tree": [
-   {
-    "name": "01-identite",
-    "kids": [
-     {
-      "name": "logo-atelier-morel.svg",
-      "kb": 24
-     },
-     {
-      "name": "charte-couleurs.pdf",
-      "kb": 1840
-     },
-     {
-      "name": "typographies.txt",
-      "kb": 1,
-      "text": "Titres : Geist 500, −0,02 em\nTexte : Geist 400, 13/20\nChiffres : Geist Mono\n\nNe pas utiliser de graisse inférieure à 400."
-     }
-    ]
-   },
-   {
-    "name": "02-photos",
-    "kids": [
-     {
-      "name": "vitrine-matin.png",
-      "kb": 4310,
-      "img": "ceramique"
-     },
-     {
-      "name": "atelier-tour.png",
-      "kb": 3980,
-      "img": "atelier"
-     },
-     {
-      "name": "marche-croix-rousse.png",
-      "kb": 4120,
-      "img": "marche"
-     },
-     {
-      "name": "collection-lagon.png",
-      "kb": 3750,
-      "img": "lagon"
-     },
-     {
-      "name": "brutes",
-      "kids": [
-       {
-        "name": "DSCF4021.raf",
-        "kb": 9100
-       },
-       {
-        "name": "DSCF4022.raf",
-        "kb": 9240
-       },
-       {
-        "name": "DSCF4030.raf",
-        "kb": 8870
-       }
+    "meta": "PDF · 12 pages · 2,4 Mo",
+    "kicker": "Studio Nord · Juillet 2026",
+    "pages": [
+      {
+        "h": "Étude de marché T2 2026",
+        "p": [
+          "Marché de la céramique et des arts de la table en France — synthèse préparée pour le projet « Lancement printemps ».",
+          "Rédigée par Camille Laurent avec l’appui de Studio Nord. Données arrêtées au 30 juin 2026."
+        ]
+      },
+      {
+        "h": "1. Synthèse",
+        "p": [
+          "Le marché des arts de la table progresse de 6,8 % sur un an, porté par la vente directe et les boutiques indépendantes.",
+          "La marge brute moyenne des ateliers atteint 41 %, en hausse de deux points grâce à la baisse du coût de l’énergie.",
+          "Les clients de 25 à 40 ans représentent désormais 38 % des achats en ligne."
+        ]
+      },
+      {
+        "h": "2. Taille du marché",
+        "p": [
+          "Le chiffre d’affaires du segment atteint 1,6 milliard d’euros au deuxième trimestre, soit une croissance de 6,8 % par rapport au T2 2025.",
+          "La vente en ligne pèse 27 % du total ; elle était de 21 % il y a deux ans. Les salons restent le premier canal d’acquisition pour 61 % des ateliers."
+        ],
+        "chart": [
+          42,
+          48,
+          51,
+          57,
+          63,
+          71
+        ]
+      },
+      {
+        "h": "3. Concurrence",
+        "p": [
+          "Trois acteurs dominent la distribution : deux réseaux de boutiques et une place de marché spécialisée.",
+          "Atelier Morel se distingue par une marge supérieure de 6 points à la moyenne, grâce à la fabrication en petites séries."
+        ]
+      },
+      {
+        "h": "4. Clientèle",
+        "p": [
+          "Le panier moyen s’établit à 86 €, en hausse de 9 %. Les achats cadeaux représentent 44 % des ventes du trimestre.",
+          "La fidélité progresse : 31 % des clients achètent au moins deux fois par an."
+        ]
+      },
+      {
+        "h": "5. Prix et marge",
+        "p": [
+          "Les prix publics ont augmenté de 3,2 % en moyenne, sans effet visible sur les volumes.",
+          "La marge brute reste sous pression sur les pièces émaillées, dont le coût de cuisson a doublé depuis 2023."
+        ],
+        "chart": [
+          36,
+          38,
+          39,
+          41,
+          40,
+          41
+        ]
+      },
+      {
+        "h": "6. Canaux de vente",
+        "p": [
+          "Les boutiques indépendantes restent le premier canal, devant la vente en ligne et les salons.",
+          "Les ventes en ligne progressent surtout le soir et le week-end ; 64 % sont passées sur mobile."
+        ]
+      },
+      {
+        "h": "7. Saisonnalité",
+        "p": [
+          "Le printemps concentre 28 % des ventes annuelles, juste derrière la période des fêtes.",
+          "Un lancement fin mars permet de profiter de la fête des Mères et des listes de mariage."
+        ]
+      },
+      {
+        "h": "8. Risques",
+        "p": [
+          "Hausse possible du coût des matières premières au second semestre.",
+          "Délais de livraison des fours : jusqu’à 14 semaines chez les principaux fabricants."
+        ]
+      },
+      {
+        "h": "9. Recommandations",
+        "p": [
+          "Lancer la collection fin mars, avec une avant-première réservée aux clients fidèles.",
+          "Préserver la marge en limitant les références émaillées à 30 % de la gamme."
+        ]
+      },
+      {
+        "h": "10. Méthodologie",
+        "p": [
+          "Enquête en ligne auprès de 1 240 clients et entretiens avec 22 ateliers, menés du 2 au 26 juin 2026.",
+          "Les chiffres de marché proviennent de l’Observatoire des métiers d’art et de l’Insee."
+        ]
+      },
+      {
+        "h": "Annexes",
+        "p": [
+          "Tableaux détaillés par région, questionnaire complet et liste des ateliers interrogés.",
+          "Contact : Camille Laurent, cheffe de projet, camille.laurent@studionord.fr."
+        ]
+      }
+    ],
+    "months": [
+      "Janv.",
+      "Févr.",
+      "Mars",
+      "Avr.",
+      "Mai",
+      "Juin"
+    ],
+    "search": "marge",
+    "selection": "La marge brute moyenne des ateliers atteint 41 %",
+    "notes": {
+      "2": [
+        {
+          "y": "38%",
+          "who": "Léa Fontaine",
+          "t": "À reprendre dans le deck, diapo 4."
+        }
+      ],
+      "4": [
+        {
+          "y": "30%",
+          "who": "Camille Laurent",
+          "t": "Vérifier ce chiffre avec Atelier Morel avant diffusion."
+        }
       ]
-     }
+    },
+    "ask": {
+      "sugg": [
+        "Résume le rapport en 5 points",
+        "Quelle est la marge brute moyenne ?",
+        "Quels risques pour le lancement ?",
+        "Fais un tableau des chiffres clés"
+      ],
+      "answers": [
+        {
+          "re": "marge",
+          "a": "La marge brute moyenne des ateliers atteint 41 % (page 2), en hausse de deux points. Atelier Morel fait 6 points de mieux (page 4)."
+        },
+        {
+          "re": "risque",
+          "a": "Deux risques principaux (page 9) : la hausse du coût des matières au second semestre et des délais de livraison des fours jusqu’à 14 semaines."
+        }
+      ],
+      "fallback": "En bref : marché en hausse de 6,8 %, marge de 41 %, vente en ligne à 27 %, printemps = 28 % des ventes annuelles. Recommandation : lancer fin mars (page 10)."
+    },
+    "summary": [
+      {
+        "u": "Résume le rapport en 5 points"
+      },
+      {
+        "st": "talking",
+        "b": "Voici l’essentiel des 12 pages :\n1. Le marché progresse de 6,8 % sur un an (p. 3).\n2. La marge brute moyenne atteint 41 % (p. 2).\n3. La vente en ligne pèse 27 % des ventes, dont 64 % sur mobile (p. 7).\n4. Le printemps concentre 28 % des ventes annuelles (p. 8).\n5. Recommandation : lancer fin mars et limiter l’émaillé à 30 % de la gamme (p. 10)."
+      }
+    ],
+    "summaryPoints": [
+      "Marché en hausse de 6,8 % sur un an",
+      "Marge brute moyenne de 41 %",
+      "Lancement recommandé fin mars"
+    ],
+    "act": {
+      "explain": "La marge brute, c’est le chiffre d’affaires moins le coût des pièces vendues (terre, émail, cuisson). À 41 %, un bol vendu 30 € laisse 12,30 € pour payer l’atelier, le loyer et les salaires.",
+      "summarize": "Les ateliers gardent en moyenne 41 centimes de marge brute par euro vendu, deux points de mieux qu’en 2025.",
+      "quote": "« La marge brute moyenne des ateliers atteint 41 %, en hausse de deux points. » — Étude de marché T2 2026, p. 2."
+    },
+    "protectedBody": "Saisis le mot de passe transmis par Studio Nord pour l’ouvrir. Cortex ne le conserve pas."
+  },
+  "pptx": {
+    "name": "Lancement printemps.pptx",
+    "meta": "Présentation · 18 diapos · 8,1 Mo",
+    "slides": [
+      {
+        "k": "cover",
+        "t": "Lancement printemps",
+        "s": "Collection céramique 2027 · Atelier Morel × Studio Nord",
+        "img": "ceramique",
+        "n": "Accueillir l’équipe, rappeler l’objectif : valider le plan de lancement avant le 14 avril."
+      },
+      {
+        "k": "bullets",
+        "t": "Ordre du jour",
+        "b": [
+          "Le marché en 3 chiffres",
+          "La collection",
+          "Le plan de lancement",
+          "Budget et calendrier"
+        ],
+        "n": "20 minutes de présentation, 10 de questions."
+      },
+      {
+        "k": "stat",
+        "t": "Le marché progresse",
+        "s": "+6,8 % sur un an",
+        "b": [
+          "1,6 Md€ au T2",
+          "27 % des ventes en ligne",
+          "Printemps : 28 % des ventes annuelles"
+        ],
+        "n": "Source : Étude de marché T2, page 3."
+      },
+      {
+        "k": "img",
+        "t": "La collection",
+        "s": "24 pièces, 3 émaux, fabriquées à la main",
+        "img": "atelier",
+        "n": "Insister sur la fabrication en petites séries."
+      },
+      {
+        "k": "split",
+        "t": "Notre client",
+        "b": [
+          "25–40 ans, urbain",
+          "Achète en ligne le soir",
+          "Offre souvent : 44 % de cadeaux"
+        ],
+        "img": "marche",
+        "n": "Persona construite à partir de 1 240 réponses."
+      },
+      {
+        "k": "bullets",
+        "t": "Positionnement",
+        "b": [
+          "Pièces durables, prix juste",
+          "Fabriqué en France, à Limoges",
+          "Édition limitée à chaque saison"
+        ]
+      },
+      {
+        "k": "img",
+        "t": "Univers visuel",
+        "s": "Lumière d’aube, matières brutes, couleurs pastel",
+        "img": "aube"
+      },
+      {
+        "k": "bullets",
+        "t": "Canaux",
+        "b": [
+          "Boutique en ligne",
+          "18 revendeurs indépendants",
+          "Salon Maison & Objet en septembre"
+        ]
+      },
+      {
+        "k": "stat",
+        "t": "Objectif de ventes",
+        "s": "4 800 pièces",
+        "b": [
+          "Au premier trimestre",
+          "Panier moyen visé : 92 €"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Avant-première",
+        "b": [
+          "Réservée aux 600 clients fidèles",
+          "Le 21 mars, 48 h avant l’ouverture",
+          "Envoi d’un e-mail en trois temps"
+        ]
+      },
+      {
+        "k": "split",
+        "t": "Campagne",
+        "b": [
+          "Shooting en lumière naturelle",
+          "Six vidéos courtes",
+          "Partenariat avec deux créatrices"
+        ],
+        "img": "lagon"
+      },
+      {
+        "k": "bullets",
+        "t": "Relations presse",
+        "b": [
+          "Dossier de presse le 3 mars",
+          "12 rédactions déco ciblées",
+          "Envoi d’échantillons"
+        ]
+      },
+      {
+        "k": "stat",
+        "t": "Budget",
+        "s": "38 500 €",
+        "b": [
+          "Dont 14 200 € de production",
+          "Dont 9 800 € d’événementiel"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Calendrier",
+        "b": [
+          "3 mars : presse",
+          "21 mars : avant-première",
+          "24 mars : ouverture",
+          "14 avril : premier bilan"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Risques",
+        "b": [
+          "Délais de cuisson",
+          "Rupture sur l’émail bleu",
+          "Retard du transporteur"
+        ]
+      },
+      {
+        "k": "bullets",
+        "t": "Indicateurs",
+        "b": [
+          "Taux de conversion ≥ 2,4 %",
+          "Retour clients ≥ 4,6/5",
+          "Marge brute ≥ 41 %"
+        ]
+      },
+      {
+        "k": "img",
+        "t": "Merci à l’équipe",
+        "s": "Camille, Léa, Hugo, Inès et tout l’atelier",
+        "img": "prairie"
+      },
+      {
+        "k": "end",
+        "t": "Questions ?",
+        "s": "camille.laurent@studionord.fr"
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Résume le deck en une phrase",
+        "Quelle diapo manque de clarté ?",
+        "Écris les notes de la diapo 6",
+        "Traduis le deck en anglais"
+      ],
+      "answers": [
+        {
+          "re": "clart|manque",
+          "a": "La diapo 8 « Canaux » liste trois canaux sans les chiffrer. Ajoute la part de ventes attendue par canal, par exemple 55 % en ligne."
+        },
+        {
+          "re": "notes",
+          "a": "Proposition pour la diapo 6 : « Notre promesse tient en trois mots : durable, juste, français. Chaque saison, une édition limitée crée le rendez-vous. »"
+        }
+      ],
+      "fallback": "Atelier Morel lance fin mars une collection de 24 pièces pour 38 500 €, avec l’objectif de vendre 4 800 pièces au premier trimestre."
+    }
+  },
+  "docx": {
+    "name": "Brief agence Studio Nord.docx",
+    "meta": "Document · 4 pages · 312 Ko · modifié par Léa Fontaine",
+    "author": "Léa Fontaine",
+    "comments": [
+      {
+        "id": 1,
+        "who": "Léa Fontaine",
+        "at": "Hier, 16:42",
+        "t": "On peut avancer la remise des maquettes au 10 février ? L’imprimeur demande trois semaines."
+      },
+      {
+        "id": 2,
+        "who": "Hugo Bernard",
+        "at": "Aujourd’hui, 9:15",
+        "t": "Ajouter le format vertical pour les vidéos courtes."
+      },
+      {
+        "id": 3,
+        "who": "Camille Laurent",
+        "at": "Aujourd’hui, 10:02",
+        "t": "Budget validé par Atelier Morel, on peut figer ce tableau."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Résume le brief en 3 lignes",
+        "Liste les livrables et leurs dates",
+        "Accepte les modifications de Léa",
+        "Rédige une réponse à Hugo"
+      ],
+      "answers": [
+        {
+          "re": "livrable|date",
+          "a": "Trois livrables : identité visuelle le 14 février, shooting le 28 février, kit réseaux sociaux le 7 mars. Le total s’élève à 21 600 € HT."
+        },
+        {
+          "re": "hugo|réponse",
+          "a": "Proposition : « Bonne idée, Hugo : j’ajoute le format 9:16 au kit réseaux sociaux, sans surcoût d’après le devis de Studio Nord. »"
+        }
+      ],
+      "fallback": "Atelier Morel confie à Studio Nord l’identité et la campagne du lancement de printemps : trois livrables entre le 14 février et le 7 mars, pour 21 600 € HT."
+    },
+    "doc": {
+      "kicker": "Atelier Morel · Brief créatif · v3",
+      "title": "Brief agence — Lancement printemps",
+      "intro": "Ce brief décrit les attentes d’Atelier Morel pour l’identité et la campagne de la collection de printemps. Il sert de référence à Studio Nord jusqu’à la livraison.",
+      "h1": "1. Objectifs",
+      "h2": "2. Livrables",
+      "h3": "3. Budget",
+      "obj": [
+        "Faire connaître la collection auprès des 25–40 ans",
+        "Vendre 4 800 pièces au premier trimestre",
+        {
+          "pre": "Recruter ",
+          "del": "2 000",
+          "ins": "3 000",
+          "post": " abonnés à la lettre d’information"
+        }
+      ],
+      "deliv": [
+        "Identité visuelle de la collection : logo, palette, typographie",
+        {
+          "pre": "Shooting produit et ambiance, remise le ",
+          "del": "14 février",
+          "ins": "10 février"
+        },
+        {
+          "text": "Kit réseaux sociaux : 12 visuels et 6 vidéos courtes",
+          "ins": ", au format vertical"
+        }
+      ],
+      "table": {
+        "head": [
+          "Poste",
+          "Responsable",
+          "Montant HT"
+        ],
+        "rows": [
+          [
+            "Identité visuelle",
+            "Studio Nord",
+            7800
+          ],
+          [
+            "Shooting",
+            "Studio Nord",
+            9400
+          ],
+          [
+            "Kit réseaux sociaux",
+            "Studio Nord",
+            4400
+          ]
+        ],
+        "total": "Total"
+      },
+      "contact": "Contact : Camille Laurent, cheffe de projet. Validation finale : Inès Morel."
+    }
+  },
+  "xlsx": {
+    "name": "Budget lancement printemps.xlsx",
+    "meta": "Tableur · 3 feuilles · 184 Ko",
+    "sheets": [
+      {
+        "name": "Budget",
+        "head": [
+          "Poste",
+          "Prévu",
+          "Engagé",
+          "Écart",
+          "Responsable",
+          "Statut"
+        ],
+        "rows": [
+          [
+            "Identité visuelle",
+            7800,
+            7800,
+            0,
+            "Studio Nord",
+            "Payé"
+          ],
+          [
+            "Shooting produit",
+            9400,
+            9950,
+            -550,
+            "Studio Nord",
+            "Engagé"
+          ],
+          [
+            "Vidéos courtes",
+            4400,
+            4100,
+            300,
+            "Studio Nord",
+            "Engagé"
+          ],
+          [
+            "Avant-première",
+            5200,
+            6100,
+            -900,
+            "Léa Fontaine",
+            "Engagé"
+          ],
+          [
+            "Salon Maison & Objet",
+            4600,
+            0,
+            4600,
+            "Hugo Bernard",
+            "À venir"
+          ],
+          [
+            "Relations presse",
+            2800,
+            2650,
+            150,
+            "Inès Morel",
+            "Payé"
+          ],
+          [
+            "Échantillons",
+            1900,
+            2240,
+            -340,
+            "Atelier Morel",
+            "Payé"
+          ],
+          [
+            "Publicité en ligne",
+            2400,
+            1180,
+            1220,
+            "Camille Laurent",
+            "En cours"
+          ],
+          [
+            "Total",
+            38500,
+            34020,
+            4480,
+            "",
+            ""
+          ]
+        ],
+        "f": {
+          "B10": "=SOMME(B2:B9)",
+          "C10": "=SOMME(C2:C9)",
+          "D10": "=SOMME(D2:D9)",
+          "D2": "=B2-C2",
+          "D3": "=B3-C3",
+          "D4": "=B4-C4",
+          "D5": "=B5-C5"
+        }
+      },
+      {
+        "name": "Ventes",
+        "head": [
+          "Semaine",
+          "En ligne",
+          "Revendeurs",
+          "Total",
+          "Objectif",
+          "Atteint"
+        ],
+        "rows": [
+          [
+            "S12",
+            312,
+            140,
+            452,
+            400,
+            "113 %"
+          ],
+          [
+            "S13",
+            288,
+            176,
+            464,
+            400,
+            "116 %"
+          ],
+          [
+            "S14",
+            241,
+            198,
+            439,
+            400,
+            "110 %"
+          ],
+          [
+            "S15",
+            205,
+            160,
+            365,
+            400,
+            "91 %"
+          ],
+          [
+            "S16",
+            230,
+            151,
+            381,
+            400,
+            "95 %"
+          ],
+          [
+            "S17",
+            266,
+            172,
+            438,
+            400,
+            "110 %"
+          ]
+        ],
+        "f": {
+          "D2": "=B2+C2",
+          "F2": "=D2/E2"
+        }
+      },
+      {
+        "name": "Calendrier",
+        "head": [
+          "Date",
+          "Étape",
+          "Responsable",
+          "Statut",
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "03/03/2027",
+            "Dossier de presse",
+            "Inès Morel",
+            "Prévu",
+            "",
+            ""
+          ],
+          [
+            "21/03/2027",
+            "Avant-première",
+            "Léa Fontaine",
+            "Prévu",
+            "",
+            ""
+          ],
+          [
+            "24/03/2027",
+            "Ouverture des ventes",
+            "Camille Laurent",
+            "Prévu",
+            "",
+            ""
+          ],
+          [
+            "14/04/2027",
+            "Premier bilan",
+            "Camille Laurent",
+            "Prévu",
+            "",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errs": {
+      "C5": "Texte « 6 1OO » converti : la lettre O a été lue à la place d’un zéro.",
+      "B6": "Date « 31/02/2027 » impossible, cellule laissée vide.",
+      "D8": "#REF! : la formule pointait vers une feuille supprimée."
+    },
+    "ask": {
+      "sugg": [
+        "Quels postes dépassent le budget ?",
+        "Fais un graphique Prévu / Engagé",
+        "Combien reste-t-il à engager ?",
+        "Corrige les erreurs d’import"
+      ],
+      "answers": [
+        {
+          "re": "dépass",
+          "a": "Trois postes dépassent : l’avant-première (−900 €, C5), le shooting (−550 €, C3) et les échantillons (−340 €, C8). Total des dépassements : 1 790 €."
+        },
+        {
+          "re": "reste",
+          "a": "Il reste 4 480 € à engager (D10), dont 4 600 € pour le salon Maison & Objet qui n’a encore rien engagé."
+        }
+      ],
+      "fallback": "C’est fait : j’ai ajouté un graphique en barres Prévu / Engagé à côté du tableau, à partir de la plage A2:C9."
+    }
+  },
+  "upload": {
+    "project": "Lancement printemps",
+    "demo": [
+      {
+        "name": "Étude de marché T2.pdf",
+        "size": 2400000,
+        "pct": 100
+      },
+      {
+        "name": "Lancement printemps.pptx",
+        "size": 8100000,
+        "pct": 64
+      },
+      {
+        "name": "Budget lancement printemps.xlsx",
+        "size": 184000,
+        "pct": 100
+      },
+      {
+        "name": "Brief agence Studio Nord.docx",
+        "size": 312000,
+        "pct": 22
+      },
+      {
+        "name": "shooting-atelier-03.jpg",
+        "size": 4700000,
+        "pct": 0
+      }
+    ],
+    "errors": [
+      {
+        "name": "Étude de marché T2.pdf",
+        "size": 2400000,
+        "pct": 100
+      },
+      {
+        "name": "Installateur Cortex.dmg",
+        "size": 96000000,
+        "pct": 0,
+        "err": "type"
+      },
+      {
+        "name": "rushes-video-brut.mp4",
+        "size": 1800000000,
+        "pct": 0,
+        "err": "size"
+      },
+      {
+        "name": "Retours avant-première.docx",
+        "size": 220000,
+        "pct": 38,
+        "err": "connection"
+      }
+    ],
+    "drive": [
+      {
+        "name": "Planning shooting.xlsx",
+        "size": 96000
+      },
+      {
+        "name": "Moodboard printemps.pdf",
+        "size": 6200000
+      }
     ]
-   },
-   {
-    "name": "03-stand",
-    "kids": [
-     {
-      "name": "devis-studio-nord.pdf",
-      "kb": 312
-     },
-     {
-      "name": "plan-stand-v3.pdf",
-      "kb": 2480
-     },
-     {
-      "name": "liste-materiel.csv",
-      "kb": 3,
-      "text": "article;quantite;fournisseur\nÉtagère chêne clair 180 cm;6;Studio Nord\nSocle blanc 40 × 40;4;Studio Nord\nNappe lin naturel;2;Atelier Morel\nTerminal de paiement;1;Banque\nSacs kraft;300;Emballages Durand"
-     }
-    ]
-   },
-   {
-    "name": "04-communication",
-    "kids": [
-     {
-      "name": "calendrier-publications.xlsx",
-      "kb": 48
-     },
-     {
-      "name": "textes-instagram.md",
-      "kb": 6,
-      "text": "# Semaine du 24 mars\n\n## Lundi\nLa collection « Lagon » arrive. Quarante pièces, pas une identique.\n\n## Jeudi\nDans l’atelier, chaque bol prend douze minutes de tour. Et une nuit de cuisson.\n\n## Samedi\nRetrouvez-nous au marché de la Croix-Rousse, de 8 h à 13 h."
-     }
-    ]
-   },
-   {
-    "name": "LISEZMOI.txt",
-    "kb": 2,
-    "text": "Livrables du lancement printemps — Atelier Morel\nPréparé par Camille Laurent, le 14 mars 2026.\n\n01 : identité visuelle\n02 : photos retouchées et fichiers bruts\n03 : stand Studio Nord\n04 : calendrier et textes de communication\n\nQuestions : camille@ateliermorel.fr"
-   }
-  ],
-  "ask": {
-   "sugg": [
-    "Que contient cette archive ?",
-    "Y a-t-il des fichiers en double ?",
-    "Résume le devis du stand"
-   ],
-   "answers": [
-    "Quatre dossiers de livrables pour le lancement printemps : identité, photos, stand et communication, plus un LISEZMOI.",
-    "Pas de doublon exact. Les trois fichiers .raf sont les originaux des photos retouchées : ils pèsent 26 Mo à eux seuls.",
-    "Devis Studio Nord : 9 800 € HT, montage inclus, livraison la veille de l’ouverture, six étagères en chêne clair."
-   ]
+  },
+  "image": {
+    "name": "vitrine-atelier-morel.png",
+    "size": "4,2 Mo",
+    "type": "Image PNG",
+    "alt": "Vitrine de l’Atelier Morel",
+    "exif": [
+      [
+        "Fichier",
+        [
+          [
+            "Dimensions",
+            "4032 × 2688"
+          ],
+          [
+            "Résolution",
+            "300 ppp"
+          ],
+          [
+            "Profil",
+            "Display P3"
+          ],
+          [
+            "Créé le",
+            "12 mars 2026, 08:14"
+          ]
+        ]
+      ],
+      [
+        "Prise de vue",
+        [
+          [
+            "Appareil",
+            "Boîtier hybride X-T5"
+          ],
+          [
+            "Objectif",
+            "23 mm f/1,4"
+          ],
+          [
+            "Ouverture",
+            "f/2,8"
+          ],
+          [
+            "Exposition",
+            "1/125 s"
+          ],
+          [
+            "ISO",
+            "400"
+          ],
+          [
+            "Focale",
+            "23 mm"
+          ]
+        ]
+      ],
+      [
+        "Lieu",
+        [
+          [
+            "Ville",
+            "Lyon, 1er arr."
+          ],
+          [
+            "Coordonnées",
+            "45,767 N · 4,834 E"
+          ]
+        ]
+      ]
+    ],
+    "ask": {
+      "sugg": [
+        "Décris cette image",
+        "Propose un texte alternatif",
+        "Quelles retouches suggères-tu ?"
+      ],
+      "answers": [
+        "La photo montre la vitrine de l’Atelier Morel au petit matin : céramiques sur trois étagères, lumière chaude venant de la gauche.",
+        "Texte alternatif : « Vitrine d’atelier de céramique, bols et vases émaillés bleu et sable sur étagères en chêne. »",
+        "Je redresserais l’horizon de 1,5°, j’éclaircirais les ombres de 20 % et je recadrerais en 4:5 pour Instagram."
+      ]
+    }
+  },
+  "code": {
+    "name": "panier.ts",
+    "size": "3,1 Ko",
+    "type": "TypeScript",
+    "src": "// Panier de la boutique Atelier Morel : totaux, remises et frais de port.\nimport { arrondir, type Article } from \"./prix\";\n\nexport const SEUIL_PORT_OFFERT = 80;\nconst FRAIS_PORT = 6.9;\n\nexport type Ligne = { article: Article; quantite: number };\n\nexport function sousTotal(lignes: Ligne[]): number {\n  return lignes.reduce((s, l) => s + l.article.prix * l.quantite, 0);\n}\n\n// Remise « printemps » : 10 % dès trois pièces de céramique.\nexport function remise(lignes: Ligne[]): number {\n  const pieces = lignes.filter((l) => l.article.categorie === \"ceramique\");\n  const n = pieces.reduce((s, l) => s + l.quantite, 0);\n  return n >= 3 ? sousTotal(pieces) * 0.1 : 0;\n}\n\nexport function fraisPort(total: number): number {\n  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;\n}\n\nexport function total(lignes: Ligne[]) {\n  const st = sousTotal(lignes);\n  const r = remise(lignes);\n  const port = fraisPort(st - r);\n  return {\n    sousTotal: arrondir(st),\n    remise: arrondir(r),\n    port,\n    total: arrondir(st - r + port),\n  };\n}\n\nexport function ajouter(lignes: Ligne[], article: Article): Ligne[] {\n  const i = lignes.findIndex((l) => l.article.id === article.id);\n  if (i === -1) return [...lignes, { article, quantite: 1 }];\n  return lignes.map((l, j) => (j === i ? { ...l, quantite: l.quantite + 1 } : l));\n}\n\nexport function retirer(lignes: Ligne[], id: string): Ligne[] {\n  return lignes.filter((l) => l.article.id !== id);\n}",
+    "diff": [
+      [
+        " ",
+        "export function fraisPort(total: number): number {"
+      ],
+      [
+        "-",
+        "  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;"
+      ],
+      [
+        "+",
+        "  if (total <= 0) return 0;"
+      ],
+      [
+        "+",
+        "  return total >= SEUIL_PORT_OFFERT ? 0 : FRAIS_PORT;"
+      ],
+      [
+        " ",
+        "}"
+      ],
+      [
+        " ",
+        ""
+      ],
+      [
+        " ",
+        "export function total(lignes: Ligne[]) {"
+      ],
+      [
+        " ",
+        "  const st = sousTotal(lignes);"
+      ],
+      [
+        "-",
+        "  const r = remise(lignes);"
+      ],
+      [
+        "+",
+        "  const r = Math.min(remise(lignes), st);"
+      ],
+      [
+        " ",
+        "  const port = fraisPort(st - r);"
+      ],
+      [
+        " ",
+        "  return {"
+      ],
+      [
+        " ",
+        "    sousTotal: arrondir(st),"
+      ],
+      [
+        " ",
+        "    remise: arrondir(r),"
+      ],
+      [
+        " ",
+        "    port,"
+      ],
+      [
+        " ",
+        "    total: arrondir(st - r + port),"
+      ],
+      [
+        " ",
+        "  };"
+      ],
+      [
+        " ",
+        "}"
+      ],
+      [
+        " ",
+        ""
+      ],
+      [
+        " ",
+        "export function ajouter(lignes: Ligne[], article: Article): Ligne[] {"
+      ],
+      [
+        "-",
+        "  const i = lignes.findIndex((l) => l.article.id === article.id);"
+      ],
+      [
+        "-",
+        "  if (i === -1) return [...lignes, { article, quantite: 1 }];"
+      ],
+      [
+        "-",
+        "  return lignes.map((l, j) => (j === i ? { ...l, quantite: l.quantite + 1 } : l));"
+      ],
+      [
+        "+",
+        "  const existe = lignes.some((l) => l.article.id === article.id);"
+      ],
+      [
+        "+",
+        "  if (!existe) return [...lignes, { article, quantite: 1 }];"
+      ],
+      [
+        "+",
+        "  return lignes.map((l) => (l.article.id === article.id ? { ...l, quantite: l.quantite + 1 } : l));"
+      ],
+      [
+        " ",
+        "}"
+      ]
+    ],
+    "diffMeta": "Modifications de Camille Laurent · il y a 2 h · comparé à la version du 10 mars",
+    "ask": {
+      "sugg": [
+        "Explique ce fichier",
+        "Trouve des bugs potentiels",
+        "Écris des tests pour total()"
+      ],
+      "answers": [
+        "Ce module calcule le panier de la boutique : sous-total, remise printemps de 10 % dès trois céramiques, puis frais de port offerts au-delà de 80 €.",
+        "Deux risques : la remise peut dépasser le sous-total si les prix sont négatifs, et fraisPort facture 6,90 € pour un panier vide.",
+        "Je propose trois cas : panier vide, deux céramiques sans remise, et trois céramiques à 30 € avec port offert."
+      ]
+    }
+  },
+  "audio": {
+    "name": "reunion-lancement-printemps.m4a",
+    "size": "18,6 Mo",
+    "type": "Audio M4A · 24:12",
+    "lang": "français",
+    "speakers": [
+      [
+        "Camille Laurent",
+        "CL",
+        "blue"
+      ],
+      [
+        "Julien Morel",
+        "JM",
+        "green"
+      ],
+      [
+        "Inès Garnier",
+        "IG",
+        "yellow"
+      ]
+    ],
+    "segs": [
+      {
+        "t": 0,
+        "who": 0,
+        "text": "Bonjour à tous, merci d’être là. On fait le point sur le lancement printemps : calendrier, stand et budget."
+      },
+      {
+        "t": 74,
+        "who": 1,
+        "text": "Côté atelier, les 120 pièces de la collection « Lagon » seront prêtes le 2 avril, émaillage compris."
+      },
+      {
+        "t": 161,
+        "who": 2,
+        "text": "Studio Nord nous a envoyé le devis du stand : 9 800 € HT, montage inclus. C’est 600 € au-dessus du budget."
+      },
+      {
+        "t": 248,
+        "who": 0,
+        "text": "On peut compenser en retirant l’éclairage d’appoint. Julien, tu valides ?"
+      },
+      {
+        "t": 312,
+        "who": 1,
+        "text": "Oui, la lumière du hall suffit si on garde les étagères en chêne clair."
+      },
+      {
+        "t": 405,
+        "who": 2,
+        "text": "Pour la communication, je propose trois publications par semaine à partir du 24 mars, avec les photos de Camille."
+      },
+      {
+        "t": 538,
+        "who": 0,
+        "text": "Décision : lancement le 14 avril, stand validé sans éclairage, Inès pilote le calendrier des publications."
+      },
+      {
+        "t": 640,
+        "who": 1,
+        "text": "Je m’occupe d’envoyer les visuels de la vitrine d’ici vendredi."
+      },
+      {
+        "t": 702,
+        "who": 2,
+        "text": "Prochain point le 21 mars à 10 h, même salle."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Résume la réunion",
+        "Liste les décisions prises",
+        "Qui doit faire quoi ?"
+      ],
+      "answers": [
+        "Réunion du 14 mars sur le lancement printemps : collection prête le 2 avril, stand Studio Nord validé sans éclairage d’appoint, communication dès le 24 mars.",
+        "Trois décisions : lancement le 14 avril, devis du stand accepté à 9 800 € HT sans éclairage, Inès pilote les publications.",
+        "Julien envoie les visuels de la vitrine vendredi, Inès prépare le calendrier, Camille fournit les photos. Prochain point le 21 mars."
+      ]
+    }
+  },
+  "video": {
+    "name": "film-atelier-morel.mp4",
+    "size": "212 Mo",
+    "type": "Vidéo MP4 · 1080p · 6:40",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "L’atelier au lever du jour",
+        "img": "montagne"
+      },
+      {
+        "t": 62,
+        "title": "Tourner la terre",
+        "img": "atelier"
+      },
+      {
+        "t": 148,
+        "title": "Émaux et cuisson",
+        "img": "ceramique"
+      },
+      {
+        "t": 236,
+        "title": "Le marché de la Croix-Rousse",
+        "img": "marche"
+      },
+      {
+        "t": 318,
+        "title": "La collection « Lagon »",
+        "img": "lagon"
+      }
+    ],
+    "segs": [
+      {
+        "t": 8,
+        "who": 1,
+        "text": "J’arrive à l’atelier vers six heures, avant que la lumière ne tourne."
+      },
+      {
+        "t": 66,
+        "who": 1,
+        "text": "Chaque bol est tourné à la main, il faut à peu près douze minutes par pièce."
+      },
+      {
+        "t": 151,
+        "who": 2,
+        "text": "L’émail bleu vient d’une recette de grès que Julien a mise au point en 2019."
+      },
+      {
+        "t": 240,
+        "who": 0,
+        "text": "Le samedi, on vend directement au marché : c’est là qu’on teste les nouvelles formes."
+      },
+      {
+        "t": 322,
+        "who": 1,
+        "text": "« Lagon », c’est la mer vue d’en haut. Quarante pièces, pas une identique."
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Résume la vidéo",
+        "Extrais les citations",
+        "Propose un découpage pour Instagram"
+      ],
+      "answers": [
+        "Film de 6 min 40 sur l’Atelier Morel, en cinq chapitres : l’atelier, le tournage, les émaux, le marché et la collection « Lagon ».",
+        "« Lagon, c’est la mer vue d’en haut » (5:22) et « Chaque bol est tourné à la main » (1:06) sont les plus fortes.",
+        "Trois extraits de 30 s : 1:02 à 1:32 (tournage), 2:28 à 2:58 (émaux), 5:18 à 5:48 (collection)."
+      ]
+    }
+  },
+  "zip": {
+    "name": "lancement-printemps-livrables.zip",
+    "size": "31,8 Mo",
+    "type": "Archive ZIP · 16 fichiers",
+    "extractedTo": "Documents › lancement-printemps-livrables",
+    "extractingFile": "02-photos/brutes/DSCF40",
+    "tree": [
+      {
+        "name": "01-identite",
+        "kids": [
+          {
+            "name": "logo-atelier-morel.svg",
+            "kb": 24
+          },
+          {
+            "name": "charte-couleurs.pdf",
+            "kb": 1840
+          },
+          {
+            "name": "typographies.txt",
+            "kb": 1,
+            "text": "Titres : Geist 500, −0,02 em\nTexte : Geist 400, 13/20\nChiffres : Geist Mono\n\nNe pas utiliser de graisse inférieure à 400."
+          }
+        ]
+      },
+      {
+        "name": "02-photos",
+        "kids": [
+          {
+            "name": "vitrine-matin.png",
+            "kb": 4310,
+            "img": "ceramique"
+          },
+          {
+            "name": "atelier-tour.png",
+            "kb": 3980,
+            "img": "atelier"
+          },
+          {
+            "name": "marche-croix-rousse.png",
+            "kb": 4120,
+            "img": "marche"
+          },
+          {
+            "name": "collection-lagon.png",
+            "kb": 3750,
+            "img": "lagon"
+          },
+          {
+            "name": "brutes",
+            "kids": [
+              {
+                "name": "DSCF4021.raf",
+                "kb": 9100
+              },
+              {
+                "name": "DSCF4022.raf",
+                "kb": 9240
+              },
+              {
+                "name": "DSCF4030.raf",
+                "kb": 8870
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "03-stand",
+        "kids": [
+          {
+            "name": "devis-studio-nord.pdf",
+            "kb": 312
+          },
+          {
+            "name": "plan-stand-v3.pdf",
+            "kb": 2480
+          },
+          {
+            "name": "liste-materiel.csv",
+            "kb": 3,
+            "text": "article;quantite;fournisseur\nÉtagère chêne clair 180 cm;6;Studio Nord\nSocle blanc 40 × 40;4;Studio Nord\nNappe lin naturel;2;Atelier Morel\nTerminal de paiement;1;Banque\nSacs kraft;300;Emballages Durand"
+          }
+        ]
+      },
+      {
+        "name": "04-communication",
+        "kids": [
+          {
+            "name": "calendrier-publications.xlsx",
+            "kb": 48
+          },
+          {
+            "name": "textes-instagram.md",
+            "kb": 6,
+            "text": "# Semaine du 24 mars\n\n## Lundi\nLa collection « Lagon » arrive. Quarante pièces, pas une identique.\n\n## Jeudi\nDans l’atelier, chaque bol prend douze minutes de tour. Et une nuit de cuisson.\n\n## Samedi\nRetrouvez-nous au marché de la Croix-Rousse, de 8 h à 13 h."
+          }
+        ]
+      },
+      {
+        "name": "LISEZMOI.txt",
+        "kb": 2,
+        "text": "Livrables du lancement printemps — Atelier Morel\nPréparé par Camille Laurent, le 14 mars 2026.\n\n01 : identité visuelle\n02 : photos retouchées et fichiers bruts\n03 : stand Studio Nord\n04 : calendrier et textes de communication\n\nQuestions : camille@ateliermorel.fr"
+      }
+    ],
+    "ask": {
+      "sugg": [
+        "Que contient cette archive ?",
+        "Y a-t-il des fichiers en double ?",
+        "Résume le devis du stand"
+      ],
+      "answers": [
+        "Quatre dossiers de livrables pour le lancement printemps : identité, photos, stand et communication, plus un LISEZMOI.",
+        "Pas de doublon exact. Les trois fichiers .raf sont les originaux des photos retouchées : ils pèsent 26 Mo à eux seuls.",
+        "Devis Studio Nord : 9 800 € HT, montage inclus, livraison la veille de l’ouverture, six étagères en chêne clair."
+      ]
+    }
   }
- }
 }

@@ -38,6 +38,7 @@ for (const j of jobs) {
   await page.screenshot({ path: appPng });
   const ref = path.join(SHOTS, designOf(j));
   if (!fs.existsSync(ref)) { report.push({ name, ref: path.basename(ref), status: "no-design-shot" }); continue; }
+  fs.copyFileSync(ref, path.join(OUT, `${name}.design.png`));
   const a = PNG.sync.read(fs.readFileSync(appPng)); const b = PNG.sync.read(fs.readFileSync(ref));
   if (a.width !== b.width || a.height !== b.height) { report.push({ name, status: "size-mismatch" }); continue; }
   const diff = new PNG({ width: a.width, height: a.height });
@@ -48,6 +49,6 @@ for (const j of jobs) {
 }
 await browser.close();
 fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify(report, null, 2));
-const rows = report.map((r) => `<tr><td>${r.name}</td><td>${r.diffPct ?? r.status}</td><td><img src="${r.name}.app.png"></td><td>${r.ref ? `<img src="file://${SHOTS}/${r.ref}">` : ""}</td><td>${r.diffPct !== undefined ? `<img src="${r.name}.diff.png">` : ""}</td></tr>`).join("\n");
+const rows = report.map((r) => `<tr><td>${r.name}</td><td>${r.diffPct ?? r.status}</td><td><img src="${r.name}.app.png"></td><td>${r.ref ? `<img src="${r.name}.design.png">` : ""}</td><td>${r.diffPct !== undefined ? `<img src="${r.name}.diff.png">` : ""}</td></tr>`).join("\n");
 fs.writeFileSync(path.join(OUT, "index.html"), `<!doctype html><meta charset=utf-8><style>img{width:420px}td{vertical-align:top;font:12px system-ui}</style><table><tr><th>state</th><th>diff %</th><th>app</th><th>design</th><th>diff</th></tr>${rows}</table>`);
 console.log(`compared ${report.length}; mean diff ${(report.filter((r) => r.diffPct !== undefined).reduce((s, r) => s + r.diffPct, 0) / Math.max(1, report.filter((r) => r.diffPct !== undefined).length)).toFixed(2)}%`);

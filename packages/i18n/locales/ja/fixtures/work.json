@@ -1,0 +1,941 @@
+{
+  "main": {
+    "name": "Nova"
+  },
+  "filterBots": [
+    "Margaux",
+    "Inès",
+    "Iris",
+    "Max",
+    "Zoé"
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "t": "7日間返信のない見積もりをフォローアップ",
+      "bot": "Nova",
+      "col": "doing",
+      "meta": "ステップ 4/7",
+      "prog": 57
+    },
+    {
+      "id": "2",
+      "t": "Studio Nordの顧客情報を更新",
+      "bot": "Margaux",
+      "col": "doing",
+      "meta": "30件中12件",
+      "prog": 40
+    },
+    {
+      "id": "3",
+      "t": "請求に関するチケット #4182 に回答",
+      "bot": "Inès",
+      "col": "doing",
+      "meta": "3分前",
+      "prog": 80
+    },
+    {
+      "id": "4",
+      "t": "15時の打ち合わせの議題を準備",
+      "bot": "Iris",
+      "col": "todo",
+      "meta": "今日 14:30"
+    },
+    {
+      "id": "5",
+      "t": "セラミックサプライヤー3社を比較",
+      "bot": "Paul",
+      "col": "todo",
+      "meta": "月曜日"
+    },
+    {
+      "id": "6",
+      "t": "Atelier Morelの請求書1,240ユーロを支払う",
+      "bot": "Max",
+      "col": "review",
+      "meta": "承認待ち"
+    },
+    {
+      "id": "7",
+      "t": "4月14日のローンチ告知を公開",
+      "bot": "Zoé",
+      "col": "review",
+      "meta": "ドラフト準備完了"
+    },
+    {
+      "id": "8",
+      "t": "9月分の経費報告書を提出",
+      "bot": "Léo",
+      "col": "done",
+      "meta": "昨日 18:12"
+    },
+    {
+      "id": "9",
+      "t": "朝の受信箱を整理",
+      "bot": "Hugo",
+      "col": "done",
+      "meta": "08:14"
+    }
+  ],
+  "computer": {
+    "menu": [
+      "ブラウザ",
+      "ファイル",
+      "表示"
+    ],
+    "url": "crm.studionord.fr/devis?statut=sans-reponse",
+    "nav": [
+      "ホーム",
+      "連絡先",
+      "見積もり",
+      "請求書",
+      "レポート"
+    ],
+    "navActive": 2,
+    "heading": "返信のない見積もり · 5",
+    "rows": [
+      [
+        "Atelier Morel",
+        "見積もり #2291",
+        "12日"
+      ],
+      [
+        "Studio Nord",
+        "見積もり #2287",
+        "9日"
+      ],
+      [
+        "Céramiques Vidal",
+        "見積もり #2279",
+        "8日"
+      ],
+      [
+        "Maison Arnaud",
+        "見積もり #2275",
+        "7日"
+      ],
+      [
+        "Boulangerie Roux",
+        "見積もり #2270",
+        "3日"
+      ]
+    ]
+  },
+  "task": {
+    "title": "未返信の見積もりをフォローアップ",
+    "site": "crm.studionord.fr",
+    "statusDoing": "CRMを閲覧中",
+    "user": "7日以上返信のない見積もりすべてにフォローアップしてください。親しみやすいトーンで、送信前に最初の1件を見せてください。",
+    "bot1": "了解しました。まずCRMで見積もり一覧を確認し、最初のフォローアップを準備します。",
+    "bot2": "返信のない見積もりを5件見つけました。最も古いAtelier Morel宛(12日経過)のフォローアップです。",
+    "ev1": {
+      "b": "CRMを開きました",
+      "t": "crm.studionord.fr",
+      "when": "10:38"
+    },
+    "ev2": {
+      "b": "ルーティンを作成しました",
+      "t": "「見積もりフォローアップ」毎週月曜8:00",
+      "when": "10:41"
+    },
+    "steps": [
+      "ブリーフと追跡ファイルを確認",
+      "Studio NordのCRMを開く",
+      "7日以上返信のない見積もりを絞り込む",
+      "Atelier Morel宛のフォローアップを作成",
+      "残り4件のフォローアップを作成",
+      "7日後の確認をスケジュール"
+    ],
+    "mail": {
+      "header": "メール・見積もり#2291のフォローアップ",
+      "to": "Julien Morel · julien@ateliermorel.fr",
+      "subject": "9月18日付のリノベーション見積もりについて",
+      "body": [
+        "Julienさん、こんにちは。",
+        "9月18日にお送りした見積もり#2291についてご連絡いたします。ご確認いただけましたでしょうか？5月のご予定に合わせて調整することも可能です。",
+        "よろしくお願いいたします。\nCamille Laurent"
+      ],
+      "toastTo": "宛先: Julien Morel",
+      "sentAt": "10:42"
+    },
+    "cred": {
+      "header": "認証情報が必要・サプライヤーポータル",
+      "text": "ventes.ateliermorel.frのポータルで見積もりの状況を確認するにはログインが必要です。{name}はお客様のパスワードを一度も見ません：1回使用したらすぐに忘れます。",
+      "login": "camille@studionord.fr",
+      "skip": "この見積もりをスキップ"
+    },
+    "recap": {
+      "badge": "2分52秒で完了",
+      "stats": [
+        [
+          "5",
+          "件の見積もりフォローアップ"
+        ],
+        [
+          "1",
+          "ルーティン作成"
+        ],
+        [
+          "7日",
+          "後に確認"
+        ]
+      ],
+      "files": [
+        [
+          "mail",
+          "5件のフォローアップを送信",
+          "Atelier Morel、Studio Nordなど他3件"
+        ],
+        [
+          "file",
+          "Quote-tracking-October.xlsx",
+          "スプレッドシート・10:44更新"
+        ],
+        [
+          "calendar",
+          "「見積もり確認」リマインダー",
+          "10月13日(月) 9:00"
+        ]
+      ]
+    },
+    "fail": {
+      "title": "CRMへの接続が切れました",
+      "text": "サイトから「503」が3回連続で返されました。",
+      "bot": "CRMに接続できなくなりました。残り4件のフォローアップは下書きとして保存されています。今すぐ、または15分後に再試行できます。"
+    }
+  },
+  "routines": [
+    {
+      "id": "sort",
+      "t": "朝の整理",
+      "bot": "Nova",
+      "trig": "毎日8:00",
+      "next": "明日",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "skip",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "quotes",
+      "t": "見積もりフォローアップ",
+      "bot": "Nova",
+      "trig": "毎週月曜8:00",
+      "next": "月曜日",
+      "nextSub": "08:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "crm",
+      "t": "CRM更新",
+      "bot": "Margaux",
+      "trig": "平日18:00",
+      "next": "今日",
+      "nextSub": "18:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "ticket",
+      "t": "チケット一次対応",
+      "bot": "Inès",
+      "trig": "新規チケット発生時",
+      "ev": true,
+      "next": "イベント発生時",
+      "nextSub": "前回: 10:31",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    },
+    {
+      "id": "pr",
+      "t": "PRオープン概要",
+      "bot": "Sam",
+      "trig": "PRオープン時",
+      "ev": true,
+      "next": "イベント発生時",
+      "nextSub": "前回: 昨日",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "skip",
+        "ok"
+      ],
+      "on": false
+    },
+    {
+      "id": "watch",
+      "t": "サプライヤー監視",
+      "bot": "Paul",
+      "trig": "30分ごと",
+      "next": "12分後",
+      "nextSub": "11:00",
+      "runs": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ],
+      "on": true
+    }
+  ],
+  "history": [
+    [
+      "今日 10:31",
+      "チケット一次対応",
+      "Inès",
+      "ok",
+      "4秒"
+    ],
+    [
+      "今日 10:30",
+      "サプライヤー監視",
+      "Paul",
+      "ok",
+      "38秒"
+    ],
+    [
+      "今日 08:00",
+      "朝の整理",
+      "Nova",
+      "ok",
+      "1分12秒"
+    ],
+    [
+      "昨日 18:00",
+      "CRM更新",
+      "Margaux",
+      "ok",
+      "2分40秒"
+    ],
+    [
+      "月曜日 08:00",
+      "見積もりフォローアップ",
+      "Nova",
+      "ok",
+      "2分52秒"
+    ]
+  ],
+  "failRoutine": "crm",
+  "failNextSub": "18:00に失敗",
+  "failHist": [
+    "昨日 18:00",
+    "CRM更新",
+    "Margaux",
+    "err",
+    "接続が拒否されました"
+  ],
+  "failBanner": {
+    "title": "「CRM更新」が失敗しました",
+    "text": "MargauxはCRMに昨日18:00にサインインできませんでした。CRMを再接続してから、再実行してください。"
+  },
+  "edit": {
+    "name": "見積もりフォローアップ",
+    "instr": "7日以上返信のない見積もりにフレンドリーな口調でフォローアップしてください。送信前に最初の1件を見せてください。",
+    "eventName": "チケットの初回対応",
+    "eventInstr": "新しいチケットが来るたびに緊急度で分類し、テンプレート回答を提案し、顧客が不満そうなら知らせてください。",
+    "eventBot": "Inès",
+    "bots": [
+      "Margaux",
+      "Inès",
+      "Paul"
+    ],
+    "tz": "パリ時間",
+    "sources": {
+      "ticket": "チケット・「カスタマーサポート」キュー",
+      "mail": "メール・camille@studionord.fr",
+      "pr": "cortex-webリポジトリ"
+    },
+    "eventRate": "過去7日間で1日あたり約14回",
+    "testSteps": [
+      "直近3件のチケットを読む",
+      "緊急度で分類する",
+      "テンプレート回答を作成する",
+      "要約を準備する"
+    ],
+    "testOkTitle": "テストは12秒で成功しました。",
+    "testOkText": "3件のチケットを分類（緊急1件）、3件の回答を提案、送信はしていません。"
+  },
+  "inbox": [
+    {
+      "id": 1,
+      "bot": "Sam",
+      "t": "サプライヤーポータルの認証情報が必要です",
+      "d": "ventes.ateliermorel.frのポータルが今朝からアクセスを拒否しています。サインインしないと、3件のチケットがブロックされたままになります。",
+      "when": "8分前",
+      "urg": "now",
+      "act": "サインイン",
+      "to": "work-task:blocked"
+    },
+    {
+      "id": 2,
+      "bot": "Max",
+      "t": "Atelier Morelの請求書1,240ユーロの支払い",
+      "d": "明日が期限です。金額は9月22日に署名された見積もり#2291と一致しています。",
+      "when": "20分前",
+      "urg": "now",
+      "act": "確認",
+      "to": "approvals:detail"
+    },
+    {
+      "id": 3,
+      "bot": "Nova",
+      "t": "初回フォローアップの送信準備が完了",
+      "d": "「Julienさん、こんにちは。見積もり#2291についてフォローアップです…」",
+      "when": "34分前",
+      "urg": "today",
+      "act": "読む",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 4,
+      "bot": "Zoé",
+      "t": "4月14日の告知にはどのビジュアルを使いますか？",
+      "d": "2つの選択肢があります。プレビューではBのクリック数が18％多かったです。",
+      "when": "1時間前",
+      "urg": "today",
+      "act": "選択",
+      "to": "approvals:list"
+    },
+    {
+      "id": 5,
+      "bot": "Léo",
+      "t": "カテゴリ未設定のレシートが2件",
+      "d": "9月24日のタクシー（€32.40）とStudio Nordでのランチ（€86）。",
+      "when": "昨日",
+      "urg": "later",
+      "act": "分類する",
+      "to": "work-task:approval"
+    },
+    {
+      "id": 6,
+      "bot": "Paul",
+      "t": "注目：取引先が価格を12%引き下げ",
+      "d": "Céramiques Vidalが11月から新料金を発表。",
+      "when": "昨日",
+      "urg": "later",
+      "act": "読む",
+      "to": "activity"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "mail",
+      "bot": "Nova",
+      "icon": "mail",
+      "kind": "Send an email",
+      "t": "Julien Morelへのフォローアップ",
+      "d": "「こんにちは Julien、9月18日にお送りした見積書 #2291 について確認のご連絡です…」",
+      "when": "34分前"
+    },
+    {
+      "id": "pay",
+      "bot": "Max",
+      "icon": "key",
+      "kind": "Pay an invoice",
+      "t": "Atelier Morelの請求書・€1,240",
+      "d": "Studio Nordの事業用口座からの振込、期限は10月2日（金）。",
+      "when": "20分前"
+    },
+    {
+      "id": "post",
+      "bot": "Zoé",
+      "icon": "share",
+      "kind": "Publish a post",
+      "t": "4月14日ローンチ告知",
+      "d": "「Studio Nordに春がやってきます：4月14日にお会いしましょう…」・ビジュアルB・LinkedInとInstagram",
+      "when": "1時間前"
+    }
+  ],
+  "payment": {
+    "bot": "Max",
+    "amount": "1,240.00",
+    "kv": [
+      [
+        "支払先",
+        "Atelier Morel"
+      ],
+      [
+        "IBAN",
+        "FR76 •••• •••• 4821"
+      ],
+      [
+        "引き落とし口座",
+        "Studio Nord・事業用口座"
+      ],
+      [
+        "期限",
+        "10月2日（金）"
+      ],
+      [
+        "参照番号",
+        "請求書 F-2026-118"
+      ]
+    ],
+    "check": "金額は9月22日に署名された見積書 #2291 と一致しています。",
+    "alwaysRule": "MaxによるAtelier Morelへの€1,500までの支払いを常に許可する",
+    "why": "現在のルール：「支払い — 確認する」。金額に関わらず、すべての振込があなたの承認を通ります。",
+    "okTitle": "支払いが承認されました",
+    "okText": "MaxがAtelier Morelへ€1,240の振込を送信中です。受領書は受信箱に届きます。",
+    "noTitle": "支払いが拒否されました",
+    "noText": "Maxはこの請求書の支払いを行わず、Julien Morelに支払い保留中であることを伝えました。",
+    "cancelTransfer": "振込を取り消す（残り4分52秒）",
+    "invoice": {
+      "vendor": "ATELIER MOREL",
+      "ref": "F-2026-118",
+      "address": "12 rue des Tanneurs, 69001 Lyon",
+      "lines": [
+        [
+          "工房リノベーション・ロット1",
+          "980.00"
+        ],
+        [
+          "陶器用資材",
+          "160.00"
+        ],
+        [
+          "出張費",
+          "100.00"
+        ]
+      ],
+      "totalLabel": "税込合計"
+    }
+  },
+  "activity": [
+    [
+      "今日",
+      [
+        {
+          "bot": "Nova",
+          "icon": "mail",
+          "type": "email",
+          "b": "送信済み",
+          "t": " Julien Morelへのフォローアップを",
+          "when": "10:42"
+        },
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "ルーチンを作成",
+          "t": " 「見積フォローアップ」",
+          "when": "10:41"
+        },
+        {
+          "bot": "Nova",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "開きました",
+          "t": " crm.studionord.fr",
+          "when": "10:38"
+        },
+        {
+          "bot": "Inès",
+          "icon": "check-circle",
+          "type": "tickets",
+          "b": "解決済み",
+          "t": " チケット #4179「二重請求」",
+          "when": "10:31"
+        },
+        {
+          "bot": "Sam",
+          "icon": "alert-triangle",
+          "type": "errors",
+          "b": "ブロック中",
+          "t": ":サプライヤーポータルへのアクセスが拒否されました",
+          "when": "10:12"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "edit",
+          "type": "crm",
+          "b": "更新",
+          "t": " Studio Nordの顧客レコード12件",
+          "when": "09:50"
+        },
+        {
+          "bot": "Hugo",
+          "icon": "mail",
+          "type": "email",
+          "b": "振り分け",
+          "t": " メール23件、見積依頼2件を検出",
+          "when": "08:14"
+        }
+      ]
+    ],
+    [
+      "昨日",
+      [
+        {
+          "bot": "Max",
+          "icon": "file",
+          "type": "documents",
+          "b": "作成",
+          "t": " 10月分の給与明細",
+          "when": "18:30"
+        },
+        {
+          "bot": "Margaux",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "実行",
+          "t": " 「CRM更新」",
+          "when": "18:00"
+        },
+        {
+          "bot": "Léo",
+          "icon": "check-circle",
+          "type": "documents",
+          "b": "整理",
+          "t": " 9月分の経費報告14件",
+          "when": "17:12"
+        },
+        {
+          "bot": "Zoé",
+          "icon": "image",
+          "type": "documents",
+          "b": "提案",
+          "t": " 4月14日の発表用ビジュアル2点",
+          "when": "15:02"
+        }
+      ]
+    ],
+    [
+      "9月28日(月)",
+      [
+        {
+          "bot": "Nova",
+          "icon": "clock-loop",
+          "type": "routines",
+          "b": "実行",
+          "t": " 「見積フォローアップ」:フォローアップ4件",
+          "when": "08:00"
+        },
+        {
+          "bot": "Paul",
+          "icon": "globe",
+          "type": "browsing",
+          "b": "確認",
+          "t": " 発表38件、ウォッチ対象として5件を保持",
+          "when": "08:00"
+        }
+      ]
+    ]
+  ],
+  "activityBots": [
+    "Margaux",
+    "Inès",
+    "Sam",
+    "Hugo",
+    "Max",
+    "Léo",
+    "Zoé",
+    "Paul"
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "kind": "bot",
+      "who": "Sam",
+      "t": " がブロックされています:サプライヤーポータルの認証情報が必要です",
+      "when": "8分",
+      "to": [
+        "work-task",
+        "blocked"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "mention",
+      "who": "Julien Mercier",
+      "initials": "JM",
+      "t": " が「4月14日ローンチ計画」であなたにメンションしました",
+      "when": "15分",
+      "to": [
+        "chat"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "bot",
+      "who": "Max",
+      "t": " が€1,240の支払い承認を依頼しています",
+      "when": "20分",
+      "to": [
+        "approvals",
+        "detail"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "bot",
+      "who": "Nova",
+      "t": " が「未回答見積のフォローアップ」を完了しました",
+      "when": "34分",
+      "to": [
+        "work-task",
+        "done"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "mention",
+      "who": "Inès Benali",
+      "initials": "IB",
+      "t": " がQ2ローンチ予算にコメントしました",
+      "when": "1時間前",
+      "to": [
+        "file-xlsx"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "bot",
+      "who": "Margaux",
+      "t": " が「CRM更新」ルーティンを実行しました",
+      "when": "昨日",
+      "to": [
+        "automations"
+      ]
+    }
+  ],
+  "readIds": [
+    5,
+    6
+  ],
+  "connectors": [
+    {
+      "id": "mail",
+      "mono": "Me",
+      "t": "メール",
+      "d": "メールの読み取り、整理、下書きの作成",
+      "st": "on",
+      "perms": [
+        [
+          "mail",
+          "メールを読む",
+          "件名、本文、添付ファイル"
+        ],
+        [
+          "edit",
+          "下書きを作成",
+          "承認なしでは送信されません"
+        ],
+        [
+          "user",
+          "連絡先を見る",
+          "名前とアドレス"
+        ]
+      ]
+    },
+    {
+      "id": "cal",
+      "mono": "Ag",
+      "t": "カレンダー",
+      "d": "空き時間の提案、会議の準備",
+      "st": "on",
+      "perms": [
+        [
+          "calendar",
+          "予定を見る",
+          "タイトル、時間、参加者"
+        ],
+        [
+          "edit",
+          "招待を作成",
+          "承認が必要です"
+        ]
+      ]
+    },
+    {
+      "id": "drive",
+      "mono": "Dr",
+      "t": "ドライブ",
+      "d": "共有ドキュメントの読み取りと整理",
+      "st": "re",
+      "perms": [
+        [
+          "folder",
+          "共有フォルダを見る",
+          "春のローンチ、Studio Nord"
+        ],
+        [
+          "file",
+          "ドキュメントを作成",
+          "「Bots」フォルダ内"
+        ]
+      ]
+    },
+    {
+      "id": "crm",
+      "mono": "CR",
+      "t": "CRM",
+      "d": "連絡先、見積もり、フォローアップの更新",
+      "st": "err",
+      "perms": [
+        [
+          "user",
+          "レコードの読み取りと編集",
+          "連絡先、企業、見積もり"
+        ],
+        [
+          "history",
+          "会話履歴を見る",
+          "過去12ヶ月分"
+        ]
+      ]
+    },
+    {
+      "id": "tk",
+      "mono": "Tk",
+      "t": "チケット",
+      "d": "顧客対応の整理と返信",
+      "st": "on",
+      "perms": [
+        [
+          "mentions",
+          "チケットを読む",
+          "「カスタマーサポート」キュー"
+        ],
+        [
+          "edit",
+          "顧客に返信",
+          "承認が必要です"
+        ]
+      ]
+    },
+    {
+      "id": "payroll",
+      "mono": "Pa",
+      "t": "給与計算",
+      "d": "給与明細と振込の準備",
+      "st": "off",
+      "perms": [
+        [
+          "user",
+          "従業員情報を見る",
+          "氏名、契約内容、給与"
+        ],
+        [
+          "file",
+          "給与明細を生成",
+          "承認待ちの下書き"
+        ],
+        [
+          "key",
+          "振込を準備",
+          "常にあなたの承認が必要です"
+        ]
+      ]
+    },
+    {
+      "id": "acct",
+      "mono": "Cp",
+      "t": "会計",
+      "d": "請求書と経費を照合",
+      "st": "off",
+      "perms": [
+        [
+          "file",
+          "請求書を読む",
+          "購入と売上"
+        ],
+        [
+          "check-circle",
+          "経費を分類",
+          "経費報告書"
+        ]
+      ]
+    },
+    {
+      "id": "chat",
+      "mono": "Ch",
+      "t": "チームチャット",
+      "d": "依頼を受け取り、スレッドで返信",
+      "st": "off",
+      "perms": [
+        [
+          "mentions",
+          "あなたがメンションされたスレッドを読む",
+          "公開チャンネル"
+        ],
+        [
+          "edit",
+          "あなたに代わって返信",
+          "あなたの承認が必要です"
+        ]
+      ]
+    },
+    {
+      "id": "git",
+      "mono": "Gi",
+      "t": "コードリポジトリ",
+      "d": "PRを要約し、レビューを追跡",
+      "st": "off",
+      "perms": [
+        [
+          "pull-request",
+          "PRとレビューを読む",
+          "cortex-web, cortex-ios"
+        ],
+        [
+          "mentions",
+          "コメントする",
+          "あなたの承認が必要です"
+        ]
+      ]
+    }
+  ],
+  "connError": {
+    "banner": "CRM接続が切断されました",
+    "bannerText": "Margauxと{name}は昨日18:00以降、見積りを更新できていません。",
+    "detail": "アクセストークンは9月30日18:00に期限切れになりました（エラー401）。同期済みのデータは保持されています。",
+    "affected": [
+      [
+        "Margaux",
+        "CRM更新 · 1件失敗"
+      ],
+      [
+        "Nova",
+        "見積りフォローアップ · 待機中"
+      ]
+    ]
+  },
+  "connOk": "あなたのBotがすぐに使用できます。Paulが定期タスクを提案しています：「毎月25日に給与計算を準備する」。"
+}

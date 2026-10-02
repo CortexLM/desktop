@@ -1,0 +1,89 @@
+{
+  "user": {
+    "initials": "CL"
+  },
+  "bot": {
+    "name": "Nova",
+    "doing": "メールを整理中"
+  },
+  "projects": [
+    {
+      "name": "春のローンチ",
+      "to": "project",
+      "chats": [
+        {
+          "title": "4月14日ローンチ計画",
+          "to": "chat",
+          "active": true
+        },
+        {
+          "title": "顧客向けメールシーケンス",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "プレビューのフィードバック",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "もっと見る",
+          "to": "project",
+          "dim": true
+        }
+      ]
+    },
+    {
+      "name": "Studio Nord",
+      "meta": "3件のタスク",
+      "status": "yellow",
+      "to": "project",
+      "chats": []
+    }
+  ],
+  "repos": [
+    {
+      "name": "cortex-web",
+      "tasks": [
+        {
+          "title": "請求書のページネーションを修正",
+          "status": "blue",
+          "to": "code-session"
+        },
+        {
+          "title": "サインインをパスキーに移行",
+          "meta": "+214 −37",
+          "to": "code-diff"
+        },
+        {
+          "title": "CSVエクスポートを追加",
+          "status": "green",
+          "to": "code-pr"
+        }
+      ]
+    },
+    {
+      "name": "cortex-ios",
+      "tasks": [
+        {
+          "title": "復帰時のクラッシュを修正",
+          "status": "red",
+          "to": "code-terminal"
+        }
+      ]
+    }
+  ],
+  "envs": [
+    {
+      "name": "Cloud · ubuntu-24",
+      "icon": "cpu",
+      "meta": "準備完了",
+      "status": "green"
+    },
+    {
+      "name": "Local MacBook Pro",
+      "icon": "terminal",
+      "meta": "オフライン"
+    }
+  ]
+}

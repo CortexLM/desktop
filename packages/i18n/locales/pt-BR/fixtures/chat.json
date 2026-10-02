@@ -1,0 +1,642 @@
+{
+  "bot": "Nova",
+  "sources": [
+    {
+      "m": "SH",
+      "c": "blue",
+      "site": "salon-habitat.fr",
+      "t": "Tarifas para expositores em 2026: estandes equipados e nus",
+      "d": "Espaço equipado sobe para €420 sem imposto por m², montagem incluída acima de 24 m².",
+      "date": "12 de março de 2026"
+    },
+    {
+      "m": "JA",
+      "c": "green",
+      "site": "journal-artisans.fr",
+      "t": "Quanto custa realmente um estande de feira?",
+      "d": "Reserve de 15% a 25% do orçamento para iluminação e mobiliário, itens que muitas vezes faltam nos orçamentos.",
+      "date": "4 de fevereiro de 2026"
+    },
+    {
+      "m": "OC",
+      "c": "yellow",
+      "site": "observatoire-ceramique.fr",
+      "t": "Barômetro do artesanato 2026",
+      "d": "As feiras continuam sendo o principal canal de aquisição para 61% dos ateliês.",
+      "date": "20 de janeiro de 2026"
+    },
+    {
+      "m": "SN",
+      "c": "red",
+      "site": "studionord.fr",
+      "t": "Studio Nord — design de estandes",
+      "d": "Design e montagem de estandes personalizados, com entrega garantida 3 dias antes.",
+      "date": "2026"
+    },
+    {
+      "m": "IN",
+      "c": "blue",
+      "site": "insee.fr",
+      "t": "Artesanato de qualidade: números-chave de 2025",
+      "d": "38.000 empresas e €1,6 bilhão em receita.",
+      "date": "9 de dezembro de 2025"
+    },
+    {
+      "m": "AM",
+      "c": "green",
+      "site": "ateliermorel.fr",
+      "t": "Atelier Morel — ficha técnica de estande modular",
+      "d": "Estrutura em alumínio, iluminação LED integrada, montagem em 6 horas.",
+      "date": "2026"
+    },
+    {
+      "m": "EP",
+      "c": "yellow",
+      "site": "expoplus.fr",
+      "t": "Expo Plus — termos e condições de locação",
+      "d": "Entrega no dia anterior à abertura, seguro opcional.",
+      "date": "2025"
+    },
+    {
+      "m": "CM",
+      "c": "red",
+      "site": "cma-france.fr",
+      "t": "Subsídios regionais para participação em feiras",
+      "d": "Até 50% dos custos do estande cobertos para ateliês com menos de 10 funcionários.",
+      "date": "3 de março de 2026"
+    },
+    {
+      "m": "PD",
+      "c": "blue",
+      "site": "paris-design-week.fr",
+      "t": "Calendário 2026 de feiras de decoração",
+      "d": "Oito grandes feiras entre janeiro e setembro em Paris.",
+      "date": "15 de janeiro de 2026"
+    },
+    {
+      "m": "LM",
+      "c": "green",
+      "site": "lemag-deco.fr",
+      "t": "Expondo por pela primeira vez: 9 erros a evitar",
+      "d": "Reserve com antecedência, verifique a iluminação, mantenha estoque de reserva.",
+      "date": "28 de fevereiro de 2026"
+    },
+    {
+      "m": "BF",
+      "c": "yellow",
+      "site": "bpifrance-creation.fr",
+      "t": "Financiando sua presença em uma feira",
+      "d": "Empréstimos de honra e seguro-prospecção para feiras internacionais.",
+      "date": "2025"
+    },
+    {
+      "m": "RC",
+      "c": "red",
+      "site": "revue-ceramique.fr",
+      "t": "Ceramistas voltam às grandes feiras",
+      "d": "Visitantes profissionais cresceram 12% em 2025.",
+      "date": "6 de novembro de 2025"
+    },
+    {
+      "m": "LO",
+      "c": "blue",
+      "site": "lyon-objets.fr",
+      "t": "Feira de artesãos de Lyon: retrospectiva de 2025",
+      "d": "212 expositores e 41.000 visitantes em três dias.",
+      "date": "2 de outubro de 2025"
+    },
+    {
+      "m": "AT",
+      "c": "green",
+      "site": "atelier-tarifs.fr",
+      "t": "Comparação de orçamentos de design de stand",
+      "d": "Preço mediano observado: €610 sem imposto por m², tudo incluído.",
+      "date": "18 de março de 2026"
+    }
+  ],
+  "home": {
+    "suggestions": [
+      [
+        "bot",
+        "Toda segunda-feira, resuma as notícias de IA que merecem minha atenção"
+      ],
+      [
+        "documents",
+        "Resuma as últimas atualizações na pasta de lançamento da Primavera"
+      ]
+    ]
+  },
+  "chat": {
+    "title": "Plano de lançamento de 14 de abril",
+    "q": "Prepare um plano de lançamento para 14 de abril, com marcos e responsáveis.",
+    "reply": [
+      "Aqui está uma proposta de plano para o lançamento de 14 de abril, elaborada a partir do briefing e do feedback da pré-visualização.",
+      "Semana 1 — teaser: três posts e uma sequência de e-mails para a lista de espera.",
+      "Semana 2 — lançamento: demonstração ao vivo na terça-feira às 18h, seguida de abertura de contas em lotes de 500."
+    ],
+    "ack": "Anotado. Estou adicionando isso ao plano e avisando a Léa, que é responsável pelos e-mails.",
+    "h": "Marcos e responsáveis",
+    "file": "planning.csv",
+    "csv": "date,milestone,owner\n2026-03-31,Social teasing,Inès\n2026-04-07,Email sequence,Léa\n2026-04-14,Live demo,Hugo"
+  },
+  "states": {
+    "title": "Orçamentos de stand · feira de setembro",
+    "ack": "Anotado. Estou adicionando isso à comparação e avisando a Léa, que acompanha o orçamento da feira.",
+    "prev": {
+      "user": "Aqui estão os três orçamentos que recebemos para o stand.",
+      "files": [
+        [
+          "quote-atelier-morel.pdf",
+          "PDF · 3 páginas"
+        ],
+        [
+          "quote-studio-nord.pdf",
+          "PDF · 2 páginas"
+        ],
+        [
+          "quote-expo-plus.pdf",
+          "PDF · 4 páginas"
+        ]
+      ],
+      "bot": "Recebi, já li os três. Você quer uma comparação detalhada ou prefere ir direto para uma recomendação?"
+    },
+    "q": "Compare os três orçamentos para o stand da feira de setembro e recomende um.",
+    "answer": "Após comparar, recomendo o orçamento da Atelier Morel: é o mais caro dos três (€18.400 sem imposto), mas o único que inclui montagem, iluminação e seguro.\nA Studio Nord oferece €15.900 sem imposto, sem iluminação: adicionando €2.100 de aluguel de spots, a diferença cai para €400.\nO orçamento da Expo Plus (€13.200 sem imposto) ainda é o mais barato, mas a entrega está prevista para o dia anterior à abertura: muito apertado para montar o stand com calma.",
+    "reason": [
+      "Ler os três orçamentos e listar o que cada um inclui",
+      "Trazer os preços para o mesmo escopo (montagem, iluminação, seguro)",
+      "Verificar as datas de entrega em relação a 11 de setembro",
+      "Pesar o risco de atraso contra a diferença de preço"
+    ],
+    "budget": {
+      "q": "Qual é o orçamento total da feira, incluindo viagem?",
+      "steps": [
+        "Somar o stand, o transporte das peças e a hospedagem",
+        "Aplicar o desconto de 8% negociado com a Studio Nord"
+      ],
+      "a": "O orçamento total chega a €24.900 sem imposto, incluindo €4.300 de viagem para três pessoas."
+    },
+    "market": "Esses orçamentos estão de acordo com os preços de mercado?",
+    "queries": [
+      "preço médio stand feira de decoração 2026",
+      "orçamento design de stand com iluminação incluída",
+      "prazos de entrega de stand feira em Paris"
+    ],
+    "cited": [
+      "Sim, estão de acordo com o mercado. Para um stand equipado, o espaço custa em torno de €420 sem imposto por m² em 2026",
+      " e a iluminação costuma representar de 15 a 25% do orçamento sem aparecer nos orçamentos",
+      "Para seus 36 m², o orçamento do Atelier Morel (€511 por m²) fica abaixo da mediana observada de €610, tudo incluído",
+      "A Studio Nord também garante entrega três dias antes da abertura",
+      "Observação: a câmara de comércio pode cobrir até 50% dos custos do estande para uma empresa com menos de 10 funcionários"
+    ],
+    "rich": {
+      "q": "Me dê um resumo completo, com uma tabela e o retorno sobre o investimento.",
+      "title": "Resumo dos três orçamentos",
+      "intro": "As três propostas cobrem um estande de 36 m² para a feira de 11 a 15 de setembro. Elas diferem principalmente no que incluem:",
+      "items": [
+        [
+          "Atelier Morel",
+          "tudo incluído: montagem, iluminação LED, seguro."
+        ],
+        [
+          "Studio Nord",
+          "estrutura personalizada, iluminação alugada separadamente."
+        ],
+        [
+          "Expo Plus",
+          "o mais barato, mas entregue um dia antes da abertura."
+        ]
+      ],
+      "h": {
+        "table": "Comparação",
+        "calc": "Cálculo",
+        "roi": "Retorno sobre o investimento"
+      },
+      "tableLabel": "Comparação de orçamentos",
+      "head": [
+        "Fornecedor",
+        "Preço sem impostos",
+        "Extras",
+        "Total",
+        "Entrega"
+      ],
+      "rows": [
+        [
+          "Atelier Morel",
+          "€18,400",
+          "—",
+          "€18,400",
+          "8 de set."
+        ],
+        [
+          "Studio Nord",
+          "€15,900",
+          "€2,100",
+          "€18,000",
+          "8 de set."
+        ],
+        [
+          "Expo Plus",
+          "€13,200",
+          "€3,400",
+          "€16,600",
+          "10 de set."
+        ]
+      ],
+      "file": "comparison.js",
+      "code": "const quotes = [\n  { name: \"Atelier Morel\", net: 18400, extras: 0 },\n  { name: \"Studio Nord\", net: 15900, extras: 2100 },\n  { name: \"Expo Plus\", net: 13200, extras: 3400 },\n];\nconst total = (q) => q.net + q.extras;\nquotes.sort((a, b) => total(a) - total(b));",
+      "mathLabel": "ROI é igual à receita esperada menos o custo, dividido pelo custo",
+      "math": {
+        "roi": "ROI",
+        "rev": "Receita",
+        "sub": "feira",
+        "c": "C",
+        "num": "52,000 − 18,400",
+        "den": "18,400",
+        "res": "1.83"
+      },
+      "outro": "Com €52.000 de pedidos esperados, cada euro investido no estande traria de volta 1,83."
+    },
+    "tool": {
+      "file": "atelier-morel-catalog.pdf",
+      "meta": "PDF · 18 páginas · 6,2 MB",
+      "q": "Resuma como os preços mudaram neste catálogo.",
+      "extracted": "46 itens e 3 tabelas extraídos",
+      "answer": "O catálogo lista 46 itens. Os preços subiram 6% em média em relação a 2025, principalmente nas bandejas grandes (página 12)."
+    },
+    "files": {
+      "pdf": [
+        "quote-studio-nord-v2.pdf",
+        "PDF · 1,8 MB"
+      ],
+      "img": [
+        "stand-mockup.png",
+        "Imagem · 2.400 × 1.600"
+      ],
+      "up": [
+        "hall-B-plan.pdf",
+        "PDF · 4,1 MB"
+      ],
+      "err": [
+        "stand-video-2025.mov",
+        "Muito grande · 412 MB de 100 MB"
+      ]
+    },
+    "edit": {
+      "v1": [
+        "Compare os orçamentos.",
+        "Compare os três orçamentos, mantendo apenas os que incluem montagem."
+      ],
+      "a": "Apenas Atelier Morel e Studio Nord incluem montagem. Atelier Morel vence: iluminação e seguro estão incluídos, por €400 mais.",
+      "v2": [
+        "E se pegássemos um estande de 24 m² em vez de 36?"
+      ]
+    },
+    "regen": [
+      "Recomendo Atelier Morel: é o único orçamento com tudo incluído, e a diferença com Studio Nord é de apenas €400 quando se adiciona a iluminação.",
+      "Studio Nord é o melhor meio-termo: €18.000 incluindo iluminação, entrega garantida três dias antes e uma estrutura que pode ser reutilizada para a feira de Lyon.",
+      "Em resumo: Atelier Morel para tranquilidade, Studio Nord pelo preço, e evitar Expo Plus por conta da entrega na véspera."
+    ],
+    "limitTime": "18h40",
+    "long": {
+      "q": "Escreva um memorando de decisão completo sobre a escolha do fornecedor, para a diretoria.",
+      "title": "Memorando de decisão · fornecedor do estande",
+      "note": "Este ponto foi verificado com base nos orçamentos assináveis recebidos em 2 de junho; os valores não incluem impostos nem custos de deslocamento da equipe.",
+      "sections": [
+        [
+          "Contexto",
+          "A feira acontece de 11 a 15 de setembro, no pavilhão 5. O estande de 36 m² é um espaço de esquina, com dois lados abertos para o corredor principal."
+        ],
+        [
+          "Critérios",
+          "Preço total para o mesmo escopo, data de entrega, qualidade da iluminação, possibilidade de reaproveitar a estrutura e condições de cancelamento."
+        ],
+        [
+          "Atelier Morel",
+          "Orçamento all-inclusive de €18.400 sem impostos. Estrutura modular de alumínio, iluminação LED integrada, seguro e montagem em 6 horas por dois técnicos."
+        ],
+        [
+          "Studio Nord",
+          "€15.900 sem impostos, sem iluminação. Estrutura de madeira personalizada, muito bem acabada, mas não reaproveitável. Entrega garantida três dias antes da abertura."
+        ],
+        [
+          "Expo Plus",
+          "€13.200 sem impostos, iluminação e mobiliário opcionais por €3.400. Entrega prevista na noite de 10 de setembro, sem margem para atrasos."
+        ],
+        [
+          "Condições de cancelamento",
+          "A Atelier Morel reembolsa 80% até 30 dias antes. A Studio Nord cobra o design independentemente disso. A Expo Plus não reembolsa nada após a assinatura."
+        ],
+        [
+          "Riscos",
+          "O principal risco é logístico: uma entrega na véspera obriga a uma montagem noturna, com €1.200 de mão de obra extra."
+        ],
+        [
+          "Recomendação",
+          "Atelier Morel, para uma montagem tranquila e reaproveitamento da estrutura na feira de Lyon em fevereiro."
+        ],
+        [
+          "Próximos passos",
+          "Aprovar o orçamento até 15 de junho para garantir o sinal de 30%, depois enviar o plano do estande para o fornecedor."
+        ]
+      ]
+    },
+    "suggestions": [
+      [
+        "documentos",
+        "Comparar os orçamentos na pasta da feira de setembro"
+      ],
+      [
+        "pesquisa-web",
+        "Encontrar subsídios regionais para participar de feiras"
+      ],
+      [
+        "imagens",
+        "Imaginar três estilos para o estande da Atelier Morel"
+      ]
+    ]
+  },
+  "voice": {
+    "user": "Pode me lembrar o que falta aprovar para o estande antes de sexta-feira?",
+    "bot": "Faltam duas coisas: assinar o orçamento da Atelier Morel e enviar o plano do estande. Posso redigir o e-mail para a Camille, se quiser.",
+    "when": "4 min 12 s · hoje às 16h05",
+    "summary": [
+      "Faltam duas aprovações antes de sexta-feira: o orçamento da Atelier Morel e o plano do estande.",
+      "A Nova está redigindo um e-mail para Camille Laurent com o orçamento em anexo.",
+      "Lembrete adicionado: quinta-feira às 10h, verificar a entrega do estande."
+    ],
+    "transcriptDesc": "Adicionado ao chat Orçamentos do estande",
+    "interrupt": "Espera, adiciona também a fatura da transportadora."
+  },
+  "canvas": {
+    "doc": [
+      "Lyon, 3 de outubro de 2026 — Atelier Morel, a casa de cerâmica fundada em Limoges em 2014, abre sua primeira loja no dia 17 de outubro, na 12 rue Auguste-Comte.",
+      "Em 80 m², a loja reúne as coleções de louças, uma seleção de peças únicas e um ateliê aberto onde os visitantes podem observar os ceramistas trabalhando no torno todo sábado.",
+      "“Queríamos um lugar onde se pudesse tocar o material antes de comprá-lo”, diz Camille Laurent, diretora da marca. Uma promoção de abertura acontece de 17 a 19 de outubro.",
+      "Contato de imprensa: Inès Garnier — presse@ateliermorel.fr"
+    ],
+    "sel": "um ateliê aberto onde os visitantes podem observar os ceramistas trabalhando no torno todo sábado",
+    "sel2": "um ateliê com paredes de vidro onde qualquer pessoa pode observar os ceramistas trabalhando no torno, todo sábado das 10h às 13h",
+    "selBefore": "Em 80 m², a loja reúne as coleções de louças, uma seleção de peças únicas e ",
+    "title": "Comunicado de imprensa · Loja em Lyon",
+    "head": "Comunicado de imprensa · Atelier Morel em Lyon",
+    "file": "countdown.ts",
+    "code": "// Contagem regressiva até a abertura da loja\nconst OPENING = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function timeLeft(now = new Date()) {\n  const ms = Math.max(0, OPENING.getTime() - now.getTime());\n  const days = Math.floor(ms / 86_400_000);\n  const hours = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${days} d ${hours} h`;\n}\n\nconsole.log(timeLeft());",
+    "output": "13 d 21 h",
+    "docQ": "Escreva um comunicado de imprensa para a abertura da loja Atelier Morel em Lyon no dia 17 de outubro.",
+    "codeQ": "Escreva uma pequena função que mostre o tempo restante até a abertura.",
+    "docA": "Escrevi uma primeira versão no canvas. Selecione um trecho para me pedir uma alteração específica.",
+    "codeA": "Aqui está a função: ela retorna um texto como “13 d 21 h”. Você pode executá-la direto no canvas.",
+    "compareQ": "Mostre o que mudou desde a versão 2.",
+    "time": "14h32",
+    "versions": [
+      [
+        3,
+        "Atual · 14h32"
+      ],
+      [
+        2,
+        "Orçamento adicionado · 14h20"
+      ],
+      [
+        1,
+        "Primeiro rascunho · 14h12"
+      ]
+    ],
+    "h1": "Atelier Morel abre sua primeira loja em Lyon",
+    "cmp": {
+      "a": "Em 80 m², a loja reúne as coleções de louças",
+      "del": ", algumas peças vintage",
+      "ins": ", uma seleção de peças únicas",
+      "b": " e um ateliê aberto onde os visitantes podem observar os ceramistas trabalhando no torno todo sábado.",
+      "removed": "Uma promoção exclusiva está prevista para 16 de outubro."
+    }
+  },
+  "search": {
+    "q": "Feiras de decoração em Paris em 2026: datas e valores para expositores",
+    "emptyBody": "Não encontrei uma fonte recente com os valores para expositores em 2026. Os organizadores podem ainda não ter divulgado essas informações.",
+    "chips": [
+      "Incluir tarifas de 2025",
+      "Ampliar para toda a França",
+      "Buscar em inglês"
+    ],
+    "p1": "Oito grandes feiras de decoração acontecem em Paris em 2026, três entre janeiro e março e a maioria das outras em setembro",
+    "h": "Tarifas de expositores",
+    "items": [
+      "Estande equipado: cerca de €420 sem IVA por m², montagem incluída acima de 24 m²",
+      "Mediana observada tudo incluído: €610 sem IVA por m²",
+      "Até 50% cobertos por subsídios regionais para pequenos ateliês"
+    ],
+    "p2": "Para uma primeira feira, reserve antes do fim do primeiro trimestre: os espaços de esquina esgotam primeiro",
+    "related": [
+      "Quais feiras são indicadas para cerâmica artesanal?",
+      "Como consigo o subsídio regional para feiras?",
+      "Qual orçamento para um primeiro estande?"
+    ]
+  },
+  "deep": {
+    "q": "Faça uma pesquisa profunda sobre o mercado de cerâmica artesanal na França, para preparar a abertura em Lyon.",
+    "topic": "Mercado de cerâmica artesanal na França, 2023–2026",
+    "meta": "48 fontes · 7 min 40 s · 3 de outubro de 2026",
+    "plan": [
+      "Tamanho e crescimento do mercado de cerâmica artesanal na França (2023–2026)",
+      "Perfis de compradores: particulares, hotelaria, concept stores",
+      "Canais de venda: feiras, lojas, online",
+      "Preços médios por tipo de peça",
+      "Principais players e posicionamento do Atelier Morel"
+    ],
+    "toc": [
+      "Resumo",
+      "Tamanho do mercado",
+      "Compradores",
+      "Canais de venda",
+      "Preços",
+      "Concorrência",
+      "Recomendações"
+    ],
+    "body": [
+      "O mercado francês de cerâmica artesanal atingiu €410 milhões em 2025, com crescimento de 7% ao ano desde 2023. A demanda é impulsionada pela hotelaria e pelas concept stores.",
+      "Com 38.000 empresas de ofícios finos, a cerâmica representa quase 11% do setor; ateliês com menos de 5 pessoas formam a maior parte.",
+      "Particulares entre 30 e 50 anos continuam sendo os clientes principais, mas as compras profissionais crescem duas vezes mais rápido.",
+      "As feiras continuam sendo o primeiro canal de aquisição para 61% dos ateliês; as vendas online já superam 30% da receita das marcas estabelecidas.",
+      "Um prato artesanal médio é vendido por €38 e uma travessa grande por €120, com variação de 1 para 3 dependendo da reputação.",
+      "Cerca de dez casas moldam o segmento premium; o Atelier Morel se destaca com tiragens limitadas e prazos curtos.",
+      "Abrir a loja em Lyon com um ateliê visível, reforçar a presença em duas feiras e lançar uma oferta para a hotelaria."
+    ]
+  },
+  "image": {
+    "title": "Visuais do estande",
+    "prompt": "Estande de feira para o Atelier Morel: cerâmicas brancas em estantes de carvalho claro, luz suave, clima de ateliê.",
+    "refusedQ": "Fazer um pôster de estande com o logo oficial de uma grande marca de luxo e o rosto de uma atriz famosa.",
+    "alternatives": [
+      "Um pôster com o logo do Atelier Morel",
+      "Uma modelo fictícia em frente ao estande",
+      "Uma composição puramente tipográfica"
+    ],
+    "fileBase": "atelier-morel-stand",
+    "editAsk": "Substituir o vaso por uma pilha de pratos azuis"
+  },
+  "share": {
+    "url": "cortex.app/s/7f3a-k29q",
+    "team": "Equipe Studio Nord",
+    "teamSub": "Os 12 membros do workspace",
+    "title": "Plano de lançamento de 14 de abril",
+    "user": "Prepare um plano de lançamento para 14 de abril, com marcos e responsáveis.",
+    "bot": [
+      "Aqui está uma proposta de plano para o lançamento de 14 de abril, construída a partir do briefing e do feedback da pré-visualização.",
+      "Semana 1 — teaser: três posts e uma sequência de e-mails para a lista de espera."
+    ],
+    "org": "Studio Nord",
+    "previewUser": "Prepare um plano de lançamento para 14 de abril…",
+    "owner": "Camille Laurent",
+    "admin": "Hugo Martin, admin"
+  },
+  "temp": {
+    "q": "Me ajude a formular uma recusa educada para a cotação da Expo Plus, sem fechar a porta.",
+    "a": "Olá, obrigado pela proposta detalhada. Após comparar, escolhemos outra oferta para a feira de setembro, principalmente por causa do prazo de entrega. Ficaríamos felizes em consultá-los para nossos próximos eventos.",
+    "short": "Aqui está uma versão mais curta: “Obrigado pela cotação. Desta vez escolhemos outra oferta, mas ficaríamos felizes em manter contato.”"
+  },
+  "library": [
+    {
+      "kind": "projects",
+      "img": "aube",
+      "mono": "LP",
+      "title": "Lançamento de primavera",
+      "desc": "Plano, marcos e materiais para o lançamento de 14 de abril.",
+      "who": "Camille",
+      "when": "há 2 h"
+    },
+    {
+      "kind": "files",
+      "img": "lagon",
+      "mono": "SN",
+      "title": "Briefing Studio Nord",
+      "desc": "Objetivos, públicos e restrições para o redesign do site.",
+      "who": "Julien",
+      "when": "há 5 h"
+    },
+    {
+      "kind": "images",
+      "img": "crepuscule",
+      "mono": "VC",
+      "title": "Visuais da campanha",
+      "desc": "Doze variações para redes sociais e cartazes.",
+      "who": "Camille",
+      "when": "ontem"
+    },
+    {
+      "kind": "links",
+      "img": "prairie",
+      "mono": "IA",
+      "title": "Monitoramento de IA",
+      "desc": "Artigos e anúncios selecionados pela Nova esta semana.",
+      "who": "Nova",
+      "when": "segunda-feira"
+    },
+    {
+      "kind": "projects",
+      "img": "atelier",
+      "mono": "AM",
+      "title": "Atelier Morel",
+      "desc": "Orçamentos, conversas e cronograma do projeto de maio.",
+      "who": "Camille",
+      "when": "há 3 d"
+    },
+    {
+      "kind": "files",
+      "img": "marche",
+      "mono": "Q2",
+      "title": "Estudo de mercado do T2",
+      "desc": "Tabelas de comparação de vendas por canal.",
+      "who": "Inès",
+      "when": "há 4 d"
+    },
+    {
+      "kind": "images",
+      "img": "montagne",
+      "mono": "RM",
+      "title": "Busca de locações na montanha",
+      "desc": "Fotos de locações para a sessão de verão.",
+      "who": "Julien",
+      "when": "há 1 sem"
+    },
+    {
+      "kind": "links",
+      "img": "ceramique",
+      "mono": "FC",
+      "title": "Fornecedores de cerâmica",
+      "desc": "Contatos, preços e prazos dos ateliês selecionados.",
+      "who": "Camille",
+      "when": "há 2 sem"
+    }
+  ],
+  "history": [
+    {
+      "id": "1",
+      "title": "Plano de lançamento de 14 de abril",
+      "sub": "Marcos, responsáveis e sequência de e-mails",
+      "when": "14:32",
+      "group": "Hoje"
+    },
+    {
+      "id": "2",
+      "title": "Triagem de e-mails da manhã",
+      "sub": "Nova · 3 e-mails organizados, 2 para aprovar",
+      "when": "08:00",
+      "group": "Hoje",
+      "task": "ok"
+    },
+    {
+      "id": "3",
+      "title": "Comparar vendas de março e abril",
+      "sub": "Análise por canal em andamento",
+      "when": "11:05",
+      "group": "Hoje",
+      "task": "run"
+    },
+    {
+      "id": "4",
+      "title": "Responder ao orçamento do Atelier Morel",
+      "sub": "Rascunho pronto para revisão",
+      "when": "18:20",
+      "group": "Ontem"
+    },
+    {
+      "id": "5",
+      "title": "Resumo do briefing Studio Nord",
+      "sub": "Objetivos e restrições em cinco pontos",
+      "when": "15:47",
+      "group": "Ontem"
+    },
+    {
+      "id": "6",
+      "title": "Exportação de faturas de março",
+      "sub": "Falha: acesso à pasta negado",
+      "when": "09:12",
+      "group": "Ontem",
+      "task": "err"
+    },
+    {
+      "id": "7",
+      "title": "Ideias de legendas para o Instagram",
+      "sub": "Doze opções, tom caloroso",
+      "when": "quinta-feira",
+      "group": "Últimos 7 dias"
+    },
+    {
+      "id": "8",
+      "title": "Monitoramento de IA da semana",
+      "sub": "Nova · 5 anúncios mantidos de 38",
+      "when": "segunda-feira",
+      "group": "Últimos 7 dias",
+      "task": "ok"
+    },
+    {
+      "id": "9",
+      "title": "Traduzir a página de preços para o inglês",
+      "sub": "Revisado e aprovado",
+      "when": "Segunda-feira",
+      "group": "Últimos 7 dias"
+    }
+  ]
+}

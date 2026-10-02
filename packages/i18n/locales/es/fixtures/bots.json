@@ -1,0 +1,419 @@
+{
+  "main": {
+    "name": "Nova",
+    "doing": "ordenando tu correo"
+  },
+  "team": [
+    {
+      "cfg": {
+        "name": "Iris",
+        "shape": "drop",
+        "color": "#1E7BFF",
+        "eyes": "commas",
+        "mouth": "none",
+        "glasses": "redondas"
+      },
+      "role": "Asistente",
+      "state": "thinking",
+      "doing": "Preparando la reunión de las 15:00"
+    },
+    {
+      "cfg": {
+        "name": "Margaux",
+        "shape": "squircle",
+        "color": "#FF6A13",
+        "eyes": "ovals",
+        "mouth": "smile",
+        "hat": "cap"
+      },
+      "role": "Ventas",
+      "state": "working",
+      "doing": "Actualizando 12 registros del CRM"
+    },
+    {
+      "cfg": {
+        "name": "Sam",
+        "shape": "hexagon",
+        "color": "#12B8A0",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "bug"
+      },
+      "role": "Soporte",
+      "state": "blocked",
+      "doing": "Acceso denegado al portal de proveedores"
+    },
+    {
+      "cfg": {
+        "name": "Hugo",
+        "shape": "cloud",
+        "color": "#14B85A",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "mail"
+      },
+      "role": "Bandeja de entrada",
+      "state": "working",
+      "doing": "Ordenando 23 correos nuevos",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Léo",
+        "shape": "triangle",
+        "color": "#EE3A97",
+        "eyes": "dots",
+        "mouth": "none"
+      },
+      "role": "Gastos",
+      "state": "waiting",
+      "doing": "Esperando tu aprobación para 2 recibos",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Max",
+        "shape": "round",
+        "color": "#5F6B7E",
+        "eyes": "pixels",
+        "mouth": "none",
+        "glasses": "aviador"
+      },
+      "role": "Nómina",
+      "state": "done",
+      "doing": "Nóminas de octubre listas",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Zoé",
+        "shape": "pebble",
+        "color": "#F2263F",
+        "eyes": "ovals",
+        "mouth": "o",
+        "hat": "beanie"
+      },
+      "role": "Redes sociales",
+      "state": "idle",
+      "doing": "Esperando el visual de Julien",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Paul",
+        "shape": "pill",
+        "color": "#FFAA00",
+        "eyes": "dots",
+        "mouth": "none",
+        "hat": "headphones"
+      },
+      "role": "Vigilancia",
+      "state": "asleep",
+      "doing": "Pausado hasta el lunes a las 08:00",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Inès",
+        "shape": "drop",
+        "color": "#93603A",
+        "eyes": "dots",
+        "mouth": "smile",
+        "extra": "bufanda"
+      },
+      "role": "Tickets de clientes",
+      "state": "working",
+      "doing": "Respondiendo al ticket #4182",
+      "lead": "Sam"
+    }
+  ],
+  "page": {
+    "heroTip": "Ordenando 3 correos recibidos a las 9:12",
+    "hello": "Hola Camille",
+    "summary": "He gestionado 14 elementos desde esta mañana. Dos esperan tu decisión.",
+    "team": [
+      "Iris",
+      "Hugo",
+      "Léo",
+      "Sam"
+    ],
+    "feed": [
+      [
+        "mail",
+        "3 correos ordenados",
+        "Dos solicitudes de cotización por gestionar antes del jueves.",
+        "hace 12 min"
+      ],
+      [
+        "calendar",
+        "Reunión preparada",
+        "Reunión con Studio Nord a las 15:00: notas y agenda listas.",
+        "hace 40 min"
+      ],
+      [
+        "globe",
+        "Vigilancia de IA de esta semana",
+        "5 anuncios seleccionados de 38, resumen listo para leer.",
+        "lunes 08:00"
+      ]
+    ],
+    "approve": {
+      "t": "Responder a Atelier Morel",
+      "d": "Hola Julien, gracias por tu presupuesto y los plazos que compartiste",
+      "to": "To Julien Morel"
+    },
+    "routines": [
+      [
+        "a",
+        "Clasificación matutina",
+        "Todos los días a las 08:00",
+        true
+      ],
+      [
+        "b",
+        "Vigilancia IA",
+        "Todos los lunes a las 08:00",
+        true
+      ],
+      [
+        "c",
+        "Revisión semanal",
+        "Viernes a las 17:30",
+        false
+      ]
+    ],
+    "memory": [
+      "Prefiere respuestas breves, en francés",
+      "Trabajando en el lanzamiento del 14 de abril",
+      "Sin reuniones los miércoles"
+    ]
+  },
+  "roster": {
+    "templates": [
+      [
+        "Contable",
+        "Concilia facturas, extractos y gastos.",
+        "Contabilidad",
+        [
+          "Contabilidad",
+          "Correo"
+        ],
+        {
+          "name": "Compta",
+          "shape": "squircle",
+          "color": "#14B85A",
+          "eyes": "dots",
+          "mouth": "none",
+          "glasses": "square"
+        }
+      ],
+      [
+        "Reclutador",
+        "Clasifica candidaturas y programa entrevistas.",
+        "RR. HH.",
+        [
+          "Correo",
+          "Calendario"
+        ],
+        {
+          "name": "Recrut",
+          "shape": "round",
+          "color": "#8448FF",
+          "eyes": "ovals",
+          "mouth": "smile",
+          "extra": "bow-tie"
+        }
+      ],
+      [
+        "Community manager",
+        "Prepara y programa publicaciones.",
+        "Redes sociales",
+        [
+          "Drive"
+        ],
+        {
+          "name": "Social",
+          "shape": "pebble",
+          "color": "#EE3A97",
+          "eyes": "commas",
+          "mouth": "o",
+          "hat": "beanie"
+        }
+      ],
+      [
+        "Agente de soporte",
+        "Responde tickets simples y escala el resto.",
+        "Soporte",
+        [
+          "Tickets",
+          "CRM"
+        ],
+        {
+          "name": "Support",
+          "shape": "hexagon",
+          "color": "#1E7BFF",
+          "eyes": "dots",
+          "mouth": "none",
+          "hat": "headphones"
+        }
+      ],
+      [
+        "Analista",
+        "Crea los paneles de la semana.",
+        "Datos",
+        [
+          "Drive",
+          "CRM"
+        ],
+        {
+          "name": "Data",
+          "shape": "pill",
+          "color": "#FFAA00",
+          "eyes": "pixels",
+          "mouth": "none",
+          "glasses": "round"
+        }
+      ],
+      [
+        "Vigía",
+        "Monitorea competidores, precios y anuncios.",
+        "Vigilancia",
+        [
+          "Búsqueda web"
+        ],
+        {
+          "name": "Veille",
+          "shape": "triangle",
+          "color": "#12B8A0",
+          "eyes": "commas",
+          "mouth": "none",
+          "hat": "antenna"
+        }
+      ]
+    ],
+    "chiefDoing": "clasificando tu correo",
+    "more": "+ 40 más",
+    "moreSub": "12 de ellos inactivos"
+  },
+  "settings": {
+    "identity": "Jefe de gabinete · tono directo · creado el 2 de septiembre",
+    "channels": [
+      [
+        "Sl",
+        "Slack",
+        "#studio-nord · mensajes directos",
+        true
+      ],
+      [
+        "Te",
+        "Teams",
+        "Equipo de lanzamiento Spring",
+        false
+      ],
+      [
+        "SM",
+        "SMS",
+        "+33 6 •• •• •• 42 · solo urgente",
+        true
+      ]
+    ],
+    "log": [
+      [
+        "10:42",
+        "Envió el seguimiento a Julien Morel",
+        "mail"
+      ],
+      [
+        "10:41",
+        "Creó la rutina “Seguimiento de cotizaciones”",
+        "clock-loop"
+      ],
+      [
+        "10:38",
+        "Abrió crm.studionord.fr",
+        "globe"
+      ],
+      [
+        "08:14",
+        "Clasificó 23 correos",
+        "mail"
+      ]
+    ],
+    "rules": [
+      [
+        "mail",
+        "Enviar un correo",
+        "Email",
+        "ask"
+      ],
+      [
+        "calendar",
+        "Aceptar una invitación",
+        "Calendar",
+        "allow"
+      ],
+      [
+        "key",
+        "Realizar un pago",
+        "Payroll, Accounting",
+        "ask"
+      ],
+      [
+        "share",
+        "Publicar en redes sociales",
+        "Social media",
+        "ask"
+      ],
+      [
+        "trash",
+        "Eliminar un archivo",
+        "Drive",
+        "deny"
+      ],
+      [
+        "edit",
+        "Editar un registro del CRM",
+        "CRM",
+        "allow"
+      ],
+      [
+        "globe",
+        "Navegar por la web",
+        "Browser",
+        "allow"
+      ]
+    ],
+    "alwaysRules": [
+      [
+        "Pagar a Atelier Morel hasta 1.500 €",
+        "Agregada el 1 de octubre desde “Por aprobar”"
+      ],
+      [
+        "Responder a los correos de Studio Nord",
+        "Agregada el 18 de septiembre"
+      ]
+    ],
+    "memory": [
+      "Prefiere respuestas breves, en francés",
+      "Trabajando en el lanzamiento del 14 de abril",
+      "Sin reuniones los miércoles",
+      "Julien Morel es el contacto principal en Atelier Morel",
+      "Las cotizaciones se dan seguimiento después de 7 días"
+    ],
+    "usage": [
+      [
+        "1,284",
+        "acciones este mes"
+      ],
+      [
+        "€31.40",
+        "de un presupuesto de {budget} €"
+      ],
+      [
+        "47 h",
+        "de trabajo ahorrado (estimado)"
+      ]
+    ],
+    "spent": 31.4
+  }
+}

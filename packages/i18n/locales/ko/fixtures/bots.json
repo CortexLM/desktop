@@ -1,0 +1,419 @@
+{
+  "main": {
+    "name": "Nova",
+    "doing": "이메일 정리 중"
+  },
+  "team": [
+    {
+      "cfg": {
+        "name": "Iris",
+        "shape": "drop",
+        "color": "#1E7BFF",
+        "eyes": "commas",
+        "mouth": "none",
+        "glasses": "round"
+      },
+      "role": "어시스턴트",
+      "state": "thinking",
+      "doing": "오후 3시 싱크 준비 중"
+    },
+    {
+      "cfg": {
+        "name": "Margaux",
+        "shape": "squircle",
+        "color": "#FF6A13",
+        "eyes": "ovals",
+        "mouth": "smile",
+        "hat": "cap"
+      },
+      "role": "영업",
+      "state": "working",
+      "doing": "CRM 레코드 12개 업데이트 중"
+    },
+    {
+      "cfg": {
+        "name": "Sam",
+        "shape": "hexagon",
+        "color": "#12B8A0",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "bug"
+      },
+      "role": "지원",
+      "state": "blocked",
+      "doing": "공급업체 포털 접근이 거부됨"
+    },
+    {
+      "cfg": {
+        "name": "Hugo",
+        "shape": "cloud",
+        "color": "#14B85A",
+        "eyes": "commas",
+        "mouth": "none",
+        "symbol": "mail"
+      },
+      "role": "수신함",
+      "state": "working",
+      "doing": "새 이메일 23개 정리 중",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Léo",
+        "shape": "triangle",
+        "color": "#EE3A97",
+        "eyes": "dots",
+        "mouth": "none"
+      },
+      "role": "경비",
+      "state": "waiting",
+      "doing": "영수증 2건 승인 대기 중",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Max",
+        "shape": "round",
+        "color": "#5F6B7E",
+        "eyes": "pixels",
+        "mouth": "none",
+        "glasses": "aviator"
+      },
+      "role": "급여",
+      "state": "done",
+      "doing": "10월 급여명세서 준비 완료",
+      "lead": "Iris"
+    },
+    {
+      "cfg": {
+        "name": "Zoé",
+        "shape": "pebble",
+        "color": "#F2263F",
+        "eyes": "ovals",
+        "mouth": "o",
+        "hat": "beanie"
+      },
+      "role": "소셜 미디어",
+      "state": "idle",
+      "doing": "Julien의 비주얼 대기 중",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Paul",
+        "shape": "pill",
+        "color": "#FFAA00",
+        "eyes": "dots",
+        "mouth": "none",
+        "hat": "headphones"
+      },
+      "role": "감시",
+      "state": "asleep",
+      "doing": "월요일 오전 8시까지 일시 중지됨",
+      "lead": "Margaux"
+    },
+    {
+      "cfg": {
+        "name": "Inès",
+        "shape": "drop",
+        "color": "#93603A",
+        "eyes": "dots",
+        "mouth": "smile",
+        "extra": "scarf"
+      },
+      "role": "고객 티켓",
+      "state": "working",
+      "doing": "티켓 #4182 답변 중",
+      "lead": "Sam"
+    }
+  ],
+  "page": {
+    "heroTip": "9:12에 수신된 이메일 3개 정리 중",
+    "hello": "안녕하세요, Camille",
+    "summary": "오늘 아침부터 14건을 처리했습니다. 2건은 결정을 기다리고 있습니다.",
+    "team": [
+      "Iris",
+      "Hugo",
+      "Léo",
+      "Sam"
+    ],
+    "feed": [
+      [
+        "mail",
+        "이메일 3개 정리됨",
+        "목요일 전까지 처리할 견적 요청 2건.",
+        "12분 전"
+      ],
+      [
+        "calendar",
+        "회의 준비 완료",
+        "오후 3시 Studio Nord 싱크: 노트와 안건 준비 완료.",
+        "40분 전"
+      ],
+      [
+        "globe",
+        "이번 주 AI 동향",
+        "38건 중 5건 선별, 요약 준비 완료.",
+        "월요일 오전 8시"
+      ]
+    ],
+    "approve": {
+      "t": "Atelier Morel에게 답장",
+      "d": "Julien님, 안녕하세요. 견적과 공유해 주신 일정 감사합니다",
+      "to": "To Julien Morel"
+    },
+    "routines": [
+      [
+        "a",
+        "아침 정리",
+        "매일 08:00",
+        true
+      ],
+      [
+        "b",
+        "AI 감시",
+        "매주 월요일 08:00",
+        true
+      ],
+      [
+        "c",
+        "주간 검토",
+        "금요일 17:30",
+        false
+      ]
+    ],
+    "memory": [
+      "짧은 답변 선호, 프랑스어로",
+      "4월 14일 출시 작업 중",
+      "수요일은 회의 없음"
+    ]
+  },
+  "roster": {
+    "templates": [
+      [
+        "회계사",
+        "인보이스, 명세서, 지출을 대조합니다.",
+        "회계",
+        [
+          "회계",
+          "이메일"
+        ],
+        {
+          "name": "Compta",
+          "shape": "squircle",
+          "color": "#14B85A",
+          "eyes": "dots",
+          "mouth": "none",
+          "glasses": "square"
+        }
+      ],
+      [
+        "채용 담당자",
+        "지원서를 분류하고 면접을 예약합니다.",
+        "인사",
+        [
+          "이메일",
+          "캘린더"
+        ],
+        {
+          "name": "Recrut",
+          "shape": "round",
+          "color": "#8448FF",
+          "eyes": "ovals",
+          "mouth": "smile",
+          "extra": "bow-tie"
+        }
+      ],
+      [
+        "커뮤니티 매니저",
+        "게시물을 준비하고 예약합니다.",
+        "소셜 미디어",
+        [
+          "Drive"
+        ],
+        {
+          "name": "Social",
+          "shape": "pebble",
+          "color": "#EE3A97",
+          "eyes": "commas",
+          "mouth": "o",
+          "hat": "beanie"
+        }
+      ],
+      [
+        "지원 상담원",
+        "간단한 문의에 답하고 나머지는 상위로 전달합니다.",
+        "지원",
+        [
+          "티켓",
+          "CRM"
+        ],
+        {
+          "name": "Support",
+          "shape": "hexagon",
+          "color": "#1E7BFF",
+          "eyes": "dots",
+          "mouth": "none",
+          "hat": "headphones"
+        }
+      ],
+      [
+        "분석가",
+        "주간 대시보드를 작성합니다.",
+        "데이터",
+        [
+          "Drive",
+          "CRM"
+        ],
+        {
+          "name": "Data",
+          "shape": "pill",
+          "color": "#FFAA00",
+          "eyes": "pixels",
+          "mouth": "none",
+          "glasses": "round"
+        }
+      ],
+      [
+        "감시자",
+        "경쟁사, 가격, 공지를 모니터링합니다.",
+        "감시",
+        [
+          "웹 검색"
+        ],
+        {
+          "name": "Veille",
+          "shape": "triangle",
+          "color": "#12B8A0",
+          "eyes": "commas",
+          "mouth": "none",
+          "hat": "antenna"
+        }
+      ]
+    ],
+    "chiefDoing": "이메일 정리 중",
+    "more": "+ 40개 더",
+    "moreSub": "그중 12개 비활성"
+  },
+  "settings": {
+    "identity": "Chief of Staff · 직설적 어조 · 9월 2일 생성",
+    "channels": [
+      [
+        "Sl",
+        "Slack",
+        "#studio-nord · 다이렉트 메시지",
+        true
+      ],
+      [
+        "Te",
+        "Teams",
+        "Spring 출시 팀",
+        false
+      ],
+      [
+        "SM",
+        "SMS",
+        "+33 6 •• •• •• 42 · 긴급 시에만",
+        true
+      ]
+    ],
+    "log": [
+      [
+        "10:42",
+        "Julien Morel에게 후속 메일 발송",
+        "mail"
+      ],
+      [
+        "10:41",
+        "“견적 후속 조치” 루틴 생성",
+        "clock-loop"
+      ],
+      [
+        "10:38",
+        "crm.studionord.fr 열기",
+        "globe"
+      ],
+      [
+        "08:14",
+        "이메일 23건 정렬",
+        "mail"
+      ]
+    ],
+    "rules": [
+      [
+        "mail",
+        "이메일 보내기",
+        "이메일",
+        "ask"
+      ],
+      [
+        "calendar",
+        "초대 수락하기",
+        "캘린더",
+        "allow"
+      ],
+      [
+        "key",
+        "결제하기",
+        "급여, 회계",
+        "ask"
+      ],
+      [
+        "share",
+        "소셜 미디어에 게시하기",
+        "소셜 미디어",
+        "ask"
+      ],
+      [
+        "trash",
+        "파일 삭제하기",
+        "드라이브",
+        "deny"
+      ],
+      [
+        "edit",
+        "CRM 레코드 수정하기",
+        "CRM",
+        "allow"
+      ],
+      [
+        "globe",
+        "웹 탐색하기",
+        "브라우저",
+        "allow"
+      ]
+    ],
+    "alwaysRules": [
+      [
+        "Atelier Morel에 최대 1,500 €까지 결제",
+        "“승인 대기”에서 10월 1일 추가됨"
+      ],
+      [
+        "Studio Nord 이메일에 답장하기",
+        "9월 18일 추가됨"
+      ]
+    ],
+    "memory": [
+      "짧은 답변을 선호하며, 프랑스어로 작성",
+      "4월 14일 출시 작업 중",
+      "수요일에는 회의 없음",
+      "Julien Morel이 Atelier Morel의 주요 연락처임",
+      "견적은 7일 후에 후속 조치함"
+    ],
+    "usage": [
+      [
+        "1,284",
+        "이번 달 작업 수"
+      ],
+      [
+        "€31.40",
+        "{budget} € 예산 중"
+      ],
+      [
+        "47시간",
+        "절약된 작업 시간 (추정)"
+      ]
+    ],
+    "spent": 31.4
+  }
+}

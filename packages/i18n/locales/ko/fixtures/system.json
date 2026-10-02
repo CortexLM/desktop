@@ -1,0 +1,597 @@
+{
+  "bot": {
+    "name": "Nova",
+    "doing": "이메일을 정리해요",
+    "meta": "활성"
+  },
+  "user": {
+    "initials": "CL",
+    "name": "Camille Laurent",
+    "first": "Camille",
+    "last": "Laurent",
+    "email": "camille@studionord.fr",
+    "role": "아트 디렉터, Studio Nord",
+    "org": "Studio Nord"
+  },
+  "search": {
+    "hits": [
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "4월 14일 출시 계획",
+        "sub": "… 봄 출시 주요 일정은 4월 14일로 정해졌으며, 미리보기…",
+        "meta": "오늘",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "고객 이메일 시퀀스",
+        "sub": "출시 전 이메일 3통, 출시일 1통, D+7 후속 1통.",
+        "meta": "어제",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "Atelier Morel 견적 답변",
+        "sub": "검토 준비된 초안, 도자기 8% 할인.",
+        "meta": "월요일",
+        "to": "chat"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "봄 출시",
+        "sub": "채팅 12개 · 파일 18개 · Camille, Julien, Inès",
+        "meta": "2시간 전",
+        "to": "project",
+        "img": "aube"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "Studio Nord",
+        "sub": "웹사이트 리디자인 · 채팅 7개 · 파일 9개",
+        "meta": "어제",
+        "to": "project",
+        "img": "lagon"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Spring-launch-plan.pdf",
+        "sub": "PDF · 2.4 MB · 봄 출시에 포함",
+        "meta": "3시간 전",
+        "to": "file-pdf"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Q2 launch budget.xlsx",
+        "sub": "스프레드시트 · 312 KB · “Launch” 탭",
+        "meta": "화요일",
+        "to": "file-xlsx"
+      },
+      {
+        "kind": "files",
+        "icon": "image",
+        "title": "Spring poster visual.png",
+        "sub": "이미지 · 3,840 × 2,160",
+        "meta": "1주 전",
+        "to": "file-image"
+      },
+      {
+        "kind": "bots",
+        "icon": "bot",
+        "title": "Nova",
+        "sub": "매주 월요일 09:00에 출시 노트를 준비해요",
+        "meta": "활성",
+        "to": "bot"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "알림 · 작업 완료",
+        "sub": "긴 출시 작업이 끝나면 알려주세요",
+        "meta": "설정",
+        "to": "settings"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "메모리",
+        "sub": "Cortex가 대화 사이에 기억하는 당신에 대한 정보",
+        "meta": "설정",
+        "to": "memory"
+      }
+    ],
+    "recent": [
+      [
+        "봄 출시",
+        "2시간 전"
+      ],
+      [
+        "Atelier Morel 견적",
+        "어제"
+      ],
+      [
+        "Q2 예산",
+        "월요일"
+      ],
+      [
+        "Studio Nord 브리프",
+        "1주 전"
+      ]
+    ],
+    "opened": [
+      "봄 출시",
+      "Spring-launch-plan.pdf",
+      "Nova"
+    ],
+    "total": "1,248",
+    "q": {
+      "results": "출시",
+      "empty": "실로폰 송장",
+      "loading": "출시"
+    }
+  },
+  "cmd": {
+    "recents": [
+      {
+        "label": "4월 14일 출시 계획",
+        "icon": "compose",
+        "to": "chat",
+        "meta": "봄 출시"
+      },
+      {
+        "label": "봄 출시",
+        "icon": "folder",
+        "to": "project",
+        "meta": "프로젝트"
+      },
+      {
+        "label": "Q2 launch budget.xlsx",
+        "icon": "file",
+        "to": "file-xlsx",
+        "meta": "파일"
+      }
+    ],
+    "q": {
+      "filtered": "lau",
+      "none": "3D 프린트"
+    }
+  },
+  "projects": [
+    {
+      "name": "Spring launch",
+      "desc": "4월 14일 출시를 위한 계획, 마일스톤 및 자료.",
+      "img": "aube",
+      "icon": "rocket",
+      "color": "#FF6A13",
+      "members": [
+        "CL",
+        "JM",
+        "IB"
+      ],
+      "chats": 12,
+      "files": 18
+    },
+    {
+      "name": "Studio Nord",
+      "desc": "웹사이트 리디자인 및 새로운 브랜드 가이드라인.",
+      "img": "lagon",
+      "icon": "globe",
+      "color": "#1E7BFF",
+      "members": [
+        "CL",
+        "JM"
+      ],
+      "chats": 7,
+      "files": 9
+    },
+    {
+      "name": "Atelier Morel",
+      "desc": "견적, 이메일 및 5월 현장 일정.",
+      "img": "atelier",
+      "icon": "calendar",
+      "color": "#93603A",
+      "members": [
+        "CL"
+      ],
+      "chats": 4,
+      "files": 6
+    },
+    {
+      "name": "Q2 market study",
+      "desc": "채널별 매출 및 경쟁사 분석.",
+      "img": "marche",
+      "icon": "bolt",
+      "color": "#12B8A0",
+      "members": [
+        "IB",
+        "CL",
+        "TR",
+        "AM"
+      ],
+      "chats": 9,
+      "files": 23
+    },
+    {
+      "name": "Summer shoot",
+      "desc": "장소 섭외, 허가 및 촬영 일정.",
+      "img": "montagne",
+      "icon": "image",
+      "color": "#8448FF",
+      "members": [
+        "JM",
+        "CL"
+      ],
+      "chats": 3,
+      "files": 31
+    }
+  ],
+  "newProject": {
+    "name": "Maison & Objet fair",
+    "instructions": "영어로, 전문적인 어조로 답변하세요. 비주얼은 Studio Nord 가이드라인을 따릅니다."
+  },
+  "project": {
+    "name": "Spring launch",
+    "desc": "4월 14일 출시를 위한 계획, 마일스톤 및 자료",
+    "color": "#FF6A13",
+    "icon": "rocket",
+    "members": [
+      "CL",
+      "JM",
+      "IB"
+    ],
+    "chats": 12,
+    "files": 18,
+    "fileList": [
+      [
+        "Spring-launch-plan.pdf",
+        "PDF · 2.4 MB",
+        "Camille · 3시간 전",
+        "file-pdf"
+      ],
+      [
+        "Q2 launch budget.xlsx",
+        "스프레드시트 · 312 KB",
+        "Inès · 화요일",
+        "file-xlsx"
+      ],
+      [
+        "Preview deck.pptx",
+        "프레젠테이션 · 8.1 MB",
+        "Julien · 월요일",
+        "file-pptx"
+      ],
+      [
+        "Press release.docx",
+        "문서 · 64 KB",
+        "Camille · 4일 전",
+        "file-docx"
+      ],
+      [
+        "Spring poster visual.png",
+        "이미지 · 3.2 MB",
+        "Julien · 1주 전",
+        "file-image"
+      ]
+    ],
+    "chatList": [
+      [
+        "4월 14일 출시 계획",
+        "오늘"
+      ],
+      [
+        "고객 이메일 시퀀스",
+        "어제"
+      ],
+      [
+        "프리뷰 피드백",
+        "월요일"
+      ],
+      [
+        "포스터용 사진 브리프",
+        "5일 전"
+      ]
+    ],
+    "people": [
+      [
+        "CL",
+        "Camille Laurent",
+        "camille@studionord.fr",
+        "소유자"
+      ],
+      [
+        "JM",
+        "Julien Mercier",
+        "julien@studionord.fr",
+        "편집자"
+      ],
+      [
+        "IB",
+        "Inès Benali",
+        "ines@studionord.fr",
+        "뷰어"
+      ]
+    ],
+    "instructions": "Studio Nord의 봄 출시를 지원하고 있습니다. 예정일은 4월 14일입니다.\n\n• 영어로, 따뜻하지만 정확하게 답변하세요.\n• 가격은 항상 유로로, 세금 포함 기준으로 표시하세요.\n• 날짜와 담당자는 Spring-launch-plan.pdf를 참고하세요.\n• 4월 9일 프리뷰와 일정이 겹치면 반드시 알려주세요.",
+    "invite": "thomas@studionord.fr",
+    "link": "cortex.app/p/spring-launch-7f3a",
+    "botDoing": "매주 월요일 09:00에 요약을 준비합니다"
+  },
+  "memory": {
+    "exportFile": "cortex-memory.json",
+    "items": [
+      {
+        "id": 1,
+        "theme": "Work",
+        "text": "Camille는 Studio Nord의 아트 디렉터로, 리옹에 있습니다.",
+        "src": "Learned March 3 · April 14 launch plan"
+      },
+      {
+        "id": 2,
+        "theme": "Work",
+        "text": "봄 출시는 4월 14일로 예정되어 있으며, 프리뷰는 9일입니다.",
+        "src": "Learned March 12 · Spring launch"
+      },
+      {
+        "id": 3,
+        "theme": "Work",
+        "text": "회의록은 짧은 목록 형태로 받는 것을 선호합니다.",
+        "src": "Learned February 20"
+      },
+      {
+        "id": 4,
+        "theme": "Preferences",
+        "text": "프랑스어로 작성하며, 가까운 연락처에는 이름만 사용합니다.",
+        "src": "Learned February 2"
+      },
+      {
+        "id": 5,
+        "theme": "Preferences",
+        "text": "가격은 항상 유로로, 세금 포함 기준으로 안내합니다.",
+        "src": "Learned March 14 · Q2 launch budget"
+      },
+      {
+        "id": 6,
+        "theme": "Contacts",
+        "text": "Julien Mercier는 영상 제작을, Inès Benali는 숫자(재무)를 담당합니다.",
+        "src": "Learned March 8"
+      },
+      {
+        "id": 7,
+        "theme": "Contacts",
+        "text": "Atelier Morel: 담당자는 Paul Morel, 견적은 30일 전에 승인 필요.",
+        "src": "Learned Monday · Reply to the Atelier Morel quote"
+      },
+      {
+        "id": 8,
+        "theme": "Personal",
+        "text": "수요일 오후에는 회의를 잡지 마세요.",
+        "src": "Learned March 1"
+      }
+    ]
+  },
+  "onboarding": {
+    "apps": [
+      [
+        "GM",
+        "이메일",
+        "메일을 읽고 답장을 작성합니다"
+      ],
+      [
+        "CA",
+        "캘린더",
+        "비어 있는 시간을 확인합니다"
+      ],
+      [
+        "DR",
+        "클라우드 저장소",
+        "문서를 찾습니다"
+      ],
+      [
+        "SL",
+        "팀 채팅",
+        "중요한 스레드를 요약합니다"
+      ]
+    ],
+    "connectors": 40
+  },
+  "login": {
+    "email": "camille@studionord.fr",
+    "good": "482915",
+    "bad": "482913"
+  },
+  "pricing": {
+    "card": "4970 1012 3456 7890",
+    "exp": "08 / 28"
+  },
+  "profile": {
+    "twofaSince": "1월 12일",
+    "passkeys": "MacBook Pro · iPhone",
+    "codes": [
+      "7KQ2-M9XA",
+      "P4TD-81LZ",
+      "W2RN-6CJE",
+      "B8YF-Q3HS",
+      "N5VE-27KD",
+      "H9LM-4XTP",
+      "C3ZB-J6WQ",
+      "R7GU-5NAY"
+    ],
+    "sessions": [
+      [
+        "system",
+        "MacBook Pro · Cortex 2.8",
+        "리옹, 프랑스",
+        "현재 활성",
+        true
+      ],
+      [
+        "globe",
+        "브라우저 · macOS",
+        "리옹, 프랑스",
+        "2시간 전",
+        false
+      ],
+      [
+        "smartphone",
+        "iPhone · Cortex 2.8",
+        "파리, 프랑스",
+        "어제",
+        false
+      ]
+    ],
+    "chats": 214,
+    "projects": 5,
+    "memories": 8,
+    "files": 18
+  },
+  "offline": {
+    "title": "4월 14일 출시 계획",
+    "lastSync": "14:32",
+    "user": "봄 출시 마일스톤을 설정해 줄 수 있나요?",
+    "bot": "4월 14일을 위해 제안된 마일스톤입니다: 9일 프리뷰, 10일 보도자료, 14일 09:00 판매 시작, D+7 고객 후속 조치.",
+    "queue": [
+      [
+        "compose",
+        "메시지 · 4월 14일 출시 계획",
+        "“4월 10일 보도 후속 조치 추가”"
+      ],
+      [
+        "paperclip",
+        "파일 · Q2 출시 예산 v3.xlsx",
+        "312 KB · 업로드 대기 중"
+      ],
+      [
+        "bot",
+        "Nova를 위한 작업",
+        "월요일 요약 준비"
+      ]
+    ]
+  },
+  "error": {
+    "ref": "7F3A-21C9",
+    "project": "Q2 시장 조사",
+    "owner": "Inès Benali",
+    "idle": "12시간 동안 비활성",
+    "start": "화요일 05:00",
+    "end": "화요일 06:30",
+    "paused": 2,
+    "back": "06:30"
+  },
+  "update": {
+    "version": "2.9",
+    "current": "2.8.4",
+    "size": 148,
+    "notes": [
+      [
+        "ok",
+        "신규",
+        "명령 팔레트 ⌘K: 하위 메뉴를 포함해 키보드로 Cortex의 모든 기능을 사용하세요."
+      ],
+      [
+        "ok",
+        "신규",
+        "공유 프로젝트: 팀을 초대하고 프로젝트에 Bot을 할당하세요."
+      ],
+      [
+        "run",
+        "개선",
+        "메모리: 각 메모리를 수정하거나 삭제하고, 클릭 한 번으로 내보내세요."
+      ],
+      [
+        "run",
+        "개선",
+        "Apple 실리콘 Mac에서 시작 속도 40% 향상."
+      ],
+      [
+        "wait",
+        "수정",
+        "50MB가 넘는 Excel 파일을 다시 열 수 있습니다."
+      ]
+    ]
+  },
+  "about": {
+    "version": "2.8.4",
+    "build": "2026.09.18",
+    "os": "macOS 15.4 · Apple M3",
+    "ref": "7F3A-21C9"
+  },
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "supported": true,
+      "modelCount": 12,
+      "hasKey": true,
+      "keyHint": "sk-ant-…4f2a",
+      "enabled": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "supported": true,
+      "modelCount": 34
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "supported": true,
+      "modelCount": 21
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "supported": true,
+      "modelCount": 18
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "supported": true,
+      "modelCount": 0
+    },
+    {
+      "id": "inception",
+      "name": "Inception",
+      "supported": false,
+      "modelCount": 2
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 3,
+      "output": 15
+    },
+    {
+      "id": "claude-opus-4-1",
+      "name": "Claude Opus 4.1",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 15,
+      "output": 75
+    },
+    {
+      "id": "claude-haiku-4-5",
+      "name": "Claude Haiku 4.5",
+      "reasoning": false,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 1,
+      "output": 5
+    }
+  ]
+}

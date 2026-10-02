@@ -1,0 +1,722 @@
+{
+  "home": {
+    "repos": [
+      "cortex-web",
+      "cortex-ios",
+      "cortex-api"
+    ],
+    "branches": [
+      "main",
+      "release/2.4",
+      "feat/passkeys"
+    ],
+    "envCloud": "Cloud · ubuntu-24",
+    "envLocal": "Local MacBook Pro",
+    "envCloudShort": "Cloud",
+    "envLocalShort": "Local",
+    "tasks": [
+      [
+        "請求書のページネーションを修正",
+        "cortex-web · 4分前",
+        "run"
+      ],
+      [
+        "サインインをパスキーに移行",
+        "cortex-web · +214 −37",
+        "wait"
+      ],
+      [
+        "CSVエクスポートを追加",
+        "cortex-web · マージ済み",
+        "ok"
+      ],
+      [
+        "復帰時のクラッシュを修正",
+        "cortex-ios · 失敗したテスト2件",
+        "err"
+      ]
+    ]
+  },
+  "session": {
+    "title": "請求書のページネーションを修正",
+    "prRef": "cortex-web #482",
+    "prompt": "請求書の2ページ目に1ページ目と同じ行が表示されています。修正してテストを追加してください。",
+    "log": [
+      [
+        "search",
+        "src/billing/invoices.ts を読み込み中"
+      ],
+      [
+        "terminal",
+        "pnpm test billing — 失敗2件"
+      ],
+      [
+        "edit",
+        "オフセットを修正(ページは1から始まる)"
+      ],
+      [
+        "edit",
+        "idを第2キーとした安定ソート"
+      ],
+      [
+        "check-circle",
+        "pnpm test billing — 48件成功"
+      ]
+    ],
+    "running": "テストを実行中…",
+    "answer": "オフセットがページ0から始まっていましたが、APIはページ1から受け取る仕様でした。また、同じ秒に作成された2件の請求書がページをまたいで入れ替わる可能性があったため、安定ソートも追加しました。",
+    "answerBold": "2ファイルを変更、48件のテストが成功しました。",
+    "file": "src/billing/invoices.ts",
+    "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+    "terminal": "$ pnpm test billing\n ✓ listInvoices › returns page 1 (12 ms)\n ✓ listInvoices › returns page 2 without duplicates (9 ms)\n ✓ listInvoices › stable sort on equal timestamps (7 ms)\n\nTests: 48 passed, 48 total\nTime: 3.42 s"
+  },
+  "tasks": {
+    "repos": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "list": [
+      {
+        "t": "請求書のページネーションを修正",
+        "repo": "cortex-web",
+        "br": "fix/invoice-pagination",
+        "st": "run",
+        "a": 3,
+        "d": 2,
+        "dur": "4分",
+        "env": "Cloud · ubuntu-24",
+        "when": "4分前"
+      },
+      {
+        "t": "請求書リストの表示速度を改善",
+        "repo": "cortex-web",
+        "br": "perf/invoice-list",
+        "st": "run",
+        "a": 0,
+        "d": 0,
+        "dur": "7分",
+        "env": "Cloud · ubuntu-24",
+        "when": "7分前",
+        "n": 4
+      },
+      {
+        "t": "サインインをパスキーに移行",
+        "repo": "cortex-web",
+        "br": "feat/passkeys",
+        "st": "review",
+        "a": 214,
+        "d": 37,
+        "dur": "18分",
+        "env": "Cloud · ubuntu-24",
+        "when": "1時間前"
+      },
+      {
+        "t": "CSVエクスポートを追加",
+        "repo": "cortex-web",
+        "br": "feat/export-csv",
+        "st": "merged",
+        "a": 96,
+        "d": 4,
+        "dur": "11分",
+        "env": "Cloud · ubuntu-24",
+        "when": "昨日"
+      },
+      {
+        "t": "決済Webhookのドキュメントを作成",
+        "repo": "cortex-api",
+        "br": "docs/webhooks",
+        "st": "review",
+        "a": 142,
+        "d": 8,
+        "dur": "6分",
+        "env": "Cloud · python-3.12",
+        "when": "2時間前"
+      },
+      {
+        "t": "/v1/exports にレート制限を追加",
+        "repo": "cortex-api",
+        "br": "feat/rate-limit",
+        "st": "merged",
+        "a": 61,
+        "d": 12,
+        "dur": "9分",
+        "env": "Cloud · python-3.12",
+        "when": "月曜日"
+      },
+      {
+        "t": "復帰時のクラッシュを修正",
+        "repo": "cortex-ios",
+        "br": "fix/crash-on-wake",
+        "st": "fail",
+        "a": 18,
+        "d": 5,
+        "dur": "14分",
+        "env": "Local MacBook Pro",
+        "when": "3時間前"
+      },
+      {
+        "t": "Swift 6 に移行",
+        "repo": "cortex-ios",
+        "br": "chore/swift-6",
+        "st": "archived",
+        "a": 402,
+        "d": 388,
+        "dur": "32分",
+        "env": "Local MacBook Pro",
+        "when": "9月12日"
+      }
+    ]
+  },
+  "attempts": {
+    "title": "請求書リストのレンダリングを高速化",
+    "repo": "cortex-web",
+    "branch": "perf/invoice-list",
+    "env": "Cloud · ubuntu-24 · 4 containers",
+    "recommendBody": "最速のレンダリング（p95 118ms）、全テスト通過。",
+    "durations": [
+      "6分12秒",
+      "7分40秒",
+      "9分05秒"
+    ],
+    "items": [
+      {
+        "done": 4,
+        "a": 38,
+        "d": 21,
+        "files": 3,
+        "tests": "212件中212件",
+        "p95": "118ms",
+        "note": "リストを仮想化：表示されている40行だけをレンダリング。",
+        "diff": [
+          "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+          "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+          "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+        ]
+      },
+      {
+        "done": 6,
+        "a": 24,
+        "d": 9,
+        "files": 2,
+        "tests": "212件中212件",
+        "p95": "164ms",
+        "note": "行をメモ化し、ソートをサーバー側に移動。",
+        "diff": [
+          "-export function InvoiceRow({ f }: Props) {",
+          "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+          "+  const total = useMemo(() => format(f.total), [f.total]);"
+        ]
+      },
+      {
+        "done": 9,
+        "fail": true,
+        "a": 71,
+        "d": 33,
+        "files": 5,
+        "tests": "212件中209件",
+        "p95": "—",
+        "note": "無限スクロールページネーション。戻る操作でe2eテスト3件が失敗。",
+        "diff": [
+          "-  const { data } = useInvoices(page);",
+          "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+          "+  useIntersection(sentinel, fetchNextPage);"
+        ]
+      },
+      {
+        "done": 13,
+        "a": 0,
+        "d": 0,
+        "files": 0,
+        "tests": "—",
+        "p95": "—",
+        "note": "レンダリングをプロファイリングし、テーブルをサブコンポーネントに分割。",
+        "diff": []
+      }
+    ]
+  },
+  "review": {
+    "title": "レビュー · cortex-web #479",
+    "prTitle": "APIで請求書リストをページネーション化",
+    "author": [
+      "HM",
+      "Hugo Martin"
+    ],
+    "branch": "hugo/pagination-api",
+    "base": "main",
+    "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+    "pageOld": "+  const page = Math.max(1, q.page);",
+    "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+    "test": "@@ -0,0 +1,5 @@\n+test(\"returns page 2 without duplicates\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+    "srcFile": "src/billing/invoices.ts",
+    "testFile": "tests/billing/invoices.test.ts",
+    "c1": "`q.page` はクエリ文字列から来ます。`?page=abc` の場合、`Math.max` は `NaN` を返し、Prisma には `skip: NaN` が渡されます：クエリが失敗して500エラーになります。",
+    "c2": "このソートには `(orgId, createdAt, id)` のインデックスが必要です。インデックスがないとテーブル全体をスキャンします：本番コピーで1.4秒計測。",
+    "c3": "同じ秒に作成された2件の請求書のケースを追加してください：これはまさに2番目のソートキーが修正する対象です。",
+    "commit": "3f2a9c1",
+    "commitBranch": "hugo/pagination-api",
+    "prRef": "cortex-web #479"
+  },
+  "diff": {
+    "title": "サインインをパスキーに移行",
+    "branch": "feat/passkeys",
+    "files": [
+      {
+        "path": "src/auth/passkeys.ts",
+        "st": "A",
+        "a": 128,
+        "d": 0,
+        "more": "さらに113行追加",
+        "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+      },
+      {
+        "path": "src/auth/session.ts",
+        "st": "M",
+        "a": 41,
+        "d": 22,
+        "hidden": true,
+        "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Invalid credentials\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Account not found\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Invalid credentials\");\n   return createSession(user.id);\n }"
+      },
+      {
+        "path": "src/auth/magic-link.ts",
+        "st": "D",
+        "a": 0,
+        "d": 6,
+        "src": "@@ -1,6 +0,0 @@\n-// Old magic-link sign-in, replaced by passkeys.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Your sign-in link\", linkFor(token));\n-  return token;\n-}"
+      },
+      {
+        "path": "src/routes/login.tsx",
+        "st": "M",
+        "a": 32,
+        "d": 9,
+        "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"Email\" name=\"email\" type=\"email\" />\n-      <Field label=\"Password\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Sign in</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Password\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continue with a passkey\" : \"Sign in\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Use a password\" : \"Use a passkey\"}\n+      </button>\n     </form>\n   );\n }"
+      },
+      {
+        "path": "tests/auth/passkeys.test.ts",
+        "st": "A",
+        "a": 13,
+        "d": 0,
+        "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"rejects an unknown key\", async () => {\n+    expect(await verifyPasskey(userWithoutKey, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepts a registered key and increments the counter\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+      }
+    ],
+    "hidden": [
+      [
+        "export type SignInInput = {",
+        "  email: string;",
+        "  password: string;",
+        "  remember?: boolean;",
+        "};",
+        "",
+        "export class AuthError extends Error {",
+        "  status = 401;",
+        "}",
+        "",
+        "// ログイン成功後に30日間のセッションを開始します。"
+      ]
+    ],
+    "tree": [
+      [
+        "src/auth",
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      [
+        "src/routes",
+        [
+          3
+        ]
+      ],
+      [
+        "tests/auth",
+        [
+          4
+        ]
+      ]
+    ],
+    "me": [
+      "CL",
+      "Camille Laurent"
+    ],
+    "comment": "これにより、このメールアドレスのアカウントが存在することがわかってしまいます。両方のケースで同じメッセージにしておきませんか?",
+    "reply": "了解です。両方のケースで「認証情報が無効です」に戻し、テストを追加します。",
+    "conflictFile": "src/auth/session.ts",
+    "conflictBody": "src/auth/session.ts で1件のコンフリクトが発生しています: あなたのタスク中に main でセッション期間が短縮されています。",
+    "ours": [
+      "const SESSION_TTL = 60 * 60 * 24 * 30;",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "theirs": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14日間、セキュリティチームの要望"
+    ],
+    "cortex": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14日間、セキュリティチームの要望",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "oursLabel": "feat/passkeys (あなたのブランチ)",
+    "baseBranch": "main"
+  },
+  "terminal": {
+    "title": "請求書のページネーションを修正",
+    "base": [
+      [
+        "cmd",
+        "pnpm install --frozen-lockfile"
+      ],
+      [
+        "dim",
+        "ロックファイルは最新です。解決処理はスキップされました"
+      ],
+      [
+        "dim",
+        "パッケージ: +1,284"
+      ],
+      [
+        "ok",
+        "6.8秒で完了"
+      ],
+      [
+        "cmd",
+        "pnpm lint"
+      ],
+      [
+        "ok",
+        "問題は0件"
+      ],
+      [
+        "cmd",
+        "pnpm test billing"
+      ]
+    ],
+    "run": [
+      [
+        "ok",
+        " ✓ listInvoices › ページ1を返す (12 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › 重複なしでページ2を返す (9 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › 同一タイムスタンプで安定ソートされる (7 ms)"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › セミコロンをエスケープする (4 ms)"
+      ],
+      [
+        "dim",
+        "テスト: 48件中48件成功 · 3.42秒"
+      ],
+      [
+        "ask",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "pnpm build"
+      ],
+      [
+        "dim",
+        "vite v6.2.0 本番用ビルド中…"
+      ],
+      [
+        "dim",
+        "✓ 1,412個のモジュールを変換しました"
+      ],
+      [
+        "dim",
+        "dist/assets/index-4f2a.js   412.8 kB │ gzip: 128.3 kB"
+      ],
+      [
+        "ok",
+        "✓ 8.91秒でビルド完了"
+      ]
+    ],
+    "fail": [
+      [
+        "ok",
+        " ✓ listInvoices › ページ1を返す (12 ms)"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › 重複なしでページ2を返す (14 ms)"
+      ],
+      [
+        "dim",
+        "     期待値: F-2026-0113 · 実際: F-2026-0101"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › 同一タイムスタンプでの安定ソート (8 ms)"
+      ],
+      [
+        "dim",
+        "     請求書 F-2026-0118 と F-2026-0119 がページを入れ替わる"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › セミコロンをエスケープする (4 ms)"
+      ],
+      [
+        "dim",
+        "テスト: 2件失敗、46件成功、合計48件 · 3.61秒"
+      ],
+      [
+        "err",
+        "コマンドがコード1で終了しました"
+      ]
+    ],
+    "build": "pnpm build",
+    "buildAlt": "pnpm build --outDir dist-next",
+    "user": "Camille Laurent",
+    "env": "Cloud · ubuntu-24",
+    "branch": "fix/invoice-pagination",
+    "network": "許可リスト",
+    "approvals": "破壊的コマンド",
+    "failSub": "オフセットが依然ページ0から始まっています。",
+    "doneSub": "48件のテストが成功 · 8.9秒でビルド完了",
+    "repo": "cortex-web",
+    "times": [
+      "09:41:02",
+      "09:41:11",
+      "09:41:20",
+      "09:41:29",
+      "09:41:38"
+    ]
+  },
+  "env": {
+    "envs": [
+      {
+        "name": "Cloud · ubuntu-24",
+        "ic": "cpu",
+        "image": "cortex/universal:24.04",
+        "stack": "Node 22 · pnpm 9 · Python 3.12",
+        "repos": "cortex-web, cortex-api",
+        "net": "許可リスト",
+        "cache": "1.2 GB · 2時間前",
+        "ready": true
+      },
+      {
+        "name": "Cloud · python-3.12",
+        "ic": "cpu",
+        "image": "cortex/python:3.12-slim",
+        "stack": "Python 3.12 · uv 0.5",
+        "repos": "cortex-api",
+        "net": "なし",
+        "cache": "340 MB · 昨日",
+        "ready": true
+      },
+      {
+        "name": "Local MacBook Pro",
+        "ic": "terminal",
+        "image": "macOS 15 · Xcode 17",
+        "stack": "Swift 6 · Node 22",
+        "repos": "cortex-ios",
+        "net": "フル",
+        "cache": "オフ",
+        "ready": false
+      }
+    ],
+    "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+    "boot": [
+      "イメージ cortex/universal:24.04 を取得中",
+      "イメージはキャッシュ済み · 1.8 GB",
+      "studio-nord/cortex-web (main) をクローン中",
+      "pnpmキャッシュを復元中 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "パッケージ: +1,284 · 11.2秒で完了",
+      "$ pnpm prisma generate",
+      "Prismaクライアントを生成しました (v6.4.1)",
+      "$ pnpm exec playwright install --with-deps chromium",
+      "Chromium 131をインストールしました",
+      "✓環境の準備完了 · シークレット3件を読み込み済み · ネットワーク: 許可リスト (3ドメイン)"
+    ],
+    "images": [
+      "cortex/universal:24.04",
+      "cortex/node:22",
+      "cortex/python:3.12-slim"
+    ],
+    "domains": [
+      "npm.studio-nord.fr",
+      "api.studio-nord.fr",
+      "files.pythonhosted.org"
+    ],
+    "secrets": [
+      [
+        "NPM_TOKEN",
+        "a91f",
+        "9月12日"
+      ],
+      [
+        "DATABASE_URL",
+        "5432",
+        "8月3日"
+      ],
+      [
+        "MONITORING_DSN",
+        "e07b",
+        "8月3日"
+      ]
+    ],
+    "stackHint": "Node 22、pnpm 9、Python 3.12、Playwrightがプリインストールされています。",
+    "cacheSub": "依存関係とビルド · 1.2 GB · 12時間後に期限切れ",
+    "cacheFreed": "1.2 GB解放済み",
+    "current": "クラウド · ubuntu-24",
+    "repo": "cortex-web · main",
+    "netSummary": "許可リスト · 3つのドメイン",
+    "secretsSummary": "3件読み込み済み",
+    "bootTime": "40秒",
+    "errLine": "スクリプトの4行目: pnpm install",
+    "errBody": "pnpmはプライベートレジストリを読み取れませんでした: NPM_TOKENトークンの期限が切れているようです。",
+    "domainPlaceholder": "add.a-domain.com",
+    "bootErr": [
+      "イメージ cortex/universal:24.04 を取得中",
+      "イメージキャッシュ済み · 1.8 GB",
+      "studio-nord/cortex-web (main) をクローン中",
+      "pnpmキャッシュを復元中 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: forbidden (403)",
+      "NPM_TOKENトークンの期限が切れているか、プライベートレジストリにアクセスできません。",
+      "!セットアップスクリプトがコード1で終了しました"
+    ]
+  },
+  "pr": {
+    "title": "請求書のページネーションを修正",
+    "ref": "cortex-web #482",
+    "desc": "## 問題\n請求書の2ページ目が1ページ目と同じ行を表示していました: オフセットが0から始まる一方、APIはページを1から数えています。\n\n## 変更内容\n- listInvoicesでオフセットをページ1から計算\n- idを第2キーとした安定ソート\n- 回帰テスト3件\n\n## チェック\n- pnpm test billing: 48件成功",
+    "reviewers": [
+      [
+        "HM",
+        "Hugo Martin"
+      ],
+      [
+        "LD",
+        "Léa Dubois"
+      ]
+    ],
+    "more": [
+      [
+        "NR",
+        "Nina Roux"
+      ],
+      [
+        "TB",
+        "Théo Bernard"
+      ]
+    ],
+    "branch": "fix/invoice-pagination",
+    "checks": [
+      [
+        "Lint",
+        "pnpm lint",
+        "12秒"
+      ],
+      [
+        "型チェック",
+        "tsc -b",
+        "24秒"
+      ],
+      [
+        "ユニットテスト",
+        "vitest · 48テスト",
+        "1分08秒"
+      ],
+      [
+        "E2Eテスト",
+        "playwright · 3ブラウザ",
+        "2分41秒"
+      ],
+      [
+        "プレビュー",
+        "プレビューデプロイ",
+        "48秒"
+      ]
+    ],
+    "ciLog": "✗ invoices › pagination › page 2 loads (webkit)\n  30,000 msのタイムアウトを超過\n  tests/e2e/invoices.spec.ts:42",
+    "sha": "9c41e07",
+    "user": "Camille Laurent",
+    "files": 2,
+    "a": 31,
+    "d": 2,
+    "reviewerHint": "AGENTS.mdからの提案: billing、Hugo Martinがレビュー済み。",
+    "e2eFail": "WebKitでe2eテストが1件失敗しています。修正できます。",
+    "approvedBy": "Hugo Martin"
+  },
+  "settings": {
+    "org": "Studio Nord",
+    "repos": [
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-web",
+        "s": "main · 2分前に同期",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-api",
+        "s": "main · 1時間前に同期",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-ios",
+        "s": "develop · 3時間前に同期",
+        "on": true
+      },
+      {
+        "o": "AM",
+        "r": "atelier-morel/site-vitrine",
+        "s": "main · 読み取り専用",
+        "on": false
+      }
+    ],
+    "avail": [
+      "studio-nord/design-tokens",
+      "studio-nord/infra"
+    ],
+    "agents": "# Cortex · cortex-web の指示\n\n## チェック\n- 各PRの前に pnpm lint と pnpm test を実行する。\n- prisma/migrations 内の既存のマイグレーションは編集しない。新しいものを作成する。\n\n## スタイル\n- 厳格な TypeScript、any は使用しない。\n- インターフェースの文言は英語、センテンスケースで記述する。\n\n## プルリクエスト\n- タイトルは現在形、70文字以内。\n- 課金に関わる変更には Hugo Martin をレビュアーに追加する。",
+    "repoNames": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "allow": [
+      "pnpm test",
+      "pnpm lint",
+      "git status",
+      "rm -rf dist"
+    ],
+    "fromTask": "rm -rf dist",
+    "usage": [
+      [
+        "cortex-web",
+        26,
+        268,
+        31
+      ],
+      [
+        "cortex-api",
+        9,
+        94,
+        6
+      ],
+      [
+        "cortex-ios",
+        6,
+        50,
+        3
+      ]
+    ],
+    "reset": "10月5日(月)にリセットされます。"
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "bot": {
+    "name": "Nova",
+    "doing": "正在整理你的邮件",
+    "meta": "在线"
+  },
+  "user": {
+    "initials": "CL",
+    "name": "Camille Laurent",
+    "first": "Camille",
+    "last": "Laurent",
+    "email": "camille@studionord.fr",
+    "role": "艺术总监，Studio Nord",
+    "org": "Studio Nord"
+  },
+  "search": {
+    "hits": [
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "4 月 14 日发布计划",
+        "sub": "……春季发布的各项里程碑定于 4 月 14 日，另有预览……",
+        "meta": "今天",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "客户邮件序列",
+        "sub": "发布前三封邮件，当天一封，第 7 天再跟进一封。",
+        "meta": "昨天",
+        "to": "chat"
+      },
+      {
+        "kind": "chats",
+        "icon": "compose",
+        "title": "回复 Atelier Morel 的报价",
+        "sub": "草稿已备好待审核，陶瓷器具 8% 折扣。",
+        "meta": "星期一",
+        "to": "chat"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "春季发布",
+        "sub": "12 个对话 · 18 个文件 · Camille、Julien、Inès",
+        "meta": "2 小时前",
+        "to": "project",
+        "img": "aube"
+      },
+      {
+        "kind": "projects",
+        "icon": "folder",
+        "title": "Studio Nord",
+        "sub": "网站重新设计 · 7 个对话 · 9 个文件",
+        "meta": "昨天",
+        "to": "project",
+        "img": "lagon"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Spring-launch-plan.pdf",
+        "sub": "PDF · 2.4 MB · 位于“春季发布”中",
+        "meta": "3 小时前",
+        "to": "file-pdf"
+      },
+      {
+        "kind": "files",
+        "icon": "file",
+        "title": "Q2 launch budget.xlsx",
+        "sub": "电子表格 · 312 KB · “Launch” 工作表",
+        "meta": "星期二",
+        "to": "file-xlsx"
+      },
+      {
+        "kind": "files",
+        "icon": "image",
+        "title": "Spring poster visual.png",
+        "sub": "图片 · 3,840 × 2,160",
+        "meta": "1 周前",
+        "to": "file-image"
+      },
+      {
+        "kind": "bots",
+        "icon": "bot",
+        "title": "Nova",
+        "sub": "每周一上午 09:00 准备发布说明",
+        "meta": "在线",
+        "to": "bot"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "通知 · 任务已完成",
+        "sub": "长时间的发布任务完成时通知我",
+        "meta": "设置",
+        "to": "settings"
+      },
+      {
+        "kind": "settings",
+        "icon": "settings",
+        "title": "记忆",
+        "sub": "Cortex 在不同对话间记住的关于你的信息",
+        "meta": "设置",
+        "to": "memory"
+      }
+    ],
+    "recent": [
+      [
+        "春季发布",
+        "2 小时前"
+      ],
+      [
+        "Atelier Morel 报价",
+        "昨天"
+      ],
+      [
+        "Q2 预算",
+        "星期一"
+      ],
+      [
+        "Studio Nord 简报",
+        "1 周前"
+      ]
+    ],
+    "opened": [
+      "春季发布",
+      "Spring-launch-plan.pdf",
+      "Nova"
+    ],
+    "total": "1,248",
+    "q": {
+      "results": "发布",
+      "empty": "木琴发票",
+      "loading": "发布"
+    }
+  },
+  "cmd": {
+    "recents": [
+      {
+        "label": "4 月 14 日发布计划",
+        "icon": "compose",
+        "to": "chat",
+        "meta": "春季发布"
+      },
+      {
+        "label": "春季发布",
+        "icon": "folder",
+        "to": "project",
+        "meta": "项目"
+      },
+      {
+        "label": "Q2 launch budget.xlsx",
+        "icon": "file",
+        "to": "file-xlsx",
+        "meta": "文件"
+      }
+    ],
+    "q": {
+      "filtered": "lau",
+      "none": "3D打印"
+    }
+  },
+  "projects": [
+    {
+      "name": "春季发布",
+      "desc": "4月14日发布的计划、里程碑和材料。",
+      "img": "aube",
+      "icon": "rocket",
+      "color": "#FF6A13",
+      "members": [
+        "CL",
+        "JM",
+        "IB"
+      ],
+      "chats": 12,
+      "files": 18
+    },
+    {
+      "name": "Studio Nord",
+      "desc": "网站改版和新的品牌规范。",
+      "img": "lagon",
+      "icon": "globe",
+      "color": "#1E7BFF",
+      "members": [
+        "CL",
+        "JM"
+      ],
+      "chats": 7,
+      "files": 9
+    },
+    {
+      "name": "Atelier Morel",
+      "desc": "报价、邮件和5月的现场排期。",
+      "img": "atelier",
+      "icon": "calendar",
+      "color": "#93603A",
+      "members": [
+        "CL"
+      ],
+      "chats": 4,
+      "files": 6
+    },
+    {
+      "name": "第二季度市场调研",
+      "desc": "各渠道销售额及竞品分析。",
+      "img": "marche",
+      "icon": "bolt",
+      "color": "#12B8A0",
+      "members": [
+        "IB",
+        "CL",
+        "TR",
+        "AM"
+      ],
+      "chats": 9,
+      "files": 23
+    },
+    {
+      "name": "夏季拍摄",
+      "desc": "选址勘查、许可证和拍摄排期。",
+      "img": "montagne",
+      "icon": "image",
+      "color": "#8448FF",
+      "members": [
+        "JM",
+        "CL"
+      ],
+      "chats": 3,
+      "files": 31
+    }
+  ],
+  "newProject": {
+    "name": "Maison & Objet 展会",
+    "instructions": "用英语回答，语气专业。视觉效果遵循 Studio Nord 规范。"
+  },
+  "project": {
+    "name": "春季发布",
+    "desc": "4月14日发布的计划、里程碑和材料",
+    "color": "#FF6A13",
+    "icon": "rocket",
+    "members": [
+      "CL",
+      "JM",
+      "IB"
+    ],
+    "chats": 12,
+    "files": 18,
+    "fileList": [
+      [
+        "Spring-launch-plan.pdf",
+        "PDF · 2.4 MB",
+        "Camille · 3小时前",
+        "file-pdf"
+      ],
+      [
+        "Q2 launch budget.xlsx",
+        "电子表格 · 312 KB",
+        "Inès · 周二",
+        "file-xlsx"
+      ],
+      [
+        "Preview deck.pptx",
+        "演示文稿 · 8.1 MB",
+        "Julien · 周一",
+        "file-pptx"
+      ],
+      [
+        "Press release.docx",
+        "文档 · 64 KB",
+        "Camille · 4天前",
+        "file-docx"
+      ],
+      [
+        "Spring poster visual.png",
+        "图片 · 3.2 MB",
+        "Julien · 1周前",
+        "file-image"
+      ]
+    ],
+    "chatList": [
+      [
+        "4月14日发布计划",
+        "今天"
+      ],
+      [
+        "客户邮件序列",
+        "昨天"
+      ],
+      [
+        "预览反馈",
+        "周一"
+      ],
+      [
+        "海报的拍摄简报",
+        "5 天前"
+      ]
+    ],
+    "people": [
+      [
+        "CL",
+        "Camille Laurent",
+        "camille@studionord.fr",
+        "所有者"
+      ],
+      [
+        "JM",
+        "Julien Mercier",
+        "julien@studionord.fr",
+        "编辑者"
+      ],
+      [
+        "IB",
+        "Inès Benali",
+        "ines@studionord.fr",
+        "查看者"
+      ]
+    ],
+    "instructions": "你正在协助 Studio Nord 的春季发布,计划于 4 月 14 日进行。\n\n• 用英语回答,语气温暖且精确。\n• 价格始终以欧元计价,含税。\n• 日期和负责人请参考 Spring-launch-plan.pdf。\n• 如与 4 月 9 日的预览有任何时间冲突,请提醒。",
+    "invite": "thomas@studionord.fr",
+    "link": "cortex.app/p/spring-launch-7f3a",
+    "botDoing": "每周一上午 09:00 准备一份总结"
+  },
+  "memory": {
+    "exportFile": "cortex-memory.json",
+    "items": [
+      {
+        "id": 1,
+        "theme": "Work",
+        "text": "Camille 是 Studio Nord 的艺术总监,在里昂工作。",
+        "src": "Learned March 3 · April 14 launch plan"
+      },
+      {
+        "id": 2,
+        "theme": "Work",
+        "text": "春季发布计划于 4 月 14 日,9 日有一场预览。",
+        "src": "Learned March 12 · Spring launch"
+      },
+      {
+        "id": 3,
+        "theme": "Work",
+        "text": "希望以简短列表的形式获取会议记录。",
+        "src": "Learned February 20"
+      },
+      {
+        "id": 4,
+        "theme": "Preferences",
+        "text": "用法语书写,与亲近的联系人以名字相称。",
+        "src": "Learned February 2"
+      },
+      {
+        "id": 5,
+        "theme": "Preferences",
+        "text": "价格始终以欧元计价,含税。",
+        "src": "Learned March 14 · Q2 launch budget"
+      },
+      {
+        "id": 6,
+        "theme": "Contacts",
+        "text": "Julien Mercier 负责视频制作;Inès Benali 负责数字相关事务。",
+        "src": "Learned March 8"
+      },
+      {
+        "id": 7,
+        "theme": "Contacts",
+        "text": "Atelier Morel:联系人 Paul Morel,报价需在 30 日前批准。",
+        "src": "Learned Monday · Reply to the Atelier Morel quote"
+      },
+      {
+        "id": 8,
+        "theme": "Personal",
+        "text": "不要在周三下午安排会议。",
+        "src": "Learned March 1"
+      }
+    ]
+  },
+  "onboarding": {
+    "apps": [
+      [
+        "GM",
+        "邮箱",
+        "阅读并起草回复"
+      ],
+      [
+        "CA",
+        "日历",
+        "查看你的空闲时段"
+      ],
+      [
+        "DR",
+        "云存储",
+        "查找你的文件"
+      ],
+      [
+        "SL",
+        "团队聊天",
+        "总结重要的讨论串"
+      ]
+    ],
+    "connectors": 40
+  },
+  "login": {
+    "email": "camille@studionord.fr",
+    "good": "482915",
+    "bad": "482913"
+  },
+  "pricing": {
+    "card": "4970 1012 3456 7890",
+    "exp": "08 / 28"
+  },
+  "profile": {
+    "twofaSince": "1 月 12 日",
+    "passkeys": "MacBook Pro · iPhone",
+    "codes": [
+      "7KQ2-M9XA",
+      "P4TD-81LZ",
+      "W2RN-6CJE",
+      "B8YF-Q3HS",
+      "N5VE-27KD",
+      "H9LM-4XTP",
+      "C3ZB-J6WQ",
+      "R7GU-5NAY"
+    ],
+    "sessions": [
+      [
+        "system",
+        "MacBook Pro · Cortex 2.8",
+        "法国 里昂",
+        "当前活跃",
+        true
+      ],
+      [
+        "globe",
+        "浏览器 · macOS",
+        "法国 里昂",
+        "2 小时前",
+        false
+      ],
+      [
+        "smartphone",
+        "iPhone · Cortex 2.8",
+        "法国巴黎",
+        "昨天",
+        false
+      ]
+    ],
+    "chats": 214,
+    "projects": 5,
+    "memories": 8,
+    "files": 18
+  },
+  "offline": {
+    "title": "4月14日发布计划",
+    "lastSync": "14:32",
+    "user": "可以设定春季发布的里程碑吗？",
+    "bot": "以下是4月14日发布的建议里程碑：9号预览，10号发布新闻稿，14号上午09:00开放销售，第7天进行客户跟进。",
+    "queue": [
+      [
+        "compose",
+        "消息 · 4月14日发布计划",
+        "“在4月10日加上媒体跟进”"
+      ],
+      [
+        "paperclip",
+        "文件 · Q2发布预算v3.xlsx",
+        "312 KB · 等待上传"
+      ],
+      [
+        "bot",
+        "分配给Nova的任务",
+        "准备周一的总结"
+      ]
+    ]
+  },
+  "error": {
+    "ref": "7F3A-21C9",
+    "project": "Q2市场调研",
+    "owner": "Inès Benali",
+    "idle": "已闲置12小时",
+    "start": "周二 05:00",
+    "end": "周二 06:30",
+    "paused": 2,
+    "back": "06:30"
+  },
+  "update": {
+    "version": "2.9",
+    "current": "2.8.4",
+    "size": 148,
+    "notes": [
+      [
+        "ok",
+        "新功能",
+        "命令面板 ⌘K：通过键盘操作全部Cortex功能，支持子菜单。"
+      ],
+      [
+        "ok",
+        "新功能",
+        "共享项目：邀请团队成员，并为项目指派一个Bot。"
+      ],
+      [
+        "run",
+        "改进",
+        "记忆：可编辑或删除每条记忆，一键导出。"
+      ],
+      [
+        "run",
+        "改进",
+        "在搭载Apple芯片的Mac上，启动速度提升40%。"
+      ],
+      [
+        "wait",
+        "已修复",
+        "超过50 MB的Excel文件现已可以正常打开。"
+      ]
+    ]
+  },
+  "about": {
+    "version": "2.8.4",
+    "build": "2026.09.18",
+    "os": "macOS 15.4 · Apple M3",
+    "ref": "7F3A-21C9"
+  },
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "supported": true,
+      "modelCount": 12,
+      "hasKey": true,
+      "keyHint": "sk-ant-…4f2a",
+      "enabled": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "supported": true,
+      "modelCount": 34
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "supported": true,
+      "modelCount": 21
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "supported": true,
+      "modelCount": 18
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "supported": true,
+      "modelCount": 0
+    },
+    {
+      "id": "inception",
+      "name": "Inception",
+      "supported": false,
+      "modelCount": 2
+    }
+  ],
+  "models": [
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 3,
+      "output": 15
+    },
+    {
+      "id": "claude-opus-4-1",
+      "name": "Claude Opus 4.1",
+      "reasoning": true,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 15,
+      "output": 75
+    },
+    {
+      "id": "claude-haiku-4-5",
+      "name": "Claude Haiku 4.5",
+      "reasoning": false,
+      "image": true,
+      "tools": true,
+      "context": 200000,
+      "input": 1,
+      "output": 5
+    }
+  ]
+}

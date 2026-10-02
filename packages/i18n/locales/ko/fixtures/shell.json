@@ -1,0 +1,89 @@
+{
+  "user": {
+    "initials": "CL"
+  },
+  "bot": {
+    "name": "Nova",
+    "doing": "이메일 정리 중"
+  },
+  "projects": [
+    {
+      "name": "봄 출시",
+      "to": "project",
+      "chats": [
+        {
+          "title": "4월 14일 출시 계획",
+          "to": "chat",
+          "active": true
+        },
+        {
+          "title": "고객 이메일 시퀀스",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "미리보기 피드백",
+          "to": "chat",
+          "dim": true
+        },
+        {
+          "title": "더 보기",
+          "to": "project",
+          "dim": true
+        }
+      ]
+    },
+    {
+      "name": "Studio Nord",
+      "meta": "작업 3개",
+      "status": "yellow",
+      "to": "project",
+      "chats": []
+    }
+  ],
+  "repos": [
+    {
+      "name": "cortex-web",
+      "tasks": [
+        {
+          "title": "인보이스 페이지네이션 수정",
+          "status": "blue",
+          "to": "code-session"
+        },
+        {
+          "title": "로그인을 패스키로 전환",
+          "meta": "+214 −37",
+          "to": "code-diff"
+        },
+        {
+          "title": "CSV 내보내기 추가",
+          "status": "green",
+          "to": "code-pr"
+        }
+      ]
+    },
+    {
+      "name": "cortex-ios",
+      "tasks": [
+        {
+          "title": "절전 해제 시 충돌 수정",
+          "status": "red",
+          "to": "code-terminal"
+        }
+      ]
+    }
+  ],
+  "envs": [
+    {
+      "name": "Cloud · ubuntu-24",
+      "icon": "cpu",
+      "meta": "준비됨",
+      "status": "green"
+    },
+    {
+      "name": "Local MacBook Pro",
+      "icon": "terminal",
+      "meta": "오프라인"
+    }
+  ]
+}

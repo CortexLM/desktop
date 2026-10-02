@@ -1,0 +1,722 @@
+{
+  "home": {
+    "repos": [
+      "cortex-web",
+      "cortex-ios",
+      "cortex-api"
+    ],
+    "branches": [
+      "main",
+      "release/2.4",
+      "feat/passkeys"
+    ],
+    "envCloud": "Cloud · ubuntu-24",
+    "envLocal": "로컬 MacBook Pro",
+    "envCloudShort": "Cloud",
+    "envLocalShort": "로컬",
+    "tasks": [
+      [
+        "청구서 페이지네이션 수정",
+        "cortex-web · 4분 전",
+        "run"
+      ],
+      [
+        "로그인을 패스키로 전환",
+        "cortex-web · +214 −37",
+        "wait"
+      ],
+      [
+        "CSV 내보내기 추가",
+        "cortex-web · 병합됨",
+        "ok"
+      ],
+      [
+        "깨어날 때 발생하는 충돌 수정",
+        "cortex-ios · 실패한 테스트 2개",
+        "err"
+      ]
+    ]
+  },
+  "session": {
+    "title": "청구서 페이지네이션 수정",
+    "prRef": "cortex-web #482",
+    "prompt": "청구서 2페이지가 1페이지와 같은 행을 보여줍니다. 수정하고 테스트를 추가해 주세요.",
+    "log": [
+      [
+        "search",
+        "src/billing/invoices.ts 읽는 중"
+      ],
+      [
+        "terminal",
+        "pnpm test billing — 2개 실패"
+      ],
+      [
+        "edit",
+        "오프셋 수정 (페이지는 1부터 시작)"
+      ],
+      [
+        "edit",
+        "id를 보조 키로 사용한 안정 정렬"
+      ],
+      [
+        "check-circle",
+        "pnpm test billing — 48개 통과"
+      ]
+    ],
+    "running": "테스트 실행 중…",
+    "answer": "오프셋이 0페이지부터 시작했지만, API는 1페이지부터 받습니다. 같은 초에 생성된 두 청구서가 페이지를 바꿔버릴 수 있어 안정 정렬도 추가했습니다.",
+    "answerBold": "파일 2개 변경, 테스트 48개 통과.",
+    "file": "src/billing/invoices.ts",
+    "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+    "terminal": "$ pnpm test billing\n ✓ listInvoices › returns page 1 (12 ms)\n ✓ listInvoices › returns page 2 without duplicates (9 ms)\n ✓ listInvoices › stable sort on equal timestamps (7 ms)\n\nTests: 48 passed, 48 total\nTime: 3.42 s"
+  },
+  "tasks": {
+    "repos": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "list": [
+      {
+        "t": "청구서 페이지네이션 수정",
+        "repo": "cortex-web",
+        "br": "fix/invoice-pagination",
+        "st": "run",
+        "a": 3,
+        "d": 2,
+        "dur": "4분",
+        "env": "Cloud · ubuntu-24",
+        "when": "4분 전"
+      },
+      {
+        "t": "청구서 목록 렌더링 속도 개선",
+        "repo": "cortex-web",
+        "br": "perf/invoice-list",
+        "st": "run",
+        "a": 0,
+        "d": 0,
+        "dur": "7분",
+        "env": "Cloud · ubuntu-24",
+        "when": "7분 전",
+        "n": 4
+      },
+      {
+        "t": "로그인을 패스키로 전환",
+        "repo": "cortex-web",
+        "br": "feat/passkeys",
+        "st": "review",
+        "a": 214,
+        "d": 37,
+        "dur": "18분",
+        "env": "Cloud · ubuntu-24",
+        "when": "1시간 전"
+      },
+      {
+        "t": "CSV 내보내기 추가",
+        "repo": "cortex-web",
+        "br": "feat/export-csv",
+        "st": "merged",
+        "a": 96,
+        "d": 4,
+        "dur": "11분",
+        "env": "Cloud · ubuntu-24",
+        "when": "어제"
+      },
+      {
+        "t": "결제 웹훅 문서화",
+        "repo": "cortex-api",
+        "br": "docs/webhooks",
+        "st": "review",
+        "a": 142,
+        "d": 8,
+        "dur": "6분",
+        "env": "Cloud · python-3.12",
+        "when": "2시간 전"
+      },
+      {
+        "t": "/v1/exports 속도 제한",
+        "repo": "cortex-api",
+        "br": "feat/rate-limit",
+        "st": "merged",
+        "a": 61,
+        "d": 12,
+        "dur": "9분",
+        "env": "Cloud · python-3.12",
+        "when": "월요일"
+      },
+      {
+        "t": "wake 시 발생하는 크래시 수정",
+        "repo": "cortex-ios",
+        "br": "fix/crash-on-wake",
+        "st": "fail",
+        "a": 18,
+        "d": 5,
+        "dur": "14분",
+        "env": "Local MacBook Pro",
+        "when": "3시간 전"
+      },
+      {
+        "t": "Swift 6로 이전",
+        "repo": "cortex-ios",
+        "br": "chore/swift-6",
+        "st": "archived",
+        "a": 402,
+        "d": 388,
+        "dur": "32분",
+        "env": "Local MacBook Pro",
+        "when": "9월 12일"
+      }
+    ]
+  },
+  "attempts": {
+    "title": "인보이스 목록 렌더링 속도 개선",
+    "repo": "cortex-web",
+    "branch": "perf/invoice-list",
+    "env": "Cloud · ubuntu-24 · 4 containers",
+    "recommendBody": "가장 빠른 렌더링(p95 118ms)이며 모든 테스트가 통과합니다.",
+    "durations": [
+      "6분 12초",
+      "7분 40초",
+      "9분 05초"
+    ],
+    "items": [
+      {
+        "done": 4,
+        "a": 38,
+        "d": 21,
+        "files": 3,
+        "tests": "212개 중 212개",
+        "p95": "118 ms",
+        "note": "목록을 가상화해 화면에 보이는 40개 행만 렌더링합니다.",
+        "diff": [
+          "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+          "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+          "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+        ]
+      },
+      {
+        "done": 6,
+        "a": 24,
+        "d": 9,
+        "files": 2,
+        "tests": "212개 중 212개",
+        "p95": "164 ms",
+        "note": "행을 메모이제이션하고 정렬을 서버로 옮깁니다.",
+        "diff": [
+          "-export function InvoiceRow({ f }: Props) {",
+          "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+          "+  const total = useMemo(() => format(f.total), [f.total]);"
+        ]
+      },
+      {
+        "done": 9,
+        "fail": true,
+        "a": 71,
+        "d": 33,
+        "files": 5,
+        "tests": "212개 중 209개",
+        "p95": "—",
+        "note": "무한 페이지네이션 적용; 뒤로 갈 때 e2e 테스트 3개 실패.",
+        "diff": [
+          "-  const { data } = useInvoices(page);",
+          "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+          "+  useIntersection(sentinel, fetchNextPage);"
+        ]
+      },
+      {
+        "done": 13,
+        "a": 0,
+        "d": 0,
+        "files": 0,
+        "tests": "—",
+        "p95": "—",
+        "note": "렌더링을 프로파일링한 뒤 테이블을 하위 컴포넌트로 분리합니다.",
+        "diff": []
+      }
+    ]
+  },
+  "review": {
+    "title": "리뷰 · cortex-web #479",
+    "prTitle": "API에서 인보이스 목록 페이지네이션 처리",
+    "author": [
+      "HM",
+      "Hugo Martin"
+    ],
+    "branch": "hugo/pagination-api",
+    "base": "main",
+    "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+    "pageOld": "+  const page = Math.max(1, q.page);",
+    "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+    "test": "@@ -0,0 +1,5 @@\n+test(\"returns page 2 without duplicates\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+    "srcFile": "src/billing/invoices.ts",
+    "testFile": "tests/billing/invoices.test.ts",
+    "c1": "`q.page`는 쿼리 스트링에서 가져옵니다. `?page=abc`일 경우 `Math.max`가 `NaN`을 반환하고 Prisma는 `skip: NaN`을 받아 쿼리가 500 에러로 실패합니다.",
+    "c2": "이 정렬에는 `(orgId, createdAt, id)`에 대한 인덱스가 필요합니다. 없으면 쿼리가 테이블 전체를 스캔하며, 프로덕션 복제본에서 1.4초가 측정되었습니다.",
+    "c3": "같은 초에 생성된 인보이스 두 개가 있는 케이스를 추가하세요: 바로 두 번째 정렬 키가 해결하는 상황입니다.",
+    "commit": "3f2a9c1",
+    "commitBranch": "hugo/pagination-api",
+    "prRef": "cortex-web #479"
+  },
+  "diff": {
+    "title": "로그인을 패스키 방식으로 전환",
+    "branch": "feat/passkeys",
+    "files": [
+      {
+        "path": "src/auth/passkeys.ts",
+        "st": "A",
+        "a": 128,
+        "d": 0,
+        "more": "113줄 추가됨",
+        "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+      },
+      {
+        "path": "src/auth/session.ts",
+        "st": "M",
+        "a": 41,
+        "d": 22,
+        "hidden": true,
+        "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Invalid credentials\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Account not found\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Invalid credentials\");\n   return createSession(user.id);\n }"
+      },
+      {
+        "path": "src/auth/magic-link.ts",
+        "st": "D",
+        "a": 0,
+        "d": 6,
+        "src": "@@ -1,6 +0,0 @@\n-// Old magic-link sign-in, replaced by passkeys.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Your sign-in link\", linkFor(token));\n-  return token;\n-}"
+      },
+      {
+        "path": "src/routes/login.tsx",
+        "st": "M",
+        "a": 32,
+        "d": 9,
+        "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"Email\" name=\"email\" type=\"email\" />\n-      <Field label=\"Password\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Sign in</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Password\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continue with a passkey\" : \"Sign in\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Use a password\" : \"Use a passkey\"}\n+      </button>\n     </form>\n   );\n }"
+      },
+      {
+        "path": "tests/auth/passkeys.test.ts",
+        "st": "A",
+        "a": 13,
+        "d": 0,
+        "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"rejects an unknown key\", async () => {\n+    expect(await verifyPasskey(userWithoutKey, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepts a registered key and increments the counter\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+      }
+    ],
+    "hidden": [
+      [
+        "export type SignInInput = {",
+        "  email: string;",
+        "  password: string;",
+        "  remember?: boolean;",
+        "};",
+        "",
+        "export class AuthError extends Error {",
+        "  status = 401;",
+        "}",
+        "",
+        "// 로그인 성공 후 30일짜리 세션을 엽니다."
+      ]
+    ],
+    "tree": [
+      [
+        "src/auth",
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      [
+        "src/routes",
+        [
+          3
+        ]
+      ],
+      [
+        "tests/auth",
+        [
+          4
+        ]
+      ]
+    ],
+    "me": [
+      "CL",
+      "Camille Laurent"
+    ],
+    "comment": "이렇게 하면 해당 이메일로 계정이 존재한다는 사실이 드러납니다. 두 경우 모두 동일한 메시지로 통일할까요?",
+    "reply": "네, 두 경우 모두 다시 “Invalid credentials”로 되돌리고 테스트를 추가할게요.",
+    "conflictFile": "src/auth/session.ts",
+    "conflictBody": "src/auth/session.ts에서 충돌 1건: 작업 중 main에서 세션 길이가 단축되었습니다.",
+    "ours": [
+      "const SESSION_TTL = 60 * 60 * 24 * 30;",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "theirs": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 days, requested by security"
+    ],
+    "cortex": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 days, requested by security",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "oursLabel": "feat/passkeys (내 브랜치)",
+    "baseBranch": "main"
+  },
+  "terminal": {
+    "title": "인보이스 페이지네이션 수정",
+    "base": [
+      [
+        "cmd",
+        "pnpm install --frozen-lockfile"
+      ],
+      [
+        "dim",
+        "Lockfile is up to date, resolution skipped"
+      ],
+      [
+        "dim",
+        "Packages: +1,284"
+      ],
+      [
+        "ok",
+        "Done in 6.8 s"
+      ],
+      [
+        "cmd",
+        "pnpm lint"
+      ],
+      [
+        "ok",
+        "0 problems"
+      ],
+      [
+        "cmd",
+        "pnpm test billing"
+      ]
+    ],
+    "run": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › returns page 2 without duplicates (9 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › stable sort on equal timestamps (7 ms)"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › escapes semicolons (4 ms)"
+      ],
+      [
+        "dim",
+        "Tests: 48 passed, 48 total · 3.42 s"
+      ],
+      [
+        "ask",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "pnpm build"
+      ],
+      [
+        "dim",
+        "vite v6.2.0 building for production…"
+      ],
+      [
+        "dim",
+        "✓ 1,412 modules transformed"
+      ],
+      [
+        "dim",
+        "dist/assets/index-4f2a.js   412.8 kB │ gzip: 128.3 kB"
+      ],
+      [
+        "ok",
+        "✓ built in 8.91 s"
+      ]
+    ],
+    "fail": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › 중복 없이 2페이지 반환 (14 ms)"
+      ],
+      [
+        "dim",
+        "     예상값: F-2026-0113 · 실제값: F-2026-0101"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › 동일 타임스탬프에서 안정적인 정렬 (8 ms)"
+      ],
+      [
+        "dim",
+        "     인보이스 F-2026-0118과 F-2026-0119의 페이지가 바뀜"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › 세미콜론 이스케이프 처리 (4 ms)"
+      ],
+      [
+        "dim",
+        "테스트: 2개 실패, 46개 통과, 총 48개 · 3.61초"
+      ],
+      [
+        "err",
+        "명령이 코드 1로 종료됨"
+      ]
+    ],
+    "build": "pnpm build",
+    "buildAlt": "pnpm build --outDir dist-next",
+    "user": "Camille Laurent",
+    "env": "Cloud · ubuntu-24",
+    "branch": "fix/invoice-pagination",
+    "network": "허용 목록",
+    "approvals": "파괴적 명령",
+    "failSub": "오프셋이 여전히 페이지 0에서 시작됩니다.",
+    "doneSub": "48개 테스트 통과 · 8.9초에 빌드됨",
+    "repo": "cortex-web",
+    "times": [
+      "09:41:02",
+      "09:41:11",
+      "09:41:20",
+      "09:41:29",
+      "09:41:38"
+    ]
+  },
+  "env": {
+    "envs": [
+      {
+        "name": "Cloud · ubuntu-24",
+        "ic": "cpu",
+        "image": "cortex/universal:24.04",
+        "stack": "Node 22 · pnpm 9 · Python 3.12",
+        "repos": "cortex-web, cortex-api",
+        "net": "허용 목록",
+        "cache": "1.2 GB · 2시간 전",
+        "ready": true
+      },
+      {
+        "name": "Cloud · python-3.12",
+        "ic": "cpu",
+        "image": "cortex/python:3.12-slim",
+        "stack": "Python 3.12 · uv 0.5",
+        "repos": "cortex-api",
+        "net": "없음",
+        "cache": "340 MB · 어제",
+        "ready": true
+      },
+      {
+        "name": "로컬 MacBook Pro",
+        "ic": "terminal",
+        "image": "macOS 15 · Xcode 17",
+        "stack": "Swift 6 · Node 22",
+        "repos": "cortex-ios",
+        "net": "전체",
+        "cache": "꺼짐",
+        "ready": false
+      }
+    ],
+    "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+    "boot": [
+      "이미지 cortex/universal:24.04 가져오는 중",
+      "이미지 캐시됨 · 1.8 GB",
+      "studio-nord/cortex-web (main) 클론 중",
+      "pnpm 캐시 복원 중 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "패키지: +1,284 · 11.2초 소요",
+      "$ pnpm prisma generate",
+      "Prisma 클라이언트 생성됨 (v6.4.1)",
+      "$ pnpm exec playwright install --with-deps chromium",
+      "Chromium 131 설치됨",
+      "✓환경 준비 완료 · 비밀값 3개 로드됨 · 네트워크: 허용 목록 (도메인 3개)"
+    ],
+    "images": [
+      "cortex/universal:24.04",
+      "cortex/node:22",
+      "cortex/python:3.12-slim"
+    ],
+    "domains": [
+      "npm.studio-nord.fr",
+      "api.studio-nord.fr",
+      "files.pythonhosted.org"
+    ],
+    "secrets": [
+      [
+        "NPM_TOKEN",
+        "a91f",
+        "9월 12일"
+      ],
+      [
+        "DATABASE_URL",
+        "5432",
+        "8월 3일"
+      ],
+      [
+        "MONITORING_DSN",
+        "e07b",
+        "8월 3일"
+      ]
+    ],
+    "stackHint": "Node 22, pnpm 9, Python 3.12 및 Playwright가 사전 설치되어 있습니다.",
+    "cacheSub": "종속성 및 빌드 · 1.2 GB · 12시간 후 만료",
+    "cacheFreed": "1.2 GB 확보됨",
+    "current": "Cloud · ubuntu-24",
+    "repo": "cortex-web · main",
+    "netSummary": "허용 목록 · 도메인 3개",
+    "secretsSummary": "3개 로드됨",
+    "bootTime": "40초",
+    "errLine": "스크립트 4번째 줄: pnpm install",
+    "errBody": "pnpm이 비공개 레지스트리를 읽지 못했습니다: NPM_TOKEN 토큰이 만료된 것 같습니다.",
+    "domainPlaceholder": "add.a-domain.com",
+    "bootErr": [
+      "이미지 가져오는 중 cortex/universal:24.04",
+      "이미지 캐시됨 · 1.8 GB",
+      "studio-nord/cortex-web 복제 중 (main)",
+      "pnpm 캐시 복원 중 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: forbidden (403)",
+      "NPM_TOKEN 토큰이 만료되었거나 비공개 레지스트리에 접근할 수 없습니다.",
+      "!설정 스크립트가 코드 1로 종료되었습니다"
+    ]
+  },
+  "pr": {
+    "title": "인보이스 페이지네이션 수정",
+    "ref": "cortex-web #482",
+    "desc": "## 문제\n인보이스 2페이지가 1페이지와 동일한 행을 보여줬습니다: 오프셋이 0부터 시작했지만 API는 페이지를 1부터 셉니다.\n\n## 변경 사항\n- listInvoices에서 오프셋을 1페이지 기준으로 계산\n- 보조 키로 id를 사용한 안정적 정렬\n- 회귀 테스트 3개 추가\n\n## 확인\n- pnpm test billing: 48개 통과",
+    "reviewers": [
+      [
+        "HM",
+        "Hugo Martin"
+      ],
+      [
+        "LD",
+        "Léa Dubois"
+      ]
+    ],
+    "more": [
+      [
+        "NR",
+        "Nina Roux"
+      ],
+      [
+        "TB",
+        "Théo Bernard"
+      ]
+    ],
+    "branch": "fix/invoice-pagination",
+    "checks": [
+      [
+        "Lint",
+        "pnpm lint",
+        "12초"
+      ],
+      [
+        "타입",
+        "tsc -b",
+        "24초"
+      ],
+      [
+        "단위 테스트",
+        "vitest · 테스트 48개",
+        "1분 08초"
+      ],
+      [
+        "E2E 테스트",
+        "playwright · 브라우저 3개",
+        "2분 41초"
+      ],
+      [
+        "프리뷰",
+        "프리뷰 배포",
+        "48초"
+      ]
+    ],
+    "ciLog": "✗ invoices › pagination › page 2 loads (webkit)\n  30,000ms 제한 시간 초과\n  tests/e2e/invoices.spec.ts:42",
+    "sha": "9c41e07",
+    "user": "Camille Laurent",
+    "files": 2,
+    "a": 31,
+    "d": 2,
+    "reviewerHint": "AGENTS.md에서 제안됨: billing, Hugo Martin이 검토함.",
+    "e2eFail": "WebKit에서 e2e 테스트가 실패합니다. 제가 수정할 수 있습니다.",
+    "approvedBy": "Hugo Martin"
+  },
+  "settings": {
+    "org": "Studio Nord",
+    "repos": [
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-web",
+        "s": "main · 2분 전 동기화됨",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-api",
+        "s": "main · 1시간 전 동기화됨",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-ios",
+        "s": "develop · 3시간 전 동기화됨",
+        "on": true
+      },
+      {
+        "o": "AM",
+        "r": "atelier-morel/site-vitrine",
+        "s": "main · 읽기 전용",
+        "on": false
+      }
+    ],
+    "avail": [
+      "studio-nord/design-tokens",
+      "studio-nord/infra"
+    ],
+    "agents": "# Cortex · cortex-web 지침\n\n## 검사\n- 모든 PR 전에 pnpm lint와 pnpm test를 실행하세요.\n- prisma/migrations의 기존 마이그레이션은 절대 수정하지 말고 새로 만드세요.\n\n## 스타일\n- 엄격한 TypeScript 사용, any 금지.\n- 인터페이스 문구는 영어, sentence case로 작성.\n\n## 풀 리퀘스트\n- 제목은 현재 시제로, 70자 이내로 작성.\n- 결제 관련 변경에는 Hugo Martin을 리뷰어로 추가하세요.",
+    "repoNames": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "allow": [
+      "pnpm test",
+      "pnpm lint",
+      "git status",
+      "rm -rf dist"
+    ],
+    "fromTask": "rm -rf dist",
+    "usage": [
+      [
+        "cortex-web",
+        26,
+        268,
+        31
+      ],
+      [
+        "cortex-api",
+        9,
+        94,
+        6
+      ],
+      [
+        "cortex-ios",
+        6,
+        50,
+        3
+      ]
+    ],
+    "reset": "10월 5일 월요일에 초기화됩니다."
+  }
+}

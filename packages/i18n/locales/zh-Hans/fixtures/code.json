@@ -1,0 +1,722 @@
+{
+  "home": {
+    "repos": [
+      "cortex-web",
+      "cortex-ios",
+      "cortex-api"
+    ],
+    "branches": [
+      "main",
+      "release/2.4",
+      "feat/passkeys"
+    ],
+    "envCloud": "云端 · ubuntu-24",
+    "envLocal": "本地 MacBook Pro",
+    "envCloudShort": "云端",
+    "envLocalShort": "本地",
+    "tasks": [
+      [
+        "修复发票分页问题",
+        "cortex-web · 4 分钟前",
+        "run"
+      ],
+      [
+        "将登录迁移至 passkey",
+        "cortex-web · +214 −37",
+        "wait"
+      ],
+      [
+        "添加 CSV 导出功能",
+        "cortex-web · 已合并",
+        "ok"
+      ],
+      [
+        "修复唤醒时的崩溃问题",
+        "cortex-ios · 2 项测试失败",
+        "err"
+      ]
+    ]
+  },
+  "session": {
+    "title": "修复发票分页问题",
+    "prRef": "cortex-web #482",
+    "prompt": "发票列表第 2 页显示的内容与第 1 页相同。请修复并添加测试。",
+    "log": [
+      [
+        "search",
+        "正在读取 src/billing/invoices.ts"
+      ],
+      [
+        "terminal",
+        "pnpm test billing — 2 项失败"
+      ],
+      [
+        "edit",
+        "修复了偏移量问题(页码从 1 开始)"
+      ],
+      [
+        "edit",
+        "以 id 作为第二排序键,确保排序稳定"
+      ],
+      [
+        "check-circle",
+        "pnpm test billing — 48 项通过"
+      ]
+    ],
+    "running": "正在运行测试…",
+    "answer": "偏移量从第 0 页开始计算,而 API 接收的页码是从 1 开始的。我还添加了稳定排序:在同一秒内创建的两张发票可能会跨页出现。",
+    "answerBold": "共修改 2 个文件,48 项测试通过。",
+    "file": "src/billing/invoices.ts",
+    "diff": "@@ -42,9 +42,11 @@ export async function listInvoices(q: Query) {\n-  const offset = q.page * q.size;\n+  const page = Math.max(1, q.page);\n+  const offset = (page - 1) * q.size;\n   const rows = await db.invoice.findMany({\n     where: { orgId: q.orgId },\n-    orderBy: { createdAt: \"desc\" },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n     skip: offset,\n     take: q.size,\n   });",
+    "terminal": "$ pnpm test billing\n ✓ listInvoices › returns page 1 (12 ms)\n ✓ listInvoices › returns page 2 without duplicates (9 ms)\n ✓ listInvoices › stable sort on equal timestamps (7 ms)\n\nTests: 48 passed, 48 total\nTime: 3.42 s"
+  },
+  "tasks": {
+    "repos": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "list": [
+      {
+        "t": "修复发票分页问题",
+        "repo": "cortex-web",
+        "br": "fix/invoice-pagination",
+        "st": "run",
+        "a": 3,
+        "d": 2,
+        "dur": "4 分钟",
+        "env": "Cloud · ubuntu-24",
+        "when": "4 分钟前"
+      },
+      {
+        "t": "提升发票列表渲染速度",
+        "repo": "cortex-web",
+        "br": "perf/invoice-list",
+        "st": "run",
+        "a": 0,
+        "d": 0,
+        "dur": "7 分钟",
+        "env": "Cloud · ubuntu-24",
+        "when": "7 分钟前",
+        "n": 4
+      },
+      {
+        "t": "将登录迁移至 passkey",
+        "repo": "cortex-web",
+        "br": "feat/passkeys",
+        "st": "review",
+        "a": 214,
+        "d": 37,
+        "dur": "18 分钟",
+        "env": "Cloud · ubuntu-24",
+        "when": "1 小时前"
+      },
+      {
+        "t": "添加 CSV 导出功能",
+        "repo": "cortex-web",
+        "br": "feat/export-csv",
+        "st": "merged",
+        "a": 96,
+        "d": 4,
+        "dur": "11 分钟",
+        "env": "Cloud · ubuntu-24",
+        "when": "昨天"
+      },
+      {
+        "t": "编写支付 Webhook 文档",
+        "repo": "cortex-api",
+        "br": "docs/webhooks",
+        "st": "review",
+        "a": 142,
+        "d": 8,
+        "dur": "6 分钟",
+        "env": "Cloud · python-3.12",
+        "when": "2 小时前"
+      },
+      {
+        "t": "为 /v1/exports 添加速率限制",
+        "repo": "cortex-api",
+        "br": "feat/rate-limit",
+        "st": "merged",
+        "a": 61,
+        "d": 12,
+        "dur": "9 分钟",
+        "env": "Cloud · python-3.12",
+        "when": "星期一"
+      },
+      {
+        "t": "修复唤醒时的崩溃",
+        "repo": "cortex-ios",
+        "br": "fix/crash-on-wake",
+        "st": "fail",
+        "a": 18,
+        "d": 5,
+        "dur": "14 分钟",
+        "env": "Local MacBook Pro",
+        "when": "3 小时前"
+      },
+      {
+        "t": "迁移到 Swift 6",
+        "repo": "cortex-ios",
+        "br": "chore/swift-6",
+        "st": "archived",
+        "a": 402,
+        "d": 388,
+        "dur": "32 分钟",
+        "env": "Local MacBook Pro",
+        "when": "9 月 12 日"
+      }
+    ]
+  },
+  "attempts": {
+    "title": "加快发票列表渲染速度",
+    "repo": "cortex-web",
+    "branch": "perf/invoice-list",
+    "env": "Cloud · ubuntu-24 · 4 containers",
+    "recommendBody": "渲染最快(p95 118 ms),且所有测试通过。",
+    "durations": [
+      "6 分 12 秒",
+      "7 分 40 秒",
+      "9 分 05 秒"
+    ],
+    "items": [
+      {
+        "done": 4,
+        "a": 38,
+        "d": 21,
+        "files": 3,
+        "tests": "212 项中 212 项通过",
+        "p95": "118 ms",
+        "note": "虚拟化列表:仅渲染可见的 40 行。",
+        "diff": [
+          "-  {invoices.map((f) => <InvoiceRow key={f.id} f={f} />)}",
+          "+  <VirtualList items={invoices} rowHeight={44} overscan={8}>",
+          "+    {(f) => <InvoiceRow key={f.id} f={f} />}"
+        ]
+      },
+      {
+        "done": 6,
+        "a": 24,
+        "d": 9,
+        "files": 2,
+        "tests": "212 项中 212 项通过",
+        "p95": "164 ms",
+        "note": "对行进行记忆化处理,并将排序移到服务器端。",
+        "diff": [
+          "-export function InvoiceRow({ f }: Props) {",
+          "+export const InvoiceRow = memo(function InvoiceRow({ f }: Props) {",
+          "+  const total = useMemo(() => format(f.total), [f.total]);"
+        ]
+      },
+      {
+        "done": 9,
+        "fail": true,
+        "a": 71,
+        "d": 33,
+        "files": 5,
+        "tests": "212 项中 209 项通过",
+        "p95": "—",
+        "note": "无限分页;返回上一页时 3 个端到端测试失败。",
+        "diff": [
+          "-  const { data } = useInvoices(page);",
+          "+  const { data, fetchNextPage } = useInfiniteInvoices();",
+          "+  useIntersection(sentinel, fetchNextPage);"
+        ]
+      },
+      {
+        "done": 13,
+        "a": 0,
+        "d": 0,
+        "files": 0,
+        "tests": "—",
+        "p95": "—",
+        "note": "对渲染进行性能分析,然后将表格拆分为子组件。",
+        "diff": []
+      }
+    ]
+  },
+  "review": {
+    "title": "审查 · cortex-web #479",
+    "prTitle": "在 API 中对发票列表分页",
+    "author": [
+      "HM",
+      "Hugo Martin"
+    ],
+    "branch": "hugo/pagination-api",
+    "base": "main",
+    "src": "@@ -38,4 +38,11 @@ import { db } from \"@/lib/db\";\n export async function listInvoices(q: Query) {\n-  const rows = await db.invoice.findMany({ where: { orgId: q.orgId } });\n-  return rows.slice(q.page * q.size, (q.page + 1) * q.size);\n{page}\n+  const rows = await db.invoice.findMany({\n+    where: { orgId: q.orgId },\n+    orderBy: [{ createdAt: \"desc\" }, { id: \"desc\" }],\n+    skip: (page - 1) * q.size,\n+    take: q.size,\n+  });\n+  return { rows, page, hasMore: rows.length === q.size };\n }",
+    "pageOld": "+  const page = Math.max(1, q.page);",
+    "pageNew": "+  const page = Math.max(1, Math.trunc(Number(q.page)) || 1);",
+    "test": "@@ -0,0 +1,5 @@\n+test(\"returns page 2 without duplicates\", async () => {\n+  const a = await listInvoices({ orgId, page: 1, size: 20 });\n+  const b = await listInvoices({ orgId, page: 2, size: 20 });\n+  expect(ids(a)).not.toEqual(expect.arrayContaining(ids(b)));\n+});",
+    "srcFile": "src/billing/invoices.ts",
+    "testFile": "tests/billing/invoices.test.ts",
+    "c1": "`q.page` 来自查询字符串。当传入 `?page=abc` 时,`Math.max` 返回 `NaN`,Prisma 得到 `skip: NaN`:查询会以 500 错误失败。",
+    "c2": "此排序需要在 `(orgId, createdAt, id)` 上建立索引。没有索引的话,查询会扫描整张表:在生产环境副本上测得耗时 1.4 秒。",
+    "c3": "添加一个在同一秒内创建两张发票的用例:这正是第二排序键要解决的问题。",
+    "commit": "3f2a9c1",
+    "commitBranch": "hugo/pagination-api",
+    "prRef": "cortex-web #479"
+  },
+  "diff": {
+    "title": "将登录迁移到 passkeys",
+    "branch": "feat/passkeys",
+    "files": [
+      {
+        "path": "src/auth/passkeys.ts",
+        "st": "A",
+        "a": 128,
+        "d": 0,
+        "more": "新增 113 行",
+        "src": "@@ -0,0 +1,128 @@\n+import { verifyAuthenticationResponse } from \"@simplewebauthn/server\";\n+import { db } from \"@/lib/db\";\n+\n+const RP_ID = process.env.RP_ID ?? \"app.studio-nord.fr\";\n+\n+export async function verifyPasskey(user: UserWithPasskeys, assertion: PasskeyAssertion) {\n+  const key = user.passkeys.find((k) => k.credentialId === assertion.id);\n+  if (!key) return false;\n+  const { verified, authenticationInfo } = await verifyAuthenticationResponse({\n+    response: assertion,\n+    expectedChallenge: await takeChallenge(user.id),\n+    expectedOrigin: `https://${RP_ID}`,\n+    expectedRPID: RP_ID,\n+    credential: { id: key.credentialId, publicKey: key.publicKey, counter: key.counter },\n+  });"
+      },
+      {
+        "path": "src/auth/session.ts",
+        "st": "M",
+        "a": 41,
+        "d": 22,
+        "hidden": true,
+        "src": "@@ -1,6 +1,7 @@\n import { cookies } from \"next/headers\";\n import { db } from \"@/lib/db\";\n+import { verifyPasskey } from \"./passkeys\";\n \n const SESSION_TTL = 60 * 60 * 24 * 30;\n \n~\n@@ -18,7 +19,14 @@ export async function signIn(input: SignInInput) {\n export async function signIn(input: SignInInput) {\n-  const user = await db.user.findUnique({ where: { email: input.email } });\n-  if (!user || !(await checkPassword(user, input.password))) {\n-    throw new AuthError(\"Invalid credentials\");\n-  }\n+  const user = await db.user.findUnique({\n+    where: { email: input.email },\n+    include: { passkeys: true },\n+  });\n+  if (!user) throw new AuthError(\"Account not found\");\n+  const ok = input.assertion\n+    ? await verifyPasskey(user, input.assertion)\n+    : await checkPassword(user, input.password);\n+  if (!ok) throw new AuthError(\"Invalid credentials\");\n   return createSession(user.id);\n }"
+      },
+      {
+        "path": "src/auth/magic-link.ts",
+        "st": "D",
+        "a": 0,
+        "d": 6,
+        "src": "@@ -1,6 +0,0 @@\n-// Old magic-link sign-in, replaced by passkeys.\n-export async function sendMagicLink(email: string) {\n-  const token = await createToken(email, { ttl: 15 * 60 });\n-  await mailer.send(email, \"Your sign-in link\", linkFor(token));\n-  return token;\n-}"
+      },
+      {
+        "path": "src/routes/login.tsx",
+        "st": "M",
+        "a": 32,
+        "d": 9,
+        "src": "@@ -12,9 +12,16 @@ export default function LoginPage() {\n   return (\n     <form action={signIn} className=\"login\">\n       <Field label=\"Email\" name=\"email\" type=\"email\" />\n-      <Field label=\"Password\" name=\"password\" type=\"password\" />\n-      <button type=\"submit\">Sign in</button>\n+      {mode === \"password\" && (\n+        <Field label=\"Password\" name=\"password\" type=\"password\" />\n+      )}\n+      <button type=\"submit\">\n+        {mode === \"passkey\" ? \"Continue with a passkey\" : \"Sign in\"}\n+      </button>\n+      <button type=\"button\" onClick={toggleMode} className=\"link\">\n+        {mode === \"passkey\" ? \"Use a password\" : \"Use a passkey\"}\n+      </button>\n     </form>\n   );\n }"
+      },
+      {
+        "path": "tests/auth/passkeys.test.ts",
+        "st": "A",
+        "a": 13,
+        "d": 0,
+        "src": "@@ -0,0 +1,13 @@\n+import { describe, expect, it } from \"vitest\";\n+import { verifyPasskey } from \"@/auth/passkeys\";\n+\n+describe(\"verifyPasskey\", () => {\n+  it(\"rejects an unknown key\", async () => {\n+    expect(await verifyPasskey(userWithoutKey, assertion)).toBe(false);\n+  });\n+\n+  it(\"accepts a registered key and increments the counter\", async () => {\n+    expect(await verifyPasskey(camille, assertion)).toBe(true);\n+    expect(await counterOf(camille)).toBe(8);\n+  });\n+});"
+      }
+    ],
+    "hidden": [
+      [
+        "export type SignInInput = {",
+        "  email: string;",
+        "  password: string;",
+        "  remember?: boolean;",
+        "};",
+        "",
+        "export class AuthError extends Error {",
+        "  status = 401;",
+        "}",
+        "",
+        "// 登录成功后开启一个 30 天的会话。"
+      ]
+    ],
+    "tree": [
+      [
+        "src/auth",
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      [
+        "src/routes",
+        [
+          3
+        ]
+      ],
+      [
+        "tests/auth",
+        [
+          4
+        ]
+      ]
+    ],
+    "me": [
+      "CL",
+      "Camille Laurent"
+    ],
+    "comment": "这会暴露该邮箱是否存在账户。两种情况要不要统一用同一条消息？",
+    "reply": "好的，我会把两种情况都改回“Invalid credentials”，并添加一个测试。",
+    "conflictFile": "src/auth/session.ts",
+    "conflictBody": "src/auth/session.ts 中有 1 处冲突：main 分支在你的任务期间缩短了会话时长。",
+    "ours": [
+      "const SESSION_TTL = 60 * 60 * 24 * 30;",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "theirs": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 天，安全团队要求"
+    ],
+    "cortex": [
+      "const SESSION_TTL = 60 * 60 * 24 * 14; // 14 天，安全团队要求",
+      "const PASSKEY_TIMEOUT = 60_000;"
+    ],
+    "oursLabel": "feat/passkeys（你的分支）",
+    "baseBranch": "main"
+  },
+  "terminal": {
+    "title": "修复发票分页问题",
+    "base": [
+      [
+        "cmd",
+        "pnpm install --frozen-lockfile"
+      ],
+      [
+        "dim",
+        "锁定文件已是最新，跳过依赖解析"
+      ],
+      [
+        "dim",
+        "Packages: +1,284"
+      ],
+      [
+        "ok",
+        "完成，用时 6.8 秒"
+      ],
+      [
+        "cmd",
+        "pnpm lint"
+      ],
+      [
+        "ok",
+        "0 个问题"
+      ],
+      [
+        "cmd",
+        "pnpm test billing"
+      ]
+    ],
+    "run": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › returns page 2 without duplicates (9 ms)"
+      ],
+      [
+        "ok",
+        " ✓ listInvoices › stable sort on equal timestamps (7 ms)"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › escapes semicolons (4 ms)"
+      ],
+      [
+        "dim",
+        "测试：48 个通过，共 48 个 · 3.42 秒"
+      ],
+      [
+        "ask",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "rm -rf dist"
+      ],
+      [
+        "cmd",
+        "pnpm build"
+      ],
+      [
+        "dim",
+        "vite v6.2.0 正在构建生产版本…"
+      ],
+      [
+        "dim",
+        "✓ 已转换 1,412 个模块"
+      ],
+      [
+        "dim",
+        "dist/assets/index-4f2a.js   412.8 kB │ gzip: 128.3 kB"
+      ],
+      [
+        "ok",
+        "✓ 构建完成，用时 8.91 秒"
+      ]
+    ],
+    "fail": [
+      [
+        "ok",
+        " ✓ listInvoices › returns page 1 (12 ms)"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › returns page 2 without duplicates (14 ms)"
+      ],
+      [
+        "dim",
+        "     期望值: F-2026-0113 · 实际值: F-2026-0101"
+      ],
+      [
+        "err",
+        " ✗ listInvoices › stable sort on equal timestamps (8 ms)"
+      ],
+      [
+        "dim",
+        "     invoices F-2026-0118 和 F-2026-0119 页码互换了"
+      ],
+      [
+        "ok",
+        " ✓ exportCsv › escapes semicolons (4 ms)"
+      ],
+      [
+        "dim",
+        "测试结果：2 失败，46 通过，共 48 个 · 3.61 秒"
+      ],
+      [
+        "err",
+        "命令以代码 1 退出"
+      ]
+    ],
+    "build": "pnpm build",
+    "buildAlt": "pnpm build --outDir dist-next",
+    "user": "Camille Laurent",
+    "env": "Cloud · ubuntu-24",
+    "branch": "fix/invoice-pagination",
+    "network": "白名单",
+    "approvals": "破坏性命令",
+    "failSub": "偏移量仍从第 0 页开始。",
+    "doneSub": "48 个测试通过 · 构建耗时 8.9 秒",
+    "repo": "cortex-web",
+    "times": [
+      "09:41:02",
+      "09:41:11",
+      "09:41:20",
+      "09:41:29",
+      "09:41:38"
+    ]
+  },
+  "env": {
+    "envs": [
+      {
+        "name": "云端 · ubuntu-24",
+        "ic": "cpu",
+        "image": "cortex/universal:24.04",
+        "stack": "Node 22 · pnpm 9 · Python 3.12",
+        "repos": "cortex-web, cortex-api",
+        "net": "白名单",
+        "cache": "1.2 GB · 2 小时前",
+        "ready": true
+      },
+      {
+        "name": "云端 · python-3.12",
+        "ic": "cpu",
+        "image": "cortex/python:3.12-slim",
+        "stack": "Python 3.12 · uv 0.5",
+        "repos": "cortex-api",
+        "net": "无",
+        "cache": "340 MB · 昨天",
+        "ready": true
+      },
+      {
+        "name": "本地 MacBook Pro",
+        "ic": "terminal",
+        "image": "macOS 15 · Xcode 17",
+        "stack": "Swift 6 · Node 22",
+        "repos": "cortex-ios",
+        "net": "完全开放",
+        "cache": "已关闭",
+        "ready": false
+      }
+    ],
+    "setup": "#!/usr/bin/env bash\nset -euo pipefail\ncorepack enable\npnpm install --frozen-lockfile\npnpm prisma generate\npnpm exec playwright install --with-deps chromium",
+    "boot": [
+      "正在拉取镜像 cortex/universal:24.04",
+      "镜像已缓存 · 1.8 GB",
+      "正在克隆 studio-nord/cortex-web (main)",
+      "正在恢复 pnpm 缓存 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "软件包：+1,284 · 耗时 11.2 秒完成",
+      "$ pnpm prisma generate",
+      "Prisma 客户端已生成（v6.4.1）",
+      "$ pnpm exec playwright install --with-deps chromium",
+      "Chromium 131 已安装",
+      "✓环境已就绪 · 已加载 3 个密钥 · 网络：白名单（3 个域名）"
+    ],
+    "images": [
+      "cortex/universal:24.04",
+      "cortex/node:22",
+      "cortex/python:3.12-slim"
+    ],
+    "domains": [
+      "npm.studio-nord.fr",
+      "api.studio-nord.fr",
+      "files.pythonhosted.org"
+    ],
+    "secrets": [
+      [
+        "NPM_TOKEN",
+        "a91f",
+        "9月12日"
+      ],
+      [
+        "DATABASE_URL",
+        "5432",
+        "8月3日"
+      ],
+      [
+        "MONITORING_DSN",
+        "e07b",
+        "8月3日"
+      ]
+    ],
+    "stackHint": "已预装 Node 22、pnpm 9、Python 3.12 和 Playwright。",
+    "cacheSub": "依赖与构建产物 · 1.2 GB · 12 小时后过期",
+    "cacheFreed": "已释放 1.2 GB",
+    "current": "云端 · ubuntu-24",
+    "repo": "cortex-web · main",
+    "netSummary": "白名单 · 3 个域名",
+    "secretsSummary": "已加载 3 个",
+    "bootTime": "40 秒",
+    "errLine": "脚本第 4 行：pnpm install",
+    "errBody": "pnpm 无法读取私有仓库：NPM_TOKEN 令牌似乎已过期。",
+    "domainPlaceholder": "add.a-domain.com",
+    "bootErr": [
+      "正在拉取镜像 cortex/universal:24.04",
+      "镜像已缓存 · 1.8 GB",
+      "正在克隆 studio-nord/cortex-web (main)",
+      "正在恢复 pnpm 缓存 · 1.2 GB",
+      "$ corepack enable",
+      "$ pnpm install --frozen-lockfile",
+      "!ERR_PNPM_FETCH_403  GET https://npm.studio-nord.fr/@studio-nord%2fui: forbidden (403)",
+      "NPM_TOKEN 令牌已过期，或无法访问私有仓库。",
+      "!设置脚本以代码 1 退出"
+    ]
+  },
+  "pr": {
+    "title": "修复发票分页",
+    "ref": "cortex-web #482",
+    "desc": "## 问题\n发票第 2 页显示的内容与第 1 页相同：偏移量从 0 开始计算，而 API 的页码是从 1 开始计数的。\n\n## 变更\n- listInvoices 中的偏移量改为从第 1 页开始计算\n- 以 id 作为第二排序键进行稳定排序\n- 新增 3 个回归测试\n\n## 检查\n- pnpm test billing：48 个通过",
+    "reviewers": [
+      [
+        "HM",
+        "Hugo Martin"
+      ],
+      [
+        "LD",
+        "Léa Dubois"
+      ]
+    ],
+    "more": [
+      [
+        "NR",
+        "Nina Roux"
+      ],
+      [
+        "TB",
+        "Théo Bernard"
+      ]
+    ],
+    "branch": "fix/invoice-pagination",
+    "checks": [
+      [
+        "Lint 检查",
+        "pnpm lint",
+        "12 秒"
+      ],
+      [
+        "类型检查",
+        "tsc -b",
+        "24 秒"
+      ],
+      [
+        "单元测试",
+        "vitest · 48 个测试",
+        "1 分 08 秒"
+      ],
+      [
+        "端到端测试",
+        "playwright · 3 个浏览器",
+        "2 分 41 秒"
+      ],
+      [
+        "预览",
+        "预览部署",
+        "48 秒"
+      ]
+    ],
+    "ciLog": "✗ invoices › pagination › page 2 loads (webkit)\n  超时：超过 30,000 毫秒\n  tests/e2e/invoices.spec.ts:42",
+    "sha": "9c41e07",
+    "user": "Camille Laurent",
+    "files": 2,
+    "a": 31,
+    "d": 2,
+    "reviewerHint": "根据 AGENTS.md 建议：billing，由 Hugo Martin 审核。",
+    "e2eFail": "一个端到端测试在 WebKit 上失败了。我可以修复它。",
+    "approvedBy": "Hugo Martin"
+  },
+  "settings": {
+    "org": "Studio Nord",
+    "repos": [
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-web",
+        "s": "main · 2 分钟前同步",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-api",
+        "s": "main · 1 小时前同步",
+        "on": true
+      },
+      {
+        "o": "SN",
+        "r": "studio-nord/cortex-ios",
+        "s": "develop · 3 小时前同步",
+        "on": true
+      },
+      {
+        "o": "AM",
+        "r": "atelier-morel/site-vitrine",
+        "s": "main · 只读",
+        "on": false
+      }
+    ],
+    "avail": [
+      "studio-nord/design-tokens",
+      "studio-nord/infra"
+    ],
+    "agents": "# Cortex · cortex-web 使用说明\n\n## 检查\n- 每次提交 PR 前运行 pnpm lint 和 pnpm test。\n- 不要编辑 prisma/migrations 中已有的迁移文件：请新建一个。\n\n## 风格\n- 严格使用 TypeScript，禁止使用 any。\n- 界面文案使用英文，句首大写。\n\n## 拉取请求\n- 标题使用现在时，不超过 70 个字符。\n- 涉及计费相关内容时，添加 Hugo Martin 作为审阅人。",
+    "repoNames": [
+      "cortex-web",
+      "cortex-api",
+      "cortex-ios"
+    ],
+    "allow": [
+      "pnpm test",
+      "pnpm lint",
+      "git status",
+      "rm -rf dist"
+    ],
+    "fromTask": "rm -rf dist",
+    "usage": [
+      [
+        "cortex-web",
+        26,
+        268,
+        31
+      ],
+      [
+        "cortex-api",
+        9,
+        94,
+        6
+      ],
+      [
+        "cortex-ios",
+        6,
+        50,
+        3
+      ]
+    ],
+    "reset": "将于 10 月 5 日（周一）重置。"
+  }
+}
