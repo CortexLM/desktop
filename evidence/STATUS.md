@@ -109,9 +109,13 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   Latest legacy disposition: 59 double-confirmed, three B-only, one open P1 M02, out of 63
   units. The on-disk ledger's 63-closure claim awaits owner reconciliation; M02 adoption stays
   on hold. Two independent iOS per-route reviews are reported underway, without inferred results.
-- **Connection behavior:** cloud/self-host mode selection and probes exist; sessions still
-  call locally configured providers. Remote auth, model selection and inference routing are
-  unfinished. A successful backend probe is not proof of a complete remote connection mode.
+- **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
+  call locally configured providers. Remote auth, model selection and inference routing remain
+  active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
+  at 18:23–18:24 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+  The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
+  main-only sessions, remote routing, exact-path proof and a revision-matched native package.
+  A successful backend probe is not proof of a complete remote connection mode.
   Backend owner confirms no portable reasoning-off or Chat cancel operation. Remote effort/
   detach/reconnect and password/MFA drafts await independent design acceptance; regenerated SDK
   types remain requested. Legacy English session titles remain intact because

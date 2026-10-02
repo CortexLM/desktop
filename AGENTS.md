@@ -51,6 +51,8 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 0.1.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 These packages await SDK-owner regeneration against backend schema blob `d6d46014`;
 the newly typed auth/upload contract does not make desktop remote authentication live.
+Remote authentication/model routing/inference remain active delivery work; the dependency
+handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
 ## Toolchain
 

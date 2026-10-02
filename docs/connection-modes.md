@@ -66,14 +66,46 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 - The self-host badge displays checking / reachable / unreachable / incompatible / invalid.
   The UI does not display the returned remote models or `authRequired` value.
 
-## Remote integration inputs still needed
+## Active remote integration
+
+Remote authentication, remote model selection and Cortex inference remain an active delivery
+goal. The [current SDK handoff readback](../evidence/recovery-followup/remote-integration-readback.md)
+is separate from the PM report's 15:05 observation. As of 18:24 UTC, G3 has not announced the
+replacement versioned SDK/api-types pair; desktop's unchanged 0.2.0/0.1.0 pair remains probe-only.
+
+Delivery order:
+
+1. Consume G3's versioned pair with source commit, canonical schema pin, archive hashes and
+   targeted runtime receipts. `vendor/` and `packages/desktop/package.json` must agree on both
+   packages. G2's five typed auth/upload bodies are already delivered at `d6d46014`; SDK
+   regeneration, public `Problem` reconciliation and runtime fixes remain G3-owned.
+2. Implement session acquisition and continuations in Electron main. Keep bearer/cookie/pending
+   state origin/account-bound; replace the authenticated client on identity changes rather than
+   repointing it. Expose validated, sanitized state through schema/protocol/client contracts;
+   renderer metadata cannot establish authentication. Local bearer expiry and Cloud refresh
+   remain distinct. Integrate approved continuation states with the existing login/Connection UI.
+3. Route model discovery, upload, prompts and transcripts through that selected remote session.
+   Preserve unknown capabilities and genuinely empty registries. Local `SessionService.prompt`
+   currently resolves providers independently of connection mode; the remote path needs explicit
+   conversation identity, remote effort and admission semantics rather than changing a base URL.
+   Retain drafts/files on refusal. Raw-byte uploads and reconnect use the owner-verified contracts.
+4. Prove authentication plus streamed image/reasoning on the actual Cortex remote path, including
+   account/origin changes, refusal, expired auth and reconnect without a duplicate turn. Local
+   provider inference and discovery probes are separate evidence. Then package the changed
+   revision and capture its modified surfaces natively; retain the earlier Mac baselines.
+
+Run checks for the new dependency/application delta when it lands. Existing passing suites and
+native captures are not rerun for this documentary handoff update.
+
+### Contract boundaries
 
 The current backend supports guest Chat, email OTP and self-host `none`/operator auth.
 Desktop transport must isolate token/cookie state by origin and account. SDK regeneration
 against canonical schema `d6d46014d1c436b96540529dca2a3005556ae920` remains owned by the
 SDK session. That backend pin supplies typed OTP/MFA/email continuations and raw-byte uploads;
 it does not update the vendored SDK or implement desktop authentication. The existing backend turn input
-has reasoning effort `low|medium|high`, no disabled value; omission means `medium`.
+has reasoning effort `low|medium|high`, no disabled value; omission defaults a new conversation
+to `medium`, while ordinary follow-ups retain its stored effort.
 Cancelling the stream reader does not cancel backend generation. Supported reasoning-off
 and cancel-turn behavior has been requested from the contract owner, who confirmed both
 are absent at backend `73b934c7`. A remote UI must distinguish detachment from cancellation;

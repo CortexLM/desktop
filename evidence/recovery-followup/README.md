@@ -79,6 +79,10 @@ confirmations and source changes must retain their own pins. The desktop integra
 kept separate from acceptance; the original freeze is not extended by draft route inventory.
 Backend contract blob `d6d46014` is independently hash-verified (422 operations). The desktop
 SDK remains unchanged pending its owner's regenerated package and runtime handoff.
+The [18:23–18:24 UTC SDK readback](remote-integration-readback.md) keeps remote auth/inference
+active: no replacement pair announced in the inspected handoff. PM heads remain 15:05-only;
+the delivered G2 body correction, local-provider inference and native Mac supplements have
+separate revision scopes. Existing passing tests were not repeated.
 
 ### Latest handoff correction
 
