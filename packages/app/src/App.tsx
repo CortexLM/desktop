@@ -5,7 +5,7 @@ import { Menu } from "@base-ui/react/menu";
 import { Toasts } from "./kit/ui";
 import { Icon } from "./icons/Icon";
 import { SCREENS, useVariant } from "./registry";
-import { NavCtx, readHash, type Route } from "./shell/nav";
+import { NavCtx, go, navigation, readHash, type Route } from "./shell/nav";
 import { Shell } from "./shell/shell";
 import { Gallery } from "./shell/gallery";
 import { PreviewGate } from "./preview";
@@ -16,14 +16,28 @@ export type ThemePref = Theme | "system";
 
 export default function App() {
   const [h, setH] = React.useState(readHash);
-  React.useEffect(() => { const f = () => setH(readHash()); addEventListener("hashchange", f); return () => removeEventListener("hashchange", f); }, []);
+  React.useEffect(() => {
+    const f = (event: Event) => {
+      const run = () => setH(readHash());
+      // Keep screen transitions; snapshotting the gallery's hundreds of frames blocks input.
+      if (h.route !== "gallery" && readHash().route !== "gallery" && (event as Event & { navigationType: string }).navigationType !== "replace" && document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(run); else run();
+    };
+    navigation.addEventListener("currententrychange", f);
+    return () => navigation.removeEventListener("currententrychange", f);
+  }, [h.route]);
+  React.useEffect(() => window.cortex?.onMenu?.((cmd) => {
+    if (cmd === "back") history.back();
+    else if (cmd === "forward") history.forward();
+    else if (cmd === "new") go(SCREENS.find((s) => s.id === h.route)?.mode === "Cortex Code" ? "code" : "home");
+    else if (cmd !== "focus" && cmd !== "sidebar") go(cmd);
+  }), [h.route]);
   return (
     <I18nProvider>
       <PreviewGate>
         {h.route === "gallery" ? <Gallery /> : (
           <Tooltip.Provider delay={500} closeDelay={0}>
             <Toast.Provider timeout={4000} limit={3}>
-              <Shell key={h.shot ? location.hash : "app"} initialRoute={h.route} initialTheme={h.theme} />
+              <Shell key={h.shot ? location.hash : "app"} hash={h} />
               <Toasts />
             </Toast.Provider>
           </Tooltip.Provider>

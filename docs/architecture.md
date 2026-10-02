@@ -57,6 +57,11 @@ See [connection-modes.md](./connection-modes.md).
 ## Renderer
 
 - Hash routing: `#/<screen-id>?v=<variant>&theme=…&preview|shot` (`shell/nav.tsx`).
+  The URL is authoritative; native browser history retains session IDs and variant parameters.
+  Electron's Navigation API updates React for hash, back/forward and replace-state changes.
+- Menu routing lives above Shell so Help → Design gallery and its return paths work.
+  Gallery transitions skip view snapshots because hundreds of iframes block input; ordinary
+  screen transitions remain. Native Go entries for undesigned surfaces are disabled.
 - Screens: `packages/app/src/screens/<area>/index.tsx` export `SCREENS: ScreenDef[]`;
   `registry.tsx` globs them. Unknown ids render `shell/not-found.tsx`.
 - `#/gallery` (`shell/gallery.tsx`) renders every screen × variant × theme in iframes.

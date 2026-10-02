@@ -48,6 +48,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
   suggestion, read split-diff line endings, use Canvas selection/version controls, operate
   Work computer controls. This targeted regression does not certify every screen.
+- `tests/e2e/navigation.spec.ts` — real anchor and native-menu navigation, distinct engine
+  chat identities through back/forward, variant parameters, history branching and Gallery
+  return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or

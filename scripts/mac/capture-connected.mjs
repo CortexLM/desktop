@@ -33,6 +33,7 @@ for (const theme of ["light", "dark"]) {
     await page.goto(`cortex://app/index.html${hash}`);
     await page.waitForFunction(({ hash, theme }) => location.hash === hash && document.documentElement.dataset.theme === theme && !!document.querySelector("main.content")?.textContent.trim(), { hash, theme });
     await page.evaluate(() => document.fonts.ready);
+    await page.waitForFunction(() => [...document.images].every((image) => image.complete));
     await page.waitForTimeout(450);
     const name = `${id}${v ? "~" + v : ""}-${theme}.png`;
     const response = await fetch(`${captureURL}/${wid}`, { method: "POST", signal: globalThis.AbortSignal.timeout(30_000) });

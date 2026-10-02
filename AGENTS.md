@@ -127,7 +127,7 @@ preview fixtures.
 Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 (`packages/app/src/kit/ui.tsx` `Mode`). Screens live in
 `packages/app/src/screens/<area>/index.tsx`, each exporting `SCREENS`, collected by
-`packages/app/src/registry.tsx`. Routes are hash routes (`#/<screen-id>`).
+`packages/app/src/registry.tsx`. Hash routes use native browser history, preserving query parameters.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |
@@ -143,7 +143,7 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 only by Work → Automations and bot routines), **Plugins & skills** (`/api/plugins`,
 `/api/skills`, `/api/mcp`; the computer-use preset therefore cannot be enabled from the UI
 yet). Requests remain unanswered in `/root/cortex-ui/DESIGN-REQUESTS.md` (outside this repo).
-Do not build stand-in screens; say "not yet" honestly.
+Their native Go entries are disabled. Do not build stand-in screens; say "not yet" honestly.
 
 Cortex Cloud sign-in has no engine route yet: the live login submit says it is unavailable
 (`packages/app/src/screens/system/account.tsx`).

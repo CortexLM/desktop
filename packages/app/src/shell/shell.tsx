@@ -3,7 +3,7 @@ import { IconBtn, Tip, Row, Section, Segmented, ProgressCard, ModeSwitcher, type
 import { Icon } from "../icons/Icon";
 import { Mascot, DEFAULT_MASCOT, type MascotConfig } from "../mascot/Mascot";
 import { SCREENS } from "../registry";
-import { NavCtx, type Route } from "./nav";
+import { NavCtx, go, navigation, type readHash, type Route } from "./nav";
 import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures } from "../preview";
@@ -15,34 +15,18 @@ const THEME_KEY = "cortex.theme";
 const sysDark = () => matchMedia("(prefers-color-scheme: dark)").matches;
 const resolve = (p: ThemePref): Theme => (p === "system" ? (sysDark() ? "dark" : "light") : p);
 
-export function Shell({ initialRoute, initialTheme }: { initialRoute: Route; initialTheme: Theme | null }) {
+export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
   const t = useT();
-  const [route, setRoute] = React.useState<Route>(initialRoute);
-  const [params, setParams] = React.useState(() => new URLSearchParams(location.hash.split("?")[1]));
+  const { route, params, theme: initialTheme } = hash;
   const [pref, setPref] = React.useState<ThemePref>(() => initialTheme ?? ((localStorage.getItem(THEME_KEY) as ThemePref | null) ?? "system"));
   const [theme, setThemeState] = React.useState<Theme>(() => resolve(pref));
   const [sidebar, setSidebar] = React.useState(true);
   const [focus, setFocus] = React.useState(false);
-  const history = React.useRef<Route[]>([]);
-  const future = React.useRef<Route[]>([]);
   const def = SCREENS.find((s) => s.id === route);
   const mode: Mode = def?.mode ?? "Cortex";
 
-  const go = (r: Route, p?: Record<string, string>, push = true) => {
-    const run = () => {
-      if (push && r !== route) { history.current.push(route); future.current = []; }
-      setRoute(r);
-      const sp = new URLSearchParams(location.hash.split("?")[1]); sp.delete("v");
-      for (const k of [...sp.keys()]) if (!["theme", "shot", "preview"].includes(k)) sp.delete(k);
-      for (const [k, v] of Object.entries(p ?? {})) sp.set(k, v);
-      setParams(new URLSearchParams(sp));
-      const q = sp.toString(); window.history.replaceState(null, "", `#/${r}${q ? "?" + q : ""}`);
-      dispatchEvent(new Event("cortex-variant"));
-    };
-    if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(run); else run();
-  };
-  const back = () => { const r = history.current.pop(); if (r) { future.current.push(route); go(r, undefined, false); } };
-  const forward = () => { const r = future.current.pop(); if (r) { history.current.push(route); go(r, undefined, false); } };
+  const back = () => window.history.back();
+  const forward = () => window.history.forward();
 
   const setTheme = (p: ThemePref) => {
     setPref(p); if (!isPreview()) localStorage.setItem(THEME_KEY, p);
@@ -65,7 +49,7 @@ export function Shell({ initialRoute, initialTheme }: { initialRoute: Route; ini
     else if (cmd === "forward") forward();
     else go(cmd);
   };
-  React.useEffect(() => window.cortex?.onMenu?.(commands));
+  React.useEffect(() => window.cortex?.onMenu?.((cmd) => { if (cmd === "focus" || cmd === "sidebar") commands(cmd); }));
   React.useEffect(() => {
     const k = (e: KeyboardEvent) => {
       if (!(e.metaKey || e.ctrlKey)) return;
@@ -91,8 +75,8 @@ export function Shell({ initialRoute, initialTheme }: { initialRoute: Route; ini
               {mac && <div className="lights-space" aria-hidden />}
               <div className="nav-btns hide-focus">
                 <IconBtn icon="sidebar-left" label={sidebar ? t("shell.hideSidebar") : t("shell.showSidebar")} kbd="⌘B" onClick={() => setSidebar((s) => !s)} />
-                <IconBtn icon="arrow-left" label={t("shell.back")} kbd="⌘[" onClick={back} disabled={!history.current.length} />
-                <IconBtn icon="arrow-right" label={t("shell.forward")} kbd="⌘]" onClick={forward} disabled={!future.current.length} />
+                <IconBtn icon="arrow-left" label={t("shell.back")} kbd="⌘[" onClick={back} disabled={!navigation.canGoBack} />
+                <IconBtn icon="arrow-right" label={t("shell.forward")} kbd="⌘]" onClick={forward} disabled={!navigation.canGoForward} />
               </div>
             </div>
             <div className="hide-focus">{work && <Segmented items={[t("shell.tab.chat"), t("shell.tab.work")]} value={route === "work-home" ? t("shell.tab.work") : t("shell.tab.chat")} onChange={(x) => go(x === t("shell.tab.work") ? "work-home" : "home")} />}</div>
