@@ -6,10 +6,13 @@ E2E and macOS package/smoke, but **fails overall**: eight locale-render unit cas
 `localStorage` test fixture after Code starts rendering the live composer. The test-harness
 correction preserves all locale assertions and the real composer; Node 22 now passes all 178 units
 plus the existing optional backend skip. Test-only correction `ea1c54b` is pushed;
-[CI 37075722150](https://github.com/CortexLM/desktop/actions/runs/37075722150) is pending.
+[CI 37075722150](https://github.com/CortexLM/desktop/actions/runs/37075722150) passes checks and
+Linux before its macOS job is cancelled by the documentary `93c1e78` push. Replacement
+[CI 37076113707](https://github.com/CortexLM/desktop/actions/runs/37076113707) passes all jobs;
+application/E2E/build inputs still match `d635fcf`, unit fixture inputs match `ea1c54b`.
 [Installed-Mac proof](../mac/d635fcf/README.md) passes on the exact `d635fcf` artifact:
 twelve inspected native captures, both themes, Code model/image refusal/recovery and routine outcomes.
-Prior green CI/native acceptance remains pinned to `9d704ee`. Existing screens and local contracts
+Prior provider-row CI/native acceptance remains pinned to `9d704ee`. Existing screens and local contracts
 are used here; no new design source is imported.
 
 ## Routine corrections
@@ -83,6 +86,11 @@ negative suites and source pins remain intact.
 The [independent final review](final-review.md) verifies the scoped source, logs, comparison hashes,
 packaged build bytes and all ten final live images; no scoped critical blocker found.
 That review predates the CI unit failure; its integrated-unit wording is superseded above.
+[Independent CI receipt](ci-d635fcf/README.md) separately verifies the failed overall run,
+passing desktop jobs, package and eleven renderer images; installed-native proof stays separate.
+[Corrected green CI receipt](ci-93c1e78/README.md) verifies all jobs, both 61-case reports,
+eleven current images and the green artifact's identical ASAR. Full ZIP/native resources outside
+ASAR were not byte-compared.
 
 ## External delivery gates
 

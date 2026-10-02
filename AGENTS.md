@@ -237,7 +237,8 @@ See [`evidence/mcp-followup/README.md`](./evidence/mcp-followup/README.md). Earl
 capture/stability attempts retain their negative results and unknown causes.
 Code/routine correction `d635fcf` passes 61 Electron cases per OS plus macOS package/smoke;
 its overall CI fails eight Node 22 locale-render fixtures. Test-only `ea1c54b` corrects those
-fixtures with no application delta. Twelve installed-Mac Code/routine captures and scoped
+fixtures with no application delta; CI 37076113707 passes at documentary `93c1e78`.
+Twelve installed-Mac Code/routine captures and scoped
 frozen comparisons are retained in [`evidence/live-behavior-followup/README.md`](./evidence/live-behavior-followup/README.md).
 
 ## CI, packaging and releases

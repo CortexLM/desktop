@@ -23,8 +23,10 @@ Test-only correction `ea1c54b` changes no application/build/package inputs.
 3. Routine Run now enters Running while a real permission ask is pending. Duplicate API request
    returns 409, creates no second run; UI Run now is disabled. Abort persists `error`/`aborted`,
    and reloading shows Failed.
-4. No page errors observed after attachment. Six Code inference requests plus two routine requests
-   reached the deterministic provider: eight total. Refusals and duplicate runs produced none.
+4. No page errors observed during the ten-capture primary run. Six Code inference requests plus two
+   routine requests reached the deterministic provider: eight total. Primary-run refusals and
+   duplicate starts produced none. The two supplemental toast checks record empty histories;
+   their script does not install a separate page-error collector.
 
 `manifest.json` stores ten initial native captures and assertions. Its `codeModelRequests` arrays
 record persisted **message** models (user and assistant), not request counts; `provider-receipt.json`
@@ -51,3 +53,7 @@ This is targeted installed-app proof with controlled inference. It does not refr
 all-screen native/menu sweep, establish real-model reasoning/image understanding, prove remote
 authentication/inference, or certify signing/public release. Process-restart routine recovery is
 covered by the file-backed core regression; these native routine checks reload the renderer only.
+
+[Independent review](independent-review.md) verifies the package, 90 build members, all locale
+bytes and twelve image hashes; eight native images inspected separately, no scoped blocker.
+Run `sha256sum -c SHA256SUMS` here to check the retained file bytes.
