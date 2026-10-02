@@ -12,6 +12,7 @@
 .code-wrap { max-width: 980px; margin: 0 auto; }
 .code-narrow { max-width: 760px; }
 .code-lead { margin: 0 0 16px; color: var(--t2); font-size: 13px; line-height: 20px; }
+.code-lead code { font-family: var(--mono); font-size: 11px; }
 .code-hint { margin: 8px 0 0; color: var(--t2); font-size: 11px; line-height: 16px; }
 .code-label { font-size: 11px; font-weight: 500; color: var(--t2); margin-bottom: 8px; }
 .code-ic { color: var(--i1); flex-shrink: 0; }

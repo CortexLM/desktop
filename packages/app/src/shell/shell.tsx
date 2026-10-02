@@ -231,7 +231,7 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
           <React.Fragment key={p.name}>
             <Row label={p.name} icon={open ? "folder-open" : "folder"} strong onClick={() => setOpen((o) => !o)} />
             <div className="fold" data-closed={!open || undefined} inert={!open}><div>
-              {p.chats.map((c) => <Row key={c.title} label={c.title} child dim={c.dim} active={route === c.to && (c.active ? !start : c.to === "chat" && start?.text === c.title)} onClick={() => c.to === "chat" && !c.active ? startPreviewChat("chat", c.title, t("composer.model.fast")) : go(c.to)} actions={c.active ? <IconBtn icon="more-dots" label={t("shell.nav.options")} /> : undefined} />)}
+              {p.chats.map((c) => <Row key={c.title} label={c.title} child dim={c.active ? route !== c.to || !!start : c.dim} active={route === c.to && (c.active ? !start : c.to === "chat" && start?.text === c.title)} onClick={() => c.to === "chat" && !c.active ? startPreviewChat("chat", c.title, t("composer.model.fast")) : go(c.to)} actions={c.active ? <IconBtn icon="more-dots" label={t("shell.nav.options")} /> : undefined} />)}
             </div></div>
           </React.Fragment>
         ) : <Row key={p.name} label={p.name} icon="folder" strong meta={p.meta} status={p.status} active={route === p.to} onClick={() => go(p.to)} />)}

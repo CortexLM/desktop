@@ -8,7 +8,7 @@ import { Mascot, DEFAULT_MASCOT, type State } from "../../mascot/Mascot";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { useNav } from "../../shell/nav";
-import { isPreview, useFixtures } from "../../preview";
+import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import { api } from "../../api";
 import { useSessions, useBots, usePermissions, useMessages, useQuery } from "../../state/live";
 import { toolTitle } from "../../state/tool-label";
@@ -254,6 +254,8 @@ function WorkTaskPreview() {
   const fx = useFixtures<WorkFx>("work");
   const name = useFixtures<BotsFx>("bots").main?.name ?? "";
   const bot = useMainBot()!.cfg;
+  const { live, setLive } = usePreviewBot()!;
+  const background = React.useRef({ state: live.state, doing: live.doing });
   const [v, setV] = useVariant("running");
   const [mail, setMail] = React.useState<"ready" | "sent" | "cancelled">("ready");
   const [take, setTake] = React.useState(v === "takeover");
@@ -270,6 +272,13 @@ function WorkTaskPreview() {
   const paused = v === "paused";
   const state = ({ running: "working", computer: "working", takeover: "waiting", approval: "waiting", blocked: "blocked", done: "done", failed: "blocked", paused: "asleep" } as Record<string, State>)[v] ?? "working";
   const doing = t(`work.task.doing.${v}`);
+  React.useEffect(() => {
+    if (!live.on) return;
+    const prior = background.current;
+    setLive({ state, doing });
+    // Restore activity only: an explicit Bot pause must survive task navigation.
+    return () => setLive(prior);
+  }, [state, doing, live.on, setLive]);
   const running = ["running", "computer", "takeover", "approval"].includes(v);
   const T = fx.task;
   const steps: [string, StepS, string][] = [

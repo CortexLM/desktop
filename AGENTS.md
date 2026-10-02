@@ -137,6 +137,8 @@ the composer so retained drafts, model selection and send controls remain reacha
 Components is a preview-only catalog: 94 blocks, 31 screen families, 30 motion entries;
 at most three thumbnails mount. Bot Studio keeps refused saves editable; preview Bot appearance,
 activity and drafts share temporary renderer state, cleared on reload, locale change or exit.
+Work preview task activity temporarily updates the sidebar Bot; leaving restores its prior
+activity while preserving an explicit pause and saved appearance.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |

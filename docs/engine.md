@@ -70,6 +70,8 @@ cancels the session's other pending asks). Computer-use input tools never save `
   during navigation. They reset on reload, locale changes or leaving preview; they never
   create or update engine Bots. Preview onboarding saves into that same temporary state.
   Onboarding completion navigation is cancelled if the user leaves before its display delay ends.
+  Work preview activity temporarily replaces the sidebar status; leaving the task restores prior
+  activity without resuming an explicitly paused Bot. No engine Bot or session is written.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not
   backfilled; the timer lives only while the app runs. Work → Automations and bot routines

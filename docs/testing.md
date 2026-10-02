@@ -86,6 +86,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   studio draft/dialog; pending writes lock controls and reject duplicate submission. Shared preview
   appearance/activity/pause, draft restoration, onboarding and locale/live isolation are separate cases.
   Leaving onboarding cancels delayed navigation, including a departure from preview into live mode.
+  Work task previews publish their activity to the sidebar, then restore prior background activity;
+  an explicit pause, saved appearance and draft survive this temporary activity.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.
@@ -93,6 +95,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   themes: switches, history delete/Undo, reasoning disclosure, file drops, approval Undo, image
   comparison and nine mascot states; Kanban drag at 1440. No frame-accurate timing claim.
 
+Each launch also gets an isolated Electron user-data directory: renderer locale/theme/model
+preferences cannot leak between parallel test processes or the developer's installed app.
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
 image-inference proof is recorded by these tests.

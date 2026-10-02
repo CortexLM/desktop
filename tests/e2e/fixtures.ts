@@ -8,7 +8,7 @@ export const root = path.resolve(path.dirname(new URL(import.meta.url).pathname)
 export async function launch(opts: { hash?: string; env?: Record<string, string>; locale?: string } = {}) {
   const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "cortex-e2e-"));
   const app = await electron.launch({
-    args: [path.join(root, "packages/desktop/dist/main.cjs"), ...(process.platform === "linux" ? ["--no-sandbox"] : [])],
+    args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])],
     env: { ...process.env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: opts.hash ?? "", CORTEX_LOCALE: opts.locale ?? "en", ...opts.env } as Record<string, string>,
   });
   const page = await app.firstWindow();

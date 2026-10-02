@@ -51,4 +51,5 @@ providers are replaced by the local fake in `tests/e2e/fake-provider.ts`, wired 
 - Do not skip a test without a condition and a reason (`it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)` is the pattern).
 - Do not hit the real models.dev or a real provider from unit tests; use
   `packages/core/test/fixtures/catalog.json` and an injected `fetch`.
-- Each E2E launch gets a fresh `CORTEX_DATA_DIR` (`tests/e2e/fixtures.ts`).
+- Each E2E launch gets a fresh `CORTEX_DATA_DIR` and Electron `--user-data-dir`
+  (`tests/e2e/fixtures.ts`), isolating engine data and renderer preferences across workers.

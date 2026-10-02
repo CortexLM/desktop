@@ -36,6 +36,7 @@ for (const theme of ["light", "dark"]) {
       const model = form.locator(".model");
       await expect(page.locator("html")).toHaveAttribute("lang", "fr");
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      await expect(page.locator(".sidebar .row").filter({ has: page.getByText("Plan de lancement du 14 avril", { exact: true }) })).toHaveAttribute("data-dim", "true");
       for (const [name, route] of [["Ajouter des fichiers", "upload"], ["Créer une image", "image-gen"], ["Recherche web", "search-results"], ["Confier à ton Bot", "bot"]]) {
         await home();
         await form.getByRole("button", { name: "Ajouter", exact: true }).click();
@@ -85,8 +86,11 @@ for (const theme of ["light", "dark"]) {
         await expect(model).toHaveText(selected);
         const url = page.url();
         const length = await page.evaluate(() => history.length);
-        await page.locator(".sidebar .row").filter({ has: page.getByText(historical, { exact: true }) }).click();
+        const historicalRow = page.locator(".sidebar .row").filter({ has: page.getByText(historical, { exact: true }) });
+        if (!code) await expect(historicalRow).toHaveAttribute("data-dim", "true");
+        await historicalRow.click();
         await expect(page.locator("main .content-top .title")).toHaveText(historical);
+        if (!code) await expect(historicalRow).not.toHaveAttribute("data-dim");
         expect(page.url()).toBe(url);
         expect(await page.evaluate(() => history.length)).toBe(length + 1);
         expect(await page.evaluate(() => history.state?.cortexChat)).toBeNull();
@@ -94,6 +98,7 @@ for (const theme of ["light", "dark"]) {
         await expect(page.locator("main .content-top .title")).toHaveText(draft);
         await expect(page.locator(".msg-user")).toHaveText(draft);
         await expect(model).toHaveText(selected);
+        if (!code) await expect(historicalRow).toHaveAttribute("data-dim", "true");
         expect(await page.evaluate(() => history.state?.cortexChat)).toEqual({ text: draft, model: selected });
         await capture(page, `frozen-${area}-history-${theme}`);
         await page.goForward();

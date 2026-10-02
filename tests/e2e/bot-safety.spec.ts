@@ -139,6 +139,12 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) {
       await show(page, "work-home?v=empty", theme);
       await expect(page.getByRole("heading", { name: "Hand your first task to Preview bot" })).toBeVisible();
       await expect(page.locator(".travail-empty > .mascot .m-shape")).toHaveAttribute("d", shape!);
+      await show(page, "work-task?v=done", theme);
+      await expect(page.locator(".content-top .badge")).toHaveText("Done");
+      await expect(sidebarBot.locator(".mascot")).toHaveAttribute("data-state", "asleep");
+      await expect(sidebarBot.locator(".meta")).toHaveText("Paused");
+      await show(page, "home", theme);
+      await expect(sidebarBot.locator(".mascot")).toHaveAttribute("data-state", "asleep");
       await show(page, "bot", theme);
       await expect(page.locator(".bot-pill")).toHaveText("Paused");
       await page.locator(".bot-pill").click();
@@ -151,7 +157,14 @@ for (const width of [960, 1440]) for (const theme of ["light", "dark"]) {
 
       await show(page, "bot-studio", theme);
       await input.fill("Discard this draft");
+      await show(page, "work-task?v=done", theme);
+      await expect(sidebarBot.locator(".meta")).toHaveText("followed up on 5 quotes");
+      await expect(sidebarBot.locator(".mascot")).toHaveAttribute("data-state", "done");
+      await expect(sidebarBot.locator(".m-shape")).toHaveAttribute("d", shape!);
+      await expect(sidebarBot.locator(".m-shape")).toHaveAttribute("fill", "#FF6A13");
       await show(page, "home", theme);
+      await expect(sidebarBot.locator(".meta")).toHaveText("Read this request");
+      await expect(sidebarBot.locator(".mascot")).toHaveAttribute("data-state", "working");
       await show(page, "bot-studio", theme);
       await expect(input).toHaveValue("Discard this draft");
       await page.getByRole("button", { name: "Back to the Bot", exact: true }).click();
@@ -201,6 +214,8 @@ test("Preview Bot locale reset and live-mode boundary", async () => {
     await page.locator("#bname").fill("Preview only");
     await page.getByTestId("bot-studio-save").click();
     await expect(page.getByText("Look saved", { exact: true })).toBeVisible();
+    await show(page, "work-task?v=done", "light");
+    await expect(page.locator(".sidebar .row").filter({ hasText: "Preview only" }).locator(".meta")).toHaveText("followed up on 5 quotes");
     await show(page, "settings?v=appearance", "light");
     await page.locator(".pg-panel").getByRole("button", { name: "English", exact: true }).click();
     await page.getByRole("menuitem", { name: "Français", exact: true }).click();
@@ -228,6 +243,15 @@ test("Preview Bot locale reset and live-mode boundary", async () => {
     await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "hidden");
     await show(page, "bot-studio", "light");
     await expect(page.locator("#bname")).toHaveValue("Nova");
+    await show(page, "work-task?v=done", "light");
+    await expect(page.locator(".content-top .badge")).toHaveText("Terminé");
+    const saved = await call<Bot[]>(page, "/api/bots");
+    await show(page, "home", "light", false);
+    await expect(page.locator(".home")).toBeVisible();
+    await show(page, "bot", "light");
+    await expect(page.locator(".hero-mascot .mascot")).toHaveAttribute("data-state", "working");
+    expect(await call<Bot[]>(page, "/api/bots")).toEqual(saved);
+    expect(await call(page, "/api/sessions")).toEqual([]);
     expect((await call<Bot[]>(page, "/api/bots")).map((bot) => bot.name)).toEqual(["Live bot"]);
   } finally { await app.close(); }
 });
