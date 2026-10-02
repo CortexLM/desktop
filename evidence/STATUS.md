@@ -2,14 +2,16 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
+Application CI and CodeQL pass at `2a9d1ad` (application code `7341cc7`), with zero open
+PR CodeQL alerts. This validates the implemented scope, not the complete objective.
 
 | Required proof | Evidence | Limits |
 | --- | --- | --- |
-| 1. Lint, types, units | [Green CI](https://github.com/CortexLM/desktop/actions/runs/36962840639), code `a205c6e`; [summary](ci/run-36962840639.json) | 64 unit tests pass; one optional backend test skipped without its URL; two existing hook warnings |
-| 2. Electron E2E | 11 tests pass on Linux and macOS, no retries/flaky/skips; 426 preview renders, provider/composer flow, window/menus, navigation, preview startup and small-window controls | CI inference endpoint is deterministic; every preview render is covered, not every interaction; intermittent local Gallery exit delay still under correction |
+| 1. Lint, types, units | [Green CI](https://github.com/CortexLM/desktop/actions/runs/36964561125), code `2a9d1ad`; [summary](ci/run-36964561125.json) | 65 unit tests pass; one optional backend test skipped without its URL; two existing hook warnings |
+| 2. Electron E2E | 11 tests pass on Linux and macOS, no retries/flaky/skips; 426 preview renders, provider/composer flow, window/menus, navigation, preview startup and small-window controls | CI inference endpoint is deterministic; every preview render is covered, not every interaction. Gallery follow-up adds bounded-frame and immediate-exit assertions |
 | Real inference supplement | [Real provider](real-provider.json), [replay script](../scripts/verify-real-provider.mjs) | Real GPT-6 Astra image response plus reasoning; test-only model alias; built IPC/engine path, not packaged UI |
 | 3. macOS build/package/launch | Same green run, Blacksmith macOS 26, unsigned arm64, `SMOKE OK` | CI native screen capture failed; renderer screenshot inspected. Native chrome is verified separately on the remote Mac |
-| 4. Remote Mac | [426 baseline captures and 14 menus](mac/README.md), [40 follow-up captures and corrected menus](mac/followup/README.md) | Revisions/asar hashes recorded; follow-up clean install excludes obsolete raw fixtures. No signing claim |
+| 4. Remote Mac | [426 baseline captures and 14 menus](mac/README.md), [40 follow-up captures and corrected menus](mac/followup/README.md), [final Gallery check](mac/gallery/manifest.json) | Revisions/asar hashes recorded; follow-up clean install excludes obsolete raw fixtures. Full latest-tip sweep and signing not claimed |
 | 5. Design comparison | [Report](compare/README.md), [421 reference comparisons](compare/report.json), [retained side-by-side shots](compare/index.html) | Mean 0.04%, max 0.78%; ten Settings states lack reference shots; mascot review boards are not routed screens |
 | 6. Copy audit | [Zero-finding run](ci/audit.log), [audit regression test](../tests/unit/audit-i18n.test.ts) | Common static copy sinks checked, including local constants; runtime/imported values and dynamic keys are not a complete dataflow proof |
 

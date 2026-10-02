@@ -41,3 +41,8 @@ but 14 obsolete raw fixture files remained in `resources/locales`. The clean CI 
 contains none. These captures prove the recorded UI, not a clean resource installation;
 the [follow-up package](followup/install.json) was installed into a fresh app directory
 before regression captures and has zero raw fixture/source-stamp files.
+
+Final [Gallery verification](gallery/manifest.json) uses a clean-installed `7341cc7` package
+(same application code as green `2a9d1ad`). Native Help opens at the top, only 1–2 preview
+documents load, offscreen documents unload and the native-click exit returns home promptly.
+See [native-gallery.webp](gallery/native-gallery.webp). This does not refresh the full baseline.

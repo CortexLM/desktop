@@ -17,6 +17,8 @@ Targeted verification: 23 tests pass across client, services and sessions; typec
 lint pass with two pre-existing hooks warnings. No comments or checks were dismissed.
 
 At `a205c6e`, the separate CodeQL comparison check failed on four remaining annotations.
-The follow-up removes those patterns without suppression; 27 targeted tests, typecheck
-and lint pass. A fresh CodeQL run must confirm the source fixes.
+At `eeabbf3`, CodeQL and both analysis jobs pass; the PR merge-ref alert query returns
+zero open alerts. The follow-up removes patterns without suppression; 27 targeted tests,
+typecheck and lint pass.
 All eight existing comments received scoped replies; none was dismissed.
+The final `2a9d1ad` CodeQL check also passes with zero open PR alerts.

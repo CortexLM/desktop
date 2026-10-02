@@ -54,6 +54,7 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.
   Gallery checks bound loaded frames, retain the top scroll position, unload scrolled previews
   and require the exit link to respond within five seconds.
+  Capture manifests are revision-specific; a later targeted capture does not refresh the full sweep.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
