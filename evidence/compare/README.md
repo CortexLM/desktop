@@ -2,15 +2,17 @@
 
 `node scripts/compare-shots.mjs` — every registered state, French (the design's copy), 1440×900 @2x, pixelmatch threshold 0.15, against `/root/cortex-ui/shots`.
 
-- States compared: **416**, mean differing pixels **0.08%**, max **10.14%**.
-- ≤ 1%: 414; 1–3%: 0; > 3%: 2.
+- Renders: **431** (426 registered theme/states plus five click-opened states).
+- Reference shots compared: **421**, mean differing pixels **0.04%**, max **0.78%**.
+- All 421 comparisons are below 1%. `image-gen` result text now matches the design,
+  including “quatre”; both result screenshots differ by **0.00%** after rounding.
 
-## Gaps above 1% and their justification
+## Remaining differences
 
-| State | Diff % | Why |
-|---|---|---|
-| image-gen~results-dark | 10.14 | Copy uses the plural `{count}` placeholder, so it reads “4 propositions” where the design spells “quatre”. The sentence wraps one line shorter, which shifts the image grid 29 px. Same pictures and layout. |
-| image-gen~results-light | 10.05 | Copy uses the plural `{count}` placeholder, so it reads “4 propositions” where the design spells “quatre”. The sentence wraps one line shorter, which shifts the image grid 29 px. Same pictures and layout. |
+Older Settings/menu shots have an earlier sidebar (generic bot row and fewer rail icons).
+The port uses the reference's current shell consistently; that changes sidebar alignment.
+Settings also includes Providers and Connection entries. Animation timing accounts for
+small mascot/cursor differences. These are recorded differences, not pixel-identical claims.
 
 ## States with no design shot
 
@@ -20,4 +22,13 @@ settings~bot-dark, settings~bot-light, settings~connection-dark, settings~connec
 
 ## Files
 
-`report.json` (all rows). For size, only gaps above 0.5% keep `<state>.{app,design,diff}.png`; the rest can be regenerated with the script.
+`report.json` contains every row. Retained `<state>.{app,design,diff}.png` triplets include
+differences above 0.5%, the corrected image results and file ask panel. `index.html` shows
+the retained triplets side by side; all captures can be regenerated with the script.
+
+Five interaction shots: `home+menu` and `history-menu` in both themes, `file-image+ask`
+in light. The remaining 13 PNGs in the design checkout are mascot review boards rather
+than registered application screens. They are not claimed as route comparisons.
+
+Space, standalone Scheduled and Plugins & skills remain absent pending designs. This
+report cannot establish visual acceptance for missing screens or every micro-transition.

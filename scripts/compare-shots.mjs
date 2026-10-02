@@ -2,7 +2,7 @@
 // Side-by-side comparison with the design screenshots (/root/cortex-ui/shots).
 // Renders every registered screen state with the French locale (the design's copy) in preview mode at 1440×900 @2x,
 // pixel-diffs it against the design shot, and writes evidence/compare/{index.html,report.json,<id>-<theme>.{app,diff}.png}.
-// Usage: node scripts/compare-shots.mjs [--base http://localhost:5299] [--shots /root/cortex-ui/shots] [--only id,id]
+// Usage: node scripts/compare-shots.mjs [--base http://localhost:5299/] [--shots /root/cortex-ui/shots] [--only id,id] [--merge]
 import fs from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright";
@@ -10,7 +10,7 @@ import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
 
 const arg = (k, d) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1] : d);
-const BASE = arg("--base", "http://localhost:5299/");
+const BASE = arg("--base", "http://localhost:5299/").replace(/\/?$/, "/");
 const SHOTS = arg("--shots", "/root/cortex-ui/shots");
 const OUT = path.resolve("evidence/compare");
 const only = arg("--only", "")?.split(",").filter(Boolean);
@@ -22,14 +22,22 @@ const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, d
 await ctx.addInitScript(() => localStorage.setItem("cortex.locale", "fr"));
 const page = await ctx.newPage();
 await page.goto(BASE + "#/gallery");
-await page.waitForTimeout(800);
+await page.waitForFunction(() => Array.isArray(window.__screens));
 const items = await page.$$eval("[data-gallery-item]", (as) => [...new Set(as.map((a) => a.getAttribute("href")))]);
+const extras = [
+  ...["dark", "light"].flatMap((theme) => [
+    { route: "home", v: "", theme, shot: "home+menu", action: "mode" },
+    { route: "history", v: "", theme, shot: "history-menu", action: "history" },
+  ]),
+  { route: "file-image", v: "view", theme: "light", shot: "file-image+ask", action: "ask" },
+];
 const jobs = items.map((href) => {
   const [route, q] = href.slice(2).split("?"); const p = new URLSearchParams(q);
   return { route, v: p.get("v") ?? "", theme: p.get("theme") };
-}).filter((j) => !only?.length || only.includes(j.route));
+}).concat(extras).filter((j) => !only?.length || only.includes(j.route));
 const meta = await page.evaluate(() => (window).__screens ?? null);
 const designOf = (j) => {
+  if (j.shot) return `${j.shot}-${j.theme}.png`;
   const d = meta?.find((s) => s.id === j.route); const base = d?.design ?? j.route;
   const dv = d?.variants?.find((x) => x[0] === j.v)?.[2];
   if (dv?.startsWith(base)) return `${dv}-${j.theme}.png`; // design route of its own, e.g. settings-apparence
@@ -37,10 +45,18 @@ const designOf = (j) => {
 };
 const report = [];
 for (const j of jobs) {
-  const name = `${j.route}${j.v ? "~" + j.v : ""}-${j.theme}`;
+  const name = `${j.shot ?? `${j.route}${j.v ? "~" + j.v : ""}`}-${j.theme}`;
   await page.goto(`${BASE}?r=${Math.random()}#/${j.route}?theme=${j.theme}&shot${j.v ? "&v=" + j.v : ""}`);
-  await page.waitForFunction(() => document.body.innerText.trim().length > 0, null, { timeout: 15_000 }).catch(() => {});
-  await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 15_000 }).catch(() => {});
+  await page.waitForFunction((theme) => document.documentElement.dataset.theme === theme && document.body.innerText.trim().length > 0, j.theme, { timeout: 15_000 });
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 15_000 });
+  if (j.action === "mode") await page.locator(".mode-trigger").click();
+  if (j.action === "history") { await page.locator(".pg-hrow").nth(1).hover(); await page.locator(".pg-more").nth(1).click(); }
+  if (j.action === "ask") {
+    await page.locator(".medias-top button[aria-pressed]").click();
+    await page.locator(".medias-ask-sugg button").first().click();
+    await page.locator(".medias-ask-thread .msg-bot:not(.thinking)").waitFor();
+  }
   await page.waitForTimeout(1100);
   const appPng = path.join(OUT, `${name}.app.png`);
   await page.screenshot({ path: appPng });

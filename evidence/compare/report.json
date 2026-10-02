@@ -110,16 +110,6 @@
     "diffPct": 0
   },
   {
-    "name": "home-dark",
-    "ref": "home-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "home-light",
-    "ref": "home-light.png",
-    "diffPct": 0.01
-  },
-  {
     "name": "chat-dark",
     "ref": "chat-dark.png",
     "diffPct": 0.15
@@ -307,16 +297,6 @@
   {
     "name": "temp-chat~active-light",
     "ref": "temp-chat~encours-light.png",
-    "diffPct": 0
-  },
-  {
-    "name": "history-dark",
-    "ref": "history-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "history-light",
-    "ref": "history-light.png",
     "diffPct": 0
   },
   {
@@ -858,36 +838,6 @@
     "name": "upload~errors-light",
     "ref": "upload~erreurs-light.png",
     "diffPct": 0.05
-  },
-  {
-    "name": "file-image~view-dark",
-    "ref": "file-image~affichage-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "file-image~view-light",
-    "ref": "file-image~affichage-light.png",
-    "diffPct": 0
-  },
-  {
-    "name": "file-image~zoom-dark",
-    "ref": "file-image~zoom-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "file-image~zoom-light",
-    "ref": "file-image~zoom-light.png",
-    "diffPct": 0
-  },
-  {
-    "name": "file-image~compare-dark",
-    "ref": "file-image~comparaison-dark.png",
-    "diffPct": 0.04
-  },
-  {
-    "name": "file-image~compare-light",
-    "ref": "file-image~comparaison-light.png",
-    "diffPct": 0.04
   },
   {
     "name": "file-code~view-dark",
@@ -2000,46 +1950,6 @@
     "diffPct": 0
   },
   {
-    "name": "image-gen~generating-dark",
-    "ref": "image-gen~generation-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "image-gen~generating-light",
-    "ref": "image-gen~generation-light.png",
-    "diffPct": 0.02
-  },
-  {
-    "name": "image-gen~results-dark",
-    "ref": "image-gen~resultats-dark.png",
-    "diffPct": 10.14
-  },
-  {
-    "name": "image-gen~results-light",
-    "ref": "image-gen~resultats-light.png",
-    "diffPct": 10.05
-  },
-  {
-    "name": "image-gen~editing-dark",
-    "ref": "image-gen~edition-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "image-gen~editing-light",
-    "ref": "image-gen~edition-light.png",
-    "diffPct": 0
-  },
-  {
-    "name": "image-gen~refused-dark",
-    "ref": "image-gen~refus-dark.png",
-    "diffPct": 0
-  },
-  {
-    "name": "image-gen~refused-light",
-    "ref": "image-gen~refus-light.png",
-    "diffPct": 0
-  },
-  {
     "name": "settings~general-dark",
     "ref": "settings-dark.png",
     "diffPct": 0.07
@@ -2128,5 +2038,120 @@
     "name": "settings~account-light",
     "ref": "settings-compte-light.png",
     "diffPct": 0.57
+  },
+  {
+    "name": "image-gen~generating-dark",
+    "ref": "image-gen~generation-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "image-gen~generating-light",
+    "ref": "image-gen~generation-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~results-dark",
+    "ref": "image-gen~resultats-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~results-light",
+    "ref": "image-gen~resultats-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~editing-dark",
+    "ref": "image-gen~edition-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~editing-light",
+    "ref": "image-gen~edition-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~refused-dark",
+    "ref": "image-gen~refus-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "image-gen~refused-light",
+    "ref": "image-gen~refus-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "home-dark",
+    "ref": "home-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "home-light",
+    "ref": "home-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "history-dark",
+    "ref": "history-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "history-light",
+    "ref": "history-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "file-image~view-dark",
+    "ref": "file-image~affichage-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "file-image~view-light",
+    "ref": "file-image~affichage-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "file-image~zoom-dark",
+    "ref": "file-image~zoom-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "file-image~zoom-light",
+    "ref": "file-image~zoom-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "file-image~compare-dark",
+    "ref": "file-image~comparaison-dark.png",
+    "diffPct": 0.04
+  },
+  {
+    "name": "file-image~compare-light",
+    "ref": "file-image~comparaison-light.png",
+    "diffPct": 0.04
+  },
+  {
+    "name": "home+menu-dark",
+    "ref": "home+menu-dark.png",
+    "diffPct": 0.61
+  },
+  {
+    "name": "history-menu-dark",
+    "ref": "history-menu-dark.png",
+    "diffPct": 0.66
+  },
+  {
+    "name": "home+menu-light",
+    "ref": "home+menu-light.png",
+    "diffPct": 0.63
+  },
+  {
+    "name": "history-menu-light",
+    "ref": "history-menu-light.png",
+    "diffPct": 0.58
+  },
+  {
+    "name": "file-image+ask-light",
+    "ref": "file-image+ask-light.png",
+    "diffPct": 0.01
   }
 ]

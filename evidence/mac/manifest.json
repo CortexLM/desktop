@@ -1,0 +1,2579 @@
+{
+  "timestamp": "2026-10-02T03:13:15.675Z",
+  "appSha256": "7c4d49b69a65a49da6c3065c01b44b8c653a1d4973a672ca7948330ce29c8235",
+  "nativeWindowID": 7224,
+  "count": 426,
+  "captures": [
+    {
+      "name": "bot-new-light.png",
+      "hash": "#/bot-new?theme=light&shot",
+      "file": "screens/bot-new-light.webp",
+      "pngSha256": "f496558fe09bf04fbadb5efbef6d78a649522a6d626015a5ca682748a53f672d"
+    },
+    {
+      "name": "bot-light.png",
+      "hash": "#/bot?theme=light&shot",
+      "file": "screens/bot-light.webp",
+      "pngSha256": "ad381cfbbf982cbb77929e55db3d2802f9b6cd20b6c5a6c750bf1f224282b532"
+    },
+    {
+      "name": "bot-studio-light.png",
+      "hash": "#/bot-studio?theme=light&shot",
+      "file": "screens/bot-studio-light.webp",
+      "pngSha256": "c5d2a48a359b090105b62d06ec37c16ac5d361d5f665efaf4e49e151f87f8c32"
+    },
+    {
+      "name": "bot-roster~team-light.png",
+      "hash": "#/bot-roster?theme=light&shot&v=team",
+      "file": "screens/bot-roster~team-light.webp",
+      "pngSha256": "e980cb33d820b2ed0d8a9918e9a710ac95b9181688fb321e1c7470a24d0cb012"
+    },
+    {
+      "name": "bot-roster~hierarchy-light.png",
+      "hash": "#/bot-roster?theme=light&shot&v=hierarchy",
+      "file": "screens/bot-roster~hierarchy-light.webp",
+      "pngSha256": "4a747cbd6abb7854a5520c459769389c0ef8870e0349bc0a6ed2626876b4580e"
+    },
+    {
+      "name": "bot-roster~templates-light.png",
+      "hash": "#/bot-roster?theme=light&shot&v=templates",
+      "file": "screens/bot-roster~templates-light.webp",
+      "pngSha256": "0e8c1f92ded0dc1eae6e30c59abc567b0ec8eab6bf1beae18c13d8a84ebc43d2"
+    },
+    {
+      "name": "bot-roster~limit-light.png",
+      "hash": "#/bot-roster?theme=light&shot&v=limit",
+      "file": "screens/bot-roster~limit-light.webp",
+      "pngSha256": "6dc1e2d974e71436fbb79301a7aee0be3988a3855573fd69d3fa9231048ee339"
+    },
+    {
+      "name": "bot-settings~general-light.png",
+      "hash": "#/bot-settings?theme=light&shot&v=general",
+      "file": "screens/bot-settings~general-light.webp",
+      "pngSha256": "55fcc9248f79508d6d914cd6b24a8a0d51e1c20679257a9cdbf66390be478e21"
+    },
+    {
+      "name": "bot-settings~permissions-light.png",
+      "hash": "#/bot-settings?theme=light&shot&v=permissions",
+      "file": "screens/bot-settings~permissions-light.webp",
+      "pngSha256": "985766bccb3ed957b9bcfb38638aaed7ec01d6887ff842d7108a63f05d54dabe"
+    },
+    {
+      "name": "bot-settings~memory-light.png",
+      "hash": "#/bot-settings?theme=light&shot&v=memory",
+      "file": "screens/bot-settings~memory-light.webp",
+      "pngSha256": "226d0819fbdb1622601da1b9b8e002052d07dacf687316d68a1d7a1c16e62720"
+    },
+    {
+      "name": "bot-settings~usage-light.png",
+      "hash": "#/bot-settings?theme=light&shot&v=usage",
+      "file": "screens/bot-settings~usage-light.webp",
+      "pngSha256": "8a568855b11ae853ba357324e7850c855adc453abc18bbd8d5a01b91326e2519"
+    },
+    {
+      "name": "home-light.png",
+      "hash": "#/home?theme=light&shot",
+      "file": "screens/home-light.webp",
+      "pngSha256": "9f7d2cf006b8683a31f0420ef02ad5695a73254ed980efd2d4d3ca582b27afd3"
+    },
+    {
+      "name": "chat-light.png",
+      "hash": "#/chat?theme=light&shot",
+      "file": "screens/chat-light.webp",
+      "pngSha256": "75b98e26716e4489226df0510664831e669e0ba073a703552f4181988e6022a4"
+    },
+    {
+      "name": "chat-states~sending-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=sending",
+      "file": "screens/chat-states~sending-light.webp",
+      "pngSha256": "839562590aeb8b128d857d2dc32424cb004a836989d5f29777ca16be1c859922"
+    },
+    {
+      "name": "chat-states~thinking-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=thinking",
+      "file": "screens/chat-states~thinking-light.webp",
+      "pngSha256": "1cc2e0567ef7bd7ad7f4c8cbb53e48fba4367ad3f2531a3dd36af0d641784516"
+    },
+    {
+      "name": "chat-states~streaming-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=streaming",
+      "file": "screens/chat-states~streaming-light.webp",
+      "pngSha256": "588a5379a73a6aabd64bb81e7b9b39e4773cd0cfe061579b3126e6fc861c2915"
+    },
+    {
+      "name": "chat-states~searching-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=searching",
+      "file": "screens/chat-states~searching-light.webp",
+      "pngSha256": "bafe61d7d27ac3fca6f1f3a7817b1d4077cfa71c3a4647f65569ef57f776f6a5"
+    },
+    {
+      "name": "chat-states~sources-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=sources",
+      "file": "screens/chat-states~sources-light.webp",
+      "pngSha256": "6fa5424e94760ac682a53bff46972af571a7aad2f89c3f12f9f9df75ff3e373d"
+    },
+    {
+      "name": "chat-states~rich-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=rich",
+      "file": "screens/chat-states~rich-light.webp",
+      "pngSha256": "d4baaea5bd3a26db661c2a90129aee0ff990ef96b7e6ffa4e04ee673123ba204"
+    },
+    {
+      "name": "chat-states~tool-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=tool",
+      "file": "screens/chat-states~tool-light.webp",
+      "pngSha256": "83afdd242bdc2850f1118e4094e64d927f81fac923c567b92196d025346a799a"
+    },
+    {
+      "name": "chat-states~attachments-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=attachments",
+      "file": "screens/chat-states~attachments-light.webp",
+      "pngSha256": "141fec1c7524a6c637ca1ee03aa1dcdfa99e241f601835cffdaac5930673dc56"
+    },
+    {
+      "name": "chat-states~edited-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=edited",
+      "file": "screens/chat-states~edited-light.webp",
+      "pngSha256": "fb949083df727f749a6cf98a9240436e95d4f77c511373e22816185ad9548e96"
+    },
+    {
+      "name": "chat-states~regenerating-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=regenerating",
+      "file": "screens/chat-states~regenerating-light.webp",
+      "pngSha256": "0aa87f3df9d84628cca56465a4aaaaa1b2d57f5bf4c1cd1008bb0dd01bea631c"
+    },
+    {
+      "name": "chat-states~error-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=error",
+      "file": "screens/chat-states~error-light.webp",
+      "pngSha256": "0e2540d001e34e32c010f5f1d48fd416410e3f0288e43cdb762208e0714ee726"
+    },
+    {
+      "name": "chat-states~limit-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=limit",
+      "file": "screens/chat-states~limit-light.webp",
+      "pngSha256": "6fc1d36b2ef351980785136948f4d65770735b196d77f44590ce9246120a79b3"
+    },
+    {
+      "name": "chat-states~stopped-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=stopped",
+      "file": "screens/chat-states~stopped-light.webp",
+      "pngSha256": "170f11108214388146953a30f30471d26159af5fb266563423a54889bc1a8e5e"
+    },
+    {
+      "name": "chat-states~long-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=long",
+      "file": "screens/chat-states~long-light.webp",
+      "pngSha256": "34c37288b0297bfe15206a9f6d5d3bdc527558b0aeeec2dc73acdba2a3b3e394"
+    },
+    {
+      "name": "chat-states~feedback-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=feedback",
+      "file": "screens/chat-states~feedback-light.webp",
+      "pngSha256": "e71d24d5357b921e43d032d1106372aa61f1b79727b976ae5cda42906f0e9094"
+    },
+    {
+      "name": "chat-states~empty-light.png",
+      "hash": "#/chat-states?theme=light&shot&v=empty",
+      "file": "screens/chat-states~empty-light.webp",
+      "pngSha256": "be2a72a1b9f8d1e4115e2723a433654c9e61cd3c1bdc5115b1fdef8d66001173"
+    },
+    {
+      "name": "voice~connecting-light.png",
+      "hash": "#/voice?theme=light&shot&v=connecting",
+      "file": "screens/voice~connecting-light.webp",
+      "pngSha256": "178f620b11735f5dd5c1106b782a86d772485e2988659ddf8f17252debfc24a9"
+    },
+    {
+      "name": "voice~listening-light.png",
+      "hash": "#/voice?theme=light&shot&v=listening",
+      "file": "screens/voice~listening-light.webp",
+      "pngSha256": "cfb81e9246749e139eff08c9c60a8ca230c9186a58eb4e622d7525809b0a4e13"
+    },
+    {
+      "name": "voice~talking-light.png",
+      "hash": "#/voice?theme=light&shot&v=talking",
+      "file": "screens/voice~talking-light.webp",
+      "pngSha256": "ea989749c03967089cd15bf02994171c3e08c2656eb5c33d9a0f85b98d7d04c7"
+    },
+    {
+      "name": "voice~muted-light.png",
+      "hash": "#/voice?theme=light&shot&v=muted",
+      "file": "screens/voice~muted-light.webp",
+      "pngSha256": "e611d6b900cc3bfff21864be6ebaab6a6eb8bbf1bfe1522c076f3767db73aa44"
+    },
+    {
+      "name": "voice~interrupted-light.png",
+      "hash": "#/voice?theme=light&shot&v=interrupted",
+      "file": "screens/voice~interrupted-light.webp",
+      "pngSha256": "1fc52605e8029b784118fee23e26a6d05da67f979e5c59486396009a2492a573"
+    },
+    {
+      "name": "voice~ended-light.png",
+      "hash": "#/voice?theme=light&shot&v=ended",
+      "file": "screens/voice~ended-light.webp",
+      "pngSha256": "5f83619280faf56b9ff41ce4f35cb9f0053a29fbafd53d7d676da7825536ffe5"
+    },
+    {
+      "name": "canvas~document-light.png",
+      "hash": "#/canvas?theme=light&shot&v=document",
+      "file": "screens/canvas~document-light.webp",
+      "pngSha256": "a8b0a8a103fbf2293a94b3ba3282348f70ae40cb49f00685b49ed1a489f27713"
+    },
+    {
+      "name": "canvas~code-light.png",
+      "hash": "#/canvas?theme=light&shot&v=code",
+      "file": "screens/canvas~code-light.webp",
+      "pngSha256": "07289f7dbee7b5ebe7b8cb4f9a3b9a80b4c6054eedce64fe5cbbcb298680ad4d"
+    },
+    {
+      "name": "canvas~selection-light.png",
+      "hash": "#/canvas?theme=light&shot&v=selection",
+      "file": "screens/canvas~selection-light.webp",
+      "pngSha256": "aca5e9fefd5582aa346a90ca419358fdf2d8728eab1aed8d960591bb93488d1b"
+    },
+    {
+      "name": "canvas~generation-light.png",
+      "hash": "#/canvas?theme=light&shot&v=generation",
+      "file": "screens/canvas~generation-light.webp",
+      "pngSha256": "9b2e3bc306e931ce9741b29b40a45995215bf69890f105095acd04124a26b4b5"
+    },
+    {
+      "name": "canvas~compare-light.png",
+      "hash": "#/canvas?theme=light&shot&v=compare",
+      "file": "screens/canvas~compare-light.webp",
+      "pngSha256": "557db35e56f629d4efab324de040b638daf1e0fabb5b19c082dede7e92983311"
+    },
+    {
+      "name": "search-results~results-light.png",
+      "hash": "#/search-results?theme=light&shot&v=results",
+      "file": "screens/search-results~results-light.webp",
+      "pngSha256": "c0188b9062ef2f1e8f50282be05136017e0aff8b5566cbfc7f6fa19d331f9897"
+    },
+    {
+      "name": "search-results~loading-light.png",
+      "hash": "#/search-results?theme=light&shot&v=loading",
+      "file": "screens/search-results~loading-light.webp",
+      "pngSha256": "36ac4ca12017f6663fa3ec785009ecd1c71cc3ce4925b8d011f2fff66edcd1b1"
+    },
+    {
+      "name": "search-results~empty-light.png",
+      "hash": "#/search-results?theme=light&shot&v=empty",
+      "file": "screens/search-results~empty-light.webp",
+      "pngSha256": "e4d0cf51ef5d76ae454d863fa280fad5500cafdee415a9307b618b2e1da123c9"
+    },
+    {
+      "name": "deep-research~plan-light.png",
+      "hash": "#/deep-research?theme=light&shot&v=plan",
+      "file": "screens/deep-research~plan-light.webp",
+      "pngSha256": "8dbc3c3533ab23c1968d046436b70b80ec3371defd69db71c0f5b8f63af830fd"
+    },
+    {
+      "name": "deep-research~running-light.png",
+      "hash": "#/deep-research?theme=light&shot&v=running",
+      "file": "screens/deep-research~running-light.webp",
+      "pngSha256": "2a3ade1b3f92c978e224549166ca736c2f0df318f571f81c0a6dea942c7e5142"
+    },
+    {
+      "name": "deep-research~done-light.png",
+      "hash": "#/deep-research?theme=light&shot&v=done",
+      "file": "screens/deep-research~done-light.webp",
+      "pngSha256": "3191c3df9aa199cf0ba3b392676107ae64958630b5b7a5e6a2251f0d9a353fa2"
+    },
+    {
+      "name": "deep-research~cancelled-light.png",
+      "hash": "#/deep-research?theme=light&shot&v=cancelled",
+      "file": "screens/deep-research~cancelled-light.webp",
+      "pngSha256": "2c5cfb78234c22107f7eec62f7a4d7ab11fcee4405a155f14639901d9e39605e"
+    },
+    {
+      "name": "image-gen~generating-light.png",
+      "hash": "#/image-gen?theme=light&shot&v=generating",
+      "file": "screens/image-gen~generating-light.webp",
+      "pngSha256": "52ae829ac66ea632f82f8099ce07ebc7e530c58550ba38a26c74db5dc027a558"
+    },
+    {
+      "name": "image-gen~results-light.png",
+      "hash": "#/image-gen?theme=light&shot&v=results",
+      "file": "screens/image-gen~results-light.webp",
+      "pngSha256": "61aafbfbd4b532d8a653ca9ca193cbb872d1cc876c5cb42c75739de3157ed45d"
+    },
+    {
+      "name": "image-gen~editing-light.png",
+      "hash": "#/image-gen?theme=light&shot&v=editing",
+      "file": "screens/image-gen~editing-light.webp",
+      "pngSha256": "24709c0690368ee546b7ce5504de377672677da6ae17c374746fb7fc02acfa12"
+    },
+    {
+      "name": "image-gen~refused-light.png",
+      "hash": "#/image-gen?theme=light&shot&v=refused",
+      "file": "screens/image-gen~refused-light.webp",
+      "pngSha256": "74a453aa91b653a074ad7cea78cd067f2ce907286a8127d81b8bae969f6fcaa3"
+    },
+    {
+      "name": "share~settings-light.png",
+      "hash": "#/share?theme=light&shot&v=settings",
+      "file": "screens/share~settings-light.webp",
+      "pngSha256": "0e0decfbe72781244436dd75ac804a9ab30fc318c1e95e45ea164654aee27050"
+    },
+    {
+      "name": "share~created-light.png",
+      "hash": "#/share?theme=light&shot&v=created",
+      "file": "screens/share~created-light.webp",
+      "pngSha256": "b3dba94aea6781a70f4e378a4f4d268559721d01ac4f5dae13b065bd8b99e6ae"
+    },
+    {
+      "name": "share~disabled-light.png",
+      "hash": "#/share?theme=light&shot&v=disabled",
+      "file": "screens/share~disabled-light.webp",
+      "pngSha256": "4f89d9d286c1b0007fd346c7a306a12d0f9ea6656ec21602dd3a1b0a14c55b88"
+    },
+    {
+      "name": "temp-chat~empty-light.png",
+      "hash": "#/temp-chat?theme=light&shot&v=empty",
+      "file": "screens/temp-chat~empty-light.webp",
+      "pngSha256": "044d265dccacd5d6159071b858c924aefb5ef2f4c23f82919ba68cf9104c119c"
+    },
+    {
+      "name": "temp-chat~active-light.png",
+      "hash": "#/temp-chat?theme=light&shot&v=active",
+      "file": "screens/temp-chat~active-light.webp",
+      "pngSha256": "95cc14f2197460f5943220a02b28f80876cce59c3247e8b92bad0db599aab4df"
+    },
+    {
+      "name": "history-light.png",
+      "hash": "#/history?theme=light&shot",
+      "file": "screens/history-light.webp",
+      "pngSha256": "d8f2163eb27930a767faa31455ff31f5c7f45a292c071ac04d6947128f9c6714"
+    },
+    {
+      "name": "library-light.png",
+      "hash": "#/library?theme=light&shot",
+      "file": "screens/library-light.webp",
+      "pngSha256": "57135ebbb7f3601a7fce1ec8a05426ae39a8bffa1c283282d4f3db358c7c1ec0"
+    },
+    {
+      "name": "code-light.png",
+      "hash": "#/code?theme=light&shot",
+      "file": "screens/code-light.webp",
+      "pngSha256": "34120735cfa4173fd4f5d0d5e6751ba980e4840bf8afaa8563c31e7b1023ba65"
+    },
+    {
+      "name": "code-session-light.png",
+      "hash": "#/code-session?theme=light&shot",
+      "file": "screens/code-session-light.webp",
+      "pngSha256": "f6c712ea51f313fbafda911e38b02aeb561a6bd6763a7ec2b0e38c77de6a8264"
+    },
+    {
+      "name": "code-tasks~list-light.png",
+      "hash": "#/code-tasks?theme=light&shot&v=list",
+      "file": "screens/code-tasks~list-light.webp",
+      "pngSha256": "9e64abe41761d2580b5e5effdb9eecad3609b5673c0c920f09635e972df6dac1"
+    },
+    {
+      "name": "code-tasks~filtered-light.png",
+      "hash": "#/code-tasks?theme=light&shot&v=filtered",
+      "file": "screens/code-tasks~filtered-light.webp",
+      "pngSha256": "3999ccaee41b64a3abd1530880f360353640c0b57f2a603a657aa012ae67f43f"
+    },
+    {
+      "name": "code-tasks~empty-light.png",
+      "hash": "#/code-tasks?theme=light&shot&v=empty",
+      "file": "screens/code-tasks~empty-light.webp",
+      "pngSha256": "cc846b305f721377dceafa9ae1d3daac64312a240e1eaa5d5b913d87aef20d0e"
+    },
+    {
+      "name": "code-tasks~attempts-light.png",
+      "hash": "#/code-tasks?theme=light&shot&v=attempts",
+      "file": "screens/code-tasks~attempts-light.webp",
+      "pngSha256": "582723fe2a642fdc91d58f777abed6250999cd77d93b1f5335a20500465cd165"
+    },
+    {
+      "name": "code-review~review-light.png",
+      "hash": "#/code-review?theme=light&shot&v=review",
+      "file": "screens/code-review~review-light.webp",
+      "pngSha256": "4d66af12f19c42f3db1ef9cbda538634607b5edf2f3216e9e8a615222cb9b508"
+    },
+    {
+      "name": "code-review~applied-light.png",
+      "hash": "#/code-review?theme=light&shot&v=applied",
+      "file": "screens/code-review~applied-light.webp",
+      "pngSha256": "9bbb6cf8870c6b9cff8d9bcbc5820602b1e26a033107f63d2c949767b48d9f3b"
+    },
+    {
+      "name": "code-review~approved-light.png",
+      "hash": "#/code-review?theme=light&shot&v=approved",
+      "file": "screens/code-review~approved-light.webp",
+      "pngSha256": "0f997efbbd1a58757ec51c2da3f8dd119cd7d36a4e5d9b6359da8dc96707c1f5"
+    },
+    {
+      "name": "code-diff~unified-light.png",
+      "hash": "#/code-diff?theme=light&shot&v=unified",
+      "file": "screens/code-diff~unified-light.webp",
+      "pngSha256": "5a22c3dbc024833ac9a9c5f60e52cc33eecef3d39451a26281f267a4f5e4c203"
+    },
+    {
+      "name": "code-diff~split-light.png",
+      "hash": "#/code-diff?theme=light&shot&v=split",
+      "file": "screens/code-diff~split-light.webp",
+      "pngSha256": "17b52b40251e0c6037abdd24b29f32dd9483d8cbc7e91dce51a2a6666f97f736"
+    },
+    {
+      "name": "code-diff~comment-light.png",
+      "hash": "#/code-diff?theme=light&shot&v=comment",
+      "file": "screens/code-diff~comment-light.webp",
+      "pngSha256": "65a4d02acca913264ff4587fef9e15ab0be897841c25366654e53476ef534921"
+    },
+    {
+      "name": "code-diff~conflict-light.png",
+      "hash": "#/code-diff?theme=light&shot&v=conflict",
+      "file": "screens/code-diff~conflict-light.webp",
+      "pngSha256": "fe22f064c9ed823cf96c23169a707331adfadd269d988274c42cec76e5a695e7"
+    },
+    {
+      "name": "code-terminal~running-light.png",
+      "hash": "#/code-terminal?theme=light&shot&v=running",
+      "file": "screens/code-terminal~running-light.webp",
+      "pngSha256": "562474459788fe5d03d24d2d0474cb29301bc4c5416b6cb707c48a330fbb3452"
+    },
+    {
+      "name": "code-terminal~approval-light.png",
+      "hash": "#/code-terminal?theme=light&shot&v=approval",
+      "file": "screens/code-terminal~approval-light.webp",
+      "pngSha256": "f3df2a05055130411bd424ebcbf2453a427c73f73695aa0a77c6dc4103a282f7"
+    },
+    {
+      "name": "code-terminal~failed-light.png",
+      "hash": "#/code-terminal?theme=light&shot&v=failed",
+      "file": "screens/code-terminal~failed-light.webp",
+      "pngSha256": "92f343d57493b4195edb5db2ee51b96efce4073b62c9884251debcce2b2644ad"
+    },
+    {
+      "name": "code-terminal~done-light.png",
+      "hash": "#/code-terminal?theme=light&shot&v=done",
+      "file": "screens/code-terminal~done-light.webp",
+      "pngSha256": "8f0cd7c58dcbdc5e143ebb1af064c5405ed64757cb52b54cc39a725749df01cc"
+    },
+    {
+      "name": "code-env~list-light.png",
+      "hash": "#/code-env?theme=light&shot&v=list",
+      "file": "screens/code-env~list-light.webp",
+      "pngSha256": "a27c7068cae34688cdd89cfea3d1da0917c3bbc80291ff0e8b51e732942d92b0"
+    },
+    {
+      "name": "code-env~edit-light.png",
+      "hash": "#/code-env?theme=light&shot&v=edit",
+      "file": "screens/code-env~edit-light.webp",
+      "pngSha256": "8e2b83fb7f78ebfe67ef3f876bebfe6644e0ab833e4807a47de21da14aff66a2"
+    },
+    {
+      "name": "code-env~booting-light.png",
+      "hash": "#/code-env?theme=light&shot&v=booting",
+      "file": "screens/code-env~booting-light.webp",
+      "pngSha256": "1cfc34d1577fa7ae2fddd5a8ddc979bc99d2fafda2876b740e7145769a0c1c89"
+    },
+    {
+      "name": "code-env~error-light.png",
+      "hash": "#/code-env?theme=light&shot&v=error",
+      "file": "screens/code-env~error-light.webp",
+      "pngSha256": "a13784992095d943fd7d881bffdc20e13f307538443f433dd2c72f02d103a64e"
+    },
+    {
+      "name": "code-pr~draft-light.png",
+      "hash": "#/code-pr?theme=light&shot&v=draft",
+      "file": "screens/code-pr~draft-light.webp",
+      "pngSha256": "7eb8621bc9512c5847760cb7a15365b783c64e4eb5f8c1733afaf3565c888754"
+    },
+    {
+      "name": "code-pr~checks-light.png",
+      "hash": "#/code-pr?theme=light&shot&v=checks",
+      "file": "screens/code-pr~checks-light.webp",
+      "pngSha256": "ae42a2b7fa8ff6bc0c0ba544515be9711dc6647f4c0d97c17aa14320fc5235d3"
+    },
+    {
+      "name": "code-pr~failed-light.png",
+      "hash": "#/code-pr?theme=light&shot&v=failed",
+      "file": "screens/code-pr~failed-light.webp",
+      "pngSha256": "57042a12fd5c9a1e80c7e3871bdc2e70b7399e1d2beb773e2dfb6a5c39dfbfc2"
+    },
+    {
+      "name": "code-pr~ready-light.png",
+      "hash": "#/code-pr?theme=light&shot&v=ready",
+      "file": "screens/code-pr~ready-light.webp",
+      "pngSha256": "5e621642f53f2bd0208d337bbf9409eab423bd3a75902e9ad74662d646b09ab3"
+    },
+    {
+      "name": "code-pr~merged-light.png",
+      "hash": "#/code-pr?theme=light&shot&v=merged",
+      "file": "screens/code-pr~merged-light.webp",
+      "pngSha256": "307267467c63166ba2d179619d3644584e69e7e8ce993fafb07edc9775f7f049"
+    },
+    {
+      "name": "code-settings~repos-light.png",
+      "hash": "#/code-settings?theme=light&shot&v=repos",
+      "file": "screens/code-settings~repos-light.webp",
+      "pngSha256": "8c19d821dcaa76288403dbf7754f9be2c8dbbd35c231145e56f1e9b2faf0256e"
+    },
+    {
+      "name": "code-settings~instructions-light.png",
+      "hash": "#/code-settings?theme=light&shot&v=instructions",
+      "file": "screens/code-settings~instructions-light.webp",
+      "pngSha256": "f643825be02eb32dc490b08e824488f7a05fb45d7260fc28a52384d7b3974a55"
+    },
+    {
+      "name": "code-settings~approvals-light.png",
+      "hash": "#/code-settings?theme=light&shot&v=approvals",
+      "file": "screens/code-settings~approvals-light.webp",
+      "pngSha256": "4c28d00d965d4e4329e764dc54f80b6504681da043fdde4428c6bffc12a06bcd"
+    },
+    {
+      "name": "code-settings~usage-light.png",
+      "hash": "#/code-settings?theme=light&shot&v=usage",
+      "file": "screens/code-settings~usage-light.webp",
+      "pngSha256": "6c0001740ef7ebd885466e3d8d871e171ef5b37731316d598fb6f4eb1f2222f5"
+    },
+    {
+      "name": "file-pdf~reading-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=reading",
+      "file": "screens/file-pdf~reading-light.webp",
+      "pngSha256": "2e949c7c439de3ae5ce0e4b6c3213ef9f8da520eba02dfaea8a0969ae47452c2"
+    },
+    {
+      "name": "file-pdf~loading-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=loading",
+      "file": "screens/file-pdf~loading-light.webp",
+      "pngSha256": "727b61013bfe45d2a71ebd697705508dc508d8e12d384dcfb06cee0cf883e670"
+    },
+    {
+      "name": "file-pdf~search-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=search",
+      "file": "screens/file-pdf~search-light.webp",
+      "pngSha256": "23a1a175e87a0cde3d04523deb51e3bf13ec8b9fa3d50bb970040aab535bfb88"
+    },
+    {
+      "name": "file-pdf~selection-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=selection",
+      "file": "screens/file-pdf~selection-light.webp",
+      "pngSha256": "65dd2219d21b375f6162ae23063f70d4ba431d87f724fa33bac4524857815f58"
+    },
+    {
+      "name": "file-pdf~summary-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=summary",
+      "file": "screens/file-pdf~summary-light.webp",
+      "pngSha256": "f71a2ef3ef1bd674d809085d3eab8f33395516d5abd555ba9e93d6eaabe511f3"
+    },
+    {
+      "name": "file-pdf~protected-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=protected",
+      "file": "screens/file-pdf~protected-light.webp",
+      "pngSha256": "9e741fed3d3648ecdfaea8a5b5b00035bef6cac5325f1eb4c31f37b281c489b8"
+    },
+    {
+      "name": "file-pdf~corrupt-light.png",
+      "hash": "#/file-pdf?theme=light&shot&v=corrupt",
+      "file": "screens/file-pdf~corrupt-light.webp",
+      "pngSha256": "6dc9cce5a1d0d4b0b063e1c5219483d2b9093abe3de454be5064c6f9e2b779f2"
+    },
+    {
+      "name": "file-pptx~editing-light.png",
+      "hash": "#/file-pptx?theme=light&shot&v=editing",
+      "file": "screens/file-pptx~editing-light.webp",
+      "pngSha256": "41ee566d576f946829404039e58fa02c3ac309a4a0bde64dcfae60956669d162"
+    },
+    {
+      "name": "file-pptx~presenting-light.png",
+      "hash": "#/file-pptx?theme=light&shot&v=presenting",
+      "file": "screens/file-pptx~presenting-light.webp",
+      "pngSha256": "9e939ac5945fe973a2cd956a672dda966a3fd76c86872d257f21d38ce56604a1"
+    },
+    {
+      "name": "file-pptx~grid-light.png",
+      "hash": "#/file-pptx?theme=light&shot&v=grid",
+      "file": "screens/file-pptx~grid-light.webp",
+      "pngSha256": "1dad7e1a49820cd438b7130d5dadd3dcad7502cec4528687093112d0f545a6b6"
+    },
+    {
+      "name": "file-pptx~converting-light.png",
+      "hash": "#/file-pptx?theme=light&shot&v=converting",
+      "file": "screens/file-pptx~converting-light.webp",
+      "pngSha256": "d41598d3abf6f2ccbe3fc6358d2687bd7efb88b435f44687962014fb3f9c1eab"
+    },
+    {
+      "name": "file-docx~reading-light.png",
+      "hash": "#/file-docx?theme=light&shot&v=reading",
+      "file": "screens/file-docx~reading-light.webp",
+      "pngSha256": "c8a0c266069ffd8d03cd6c4d83ecac570cfed154c4f681767cf71978f3e0eff7"
+    },
+    {
+      "name": "file-docx~tracked-light.png",
+      "hash": "#/file-docx?theme=light&shot&v=tracked",
+      "file": "screens/file-docx~tracked-light.webp",
+      "pngSha256": "5b8b6ee887b5291e4b5dad79b0e9d86a64f338fe7985451a542e4f836c13b6e0"
+    },
+    {
+      "name": "file-docx~comments-light.png",
+      "hash": "#/file-docx?theme=light&shot&v=comments",
+      "file": "screens/file-docx~comments-light.webp",
+      "pngSha256": "ac1a63904139e19e7e94c1425be3e8daff0da21f049420989b3dec6392249f3e"
+    },
+    {
+      "name": "file-xlsx~data-light.png",
+      "hash": "#/file-xlsx?theme=light&shot&v=data",
+      "file": "screens/file-xlsx~data-light.webp",
+      "pngSha256": "7572563fcecfddbce949b19a732ad40d8d18834e226c897885e475cb8ca490b1"
+    },
+    {
+      "name": "file-xlsx~range-light.png",
+      "hash": "#/file-xlsx?theme=light&shot&v=range",
+      "file": "screens/file-xlsx~range-light.webp",
+      "pngSha256": "a08b2765f89d16e32beb058ccc3af1bbf7803949b44de79992745ffeebd12d6a"
+    },
+    {
+      "name": "file-xlsx~chart-light.png",
+      "hash": "#/file-xlsx?theme=light&shot&v=chart",
+      "file": "screens/file-xlsx~chart-light.webp",
+      "pngSha256": "1e1038cb1ccf559dcb5e47a5dcbe060f443b7da173368fc65ea7d5a2524066af"
+    },
+    {
+      "name": "file-xlsx~errors-light.png",
+      "hash": "#/file-xlsx?theme=light&shot&v=errors",
+      "file": "screens/file-xlsx~errors-light.webp",
+      "pngSha256": "56432261d1716ee822721e9f34977bb9d5539ee7f5f18339fbe2bb7c5c00cae9"
+    },
+    {
+      "name": "upload~empty-light.png",
+      "hash": "#/upload?theme=light&shot&v=empty",
+      "file": "screens/upload~empty-light.webp",
+      "pngSha256": "3c1ac8af181bcdfa336b53592ee67e0eb0d193eaa8ce826d9ea1ebfc79cd7d4b"
+    },
+    {
+      "name": "upload~dragging-light.png",
+      "hash": "#/upload?theme=light&shot&v=dragging",
+      "file": "screens/upload~dragging-light.webp",
+      "pngSha256": "1d846febf928dbf081af03e4d2e37ba463846d1b906174f1df6d9957c928f9cc"
+    },
+    {
+      "name": "upload~uploading-light.png",
+      "hash": "#/upload?theme=light&shot&v=uploading",
+      "file": "screens/upload~uploading-light.webp",
+      "pngSha256": "779ab3a563d6aeec429d687fed8170c8b7240479fb1a0532fc9cd8f8699f2e13"
+    },
+    {
+      "name": "upload~done-light.png",
+      "hash": "#/upload?theme=light&shot&v=done",
+      "file": "screens/upload~done-light.webp",
+      "pngSha256": "5416d8a93124168f3d78df9da62ca153882bfec0e61d8fd912b8fe504f3c1f2b"
+    },
+    {
+      "name": "upload~errors-light.png",
+      "hash": "#/upload?theme=light&shot&v=errors",
+      "file": "screens/upload~errors-light.webp",
+      "pngSha256": "023cc499e372e934bae444089193d22d597a86f7dd69b002cfab5cd5f6cf0b52"
+    },
+    {
+      "name": "file-image~view-light.png",
+      "hash": "#/file-image?theme=light&shot&v=view",
+      "file": "screens/file-image~view-light.webp",
+      "pngSha256": "90f60f896f2858ee054328266f5861c15e75ba26484c2a3b05cf0614c8ffac22"
+    },
+    {
+      "name": "file-image~zoom-light.png",
+      "hash": "#/file-image?theme=light&shot&v=zoom",
+      "file": "screens/file-image~zoom-light.webp",
+      "pngSha256": "4f735cd97970e648b9e5024bbbf7d21754b91682b1f4ef0294ca08d4c66d1903"
+    },
+    {
+      "name": "file-image~compare-light.png",
+      "hash": "#/file-image?theme=light&shot&v=compare",
+      "file": "screens/file-image~compare-light.webp",
+      "pngSha256": "508a9ca8d0023f7f8df16744771475ddf5915c741adf395289cbcf958485f04d"
+    },
+    {
+      "name": "file-code~view-light.png",
+      "hash": "#/file-code?theme=light&shot&v=view",
+      "file": "screens/file-code~view-light.webp",
+      "pngSha256": "8d35600805c9d5e4b4e7a57691df16320716415ad8316e4e3cb61ff141425786"
+    },
+    {
+      "name": "file-code~diff-light.png",
+      "hash": "#/file-code?theme=light&shot&v=diff",
+      "file": "screens/file-code~diff-light.webp",
+      "pngSha256": "fac54a54c2738a1045d547fcf456782b522c23a6ae9d6b19677f6993786e7ed9"
+    },
+    {
+      "name": "file-audio~playing-light.png",
+      "hash": "#/file-audio?theme=light&shot&v=playing",
+      "file": "screens/file-audio~playing-light.webp",
+      "pngSha256": "c848183f8e9e67561f2b8f4fd5fdc01fdc6254fc32245d67eec4931d40116d1b"
+    },
+    {
+      "name": "file-audio~transcribing-light.png",
+      "hash": "#/file-audio?theme=light&shot&v=transcribing",
+      "file": "screens/file-audio~transcribing-light.webp",
+      "pngSha256": "48fe012bc95b2a87f4c6cc3c9de948d341d7f10c0c66e4039f383ed6229e0f2d"
+    },
+    {
+      "name": "file-video~playing-light.png",
+      "hash": "#/file-video?theme=light&shot&v=playing",
+      "file": "screens/file-video~playing-light.webp",
+      "pngSha256": "4fdf1432bcb5866f5bca2cc3d8495b1956a7ad1c2d52b5f98def2ad75d5399b1"
+    },
+    {
+      "name": "file-video~paused-light.png",
+      "hash": "#/file-video?theme=light&shot&v=paused",
+      "file": "screens/file-video~paused-light.webp",
+      "pngSha256": "9cf69c3c3a57904000b0b288222e58c1fc6e7674a6f37f5ce0f7027bf4990c01"
+    },
+    {
+      "name": "file-zip~tree-light.png",
+      "hash": "#/file-zip?theme=light&shot&v=tree",
+      "file": "screens/file-zip~tree-light.webp",
+      "pngSha256": "a54026c93989c84113d415f197a6da4f00a578483262c413d62d338edd9ed19c"
+    },
+    {
+      "name": "file-zip~extracting-light.png",
+      "hash": "#/file-zip?theme=light&shot&v=extracting",
+      "file": "screens/file-zip~extracting-light.webp",
+      "pngSha256": "c80737ea32cc835810fbd08ec0ea9c66dd83ebb16c1e30521dda5accbee3deb4"
+    },
+    {
+      "name": "search~results-light.png",
+      "hash": "#/search?theme=light&shot&v=results",
+      "file": "screens/search~results-light.webp",
+      "pngSha256": "5b88411163649fd82bacc6458e95d4b5ef168d413c1ba90e688256210f270f25"
+    },
+    {
+      "name": "search~empty-light.png",
+      "hash": "#/search?theme=light&shot&v=empty",
+      "file": "screens/search~empty-light.webp",
+      "pngSha256": "bbc12e88a41533d4a04a1348f3e2953fd63088bf3002da86946182367512434c"
+    },
+    {
+      "name": "search~loading-light.png",
+      "hash": "#/search?theme=light&shot&v=loading",
+      "file": "screens/search~loading-light.webp",
+      "pngSha256": "cd1e6421cc0ad35efa0d4f80cbbaeb2decd8520f47b5057ca2b52e16f08ea856"
+    },
+    {
+      "name": "search~recent-light.png",
+      "hash": "#/search?theme=light&shot&v=recent",
+      "file": "screens/search~recent-light.webp",
+      "pngSha256": "512684b049ca49d6ae83b54e7b2743f79ba3cca29a7f3bb00d2a91389a13471c"
+    },
+    {
+      "name": "command~open-light.png",
+      "hash": "#/command?theme=light&shot&v=open",
+      "file": "screens/command~open-light.webp",
+      "pngSha256": "c685e86447b793038e74e0e3361e571bc0a5066af138402099e97b680e43756c"
+    },
+    {
+      "name": "command~filtered-light.png",
+      "hash": "#/command?theme=light&shot&v=filtered",
+      "file": "screens/command~filtered-light.webp",
+      "pngSha256": "5d67b4f1a433c75eb20c8e79777be576aeabc9a50230ece7dd618dfcf27f973f"
+    },
+    {
+      "name": "command~submenu-light.png",
+      "hash": "#/command?theme=light&shot&v=submenu",
+      "file": "screens/command~submenu-light.webp",
+      "pngSha256": "cbd911ace02b03f7ec65a7f718fe8d8ac5651dc29aa6f069029079411503d597"
+    },
+    {
+      "name": "command~none-light.png",
+      "hash": "#/command?theme=light&shot&v=none",
+      "file": "screens/command~none-light.webp",
+      "pngSha256": "feac70eb7939c4a0084ede88f99cab728364d2b599a02488e0b7d7430b27b98b"
+    },
+    {
+      "name": "projects~grid-light.png",
+      "hash": "#/projects?theme=light&shot&v=grid",
+      "file": "screens/projects~grid-light.webp",
+      "pngSha256": "c24450b44e60a7a3a9503a760ebf1960e8899acf0862851f43b3ced1a24a9b9e"
+    },
+    {
+      "name": "projects~empty-light.png",
+      "hash": "#/projects?theme=light&shot&v=empty",
+      "file": "screens/projects~empty-light.webp",
+      "pngSha256": "d5c96bf6e38b71d793da61392ef7a77afcfeac71c4d0ccaf40e9235d159da9ad"
+    },
+    {
+      "name": "projects~create-light.png",
+      "hash": "#/projects?theme=light&shot&v=create",
+      "file": "screens/projects~create-light.webp",
+      "pngSha256": "204f3523d9ec173a1462092ec234b252f41ffb4d76914772298ce35dfae214a5"
+    },
+    {
+      "name": "project~overview-light.png",
+      "hash": "#/project?theme=light&shot&v=overview",
+      "file": "screens/project~overview-light.webp",
+      "pngSha256": "1703f64aa7de0fa8bd5af960c6343dc501455f62a28b6b61f825aee0ad4579f1"
+    },
+    {
+      "name": "project~files-light.png",
+      "hash": "#/project?theme=light&shot&v=files",
+      "file": "screens/project~files-light.webp",
+      "pngSha256": "20a159cc5f088dfa1fd948388eb8c53bc5df2126ee9ce50e88cc423006c71bf8"
+    },
+    {
+      "name": "project~instructions-light.png",
+      "hash": "#/project?theme=light&shot&v=instructions",
+      "file": "screens/project~instructions-light.webp",
+      "pngSha256": "2327c1d7048cc40d8375c919cd5f176d526aef8906c0b2430ed55d3bf6bd0a7b"
+    },
+    {
+      "name": "project~sharing-light.png",
+      "hash": "#/project?theme=light&shot&v=sharing",
+      "file": "screens/project~sharing-light.webp",
+      "pngSha256": "ab4994fa183fd94cb7a1161cdd93e75c998cce5227315e6959e488e5b141fca0"
+    },
+    {
+      "name": "memory~list-light.png",
+      "hash": "#/memory?theme=light&shot&v=list",
+      "file": "screens/memory~list-light.webp",
+      "pngSha256": "352c3728b49c5d7ea5de4878d59ae773385f933aa51f72a93b7c75182a54da82"
+    },
+    {
+      "name": "memory~off-light.png",
+      "hash": "#/memory?theme=light&shot&v=off",
+      "file": "screens/memory~off-light.webp",
+      "pngSha256": "bc2a4e1452acfe3c2535cc6785832423c2cdcda66c6c2baa53c7fbe44616e479"
+    },
+    {
+      "name": "memory~empty-light.png",
+      "hash": "#/memory?theme=light&shot&v=empty",
+      "file": "screens/memory~empty-light.webp",
+      "pngSha256": "2ea09dae976a5b672836277485faa007dec724c424b346d0fc3921a69f840e7c"
+    },
+    {
+      "name": "onboarding~1-light.png",
+      "hash": "#/onboarding?theme=light&shot&v=1",
+      "file": "screens/onboarding~1-light.webp",
+      "pngSha256": "a8fe160b9179e77153eb5e35de01980298101e6cfe44b7b54aeb9a7afb2d6784"
+    },
+    {
+      "name": "onboarding~2-light.png",
+      "hash": "#/onboarding?theme=light&shot&v=2",
+      "file": "screens/onboarding~2-light.webp",
+      "pngSha256": "96b9c0d7391bc9b87729f64c559d15187b5de0f66bdb3bf8cae3649c632f1f43"
+    },
+    {
+      "name": "onboarding~3-light.png",
+      "hash": "#/onboarding?theme=light&shot&v=3",
+      "file": "screens/onboarding~3-light.webp",
+      "pngSha256": "2b49fad2c0a439693b4548ba188b0e1bee69c9eb165fd2edddc11f1f11af6fd7"
+    },
+    {
+      "name": "onboarding~4-light.png",
+      "hash": "#/onboarding?theme=light&shot&v=4",
+      "file": "screens/onboarding~4-light.webp",
+      "pngSha256": "577155e87268385f1f605118b0ad15123e33ebf3274ead692abce045f17e7fa0"
+    },
+    {
+      "name": "login~email-light.png",
+      "hash": "#/login?theme=light&shot&v=email",
+      "file": "screens/login~email-light.webp",
+      "pngSha256": "3154eae44823aa91e2cdd68059214e51d04ffc536a0fa05912bf8d2f2240afe5"
+    },
+    {
+      "name": "login~code-light.png",
+      "hash": "#/login?theme=light&shot&v=code",
+      "file": "screens/login~code-light.webp",
+      "pngSha256": "5c77c59e060ffdcaaabe97043e6e02a665a12c99d87aa076ca3eee86146ca307"
+    },
+    {
+      "name": "login~error-light.png",
+      "hash": "#/login?theme=light&shot&v=error",
+      "file": "screens/login~error-light.webp",
+      "pngSha256": "0fa02a9014f3b790696ec3b1dcbc45e972b42c738c645525acda95cc834323ef"
+    },
+    {
+      "name": "login~loading-light.png",
+      "hash": "#/login?theme=light&shot&v=loading",
+      "file": "screens/login~loading-light.webp",
+      "pngSha256": "a5b3e25dde4de73f6c00dd9688de5c4dadc9d7263ebf0b5ff2a147155678a868"
+    },
+    {
+      "name": "login~locked-light.png",
+      "hash": "#/login?theme=light&shot&v=locked",
+      "file": "screens/login~locked-light.webp",
+      "pngSha256": "7dbd58b3bb7e37e65c56fc06112c7ce9c5264e6c0a30d35863c8020160ee179a"
+    },
+    {
+      "name": "pricing~plans-light.png",
+      "hash": "#/pricing?theme=light&shot&v=plans",
+      "file": "screens/pricing~plans-light.webp",
+      "pngSha256": "992dbf119341dd4269464e5fc78466bb67ce4840928a94ee3c3e4c3fa9477fb8"
+    },
+    {
+      "name": "pricing~compare-light.png",
+      "hash": "#/pricing?theme=light&shot&v=compare",
+      "file": "screens/pricing~compare-light.webp",
+      "pngSha256": "189f4407e47db011198e121eca754feeacc5a3fcd2765605623b7489e4925b32"
+    },
+    {
+      "name": "pricing~payment-light.png",
+      "hash": "#/pricing?theme=light&shot&v=payment",
+      "file": "screens/pricing~payment-light.webp",
+      "pngSha256": "e00308ae3e18c35489d6fba5287c910ca2185b35df3768f1d50ae1033410ce82"
+    },
+    {
+      "name": "pricing~confirmed-light.png",
+      "hash": "#/pricing?theme=light&shot&v=confirmed",
+      "file": "screens/pricing~confirmed-light.webp",
+      "pngSha256": "5fe769d05d0aae62f83b0744358c15ffc6db4983475fff8485fbd9f0f065dc93"
+    },
+    {
+      "name": "profile~profile-light.png",
+      "hash": "#/profile?theme=light&shot&v=profile",
+      "file": "screens/profile~profile-light.webp",
+      "pngSha256": "fad49c0940e3870ed3e78e27aee35cae496462bbfba4c15f91bbd83b58935fe2"
+    },
+    {
+      "name": "profile~security-light.png",
+      "hash": "#/profile?theme=light&shot&v=security",
+      "file": "screens/profile~security-light.webp",
+      "pngSha256": "12123f3b8586880e3ad3a58319e50a344cc90b23bfdd1b120e1d85881e03cd80"
+    },
+    {
+      "name": "profile~delete-light.png",
+      "hash": "#/profile?theme=light&shot&v=delete",
+      "file": "screens/profile~delete-light.webp",
+      "pngSha256": "7333b4dac5df2a741092412290313d2a472f2f87e216b108c4fd4426a1331507"
+    },
+    {
+      "name": "shortcuts-light.png",
+      "hash": "#/shortcuts?theme=light&shot",
+      "file": "screens/shortcuts-light.webp",
+      "pngSha256": "a619a6e7e019661112f8c9b23e027085c36e9e3c5d2b757dc533d38502d789c2"
+    },
+    {
+      "name": "offline~offline-light.png",
+      "hash": "#/offline?theme=light&shot&v=offline",
+      "file": "screens/offline~offline-light.webp",
+      "pngSha256": "ad6e519dcbbdd054d17d9e65b60e326165f474ce2ed858c860b954f33d91d19a"
+    },
+    {
+      "name": "offline~reconnecting-light.png",
+      "hash": "#/offline?theme=light&shot&v=reconnecting",
+      "file": "screens/offline~reconnecting-light.webp",
+      "pngSha256": "451d8620577a7310d90c5f68a2db67a52bdcb6a7054785d9c7d3b491a11bd1e8"
+    },
+    {
+      "name": "offline~restored-light.png",
+      "hash": "#/offline?theme=light&shot&v=restored",
+      "file": "screens/offline~restored-light.webp",
+      "pngSha256": "efcbc2f2990dd61724bb86d57594ace13e93149cfe79e6f2857cce0d5fdcab1e"
+    },
+    {
+      "name": "error~500-light.png",
+      "hash": "#/error?theme=light&shot&v=500",
+      "file": "screens/error~500-light.webp",
+      "pngSha256": "57b5603a2c51793fb7a2ab86daca10a740df66ec3d42e7a575cd3fade6b96f58"
+    },
+    {
+      "name": "error~maintenance-light.png",
+      "hash": "#/error?theme=light&shot&v=maintenance",
+      "file": "screens/error~maintenance-light.webp",
+      "pngSha256": "49862311c030036306ded2177e82e36ffc6469c35373c34f82961567b66aa98b"
+    },
+    {
+      "name": "error~session-light.png",
+      "hash": "#/error?theme=light&shot&v=session",
+      "file": "screens/error~session-light.webp",
+      "pngSha256": "b85df7f2645ee895e367250d902e3ae9b239b13b870b30e61854e46ac010f588"
+    },
+    {
+      "name": "error~403-light.png",
+      "hash": "#/error?theme=light&shot&v=403",
+      "file": "screens/error~403-light.webp",
+      "pngSha256": "7a6c6f3ed998e61eb2c83796a972bce3deff1c21dc6eebacf5051f223291b104"
+    },
+    {
+      "name": "update~available-light.png",
+      "hash": "#/update?theme=light&shot&v=available",
+      "file": "screens/update~available-light.webp",
+      "pngSha256": "7e1e1d61a5b459df55a6f09e23f2095ea970265acb464cb6807d458595ec6a67"
+    },
+    {
+      "name": "update~downloading-light.png",
+      "hash": "#/update?theme=light&shot&v=downloading",
+      "file": "screens/update~downloading-light.webp",
+      "pngSha256": "443e8be59285d7502a5e2d9432c8993335e06e3efa803f8ba9c2a05cca269125"
+    },
+    {
+      "name": "update~ready-light.png",
+      "hash": "#/update?theme=light&shot&v=ready",
+      "file": "screens/update~ready-light.webp",
+      "pngSha256": "71ef4927e460e624f95aa6e5f82fb194f7e03a7f301cd08329ae494ffbfa02c6"
+    },
+    {
+      "name": "about-light.png",
+      "hash": "#/about?theme=light&shot",
+      "file": "screens/about-light.webp",
+      "pngSha256": "8e3d9ae8ade841ef560dbabf5036e4308164381bf9f3f945ffee396acb428dc1"
+    },
+    {
+      "name": "settings~general-light.png",
+      "hash": "#/settings?theme=light&shot&v=general",
+      "file": "screens/settings~general-light.webp",
+      "pngSha256": "5f2ada6215669ff4ae72a0849b73c6f9c6d826901adf25acf8644a226be29f58"
+    },
+    {
+      "name": "settings~appearance-light.png",
+      "hash": "#/settings?theme=light&shot&v=appearance",
+      "file": "screens/settings~appearance-light.webp",
+      "pngSha256": "2d95b76aa6b8f4e4bbe1e207b72f1f79ad7accdbeb70f34f9075d9cbf40e0259"
+    },
+    {
+      "name": "settings~providers-light.png",
+      "hash": "#/settings?theme=light&shot&v=providers",
+      "file": "screens/settings~providers-light.webp",
+      "pngSha256": "7af10480dedf75ca9bc0875f06565cfab6f84bec0d90ca50a4617e234fd448b4"
+    },
+    {
+      "name": "settings~connection-light.png",
+      "hash": "#/settings?theme=light&shot&v=connection",
+      "file": "screens/settings~connection-light.webp",
+      "pngSha256": "c20759756f5b56905a2fb8c77b3f7d8530fd98b5cc65556c6b1f0bf305518dfb"
+    },
+    {
+      "name": "settings~bot-light.png",
+      "hash": "#/settings?theme=light&shot&v=bot",
+      "file": "screens/settings~bot-light.webp",
+      "pngSha256": "fc7fa0b3e1d2b85bc09e7717cc82e914f650d8ca5235d85b4b6a208b99b7fb35"
+    },
+    {
+      "name": "settings~notifications-light.png",
+      "hash": "#/settings?theme=light&shot&v=notifications",
+      "file": "screens/settings~notifications-light.webp",
+      "pngSha256": "c9f89af262e12a66996593d89a5ca7c12d436e98a40974e557e78a746e357a40"
+    },
+    {
+      "name": "settings~privacy-light.png",
+      "hash": "#/settings?theme=light&shot&v=privacy",
+      "file": "screens/settings~privacy-light.webp",
+      "pngSha256": "594ba272d5e5793424e52f28ed6be34625509ca2572f2683e82b8bfdb18e6cf8"
+    },
+    {
+      "name": "settings~shortcuts-light.png",
+      "hash": "#/settings?theme=light&shot&v=shortcuts",
+      "file": "screens/settings~shortcuts-light.webp",
+      "pngSha256": "d9b1a49d679efcab578b8efabcca084312d5335f684f74270030edc82db6a62b"
+    },
+    {
+      "name": "settings~account-light.png",
+      "hash": "#/settings?theme=light&shot&v=account",
+      "file": "screens/settings~account-light.webp",
+      "pngSha256": "699431feb7ae52a1a1edd4978aaa73997f847e9805972c8ce84ec987c4eddbc4"
+    },
+    {
+      "name": "components-light.png",
+      "hash": "#/components?theme=light&shot",
+      "file": "screens/components-light.webp",
+      "pngSha256": "02a4f469ed62cd2af63a4fc7945de8d2f1beaf9a303ebdf8017608375507afda"
+    },
+    {
+      "name": "work-home~board-light.png",
+      "hash": "#/work-home?theme=light&shot&v=board",
+      "file": "screens/work-home~board-light.webp",
+      "pngSha256": "175902427f265b19a01507b24d5e25bb019e16bcee26c249e3adb62109a36178"
+    },
+    {
+      "name": "work-home~list-light.png",
+      "hash": "#/work-home?theme=light&shot&v=list",
+      "file": "screens/work-home~list-light.webp",
+      "pngSha256": "655b7b9922a7afe4a6e207a558be899702472870b6b5603ee444e6aaa9e8aad7"
+    },
+    {
+      "name": "work-home~empty-light.png",
+      "hash": "#/work-home?theme=light&shot&v=empty",
+      "file": "screens/work-home~empty-light.webp",
+      "pngSha256": "235c9e6810ba584811d8fe49fbccc64f0d0333fe22aa06eaa38bc97bc0f1492c"
+    },
+    {
+      "name": "work-home~loading-light.png",
+      "hash": "#/work-home?theme=light&shot&v=loading",
+      "file": "screens/work-home~loading-light.webp",
+      "pngSha256": "260b3c9102756d80a369448b6a3eb37f0fabc5b811d19d27c9d4aa70abfc757a"
+    },
+    {
+      "name": "work-task~running-light.png",
+      "hash": "#/work-task?theme=light&shot&v=running",
+      "file": "screens/work-task~running-light.webp",
+      "pngSha256": "3d1febdb3eea9ffb0c58e9f38def0ae592a97cd585188e48738c84428bdde6e5"
+    },
+    {
+      "name": "work-task~computer-light.png",
+      "hash": "#/work-task?theme=light&shot&v=computer",
+      "file": "screens/work-task~computer-light.webp",
+      "pngSha256": "177aaa475f3b8c76118439b9c922be1a6968c58544b6aa8a0e7c3f05da52355b"
+    },
+    {
+      "name": "work-task~takeover-light.png",
+      "hash": "#/work-task?theme=light&shot&v=takeover",
+      "file": "screens/work-task~takeover-light.webp",
+      "pngSha256": "1ceb18d48160127eb05acc18ba7b7c81cc7c96431dffd245a5f9fd6e9c201922"
+    },
+    {
+      "name": "work-task~approval-light.png",
+      "hash": "#/work-task?theme=light&shot&v=approval",
+      "file": "screens/work-task~approval-light.webp",
+      "pngSha256": "d1334c5a1bfe6c6f3e8560ff61fc4d503f4f648f8cf40c771b2a71cd4dc8d67d"
+    },
+    {
+      "name": "work-task~blocked-light.png",
+      "hash": "#/work-task?theme=light&shot&v=blocked",
+      "file": "screens/work-task~blocked-light.webp",
+      "pngSha256": "83baa3ad1d02d8f8090bc15428c9770247419459ddf9755035c50a3dad307626"
+    },
+    {
+      "name": "work-task~done-light.png",
+      "hash": "#/work-task?theme=light&shot&v=done",
+      "file": "screens/work-task~done-light.webp",
+      "pngSha256": "fe2d24d332926fdb2b5f5dc0f199a342c02f6515691cf90aa6ac9edf1a586427"
+    },
+    {
+      "name": "work-task~failed-light.png",
+      "hash": "#/work-task?theme=light&shot&v=failed",
+      "file": "screens/work-task~failed-light.webp",
+      "pngSha256": "b33587616f3a2c0e7db0df6c4f1f97cfaa6e30b511ac17e59a856f3f096e9bea"
+    },
+    {
+      "name": "work-task~paused-light.png",
+      "hash": "#/work-task?theme=light&shot&v=paused",
+      "file": "screens/work-task~paused-light.webp",
+      "pngSha256": "ad4677e30bc54f84584f8400529f3dfb65900c1949d3d58f0f57c140b9634017"
+    },
+    {
+      "name": "automations~list-light.png",
+      "hash": "#/automations?theme=light&shot&v=list",
+      "file": "screens/automations~list-light.webp",
+      "pngSha256": "449f9b033a28ac0566fa7acd24d12d3206dbd4196bbffdf437daf08a4fd3c2ea"
+    },
+    {
+      "name": "automations~empty-light.png",
+      "hash": "#/automations?theme=light&shot&v=empty",
+      "file": "screens/automations~empty-light.webp",
+      "pngSha256": "b57500c5785e3ced8bb4de0dd3dd1bc7620f7cf83170315c0a11dfb7658fb599"
+    },
+    {
+      "name": "automations~failed-light.png",
+      "hash": "#/automations?theme=light&shot&v=failed",
+      "file": "screens/automations~failed-light.webp",
+      "pngSha256": "3c50d0b76c3a54e9069d897cde36cccd8def2c38a80fc662582998d2ca4ebb4a"
+    },
+    {
+      "name": "automation-edit~schedule-light.png",
+      "hash": "#/automation-edit?theme=light&shot&v=schedule",
+      "file": "screens/automation-edit~schedule-light.webp",
+      "pngSha256": "1ceb854ed60dad3ba6a33e878d5cd59046ebef1643f89ab2bde5515beb01cc26"
+    },
+    {
+      "name": "automation-edit~event-light.png",
+      "hash": "#/automation-edit?theme=light&shot&v=event",
+      "file": "screens/automation-edit~event-light.webp",
+      "pngSha256": "a13cc26d83b561273f4dcb73df4ba19f6ab18a7de94c917199637e2cb1ed689c"
+    },
+    {
+      "name": "automation-edit~test-light.png",
+      "hash": "#/automation-edit?theme=light&shot&v=test",
+      "file": "screens/automation-edit~test-light.webp",
+      "pngSha256": "7a0d8aec70f16f11909c0c1fa2ece83f114249a1794aa15e81c069e59862ede9"
+    },
+    {
+      "name": "automation-edit~passed-light.png",
+      "hash": "#/automation-edit?theme=light&shot&v=passed",
+      "file": "screens/automation-edit~passed-light.webp",
+      "pngSha256": "bf2df7af4d4d0d2f16a1d19b4d16dfc108917e68ed202cf28368d8d780b9b9d7"
+    },
+    {
+      "name": "inbox~normal-light.png",
+      "hash": "#/inbox?theme=light&shot&v=normal",
+      "file": "screens/inbox~normal-light.webp",
+      "pngSha256": "c944dd5e3aeb1150a29412e31b78a1def0ec0279d00620a8303e47e286b37462"
+    },
+    {
+      "name": "inbox~empty-light.png",
+      "hash": "#/inbox?theme=light&shot&v=empty",
+      "file": "screens/inbox~empty-light.webp",
+      "pngSha256": "e67634da2e2f8cfc9640e489d7205e4070d8445d6fe6f560668fa43b83290bdf"
+    },
+    {
+      "name": "approvals~list-light.png",
+      "hash": "#/approvals?theme=light&shot&v=list",
+      "file": "screens/approvals~list-light.webp",
+      "pngSha256": "6e463db9fb07a4e5c8c11de4ed327e996252538d17d868e5cc57562b0b8e3b97"
+    },
+    {
+      "name": "approvals~detail-light.png",
+      "hash": "#/approvals?theme=light&shot&v=detail",
+      "file": "screens/approvals~detail-light.webp",
+      "pngSha256": "d8e28548f20c392c51df53daf4ab903f9499fc0954e41b9ede66194e5f312786"
+    },
+    {
+      "name": "approvals~approved-light.png",
+      "hash": "#/approvals?theme=light&shot&v=approved",
+      "file": "screens/approvals~approved-light.webp",
+      "pngSha256": "87276b6b52a76f77506dd9f4c7f10ccad0e8687466586dad06599c441a73ed4d"
+    },
+    {
+      "name": "approvals~denied-light.png",
+      "hash": "#/approvals?theme=light&shot&v=denied",
+      "file": "screens/approvals~denied-light.webp",
+      "pngSha256": "a3b338748ad62176af2a8138f62671ea796cc6d36410a86009d27359edb53d0c"
+    },
+    {
+      "name": "activity~timeline-light.png",
+      "hash": "#/activity?theme=light&shot&v=timeline",
+      "file": "screens/activity~timeline-light.webp",
+      "pngSha256": "fd2fbee186e411b6f17782bf04d0e032415197f5e0ef4ee37447e66bb9447a25"
+    },
+    {
+      "name": "activity~filtered-light.png",
+      "hash": "#/activity?theme=light&shot&v=filtered",
+      "file": "screens/activity~filtered-light.webp",
+      "pngSha256": "ffe67b2c53ab8e1c6cb7cd40e6239996b04b73d0c98c719b9ed9e3332b52d7d2"
+    },
+    {
+      "name": "activity~loading-light.png",
+      "hash": "#/activity?theme=light&shot&v=loading",
+      "file": "screens/activity~loading-light.webp",
+      "pngSha256": "6c4d535e2e4408723e3d3a35f7f3c87f00a980d5af3616f69e3e4ba0706a7148"
+    },
+    {
+      "name": "notifications~unread-light.png",
+      "hash": "#/notifications?theme=light&shot&v=unread",
+      "file": "screens/notifications~unread-light.webp",
+      "pngSha256": "e69fc87a54ff729adaeca5da81777f410b60a420d23c4f85d0f4eb9f12c84765"
+    },
+    {
+      "name": "notifications~allread-light.png",
+      "hash": "#/notifications?theme=light&shot&v=allread",
+      "file": "screens/notifications~allread-light.webp",
+      "pngSha256": "a74a6ae2120cd0d5062607b671e1dc479d96e923dfaca5ad6859d48a833d923c"
+    },
+    {
+      "name": "notifications~settings-light.png",
+      "hash": "#/notifications?theme=light&shot&v=settings",
+      "file": "screens/notifications~settings-light.webp",
+      "pngSha256": "c2c5dd7628222bb246404751c147b92aba01cf498086657260f6cd11932772d4"
+    },
+    {
+      "name": "connectors~grid-light.png",
+      "hash": "#/connectors?theme=light&shot&v=grid",
+      "file": "screens/connectors~grid-light.webp",
+      "pngSha256": "79855892e9075ac09bbe469bd3ee79d66ed3d7e34c7a661256661a2bf53c0066"
+    },
+    {
+      "name": "connectors~connecting-light.png",
+      "hash": "#/connectors?theme=light&shot&v=connecting",
+      "file": "screens/connectors~connecting-light.webp",
+      "pngSha256": "8cae04ec0f5b6d144c6e4b9d7caa9a2ef15ab50027bc872887361763ce42ccdb"
+    },
+    {
+      "name": "connectors~permissions-light.png",
+      "hash": "#/connectors?theme=light&shot&v=permissions",
+      "file": "screens/connectors~permissions-light.webp",
+      "pngSha256": "48af52b9afcda43954e390605b0ba2a9da3825c16e196cd733b39a807877c48a"
+    },
+    {
+      "name": "connectors~error-light.png",
+      "hash": "#/connectors?theme=light&shot&v=error",
+      "file": "screens/connectors~error-light.webp",
+      "pngSha256": "055064ff4484f4c769387e68cdbbab835e4dae033a9c3903a90a6594680fa3e5"
+    },
+    {
+      "name": "bot-new-dark.png",
+      "hash": "#/bot-new?theme=dark&shot",
+      "file": "screens/bot-new-dark.webp",
+      "pngSha256": "6f6f90b274920c4a084d08c1ed801c5c5477a7ee4b61f859e546d8a64d208ff7"
+    },
+    {
+      "name": "bot-dark.png",
+      "hash": "#/bot?theme=dark&shot",
+      "file": "screens/bot-dark.webp",
+      "pngSha256": "dbb73341edf9d0e351a93fc8ee0b518b0f67992930a3c137b450ca162a2c9d2d"
+    },
+    {
+      "name": "bot-studio-dark.png",
+      "hash": "#/bot-studio?theme=dark&shot",
+      "file": "screens/bot-studio-dark.webp",
+      "pngSha256": "381c34134af44e4519dc536df3aa493b68e24e2e05eb9f4fa33113c7be1abf8e"
+    },
+    {
+      "name": "bot-roster~team-dark.png",
+      "hash": "#/bot-roster?theme=dark&shot&v=team",
+      "file": "screens/bot-roster~team-dark.webp",
+      "pngSha256": "8f3a6cbf975bf1fa37acb761fa4451bc6f657098cf4159cff27b9e500df87d93"
+    },
+    {
+      "name": "bot-roster~hierarchy-dark.png",
+      "hash": "#/bot-roster?theme=dark&shot&v=hierarchy",
+      "file": "screens/bot-roster~hierarchy-dark.webp",
+      "pngSha256": "4eb32789c3546cd5ee8feed234c1e0986a4ffe95c53d678b63b2bc024210bade"
+    },
+    {
+      "name": "bot-roster~templates-dark.png",
+      "hash": "#/bot-roster?theme=dark&shot&v=templates",
+      "file": "screens/bot-roster~templates-dark.webp",
+      "pngSha256": "90361216c5680d7b4e4f031cca1ac4f04d3dbefd6ceed6934b24eab6335ec5cd"
+    },
+    {
+      "name": "bot-roster~limit-dark.png",
+      "hash": "#/bot-roster?theme=dark&shot&v=limit",
+      "file": "screens/bot-roster~limit-dark.webp",
+      "pngSha256": "f213d848d8f37ce6ce83eb49c6356bac3e85104a709c4417e2aacc02c4fcc490"
+    },
+    {
+      "name": "bot-settings~general-dark.png",
+      "hash": "#/bot-settings?theme=dark&shot&v=general",
+      "file": "screens/bot-settings~general-dark.webp",
+      "pngSha256": "a7873021e2470e7f9868529ebfee24deaaa0d594adad966390354b5ac12dd27f"
+    },
+    {
+      "name": "bot-settings~permissions-dark.png",
+      "hash": "#/bot-settings?theme=dark&shot&v=permissions",
+      "file": "screens/bot-settings~permissions-dark.webp",
+      "pngSha256": "d70eb26bda1774ec4db302e8768041bc84cfab8ae5558b56e15558de36cca98e"
+    },
+    {
+      "name": "bot-settings~memory-dark.png",
+      "hash": "#/bot-settings?theme=dark&shot&v=memory",
+      "file": "screens/bot-settings~memory-dark.webp",
+      "pngSha256": "85dc040172b586b532c687cf85340a59a325caffcddfdfb9ecee7991a598ed35"
+    },
+    {
+      "name": "bot-settings~usage-dark.png",
+      "hash": "#/bot-settings?theme=dark&shot&v=usage",
+      "file": "screens/bot-settings~usage-dark.webp",
+      "pngSha256": "d53d01e583c9edfef86c9584d6e13b2761828b6d7dd7107f223d33a9b7992db7"
+    },
+    {
+      "name": "home-dark.png",
+      "hash": "#/home?theme=dark&shot",
+      "file": "screens/home-dark.webp",
+      "pngSha256": "6192d70c3a6b91ff0741131467f0ea85f611d68d3793c5246549ff5e3c6c7c54"
+    },
+    {
+      "name": "chat-dark.png",
+      "hash": "#/chat?theme=dark&shot",
+      "file": "screens/chat-dark.webp",
+      "pngSha256": "da504863f74e0399f0976553996317d622ab2f53d9fb875dfb9e77b2244d0aaa"
+    },
+    {
+      "name": "chat-states~sending-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=sending",
+      "file": "screens/chat-states~sending-dark.webp",
+      "pngSha256": "c5f2862a5e9c058abcabb420b23032fa82d904655b206f3e3598100c4e8423d0"
+    },
+    {
+      "name": "chat-states~thinking-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=thinking",
+      "file": "screens/chat-states~thinking-dark.webp",
+      "pngSha256": "712ff25873c7d90dd253122c963cd6d9262998e2a33b46faf2cdbd8c429504ec"
+    },
+    {
+      "name": "chat-states~streaming-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=streaming",
+      "file": "screens/chat-states~streaming-dark.webp",
+      "pngSha256": "77a97be1ebdccddb5333449fc676ef02a19540c929ee565c793b90d117e7e46f"
+    },
+    {
+      "name": "chat-states~searching-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=searching",
+      "file": "screens/chat-states~searching-dark.webp",
+      "pngSha256": "7baec02f52829b0f902e55fa9596ce2182df22e556a107c0e80e69b0158c16d2"
+    },
+    {
+      "name": "chat-states~sources-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=sources",
+      "file": "screens/chat-states~sources-dark.webp",
+      "pngSha256": "5da1d9e8cada7ca39267c2676134d663529d0f25f86aa20be5038540d177a70f"
+    },
+    {
+      "name": "chat-states~rich-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=rich",
+      "file": "screens/chat-states~rich-dark.webp",
+      "pngSha256": "a89a5bbb8c2c331bb96bb21a398333f00ed498453f3616ecd9dbcdab637fce69"
+    },
+    {
+      "name": "chat-states~tool-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=tool",
+      "file": "screens/chat-states~tool-dark.webp",
+      "pngSha256": "7c07c42d6d8225e12d3dae0f80d78c795c934f5e1a4d1abd76533a605742a1c9"
+    },
+    {
+      "name": "chat-states~attachments-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=attachments",
+      "file": "screens/chat-states~attachments-dark.webp",
+      "pngSha256": "2a331c0652b5a047297dc45bdab0abf3c745ef654622f28e33941c4e28d4c4d8"
+    },
+    {
+      "name": "chat-states~edited-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=edited",
+      "file": "screens/chat-states~edited-dark.webp",
+      "pngSha256": "09941be770c904a3e67857657eac88adc6a75c445ac3825f70c987542fca720f"
+    },
+    {
+      "name": "chat-states~regenerating-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=regenerating",
+      "file": "screens/chat-states~regenerating-dark.webp",
+      "pngSha256": "03109dfcec0335a27a115a28c0ed7296aa5d71770e7cd06a610bf0b4713ec15f"
+    },
+    {
+      "name": "chat-states~error-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=error",
+      "file": "screens/chat-states~error-dark.webp",
+      "pngSha256": "a3531f90a2860914fc87aa4afcd9672a92f7e1286a8379b22f7f09fd5a8a2e03"
+    },
+    {
+      "name": "chat-states~limit-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=limit",
+      "file": "screens/chat-states~limit-dark.webp",
+      "pngSha256": "d9ee84cbe2ccace409471886564f2075c302955a0e3814fb6cf30c6c14ebde54"
+    },
+    {
+      "name": "chat-states~stopped-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=stopped",
+      "file": "screens/chat-states~stopped-dark.webp",
+      "pngSha256": "8fe60bd1f16acbd4b76351c1d001443332f936c691829ae03ffa072016299477"
+    },
+    {
+      "name": "chat-states~long-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=long",
+      "file": "screens/chat-states~long-dark.webp",
+      "pngSha256": "73dc5275bef7548c0028d713b641fad9392bea6348c89b1175322a3708e537ed"
+    },
+    {
+      "name": "chat-states~feedback-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=feedback",
+      "file": "screens/chat-states~feedback-dark.webp",
+      "pngSha256": "505f29e640ca30ef6731d61b9dbada55b5edbd9c1ea0fe47212da56317e0ae36"
+    },
+    {
+      "name": "chat-states~empty-dark.png",
+      "hash": "#/chat-states?theme=dark&shot&v=empty",
+      "file": "screens/chat-states~empty-dark.webp",
+      "pngSha256": "d2bbe0174ece1b171fc3140e0cd113ae28f172daa80d647079899bb4dd1821ca"
+    },
+    {
+      "name": "voice~connecting-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=connecting",
+      "file": "screens/voice~connecting-dark.webp",
+      "pngSha256": "2b43bed1fd84bc51dc14b9060d7539afaca59c415a9b20fa1297aa2bef0dac04"
+    },
+    {
+      "name": "voice~listening-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=listening",
+      "file": "screens/voice~listening-dark.webp",
+      "pngSha256": "c118edd6f2d549f685232b141baaa001a2733a32ad51f43a2604c31a421b97b2"
+    },
+    {
+      "name": "voice~talking-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=talking",
+      "file": "screens/voice~talking-dark.webp",
+      "pngSha256": "a860c146fed2fb7b51a5e3db89949379f90fe09f2afbee3d8ccfb6ccd04e6b93"
+    },
+    {
+      "name": "voice~muted-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=muted",
+      "file": "screens/voice~muted-dark.webp",
+      "pngSha256": "386bb59b52a7f6859473c672df0dea7b1afc8b690f04ad5246233174979fe63d"
+    },
+    {
+      "name": "voice~interrupted-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=interrupted",
+      "file": "screens/voice~interrupted-dark.webp",
+      "pngSha256": "7fa154610ba694b4c29a7f03b9911939e71e78474d2b4da8d288f5533b298325"
+    },
+    {
+      "name": "voice~ended-dark.png",
+      "hash": "#/voice?theme=dark&shot&v=ended",
+      "file": "screens/voice~ended-dark.webp",
+      "pngSha256": "59b39ecb08e34ab3e10fc5c2bc4f3b2b59888d7bec16bd436d48e54a1789fc40"
+    },
+    {
+      "name": "canvas~document-dark.png",
+      "hash": "#/canvas?theme=dark&shot&v=document",
+      "file": "screens/canvas~document-dark.webp",
+      "pngSha256": "0e9551a4e782331deb1d7260fe14ccf0659d49b39a2a25636861a3697085ac4f"
+    },
+    {
+      "name": "canvas~code-dark.png",
+      "hash": "#/canvas?theme=dark&shot&v=code",
+      "file": "screens/canvas~code-dark.webp",
+      "pngSha256": "9e762bd9ac18d6d6f114fdb5e2aec5623a9874a522d201a239c5a7078f63b39b"
+    },
+    {
+      "name": "canvas~selection-dark.png",
+      "hash": "#/canvas?theme=dark&shot&v=selection",
+      "file": "screens/canvas~selection-dark.webp",
+      "pngSha256": "7fe79c36496dfee8137e3eb014874474dd876814dd462b5b8609c9f20b77d389"
+    },
+    {
+      "name": "canvas~generation-dark.png",
+      "hash": "#/canvas?theme=dark&shot&v=generation",
+      "file": "screens/canvas~generation-dark.webp",
+      "pngSha256": "c1d6b528b4ae98e670a260768d580ba16b93879cfab6965e2905c4a059b18cf8"
+    },
+    {
+      "name": "canvas~compare-dark.png",
+      "hash": "#/canvas?theme=dark&shot&v=compare",
+      "file": "screens/canvas~compare-dark.webp",
+      "pngSha256": "76383774c0c24a21fd312096a22512f06b0f9a75f82a4421522d4da98a9d7a0a"
+    },
+    {
+      "name": "search-results~results-dark.png",
+      "hash": "#/search-results?theme=dark&shot&v=results",
+      "file": "screens/search-results~results-dark.webp",
+      "pngSha256": "4c0426da4e2a884ff73f27b0ad2da9d55b290da838f7c3be7b0b2a7bfc3bee4d"
+    },
+    {
+      "name": "search-results~loading-dark.png",
+      "hash": "#/search-results?theme=dark&shot&v=loading",
+      "file": "screens/search-results~loading-dark.webp",
+      "pngSha256": "fd5ac70dd754dd5097d7a314eb8187daab6daff8afa3d750b38526e02fb5d3a9"
+    },
+    {
+      "name": "search-results~empty-dark.png",
+      "hash": "#/search-results?theme=dark&shot&v=empty",
+      "file": "screens/search-results~empty-dark.webp",
+      "pngSha256": "1edd6c359ed356267991c97691e3843a695a40efd4c8dece657a002a36f41833"
+    },
+    {
+      "name": "deep-research~plan-dark.png",
+      "hash": "#/deep-research?theme=dark&shot&v=plan",
+      "file": "screens/deep-research~plan-dark.webp",
+      "pngSha256": "294d6c96c77990bc2f7c7327522a9b4d01e91d07c3094b47959ee05cf67f399b"
+    },
+    {
+      "name": "deep-research~running-dark.png",
+      "hash": "#/deep-research?theme=dark&shot&v=running",
+      "file": "screens/deep-research~running-dark.webp",
+      "pngSha256": "5ba6d387448eb9189ca75f75cf6c776fd40584907da12151a4ff2760bb49204c"
+    },
+    {
+      "name": "deep-research~done-dark.png",
+      "hash": "#/deep-research?theme=dark&shot&v=done",
+      "file": "screens/deep-research~done-dark.webp",
+      "pngSha256": "4610078ea7719670f170210ab7b4b7d55ed8e8a014cd1df0767e473b2097ea12"
+    },
+    {
+      "name": "deep-research~cancelled-dark.png",
+      "hash": "#/deep-research?theme=dark&shot&v=cancelled",
+      "file": "screens/deep-research~cancelled-dark.webp",
+      "pngSha256": "179a52736626ebbd5470feae4c4fcd763b33a8ee4db4a9b8e1b223d98157d9ed"
+    },
+    {
+      "name": "image-gen~generating-dark.png",
+      "hash": "#/image-gen?theme=dark&shot&v=generating",
+      "file": "screens/image-gen~generating-dark.webp",
+      "pngSha256": "432caca2e41156e2fcbf812c3a84800c1aed017832881bc9f088559d9d6bff2c"
+    },
+    {
+      "name": "image-gen~results-dark.png",
+      "hash": "#/image-gen?theme=dark&shot&v=results",
+      "file": "screens/image-gen~results-dark.webp",
+      "pngSha256": "969fcd2318a73b63878432f406058abe8c481a2670a7eb2fde423076c7a247ad"
+    },
+    {
+      "name": "image-gen~editing-dark.png",
+      "hash": "#/image-gen?theme=dark&shot&v=editing",
+      "file": "screens/image-gen~editing-dark.webp",
+      "pngSha256": "810291d3eee5f21d10d604920f6fa4101804e0743355308d2dbbdfd02eeb0170"
+    },
+    {
+      "name": "image-gen~refused-dark.png",
+      "hash": "#/image-gen?theme=dark&shot&v=refused",
+      "file": "screens/image-gen~refused-dark.webp",
+      "pngSha256": "10bfb5616acbfdecb1b514bcfcf5269b6f5e9a7b35909a7c19d74467b8eaf3d0"
+    },
+    {
+      "name": "share~settings-dark.png",
+      "hash": "#/share?theme=dark&shot&v=settings",
+      "file": "screens/share~settings-dark.webp",
+      "pngSha256": "236efe4023b7ebc5b0386c9b3606cbc6ea7d2fe2b1a972d9797c3b81738df668"
+    },
+    {
+      "name": "share~created-dark.png",
+      "hash": "#/share?theme=dark&shot&v=created",
+      "file": "screens/share~created-dark.webp",
+      "pngSha256": "dfe48c314bbb0766d021723a39fd419c75d0f990a23b014fc2388995cdd00472"
+    },
+    {
+      "name": "share~disabled-dark.png",
+      "hash": "#/share?theme=dark&shot&v=disabled",
+      "file": "screens/share~disabled-dark.webp",
+      "pngSha256": "630525f555cc01543be1b38ee8e2288fcad877fbabe944dd8e12c3ae6dc653ec"
+    },
+    {
+      "name": "temp-chat~empty-dark.png",
+      "hash": "#/temp-chat?theme=dark&shot&v=empty",
+      "file": "screens/temp-chat~empty-dark.webp",
+      "pngSha256": "2e0287f7ef2b6d768310982da28ca6e3e3c71bed3fcd3f1d9be2e8f1dfa49916"
+    },
+    {
+      "name": "temp-chat~active-dark.png",
+      "hash": "#/temp-chat?theme=dark&shot&v=active",
+      "file": "screens/temp-chat~active-dark.webp",
+      "pngSha256": "145d00a51dacb3e691c56c23488c10dfd4bc524f414560b2abd4c7456f21f451"
+    },
+    {
+      "name": "history-dark.png",
+      "hash": "#/history?theme=dark&shot",
+      "file": "screens/history-dark.webp",
+      "pngSha256": "adc1cb612b3be1edd20d899c7ae058e560704146326fa48d7d55b05808ff770f"
+    },
+    {
+      "name": "library-dark.png",
+      "hash": "#/library?theme=dark&shot",
+      "file": "screens/library-dark.webp",
+      "pngSha256": "89efb2a1f7c10d19e0a0621f6b19028594391841e33b4ac26493ef6c71bf17f3"
+    },
+    {
+      "name": "code-dark.png",
+      "hash": "#/code?theme=dark&shot",
+      "file": "screens/code-dark.webp",
+      "pngSha256": "537c62f89b75c7952c7466e4ce33d623b7ecdd6d369861e92b111614fd645cc3"
+    },
+    {
+      "name": "code-session-dark.png",
+      "hash": "#/code-session?theme=dark&shot",
+      "file": "screens/code-session-dark.webp",
+      "pngSha256": "557a493c9ebcf117c6b9a80a2353af57a4393e81a3563fcfe90cf3b85421ca04"
+    },
+    {
+      "name": "code-tasks~list-dark.png",
+      "hash": "#/code-tasks?theme=dark&shot&v=list",
+      "file": "screens/code-tasks~list-dark.webp",
+      "pngSha256": "7cc201a93ab0f2d89015a85c2de5977a0616563dfbd8e730628c12d4dde5a8c0"
+    },
+    {
+      "name": "code-tasks~filtered-dark.png",
+      "hash": "#/code-tasks?theme=dark&shot&v=filtered",
+      "file": "screens/code-tasks~filtered-dark.webp",
+      "pngSha256": "1484deff256875962d95c960c68374012078696edd43209646ff41ff06aec677"
+    },
+    {
+      "name": "code-tasks~empty-dark.png",
+      "hash": "#/code-tasks?theme=dark&shot&v=empty",
+      "file": "screens/code-tasks~empty-dark.webp",
+      "pngSha256": "faf0cdb4c4f0f4e7a2fd999786e5cb1ba20b88866f5e858ec613730ea5a9564e"
+    },
+    {
+      "name": "code-tasks~attempts-dark.png",
+      "hash": "#/code-tasks?theme=dark&shot&v=attempts",
+      "file": "screens/code-tasks~attempts-dark.webp",
+      "pngSha256": "cab4ffe5b96ed4e92ffd5f379ea2e0b5e8f3b607752379400d05d9ed01364e8c"
+    },
+    {
+      "name": "code-review~review-dark.png",
+      "hash": "#/code-review?theme=dark&shot&v=review",
+      "file": "screens/code-review~review-dark.webp",
+      "pngSha256": "8b804da51fd21a7549134428ece49381b6d04e4d2564f99e1d75b298e7602995"
+    },
+    {
+      "name": "code-review~applied-dark.png",
+      "hash": "#/code-review?theme=dark&shot&v=applied",
+      "file": "screens/code-review~applied-dark.webp",
+      "pngSha256": "8b209617f36f3df45dc488be952c16cc68211cc2741e5644cfee0d56f033830d"
+    },
+    {
+      "name": "code-review~approved-dark.png",
+      "hash": "#/code-review?theme=dark&shot&v=approved",
+      "file": "screens/code-review~approved-dark.webp",
+      "pngSha256": "e356e95037d1e8a8c2a9951e7fa14d44ba2be45ef93977604a909fa6807aa51a"
+    },
+    {
+      "name": "code-diff~unified-dark.png",
+      "hash": "#/code-diff?theme=dark&shot&v=unified",
+      "file": "screens/code-diff~unified-dark.webp",
+      "pngSha256": "eb14c1f5b3afa3b14bb96c537355872691480958d4dc214c9306f4ffa9ca9eef"
+    },
+    {
+      "name": "code-diff~split-dark.png",
+      "hash": "#/code-diff?theme=dark&shot&v=split",
+      "file": "screens/code-diff~split-dark.webp",
+      "pngSha256": "71ad41702bf6f37f685757b2c0bc29e3f87b7680341d30de6b1dae60db9f6153"
+    },
+    {
+      "name": "code-diff~comment-dark.png",
+      "hash": "#/code-diff?theme=dark&shot&v=comment",
+      "file": "screens/code-diff~comment-dark.webp",
+      "pngSha256": "cbb666d73edf2c76ef8ae22235195015e72c3aaa6e7a8e874b032dd166a10305"
+    },
+    {
+      "name": "code-diff~conflict-dark.png",
+      "hash": "#/code-diff?theme=dark&shot&v=conflict",
+      "file": "screens/code-diff~conflict-dark.webp",
+      "pngSha256": "32c31db58428cbc13849c160dd30b183daaba5cb37d3b42b7249d7771c31869c"
+    },
+    {
+      "name": "code-terminal~running-dark.png",
+      "hash": "#/code-terminal?theme=dark&shot&v=running",
+      "file": "screens/code-terminal~running-dark.webp",
+      "pngSha256": "42c6fe30699099f2c4ecdeecd015012f08ba4e706de2af3da8d22cdd24d717a8"
+    },
+    {
+      "name": "code-terminal~approval-dark.png",
+      "hash": "#/code-terminal?theme=dark&shot&v=approval",
+      "file": "screens/code-terminal~approval-dark.webp",
+      "pngSha256": "8333dbdedb71b08764ed9a41aa7c72a585a6bfc474df196ec95f46421ca71e60"
+    },
+    {
+      "name": "code-terminal~failed-dark.png",
+      "hash": "#/code-terminal?theme=dark&shot&v=failed",
+      "file": "screens/code-terminal~failed-dark.webp",
+      "pngSha256": "623aacfb09496152976c6ab155685bd3c6ddb198cb4aabd1cc9daad48038ca72"
+    },
+    {
+      "name": "code-terminal~done-dark.png",
+      "hash": "#/code-terminal?theme=dark&shot&v=done",
+      "file": "screens/code-terminal~done-dark.webp",
+      "pngSha256": "deeb2d1de94b839765ba2c1a961d70ceda6cc9a0c34a686607d00cff000a6eb9"
+    },
+    {
+      "name": "code-env~list-dark.png",
+      "hash": "#/code-env?theme=dark&shot&v=list",
+      "file": "screens/code-env~list-dark.webp",
+      "pngSha256": "f9b9d2a00863372c5ce7f53d5cd7a15ea8225820f0c40eabe16de8ed650e19d5"
+    },
+    {
+      "name": "code-env~edit-dark.png",
+      "hash": "#/code-env?theme=dark&shot&v=edit",
+      "file": "screens/code-env~edit-dark.webp",
+      "pngSha256": "a4c2237dddf90b4d5c4536ee7f068b732e2acd57a39471bf5d710506b1ec8414"
+    },
+    {
+      "name": "code-env~booting-dark.png",
+      "hash": "#/code-env?theme=dark&shot&v=booting",
+      "file": "screens/code-env~booting-dark.webp",
+      "pngSha256": "42d279570a0f46a0443171121877035a24b265b7403c3bb620bc29c4730ab254"
+    },
+    {
+      "name": "code-env~error-dark.png",
+      "hash": "#/code-env?theme=dark&shot&v=error",
+      "file": "screens/code-env~error-dark.webp",
+      "pngSha256": "ae402941b356ee9980f131008bc82dac92d867b1ffebdd6e360ee67fd5647699"
+    },
+    {
+      "name": "code-pr~draft-dark.png",
+      "hash": "#/code-pr?theme=dark&shot&v=draft",
+      "file": "screens/code-pr~draft-dark.webp",
+      "pngSha256": "5ebe43a87488fe9f4be9cd359dad09912862ee0ef69efc30c3e403abeaaa724b"
+    },
+    {
+      "name": "code-pr~checks-dark.png",
+      "hash": "#/code-pr?theme=dark&shot&v=checks",
+      "file": "screens/code-pr~checks-dark.webp",
+      "pngSha256": "933d24eaa3c4a40b9bedbb04006b0efdd11abbb2b4849920c8b93b157bbca93f"
+    },
+    {
+      "name": "code-pr~failed-dark.png",
+      "hash": "#/code-pr?theme=dark&shot&v=failed",
+      "file": "screens/code-pr~failed-dark.webp",
+      "pngSha256": "3d28654e51981d94360263b17b37d557c4d95dad96db5a538ad6857b7e1465dc"
+    },
+    {
+      "name": "code-pr~ready-dark.png",
+      "hash": "#/code-pr?theme=dark&shot&v=ready",
+      "file": "screens/code-pr~ready-dark.webp",
+      "pngSha256": "513719721679a2f278069a45d64d4503be1bb04e1374854cb1556c3f4c96ee64"
+    },
+    {
+      "name": "code-pr~merged-dark.png",
+      "hash": "#/code-pr?theme=dark&shot&v=merged",
+      "file": "screens/code-pr~merged-dark.webp",
+      "pngSha256": "49e97d449eec752777b38e1e9859fb5eaee4d0b72d3fa1f100a7dd3ccf78c228"
+    },
+    {
+      "name": "code-settings~repos-dark.png",
+      "hash": "#/code-settings?theme=dark&shot&v=repos",
+      "file": "screens/code-settings~repos-dark.webp",
+      "pngSha256": "817446b6f0e97e986882aa65d7d2728d41542dbec0b52aae7d6a434df4ef61b6"
+    },
+    {
+      "name": "code-settings~instructions-dark.png",
+      "hash": "#/code-settings?theme=dark&shot&v=instructions",
+      "file": "screens/code-settings~instructions-dark.webp",
+      "pngSha256": "bbd25da2f0a0366bfce41b3726e732eb898508638e3deea6e6f1ff637eaabd92"
+    },
+    {
+      "name": "code-settings~approvals-dark.png",
+      "hash": "#/code-settings?theme=dark&shot&v=approvals",
+      "file": "screens/code-settings~approvals-dark.webp",
+      "pngSha256": "c2b7859b106be3217cd4ec17cf2b33f17bd8fd03dd4db08c89855c2df79cb31a"
+    },
+    {
+      "name": "code-settings~usage-dark.png",
+      "hash": "#/code-settings?theme=dark&shot&v=usage",
+      "file": "screens/code-settings~usage-dark.webp",
+      "pngSha256": "baede413eaf16a410aa9c1c3eb928f97b40efb9f6e66229942c942139b68ae9b"
+    },
+    {
+      "name": "file-pdf~reading-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=reading",
+      "file": "screens/file-pdf~reading-dark.webp",
+      "pngSha256": "2add2181d9da4b7104f3525f59b7ab960d313cb90fb295601467678f9d9e4498"
+    },
+    {
+      "name": "file-pdf~loading-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=loading",
+      "file": "screens/file-pdf~loading-dark.webp",
+      "pngSha256": "414ca5668500bb9c646095fe8b7c016725142105de2942da89f2d4f8f50b3103"
+    },
+    {
+      "name": "file-pdf~search-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=search",
+      "file": "screens/file-pdf~search-dark.webp",
+      "pngSha256": "14c8383d6fe3165c58bb91c165cff50ba598507b69f34106aa37ae33424ad1a0"
+    },
+    {
+      "name": "file-pdf~selection-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=selection",
+      "file": "screens/file-pdf~selection-dark.webp",
+      "pngSha256": "bce403fc12b7fdd17cd1c0440e5956dab88ebb66feaca6e6ddca546cc0be40bd"
+    },
+    {
+      "name": "file-pdf~summary-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=summary",
+      "file": "screens/file-pdf~summary-dark.webp",
+      "pngSha256": "fd89396e4c51b5ac8943bdf73030875949272fafe6c76210dddab2d53e2c1d79"
+    },
+    {
+      "name": "file-pdf~protected-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=protected",
+      "file": "screens/file-pdf~protected-dark.webp",
+      "pngSha256": "fa5b53ab3087347983eafab791dc3630f1299138530e0dcffe5427c1dda45822"
+    },
+    {
+      "name": "file-pdf~corrupt-dark.png",
+      "hash": "#/file-pdf?theme=dark&shot&v=corrupt",
+      "file": "screens/file-pdf~corrupt-dark.webp",
+      "pngSha256": "7d1604311c777ba8b39fb546bfbe219062959181576ffe6e652780f198763066"
+    },
+    {
+      "name": "file-pptx~editing-dark.png",
+      "hash": "#/file-pptx?theme=dark&shot&v=editing",
+      "file": "screens/file-pptx~editing-dark.webp",
+      "pngSha256": "e2deda16c059834c9cf2917fd5d1d357b967e5841224966674aed7dd7a66ab1c"
+    },
+    {
+      "name": "file-pptx~presenting-dark.png",
+      "hash": "#/file-pptx?theme=dark&shot&v=presenting",
+      "file": "screens/file-pptx~presenting-dark.webp",
+      "pngSha256": "1246cf7ad28742f501aeb9afd78f3bfac263ac7d6e07c917b515604f1c13d0cb"
+    },
+    {
+      "name": "file-pptx~grid-dark.png",
+      "hash": "#/file-pptx?theme=dark&shot&v=grid",
+      "file": "screens/file-pptx~grid-dark.webp",
+      "pngSha256": "dce03716416b811d66a5f3ade567bdbc6c79024a3cd2ed0ec0d95087f14a5975"
+    },
+    {
+      "name": "file-pptx~converting-dark.png",
+      "hash": "#/file-pptx?theme=dark&shot&v=converting",
+      "file": "screens/file-pptx~converting-dark.webp",
+      "pngSha256": "c4a962b6a1ee198535c2b073721f0f5556b75f054812b6f41555c956067756b8"
+    },
+    {
+      "name": "file-docx~reading-dark.png",
+      "hash": "#/file-docx?theme=dark&shot&v=reading",
+      "file": "screens/file-docx~reading-dark.webp",
+      "pngSha256": "763fc4837c8db9d5d84c9e322dee0eb085dd958c1ea9135faa28e68ebc4b1cb5"
+    },
+    {
+      "name": "file-docx~tracked-dark.png",
+      "hash": "#/file-docx?theme=dark&shot&v=tracked",
+      "file": "screens/file-docx~tracked-dark.webp",
+      "pngSha256": "aead23c552aff6017a09b72c6d3310fe1002b1fc18b9fa2445ad42a8affe8136"
+    },
+    {
+      "name": "file-docx~comments-dark.png",
+      "hash": "#/file-docx?theme=dark&shot&v=comments",
+      "file": "screens/file-docx~comments-dark.webp",
+      "pngSha256": "c3d3906944377da1ecbc99e035ddd4c5bcb9cdd488e896d3b9ef9bf5af56d15a"
+    },
+    {
+      "name": "file-xlsx~data-dark.png",
+      "hash": "#/file-xlsx?theme=dark&shot&v=data",
+      "file": "screens/file-xlsx~data-dark.webp",
+      "pngSha256": "2e86b1ee92c0082be4c543b0e85c81c22c5dc195e1f379ef10939179c4bf2891"
+    },
+    {
+      "name": "file-xlsx~range-dark.png",
+      "hash": "#/file-xlsx?theme=dark&shot&v=range",
+      "file": "screens/file-xlsx~range-dark.webp",
+      "pngSha256": "3f8826a78ba83fd26094235e6a2a1644208d80d799658870a46932bae03386de"
+    },
+    {
+      "name": "file-xlsx~chart-dark.png",
+      "hash": "#/file-xlsx?theme=dark&shot&v=chart",
+      "file": "screens/file-xlsx~chart-dark.webp",
+      "pngSha256": "8dc688bac44e57ee0f10526d59825fd1f6e9c3501148db9efdfa713b9bcf0b5a"
+    },
+    {
+      "name": "file-xlsx~errors-dark.png",
+      "hash": "#/file-xlsx?theme=dark&shot&v=errors",
+      "file": "screens/file-xlsx~errors-dark.webp",
+      "pngSha256": "1e5d5e81717705a0e73d088eec823318f1b9c6a423a8f24a37fb35979ec54685"
+    },
+    {
+      "name": "upload~empty-dark.png",
+      "hash": "#/upload?theme=dark&shot&v=empty",
+      "file": "screens/upload~empty-dark.webp",
+      "pngSha256": "21ff6bc1b3f1113a39f5aabe7b2e4c9fcf3e2f70ddb48d85a6221e0e71fe4a2c"
+    },
+    {
+      "name": "upload~dragging-dark.png",
+      "hash": "#/upload?theme=dark&shot&v=dragging",
+      "file": "screens/upload~dragging-dark.webp",
+      "pngSha256": "187e43c1ec8b7398dd5d3707a3d4f16e291dae25f3646c7e7ad3c8d5e66d349f"
+    },
+    {
+      "name": "upload~uploading-dark.png",
+      "hash": "#/upload?theme=dark&shot&v=uploading",
+      "file": "screens/upload~uploading-dark.webp",
+      "pngSha256": "6a3265e50ad3df46e793224ffecc17ffae1899dd99f2c33533deb5f07a503c29"
+    },
+    {
+      "name": "upload~done-dark.png",
+      "hash": "#/upload?theme=dark&shot&v=done",
+      "file": "screens/upload~done-dark.webp",
+      "pngSha256": "1d31e446d2db778c7b593b4cfa74fcbb81eb8dc060c49026823f5813891f6559"
+    },
+    {
+      "name": "upload~errors-dark.png",
+      "hash": "#/upload?theme=dark&shot&v=errors",
+      "file": "screens/upload~errors-dark.webp",
+      "pngSha256": "07aa690326c813de439e04c53b2bb360a0dffdaa1388860fd7c34c1b5f1c0828"
+    },
+    {
+      "name": "file-image~view-dark.png",
+      "hash": "#/file-image?theme=dark&shot&v=view",
+      "file": "screens/file-image~view-dark.webp",
+      "pngSha256": "8f28fa6365685a088144fb78f242a0f61e51975751cb8e4516e9cfc389c56aec"
+    },
+    {
+      "name": "file-image~zoom-dark.png",
+      "hash": "#/file-image?theme=dark&shot&v=zoom",
+      "file": "screens/file-image~zoom-dark.webp",
+      "pngSha256": "ce9ead25b1f8c685c4fb55293b5305896e49e61cd29aed338821a1348b5ac659"
+    },
+    {
+      "name": "file-image~compare-dark.png",
+      "hash": "#/file-image?theme=dark&shot&v=compare",
+      "file": "screens/file-image~compare-dark.webp",
+      "pngSha256": "6dba225de1198a82768e60513153ed9fa585beda44bcfa08751b152f770e9e11"
+    },
+    {
+      "name": "file-code~view-dark.png",
+      "hash": "#/file-code?theme=dark&shot&v=view",
+      "file": "screens/file-code~view-dark.webp",
+      "pngSha256": "5da822ecad0ced37c633dfcd77d9367376c75dac844aa55bbda293c0c3fb8f19"
+    },
+    {
+      "name": "file-code~diff-dark.png",
+      "hash": "#/file-code?theme=dark&shot&v=diff",
+      "file": "screens/file-code~diff-dark.webp",
+      "pngSha256": "1911324d19034f78d3258bafd5e6fed2e212676573481eb8b6885a1d588b8c79"
+    },
+    {
+      "name": "file-audio~playing-dark.png",
+      "hash": "#/file-audio?theme=dark&shot&v=playing",
+      "file": "screens/file-audio~playing-dark.webp",
+      "pngSha256": "6a93777fce129b81efda3e854791319cb6f80d317a19e7ea09b8509b2fd4b124"
+    },
+    {
+      "name": "file-audio~transcribing-dark.png",
+      "hash": "#/file-audio?theme=dark&shot&v=transcribing",
+      "file": "screens/file-audio~transcribing-dark.webp",
+      "pngSha256": "b2e830b1f89612085cf3569949c0bb8377ace2986dddd915715fc4181237412a"
+    },
+    {
+      "name": "file-video~playing-dark.png",
+      "hash": "#/file-video?theme=dark&shot&v=playing",
+      "file": "screens/file-video~playing-dark.webp",
+      "pngSha256": "e9f97782f61cc1ff5669bcb7eee8cdfb2ee3b0a42fef7eeaebf6e6baa2165f04"
+    },
+    {
+      "name": "file-video~paused-dark.png",
+      "hash": "#/file-video?theme=dark&shot&v=paused",
+      "file": "screens/file-video~paused-dark.webp",
+      "pngSha256": "a2c7b6593616c42c8a8a67d8943b14f9a04e3b989dc0f09ad3e94f593ffe2536"
+    },
+    {
+      "name": "file-zip~tree-dark.png",
+      "hash": "#/file-zip?theme=dark&shot&v=tree",
+      "file": "screens/file-zip~tree-dark.webp",
+      "pngSha256": "7733dbcd0b2c1a007ebf03371447c82c37530d7e437aab1ee9329308bd1a66b5"
+    },
+    {
+      "name": "file-zip~extracting-dark.png",
+      "hash": "#/file-zip?theme=dark&shot&v=extracting",
+      "file": "screens/file-zip~extracting-dark.webp",
+      "pngSha256": "4406242f561e981f0dda14fea2fd7e38f153cc94cbb071ccc26d988fbfa0a83c"
+    },
+    {
+      "name": "search~results-dark.png",
+      "hash": "#/search?theme=dark&shot&v=results",
+      "file": "screens/search~results-dark.webp",
+      "pngSha256": "1ca34bd22a7d9f4c6396c0a15b756c8af492ef65ce026f2cf4b3412e44126bbd"
+    },
+    {
+      "name": "search~empty-dark.png",
+      "hash": "#/search?theme=dark&shot&v=empty",
+      "file": "screens/search~empty-dark.webp",
+      "pngSha256": "b5be83e0efef2ed98bfe12f420ae628a7fc8f617ab541e4e27173e0e36dd6c22"
+    },
+    {
+      "name": "search~loading-dark.png",
+      "hash": "#/search?theme=dark&shot&v=loading",
+      "file": "screens/search~loading-dark.webp",
+      "pngSha256": "459858562ee6ff2eca2d203baa814ddff1f44eb6b6b03be0539c95191779b5ef"
+    },
+    {
+      "name": "search~recent-dark.png",
+      "hash": "#/search?theme=dark&shot&v=recent",
+      "file": "screens/search~recent-dark.webp",
+      "pngSha256": "9b570abf010428e1e0126e27c9f183d88f4f949fa9df81f5b3de37f2f4f66f3f"
+    },
+    {
+      "name": "command~open-dark.png",
+      "hash": "#/command?theme=dark&shot&v=open",
+      "file": "screens/command~open-dark.webp",
+      "pngSha256": "55cfd3459f4e10953d1b88397132ad4dec0ee0352ade4c2659d5ec788a76c013"
+    },
+    {
+      "name": "command~filtered-dark.png",
+      "hash": "#/command?theme=dark&shot&v=filtered",
+      "file": "screens/command~filtered-dark.webp",
+      "pngSha256": "4a909a2c07e0850ea99124b41e2c0a37e0845ecc53036e109e29829f85cd270c"
+    },
+    {
+      "name": "command~submenu-dark.png",
+      "hash": "#/command?theme=dark&shot&v=submenu",
+      "file": "screens/command~submenu-dark.webp",
+      "pngSha256": "92c9ccc62e29db6b15e02d2acc8bd5a5484d4626e9951d8d99ddcbde7a2a8763"
+    },
+    {
+      "name": "command~none-dark.png",
+      "hash": "#/command?theme=dark&shot&v=none",
+      "file": "screens/command~none-dark.webp",
+      "pngSha256": "815a0d1ad7d2edc2777bcf80e5d1be3a96c70bcd14c753cb5d7af1723f31369b"
+    },
+    {
+      "name": "projects~grid-dark.png",
+      "hash": "#/projects?theme=dark&shot&v=grid",
+      "file": "screens/projects~grid-dark.webp",
+      "pngSha256": "071a5002780db05e26d3cf41b019871f8e75b88ee9554088bc2b5419d900e97a"
+    },
+    {
+      "name": "projects~empty-dark.png",
+      "hash": "#/projects?theme=dark&shot&v=empty",
+      "file": "screens/projects~empty-dark.webp",
+      "pngSha256": "d25fa8b84faf22373c32157cbee04e1573ad7244950b8f70900868cbfcfa733c"
+    },
+    {
+      "name": "projects~create-dark.png",
+      "hash": "#/projects?theme=dark&shot&v=create",
+      "file": "screens/projects~create-dark.webp",
+      "pngSha256": "4834b6a9f33e6b21eab862fea454cca654a8cc604dbddbf9ebcfac03a650846f"
+    },
+    {
+      "name": "project~overview-dark.png",
+      "hash": "#/project?theme=dark&shot&v=overview",
+      "file": "screens/project~overview-dark.webp",
+      "pngSha256": "c9ee2a2751557c320a823c39648f56333dba26b8f43b10755688b6f00ae8ff1a"
+    },
+    {
+      "name": "project~files-dark.png",
+      "hash": "#/project?theme=dark&shot&v=files",
+      "file": "screens/project~files-dark.webp",
+      "pngSha256": "9a58f7c69bb2e67f3f7ccc421dffe04738dddb8630156e9508cc8409e32e5533"
+    },
+    {
+      "name": "project~instructions-dark.png",
+      "hash": "#/project?theme=dark&shot&v=instructions",
+      "file": "screens/project~instructions-dark.webp",
+      "pngSha256": "f6115e41b006370cebfa91162f2d953dff680cb6a6b33ea810937f0e8d0f6e3d"
+    },
+    {
+      "name": "project~sharing-dark.png",
+      "hash": "#/project?theme=dark&shot&v=sharing",
+      "file": "screens/project~sharing-dark.webp",
+      "pngSha256": "b57105e54d926fbc69b2de21bc1e91a5c924422ad0fa184e86667f8e771c4b52"
+    },
+    {
+      "name": "memory~list-dark.png",
+      "hash": "#/memory?theme=dark&shot&v=list",
+      "file": "screens/memory~list-dark.webp",
+      "pngSha256": "3e947879cd866b0221e49b696848967100ebc1b7b31d774e4928227e77a615b0"
+    },
+    {
+      "name": "memory~off-dark.png",
+      "hash": "#/memory?theme=dark&shot&v=off",
+      "file": "screens/memory~off-dark.webp",
+      "pngSha256": "743a3def43fbceb16c2c25b3989f13e2a7a522eff2a4ab458dc7987e0b3252ed"
+    },
+    {
+      "name": "memory~empty-dark.png",
+      "hash": "#/memory?theme=dark&shot&v=empty",
+      "file": "screens/memory~empty-dark.webp",
+      "pngSha256": "16bed60993d5d0e4eea45d2027a1317973b83eaf98ac62285ef421f36b0f3d01"
+    },
+    {
+      "name": "onboarding~1-dark.png",
+      "hash": "#/onboarding?theme=dark&shot&v=1",
+      "file": "screens/onboarding~1-dark.webp",
+      "pngSha256": "0a1eace89ce739b821d094cd432450e2c7ebf67d2c892f4284ebb2f1e87d8265"
+    },
+    {
+      "name": "onboarding~2-dark.png",
+      "hash": "#/onboarding?theme=dark&shot&v=2",
+      "file": "screens/onboarding~2-dark.webp",
+      "pngSha256": "abf4b01402065df20f2760f0d0408dc1e8476e58a3c3eee06c27176183ec9b8a"
+    },
+    {
+      "name": "onboarding~3-dark.png",
+      "hash": "#/onboarding?theme=dark&shot&v=3",
+      "file": "screens/onboarding~3-dark.webp",
+      "pngSha256": "aac8e643f48e4ede891354c605aaac4cc8d9588005057e9d5f006671ab9d074f"
+    },
+    {
+      "name": "onboarding~4-dark.png",
+      "hash": "#/onboarding?theme=dark&shot&v=4",
+      "file": "screens/onboarding~4-dark.webp",
+      "pngSha256": "7b02c54aee72c7e63addcfc0110120077f79135b04ea7cd4de78678215082927"
+    },
+    {
+      "name": "login~email-dark.png",
+      "hash": "#/login?theme=dark&shot&v=email",
+      "file": "screens/login~email-dark.webp",
+      "pngSha256": "99767629fe9e1cccced10b47981a7667402ecfbbaceecb01bf719767d3ddd6fd"
+    },
+    {
+      "name": "login~code-dark.png",
+      "hash": "#/login?theme=dark&shot&v=code",
+      "file": "screens/login~code-dark.webp",
+      "pngSha256": "8f4b3596776525bd617905b4df9ea630c2b7108447b4963785b9990fee8cada0"
+    },
+    {
+      "name": "login~error-dark.png",
+      "hash": "#/login?theme=dark&shot&v=error",
+      "file": "screens/login~error-dark.webp",
+      "pngSha256": "04cf6bbb5b7bd297f7bb11654ddf4e85e9cc3808b53cd67fa5da602ebcc1b3d1"
+    },
+    {
+      "name": "login~loading-dark.png",
+      "hash": "#/login?theme=dark&shot&v=loading",
+      "file": "screens/login~loading-dark.webp",
+      "pngSha256": "d188676addf8d5dcaa86b029c550868209617942a7787aecdacd079b88007109"
+    },
+    {
+      "name": "login~locked-dark.png",
+      "hash": "#/login?theme=dark&shot&v=locked",
+      "file": "screens/login~locked-dark.webp",
+      "pngSha256": "4f67a41df511c843e366098fbdc54e7fbeb3ed21a267c68d54c050927d184309"
+    },
+    {
+      "name": "pricing~plans-dark.png",
+      "hash": "#/pricing?theme=dark&shot&v=plans",
+      "file": "screens/pricing~plans-dark.webp",
+      "pngSha256": "94dd160afc547eaeac0900e4f4690bc6c60313e3d0f47630f6d4343eb3d6ded1"
+    },
+    {
+      "name": "pricing~compare-dark.png",
+      "hash": "#/pricing?theme=dark&shot&v=compare",
+      "file": "screens/pricing~compare-dark.webp",
+      "pngSha256": "7fc8f24fb992bca120308700eac0251a9956d2b8906dbb450cbcc5697b8bb84e"
+    },
+    {
+      "name": "pricing~payment-dark.png",
+      "hash": "#/pricing?theme=dark&shot&v=payment",
+      "file": "screens/pricing~payment-dark.webp",
+      "pngSha256": "c05f1da4c497fd4c94487d75a1517469598a8277cccc949e2ee70ff6ad6e2a47"
+    },
+    {
+      "name": "pricing~confirmed-dark.png",
+      "hash": "#/pricing?theme=dark&shot&v=confirmed",
+      "file": "screens/pricing~confirmed-dark.webp",
+      "pngSha256": "9e57cf27fc9b6ea84fe4fd86216466a63bdc80e120868c1c3e130a7bcf89acac"
+    },
+    {
+      "name": "profile~profile-dark.png",
+      "hash": "#/profile?theme=dark&shot&v=profile",
+      "file": "screens/profile~profile-dark.webp",
+      "pngSha256": "998eaad86a60d1be9077de6f150e5b3203ef0cadb0d66ef9a458c36e8e1d5bcd"
+    },
+    {
+      "name": "profile~security-dark.png",
+      "hash": "#/profile?theme=dark&shot&v=security",
+      "file": "screens/profile~security-dark.webp",
+      "pngSha256": "3cda5513af1a979ebd4373011ef48979315a773305b57f98cbb8560ce16c5c07"
+    },
+    {
+      "name": "profile~delete-dark.png",
+      "hash": "#/profile?theme=dark&shot&v=delete",
+      "file": "screens/profile~delete-dark.webp",
+      "pngSha256": "704184fd3c3675ed85fd27503406a49aab361bfddee665cf13433c8e469e893a"
+    },
+    {
+      "name": "shortcuts-dark.png",
+      "hash": "#/shortcuts?theme=dark&shot",
+      "file": "screens/shortcuts-dark.webp",
+      "pngSha256": "9c622bdbff0d1657ceb98a8d3c5030b398ffa986441fc10373604e3dadf7e03e"
+    },
+    {
+      "name": "offline~offline-dark.png",
+      "hash": "#/offline?theme=dark&shot&v=offline",
+      "file": "screens/offline~offline-dark.webp",
+      "pngSha256": "cd54619f8dd53807b8066a936ee6019241351fb6778a681205f94ced8051e741"
+    },
+    {
+      "name": "offline~reconnecting-dark.png",
+      "hash": "#/offline?theme=dark&shot&v=reconnecting",
+      "file": "screens/offline~reconnecting-dark.webp",
+      "pngSha256": "1cb1d7bad20bd606d86840ed69d32a88dd706037556f8543024e02f55ab6cd83"
+    },
+    {
+      "name": "offline~restored-dark.png",
+      "hash": "#/offline?theme=dark&shot&v=restored",
+      "file": "screens/offline~restored-dark.webp",
+      "pngSha256": "4f275a578dafa22d936c4692e6a581feac7a72ec9922c6d1a7fd84bf7b5ea123"
+    },
+    {
+      "name": "error~500-dark.png",
+      "hash": "#/error?theme=dark&shot&v=500",
+      "file": "screens/error~500-dark.webp",
+      "pngSha256": "3386f670a9c2889bd2d021191ac430b13731e6774350f5766e2561e8e79bf914"
+    },
+    {
+      "name": "error~maintenance-dark.png",
+      "hash": "#/error?theme=dark&shot&v=maintenance",
+      "file": "screens/error~maintenance-dark.webp",
+      "pngSha256": "0018a484f60a29677c795ddb49ef4b70b45efea4f41a0a5611438269a3f8b8ab"
+    },
+    {
+      "name": "error~session-dark.png",
+      "hash": "#/error?theme=dark&shot&v=session",
+      "file": "screens/error~session-dark.webp",
+      "pngSha256": "e67982353e9aede79569383d9fb34d3bdf86b54960a8a1eac733933ac25de4bb"
+    },
+    {
+      "name": "error~403-dark.png",
+      "hash": "#/error?theme=dark&shot&v=403",
+      "file": "screens/error~403-dark.webp",
+      "pngSha256": "d9f71e7e73a9284b5ac5925d91f7abf87ebb3c909aabb462fc74886a81607850"
+    },
+    {
+      "name": "update~available-dark.png",
+      "hash": "#/update?theme=dark&shot&v=available",
+      "file": "screens/update~available-dark.webp",
+      "pngSha256": "ea914c9df13aa92a6d8c837682b28fbc1b164066d56d7d4d223b9ef6ed19bb6b"
+    },
+    {
+      "name": "update~downloading-dark.png",
+      "hash": "#/update?theme=dark&shot&v=downloading",
+      "file": "screens/update~downloading-dark.webp",
+      "pngSha256": "83f1eaa96d297e9c156ed1bbd3d7105943b86a955239e45c32d0f57e21226c66"
+    },
+    {
+      "name": "update~ready-dark.png",
+      "hash": "#/update?theme=dark&shot&v=ready",
+      "file": "screens/update~ready-dark.webp",
+      "pngSha256": "c7a8f893638b555dc8840655495e8d8ac76ee797a0d1c9de72187cf411b25857"
+    },
+    {
+      "name": "about-dark.png",
+      "hash": "#/about?theme=dark&shot",
+      "file": "screens/about-dark.webp",
+      "pngSha256": "222c937fe254149d03df2ef9bff51ddbb3433cdac06e699d4ba54f1c60df83e2"
+    },
+    {
+      "name": "settings~general-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=general",
+      "file": "screens/settings~general-dark.webp",
+      "pngSha256": "4d5437c791865001a8bd7b9d9fec2b74f1e9ac84317173474c3eeb2bcc9ee065"
+    },
+    {
+      "name": "settings~appearance-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=appearance",
+      "file": "screens/settings~appearance-dark.webp",
+      "pngSha256": "97646d09a7014b7fc97b915e0329d54f69ecc42231c18defaca1a04ba361aa74"
+    },
+    {
+      "name": "settings~providers-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=providers",
+      "file": "screens/settings~providers-dark.webp",
+      "pngSha256": "4844d285a8ad4ac872e7200d591721aad2811ae5a3bb7fd627496527d8aab1ee"
+    },
+    {
+      "name": "settings~connection-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=connection",
+      "file": "screens/settings~connection-dark.webp",
+      "pngSha256": "a18b546d531961292476c954c93f11d3871efccb01aacad10db0254ee686db1c"
+    },
+    {
+      "name": "settings~bot-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=bot",
+      "file": "screens/settings~bot-dark.webp",
+      "pngSha256": "a9db6629334165cb40fd5c182d66cd5d7db10c9669770923e3f4b9a720b21216"
+    },
+    {
+      "name": "settings~notifications-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=notifications",
+      "file": "screens/settings~notifications-dark.webp",
+      "pngSha256": "3f713e0f42cb43cb385bf5af6c38aeab29bbe40b6450fee3e2b5764cf97974fb"
+    },
+    {
+      "name": "settings~privacy-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=privacy",
+      "file": "screens/settings~privacy-dark.webp",
+      "pngSha256": "8a933780ea90bbabaa52dd3ae4bf54f843d6925a98da09fb039c66227af44d14"
+    },
+    {
+      "name": "settings~shortcuts-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=shortcuts",
+      "file": "screens/settings~shortcuts-dark.webp",
+      "pngSha256": "25d8eeac5928b9701722389edf4befede07e995f6e473344745ff1f4266734da"
+    },
+    {
+      "name": "settings~account-dark.png",
+      "hash": "#/settings?theme=dark&shot&v=account",
+      "file": "screens/settings~account-dark.webp",
+      "pngSha256": "af772af9f61b9f085e46e59f37da27a20fc60ced447b04144f2e03008ba2157c"
+    },
+    {
+      "name": "components-dark.png",
+      "hash": "#/components?theme=dark&shot",
+      "file": "screens/components-dark.webp",
+      "pngSha256": "61552990f4d0d38001b3633d81309e159afb62f7b3eda965b0bd7bda39e0e3e7"
+    },
+    {
+      "name": "work-home~board-dark.png",
+      "hash": "#/work-home?theme=dark&shot&v=board",
+      "file": "screens/work-home~board-dark.webp",
+      "pngSha256": "564395c2178564c387a269ac6a8f673e06cc81aa62ce60054d3b5ed02415e0d7"
+    },
+    {
+      "name": "work-home~list-dark.png",
+      "hash": "#/work-home?theme=dark&shot&v=list",
+      "file": "screens/work-home~list-dark.webp",
+      "pngSha256": "5661f643765833da70c46f5473d3b8f7b3c08bf12e5fb3ad3295f432d0f63108"
+    },
+    {
+      "name": "work-home~empty-dark.png",
+      "hash": "#/work-home?theme=dark&shot&v=empty",
+      "file": "screens/work-home~empty-dark.webp",
+      "pngSha256": "dc9aa9e4f4287ac1392e500192feb794c18d0c222dbb8fa4bd44507176e83f9c"
+    },
+    {
+      "name": "work-home~loading-dark.png",
+      "hash": "#/work-home?theme=dark&shot&v=loading",
+      "file": "screens/work-home~loading-dark.webp",
+      "pngSha256": "e109feae39b8a302120dbcd7559d5d401b1cd589f4d56cd648234ce721e434bf"
+    },
+    {
+      "name": "work-task~running-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=running",
+      "file": "screens/work-task~running-dark.webp",
+      "pngSha256": "41feb6d8e11bb5899cb26fe5a9881576c17139fd47f49865db2ccd9df977f5fe"
+    },
+    {
+      "name": "work-task~computer-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=computer",
+      "file": "screens/work-task~computer-dark.webp",
+      "pngSha256": "ab927fef9f21909f1b59779e2b0d187d7364b1a9fa270dfe83086381e9c68a16"
+    },
+    {
+      "name": "work-task~takeover-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=takeover",
+      "file": "screens/work-task~takeover-dark.webp",
+      "pngSha256": "eafb1a46cdd6872ac13eed6988fee990710228f98d1fa8c24427a9e6e8f7252c"
+    },
+    {
+      "name": "work-task~approval-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=approval",
+      "file": "screens/work-task~approval-dark.webp",
+      "pngSha256": "38153294c9a4219b1dbdd6a3df44d97c9ab5019919f29b4c0950b743bb7c8f62"
+    },
+    {
+      "name": "work-task~blocked-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=blocked",
+      "file": "screens/work-task~blocked-dark.webp",
+      "pngSha256": "382bd5b52823b5c6b7e210f6eca0c443e568cc3728322e37d8171c7fc5f45c2c"
+    },
+    {
+      "name": "work-task~done-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=done",
+      "file": "screens/work-task~done-dark.webp",
+      "pngSha256": "d3e3c3799cdee194e13bff0d19b2bfcf33de45e80a0e325470a88ac9fc369d8e"
+    },
+    {
+      "name": "work-task~failed-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=failed",
+      "file": "screens/work-task~failed-dark.webp",
+      "pngSha256": "5a076373a203b519ad472e1bdb633bad2c3c842a39bb7b69874b76985bdb05c5"
+    },
+    {
+      "name": "work-task~paused-dark.png",
+      "hash": "#/work-task?theme=dark&shot&v=paused",
+      "file": "screens/work-task~paused-dark.webp",
+      "pngSha256": "a840f445749b68918e7b32ac43a49142b956421df5c1b14245740e38be037509"
+    },
+    {
+      "name": "automations~list-dark.png",
+      "hash": "#/automations?theme=dark&shot&v=list",
+      "file": "screens/automations~list-dark.webp",
+      "pngSha256": "1bd2170ced49241cfd6a53136171ce4d447dd966f60687fd4b4c7d6accf42738"
+    },
+    {
+      "name": "automations~empty-dark.png",
+      "hash": "#/automations?theme=dark&shot&v=empty",
+      "file": "screens/automations~empty-dark.webp",
+      "pngSha256": "d833cbae5a5b6199739ff22e3da3b2e4c2dcd971ff30178b39f059066d89b987"
+    },
+    {
+      "name": "automations~failed-dark.png",
+      "hash": "#/automations?theme=dark&shot&v=failed",
+      "file": "screens/automations~failed-dark.webp",
+      "pngSha256": "594192a563c525f1c9a2b3c687cbeba66b5196684fa3fbb957eef0dba634b9ec"
+    },
+    {
+      "name": "automation-edit~schedule-dark.png",
+      "hash": "#/automation-edit?theme=dark&shot&v=schedule",
+      "file": "screens/automation-edit~schedule-dark.webp",
+      "pngSha256": "7c62b30a8e6ff5ab37d26daf3007c865a8baf3d9e951f556a426066c50d35280"
+    },
+    {
+      "name": "automation-edit~event-dark.png",
+      "hash": "#/automation-edit?theme=dark&shot&v=event",
+      "file": "screens/automation-edit~event-dark.webp",
+      "pngSha256": "6693488ff0529dbd8e1fad177e339f16942cd40bb30fe955a0ec83a8d8cfc030"
+    },
+    {
+      "name": "automation-edit~test-dark.png",
+      "hash": "#/automation-edit?theme=dark&shot&v=test",
+      "file": "screens/automation-edit~test-dark.webp",
+      "pngSha256": "76ca95bea3a9700273776fe0fd14e5ae269c8bd83b82170cd9946cb130c91925"
+    },
+    {
+      "name": "automation-edit~passed-dark.png",
+      "hash": "#/automation-edit?theme=dark&shot&v=passed",
+      "file": "screens/automation-edit~passed-dark.webp",
+      "pngSha256": "9e8518d216bb81c010d4b98542ff6e3d892ad4aa80c31c6fdf75920f1dce70ea"
+    },
+    {
+      "name": "inbox~normal-dark.png",
+      "hash": "#/inbox?theme=dark&shot&v=normal",
+      "file": "screens/inbox~normal-dark.webp",
+      "pngSha256": "be9d968a0c048686775e84e0c88101e922e1f8ecbaf7a48a8fbb6faf2348aaec"
+    },
+    {
+      "name": "inbox~empty-dark.png",
+      "hash": "#/inbox?theme=dark&shot&v=empty",
+      "file": "screens/inbox~empty-dark.webp",
+      "pngSha256": "539feead6d31b2b22d06aeab49ac69932cebf3dcf5a3a1549ed8632ac47a4780"
+    },
+    {
+      "name": "approvals~list-dark.png",
+      "hash": "#/approvals?theme=dark&shot&v=list",
+      "file": "screens/approvals~list-dark.webp",
+      "pngSha256": "e086a6bc1743b7a90e288cf9c41160a2294d83822c3629bf4bbd5c04d05abd8e"
+    },
+    {
+      "name": "approvals~detail-dark.png",
+      "hash": "#/approvals?theme=dark&shot&v=detail",
+      "file": "screens/approvals~detail-dark.webp",
+      "pngSha256": "b53590cc8100ac4fe6f002845ea3666297306d8e1b23b29ed4baa2a666035efd"
+    },
+    {
+      "name": "approvals~approved-dark.png",
+      "hash": "#/approvals?theme=dark&shot&v=approved",
+      "file": "screens/approvals~approved-dark.webp",
+      "pngSha256": "8c828e0f4157b23fbe1daffb3997904951db1fed6732823d3956d5c51601ebdc"
+    },
+    {
+      "name": "approvals~denied-dark.png",
+      "hash": "#/approvals?theme=dark&shot&v=denied",
+      "file": "screens/approvals~denied-dark.webp",
+      "pngSha256": "77fbf126d11486e8683d5718e2ed281cd1d369acf821693a0d9348bd9b14f027"
+    },
+    {
+      "name": "activity~timeline-dark.png",
+      "hash": "#/activity?theme=dark&shot&v=timeline",
+      "file": "screens/activity~timeline-dark.webp",
+      "pngSha256": "c191a30e3289f2b5eb0e1edb9cb10b7089398cbf4ee8ae68d456863a4cab7822"
+    },
+    {
+      "name": "activity~filtered-dark.png",
+      "hash": "#/activity?theme=dark&shot&v=filtered",
+      "file": "screens/activity~filtered-dark.webp",
+      "pngSha256": "ead8539d9fab40e4863eb6520ff56f84ac83ba848cfdd39b65bb95f4dba3a67e"
+    },
+    {
+      "name": "activity~loading-dark.png",
+      "hash": "#/activity?theme=dark&shot&v=loading",
+      "file": "screens/activity~loading-dark.webp",
+      "pngSha256": "98edfd83ae040aff46ea29b00835b8cfd684ab7661b74c54e1fd14ff52bb8303"
+    },
+    {
+      "name": "notifications~unread-dark.png",
+      "hash": "#/notifications?theme=dark&shot&v=unread",
+      "file": "screens/notifications~unread-dark.webp",
+      "pngSha256": "93d35344ce48e77c8f32e543215fead747bd7e1779fbc5b020930cb044461f27"
+    },
+    {
+      "name": "notifications~allread-dark.png",
+      "hash": "#/notifications?theme=dark&shot&v=allread",
+      "file": "screens/notifications~allread-dark.webp",
+      "pngSha256": "33a622e3c5d9ac040781a4d840f1378148b55a1dc97c91631c8c1c92dcb52ef6"
+    },
+    {
+      "name": "notifications~settings-dark.png",
+      "hash": "#/notifications?theme=dark&shot&v=settings",
+      "file": "screens/notifications~settings-dark.webp",
+      "pngSha256": "69b65e65fcbe263ea15435c442605cc4caf30913bb9018c888e53c4453ce7f9e"
+    },
+    {
+      "name": "connectors~grid-dark.png",
+      "hash": "#/connectors?theme=dark&shot&v=grid",
+      "file": "screens/connectors~grid-dark.webp",
+      "pngSha256": "94c9b844c3bd193c957d69623555dd82a6518c00e07b576e83dfef37c1898060"
+    },
+    {
+      "name": "connectors~connecting-dark.png",
+      "hash": "#/connectors?theme=dark&shot&v=connecting",
+      "file": "screens/connectors~connecting-dark.webp",
+      "pngSha256": "7fa4a6e77266364a565bb07f50cbf4dba05c9d88a67395e1762464319d7338a3"
+    },
+    {
+      "name": "connectors~permissions-dark.png",
+      "hash": "#/connectors?theme=dark&shot&v=permissions",
+      "file": "screens/connectors~permissions-dark.webp",
+      "pngSha256": "de6c7eb86b3a165064e04333d5e7c3bdc26ad509600ee59953bf2bc681fd4032"
+    },
+    {
+      "name": "connectors~error-dark.png",
+      "hash": "#/connectors?theme=dark&shot&v=error",
+      "file": "screens/connectors~error-dark.webp",
+      "pngSha256": "9224f8ff90682e0bc61e274aa8965a7b256092bf5bbfd0748bf55e739a15e0e3"
+    }
+  ],
+  "errors": [],
+  "commit": "d40b5d786a44657cf18ea5b990d83f3a357034e1",
+  "ciRun": "https://github.com/CortexLM/desktop/actions/runs/36957854761",
+  "macOS": "26.6.2",
+  "architecture": "arm64",
+  "nativeWindowSize": [
+    1024,
+    685
+  ],
+  "screen": [
+    1024,
+    768
+  ],
+  "format": "Lossless WebP from native PNG; original pixel data preserved",
+  "lowVarianceScreens": []
+}

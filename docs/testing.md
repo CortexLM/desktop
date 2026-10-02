@@ -43,6 +43,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/screens.spec.ts` — enumerates every registered screen/variant in dark and
   light, currently **426 theme/state renders**. Checks theme selection, nonempty body,
   uncaught page errors and raw i18n keys in preview; it does not exercise every control.
+- `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
+  macOS traffic-light position `{x:20,y:15}` through Electron APIs.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
@@ -73,10 +75,18 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   home mode menu and history second-row menu in both themes, file-image ask panel in light.
   Pixel-diffs against the reference go to `evidence/compare/`. Needs `bun run dev:app` and
   the reference checkout. `--merge` retains earlier report rows for routes not rerun.
-  The report has no pass/fail visual threshold; missing references remain explicit gaps.
+  The report has no pass/fail pixel threshold; missing references remain explicit gaps.
+  Capture fails if theme/content never becomes ready rather than silently comparing a blank page.
 - `scripts/mac/capture.sh <routes-file> <out-dir>` — runs on a remote Mac, captures each
   route with native window chrome in light and dark. `scripts/mac/artifact-url.sh <run-id>
   <artifact>` prints a download URL for a CI artifact (needs `gh`).
+- `scripts/mac/capture-connected.mjs <ssh-host> <cdp-url> <capture-url> <out-dir>` — reuses
+  the installed app's CDP connection for navigation, then takes real native window pixels
+  through `scripts/mac/capture-server.py`. Start that loopback-only Python helper via
+  `mac-computer` so it inherits Screen Recording permission. Forward ports 9444 (CDP)
+  and 9445 (capture) over SSH; acquire/release the shared Mac lease. The script asserts
+  the theme/content, records renderer errors and writes `evidence/mac/manifest.json`.
+  Stop the helper and close debug ports after verification.
 - `scripts/dev-smoke.mjs` — quick local launch + screenshot of the built app.
 
 The recorded `evidence/compare/report.json` contains **431 renders**: 426 registered
