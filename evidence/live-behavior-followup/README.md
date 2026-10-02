@@ -5,8 +5,10 @@ Application `d635fcf34f83db7849a1ee59ab3d790b20f74c9f` is pushed.
 E2E and macOS package/smoke, but **fails overall**: eight locale-render unit cases lack a
 `localStorage` test fixture after Code starts rendering the live composer. The test-harness
 correction preserves all locale assertions and the real composer; Node 22 now passes all 178 units
-plus the existing optional backend skip. Matching green CI is pending. Installed native assertions
-pass on the exact `d635fcf` macOS artifact; capture review is underway.
+plus the existing optional backend skip. Test-only correction `ea1c54b` is pushed;
+[CI 37075722150](https://github.com/CortexLM/desktop/actions/runs/37075722150) is pending.
+[Installed-Mac proof](../mac/d635fcf/README.md) passes on the exact `d635fcf` artifact:
+twelve inspected native captures, both themes, Code model/image refusal/recovery and routine outcomes.
 Prior green CI/native acceptance remains pinned to `9d704ee`. Existing screens and local contracts
 are used here; no new design source is imported.
 
@@ -75,8 +77,9 @@ controls and accepted image recovery exactly once. [Negative geometry](before/co
 - The mechanical design scan reports 15 warnings, all on unchanged font/motion/gradient CSS.
   The pinned reference remains the visual authority; no typography or motion redesign follows.
 
-These are controlled-provider local-engine checks. They establish neither real inference nor
-installed native macOS acceptance. The initial blank capture, earlier negative suites and source pins remain intact.
+These are controlled-provider local-engine checks. Native evidence is separately linked above;
+real inference and full-objective acceptance remain unproven. The initial blank capture, earlier
+negative suites and source pins remain intact.
 The [independent final review](final-review.md) verifies the scoped source, logs, comparison hashes,
 packaged build bytes and all ten final live images; no scoped critical blocker found.
 That review predates the CI unit failure; its integrated-unit wording is superseded above.

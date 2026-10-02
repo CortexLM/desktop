@@ -235,6 +235,10 @@ save/reopen/decrypt/remove checks. Provider-row correction `9d704ee` passes CI a
 960×640 captures with sidebar shown; renderer differs from `cc758a6` only in that row.
 See [`evidence/mcp-followup/README.md`](./evidence/mcp-followup/README.md). Earlier failed CI
 capture/stability attempts retain their negative results and unknown causes.
+Code/routine correction `d635fcf` passes 61 Electron cases per OS plus macOS package/smoke;
+its overall CI fails eight Node 22 locale-render fixtures. Test-only `ea1c54b` corrects those
+fixtures with no application delta. Twelve installed-Mac Code/routine captures and scoped
+frozen comparisons are retained in [`evidence/live-behavior-followup/README.md`](./evidence/live-behavior-followup/README.md).
 
 ## CI, packaging and releases
 

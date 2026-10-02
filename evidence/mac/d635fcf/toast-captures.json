@@ -1,0 +1,27 @@
+{
+  "captures": [
+    {
+      "file": "code-attachment-toast-light.png",
+      "theme": "light",
+      "width": 960,
+      "height": 640,
+      "toastHovered": true,
+      "toastBottom": 489,
+      "dockTop": 501,
+      "controlsReachable": true,
+      "messages": 0
+    },
+    {
+      "file": "code-attachment-toast-dark.png",
+      "theme": "dark",
+      "width": 960,
+      "height": 640,
+      "toastHovered": true,
+      "toastBottom": 489,
+      "dockTop": 501,
+      "controlsReachable": true,
+      "messages": 0
+    }
+  ],
+  "method": "Native window screencapture; real toast timers paused by ordinary pointer hover, not a fake clock."
+}

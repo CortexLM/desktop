@@ -6,8 +6,9 @@ The [live-behavior correction](live-behavior-followup/README.md) wires Code mode
 and truthful routine outcomes. CI 37074187552 passes 61/61 Electron cases on Linux/macOS,
 426 renders and macOS package/smoke, but fails eight locale-render unit cases because their
 mock browser environment lacks `localStorage`. The earlier 178-unit pass predates Code integration.
-The test-harness correction now passes 178 units on Node 22; green CI remains pending.
-Installed-Mac assertions pass on the exact `d635fcf` artifact; capture review is underway.
+Test-only correction `ea1c54b` passes 178 units on Node 22; CI 37075722150 remains pending.
+[Installed-Mac proof](mac/d635fcf/README.md) passes on exact `d635fcf`: twelve native captures,
+Code model/image refusal/recovery and routine outcomes, both themes at 960×640.
 Earlier application `9d704ee` corrects the narrow provider key row;
 [CI 37066222793](https://github.com/CortexLM/desktop/actions/runs/37066222793) passes, installed
 normal-sidebar verification passes in both themes at 960×640.
@@ -31,7 +32,7 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 | Lint, types, units | Initial CI lint/types pass; units 170 pass/eight harness failures/one optional skip. Corrected Node 22 local suite: 178 pass/one optional skip. Green CI pending. |
 | Every design screen plus provider/image/reasoning flows | Partial: current CI 61/61 per OS, 426 renders. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
 | Blacksmith macOS package/launch | Current `d635fcf` job passes; overall CI remains failed. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical complete sweeps remain pinned; current credential and key-row verification is targeted, not a fresh all-screen sweep. |
+| Installed Mac, every screen/theme/native chrome/menu | Current twelve Code/routine captures pass at 960×640, both themes. Earlier credential/provider and complete sweeps remain pinned; no fresh all-screen/menu sweep. |
 | No unjustified reference gap | Unproven: new scoped 10/10 comparisons max 0.05%; historical full comparison retains 21 gaps. Providers lacks an approved frozen image; new-surface imports remain unauthorized. |
 | Automated i18n audit | Current local scope: 63 files, 2,266 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
 
