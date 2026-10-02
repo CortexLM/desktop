@@ -1,158 +1,73 @@
 # 01 — Security
 
-## 1.1 No tokens in the renderer
+## 1.1 Provider keys stay in main
 
-The renderer (`packages/app`) is a web page. On desktop it is loaded from
-`file://`; on the web it is served to a browser. In both hosts it is the least
-trusted process in the system. A session token, a device token, an SSH key, a
-provider API key, or a device-flow `device_code` must never be readable from it.
+The renderer never holds, reads or logs a provider key. Keys are written through a
+write-only route and stored by main.
 
-Session material lives in the Electron main process, encrypted at rest through
-`safeStorage` (`0o600` when no keyring is available), and is exchanged over the
-`cortex:*` IPC channels defined in `packages/shared/src/types/ipc/cortex.ts`. On
-the web, the sealed `wos-session` cookie is `HttpOnly` and is set by the service —
-the page never reads it.
+- `PUT /api/providers/:id/key` sets a key, `DELETE` removes it. There is no route that
+  returns a key (`packages/protocol/src/index.ts`).
+- `ProviderConfig` (`packages/schema/src/index.ts`) carries `hasKey` and `keyHint` (last
+  four characters) only.
+- Main implements `Credentials` in `packages/desktop/src/credentials.ts`:
+  `<dataDir>/credentials.json`, mode `0600`, each value encrypted with `safeStorage` when
+  the OS keychain is available (`e:` prefix), base64 otherwise (`p:` prefix).
+- `scripts/dev-api.ts` uses `memoryCredentials()`; keys vanish on exit.
 
-**Bad** — the token crosses into renderer-visible state, and `localStorage` is a
-store any injected script can read:
-
-```ts
-// packages/app/src/state/cloud-host.ts
-const { token } = await api.signIn(email, password);
-localStorage.setItem('cortex.session', token);          // readable by any script
-setSession({ token, user });                            // now in renderer memory
-```
-
-**Good** — the renderer learns *that* there is a session, never *what* it is:
+**Bad** — a read route that ships the key to the UI:
 
 ```ts
-// packages/app/src/state/cloud-host.ts
-await api.signIn(email, password);   // service sets the HttpOnly cookie
-const account = await api.me();      // { id, email, plan } — no credential
-setSession({ account });
+"provider.key": r("get", "/api/providers/:id/key"),
 ```
 
-The same shape applies on desktop: `window.cortex.cortex.signIn()` resolves to an
-account summary, and the token stays in
-`packages/main/src/services/cortex-account-service.ts`.
-
-Desktop Google/GitHub login is a one-shot transaction in main: `state` plus a
-PKCE verifier. `parseAuthCallback` accepts only a code with `state`, never a
-session credential in the URL (even with matching state). The
-PKCE verifier is sent only on `GET /v1/auth/callback` from main.
-
-Corollaries:
-
-- A new preload namespace must be added to the exposure-surface test **on
-  purpose**. If a channel would let the renderer read a credential, the channel
-  is wrong, not the test.
-- Settings → Providers is the only place API keys are entered. They go
-  main → keychain and are never echoed into a signal, a log, or a test snapshot.
-- **Code has no Secrets page**, so there is no renderer surface that collects a
-  value to store (`06-product.md` § 6.2.1). Do not add one back under another
-  name: a field asking the user to paste a token into the least-trusted process is
-  the shape this rule exists to keep out.
-
-## 1.2 No secrets in git
-
-Nothing that authenticates anything goes into the repository. That includes
-`.env` files, cookie jars, private tunnel URLs, provider keys, device tokens,
-and screenshots that happen to have a key on screen.
-
-`.env.example` holds placeholders only, and a placeholder must be obviously
-fake.
-
-**Bad**:
-
-```bash
-# .env.example
-CORTEX_API_KEY=sk-live-9f3a2c8e41b7d05fa6c1
-```
+**Good** — the UI only learns that a key exists:
 
 ```ts
-// packages/cortex-api/src/__tests__/fixtures.ts
-export const SESSION = { token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…' };
+return { providerID: id, enabled: c.enabled, hasKey: !!key, keyHint: key ? c.keyHint : undefined, baseURL: c.baseURL }
 ```
 
-**Good**:
+Cortex Cloud session material follows the same rule: `packages/desktop/src/remote.ts`
+runs in main and nothing it holds crosses to the renderer.
 
-```bash
-# .env.example
-# Optional. Set on your machine only; Settings in the app overrides this.
-CORTEX_API_KEY=sk-…
-```
+## 1.2 The renderer is sandboxed
 
-```ts
-// packages/cortex-api/src/__tests__/fixtures.ts
-export const SESSION = { token: 'test-session-token' };
-```
+`packages/desktop/src/main.ts` creates the window with `sandbox: true`,
+`contextIsolation: true`, `nodeIntegration: false`. Never loosen these to make a feature
+work; move the feature into main.
 
-If you believe a secret has been committed, treat it as leaked: rotate it first,
-then remove it. See [`SECURITY.md`](../SECURITY.md). Do not paste the value into
-the issue you open about it.
+- Navigation is locked to `cortex://app` (`will-navigate`); `window.open` is denied.
+- External links: only `https://` URLs, via `shell.openExternal`.
+- The `cortex` protocol handler refuses paths outside `packages/app/dist` (403).
+- `cortex:fetch` routes only `/api/*` paths to the engine.
+- CSP in `packages/app/index.html`: `default-src 'self'`, `connect-src 'self'`.
+- Preload exposes plain-data functions only (`packages/desktop/src/preload.ts`). A new
+  bridge function is a security review item.
 
-The `security-audit` workflow runs a secret scan on every PR to `main`. A hit
-there is a blocker, not a warning.
+**Bad**: `webPreferences: { contextIsolation: false }` or `--disable-web-security`.
 
-## 1.3 Guest vs signed-in
+## 1.3 No secrets in git
 
-Anonymous use is a product requirement for **Chat**, not a degraded mode. Without an
-account the app opens onto a usable Chat workspace (local or BYO providers). **Code is
-shown and locked**: switching to Code or starting a session raises the sign-in modal.
-This PC, Cloud and SSH stay visible so a guest can see what an account buys; they do
-not start a session until the account is there.
+No keys, tokens, cookies, `.env` files or private URLs in commits, PR bodies, screenshots
+or logs. Test keys are obvious placeholders (`sk-test-123456` in `tests/e2e/engine.spec.ts`).
+If you committed one, rotate it first, then remove it.
 
-Account-gated surfaces — Automations, Review, Usage, cloud runtimes, SSH connect,
-Code sessions, and leftover `/bot` create — are **shown and locked**, never hidden.
+Test hooks must not become production backdoors: `CORTEX_TEST_PROVIDER_BASEURL` is ignored
+when `app.isPackaged`.
 
-**Bad** — the guest cannot tell whether the feature is missing, broken, or paid:
+## 1.4 Local first, account optional
 
-```tsx
-<Show when={session.account}>
-  <AutomationsList items={automations()} />
-</Show>
-```
+Local mode is the default and needs no account. Cortex Cloud and self-hosted are opt-in
+connection modes (`docs/connection-modes.md`). A surface that needs a backend says so
+honestly; it never shows a spinner that never resolves or a raw HTTP status.
 
-**Bad** — a guest is told they made a mistake:
+## 1.5 Trust boundaries worth naming
 
-```tsx
-<HonestState kind="error" title="Unauthorized" body="401" />
-```
-
-**Good** — the surface stays visible and the lock is explained:
-
-```tsx
-<Show
-  when={session.account}
-  fallback={
-    <HonestState
-      kind="signed-out"
-      title="Automations need a Cortex account"
-      body="Automations run in the cloud on a schedule. Sign in to create one. Chat still works unsigned."
-      action={{ label: 'Sign in', href: '/sign-in' }}
-    />
-  }
->
-  <AutomationsList items={automations()} />
-</Show>
-```
-
-Every gated screen needs a signed-out test (`08-testing.md`). A guest must never
-reach a spinner that never resolves, and must never be shown a raw HTTP status.
-
-## 1.4 Trust boundaries worth naming
-
-- **The renderer cannot call the Cortex API directly on desktop.** Its origin is
-  opaque, so every `fetch` to `api.cortex.foundation` fails CORS before it is
-  sent. No header fixes this. Route it through main over `cortex:*`. Discovering
-  this again and "fixing" it with a proxy or a disabled web-security flag is a
-  security regression, not a fix.
-- **Never disable `contextIsolation`, enable `nodeIntegration`, or pass
-  `--disable-web-security`** to make something work. If a feature seems to need
-  it, the feature belongs in main.
-- **The harness touches disk, a PTY, and Git.** File writes and shell commands
-  are gated by Allow / Always / Deny on the session and are never silent. Do not
-  add a code path that performs either without a permission decision.
-- **Web never runs the harness in the tab.** See `06-product.md`.
-- Logs are a public surface. No keys, no tokens, no cookies, no full request
-  bodies from authenticated calls.
+- **Agent tools touch disk and run commands.** `bash`, `write`, `edit` and paths outside
+  the session directory (`external_directory`) ask by default
+  (`packages/core/src/permission.ts`). Do not add a tool path that skips `ctx.ask`.
+- `bash` runs with the user's rights. There is no sandbox; do not claim one.
+- Plugins run in-process with host privileges (`packages/core/src/plugin.ts`).
+- Computer-use input actions always ask; "always" is never stored for them
+  (`docs/computer-use.md`).
+- Engine error `message` strings are for developers. They may be logged, never rendered.
+- Logs are a public surface: no keys, no request bodies from authenticated calls.

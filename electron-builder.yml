@@ -16,6 +16,8 @@ files:
   - "!**/node_modules/**/*"
 
 extraResources:
+  - from: skills
+    to: skills
   - from: packages/i18n/locales
     to: locales
     filter: ["**/*.json", "!**/*.source.json", "!fixtures/**"]
@@ -101,19 +103,6 @@ linux:
 appImage:
   license: LICENSE
 
-
-# Auto-update feed. Packaged apps read this into app-update.yml.
-# Production CI copies latest.yml / latest-mac.yml / latest-linux.yml,
-# blockmaps, and installers to R2 bucket cortex-releases (objects at the
-# bucket root for legacy clients) and cortex-software/latest — see build.yml
-# publish-feed. New installers use software.cortex.foundation/latest/.
-# Staging dist overrides publish.url to
-# https://software.cortex.foundation/staging/. Generic provider only; do not
-# add a GitHub channel.
-publish:
-  provider: generic
-  url: https://software.cortex.foundation/latest/
-  channel: latest
 
 # build.yml requires signing and notarization credentials before macOS/Windows
 # production builds and passes forceCodeSigning=true. Local builds stay usable

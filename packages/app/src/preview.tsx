@@ -1,7 +1,7 @@
 // Preview mode: the design gallery renders every screen state with fixture content.
 // Fixtures are translatable catalogs: packages/i18n/locales/<locale>/fixtures/<area>.json. They are only loaded in preview
-// (gallery iframes, `?preview` routes, Help → Design gallery). Live routes never read them,
-// and the title bar shows a "Preview" badge whenever they are on screen.
+// (gallery iframes, `?preview` routes, Help → Design gallery). Live routes never read them;
+// in preview the title bar shows the state picker.
 import * as React from "react";
 import { useI18n } from "./i18n";
 
