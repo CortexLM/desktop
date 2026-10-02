@@ -8,6 +8,8 @@ export function Gallery() {
   const [theme, setTheme] = React.useState<"dark" | "light" | "both">("both");
   const themes = theme === "both" ? ["dark", "light"] : [theme];
   React.useEffect(() => { document.documentElement.dataset.theme = "dark"; }, []);
+  // Read by scripts/compare-shots.mjs to map each state to its design screenshot.
+  (window as unknown as { __screens: unknown }).__screens = SCREENS.map((s) => ({ id: s.id, design: s.design, variants: s.variants }));
   const items = SCREENS.flatMap((s) => (s.variants ?? [["", ""]]).map(([v, vl]) => ({ s, v, vl })));
   return (
     <div className="gal">

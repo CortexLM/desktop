@@ -16,6 +16,10 @@ import { useSessions, useQuery } from "../../state/live";
 import { Agent, Av, Badge, CiIcon, Delta, LiveEmpty, Split, Unified, basename, ix, parse, rich, unfold, useAgo, type CS } from "./parts";
 import type { CodeFx, St, TaskFx, TK } from "./fixtures";
 
+/** Git and file identifiers, not copy. */
+const BASE_BRANCH = "main";
+const INSTRUCTIONS_FILE = "AGENTS.md";
+
 const NB = "\u202f";
 const useFx = () => useFixtures<CodeFx>("code");
 
@@ -704,7 +708,7 @@ function Pr({ v, setV }: { v: string; setV: (v: string) => void }) {
           <h1 className="code-prtitle">{title}<span className="code-meta"> #482</span></h1>
           <div className="code-md">{desc.split("\n").map((l, i) => l.startsWith("## ") ? <h4 key={i}>{l.slice(3)}</h4> : l.startsWith("- ") ? <div key={i} className="code-li">{l.slice(2)}</div> : l ? <p key={i}>{l}</p> : null)}</div>
         </>)}
-        <div className="code-prmeta"><span className="ctx code-static"><Icon name="git-branch" size={16} />{branchGone ? <s>{fx.branch}</s> : fx.branch}</span><Icon name="arrow-right" size={12} /><span className="ctx code-static">main</span><span className="code-meta">{t("code.pr.files", { count: fx.files })}</span><Delta a={fx.a} d={fx.d} /></div>
+        <div className="code-prmeta"><span className="ctx code-static"><Icon name="git-branch" size={16} />{branchGone ? <s>{fx.branch}</s> : fx.branch}</span><Icon name="arrow-right" size={12} /><span className="ctx code-static">{BASE_BRANCH}</span><span className="code-meta">{t("code.pr.files", { count: fx.files })}</span><Delta a={fx.a} d={fx.d} /></div>
       </div></div>
       <aside className="code-aside">
         <div className="code-card">
@@ -826,7 +830,7 @@ function SetAgents() {
   return (<>
     <p className="code-lead">{rich(t("code.settings.agentsLead"))}</p>
     <div className="diff code-file code-md-ed">
-      <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>AGENTS.md</span>
+      <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>{INSTRUCTIONS_FILE}</span>
         <Pop align="end" width={180} trigger={<button className="ctx"><Icon name="folder-code" size={16} />{repo}<Icon name="chevron-down" size={12} /></button>}>
           {fx.repoNames.map((r) => <MItem key={r} icon={r === repo ? "check" : "folder-code"} onClick={() => setRepo(r)}>{r}</MItem>)}
         </Pop>
