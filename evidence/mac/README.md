@@ -9,6 +9,7 @@ Installed at `/Applications/Cortex.app`; macOS 26.6.2, 1024×768 desktop.
   lights and title bar. Original PNG hashes are recorded in [manifest.json](manifest.json).
 - [index.html](index.html): full-resolution capture browser; `contact-*.jpg`: review sheets.
 - `menus/*.webp`: seven native menus in each appearance, whole desktop captured.
+- [window-actions.json](window-actions.json): observed minimize/fullscreen state transitions.
 - The sweep asserts the requested route/theme and nonempty screen content, records uncaught
   renderer errors (**zero**) and the installed `app.asar` SHA-256. Image variance checks found
   no blank main panes. Every contact sheet was inspected; suspect panels were read at full size.
@@ -33,3 +34,8 @@ Native screenshot review supplements those assertions; it does not replace them.
 CI's native screenshot could not run without Screen Recording permission. Its packaged
 renderer screenshot is in `../ci/macos-ci-packaged-renderer.png`; these installed-app
 captures provide the separate native-window evidence. Signing/notarization is unproven.
+
+The original Mac install was overlaid on an older app: its asar hash matches this build,
+but 14 obsolete raw fixture files remained in `resources/locales`. The clean CI artifact
+contains none. These captures prove the recorded UI, not a clean resource installation;
+the follow-up package is installed into a fresh app directory before regression captures.

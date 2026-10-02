@@ -88,7 +88,8 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   through `scripts/mac/capture-server.py`. Start that loopback-only Python helper via
   `mac-computer` so it inherits Screen Recording permission. Forward ports 9444 (CDP)
   and 9445 (capture) over SSH; acquire/release the shared Mac lease. The script asserts
-  the theme/content, records renderer errors and writes `evidence/mac/manifest.json`.
+  the theme/content, records renderer errors and writes `<out-dir>/manifest.json`. An optional
+  final comma-separated screen list narrows a regression capture; copied evidence keeps its build hash.
   Stop the helper and close debug ports after verification.
 - `scripts/dev-smoke.mjs` — quick local launch + screenshot of the built app.
 

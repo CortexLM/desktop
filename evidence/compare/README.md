@@ -6,6 +6,8 @@
 - Reference shots compared: **421**, mean differing pixels **0.04%**, max **0.78%**.
 - All 421 comparisons are below 1%. `image-gen` result text now matches the design,
   including “quatre”; both result screenshots differ by **0.00%** after rounding.
+- After the narrow-window fixes (`d276b2e`), all 40 Canvas, Code review/diff and Work task
+  theme/states were recaptured at 1440×900; their largest reference difference is 0.06%.
 
 ## Remaining differences
 

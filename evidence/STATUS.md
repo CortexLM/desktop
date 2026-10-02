@@ -9,7 +9,7 @@ The full objective is **not complete**. Evidence below is scoped to implemented 
 | 2. Electron E2E | 8 tests pass on Linux and macOS, no retries/flaky/skips; 426 preview renders, provider key entry, model/thinking/image composer flow, native menu/window assertions | CI inference endpoint is deterministic; every preview render is covered, not every interaction |
 | Real inference supplement | [Real provider](real-provider.json), [replay script](../scripts/verify-real-provider.mjs) | Real GPT-6 Astra image response plus reasoning; test-only model alias; built IPC/engine path, not packaged UI |
 | 3. macOS build/package/launch | Same green run, Blacksmith macOS 26, unsigned arm64, `SMOKE OK` | CI native screen capture failed; renderer screenshot inspected. Native chrome is verified separately on the remote Mac |
-| 4. Remote Mac | Installed CI artifact, native window captures and menus under `evidence/mac` | Native capture set and revision recorded in its manifest; no signing/notarization claim |
+| 4. Remote Mac | Installed CI artifact, [426 native captures and 14 menus](mac/README.md) | Build/asar recorded; initial overlay install retained obsolete raw fixtures. Clean artifact excludes them; follow-up clean install pending. No signing claim |
 | 5. Design comparison | [Report](compare/README.md), [421 reference comparisons](compare/report.json), [retained side-by-side shots](compare/index.html) | Mean 0.04%, max 0.78%; ten Settings states lack reference shots; mascot review boards are not routed screens |
 | 6. Copy audit | [Zero-finding run](ci/audit.log), [audit regression test](../tests/unit/audit-i18n.test.ts) | Common static copy sinks checked, including local constants; runtime/imported values and dynamic keys are not a complete dataflow proof |
 

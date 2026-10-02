@@ -65,7 +65,8 @@ bun run build && bun run test:e2e
 - Catalogs and preview fixtures exist for `en fr es de ja zh-Hans pt-BR ko`; builtin
   `summarize` ships in `skills/`.
 - E2E covers 426 registered theme/state renders and UI streaming through a **local fake
-  provider**. Real-provider inference and full visual acceptance remain unproven.
+  provider**. Separate [real image/reasoning evidence](evidence/real-provider.json) and
+  [native Mac captures](evidence/mac/README.md) exist; [full acceptance remains incomplete](evidence/STATUS.md).
 - Release and code signing are not configured; CI builds unsigned packages only.
 
 ## Documentation
