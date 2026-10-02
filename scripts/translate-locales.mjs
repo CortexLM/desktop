@@ -62,7 +62,7 @@ for (const f of files(path.join(dir, "en"))) {
     const cur = readFlat(p);
     const stampPath = path.join(dir, loc, f.replace(/\.json$/, ".source.json"));
     const stamp = read(stampPath);
-    const todo = Object.fromEntries(Object.entries(en).filter(([k, v]) => force || cur[k] === undefined || (cur[k] === v && stamp[k] === undefined && loc !== "fr") || vars(cur[k]) !== vars(v) || (stamp[k] !== undefined && stamp[k] !== v && loc !== "fr")));
+    const todo = Object.fromEntries(Object.entries(en).filter(([k, v]) => force || cur[k] === undefined || (cur[k] === v && stamp[k] === undefined && loc !== "fr") || (!f.startsWith("fixtures") && vars(cur[k]) !== vars(v)) || (stamp[k] !== undefined && stamp[k] !== v && loc !== "fr")));
     const keys = Object.keys(todo);
     for (let i = 0; i < keys.length; i += 60) {
       const chunk = Object.fromEntries(keys.slice(i, i + 60).map((k) => [k, todo[k]]));

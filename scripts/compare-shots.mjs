@@ -14,6 +14,7 @@ const BASE = arg("--base", "http://localhost:5299/");
 const SHOTS = arg("--shots", "/root/cortex-ui/shots");
 const OUT = path.resolve("evidence/compare");
 const only = arg("--only", "")?.split(",").filter(Boolean);
+const merge = process.argv.includes("--merge"); // keep earlier report rows for routes not re-run
 fs.mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch();
@@ -28,11 +29,18 @@ const jobs = items.map((href) => {
   return { route, v: p.get("v") ?? "", theme: p.get("theme") };
 }).filter((j) => !only?.length || only.includes(j.route));
 const meta = await page.evaluate(() => (window).__screens ?? null);
-const designOf = (j) => { const d = meta?.find((s) => s.id === j.route); const dv = d?.variants?.find((x) => x[0] === j.v)?.[2] ?? j.v; return `${d?.design ?? j.route}${dv ? "~" + dv : ""}-${j.theme}.png`; };
+const designOf = (j) => {
+  const d = meta?.find((s) => s.id === j.route); const base = d?.design ?? j.route;
+  const dv = d?.variants?.find((x) => x[0] === j.v)?.[2];
+  if (dv?.startsWith(base)) return `${dv}-${j.theme}.png`; // design route of its own, e.g. settings-apparence
+  return `${base}${(dv ?? j.v) ? "~" + (dv ?? j.v) : ""}-${j.theme}.png`;
+};
 const report = [];
 for (const j of jobs) {
   const name = `${j.route}${j.v ? "~" + j.v : ""}-${j.theme}`;
   await page.goto(`${BASE}?r=${Math.random()}#/${j.route}?theme=${j.theme}&shot${j.v ? "&v=" + j.v : ""}`);
+  await page.waitForFunction(() => document.body.innerText.trim().length > 0, null, { timeout: 15_000 }).catch(() => {});
+  await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(1100);
   const appPng = path.join(OUT, `${name}.app.png`);
   await page.screenshot({ path: appPng });
@@ -48,6 +56,10 @@ for (const j of jobs) {
   console.log(name, report.at(-1).diffPct ?? report.at(-1).status);
 }
 await browser.close();
+if (merge && fs.existsSync(path.join(OUT, "report.json"))) {
+  const prev = JSON.parse(fs.readFileSync(path.join(OUT, "report.json"), "utf8")).filter((r) => !report.some((x) => x.name === r.name));
+  report.unshift(...prev);
+}
 fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify(report, null, 2));
 const rows = report.map((r) => `<tr><td>${r.name}</td><td>${r.diffPct ?? r.status}</td><td><img src="${r.name}.app.png"></td><td>${r.ref ? `<img src="${r.name}.design.png">` : ""}</td><td>${r.diffPct !== undefined ? `<img src="${r.name}.diff.png">` : ""}</td></tr>`).join("\n");
 fs.writeFileSync(path.join(OUT, "index.html"), `<!doctype html><meta charset=utf-8><style>img{width:420px}td{vertical-align:top;font:12px system-ui}</style><table><tr><th>state</th><th>diff %</th><th>app</th><th>design</th><th>diff</th></tr>${rows}</table>`);

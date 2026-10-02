@@ -381,7 +381,7 @@
     "title": "Communiqué de presse · boutique de Lyon",
     "head": "Communiqué · Atelier Morel à Lyon",
     "file": "compte-a-rebours.ts",
-    "code": "// Countdown to the shop opening\nconst OPENING = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function timeLeft(now = new Date()) {\n  const ms = Math.max(0, OPENING.getTime() - now.getTime());\n  const days = Math.floor(ms / 86_400_000);\n  const hours = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${days} d ${hours} h`;\n}\n\nconsole.log(timeLeft());",
+    "code": "// Compte à rebours jusqu’à l’ouverture de la boutique\nconst OUVERTURE = new Date(\"2026-10-17T10:00:00+02:00\");\n\nexport function tempsRestant(maintenant = new Date()) {\n  const ms = Math.max(0, OUVERTURE.getTime() - maintenant.getTime());\n  const jours = Math.floor(ms / 86_400_000);\n  const heures = Math.floor((ms % 86_400_000) / 3_600_000);\n  return `${jours} j ${heures} h`;\n}\n\nconsole.log(tempsRestant());",
     "output": "13 j 21 h",
     "docQ": "Rédige un communiqué pour l’ouverture de la boutique Atelier Morel à Lyon, le 17 octobre.",
     "codeQ": "Écris une petite fonction qui affiche le temps restant avant l’ouverture.",
