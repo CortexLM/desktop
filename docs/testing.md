@@ -58,7 +58,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   ensure fixtures gate the first render. Six Work board cases cover 960/1024/1440 in both
   themes: no horizontal page overflow, vertical-wheel access to all columns/cards, opening
   task content and reaching empty drop zones; 1440 retains four columns. These regressions
-  do not certify every screen.
+  wait for renderer width/layout after native resizing and for the prior React screen to
+  detach after hash navigation. They do not certify every screen.
 - `tests/e2e/navigation.spec.ts` — real anchor and native-menu navigation, distinct engine
   chat identities through back/forward, variant parameters, history branching and Gallery
   return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.

@@ -12,6 +12,7 @@ for (const width of [960, 1024, 1440]) for (const theme of ["light", "dark"]) {
     try {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await app.evaluate(({ BrowserWindow }, width) => BrowserWindow.getAllWindows()[0].setSize(width, width === 1440 ? 900 : 640), width);
+      await expect.poll(() => page.evaluate(() => innerWidth)).toBe(width);
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
       await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "shown");
       const pane = page.locator(".page"), board = pane.locator(".travail-board"), columns = board.locator(".travail-col");
@@ -19,12 +20,10 @@ for (const width of [960, 1024, 1440]) for (const theme of ["light", "dark"]) {
       await expect(board.locator(".travail-kcard")).toHaveCount(9);
       await page.evaluate(() => document.fonts.ready);
       for (const area of [pane, board]) expect(await area.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
-      const positions = await columns.evaluateAll((els) => els.map((el) => {
-        const { x, y } = el.getBoundingClientRect();
-        return { x: Math.round(x), y: Math.round(y) };
-      }));
-      expect(new Set(positions.map((p) => p.x)).size).toBe(width === 1440 ? 4 : 2);
-      expect(new Set(positions.map((p) => p.y)).size).toBe(width === 1440 ? 1 : 2);
+      await expect.poll(() => columns.evaluateAll((els) => {
+        const positions = els.map((el) => el.getBoundingClientRect());
+        return { columns: new Set(positions.map((p) => Math.round(p.x))).size, rows: new Set(positions.map((p) => Math.round(p.y))).size };
+      })).toEqual({ columns: width === 1440 ? 4 : 2, rows: width === 1440 ? 1 : 2 });
 
       const scrollTo = async (target: Locator) => {
         const distance = await target.evaluate((el) => {
@@ -113,9 +112,13 @@ test("review, diff, canvas and computer controls remain reachable in small deskt
   try {
     for (const width of [960, 1024]) {
       await app.evaluate(({ BrowserWindow }, w) => BrowserWindow.getAllWindows()[0].setSize(w, 640), width);
+      await expect.poll(() => page.evaluate(() => innerWidth)).toBe(width);
       for (const theme of ["light", "dark"]) {
         const show = async (screen: string, variant: string) => {
+          const previous = await page.locator("main.content").elementHandle();
           await page.goto(`${base}#/${screen}?theme=${theme}&shot&v=${variant}`);
+          // Hash navigation finishes before React replaces the previous screen tree.
+          if (previous) { await page.waitForFunction((el) => !el.isConnected, previous); await previous.dispose(); }
           await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
           await page.evaluate(() => document.fonts.ready);
         };
