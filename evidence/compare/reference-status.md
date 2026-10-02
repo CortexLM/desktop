@@ -51,6 +51,12 @@ variant IDs. Reference Settings registers one state; the app registers nine. The
 | `bot`, `notifications`, `privacy` | Existing clicked sections; no dedicated shots |
 | `providers`, `connection` | App controls; design requests unanswered |
 
+The later `9d704ee` correction only wraps the existing provider key row in narrow panes;
+960/1024/1440 both-theme geometry and captures are recorded in
+[the provider follow-up](../mcp-followup/provider-layout.md). The 1440px row stays inline.
+There is still no approved frozen Providers image to pixel-compare; the scoped correction
+does not close that reference gap or import the newer Platform draft.
+
 Source: reference `src/screens/pages.tsx:141–227`; app
 `packages/app/src/screens/system/index.tsx:27–30`. Counts do not establish live functionality.
 

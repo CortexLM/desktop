@@ -17,5 +17,7 @@ the page header resolves that harness failure without changing timers. Both logs
 
 Local provider/stream/refusal flows pass; lint, types, i18n and Linux packaged smoke pass.
 The mechanical UI detector reports only a pre-existing width-transition warning in the unrelated
-system animation styles. Native correction proof and new CI remain pending.
+system animation styles. Green CI `37066222793` passes 52/52 per OS and macOS package/
+smoke. Installed Mac `9d704ee` proof passes at 960×640 with sidebar shown in both themes; see
+[native evidence](../mac/9d704ee/README.md). The frozen Providers reference remains absent.
 [Retained checks and six width/theme captures](provider-layout/retained-files.json).

@@ -224,7 +224,12 @@ unified package remains pending. See [`evidence/recovery-followup/scoped-design-
 For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
 session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
 Admission correction `f2754be` has green Linux/macOS CI plus two installed-Mac history-refusal
-captures; renderer source still matches `cc758a6`. See [`evidence/admission-followup/README.md`](./evidence/admission-followup/README.md).
+captures; its renderer source matches `cc758a6`. See [`evidence/admission-followup/README.md`](./evidence/admission-followup/README.md).
+Later MCP correction `ca08282` passes serial macOS CI at `de623fd` and installed credential
+save/reopen/decrypt/remove checks. Provider-row correction `9d704ee` passes CI and two installed
+960×640 captures with sidebar shown; renderer differs from `cc758a6` only in that row.
+See [`evidence/mcp-followup/README.md`](./evidence/mcp-followup/README.md). Earlier failed CI
+capture/stability attempts retain their negative results and unknown causes.
 
 ## CI, packaging and releases
 

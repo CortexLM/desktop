@@ -2,15 +2,33 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Latest CI [37063183382](https://github.com/CortexLM/desktop/actions/runs/37063183382) passes at
-`de623fd` (application `ca08282`, serial macOS test harness). Independent artifact review and
-installed-package verification are underway. Renderer source remains `cc758a6`.
+Current application `9d704ee` corrects the narrow provider key row;
+[CI 37066222793](https://github.com/CortexLM/desktop/actions/runs/37066222793) passes, installed
+normal-sidebar verification passes in both themes at 960×640.
+Earlier [CI 37063183382](https://github.com/CortexLM/desktop/actions/runs/37063183382) passes at
+`de623fd` (application `ca08282`, serial macOS test harness). Installed credential proof is retained;
+independent [artifact review](mcp-followup/ci-de623fd/README.md) passes. The renderer has changed
+from `cc758a6` only in this row.
 
 Installed `de623fd` verifies MCP encrypted persistence/decryption/removal and provider key
 redaction, with native light/dark captures. It also exposed a minimum-width key-row overlap:
 label/hint width zero with the sidebar shown. A [targeted layout correction](mcp-followup/provider-layout.md)
-passes local both-theme regressions; new CI/native correction proof remains pending. Credential
+passes both-theme regressions and [installed correction proof](mac/9d704ee/README.md). Earlier credential
 captures with the sidebar hidden do not establish minimum-width correction acceptance.
+
+## Full-objective acceptance audit
+
+| Requirement | Current disposition |
+| --- | --- |
+| Lint, types, units | Proven on green `9d704ee` CI: 173 unit passes, one optional backend skip. |
+| Every design screen plus provider/image/reasoning flows | Partial: current CI passes 52/52 per OS, 426 registered preview renders and controlled-provider flows; missing approved surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | Proven for `9d704ee`; unsigned arm64 package and launch smoke. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical complete sweeps remain pinned; current credential and key-row verification is targeted, not a fresh all-screen sweep. |
+| No unjustified reference gap | Unproven: frozen comparison retains 21 gaps; Providers has no approved frozen image, new-surface imports remain unauthorized. |
+| Automated i18n audit | Proven within audit scope: 63 files, 2,265 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
+
+All six together, all live modes and all requested surfaces are **not complete**. Latest environment
+check still has no `CORTEX_REAL_BASE_URL`, `CORTEX_REAL_API_KEY` or `CORTEX_TEST_BACKEND_URL`.
 
 ## Current MCP contract correction
 
@@ -132,7 +150,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   disposition conflict; approved source/state imports and whole-page acceptance remain pending.
   The [local-contract map](recovery-followup/productivity-contract-map.md) identifies missing
   plugin/skill lifecycle, task consent/timezone and Space cover gaps. The MCP secret boundary is
-  under correction above; save-versus-connect semantics remain a separate integration question.
+  corrected and verified above; save-versus-connect semantics remain a separate integration question.
 - **Additional design approval:** Providers, Connection, model capability picker and
   inline tool approval drafts now have an eight-route/94-variant Platform receipt. Read-only
   verification checks 396 capture hashes, 376 distinct passing views (372 initial plus four
