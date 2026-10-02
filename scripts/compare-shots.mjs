@@ -73,10 +73,11 @@ for (const j of jobs) {
 }
 await browser.close();
 if (merge && fs.existsSync(path.join(OUT, "report.json"))) {
-  const prev = JSON.parse(fs.readFileSync(path.join(OUT, "report.json"), "utf8")).filter((r) => !report.some((x) => x.name === r.name));
-  report.unshift(...prev);
+  const prev = JSON.parse(fs.readFileSync(path.join(OUT, "report.json"), "utf8"));
+  const next = new Map(report.map((r) => [r.name, r]));
+  report.splice(0, report.length, ...prev.map((r) => next.get(r.name) ?? r), ...report.filter((r) => !prev.some((p) => p.name === r.name)));
 }
 fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify(report, null, 2));
-const rows = report.map((r) => `<tr><td>${r.name}</td><td>${r.diffPct ?? r.status}</td><td><img src="${r.name}.app.png"></td><td>${r.ref ? `<img src="${r.name}.design.png">` : ""}</td><td>${r.diffPct !== undefined ? `<img src="${r.name}.diff.png">` : ""}</td></tr>`).join("\n");
+const rows = report.filter((r) => fs.existsSync(path.join(OUT, `${r.name}.app.png`))).map((r) => `<tr><td>${r.name}</td><td>${r.diffPct ?? r.status}</td><td><img loading="lazy" alt="App: ${r.name}" src="${r.name}.app.png"></td><td>${r.diffPct !== undefined ? `<img loading="lazy" alt="Design: ${r.name}" src="${r.name}.design.png">` : ""}</td><td>${r.diffPct !== undefined ? `<img loading="lazy" alt="Difference: ${r.name}" src="${r.name}.diff.png">` : ""}</td></tr>`).join("\n");
 fs.writeFileSync(path.join(OUT, "index.html"), `<!doctype html><meta charset=utf-8><style>img{width:420px}td{vertical-align:top;font:12px system-ui}</style><table><tr><th>state</th><th>diff %</th><th>app</th><th>design</th><th>diff</th></tr>${rows}</table>`);
 console.log(`compared ${report.length}; mean diff ${(report.filter((r) => r.diffPct !== undefined).reduce((s, r) => s + r.diffPct, 0) / Math.max(1, report.filter((r) => r.diffPct !== undefined).length)).toFixed(2)}%`);

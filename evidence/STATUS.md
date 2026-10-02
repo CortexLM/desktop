@@ -5,6 +5,16 @@ The full objective is **not complete**. Evidence below is scoped to implemented 
 Application CI and CodeQL pass at `2a9d1ad` (application code `7341cc7`), with zero open
 PR CodeQL alerts. This validates the implemented scope, not the complete objective.
 
+## Follow-up under verification
+
+The current correction batch preserves drafts and image attachments across capability
+refusals, pending/failed file reads and historical retries; removes nine identified runtime
+copy leaks; strengthens static/accessibility audits; fixes configured-only self-host discovery
+and validates origin/authentication metadata. Local verification: 131 unit passes (one optional
+backend skip), 12 Electron E2Es, 426 state renders, types/lint/audit, Linux packaged smoke.
+The real-backend discovery suite separately passes 45/45. Current macOS CI/native evidence
+has not yet been refreshed for these changes. The older proof table below stays revision-pinned.
+
 | Required proof | Evidence | Limits |
 | --- | --- | --- |
 | 1. Lint, types, units | [Green CI](https://github.com/CortexLM/desktop/actions/runs/36964561125), code `2a9d1ad`; [summary](ci/run-36964561125.json) | 65 unit tests pass; one optional backend test skipped without its URL; two existing hook warnings |
@@ -25,6 +35,9 @@ PR CodeQL alerts. This validates the implemented scope, not the complete objecti
 - **Connection behavior:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing are
   unfinished. A successful backend probe is not proof of a complete remote connection mode.
+  Backend reasoning-off/cancel-turn contracts, regenerated SDK types and password/MFA designs
+  have been requested from their owners. Legacy English session titles remain intact because
+  default and user-authored titles were stored indistinguishably.
 - **Interaction coverage:** several ported surfaces remain preview-only; projects, sign-in,
   billing, updater and file viewers do not become live features merely by rendering in the gallery.
 - **Responsive acceptance:** native captures at 1024×685 and comparisons at 1440×900 do not

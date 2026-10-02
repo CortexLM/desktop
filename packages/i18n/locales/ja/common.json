@@ -1,4 +1,5 @@
 {
+  "fileReadFailed": "{name}を読み込めませんでした。ファイルをもう一度選択してください。",
   "progressCount": "{total}件中{done}件",
   "undo": "元に戻す",
   "cancel": "キャンセル",
@@ -7,5 +8,16 @@
   "retry": "再試行",
   "delete": "削除",
   "copy": "コピー",
-  "copied": "クリップボードにコピーしました"
+  "copied": "クリップボードにコピーしました",
+  "mascotLabel": "{name}、{state}",
+  "tool.read": "ファイルを読む",
+  "tool.list": "ファイルを一覧表示",
+  "tool.glob": "ファイルを検索",
+  "tool.grep": "ファイルの内容を検索",
+  "tool.todowrite": "タスクリストを更新",
+  "tool.task": "タスクを委任",
+  "tool.skill": "スキルを読み込む",
+  "tool.external_directory": "別のフォルダーにアクセス",
+  "tool.todos_one": "残り{count}件のタスク",
+  "tool.todos_other": "残り{count}件のタスク"
 }

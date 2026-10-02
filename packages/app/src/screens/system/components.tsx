@@ -25,6 +25,20 @@ const Block = ({ title, note, children }: { title: string; note?: string; childr
 );
 
 const MOTIONS = ["iconBtn", "row", "seg", "menu", "mode", "theme", "send", "switch", "steps", "slide", "toast", "sidebar"];
+const ICON_BUTTONS: [string, string][] = [
+  ["compose", "shell.nav.newChat"], ["search", "shell.search"], ["bell", "shell.notifications"], ["share", "shell.share"],
+  ["copy", "common.copy"], ["refresh", "chat.refresh"], ["settings", "shell.settings"], ["more-dots", "shell.nav.options"],
+];
+const ICONS: [string, string][] = [
+  ["home", "shell.rail.home"], ["projects", "shell.nav.projects"], ["history", "shell.rail.history"], ["bot", "system.comp.yourBot"],
+  ["compose", "shell.nav.newChat"], ["search", "shell.search"], ["bell", "shell.notifications"], ["folder", "system.icon.folder"],
+  ["folder-open", "system.icon.folder"], ["folder-code", "shell.code.repos"], ["git-branch", "code.terminal.kvBranch"], ["pull-request", "code.screen.code-pr"],
+  ["terminal", "bots.symbol.terminal"], ["cpu", "shell.code.thisMac"], ["mail", "system.icon.mail"], ["calendar", "system.icon.calendar"],
+  ["file", "files.screen.file-docx"], ["globe", "system.icon.globe"], ["mic", "composer.dictate"], ["voice-wave", "composer.voice"],
+  ["paperclip", "composer.addFiles"], ["image", "system.icon.image"], ["copy", "common.copy"], ["trash", "common.delete"],
+  ["edit", "system.edit"], ["pin", "system.comp.pin"], ["settings", "shell.settings"], ["sun", "shell.themeLight"],
+  ["moon", "shell.themeDark"], ["system", "shell.themeSystem"], ["check", "system.key.confirm"], ["close", "common.close"],
+];
 
 export function ComponentsScreen() {
   const t = useT();
@@ -38,7 +52,7 @@ export function ComponentsScreen() {
     <div className="content-top"><span className="title">{c("title")}</span><div className="spacer" /><span className="mono" style={{ color: "var(--t3)" }}>{c("fonts")}</span></div>
     <div className="page cgrid">
       <Block title={c("iconBtns")} note={c("iconBtnsNote")}>
-        {["compose", "search", "bell", "share", "copy", "refresh", "settings", "more-dots"].map((i) => <IconBtn key={i} icon={i} label={i} />)}
+        {ICON_BUTTONS.map(([i, label]) => <IconBtn key={i} icon={i} label={t(label)} />)}
         <IconBtn icon="arrow-right" label={c("disabled")} disabled />
       </Block>
       <Block title={c("rail")} note={c("railNote")}>
@@ -80,7 +94,7 @@ export function ComponentsScreen() {
         {["recherche-web", "documents", "images", "automatisations", "bot", "code", "donnees"].map((g) => <Gel key={g} name={g} size={24} />)}
       </Block>
       <Block title={c("icons")} note={c("iconsNote")}>
-        <div className="icons">{["home", "projects", "history", "bot", "compose", "search", "bell", "folder", "folder-open", "folder-code", "git-branch", "pull-request", "terminal", "cpu", "mail", "calendar", "file", "globe", "mic", "voice-wave", "paperclip", "image", "copy", "trash", "edit", "pin", "settings", "sun", "moon", "system", "check", "close"].map((i) => <Tip key={i} label={i}><span className="icell"><Icon name={i} /></span></Tip>)}</div>
+        <div className="icons">{ICONS.map(([i, label]) => <Tip key={i} label={t(label)}><span className="icell"><Icon name={i} /></span></Tip>)}</div>
       </Block>
       <Block title={c("menu")} note={c("menuNote")}>
         <Pop trigger={<button className="btn secondary">{c("openMenu")}<Icon name="chevron-down" size={12} /></button>}>

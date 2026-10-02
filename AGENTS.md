@@ -154,14 +154,19 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
   shows a state picker.
 - **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
   `selfhost` (URL). Selection/probing only: prompts still use the local engine and provider
-  settings; remote auth is not wired. See [`docs/connection-modes.md`](./docs/connection-modes.md).
+  settings; remote auth is not wired, `signedIn` remains false. Backend URLs must be HTTP(S)
+  origins without credentials, paths, queries or fragments; probes refuse redirects. Self-host
+  discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
-  See [`docs/providers.md`](./docs/providers.md).
+  Chat retains drafts/attachments when the engine rejects a send; retry includes the original
+  files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
 - **Computer use** via Cua Driver is registered disabled; input actions always ask and
   "always" is never stored. See [`docs/computer-use.md`](./docs/computer-use.md).
 - **i18n**: English source; catalogs and preview fixtures exist for all eight locales:
   `en fr es de ja zh-Hans pt-BR ko`. Translation review limits and source-stamp exclusion:
-  [`docs/i18n.md`](./docs/i18n.md).
+  [`docs/i18n.md`](./docs/i18n.md). Runtime labels localize mascot states, built-in tool names,
+  todo counts and duration/model formatting; raw tool errors never become terminal UI copy.
+  Untitled sessions store an empty title for the renderer's localized fallback.
 
 ## Design reference
 

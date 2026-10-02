@@ -11,6 +11,7 @@ import { useNav } from "../../shell/nav";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { useSessions, useBots, usePermissions, useMessages, useQuery } from "../../state/live";
+import { toolTitle } from "../../state/tool-label";
 import { css, NB, useGo, useMainBot, useStatuses, useDate, Top, Empty, BotFace, type BotsFx } from "./common";
 import type { WorkFx } from "./fixtures";
 
@@ -393,7 +394,7 @@ function WorkTaskLive({ id }: { id: string }) {
   const state = ({ approval: "waiting", running: "working", failed: "blocked", done: "done" } as Record<string, State>)[v];
   const name = bot?.name ?? cfg?.name ?? "";
   const steps: [string, StepS, string][] = msgs.flatMap((m) => m.parts.filter((p): p is ToolPart => p.type === "tool")).map((p) => [
-    ("title" in p.state && p.state.title) || p.tool, p.state.status === "completed" ? "ok" : p.state.status === "error" ? "err" : "run", dur(p)]);
+    toolTitle(t, p), p.state.status === "completed" ? "ok" : p.state.status === "error" ? "err" : "run", dur(p)]);
   const thread = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => { const el = thread.current; if (el) el.scrollTop = el.scrollHeight; }, [msgs.length]);
   if (!id || session.state === "error") return (<>

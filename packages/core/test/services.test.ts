@@ -255,6 +255,12 @@ describe("scheduler, bots, space, connection, providers", () => {
       expect((await core.connection.probe()).status).toBe("unreachable")
     }
     expect(() => core.connection.set({ mode: "selfhost", signedIn: false })).toThrow()
+    for (const url of ["file:///tmp/server", "https://user:password@ok.test", "https://ok.test/path", "https://ok.test/?token=secret", "https://ok.test/#token"]) {
+      expect(() => core.connection.set({ mode: "selfhost", url, signedIn: false })).toThrow()
+    }
+    expect(core.connection.set({ mode: "cloud", signedIn: true }).signedIn).toBe(false)
+    core.storage.putDoc("connection", "mode", { mode: "cloud", signedIn: true })
+    expect(core.connection.get().signedIn).toBe(false)
   })
 
   it("provider keys are write-only: config exposes hint only", async () => {
@@ -271,9 +277,15 @@ describe("scheduler, bots, space, connection, providers", () => {
     const dir = mkdtempSync(join(tmpdir(), "cortex-db-"))
     const c1 = createCore({ dataDir: dir, credentials: memoryCredentials() })
     const s = c1.sessions.create({ model: { providerID: "fake", modelID: "reasoner" }, title: "Kept" })
+    const legacy = c1.sessions.create({ model: s.model, title: "New session" })
+    const renamed = c1.sessions.create({ model: s.model })
+    c1.sessions.update(renamed.id, { title: "New session" })
     await c1.close()
     const c2 = createCore({ dataDir: dir, credentials: memoryCredentials() })
     expect(c2.sessions.get(s.id).title).toBe("Kept")
+    expect(c2.sessions.get(legacy.id).title).toBe("New session")
+    expect(c2.sessions.list().find((x) => x.id === legacy.id)?.title).toBe("New session")
+    expect(c2.sessions.get(renamed.id).title).toBe("New session")
     await c2.close()
   })
 })

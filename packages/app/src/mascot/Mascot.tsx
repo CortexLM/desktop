@@ -1,5 +1,6 @@
 import * as React from "react";
 import { iconBody } from "../icons/Icon";
+import { useT } from "../i18n";
 import { ACCESSORIES } from "./parts";
 import "./mascot.css";
 
@@ -106,6 +107,8 @@ const EASE_OUT = "cubic-bezier(.3, .3, .25, 1)";
 export type MascotProps = { cfg: MascotConfig; state?: State; size?: number; track?: boolean; interactive?: boolean; className?: string; title?: string };
 
 export function Mascot({ cfg, state = "idle", size = 96, track = false, interactive = false, className = "", title }: MascotProps) {
+  const t = useT();
+  const label = t(STATES.find((x) => x.id === state)!.label);
   const { d, a: base } = SHAPES[cfg.shape];
   const fg = ink(cfg.color);
   const small = size < 28;
@@ -181,7 +184,7 @@ export function Mascot({ cfg, state = "idle", size = 96, track = false, interact
 
   return (
     <svg ref={ref} className={"mascot " + className} data-state={state} data-tone={tone(cfg.color)} width={size} height={size} viewBox="-6 -10 112 112"
-      role="img" aria-label={title ?? `${cfg.name}, ${STATES.find((x) => x.id === state)!.label.toLowerCase()}`}
+      role="img" aria-label={title ?? (cfg.name ? t("common.mascotLabel", { name: cfg.name, state: label }) : label)}
       onPointerDown={interactive ? poke : undefined} style={{ ["--c" as string]: cfg.color, overflow: "visible" }}>
       <defs>
         <clipPath id={uid + "s"}><path d={d} /></clipPath>

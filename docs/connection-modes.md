@@ -25,8 +25,8 @@ neither the provider endpoint nor the model picker, and sends no prompts to that
 
 `probeRemote` accepts an optional token, but desktop main calls it without one. There is
 no sign-in route, token acquisition, refresh or authenticated remote session transport.
-`signedIn` defaults to false and normal UI flows never authenticate. The connection PUT
-accepts this boolean as stored metadata; setting it to true is not proof of authentication.
+`signedIn` is always false until authentication is implemented, including when a caller
+submits true or old stored metadata contains true. The renderer cannot assert authentication.
 
 ## Probe
 
@@ -34,13 +34,18 @@ accepts this boolean as stored metadata; setting it to true is not proof of auth
 `probeRemote` (`packages/desktop/src/remote.ts`), which uses the vendored `@cortex/sdk`:
 
 1. `GET {url}/readyz` — not 2xx or unreachable → `unreachable`.
-2. `GET {url}/v1/instance` — optional; `auth.required === false` reports optional auth.
-   Missing route → sign-in stays required.
-3. `client.models.list()` — models → `reachable` with `models`; 401/403 → `reachable`,
-   `authRequired: true`; anything else → `incompatible`.
+2. `client.instance.list()` — validate instance/auth/registry metadata. Only HTTP 404 permits
+   legacy discovery; malformed replies and other errors do not silently fall back.
+3. Cloud/legacy: `client.models.list()`, using `slug` and `display_name`. Self-host:
+   `client.registry.models.list({query:{configured:true,limit:500,cursor?}})`, consuming every
+   page even when registry enrichment is disabled. Missing registry never falls back to
+   Cloud's seeded catalog. Model discovery 401/403 → `reachable`, `authRequired: true`.
 
-The readiness and instance requests use five-second timeouts. `reachable` means the probe
-responded, even if model listing requires auth; it does not establish a usable chat session
+The entire probe has a five-second deadline, including model response bodies and pagination.
+Backend URLs are HTTP(S) origins; credentials, paths, queries and fragments are rejected
+before storage/transport. Every probe request pins that origin, refuses redirects and disables
+cookie storage. `reachable` means the probe responded, even if model listing requires auth;
+it does not establish a usable chat session
 or check a backend version range. The returned models are probe metadata only.
 
 Without a host probe (tests, `scripts/dev-api.ts`), core only checks `GET {url}/readyz`:
@@ -56,7 +61,18 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 
 - Local/cloud selection saves immediately. Cloud does not automatically run the probe;
   its sign-in button opens `LoginScreen`, whose live submit reports unavailable.
-- Selecting self-host reveals a URL field. **Check** validates HTTP(S), saves the mode and
+- Selecting self-host reveals a URL field. **Check** validates the HTTP(S) origin, saves the mode and
   URL, then probes it; a failed probe leaves the saved preference in place.
 - The self-host badge displays checking / reachable / unreachable / incompatible / invalid.
   The UI does not display the returned remote models or `authRequired` value.
+
+## Remote integration inputs still needed
+
+The current backend supports guest Chat, email OTP and self-host `none`/operator auth.
+Desktop transport must isolate token/cookie state by origin and account. SDK regeneration
+and OTP/upload typing remain owned by the SDK session. The existing backend turn input
+has reasoning effort `low|medium|high`, no disabled value; omission means `medium`.
+Cancelling the stream reader does not cancel backend generation. Supported reasoning-off
+and cancel-turn behavior has been requested from the contract owner. Password/MFA
+continuation designs are requested in the shared design board. None of these probes proves
+the pending authentication or remote inference integration.

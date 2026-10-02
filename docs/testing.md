@@ -40,9 +40,14 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/ui-flows.spec.ts` — Settings key entry/masking, composer model and thinking
   selection, image attachment and streamed reply through the **same local fake**. The
   predetermined answer is not evidence that a real model understood an image.
+  Both themes also cover draft/file retention after capability refusal on home and in a
+  conversation, pending/failed file reads, then a rejected provider response and historical
+  image-preserving retry after another prompt. That 960×640 regression
+  uses the repository catalog fixture and retains screenshots as test attachments.
 - `tests/e2e/screens.spec.ts` — enumerates every registered screen/variant in dark and
   light, currently **426 theme/state renders**. Checks theme selection, nonempty body,
-  uncaught page errors and raw i18n keys in preview; it does not exercise every control.
+  uncaught page errors and raw i18n keys in visible/accessibility/tooltip copy in preview;
+  it does not exercise every control.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs.
 - `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
@@ -79,7 +84,7 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
 - `node scripts/smoke.mjs <mac|linux|win>` — launches the binary from `dist/` with a
   debugging port, waits for a window, checks it stays up and renders the Cortex shell,
   screenshots to `out/`. This is a packaged-launch check, not a full flow or signing check.
-  Linux: `bun run pack` first.
+  Linux: `bun run pack` first; on a headless host run `xvfb-run -a node scripts/smoke.mjs linux`.
 - `node scripts/compare-shots.mjs [--base http://localhost:5299/] [--shots <dir>] [--only id,id] [--merge]`
   — renders every gallery state plus five interaction shots (French locale, 1440×900 @2x):
   home mode menu and history second-row menu in both themes, file-image ask panel in light.

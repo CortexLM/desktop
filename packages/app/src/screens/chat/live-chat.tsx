@@ -7,6 +7,7 @@ import { Composer, type ComposerAttachment } from "../../components/composer";
 import { Mascot } from "../../mascot/Mascot";
 import { api } from "../../api";
 import { useMessages, usePermissions, useQuery } from "../../state/live";
+import { toolName, toolTitle } from "../../state/tool-label";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
@@ -65,9 +66,11 @@ export function Home() {
       const s = await api.sessions.create({ kind: "chat", model: o.model });
       await api.sessions.prompt(s.id, { parts: toParts(text, atts), model: o.model, reasoning: o.reasoning });
       go("chat", { id: s.id });
+      return true;
     } catch (e) {
       const k = errKey((e as { code?: string })?.code);
       toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
+      return false;
     } finally { setSending(false); }
   };
   return (<>
@@ -170,7 +173,7 @@ function LiveReasoning({ text, live, secs }: { text: string; live: boolean; secs
 function ToolBlock({ p }: { p: ToolPart }) {
   const t = useT();
   const s = p.state;
-  const title = ("title" in s && s.title) || p.tool;
+  const title = toolTitle(t, p);
   const done = s.status === "completed";
   return (
     <div className="chat-tool" data-done={done || undefined}>
@@ -182,7 +185,7 @@ function ToolBlock({ p }: { p: ToolPart }) {
             : s.status === "error" ? <span className="badge err">{t("chat.tool.failed")}</span>
             : <span className="spin" />}
         </div>
-        <div className="chat-tool-sub">{p.tool}</div>
+        <div className="chat-tool-sub">{toolName(t, p.tool)}</div>
       </div>
     </div>
   );
@@ -193,9 +196,9 @@ function PermissionCard({ id, tool, input }: { id: string; tool: string; input: 
   const [busy, setBusy] = React.useState(false);
   const reply = (r: "once" | "always" | "reject") => { setBusy(true); api.permissions.reply(id, r).catch(() => setBusy(false)); };
   return (
-    <div className="banner warn" role="alertdialog" aria-label={t("chat.perm.title", { tool })} style={{ margin: 0, flexWrap: "wrap" }}>
+    <div className="banner warn" role="alertdialog" aria-label={t("chat.perm.title", { tool: toolName(t, tool) })} style={{ margin: 0, flexWrap: "wrap" }}>
       <Icon name="shield-check" />
-      <span>{t("chat.perm.title", { tool })}</span>
+      <span>{t("chat.perm.title", { tool: toolName(t, tool) })}</span>
       <span className="grow mono" style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{input}</span>
       <button className="btn secondary" disabled={busy} onClick={() => reply("reject")}>{t("chat.perm.deny")}</button>
       <button className="btn secondary" disabled={busy} onClick={() => reply("always")}>{t("chat.perm.always")}</button>
@@ -223,13 +226,14 @@ function LiveChat({ id }: { id: string }) {
 
   const title = session.state === "ready" ? session.data.title || t("chat.untitled") : "";
   const prompt = (parts: PromptPartInput[], o?: SendOptions) =>
-    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning }).catch((e: { code?: string }) => {
+    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning }).then(() => true, (e: { code?: string }) => {
       const k = errKey(e?.code);
       toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
+      return false;
     });
-  const retry = () => {
-    const u = [...msgs].reverse().find((m) => m.info.role === "user");
-    if (u) prompt([{ type: "text", text: textOf(u) }]);
+  const retry = (before: number) => {
+    const u = msgs.slice(0, before).reverse().find((m) => m.info.role === "user");
+    if (u) prompt(u.parts.filter((p): p is Extract<Part, { type: "text" | "file" }> => p.type === "text" || p.type === "file"));
   };
   const remove = () => {
     let undone = false;
@@ -279,9 +283,9 @@ function LiveChat({ id }: { id: string }) {
               if (p.type === "text") return <Paras key={p.id} text={p.text} caret={streaming && p === lastText} testId="assistant-text" />;
               return null;
             })}
-            {m.info.error && m.info.error.code !== "aborted" && <ErrorCard code={m.info.error.code} onRetry={retry} />}
+            {m.info.error && m.info.error.code !== "aborted" && <ErrorCard code={m.info.error.code} onRetry={() => retry(mi)} />}
             {m.info.error?.code === "aborted" && <div className="chat-note"><Icon name="stop" size={12} />{t("chat.stopped")}</div>}
-            {!streaming && !m.info.error && <Actions text={textOf(m)} regen={retry} />}
+            {!streaming && !m.info.error && <Actions text={textOf(m)} regen={() => retry(mi)} />}
           </BotRow>
         );
       })}

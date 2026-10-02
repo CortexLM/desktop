@@ -27,7 +27,7 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 | `mcp` | `mcp.ts` | `@modelcontextprotocol/sdk` stdio / streamable HTTP. Tools exposed as `<server>_<tool>`, `mcp.status` events. |
 | `bots` | `bot.ts` | Bot CRUD, memory (append/list/forget, bounded, injected as reference data), routines are scheduled tasks with `botID`. |
 | `scheduler` | `scheduler.ts`, `cron.ts` | 5-field cron (no dependency), daily/weekly/once. `run` creates a session and prompts it; run history persisted. Missed occurrences are not backfilled; the timer is process-local. |
-| `space`, `connection` | `space.ts`, `connection.ts` | Pages/sites/images + recents. Connection mode; self-host probes `GET {url}/v1/health`. |
+| `space`, `connection` | `space.ts`, `connection.ts` | Pages/sites/images + recents. Connection preferences; remote probes start with `GET {url}/readyz`. |
 
 ## Guarantees and limits
 
@@ -35,3 +35,4 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 - Pending permission asks and running loops are in memory; a restart drops them.
 - `bash` runs with the user's own rights. There is no sandbox.
 - Error `message` strings are neutral English for developers; the UI maps `code` to copy.
+- New untitled sessions use an empty title for localized renderer fallbacks. Existing titles remain intact; first admitted text supplies an automatic title only for new untitled sessions.

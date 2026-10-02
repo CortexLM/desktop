@@ -72,7 +72,7 @@ export function Automations() {
   const groups = [...new Set(rows.map((r) => r.bot))];
   type H = [string, string, string, Run, string];
   const hist: H[] = preview ? (fail ? [fx.failHist as H, ...(fx.history as H[]).filter((h) => h[1] !== fx.failHist[1])] : fx.history as H[])
-    : liveRows.flatMap((r) => r.task!.runs.map((x) => [date.short(x.time.start), r.t, r.bot, x.status === "error" ? "err" : "ok", x.time.end ? `${Math.round((x.time.end - x.time.start) / 1000)} s` : "—", x.time.start] as const))
+    : liveRows.flatMap((r) => r.task!.runs.map((x) => [date.short(x.time.start), r.t, r.bot, x.status === "error" ? "err" : "ok", x.time.end ? t("chat.secs", { secs: Math.round((x.time.end - x.time.start) / 1000) }) : "—", x.time.start] as const))
       .sort((a, b) => b[5] - a[5]).slice(0, 12).map((x) => x.slice(0, 5) as H);
   const empty = preview ? v === "empty" : tasks.state === "ready" && !liveRows.length;
   const toggle = (r: Row, on: boolean) => {

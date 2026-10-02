@@ -50,6 +50,11 @@ Settings → **Providers & models** (`packages/app/src/screens/system/settings.t
 shown), enable/disable, model list with capability badges (reasoning, image, tools),
 context size and cost. Chat shows a banner linking here when no provider is configured.
 Composers pick from enabled providers that have a key.
+Chat clears its draft and attachments only after the engine accepts the prompt. Changing to
+a model without image input produces the engine's capability error with the draft intact;
+images are never silently removed. Retrying a failed reply resends the original text and files.
+Send waits for selected files to finish reading; failed reads name the file and ask to select
+it again. Historical retry uses the selected reply's preceding prompt, not a later message.
 
 Provider names shown here come from the catalog: the user chose that provider
 ([`.rules/02-errors.md`](../.rules/02-errors.md) § 2.1).

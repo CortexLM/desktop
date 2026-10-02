@@ -11,6 +11,7 @@ import { useNav } from "../../shell/nav";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { useBots, useMessages, usePermissions, useQuery } from "../../state/live";
+import { toolName } from "../../state/tool-label";
 import { toConfig, toMascot, defaultModel } from "./mascot-io";
 import { useStatuses, stateOf, type BotsFx } from "../work/common";
 import type { BotFx } from "./fixtures";
@@ -288,7 +289,7 @@ function BotPageLive() {
           {myPerms.length > 0 && <>
             <h3 className="h3">{t("bots.page.toApprove")}</h3>
             <div className="list">{myPerms.map((p) => (
-              <div key={p.id} className="li"><span className="li-ic"><Icon name="shield-check" /></span><span className="grow"><div className="ttl">{p.tool}</div><div className="sub">{p.input}</div></span>
+              <div key={p.id} className="li"><span className="li-ic"><Icon name="shield-check" /></span><span className="grow"><div className="ttl">{toolName(t, p.tool)}</div><div className="sub">{p.input}</div></span>
                 <button className="btn secondary" data-testid="approval-deny" onClick={() => api.permissions.reply(p.id, "reject").then(perms.reload, () => {})}>{t("work.appr.deny")}</button>
                 <button className="btn primary" data-testid="approval-allow" onClick={() => api.permissions.reply(p.id, "once").then(perms.reload, () => {})}>{t("work.appr.approve")}</button></div>))}
             </div>
@@ -467,4 +468,3 @@ export function BotStudio() {
     </div>
   </>);
 }
-

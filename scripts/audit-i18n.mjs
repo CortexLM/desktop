@@ -1,5 +1,5 @@
 // Audits common copy sinks in renderer/main code and literal t()/tr() keys against English.
-// ponytail: follows local consts and expression branches, not imported values, function returns or
+// ponytail: follows local consts, literal map inputs and expression branches, not imported values, arbitrary function returns or
 // runtime data; add targeted sinks with regression cases when new UI APIs appear. Not a dataflow proof.
 import fs from "node:fs";
 import path from "node:path";
@@ -52,6 +52,13 @@ for (const file of files) {
       for (const e of p.get("expressions")) copy(e, what, keyAllowed, seen);
     } else if (p.isIdentifier()) {
       const b = p.scope.getBinding(n.name);
+      if (b?.kind === "param" && b.path.isIdentifier() && b.path.parentPath.isArrowFunctionExpression()) {
+        const fn = b.path.parentPath, call = fn.parentPath;
+        if (fn.node.params[0] === b.path.node && call.isCallExpression() && call.get("callee").isMemberExpression() && call.get("callee.property").isIdentifier({ name: "map" })) {
+          copy(call.get("callee.object"), what, keyAllowed, seen);
+        }
+        return;
+      }
       if (!b?.constant || b.kind !== "const" || !b.path.isVariableDeclarator() || !b.path.get("id").isIdentifier()) return;
       const init = b.path.get("init");
       // This exact Git ref is data; do not exempt the word "main" in other copy sinks.
@@ -67,6 +74,9 @@ for (const file of files) {
       copy(p.get("expression"), what, keyAllowed, seen);
     } else if (p.isArrayExpression()) {
       for (const e of p.get("elements")) copy(e, what, keyAllowed, seen);
+    } else if (p.isCallExpression() && p.get("callee").isMemberExpression() && p.get("callee.property").isIdentifier()
+      && ["toLowerCase", "toUpperCase", "trim"].includes(p.node.callee.property.name)) {
+      copy(p.get("callee.object"), what, keyAllowed, seen);
     }
   };
   traverse(ast, {

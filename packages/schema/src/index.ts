@@ -350,7 +350,12 @@ export const SpaceItem = z.object({
   time: z.object({ created: z.number(), updated: z.number(), opened: z.number().optional() }),
 })
 export type SpaceItem = z.infer<typeof SpaceItem>
-export const ConnectionMode = z.object({ mode: z.enum(["local", "cloud", "selfhost"]), url: z.string().url().optional(), signedIn: z.boolean() })
+export const ConnectionUrl = z.string().url().refine((value) => {
+  if (!URL.canParse(value)) return false
+  const url = new URL(value)
+  return ["http:", "https:"].includes(url.protocol) && url.href === `${url.origin}/`
+})
+export const ConnectionMode = z.object({ mode: z.enum(["local", "cloud", "selfhost"]), url: ConnectionUrl.optional(), signedIn: z.boolean() })
 export type ConnectionMode = z.infer<typeof ConnectionMode>
 export const ConnectionProbe = z.object({
   status: z.enum(["reachable", "unreachable", "incompatible", "not_applicable"]),

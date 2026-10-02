@@ -29,7 +29,7 @@ import type { SkillService } from "./skill"
 import type { Storage } from "./storage"
 import { BUILTIN_TOOLS, type ToolContext, type ToolDef, type ToolServices } from "./tool"
 
-export const DEFAULT_TITLE = "New session"
+export const DEFAULT_TITLE = ""
 export const MAX_STEPS = 25
 
 /** Extra context for bot sessions, supplied by the bot service. */

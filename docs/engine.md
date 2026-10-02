@@ -26,6 +26,11 @@ Service table and file map: [`packages/core/README.md`](../packages/core/README.
 `directory`) then `POST /api/sessions/:id/prompt`. The loop (`session.ts`) calls
 `streamText` with tools, up to 25 steps, streams deltas on the bus and persists full parts
 at close. `POST /api/sessions/:id/abort` stops it and marks open tool calls errored.
+Untitled sessions store an empty title; the renderer supplies localized fallback copy.
+Existing titles stay data, including legacy English defaults whose origin cannot be distinguished
+from user-authored titles. They can be renamed through the UI.
+The first admitted text prompt still sets an automatic title; capability refusals do not
+persist messages or change it.
 
 Capability gates (`llm.ts`), from the catalog entry of the model:
 

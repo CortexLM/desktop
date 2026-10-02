@@ -4,12 +4,12 @@ import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
 import type { ModelInfo, ModelRef } from "@cortex/schema";
 import { Icon } from "../../icons/Icon";
-import { IconBtn, Tip, Switch } from "../../kit/ui";
+import { IconBtn, Tip, Switch, useToast } from "../../kit/ui";
 import { Composer, type ComposerAttachment } from "../../components/composer";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
 import { isPreview } from "../../preview";
-import { useT } from "../../i18n";
+import { useI18n } from "../../i18n";
 import { StopBtn } from "./shared";
 
 const MODEL_KEY = "cortex.model";
@@ -32,8 +32,6 @@ export function useModels() {
   return { state: q.state, models, current, pick, key };
 }
 
-const fmtCtx = (n: number) => (n >= 1e6 ? `${+(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${Math.round(n / 1e3)}K` : String(n));
-const fmtCost = (n: number) => `$${+n.toFixed(2)}`;
 const readFile = (f: File) => new Promise<ComposerAttachment>((ok, ko) => {
   const r = new FileReader();
   r.onload = () => ok({ name: f.name, mime: f.type || "application/octet-stream", dataUrl: String(r.result) });
@@ -43,7 +41,7 @@ const readFile = (f: File) => new Promise<ComposerAttachment>((ok, ko) => {
 
 type Props = {
   placeholder?: string;
-  onSend: (text: string, attachments: ComposerAttachment[], opts: SendOptions) => void;
+  onSend: (text: string, attachments: ComposerAttachment[], opts: SendOptions) => Promise<boolean>;
   /** Called when send is attempted but no provider is configured. */
   onNoModel?: () => void;
   busy?: boolean;
@@ -57,28 +55,44 @@ export function ModelComposer(p: Props) {
 }
 
 function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Props) {
-  const t = useT();
+  const { t, locale } = useI18n();
+  const toast = useToast();
+  const fmtCtx = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
+  const fmtCost = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
   const own = useModels();
   const { models, current, pick, key } = live ?? own;
   const [text, setText] = React.useState("");
   const [files, setFiles] = React.useState<ComposerAttachment[]>([]);
+  const [submitting, setSubmitting] = React.useState(false);
+  const pending = React.useRef(false);
+  const reads = React.useRef(0);
+  const [reading, setReading] = React.useState(false);
   const [think, setThink] = React.useState(() => localStorage.getItem(THINK_KEY) !== "off");
   const fileRef = React.useRef<HTMLInputElement>(null);
   const caps = current?.capabilities;
   const ph = placeholder ?? t("composer.placeholder");
   const setThinking = (v: boolean) => { localStorage.setItem(THINK_KEY, v ? "on" : "off"); setThink(v); };
 
-  const send = () => {
-    if (!text.trim() || busy) return;
+  const send = async () => {
+    if (!text.trim() || busy || pending.current || reads.current) return;
     if (!current) { onNoModel?.(); return; }
     const reasoning = caps?.reasoning ? think : undefined;
-    onSend(text.trim(), caps?.imageInput ? files : files.filter((f) => !f.mime.startsWith("image/")), { model: { providerID: current.providerID, modelID: current.id }, reasoning });
-    setText(""); setFiles([]);
+    pending.current = true; setSubmitting(true);
+    try {
+      if (await onSend(text.trim(), files, { model: { providerID: current.providerID, modelID: current.id }, reasoning })) {
+        setText(""); setFiles([]);
+      }
+    } finally { pending.current = false; setSubmitting(false); }
   };
   const add = async (list: FileList | null) => {
-    if (!list) return;
-    const read = await Promise.all([...list].map(readFile));
-    setFiles((f) => [...f, ...read]);
+    if (!list?.length) return;
+    const chosen = [...list];
+    reads.current++; setReading(true);
+    try {
+      const results = await Promise.allSettled(chosen.map(readFile));
+      setFiles((f) => [...f, ...results.flatMap((r) => r.status === "fulfilled" ? [r.value] : [])]);
+      results.forEach((r, i) => { if (r.status === "rejected") toast.add({ title: t("common.fileReadFailed", { name: chosen[i].name }), data: { icon: "alert-triangle" } }); });
+    } finally { reads.current--; setReading(reads.current > 0); }
   };
   const groups = [...new Set(models.map((m) => m.providerID))];
 
@@ -88,13 +102,13 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
         <div key={i} className="chat-att">
           {f.mime.startsWith("image/") ? <span className="chat-att-img" style={{ backgroundImage: `url(${f.dataUrl})` }} /> : <span className="chat-att-ic"><Icon name="file" /></span>}
           <span className="chat-att-txt"><span className="ttl">{f.name}</span><span className="sub">{f.mime}</span></span>
-          <IconBtn icon="close" label={t("chat.att.remove", { name: f.name })} size={16} className="chat-att-x" onClick={() => setFiles((x) => x.filter((_, k) => k !== i))} />
+          <IconBtn icon="close" label={t("chat.att.remove", { name: f.name })} disabled={submitting} size={16} className="chat-att-x" onClick={() => setFiles((x) => x.filter((_, k) => k !== i))} />
         </div>
       ))}</div>}
-      <form className="composer" onSubmit={(e) => { e.preventDefault(); send(); }}>
-        <input ref={fileRef} type="file" multiple hidden data-testid="attach-input" accept={caps?.imageInput ? undefined : "application/pdf,text/*"} onChange={(e) => { add(e.currentTarget.files); e.currentTarget.value = ""; }} />
+      <form className="composer" onSubmit={(e) => { e.preventDefault(); void send(); }}>
+        <input ref={fileRef} type="file" multiple hidden disabled={submitting} data-testid="attach-input" accept={caps?.imageInput ? undefined : "application/pdf,text/*"} onChange={(e) => { add(e.currentTarget.files); e.currentTarget.value = ""; }} />
         <Menu.Root>
-          <Menu.Trigger render={<button type="button" className="ibtn round" aria-label={t("composer.add")}><Icon name="plus" /></button>} />
+          <Menu.Trigger render={<button type="button" className="ibtn round" disabled={submitting} aria-label={t("composer.add")}><Icon name="plus" /></button>} />
           <Menu.Portal><Menu.Positioner sideOffset={6} side="top" align="start"><Menu.Popup className="popup">
             <Menu.Item className="mitem" onClick={() => fileRef.current?.click()}><Icon name="paperclip" /><span>{t("composer.addFiles")}</span></Menu.Item>
             {caps?.imageInput
@@ -102,9 +116,9 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
               : <Tip label={t("chat.model.noImage")} side="right"><Menu.Item className="mitem" disabled aria-disabled style={{ opacity: 0.45 }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item></Tip>}
           </Menu.Popup></Menu.Positioner></Menu.Portal>
         </Menu.Root>
-        <input value={text} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} data-testid="composer-input" />
+        <input value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} data-testid="composer-input" />
         <Menu.Root>
-          <Menu.Trigger className="model" type="button" data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
+          <Menu.Trigger className="model" type="button" disabled={submitting} data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
           <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 320, maxHeight: 420, overflow: "auto" }}>
             {models.length === 0 && <div className="chat-mgroup">{t("chat.model.noneHint")}</div>}
             <Menu.RadioGroup value={current ? key(current) : ""} onValueChange={(v) => pick(v as string)}>
@@ -121,8 +135,8 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
                             {c.reasoning && <span className="badge run">{t("chat.model.reasoning")}</span>}
                             {c.imageInput && <span className="badge ok">{t("chat.model.image")}</span>}
                             {c.tools && <span className="badge wait">{t("chat.model.tools")}</span>}
-                            {c.contextWindow > 0 && <span className="badge">{fmtCtx(c.contextWindow)}</span>}
-                            {(c.cost.input > 0 || c.cost.output > 0) && <span className="badge">{t("chat.model.cost", { input: fmtCost(c.cost.input), output: fmtCost(c.cost.output) })}</span>}
+                            {c.contextWindow > 0 && <span className="badge">{fmtCtx.format(c.contextWindow)}</span>}
+                            {(c.cost.input > 0 || c.cost.output > 0) && <span className="badge">{t("chat.model.cost", { input: fmtCost.format(c.cost.input), output: fmtCost.format(c.cost.output) })}</span>}
                           </span>
                         </span>
                         <Menu.RadioItemIndicator><Icon name="check" /></Menu.RadioItemIndicator>
@@ -142,7 +156,7 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
         </Menu.Root>
         {busy ? <StopBtn onStop={onStop} /> : (
           <Tip label={t("composer.send")} kbd="↵">
-            <button type="submit" className="send" data-has-text={text ? "" : undefined} aria-label={t("composer.send")} data-testid="composer-send">
+            <button type="submit" className="send" disabled={submitting || reading} data-has-text={text ? "" : undefined} aria-label={t("composer.send")} data-testid="composer-send">
               <span className="swap"><Icon name="voice-wave" className="wave" /><Icon name="arrow-up" className="up" /></span>
             </button>
           </Tip>

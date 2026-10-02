@@ -8,6 +8,7 @@ import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { useSessions, useMessages, usePermissions, useQuery } from "../../state/live";
+import { toolName, toolTitle } from "../../state/tool-label";
 import { TestIdComposer, basename, pickModel, useAgo } from "./parts";
 import type { CodeFx } from "./fixtures";
 
@@ -155,10 +156,6 @@ function SessionPreview() {
 const TOOL_ICON: Record<string, string> = { read: "search", grep: "search", glob: "search", list: "folder", bash: "terminal", edit: "edit", write: "edit", webfetch: "globe", task: "agent", todowrite: "check-circle", skill: "sparkle-free" };
 type Input = { path?: string; command?: string; oldString?: string; newString?: string; content?: string; pattern?: string; url?: string; description?: string };
 const inputOf = (p: ToolPart) => ((p.state.input ?? {}) as Input);
-const toolLabel = (p: ToolPart) => {
-  const i = inputOf(p);
-  return ("title" in p.state && p.state.title) || i.command || i.path || i.pattern || i.url || p.tool;
-};
 /** Diff lines for an edit/write call, built from the tool input. */
 const toolDiff = (p: ToolPart) => {
   const i = inputOf(p);
@@ -173,7 +170,7 @@ function PermissionAsk({ p }: { p: Permission }) {
   return (
     <div className="code-ask" role="alertdialog" aria-label={t("code.terminal.approvalRequired")}>
       <div className="code-ask-h"><Icon name="shield-check" size={16} /><span>{t("code.terminal.wantsToRun")} <code>{p.pattern}</code></span></div>
-      <p>{t("code.session.askBody", { tool: p.tool })}</p>
+      <p>{t("code.session.askBody", { tool: toolName(t, p.tool) })}</p>
       <div className="code-row-gap">
         <button className="btn primary code-h28" data-testid="permission-allow-once" disabled={sent} onClick={() => reply("once")}>{t("code.terminal.allowOnce")}</button>
         <button className="btn secondary code-h28" data-testid="permission-always" disabled={sent} onClick={() => reply("always")}>{t("code.terminal.allowAlways")}</button>
@@ -213,7 +210,7 @@ function SessionLive() {
       <div key={p.id} className="steps-log">
         <div className={"log" + (running ? " shimmer" : "")} data-last={running || undefined}>
           <Icon name={running ? "loader" : p.state.status === "error" ? "x-circle" : TOOL_ICON[p.tool] ?? "code"} size={16} className={running ? "spinning" : undefined} />
-          <span className="code-ell">{toolLabel(p)}</span>
+          <span className="code-ell">{toolTitle(t, p)}</span>
         </div>
       </div>
     );
@@ -238,12 +235,12 @@ function SessionLive() {
         {view === views[0] ? (
           edits.length ? edits.map((p) => (
             <div className="diff" key={p.id}>
-              <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>{toolLabel(p)}</span><IconBtn icon="copy" label={t("code.copyPath")} onClick={() => void navigator.clipboard?.writeText(inputOf(p).path ?? "")} /></div>
+              <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>{toolTitle(t, p)}</span><IconBtn icon="copy" label={t("code.copyPath")} onClick={() => void navigator.clipboard?.writeText(inputOf(p).path ?? "")} /></div>
               <pre>{toolDiff(p).map((l, i) => <div key={i} className={diffClass(l)}>{l || " "}</div>)}</pre>
             </div>
           )) : <div className="empty"><Icon name="diff" size={20} /><p>{t("code.session.noChanges")}</p></div>
         ) : runs.length ? (
-          <pre className="term" key="t">{runs.map((p) => `$ ${inputOf(p).command}\n${p.state.status === "completed" ? p.state.output : p.state.status === "error" ? p.state.error : ""}`).join("\n\n")}</pre>
+          <pre className="term" key="t">{runs.map((p) => `$ ${inputOf(p).command}\n${p.state.status === "completed" ? p.state.output : p.state.status === "error" ? t("chat.err.tool_failed.body") : ""}`).join("\n\n")}</pre>
         ) : <div className="empty"><Icon name="terminal" size={20} /><p>{t("code.session.noCommands")}</p></div>}
       </div>
     </div>

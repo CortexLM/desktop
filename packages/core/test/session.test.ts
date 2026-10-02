@@ -21,6 +21,12 @@ describe("session runner (fake OpenAI-compatible SSE)", () => {
     const events: Event[] = []
     core.bus.subscribe((e) => events.push(e))
     const s = core.sessions.create({ model: { providerID: "fake", modelID: "reasoner" }, directory: dir })
+    expect(s.title).toBe("")
+    await expect(core.sessions.prompt(s.id, { model: { providerID: "fake", modelID: "text-only" }, parts: [
+      { type: "text", text: "Read the image" }, { type: "file", mime: "image/png", data: "AA==" },
+    ] })).rejects.toMatchObject({ code: "model_no_image_input" })
+    expect(core.sessions.get(s.id).title).toBe("")
+    expect(core.sessions.messages(s.id)).toEqual([])
     const text = await core.sessions.promptAndWait(s.id, { parts: [{ type: "text", text: "Read hello.txt" }] })
     expect(text).toBe("The file says hello.")
 

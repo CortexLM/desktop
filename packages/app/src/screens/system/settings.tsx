@@ -1,7 +1,7 @@
 // Settings: design sections plus Providers and Connection (built from the same primitives).
 import * as React from "react";
 import { LOCALES, type Locale } from "@cortex/i18n";
-import type { ModelInfo, ProviderConfig, ConnectionProbe } from "@cortex/schema";
+import { ConnectionUrl, type ModelInfo, type ProviderConfig, type ConnectionProbe } from "@cortex/schema";
 import { Icon, Gel, Switch, Pop, MItem, useToast } from "../../kit/ui";
 import { useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
@@ -142,7 +142,7 @@ const fromFx = (p: string) => (m: ModelFx): Model => ({ ...m, providerID: p });
 function ModelRow({ m, onClick }: { m: Model; onClick?: () => void }) {
   const t = useT();
   const { locale } = useI18n();
-  const ctx = new Intl.NumberFormat("en", { notation: "compact" }).format(m.context);
+  const ctx = new Intl.NumberFormat(locale, { notation: "compact" }).format(m.context);
   const usd = (n: number) => new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: n < 1 ? 2 : 0 }).format(n);
   const Tag = onClick ? "button" : "div";
   return (
@@ -248,9 +248,8 @@ function Connection() {
     setMode(m); setCheck("idle");
     if (!preview && m !== "selfhost") api.connection.set({ mode: m, signedIn: conn.state === "ready" && conn.data.signedIn }).catch(() => {});
   };
-  const valid = (u: string) => { try { const x = new URL(u); return x.protocol === "https:" || x.protocol === "http:"; } catch { return false; } };
   const probe = async () => {
-    if (!valid(url.trim())) { setCheck("invalid"); return; }
+    if (!ConnectionUrl.safeParse(url.trim()).success) { setCheck("invalid"); return; }
     if (preview) return;
     setCheck("checking");
     try { await api.connection.set({ mode: "selfhost", url: url.trim(), signedIn: false }); setCheck((await api.connection.probe()).status); }

@@ -9,6 +9,7 @@ import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { usePermissions, useSessions, useBots } from "../../state/live";
+import { toolName } from "../../state/tool-label";
 import { css, NB, useGo, useMainBot, useDate, Top, Empty, TabBar, Mono, Check, BotFace, type BotsFx } from "./common";
 import type { WorkFx, Msg, Conn } from "./fixtures";
 
@@ -96,7 +97,7 @@ function ApprovalsLive() {
   const decide = (p: Permission, d: "ok" | "no") => {
     setGone((g) => ({ ...g, [p.id]: d }));
     api.permissions.reply(p.id, d === "no" ? "reject" : always[p.id] ? "always" : "once").then(
-      () => toast.add({ title: d === "ok" ? t("work.appr.approved") : t("work.appr.denied"), description: p.tool, data: { icon: d === "ok" ? "check-circle" : "x-circle" } }),
+      () => toast.add({ title: d === "ok" ? t("work.appr.approved") : t("work.appr.denied"), description: toolName(t, p.tool), data: { icon: d === "ok" ? "check-circle" : "x-circle" } }),
       () => { setGone((g) => { const n = { ...g }; delete n[p.id]; return n; }); toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); });
   };
   const left = list.filter((a) => !gone[a.id]).length;
@@ -107,10 +108,10 @@ function ApprovalsLive() {
         <p className="travail-lede" style={{ marginTop: 6 }}>{t("work.appr.lede", { count: left })}</p>
         {list.map((p, i) => { const b = botOf(p); return (
           <div key={p.id} className="travail-appr travail-rise" style={css(i)} data-out={gone[p.id]}>
-            <div><article className="travail-appr-card" aria-label={t("work.appr.cardLabel", { kind: p.tool, title: p.pattern })}>
+            <div><article className="travail-appr-card" aria-label={t("work.appr.cardLabel", { kind: toolName(t, p.tool), title: p.pattern })}>
               <span className="li-ic"><Icon name={TOOL_ICON[p.tool] ?? "key"} size={16} /></span>
               <div className="travail-grow">
-                <span className="travail-meta" style={{ display: "flex", alignItems: "center", gap: 6 }}>{b && <BotFace name={b.id} size={16} bots={bs} />}{b ? `${b.name} · ` : ""}{p.tool} · {date.short(p.time)}</span>
+                <span className="travail-meta" style={{ display: "flex", alignItems: "center", gap: 6 }}>{b && <BotFace name={b.id} size={16} bots={bs} />}{b ? `${b.name} · ` : ""}{toolName(t, p.tool)} · {date.short(p.time)}</span>
                 <span className="ttl">{p.pattern}</span>
                 <span className="sub">{p.input}</span>
                 <div className="travail-actions">

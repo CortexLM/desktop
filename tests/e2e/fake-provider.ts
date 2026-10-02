@@ -4,13 +4,17 @@ import http from "node:http";
 
 export type Recorded = { body: Record<string, unknown>; auth?: string };
 
-export async function startFakeProvider() {
+export async function startFakeProvider(opts: { rejectFirst?: boolean } = {}) {
   const requests: Recorded[] = [];
   const server = http.createServer(async (req, res) => {
     let raw = ""; for await (const c of req) raw += c;
     if (req.url?.endsWith("/models")) { res.writeHead(200, { "content-type": "application/json" }); res.end(JSON.stringify({ data: [] })); return; }
     const body = JSON.parse(raw || "{}");
     requests.push({ body, auth: req.headers.authorization });
+    if (opts.rejectFirst && requests.length === 1) {
+      res.writeHead(400, { "content-type": "application/json" });
+      res.end(JSON.stringify({ error: { message: "Fixture rejection" } })); return;
+    }
     const msgs = (body.messages ?? []) as { role: string; content: unknown }[];
     const last = msgs.filter((m) => m.role === "user").pop();
     const hasImage = Array.isArray(last?.content) && (last.content as { type: string }[]).some((p) => p.type === "image_url");
