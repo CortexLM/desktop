@@ -98,6 +98,11 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   Home A7-final/B7-final approve their verified/inherited scope. Integration and matching frozen
   screenshot coverage are recorded separately from the historical report.
   [Exact reconciliation and drift](compare/reference-status.md).
+  Later corrective and integrated prototype receipts are source-bound separately; their
+  116-route inventory is not the desktop app registry or whole-page acceptance. The iOS web
+  freeze's 22 checks confirm three corrections, without native-iPhone certification.
+  A [bounded correction crosswalk](recovery-followup/corrected-reference-map.md) records five
+  candidate gaps in command-model handoff and preview prompt/task/specialist identity.
 - **Connection behavior:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing are
   unfinished. A successful backend probe is not proof of a complete remote connection mode.

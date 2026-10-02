@@ -120,3 +120,12 @@ attachment deletion as a conflict with accepted desktop retention. Both pinned a
 still contain that behavior; a correction/exclusion is requested. Model Test availability, untyped
 remote turn/approval payloads, origin/account-bound main-only auth and local/remote permission
 semantics remain explicit binding gates. No source behavior is changed by this receipt.
+
+The later [design update receipt](design-update-receipt.json) verifies historical 5609 and
+5610 integration sources/images, the `d814599e9654` assembly's stored checks and served build,
+two distinct Quiver glyph variants and the separate iOS web freeze. Original report counts,
+later scoped confirmations and native-product acceptance stay revision-bound; browser results
+were read back, not rerun. Detailed boundaries: [reference status](../compare/reference-status.md).
+The [corrected-reference crosswalk](corrected-reference-map.md) maps the 63-unit disposition,
+existing live safeguards and five bounded candidate gaps, keeping prototype-only operations
+separate from functional engine delivery. Its source inspection ran no tests.

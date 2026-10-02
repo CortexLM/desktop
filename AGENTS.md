@@ -208,6 +208,8 @@ the app's 213 include eight additional Settings variants. Use its verified captu
 not the changing live checkout. Home A7-final/B7-final approve their verified/inherited scope;
 original-reference fidelity and missing-surface drafts remain outside that approval. See
 [`evidence/compare/reference-status.md`](./evidence/compare/reference-status.md).
+Later design correction/assembly, glyph and iOS-web receipts are tracked there with separate
+source pins; they do not expand desktop's approved frozen reference or live product scope.
 For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
 session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
 

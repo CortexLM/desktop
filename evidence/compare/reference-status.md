@@ -95,3 +95,38 @@ cover keyboard and final motion states. The completed frozen comparison is linke
 the [outlier disposition](../compare-7b388e2d9674/outliers.md) separates intentional copy,
 unmatched scroll/timer samples and three source-proven port differences. Their subsequent
 [corrections](../fidelity-followup/README.md) preserve this run's original scores.
+
+## Later correction and integration receipts
+
+The current design `review/confirmation-status.md` reports double scoped confirmation of all
+63 original corrective units. That supersedes the earlier re-review-pending disposition only
+for those named defects; author counts (48 confirmations, 32 consolidated Work cases,
+47 Readers/Code actions and 92 renders) do not become page-wide acceptance. This readback
+records report hashes; it does not independently rerun all 63 corrective journeys.
+The [bounded desktop crosswalk](../recovery-followup/corrected-reference-map.md) identifies
+existing overlap and five remaining candidates: M01 command-model handoff, M21 preview image
+prompt retention, M11 first Work-task identity, M02 specialist identity and M05 Code-task
+identity. These are anchored static mismatches, not new runtime-test results or blanket
+authorization to import live design sources.
+
+[Read-only delivery verification](../recovery-followup/design-update-receipt.json) records
+the separate `bd0a487691a4` / 5609 prototype: 163 source hashes, 26 stored integration checks,
+18 image hashes, 116 routes and 117 catalogue families. Later 5610 receipts bind 26 navigation
+checks/18 images and 16 public-host configurations/images to 165 source files. They do not
+retroactively test the older build.
+
+The later `d814599e9654` candidate's read-only verifier passes 1,574 source/asset/config inputs,
+1,399 build files and five served resources. Its stored receipts cover 26 navigation checks,
+16 public-host configurations, 43 Security checks and bounded gallery previews. This is a
+prototype assembly, not an Electron build or whole-page approval. Subsequent live changes
+retain their own pins. The original `7b388e2d9674` reference remains immutable.
+
+Two new glyphs (`plug-zap`, `settings-2`) have matching raw/normalized/installed hashes and
+four verified proof images. The design inventory is **121 SVG files, 124 usable names,
+125 catalogue samples** (four HAND entries, one overriding `system`). Desktop's frozen icon
+set is not reattributed to that inventory.
+
+The independent iOS **web** reference `bbf640ff95cc` passes its read-only freeze verifier:
+278 source files, 954 1179×2556 PNGs, 3,816 recorded browser views. Twenty-two checks confirm
+**three** scoped corrections, with 41 retained review artifacts verified. It does not certify
+native iPhone behavior or replace desktop's reference. G3 SDK reconciliation remains pending.
