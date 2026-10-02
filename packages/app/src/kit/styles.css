@@ -273,7 +273,7 @@ html[data-vt="theme"]::view-transition-group(content), html[data-vt="theme"]::vi
 @keyframes burn { to { scale: 0 1; } }
 
 /* Follow the actual dock, including attachments and nested Work transcripts. */
-.content .dock:has(.composer), .content .split-l .composer { anchor-name: --cortex-dock; }
+.content .dock:has(.composer), .content .split-l :is(.chat-box, .composer:not(.chat-box .composer)) { anchor-name: --cortex-dock; }
 body:has(.content .dock .composer, .content .split-l .composer) .toasts { bottom: calc(anchor(--cortex-dock top) + 12px); }
 
 

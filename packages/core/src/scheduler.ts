@@ -59,15 +59,22 @@ export class Scheduler {
     this.storage.deleteDoc("task", id)
   }
 
-  /** Run now: creates a session and prompts it. Resolves with the finished run. */
-  async run(id: string): Promise<TaskRun> {
+  /** Admit synchronously (duplicates throw), then resolve with the persisted run outcome. */
+  run(id: string): Promise<TaskRun> {
     const task = this.get(id)
+    if (this.active.has(id)) throw new CortexError("conflict", "Routine is already running")
+    this.active.add(id)
+    return this.execute(task).finally(() => this.active.delete(id))
+  }
+
+  private async execute(task: ScheduledTask): Promise<TaskRun> {
+    const id = task.id
     const run: TaskRun = { id: newId("run"), taskID: id, status: "running", time: { start: Date.now() } }
     const saveRun = () => {
+      if (!this.storage.getDoc("task", id)) return
       this.storage.putDoc("run", run.id, run, id, run.time.start)
       this.bus.publish("task.run", { run: { ...run } })
     }
-    this.active.add(id)
     try {
       const session = this.sessions.create({
         title: task.title,
@@ -85,7 +92,6 @@ export class Scheduler {
       run.status = "error"
       run.error = toErrorInfo(err)
     } finally {
-      this.active.delete(id)
       run.time.end = Date.now()
       saveRun()
       const cur = this.storage.getDoc<Stored>("task", id)
@@ -103,8 +109,17 @@ export class Scheduler {
 
   start(intervalMs = 30_000) {
     this.stop()
+    this.recoverInterrupted()
     this.timer = setInterval(() => void this.tick().catch(() => undefined), intervalMs)
     this.timer.unref?.()
+  }
+  private recoverInterrupted() {
+    for (const run of this.storage.listDocs<TaskRun>("run")) {
+      if (run.status !== "running" || this.active.has(run.taskID)) continue
+      const recovered: TaskRun = { ...run, status: "error", error: { code: "aborted", message: "Run interrupted" }, time: { ...run.time, end: Date.now() } }
+      this.storage.putDoc("run", run.id, recovered, run.taskID, run.time.start)
+      this.bus.publish("task.run", { run: recovered })
+    }
   }
   stop() {
     if (this.timer) clearInterval(this.timer)

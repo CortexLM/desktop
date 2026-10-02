@@ -1,11 +1,9 @@
 // Shared pieces of the Cortex Code area: agent mascot, deltas, monograms, diff views, CI icons, live helpers.
 import * as React from "react";
-import type { ModelRef } from "@cortex/schema";
 import { Icon, Tip } from "../../kit/ui";
 import { Mascot, DEFAULT_MASCOT, type State } from "../../mascot/Mascot";
 import { useT, useI18n } from "../../i18n";
 import { useNav } from "../../shell/nav";
-import { api } from "../../api";
 import "./lot-code.css";
 
 export const ix = (i: number) => ({ ["--i" as string]: i }) as React.CSSProperties;
@@ -133,18 +131,6 @@ export function useAgo() {
     for (const [u, n] of [["day", 86400], ["hour", 3600], ["minute", 60]] as const) if (Math.abs(s) >= n) return f.format(Math.round(s / n), u);
     return f.format(0, "minute");
   }, [locale]);
-}
-
-// ponytail: the model of the latest session, else the first tool-capable model of a configured provider.
-// Upgrade when the composer exposes a real model choice.
-export async function pickModel(): Promise<ModelRef | undefined> {
-  const last = (await api.sessions.list().catch(() => []))[0];
-  if (last) return last.model;
-  for (const c of (await api.providers.list()).filter((c) => c.enabled && (c.hasKey || c.baseURL))) {
-    const ms = await api.catalog.models(c.providerID).catch(() => []);
-    const m = ms.find((x) => x.capabilities.tools) ?? ms[0];
-    if (m) return { providerID: c.providerID, modelID: m.id };
-  }
 }
 
 /** Puts a test id on the input of the shared composer (the composer has no prop for it). */

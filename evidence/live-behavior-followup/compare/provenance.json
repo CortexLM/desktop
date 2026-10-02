@@ -1,0 +1,527 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-02T22:30:46.530Z",
+  "reference": {
+    "root": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674",
+    "shots": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "sourceFileCount": 106,
+    "freezeSha256": "f05453f8776c681217a3e386d4e04e59908e0fad2170745ad58b63ecaedc7253",
+    "manifestSha256": "3e215fb4b16115a89d12010a7432cb81f174b1b8292c02981aa18dc56f28bfa1",
+    "registrySha256": "a1f8e68bb0431fde8056ff150d5c2b003838dc7f2173706d0faa8a640f2faac5",
+    "coverageSha256": "71519590059226b8c3c9cc9328864b2106abe5449085837f77728a649c7e993c",
+    "motionIndexSha256": "1d291913221ad1b97511b52630e5af7bc0a63e581c4fc3a8c87c6a3e04471d79"
+  },
+  "application": {
+    "revision": "0257395d1a15d12a08de307ca75b132096dc973c",
+    "sourceFingerprint": "977a4f5061622d1d365d8f8c1451f910876445d3e227481a52b4d8e251803855",
+    "sourceFileCount": 473,
+    "sourcePaths": [
+      "packages/app/src",
+      "packages/app/public",
+      "packages/app/index.html",
+      "packages/app/vite.config.ts",
+      "packages/app/package.json",
+      "packages/i18n/src",
+      "packages/i18n/locales",
+      "packages/client/src",
+      "packages/schema/src",
+      "package.json",
+      "bun.lock",
+      "tsconfig.json"
+    ]
+  },
+  "comparatorSha256": "0e357581864bd88304b58e83c26bf14cadea62f3758bb38bb02f3d5d0a081f14",
+  "render": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "locale": "fr-FR",
+    "catalogLocale": "fr",
+    "pixelmatchThreshold": 0.15
+  },
+  "counts": {
+    "registered": 426,
+    "optionalInteractions": 5,
+    "capturedThisRun": 10,
+    "retainedRows": 10,
+    "compared": 10,
+    "noDesignShot": 0
+  },
+  "runs": [
+    {
+      "id": "2026-10-02T22-30-13-768Z-E7KUZ4",
+      "capturedAt": "2026-10-02T22:30:46.530Z",
+      "applicationRevision": "0257395d1a15d12a08de307ca75b132096dc973c",
+      "baseUrl": "http://localhost:5309/",
+      "jobCount": 10,
+      "only": [
+        "code",
+        "code-session",
+        "automations"
+      ],
+      "build": {
+        "sha256": "5983bf3e77c237ed2437f8acb77a0f9ae7a4169a49eaf0a6eba28d1122e5b497",
+        "files": [
+          {
+            "url": "http://localhost:5309/",
+            "sha256": "1295d838c97d66b898333e4d4951918865dbbe7be49ed9e2a7becf5521f5454f",
+            "bytes": 664
+          },
+          {
+            "url": "http://localhost:5309/assets/bots-Dhnxap2k.js",
+            "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+            "bytes": 5242
+          },
+          {
+            "url": "http://localhost:5309/assets/chat-DPP7jha6.js",
+            "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+            "bytes": 21015
+          },
+          {
+            "url": "http://localhost:5309/assets/code-l1ImvW5S.js",
+            "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+            "bytes": 17357
+          },
+          {
+            "url": "http://localhost:5309/assets/files-DIk1qP8R.js",
+            "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+            "bytes": 23724
+          },
+          {
+            "url": "http://localhost:5309/assets/index-DIzhKn2M.css",
+            "sha256": "659950ae731f44a56147e41411582f0bbe74ca69c75d3519463eb1935443fdd6",
+            "bytes": 204910
+          },
+          {
+            "url": "http://localhost:5309/assets/index-DkXKQi_5.js",
+            "sha256": "d8ca139a18992d64dde0b06b6022b7b9dbfebd614946bf2e9eff4354e762b934",
+            "bytes": 2422482
+          },
+          {
+            "url": "http://localhost:5309/assets/shell-CYBsECV8.js",
+            "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+            "bytes": 1030
+          },
+          {
+            "url": "http://localhost:5309/assets/system-D9_n4Goj.js",
+            "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+            "bytes": 9120
+          },
+          {
+            "url": "http://localhost:5309/assets/work-CXx4q0-W.js",
+            "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+            "bytes": 14410
+          },
+          {
+            "url": "http://localhost:5309/fonts/Geist-Variable.woff2",
+            "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+            "bytes": 69652
+          },
+          {
+            "url": "http://localhost:5309/fonts/GeistMono-Variable.woff2",
+            "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+            "bytes": 71368
+          },
+          {
+            "url": "http://localhost:5309/gel/automatisations.png",
+            "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+            "bytes": 77526
+          },
+          {
+            "url": "http://localhost:5309/gel/documents.png",
+            "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+            "bytes": 75789
+          },
+          {
+            "url": "http://localhost:5309/gel/images.png",
+            "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+            "bytes": 77289
+          },
+          {
+            "url": "http://localhost:5309/gel/recherche-web.png",
+            "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+            "bytes": 81327
+          },
+          {
+            "url": "http://localhost:5309/img/aube.png",
+            "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+            "bytes": 1405580
+          },
+          {
+            "url": "http://localhost:5309/img/crepuscule.png",
+            "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+            "bytes": 1405004
+          },
+          {
+            "url": "http://localhost:5309/img/lagon.png",
+            "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+            "bytes": 1246039
+          },
+          {
+            "url": "http://localhost:5309/img/prairie.png",
+            "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+            "bytes": 1242519
+          }
+        ],
+        "httpCache": "disabled via context.route"
+      },
+      "ignoredPreviewApiErrors": [
+        {
+          "url": "http://localhost:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=code",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/events",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/sessions?kind=chat",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/bots",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        },
+        {
+          "url": "http://localhost:5309/api/tasks",
+          "message": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    }
+  ],
+  "reportSha256": "7dc5e39351146b406cab38820cbd6002f639a6d417d9f42f0b34e8262c8554f5",
+  "limits": [
+    "Browser preview fixtures, not native or live-engine acceptance.",
+    "Settled frames, not motion or exhaustive interaction coverage.",
+    "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.",
+    "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.",
+    "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."
+  ]
+}

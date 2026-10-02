@@ -3,6 +3,14 @@
 The key entry row wraps its controls when the Settings pane is narrow, keeping the label and
 saved last-four hint readable at the minimum window width. Key material remains write-only.
 
+Live Cortex Code uses the configured-model chooser for new tasks and follow-ups, including reasoning
+controls and file attachments. Reopening a task starts with its persisted session model. A missing,
+disabled or unsupported choice refuses the send and keeps the draft/files; it does not silently fall
+back to another model. Explicitly configured keyless compatible endpoints remain available in Code.
+Folder cancellation retains the draft before a session is created; engine refusals retain it afterward.
+Code refusal notifications anchor above the complete attachment/composer area, keeping file removal
+and model recovery controls reachable in a narrow pane.
+
 ## Catalog
 
 The model list is the public models.dev catalog, `https://models.dev/api.json`

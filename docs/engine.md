@@ -85,6 +85,11 @@ cancels the session's other pending asks). Computer-use input tools never save `
   run creates a session and prompts it; history persisted. Missed runs are not
   backfilled; the timer lives only while the app runs. Work → Automations and bot routines
   use these routes; the standalone Scheduled screen still awaits design.
+  Manual run admission rejects an already-running routine before creating a second session.
+  Interrupted runs retain an `aborted` error instead of claiming success; running history stays
+  Running until a completed outcome arrives. Prompt-and-wait callers receive cancellation errors.
+  Startup marks persisted, no-longer-active Running records interrupted; it does not replay them.
+  Deleting a routine removes its history; an already-running session may finish but cannot recreate it.
 - Space (`space.ts`): pages, sites, images and recents. No screen yet.
 - Connection (`connection.ts`): saved mode and remote probes only. Sessions still use local
   provider settings in every mode; remote auth/inference is not wired
@@ -116,8 +121,8 @@ cancels the session's other pending asks). Computer-use input tools never save `
   Superseded credential cleanup is best effort;
   a failed cleanup can retain an unreferenced credential, never a public value.
 
-Space, standalone Scheduled and Plugins & skills designs remain absent in
-`/root/cortex-ui/DESIGN-REQUESTS.md`. Engine routes and the builtin skill do not provide
+Space, standalone Scheduled and Plugins & skills have candidate designs but still lack approved
+source/state integration in `/root/cortex-ui/DESIGN-REQUESTS.md`. Engine routes and the builtin skill do not provide
 those screens; the computer-use preset cannot be enabled from the UI yet.
 
 ## Limits

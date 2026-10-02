@@ -2,15 +2,19 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Current application `9d704ee` corrects the narrow provider key row;
+The [live-behavior correction](live-behavior-followup/README.md) wires Code model/reasoning choice
+and truthful routine outcomes. Local checks pass: 178 units plus one optional backend skip,
+59 initial full Electron cases/426 renders, 17 final targeted cases after attachment/capture fixes,
+lint/types/i18n and Linux packaged smoke. New CI and installed-Mac verification remain pending.
+Earlier application `9d704ee` corrects the narrow provider key row;
 [CI 37066222793](https://github.com/CortexLM/desktop/actions/runs/37066222793) passes, installed
 normal-sidebar verification passes in both themes at 960×640.
 [Independent review](mcp-followup/provider-layout/ci/README.md) verifies 52/52 per OS,
 321 artifact members and 17 full-size images within its stated scope.
 Earlier [CI 37063183382](https://github.com/CortexLM/desktop/actions/runs/37063183382) passes at
 `de623fd` (application `ca08282`, serial macOS test harness). Installed credential proof is retained;
-independent [artifact review](mcp-followup/ci-de623fd/README.md) passes. The renderer has changed
-from `cc758a6` only in this row.
+independent [artifact review](mcp-followup/ci-de623fd/README.md) passes. At `9d704ee`, the renderer
+differs from `cc758a6` only in that row; the new live-behavior batch also changes Code and routines.
 
 Installed `de623fd` verifies MCP encrypted persistence/decryption/removal and provider key
 redaction, with native light/dark captures. It also exposed a minimum-width key-row overlap:
@@ -22,12 +26,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | Proven on green `9d704ee` CI: 173 unit passes, one optional backend skip. |
-| Every design screen plus provider/image/reasoning flows | Partial: current CI passes 52/52 per OS, 426 registered preview renders and controlled-provider flows; missing approved surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | Proven for `9d704ee`; unsigned arm64 package and launch smoke. |
+| Lint, types, units | Current local checks pass: 178 units plus one optional backend skip. New CI pending; earlier `9d704ee` CI has 173 unit passes. |
+| Every design screen plus provider/image/reasoning flows | Partial: 59 initial full local cases/426 renders plus 17 final targeted cases; current full suite registers 61. New platform CI pending. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | Proven for `9d704ee`; new batch pending. Unsigned arm64 only. |
 | Installed Mac, every screen/theme/native chrome/menu | Historical complete sweeps remain pinned; current credential and key-row verification is targeted, not a fresh all-screen sweep. |
-| No unjustified reference gap | Unproven: frozen comparison retains 21 gaps; Providers has no approved frozen image, new-surface imports remain unauthorized. |
-| Automated i18n audit | Proven within audit scope: 63 files, 2,265 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
+| No unjustified reference gap | Unproven: new scoped 10/10 comparisons max 0.05%; historical full comparison retains 21 gaps. Providers lacks an approved frozen image; new-surface imports remain unauthorized. |
+| Automated i18n audit | Current local scope: 63 files, 2,266 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no `CORTEX_REAL_BASE_URL`, `CORTEX_REAL_API_KEY` or `CORTEX_TEST_BACKEND_URL`.
@@ -186,7 +190,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-   at 20:52–20:53 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+   at 21:52–21:55 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.

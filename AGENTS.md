@@ -156,6 +156,11 @@ Work preview task activity temporarily updates the sidebar Bot; leaving restores
 activity while preserving an explicit pause and saved appearance.
 Live Work marks Done only after a persisted successful assistant completion; refused,
 failed, interrupted and unread tasks remain outside Done, including after reload.
+Routine history likewise keeps active runs Running and interruptions Failed; an active routine
+refuses duplicate manual starts before creating another session.
+Startup marks abandoned persisted runs interrupted; deleted routine history cannot reappear on completion.
+Live Cortex Code sends its selected catalog model and reasoning choice. Reopening restores the session's
+model; unavailable selections retain the draft instead of silently choosing another model.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |

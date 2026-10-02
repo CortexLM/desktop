@@ -33,6 +33,9 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 
 - Deltas are not replayed; the complete text is in `part.updated` at close. Abort marks open tool calls as errored. A crash mid-stream loses the unflushed tail and leaves open tool parts as last written; nothing is re-run.
 - Pending permission asks and running loops are in memory; a restart drops them.
+- Scheduled run admission is synchronous: an active routine rejects duplicate starts. Interrupted
+  prompts propagate cancellation; startup marks abandoned persisted runs failed. Deleted routine
+  history is not recreated by late completion of its session.
 - `bash` runs with the user's own rights. There is no sandbox.
 - Error `message` strings are neutral English for developers; the UI maps `code` to copy.
 - New untitled sessions use an empty title for localized renderer fallbacks. Existing titles remain intact; first admitted text supplies an automatic title only for new untitled sessions.

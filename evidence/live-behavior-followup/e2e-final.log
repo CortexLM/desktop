@@ -1,0 +1,23 @@
+$ playwright test "tests/e2e/code-models.spec.ts" "tests/e2e/routines.spec.ts" "tests/e2e/composer-safety.spec.ts" "tests/e2e/ui-flows.spec.ts" "--output=/tmp/opencode/live-behavior-final-artifacts"
+
+Running 17 tests using 4 workers
+
+  ✓   1 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — light (3.5s)
+  ✓   4 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — dark (3.6s)
+  ✓   3 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — dark (4.4s)
+  ✓   2 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — light (4.5s)
+  ✓   5 tests/e2e/code-models.spec.ts:234:1 › Code keeps unsupported and missing session models instead of falling back (1.5s)
+  ✓   6 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (2.5s)
+  ✓   8 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.4s)
+  ✓  10 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — light (2.7s)
+  ✓  11 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — light (1.9s)
+  ✓   7 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (6.7s)
+  ✓  13 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — dark (2.0s)
+  ✓  12 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — dark (2.7s)
+  ✓   9 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (6.9s)
+  ✓  16 tests/e2e/ui-flows.spec.ts:89:1 › streamed exchange with thinking and an image, driven from the composer (5.3s)
+  ✓  17 tests/e2e/ui-flows.spec.ts:127:1 › rejected sends keep the draft and attachments; retry resends the image (12.2s)
+  ✓  14 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (15.8s)
+  ✓  15 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (15.9s)
+
+  17 passed (28.3s)

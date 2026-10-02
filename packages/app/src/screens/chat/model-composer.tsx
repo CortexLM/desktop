@@ -16,18 +16,19 @@ const MODEL_KEY = "cortex.model";
 const THINK_KEY = "cortex.thinking";
 export type SendOptions = { model: ModelRef; reasoning?: boolean };
 export type LiveModels = ReturnType<typeof useModels>;
+type ModelOptions = { initialModel?: ModelRef; allowKeyless?: boolean; strictSelection?: boolean };
 
-/** Models of every enabled provider that has a key. */
-export function useModels() {
+/** Code also supports explicitly configured keyless endpoints and exact session selections. */
+export function useModels({ initialModel, allowKeyless = false, strictSelection = false }: ModelOptions = {}) {
   const q = useQuery(async () => {
-    const providers = (await api.providers.list()).filter((p) => p.enabled && p.hasKey);
+    const providers = (await api.providers.list()).filter((p) => p.enabled && (p.hasKey || (allowKeyless && p.baseURL)));
     const lists = await Promise.all(providers.map((p) => api.catalog.models(p.providerID).catch(() => [] as ModelInfo[])));
     return lists.flat();
-  }, [], (e) => e.type.startsWith("provider."));
-  const [sel, setSel] = React.useState<string>(() => localStorage.getItem(MODEL_KEY) ?? "");
+  }, [allowKeyless], (e) => e.type.startsWith("provider."));
+  const [sel, setSel] = React.useState<string>(() => initialModel ? `${initialModel.providerID}/${initialModel.modelID}` : localStorage.getItem(MODEL_KEY) ?? "");
   const models = q.state === "ready" ? q.data : [];
   const key = (m: ModelInfo) => `${m.providerID}/${m.id}`;
-  const current = models.find((m) => key(m) === sel) ?? models[0];
+  const current = models.find((m) => key(m) === sel) ?? (strictSelection && sel ? undefined : models[0]);
   const pick = (k: string) => { localStorage.setItem(MODEL_KEY, k); setSel(k); };
   return { state: q.state, models, current, pick, key, reload: q.reload };
 }
@@ -39,11 +40,12 @@ const readFile = (f: File) => new Promise<ComposerAttachment>((ok, ko) => {
   r.readAsDataURL(f);
 });
 
-type Props = {
+type Props = ModelOptions & {
   placeholder?: string;
+  inputTestId?: string;
   onSend: (text: string, attachments: ComposerAttachment[], opts: SendOptions) => Promise<boolean>;
   /** Called when send is attempted but no provider is configured. */
-  onNoModel?: () => void;
+  onNoModel?: () => void | Promise<void>;
   busy?: boolean;
   onStop?: () => void;
   live?: LiveModels;
@@ -54,12 +56,12 @@ export function ModelComposer(p: Props) {
   return <LiveComposer {...p} />;
 }
 
-function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Props) {
+function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onNoModel, busy, onStop, live, initialModel, allowKeyless, strictSelection }: Props) {
   const { t, locale } = useI18n();
   const toast = useToast();
   const fmtCtx = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
   const fmtCost = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
-  const own = useModels();
+  const own = useModels({ initialModel, allowKeyless, strictSelection });
   const { models, current, pick, key } = live ?? own;
   const [text, setText] = React.useState("");
   const [files, setFiles] = React.useState<ComposerAttachment[]>([]);
@@ -77,10 +79,10 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
 
   const send = async () => {
     if (!text.trim() || busy || pending.current || reads.current) return;
-    if (!current) { onNoModel?.(); return; }
     const reasoning = caps?.reasoning ? think : undefined;
     pending.current = true; setSubmitting(true);
     try {
+      if (!current) { await onNoModel?.(); return; }
       if (await onSend(text.trim(), files, { model: { providerID: current.providerID, modelID: current.id }, reasoning })) {
         setText(""); setFiles([]);
       }
@@ -120,7 +122,7 @@ function LiveComposer({ placeholder, onSend, onNoModel, busy, onStop, live }: Pr
               : <Tip label={t("chat.model.noImage")} side="right"><Menu.Item className="mitem" disabled aria-disabled style={{ opacity: 0.45 }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item></Tip>}
           </Menu.Popup></Menu.Positioner></Menu.Portal>
         </Menu.Root>
-        <input value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} data-testid="composer-input" />
+        <input value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} data-testid={inputTestId} />
         <Menu.Root>
           <Menu.Trigger className="model" type="button" disabled={submitting} data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
           <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 320, maxHeight: 420, overflow: "auto" }}>

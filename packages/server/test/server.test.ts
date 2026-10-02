@@ -1,7 +1,10 @@
 import { afterEach, describe, expect, it } from "vitest"
 import { routes } from "@cortex/protocol"
 import { createServer, listen } from "../src/index"
-import { fakeOpenAI, testCore } from "../../core/test/helpers"
+import { fakeOpenAI, testCore, toolCall } from "../../core/test/helpers"
+import { mkdtempSync, rmSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
 
 const json = (method: string, path: string, body?: unknown) =>
   new Request(`http://local${path}`, { method, headers: body ? { "content-type": "application/json" } : undefined, body: body ? JSON.stringify(body) : undefined })
@@ -44,6 +47,24 @@ describe("server via app.fetch", () => {
     const body = await res.text()
     expect(body).not.toContain("secret")
     expect(JSON.parse(body)).toMatchObject({ hasKey: true, keyHint: "9876" })
+  })
+
+  it("refuses a duplicate active routine through the run route", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cortex-routine-"))
+    const srv = await fakeOpenAI([{ deltas: [toolCall("wait", "bash", { command: "echo test" })], finish: "tool_calls" }])
+    const core = testCore(srv.url)
+    close = async () => { await core.close(); await srv.close(); rmSync(dir, { recursive: true, force: true }) }
+    const task = core.scheduler.create({ title: "Single routine", prompt: "run", schedule: { type: "daily", time: "09:00" }, model: { providerID: "fake", modelID: "reasoner" }, directory: dir })
+    const app = createServer(core)
+    const request = () => app.fetch(json("POST", `/api/tasks/${task.id}/run`))
+    const asked = new Promise<string>((resolve) => core.bus.on("permission.asked", ({ properties }) => resolve(properties.permission.sessionID)))
+    expect((await request()).status).toBe(202)
+    const sessionID = await asked
+    const duplicate = await request()
+    expect(duplicate.status).toBe(409)
+    expect((await duplicate.json()).error.code).toBe("conflict")
+    await core.sessions.abort(sessionID)
+    expect(core.scheduler.get(task.id).runs).toHaveLength(1)
   })
 
   it("MCP routes never return connection URLs, commands, arguments or credentials", async () => {

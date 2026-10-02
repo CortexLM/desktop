@@ -1,0 +1,3570 @@
+{
+  "trials": [
+    {
+      "trial": 0,
+      "guarded": false,
+      "first": {
+        "name": "0-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 144.79999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 255.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "0-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 306,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 388.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 89,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 140.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 140.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "guarded": false,
+      "first": {
+        "name": "1-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 281.59999999403954,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 356.19999998807907,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "1-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 384.09999999403954,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 471.8999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 238.8999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 295.69999998807907,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 295.8999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "guarded": false,
+      "first": {
+        "name": "2-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 228.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 356.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "2-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 394.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 473.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 182.20000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 255,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 255.20000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "guarded": false,
+      "first": {
+        "name": "3-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 269.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 361.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "3-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 391.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 480.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 225.40000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 274.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 274.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "guarded": false,
+      "first": {
+        "name": "4-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 227.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 333,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "4-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 368.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 457.20000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 206.29999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 242.40000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 242.59999999403954,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "guarded": false,
+      "first": {
+        "name": "5-legacy-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 235.6000000089407,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 337.20000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "5-legacy-natural",
+        "animations": "allow",
+        "before": {
+          "at": 363.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 442.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 223.1000000089407,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 252.40000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 252.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 6,
+      "guarded": true,
+      "first": {
+        "name": "6-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 322.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 394.40000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "6-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 450.80000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 524.9000000059605,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 200.40000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 244.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 244.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 7,
+      "guarded": true,
+      "first": {
+        "name": "7-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 387,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 482.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "7-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 512.7000000029802,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 598.8000000119209,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 233,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 300.6000000089407,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 301,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 8,
+      "guarded": true,
+      "first": {
+        "name": "8-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 366,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 442.29999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "8-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 466.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 538.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 213.20000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 273.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 273.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 9,
+      "guarded": true,
+      "first": {
+        "name": "9-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 371.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 427.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "9-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 448.90000000596046,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 506.30000001192093,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 207.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 262.6000000089407,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 262.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 10,
+      "guarded": true,
+      "first": {
+        "name": "10-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 327.79999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 405.29999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "10-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 433.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 517.8999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 182.8999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 239.3999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 239.79999999701977,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trial": 11,
+      "guarded": true,
+      "first": {
+        "name": "11-guarded-disabled",
+        "animations": "disabled",
+        "before": {
+          "at": 343,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 432.59999999403954,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "second": {
+        "name": "11-guarded-natural",
+        "animations": "allow",
+        "before": {
+          "at": 464,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "after": {
+          "at": 553.5999999940395,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        "pixels": 16932,
+        "nonCardPixels": 16932
+      },
+      "events": [
+        {
+          "type": "row-mutation",
+          "at": 213.70000000298023,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "0",
+          "rect": {
+            "x": 377,
+            "y": 142,
+            "width": 538,
+            "height": 54,
+            "top": 142,
+            "right": 915,
+            "bottom": 196,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "running",
+              "currentTime": 0,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 0,
+                "progress": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationstart",
+          "at": 266.3999999910593,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "animationend",
+          "at": 266.5,
+          "rows": 1,
+          "group": "Routine bot1",
+          "title": "Controlled routine",
+          "opacity": "1",
+          "rect": {
+            "x": 377,
+            "y": 134,
+            "width": 538,
+            "height": 54,
+            "top": 134,
+            "right": 915,
+            "bottom": 188,
+            "left": 377
+          },
+          "animation": [
+            {
+              "name": "rise",
+              "state": "finished",
+              "currentTime": 1,
+              "timing": {
+                "delay": 0,
+                "direction": "normal",
+                "duration": 1,
+                "easing": "linear",
+                "endDelay": 0,
+                "fill": "both",
+                "iterationStart": 0,
+                "iterations": 1,
+                "activeDuration": 1,
+                "currentIteration": 0,
+                "endTime": 1,
+                "localTime": 1,
+                "progress": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "persisted": {
+    "id": "tsk_01a0fec19a320000c9c8dcc6460c78c9",
+    "title": "Controlled routine",
+    "prompt": "Run the routine",
+    "schedule": {
+      "type": "daily",
+      "time": "09:00"
+    },
+    "model": {
+      "providerID": "fake",
+      "modelID": "reasoner"
+    },
+    "botID": "bot_01a0fec199ed0000f2509edaa1f1cfec",
+    "directory": "/tmp/opencode/routine-capture-probe/data-O1Fyzy",
+    "enabled": false,
+    "time": {
+      "created": 1790980495922,
+      "updated": 1790980495922
+    },
+    "lastRun": 1790980496212,
+    "runs": [
+      {
+        "id": "run_01a0fec19b54000010df03dd02ad183e",
+        "taskID": "tsk_01a0fec19a320000c9c8dcc6460c78c9",
+        "status": "error",
+        "time": {
+          "start": 1790980496212,
+          "end": 1790980496302
+        },
+        "sessionID": "ses_01a0fec19b5400015ec59bc4d495ad04",
+        "error": {
+          "code": "aborted",
+          "message": "Request aborted"
+        }
+      }
+    ]
+  }
+}

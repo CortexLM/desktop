@@ -1,18 +1,22 @@
 // Cortex Code home (new task) and session workbench.
 import * as React from "react";
-import type { MessageWithParts, ToolPart, Permission, PermissionReply } from "@cortex/schema";
+import type { MessageWithParts, ToolPart, Permission, PermissionReply, PromptInput } from "@cortex/schema";
 import { Icon, IconBtn, Pop, MItem, Segmented, useToast } from "../../kit/ui";
-import { Composer, startPreviewChat, previewChatStart } from "../../components/composer";
+import { Composer, startPreviewChat, previewChatStart, type ComposerAttachment } from "../../components/composer";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { useSessions, useMessages, usePermissions, useQuery } from "../../state/live";
 import { toolName, toolTitle } from "../../state/tool-label";
-import { TestIdComposer, basename, pickModel, useAgo } from "./parts";
+import { ModelComposer, type SendOptions } from "../chat/model-composer";
+import { TestIdComposer, basename, useAgo } from "./parts";
 import type { CodeFx } from "./fixtures";
 
 const STATUS: Record<string, string> = { run: "code.status.running", wait: "code.status.toReview", ok: "code.status.done", err: "code.status.failed" };
+const toPrompt = (text: string, files: ComposerAttachment[], options: SendOptions): PromptInput => ({
+  ...options, parts: [{ type: "text", text }, ...files.map((f) => ({ type: "file" as const, mime: f.mime, filename: f.name, url: f.dataUrl }))],
+});
 
 /* =====================================================================
    Home
@@ -64,16 +68,21 @@ function HomeLive() {
   const [busy, setBusy] = React.useState(false);
   const pick = window.cortex?.pickDirectory;
   const choose = async () => { const d = await pick?.().catch(() => null); if (d) setDir(d); return d ?? null; };
-  const send = async (text: string) => {
+  const noModel = async () => {
+    setBusy(true);
+    try {
+      if (pick && !dir && !await choose()) return;
+      toast.add({ title: t("code.home.noModelTitle"), description: t("code.home.noModelBody"), data: { icon: "alert-triangle" } });
+    } finally { setBusy(false); }
+  };
+  const send = async (text: string, files: ComposerAttachment[], options: SendOptions) => {
     if (busy) return false;
     setBusy(true);
     try {
       const directory = dir ?? (pick ? await choose() : null);
       if (pick && !directory) return false;
-      const model = await pickModel();
-      if (!model) { toast.add({ title: t("code.home.noModelTitle"), description: t("code.home.noModelBody"), data: { icon: "alert-triangle" } }); return false; }
-      const s = await api.sessions.create({ kind: "code", directory: directory ?? undefined, agent: "build", model });
-      await api.sessions.prompt(s.id, { parts: [{ type: "text", text }] });
+      const s = await api.sessions.create({ kind: "code", directory: directory ?? undefined, agent: "build", model: options.model });
+      await api.sessions.prompt(s.id, toPrompt(text, files, options));
       go("code-session", { id: s.id });
       return true;
     } catch {
@@ -86,10 +95,10 @@ function HomeLive() {
     <div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" onClick={() => go("code")} /></div>
     <div className="home">
       <h1>{t("code.home.title")}</h1>
-      <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.home.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={send} disabled={busy} /></TestIdComposer>
+      <ModelComposer placeholder={t("code.home.placeholder")} inputTestId="code-composer-input" allowKeyless strictSelection onSend={send} onNoModel={noModel} />
       {pick && (
         <div className="ctx-bar">
-          <button className="ctx" data-testid="code-pick-folder" onClick={() => void choose()} title={dir ?? undefined}><Icon name="folder-code" size={16} />{dir ? basename(dir) : t("code.home.pickFolder")}<Icon name="chevron-down" size={12} /></button>
+          <button className="ctx" data-testid="code-pick-folder" disabled={busy} onClick={() => void choose()} title={dir ?? undefined}><Icon name="folder-code" size={16} />{dir ? basename(dir) : t("code.home.pickFolder")}<Icon name="chevron-down" size={12} /></button>
         </div>
       )}
       {list.length > 0 && (
@@ -110,8 +119,9 @@ function HomeLive() {
    Session
    ===================================================================== */
 export function CodeSession() {
+  const { params } = useNav();
   const start = previewChatStart();
-  return isPreview() ? <SessionPreview start={start} /> : <SessionLive />;
+  return isPreview() ? <SessionPreview start={start} /> : <SessionLive key={params.get("id")} />;
 }
 
 const diffClass = (l: string) => (l[0] === "+" ? "add" : l[0] === "-" ? "del" : l.startsWith("@@") ? "hunk" : "");
@@ -216,8 +226,8 @@ function SessionLive() {
   const busy = status === "busy" || status === "retry";
   const lastError = [...msgs].reverse().find((m) => m.info.role === "assistant")?.info.error;
   if (!id || session.state === "error") return <div className="empty"><h2>{t("code.session.missingTitle")}</h2><p>{t("code.session.missingBody")}</p><button className="btn primary" onClick={() => go("code")}><Icon name="compose" size={16} />{t("code.newTask")}</button></div>;
-  const send = async (text: string) => {
-    try { await api.sessions.prompt(id, { parts: [{ type: "text", text }] }); return true; }
+  const send = async (text: string, files: ComposerAttachment[], options: SendOptions) => {
+    try { await api.sessions.prompt(id, toPrompt(text, files, options)); return true; }
     catch { toast.add({ title: t("code.session.sendFailed"), data: { icon: "x-circle" } }); return false; }
   };
   const row = (m: MessageWithParts) => m.parts.map((p) => {
@@ -248,7 +258,8 @@ function SessionLive() {
         {asks.map((p) => <PermissionAsk key={p.id} p={p} />)}
         {lastError && !busy && <div className="banner err code-banner"><Icon name="x-circle" size={16} /><span>{t("code.session.errorTitle")}</span><span className="grow">{t("code.session.errorBody")}</span></div>}
         <div style={{ flex: 1 }} />
-        <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.session.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={send} disabled={busy} /></TestIdComposer>
+        {session.state === "ready" && <ModelComposer placeholder={t("code.session.placeholder")} inputTestId="code-composer-input" initialModel={session.data.model} allowKeyless strictSelection onSend={send} busy={busy}
+          onStop={() => void api.sessions.abort(id).catch(() => {})} onNoModel={() => { toast.add({ title: t("code.session.sendFailed"), data: { icon: "x-circle" } }); }} />}
       </div>
       <div className="split-r">
         <div className="pane-head"><Segmented items={views} value={view} onChange={setView} /><div className="spacer" />{edits.length > 0 && <><span className="mono" style={{ color: "color-mix(in srgb, var(--green) 65%, var(--t1))" }}>+{adds}</span><span className="mono" style={{ color: "var(--red)", marginLeft: 6 }}>−{dels}</span></>}</div>

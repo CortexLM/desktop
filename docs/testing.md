@@ -22,6 +22,7 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `packages/desktop/test/remote.test.ts` | SDK probe; real backend only with `CORTEX_TEST_BACKEND_URL` |
 | `packages/desktop/test/credentials.test.ts` | Credential round trips, restrictive permissions, corrupt-store refusal and failed-write preservation |
 | `packages/core/test/mcp.test.ts` | Main-only connection storage, legacy migration/refusal, metadata-write failure, pending reconnect/removal races and redirect-header refusal |
+| `packages/core/test/scheduler.test.ts` | Interrupted routine outcomes, duplicate admission, file-backed restart recovery and deleted-history preservation; server tests verify route conflict responses |
 | `tests/unit/locales.test.ts` · `tests/unit/audit-i18n.test.ts` | locale parity, Node source-stamp exclusion, audit behaviour |
 | `tests/unit/runtime-copy.test.ts` | mascot accessible names and structured tool titles/error copy across eight locales |
 
@@ -106,6 +107,16 @@ Cancellation checks inspect the durable event journal as well as the current mes
   popup menus render above notifications so model selection remains reachable.
   Live Work tests distinguish refused/empty tasks from successful, subsequently failed and aborted tasks,
   verifying both the board and transcript badges after reload.
+- `tests/e2e/code-models.spec.ts` — both themes at 960×640: actual configured model choice on new
+  Code tasks and follow-ups, reasoning payload, keyless endpoints, folder cancellation and duplicate
+  submission locking. Reopening uses the session model despite a different global preference;
+  disabled, missing and unsupported models keep the draft without fallback or provider traffic.
+  Long-filename image refusals retain the file and keep removal/model controls above the toast;
+  choosing an image-capable model admits the original file once.
+- `tests/e2e/routines.spec.ts` — both themes at 960×640: permission-held Running state, duplicate
+  start refusal, aborted Failed state after reload, latest-eight chronological outcome dots and
+  accepted-only run feedback. Deleted-task run/delete refusals use the real engine; delayed request
+  serialization tests pending duplicate suppression without substituting an API response.
 - `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
   handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
   demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced

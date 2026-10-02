@@ -1,5 +1,6 @@
 // Routines: Bot tasks that run on a schedule (engine ScheduledTask with a botID), and the routine editor.
 import * as React from "react";
+import { Menu } from "@base-ui/react/menu";
 import type { Schedule, ScheduledTask, Bot } from "@cortex/schema";
 import { Icon, IconBtn, Switch, Segmented, Pop, MItem, MSep, Tip, useToast } from "../../kit/ui";
 import { useVariant } from "../../registry";
@@ -11,7 +12,8 @@ import { useBots, useQuery } from "../../state/live";
 import { css, useGo, useMainBot, useDate, Top, Empty, Mono, BotFace, type BotsFx } from "./common";
 import type { WorkFx } from "./fixtures";
 
-type Run = "ok" | "err" | "skip";
+type Run = "ok" | "err" | "skip" | "run";
+const RUN_STATUS = { error: "err", success: "ok", running: "run" } as const;
 type Row = { id: string; t: string; bot: string; trig: string; ev?: boolean; next: string; nextSub: string; runs: Run[]; on: boolean; task?: ScheduledTask };
 
 const hhmm = (n: number) => `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`;
@@ -61,29 +63,37 @@ export function Automations() {
   const liveBots: Bot[] = bots.state === "ready" ? bots.data : [];
   const [rs, setRs] = React.useState<Row[]>(fx.routines ?? []);
   const [retry, setRetry] = React.useState(false);
+  const starting = React.useRef(new Set<string>());
+  const [pending, setPending] = React.useState<string[]>([]);
   const fail = preview && v === "failed" && !retry;
   const liveRows: Row[] = tasks.state === "ready" ? tasks.data.filter((x) => x.botID).map((x) => ({
     id: x.id, t: x.title, bot: liveBots.find((b) => b.id === x.botID)?.name ?? "", trig: trig(x.schedule), task: x, on: x.enabled,
     next: x.nextRun ? date.short(x.nextRun) : "—", nextSub: x.nextRun ? date.time(x.nextRun) : "—",
-    runs: x.runs.slice(-8).map((r) => (r.status === "error" ? "err" : r.status === "success" ? "ok" : "skip")),
+    runs: x.runs.slice(0, 8).reverse().map((r) => RUN_STATUS[r.status]),
   })) : [];
   const rows = preview ? rs.map((r) => (r.id === fx.failRoutine && fail ? { ...r, runs: [...r.runs.slice(0, 7), "err" as Run], nextSub: fx.failNextSub } : r)) : liveRows;
   const name = (n: string) => (n === fx.main?.name ? main?.cfg.name ?? n : n);
   const groups = [...new Set(rows.map((r) => r.bot))];
   type H = [string, string, string, Run, string];
   const hist: H[] = preview ? (fail ? [fx.failHist as H, ...(fx.history as H[]).filter((h) => h[1] !== fx.failHist[1])] : fx.history as H[])
-    : liveRows.flatMap((r) => r.task!.runs.map((x) => [date.short(x.time.start), r.t, r.bot, x.status === "error" ? "err" : "ok", x.time.end ? t("chat.secs", { secs: Math.round((x.time.end - x.time.start) / 1000) }) : "—", x.time.start] as const))
+    : liveRows.flatMap((r) => r.task!.runs.map((x) => [date.short(x.time.start), r.t, r.bot, RUN_STATUS[x.status], x.time.end ? t("chat.secs", { secs: Math.round((x.time.end - x.time.start) / 1000) }) : "—", x.time.start] as const))
       .sort((a, b) => b[5] - a[5]).slice(0, 12).map((x) => x.slice(0, 5) as H);
   const empty = preview ? v === "empty" : tasks.state === "ready" && !liveRows.length;
   const toggle = (r: Row, on: boolean) => {
     if (preview) return setRs((xs) => xs.map((x) => (x.id === r.id ? { ...x, on } : x)));
     api.tasks.update(r.id, { enabled: on }).then(tasks.reload, () => toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }));
   };
-  const runNow = (r: Row) => {
-    toast.add({ title: t("work.routines.toastRun"), description: r.t, data: { icon: "play" } });
-    if (!preview) api.tasks.run(r.id).then(tasks.reload, () => toast.add({ title: t("work.error.run"), data: { icon: "alert-triangle" } }));
+  const runNow = async (r: Row) => {
+    if (starting.current.has(r.id) || r.runs.includes("run")) return;
+    starting.current.add(r.id); setPending([...starting.current]);
+    try {
+      if (!preview) await api.tasks.run(r.id);
+      toast.add({ title: t("work.routines.toastRun"), description: r.t, data: { icon: "play" } });
+      if (!preview) tasks.reload();
+    } catch { toast.add({ title: t("work.error.run"), data: { icon: "alert-triangle" } }); }
+    finally { starting.current.delete(r.id); setPending([...starting.current]); }
   };
-  const remove = (r: Row) => (preview ? setRs((xs) => xs.filter((x) => x.id !== r.id)) : api.tasks.delete(r.id).then(tasks.reload, () => {}));
+  const remove = (r: Row) => (preview ? setRs((xs) => xs.filter((x) => x.id !== r.id)) : api.tasks.delete(r.id).then(tasks.reload, () => toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } })));
   const edit = (r: Row) => go("automation-edit", r.ev ? "event" : "", preview ? {} : { id: r.id });
   return (<>
     <Top title={t("work.routines")}><button className="btn primary" style={{ height: 28 }} data-testid="routine-create" onClick={() => go("automation-edit")}><Icon name="plus" size={16} />{t("work.routines.new")}</button></Top>
@@ -101,15 +111,15 @@ export function Automations() {
           <React.Fragment key={g}>
             <div className="travail-botgroup"><BotFace name={g} size={20} bots={liveBots} />{name(g)}<span className="travail-count">{rows.filter((r) => r.bot === g).length}</span></div>
             <div className="list">
-              {rows.filter((r) => r.bot === g).map((r, i) => { const err = r.runs.at(-1) === "err"; return (
+              {rows.filter((r) => r.bot === g).map((r, i) => { const err = r.runs.at(-1) === "err", busy = pending.includes(r.id) || r.runs.includes("run"); return (
                 <div key={r.id} className="travail-rt travail-rise" style={css(i)} data-err={err || undefined}>
                   <span className="li-ic"><Icon name={r.ev ? "bolt" : "clock-loop"} size={16} /></span>
                   <button className="travail-grow" style={{ textAlign: "left" }} onClick={() => edit(r)}><span className="ttl">{r.t}</span><span className="travail-meta">{r.trig}</span></button>
-                  <Tip label={t("work.routines.lastRuns", { count: r.runs.length })}><span className="travail-runs" aria-label={t("work.routines.runsLabel", { ok: r.runs.filter((x) => x === "ok").length, err: r.runs.filter((x) => x === "err").length })}>{r.runs.map((x, j) => <i key={j} data-s={x} />)}</span></Tip>
+                  <Tip label={t("work.routines.lastRuns", { count: r.runs.length })}><span className="travail-runs" aria-label={t("work.routines.runsLabel", { ok: r.runs.filter((x) => x === "ok").length, err: r.runs.filter((x) => x === "err").length })}>{r.runs.map((x, j) => <i key={j} data-s={x} style={x === "run" ? { background: "var(--blue)" } : undefined} />)}</span></Tip>
                   <span className="travail-next">{err ? <span className="badge err" style={{ alignSelf: "flex-end" }}>{t("work.failed")}</span> : <b>{r.on ? r.next : t("work.paused")}</b>}<span className="travail-meta">{r.on ? r.nextSub : "—"}</span></span>
                   <Switch checked={r.on} onCheckedChange={(on) => toggle(r, on)} aria-label={t("work.routines.enable", { name: r.t })} />
                   <Pop align="end" trigger={<button className="ibtn" aria-label={t("work.routines.optionsOf", { name: r.t })}><Icon name="more-dots" size={16} /></button>}>
-                    <MItem icon="play" onClick={() => runNow(r)}>{t("work.routines.runNow")}</MItem><MItem icon="edit" onClick={() => edit(r)}>{t("work.edit")}</MItem>{preview && <MItem icon="copy">{t("work.duplicate")}</MItem>}<MSep />
+                    <Menu.Item className="mitem" disabled={busy} style={busy ? { opacity: .45 } : undefined} onClick={() => runNow(r)}><Icon name="play" /><span>{t("work.routines.runNow")}</span></Menu.Item><MItem icon="edit" onClick={() => edit(r)}>{t("work.edit")}</MItem>{preview && <MItem icon="copy">{t("work.duplicate")}</MItem>}<MSep />
                     <MItem icon="trash" danger onClick={() => remove(r)}>{t("common.delete")}</MItem>
                   </Pop>
                 </div>); })}
@@ -120,7 +130,7 @@ export function Automations() {
           <div className="list">
             <table className="travail-hist"><thead><tr><th>{t("work.routines.when")}</th><th>{t("work.routines.routine")}</th><th>{t("work.routines.bot")}</th><th>{t("work.routines.status")}</th><th>{t("work.routines.duration")}</th></tr></thead>
               <tbody>{hist.map(([w, x, b, s, d], i) => <tr key={w + x + i}><td className="mono">{w}</td><td>{x}</td><td><span className="travail-urg"><BotFace name={b} size={18} bots={liveBots} />{name(b)}</span></td>
-                <td>{s === "ok" ? <span className="badge ok">{t("work.routines.succeeded")}</span> : <span className="badge err">{t("work.failed")}</span>}</td><td className="mono">{d}</td></tr>)}</tbody></table>
+                <td>{s === "ok" ? <span className="badge ok">{t("work.routines.succeeded")}</span> : s === "run" ? <span className="badge run">{t("work.task.status.running")}</span> : <span className="badge err">{t("work.failed")}</span>}</td><td className="mono">{d}</td></tr>)}</tbody></table>
           </div>
         </>}
       </div></div>

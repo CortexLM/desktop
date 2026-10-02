@@ -132,7 +132,7 @@ export function createServer(core: Core): Hono {
     "task.delete": ({ params }) => void core.scheduler.delete(params.id!),
     "task.run": ({ params }) => {
       core.scheduler.get(params.id!)
-      void core.scheduler.run(params.id!)
+      void core.scheduler.run(params.id!).catch(() => undefined)
       return { accepted: true }
     },
 

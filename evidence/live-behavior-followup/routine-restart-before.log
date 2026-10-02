@@ -1,0 +1,44 @@
+$ vitest run packages/core/test/scheduler.test.ts -t "scheduler restarts"
+
+ RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ❯ packages/core/test/scheduler.test.ts (3 tests | 1 failed | 2 skipped) 21ms
+   ❯ scheduled run outcomes (3)
+     × marks persisted running records interrupted when the scheduler restarts 20ms
+     ↓ persists interruption as an error instead of a successful routine run
+     ↓ refuses duplicate starts before creating another session or run
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/test/scheduler.test.ts > scheduled run outcomes > marks persisted running records interrupted when the scheduler restarts
+AssertionError: expected { id: 'run-interrupted', …(3) } to match object { status: 'error', …(1) }
+(4 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "error": {
+-     "code": "aborted",
+-   },
+-   "status": "error",
++   "status": "running",
+  }
+
+ ❯ packages/core/test/scheduler.test.ts:15:51
+     13|       core.storage.putDoc("run", run.id, run, task.id, run.time.start)
+     14|       core.scheduler.start()
+     15|       expect(core.scheduler.get(task.id).runs[0]).toMatchObject({ stat…
+       |                                                   ^
+     16|       expect(core.scheduler.get(task.id).runs[0]?.time.end).toBeGreate…
+     17|     } finally { await core.close() }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  22:10:18
+   Duration  752ms (import 53%, transform 43%, tests 4%, worker 1%)
+
+error: script "test" exited with code 1

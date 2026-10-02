@@ -167,7 +167,7 @@ export class SessionService {
     const { done } = await this.prompt(sessionID, input)
     await done
     const last = this.d.storage.messages(sessionID).filter((m) => m.info.role === "assistant").at(-1)
-    if (last?.info.error && last.info.error.code !== "aborted") throw new CortexError(last.info.error.code, last.info.error.message)
+    if (last?.info.error) throw new CortexError(last.info.error.code, last.info.error.message)
     return last?.parts.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("") ?? ""
   }
 
