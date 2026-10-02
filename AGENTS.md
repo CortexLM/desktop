@@ -168,7 +168,8 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
 The UI is ported from a local design reference (a separate checkout, not in this repo).
 `ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs` pixel-diffs
 gallery states plus five interaction shots against the reference into `evidence/compare/`.
-Theme values are CSS variables in `packages/app/src/kit/styles.css`.
+Theme values are CSS variables in `packages/app/src/kit/styles.css`. Targeted small-window
+regressions live in `tests/e2e/responsive.spec.ts`; full visual acceptance stays partial.
 
 ## CI, packaging and releases
 

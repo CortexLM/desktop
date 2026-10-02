@@ -45,6 +45,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   uncaught page errors and raw i18n keys in preview; it does not exercise every control.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs.
+- `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
+  suggestion, read split-diff line endings, use Canvas selection/version controls, operate
+  Work computer controls. This targeted regression does not certify every screen.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or

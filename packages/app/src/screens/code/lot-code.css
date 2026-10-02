@@ -336,3 +336,17 @@
 .pg-panel .code-banner { margin-bottom: 14px; }
 .code-head .code-delta, .code-head .code-delta span, .code-head .code-meta, .code-head .ctx, .code-head .ctx span { flex: none; font-family: var(--mono); }
 .code-head .code-meta { font-family: var(--font); }
+
+@media (max-width: 1200px) {
+  .code-main > .code-file { flex-shrink: 0; }
+  .code-file .code-head > span:first-of-type { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .code-cmt { margin-left: 12px; }
+  .code-cmt-h, .code-cmt-f { flex-wrap: wrap; }
+  .code-sugg { overflow-x: auto; }
+  .code-sugg .code-dl { min-width: max-content; }
+  .code-sugg .code-src { overflow: visible; }
+  .code-split { display: grid; grid-template-columns: repeat(2, minmax(max-content, 1fr)); }
+  .code-split > * { grid-column: 1 / -1; }
+  .code-split .code-sr { grid-template-columns: subgrid; }
+  .code-split .code-half, .code-split .code-src { overflow: visible; }
+}

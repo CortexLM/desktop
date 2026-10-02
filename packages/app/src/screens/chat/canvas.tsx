@@ -34,7 +34,7 @@ function CanvasIn({ v, setV }: { v: string; setV: (v: string) => void }) {
   const place = (r: DOMRect) => {
     const d = docRef.current; if (!d) return;
     const b = d.getBoundingClientRect();
-    setSel({ x: Math.min(Math.max(r.left - b.left + r.width / 2, 200), b.width - 200), y: r.bottom - b.top + d.scrollTop });
+    setSel({ x: r.left - b.left + r.width / 2, y: r.bottom - b.top + d.scrollTop });
   };
   React.useLayoutEffect(() => { if (v === "selection" && markRef.current) place(markRef.current.getBoundingClientRect()); }, [v]);
   const onUp = () => {
@@ -107,7 +107,7 @@ function CanvasIn({ v, setV }: { v: string; setV: (v: string) => void }) {
               </>}
             </article>
             {sel && !working && (
-              <form className="chat-selbar popup" style={css({ left: sel.x, top: sel.y })} onSubmit={apply} onMouseUp={(e) => e.stopPropagation()}>
+              <form className="chat-selbar popup" style={css({ "--selection-x": `${sel.x}px`, top: sel.y })} onSubmit={apply} onMouseUp={(e) => e.stopPropagation()}>
                 <Icon name="sparkle-free" className="chat-i1" />
                 <input value={ask} onChange={(e) => setAsk(e.target.value)} placeholder={askPh} aria-label={askPh} autoFocus={v === "selection"} />
                 <button className="send chat-mini" aria-label={t("chat.apply")} disabled={!ask.trim()} data-dim={!ask.trim() || undefined}><Icon name="arrow-up" size={16} /></button>

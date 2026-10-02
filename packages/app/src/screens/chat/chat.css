@@ -259,7 +259,7 @@
 .chat-doc-in del { color: var(--t2); text-decoration-color: color-mix(in srgb, var(--red) 80%, var(--t1)); background: color-mix(in srgb, var(--red) 12%, transparent); border-radius: 3px; padding: 0 2px; }
 .chat-mark { background: color-mix(in srgb, var(--blue) 22%, transparent); color: inherit; border-radius: 3px; padding: 1px 0; animation: chat-hl 400ms var(--ease-out) both; }
 @keyframes chat-hl { from { background: transparent; } }
-.chat-selbar { position: absolute; z-index: 5; width: 380px; height: 40px; translate: -50% 10px; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 12px; border-radius: 20px; animation: chat-pop 220ms var(--ease-pop) both; }
+.chat-selbar { position: absolute; z-index: 5; left: clamp(min(200px, 50%), var(--selection-x), max(50%, calc(100% - 200px))); width: 380px; max-width: calc(100% - 20px); height: 40px; translate: -50% 10px; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 12px; border-radius: 20px; animation: chat-pop 220ms var(--ease-pop) both; }
 .chat-selbar input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; }
 .chat-selbar input::placeholder { color: var(--t3); }
 .chat-mini { width: 30px; height: 30px; border-radius: 15px; }
@@ -272,12 +272,18 @@
 .chat-code code { flex: 1; white-space: pre; outline: 0; font-family: inherit; }
 .chat-out { display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 14px; border-top: 1px solid var(--line); background: var(--card); animation: rise 280ms var(--ease-out) both; }
 .chat-out .mono { flex: 1; font-size: 12px; }
-.chat-cmp-f { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--line); }
+.chat-cmp-f { display: flex; flex-wrap: wrap; flex-shrink: 0; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--line); }
+.chat-cmp-f .btn { flex-shrink: 0; white-space: nowrap; }
 .chat-cmp-f .spacer { flex: 1; }
 .chat-cmp-f .chat-meta { display: inline-flex; align-items: center; gap: 6px; }
 .chat-sw { width: 10px; height: 10px; border-radius: 3px; margin-left: 4px; }
 .chat-sw.ins { background: color-mix(in srgb, var(--green) 40%, transparent); }
 .chat-sw.del { background: color-mix(in srgb, var(--red) 34%, transparent); margin-left: 10px; }
+
+@media (max-width: 1200px) {
+  .chat-doc { padding-inline: 24px; }
+  .chat-doc-in { overflow-wrap: anywhere; }
+}
 
 /* ---------- Web search ---------- */
 .chat-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; }

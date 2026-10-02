@@ -381,3 +381,9 @@ button.travail-li { width: 100%; text-align: left; }
 .travail-slider-th:active { scale: 1.12; }
 .travail-slider-th:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .travail-log { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1200px) {
+  .travail-pane .pane-head { min-width: 0; height: auto; min-height: 48px; flex-wrap: wrap; padding-block: 8px; }
+  .travail-pane .pane-head .btn { flex-shrink: 0; white-space: nowrap; }
+  .travail-pc-wrap { min-width: 0; }
+}
