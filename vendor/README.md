@@ -20,6 +20,8 @@ real-backend case (`CORTEX_TEST_BACKEND_URL`) asserts reachability; the recorded
 [`evidence/sdk-real-backend.log`](../evidence/sdk-real-backend.log) contains returned model
 metadata, not a generated response or authenticated-session proof.
 
-This version predates G2 schema blob `d3837ef436a5888b329aa0e5b3eb3bcc3f0b3b5d`.
+This version predates G2's current schema blob `d6d46014d1c436b96540529dca2a3005556ae920`
+at backend `70a3056f7223a7eb9257d984848d4d33fee7ec12`, superseding `d3837ef4`.
+The new pin supplies five previously omitted auth/upload bodies while preserving 422 operation IDs.
 Regeneration remains with the SDK owner; missing `configured` query typing is accommodated
 by passing an inferred query object through the existing SDK method, without patching it.

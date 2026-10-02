@@ -49,6 +49,8 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 
 `vendor/` holds unmodified `@cortex/sdk` 0.2.0 and its optional peer `@cortex/api-types`
 0.1.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
+These packages await SDK-owner regeneration against backend schema blob `d6d46014`;
+the newly typed auth/upload contract does not make desktop remote authentication live.
 
 ## Toolchain
 

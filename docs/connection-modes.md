@@ -70,7 +70,9 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 
 The current backend supports guest Chat, email OTP and self-host `none`/operator auth.
 Desktop transport must isolate token/cookie state by origin and account. SDK regeneration
-and OTP/upload typing remain owned by the SDK session. The existing backend turn input
+against canonical schema `d6d46014d1c436b96540529dca2a3005556ae920` remains owned by the
+SDK session. That backend pin supplies typed OTP/MFA/email continuations and raw-byte uploads;
+it does not update the vendored SDK or implement desktop authentication. The existing backend turn input
 has reasoning effort `low|medium|high`, no disabled value; omission means `medium`.
 Cancelling the stream reader does not cancel backend generation. Supported reasoning-off
 and cancel-turn behavior has been requested from the contract owner, who confirmed both
