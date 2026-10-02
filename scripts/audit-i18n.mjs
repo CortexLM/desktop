@@ -61,7 +61,7 @@ for (const file of files) {
     },
   });
 }
-for (const k of usedKeys) if (!en[k]) problems.push(`missing en key: ${k}`);
+for (const k of usedKeys) if (!en[k] && !en[`${k}_other`]) problems.push(`missing en key: ${k}`);
 function rel(f) { return path.relative(root, f); }
 
 const out = process.argv.includes("--json") ? JSON.stringify({ files: files.length, keysUsed: usedKeys.size, catalogKeys: Object.keys(en).length, problems }, null, 2) : problems.join("\n");
