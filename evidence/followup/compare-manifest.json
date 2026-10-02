@@ -1,0 +1,465 @@
+{
+  "applicationRevision": "0e63f876bbe3d0fe893c6c698ff3fadb6dcec702",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "deviceScaleFactor": 2
+  },
+  "locale": "fr",
+  "source": "/root/cortex-ui/shots",
+  "scope": "28 targeted renders; remaining comparison rows retain previous provenance",
+  "rows": [
+    {
+      "name": "bot-studio-dark",
+      "ref": "bot-studio-dark.png",
+      "diffPct": 0.01,
+      "files": {
+        "app": {
+          "sha256": "f770cd1e340b800aa3f084cc34723667cf8405242bd913ce97ebabb8b51fc204",
+          "bytes": 772854
+        },
+        "design": {
+          "sha256": "de85191526b42824dc638f1b6dace5b5f3a1cc46e51f935e7a052e1c81efd257",
+          "bytes": 774078
+        },
+        "diff": {
+          "sha256": "17133c09479f6a204c044791677dfb27eff03e5cf9feef6fdd397fd0ec718c65",
+          "bytes": 290773
+        }
+      }
+    },
+    {
+      "name": "bot-studio-light",
+      "ref": "bot-studio-light.png",
+      "diffPct": 0.01,
+      "files": {
+        "app": {
+          "sha256": "e05cb5ae6404b5c4b304fdd6fb3bdbd06d557e829bfa8c63797ed6bd2a51f368",
+          "bytes": 761076
+        },
+        "design": {
+          "sha256": "14e7b14e7557333c73b7b07c9b27d1662239117f5b1cc9f12b0903b5afe9423d",
+          "bytes": 761544
+        },
+        "diff": {
+          "sha256": "84bfa406f50e74dd8cb5ea79479e0253ac57a59ed09059501109341fa6a07b6f",
+          "bytes": 303662
+        }
+      }
+    },
+    {
+      "name": "home-dark",
+      "ref": "home-dark.png",
+      "diffPct": 0.21,
+      "files": {
+        "app": {
+          "sha256": "27f7ac3a79f6239e924a0f3b61535bb9172e4c3128041cc575d876b44d26e39b",
+          "bytes": 669343
+        },
+        "design": {
+          "sha256": "e49ea14c5e467279474910bb22a06d8ae42663907661e10b968c7cdb4555d058",
+          "bytes": 667117
+        },
+        "diff": {
+          "sha256": "e5d3827fc2082bf49bacbf1a8db8c3edce9c39990f932abf67e48b092eef72d0",
+          "bytes": 216835
+        }
+      }
+    },
+    {
+      "name": "home-light",
+      "ref": "home-light.png",
+      "diffPct": 0.22,
+      "files": {
+        "app": {
+          "sha256": "ab6b9494b8610b0ac96eecd8af0df3a321f60bd04de2d9d1617187ca324cf06e",
+          "bytes": 656521
+        },
+        "design": {
+          "sha256": "3330fcec699e7d133d0c7f0140debb0183fac18aa3047bad16c1ca8c58d1ceba",
+          "bytes": 653721
+        },
+        "diff": {
+          "sha256": "2c98ac428f0fc318032be55e658301d5e237d265caadb9690b0dadb96ca15d99",
+          "bytes": 217853
+        }
+      }
+    },
+    {
+      "name": "chat-dark",
+      "ref": "chat-dark.png",
+      "diffPct": 0.15,
+      "files": {
+        "app": {
+          "sha256": "7e790c5c401fc7467b8a8f1f0cf5ec3be880e18abd0fd4881937395cf64a819d",
+          "bytes": 716494
+        },
+        "design": {
+          "sha256": "9f9cf586c8564cc5109cf64d5fa3a635bbd8aa86041347810f1df821162dc40c",
+          "bytes": 716401
+        },
+        "diff": {
+          "sha256": "6f998d85258eb682a931edf913671f4d4c323af307a9dfea8cf3e2083267f312",
+          "bytes": 298264
+        }
+      }
+    },
+    {
+      "name": "chat-light",
+      "ref": "chat-light.png",
+      "diffPct": 0.15,
+      "files": {
+        "app": {
+          "sha256": "0baf71a1d12ace3dd90950a83264d801bc2493d42d20561c5c35288639ed6f1b",
+          "bytes": 702161
+        },
+        "design": {
+          "sha256": "e171d5c77740ca32020b2e71f3b11302ffce76bfcdfc7c27b2f7cfa7f6031e49",
+          "bytes": 702076
+        },
+        "diff": {
+          "sha256": "605d9b169c92985382fc0b5f1599644514e2abbf4168ca9245624676c6236082",
+          "bytes": 303588
+        }
+      }
+    },
+    {
+      "name": "settings~general-dark",
+      "ref": "settings-dark.png",
+      "diffPct": 0.06,
+      "files": {
+        "app": {
+          "sha256": "be4f3f889333bbba627150d5e94eb21aef4ff2b5c4af4fd83e6f974588c3b5fb",
+          "bytes": 705504
+        },
+        "design": {
+          "sha256": "f907c3571803e1176a9a34b41e0a0ae00f04584abae9af9200940d7bde87673d",
+          "bytes": 691807
+        },
+        "diff": {
+          "sha256": "857a1f4f18e07df5da2e66707bb4bf961d0b7871e80a537beed1ed187a044af4",
+          "bytes": 238207
+        }
+      }
+    },
+    {
+      "name": "settings~general-light",
+      "ref": "settings-light.png",
+      "diffPct": 0.06,
+      "files": {
+        "app": {
+          "sha256": "0c9168020cfa759856bdab183e8298732798a0d214f8fec50b63edc8e151ab40",
+          "bytes": 692840
+        },
+        "design": {
+          "sha256": "3673b9375e9a47ab576eb542a18060e92914b7471c082369a8d23b17d6ba4b85",
+          "bytes": 678313
+        },
+        "diff": {
+          "sha256": "b435678de82a716325b91bdaf742d8b76632234bd7abd5a0614ce3a8f4e40d62",
+          "bytes": 245247
+        }
+      }
+    },
+    {
+      "name": "settings~appearance-dark",
+      "ref": "settings-apparence-dark.png",
+      "diffPct": 0.6,
+      "files": {
+        "app": {
+          "sha256": "fadabe4a642a3405cc98f656fbf98e74d169600d1ccd2763e1988ba757836357",
+          "bytes": 723865
+        },
+        "design": {
+          "sha256": "137804bc34bdfd9999e78667dfb61c5354bb96f19daa57c14728f15978c39862",
+          "bytes": 709411
+        },
+        "diff": {
+          "sha256": "1f394cf28b8dbc2a58661bc78558fa72891d8055b66c8243a862e4a6f019959d",
+          "bytes": 260816
+        }
+      }
+    },
+    {
+      "name": "settings~appearance-light",
+      "ref": "settings-apparence-light.png",
+      "diffPct": 0.78,
+      "files": {
+        "app": {
+          "sha256": "a3d5a45ed6b1354e8630d610a338d1785e7b4826099166c1400be259a2dec19f",
+          "bytes": 712382
+        },
+        "design": {
+          "sha256": "abffe22aa2a9c5e7186cc55b94d06a565ccd069e02bb6cdfd8745d33f10b8e45",
+          "bytes": 698017
+        },
+        "diff": {
+          "sha256": "0e89e7deb0a67760aafe3833507bcbde54760bd1575ee6c2d76bff595e06b0fe",
+          "bytes": 263112
+        }
+      }
+    },
+    {
+      "name": "settings~providers-dark",
+      "ref": "settings~providers-dark.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "d29a37a3009edbe5095be36c1703939f19f4af3ad752f9a3b9840e03ccb3803f",
+          "bytes": 767948
+        }
+      }
+    },
+    {
+      "name": "settings~providers-light",
+      "ref": "settings~providers-light.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "4428a2562b390f6ddf8066bc48346c5d7d83fc1fc27915cec2327b83065746ff",
+          "bytes": 756213
+        }
+      }
+    },
+    {
+      "name": "settings~connection-dark",
+      "ref": "settings~connection-dark.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "1bd41a1b6935ad87f9b717aaebaa742ec3a6a1c15b4f63bbe48a3e299ffa4589",
+          "bytes": 704190
+        }
+      }
+    },
+    {
+      "name": "settings~connection-light",
+      "ref": "settings~connection-light.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "087f236305b22bd76ba3a369d68d545bc827c092013d8f65b5710b28a88e42d8",
+          "bytes": 691138
+        }
+      }
+    },
+    {
+      "name": "settings~bot-dark",
+      "ref": "settings~bot-dark.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "6684187d2556840016b259ce7b0494727135b07e346c8e7765c15a4f9c2ba882",
+          "bytes": 703274
+        }
+      }
+    },
+    {
+      "name": "settings~bot-light",
+      "ref": "settings~bot-light.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "43f32b4f7a3fdb503ca11909a029dc2672c166427775ab9c6b01e82a44a0884f",
+          "bytes": 690312
+        }
+      }
+    },
+    {
+      "name": "settings~notifications-dark",
+      "ref": "settings~notifications-dark.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "cc1b5fa72f94b4f7617c3e3c41635ebf7507f2bcd1d73c08cc2ad59037123e73",
+          "bytes": 709587
+        }
+      }
+    },
+    {
+      "name": "settings~notifications-light",
+      "ref": "settings~notifications-light.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "0ae78cecb52340319af6c7bea0efe0fe5624a6acc0ef54147c0a7d29170347d1",
+          "bytes": 697297
+        }
+      }
+    },
+    {
+      "name": "settings~privacy-dark",
+      "ref": "settings~privacy-dark.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "e9e3a9ff8fd232656a501cd281ec29ddc1fee29ebf6f06a9e258ea4872825767",
+          "bytes": 706658
+        }
+      }
+    },
+    {
+      "name": "settings~privacy-light",
+      "ref": "settings~privacy-light.png",
+      "status": "no-design-shot",
+      "files": {
+        "app": {
+          "sha256": "a4257a9521aadac397a4576a012766d782b63f495d2c7f530902984edb5c66f1",
+          "bytes": 694203
+        }
+      }
+    },
+    {
+      "name": "settings~shortcuts-dark",
+      "ref": "settings-raccourcis-dark.png",
+      "diffPct": 0.59,
+      "files": {
+        "app": {
+          "sha256": "ee2457bee3a31f2af67b7357a8a7ea66375ef9bac4e800d872d34be3a5768d14",
+          "bytes": 694939
+        },
+        "design": {
+          "sha256": "e5eda573f6a7c8966d88158643d17ed1c74a54c28874e291a04b04ea986c1180",
+          "bytes": 679403
+        },
+        "diff": {
+          "sha256": "b5aad04aad4a4999277b152807202f5856adfde9fcf41660de56c8ac948084aa",
+          "bytes": 229644
+        }
+      }
+    },
+    {
+      "name": "settings~shortcuts-light",
+      "ref": "settings-raccourcis-light.png",
+      "diffPct": 0.57,
+      "files": {
+        "app": {
+          "sha256": "9967d2110c35fd60a4182073c6607358828bf3b3bb24202e94ccd438cdbceb14",
+          "bytes": 681073
+        },
+        "design": {
+          "sha256": "3f9bd42b6c21c98595f2a1a6c2d61ba685507a47a0f40fad51333297f79b6fae",
+          "bytes": 665542
+        },
+        "diff": {
+          "sha256": "29ada157a4080e5d94eb6bbad6658e1bb47affbdce6a4c086ff5efa782e6fa2f",
+          "bytes": 228854
+        }
+      }
+    },
+    {
+      "name": "settings~account-dark",
+      "ref": "settings-compte-dark.png",
+      "diffPct": 0.59,
+      "files": {
+        "app": {
+          "sha256": "721313648fa800e02cfd5eec9921077da210ac9e35f5dfdcc1194cd3bfe92cdb",
+          "bytes": 721334
+        },
+        "design": {
+          "sha256": "3d24d2266be6ee9e01cac99e35ac7df2511473134f41e7ef66f8f9707885db13",
+          "bytes": 707498
+        },
+        "diff": {
+          "sha256": "7fad82670541d76fd21526d6172fb8172840e5e38c47669942ff083629030b65",
+          "bytes": 257534
+        }
+      }
+    },
+    {
+      "name": "settings~account-light",
+      "ref": "settings-compte-light.png",
+      "diffPct": 0.57,
+      "files": {
+        "app": {
+          "sha256": "0d06841cf3c5f41b000c466f0af838ab2f25d5fde569904a990ab7da4e38be74",
+          "bytes": 710639
+        },
+        "design": {
+          "sha256": "a7bb5236b2275d16e1011aac561534dee220f404aa91df5dd9230a2aa9f71ade",
+          "bytes": 696447
+        },
+        "diff": {
+          "sha256": "05ae0cc0aface8b713359c197cde0a02d376bc21751a8c8761171c6fa0e60339",
+          "bytes": 260881
+        }
+      }
+    },
+    {
+      "name": "components-dark",
+      "ref": "components-dark.png",
+      "diffPct": 0,
+      "files": {
+        "app": {
+          "sha256": "b332f437485da4f5d90da469c73911877ac3b8f308dd3e5aaf9f7c00a9b8c2a0",
+          "bytes": 783246
+        },
+        "design": {
+          "sha256": "0697a61dd4ff8f23b8de64385d6736706e59d17c9acddd1865afbfc6728286fb",
+          "bytes": 783318
+        },
+        "diff": {
+          "sha256": "7186b7708b2649513f5cd0cd80c72461c146372c3ae17d41a9fcda9fcb855f10",
+          "bytes": 299514
+        }
+      }
+    },
+    {
+      "name": "components-light",
+      "ref": "components-light.png",
+      "diffPct": 0,
+      "files": {
+        "app": {
+          "sha256": "d90aacf725b615411bef1bd690420e84a6056d3e65481f494de28986f2ec0477",
+          "bytes": 773987
+        },
+        "design": {
+          "sha256": "1c78b9e7cada1836f34daa2baffc734829549d21c23366db6f2273199c9b276f",
+          "bytes": 774018
+        },
+        "diff": {
+          "sha256": "718d731f006859d44b450e176ee433e677d88af6759b6bf2c67d7784da2c44c9",
+          "bytes": 309609
+        }
+      }
+    },
+    {
+      "name": "home+menu-dark",
+      "ref": "home+menu-dark.png",
+      "diffPct": 0.21,
+      "files": {
+        "app": {
+          "sha256": "a06a00bc3a1e41f25ff17f114c9480a15059a3088bfa48b0b3f8e7ed031842bc",
+          "bytes": 686665
+        },
+        "design": {
+          "sha256": "76e6fc49674199ec4c5df91e5e0e5b8bc6d77e669b5ec878d9fbf46e4716dc72",
+          "bytes": 684621
+        },
+        "diff": {
+          "sha256": "6b3f9672e8adeaa3ee7bbabcd6ef832196781bc01aed2c1a966d68a95a9f24de",
+          "bytes": 226828
+        }
+      }
+    },
+    {
+      "name": "home+menu-light",
+      "ref": "home+menu-light.png",
+      "diffPct": 0.22,
+      "files": {
+        "app": {
+          "sha256": "104648c73b5c1cc7691e5e3b3d745647a042278183f55489e12f5d62c978881f",
+          "bytes": 671246
+        },
+        "design": {
+          "sha256": "fedad51f3298dd258166f9e9dbbac1b4a2f75cc1061453a07891adc4bcda6566",
+          "bytes": 669839
+        },
+        "diff": {
+          "sha256": "9301996d81fe163520bd288ef953d44411b4b2c8f8685f2b855fa88c4fad361f",
+          "bytes": 228633
+        }
+      }
+    }
+  ]
+}

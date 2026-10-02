@@ -1,0 +1,18 @@
+
+Running 12 tests using 4 workers
+
+  ✓   3 tests/e2e/engine.spec.ts:9:1 › models.dev catalog is listed and searchable through the bridge (1.5s)
+  ✓   1 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.8s)
+  ✓   2 tests/e2e/engine.spec.ts:23:1 › streamed exchange with a thinking- and image-capable model (3.2s)
+  ✓   5 tests/e2e/engine.spec.ts:75:1 › an image is refused for a model without image input (2.4s)
+  ✓   4 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (4.7s)
+  ✓   7 tests/e2e/responsive.spec.ts:9:1 › preview navigation loads fixtures and catches startup URL changes (1.4s)
+  ✓  10 tests/e2e/ui-flows.spec.ts:19:1 › a provider key saved in Settings shows only its last four characters (5.4s)
+  ✓   6 tests/e2e/navigation.spec.ts:4:1 › anchors, native menus and history preserve routes, variants and chat identities (15.1s)
+  ✓  11 tests/e2e/ui-flows.spec.ts:26:1 › streamed exchange with thinking and an image, driven from the composer (7.6s)
+  ✓  12 tests/e2e/ui-flows.spec.ts:64:1 › rejected sends keep the draft and attachments; retry resends the image (16.4s)
+  ✓   8 tests/e2e/responsive.spec.ts:41:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (33.0s)
+rendered 426 screen states
+  ✓   9 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (2.3m)
+
+  12 passed (2.3m)

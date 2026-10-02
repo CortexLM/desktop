@@ -175,6 +175,11 @@ The UI is ported from a local design reference (a separate checkout, not in this
 gallery states plus five interaction shots against the reference into `evidence/compare/`.
 Theme values are CSS variables in `packages/app/src/kit/styles.css`. Targeted small-window
 regressions live in `tests/e2e/responsive.spec.ts`; full visual acceptance stays partial.
+The current reference registers 205 states; the app's 213 include eight additional Settings
+variants. Home/Components reference revisions remain under review; pin reference provenance
+before claiming current-source parity. See [`evidence/compare/reference-status.md`](./evidence/compare/reference-status.md).
+For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
+session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
 
 ## CI, packaging and releases
 

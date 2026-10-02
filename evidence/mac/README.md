@@ -1,5 +1,9 @@
 # Native Mac evidence
 
+Latest complete registered-state sweep: [0e63f87](0e63f87/README.md), clean-installed
+from green CI, with revision-pinned native screenshots, menu appearances and action results.
+The material below remains the historical baseline.
+
 Installed artifact: [CI 36957854761](https://github.com/CortexLM/desktop/actions/runs/36957854761),
 code `d40b5d786a44657cf18ea5b990d83f3a357034e1`, unsigned Cortex 0.2.0 arm64.
 Installed at `/Applications/Cortex.app`; macOS 26.6.2, 1024×768 desktop.

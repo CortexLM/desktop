@@ -73,6 +73,8 @@ Desktop transport must isolate token/cookie state by origin and account. SDK reg
 and OTP/upload typing remain owned by the SDK session. The existing backend turn input
 has reasoning effort `low|medium|high`, no disabled value; omission means `medium`.
 Cancelling the stream reader does not cancel backend generation. Supported reasoning-off
-and cancel-turn behavior has been requested from the contract owner. Password/MFA
+and cancel-turn behavior has been requested from the contract owner, who confirmed both
+are absent at backend `73b934c7`. A remote UI must distinguish detachment from cancellation;
+reconnection repeats the same POST/body, Idempotency-Key and Last-Event-ID. Password/MFA
 continuation designs are requested in the shared design board. None of these probes proves
 the pending authentication or remote inference integration.

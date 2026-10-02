@@ -8,13 +8,20 @@
   including “quatre”; both result screenshots differ by **0.00%** after rounding.
 - After the narrow-window fixes (`d276b2e`), all 40 Canvas, Code review/diff and Work task
   theme/states were recaptured at 1440×900; their largest reference difference is 0.06%.
+- The runtime-copy/composer follow-up refreshes 28 renders: Home, Chat, Components,
+  Settings, Bot Studio and the Home mode menu, both themes. Eighteen have references;
+  largest difference remains 0.78%. Components is 0.00%; Bot Studio 0.01%. Home's newer
+  reference changes the Activity icon, suggestion icon sizing and text positions (0.21–0.22%);
+  these gaps remain visible in the retained triplets. Other rows remain revision-scoped.
 
 ## Remaining differences
 
 Older Settings/menu shots have an earlier sidebar (generic bot row and fewer rail icons).
-The port uses the reference's current shell consistently; that changes sidebar alignment.
+The port uses its shared shell consistently; that changes sidebar alignment.
 Settings also includes Providers and Connection entries. Animation timing accounts for
 small mascot/cursor differences. These are recorded differences, not pixel-identical claims.
+Current Home/Components reference source has moved beyond some retained PNGs. The exact
+state-count reconciliation and known source drift are recorded in [reference-status.md](reference-status.md).
 
 ## States with no design shot
 

@@ -102,6 +102,11 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   and 9445 (capture) over SSH; acquire/release the shared Mac lease. The script asserts
   the theme/content, records renderer errors and writes `<out-dir>/manifest.json`. An optional
   final comma-separated screen list narrows a regression capture; copied evidence keeps its build hash.
+  Launch the installed app through LaunchServices in the GUI session, for example
+  `open -na /Applications/Cortex.app --args --remote-debugging-port=9444`. A direct SSH
+  binary launch produced unresponsive native appearance/fullscreen changes on the remote Mac;
+  the same artifact launched through LaunchServices rendered dark menus and entered fullscreen.
+  Inspect native menu pixels and accessibility state; an OS preference or filename is not proof.
   Stop the helper and close debug ports after verification.
 - `scripts/dev-smoke.mjs` — quick local launch + screenshot of the built app.
 
@@ -111,6 +116,13 @@ theme/states plus five interactions. **421** have reference shots (mean differin
 (Providers & models, Connection, Bot, Notifications, Privacy in both themes). The 13 other
 reference PNGs are mascot review boards, not routed screens. These figures describe that
 report, not a fresh run or acceptance of every interaction.
+
+The reference registry has 205 states, the app 213: Settings has one registered reference
+state versus nine app variants. The other 204 states match. Existing clicked Appearance,
+Shortcuts and Account sections have shots; Bot, Notifications and Privacy do not; Providers
+and Connection still await designs. Reference Home/Components are under active review;
+matching older PNGs does not prove alignment with current source. See
+[`evidence/compare/reference-status.md`](../evidence/compare/reference-status.md).
 
 ## CI
 
