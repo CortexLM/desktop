@@ -45,7 +45,7 @@ function Toggle({ sec, id, def }: { sec: string; id: string; def: boolean }) {
 export function SettingsScreen() {
   const t = useT();
   const { params } = useNav();
-  const [v, setV] = useVariant("general");
+  const [v, setV] = useVariant();
   const sec = SECTIONS.some(([s]) => s === v) ? v : SECTIONS.some(([s]) => s === params.get("section")) ? params.get("section")! : "general";
   return (<>
     <div className="content-top"><span className="title">{t("system.settings.title")}</span></div>
