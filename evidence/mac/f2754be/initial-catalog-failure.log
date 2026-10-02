@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByTestId('model-option').filter({ hasText: 'Reasoner Large' })
+
+    at choose (/var/tmp/opencode/desktop-admission-native.mjs:41:70)
+    at async file:///var/tmp/opencode/desktop-admission-native.mjs:43:3 {
+  log: [
+    "  - waiting for getByTestId('model-option').filter({ hasText: 'Reasoner Large' })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.21.0

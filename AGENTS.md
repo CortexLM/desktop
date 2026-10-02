@@ -216,6 +216,8 @@ The scoped 63-unit/PUBLIC/Product closures resolve the earlier handoff-count con
 unified package remains pending. See [`evidence/recovery-followup/scoped-design-closures.md`](./evidence/recovery-followup/scoped-design-closures.md).
 For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
 session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
+Admission correction `f2754be` has green Linux/macOS CI plus two installed-Mac history-refusal
+captures; renderer source still matches `cc758a6`. See [`evidence/admission-followup/README.md`](./evidence/admission-followup/README.md).
 
 ## CI, packaging and releases
 

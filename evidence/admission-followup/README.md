@@ -1,6 +1,7 @@
 # Session admission and historical attachment safety
 
-Local-engine correction after `cc758a6`; renderer source remains unchanged.
+Local-engine correction `f2754bed27cfcc821a7e5bba8ce0d69cfa7e66f7` after `cc758a6`;
+renderer source remains unchanged.
 
 - Reserve each session before asynchronous catalog/provider lookup. Concurrent prompts
   receive `session_busy`; validation/persistence exceptions release the reservation.
@@ -36,7 +37,19 @@ absent), lint/types pass, i18n **63 files / 2,265 used keys / 3,395 English keys
 Full Electron suite: **50/50**, 426 registered renders. Built Linux package launches and renders
 the shell (`SMOKE OK`); its renderer screenshot was inspected. New history-refusal UI assertions
 are separately verified after that full run; both themes retain the typed follow-up without
-a new provider request. CI and current installed-Mac evidence follow after the commit.
+a new provider request.
+
+[CI 37055151545](https://github.com/CortexLM/desktop/actions/runs/37055151545) passes at
+`f2754be`: **50/50 Electron cases per Linux/macOS**, zero retries/flaky/skips, 426 renders,
+138 unit passes plus one optional backend skip, lint/types/i18n, unsigned macOS package/smoke.
+[CodeQL/check readback](check-runs.json) passes. [Report counts/hashes](ci.json), retained per-OS reports and selected job logs
+bind those results. The runner's native screen capture failed; its renderer smoke capture is
+separate from the successful [installed-Mac proof](../mac/f2754be/README.md): two native captures,
+both appearances, history refusal/recovery assertions, zero errors, exact artifact/ASAR hashes.
+[Independent CI review](ci-review.md) verifies source/artifact provenance and inspects all 92
+unique E2E images, twelve also full-size, plus the macOS renderer smoke. No blocker within the
+changed-regression scope. Generic image-refusal copy still offers removal as an alternative;
+when the image is only in history, choosing a compatible model is the available recovery.
 
 The renderer/frozen source did not change. Earlier native package evidence stays revision-bound;
 no new full visual comparison is inferred. Test inference is controlled local SSE, not actual

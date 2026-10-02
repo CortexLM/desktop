@@ -2,8 +2,8 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-Latest retained CI and CodeQL pass at `cc758a6`. This validates the implemented scope,
-not the complete objective. The current local-engine admission correction below awaits new CI.
+Latest application CI and CodeQL pass at `f2754be`. This validates the implemented scope,
+not the complete objective. Renderer source remains `cc758a6`.
 
 ## Current admission correction
 
@@ -11,11 +11,13 @@ The engine now reserves a session before asynchronous admission, rejects concurr
 and honors abort/delete before persistence, including parent deletion and synchronous event
 listeners. Image/PDF capability checks include replayed history when changing models.
 Seven deterministic regressions failed before their respective corrections. Local **138 unit
-tests pass**, one optional backend test skipped without its URL; lint/types pass. New Electron
-checks pass **50/50**, 426 registered renders, plus the added history-refusal UI assertions in both
-themes; Linux packaged smoke passes. [Logs and regression evidence](admission-followup/README.md).
-Revision-matched CI and installed-Mac checks remain pending. Renderer source remains `cc758a6`; its native/frozen images
-retain their original package revisions.
+tests pass**, one optional backend test skipped without its URL; lint/types/i18n pass.
+[CI 37055151545](https://github.com/CortexLM/desktop/actions/runs/37055151545) at `f2754be` passes
+**50/50 per Linux/macOS**, 426 registered renders, added history-refusal UI assertions in both
+themes, unsigned macOS packaging/smoke and CodeQL. Linux packaged smoke also passes.
+[Logs and regression evidence](admission-followup/README.md). Exact installed artifact adds
+[two native Mac captures](mac/f2754be/README.md), refusal/recovery assertions, zero renderer errors.
+Earlier native/frozen images retain their original package revisions.
 
 ## Retained application evidence
 
@@ -109,8 +111,9 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   unchanged confirmations), 52 targeted groups and all three served build assets. At that
   readback, Platform sources matched later scoped corrective hashes, not the original receipt. Existing
   functional controls still need approved integration; prototype behavior is not API availability.
-  The [eight-route contract map](recovery-followup/platform-contract-map.md) identifies automatic
-  attachment deletion as a desktop contract conflict. A retained-attachment refusal state is requested.
+  The [eight-route contract map](recovery-followup/platform-contract-map.md) identifies historical
+  attachment deletion as a desktop contract conflict. The 19:15 UTC owner-confirmed `b1b9130`
+  retention/refusal candidate still awaits independent approval and final integration disposition.
 - **Reference revision:** 205 reference versus 213 app states reconciled to eight extra
   Settings variants. Source freeze `2026-10-02-7b388e2d9674` and Components scope delivered;
   Home A7-final/B7-final approve their verified/inherited scope. Integration and matching frozen
