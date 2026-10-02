@@ -23,7 +23,8 @@ failed the Screen Recording permission check; the authorized path is explicit.
 These are preview screens with fixtures, not live-provider or backend-flow proof. Native
 menus initially exposed unimplemented destinations and duplicate fullscreen entries; small
 panels clipped Code suggestions, Canvas controls and Work computer controls. Corrections
-are being verified separately; this revision is not claimed as final visual acceptance.
+are recorded in [followup/README.md](followup/README.md); this baseline revision is not
+claimed as final visual acceptance.
 
 The yellow native traffic light was clicked through mac-computer: accessibility reported
 `AXMinimized=true`; restoring it yielded the visible window again. The green light yielded
@@ -38,4 +39,5 @@ captures provide the separate native-window evidence. Signing/notarization is un
 The original Mac install was overlaid on an older app: its asar hash matches this build,
 but 14 obsolete raw fixture files remained in `resources/locales`. The clean CI artifact
 contains none. These captures prove the recorded UI, not a clean resource installation;
-the follow-up package is installed into a fresh app directory before regression captures.
+the [follow-up package](followup/install.json) was installed into a fresh app directory
+before regression captures and has zero raw fixture/source-stamp files.

@@ -15,3 +15,7 @@ not a complete security audit or a claim that the latest CodeQL analysis passed.
 
 Targeted verification: 23 tests pass across client, services and sessions; typecheck and
 lint pass with two pre-existing hooks warnings. No comments or checks were dismissed.
+
+At `b56d2ad`, the separate CodeQL comparison check reports **neutral**: the main-branch
+JavaScript/TypeScript default-setup configuration is absent from this PR comparison. This
+does not establish zero open alerts. All eight existing comments received scoped replies.

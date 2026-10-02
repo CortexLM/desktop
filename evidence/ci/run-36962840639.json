@@ -1,0 +1,44 @@
+{
+  "run": "https://github.com/CortexLM/desktop/actions/runs/36962840639",
+  "commit": "a205c6e147c9cbaa49cb8af330b1ef68e7c6492c",
+  "checks": {
+    "lint": "passed (two existing hooks warnings)",
+    "typecheck": "passed",
+    "unit": {
+      "passed": 64,
+      "skipped": 1,
+      "skipReason": "optional real-backend URL absent"
+    },
+    "i18n": {
+      "files": 61,
+      "keysUsed": 1738,
+      "catalogKeys": 2671,
+      "problems": 0
+    }
+  },
+  "e2e": {
+    "macos": {
+      "startTime": "2026-10-02T04:03:42.391Z",
+      "duration": 107947.735,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "linux": {
+      "startTime": "2026-10-02T04:03:53.129Z",
+      "duration": 113592.405,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "macos": {
+    "runner": "blacksmith-6vcpu-macos-26",
+    "package": "unsigned arm64",
+    "smoke": "SMOKE OK",
+    "nativeScreenshot": "CI screencapture unavailable; native chrome captured on remote Mac",
+    "crashes": "Only pre-existing Setup Assistant report from 2026-03-16; no Cortex crash report"
+  }
+}
