@@ -24,13 +24,15 @@ async function load(area: string, locale: string) {
 /** Preloads every fixture module for the active locale before a preview screen renders. */
 export function PreviewGate({ children }: { children: React.ReactNode }) {
   const { locale } = useI18n();
-  const [ready, setReady] = React.useState(!isPreview());
+  const [preview, setPreview] = React.useState(isPreview);
+  const [loaded, setLoaded] = React.useState<string | null>(null);
+  React.useEffect(() => { const f = () => setPreview(isPreview()); addEventListener("hashchange", f); return () => removeEventListener("hashchange", f); }, []);
   React.useEffect(() => {
-    if (!isPreview()) return;
+    if (!preview || loaded === locale) return;
     const areas = [...new Set(Object.keys(loaders).map((k) => k.split("/").pop()!.slice(0, -5)))];
-    Promise.all(areas.map((a) => load(a, locale))).then(() => setReady(true));
-  }, [locale]);
-  return ready ? <>{children}</> : null;
+    Promise.all(areas.map((a) => load(a, locale))).then(() => setLoaded(locale));
+  }, [preview, locale, loaded]);
+  return !preview || loaded === locale ? <>{children}</> : null;
 }
 
 /** Synchronous read of an area's fixtures (call only inside preview; PreviewGate preloads). */
