@@ -103,7 +103,7 @@ test("rejected sends keep the draft and attachments; retry resends the image", a
       await expect(page.locator(".chat-att-img")).toBeVisible();
       await select("Plain Text");
       await page.getByTestId("composer-send").click();
-      await expect(page.getByText("This model can’t read images.", { exact: true })).toBeVisible();
+      await expect(page.getByText("This model can’t read images.", { exact: true }).first()).toBeVisible();
       await expect(input).toHaveValue(draft);
       await expect(input).toBeEnabled();
       await expect(page.locator(".chat-att-img")).toBeVisible();
@@ -140,12 +140,23 @@ test("rejected sends keep the draft and attachments; retry resends the image", a
       await page.getByTestId("composer-send").click();
       await expect(input).toHaveValue(draft);
       await expect(input).toBeEnabled();
-      await expect(page.getByText("This model can’t read images.", { exact: true })).toBeVisible();
+      await expect(page.getByText("This model can’t read images.", { exact: true }).first()).toBeVisible();
       await expect(page.locator(".chat-att-img")).toBeVisible();
       expect(fake.requests).toHaveLength(3);
+      // Recovery must work while the refusal remains visible, not after its timeout.
+      const refusal = page.locator(".toast").filter({ hasText: "This model can’t read images." }).first();
+      for (const control of [input, page.getByTestId("model-trigger"), page.getByTestId("composer-send"), page.locator(".chat-att-x")]) {
+        await expect(control).toBeInViewport({ ratio: 1 });
+        await control.click({ trial: true, timeout: 1500 });
+      }
       const chatShot = test.info().outputPath(`chat-draft-kept-${theme}.png`);
       await page.screenshot({ path: chatShot, animations: "disabled" });
       await test.info().attach(`chat-draft-kept-${theme}`, { path: chatShot, contentType: "image/png" });
+      await page.getByTestId("model-trigger").click({ timeout: 1500 });
+      await page.getByTestId("model-option").filter({ hasText: "Reasoner Large" }).click({ timeout: 1500 });
+      await expect(refusal).toBeVisible();
+      await expect(input).toHaveValue(draft);
+      await expect(page.locator(".chat-att-img")).toBeVisible();
       await page.evaluate(() => {
         const read = FileReader.prototype.readAsDataURL;
         FileReader.prototype.readAsDataURL = function () {

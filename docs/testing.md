@@ -55,7 +55,10 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
   suggestion, read split-diff line endings, use Canvas selection/version controls, operate
   Work computer controls. Also forces preview navigation before startup subscription to
-  ensure fixtures gate the first render. These regressions do not certify every screen.
+  ensure fixtures gate the first render. Six Work board cases cover 960/1024/1440 in both
+  themes: no horizontal page overflow, vertical-wheel access to all columns/cards, opening
+  task content and reaching empty drop zones; 1440 retains four columns. These regressions
+  do not certify every screen.
 - `tests/e2e/navigation.spec.ts` — real anchor and native-menu navigation, distinct engine
   chat identities through back/forward, variant parameters, history branching and Gallery
   return. macOS fullscreen uses AppKit's injected command; native captures verify that entry.
@@ -71,6 +74,9 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
 - `tests/e2e/composer-safety.spec.ts` — both themes at 960×640: Code directory cancellation,
   missing models, Code/Work/Bot engine refusal, locked pending admission, duplicate-submit
   suppression and accepted-send clearing. Work's empty-board transition preserves its draft.
+  Code and Chat refusal checks require immediate composer control access while the toast remains
+  visible; Chat changes the model while keeping the draft/image. Small-window transcript toasts
+  move above the composer rather than hiding its recovery controls.
 - `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
   handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
   demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced

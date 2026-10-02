@@ -73,6 +73,10 @@ for (const theme of ["light", "dark"]) {
       await expect(input).toHaveValue(draft);
       await expect(input).toBeEnabled();
       expect(await call<MessageWithParts[]>(page, `/api/sessions/${session.id}/messages`)).toEqual([]);
+      for (const control of [input, page.getByTestId("composer-send"), page.locator(".split-l .composer .model")]) {
+        await control.click({ trial: true, timeout: 1500 });
+      }
+      await expect(page.getByText("Message not sent", { exact: true })).toBeVisible();
       await capture(page, `code-session-draft-kept-${theme}`);
       expect(errors).toEqual([]);
     } finally { await app.close(); }

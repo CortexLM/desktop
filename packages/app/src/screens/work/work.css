@@ -47,7 +47,7 @@ button.travail-li { width: 100%; text-align: left; }
 
 /* ---------- Work home: board ---------- */
 .travail-compose { display: flex; justify-content: center; margin: 0 0 18px; }
-.travail-board { display: grid; grid-template-columns: repeat(4, minmax(200px, 1fr)); gap: 12px; align-items: start; }
+.travail-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px; align-items: start; }
 .travail-col { border-radius: var(--r-card); background: var(--sidebar-bg); box-shadow: var(--ring); padding: 6px; min-height: 280px; display: flex; flex-direction: column; gap: 6px;
   transition: box-shadow var(--d-micro) linear, background var(--d-micro) linear; }
 .travail-col[data-over] { box-shadow: 0 0 0 1.5px var(--blue); background: color-mix(in srgb, var(--blue) 6%, var(--sidebar-bg)); }

@@ -6,6 +6,74 @@ async function reachable(control: Locator) {
   await control.click({ trial: true });
 }
 
+for (const width of [960, 1024, 1440]) for (const theme of ["light", "dark"]) {
+  test(`Work board columns and cards remain reachable — ${width} ${theme}`, async () => {
+    const { app, page } = await launch({ hash: `#/work-home?theme=${theme}&shot&v=board`, locale: "en", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+    try {
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await app.evaluate(({ BrowserWindow }, width) => BrowserWindow.getAllWindows()[0].setSize(width, width === 1440 ? 900 : 640), width);
+      await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "shown");
+      const pane = page.locator(".page"), board = pane.locator(".travail-board"), columns = board.locator(".travail-col");
+      await expect(columns).toHaveCount(4);
+      await expect(board.locator(".travail-kcard")).toHaveCount(9);
+      await page.evaluate(() => document.fonts.ready);
+      for (const area of [pane, board]) expect(await area.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+      const positions = await columns.evaluateAll((els) => els.map((el) => {
+        const { x, y } = el.getBoundingClientRect();
+        return { x: Math.round(x), y: Math.round(y) };
+      }));
+      expect(new Set(positions.map((p) => p.x)).size).toBe(width === 1440 ? 4 : 2);
+      expect(new Set(positions.map((p) => p.y)).size).toBe(width === 1440 ? 1 : 2);
+
+      const scrollTo = async (target: Locator) => {
+        const distance = await target.evaluate((el) => {
+          const r = el.getBoundingClientRect(), p = el.closest(".page")!.getBoundingClientRect();
+          return r.y + r.height / 2 - p.y - p.height / 2;
+        });
+        // Wheel only: automatic scrollIntoView could conceal horizontal clipping.
+        await pane.hover();
+        await page.mouse.wheel(0, distance);
+        await expect(target).toBeInViewport({ ratio: 1 });
+        expect(await pane.evaluate((el) => el.scrollLeft)).toBe(0);
+      };
+      for (const [label, title] of [
+        ["To do", "Prepare the agenda for the 3 pm sync"],
+        ["In progress", "Follow up on quotes with no reply for 7 days"],
+        ["To approve", "Pay the Atelier Morel invoice of €1,240"],
+        ["Done", "File September’s expense reports"],
+      ]) {
+        const column = board.getByRole("region", { name: label, exact: true });
+        await scrollTo(column);
+        await expect(column.locator(".travail-col-head")).toContainText(label);
+        await expect(column.locator(".travail-kcard-t").first()).toHaveText(title);
+        for (const card of await column.locator(".travail-kcard").all()) await reachable(card);
+      }
+      if (width < 1440) expect(await pane.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+
+      const open = board.locator('[data-col="doing"] .travail-kcard').first();
+      await scrollTo(open);
+      await open.click();
+      await expect(page.locator(".content-top .title")).toHaveText("Follow up on unanswered quotes");
+      const request = page.locator(".travail-tl .msg-user");
+      await expect(request).toContainText("Follow up on every quote with no reply for more than 7 days.");
+      await expect(request).toBeInViewport({ ratio: 1 });
+      await page.getByRole("button", { name: "Back to the board", exact: true }).click();
+      await page.locator(".travail-filters").getByRole("button", { name: /Nova/ }).click();
+      const drops = board.locator(".travail-col-empty");
+      await expect(drops).toHaveCount(3);
+      for (const drop of await drops.all()) {
+        await scrollTo(drop);
+        await expect(drop).toHaveText("Drop a task here");
+        await reachable(drop);
+      }
+      for (const area of [pane, board]) expect(await area.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+    } finally {
+      await app.close();
+    }
+  });
+}
+
 test("preview navigation loads fixtures and catches startup URL changes", async () => {
   const { app, page } = await launch({ env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
   const errors: string[] = [];
