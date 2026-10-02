@@ -6,8 +6,16 @@ for (const [locale, file, edit, newChat] of [
   ["fr", "Fichier", "Édition", "Nouveau chat"],
 ]) {
   test(`native window chrome and ${locale} menu`, async () => {
-    const { app } = await launch({ env: { CORTEX_LOCALE: locale } });
+    const { app, page } = await launch({ env: { CORTEX_LOCALE: locale } });
     try {
+      await page.addInitScript(() => {
+        const violations: string[] = [];
+        Object.assign(window, { __cspViolations: violations });
+        addEventListener("securitypolicyviolation", (event) => violations.push(`${event.effectiveDirective}: ${event.blockedURI}`));
+      });
+      await page.reload();
+      await expect(page.locator(".home .composer")).toBeVisible();
+      expect(await page.evaluate(() => (window as unknown as { __cspViolations: string[] }).__cspViolations)).toEqual([]);
       const chrome = await app.evaluate(({ BrowserWindow, Menu }) => {
         const win = BrowserWindow.getAllWindows()[0];
         return {

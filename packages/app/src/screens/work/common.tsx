@@ -5,7 +5,7 @@ import type { Bot, Session } from "@cortex/schema";
 import { Icon } from "../../kit/ui";
 import { Mascot, DEFAULT_MASCOT, type MascotConfig, type State } from "../../mascot/Mascot";
 import { useNav } from "../../shell/nav";
-import { isPreview, useFixtures } from "../../preview";
+import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import { useBots, onEvent } from "../../state/live";
 import { toConfig } from "../bots/mascot-io";
 import { useI18n } from "../../i18n";
@@ -25,9 +25,10 @@ export type BotsFx = { main: { name: string; doing: string }; team: TeamBot[] };
 
 /** The main Bot: the fixture Nova in preview, the first engine Bot in live mode (null when there is none). */
 export function useMainBot(): { cfg: MascotConfig; bot?: Bot; doing: string; ready: boolean } | null {
-  const fx = useFixtures<BotsFx>("bots");
+  const previewBot = usePreviewBot();
+  const { t } = useI18n();
   const bots = useBots();
-  if (isPreview()) return { cfg: { name: fx.main?.name ?? "", ...DEFAULT_MASCOT }, doing: fx.main?.doing ?? "", ready: true };
+  if (isPreview()) return previewBot ? { cfg: previewBot.cfg, doing: previewBot.live.on ? previewBot.live.doing : t("bots.paused"), ready: true } : null;
   if (bots.state !== "ready") return bots.state === "loading" ? { cfg: { name: "", ...DEFAULT_MASCOT }, doing: "", ready: false } : null;
   const b = bots.data[0];
   return b ? { cfg: toConfig(b), bot: b, doing: "", ready: true } : null;
@@ -79,11 +80,12 @@ export function Check({ checked, onChange, children }: { checked: boolean; onCha
 /** Face of a Bot by name: the main Bot or a team member from the fixtures (preview), or a live Bot. */
 export function BotFace({ name, size = 20, state, bots }: { name: string; size?: number; state?: State; bots?: Bot[] }) {
   const fx = useFixtures<BotsFx>("bots");
+  const previewBot = usePreviewBot();
   const main = useMainBot();
   const live = bots?.find((b) => b.name === name || b.id === name);
   if (live) return <Mascot cfg={toConfig(live)} state={state ?? "idle"} size={size} />;
-  const tm = fx.team?.find((b) => b.cfg.name === name);
-  if (!tm || name === fx.main?.name) return <Mascot cfg={main?.cfg ?? { name, ...DEFAULT_MASCOT }} state={state ?? "working"} size={size} />;
+  const tm = isPreview() ? fx.team?.find((b) => b.cfg.name === name) : undefined;
+  if (!tm || name === fx.main?.name || name === previewBot?.cfg.name) return <Mascot cfg={main?.cfg ?? { name, ...DEFAULT_MASCOT }} state={previewBot && !previewBot.live.on ? "asleep" : state ?? previewBot?.live.state ?? "working"} size={size} />;
   return <Mascot cfg={tm.cfg} state={state ?? tm.state} size={size} />;
 }
 

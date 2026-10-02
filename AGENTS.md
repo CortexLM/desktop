@@ -115,6 +115,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
   `cortex:events` pumps the SSE stream as chunks. `packages/app/src/api.ts` turns both back
   into `fetch()` for `@cortex/client`.
 - Renderer: `sandbox: true`, `contextIsolation: true`, `nodeIntegration: false`.
+  Shared schemas set zod `jitless` before initialization; the renderer never probes dynamic evaluation.
   Navigation is locked to `cortex://app`; new windows are denied; only `https://` URLs
   go to `shell.openExternal`. CSP lives in `packages/app/index.html`.
 - **Provider keys never cross to the renderer.** `PUT /api/providers/:id/key` is write-only;
@@ -128,6 +129,12 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 (`packages/app/src/kit/ui.tsx` `Mode`). Screens live in
 `packages/app/src/screens/<area>/index.tsx`, each exporting `SCREENS`, collected by
 `packages/app/src/registry.tsx`. Hash routes use native browser history, preserving query parameters.
+Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
+one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
+Toast Undo remains an accessible action. See [`docs/testing.md`](./docs/testing.md).
+Components is a preview-only catalog: 94 blocks, 31 screen families, 30 motion entries;
+at most three thumbnails mount. Bot Studio keeps refused saves editable; preview Bot appearance,
+activity and drafts share temporary renderer state, cleared on reload, locale change or exit.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |
@@ -142,7 +149,8 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 **Space** (`/api/space`), **Scheduled** (the standalone list; `/api/tasks` is used today
 only by Work → Automations and bot routines), **Plugins & skills** (`/api/plugins`,
 `/api/skills`, `/api/mcp`; the computer-use preset therefore cannot be enabled from the UI
-yet). Requests remain unanswered in `/root/cortex-ui/DESIGN-REQUESTS.md` (outside this repo).
+yet). Approved delivery remains pending in `/root/cortex-ui/DESIGN-REQUESTS.md` (outside this repo);
+the design owner's live drafts are not integration inputs.
 Their native Go entries are disabled. Do not build stand-in screens; say "not yet" honestly.
 
 Cortex Cloud sign-in has no engine route yet: the live login submit says it is unavailable
@@ -160,6 +168,8 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
   Chat retains drafts/attachments when the engine rejects a send; retry includes the original
   files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
+  Code/Work/Bot text drafts also wait for accepted sends; missing models, cancelled folder
+  selection and engine refusals retain the draft.
 - **Computer use** via Cua Driver is registered disabled; input actions always ask and
   "always" is never stored. See [`docs/computer-use.md`](./docs/computer-use.md).
 - **i18n**: English source; catalogs and preview fixtures exist for all eight locales:
@@ -171,13 +181,16 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
 ## Design reference
 
 The UI is ported from a local design reference (a separate checkout, not in this repo).
-`ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs` pixel-diffs
-gallery states plus five interaction shots against the reference into `evidence/compare/`.
+`ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs --shots <freeze>/shots
+--out <new-directory>` pixel-diffs gallery states plus five interaction shots, validates frozen
+source/image hashes and records per-row provenance. Historical `evidence/compare/` stays revision-scoped.
 Theme values are CSS variables in `packages/app/src/kit/styles.css`. Targeted small-window
 regressions live in `tests/e2e/responsive.spec.ts`; full visual acceptance stays partial.
-The current reference registers 205 states; the app's 213 include eight additional Settings
-variants. Home/Components reference revisions remain under review; pin reference provenance
-before claiming current-source parity. See [`evidence/compare/reference-status.md`](./evidence/compare/reference-status.md).
+The frozen reference `/root/cortex-ui-freezes/2026-10-02-7b388e2d9674` registers 205 states;
+the app's 213 include eight additional Settings variants. Use its verified capture manifest,
+not the changing live checkout. Home A7-final/B7-final approve their verified/inherited scope;
+original-reference fidelity and missing-surface drafts remain outside that approval. See
+[`evidence/compare/reference-status.md`](./evidence/compare/reference-status.md).
 For installed-Mac verification, launch via `open -na /Applications/Cortex.app` in the GUI
 session; direct SSH binary launches did not reliably exercise native appearance/fullscreen.
 

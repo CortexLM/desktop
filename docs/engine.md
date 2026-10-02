@@ -64,6 +64,12 @@ cancels the session's other pending asks). Computer-use input tools never save `
 
 - Bots (`bot.ts`): persona, mascot, permission and tool filters, bounded memory injected
   as reference data, routines = scheduled tasks with `botID`.
+  Bot Studio leaves its editor only after an accepted save; rejected writes retain the
+  draft and confirmation dialog. Pending saves lock editing and duplicate submissions.
+  Preview Bot appearance, activity and unsaved studio drafts share renderer-only state
+  during navigation. They reset on reload, locale changes or leaving preview; they never
+  create or update engine Bots. Preview onboarding saves into that same temporary state.
+  Onboarding completion navigation is cancelled if the user leaves before its display delay ends.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not
   backfilled; the timer lives only while the app runs. Work → Automations and bot routines

@@ -8,7 +8,7 @@ import { Mascot, STATES, COLORS, SHAPE_LIST, DEFAULT_MASCOT, type MascotConfig, 
 import { ACCESSORIES, SLOT_LABEL, type Slot } from "../../mascot/parts";
 import { useT } from "../../i18n";
 import { useNav } from "../../shell/nav";
-import { isPreview, useFixtures } from "../../preview";
+import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import { api } from "../../api";
 import { useBots, useMessages, usePermissions, useQuery } from "../../state/live";
 import { toolName } from "../../state/tool-label";
@@ -42,9 +42,9 @@ export function BotOnboarding() {
   const { go } = useNav();
   const toast = useToast();
   const preview = isPreview();
-  const fxb = useFixtures<BotsFx>("bots");
+  const previewBot = usePreviewBot();
   const [step, setStep] = React.useState(0);
-  const [look, setLook] = React.useState<MascotConfig>(() => ({ name: preview ? fxb.main?.name ?? "" : "", ...DEFAULT_MASCOT }));
+  const [look, setLook] = React.useState<MascotConfig>(() => previewBot?.cfg ?? { name: "", ...DEFAULT_MASCOT });
   const name = look.name, setName = (n: string) => setLook({ ...look, name: n });
   // The mascot state follows what the user is doing in the onboarding.
   const [typing, setTyping] = React.useState(false);
@@ -55,13 +55,23 @@ export function BotOnboarding() {
   const shown = name || t("bots.new.yourBot");
   // Live: only web access maps to an engine tool; the other rows have no backing yet.
   const accessRows = preview ? ACCESS : ACCESS.filter(([k]) => k === "web");
+  const [created, setCreated] = React.useState<Record<string, string> | null>(null);
+  React.useEffect(() => {
+    if (!created) return;
+    const timer = setTimeout(() => go("bot", created), 1500);
+    return () => clearTimeout(timer);
+  }, [created, go]);
   const create = async (): Promise<boolean> => {
-    if (preview) { setTimeout(() => go("bot"), 1500); return true; }
+    if (preview) {
+      if (!previewBot) return false;
+      previewBot.save({ ...look, name: name.trim() });
+      setCreated({}); return true;
+    }
     try {
       const model = await defaultModel();
       if (!model) { toast.add({ title: t("bots.new.noProvider"), description: t("bots.new.noProviderDesc"), data: { icon: "alert-triangle" } }); return false; }
       const b = await api.bots.create({ name: name.trim(), persona: t(`bots.tone.${tone}.persona`), mascot: toMascot(look), model, tools: access.web ? {} : { deny: ["webfetch"] } });
-      setTimeout(() => go("bot", { id: b.id }), 1500);
+      setCreated({ id: b.id });
       return true;
     } catch { toast.add({ title: t("bots.error.create"), data: { icon: "alert-triangle" } }); return false; }
   };
@@ -164,9 +174,11 @@ function BotPagePreview() {
   const toast = useToast();
   const fxb = useFixtures<BotsFx & { page: BotFx }>("bots");
   const fx = fxb.page;
-  const bot: MascotConfig = { name: fxb.main?.name ?? "", ...DEFAULT_MASCOT };
-  const [on, setOn] = React.useState(true);
-  const [busy, setBusy] = React.useState<State>("working");
+  const previewBot = usePreviewBot()!;
+  const { cfg: bot, live, setLive } = previewBot;
+  const on = live.on, busy = live.state;
+  const setOn = (on: boolean) => setLive({ on });
+  const setBusy = (state: State, doing?: string) => setLive({ state, ...(doing === undefined ? {} : { doing }) });
   const [sel, setSel] = React.useState<string | null>(null);
   const team = (fx?.team ?? []).map((n) => (fxb.team ?? []).find((b) => b.cfg.name === n)!).filter(Boolean);
   const picked = team.find((x) => x.cfg.name === sel);
@@ -224,7 +236,7 @@ function BotPagePreview() {
         </section>
       </div>
     </div>
-    <div className="dock"><Composer placeholder={t("bots.page.ask", { name: bot.name })} onSend={(x) => { toast.add({ title: t("bots.page.toastAsked", { name: bot.name }), description: x, data: { icon: "check" } }); setBusy("listening"); setTimeout(() => setBusy("thinking"), 900); setTimeout(() => setBusy("working"), 2600); }} /></div>
+    <div className="dock"><Composer placeholder={t("bots.page.ask", { name: bot.name })} onSend={(x) => { toast.add({ title: t("bots.page.toastAsked", { name: bot.name }), description: x, data: { icon: "check" } }); setBusy("listening", t("bots.preview.reading")); setTimeout(() => setBusy("thinking", t("bots.preview.planning")), 900); setTimeout(() => setBusy("working", x.length > 28 ? x.slice(0, 26) + "…" : x), 2600); }} /></div>
   </>);
 }
 
@@ -257,7 +269,8 @@ function BotPageLive() {
       const id = current ?? (await api.bots.createSession(bot.id, { title: x.slice(0, 80) })).id;
       if (!current) setSid(id);
       await api.sessions.prompt(id, { parts: [{ type: "text", text: x }] });
-    } catch { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); }
+      return true;
+    } catch { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); return false; }
   };
   const forget = (id: string) => api.bots.memory.delete(bot.id, id).then(() => { memory.reload(); toast.add({ title: t("bots.toastForgotten"), data: { icon: "trash" } }); }, () => {});
   const hint = STATES.find((s) => s.id === live)!.hint;
@@ -323,33 +336,45 @@ export function BotStudio() {
   const { go } = useNav();
   const toast = useToast();
   const preview = isPreview();
-  const fxb = useFixtures<BotsFx>("bots");
+  const previewBot = usePreviewBot();
   const { bot: live, reload } = useTargetBot();
-  const base: MascotConfig = preview ? { name: fxb.main?.name ?? "", ...DEFAULT_MASCOT } : live ? toConfig(live) : { name: "", ...DEFAULT_MASCOT };
+  const base: MascotConfig = previewBot?.cfg ?? (live && !preview ? toConfig(live) : { name: "", ...DEFAULT_MASCOT });
   const [saved, setSaved] = React.useState<MascotConfig>(base);
-  const [cfg, setCfg] = React.useState<MascotConfig>(base);
+  const [cfg, setCfg] = React.useState<MascotConfig>(previewBot?.draft ?? base);
   React.useEffect(() => { if (live && !preview) { const c = toConfig(live); setSaved(c); setCfg(c); } }, [live?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const [past, setPast] = React.useState<MascotConfig[]>([]);
   const [tab, setTab] = React.useState("shape");
   const [state, setState] = React.useState<State>("idle");
   const [demo, setDemo] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
+  const saving = React.useRef(false);
   const set = (p: Partial<MascotConfig>) => { setPast((h) => [...h.slice(-30), cfg]); setCfg({ ...cfg, ...p }); };
   const undo = () => { const h = [...past]; const prev = h.pop(); if (prev) { setPast(h); setCfg(prev); } };
   const dirty = JSON.stringify(cfg) !== JSON.stringify(saved);
   const valid = !!cfg.name.trim();
+  const setDraft = previewBot?.setDraft;
+  React.useEffect(() => { setDraft?.(dirty ? cfg : null); }, [cfg, dirty, setDraft]);
   // Leaving with unsaved changes asks first.
   const [leaving, setLeaving] = React.useState(false);
   const back = () => go("bot", live && !preview ? { id: live.id } : undefined);
-  const doSave = async () => {
+  const doSave = async (): Promise<boolean> => {
+    if (saving.current || !valid) return false;
     const n = { ...cfg, name: cfg.name.trim() };
-    if (!preview) {
-      if (!live) return;
-      setBusy(true);
-      try { await api.bots.update(live.id, { name: n.name, mascot: toMascot(n) }); reload(); } catch { toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); setBusy(false); return; }
-      setBusy(false);
-    }
-    setSaved(n); setCfg(n); toast.add({ title: t("bots.studio.toastSaved"), description: t("bots.studio.toastSavedDesc", { name: n.name }), data: { icon: "check" } });
+    saving.current = true; setBusy(true);
+    try {
+      if (preview) {
+        if (!previewBot) return false;
+        previewBot.save(n);
+      } else {
+        if (!live) { toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); return false; }
+        await api.bots.update(live.id, { name: n.name, mascot: toMascot(n) }); reload();
+      }
+      setSaved(n); setCfg(n); toast.add({ title: t("bots.studio.toastSaved"), description: t("bots.studio.toastSavedDesc", { name: n.name }), data: { icon: "check" } });
+      return true;
+    } catch {
+      toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } });
+      return false;
+    } finally { saving.current = false; setBusy(false); }
   };
 
   // Demo: runs through a task's lifecycle (received → thinking → working → waiting → done).
@@ -364,7 +389,7 @@ export function BotStudio() {
     const k = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement;
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") return; // native ⌘Z in fields
-      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && e.key === "z") { e.preventDefault(); undo(); }
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && e.key === "z") { e.preventDefault(); if (!saving.current) undo(); }
     };
     addEventListener("keydown", k); return () => removeEventListener("keydown", k);
   });
@@ -381,20 +406,20 @@ export function BotStudio() {
 
   return (<>
     <div className="content-top">
-      <IconBtn icon="arrow-left" label={t("bots.studio.back")} onClick={() => (dirty ? setLeaving(true) : back())} />
+      <IconBtn icon="arrow-left" label={t("bots.studio.back")} disabled={busy} onClick={() => (dirty ? setLeaving(true) : back())} />
       <span className="title">{t("bots.studio.title", { name: cfg.name })}</span>
       <div className="spacer" />
-      <IconBtn icon="refresh" label={t("bots.studio.undo")} kbd="⌘Z" disabled={!past.length} onClick={undo} />
-      <button className="btn secondary" style={{ height: 28 }} onClick={random}><Icon name="sparkle-free" size={16} />{t("bots.studio.random")}</button>
+      <IconBtn icon="refresh" label={t("bots.studio.undo")} kbd="⌘Z" disabled={!past.length || busy} onClick={undo} />
+      <button className="btn secondary" style={{ height: 28 }} disabled={busy} onClick={random}><Icon name="sparkle-free" size={16} />{t("bots.studio.random")}</button>
       <button className="btn primary" style={{ height: 28 }} data-testid="bot-studio-save" disabled={!dirty || !valid || busy} onClick={doSave}>{t("common.save")}</button>
-      <AlertDialog.Root open={leaving} onOpenChange={setLeaving}>
-        <AlertDialog.Portal><AlertDialog.Backdrop className="backdrop" /><AlertDialog.Popup className="dialog">
+      <AlertDialog.Root open={leaving} onOpenChange={(open) => { if (!saving.current) setLeaving(open); }}>
+        <AlertDialog.Portal><AlertDialog.Backdrop className="backdrop" /><AlertDialog.Popup className="dialog" aria-busy={busy || undefined}>
           <AlertDialog.Title render={<h2 />}>{t("bots.studio.leaveTitle")}</AlertDialog.Title>
           <AlertDialog.Description render={<p />}>{t("bots.studio.leaveText", { name: cfg.name || t("bots.new.yourBot") })}</AlertDialog.Description>
           <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-            <AlertDialog.Close className="btn secondary">{t("common.cancel")}</AlertDialog.Close>
-            <button className="btn secondary" onClick={() => { setCfg(saved); setLeaving(false); back(); }}>{t("bots.studio.leaveDiscard")}</button>
-            <button className="btn primary" disabled={!valid} onClick={async () => { await doSave(); setLeaving(false); back(); }}>{t("common.save")}</button>
+            <AlertDialog.Close className="btn secondary" disabled={busy}>{t("common.cancel")}</AlertDialog.Close>
+            <button className="btn secondary" disabled={busy} onClick={() => { setCfg(saved); setDraft?.(null); setLeaving(false); back(); }}>{t("bots.studio.leaveDiscard")}</button>
+            <button className="btn primary" disabled={!valid || busy} onClick={async () => { if (await doSave()) { setLeaving(false); back(); } }}>{t("common.save")}</button>
           </div>
         </AlertDialog.Popup></AlertDialog.Portal>
       </AlertDialog.Root>
@@ -418,8 +443,8 @@ export function BotStudio() {
           <button className="state-chip" data-on={demo || undefined} onClick={() => setDemo(!demo)}><Icon name={demo ? "pause" : "play"} size={16} />{demo ? t("bots.studio.stop") : t("bots.studio.cycle")}</button>
         </div>
       </section>
-      <section className="editor">
-        <div className="field"><label htmlFor="bname">{t("bots.studio.name")}</label><input id="bname" className="input" aria-invalid={!valid} value={cfg.name} maxLength={20} onChange={(e) => setCfg({ ...cfg, name: e.target.value })} /></div>
+      <section className="editor" inert={busy}>
+        <div className="field"><label htmlFor="bname">{t("bots.studio.name")}</label><input id="bname" className="input" aria-invalid={!valid} disabled={busy} value={cfg.name} maxLength={20} onChange={(e) => setCfg({ ...cfg, name: e.target.value })} /></div>
         <Segmented items={TABS.map(tabLabel)} value={tabLabel(tab)} onChange={(x) => setTab(TABS.find((y) => tabLabel(y) === x) ?? "shape")} />
         <div className="ed-panel" key={tab}>
           {tab === "shape" && <>

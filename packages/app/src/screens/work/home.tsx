@@ -4,7 +4,7 @@ import { Collapsible } from "@base-ui/react/collapsible";
 import type { Session, ToolPart, MessageWithParts } from "@cortex/schema";
 import { Icon, IconBtn, Segmented, Pop, MItem, MSep, Tip, useToast } from "../../kit/ui";
 import { Composer } from "../../components/composer";
-import { Mascot, type State } from "../../mascot/Mascot";
+import { Mascot, DEFAULT_MASCOT, type State } from "../../mascot/Mascot";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { useNav } from "../../shell/nav";
@@ -60,15 +60,16 @@ export function WorkHome() {
       setTasks((ts) => [{ id: String(Date.now()), t: text, bot: fx.main.name, col: "todo", meta: t("work.justNow") }, ...ts]);
       toast.add({ title: t("work.home.toastHanded", { name: name0 }), description: text, data: { icon: "bot" } });
       if (v === "empty") setV("board");
-      return;
+      return true;
     }
-    if (!main?.bot) { go("bot-new"); return; }
+    if (!main?.bot) { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); return false; }
     try {
       const s = await api.bots.createSession(main.bot.id, { title: text.slice(0, 80) });
       await api.sessions.prompt(s.id, { parts: [{ type: "text", text }] });
       toast.add({ title: t("work.home.toastHanded", { name: name0 }), description: text, data: { icon: "bot" } });
       go("work-task", "", { id: s.id });
-    } catch { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); }
+      return true;
+    } catch { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); return false; }
   };
 
   // Pointer drag (preview board): the card follows the finger, the hovered column lights up, a tap without movement opens the task.
@@ -114,17 +115,15 @@ export function WorkHome() {
     </Top>
     {!preview && bots.state === "ready" && !liveBots.length ? (
       <Empty state="idle" title={t("bots.page.noneTitle")} text={t("bots.page.noneText")}><button className="btn primary" data-testid="bot-create-start" onClick={() => go("bot-new")}><Icon name="plus" size={16} />{t("bots.new.title")}</button></Empty>
-    ) : empty ? (
-      <Empty state="listening" title={t("work.home.emptyTitle", { name: name0 })} text={t("work.home.emptyText", { name: name0 })}>
-        <div style={{ width: 560, maxWidth: "100%" }}><Composer placeholder={t("work.home.composer")} onSend={add} /></div>
-        <div className="suggestions" style={{ maxWidth: 560 }}>
+    ) : (
+      <div className={empty ? "empty travail-empty" : "page"}>
+        {empty && <><Mascot cfg={main?.cfg ?? { name: "", ...DEFAULT_MASCOT }} state="listening" size={88} track interactive /><h2>{t("work.home.emptyTitle", { name: name0 })}</h2><p>{t("work.home.emptyText", { name: name0 })}</p></>}
+        {/* Session creation can replace the empty state before prompt admission; keep the draft mounted. */}
+        <div className={empty ? undefined : "travail-compose"} style={empty ? { width: 560, maxWidth: "100%" } : undefined}><Composer placeholder={t("work.home.composer")} onSend={add} /></div>
+        {empty ? <div className="suggestions" style={{ maxWidth: 560 }}>
           {[t("work.home.sugg1"), t("work.home.sugg2"), t("work.home.sugg3")].map((s, i) => (
             <button key={s} className="suggestion" style={css(i)} onClick={() => add(s)}><Icon name="bot" size={16} />{s}</button>))}
-        </div>
-      </Empty>
-    ) : (
-      <div className="page">
-        <div className="travail-compose"><Composer placeholder={t("work.home.composer")} onSend={add} /></div>
+        </div> : <>
         {filters}
         {loading ? (
           <div className="travail-board" aria-busy="true" aria-label={t("work.home.loading")}>
@@ -167,6 +166,7 @@ export function WorkHome() {
               </section>); })}
           </div>
         )}
+        </>}
       </div>
     )}
   </>);
@@ -354,7 +354,7 @@ function WorkTaskPreview() {
           <span className="travail-thumb" style={{ backgroundImage: `url(/img/${hourWall(new Date().getHours())}.png)` }} aria-hidden />
           <button className="btn secondary" onClick={() => setPane(true)}><Icon name="cpu" size={16} />{t("work.task.showComputer")}</button>
         </div>}
-        <div className="dock"><Composer placeholder={t("work.task.composer", { name })} onSend={(x) => toast.add({ title: t("work.task.toastInstruction"), description: x, data: { icon: "bot" } })} /></div>
+        <div className="dock"><Composer placeholder={t("work.task.composer", { name })} onSend={(x) => { toast.add({ title: t("work.task.toastInstruction"), description: x, data: { icon: "bot" } }); }} /></div>
       </div>
       <aside className="travail-pane" aria-label={t("work.pc.title")} aria-hidden={!pane}>
         {pane && <>
@@ -401,7 +401,10 @@ function WorkTaskLive({ id }: { id: string }) {
     <div className="content-top"><IconBtn icon="arrow-left" label={t("work.task.back")} onClick={() => go("work-home")} /></div>
     <Empty state="thinking" title={t("work.task.missingTitle")} text={t("work.task.missingText")}><button className="btn secondary" onClick={() => go("work-home")}>{t("work.inbox.backToBoard")}</button></Empty>
   </>);
-  const send = (x: string) => api.sessions.prompt(id, { parts: [{ type: "text", text: x }] }).catch(() => toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }));
+  const send = async (x: string) => {
+    try { await api.sessions.prompt(id, { parts: [{ type: "text", text: x }] }); return true; }
+    catch { toast.add({ title: t("work.error.send"), data: { icon: "alert-triangle" } }); return false; }
+  };
   return (<>
     <div className="content-top">
       <IconBtn icon="arrow-left" label={t("work.task.back")} onClick={() => go("work-home")} />

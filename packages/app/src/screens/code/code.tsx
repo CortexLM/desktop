@@ -2,7 +2,7 @@
 import * as React from "react";
 import type { MessageWithParts, ToolPart, Permission, PermissionReply } from "@cortex/schema";
 import { Icon, IconBtn, Pop, MItem, Segmented, useToast } from "../../kit/ui";
-import { Composer } from "../../components/composer";
+import { Composer, startPreviewChat, previewChatStart } from "../../components/composer";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
@@ -27,10 +27,10 @@ function HomePreview() {
   const [branch, setBranch] = React.useState(fx.branches[0]);
   const [env, setEnv] = React.useState<"cloud" | "local">("cloud");
   return (<>
-    <div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" /></div>
+    <div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" onClick={() => go("code")} /></div>
     <div className="home">
       <h1>{t("code.home.title")}</h1>
-      <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.home.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={() => go("code-session")} /></TestIdComposer>
+      <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.home.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={(text, _, model) => startPreviewChat("code-session", text, model)} /></TestIdComposer>
       <div className="ctx-bar">
         <Pop trigger={<button className="ctx"><Icon name="folder-code" size={16} />{repo}<Icon name="chevron-down" size={12} /></button>}>
           {fx.repos.map((r) => <MItem key={r} icon="folder-code" onClick={() => setRepo(r)}>{r}</MItem>)}
@@ -45,7 +45,7 @@ function HomePreview() {
       <div className="tasks">
         <div className="h3" style={{ padding: "0 4px" }}>{t("code.home.recent")}</div>
         {fx.tasks.map(([title, sub, b], i) => (
-          <button key={title} className="task" style={{ ["--i" as string]: i }} onClick={() => go("code-session")}>
+          <button key={title} className="task" style={{ ["--i" as string]: i }} onClick={() => startPreviewChat("code-session", title, t("code.model.fast"))}>
             <span className="grow"><span className="ttl">{title}</span><span className="sub">{sub}</span></span><span className={"badge " + b}>{b === "run" && <span className="spin" />}{t(STATUS[b])}</span>
           </button>
         ))}
@@ -65,26 +65,28 @@ function HomeLive() {
   const pick = window.cortex?.pickDirectory;
   const choose = async () => { const d = await pick?.().catch(() => null); if (d) setDir(d); return d ?? null; };
   const send = async (text: string) => {
-    if (busy) return;
+    if (busy) return false;
     setBusy(true);
     try {
       const directory = dir ?? (pick ? await choose() : null);
-      if (pick && !directory) return;
+      if (pick && !directory) return false;
       const model = await pickModel();
-      if (!model) { toast.add({ title: t("code.home.noModelTitle"), description: t("code.home.noModelBody"), data: { icon: "alert-triangle" } }); return; }
+      if (!model) { toast.add({ title: t("code.home.noModelTitle"), description: t("code.home.noModelBody"), data: { icon: "alert-triangle" } }); return false; }
       const s = await api.sessions.create({ kind: "code", directory: directory ?? undefined, agent: "build", model });
       await api.sessions.prompt(s.id, { parts: [{ type: "text", text }] });
       go("code-session", { id: s.id });
+      return true;
     } catch {
       toast.add({ title: t("code.home.startFailed"), data: { icon: "x-circle" } });
+      return false;
     } finally { setBusy(false); }
   };
   const list = sessions.state === "ready" ? sessions.data.slice(0, 6) : [];
   return (<>
-    <div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" onClick={() => setDir(null)} /></div>
+    <div className="content-top"><div className="spacer" /><IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" onClick={() => go("code")} /></div>
     <div className="home">
       <h1>{t("code.home.title")}</h1>
-      <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.home.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={(x) => void send(x)} disabled={busy} /></TestIdComposer>
+      <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.home.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={send} disabled={busy} /></TestIdComposer>
       {pick && (
         <div className="ctx-bar">
           <button className="ctx" data-testid="code-pick-folder" onClick={() => void choose()} title={dir ?? undefined}><Icon name="folder-code" size={16} />{dir ? basename(dir) : t("code.home.pickFolder")}<Icon name="chevron-down" size={12} /></button>
@@ -107,44 +109,59 @@ function HomeLive() {
 /* =====================================================================
    Session
    ===================================================================== */
-export function CodeSession() { return isPreview() ? <SessionPreview /> : <SessionLive />; }
+export function CodeSession() {
+  const start = previewChatStart();
+  return isPreview() ? <SessionPreview start={start} /> : <SessionLive />;
+}
 
 const diffClass = (l: string) => (l[0] === "+" ? "add" : l[0] === "-" ? "del" : l.startsWith("@@") ? "hunk" : "");
 
-function SessionPreview() {
+function SessionPreview({ start }: { start: ReturnType<typeof previewChatStart> }) {
   const t = useT();
   const toast = useToast();
+  const { go } = useNav();
   const fx = useFixtures<CodeFx>("code").session;
   const views = [t("code.session.changes"), t("code.session.terminal")];
   const [view, setView] = React.useState(views[0]);
+  const [requests, setRequests] = React.useState([{ text: start?.text ?? fx.prompt, model: start?.model ?? t("code.model.fast") }]);
+  const demo = !start && requests.length === 1;
+  const title = start?.text ?? fx.title;
   const [steps, setSteps] = React.useState(3);
-  React.useEffect(() => { if (steps < 5) { const tm = setTimeout(() => setSteps(steps + 1), 1600); return () => clearTimeout(tm); } }, [steps]);
+  const [stopped, setStopped] = React.useState(false);
+  React.useEffect(() => { if (demo && !stopped && steps < 5) { const tm = setTimeout(() => setSteps(steps + 1), 1600); return () => clearTimeout(tm); } }, [demo, stopped, steps]);
+  const copyPath = async () => {
+    try { await navigator.clipboard.writeText(fx.file); toast.add({ title: t("chat.preview.pathCopied"), data: { icon: "copy" } }); }
+    catch { toast.add({ title: t("chat.preview.copyFailed"), description: t("chat.preview.copyManually"), data: { icon: "copy" } }); }
+  };
   return (<>
     <div className="content-top">
-      <span className="title">{fx.title}</span>
-      <span className="badge run" style={{ marginLeft: 8 }}>{steps < 5 && <span className="spin" />}{steps < 5 ? t("code.status.running") : t("code.status.ready")}</span>
+      <span className="title" title={title} aria-label={title} style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{title}</span>
+      <span className="badge run" style={{ marginLeft: 8, flexShrink: 0 }}>{demo && !stopped && steps < 5 && <span className="spin" />}{!demo ? t("chat.preview.demo") : stopped ? t("chat.preview.codeStopped") : steps < 5 ? t("code.status.running") : t("code.status.ready")}</span>
       <div className="spacer" />
-      <button className="btn secondary" style={{ height: 28 }}><Icon name="terminal" size={16} />{t("code.session.openTerminal")}</button>
-      <button className="btn primary" style={{ height: 28 }} disabled={steps < 5} onClick={() => toast.add({ title: t("code.session.prCreated"), description: fx.prRef, data: { icon: "pull-request" } })}><Icon name="pull-request" size={16} />{t("code.createPr")}</button>
+      <IconBtn icon="compose" label={t("code.newTask")} kbd="⌘N" onClick={() => go("code")} />
+      <button className="btn secondary" style={{ height: 28, flexShrink: 0 }} onClick={() => setView(views[1])}><Icon name="terminal" size={16} />{t("code.session.terminal")}</button>
+      <button className="btn primary" style={{ height: 28, flexShrink: 0 }} disabled={!demo || steps < 5 || stopped} title={t(demo ? "chat.preview.openDemoPr" : "chat.preview.noExecutedChanges")} onClick={() => go("code-pr")}><Icon name="pull-request" size={16} />{t("chat.preview.viewPr")}</button>
     </div>
     <div className="split">
       <div className="split-l">
-        <div className="msg-user" style={{ alignSelf: "flex-start", maxWidth: "100%" }}>{fx.prompt}</div>
-        <div className="steps-log">
+        {requests.map((request, i) => <div key={i} className="msg-user" style={{ alignSelf: "flex-start", maxWidth: "100%", whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{request.text}</div>)}
+        {demo ? <><div className="steps-log">
           {fx.log.slice(0, steps).map(([ic, s], i) => (
-            <div key={s} className="log" data-last={i === steps - 1 && steps < 5 || undefined}><Icon name={ic} size={16} /><span>{s}</span></div>
+            <div key={s} className="log" data-last={i === steps - 1 && steps < 5 && !stopped || undefined}><Icon name={ic} size={16} /><span>{s}</span></div>
           ))}
-          {steps < 5 && <div className="log shimmer"><Icon name="loader" size={16} className="spinning" /><span>{fx.running}</span></div>}
+          {!stopped && steps < 5 && <div className="log shimmer"><Icon name="loader" size={16} className="spinning" /><span>{t("chat.preview.codeRunning")}</span></div>}
         </div>
         {steps >= 5 && <div className="msg-bot">{fx.answer} <b>{fx.answerBold}</b></div>}
+        {!stopped && steps < 5 && <button className="btn secondary" onClick={() => setStopped(true)}>{t("chat.preview.stopDemo")}</button>}</>
+          : <div className="msg-bot" role="status">{t(requests.length > 1 ? "chat.preview.codeRequestsKept" : "chat.preview.codeRequestKept", { model: requests.at(-1)?.model ?? "" })}</div>}
         <div style={{ flex: 1 }} />
-        <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.session.placeholder")} models={[t("code.model.fast"), t("code.model.thinking")]} /></TestIdComposer>
+        <TestIdComposer id="code-composer-input"><Composer placeholder={t("code.session.placeholder")} initialModel={start?.model} models={[t("code.model.fast"), t("code.model.thinking")]} onSend={(text, _, model) => setRequests((r) => [...r, { text, model }])} /></TestIdComposer>
       </div>
       <div className="split-r">
-        <div className="pane-head"><Segmented items={views} value={view} onChange={setView} /><div className="spacer" /><span className="mono" style={{ color: "color-mix(in srgb, var(--green) 65%, var(--t1))" }}>+3</span><span className="mono" style={{ color: "var(--red)", marginLeft: 6 }}>−2</span></div>
-        {view === views[0] ? (
+        <div className="pane-head"><Segmented items={views} value={view} onChange={setView} /><div className="spacer" />{demo && <><span className="mono" style={{ color: "color-mix(in srgb, var(--green) 65%, var(--t1))" }}>+3</span><span className="mono" style={{ color: "var(--red)", marginLeft: 6 }}>−2</span></>}</div>
+        {!demo ? (view === views[0] ? <div className="empty"><Icon name="file-code" /><h2>{t("chat.preview.codeNoChanges")}</h2><p>{t("chat.preview.codeNoChangesBody")}</p></div> : <pre className="term">{t("chat.preview.codeNoCommands")}</pre>) : view === views[0] ? (
           <div className="diff" key="d">
-            <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>{fx.file}</span><IconBtn icon="copy" label={t("code.copyPath")} /></div>
+            <div className="code-head"><Icon name="file-code" size={16} /><span style={{ marginLeft: 6 }}>{fx.file}</span><IconBtn icon="copy" label={t("code.copyPath")} onClick={() => void copyPath()} /></div>
             <pre>{fx.diff.split("\n").map((l, i) => <div key={i} className={diffClass(l)}>{l || " "}</div>)}</pre>
           </div>
         ) : <pre className="term" key="t">{fx.terminal}</pre>}
@@ -199,7 +216,10 @@ function SessionLive() {
   const busy = status === "busy" || status === "retry";
   const lastError = [...msgs].reverse().find((m) => m.info.role === "assistant")?.info.error;
   if (!id || session.state === "error") return <div className="empty"><h2>{t("code.session.missingTitle")}</h2><p>{t("code.session.missingBody")}</p><button className="btn primary" onClick={() => go("code")}><Icon name="compose" size={16} />{t("code.newTask")}</button></div>;
-  const send = (text: string) => { api.sessions.prompt(id, { parts: [{ type: "text", text }] }).catch(() => toast.add({ title: t("code.session.sendFailed"), data: { icon: "x-circle" } })); };
+  const send = async (text: string) => {
+    try { await api.sessions.prompt(id, { parts: [{ type: "text", text }] }); return true; }
+    catch { toast.add({ title: t("code.session.sendFailed"), data: { icon: "x-circle" } }); return false; }
+  };
   const row = (m: MessageWithParts) => m.parts.map((p) => {
     if (p.type === "text" && p.text && !p.synthetic) return m.info.role === "user"
       ? <div key={p.id} className="msg-user" style={{ alignSelf: "flex-start", maxWidth: "100%", whiteSpace: "pre-wrap" }}>{p.text}</div>

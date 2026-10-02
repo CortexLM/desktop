@@ -56,6 +56,24 @@ images are never silently removed. Retrying a failed reply resends the original 
 Send waits for selected files to finish reading; failed reads name the file and ask to select
 it again. Historical retry uses the selected reply's preceding prompt, not a later message.
 
+Code, Work and Bot composers also clear drafts only after prompt admission. Missing models,
+cancelled Code folder selection and engine refusals keep the original text editable for retry.
+While admission is pending, composer controls are locked and duplicate submits are ignored.
+Work home keeps its composer mounted when a new session replaces the empty board.
+
+The shared and live Chat composers use the frozen reference's trimmed-text capsule state:
+typing detaches the send button; whitespace keeps the voice state. Live Chat keeps its real
+model picker, attachment handling and accepted-send contract. Refresh reloads configured
+model availability without clearing text or files; voice controls report unavailability in
+place until voice is wired.
+
+Preview Home suggestions and Code tasks carry their text and selected preview model into
+the conversation via browser history. Chat preview replies explicitly identify themselves
+as local demonstrations; Code personal requests show no executed changes or commands.
+Same-URL fixture navigation gets a distinct history entry, so Back restores the initial
+personal request and model. Later preview turns are local component state, not engine data.
+Shared preview add/microphone/voice controls open the matching registered screens.
+
 Provider names shown here come from the catalog: the user chose that provider
 ([`.rules/02-errors.md`](../.rules/02-errors.md) § 2.1).
 

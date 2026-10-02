@@ -56,9 +56,15 @@ See [connection-modes.md](./connection-modes.md).
 
 ## Renderer
 
+Shared zod contracts disable dynamic compilation before schema initialization. This avoids
+evaluation probes under the renderer's strict CSP; validation uses the interpreter in every host.
+
 - Hash routing: `#/<screen-id>?v=<variant>&theme=…&preview|shot` (`shell/nav.tsx`).
   The URL is authoritative; native browser history retains session IDs and variant parameters.
   Electron's Navigation API updates React for hash, back/forward and replace-state changes.
+  Preview personal requests keep only their initial text/model in the history entry, distinct
+  from fixture conversations at the same URL. Theme selection replaces that entry without
+  dropping its identity or draft. Live conversations remain engine-owned sessions.
 - Menu routing lives above Shell so Help → Design gallery and its return paths work.
   Gallery transitions skip view snapshots because hundreds of iframes block input; ordinary
   screen transitions remain. Native Go entries for undesigned surfaces are disabled.

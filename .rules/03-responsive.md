@@ -54,4 +54,6 @@ Screen stylesheets still carry some raw hex (e.g. `screens/files/files.css`,
 - Respect `prefers-reduced-motion` (the shell skips view transitions when it is set).
 - Hover-only affordances need a `@media (hover: none)` fallback.
 - Interactive elements have an accessible name; icon buttons use `IconBtn` with `label`.
-- Keyboard shortcuts in the shell must not fire while typing in an input (except ⌘K).
+- Shell shortcuts while typing are limited to Command/Ctrl K, N, B and Backslash: command
+  palette, new conversation, sidebar and focus mode. Layout toggles preserve the draft;
+  New intentionally starts a fresh composer. Other shortcuts leave text editing alone.

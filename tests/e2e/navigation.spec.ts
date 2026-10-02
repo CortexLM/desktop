@@ -30,7 +30,7 @@ test("anchors, native menus and history preserve routes, variants and chat ident
     await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "hidden");
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     await back.click();
-    await expect.poll(() => page.evaluate(() => location.hash)).toBe(initialHash);
+    await expect.poll(() => page.evaluate(() => location.hash)).toBe("#/image-gen?preview=&v=refused&theme=dark");
     await expect(rules).toBeVisible();
     await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "hidden");
     await menu("Forward");

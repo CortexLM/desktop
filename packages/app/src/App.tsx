@@ -40,7 +40,7 @@ export default function App() {
         {h.route === "gallery" ? <Gallery /> : (
           <Tooltip.Provider delay={500} closeDelay={0}>
             <Toast.Provider timeout={4000} limit={3}>
-              <Shell key={h.shot ? location.hash : "app"} hash={h} />
+              <Shell hash={h} />
               <Toasts />
             </Toast.Provider>
           </Tooltip.Provider>

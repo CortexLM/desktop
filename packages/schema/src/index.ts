@@ -1,6 +1,9 @@
 // Browser-safe contracts shared by core, protocol, server and client. zod only.
 import { z } from "zod"
 
+// Shared contracts must initialize under the renderer's CSP without probing dynamic evaluation.
+z.config({ jitless: true })
+
 // ---------- ids ----------
 const PREFIX = { session: "ses", message: "msg", part: "prt", permission: "per", bot: "bot", memory: "mem", task: "tsk", run: "run", space: "spc" } as const
 export type IdKind = keyof typeof PREFIX

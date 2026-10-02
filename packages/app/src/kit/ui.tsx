@@ -48,27 +48,46 @@ export const Section = ({ title, action }: { title: string; action?: React.React
   <div className="sb-section"><span>{title}</span>{action}</div>
 );
 
-export function Segmented({ items, value, onChange }: { items: string[]; value: string; onChange: (v: string) => void }) {
+export function Segmented({ items, value: external, onChange, resetKey }: { items: string[]; value: string; onChange: (v: string) => void; resetKey?: string }) {
+  const [value, setValue] = React.useState(external);
+  const pending = React.useRef<number | undefined>(undefined);
+  React.useEffect(() => () => clearTimeout(pending.current), []);
+  React.useEffect(() => { clearTimeout(pending.current); setValue(external); }, [external, resetKey]);
   const list = React.useRef<HTMLDivElement>(null);
   const ind = React.useRef<HTMLSpanElement>(null);
-  const prev = React.useRef(value);
-  const place = (animate: boolean) => {
+  const placed = React.useRef(false);
+  React.useLayoutEffect(() => {
     const l = list.current, i = ind.current; if (!l || !i) return;
-    const tabs = [...l.querySelectorAll<HTMLElement>(".seg-tab")];
-    const to = tabs[items.indexOf(value)], from = tabs[items.indexOf(prev.current)];
-    prev.current = value; if (!to) return;
-    const end = [{ translate: `${to.offsetLeft}px 0`, width: `${to.offsetWidth}px` }];
-    if (!animate || !from || from === to || matchMedia("(prefers-reduced-motion: reduce)").matches) { i.getAnimations().forEach((a) => a.cancel()); Object.assign(i.style, end[0]); return; }
-    const L = Math.min(from.offsetLeft, to.offsetLeft), R = Math.max(from.offsetLeft + from.offsetWidth, to.offsetLeft + to.offsetWidth);
-    const a1 = i.animate([{ translate: `${L}px 0`, width: `${R - L}px` }], { duration: 190, easing: "cubic-bezier(0.32,0.72,0.24,1)", fill: "forwards" });
-    a1.finished.then(() => { if (prev.current !== value) return; i.animate(end, { duration: 420, easing: "cubic-bezier(0.28,1.28,0.36,1)", fill: "forwards" }).finished.then(() => Object.assign(i.style, end[0])).catch(() => {}); }).catch(() => {});
-  };
-  React.useLayoutEffect(() => place(true), [value]);
-  React.useLayoutEffect(() => place(false), []);
+    const to = [...l.querySelectorAll<HTMLElement>(".seg-tab")].find((tab) => tab.dataset.value === value);
+    if (!to) return;
+    const end = { translate: `${to.offsetLeft}px 0`, width: `${to.offsetWidth}px` };
+    if (!placed.current || matchMedia("(prefers-reduced-motion: reduce)").matches) { placed.current = true; Object.assign(i.style, end); return; }
+    const from = i.getBoundingClientRect(), parent = l.getBoundingClientRect();
+    const left = Math.min(from.left - parent.left, to.offsetLeft), right = Math.max(from.right - parent.left, to.offsetLeft + to.offsetWidth);
+    let cancelled = false;
+    const stretch = i.animate([{ translate: `${left}px 0`, width: `${right - left}px` }], { duration: 190, easing: "cubic-bezier(0.32,0.72,0.24,1)", fill: "forwards" });
+    stretch.finished.then(async () => {
+      if (cancelled) return;
+      const settle = i.animate([end], { duration: 420, easing: "cubic-bezier(0.28,1.28,0.36,1)", fill: "forwards" });
+      await settle.finished;
+      if (!cancelled) { Object.assign(i.style, end); stretch.cancel(); settle.cancel(); }
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+      const current = getComputedStyle(i);
+      Object.assign(i.style, { translate: current.translate, width: current.width });
+      i.getAnimations().forEach((a) => a.cancel());
+    };
+  }, [value]);
   return (
-    <Tabs.Root value={value} onValueChange={(v) => onChange(v as string)}>
+    <Tabs.Root value={value} onValueChange={(v) => {
+      const next = v as string;
+      setValue(next); clearTimeout(pending.current);
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { if (next !== external) onChange(next); }
+      else pending.current = window.setTimeout(() => { if (next !== external) onChange(next); }, 610);
+    }}>
       <Tabs.List className="seg" ref={list}>
-        {items.map((t) => <Tabs.Tab key={t} value={t} className="seg-tab">{t}</Tabs.Tab>)}
+        {items.map((t) => <Tabs.Tab key={t} value={t} data-value={t} className="seg-tab">{t}</Tabs.Tab>)}
         <span className="seg-ind" ref={ind} aria-hidden />
       </Tabs.List>
     </Tabs.Root>
@@ -112,13 +131,21 @@ export type Mode = "Cortex" | "Cortex Code";
 export const MODE_IMG: Record<Mode, string> = { Cortex: "/img/lagon.png", "Cortex Code": "/img/aube.png" };
 export function ModeSwitcher({ mode, onMode }: { mode: Mode; onMode: (m: Mode) => void }) {
   const t = useT();
+  const ring = React.useRef<HTMLSpanElement>(null);
   const opts: [Mode, string][] = [["Cortex", t("shell.mode.cortexHint")], ["Cortex Code", t("shell.mode.codeHint")]];
   return (
     <Menu.Root>
-      <Menu.Trigger className="mode-trigger">
+      <Menu.Trigger className="mode-trigger" onPointerDown={(e) => {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        e.currentTarget.getAnimations().forEach((animation) => { if (!(animation instanceof CSSTransition)) animation.cancel(); });
+        e.currentTarget.animate([{ scale: 1 }, { scale: .97 }, { scale: 1 }], { duration: 260, easing: "cubic-bezier(.3,.9,.4,1)" });
+        ring.current?.getAnimations().forEach((animation) => animation.cancel());
+        ring.current?.animate([{ scale: .75, opacity: 1 }, { opacity: 1, offset: .6 }, { scale: 1.6, opacity: 0 }], { duration: 380, easing: "linear" });
+      }}>
         <span className="mode-avatar" style={{ backgroundImage: `url(${MODE_IMG[mode]})` }} />
         <span className="mode-name">{mode}</span>
         <Icon name="chevron-down" size={12} className="mode-chev" />
+        <span className="mode-ring" ref={ring} aria-hidden />
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner sideOffset={4} align="start" alignOffset={0}>
@@ -142,14 +169,14 @@ export function ModeSwitcher({ mode, onMode }: { mode: Mode; onMode: (m: Mode) =
 export const useToast = () => Toast.useToastManager();
 export function Toasts() {
   const tr = useT();
-  const { toasts } = Toast.useToastManager();
+  const { toasts, close } = Toast.useToastManager();
   return (
     <Toast.Portal><Toast.Viewport className="toasts">
       {toasts.map((t) => (
         <Toast.Root key={t.id} toast={t} className="toast">
           <Icon name={(t.data as { icon?: string })?.icon ?? "check-circle"} />
           <div className="t-body"><Toast.Title className="t-title" /><Toast.Description className="t-desc" /></div>
-          {(t.data as { undo?: boolean })?.undo && <Toast.Close className="undo" onClick={() => (t.data as { onUndo?: () => void })?.onUndo?.()}>{tr("common.undo")}<span className="burn" /></Toast.Close>}
+          {(t.data as { undo?: boolean })?.undo && <Toast.Action className="undo" onClick={() => { (t.data as { onUndo?: () => void })?.onUndo?.(); close(t.id); }}>{tr("common.undo")}<span className="burn" /></Toast.Action>}
         </Toast.Root>
       ))}
     </Toast.Viewport></Toast.Portal>

@@ -78,3 +78,8 @@ are absent at backend `73b934c7`. A remote UI must distinguish detachment from c
 reconnection repeats the same POST/body, Idempotency-Key and Last-Event-ID. Password/MFA
 continuation designs are requested in the shared design board. None of these probes proves
 the pending authentication or remote inference integration.
+
+The backend's `none` mode also validates browser Origin headers on mutations. Main-process
+SDK requests are origin-pinned server requests without a browser Origin; a separate browser
+client must use its operator-configured allowed origin. The renderer still never talks directly
+to the backend or bypasses this boundary.

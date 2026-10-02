@@ -7,7 +7,7 @@ import { Composer } from "../../components/composer";
 import { Mascot, DEFAULT_MASCOT, type MascotConfig, type State } from "../../mascot/Mascot";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
-import { isPreview, useFixtures } from "../../preview";
+import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import "./chat.css";
 
 export const NB = "\u202f";
@@ -20,9 +20,9 @@ export const useFx = () => useFixtures<ChatFx>("chat");
 
 /** Mascot shown beside answers: the preview teammate, or a neutral Cortex mark in live mode. */
 export function useBotCfg(): MascotConfig {
-  const fx = useFx();
+  const previewBot = usePreviewBot();
   const t = useT();
-  return { ...DEFAULT_MASCOT, name: isPreview() ? fx.bot : t("chat.assistant") };
+  return previewBot?.cfg ?? { ...DEFAULT_MASCOT, name: t("chat.assistant") };
 }
 
 export function useCopy() {

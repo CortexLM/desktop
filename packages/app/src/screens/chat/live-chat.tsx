@@ -3,15 +3,15 @@ import * as React from "react";
 import { Collapsible } from "@base-ui/react/collapsible";
 import type { MessageWithParts, Part, ToolPart, FilePart, PromptPartInput } from "@cortex/schema";
 import { Gel, Icon, IconBtn, Pop, MItem, MSep, useToast } from "../../kit/ui";
-import { Composer, type ComposerAttachment } from "../../components/composer";
+import { Composer, startPreviewChat, previewChatStart, type ComposerAttachment } from "../../components/composer";
 import { Mascot } from "../../mascot/Mascot";
 import { api } from "../../api";
 import { useMessages, usePermissions, useQuery } from "../../state/live";
 import { toolName, toolTitle } from "../../state/tool-label";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
-import { isPreview } from "../../preview";
-import { Actions, Att, BotRow, Paras, css, useBotCfg, useCopy, useFx } from "./shared";
+import { isPreview, useFixtures, usePreviewBot } from "../../preview";
+import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
 import { ModelComposer, useModels, type SendOptions } from "./model-composer";
 
 const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
@@ -59,7 +59,12 @@ export function Home() {
   const models = useModels();
   const [noModel, setNoModel] = React.useState(false);
   const [sending, setSending] = React.useState(false);
+  const [previewModel, setPreviewModel] = React.useState(t("composer.model.fast"));
   const preview = isPreview();
+  const refresh = () => {
+    if (!preview) models.reload();
+    toast.add({ title: t("chat.home.refreshed"), description: t(preview ? "chat.home.refreshedPreview" : "chat.home.draftKept") });
+  };
   const send = async (text: string, atts: ComposerAttachment[], o: SendOptions) => {
     setSending(true);
     try {
@@ -74,14 +79,14 @@ export function Home() {
     } finally { setSending(false); }
   };
   return (<>
-    <div className="content-top"><div className="spacer" /><IconBtn icon="refresh" label={t("chat.refresh")} /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} /></div>
+    <div className="content-top"><div className="spacer" /><IconBtn icon="refresh" label={t("chat.refresh")} onClick={refresh} /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} /></div>
     <div className="home">
       <h1>{t("chat.home.title")}</h1>
       {!preview && (noModel || models.state === "error") && <NoProvider />}
-      {preview ? <Composer placeholder={t("composer.placeholder")} onSend={() => go("chat")} />
+      {preview ? <Composer placeholder={t("composer.placeholder")} onSend={(text, _, model) => startPreviewChat("chat", text, model)} onModelChange={setPreviewModel} />
         : <ModelComposer placeholder={t("composer.placeholder")} live={models} busy={sending} onNoModel={() => setNoModel(true)} onSend={send} />}
       {preview && <div className="suggestions">
-        {(fx.home.suggestions as string[][]).map(([g, s], i) => <button key={s} className="suggestion" style={css({ "--i": i })} onClick={() => go("chat")}><Gel name={g} size={20} />{s}</button>)}
+        {(fx.home.suggestions as string[][]).map(([g, s], i) => <button key={s} className="suggestion" style={css({ "--i": i })} onClick={() => startPreviewChat("chat", s, previewModel)}><Gel name={g} size={16} />{s}</button>)}
       </div>}
     </div>
   </>);
@@ -93,54 +98,87 @@ export function Chat() {
   const id = params.get("id");
   React.useEffect(() => { if (!id && !isPreview()) go("home"); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   if (id) return <LiveChat key={id} id={id} />;
-  return isPreview() ? <PreviewChat /> : null;
+  const start = previewChatStart();
+  return isPreview() ? <PreviewChat start={start} /> : null;
 }
 
-function PreviewChat() {
+function PreviewChat({ start }: { start: ReturnType<typeof previewChatStart> }) {
   const t = useT();
+  const { go } = useNav();
   const fx = useFx().chat;
+  const projects = useFixtures<{ projects: { name: string }[] }>("shell").projects;
   const toast = useToast();
   const bot = useBotCfg();
-  const [msgs, setMsgs] = React.useState<{ who: "u" | "b"; text: string; code?: boolean }[]>([
+  const previewBot = usePreviewBot();
+  const [title, setTitle] = React.useState<string>(start?.text ?? fx.title);
+  const [editing, setEditing] = React.useState<"title" | "project" | null>(null);
+  const [project, setProject] = React.useState(start ? "" : projects[0]?.name ?? "");
+  const [pinned, setPinned] = React.useState(false);
+  const [deleted, setDeleted] = React.useState(false);
+  const [msgs, setMsgs] = React.useState<{ who: "u" | "b"; text: string; code?: boolean; model?: string; prompt?: string }[]>(start ? [{ who: "u", text: start.text }] : [
     { who: "u", text: fx.q },
     { who: "b", text: (fx.reply as string[]).join("\n"), code: true },
   ]);
-  const [typing, setTyping] = React.useState(false);
-  const [talking, setTalking] = React.useState(-1);
+  // ponytail: preview-only responses; live conversations use the engine stream below.
+  const [queue, setQueue] = React.useState<{ text: string; model: string; replace?: number }[]>(start ? [start] : []);
+  const typing = queue.length > 0;
+  const next = queue[0];
   const end = React.useRef<HTMLDivElement>(null);
-  const copy = useCopy();
-  React.useEffect(() => { end.current?.scrollIntoView({ behavior: "smooth", block: "end" }); }, [msgs, typing]);
-  const send = (text: string) => {
-    setMsgs((m) => [...m, { who: "u", text }]); setTyping(true);
-    setTimeout(() => { setTyping(false); setTalking(msgs.length + 1); setTimeout(() => setTalking(-1), 1800); setMsgs((m) => [...m, { who: "b", text: fx.ack }]); }, 1400);
+  const copy = async (text: string, label = t("chat.toast.answerCopied")) => {
+    try { await navigator.clipboard.writeText(text); toast.add({ title: label, data: { icon: "copy" } }); }
+    catch { toast.add({ title: t("chat.preview.copyFailed"), description: t("chat.preview.copyManually"), data: { icon: "copy" } }); }
+  };
+  React.useEffect(() => { end.current?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "end" }); }, [msgs, typing]);
+  React.useEffect(() => {
+    if (!next) return;
+    const timer = window.setTimeout(() => {
+      const reply = { who: "b" as const, text: t("chat.preview.reply", { text: next.text, model: next.model }), prompt: next.text, model: next.model };
+      setMsgs((m) => next.replace === undefined ? [...m, reply] : m.map((old, i) => i === next.replace ? reply : old));
+      setQueue((q) => q.slice(1));
+    }, 1400);
+    return () => clearTimeout(timer);
+  }, [next, t]);
+  const send = (text: string, _: ComposerAttachment[], model: string) => {
+    setDeleted(false); setMsgs((m) => [...m, { who: "u", text }]); setQueue((q) => [...q, { text, model }]);
   };
   return (<>
     <div className="content-top">
-      <span className="title">{fx.title}</span>
+      {editing ? <form style={{ display: "flex", flex: 1, minWidth: 0, gap: 4 }} onSubmit={(e) => {
+        e.preventDefault(); const value = String(new FormData(e.currentTarget).get("value") ?? "").trim();
+        if (editing === "title" && !value) return;
+        if (editing === "title") setTitle(value); else { setProject(value); toast.add({ title: t("chat.preview.projectChanged"), description: value || t("chat.preview.noProject") }); }
+        setEditing(null);
+      }}>{editing === "title" ? <input className="input" name="value" defaultValue={title} aria-label={t("chat.preview.titleLabel")} required autoFocus style={{ flex: 1, minWidth: 0 }} /> : <select className="input" name="value" aria-label={t("chat.preview.project")} defaultValue={project} autoFocus style={{ flex: 1, minWidth: 0 }}><option value="">{t("chat.preview.noProject")}</option>{projects.map((p) => <option key={p.name}>{p.name}</option>)}</select>}<button className="btn secondary" type="submit">{t("common.save")}</button><IconBtn type="button" icon="close" label={t("common.cancel")} onClick={() => setEditing(null)} /></form>
+        : <span className="title" title={title} aria-label={title} style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{title}</span>}
+      {pinned && <span title={t("chat.preview.pinned")} aria-label={t("chat.history.pinned")}><Icon name="pin" /></span>}
       <Pop trigger={<button className="ibtn" aria-label={t("chat.options")}><Icon name="chevron-down" size={12} /></button>}>
-        <MItem icon="edit">{t("chat.menu.rename")}</MItem><MItem icon="pin">{t("chat.menu.pin")}</MItem><MItem icon="folder">{t("chat.menu.move")}</MItem><MSep />
-        <MItem icon="trash" danger onClick={() => toast.add({ title: t("chat.toast.deleted"), description: fx.title, data: { undo: true, icon: "trash" } })}>{t("chat.menu.delete")}</MItem>
+        <MItem icon="edit" onClick={() => setEditing("title")}>{t("chat.menu.rename")}</MItem><MItem icon="pin" onClick={() => setPinned((p) => !p)}>{t(pinned ? "chat.menu.unpin" : "chat.menu.pin")}</MItem><MItem icon="folder" onClick={() => setEditing("project")}>{t("chat.menu.move")}</MItem><MSep />
+        <MItem icon="trash" danger onClick={() => {
+          const saved = msgs; setQueue([]); setMsgs([]); setDeleted(true);
+          toast.add({ title: t("chat.preview.deleted"), data: { undo: true, icon: "trash", onUndo: () => { setMsgs((current) => [...saved, ...current]); setDeleted(false); } } });
+        }}>{t("chat.menu.delete")}</MItem>
       </Pop>
-      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" />
+      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} />
     </div>
     <div className="thread"><div className="thread-inner">
       {msgs.map((m, i) => m.who === "u"
-        ? <div key={i} className="msg-user">{m.text}</div>
-        : <div key={i} className="msg-bot-row"><Mascot cfg={bot} state={talking === i ? "talking" : "asleep"} size={22} /><div className="msg-bot" style={{ flex: 1, minWidth: 0 }}>
+        ? <div key={i} className="msg-user" style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{m.text}</div>
+        : <div key={i} className="msg-bot-row"><Mascot cfg={bot} state={previewBot?.live.on === false ? "asleep" : "idle"} size={22} /><div className="msg-bot" style={{ flex: 1, minWidth: 0, overflowWrap: "anywhere" }}>
             {m.text.split("\n").map((p, j) => <p key={j}>{p}</p>)}
             {m.code && <>
               <h4>{fx.h}</h4>
-              <div className="code"><div className="code-head"><span>{fx.file}</span><IconBtn icon="copy" label={t("chat.act.copy")} onClick={() => copy(fx.csv)} /></div><pre>{fx.csv}</pre></div>
+               <div className="code"><div className="code-head"><span>{fx.file}</span><IconBtn icon="copy" label={t("chat.preview.copyPlanning")} onClick={() => copy(fx.csv, t("chat.preview.planningCopied"))} /></div><pre>{fx.csv}</pre></div>
             </>}
             <div className="msg-actions">
               <IconBtn icon="copy" label={t("chat.act.copy")} onClick={() => copy(m.text, t("chat.toast.answerCopied"))} />
-              <IconBtn icon="refresh" label={t("chat.act.regen")} /><IconBtn icon="share" label={t("chat.act.share")} />
+              <IconBtn icon="refresh" label={t("chat.act.regen")} onClick={() => setQueue((q) => [...q, { text: m.prompt ?? msgs.slice(0, i).findLast((x) => x.who === "u")?.text ?? title, model: m.model ?? start?.model ?? t("composer.model.fast"), replace: i }])} /><IconBtn icon="share" label={t("chat.act.share")} onClick={() => copy(`${title}\n\n${m.text}`, t("chat.preview.shareCopied"))} />
             </div>
           </div></div>)}
-      {typing && <div className="msg-bot-row"><Mascot cfg={bot} state="thinking" size={22} /><span className="msg-bot thinking">{t("chat.thinkingName", { name: bot.name })}</span></div>}
+      {deleted && <p role="status">{t("chat.preview.deleted")}</p>}
+      {typing && <div className="msg-bot-row" role="status"><Mascot cfg={bot} state="thinking" size={22} /><span className="msg-bot thinking">{t("chat.preview.thinking")}{queue.length > 1 && ` ${t("chat.preview.queued", { count: queue.length })}`}</span></div>}
       <div ref={end} />
     </div></div>
-    <div className="dock"><Composer placeholder={t("chat.reply")} onSend={send} /><span className="hint">{t("chat.hint")}</span></div>
+    <div className="dock">{typing && <button className="btn secondary" onClick={() => { setQueue([]); toast.add({ title: t("chat.preview.stopped"), description: t("chat.preview.messagesKept") }); }}>{t("chat.preview.stop")}</button>}<Composer placeholder={t("chat.reply")} initialModel={start?.model} onSend={send} /><span className="hint">{t(start ? "chat.preview.hint" : "chat.hint")}</span></div>
   </>);
 }
 

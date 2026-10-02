@@ -21,6 +21,7 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `packages/protocol/test/protocol.test.ts` · `packages/server/test/server.test.ts` · `packages/client/test/client.test.ts` | routes, binding, client + SSE |
 | `packages/desktop/test/remote.test.ts` | SDK probe; real backend only with `CORTEX_TEST_BACKEND_URL` |
 | `tests/unit/locales.test.ts` · `tests/unit/audit-i18n.test.ts` | locale parity, Node source-stamp exclusion, audit behaviour |
+| `tests/unit/runtime-copy.test.ts` | mascot accessible names and structured tool titles/error copy across eight locales |
 
 Engine tests use `createCore({ dataDir: ":memory:", credentials: memoryCredentials() })`
 and the catalog fixture `packages/core/test/fixtures/catalog.json`.
@@ -49,7 +50,8 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   uncaught page errors and raw i18n keys in visible/accessibility/tooltip copy in preview;
   it does not exercise every control.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
-  macOS traffic-light position `{x:20,y:15}` through Electron APIs.
+  macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
+  violations before application initialization, including forbidden evaluation probes.
 - `tests/e2e/responsive.spec.ts` — 960/1024×640 in both themes: scroll to and apply a Code
   suggestion, read split-diff line endings, use Canvas selection/version controls, operate
   Work computer controls. Also forces preview navigation before startup subscription to
@@ -60,6 +62,30 @@ and the catalog fixture `packages/core/test/fixtures/catalog.json`.
   Gallery checks bound loaded frames, retain the top scroll position, unload scrolled previews
   and require the exit link to respond within five seconds.
   Capture manifests are revision-specific; a later targeted capture does not refresh the full sweep.
+- `tests/e2e/keyboard.spec.ts` — both themes at 960×640: theme radio arrow/Home/End selection
+  with one Tab stop, reduced-motion theme changes, hidden sidebar/focus controls and collapsed
+  project chats reject focus. Hiding the sidebar dismisses its open mode menu. A keyboard-activated
+  Undo preserves the real engine session. A motion-enabled case covers interrupted tab selection,
+  settled indicator geometry and retained keyboard focus, vertical theme selection, OS appearance
+  changes and mode-menu closure. Focus mode excludes the native drag region above content actions.
+- `tests/e2e/composer-safety.spec.ts` — both themes at 960×640: Code directory cancellation,
+  missing models, Code/Work/Bot engine refusal, locked pending admission, duplicate-submit
+  suppression and accepted-send clearing. Work's empty-board transition preserves its draft.
+- `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
+  handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
+  demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced
+  motion and real-engine image-capability refusal/retry through the fake provider. Geometry
+  equality allows 0.005 CSS-pixel compositing rounding, not a visible layout change.
+- `tests/e2e/bot-safety.spec.ts` — 960/1440 × both themes: real rejected Bot writes preserve the
+  studio draft/dialog; pending writes lock controls and reject duplicate submission. Shared preview
+  appearance/activity/pause, draft restoration, onboarding and locale/live isolation are separate cases.
+  Leaving onboarding cancels delayed navigation, including a departure from preview into live mode.
+- `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
+  themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
+  exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.
+- `tests/e2e/interaction-states.spec.ts` — frozen-reference semantic end states at 960/1440 in both
+  themes: switches, history delete/Undo, reasoning disclosure, file drops, approval Undo, image
+  comparison and nine mascot states; Kanban drag at 1440. No frame-accurate timing claim.
 
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
@@ -85,13 +111,16 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   debugging port, waits for a window, checks it stays up and renders the Cortex shell,
   screenshots to `out/`. This is a packaged-launch check, not a full flow or signing check.
   Linux: `bun run pack` first; on a headless host run `xvfb-run -a node scripts/smoke.mjs linux`.
-- `node scripts/compare-shots.mjs [--base http://localhost:5299/] [--shots <dir>] [--only id,id] [--merge]`
+- `node scripts/compare-shots.mjs --shots <freeze>/shots --out <new-directory> [--base http://localhost:5299/] [--only id,id] [--merge]`
   — renders every gallery state plus five interaction shots (French locale, 1440×900 @2x):
   home mode menu and history second-row menu in both themes, file-image ask panel in light.
-  Pixel-diffs against the reference go to `evidence/compare/`. Needs `bun run dev:app` and
-  the reference checkout. `--merge` retains earlier report rows for routes not rerun.
-  The report has no pass/fail pixel threshold; missing references remain explicit gaps.
-  Capture fails if theme/content never becomes ready rather than silently comparing a blank page.
+  Explicit output keeps historical `evidence/compare/` intact. The reference must have matching
+  `freeze.json`, `shots/manifest.json` and source/image hashes. The script records per-row capture
+  timestamps, app/design/diff hashes, renderer source and served-asset fingerprints in
+  `provenance.json`; it rejects source changes during capture and incompatible merges.
+  Missing approved optional references remain explicit gaps. There is no pass/fail pixel threshold.
+  Console errors or missing theme/content fail capture; absent preview API transport is recorded
+  separately. `node scripts/compare-shots.test.mjs` checks provenance refusals without a browser.
 - `scripts/mac/capture.sh <routes-file> <out-dir>` — runs on a remote Mac, captures each
   route with native window chrome in light and dark. `scripts/mac/artifact-url.sh <run-id>
   <artifact>` prints a download URL for a CI artifact (needs `gh`).
@@ -117,11 +146,16 @@ theme/states plus five interactions. **421** have reference shots (mean differin
 reference PNGs are mascot review boards, not routed screens. These figures describe that
 report, not a fresh run or acceptance of every interaction.
 
+The delivered freeze has 410 registered screenshots. A full frozen comparison of the current
+431 jobs consequently has 21 reference gaps: eight additional Settings variants in both themes
+and five click-opened extras. Older screenshots are not used to fill those gaps.
+
 The reference registry has 205 states, the app 213: Settings has one registered reference
 state versus nine app variants. The other 204 states match. Existing clicked Appearance,
 Shortcuts and Account sections have shots; Bot, Notifications and Privacy do not; Providers
-and Connection still await designs. Reference Home/Components are under active review;
-matching older PNGs does not prove alignment with current source. See
+and Connection still await approved designs. The source freeze `2026-10-02-7b388e2d9674`
+replaces the changing live checkout as the comparison input. Home's final reviews cover their
+verified/inherited scope; matching older PNGs does not prove alignment with the freeze. See
 [`evidence/compare/reference-status.md`](../evidence/compare/reference-status.md).
 
 ## CI

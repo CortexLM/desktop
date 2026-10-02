@@ -10,7 +10,7 @@
 | Types | `bun run typecheck` | `strict` holds across packages, tests, scripts |
 | Lint | `bun run lint` | `eslint packages scripts tests` |
 | Packaged launch | `bun run pack && node scripts/smoke.mjs linux` (or `mac`) | The packaged binary opens a window and stays up |
-| Design comparison | `node scripts/compare-shots.mjs` (needs `bun run dev:app` and the reference shots) | Gallery states vs the design reference, pixel diff into `evidence/compare/` |
+| Design comparison | `node scripts/compare-shots.mjs --shots <freeze>/shots --out <new-directory>` (needs renderer server) | Gallery states vs a hash-verified frozen reference; explicit output preserves historical evidence |
 
 Details, fixtures and hooks: [`docs/testing.md`](../docs/testing.md). If the host exports
 `NODE_ENV=production`, prefix test runs with `NODE_ENV=test`.
