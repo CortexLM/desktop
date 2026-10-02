@@ -35,9 +35,28 @@ SQLite/WAL and credential file. These checks do not assert historical page erasu
 Local integrated checks reached **173 unit passes**, one optional backend skip; lint/types and
 i18n audit pass. Initial full Electron run: **51/51**, 426 registered renders; review corrections
 pass seven targeted engine/provider UI cases and Linux package/smoke. The final startup-migration
-status/disable guards receive targeted MCP, IPC and packaged checks. New CI remains pending.
+status/disable guards pass targeted MCP, IPC and packaged checks. New green CI remains pending.
 [Final source review](source-review.md) approves the bounded correction; retained final logs
 show 173 unit passes, lint/types, MCP IPC and packaged smoke success.
+
+### First CI and native-window contention investigation
+
+[CI 37061251022](https://github.com/CortexLM/desktop/actions/runs/37061251022) at `ca08282`
+passes static checks and **51/51 Linux E2Es**; macOS passes **50/51**, including the MCP case.
+Navigation's `locator.click` waits 30s for frame stability after returning from Gallery.
+The target resolves, but no click dispatches. The earlier documentation-only run separately
+stalled at a screenshot after fonts loaded. Both negatives are retained; neither is a proven
+MCP regression or a proven infrastructure fault.
+
+macOS test execution defaults to one worker to reduce contention among this suite's Electron apps.
+No assertion, timeout or screenshot is removed. A bounded Linux-only probe
+records 2 hidden-window frames/1.2s, 3 after disabling throttling, 72 after showing the window;
+the attempted throttling override was discarded. Earlier frame loops remain during later phases;
+this is a frame-availability observation, not an isolated rate benchmark or macOS reproduction.
+Neither CI stall's cause is established. Fresh macOS CI/package proof is required.
+Six navigation/keyboard cases pass locally with one worker (`serial-local.log`); this is Linux
+evidence, not the pending macOS result. The earlier capture has a separate source-bound
+[trace adjudication](ci-1e91a43/README.md).
 
 Credential cipher unit tests use a test cipher; Electron exercises the actual host credential path.
 When safeStorage is unavailable, the existing `p:` base64 fallback remains explicit: encoding is

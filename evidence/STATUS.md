@@ -16,7 +16,14 @@ skip and 51 Electron cases/426 renders; independent review added three more life
 regressions plus a later save/disable case, all reproduced and corrected. Updated units pass
 **173 + one optional skip**,
 targeted engine/provider UI and Linux packaged checks pass. [Evidence](mcp-followup/README.md).
-Final scoped source review passes; new CI remains pending.
+Final scoped source review passes. [CI 37061251022](https://github.com/CortexLM/desktop/actions/runs/37061251022)
+passes static checks and 51/51 Linux E2Es; macOS passes 50/51 including MCP, then navigation
+stalls waiting for element stability. Serial macOS execution is under verification; no assertion
+or timeout is relaxed.
+The intervening documentation-only [CI 37057583278](https://github.com/CortexLM/desktop/actions/runs/37057583278)
+failed one macOS screenshot capture at `keyboard.spec.ts:187` after fonts loaded (49/50).
+Application/test inputs matched `f2754be`; trace review confirms capture timeout, cause unproven,
+separate from the new MCP correction and its CI.
 
 ## Current admission correction
 

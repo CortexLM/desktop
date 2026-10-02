@@ -4,7 +4,7 @@
 
 ```
 ┌──────────── Electron main (packages/desktop/src/main.ts) ────────────┐
-│ createCore({ dataDir, credentials, remoteProbe, skills, plugins })    │
+│ createCore({ dataDir, credentials, mcpCredentials, remoteProbe, … })  │
 │ createServer(core)  → Hono app, called as app.fetch(Request)          │
 │ ipcMain "cortex:fetch"  ─ request/response for /api/*                 │
 │ ipcMain "cortex:events" ─ SSE body pumped as "cortex:events:chunk"    │

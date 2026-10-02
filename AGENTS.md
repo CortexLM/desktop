@@ -105,7 +105,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_TEST_BACKEND_URL` | `packages/desktop/test/remote.test.ts` | Optional real backend for the SDK probe test |
 | `CUA_DRIVER_PATH` | `packages/core/src/computer-use.ts` | Path to the Cua Driver binary |
 | `PORT` | `scripts/dev-api.ts` | Dev engine port (default 5298) |
-| `E2E_WORKERS` | `playwright.config.ts` | Playwright workers (default 4) |
+| `E2E_WORKERS` | `playwright.config.ts` | Playwright workers (default 1 on macOS, 4 elsewhere) |
 
 `scripts/translate-locales.mjs` reads `TRANSLATE_BASE_URL`, `TRANSLATE_API_KEY`,
 `TRANSLATE_MODEL`; `scripts/verify-real-provider.mjs` reads `CORTEX_REAL_BASE_URL` and

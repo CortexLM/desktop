@@ -5,7 +5,7 @@
 | Command | Scope | Notes |
 | --- | --- | --- |
 | `bun run test` | Vitest (`vitest.config.ts`): `packages/*/test/**/*.test.ts`, `tests/unit/**/*.test.ts`, `packages/app/src/**/*.test.{ts,tsx}` | Node environment, 20 s timeout. Prefix `NODE_ENV=test` if the host exports `production` |
-| `bun run test:e2e` | Playwright (`playwright.config.ts`), `tests/e2e` | Launches `packages/desktop/dist/main.cjs` via `_electron`; **run `bun run build` first**. Workers: `E2E_WORKERS` (default 4). Reports: `playwright-report/`, `test-results/` |
+| `bun run test:e2e` | Playwright (`playwright.config.ts`), `tests/e2e` | Launches `packages/desktop/dist/main.cjs` via `_electron`; **run `bun run build` first**. Workers: `E2E_WORKERS` (default 1 on macOS, 4 elsewhere). Reports: `playwright-report/`, `test-results/` |
 | `bun run audit:i18n` | `scripts/audit-i18n.mjs` | See [i18n.md](./i18n.md) |
 | `bun run lint` | `eslint packages scripts tests` | |
 | `bun run typecheck` | `tsc -p tsconfig.json` | Includes tests and scripts |
@@ -132,6 +132,10 @@ Cancellation checks inspect the durable event journal as well as the current mes
 
 Each launch also gets an isolated Electron user-data directory: renderer locale/theme/model
 preferences cannot leak between parallel test processes or the developer's installed app.
+macOS defaults to one worker to limit foreground-app contention among this suite's Electron apps.
+Assertions, capture requirements and timeouts remain unchanged. A Linux-only hidden-window probe
+records restored frame availability after showing the window; it does not reproduce either macOS
+CI stall or establish its cause.
 The engine is real in these E2Es; the inference endpoint is fake. Catalog calls use
 models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thinking or
 image-inference proof is recorded by these tests.
