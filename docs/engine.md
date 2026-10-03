@@ -199,6 +199,19 @@ its own saved notes. Neither list ownership nor the global toggle merges Bot mem
   Live Work completion comes from the latest persisted assistant message, not an idle process.
   Refused/empty and failed/interrupted tasks stay outside Done; transcript failures remain visible
   after reload. The board currently reads each root Bot session's history until a bulk summary exists.
+  Activity separately selects up to 40 root Bot conversations by updated time and ID, then
+  the last finished assistant turn in each stored history. Its historical outcome persists
+  during a follow-up; missing completion after process loss creates no new outcome.
+  Aborted turns read Interrupted, other errors Failed, no error Completed. These labels
+  describe turn termination rather than task/business fulfillment. Routine-created Bot
+  roots appear once; child, Chat and Code sessions are excluded. Bot/type filters apply
+  inside that same bounded selection. Metadata uses exact Bot IDs; unavailable identities
+  remain neutral on Activity and the linked Work transcript. Only titles/outcomes/times
+  appear in the feed, never transcript/tool content or raw error messages.
+  Session/Bot/history failures show Retry. History 404 requires an authoritative re-list
+  before omission; deletion invalidates pending snapshots. Lists remain unpaginated and
+  selected transcripts are read in full: 40 limits request fan-out, not payload bytes.
+  Activity export and a complete journal/read/handled/notification lifecycle remain absent.
   Global Search reads saved Project names/instructions, Bot names/personas and session titles through list routes.
   Matching is case/accent-insensitive; opening a Bot carries its exact ID. Grouped keyboard navigation
   follows visual order. Any source-list failure replaces results with retryable, localized error copy;

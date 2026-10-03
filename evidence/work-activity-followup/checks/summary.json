@@ -1,0 +1,63 @@
+{
+  "baseRevision": "906987b94c04c3c4566ecb33394584ff0e93074e",
+  "initialTargeted": {
+    "startTime": "2026-10-03T18:39:10.654Z",
+    "duration": 20794.998,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "lifecycleCorrected": {
+    "startTime": "2026-10-03T18:40:39.840Z",
+    "duration": 5161.413,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "raceStrengthened": {
+    "startTime": "2026-10-03T18:43:19.616Z",
+    "duration": 3188.593,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "behaviorTestCurrentSHA256": "3cf71b7c5a2ce730ffdbef866c9555758f4974a11844621c8429abc2460be9ff",
+  "localeTestSHA256": "bfda7f43480e7f20e8101480950c28c5ea149b0f6f3bedf231d56c3ed7a5e087",
+  "strongerGeometryMeasurements": 112,
+  "localeImages": 8,
+  "fullSuite": {
+    "startTime": "2026-10-03T18:41:36.166Z",
+    "duration": 294848.924,
+    "expected": 132,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "fullBehaviorTestSHA256": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+  "finalTargeted": {
+    "startTime": "2026-10-03T18:48:08.108Z",
+    "duration": 7286.332,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalBehaviorTestSHA256": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744",
+  "finalTargetScope": "Six cases after unfiltered deletion/Activity-owned node/query-specific authoritative read strengthening. Same production app.",
+  "units": {
+    "passed": 260,
+    "optionalBackendSkipped": 1
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "i18n": {
+    "files": 67,
+    "usedKeys": 2279,
+    "englishKeys": 3419,
+    "problems": 0
+  },
+  "linuxPackageSmoke": "passed"
+}

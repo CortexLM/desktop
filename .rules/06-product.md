@@ -13,7 +13,7 @@ Settings.
 | Surface | Area folder | What it is |
 | --- | --- | --- |
 | **Chat** | `screens/chat` | Conversations with a model the user configured. Live: home composer, transcript streaming, errors mapped to copy, recents in the sidebar |
-| **Work** | `screens/work` | Tasks handed to bots, approvals, automations, inbox, activity. Live: task board from bot sessions, permission approvals, automations on `/api/tasks` |
+| **Work** | `screens/work` | Tasks handed to bots, approvals, automations, inbox, activity. Live: task board from bot sessions, permission approvals, automations on `/api/tasks`, latest finished turns from up to 40 recently updated root Bot conversations in Activity |
 | **Bots** | `screens/bots` | Teammates with a mascot (shape, colour, eyes, mouth, accessories), persona, memory and routines. Live: CRUD, memory, routines |
 | **Files** | `screens/files` | Document, media and code viewers. Viewers are preview-only; live mode shows `upload` |
 | **Cortex Code** | `screens/code` | Coding agent on a local folder. Live: home picks a folder with the native dialog and starts a `code` session with the `build` agent; session transcript |

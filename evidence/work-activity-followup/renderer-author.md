@@ -1,0 +1,28 @@
+# Work Activity — renderer author handoff
+- Base: documentary `906987b`, application `96df66c`.
+- Owned product edits only: `screens/work/{activity.tsx,desk.tsx,home.tsx,work.css}` under `packages/app/src/`.
+- Read AGENTS/all nine rules, delivery/review contracts, context, harden/craft-floor and both frozen Activity images.
+- `activity.tsx`: local read-only loader/view; no generic/global state, route or dependency addition.
+- Select newest updated/ID 40 root `kind=bot` sessions with nonempty botID, before filters.
+- Select last finite completed assistant in API order; retain prior finished turn through incomplete/user follow-ups.
+- Classify absent error Completed, `aborted` Interrupted, all other errors Failed; sort completion then stable IDs.
+- Store/render only title, identity, outcome/time; never parts, transcript or raw error copy.
+- Subscribe before lists; generation checks before history fan-out/publication; microtask coalesces same-stack refresh events.
+- Refresh root Bot create/update, deletion and terminal assistant updates; ignore tokens. Terminal Chat/child events may refresh without adding rows.
+- Deletions tombstone immediately; stale responses cannot revive IDs. History 404 requires authoritative relist; still-present/failed relist shows Retry.
+- Failures reload all real sources on Retry; history non-404 failures surface promptly even if another read is held.
+- Actual preview boundary invalidates owner; canceled return reloads without replacing outgoing live component. Committed preview uses separate incumbent component.
+- Bot filter derives IDs from finished bounded rows plus selected ID; duplicate names get stable-ID-ordered localized ordinals and exact mascot.
+- Local day keys use `Date.toDateString()` (includes year), labels/time use `useDate`; live only All/Errors and Clear filters.
+- Native row buttons open exact `work-task?id`; Export remains disabled. No `act.summary` action-count claim.
+- `WorkTaskLive` now uses exact `toConfig(bot)`; missing successful metadata gets neutral default + Unavailable Bot; pending/failed metadata has neutral unnamed default.
+- Live-only CSS wraps long titles/names/outcomes, auto-sizes locale time, bounds/scrolls Bot menu; preview selectors unchanged.
+- Scoped ESLint passed (activity/desk/home). Full `bun run typecheck` passed after final edit.
+- One detector pass: five warnings, all pre-existing transitions outside changed CSS (lines 45,102,207,224,365); no new-target warning.
+- No builds, tests, launches, network, native/CI operations, commits or delegation; coordinator owns runtime/visual verification.
+- Ceiling: unpaginated lists and full selected transcripts still read; 40 bounds request fan-out only. Future server summaries named in ponytail comment.
+## SHA-256 (final owned sources)
+- `activity.tsx`: `ac08eb0411325df215cce7bcb16dae8b47f562621fd7ea87b1b74d59dc09d904`
+- `desk.tsx`: `0ca4769cfa95e122f61d1cf9f23093707c0265bc12d89a43aa83fa98c247d288`
+- `home.tsx`: `b3d1f50d603e03bd3335f299c7f80f333a7d2dd66a34e625900baf9ec2a60079`
+- `work.css`: `b030e5979a31fb9d5cebc2a38d6922766d34cf693c1ab5c2fafb9efa4f0be5c3`

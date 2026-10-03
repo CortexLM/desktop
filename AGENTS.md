@@ -165,6 +165,14 @@ still commit, while update-callback failures remain observable.
 Toast Undo remains an accessible action. See [`docs/testing.md`](./docs/testing.md).
 Work columns wrap within narrow content panes; transcript toasts anchor above the actual
 composer dock, including attachments and nested Work transcripts at every window width.
+Live Activity shows the latest persisted finished assistant turn from each of up to 40
+recently updated root Bot conversations. Earlier outcomes remain visible during follow-ups;
+Completed/Failed/Interrupted describe historical turns, not task fulfillment. Filters stay
+within the same bounded selection, use exact Bot IDs and open exact Work sessions.
+Missing Bot metadata uses neutral attribution; source failures offer Retry. Deleted rows
+cannot return from late reads, and canceled preview navigation reloads the live owner.
+Work transcripts use their assigned Bot's actual mascot, with neutral unavailable identity
+for missing owners. Activity reads full selected histories; it is not a full event journal.
 Components is a preview-only catalog: 94 blocks, 31 screen families, 30 motion entries;
 at most three thumbnails mount. Bot Studio keeps refused saves editable; preview Bot appearance,
 activity and drafts share temporary renderer state, cleared on reload, locale change or exit.
@@ -225,7 +233,7 @@ Bot, archive and metadata-editing UI remain unfinished. See [`docs/engine.md`](.
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |
 | Chat (`chat`) | `home`, `chat`, history, library, research, canvas, voice, image… | Chat home + transcript stream from the engine |
-| Work (`work`) | `work-home`, `work-task`, `automations`, `approvals`, `inbox`, `activity`… | Tasks handed to bots, permission approvals |
+| Work (`work`) | `work-home`, `work-task`, `automations`, `approvals`, `inbox`, `activity`… | Tasks handed to bots, permission approvals, bounded recent Bot-turn Activity |
 | Bots (`bots`) | `bot`, `bot-new`, `bot-studio`, `bot-roster`, `bot-settings` | Bot CRUD, mascot, memory |
 | Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`… | Viewers are preview-only; live routes show `upload` |
 | Cortex Code (`code`) | `code`, `code-session`, `code-tasks`, `code-review`… | Home picks a folder (native dialog) and starts a `code` session |

@@ -101,6 +101,15 @@ Cancellation checks inspect the durable event journal as well as the current mes
   A held-response case reproduces canceled-preview navigation stranding both the initial
   read and a pending switch. Actual navigation-boundary invalidation restores a fresh live
   owner without committing preview or replacing the outgoing screen.
+- `tests/e2e/work-activity.spec.ts` defines persisted outcome ordering, retained finished
+  turns during follow-ups/restart, root-only 40-conversation selection, exact same-name or
+  unavailable Bot attribution, source refusals/Retry and late/deleted/preview ownership.
+  `tests/e2e/work-activity-localization.spec.ts` defines eight-locale, two-theme checks
+  for the bounded Activity scope/empty copy and three persisted turn outcomes. It uses
+  real engine prompts with a local streamed success, HTTP refusal and aborted stream;
+  unavailable Bot metadata and long titles must remain readable through descendant
+  clipping ancestors. Execution receipts are tracked in
+  [`evidence/work-activity-followup/README.md`](../evidence/work-activity-followup/README.md).
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

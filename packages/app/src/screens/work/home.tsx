@@ -14,6 +14,7 @@ import { useSessions, useBots, usePermissions, useMessages, useQuery } from "../
 import { toolTitle } from "../../state/tool-label";
 import { css, NB, useGo, useMainBot, useStatuses, useDate, Top, Empty, BotFace, type BotsFx } from "./common";
 import type { WorkFx } from "./fixtures";
+import { toConfig } from "../bots/mascot-io";
 
 type Col = "todo" | "doing" | "review" | "done";
 const COLS: [Col, string][] = [["todo", ""], ["doing", "run"], ["review", "wait"], ["done", "ok"]];
@@ -429,12 +430,11 @@ function WorkTaskLive({ id }: { id: string }) {
   const { msgs, status } = useMessages(id || undefined);
   const s = session.state === "ready" ? session.data : null;
   const bot = bots.state === "ready" ? bots.data.find((b) => b.id === s?.botID) : undefined;
-  const main = useMainBot();
-  const cfg = bot ? { ...main!.cfg, name: bot.name } : main?.cfg;
+  const name = bot?.name ?? (s && bots.state === "ready" ? t("work.act.missingBot") : "");
+  const cfg = bot ? toConfig(bot) : { name, ...DEFAULT_MASCOT };
   const asking = perms.state === "ready" && perms.data.some((p) => p.sessionID === id);
   const v = asking ? "approval" : status === "busy" || status === "retry" ? "running" : status === "error" ? "failed" : taskOutcome(msgs);
   const state = ({ approval: "waiting", running: "working", failed: "blocked", done: "done", todo: "idle", paused: "asleep" } as Record<string, State>)[v];
-  const name = bot?.name ?? cfg?.name ?? "";
   const steps: [string, StepS, string][] = msgs.flatMap((m) => m.parts.filter((p): p is ToolPart => p.type === "tool")).map((p) => [
     toolTitle(t, p), p.state.status === "completed" ? "ok" : p.state.status === "error" ? "err" : "run", dur(p)]);
   const thread = React.useRef<HTMLDivElement>(null);
