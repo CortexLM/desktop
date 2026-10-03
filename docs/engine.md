@@ -100,6 +100,44 @@ Capability gates (`llm.ts`), from the catalog entry of the model:
 | model with `reasoning` | provider thinking options set (Anthropic budget, OpenAI effort, …) |
 | always | `maxOutputTokens` clamped to the model and remaining context |
 
+## Saved local image attachments
+
+Local Chat FileParts retain inline base64/data URLs in both the SQLite journal and part
+projection. The Files image route reads the existing session and full history, selecting
+exact session/message/part IDs and requiring `kind=chat`. It never dereferences arbitrary
+URLs or local filesystem paths. No additional engine route, file store or credential
+access is involved; viewing works without a current provider or account.
+
+`raster.ts` accepts one inline source, standard canonical padded/unpadded base64 and bare
+PNG/JPEG/WebP MIME tokens. Signature/container framing and positive dimensions precede
+native decoding. APNG/animated WebP, ambiguous sources, unsupported or malformed headers
+are refused. Inclusive viewer ceilings: 50,000,000 base64-decoded file bytes, 40,000,000
+encoded pixels and 32,768 per dimension. File bytes remain compressed image data; complete
+history IPC, cumulative thumbnails and decoder overhead are not memory-bounded by this gate.
+CRC/compressed pixel correctness still requires native decoding. Displayed dimensions may
+differ from encoded dimensions through native orientation/density handling.
+
+Saved Chat thumbnails use the same preflight. Open preserves dirty/refused text, files,
+pending reads/submissions and header edits by refusing departure with accessible feedback.
+Accepted deferred Open latches edits until departure; canceled Back restores interaction.
+One pending rename prevents re-entry until its response settles. The filename has its
+own bounded keyboard-scrollable header, preserving image and controls for long names.
+Live image loading follows the complete committed tuple and independently invalidates on
+actual navigation. Deletion tombstones and part updates clear the displayed source, metadata
+and download control; stale GET/decode responses cannot restore them. Canceled departure
+re-reads the live owner. Source 404 is unavailable; other reads offer Retry.
+Sidebar/focus/theme rerenders preserve that same tuple's image, zoom and pending download.
+
+Download freshly revalidates the session, then dispatches original validated Blob bytes
+under a bounded MIME-derived basename. Embedded EXIF/GPS/XMP remains; this is not file
+sanitization. Its independent URL expires after one minute to allow browser handoff;
+there is no renderer completion acknowledgement or success toast. Deletion is not atomic
+with dispatch and cannot reliably cancel an already-dispatched download. The live-only
+event stream may miss deletions; re-entry/download revalidation bounds that limitation.
+Session deletion removes projections, not journal bytes: no secure-erasure claim.
+Standalone durable import, file inventory, remote hydration, other format readers and
+live image editing/sharing/Ask remain unfinished.
+
 ## Local Projects
 
 `GET/POST /api/projects`, `GET/PATCH/DELETE /api/projects/:id` persist local Project

@@ -1,0 +1,30 @@
+# Saved image Chat entry — author handoff
+- Base: application `9ba8e59`, documentary `d390cce`; only three assigned Chat sources edited.
+- Read AGENTS/all nine rules, delivery/independent review, incumbent context, harden/craft-floor; inspected frozen light/dark Chat images.
+- `FileThumb` memoizes `readRaster({mime,data,url})` on those three primitives before any persisted image source assignment.
+- Accepted bytes receive an owned Blob URL; replacement/unmount revokes it. Native image error revokes/falls back to existing Att card.
+- Existing `img.chat-thumb` retained; native Open button uses `files.upload.open`, enabled after native load.
+- Unsupported/invalid/too-large/animated/external sources never reach original-URL fallback; no Open action for refused sources.
+- Open requires fetched `Session.kind === chat`, exact outer/message/part ownership and minimum-width lowercase-hex IDs (`{32,}`).
+- Viewer params are exactly `{session:id,message:m.info.id,part:p.id}`; no attachment payload in URL/history/storage.
+- Actual `readHash()` must remain nonpreview `chat` with exactly one matching `id`; committed route/params checked separately.
+- Optional `ModelComposer` prop: `leaveGuard?: React.Ref<ComposerLeaveGuard>`.
+- Exported handle: `ComposerLeaveGuard = {tryLeave():boolean; resume():void}`; no framework/store.
+- `tryLeave` synchronously reads raw text (whitespace dirty), files, in-flight FileReader count, submission ref and generation-busy prop.
+- Accepted leave immediately latches ref; input/file/add/remove/model/thinking/send/voice/stop handlers recheck latch, controls disabled/inert after render.
+- Draft/files refs update in change/read/send handlers before React commit; refusal retains draft and files.
+- Only LiveChat passes the guard. Its ModelComposer mode follows committed NavCtx, preserving outgoing composer during deferred preview navigation.
+- LiveChat `currententrychange` restores both latch states on actual same-chat Back even when no viewer/preview commit occurred.
+- Rename/project drafts and pending writes also refuse Open with localized existing toast mechanism (`files.image.finishDraft`).
+- Blocked pointerdown preserves rename focus; native Open stays actionable to explain refusal instead of silently disabled.
+- Accepted Open makes header inert and synchronously guards rename/move/delete/retry/new-chat handlers; thrown navigation restores interaction.
+- Two narrow CSS rules preserve thumbnail radius/native focus; preview components unchanged.
+- Scoped ESLint passed after final edit.
+- Typecheck executed after raster export arrived: only concurrent `files/image.tsx:9` missing ZoomView export and `:129` union narrowing failed; no Chat diagnostic. Coordinator owns integration rerun.
+- One detector pass: three pre-existing CSS transition warnings at 76/159/304; none in added rules.
+- No build/tests/launch/CI/native/network/commits/delegation; runtime/visual acceptance remains coordinator-owned.
+- Scope caveat: draft file-picker preview behavior is incumbent; shared preflight protects saved thumbnails. Total cumulative thumbnail/decoder memory remains unbounded by this slice.
+## SHA-256
+- `packages/app/src/screens/chat/live-chat.tsx`: `945ae020fbb4456067a236522f3dbea65325b4e45767df570d89982f42e2c3f1`
+- `packages/app/src/screens/chat/model-composer.tsx`: `adae1965674288508772d5f3815a31df25aa43c648cdb176204a4fa917e348a3`
+- `packages/app/src/screens/chat/chat.css`: `703d19a440aee2306c052ba5389d5484082586d45f788dd5a16ce7ed8963a9d9`

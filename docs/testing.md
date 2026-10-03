@@ -110,6 +110,15 @@ Cancellation checks inspect the durable event journal as well as the current mes
   unavailable Bot metadata and long titles must remain readable through descendant
   clipping ancestors. Execution receipts are tracked in
   [`evidence/work-activity-followup/README.md`](../evidence/work-activity-followup/README.md).
+- `tests/e2e/files-live.spec.ts` defines saved local raster identity, Fit/zoom/pan,
+  real Electron downloaded-byte equality, provider-disabled restart, invalid/oversized/
+  animated source refusals, source Retry and stale GET/decode/download ownership.
+  Draft/read/submission guards and eight-locale minimum-window metadata are exercised.
+  Added regressions retain one pending rename owner, preserve ready image/zoom/download
+  across shell-only changes and keep a 5,000-character filename keyboard-scrollable.
+  `packages/app/src/screens/files/raster.test.ts` checks pure pre-decode encoding/container
+  limits and filenames. Execution receipts remain source-scoped in
+  [`evidence/files-live-followup/README.md`](../evidence/files-live-followup/README.md).
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

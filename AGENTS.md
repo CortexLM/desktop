@@ -235,7 +235,7 @@ Bot, archive and metadata-editing UI remain unfinished. See [`docs/engine.md`](.
 | Chat (`chat`) | `home`, `chat`, history, library, research, canvas, voice, image… | Chat home + transcript stream from the engine |
 | Work (`work`) | `work-home`, `work-task`, `automations`, `approvals`, `inbox`, `activity`… | Tasks handed to bots, permission approvals, bounded recent Bot-turn Activity |
 | Bots (`bots`) | `bot`, `bot-new`, `bot-studio`, `bot-roster`, `bot-settings` | Bot CRUD, mascot, memory |
-| Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`… | Viewers are preview-only; live routes show `upload` |
+| Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`… | Saved local Chat static PNG/JPEG/WebP attachments open by exact IDs with Fit/zoom/original download; other viewers remain preview-only |
 | Cortex Code (`code`) | `code`, `code-session`, `code-tasks`, `code-review`… | Home picks a folder (native dialog) and starts a `code` session |
 | System (`system`) | `settings`, `search`, `command`, `projects`, `login`, `about`… | Settings → **Providers & models**, **Connection**, local Projects creation/instructions/Chat membership and discovery are live |
 
@@ -260,6 +260,16 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   `packages/i18n/locales/<locale>/fixtures/*.json` and are loaded only in preview
   (`#/gallery`, `?preview`, `?shot`) via `packages/app/src/preview.tsx`; the title bar then
   shows a state picker.
+- **Saved images**: Chat's Open action guards drafts, file reads, submissions and header
+  edits. `file-image?session=…&message=…&part=…` reads exact local Chat records through
+  existing IPC. Only one inline source is accepted; static PNG/JPEG/WebP signatures,
+  framing and dimensions are checked before native decoding. Viewer ceilings are 50 MB
+  of file bytes, 40 million encoded pixels and 32,768 per dimension, not an IPC/decoder
+  memory bound. Fit-relative zoom, displayed dimensions and byte size are real. Download
+  revalidates the session and preserves original bytes/embedded metadata. Observed deletion
+  clears owned pixels/URLs; journal bytes and dispatched downloads are not erased.
+  Standalone file storage, remote hydration and other live format readers remain unfinished.
+  See [`docs/engine.md`](./docs/engine.md#saved-local-image-attachments).
 - **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
   `selfhost` (URL). Prompts still use the local engine and provider settings; email-code auth
   is process-local to main, `signedIn` derives from its active validated session. Backend URLs must be HTTP(S)

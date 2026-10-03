@@ -15,7 +15,7 @@ Settings.
 | **Chat** | `screens/chat` | Conversations with a model the user configured. Live: home composer, transcript streaming, errors mapped to copy, recents in the sidebar |
 | **Work** | `screens/work` | Tasks handed to bots, approvals, automations, inbox, activity. Live: task board from bot sessions, permission approvals, automations on `/api/tasks`, latest finished turns from up to 40 recently updated root Bot conversations in Activity |
 | **Bots** | `screens/bots` | Teammates with a mascot (shape, colour, eyes, mouth, accessories), persona, memory and routines. Live: CRUD, memory, routines |
-| **Files** | `screens/files` | Document, media and code viewers. Viewers are preview-only; live mode shows `upload` |
+| **Files** | `screens/files` | Saved local Chat static PNG/JPEG/WebP viewing, Fit/zoom and original download are live. Other format viewers remain preview-only; unbound live routes show `upload` |
 | **Cortex Code** | `screens/code` | Coding agent on a local folder. Live: home picks a folder with the native dialog and starts a `code` session with the `build` agent; session transcript |
 | **System** | `screens/system` | Settings, search, command palette, projects, memory, onboarding, login, about, offline/error/update states. Projects persist locally; creation, instructions, Chat membership and discovery are wired. Project files/sharing/Bot/archive/metadata editing remain unavailable. |
 
