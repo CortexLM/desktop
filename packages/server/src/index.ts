@@ -52,6 +52,9 @@ export function createServer(core: Core): Hono {
     health: () => ({ ok: true, version: "0.2.0" }),
     events: ({ signal }) => sse(core, signal),
 
+    "settings.get": () => core.settings.get(),
+    "settings.update": ({ body }) => core.settings.update(body),
+
     "project.list": () => core.projects.list(),
     "project.create": ({ body }) => core.projects.create(body),
     "project.get": ({ params }) => core.projects.get(params.id!),

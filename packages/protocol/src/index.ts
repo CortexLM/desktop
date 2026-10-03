@@ -16,6 +16,7 @@ import {
   PromptInput,
   ProviderUpdateInput,
   RemoteAuthInput,
+  RuntimeSettingsUpdateInput,
   SessionCreateInput,
   SessionKind,
   SessionUpdateInput,
@@ -48,6 +49,9 @@ const Enabled = z.object({ enabled: z.boolean() })
 export const routes = {
   health: r("get", "/api/health"),
   events: r("get", "/api/events"),
+
+  "settings.get": r("get", "/api/settings"),
+  "settings.update": r("put", "/api/settings", { body: RuntimeSettingsUpdateInput }),
 
   "project.list": r("get", "/api/projects"),
   "project.create": r("post", "/api/projects", { body: ProjectCreateInput, status: 201 }),

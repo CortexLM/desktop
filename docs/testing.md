@@ -90,6 +90,17 @@ Cancellation checks inspect the durable event journal as well as the current mes
   deletion supplement. Independent native audit accepts that bounded composite, preserving
   the failed collector status. Details are tracked in
   [`evidence/projects-followup/wrapping/README.md`](../evidence/projects-followup/wrapping/README.md).
+- `tests/e2e/runtime-settings.spec.ts` — persistent Bot-note pause through both Memory
+  controls and process restart, actual model context, manual notes while paused, legacy
+  false import, refused/duplicate writes and late settings reads. `memory-localization.spec.ts`
+  checks the seven live copy keys in eight locales, both themes, at 960×640.
+  New core/server settings cases cover strict validation, rollback/corruption, two SQLite
+  reopens, child/routine context, reserved snapshots and token budgets. Execution receipts
+  remain source-scoped in [`evidence/memory-preference-followup/README.md`](../evidence/memory-preference-followup/README.md).
+  Existing `memory-safety.spec.ts` retains its draft/deletion/owner regression assertions.
+  A held-response case reproduces canceled-preview navigation stranding both the initial
+  read and a pending switch. Actual navigation-boundary invalidation restores a fresh live
+  owner without committing preview or replacing the outgoing screen.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

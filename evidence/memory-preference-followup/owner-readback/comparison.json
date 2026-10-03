@@ -1,0 +1,28 @@
+{
+  "observedUTC": "2026-10-03T16:54:24.985198Z",
+  "priorPacket": "/tmp/opencode/g1-owner-readback-1435/",
+  "priorPacketSHA256": {
+    "REPORT.md": "770247ff20a4393b26da446ac9510088a4b2fec4e26351089c4068a3ee0b9854",
+    "pins.json": "f4bc3a41d10b812276a6775f1397d88b8b52b8c7da1625d2f869b884e509ec4a",
+    "observations.json": "ccc86c31e53587bf8ca46702d2ad02ab0a3870325cde1edc3f9ea657133d8eee"
+  },
+  "latestG2LocalOwnerEntryEqualsRetainedPrior": true,
+  "latestG3LocalOwnerEntryEqualsRetainedPrior": true,
+  "retainedDesignRequestLines": [92, 108],
+  "retainedDesignRequestLinesEqualPrior": true,
+  "reviewMetadataScan": {
+    "directory": "/root/cortex-ui/review",
+    "scope": "Direct files only; modification times, no recursive/private-work claim",
+    "sinceUTC": "2026-10-03T14:47:00Z",
+    "changedFiles": []
+  },
+  "newVisibleImmutableHandoff": false,
+  "newVisibleFiveStateProductImportPermission": false,
+  "remainingOwners": {
+    "G2": "Stable account identity/precise DTOs, unambiguous cursor or authoritative history, historical-image hydration, usable deployed discovery",
+    "G3": "onDiscardedFrame successor pair with exact source/schema/archive pins and scoped runtime receipt",
+    "DESIGN": ["Stored-thread model/effort", "One-off model", "Limited history", "Image-history refusal", "Origin/account continuation ownership"],
+    "G1": "Product integration and ongoing unblocked local delivery; supplied Memory 14-target/260-unit result not reverified"
+  },
+  "forwarding": "No new handoff to forward; retain existing prerequisites. No post performed."
+}

@@ -10,6 +10,8 @@ import { Shell } from "./shell/shell";
 import { Gallery } from "./shell/gallery";
 import { PreviewGate } from "./preview";
 import { I18nProvider, useT } from "./i18n";
+import { hasLegacyMemoryPause, useRuntimeSettings } from "./state/runtime-settings";
+import { BotEmpty } from "./screens/system/common";
 
 export type Theme = "light" | "dark";
 export type ThemePref = Theme | "system";
@@ -43,7 +45,7 @@ export default function App() {
         {h.route === "gallery" ? <Gallery /> : (
           <Tooltip.Provider delay={500} closeDelay={0}>
             <Toast.Provider timeout={4000} limit={3}>
-              <Shell hash={h} />
+              <RuntimeShell hash={h} />
               <Toasts />
             </Toast.Provider>
           </Tooltip.Provider>
@@ -51,6 +53,17 @@ export default function App() {
       </PreviewGate>
     </I18nProvider>
   );
+}
+
+function RuntimeShell({ hash }: { hash: ReturnType<typeof readHash> }) {
+  const t = useT();
+  const migrating = !hash.params.has("preview") && !hash.params.has("shot") && hasLegacyMemoryPause();
+  const settings = useRuntimeSettings(migrating);
+  // ponytail: renderer import gates manual starts; pre-renderer scheduled turns need an engine-owned migration.
+  return <Shell hash={hash}>{migrating && settings.state !== "ready" ? settings.state === "error"
+    ? <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}><button className="btn secondary" onClick={settings.reload}>{t("common.retry")}</button></BotEmpty>
+    : <div className="thinking" role="status">{t("system.variant.loading")}</div>
+    : undefined}</Shell>;
 }
 
 export { NavCtx, type Route };

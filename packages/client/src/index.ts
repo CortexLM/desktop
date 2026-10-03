@@ -27,6 +27,8 @@ import {
   type ProviderUpdateInput,
   type RemoteAuthInput,
   type RemoteAuthState,
+  type RuntimeSettings,
+  type RuntimeSettingsUpdateInput,
   type ScheduledTask,
   type Session,
   type SessionCreateInput,
@@ -138,6 +140,10 @@ export function createClient(opts: ClientOptions) {
       return () => ctrl.abort()
     },
 
+    settings: {
+      get: () => get<RuntimeSettings>("/api/settings"),
+      update: (b: RuntimeSettingsUpdateInput) => put<RuntimeSettings>("/api/settings", b),
+    },
     projects: {
       list: () => get<Project[]>("/api/projects"),
       create: (b: ProjectCreateInput) => post<Project>("/api/projects", b),

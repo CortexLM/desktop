@@ -213,6 +213,13 @@ Independent native audit accepts the bounded composite; the [delivery ledger](pr
 each source-bound proof and the earlier failures. Project files/sharing/Bot/archive/metadata
 editing remain unfinished.
 
+Documentary `74579d5` preserves all 515 `f82a648` package inputs and passes CI
+`37136181306`. The next [Memory preference delivery](memory-preference-followup/README.md)
+is uncommitted: 260 units/one optional skip, 21 final targeted Electron cases and a final
+125-case full suite pass. Independent review's canceled-preview owner race has two
+reproduced failures; the unchanged regression now passes after a one-hook correction.
+Initial 14-target/124-full receipts stay distinct. No Memory CI/native acceptance is claimed.
+
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
 `CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;
@@ -221,6 +228,10 @@ The [14:47 UTC owner readback](projects-followup/owner-readback/REPORT.md) finds
 PR446/447 issue comments since 12:07 or named five-state product-import permission in its
 bounded inputs. Public instance remains 404; unchanged model metadata supplies no
 vision-plus-reasoning Chat model. These external gaps remain distinct from local delivery.
+The [16:53 UTC follow-up](memory-preference-followup/owner-readback/REPORT.md) confirms
+the same bounded disposition: no new owner comments or exact five-state import permission,
+unchanged models, absent credential inputs. New design-request entries concern prototype
+focus, lifecycle and supplied menus; they do not grant desktop product imports.
 
 ## Current MCP contract correction
 

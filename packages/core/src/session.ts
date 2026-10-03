@@ -178,13 +178,14 @@ export class SessionService {
       if (p.expectedProjectID !== undefined && p.expectedProjectID !== (projectID ?? null))
         throw new CortexError("conflict", "Conversation project changed")
       const instructions = projectID ? this.d.projects.get(projectID).instructions : ""
+      const bot = session.botID ? this.d.botContext?.(session.botID) : undefined
       const model = await this.d.catalog.model(session.model.providerID, session.model.modelID)
       if (!model) throw new CortexError("model_not_found", `Unknown model ${session.model.providerID}/${session.model.modelID}`)
       const caps = capabilities(model)
       assertInputSupported(caps, p.parts)
       const history = this.d.storage.messages(sessionID)
       for (const m of history) if (m.info.role === "user") assertInputSupported(caps, m.parts.filter((part) => part.type === "file"))
-      assertContextFits(caps, estimateHistory(history, p.parts) + estimateTokens([instructions]))
+      assertContextFits(caps, estimateHistory(history, p.parts) + estimateTokens([instructions, bot?.system ?? ""]))
       const resolved = await resolveModel((await this.d.catalog.provider(session.model.providerID))!, model, this.d.providers, this.d.fetch)
       if (controller.signal.aborted) throw new CortexError("aborted", "Request aborted")
 
@@ -195,7 +196,7 @@ export class SessionService {
         const text = p.parts.find((x) => x.type === "text")?.text.trim()
         if (text) session = this.update(sessionID, { title: text.split("\n")[0]!.slice(0, 60) })
       }
-      void this.run(session, resolved, controller, p.reasoning ?? true, instructions)
+      void this.run(session, resolved, controller, p.reasoning ?? true, instructions, bot)
         .catch(() => undefined)
         .finally(finish)
       return { messageID: user.id, done }
@@ -311,10 +312,9 @@ export class SessionService {
     return out
   }
 
-  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController, thinking = true, instructions = "") {
+  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController, thinking = true, instructions = "", bot?: BotContext) {
     const { bus } = this.d
     const agent = getAgent(session.agent)!
-    const bot = session.botID ? this.d.botContext?.(session.botID) : undefined
     const caps = capabilities(resolved.model)
     const history = this.d.storage.messages(session.id)
     const assistant: Message = {
@@ -344,7 +344,7 @@ export class SessionService {
       put(p)
     }
     try {
-      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []) + estimateTokens([instructions]), thinking)
+      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []) + estimateTokens([instructions, bot?.system ?? ""]), thinking)
       const params: ChatParams = { sessionID: session.id, agent: agent.name, model: session.model, maxOutputTokens: opts.maxOutputTokens, providerOptions: opts.providerOptions }
       await this.d.plugins.trigger("chat.params", params)
       const toolset = opts.useTools

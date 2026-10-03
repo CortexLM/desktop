@@ -11,6 +11,7 @@ import { useT, useI18n } from "../../i18n";
 import { isPreview } from "../../preview";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
+import { useRuntimeSettings } from "../../state/runtime-settings";
 import { useFx, useBotCfg, norm, setTheme, NB } from "./common";
 import type { ModelFx, ProviderFx } from "./fixtures";
 
@@ -43,6 +44,24 @@ function Toggle({ sec, id, def }: { sec: string; id: string; def: boolean }) {
   return <label className="li"><span className="grow"><div className="ttl">{title}</div><div className="sub">{t(`system.settings.t.${sec}.${id}Desc`, { name: bot.name })}</div></span><Switch checked={v} onCheckedChange={set} aria-label={title} /></label>;
 }
 
+function MemoryToggle() {
+  const t = useT();
+  const preview = isPreview();
+  const [previewOn, setPreviewOn] = React.useState(true);
+  const settings = useRuntimeSettings(!preview);
+  const title = t("system.settings.t.privacy.memory");
+  if (preview) return <label className="li"><span className="grow"><div className="ttl">{title}</div><div className="sub">{t("system.settings.t.privacy.memoryDesc")}</div></span><Switch checked={previewOn} onCheckedChange={setPreviewOn} aria-label={title} /></label>;
+  return <>
+    <div className="li" aria-busy={settings.busy || settings.state === "loading"} style={{ flexWrap: "wrap" }}>
+      <span className="grow" style={{ flexBasis: 160 }}><div className="ttl">{title}</div><div className="sub" style={{ whiteSpace: "normal" }}>{t("system.settings.t.privacy.memoryLiveDesc")}</div></span>
+      {settings.state === "ready" ? <Switch checked={settings.data.memoryEnabled} disabled={settings.busy} onCheckedChange={settings.update} aria-label={title} />
+        : settings.state === "error" ? <><span className="grow" role="alert" style={{ flexBasis: 160 }}><div className="ttl">{t("work.error.loadTitle")}</div><div className="sub" style={{ whiteSpace: "normal" }}>{t("work.error.loadText")}</div></span><button className="btn secondary" onClick={settings.reload}>{t("common.retry")}</button></>
+        : <span className="sub" role="status">{t("system.variant.loading")}</span>}
+    </div>
+    {settings.saveError && settings.state === "ready" && <div className="li" role="alert" style={{ flexWrap: "wrap" }}><span className="grow">{t("system.providers.saveFailed")}</span><button className="btn secondary" disabled={settings.busy} onClick={settings.retry}>{t("common.retry")}</button></div>}
+  </>;
+}
+
 export function SettingsScreen() {
   const t = useT();
   const { params } = useNav();
@@ -67,7 +86,7 @@ export function SettingsScreen() {
           ))}
         </div>}
         {sec === "account" && <Account />}
-        {TOGGLES[sec] && sec !== "appearance" && <div className="list">{TOGGLES[sec].map(([id, d]) => <Toggle key={id} sec={sec} id={id} def={d} />)}</div>}
+        {TOGGLES[sec] && sec !== "appearance" && <div className="list">{TOGGLES[sec].map(([id, d]) => sec === "privacy" && id === "memory" ? <MemoryToggle key={id} /> : <Toggle key={id} sec={sec} id={id} def={d} />)}</div>}
       </div>
     </div></div>
   </>);

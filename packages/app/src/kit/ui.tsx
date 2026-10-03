@@ -106,7 +106,7 @@ export function Segmented({ items, value: external, onChange, resetKey }: { item
   );
 }
 
-export function Switch(p: { checked?: boolean; defaultChecked?: boolean; onCheckedChange?: (v: boolean) => void; "aria-label"?: string }) {
+export function Switch(p: { checked?: boolean; defaultChecked?: boolean; disabled?: boolean; onCheckedChange?: (v: boolean) => void; "aria-label"?: string }) {
   return <BSwitch.Root className="switch" {...p}><BSwitch.Thumb className="switch-thumb" /></BSwitch.Root>;
 }
 

@@ -13,6 +13,7 @@ import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
 import { api } from "../../api";
 import { useBots, useProjects, useQuery, useSessions } from "../../state/live";
+import { useRuntimeSettings } from "../../state/runtime-settings";
 import { Top, BotEmpty, useFx, useBotCfg, useAgo, css, norm, NB } from "./common";
 
 // Project tile palette (design swatches; the colour is the project's identity, not a UI colour).
@@ -323,12 +324,14 @@ export function MemoryScreen() {
   const ago = useAgo();
   const preview = isPreview();
   const [v, setV] = useVariant("list");
+  const settings = useRuntimeSettings(!preview);
   const bots = useBots();
   const bot = !preview && bots.state === "ready" ? bots.data[0] : undefined;
   const live = useQuery(() => (bot ? api.bots.memory.list(bot.id).then((entries) => ({ botID: bot.id, entries })) : Promise.resolve(null)), [bot?.id]);
   const fromFx = (): Mem[] => fx.memory.items.map((m) => ({ id: String(m.id), theme: m.theme, text: m.text, src: m.src }));
   const [items, setItems] = React.useState<Mem[]>(preview && v !== "empty" ? fromFx() : []);
-  const [on, setOn] = React.useState(v !== "off");
+  const [previewOn, setOn] = React.useState(v !== "off");
+  const on = preview ? previewOn : settings.state === "ready" ? settings.data.memoryEnabled : undefined;
   const [q, setQ] = React.useState("");
   const [edit, setEdit] = React.useState<string | null>(null);
   const deleting = React.useRef(new Set<string>());
@@ -340,7 +343,7 @@ export function MemoryScreen() {
   React.useEffect(() => { if (!preview) return; setOn(v !== "off"); setItems(v === "empty" ? [] : fromFx()); }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
   const memories = live.state === "ready" && live.data?.botID === bot?.id ? live.data?.entries : undefined;
   React.useEffect(() => {
-    if (!preview && memories && bot) setItems(memories.map((m) => ({ id: m.id, theme: bot.name, text: m.content, src: t("system.memory.learned", { when: ago(m.time) }) })));
+    if (!preview && memories && bot) setItems(memories.map((m) => ({ id: m.id, theme: bot.name, text: m.content, src: ago(m.time) })));
   }, [memories, bot?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const shown = items.filter((m) => norm(m.text).includes(norm(q)));
   const themes = [...new Set(shown.map((m) => m.theme))];
@@ -372,17 +375,20 @@ export function MemoryScreen() {
       <Pop align="end" width={220} trigger={<IconBtn icon="more-dots" label={t("system.moreActions")} />}><MItem icon="settings">{t("system.memory.privacy")}</MItem><MSep /><MItem icon="trash" danger onClick={() => (preview ? setItems([]) : items.forEach(forget))}>{t("system.memory.forgetAll")}</MItem></Pop>
     </Top>
     <div className="page"><div className="systeme-narrow">
-      <div className="systeme-memoff">
+      <div className="systeme-memoff" aria-busy={!preview && (settings.busy || settings.state === "loading")}>
         <span className="li-ic"><Icon name="key" /></span>
-        <span className="systeme-grow"><b>{on ? t("system.memory.onTitle") : t("system.memory.offTitle")}</b><span>{on ? t("system.memory.onText") : t("system.memory.offText")}</span></span>
-        <Switch checked={on} onCheckedChange={(x) => { setOn(x); if (preview) setV(x ? "list" : "off"); }} aria-label={t("system.memory.toggle")} />
+        {on === undefined ? settings.state === "error" ? <><span className="systeme-grow" role="alert"><b>{t("work.error.loadTitle")}</b><span>{t("work.error.loadText")}</span></span><button className="btn secondary" onClick={settings.reload}>{t("common.retry")}</button></>
+          : <span className="systeme-grow" role="status">{t("system.variant.loading")}</span>
+          : <><span className="systeme-grow"><b>{on ? t(preview ? "system.memory.onTitle" : "system.memory.liveOnTitle") : t("system.memory.offTitle")}</b><span>{t(preview ? on ? "system.memory.onText" : "system.memory.offText" : on ? "system.memory.liveOnText" : "system.memory.liveOffText")}</span></span>
+            <Switch checked={on} disabled={!preview && settings.busy} onCheckedChange={(x) => { if (preview) { setOn(x); setV(x ? "list" : "off"); } else settings.update(x); }} aria-label={t("system.memory.toggle")} /></>}
       </div>
-      {!on && <div className="banner warn" style={{ margin: "0 0 16px" }}><Icon name="pause" /><span>{t("system.memory.paused")}</span><span className="grow">{t("system.memory.pausedText", { count: items.length })}</span></div>}
+      {!preview && settings.saveError && settings.state === "ready" && <div className="banner warn" role="alert" style={{ margin: "0 0 16px" }}><Icon name="alert-triangle" /><span className="grow">{t("system.providers.saveFailed")}</span><button className="btn secondary" disabled={settings.busy} onClick={settings.retry}>{t("common.retry")}</button></div>}
+      {on === false && <div className="banner warn" style={{ margin: "0 0 16px" }}><Icon name="pause" /><span>{t("system.memory.paused")}</span><span className="grow">{preview ? t("system.memory.pausedText", { count: items.length }) : t("system.memory.livePausedText")}</span></div>}
       {!preview && (bots.state === "error" || live.state === "error") ? <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}><button className="btn secondary" onClick={bots.state === "error" ? bots.reload : live.reload}>{t("common.retry")}</button></BotEmpty>
       : !preview && (bots.state === "loading" || bot && !memories) ? null : items.length === 0 ? (
-        <BotEmpty state={on ? "idle" : "asleep"} title={t("system.memory.emptyTitle")} text={t("system.memory.emptyText", { q1: `«${NB}`, q2: `${NB}»` })} />
+        <BotEmpty state={on === false ? "asleep" : "idle"} title={t("system.memory.emptyTitle")} text={preview ? t("system.memory.emptyText", { q1: `«${NB}`, q2: `${NB}»` }) : t("system.memory.liveEmptyText")} />
       ) : (
-        <div className={on ? undefined : "systeme-faded"}>
+        <div className={preview && !on ? "systeme-faded" : undefined}>
           {themes.map((th) => (
             <section key={th} className="systeme-sec">
               <h3 className="h3">{th} · {shown.filter((m) => m.theme === th).length}</h3>

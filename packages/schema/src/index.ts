@@ -135,6 +135,10 @@ export const ProviderConfig = z.object({
 })
 export type ProviderConfig = z.infer<typeof ProviderConfig>
 
+// ---------- runtime settings ----------
+export const RuntimeSettings = z.object({ memoryEnabled: z.boolean() }).strict()
+export type RuntimeSettings = z.infer<typeof RuntimeSettings>
+
 // ---------- projects ----------
 export const ProjectID = z.string().min(1).max(100)
 export const Project = z.object({
@@ -469,6 +473,8 @@ export const RemoteAuthInput = z.discriminatedUnion("action", [
 export type RemoteAuthInput = z.infer<typeof RemoteAuthInput>
 
 // ---------- request inputs ----------
+export const RuntimeSettingsUpdateInput = RuntimeSettings.extend({ initializeOnly: z.literal(true).optional() }).strict()
+export type RuntimeSettingsUpdateInput = z.infer<typeof RuntimeSettingsUpdateInput>
 export const ProjectCreateInput = z.object({
   name: Project.shape.name,
   icon: Project.shape.icon.default("calendar"),
@@ -540,6 +546,7 @@ export type SpaceUpdateInput = z.infer<typeof SpaceUpdateInput>
 const ev = <T extends string, P extends z.ZodRawShape>(type: T, properties: P) =>
   z.object({ type: z.literal(type), properties: z.object(properties) })
 export const Event = z.discriminatedUnion("type", [
+  ev("settings.changed", {}),
   ev("project.changed", { projectID: ProjectID }),
   ev("project.deleted", { projectID: ProjectID }),
   ev("remote.session.changed", { sessionID: z.string(), epoch: RemoteEpoch }),

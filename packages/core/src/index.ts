@@ -1,6 +1,6 @@
 import { mkdirSync } from "node:fs"
 import { join } from "node:path"
-import { PermissionRule, type PermissionRule as Rule } from "@cortex/schema"
+import { PermissionRule, RuntimeSettings, RuntimeSettingsUpdateInput, type PermissionRule as Rule } from "@cortex/schema"
 import { z } from "zod"
 import { AGENTS } from "./agent"
 import { BotService } from "./bot"
@@ -8,6 +8,7 @@ import { Bus } from "./bus"
 import { Catalog } from "./catalog"
 import { ConnectionService, type RemoteAuth, type RemoteProbe } from "./connection"
 import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
+import { CortexError } from "./error"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
 import { PluginRegistry, type PluginDirs } from "./plugin"
@@ -56,6 +57,31 @@ export function createCore(opts: CoreOptions) {
   const mcp = new McpService(bus, storage, opts.mcpCredentials ?? (memory ? memoryCredentials() : undefined))
   const bots = new BotService(storage)
   const projects = new ProjectService(storage, bus)
+  const readSettings = (): RuntimeSettings | undefined => {
+    try {
+      const saved = storage.getDoc("settings", "runtime")
+      return saved === undefined ? undefined : RuntimeSettings.parse(saved)
+    } catch {
+      throw new CortexError("internal", "Runtime settings could not be read")
+    }
+  }
+  const settings = {
+    get: (): RuntimeSettings => readSettings() ?? { memoryEnabled: true },
+    update: (input: unknown): RuntimeSettings => {
+      const { memoryEnabled, initializeOnly } = RuntimeSettingsUpdateInput.parse(input)
+      let changed = false
+      const next = storage.tx(() => {
+        const current = readSettings()
+        if (current && (initializeOnly || current.memoryEnabled === memoryEnabled)) return current
+        const next = { memoryEnabled }
+        storage.putDoc("settings", "runtime", next)
+        changed = true
+        return next
+      })
+      if (changed) bus.publish("settings.changed", {})
+      return next
+    },
+  }
   const permissionRules = {
     get: (): Rule[] => storage.getDoc<Rule[]>("settings", "permission") ?? [],
     set: (rules: unknown): Rule[] => {
@@ -75,7 +101,7 @@ export function createCore(opts: CoreOptions) {
     mcp,
     projects,
     fetch: opts.fetch,
-    botContext: (id) => bots.context(id),
+    botContext: (id) => bots.context(id, settings.get().memoryEnabled),
     rules: permissionRules.get,
     maxSteps: opts.maxSteps,
   })
@@ -92,6 +118,7 @@ export function createCore(opts: CoreOptions) {
     bus,
     catalog,
     providers,
+    settings,
     permissions,
     permissionRules,
     agents: () => AGENTS,

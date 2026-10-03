@@ -20,7 +20,11 @@ Settings.
 | **System** | `screens/system` | Settings, search, command palette, projects, memory, onboarding, login, about, offline/error/update states. Projects persist locally; creation, instructions, Chat membership and discovery are wired. Project files/sharing/Bot/archive/metadata editing remain unavailable. |
 
 Settings sections (`screens/system/settings.tsx`): General, Appearance, **Providers &
-models** (live), **Connection** (live), Bot, Notifications, Privacy, Shortcuts, Account. See `docs/providers.md`, `docs/connection-modes.md`.
+models** (live), **Connection** (live), Bot, Notifications, Privacy, Shortcuts, Account.
+Privacy Memory and System Memory share the persisted engine preference for future use
+of saved Bot notes; manual note management remains available while paused. Other execution
+toggles in General, Bot, Notifications and Privacy remain unwired. See `docs/engine.md`,
+`docs/providers.md`, `docs/connection-modes.md`.
 
 ## 6.2 Blocked on design — say so, build nothing
 

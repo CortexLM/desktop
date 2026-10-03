@@ -65,12 +65,12 @@ export class BotService {
   }
 
   /** Persona + memory as system context for the session runner. Memory is reference data, not instructions. */
-  context(botID: string): BotContext | undefined {
+  context(botID: string, memoryEnabled = true): BotContext | undefined {
     const b = this.storage.getDoc<Stored>("bot", botID)
     if (!b) return undefined
     const lines: string[] = []
     let size = 0
-    for (const m of this.storage.listDocs<MemoryEntry>("memory", botID)) {
+    for (const m of memoryEnabled ? this.storage.listDocs<MemoryEntry>("memory", botID) : []) {
       const line = `- (${new Date(m.time).toISOString().slice(0, 10)}) ${m.content}`
       if (size + line.length > MEMORY_BUDGET) break
       size += line.length

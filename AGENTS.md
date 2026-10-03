@@ -202,6 +202,16 @@ retry. Code's settled badge reads the latest persisted assistant error, preservi
 after reload; an active follow-up shows Running and a successful result returns Ready.
 Memory drafts clear only after accepted writes; refused/partial deletion retains surviving entries
 and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
+Memory and Settings Privacy share `/api/settings`' persisted `memoryEnabled` preference.
+Pausing omits saved Bot notes from future admitted turns; manual management, persona,
+tools, permissions and existing history remain intact. Context is snapshotted before
+asynchronous admission and counted in token budgets. Legacy renderer Privacy-off imports
+only if the engine setting is absent; live screen controls wait for accepted migration.
+Canceled preview navigation rearms the live settings owner, clearing stale pending state
+and rereading the engine even when preview never commits.
+That renderer import cannot precede a scheduled admission before renderer startup.
+The System list still manages the first listed Bot. Personal cross-Chat memory and automatic
+learning remain unimplemented. See [`docs/engine.md`](./docs/engine.md#saved-bot-memory-preference).
 Projects persist in the local engine through `/api/projects`. Existing creation, instructions,
 Chat move/detach, sidebar, Library and Search use exact record IDs; names may duplicate.
 Accepted long names and unbroken instructions wrap inside Project and Library surfaces.

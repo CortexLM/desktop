@@ -49,7 +49,7 @@ and storage behavior in every connection mode. See [connection-modes.md](connect
   bots, projects, tasks, space, settings).
 - The bus (`bus.ts`) commits durable events (`session.*`, `message.updated`,
   `part.updated`, `project.deleted`) before listeners run. `part.delta`, `session.status`, `permission.*`,
-  `mcp.status`, `task.run` are live-only.
+  `mcp.status`, `task.run`, `settings.changed` are live-only.
 - Internal `publish(type, properties, "remote")` delivers live events without SQLite writes
   or local plugin callbacks. The source tag is a listener argument, never serialized into
   an event. Existing calls default to local. This is a remote-transport prerequisite;
@@ -156,6 +156,31 @@ Permission views also refresh when sessions change status or are deleted, removi
 asks even when no explicit permission reply was sent.
 
 ## Bots, scheduler, space, connection
+
+### Saved Bot memory preference
+
+`GET/PUT /api/settings` reads/writes the strict `{memoryEnabled:boolean}` runtime
+document in SQLite. Missing documents default to true; malformed documents report an
+internal error. PUT accepts `initializeOnly:true` for an atomic, absent-only legacy
+import; an existing stored setting wins. Refused writes preserve the setting and notes.
+Accepted changes publish `settings.changed` so Memory and Settings → Privacy refresh
+the same engine preference.
+
+Paused memory stops injecting saved Bot notes into future admitted turns. Each Bot keeps
+its own notes; persona, tools and permissions still apply. The context is snapshotted
+before asynchronous prompt admission and counted in input/output token budgets. A toggle
+does not alter an admitted turn, saved notes or existing conversation history, which may
+already contain information from earlier notes. Manual Add, review, export and Forget
+remain available while paused. Ordinary Chat receives no Bot notes; automatic learning
+and a personal cross-Chat memory store remain unimplemented.
+
+The renderer imports the old literal `cortex.pref.privacy.memory=false` only while the
+engine setting is absent, then clears that captured legacy value after acceptance.
+Pending/refused import gates live screen controls with loading/Retry. Preview never
+imports it. This renderer-only preference cannot affect a scheduled admission occurring
+before the renderer starts; previously persisted engine settings already govern startup.
+The System Memory list still manages the first listed Bot; each Bot's settings exposes
+its own saved notes. Neither list ownership nor the global toggle merges Bot memories.
 
 - Bots (`bot.ts`): persona, mascot, permission and tool filters, bounded memory injected
   as reference data, routines = scheduled tasks with `botID`.

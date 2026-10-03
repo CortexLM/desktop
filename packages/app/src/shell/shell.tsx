@@ -18,7 +18,7 @@ const THEME_KEY = "cortex.theme";
 const sysDark = () => matchMedia("(prefers-color-scheme: dark)").matches;
 const resolve = (p: ThemePref): Theme => (p === "system" ? (sysDark() ? "dark" : "light") : p);
 
-export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
+export function Shell({ hash, children }: { hash: ReturnType<typeof readHash>; children?: React.ReactNode }) {
   const t = useT();
   const { route, params, theme: initialTheme } = hash;
   const [pref, setPref] = React.useState<ThemePref>(() => {
@@ -118,7 +118,7 @@ export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
                 </div>
                 <GettingStarted route={route} go={go} />
               </div></aside>
-              <main className="content" key={params.has("preview") || hash.shot || route === "home" || route === "code" ? hash.entryKey : undefined} style={{ viewTransitionName: "content" }}>{screen}</main>
+              <main className="content" key={params.has("preview") || hash.shot || route === "home" || route === "code" ? hash.entryKey : undefined} style={{ viewTransitionName: "content" }}>{children ?? screen}</main>
             </div>
           </div>
         </div>
