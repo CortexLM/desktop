@@ -39,8 +39,10 @@ engine contract. The local-contract gaps are recorded in
 **Bad**: a quick unstyled list at `#/space`. **Good**: nothing until the design lands; the
 rail's "More" entry stays as it is.
 
-Also not built: Cortex Cloud sign-in (no engine route; the live login submit shows
-"unavailable" — `screens/system/account.tsx`).
+Email-code sign-in now uses main-only process-lifetime authentication through the existing
+login UI. Local-password/email-verification/MFA continuation screens remain unavailable
+pending approved integration. Chats still use local providers; sign-in does not imply remote
+model routing or inference. See [`docs/connection-modes.md`](../docs/connection-modes.md).
 
 ## 6.3 Local first
 

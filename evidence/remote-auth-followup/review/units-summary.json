@@ -1,0 +1,102 @@
+{
+  "log": "evidence/remote-auth-followup/units.log",
+  "sha256": "58d4380239a9e6c036b39e6af2181738c74678fa2880a08333f40d472406c031",
+  "files": 18,
+  "total": 202,
+  "skipped": 1,
+  "passed": 201,
+  "file_counts": [
+    {
+      "path": "packages/desktop/test/credentials.test.ts",
+      "tests": 23,
+      "skipped": 0
+    },
+    {
+      "path": "packages/schema/test/schema.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/audit-i18n.test.ts",
+      "tests": 1,
+      "skipped": 0
+    },
+    {
+      "path": "packages/protocol/test/protocol.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/computer-use.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/locales.test.ts",
+      "tests": 9,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/connection.test.ts",
+      "tests": 5,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/mcp.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/scheduler.test.ts",
+      "tests": 4,
+      "skipped": 0
+    },
+    {
+      "path": "packages/client/test/client.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "packages/server/test/server.test.ts",
+      "tests": 7,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/capabilities.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/services.test.ts",
+      "tests": 15,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/catalog.test.ts",
+      "tests": 6,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/runtime-copy.test.ts",
+      "tests": 34,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/remote.test.ts",
+      "tests": 45,
+      "skipped": 1
+    },
+    {
+      "path": "packages/core/test/session.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/remote-session.test.ts",
+      "tests": 8,
+      "skipped": 0
+    }
+  ],
+  "optional_skip_condition": "packages/desktop/test/remote.test.ts:177: it.skipIf(!process.env.CORTEX_TEST_BACKEND_URL)",
+  "catalog_case_note": "A separately named catalog live probe is reported passed, not a Vitest skip. Its title includes (skipped offline); no additional registered skipped result is claimed."
+}

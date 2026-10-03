@@ -1,0 +1,12 @@
+Running 8 tests using 4 workers
+
+  ✓  2 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark (2.8s)
+  ✓  1 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 light (2.8s)
+  ✓  4 tests/e2e/code-diff-scroll.spec.ts:9:1 › Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible (4.3s)
+  ✓  3 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 light (5.0s)
+  ✓  6 tests/e2e/remote-auth.spec.ts:276:1 › Mode and origin changes reject late auth replies and never reuse another origin’s credentials (2.3s)
+  ✓  7 tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation (2.2s)
+  ✓  5 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark (4.6s)
+  ✓  8 tests/e2e/terminal-copy.spec.ts:19:1 › French Code terminal localizes fresh shell notices without changing output or replay (3.6s)
+
+  8 passed (9.9s)

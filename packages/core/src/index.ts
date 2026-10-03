@@ -6,7 +6,7 @@ import { AGENTS } from "./agent"
 import { BotService } from "./bot"
 import { Bus } from "./bus"
 import { Catalog } from "./catalog"
-import { ConnectionService, type RemoteProbe } from "./connection"
+import { ConnectionService, type RemoteAuth, type RemoteProbe } from "./connection"
 import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
@@ -26,6 +26,8 @@ export interface CoreOptions {
   mcpCredentials?: Credentials
   /** Probes Cortex Cloud / self-hosted backends (desktop: Cortex SDK). */
   remoteProbe?: RemoteProbe
+  /** Main-only remote session owner; credentials never enter engine storage. */
+  remoteAuth?: RemoteAuth
   fetch?: typeof fetch
   catalogUrl?: string
   /** Catalog cache directory; defaults to `<dataDir>/cache`. No cache when dataDir is ":memory:" unless given. */
@@ -75,7 +77,7 @@ export function createCore(opts: CoreOptions) {
   const scheduler = new Scheduler(storage, bus, sessions)
   bots.scheduler = scheduler
   const space = new SpaceService(storage)
-  const connection = new ConnectionService(storage, opts.fetch, opts.remoteProbe)
+  const connection = new ConnectionService(storage, opts.fetch, opts.remoteProbe, opts.remoteAuth)
   bus.subscribe((e) => void plugins.trigger("event", e).catch(() => undefined))
 
   return {
@@ -103,6 +105,7 @@ export function createCore(opts: CoreOptions) {
       scheduler.start(o.schedulerIntervalMs)
     },
     async close() {
+      opts.remoteAuth?.clear()
       scheduler.stop()
       for (const s of storage.sessions()) await sessions.abort(s.id)
       await mcp.close()

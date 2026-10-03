@@ -1,8 +1,8 @@
 # Connection modes
 
-**Today: saved preferences and reachability probes.** All three modes keep sessions,
-prompts, tools and storage on the local engine. Cortex backend prompt routing and sign-in
-are not wired; the local engine still calls configured model providers.
+**Today: saved preferences, reachability probes and process-lifetime email-code sign-in.**
+All three modes keep chat sessions, prompts, tools and storage on the local engine.
+Cortex backend prompt routing is not wired; the local engine still calls configured providers.
 
 `ConnectionMode` (`packages/schema/src/index.ts`) = `{ mode, url?, signedIn }`, stored by
 `ConnectionService` (`packages/core/src/connection.ts`).
@@ -10,10 +10,11 @@ are not wired; the local engine still calls configured model providers.
 | Mode | Current behaviour | Probe target |
 | --- | --- | --- |
 | `local` (default) | No account; probe returns `not_applicable` | none |
-| `cloud` | Saves the mode; exposes the unavailable sign-in screen | `https://api.cortex.foundation` (`CLOUD_URL`) |
-| `selfhost` | Saves a URL and checks it | the URL the user enters (required) |
+| `cloud` | Saves the mode; email-code sign-in runs in main | `https://api.cortex.foundation` (`CLOUD_URL`) |
+| `selfhost` | Saves a URL and checks it; email-code sign-in is usable on hosts supporting it | the URL the user enters (required) |
 
-Routes: `GET /api/connection`, `PUT /api/connection`, `GET /api/connection/probe`.
+Routes: `GET /api/connection`, `PUT /api/connection`, `GET /api/connection/probe`,
+`GET /api/connection/auth`, `POST /api/connection/auth`.
 
 ## Prompt routing and authentication
 
@@ -23,10 +24,26 @@ Routes: `GET /api/connection`, `PUT /api/connection`, `GET /api/connection/probe
 It does not read `ConnectionService`. Selecting cloud or self-host therefore changes
 neither the provider endpoint nor the model picker, and sends no prompts to that server.
 
-`probeRemote` accepts an optional token, but desktop main calls it without one. There is
-no sign-in route, token acquisition, refresh or authenticated remote session transport.
-`signedIn` is always false until authentication is implemented, including when a caller
-submits true or old stored metadata contains true. The renderer cannot assert authentication.
+`probeRemote` accepts an optional token, but desktop main calls it without one. Authentication
+uses a separate `RemoteSession` (`packages/desktop/src/remote-session.ts`) injected into core's
+`RemoteAuth` host contract. Main validates every remote auth result; IPC returns only
+`{ status, signedIn, email? }`. Bearer tokens, cookie jars, pending authentication tokens,
+challenge/factor IDs and enrollment secrets stay in main, never SQLite, renderer storage or events.
+`signedIn` derives from the active validated main session; persisted/renderer-supplied booleans
+cannot establish authentication. A pending account candidate may coexist with an active session.
+
+Sessions last until Cortex quits. Cloud refresh, persistent account identity and authenticated
+model/prompt/history transport remain pending. Main's typed actions cover email-code acquisition,
+operator local login, email verification and MFA challenge verification; only the existing email
+and six-digit-code screens are wired. Local password, email-verification and MFA/enrollment screens
+await approved integration; the UI reports unavailable rather than guessing continuation contracts.
+Operator bearer expiry is enforced when reading state. Cloud sign-out discards device-local state;
+server-side revocation is not claimed. Local operator logout uses its typed endpoint.
+
+Each auth candidate has a separate origin-pinned SDK client and in-memory cookie jar. A failed
+candidate preserves the active account. Successful promotion aborts the previous client;
+cancel/logout and accepted mode/origin changes invalidate pending work. Requests refuse redirects
+and foreign origins and have ten-second deadlines. Main shutdown clears all session material.
 
 ## Probe
 
@@ -59,12 +76,18 @@ metadata. Neither proves authentication or real-provider inference.
 
 Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`):
 
-- Local/cloud selection saves immediately. Cloud does not automatically run the probe;
-  its sign-in button opens `LoginScreen`, whose live submit reports unavailable.
+- Local/cloud selection waits for accepted persistence. Cloud does not automatically probe;
+  its sign-in button opens the live email-code flow. Starting email sign-in from local mode
+  explicitly selects Cloud on submit. A saved self-host origin is retained for its login.
 - Selecting self-host reveals a URL field. **Check** validates the HTTP(S) origin, saves the mode and
   URL, then probes it; a failed probe leaves the saved preference in place.
 - The self-host badge displays checking / reachable / unreachable / incompatible / invalid.
   The UI does not display the returned remote models or `authRequired` value.
+- Successful sign-in states and Account/Connection settings explain the process lifetime and
+  continued local prompt routing. Account/Connection offer device sign-out. Refused email/code
+  submissions retain input; duplicate submits are guarded; Cancel can interrupt a pending code.
+- Third-party sign-in and company SSO remain unavailable. Backend continuation states use the
+  existing unavailable presentation; no simulated countdown, attempt count or lockout is used live.
 
 ## Active remote integration
 
@@ -76,11 +99,26 @@ package delivery. The later owner handoff supplies SDK **0.3.1** / api-types **0
 `ce05a6040ec05ac479d23dc2f701c8835a529663`, with successful upstream CI `37084973406`.
 The [desktop admission readback](../evidence/sdk-031-admission/README.md) verifies its exact
 archives, peer, schema and source pins. Precise OTP/MFA/local-login/Library contracts are
-admitted; scoped dependency intake is underway. Media-tail loss and feedback screenshot
+admitted; dependency intake `4fea24a` passes 44 probe checks plus one optional backend skip. Media-tail loss and feedback screenshot
 corruption reproduce in exact 0.3.1. Password/signup/refresh, stable account identity, Cloud
 models and history remain incomplete contracts; generated turn bodies are `never`.
 These block full remote-product admission, not the bounded verified paths. Earlier SDK 0.3.0
-retains its Node 22 regression HOLD. Existing remote calls remain probe-only.
+retains its Node 22 regression HOLD. Bounded sign-in integration is separate from those probe
+receipts; full authenticated inference remains unproven. Later SDK corrections are under review.
+The [next-pair readback](../evidence/sdk-next-readback/README.md) confirms media/screenshot
+corrections at 0.3.2 and usable generic turn bodies in the 0.3.3 candidate. The later 0.3.4
+owner release is incomplete after a Node 20.9 verification process failed to exit; no
+replacement is adopted from that incomplete handoff.
+
+G3's [source-backed DTO disposition](https://github.com/CortexLM/backend/pull/447#issuecomment-5964672516)
+permits narrow validation of existing Cloud model/turn fields, without claiming generated
+precision. `/me` has no public stable account ID; Chat history omits reasoning/tool blocks,
+caps list/window results and hardcodes `has_more:false`. Complete pagination/replay and durable
+cross-login identity need G2 contracts/server work. Current auth remains process-isolated.
+The append-only design request dated 3 October, “G1 remote Chat admission controls,” requests
+named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest
+bounded-history states. Existing local boolean reasoning and Stop controls cannot silently
+stand in for remote semantics. The current Platform package is still a separately pinned draft.
 
 Delivery order:
 
@@ -113,7 +151,7 @@ The current backend supports guest Chat, email OTP and self-host `none`/operator
 Desktop transport must isolate token/cookie state by origin and account. SDK regeneration
 against canonical schema `d6d46014d1c436b96540529dca2a3005556ae920` remains owned by the
 SDK session. That backend pin supplies typed OTP/MFA/email continuations and raw-byte uploads;
-it does not update the vendored SDK or implement desktop authentication. The existing backend turn input
+the admitted 0.3.1 pair now powers bounded process-lifetime sign-in. The existing backend turn input
 has reasoning effort `low|medium|high`, no disabled value; omission defaults a new conversation
 to `medium`, while ordinary follow-ups retain its stored effort.
 Cancelling the stream reader does not cancel backend generation. Supported reasoning-off
@@ -126,7 +164,7 @@ the complete combined candidate is delivered, while whole-page acceptance and ap
 integration disposition remain pending. See the
 [verified receipt](../evidence/recovery-followup/platform-receipt.json). Its simulated auth,
 diagnostic and stream states establish no backend availability. None of these probes proves
-the pending authentication or remote inference integration.
+the real-account acceptance or remote inference integration.
 The [route contract map](../evidence/recovery-followup/platform-contract-map.md) distinguishes
 local provider settings from remote operator routing and records untyped remote turn/approval
 payloads. The historical draft's automatic attachment removal conflicts with desktop's retained-file

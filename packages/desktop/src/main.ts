@@ -8,6 +8,7 @@ import { nodeCatalogs } from "@cortex/i18n/node";
 import { fileCredentials } from "./credentials";
 import { buildMenu } from "./menu";
 import { probeRemote } from "./remote";
+import { RemoteSession } from "./remote-session";
 
 const APP_NAME = "Cortex";
 app.setName(APP_NAME);
@@ -26,6 +27,7 @@ async function boot() {
     mcpCredentials: fileCredentials(path.join(dataDir, "mcp-credentials.json"), safeStorage),
     catalogUrl: process.env.CORTEX_CATALOG_URL,
     remoteProbe: (url) => probeRemote(url),
+    remoteAuth: new RemoteSession(),
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });

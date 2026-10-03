@@ -1,0 +1,26 @@
+{
+  "scope": "Built two-rule viewport fix, mixed real write results; before card minimum change; no rebuild",
+  "startedAt": "2026-10-03T03:43:43Z",
+  "sha256": {
+    "packages/app/src/kit/styles.css": "2901fa56bc043aaaf6fb9a7fa39215069f791fbe511b2d1b63b19eb0e1d4496a",
+    "tests/e2e/code-diff-scroll.spec.ts": "e8c0fbad81b573db713031e6c3f769f55f493b08564b48721435479e0f877cd8",
+    "packages/desktop/dist/main.cjs": "f57525a0d275ec1a624961962cf8d9ce9edd270322a803c826e187cf0a1074b2",
+    "packages/app/dist/assets/index-C5Sx34mw.css": "6a94564e234b0993ce9b2649dcd48e726c7d7c908204ac07656d73cdff88e2ae"
+  },
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1920x1080x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/code-diff-scroll.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=json",
+    "--output=/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts"
+  ],
+  "exitCode": 1,
+  "finishedAt": "2026-10-03T03:43:47Z"
+}

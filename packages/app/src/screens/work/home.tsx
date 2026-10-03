@@ -260,7 +260,7 @@ const BADGE: Record<string, string> = { done: "ok", failed: "err", blocked: "err
 export function WorkTask() {
   const { params } = useNav();
   const id = params.get("id") ?? "";
-  return isPreview() ? <WorkTaskPreview /> : <WorkTaskLive key={id} id={id} />;
+  return params.has("preview") || params.has("shot") ? <WorkTaskPreview /> : <WorkTaskLive key={id} id={id} />;
 }
 
 function WorkTaskPreview() {
@@ -269,10 +269,11 @@ function WorkTaskPreview() {
   const toast = useToast();
   const fx = useFixtures<WorkFx>("work");
   const name = useFixtures<BotsFx>("bots").main?.name ?? "";
-  const bot = useMainBot()!.cfg;
-  const { live, setLive } = usePreviewBot()!;
+  const { cfg: bot, live, setLive } = usePreviewBot()!;
   const background = React.useRef({ state: live.state, doing: live.doing });
-  const [v, setV] = useVariant("running");
+  const { params } = useNav();
+  const [, setV] = useVariant("running");
+  const v = params.get("v") || "running";
   const [mail, setMail] = React.useState<"ready" | "sent" | "cancelled">("ready");
   const [take, setTake] = React.useState(v === "takeover");
   const [pane, setPane] = React.useState(v === "computer" || v === "takeover");

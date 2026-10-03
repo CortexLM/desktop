@@ -1,0 +1,26 @@
+{
+  "scope": "Existing built Electron app, real engine and bash, controlled local inference; no rebuild",
+  "startedAt": "2026-10-03T03:23:09Z",
+  "sha256": {
+    "packages/app/src/kit/styles.css": "e4176904cfe44976e41970d379d736b7c97998a94d9198ba5884c07c0b818611",
+    "tests/e2e/terminal-copy.spec.ts": "09fcd77172f157f4d53d14801a7a154107c0ae90dda394366516747e10a04931",
+    "packages/desktop/dist/main.cjs": "f57525a0d275ec1a624961962cf8d9ce9edd270322a803c826e187cf0a1074b2",
+    "packages/app/dist/assets/index-Bo4UCD38.css": "66b5535728e44c658157393b4350e21624c56597d27ed3a5887aaf6b50a2fca5"
+  },
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1920x1080x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/terminal-copy.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=json",
+    "--output=/tmp/opencode/terminal-viewport/baseline-artifacts"
+  ],
+  "exitCode": 1,
+  "finishedAt": "2026-10-03T03:23:16Z"
+}

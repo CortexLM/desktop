@@ -19,10 +19,9 @@ type PreviewBot = {
 };
 const PreviewBotCtx = React.createContext<PreviewBot | null>(null);
 
-/** Null outside preview, even while a preview tree is being unmounted. */
+/** The mounted preview owns its context until PreviewGate commits the live tree. */
 export function usePreviewBot() {
-  const bot = React.useContext(PreviewBotCtx);
-  return isPreview() ? bot : null;
+  return React.useContext(PreviewBotCtx);
 }
 
 function PreviewBotProvider({ locale, children }: { locale: string | null; children: React.ReactNode }) {
@@ -56,9 +55,8 @@ async function load(area: string, locale: string) {
 }
 
 /** Preloads every fixture module for the active locale before a preview screen renders. */
-export function PreviewGate({ children }: { children: React.ReactNode }) {
+export function PreviewGate({ preview = isPreview(), children }: { preview?: boolean; children: React.ReactNode }) {
   const { locale } = useI18n();
-  const preview = isPreview();
   const [loaded, setLoaded] = React.useState<string | null>(null);
   React.useEffect(() => {
     if (!preview || loaded === locale) return;

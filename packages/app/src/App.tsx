@@ -39,7 +39,7 @@ export default function App() {
   }), [h.route]);
   return (
     <I18nProvider>
-      <PreviewGate>
+      <PreviewGate preview={h.params.has("preview") || h.params.has("shot")}>
         {h.route === "gallery" ? <Gallery /> : (
           <Tooltip.Provider delay={500} closeDelay={0}>
             <Toast.Provider timeout={4000} limit={3}>

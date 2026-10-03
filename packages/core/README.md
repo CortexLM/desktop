@@ -27,7 +27,7 @@ server = protocol routes bound to core handlers → `app.fetch(Request)`; deskto
 | `mcp` | `mcp.ts` | `@modelcontextprotocol/sdk` stdio / streamable HTTP. Tools exposed as `<server>_<tool>`, `mcp.status` events. Complete connection configuration stays in the host's `mcpCredentials`; public reads return metadata only. |
 | `bots` | `bot.ts` | Bot CRUD, memory (append/list/forget, bounded, injected as reference data), routines are scheduled tasks with `botID`. |
 | `scheduler` | `scheduler.ts`, `cron.ts` | 5-field cron (no dependency), daily/weekly/once. `run` creates a session and prompts it; run history persisted. Missed occurrences are not backfilled; the timer is process-local. |
-| `space`, `connection` | `space.ts`, `connection.ts` | Pages/sites/images + recents. Connection preferences; remote probes start with `GET {url}/readyz`. |
+| `space`, `connection` | `space.ts`, `connection.ts` | Pages/sites/images + recents. Connection preferences; remote probes start with `GET {url}/readyz`. Optional main-only `remoteAuth` host supplies sanitized process-lifetime auth state; credentials never enter storage. |
 
 ## Guarantees and limits
 

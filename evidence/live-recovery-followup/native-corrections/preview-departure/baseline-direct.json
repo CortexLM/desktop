@@ -1,0 +1,171 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/navigation.spec.ts",
+      "--grep",
+      "Work preview departure",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/tmp/opencode/preview-departure-fix/baseline-direct-results"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/preview-departure-fix/baseline-direct-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Work preview departure keeps its context until native live-Code navigation commits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5342,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'cfg')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'cfg')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:348:20",
+                    "location": {
+                      "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                      "column": 20,
+                      "line": 348
+                    },
+                    "snippet": "  346 |     await expect.poll(() => transition.evaluate((probe) => probe.read())).toEqual({ entered: true, native: true });\n  347 |     await expect(page).toHaveURL(/#\\/code$/);\n> 348 |     expect(errors).toEqual([]);\n      |                    ^\n  349 |     // Force the still-mounted preview to render while URL and committed screen differ.\n  350 |     // Native transitions suspend paint while the callback is held; dispatch to the real control.\n  351 |     await page.getByRole(\"button\", { name: \"Hide sidebar\", exact: true }).evaluate((button: HTMLButtonElement) => button.click());"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                        "column": 20,
+                        "line": 348
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'cfg')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  346 |     await expect.poll(() => transition.evaluate((probe) => probe.read())).toEqual({ entered: true, native: true });\n  347 |     await expect(page).toHaveURL(/#\\/code$/);\n> 348 |     expect(errors).toEqual([]);\n      |                    ^\n  349 |     // Force the still-mounted preview to render while URL and committed screen differ.\n  350 |     // Native transitions suspend paint while the callback is held; dispatch to the real control.\n  351 |     await page.getByRole(\"button\", { name: \"Hide sidebar\", exact: true }).evaluate((button: HTMLButtonElement) => button.click());\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:348:20"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:23:56.807Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preview-departure-failure",
+                      "contentType": "image/png",
+                      "body": "iVBORw0KGgoAAAANSUhEUgAABQAAAAOECAIAAABxdwtUAAAQAElEQVR4nOzXAQ0AIAzAsIeg5P5F4oO1Lnp3dwAAAOB3ZwAAACBAgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGCAAQCgQIABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABFOoH/wAABFNJREFUAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAgQYABAABIEGAAAAASBBgAAIAEAQYAACBBgAEAAEgQYAAAABIEGAAAgAQBBgAAIEGAAQAASBBgAAAAEgQYAACABAEGAAAg4QEAAP///SvYowAAAAZJREFUAwC92AdxsqNOzAAAAABJRU5ErkJggg=="
+                    },
+                    {
+                      "name": "preview-departure-errors",
+                      "contentType": "application/json",
+                      "body": "ewogICJlcnJvcnMiOiBbCiAgICAiQ2Fubm90IHJlYWQgcHJvcGVydGllcyBvZiBudWxsIChyZWFkaW5nICdjZmcnKSIsCiAgICAiVHJhbnNpdGlvbiB3YXMgYWJvcnRlZCBiZWNhdXNlIG9mIHRpbWVvdXQgaW4gRE9NIHVwZGF0ZSIKICBdLAogICJ1cmwiOiAiY29ydGV4Oi8vYXBwL2luZGV4Lmh0bWwjL2NvZGUiCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/preview-departure-fix/baseline-direct-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/opencode/preview-departure-fix/baseline-direct-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/opencode/preview-departure-fix/baseline-direct-results/navigation-Work-preview-de-4bc6b-ive-Code-navigation-commits/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                    "column": 20,
+                    "line": 348
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-3aa211c950975d227b58",
+          "file": "navigation.spec.ts",
+          "line": 316,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T03:23:56.116Z",
+    "duration": 6134.242,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

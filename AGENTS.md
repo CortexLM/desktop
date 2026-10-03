@@ -45,13 +45,13 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/client` | Typed fetch client + SSE parser, browser-safe |
 | `packages/i18n` | Catalogs per locale/namespace, `vite.ts` and `node.ts` loaders |
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
-| `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe |
+| `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe and process-lifetime sign-in |
 
 `vendor/` holds unmodified `@cortex/sdk` 0.3.1 and its optional peer `@cortex/api-types`
 0.2.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 The SDK-owner handoff against schema blob `d6d46014` passes scoped desktop admission;
-dependency adoption does not make remote authentication live. Earlier archives remain retained.
-Remote authentication/model routing/inference remain active delivery work; the dependency
+earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.
+Remote model routing/inference and continuation screens remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
 ## Toolchain
@@ -142,6 +142,8 @@ Two modes in the sidebar switcher: **Cortex** and **Cortex Code**
 Route and history-entry identity are one React snapshot; deferred navigation keeps the outgoing
 screen and its draft mounted until the new route commits.
 An earlier tab's route commit preserves a newer pending selection.
+Work preview/context lifetime follows that committed route snapshot through departure;
+the live commit clears preview mascot state before rendering live content.
 Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
 one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
 Reduced motion disables CSS transitions entirely to avoid stale inherited theme colors;
@@ -165,6 +167,8 @@ refuses duplicate manual starts before creating another session.
 Startup marks abandoned persisted runs interrupted; deleted routine history cannot reappear on completion.
 Live Cortex Code sends its selected catalog model and reasoning choice. Reopening restores the session's
 model; unavailable selections retain the draft instead of silently choosing another model.
+Code's right pane stays within the window; terminal output and individual diff bodies scroll
+independently, keeping diff headers visible even for long tool results.
 Global Search matches saved Bot names and personas alongside session titles; results open the exact
 Bot, and keyboard order follows visible category groups. Failed source lists offer Retry.
 Live Work's **Turn into a routine** opens the existing editor with the original text request,
@@ -197,16 +201,18 @@ Platform's eight-route/94-variant draft receipt is verified separately in
 Its original captures and later scoped correction hashes are distinct; simulated authentication,
 diagnostics, streams and approvals establish no API availability.
 
-Cortex Cloud sign-in has no engine route yet: the live login submit says it is unavailable
-(`packages/app/src/screens/system/account.tsx`).
+Email-code sign-in uses the main-only `RemoteSession`, exposed by `GET/POST /api/connection/auth`.
+Only sanitized status, active `signedIn` and email cross IPC; sessions expire on process exit.
+Local-password, email-verification and MFA/enrollment screens await approved integration;
+unsupported continuations say unavailable. Chat/model routing still uses local providers.
 
 - **No seeded data in live mode.** Fixtures live in
   `packages/i18n/locales/<locale>/fixtures/*.json` and are loaded only in preview
   (`#/gallery`, `?preview`, `?shot`) via `packages/app/src/preview.tsx`; the title bar then
   shows a state picker.
 - **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
-  `selfhost` (URL). Selection/probing only: prompts still use the local engine and provider
-  settings; remote auth is not wired, `signedIn` remains false. Backend URLs must be HTTP(S)
+  `selfhost` (URL). Prompts still use the local engine and provider settings; email-code auth
+  is process-local to main, `signedIn` derives from its active validated session. Backend URLs must be HTTP(S)
   origins without credentials, paths, queries or fragments; probes refuse redirects. Self-host
   discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.

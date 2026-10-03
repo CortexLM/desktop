@@ -1,0 +1,66 @@
+{
+  "disposition": "bounded_auth_runtime_evidence_accepted",
+  "base_commit": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+  "pre_native_correction_build": true,
+  "auth_commit_pending_at_review": true,
+  "e2e": {
+    "cases": 90,
+    "passed": 90,
+    "retries": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "report_errors": 0,
+    "result_errors": 0,
+    "registered_theme_state_renders": 426,
+    "auth_cases": 6,
+    "run_start": "2026-10-03T03:13:02.097Z",
+    "run_end": "2026-10-03T03:17:09.592453+00:00"
+  },
+  "unit_log": {
+    "files": 18,
+    "passed": 201,
+    "skipped": 1,
+    "total": 202,
+    "optional_skip": "real backend probe; CORTEX_TEST_BACKEND_URL absent"
+  },
+  "captures": {
+    "full_suite_png_attachments": 104,
+    "full_suite_unique_png_hashes": 102,
+    "full_suite_inline_json": 10,
+    "auth_capture_references_per_pass": 12,
+    "auth_distinct_png_hashes_per_pass": 10,
+    "auth_earlier_images_inspected": 12,
+    "auth_additional_full_run_image_versions_inspected": 2,
+    "auth_distinct_image_hashes_across_passes": 12,
+    "new_full_run_png_copies": 2,
+    "missing_attachments": 0
+  },
+  "positive_assertions": [
+    "Real renderer/IPC/core/main SDK/loopback HTTP authentication, without fake returned auth state.",
+    "Sixth case delays completed original IPC GET replies; original handler still executes and returns unchanged response bytes.",
+    "Six digits alone do not submit; doubled Continue produces one new verification request.",
+    "Refused email/code retains editable inputs; accepted auth survives renderer reload, not process restart.",
+    "Origin/mode changes and Cancel reject late held verification replies and clear candidate state.",
+    "Known fixture token/cookie/pending/challenge/QR/TOTP/error markers absent from IPC response, DOM, browser stores and inspected engine files.",
+    "No renderer-originated HTTP calls; next identity requests carry no previous bearer/cookie.",
+    "Registry asserts every visited state has correct theme/nonempty text, no raw translation keys and no accumulated page errors."
+  ],
+  "visual_observations": [
+    "Refusal, signed-in, unsupported-continuation and Settings controls readable at 960x640 in tested themes; one signed-in capture 1440x900 light.",
+    "Initial-read cancel image is vertically scrolled: top brand mark clipped, email and Cancel visible. Existing bounded visual limitation, not full visual acceptance.",
+    "Settings subtitle ellipsizes at narrow width; focused long URL horizontally scrolls.",
+    "MFA and email-verification captures intentionally identical within each theme."
+  ],
+  "qualifications": [
+    "Full report has zero test/report errors; native transition regression deliberately collects three callback errors. Do not claim zero runtime errors throughout all 90 cases.",
+    "Prior read-races/report.json is a zero-test selector failure. read-races/result.json is the successful single-case run.",
+    "Screens sweep is 426 renders, not 426 reviewed screenshots or pixel approval.",
+    "Full suite has six auth cases; first-electron five-case evidence is a prior run, not five additional cases.",
+    "Controlled loopback backend establishes local SDK/IPC behavior, not deployed Cloud authentication or remote inference.",
+    "Existing installed b0e6d78 preview-departure and terminal-overflow failures remain valid negative evidence; that package excludes auth delta.",
+    "Current auth build/source pins do not attest later preview/terminal fixes, future CI or native auth acceptance."
+  ],
+  "new_auth_blockers": [],
+  "runtime_test_build_ci_native_commands_executed": false
+}

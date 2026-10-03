@@ -372,6 +372,22 @@ export const ConnectionProbe = z.object({
   models: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
 })
 export type ConnectionProbe = z.infer<typeof ConnectionProbe>
+export const RemoteAuthState = z.object({
+  status: z.enum(["signed_out", "code_sent", "signed_in", "verify_email", "mfa_challenge", "mfa_enrollment"]),
+  signedIn: z.boolean(),
+  email: z.string().email().optional(),
+})
+export type RemoteAuthState = z.infer<typeof RemoteAuthState>
+export const RemoteAuthInput = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("email"), email: z.string().email().max(254) }),
+  z.object({ action: z.literal("code"), code: z.string().length(6).regex(/^\d{6}$/) }),
+  z.object({ action: z.literal("local"), email: z.string().email().max(254), password: z.string().min(1).max(4096) }),
+  z.object({ action: z.literal("verify_email"), code: z.string().trim().min(1).max(128) }),
+  z.object({ action: z.literal("mfa"), code: z.string().length(6).regex(/^\d{6}$/) }),
+  z.object({ action: z.literal("logout") }),
+  z.object({ action: z.literal("cancel") }),
+])
+export type RemoteAuthInput = z.infer<typeof RemoteAuthInput>
 
 // ---------- request inputs ----------
 export const SessionCreateInput = z.object({

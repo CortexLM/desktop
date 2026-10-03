@@ -1,0 +1,779 @@
+{
+  "observed_at": "2026-10-03T03:26:08.011023+00:00",
+  "git_head": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+  "git_status": [
+    " M .rules/01-security.md",
+    " M AGENTS.md",
+    " M docs/connection-modes.md",
+    " M docs/engine.md",
+    " M docs/testing.md",
+    " M evidence/STATUS.md",
+    " M evidence/live-recovery-followup/README.md",
+    " M packages/app/src/preview.tsx",
+    " M packages/app/src/screens/system/account.tsx",
+    " M packages/app/src/screens/system/settings.tsx",
+    " M packages/app/src/screens/work/home.tsx",
+    " M packages/client/src/index.ts",
+    " M packages/core/README.md",
+    " M packages/core/src/connection.ts",
+    " M packages/core/src/index.ts",
+    " M packages/desktop/src/main.ts",
+    " M packages/i18n/locales/de/system.json",
+    " M packages/i18n/locales/en/system.json",
+    " M packages/i18n/locales/es/system.json",
+    " M packages/i18n/locales/fr/system.json",
+    " M packages/i18n/locales/ja/system.json",
+    " M packages/i18n/locales/ko/system.json",
+    " M packages/i18n/locales/pt-BR/system.json",
+    " M packages/i18n/locales/zh-Hans/system.json",
+    " M packages/protocol/src/index.ts",
+    " M packages/schema/src/index.ts",
+    " M packages/server/src/index.ts",
+    " M tests/e2e/navigation.spec.ts",
+    " M tests/e2e/terminal-copy.spec.ts",
+    " M vendor/README.md",
+    "?? evidence/live-recovery-followup/ci-b0e6d78/",
+    "?? evidence/mac/b0e6d78/",
+    "?? evidence/remote-auth-followup/",
+    "?? evidence/sdk-next-readback/",
+    "?? packages/core/test/connection.test.ts",
+    "?? packages/desktop/src/remote-session.ts",
+    "?? packages/desktop/test/remote-session.test.ts",
+    "?? tests/e2e/remote-auth.spec.ts"
+  ],
+  "dist_members": [
+    {
+      "path": "packages/app/dist/assets/bots-BdqX5oXD.js",
+      "bytes": 5756,
+      "mtime_ns": 1790996606883761343,
+      "sha256": "35965eb4181068dc99131271c99385b53b1fca15c929890e16d235e5c171234a"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-Bm1-6BNE.js",
+      "bytes": 4912,
+      "mtime_ns": 1790996606884252326,
+      "sha256": "4d810a3cda47c5da71bcf6509ecb342ecc1b346fa46967955915479ab2f202f2"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-C_sEU92Q.js",
+      "bytes": 5284,
+      "mtime_ns": 1790996606884336807,
+      "sha256": "42ce74efbe78dd684b720d4cc3225b8c60b29465d92c3f33793281b6c5bdbd1c"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-DEyUUREg.js",
+      "bytes": 5302,
+      "mtime_ns": 1790996606884406378,
+      "sha256": "e0d12025a98becff5338c81b1380f8944b043f2e5f8d92b4e06e19eb70882074"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-Dhnxap2k.js",
+      "bytes": 5242,
+      "mtime_ns": 1790996606884467109,
+      "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-G-GRUblJ.js",
+      "bytes": 4916,
+      "mtime_ns": 1790996606884522509,
+      "sha256": "35a49ec195ba9f71c65942e1229b5de7fda566f62de02fc43b6cea2771792944"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-Vx_jdXt9.js",
+      "bytes": 5311,
+      "mtime_ns": 1790996606884578700,
+      "sha256": "5d326f15789fa936eb0e97d66b6ef7fc84ebc8981ca14eaa75cf550216bb43ea"
+    },
+    {
+      "path": "packages/app/dist/assets/bots-XhGdPyli.js",
+      "bytes": 5333,
+      "mtime_ns": 1790996606884634241,
+      "sha256": "d69ed2ea22f30cc1e15966cbcef0b20c982d5fcd8af2a56b5a56af7d1e8528b9"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-BGpNcO0B.js",
+      "bytes": 22083,
+      "mtime_ns": 1790996606884692151,
+      "sha256": "f10687f8fe228e2914966a972786206e900d9ec1ee2d01af42460000b1e354ab"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-CGHYpLbL.js",
+      "bytes": 20847,
+      "mtime_ns": 1790996606884777682,
+      "sha256": "326a81dcddb9257d410452377535dcaf7c275b5fb85abb30916a532b56cb5b84"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-C_J9W5h_.js",
+      "bytes": 20806,
+      "mtime_ns": 1790996606884879883,
+      "sha256": "7cd23b5253b71093481c760c373f339251820244e141693c4af9870ba1475f3f"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-CpUWRzSs.js",
+      "bytes": 18593,
+      "mtime_ns": 1790996606884981134,
+      "sha256": "c265d08945ff8f9d29ff409953c1f266417ff5ea137408c28102e70feb269012"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-Csrcd_Np.js",
+      "bytes": 21266,
+      "mtime_ns": 1790996606885050765,
+      "sha256": "8882091b25a86e0b51095e9e5b9bae99b247c3f78542e10bcc6ee2239c105f82"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-CvBJxFqq.js",
+      "bytes": 17909,
+      "mtime_ns": 1790996606885124786,
+      "sha256": "7a41b7a3fb9f98d64bcba6fd250e27101ea1e9517109337eb65a8b22a1bf6047"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-DPP7jha6.js",
+      "bytes": 21015,
+      "mtime_ns": 1790996606885193596,
+      "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469"
+    },
+    {
+      "path": "packages/app/dist/assets/chat-DeCdZ0A1.js",
+      "bytes": 21076,
+      "mtime_ns": 1790996606885271167,
+      "sha256": "820b0ed83108d880a1af9f14aa28f51ee2627f14d52b39a9524b962a265d3658"
+    },
+    {
+      "path": "packages/app/dist/assets/code-1vU-fKss.js",
+      "bytes": 17253,
+      "mtime_ns": 1790996606885346558,
+      "sha256": "6d135fd78cbe49a04545f710687f0dea716c6e7232bc08445dfdf399eab588e8"
+    },
+    {
+      "path": "packages/app/dist/assets/code-D0QB2Ug8.js",
+      "bytes": 18704,
+      "mtime_ns": 1790996606885414209,
+      "sha256": "5e878aed1d51b01a98a97fd84eeec09f192200ef39ccc695ed052e932dc8b3d7"
+    },
+    {
+      "path": "packages/app/dist/assets/code-D0jaYtvL.js",
+      "bytes": 17296,
+      "mtime_ns": 1790996606885481379,
+      "sha256": "f14f00d8f27cac31488129c642ac4450646317589aa83a7e4edc8718dd52baad"
+    },
+    {
+      "path": "packages/app/dist/assets/code-D17_EVJa.js",
+      "bytes": 17714,
+      "mtime_ns": 1790996606885553130,
+      "sha256": "5c6362771e3672889eaa700e5822e3242b0750553a1e9daa4ee77af0519f0687"
+    },
+    {
+      "path": "packages/app/dist/assets/code-D796Wmca.js",
+      "bytes": 16388,
+      "mtime_ns": 1790996606885626051,
+      "sha256": "403c5386fee04845d467ad855e2cba46091e120aa167c6485614afd0b867b5d1"
+    },
+    {
+      "path": "packages/app/dist/assets/code-Dj63_RNm.js",
+      "bytes": 16921,
+      "mtime_ns": 1790996606885693702,
+      "sha256": "c3a23d1c73a31d6e4fcc3f3f184004db0acb3b702f4de7a031533c68aadff55a"
+    },
+    {
+      "path": "packages/app/dist/assets/code-cF_R13w2.js",
+      "bytes": 17119,
+      "mtime_ns": 1790996606885772813,
+      "sha256": "e20f5e2f37a2437971dbba0eed616f8fd6410cad66b1aa39419eeba03c5f849b"
+    },
+    {
+      "path": "packages/app/dist/assets/code-l1ImvW5S.js",
+      "bytes": 17357,
+      "mtime_ns": 1790996606885857624,
+      "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d"
+    },
+    {
+      "path": "packages/app/dist/assets/files-8yYH43vb.js",
+      "bytes": 23623,
+      "mtime_ns": 1790996606885932875,
+      "sha256": "ee4aedd52ffca817af637db620f3adb5c11094da414df34d7a150cc15bf19db3"
+    },
+    {
+      "path": "packages/app/dist/assets/files-B0LnTjdG.js",
+      "bytes": 24101,
+      "mtime_ns": 1790996606886003975,
+      "sha256": "7ef62ac31ccb8edda5ef09faea4345912b209c71dde25c59aa4c014a4b5bd20b"
+    },
+    {
+      "path": "packages/app/dist/assets/files-C3wBKb8I.js",
+      "bytes": 23850,
+      "mtime_ns": 1790996606886089366,
+      "sha256": "d4daa07c4f21b809afae9e14e593c5928362e85c6a77a364f9753934b2da497e"
+    },
+    {
+      "path": "packages/app/dist/assets/files-Cg4Cbij3.js",
+      "bytes": 23337,
+      "mtime_ns": 1790996606886168617,
+      "sha256": "70b60bbcdd0ce04a971caa7bf7470b3b5496afef1a94ffc898a6b9093d8935d8"
+    },
+    {
+      "path": "packages/app/dist/assets/files-ChUKgMNm.js",
+      "bytes": 21023,
+      "mtime_ns": 1790996606886248308,
+      "sha256": "d9b8c1951c5fbb7cc5167848808c2104b7942b667b7f8b8ab41062b619e5b1ae"
+    },
+    {
+      "path": "packages/app/dist/assets/files-DIk1qP8R.js",
+      "bytes": 23724,
+      "mtime_ns": 1790996606886336509,
+      "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843"
+    },
+    {
+      "path": "packages/app/dist/assets/files-PuBVWCGV.js",
+      "bytes": 21433,
+      "mtime_ns": 1790996606886412340,
+      "sha256": "907cb66909660139eb0e520983785227f75907a6db05d6d8d9db6be6b5eea5a0"
+    },
+    {
+      "path": "packages/app/dist/assets/files-k2Mgqtmt.js",
+      "bytes": 25313,
+      "mtime_ns": 1790996606886494430,
+      "sha256": "02b6ca87f111ee88a361b1d82753125df61dd5b632206ffc22f9cee47dfdd21c"
+    },
+    {
+      "path": "packages/app/dist/assets/index-Bo4UCD38.css",
+      "bytes": 205080,
+      "mtime_ns": 1790996606888242979,
+      "sha256": "66b5535728e44c658157393b4350e21624c56597d27ed3a5887aaf6b50a2fca5"
+    },
+    {
+      "path": "packages/app/dist/assets/index-Cyo3CwAR.js",
+      "bytes": 2440867,
+      "mtime_ns": 1790996606882761333,
+      "sha256": "9a7cd3f912d69cb36bedfba399ea6cd2757a45f89b9a623c2c6c35231cb851b4"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-BCHMvIiL.js",
+      "bytes": 962,
+      "mtime_ns": 1790996606886583451,
+      "sha256": "7ab30710ea25b8e7ea431bd80e280917dcae1e126807cfcf8e41a2842cb79b12"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-BuotxJKs.js",
+      "bytes": 998,
+      "mtime_ns": 1790996606886641642,
+      "sha256": "2d47829c3c08a7d772e5892808cf4414a10191b6c0c57652ab750b1216e9d59b"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-C-itNRLu.js",
+      "bytes": 931,
+      "mtime_ns": 1790996606886706663,
+      "sha256": "348e293ba0512079483dce28790cf86e224310a175242b3496b34b56446822a6"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-CYBsECV8.js",
+      "bytes": 1030,
+      "mtime_ns": 1790996606886760793,
+      "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-CmOyaB3c.js",
+      "bytes": 1025,
+      "mtime_ns": 1790996606886814834,
+      "sha256": "26d1f6e5e6f4183914f8ed791f98c51e4910b14068d9ce306f8904eb71e6140b"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-CwZdhwwk.js",
+      "bytes": 1042,
+      "mtime_ns": 1790996606886888555,
+      "sha256": "2aa5856ae9a6a81f0c3fee7385ef65937d3315b4263191844b8b066ec1f5a4c2"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-DBev-A7t.js",
+      "bytes": 1080,
+      "mtime_ns": 1790996606886944645,
+      "sha256": "4da90043b3e9c09efb719a2f43246bf77e4d9e74c4f473415baef2cbc5517d2f"
+    },
+    {
+      "path": "packages/app/dist/assets/shell-Yhf1FA3F.js",
+      "bytes": 999,
+      "mtime_ns": 1790996606886999526,
+      "sha256": "0d2ef38c505c387340d435ec2682f012d25cdeea6135f49c434d0a01ece73c08"
+    },
+    {
+      "path": "packages/app/dist/assets/system-6GOii8V2.js",
+      "bytes": 8587,
+      "mtime_ns": 1790996606887057827,
+      "sha256": "a7bcf5f2a6ee894ca4e706a0f161e83db326ad11760708dd6148dfc56f0d508a"
+    },
+    {
+      "path": "packages/app/dist/assets/system-CAyEVNFh.js",
+      "bytes": 9957,
+      "mtime_ns": 1790996606887129087,
+      "sha256": "780db8d1179ccf81a3020e51274b5420c94f7331d0de7e4ff0a999f0b803618e"
+    },
+    {
+      "path": "packages/app/dist/assets/system-CHsH64BV.js",
+      "bytes": 9218,
+      "mtime_ns": 1790996606887195128,
+      "sha256": "960c36521cb48771bcb6ff7b7e3a3abaa960e2ec61123173cf516c64299c0dae"
+    },
+    {
+      "path": "packages/app/dist/assets/system-CUSSAkIm.js",
+      "bytes": 9364,
+      "mtime_ns": 1790996606887262259,
+      "sha256": "c1f17b2a3ab30734f3d7fe6ad06f13ed972bd5bad4434ea783e1f130e2bd91d8"
+    },
+    {
+      "path": "packages/app/dist/assets/system-D-v_P-IN.js",
+      "bytes": 9097,
+      "mtime_ns": 1790996606887332039,
+      "sha256": "a58cd506aba6f0d78d7d7a18bfb37939ca19985840133ac601412945950b4cea"
+    },
+    {
+      "path": "packages/app/dist/assets/system-D0-Zm1I0.js",
+      "bytes": 9354,
+      "mtime_ns": 1790996606887399100,
+      "sha256": "c78e563eb7c2e064ea8800653992aaf9cb742ab36657984db5d742431977e63b"
+    },
+    {
+      "path": "packages/app/dist/assets/system-D9_n4Goj.js",
+      "bytes": 9120,
+      "mtime_ns": 1790996606887464701,
+      "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026"
+    },
+    {
+      "path": "packages/app/dist/assets/system-Dgm-zsfL.js",
+      "bytes": 8530,
+      "mtime_ns": 1790996606887534881,
+      "sha256": "0b827d19e3ccb3136e9145345df2ed9302899b0f9454f036fed8f554b9aa00ca"
+    },
+    {
+      "path": "packages/app/dist/assets/work-BFR3EcZv.js",
+      "bytes": 13474,
+      "mtime_ns": 1790996606887602592,
+      "sha256": "67d32c56d982756b7a372833ab7f2610c3b4381f7cacc3e10dcd4517cea2573e"
+    },
+    {
+      "path": "packages/app/dist/assets/work-C3sVn7Tw.js",
+      "bytes": 14694,
+      "mtime_ns": 1790996606887676573,
+      "sha256": "92b09dc63b49a41fee1538650c02dc50757e0b895152afcf7b1791bc12b47cde"
+    },
+    {
+      "path": "packages/app/dist/assets/work-CXx4q0-W.js",
+      "bytes": 14410,
+      "mtime_ns": 1790996606887753384,
+      "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367"
+    },
+    {
+      "path": "packages/app/dist/assets/work-D7wz_BjB.js",
+      "bytes": 14764,
+      "mtime_ns": 1790996606887761383,
+      "sha256": "3d59754b750c5c320ffa08e45cb4a38c7ad42196384ec7139b2fb76645929984"
+    },
+    {
+      "path": "packages/app/dist/assets/work-DE4UuE7v.js",
+      "bytes": 14704,
+      "mtime_ns": 1790996606887922256,
+      "sha256": "cbf82dd188972ce3e4f5c12843e121558ae10aee36d2e288907b7d0bb7dc62cf"
+    },
+    {
+      "path": "packages/app/dist/assets/work-DM-bn9rL.js",
+      "bytes": 14729,
+      "mtime_ns": 1790996606888005297,
+      "sha256": "254e2b74a59e76df682abf51192765e34c3567a1e80cebb03c821eb81ec42621"
+    },
+    {
+      "path": "packages/app/dist/assets/work-EocTYN0P.js",
+      "bytes": 15942,
+      "mtime_ns": 1790996606888078637,
+      "sha256": "e5f0b87796ff465dba960b08889f9955e651dc4808f196c3b46635a094074397"
+    },
+    {
+      "path": "packages/app/dist/assets/work-H1mXT1T-.js",
+      "bytes": 13415,
+      "mtime_ns": 1790996606888164488,
+      "sha256": "7561898a27175632483a5d264a03b85a667410058769bff33f7be33ed6f7e22e"
+    },
+    {
+      "path": "packages/app/dist/favicon.svg",
+      "bytes": 9522,
+      "mtime_ns": 1790996606456625673,
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+    },
+    {
+      "path": "packages/app/dist/fonts/Geist-Variable.woff2",
+      "bytes": 69652,
+      "mtime_ns": 1790996606456959186,
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8"
+    },
+    {
+      "path": "packages/app/dist/fonts/GeistMono-Variable.woff2",
+      "bytes": 71368,
+      "mtime_ns": 1790996606457167039,
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab"
+    },
+    {
+      "path": "packages/app/dist/gel/apparence.png",
+      "bytes": 76567,
+      "mtime_ns": 1790996606457423991,
+      "sha256": "7fb11eee005f003972d8cf3b5ab3dc214ff2a6faa227e7906a5d4a79d588a6e8"
+    },
+    {
+      "path": "packages/app/dist/gel/automatisations.png",
+      "bytes": 77526,
+      "mtime_ns": 1790996606457574783,
+      "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c"
+    },
+    {
+      "path": "packages/app/dist/gel/bot.png",
+      "bytes": 74415,
+      "mtime_ns": 1790996606457739945,
+      "sha256": "88faf8abeaf30cece620e5c0bfe23129ce2bf3baa01ced547df8451c7ad1ee06"
+    },
+    {
+      "path": "packages/app/dist/gel/code.png",
+      "bytes": 82148,
+      "mtime_ns": 1790996606457925027,
+      "sha256": "b1db22be65796a9f0895e14b337e1025848800f83cbd3a54a406768dd1d3c769"
+    },
+    {
+      "path": "packages/app/dist/gel/compte.png",
+      "bytes": 76045,
+      "mtime_ns": 1790996606458090229,
+      "sha256": "6221a290e83996717a2e9c249861ae8d8718b2557b96a690e627cb68381de9c7"
+    },
+    {
+      "path": "packages/app/dist/gel/confidentialite.png",
+      "bytes": 77897,
+      "mtime_ns": 1790996606458237810,
+      "sha256": "9921425f1f6b9bcf3106bc12d6960c8448ef35585a261f10f3f3d4ef89e5ef8c"
+    },
+    {
+      "path": "packages/app/dist/gel/documents.png",
+      "bytes": 75789,
+      "mtime_ns": 1790996606458406982,
+      "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885"
+    },
+    {
+      "path": "packages/app/dist/gel/donnees.png",
+      "bytes": 75726,
+      "mtime_ns": 1790996606458562703,
+      "sha256": "436243ddfcd285480e7d29befdf96619ccf51f86abe5883f4f7fc435fd3aec81"
+    },
+    {
+      "path": "packages/app/dist/gel/extensions.png",
+      "bytes": 82085,
+      "mtime_ns": 1790996606458706965,
+      "sha256": "5695bb8057b5b9e0f1a63e68bb8f2d49822a8b8b0721b55f207ec01477f5cb11"
+    },
+    {
+      "path": "packages/app/dist/gel/general.png",
+      "bytes": 76614,
+      "mtime_ns": 1790996606458880227,
+      "sha256": "24f0fd7e6efc55049250abdb81e4ec2c6cdb35e95547a6a7e190827e407cf503"
+    },
+    {
+      "path": "packages/app/dist/gel/images.png",
+      "bytes": 77289,
+      "mtime_ns": 1790996606459038409,
+      "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785"
+    },
+    {
+      "path": "packages/app/dist/gel/modeles.png",
+      "bytes": 76588,
+      "mtime_ns": 1790996606459196940,
+      "sha256": "76b3ee444a4bc512062e4c9dded1e35dee628f154b11d5822c735fa2d9286e84"
+    },
+    {
+      "path": "packages/app/dist/gel/notifications.png",
+      "bytes": 76154,
+      "mtime_ns": 1790996606459347212,
+      "sha256": "bf0e25a5de8037ce0ecd4387206f4a835d41b1b79efb3d7673cc40dd9f7df164"
+    },
+    {
+      "path": "packages/app/dist/gel/raccourcis.png",
+      "bytes": 77630,
+      "mtime_ns": 1790996606459487084,
+      "sha256": "94e0844de2f5e29200f88dfe66976d81d0cf6b5c9aba7f72ad3a23ea6bff1998"
+    },
+    {
+      "path": "packages/app/dist/gel/recherche-web.png",
+      "bytes": 81327,
+      "mtime_ns": 1790996606459631935,
+      "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d"
+    },
+    {
+      "path": "packages/app/dist/icons.svg",
+      "bytes": 5031,
+      "mtime_ns": 1790996606459783927,
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "path": "packages/app/dist/img/atelier.png",
+      "bytes": 1660374,
+      "mtime_ns": 1790996606460017039,
+      "sha256": "c52a6832e8112485d6d2f9b4e765af272f964b0b18067e3ce3c8fd74c7825b4e"
+    },
+    {
+      "path": "packages/app/dist/img/aube.png",
+      "bytes": 1405580,
+      "mtime_ns": 1790996606460867578,
+      "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662"
+    },
+    {
+      "path": "packages/app/dist/img/ceramique.png",
+      "bytes": 1509736,
+      "mtime_ns": 1790996606461757116,
+      "sha256": "3339e692a943d3e27a64e63e71c9d9894c23ad59f124223808743ad08263f4cd"
+    },
+    {
+      "path": "packages/app/dist/img/crepuscule.png",
+      "bytes": 1405004,
+      "mtime_ns": 1790996606462757126,
+      "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa"
+    },
+    {
+      "path": "packages/app/dist/img/lagon.png",
+      "bytes": 1246039,
+      "mtime_ns": 1790996606463252324,
+      "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd"
+    },
+    {
+      "path": "packages/app/dist/img/marche.png",
+      "bytes": 2223442,
+      "mtime_ns": 1790996606463967781,
+      "sha256": "0c063b8f49cf5345d191ca9b501b35f70922b508f9752546cd1572b1ccab601f"
+    },
+    {
+      "path": "packages/app/dist/img/montagne.png",
+      "bytes": 1777869,
+      "mtime_ns": 1790996606465757156,
+      "sha256": "e16a210f3867a9023acc0f61cdcb0ae19aada457fa7f8af7cddbd992980f8d3c"
+    },
+    {
+      "path": "packages/app/dist/img/prairie.png",
+      "bytes": 1242519,
+      "mtime_ns": 1790996606466097464,
+      "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968"
+    },
+    {
+      "path": "packages/app/dist/index.html",
+      "bytes": 664,
+      "mtime_ns": 1790996606888242979,
+      "sha256": "179b7305c64d81ee79c150fd3f11687c880b55feb32cf734239a812d830aa576"
+    },
+    {
+      "path": "packages/desktop/dist/main.cjs",
+      "bytes": 3467118,
+      "mtime_ns": 1790996607344765961,
+      "sha256": "f57525a0d275ec1a624961962cf8d9ce9edd270322a803c826e187cf0a1074b2"
+    },
+    {
+      "path": "packages/desktop/dist/main.cjs.map",
+      "bytes": 7734724,
+      "mtime_ns": 1790996607344765961,
+      "sha256": "c0d48b187e4105d1fd78c0069a7b6bd7b277df2b656adba84170e3af4c97f522"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs",
+      "bytes": 1941,
+      "mtime_ns": 1790996607358766101,
+      "sha256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs.map",
+      "bytes": 2333,
+      "mtime_ns": 1790996607358766101,
+      "sha256": "714c9b87a962ce9db7ac4a00d0e8b9cf2f4e01fb68f679686db1243a508b3533"
+    }
+  ],
+  "dist_manifest_sha256": "900a5e548f3e5de24dbb0e2324ea12a9a2f649e3e872a7c00f00057ca71801e6",
+  "source_files": [
+    {
+      "path": "packages/schema/src/index.ts",
+      "bytes": 19359,
+      "mtime_ns": 1790994903854749699,
+      "sha256": "e184483c0e9ad99eb99585282fb4e7d526df3851212fa197fc5bc66110e9236b"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "bytes": 9049,
+      "mtime_ns": 1790994705586759982,
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69"
+    },
+    {
+      "path": "packages/client/src/index.ts",
+      "bytes": 10100,
+      "mtime_ns": 1790994705586759982,
+      "sha256": "0faa61a96ffb009edd1fd6d321d38d805625eb385c9d912c7a184bc1467367e7"
+    },
+    {
+      "path": "packages/server/src/index.ts",
+      "bytes": 8335,
+      "mtime_ns": 1790994705587759992,
+      "sha256": "7585be3574f67ba1280e7f4f0e1423413b9d697be4e7423ac8ca3941aa783037"
+    },
+    {
+      "path": "packages/core/src/connection.ts",
+      "bytes": 3734,
+      "mtime_ns": 1790994705587759992,
+      "sha256": "47eb2ba5d2ef920c067f2af881d506e97152cae246964d76d50681810cbf68d6"
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "bytes": 4906,
+      "mtime_ns": 1790994705589760012,
+      "sha256": "45d4fd4b3639b7f51ad9b1e9bf7cc40f8a51411fb0bd7290f536457efd16c15a"
+    },
+    {
+      "path": "packages/core/test/connection.test.ts",
+      "bytes": 9323,
+      "mtime_ns": 1790995111245830974,
+      "sha256": "1ecfe909a81d147aab811c5ffa0a25b56be7c877ed4ca698d3ae4f4377a19399"
+    },
+    {
+      "path": "packages/desktop/src/main.ts",
+      "bytes": 6220,
+      "mtime_ns": 1790995315599881749,
+      "sha256": "449c9737cc04f49d1c8a5b91901cf0821028feb59fec93169f76dfadb200d38d"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "bytes": 11534,
+      "mtime_ns": 1790996435346046180,
+      "sha256": "26528dd439542a55bf06a6bee46125fea13dc3a4cbd91e6debecb617aad69051"
+    },
+    {
+      "path": "packages/desktop/test/remote-session.test.ts",
+      "bytes": 18844,
+      "mtime_ns": 1790996435347046190,
+      "sha256": "1f8ec02025c71e1a0154e846d6bc9a800e1a6f3e73a701d466fd350d5610d04e"
+    },
+    {
+      "path": "packages/desktop/src/remote.ts",
+      "bytes": 4218,
+      "mtime_ns": 1790994307589815090,
+      "sha256": "9d08fb8acabc6dd2384acabee49d969c707258e676065b2639fb0b492ad34a51"
+    },
+    {
+      "path": "packages/desktop/package.json",
+      "bytes": 395,
+      "mtime_ns": 1790994307589815090,
+      "sha256": "fa2b264a111f044452efad55f269069829beedf583f55c73e5bd6083ec4c6c03"
+    },
+    {
+      "path": "packages/app/src/screens/system/account.tsx",
+      "bytes": 34516,
+      "mtime_ns": 1790996361535310947,
+      "sha256": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "bytes": 24327,
+      "mtime_ns": 1790996361535310947,
+      "sha256": "38384373b1c7a722bb4bdaed7de9396e6d83b6bdd1bfee85e5628c4bad1e4dac"
+    },
+    {
+      "path": "tests/e2e/remote-auth.spec.ts",
+      "bytes": 29330,
+      "mtime_ns": 1790996739450089253,
+      "sha256": "3ee2c7d40f1e9002d0c0669d121810e849b6838fd3f6fc40ab1309de19986250"
+    },
+    {
+      "path": "tests/e2e/fixtures.ts",
+      "bytes": 1413,
+      "mtime_ns": 1790973630407443464,
+      "sha256": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03"
+    },
+    {
+      "path": "tests/e2e/screens.spec.ts",
+      "bytes": 2636,
+      "mtime_ns": 1790948028917371020,
+      "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 598,
+      "mtime_ns": 1790974217518653670,
+      "sha256": "71d48d4d40ea1950d9f95d1e3fef79704984d3faf21592793d0860b26b71d707"
+    },
+    {
+      "path": "packages/app/src/preview.tsx",
+      "bytes": 4457,
+      "mtime_ns": 1790997722383933607,
+      "sha256": "5734b59643af8811a75159c651ee23bf3c766b5abe5d428cbef34b8f70873629"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "bytes": 37536,
+      "mtime_ns": 1790997918757898978,
+      "sha256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8"
+    },
+    {
+      "path": "bun.lock",
+      "bytes": 143415,
+      "mtime_ns": 1790994313359870531,
+      "sha256": "8f5b7dcfbf8e7d3a82f8dfc2b9b8327498fd474836cd34c13bc629b456791d8b"
+    },
+    {
+      "path": "vendor/cortex-sdk-0.3.1.tgz",
+      "bytes": 162182,
+      "mtime_ns": 1790994261929074293,
+      "sha256": "d47fb53878385849d74822b22526838aa3f99a3cbccb96ec95324a419838d12e"
+    },
+    {
+      "path": "vendor/cortex-api-types-0.2.0.tgz",
+      "bytes": 70243,
+      "mtime_ns": 1790994261929582959,
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877"
+    },
+    {
+      "path": "packages/i18n/locales/de/system.json",
+      "bytes": 39247,
+      "mtime_ns": 1790996357661272357,
+      "sha256": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74"
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "bytes": 35302,
+      "mtime_ns": 1790996357660272347,
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a"
+    },
+    {
+      "path": "packages/i18n/locales/es/system.json",
+      "bytes": 38944,
+      "mtime_ns": 1790996357661272357,
+      "sha256": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b"
+    },
+    {
+      "path": "packages/i18n/locales/fr/system.json",
+      "bytes": 38926,
+      "mtime_ns": 1790996357660272347,
+      "sha256": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc"
+    },
+    {
+      "path": "packages/i18n/locales/ja/system.json",
+      "bytes": 44072,
+      "mtime_ns": 1790996357661272357,
+      "sha256": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7"
+    },
+    {
+      "path": "packages/i18n/locales/ko/system.json",
+      "bytes": 40510,
+      "mtime_ns": 1790996357662272367,
+      "sha256": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/system.json",
+      "bytes": 38656,
+      "mtime_ns": 1790996357662272367,
+      "sha256": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/system.json",
+      "bytes": 36626,
+      "mtime_ns": 1790996357662272367,
+      "sha256": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043"
+    }
+  ],
+  "missing_source_paths": [
+    "packages/app/src/screens/code/code.css"
+  ],
+  "binding_limit": "Current dist bytes observed before coordinator rebuild. Working-tree source hashes are concurrent observations, not proof all sources produced this dist. Base revision plus auth hashes awaits coordinator commit reconciliation."
+}

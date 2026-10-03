@@ -1,0 +1,33 @@
+{
+  "scoped-lint": {
+    "exitCode": 0,
+    "command": [
+      "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "node_modules/eslint/bin/eslint.js",
+      "tests/e2e/terminal-copy.spec.ts"
+    ],
+    "log": "/tmp/opencode/terminal-viewport/scoped-lint.log"
+  },
+  "scoped-diff-check": {
+    "exitCode": 0,
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "packages/app/src/kit/styles.css",
+      "tests/e2e/terminal-copy.spec.ts"
+    ],
+    "log": "/tmp/opencode/terminal-viewport/scoped-diff-check.log"
+  },
+  "design-detector": {
+    "exitCode": 2,
+    "command": [
+      "/root/.claude/skills/impeccable/scripts/impeccable",
+      "detect",
+      "--json",
+      "packages/app/src/kit/styles.css"
+    ],
+    "log": "/tmp/opencode/terminal-viewport/design-detector.log"
+  }
+}

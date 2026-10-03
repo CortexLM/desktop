@@ -146,6 +146,8 @@ export function createServer(core: Core): Hono {
     "connection.get": () => core.connection.get(),
     "connection.set": ({ body }) => core.connection.set(body),
     "connection.probe": () => core.connection.probe(),
+    "connection.auth.get": () => core.connection.auth(),
+    "connection.auth.submit": ({ body }) => core.connection.authenticate(body),
   }
   return createApi(h)
 }

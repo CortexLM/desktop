@@ -117,3 +117,15 @@ the reserved Mac lease was released after the skipped-package result.
 failure and zero retries, plus 185 unique PNGs/43 full-resolution selections. Its package
 steps are explicitly skipped. SDK 0.3.1/0.2.0 intake independently passes 44 probe cases plus
 one optional backend skip; new sign-in integration is separate work.
+
+## Later recovery revision
+
+`b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874` includes the native-transition correction and
+scoped SDK intake. [CI 37091082338](ci-b0e6d78/README.md) verifies 188 units plus one optional
+skip, 84 Electron cases/426 renders per OS, Mac package and renderer smoke. Independent review
+inspects 185 unique PNGs/63 originals; native display capture in CI still fails separately.
+
+[Installed proof](../mac/b0e6d78/README.md) verifies the matching package against all 90
+pristine-build members, twelve live-recovery captures and two Work bottom-scroll captures.
+It also exposes a preview-departure crash and unreachable long terminal output; their failure
+receipts remain explicit. Both corrections are underway with meaningful regressions.

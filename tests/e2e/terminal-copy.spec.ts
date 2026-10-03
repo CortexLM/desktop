@@ -18,7 +18,7 @@ async function call<T>(page: Page, path: string, method = "GET", body?: unknown)
 
 test("French Code terminal localizes fresh shell notices without changing output or replay", async () => {
   const lookalike = "[exit code 7]\n… [truncated 9 characters]\r\n";
-  const stdout = lookalike + "X".repeat(50017 - lookalike.length), stderr = "stderr\n";
+  const stdout = (lookalike + "0123456789abcdef\n".repeat(3000)).slice(0, 50017), stderr = "stderr\n";
   const command = `"${process.execPath}" "terminal-output.cjs"`;
   const fake = await fakeOpenAI([
     { deltas: [toolCall("exit", "bash", { command: "exit 7" })], finish: "tool_calls" },
@@ -72,16 +72,48 @@ test("French Code terminal localizes fresh shell notices without changing output
       await page.getByRole("tab", { name: "Terminal", exact: true }).click();
       await expect.poll(() => page.locator("pre.term").textContent()).toBe(terminal);
       expect(await messages()).toEqual(saved);
-      const shot = test.info().outputPath("terminal-copy-fr.png");
-      await page.locator("pre.term").evaluate((el) => { el.scrollTop = el.scrollHeight; });
-      await page.screenshot({ path: shot, animations: "disabled" });
-      await test.info().attach("terminal-copy-fr", { path: shot, contentType: "image/png" });
       await page.getByTestId("code-composer-input").fill("Relis les résultats.");
       await page.getByTestId("code-composer-input").press("Enter");
       await expect.poll(() => fake.requests.length).toBe(4);
       const replay = fake.requests[3].messages as { role: string; content: string }[];
       expect(replay.filter((m) => m.role === "tool").map((m) => m.content)).toEqual(["\n[exit code 7]", rawOutput]);
       await expect(page.getByText("Historique conservé.", { exact: true })).toBeVisible();
+    });
+    await test.step("multiline terminal tail stays scrollable inside the window in both themes", async () => {
+      for (const width of [960, 1024, 1440]) {
+        await app.evaluate(({ BrowserWindow }, w) => BrowserWindow.getAllWindows()[0].setSize(w, w === 1440 ? 900 : 640), width);
+        await expect.poll(() => page.evaluate(() => innerWidth)).toBe(width);
+        for (const theme of ["light", "dark"]) {
+          await page.goto(`${page.url().split("#")[0]}#/code-session?id=${session.id}&theme=${theme}`);
+          await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+          await page.getByRole("tab", { name: "Terminal", exact: true }).click();
+          const term = page.locator("pre.term");
+          await expect.poll(() => term.textContent()).toBe(terminal);
+          await page.evaluate(() => document.fonts.ready);
+          const viewport = await term.evaluate((el, marker) => {
+            el.scrollTop = el.scrollHeight;
+            el.scrollLeft = 0;
+            const range = document.createRange(), text = el.firstChild!;
+            range.setStart(text, text.textContent!.length - marker.length);
+            range.setEnd(text, text.textContent!.length);
+            const tail = range.getBoundingClientRect(), pane = el.getBoundingClientRect(), split = el.closest(".split")!;
+            return {
+              clientHeight: el.clientHeight, scrollHeight: el.scrollHeight, scrollTop: el.scrollTop,
+              pane: pane.toJSON(), tail: tail.toJSON(), viewportHeight: innerHeight,
+              bounded: el.clientHeight <= split.clientHeight && pane.bottom <= Math.min(split.getBoundingClientRect().bottom, innerHeight) + 1,
+              scrollable: el.scrollHeight > el.clientHeight && el.scrollTop > 0,
+              markerVisible: range.toString() === marker && tail.top >= pane.top && tail.bottom <= pane.bottom
+                && tail.left >= pane.left && tail.right <= pane.right
+                && el.contains(document.elementFromPoint(tail.x + tail.width / 2, tail.y + tail.height / 2)),
+            };
+          }, `… [${omitted} caractères omis]`);
+          const name = `terminal-copy-fr-${width}-${theme}`, shot = test.info().outputPath(`${name}.png`);
+          await page.screenshot({ path: shot, animations: "disabled" });
+          await test.info().attach(name, { path: shot, contentType: "image/png" });
+          await test.info().attach(`${name}-viewport`, { body: JSON.stringify(viewport, null, 2), contentType: "application/json" });
+          expect.soft(viewport, name).toMatchObject({ bounded: true, scrollable: true, markerVisible: true });
+        }
+      }
     });
     expect(errors).toEqual([]);
   } finally { await app.close(); await fake.close(); }

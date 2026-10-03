@@ -1,0 +1,6 @@
+﻿2026-10-03T02:50:21.4023565Z ##[group]Run bun run audit:i18n
+2026-10-03T02:50:21.4023898Z bun run audit:i18n
+2026-10-03T02:50:21.4085252Z shell: /usr/bin/bash -e {0}
+2026-10-03T02:50:21.4085521Z ##[endgroup]
+2026-10-03T02:50:21.4186579Z $ node scripts/audit-i18n.mjs
+2026-10-03T02:50:23.0320705Z i18n audit: 63 files, 2269 keys used, 3398 keys in en, 0 problem(s)

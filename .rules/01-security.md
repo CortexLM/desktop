@@ -26,8 +26,10 @@ write-only route and stored by main.
 return { providerID: id, enabled: c.enabled, hasKey: !!key, keyHint: key ? c.keyHint : undefined, baseURL: c.baseURL }
 ```
 
-Cortex Cloud session material follows the same rule: `packages/desktop/src/remote.ts`
-runs in main and nothing it holds crosses to the renderer.
+Cortex Cloud session material follows the same rule: `packages/desktop/src/remote-session.ts`
+runs in main; only status, active `signedIn` and validated email cross to the renderer.
+Its cookies/tokens/continuation secrets are process-local, never persisted. Origin/account
+changes invalidate old clients and pending authentication; remote redirects are refused.
 MCP connection material is also write-only: command, arguments, environment, URL and headers
 are stored in main's separate `mcp-credentials.json`. Public `McpServer` exposes only name,
 transport type, enabled/status, tool metadata and neutral errors. Do not spread `McpConfig`

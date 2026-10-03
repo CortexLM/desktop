@@ -105,15 +105,26 @@ function Account() {
   const toast = useToast();
   const fx = useFx();
   const conn = useQuery(() => api.connection.get(), []);
+  const pending = React.useRef(false);
+  const [busy, setBusy] = React.useState(false);
+  const signOut = async () => {
+    if (pending.current) return;
+    pending.current = true; setBusy(true);
+    try { await api.connection.auth.submit({ action: "logout" }); }
+    catch { toast.add({ title: t("system.providers.saveFailed"), data: { icon: "alert-triangle" } }); }
+    finally { conn.reload(); pending.current = false; setBusy(false); }
+  };
   if (!isPreview()) {
     const signedIn = conn.state === "ready" && conn.data.signedIn;
     return (<>
       <div className="list">
-        <div className="li"><span className="avatar-dot pg-av"><Icon name="user" size={14} /></span><span className="grow"><div className="ttl">{signedIn ? t("system.settings.signedIn") : t("system.settings.noAccount")}</div><div className="sub">{signedIn ? t("system.settings.signedInDesc") : t("system.settings.noAccountDesc")}</div></span>
-          {!signedIn && <button className="btn secondary" onClick={() => go("login")}>{t("system.login.title")}</button>}</div>
+        <div className="li"><span className="avatar-dot pg-av"><Icon name="user" size={14} /></span><span className="grow"><div className="ttl">{signedIn ? t("system.auth.signedIn") : t("system.settings.noAccount")}</div><div className="sub">{signedIn ? t("system.auth.sessionOnly") : t("system.settings.noAccountDesc")}</div></span>
+          {!signedIn && <button className="btn secondary" disabled={conn.state !== "ready"} onClick={() => go("login")}>{t("system.login.title")}</button>}</div>
       </div>
       <h3 className="h3">{t("system.settings.session")}</h3>
       <div className="list">
+        {signedIn && <div className="li"><span className="grow"><div className="ttl">{t("system.settings.signOut")}</div><div className="sub">{t("system.settings.signOutDesc")}</div></span><button className="btn secondary pg-danger" disabled={busy} onClick={() => void signOut()}>{t("system.settings.signOut")}</button></div>}
+        {conn.state === "error" && <div className="li"><span className="grow" role="alert">{t("system.auth.failed")}</span><button className="btn secondary" onClick={conn.reload}>{t("common.retry")}</button></div>}
         <div className="li"><span className="grow"><div className="ttl">{t("system.settings.export")}</div><div className="sub">{t("system.settings.exportLocal")}</div></span>
           <button className="btn secondary" onClick={() => go("memory")}>{t("system.settings.exportBtn")}</button></div>
       </div>
@@ -239,45 +250,68 @@ type Check = "idle" | "checking" | "invalid" | ConnectionProbe["status"];
 
 function Connection() {
   const t = useT();
+  const toast = useToast();
   const { go } = useNav();
   const preview = isPreview();
   const conn = useQuery(() => (preview ? Promise.resolve({ mode: "local" as Mode, signedIn: false, url: undefined }) : api.connection.get()), []);
   const [mode, setMode] = React.useState<Mode>("local");
   const [url, setUrl] = React.useState("");
   const [check, setCheck] = React.useState<Check>("idle");
+  const pending = React.useRef(false);
+  const [busy, setBusy] = React.useState(false);
+  const [saveError, setSaveError] = React.useState(false);
+  const locked = busy || (!preview && conn.state !== "ready");
   React.useEffect(() => { if (conn.state === "ready") { setMode(conn.data.mode); setUrl(conn.data.url ?? ""); } }, [conn.state]); // eslint-disable-line react-hooks/exhaustive-deps
-  const choose = (m: Mode) => {
-    setMode(m); setCheck("idle");
-    if (!preview && m !== "selfhost") api.connection.set({ mode: m, signedIn: conn.state === "ready" && conn.data.signedIn }).catch(() => {});
+  const choose = async (m: Mode) => {
+    if (pending.current || (!preview && conn.state !== "ready")) return;
+    setCheck("idle"); setSaveError(false);
+    if (preview || m === "selfhost") { setMode(m); return; }
+    pending.current = true; setBusy(true);
+    try { const saved = await api.connection.set({ mode: m, signedIn: false }); setMode(saved.mode); conn.reload(); }
+    catch { setSaveError(true); }
+    finally { pending.current = false; setBusy(false); }
   };
   const probe = async () => {
     if (!ConnectionUrl.safeParse(url.trim()).success) { setCheck("invalid"); return; }
-    if (preview) return;
+    if (preview || pending.current || conn.state !== "ready") return;
+    pending.current = true; setBusy(true); setSaveError(false);
     setCheck("checking");
-    try { await api.connection.set({ mode: "selfhost", url: url.trim(), signedIn: false }); setCheck((await api.connection.probe()).status); }
+    try { await api.connection.set({ mode: "selfhost", url: url.trim(), signedIn: false }); conn.reload(); setCheck((await api.connection.probe()).status); }
     catch { setCheck("unreachable"); }
+    finally { pending.current = false; setBusy(false); }
+  };
+  const signOut = async () => {
+    if (pending.current) return;
+    pending.current = true; setBusy(true);
+    try { await api.connection.auth.submit({ action: "logout" }); }
+    catch { toast.add({ title: t("system.providers.saveFailed"), data: { icon: "alert-triangle" } }); }
+    finally { conn.reload(); pending.current = false; setBusy(false); }
   };
   const BADGE: Record<Exclude<Check, "idle">, string> = { checking: "run", reachable: "ok", unreachable: "err", incompatible: "wait", invalid: "err", not_applicable: "wait" };
   const row = (m: Mode, extra?: React.ReactNode) => (
-    <div className="li systeme-radio-row" role="radio" tabIndex={0} aria-checked={mode === m} data-testid={`connection-mode-${m}`} onClick={() => choose(m)} onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); choose(m); } }}>
+    <div className="li systeme-radio-row" role="radio" tabIndex={0} aria-checked={mode === m} aria-disabled={locked || undefined} data-testid={`connection-mode-${m}`} onClick={() => void choose(m)} onKeyDown={(e) => { if (e.target === e.currentTarget && (e.key === " " || e.key === "Enter")) { e.preventDefault(); void choose(m); } }}>
       <span className="radio" /><span className="grow"><div className="ttl">{t(`system.conn.${m}`)}</div><div className="sub">{t(`system.conn.${m}Desc`)}</div></span>{extra}
     </div>
   );
   return (<>
     <div className="list" role="radiogroup" aria-label={t("system.settings.sec.connection")}>
       {row("local")}
-      {row("cloud", mode === "cloud" && !(conn.state === "ready" && conn.data.signedIn) ? <button className="btn secondary" onClick={(e) => { e.stopPropagation(); go("login"); }}>{t("system.login.title")}</button> : undefined)}
+      {row("cloud", mode === "cloud" && !(conn.state === "ready" && conn.data.signedIn) ? <button className="btn secondary" disabled={busy || conn.state !== "ready" || conn.data.mode !== "cloud"} onClick={(e) => { e.stopPropagation(); go("login"); }}>{t("system.login.title")}</button> : undefined)}
       {row("selfhost")}
     </div>
+    {saveError && <p className="systeme-err" role="alert">{t("system.providers.saveFailed")}</p>}
+    {conn.state === "error" && <p className="systeme-err" role="alert">{t("system.auth.failed")} <button className="btn secondary" onClick={conn.reload}>{t("common.retry")}</button></p>}
+    {!preview && conn.state === "ready" && conn.data.mode === mode && conn.data.signedIn && <div className="list" style={{ marginTop: 16 }}><div className="li"><span className="grow"><div className="ttl">{t("system.auth.signedIn")}</div><div className="sub">{t("system.auth.sessionOnly")}</div></span><button className="btn secondary" disabled={busy} onClick={() => void signOut()}>{t("system.settings.signOut")}</button></div></div>}
     {mode === "selfhost" && <>
       <h3 className="h3" style={{ marginTop: 24 }}>{t("system.conn.server")}</h3>
       <form className="list" noValidate onSubmit={(e) => { e.preventDefault(); void probe(); }}>
         <div className="li">
-          <input data-testid="selfhost-url" className="input" type="url" inputMode="url" spellCheck={false} value={url} onChange={(e) => { setUrl(e.target.value); setCheck("idle"); }} placeholder={t("system.conn.urlPh")} aria-label={t("system.conn.url")} aria-invalid={check === "invalid" || undefined} style={{ flex: 1, minWidth: 0 }} />
+          <input data-testid="selfhost-url" className="input" type="url" inputMode="url" spellCheck={false} value={url} disabled={locked} onChange={(e) => { setUrl(e.target.value); setCheck("idle"); }} placeholder={t("system.conn.urlPh")} aria-label={t("system.conn.url")} aria-invalid={check === "invalid" || undefined} style={{ flex: 1, minWidth: 0 }} />
           {check !== "idle" && <span className={"badge " + BADGE[check]} role="status">{check === "checking" && <span className="spin" />}{t(`system.conn.status.${check}`)}</span>}
-          <button data-testid="selfhost-check" className="btn secondary" disabled={!url.trim() || check === "checking"}>{t("system.conn.check")}</button>
+          <button data-testid="selfhost-check" className="btn secondary" disabled={!url.trim() || locked}>{t("system.conn.check")}</button>
         </div>
       </form>
+      {!preview && conn.state === "ready" && conn.data.mode === "selfhost" && !conn.data.signedIn && <button className="btn secondary" style={{ marginTop: 16 }} disabled={locked || !ConnectionUrl.safeParse(url.trim()).success || conn.data.url !== new URL(url.trim()).origin} onClick={() => go("login")}>{t("system.login.title")}</button>}
     </>}
   </>);
 }

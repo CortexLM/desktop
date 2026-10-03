@@ -23,8 +23,9 @@ Only Electron main imports the SDK. `probeRemote` in `packages/desktop/src/remot
 checks readiness/instance metadata, then calls `client.models.list()` for Cloud or
 `client.registry.models.list()` with configured-only pagination for self-host. The transport
 pins the origin, refuses redirects and cookie storage, and bounds the whole probe to five
-seconds. Main supplies no auth token. The SDK does not route desktop prompts
-or authenticate users; see [connection-modes.md](../docs/connection-modes.md).
+seconds. The probe supplies no auth token. Separate `RemoteSession` uses the SDK's typed
+email-code/local-login/continuation operations in main; session material lasts until process
+exit. The SDK does not yet route desktop prompts; see [connection-modes.md](../docs/connection-modes.md).
 
 `packages/desktop/test/remote.test.ts` exercises the SDK against a local stub. Its optional
 real-backend case (`CORTEX_TEST_BACKEND_URL`) asserts reachability; the recorded

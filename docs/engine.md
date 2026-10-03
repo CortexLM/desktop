@@ -3,7 +3,9 @@
 `@cortex/core`, created with `createCore(opts)` (`packages/core/src/index.ts`). Nothing
 touches the network or starts timers until `start()`, which registers the computer-use
 preset (when a driver was found), scans plugins, connects enabled MCP servers and starts
-the scheduler tick. `close()` stops the scheduler, aborts sessions, closes MCP and storage.
+the scheduler tick. `close()` clears host authentication, stops the scheduler, aborts sessions,
+closes MCP and storage. The optional `remoteAuth` host owns process-local credentials;
+`ConnectionService` persists only mode/origin, deriving `signedIn` from sanitized host state.
 
 Service table and file map: [`packages/core/README.md`](../packages/core/README.md).
 
@@ -113,8 +115,9 @@ asks even when no explicit permission reply was sent.
   Create stays disabled until the selected Bot is available; a failed Bot list offers Retry while
   retaining the editable draft.
 - Space (`space.ts`): pages, sites, images and recents. No screen yet.
-- Connection (`connection.ts`): saved mode and remote probes only. Sessions still use local
-  provider settings in every mode; remote auth/inference is not wired
+- Connection (`connection.ts`): saved mode, remote probes and an optional main-only auth host.
+  Email-code sign-in is process-local; chat sessions still use local provider settings in every
+  mode. Remote inference is not wired
   ([connection-modes.md](./connection-modes.md)).
 
 ## Skills, plugins, MCP

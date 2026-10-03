@@ -312,3 +312,68 @@ test("anchors, native menus and history preserve routes, variants and chat ident
     await app.close();
   }
 });
+
+test("Work preview departure keeps its context until native live-Code navigation commits", async () => {
+  const { app, page } = await launch({ hash: "#/work-task?shot&theme=light&v=done", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  try {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(page.locator(".travail-recap")).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const draft = page.getByTestId("composer-input");
+    await draft.fill("Preserve the departing Work draft");
+    const outgoing = await page.locator("main.content").elementHandle();
+    const transition = await page.evaluateHandle(() => {
+      const start = document.startViewTransition.bind(document);
+      let release!: () => void;
+      const held = new Promise<void>((resolve) => { release = resolve; });
+      let native: ViewTransition | undefined, entered = false;
+      document.startViewTransition = (update) => {
+        document.startViewTransition = start;
+        // Hold the real native update callback; promises and rendering stay browser-owned.
+        native = start(async () => {
+          entered = true;
+          await held;
+          await (typeof update === "function" ? update() : update?.update?.());
+        });
+        return native;
+      };
+      return { release, read: () => ({ entered, native: native instanceof ViewTransition }), finish: () => native!.finished };
+    });
+    // Same-document preview-to-live departure, matching the installed-app failure.
+    await page.evaluate(() => { location.hash = "#/code"; });
+    await expect.poll(() => transition.evaluate((probe) => probe.read())).toEqual({ entered: true, native: true });
+    await expect(page).toHaveURL(/#\/code$/);
+    expect(errors).toEqual([]);
+    // Force the still-mounted preview to render while URL and committed screen differ.
+    // Native transitions suspend paint while the callback is held; dispatch to the real control.
+    await page.getByRole("button", { name: "Hide sidebar", exact: true }).evaluate((button: HTMLButtonElement) => button.click());
+    expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(true);
+    expect(await page.locator(".travail-recap").count()).toBe(1);
+    await expect(draft).toHaveValue("Preserve the departing Work draft");
+    expect(errors).toEqual([]);
+    await transition.evaluate((probe) => probe.release());
+    await transition.evaluate((probe) => probe.finish());
+    await expect(page.getByTestId("code-composer-input")).toBeVisible();
+    expect(await outgoing!.evaluate((el) => el.isConnected)).toBe(false);
+    await expect(page.locator(".travail-recap")).toHaveCount(0);
+    await expect(page.locator(".variant-pick")).toHaveCount(0);
+    await page.getByRole("button", { name: "Show sidebar", exact: true }).click();
+    await expect(page.locator(".sidebar").getByText("Nova", { exact: true })).toHaveCount(0);
+    await expect(page.locator(".sidebar").getByText("cortex-web", { exact: true })).toHaveCount(0);
+    expect(await page.evaluate(async () => {
+      const fetch = (window as unknown as { __bridgeFetch: typeof globalThis.fetch }).__bridgeFetch;
+      return Promise.all(["/api/bots", "/api/sessions"].map(async (path) => (await fetch(`cortex://local${path}`)).json()));
+    })).toEqual([[], []]);
+    expect(errors).toEqual([]);
+    await outgoing!.dispose();
+    await transition.dispose();
+  } catch (error) {
+    await test.info().attach("preview-departure-failure", { body: await page.screenshot(), contentType: "image/png" });
+    throw error;
+  } finally {
+    await test.info().attach("preview-departure-errors", { body: JSON.stringify({ errors, url: page.url() }, null, 2), contentType: "application/json" });
+    await app.close();
+  }
+});

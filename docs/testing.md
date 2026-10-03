@@ -94,6 +94,9 @@ Cancellation checks inspect the durable event journal as well as the current mes
   and require the exit link to respond within five seconds.
   A held view-transition callback proves unrelated shell updates preserve the outgoing Work
   tree/draft, then restore the prior sidebar Bot activity when navigation commits.
+  A real native held callback also covers Work preview departure into live Code: the mounted
+  preview keeps its context and variant until commit; afterward neither preview sidebar
+  content nor seeded engine Bots/sessions are present.
   A second held callback proves a newer keyboard tab choice survives an older route commit;
   Back to another entry with the same tab label cancels that pending choice. These three
   regressions fail on their respective pre-fix builds.
@@ -169,7 +172,11 @@ Cancellation checks inspect the durable event journal as well as the current mes
   after accepted deletion and load-refusal recovery without duplicate writes.
 - `tests/e2e/terminal-copy.spec.ts` — French live Code, real approved shell commands through a
   controlled provider: localized exit/truncation annotations, preserved stdout lookalikes,
-  unchanged model replay and identical persisted messages after reload.
+  unchanged model replay and identical persisted messages after reload. Multiline tail visibility
+  and scroll range are checked at 960/1024/1440 in both themes.
+- `tests/e2e/code-diff-scroll.spec.ts` — three real approved writes produce one short and two
+  long diff panes. Headers and short-card content stay visible; real wheel input reaches each
+  long final line at 960/1440 in both themes.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.
@@ -290,8 +297,10 @@ uploaded artifacts for revision-specific evidence; there is no Windows CI job.
 - **Missing product surfaces:** Space, standalone Scheduled and Plugins & skills still
   await designs in `/root/cortex-ui/DESIGN-REQUESTS.md`. Their absence from the registry
   means a complete registered-screen sweep cannot establish their acceptance.
-- **Connection/auth:** mode selection and probes work at the code-path level; sessions
-  still run locally. Remote auth and remote inference remain unimplemented
-  ([connection-modes.md](./connection-modes.md)).
+- **Connection/auth:** email-code auth now has a main-only process-lifetime implementation;
+  `remote-session.test.ts` exercises real SDK/native HTTP, `connection.test.ts` checks the
+  sanitized IPC host contract, `remote-auth.spec.ts` drives the UI against a controlled HTTP
+  fixture. These are not real Cloud account evidence. Chat sessions still run locally;
+  remote inference, refresh and full continuation UI remain pending ([connection-modes.md](./connection-modes.md)).
 - **Locales:** all eight catalog/fixture sets exist. Key/placeholder parity does not prove
   translation quality or complete localized layout coverage ([i18n.md](./i18n.md)).

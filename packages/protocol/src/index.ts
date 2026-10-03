@@ -12,6 +12,7 @@ import {
   PermissionRule,
   PromptInput,
   ProviderUpdateInput,
+  RemoteAuthInput,
   SessionCreateInput,
   SessionKind,
   SessionUpdateInput,
@@ -114,6 +115,8 @@ export const routes = {
   "connection.get": r("get", "/api/connection"),
   "connection.set": r("put", "/api/connection", { body: ConnectionMode }),
   "connection.probe": r("get", "/api/connection/probe"),
+  "connection.auth.get": r("get", "/api/connection/auth"),
+  "connection.auth.submit": r("post", "/api/connection/auth", { body: RemoteAuthInput }),
 } as const
 
 export type Routes = typeof routes

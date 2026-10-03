@@ -1,6 +1,7 @@
 // First launch, sign-in, pricing and profile.
 import * as React from "react";
 import { Dialog } from "@base-ui/react/dialog";
+import type { RemoteAuthInput, RemoteAuthState } from "@cortex/schema";
 import { Icon, Switch, Segmented, Tip, useToast } from "../../kit/ui";
 import { Mascot } from "../../mascot/Mascot";
 import { useNav } from "../../shell/nav";
@@ -108,14 +109,53 @@ export function LoginScreen() {
   const fx = useFx();
   const bot = useBotCfg();
   const preview = isPreview();
-  const [v, setV] = useVariant("email");
+  const [variant, setV] = useVariant("email");
+  const [auth, setAuth] = React.useState<RemoteAuthState | null>(null);
+  const [authError, setAuthError] = React.useState("");
+  const request = React.useRef<symbol | null>(null);
+  const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "code_sent" ? "code" : auth && auth.status !== "signed_out" ? "unavailable" : "email";
   const seed = (x: string) => (preview ? (x === "error" ? fx.login.bad : x === "loading" ? fx.login.good : "") : "");
   const [email, setEmail] = React.useState(preview ? fx.login.email : "");
   const [code, setCode] = React.useState(seed(v));
   const [busy, setBusy] = React.useState(v === "loading");
-  React.useEffect(() => { setCode(seed(v)); setBusy(v === "loading"); }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
-  // ponytail: Cortex Cloud sign-in has no engine route yet; live submit says so instead of pretending.
-  const unavailable = () => toast.add({ title: t("system.unavailable"), description: t("system.login.unavailable"), data: { icon: "alert-triangle" } });
+  React.useEffect(() => { if (preview) { setCode(seed(v)); setBusy(v === "loading"); } }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
+  const loadAuth = React.useCallback(() => {
+    const owner = Symbol(); request.current = owner; setBusy(true); setAuthError("");
+    api.connection.auth.get().then((state) => {
+      if (request.current !== owner) return;
+      setAuth(state); setEmail(state.email ?? "");
+    }, () => { if (request.current === owner) setAuthError("system.auth.failed"); }).finally(() => {
+      if (request.current === owner) { request.current = null; setBusy(false); }
+    });
+  }, []);
+  React.useEffect(() => {
+    if (!preview) loadAuth();
+    return () => { request.current = null; };
+  }, [preview, loadAuth]);
+  const submit = async (input: RemoteAuthInput, leave = false) => {
+    if (input.action !== "cancel" && (request.current || !auth)) return;
+    const owner = Symbol(); request.current = owner; setBusy(true); setAuthError("");
+    try {
+      if (input.action === "email") {
+        const connection = await api.connection.get();
+        if (request.current !== owner) return;
+        if (connection.mode === "local") await api.connection.set({ mode: "cloud", signedIn: false });
+        if (request.current !== owner) return;
+      }
+      const localCancel = input.action === "cancel" && (await api.connection.get()).mode === "local";
+      if (request.current !== owner) return;
+      const state = localCancel ? { status: "signed_out" as const, signedIn: false } : await api.connection.auth.submit(input);
+      if (request.current !== owner) return;
+      setAuth(state); setCode("");
+      if (state.email) setEmail(state.email);
+      if (leave) go("home");
+    } catch {
+      if (request.current === owner) setAuthError(input.action === "email" ? "system.auth.sendFailed" : "system.auth.failed");
+    } finally {
+      if (request.current === owner) { request.current = null; setBusy(false); }
+    }
+  };
+  const unavailable = () => toast.add({ title: t("system.unavailable"), description: t("system.auth.optionUnavailable"), data: { icon: "alert-triangle" } });
   React.useEffect(() => {
     if (!preview || v !== "code" || code.length < 6) return;
     setBusy(true);
@@ -135,9 +175,9 @@ export function LoginScreen() {
           <span className="systeme-logo" aria-hidden />
           <h1>{t("system.login.title")}</h1>
           <p className="systeme-lead">{t("system.login.lead")}</p>
-          <form onSubmit={(e) => { e.preventDefault(); if (preview) setV("code"); else unavailable(); }}>
-            <div className="field"><label htmlFor="systeme-em">{t("system.login.email")}</label><input id="systeme-em" className="input" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></div>
-            <button className="btn primary big" disabled={!email.includes("@")}>{t("system.login.getCode")}</button>
+          <form onSubmit={(e) => { e.preventDefault(); if (preview) setV("code"); else void submit({ action: "email", email: email.trim() }); }}>
+            <div className="field"><label htmlFor="systeme-em">{t("system.login.email")}</label><input id="systeme-em" className="input" type="email" autoComplete="email" required maxLength={254} value={email} disabled={busy || (!preview && !auth)} onChange={(e) => setEmail(e.target.value)} /></div>
+            <button className="btn primary big" disabled={!email.includes("@") || busy || (!preview && !auth)}>{busy && <span className="spin" />}{t("system.login.getCode")}</button>
           </form>
           <div className="systeme-or">{t("system.login.or")}</div>
           {providers}
@@ -147,15 +187,29 @@ export function LoginScreen() {
         {(v === "code" || v === "error" || v === "loading") && <>
           <span className="li-ic" style={{ margin: "0 auto", width: 44, height: 44, borderRadius: 14 }}><Icon name="mail" size={20} /></span>
           <h1>{t("system.login.checkTitle")}</h1>
-          <p className="systeme-lead">{t("system.login.checkLead")} <b style={{ fontWeight: 500, color: "var(--t1)" }}>{email}</b>.</p>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <Otp value={code} onChange={(x) => { setCode(x); if (v === "error") setV("code"); }} err={v === "error"} disabled={busy} />
+          <p className="systeme-lead">{t("system.login.checkLead")} <b style={{ fontWeight: 500, color: "var(--t1)", overflowWrap: "anywhere" }}>{email}</b>.</p>
+          <form onSubmit={(e) => { e.preventDefault(); if (!preview && code.length === 6) void submit({ action: "code", code }); }}>
+            <Otp value={code} onChange={(x) => { setCode(x); setAuthError(""); if (v === "error") setV("code"); }} err={v === "error" || !!authError} disabled={busy} />
             {v === "error" && <p className="systeme-err" role="alert"><Icon name="alert-triangle" size={16} />{t("system.login.wrong", { count: 2 })}</p>}
-            <div className="systeme-otp-meta" aria-live="polite">{busy ? <span className="thinking">{t("system.login.verifying")}</span> : <>{t("system.login.notReceived", { nb: NB })} <button type="button" className="systeme-textbtn">{t("system.login.resend")}</button> · {t("system.login.resendIn", { time: "0:42" })}</>}</div>
-            <button className="btn primary big" disabled={code.length < 6 || busy} onClick={() => setV(code === fx.login?.good ? "loading" : "error")}>{busy ? <><span className="spin" />{t("system.login.signingIn")}</> : t("system.onb.continue")}</button>
+            <div className="systeme-otp-meta" aria-live="polite">{busy ? <span className="thinking">{t("system.login.verifying")}</span> : <>{t("system.login.notReceived", { nb: NB })} <button type="button" className="systeme-textbtn" onClick={preview ? undefined : () => void submit({ action: "email", email })}>{t("system.login.resend")}</button>{preview && <> · {t("system.login.resendIn", { time: "0:42" })}</>}</>}</div>
+            <button className="btn primary big" disabled={code.length < 6 || busy} onClick={preview ? () => setV(code === fx.login?.good ? "loading" : "error") : undefined}>{busy ? <><span className="spin" />{t("system.login.signingIn")}</> : t("system.onb.continue")}</button>
           </form>
-          <button className="systeme-textbtn" style={{ marginTop: 16, alignSelf: "center" }} onClick={() => setV("email")}>{t("system.login.otherEmail")}</button>
+          <button className="systeme-textbtn" style={{ marginTop: 16, alignSelf: "center" }} onClick={() => { if (preview) setV("email"); else void submit({ action: "cancel" }); }}>{t("system.login.otherEmail")}</button>
         </>}
+        {v === "signed-in" && <>
+          <span className="systeme-logo" aria-hidden /><h1>{t("system.auth.signedIn")}</h1>
+          <p className="systeme-lead">{t("system.auth.sessionOnly")}</p>
+          <button className="btn primary big" onClick={() => go("home")}>{t("system.onb.continue")}</button>
+          <button className="btn secondary big" style={{ marginTop: 8 }} onClick={() => go("settings", { section: "connection" })}>{t("system.auth.settings")}</button>
+        </>}
+        {v === "unavailable" && <>
+          <span className="systeme-logo" aria-hidden /><h1>{t("system.unavailable")}</h1>
+          <p className="systeme-lead">{t("system.auth.continuationUnavailable")}</p>
+          <button className="btn secondary big" onClick={() => void submit({ action: "cancel" })}>{t("system.login.otherEmail")}</button>
+        </>}
+        {!preview && authError && <p className="systeme-err" role="alert"><Icon name="alert-triangle" size={16} />{t(authError)}</p>}
+        {!preview && !auth && authError && <button className="btn secondary" disabled={busy} onClick={loadAuth}>{t("common.retry")}</button>}
+        {!preview && v !== "signed-in" && <button className="systeme-textbtn" style={{ marginTop: 16, alignSelf: "center" }} onClick={() => void submit({ action: "cancel" }, true)}>{t("common.cancel")}</button>}
         {v === "locked" && <>
           <Mascot cfg={bot} state="blocked" size={96} interactive />
           <h1>{t("system.login.lockedTitle")}</h1>

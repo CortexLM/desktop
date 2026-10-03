@@ -1,0 +1,162 @@
+{
+  "config": {
+    "argv": [
+      "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/e2e/code-diff-scroll.spec.ts",
+      "--workers=1",
+      "--retries=0",
+      "--reporter=json",
+      "--output=/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-diff-scroll.spec.ts",
+      "file": "code-diff-scroll.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1835,
+                  "error": {
+                    "message": "Error: diff-short.txt\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"hitTest\": true,\u001b[39m\n\u001b[32m-   \"withinCard\": true,\u001b[39m\n\u001b[31m+   \"hitTest\": false,\u001b[39m\n\u001b[31m+   \"withinCard\": false,\u001b[39m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: diff-short.txt\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"hitTest\": true,\u001b[39m\n\u001b[32m-   \"withinCard\": true,\u001b[39m\n\u001b[31m+   \"hitTest\": false,\u001b[39m\n\u001b[31m+   \"withinCard\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/code-diff-scroll.spec.ts:61:41",
+                    "location": {
+                      "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/code-diff-scroll.spec.ts",
+                      "column": 41,
+                      "line": 61
+                    },
+                    "snippet": "  59 |           });\n  60 |           await test.info().attach(`diff-header-${width}-${theme}-${i}`, { body: JSON.stringify(header, null, 2), contentType: \"application/json\" });\n> 61 |           expect(header, files[i].path).toMatchObject({ withinCard: true, hitTest: true });\n     |                                         ^\n  62 |           await pre.evaluate((el) => { el.scrollTop = 0; });\n  63 |           if (files[i].content.includes(\"\\n\")) {\n  64 |             const box = (await pre.boundingBox())!;"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/code-diff-scroll.spec.ts",
+                        "column": 41,
+                        "line": 61
+                      },
+                      "message": "Error: diff-short.txt\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatchObject\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"hitTest\": true,\u001b[39m\n\u001b[32m-   \"withinCard\": true,\u001b[39m\n\u001b[31m+   \"hitTest\": false,\u001b[39m\n\u001b[31m+   \"withinCard\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\n  59 |           });\n  60 |           await test.info().attach(`diff-header-${width}-${theme}-${i}`, { body: JSON.stringify(header, null, 2), contentType: \"application/json\" });\n> 61 |           expect(header, files[i].path).toMatchObject({ withinCard: true, hitTest: true });\n     |                                         ^\n  62 |           await pre.evaluate((el) => { el.scrollTop = 0; });\n  63 |           if (files[i].content.includes(\"\\n\")) {\n  64 |             const box = (await pre.boundingBox())!;\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/code-diff-scroll.spec.ts:61:41"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T03:43:45.376Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "diff-header-960-light-0",
+                      "contentType": "application/json",
+                      "body": "ewogICJoZWFkZXIiOiB7CiAgICAieCI6IDcxMywKICAgICJ5IjogMTQ5LAogICAgIndpZHRoIjogMjI2Ljk4NDM3NSwKICAgICJoZWlnaHQiOiAzMiwKICAgICJ0b3AiOiAxNDksCiAgICAicmlnaHQiOiA5MzkuOTg0Mzc1LAogICAgImJvdHRvbSI6IDE4MSwKICAgICJsZWZ0IjogNzEzCiAgfSwKICAiY2FyZCI6IHsKICAgICJ4IjogNzEyLAogICAgInkiOiAxNDgsCiAgICAid2lkdGgiOiAyMjguOTg0Mzc1LAogICAgImhlaWdodCI6IDYuNTE1NjI1LAogICAgInRvcCI6IDE0OCwKICAgICJyaWdodCI6IDk0MC45ODQzNzUsCiAgICAiYm90dG9tIjogMTU0LjUxNTYyNSwKICAgICJsZWZ0IjogNzEyCiAgfSwKICAid2l0aGluQ2FyZCI6IGZhbHNlLAogICJoaXRUZXN0IjogZmFsc2UKfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts/code-diff-scroll-Unequal-C-275de--while-headers-stay-visible/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts/code-diff-scroll-Unequal-C-275de--while-headers-stay-visible/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/opencode/terminal-viewport/asymmetric-baseline-artifacts/code-diff-scroll-Unequal-C-275de--while-headers-stay-visible/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/code-diff-scroll.spec.ts",
+                    "column": 41,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b2d9e103a5479321d78b-b1eb58e5c19b8087832b",
+          "file": "code-diff-scroll.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T03:43:44.178Z",
+    "duration": 3163.052,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

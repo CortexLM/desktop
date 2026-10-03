@@ -3,9 +3,14 @@
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
 G3's corrected SDK 0.3.1/api-types 0.2.0 passes [scoped desktop admission](sdk-031-admission/README.md):
-immutable pins and OTP/local-login/Library contracts verified, dependency intake underway.
+immutable pins and OTP/local-login/Library contracts verified, dependency intake `4fea24a` adopted.
 Media-tail/screenshot defects reproduce; broader auth/identity/turn/history contracts remain
-incomplete. The old 0.3.0 HOLD remains. Current remote runtime is probe-only.
+incomplete. The old 0.3.0 HOLD remains. [Bounded sign-in implementation](remote-auth-followup/README.md)
+is uncommitted: 201 units plus one optional skip, 90 Electron cases/426 renders including six
+controlled auth/read-barrier cases, lint/types/i18n and Linux package/smoke pass.
+Real Cloud authentication and remote inference remain unproven.
+Later [0.3.2/0.3.3 readback](sdk-next-readback/README.md) verifies consumer corrections;
+final replacement admission remains pending the owner cleanup/source handoff.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -14,7 +19,13 @@ return-navigation correction. Rebuilt Linux package/smoke and 90 member-byte che
 Changed-revision CI `37088533094`: checks/Linux 83/83 pass; macOS 82/83 fails on
 `Transition was skipped` in Work's renderer-error assertion. Mac packaging/smoke skipped;
 The native-transition correction passes seven local Electron regressions and source review.
-Updated CI and installed-Mac proof remain pending. Earlier captures retain their pins.
+Updated [CI 37091082338](https://github.com/CortexLM/desktop/actions/runs/37091082338) passes
+at recovery/transition `b0e6d78`; independent review verifies 84 cases/OS and 185 unique images.
+[Installed recovery](mac/b0e6d78/README.md) passes twelve recovery/two Work cases but exposes
+a preview-departure crash and unreachable long terminal output. Corrections pass 26 targeted
+Electron cases after rebuild, lint/types/i18n and Linux package/smoke; updated CI/native pending.
+failed native attempts remain retained. Pristine build matches all 90 installed members.
+Earlier captures retain their pins; uncommitted sign-in is outside that CI/package.
 [Final-head CI 37082159189](https://github.com/CortexLM/desktop/actions/runs/37082159189)
 passes all three jobs at `6d96535`; application/package inputs match `f9aca44`.
 The [current installed-Mac full sweep](mac/f9aca44/full/README.md) adds 426 native images

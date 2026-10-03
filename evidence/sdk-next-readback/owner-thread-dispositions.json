@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://github.com/CortexLM/backend/pull/447#discussion_r4171289830",
+    "createdAt": "2026-10-03T02:13:07Z",
+    "body": "Fixed in af36085cc96b182950ca4bf15161dcf2c3951da1. The readiness loop records successful readiness, refuses exhaustion before SQL, exports cleanup container names before startup and prints container states on failure. test/ci.test.mjs executes the actual workflow script with each datastore independently unavailable plus the all-ready case; all four paths pass. Workflow regression also passes.",
+    "path": ".github/workflows/ci.yml",
+    "resolved": true
+  },
+  {
+    "url": "https://github.com/CortexLM/backend/pull/447#discussion_r4171289840",
+    "createdAt": "2026-10-03T02:13:07Z",
+    "body": "Fixed canonically in af36085cc96b182950ca4bf15161dcf2c3951da1, then regenerated; no generated-file hand edits. POST /v1/feedback/bugs/screenshots now declares required raw binary body, query.filename and200 BugScreenshotUploadResponse. All422 operation IDs retained; only this operation and its new response component changed. Schema blob c8f6a7f0257858306a885c71202c13420f40725f; SHA256 b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b. Runtime File/Blob regression failed before correction and passes after; required-filename/JSON-refusal type checks and real API upload/attach/guest-refusal pass. G2 notified in #446comment5964443116.",
+    "path": "packages/sdk/scripts/generate.mjs",
+    "resolved": true
+  },
+  {
+    "url": "https://github.com/CortexLM/backend/pull/447#discussion_r4171289929",
+    "createdAt": "2026-10-03T02:13:09Z",
+    "body": "assemble/buildApp cleanup fixed in af36085cc96b182950ca4bf15161dcf2c3951da1: failed startup releases Redis and awaits DB close, preserving the original error even when cleanup fails. Isolated lifecycle regression passes. Independent follow-up found a related earlier acquisition failure in connectState (migration/transit health/PING/service setup); that final correction is in progress before this thread is resolved.",
+    "path": "server/src/embedded.ts",
+    "resolved": true
+  },
+  {
+    "url": "https://github.com/CortexLM/backend/pull/447#discussion_r4171310047",
+    "createdAt": "2026-10-03T02:19:06Z",
+    "body": "Completed follow-up in 78712801a5016d97b3d50c79c8596707306b36d6: connectState owns cleanup after DB acquisition, including migration, transit initialization/health, Redis creation/PING, service wiring and registered hooks. Redis close and awaited DB close are both attempted; original initialization error survives either cleanup failure. Isolated ten-phase regression verifies acquisition order, cleanup failure, deferred DB close and successful ownership transfer. Separate independent reviewer approved this exact delta and reran its regression. Full real-API integration48/48 plus all four examples pass.",
+    "path": "server/src/embedded.ts",
+    "resolved": true
+  },
+  {
+    "url": "https://github.com/CortexLM/backend/pull/447#discussion_r4171321017",
+    "createdAt": "2026-10-03T02:21:50Z",
+    "body": "The empty security alternative documents explicitly configured self-host auth_mode=\"none\", qualified in the endpoint description by instance.auth.required=false. OpenAPI metadata does not configure authorization. feedback.ts uploadScreenshot calls memberOnly() before reading/storing bytes; support.ts resolves the principal and rejects guests; principal.ts refuses anonymous Cloud calls and resolves only configured none-mode callers as the operator. Host and browser-Origin gates apply independently. An independent reviewer exercised the registered handler/buildApp and real principal resolver: Cloud anonymous401, guest403, zero stored bytes/rows; none-mode untrusted Origin/Host403, allowed operator200 (DB/storage mocked). Five targeted screenshot/none-mode tests pass. No CWE-287 bypass reproduced; schema convention matches Library and registry.",
+    "path": "openapi/cortex.openapi.json",
+    "resolved": true
+  }
+]

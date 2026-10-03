@@ -1,0 +1,12 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+(node:1872864) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10270ms
+   ✓ process-lifetime remote authentication (8)
+     ✓ rejects duplicate requests and times out an unfinished native authentication body 10009ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  03:42:31
+   Duration  11.06s (tests 94%, import 3%, transform 3%)

@@ -1,0 +1,42 @@
+{
+  "references": 24,
+  "unique_auth_png_hashes_across_runs": 12,
+  "changed_versions": [
+    {
+      "name": "remote-mfa-unavailable-light",
+      "earlier": "evidence/remote-auth-followup/first-electron/remote-mfa-unavailable-light.png",
+      "full_run": "evidence/remote-auth-followup/review/auth/remote-mfa-unavailable-light.png",
+      "pixel_difference_count": 25,
+      "difference_bounds": [
+        22,
+        16,
+        57,
+        154
+      ]
+    },
+    {
+      "name": "remote-verification-unavailable-light",
+      "earlier": "evidence/remote-auth-followup/first-electron/remote-verification-unavailable-light.png",
+      "full_run": "evidence/remote-auth-followup/review/auth/remote-mfa-unavailable-light.png",
+      "pixel_difference_count": 25,
+      "difference_bounds": [
+        22,
+        16,
+        57,
+        154
+      ]
+    },
+    {
+      "name": "remote-canonical-origin-sign-in",
+      "earlier": "evidence/remote-auth-followup/read-races/remote-canonical-origin-sign-in.png",
+      "full_run": "evidence/remote-auth-followup/review/auth/remote-canonical-origin-sign-in.png",
+      "pixel_difference_count": 10,
+      "difference_bounds": [
+        617,
+        383,
+        623,
+        429
+      ]
+    }
+  ]
+}

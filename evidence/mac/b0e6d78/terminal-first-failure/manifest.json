@@ -1,0 +1,25 @@
+{
+  "status": "failed",
+  "expectedAsar": "71f560e62bf0d0a8cf0e72beb85611eb413acf9fe10e2cacc3d9f1fedd5b4c04",
+  "startedAt": "2026-10-03T03:12:23.246Z",
+  "captures": [],
+  "checks": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "cleanup": {},
+  "asarBefore": "71f560e62bf0d0a8cf0e72beb85611eb413acf9fe10e2cacc3d9f1fedd5b4c04",
+  "windowBefore": {
+    "id": 8129,
+    "pid": 45607,
+    "active": true,
+    "bounds": {
+      "X": 0,
+      "Height": 640,
+      "Y": 30,
+      "Width": 960
+    }
+  },
+  "failure": "Command failed: ssh -o BatchMode=yes mac-live /usr/bin/curl --fail --silent --show-error --max-time 10 http://127.0.0.1:9456/health\ncurl: (7) Failed to connect to 127.0.0.1 port 9456 after 0 ms: Couldn't connect to server\n",
+  "finishedAt": "2026-10-03T03:12:28.486Z",
+  "scope": "Installed-app IPC and real bash; controlled local inference; native helper captures. ASAR checked on disk before/after; fresh LaunchServices launch/artifact provenance remains coordinator-owned. No legacy migration or full-product acceptance."
+}

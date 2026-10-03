@@ -22,6 +22,8 @@ import {
   type ProviderConfig,
   type ProviderSummary,
   type ProviderUpdateInput,
+  type RemoteAuthInput,
+  type RemoteAuthState,
   type ScheduledTask,
   type Session,
   type SessionCreateInput,
@@ -215,6 +217,10 @@ export function createClient(opts: ClientOptions) {
       get: () => get<ConnectionMode>("/api/connection"),
       set: (c: ConnectionMode) => put<ConnectionMode>("/api/connection", c),
       probe: () => get<ConnectionProbe>("/api/connection/probe"),
+      auth: {
+        get: () => get<RemoteAuthState>("/api/connection/auth"),
+        submit: (input: RemoteAuthInput) => post<RemoteAuthState>("/api/connection/auth", input),
+      },
     },
   }
 }

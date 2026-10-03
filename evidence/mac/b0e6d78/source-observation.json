@@ -1,0 +1,108 @@
+{
+  "applicationRevision": "b0e6d78bdfe5a4cc74aed3fdefb6ecf4001cb874",
+  "scope": "Recovery script observed the current checkout while auth work was staged. This comparison distinguishes changed observations; installed package remains bound to CI/build receipt. No mixed-source fingerprint is relabeled pristine.",
+  "sources": [
+    {
+      "path": "packages/app/src/screens/bots/team.tsx",
+      "sha256": "b41bb7e76f31cc133f793a7ce53887cd6ab7bbcb17273b5f8a0abe3d0e6081e1",
+      "applicationSourceSHA256": "b41bb7e76f31cc133f793a7ce53887cd6ab7bbcb17273b5f8a0abe3d0e6081e1",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/app/src/screens/work/desk.tsx",
+      "sha256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99",
+      "applicationSourceSHA256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/app/src/screens/system/projects.tsx",
+      "sha256": "27fa94c6f85909f6a00ee2afaadc36f4b90bbb8557bd0b937f5f1edc092ede08",
+      "applicationSourceSHA256": "27fa94c6f85909f6a00ee2afaadc36f4b90bbb8557bd0b937f5f1edc092ede08",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "sha256": "38384373b1c7a722bb4bdaed7de9396e6d83b6bdd1bfee85e5628c4bad1e4dac",
+      "applicationSourceSHA256": "83684a1871d2a992327cc6b2bf2cc261c386ac856e41d0279292cad651707ac0",
+      "matchesApplicationSource": false
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "sha256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e",
+      "applicationSourceSHA256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/app/src/api.ts",
+      "sha256": "9203cbf5c8a6b68fb64f99b8a8865cf702fac727e2cce59a1f466ef01bda6cc6",
+      "applicationSourceSHA256": "9203cbf5c8a6b68fb64f99b8a8865cf702fac727e2cce59a1f466ef01bda6cc6",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/core/src/bot.ts",
+      "sha256": "3f99c03f2b6093735ec80571cdfb9651cd36a03e2ed46da06df87a202e13938d",
+      "applicationSourceSHA256": "3f99c03f2b6093735ec80571cdfb9651cd36a03e2ed46da06df87a202e13938d",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69",
+      "applicationSourceSHA256": "446744acc016cb5ff146ae2f8bd391abc700a22207fd413ef33515ed150493e4",
+      "matchesApplicationSource": false
+    },
+    {
+      "path": "packages/desktop/src/preload.ts",
+      "sha256": "0ee26bcbbb0523997202c60841682dec9519fccf521dfb8082e6e9f1191cef20",
+      "applicationSourceSHA256": "0ee26bcbbb0523997202c60841682dec9519fccf521dfb8082e6e9f1191cef20",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "tests/e2e/memory-safety.spec.ts",
+      "sha256": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a",
+      "applicationSourceSHA256": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "tests/e2e/approvals-recovery.spec.ts",
+      "sha256": "e3c7c13502645f367e9e8e8c6a536c3a7d024e32e41090952b50a095a093c4d9",
+      "applicationSourceSHA256": "e3c7c13502645f367e9e8e8c6a536c3a7d024e32e41090952b50a095a093c4d9",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "tests/e2e/ui-flows.spec.ts",
+      "sha256": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b",
+      "applicationSourceSHA256": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/i18n/locales/en/bots.json",
+      "sha256": "53a5d35cf732010fbb7045e785821048fe7fb9ad8bc9c4b97dbdecb01f502490",
+      "applicationSourceSHA256": "53a5d35cf732010fbb7045e785821048fe7fb9ad8bc9c4b97dbdecb01f502490",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+      "applicationSourceSHA256": "2a1d6086157045cfbb37c4c05224b8fa3885eb082869952f13e58b360229c3d1",
+      "matchesApplicationSource": false
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "sha256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9",
+      "applicationSourceSHA256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/i18n/locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "applicationSourceSHA256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "matchesApplicationSource": true
+    },
+    {
+      "path": "packages/core/test/fixtures/catalog.json",
+      "sha256": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206",
+      "applicationSourceSHA256": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206",
+      "matchesApplicationSource": true
+    }
+  ]
+}
