@@ -333,6 +333,13 @@ failures on `f5bf305` remain separately pinned from the corrected renderer.
 navigation. Both themes assert the previous Bot stays absent during loading, then verify
 the next real prompt writes only to the selected Bot's session. Its two-case negative
 baseline records twelve ownership failures before the live-page owner correction.
+Combined correction `760c4a0` passes the six unchanged negative regressions within a
+103-case local Electron suite, plus 245 units/one optional skip and Linux package/smoke.
+CI `37110253688` passes all three jobs; artifact audit verifies 103 cases/426 renders per
+OS, 271 images/44 full-size views and twelve glyph raster checks per OS. Matching
+installed `760c4a0` passes six native Chat/Bot captures in both themes, checking exact
+history/reasoning, reload/Home/Back, deletion and Bot destination ownership through ten
+controlled fixture requests. Exact delayed-response races remain the separate CI tests.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

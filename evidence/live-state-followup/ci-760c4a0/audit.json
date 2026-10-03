@@ -1,0 +1,368 @@
+{
+  "run": 37110253688,
+  "head": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "checkout": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+  "tree": "7afa416fd06381c4abcacdc9153177732592c50f",
+  "reviewedAt": "2026-10-03T09:09:07.396334+00:00",
+  "conclusion": "scoped approval: source-bound CI, six unchanged regressions and glyph/font checks pass; native CI display capture fails",
+  "checks": {
+    "lint": "pass",
+    "types": "pass",
+    "unitPassed": 245,
+    "unitSkipped": 1,
+    "unitFiles": 22,
+    "unitFileCounts": [
+      {
+        "path": "packages/desktop/test/remote-chat.test.ts",
+        "total": 21,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/remote-sessions.test.ts",
+        "total": 18,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-session.test.ts",
+        "total": 8,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/services.test.ts",
+        "total": 15,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/session.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-core.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/mcp.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/runtime-copy.test.ts",
+        "total": 34,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote.test.ts",
+        "total": 45,
+        "skipped": 1
+      },
+      {
+        "path": "packages/core/test/connection.test.ts",
+        "total": 5,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/credentials.test.ts",
+        "total": 23,
+        "skipped": 0
+      },
+      {
+        "path": "packages/server/test/server.test.ts",
+        "total": 7,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/bus.test.ts",
+        "total": 2,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/capabilities.test.ts",
+        "total": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/scheduler.test.ts",
+        "total": 4,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/audit-i18n.test.ts",
+        "total": 1,
+        "skipped": 0
+      },
+      {
+        "path": "packages/client/test/client.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/catalog.test.ts",
+        "total": 6,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/computer-use.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/locales.test.ts",
+        "total": 9,
+        "skipped": 0
+      },
+      {
+        "path": "packages/schema/test/schema.test.ts",
+        "total": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/protocol/test/protocol.test.ts",
+        "total": 3,
+        "skipped": 0
+      }
+    ],
+    "optionalSkip": "lists models from a real backend; CORTEX_TEST_BACKEND_URL guard",
+    "i18n": {
+      "files": 65,
+      "usedKeys": 2272,
+      "englishKeys": 3405,
+      "problems": 0
+    },
+    "nodeVersions": {
+      "0_macOS build, package, launch.txt": [
+        "22.22.3"
+      ],
+      "1_E2E (Playwright + Electron, Linux).txt": [
+        "22.22.0"
+      ],
+      "2_Lint, typecheck, unit tests, i18n audit.txt": [
+        "22.23.3"
+      ]
+    },
+    "bun": "1.4.2",
+    "electron": "44.5.1",
+    "macOSUnitSuiteExecuted": false
+  },
+  "e2e": {
+    "e2e-linux": {
+      "cases": 103,
+      "attempts": 103,
+      "passed": 103,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 4,
+      "startTime": "2026-10-03T08:37:47.740Z",
+      "durationMs": 204573.038,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-owner.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "live-state.spec.ts": 4,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "diskPngFiles": 405,
+      "uniquePNGs": 135,
+      "reportSHA256": "2c591bcbf621a6d0e8e49954f6143e299aeae17e9f554763f91d91b4bfe5cf95",
+      "metadata": {
+        "ci": {
+          "commitHref": "https://github.com/CortexLM/desktop/commit/520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "commitHash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "prHref": "https://github.com/CortexLM/desktop/pull/36",
+          "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+          "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37110253688"
+        },
+        "gitCommit": {
+          "shortHash": "520da26",
+          "hash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "subject": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "body": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+          "author": {
+            "name": "Mathis",
+            "email": "154886644+echobt@users.noreply.github.com",
+            "time": 1791016561000
+          },
+          "committer": {
+            "name": "GitHub",
+            "email": "noreply@github.com",
+            "time": 1791016561000
+          },
+          "branch": "HEAD"
+        },
+        "actualWorkers": 4
+      },
+      "noMainBundleOrASARInArtifact": true
+    },
+    "macos": {
+      "cases": 103,
+      "attempts": 103,
+      "passed": 103,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 1,
+      "startTime": "2026-10-03T08:37:15.371Z",
+      "durationMs": 569547.3319999999,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-owner.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "live-state.spec.ts": 4,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "diskPngFiles": 406,
+      "uniquePNGs": 136,
+      "reportSHA256": "bd7ebb33ff07051df94a1f70448d990a3888c289a639b0065577ccf0ee74bad1",
+      "metadata": {
+        "ci": {
+          "commitHref": "https://github.com/CortexLM/desktop/commit/520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "commitHash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "prHref": "https://github.com/CortexLM/desktop/pull/36",
+          "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+          "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37110253688"
+        },
+        "gitCommit": {
+          "shortHash": "520da26",
+          "hash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+          "subject": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+          "body": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+          "author": {
+            "name": "Mathis",
+            "email": "154886644+echobt@users.noreply.github.com",
+            "time": 1791016561000
+          },
+          "committer": {
+            "name": "GitHub",
+            "email": "noreply@github.com",
+            "time": 1791016561000
+          },
+          "branch": "HEAD"
+        },
+        "actualWorkers": 1
+      },
+      "noMainBundleOrASARInArtifact": true
+    }
+  },
+  "locale": {
+    "e2e-linux": {
+      "primaryStates": 48,
+      "measurementRecords": 80,
+      "textRows": 384,
+      "keyboardStops": 144,
+      "fontRecords": 6,
+      "passingWeightChecks": 12,
+      "glyphFailurePNGs": 0,
+      "localeCaptures": 8
+    },
+    "macos": {
+      "primaryStates": 48,
+      "measurementRecords": 80,
+      "textRows": 384,
+      "keyboardStops": 144,
+      "fontRecords": 6,
+      "passingWeightChecks": 12,
+      "glyphFailurePNGs": 0,
+      "localeCaptures": 8
+    }
+  },
+  "binding": {
+    "head": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+    "checkout": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+    "tree": "7afa416fd06381c4abcacdc9153177732592c50f",
+    "headCheckoutTreesEqual": true,
+    "inputs": 514,
+    "rendererInputs": 473,
+    "rendererComparatorFingerprint": "39a06106e8d3545e1131ed64dddf5c60013581ffb2f1465f5c67399892669609",
+    "frozenBuildMembers": 90,
+    "frozenMainSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+    "inputDeltaFromF5": [
+      "packages/app/src/screens/bots/bot.tsx",
+      "packages/app/src/state/live.ts"
+    ],
+    "originalSixRegressionTestsUnchanged": true,
+    "ciASAROrMainCompared": false,
+    "scope": "CI checkout matches source tree. Frozen local build receipt verified, not rebuilt. Test artifacts have no main bundle or ASAR; package/native receipt is coordinator-owned."
+  },
+  "visual": {
+    "uniqueImages": 271,
+    "pngCopies": 811,
+    "contactsReviewed": 24,
+    "fullSizeViewsReviewed": 44,
+    "uniqueFullSizeImages": 40,
+    "newLosslessWebPs": 149,
+    "existingCanonicalsReused": 122,
+    "currentTargetGlyphFailures": [],
+    "historicalTofuNegativesPreserved": true
+  },
+  "nativeDisplayCapture": "failed",
+  "packageArtifactDownloaded": false,
+  "macOSPrivateCoreUnitSuite": false,
+  "realCloudInferenceAcceptance": false,
+  "applicationOrTestRerun": false,
+  "applicationEdits": false,
+  "MacOperations": false,
+  "commits": false,
+  "runnableOfflineVerification": "python3 /tmp/opencode/ci-760c4a0/finalize.py",
+  "helpers": [
+    {
+      "path": "/var/tmp/opencode/ci-760c4a0/collect.py",
+      "sha256": "9ff6354fd047fed0be8114893179b8f9e086be8618de2e103e7f09210569fae1"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-760c4a0/audit.py",
+      "sha256": "bd001110d3ad6cab510b6a66b36e789279a3d1870b7b2005785604d41a1d7a78"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-760c4a0/finalize.py",
+      "sha256": "f6a4f49f17106dc63e7fa490fd9969f8726fd23786d008fe1a3f4d7db99417fc"
+    }
+  ]
+}

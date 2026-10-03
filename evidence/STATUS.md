@@ -50,18 +50,25 @@ Completed [CI image review](remote-chat-foundation/ci-1076c25/README.md) retains
 failures in Linux Japanese/Korean/Simplified Chinese despite passing geometry. macOS's
 eight sampled locale captures render glyphs. [Controlled font diagnosis](linux-glyph-followup/README.md)
 reproduces the failure when CJK fallback is unavailable; historical runner inventory is absent.
-CI provisioning/raster-sentinel correction and new artifact verification remain pending.
+CI `37110253688` verifies Noto provisioning, actual fallback selection and readable sampled
+CJK captures. Historical failures and the unknown original runner cause remain retained.
 The [06:18–06:22 owner readback](remote-chat-foundation/owner-gates/README.md) finds no new
 named G1 import permission or G2 resolution. Later requests separately name unique replay
 cursors, historical-image hydration and SDK discarded-frame notification.
 The [07:44/07:48 readback](remote-chat-foundation/owner-readback-0743/README.md) likewise
 finds no new G2/G3 reply, immutable delivery or named design permission.
-The uncommitted [transcript correction](live-state-followup/README.md) has four reproduced
+The [08:55 readback](live-state-followup/owner-readback-0855/README.md) adds one G4 consumer
+comment; no new G2/G3 delivery or named G1 integration permission is observed.
+The [transcript correction](live-state-followup/README.md), pushed at `760c4a0`, has four reproduced
 negative cases, then 101 passing Electron cases and 245 units plus one skip on its first
 corrected build. Independent review approves reconciliation and identifies a separate Bot
 route-owner defect. The minimal owner key passes its two formerly failing cases; the final
 combined build passes 103 Electron cases, 245 units plus one optional skip, lint/types/i18n
-and Linux package/smoke. New source-pinned CI and installed acceptance remain pending.
+and Linux package/smoke. CI `37110253688` passes all three jobs at `760c4a0`; [artifact review](live-state-followup/ci-760c4a0/README.md)
+verifies 103 cases/426 render checks per OS, 271 images/44 full-size views and twelve
+glyph checks per OS. [Matching installed checks](mac/760c4a0/README.md) pass six native
+Chat/Bot captures and ten controlled requests, with cleanup complete. Final local artifact
+review verifies 135 images, 22 full-size target views and all twelve Bot ownership assertions.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -133,12 +140,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `1076c25` CI/application `f5bf305` passes lint/types and 245 units plus one optional backend skip; independent artifact review verifies checkout/source binding. |
-| Every design screen plus provider/image/reasoning flows | Partial: `1076c25` CI passes 97 cases/426 renders per OS, including seven auth cases. Linux CJK screenshots contain missing glyphs. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `1076c25` package/renderer smoke passes; installed `f5bf305` ASAR, 90 build members and resources verified. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 changed-scope captures; `7885736`: eight SDK/layout captures. Matching `f5bf305`: six English auth plus sixteen locale captures, 48 state assertions/144 Tab stops. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
-| No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Later auth/correction run is 54/70, maximum 0.067419%, sixteen Settings gaps; final committed Code subset 18/18, max 0.061786%. Narrow Approvals preserves all eight wide images exactly. Historical reference/scheduling outliers and source pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `1076c25` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Eight-locale shell annotations, 48 auth states and 16 Approvals views have runtime checks. Linux CJK glyph failures prove geometry alone insufficient. Translation semantics remain author-reviewed; exhaustive dynamic-copy/layout acceptance remains unproven. |
+| Lint, types, units | `760c4a0` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies source/checkout binding. |
+| Every design screen plus provider/image/reasoning flows | Partial: `760c4a0` CI passes 103 cases/426 registered renders per OS; 271 images and 44 full-size views reviewed. Sampled Linux CJK glyphs now render; earlier failures remain retained. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `760c4a0` CI package/smoke passes; independently verified installed ASAR, 90 build members, 104 catalogs and skill. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout captures; `f5bf305`: 22 auth captures/48 locale states/144 Tab stops. Matching `760c4a0`: six Chat/Bot native captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
+| Automated i18n audit | `760c4a0` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Locale E2E checks 48 auth states/144 Tab stops and twelve glyph rasters per OS; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive dynamic-copy/layout acceptance remain unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot

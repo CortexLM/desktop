@@ -1,0 +1,146 @@
+{
+  "e2e-linux": {
+    "cases": 103,
+    "attempts": 103,
+    "passed": 103,
+    "retries": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "runnerErrors": 0,
+    "registeredRenderVisits": 426,
+    "workers": 4,
+    "startTime": "2026-10-03T08:37:47.740Z",
+    "durationMs": 204573.038,
+    "caseFiles": {
+      "approvals-recovery.spec.ts": 2,
+      "bot-owner.spec.ts": 2,
+      "bot-safety.spec.ts": 10,
+      "chrome.spec.ts": 3,
+      "code-diff-scroll.spec.ts": 1,
+      "code-models.spec.ts": 5,
+      "components.spec.ts": 4,
+      "composer-safety.spec.ts": 4,
+      "engine.spec.ts": 4,
+      "frozen-composer.spec.ts": 4,
+      "interaction-states.spec.ts": 4,
+      "keyboard.spec.ts": 2,
+      "live-state.spec.ts": 4,
+      "memory-safety.spec.ts": 8,
+      "navigation.spec.ts": 6,
+      "remote-auth.spec.ts": 7,
+      "responsive.spec.ts": 12,
+      "routines.spec.ts": 4,
+      "screens.spec.ts": 1,
+      "search-bots.spec.ts": 3,
+      "terminal-copy.spec.ts": 1,
+      "ui-flows.spec.ts": 4,
+      "work-routine-source.spec.ts": 6,
+      "work-scroll.spec.ts": 2
+    },
+    "diskPngFiles": 405,
+    "uniquePNGs": 135,
+    "reportSHA256": "2c591bcbf621a6d0e8e49954f6143e299aeae17e9f554763f91d91b4bfe5cf95",
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/CortexLM/desktop/commit/520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "commitHash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "prHref": "https://github.com/CortexLM/desktop/pull/36",
+        "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+        "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37110253688"
+      },
+      "gitCommit": {
+        "shortHash": "520da26",
+        "hash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "subject": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "body": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+        "author": {
+          "name": "Mathis",
+          "email": "154886644+echobt@users.noreply.github.com",
+          "time": 1791016561000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1791016561000
+        },
+        "branch": "HEAD"
+      },
+      "actualWorkers": 4
+    },
+    "noMainBundleOrASARInArtifact": true
+  },
+  "macos": {
+    "cases": 103,
+    "attempts": 103,
+    "passed": 103,
+    "retries": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "runnerErrors": 0,
+    "registeredRenderVisits": 426,
+    "workers": 1,
+    "startTime": "2026-10-03T08:37:15.371Z",
+    "durationMs": 569547.3319999999,
+    "caseFiles": {
+      "approvals-recovery.spec.ts": 2,
+      "bot-owner.spec.ts": 2,
+      "bot-safety.spec.ts": 10,
+      "chrome.spec.ts": 3,
+      "code-diff-scroll.spec.ts": 1,
+      "code-models.spec.ts": 5,
+      "components.spec.ts": 4,
+      "composer-safety.spec.ts": 4,
+      "engine.spec.ts": 4,
+      "frozen-composer.spec.ts": 4,
+      "interaction-states.spec.ts": 4,
+      "keyboard.spec.ts": 2,
+      "live-state.spec.ts": 4,
+      "memory-safety.spec.ts": 8,
+      "navigation.spec.ts": 6,
+      "remote-auth.spec.ts": 7,
+      "responsive.spec.ts": 12,
+      "routines.spec.ts": 4,
+      "screens.spec.ts": 1,
+      "search-bots.spec.ts": 3,
+      "terminal-copy.spec.ts": 1,
+      "ui-flows.spec.ts": 4,
+      "work-routine-source.spec.ts": 6,
+      "work-scroll.spec.ts": 2
+    },
+    "diskPngFiles": 406,
+    "uniquePNGs": 136,
+    "reportSHA256": "bd7ebb33ff07051df94a1f70448d990a3888c289a639b0065577ccf0ee74bad1",
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/CortexLM/desktop/commit/520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "commitHash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "prHref": "https://github.com/CortexLM/desktop/pull/36",
+        "prTitle": "feat: rewrite Cortex desktop with a local agent engine",
+        "prBaseHash": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "buildHref": "https://github.com/CortexLM/desktop/actions/runs/37110253688"
+      },
+      "gitCommit": {
+        "shortHash": "520da26",
+        "hash": "520da2689bdccfdbbaba2378961784be3ba40cb1",
+        "subject": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+        "body": "Merge 760c4a046ce454bc8b0ab2fd85c941fec321c3ea into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d\n",
+        "author": {
+          "name": "Mathis",
+          "email": "154886644+echobt@users.noreply.github.com",
+          "time": 1791016561000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1791016561000
+        },
+        "branch": "HEAD"
+      },
+      "actualWorkers": 1
+    },
+    "noMainBundleOrASARInArtifact": true
+  }
+}

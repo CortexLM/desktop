@@ -1,0 +1,288 @@
+{
+  "status": "passed",
+  "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "startedAt": "2026-10-03T08:57:30.417Z",
+  "finishedAt": "2026-10-03T08:59:56.303Z",
+  "durationSeconds": 145.886,
+  "manifestSHA256": "5c3fb947a44f4de59b9801e9a8196e25e53f38906574b2d8875c629f8e4f3cb1",
+  "expectedAsar": "bbd6dbddd5103e63d076f0edfd8afe245da1c5b858fc4883d9bd06cc70bcfc0a",
+  "mainPID": 56523,
+  "windowID": 8556,
+  "isolatedRoot": "/private/tmp/opencode/desktop-live-state-760c4a0",
+  "captures": 6,
+  "fullSizeReviewed": 6,
+  "rgbaExact": 6,
+  "pngBytes": 441795,
+  "webpBytes": 144744,
+  "geometryRows": 26,
+  "nativeChecks": [
+    {
+      "theme": "light",
+      "uiTurns": 2,
+      "exactHistory": true,
+      "reloadEquivalent": true,
+      "homeBackEquivalent": true,
+      "deletion": {
+        "cleared": true,
+        "revived": false,
+        "counts": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "uiTurns": 2,
+      "exactHistory": true,
+      "reloadEquivalent": true,
+      "homeBackEquivalent": true,
+      "deletion": {
+        "cleared": true,
+        "revived": false,
+        "counts": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "scenario": "bot",
+      "theme": "light",
+      "actualRosterNavigation": true,
+      "sameDocument": true,
+      "betaOwnedSession": "ses_01a100fd33e400007d93537f8496b3a6",
+      "alphaHistoryUnchanged": true,
+      "capturedScope": "Beta title, latest user/answer and composer; full history asserted in DOM and engine"
+    },
+    {
+      "scenario": "bot",
+      "theme": "dark",
+      "actualRosterNavigation": true,
+      "sameDocument": true,
+      "betaOwnedSession": "ses_01a100fd7f820000dbc00f8895a55d0e",
+      "alphaHistoryUnchanged": true,
+      "capturedScope": "Beta title, latest user/answer and composer; full history asserted in DOM and engine"
+    }
+  ],
+  "fixture": {
+    "runID": "c9500e72-1b56-4b77-b6ca-6b42c2be8a87",
+    "inferenceRequests": 10,
+    "uiSends": 8,
+    "betaSetupSends": 2,
+    "sequence": [
+      [
+        "light",
+        "chat",
+        "older"
+      ],
+      [
+        "light",
+        "chat",
+        "newer"
+      ],
+      [
+        "dark",
+        "chat",
+        "older"
+      ],
+      [
+        "dark",
+        "chat",
+        "newer"
+      ],
+      [
+        "light",
+        "Alpha",
+        "first"
+      ],
+      [
+        "light",
+        "Beta",
+        "older"
+      ],
+      [
+        "light",
+        "Beta",
+        "newer"
+      ],
+      [
+        "dark",
+        "Alpha",
+        "first"
+      ],
+      [
+        "dark",
+        "Beta",
+        "older"
+      ],
+      [
+        "dark",
+        "Beta",
+        "newer"
+      ]
+    ],
+    "requestsMatchRootReceipt": true,
+    "healthMatchesReceipt": true,
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 7,
+      "errors": 0
+    }
+  },
+  "history": {
+    "sessions": 6,
+    "bots": 4,
+    "uniqueMessages": 20,
+    "uniqueParts": 50,
+    "chat": [
+      {
+        "theme": "light",
+        "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+        "uiTurns": 2,
+        "exactHistory": true,
+        "reloadEquivalent": true,
+        "homeBackEquivalent": true,
+        "deletion": {
+          "cleared": true,
+          "revived": false,
+          "counts": [
+            6,
+            0
+          ]
+        }
+      },
+      {
+        "theme": "dark",
+        "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+        "uiTurns": 2,
+        "exactHistory": true,
+        "reloadEquivalent": true,
+        "homeBackEquivalent": true,
+        "deletion": {
+          "cleared": true,
+          "revived": false,
+          "counts": [
+            6,
+            0
+          ]
+        }
+      }
+    ],
+    "owners": [
+      {
+        "theme": "light",
+        "alphaSessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+        "betaSessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+        "alphaBotID": "bot_01a100fd2aca0000acda7b575776f2c2",
+        "betaBotID": "bot_01a100fd2b0500000846a17ae9e245d6",
+        "observerSamples": 10,
+        "betaTitleSamples": 8,
+        "betaPrefixExact": true,
+        "alphaUnchangedAssertedByExecutedHarness": true
+      },
+      {
+        "theme": "dark",
+        "alphaSessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+        "betaSessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+        "alphaBotID": "bot_01a100fd7649000047d1f20f449beebe",
+        "betaBotID": "bot_01a100fd76850000e9b57ad9bc422b57",
+        "observerSamples": 10,
+        "betaTitleSamples": 8,
+        "betaPrefixExact": true,
+        "alphaUnchangedAssertedByExecutedHarness": true
+      }
+    ]
+  },
+  "stateCalls": {
+    "count": 107,
+    "statusCounts": {
+      "200": 93,
+      "201": 8,
+      "404": 4,
+      "202": 2
+    },
+    "providerKeyRemoval200": true,
+    "providerRestore200": true
+  },
+  "errors": {
+    "pageErrors": [],
+    "consoleErrors": [],
+    "rendererHttp": [],
+    "unexpectedDialogs": 0
+  },
+  "cleanup": {
+    "driverChecks": 16,
+    "allDriverChecksTrue": true,
+    "coordinatorReceiptMatches": true,
+    "portsClosedRecorded": [
+      9444,
+      9445,
+      9456,
+      9457,
+      9458
+    ],
+    "forwardingClosedRecorded": true,
+    "leaseReleasedRecorded": true
+  },
+  "helperHashes": {
+    "live-state-native.mjs": "1fda40b26c939f471cf3e10f127402c324d5d30771c0219ed626582fd92bdac4",
+    "live-state-native-backend.mjs": "209e5bcc36d3cf3883b0690ed736dfef2928db76fb8d5d51eee6b65c14466ec9",
+    "launch-live-state-native.py": "66b375031d82502ed0b657aa93a4e4ff599795e353eb251a48488f00421f4a3f",
+    "live-state-native-runbook.md": "f15beb55fb7284e7a42d9b5dc4b34e9d141574cebdf796a36f0b4c0f2aabb2f2"
+  },
+  "rootReceipts": [
+    {
+      "path": "../artifact.json",
+      "sha256": "202ff21f55fda0467006ecc16ca467fbfe1a91da1787e8efd3a59b5feba228f0"
+    },
+    {
+      "path": "../backend-receipt.json",
+      "sha256": "ff2331a7d6937fdb05f587a17e5c18e30f6ab06507d22a2e6eb779918fb259c9"
+    },
+    {
+      "path": "../binding.json",
+      "sha256": "b7d8dae10dd29d98e38b16bec74007340b83d7f2f7f00646bc69745fe857fd87"
+    },
+    {
+      "path": "../cleanup.json",
+      "sha256": "bdb1a3f9a4a6281d20ecd2a1daf5dec488e3506f25d882f0499972b60bf35c8b"
+    },
+    {
+      "path": "../installed.json",
+      "sha256": "4feb7cea558f638f431343e13f5309fa1759d84a7bd563c043c675196ded10a6"
+    },
+    {
+      "path": "../launch.json",
+      "sha256": "f90161aa1c1979668e0ebe45750ca6cb6a8081c0757490a09cc2776b1cb9b1df"
+    },
+    {
+      "path": "../members.json",
+      "sha256": "4163d8f5044dd5d7e906d45571f20a373acd892cdb8edc2a7eafa8621656cccb"
+    },
+    {
+      "path": "../package.json",
+      "sha256": "a7dda215c7892a8a341bb8c02096ea7a1917a8113ee8783c488f0675c596a474"
+    },
+    {
+      "path": "../package-review.md",
+      "sha256": "6ae8495cf73603c084e4e0d02bb125d74d39f2aceeca617a612bef41e9090681"
+    },
+    {
+      "path": "../ports-closed.json",
+      "sha256": "6f2ceae32276f8137b6e3ea791c48937dc9d707ec002854300fe101b103671af"
+    },
+    {
+      "path": "../transfer.json",
+      "sha256": "4fee4e7573e99622c4499bd6111cda5655e844f1d0254d76f15630f85676d42f"
+    }
+  ],
+  "proofLimits": [
+    "Source-bound executed assertions establish Chat reload/HomeBack equivalence, expanded reasoning readability and Alpha unchanged; redundant post-read snapshots are not separately serialized.",
+    "Six ordinary installed native views; exact held-RPC races remain separate CI evidence.",
+    "Source-bound local-provider fixture only; no remote authentication, remote Chat SDK invocation or hosted inference.",
+    "Native window/chrome inspected; no native-menu, all-page or all-locale acceptance.",
+    "Driver argv/interpreter version are not serialized; invocation arguments are reconstructed from manifest, log and runbook."
+  ]
+}

@@ -1,0 +1,2918 @@
+{
+  "status": "passed",
+  "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+  "expectedAsar": "bbd6dbddd5103e63d076f0edfd8afe245da1c5b858fc4883d9bd06cc70bcfc0a",
+  "membersSHA256": "4163d8f5044dd5d7e906d45571f20a373acd892cdb8edc2a7eafa8621656cccb",
+  "startedAt": "2026-10-03T08:57:30.417Z",
+  "scriptSHA256": "1fda40b26c939f471cf3e10f127402c324d5d30771c0219ed626582fd92bdac4",
+  "captures": [
+    {
+      "file": "transcript-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "pid": 56523,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "id": 8556,
+      "sha256": "392a82682c2b12a392b4e4ded9308540853f13b25b2ac3080ecd2c8c05b7b9fe",
+      "boxes": [
+        {
+          "text": "Cortex native light older.",
+          "opacity": 1,
+          "bounds": [
+            735.3125,
+            108,
+            907,
+            146
+          ],
+          "ink": [
+            [
+              749.3125,
+              118,
+              893,
+              135
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Thought for 1s",
+          "opacity": 1,
+          "bounds": [
+            411,
+            168,
+            524.3125,
+            194
+          ],
+          "ink": [
+            [
+              417,
+              170.5,
+              500.3125,
+              191.5
+            ],
+            [
+              417,
+              172.5,
+              500.3125,
+              189.5
+            ],
+            [
+              506.3125,
+              175,
+              518.3125,
+              187
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed light older turn.",
+          "opacity": 1,
+          "bounds": [
+            417,
+            202,
+            907,
+            223
+          ],
+          "ink": [
+            [
+              417,
+              204,
+              572.234375,
+              221
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native light newer.",
+          "opacity": 1,
+          "bounds": [
+            729.03125,
+            283,
+            907,
+            321
+          ],
+          "ink": [
+            [
+              743.03125,
+              293,
+              893,
+              310
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Thought for 1s",
+          "opacity": 1,
+          "bounds": [
+            411,
+            343,
+            524.3125,
+            369
+          ],
+          "ink": [
+            [
+              417,
+              345.5,
+              500.3125,
+              366.5
+            ],
+            [
+              417,
+              347.5,
+              500.3125,
+              364.5
+            ],
+            [
+              506.3125,
+              350,
+              518.3125,
+              362
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed light newer turn.",
+          "opacity": 1,
+          "bounds": [
+            417,
+            377,
+            907,
+            398
+          ],
+          "ink": [
+            [
+              417,
+              379,
+              578.53125,
+              396
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "deleted-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8556,
+      "pid": 56523,
+      "sha256": "e272fcb82b68d898f6e9fe0cd3140460e9ae7d30959164844501d5b6960f84ab",
+      "boxes": [
+        {
+          "text": "Something went wrong.Your message is kept. Try again in a moment.",
+          "opacity": 1,
+          "bounds": [
+            385,
+            108,
+            907,
+            167
+          ],
+          "ink": [
+            [
+              399,
+              129.5,
+              415,
+              145.5
+            ],
+            [
+              427,
+              120,
+              895,
+              155
+            ],
+            [
+              427,
+              120,
+              570.578125,
+              137
+            ],
+            [
+              427,
+              138,
+              672.796875,
+              154
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "transcript-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "id": 8556,
+      "active": true,
+      "pid": 56523,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "c982a53eb2fc25d2038328895a4f9ee78af0da11cbec5f443c3b3808002b3749",
+      "boxes": [
+        {
+          "text": "Cortex native dark older.",
+          "opacity": 1,
+          "bounds": [
+            734.453125,
+            108,
+            907,
+            146
+          ],
+          "ink": [
+            [
+              748.453125,
+              118,
+              893,
+              135
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Thought for 1s",
+          "opacity": 1,
+          "bounds": [
+            411,
+            168,
+            524.3125,
+            194
+          ],
+          "ink": [
+            [
+              417,
+              170.5,
+              500.3125,
+              191.5
+            ],
+            [
+              417,
+              172.5,
+              500.3125,
+              189.5
+            ],
+            [
+              506.3125,
+              175,
+              518.3125,
+              187
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed dark older turn.",
+          "opacity": 1,
+          "bounds": [
+            417,
+            202,
+            907,
+            223
+          ],
+          "ink": [
+            [
+              417,
+              204,
+              573.09375,
+              221
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native dark newer.",
+          "opacity": 1,
+          "bounds": [
+            728.171875,
+            283,
+            907,
+            321
+          ],
+          "ink": [
+            [
+              742.171875,
+              293,
+              893,
+              310
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Thought for 1s",
+          "opacity": 1,
+          "bounds": [
+            411,
+            343,
+            524.3125,
+            369
+          ],
+          "ink": [
+            [
+              417,
+              345.5,
+              500.3125,
+              366.5
+            ],
+            [
+              417,
+              347.5,
+              500.3125,
+              364.5
+            ],
+            [
+              506.3125,
+              350,
+              518.3125,
+              362
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed dark newer turn.",
+          "opacity": 1,
+          "bounds": [
+            417,
+            377,
+            907,
+            398
+          ],
+          "ink": [
+            [
+              417,
+              379,
+              579.390625,
+              396
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "deleted-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "active": true,
+      "id": 8556,
+      "pid": 56523,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "sha256": "59d33cfcdc2d127116085ca78131ca580c54320a9e75e353589771200463151c",
+      "boxes": [
+        {
+          "text": "Something went wrong.Your message is kept. Try again in a moment.",
+          "opacity": 1,
+          "bounds": [
+            385,
+            108,
+            907,
+            167
+          ],
+          "ink": [
+            [
+              399,
+              129.5,
+              415,
+              145.5
+            ],
+            [
+              427,
+              120,
+              895,
+              155
+            ],
+            [
+              427,
+              120,
+              570.578125,
+              137
+            ],
+            [
+              427,
+              138,
+              672.796875,
+              154
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            542,
+            693.5625,
+            592
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "bot-beta-owner-light.png",
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "pid": 56523,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8556,
+      "active": true,
+      "sha256": "ba4eb6c48cc2ff58d26f7340692fff3b0c0edb3d079af067838de0e731ea6f32",
+      "boxes": [
+        {
+          "text": "Native Beta light",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            457.921875,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              457.921875,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native light Beta newer.",
+          "opacity": 1,
+          "bounds": [
+            705.921875,
+            256,
+            915,
+            294
+          ],
+          "ink": [
+            [
+              719.921875,
+              266,
+              901,
+              283
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed light Beta newer turn.",
+          "opacity": 1,
+          "bounds": [
+            411,
+            306,
+            603.625,
+            327
+          ],
+          "ink": [
+            [
+              411,
+              308,
+              603.625,
+              325
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            566,
+            756.03125,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "file": "bot-beta-owner-dark.png",
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8556,
+      "pid": 56523,
+      "active": true,
+      "sha256": "5b2908bca5cc125b417b2621513285538ad3026e56960139e3bc7f2e1997a809",
+      "boxes": [
+        {
+          "text": "Native Beta dark",
+          "opacity": 1,
+          "bounds": [
+            357,
+            64,
+            458.6875,
+            80
+          ],
+          "ink": [
+            [
+              357,
+              63,
+              458.6875,
+              80
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native dark Beta newer.",
+          "opacity": 1,
+          "bounds": [
+            705.078125,
+            256,
+            915,
+            294
+          ],
+          "ink": [
+            [
+              719.078125,
+              266,
+              901,
+              283
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Confirmed dark Beta newer turn.",
+          "opacity": 1,
+          "bounds": [
+            411,
+            306,
+            604.484375,
+            327
+          ],
+          "ink": [
+            [
+              411,
+              308,
+              604.484375,
+              325
+            ]
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "",
+          "opacity": 1,
+          "bounds": [
+            434,
+            566,
+            756.03125,
+            616
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "uiTurns": 2,
+      "exactHistory": true,
+      "reloadEquivalent": true,
+      "homeBackEquivalent": true,
+      "deletion": {
+        "cleared": true,
+        "revived": false,
+        "counts": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "uiTurns": 2,
+      "exactHistory": true,
+      "reloadEquivalent": true,
+      "homeBackEquivalent": true,
+      "deletion": {
+        "cleared": true,
+        "revived": false,
+        "counts": [
+          6,
+          0
+        ]
+      }
+    },
+    {
+      "scenario": "bot",
+      "theme": "light",
+      "actualRosterNavigation": true,
+      "sameDocument": true,
+      "betaOwnedSession": "ses_01a100fd33e400007d93537f8496b3a6",
+      "alphaHistoryUnchanged": true,
+      "capturedScope": "Beta title, latest user/answer and composer; full history asserted in DOM and engine"
+    },
+    {
+      "scenario": "bot",
+      "theme": "dark",
+      "actualRosterNavigation": true,
+      "sameDocument": true,
+      "betaOwnedSession": "ses_01a100fd7f820000dbc00f8895a55d0e",
+      "alphaHistoryUnchanged": true,
+      "capturedScope": "Beta title, latest user/answer and composer; full history asserted in DOM and engine"
+    }
+  ],
+  "histories": [
+    {
+      "theme": "light",
+      "messages": [
+        {
+          "info": {
+            "id": "msg_01a100fbbb6c000090dbd824c3a084c4",
+            "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+            "role": "user",
+            "time": {
+              "created": 1791017859948
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fbbb6c0001d0b84bb4b9923ec8",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbbb6c000090dbd824c3a084c4",
+              "type": "text",
+              "text": "Cortex native light older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fbbb6d000095a258bf6cac25ee",
+            "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+            "role": "assistant",
+            "time": {
+              "created": 1791017859949,
+              "completed": 1791017860395
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fbbb830000da5821654dc6b6b2",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbbb6d000095a258bf6cac25ee",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fbbb830001b976f4502b28b6cf",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbbb6d000095a258bf6cac25ee",
+              "type": "reasoning",
+              "text": "Checking light older turn."
+            },
+            {
+              "id": "prt_01a100fbbc7800008614696e8e7c1e35",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbbb6d000095a258bf6cac25ee",
+              "type": "text",
+              "text": "Confirmed light older turn."
+            },
+            {
+              "id": "prt_01a100fbbd2900008cb3901e915fe0e9",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbbb6d000095a258bf6cac25ee",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fbc2c800005f17f3526908910c",
+            "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+            "role": "user",
+            "time": {
+              "created": 1791017861832
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fbc2c800016b026c1269e33004",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbc2c800005f17f3526908910c",
+              "type": "text",
+              "text": "Cortex native light newer."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fbc2c90000cc91b11719dd2240",
+            "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+            "role": "assistant",
+            "time": {
+              "created": 1791017861833,
+              "completed": 1791017862265
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fbc2d30000f9c877755a16e444",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbc2c90000cc91b11719dd2240",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fbc2d40000ffb276c54e6b88d5",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbc2c90000cc91b11719dd2240",
+              "type": "reasoning",
+              "text": "Checking light newer turn."
+            },
+            {
+              "id": "prt_01a100fbc3cd0000ed08744754f1c11e",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbc2c90000cc91b11719dd2240",
+              "type": "text",
+              "text": "Confirmed light newer turn."
+            },
+            {
+              "id": "prt_01a100fbc4780000186d9a99c091da60",
+              "sessionID": "ses_01a100fbb1fd00000c30b00d241119d3",
+              "messageID": "msg_01a100fbc2c90000cc91b11719dd2240",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "messages": [
+        {
+          "info": {
+            "id": "msg_01a100fc7a0100001f3cfe2e37c6351b",
+            "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+            "role": "user",
+            "time": {
+              "created": 1791017908737
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fc7a020000c3b362af8e86e41b",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc7a0100001f3cfe2e37c6351b",
+              "type": "text",
+              "text": "Cortex native dark older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fc7a020001e7a0dabb78cdfdb3",
+            "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+            "role": "assistant",
+            "time": {
+              "created": 1791017908738,
+              "completed": 1791017909163
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fc7a0c0000107ac43ee65aae05",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc7a020001e7a0dabb78cdfdb3",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fc7a0d0000430c7790d83aebb9",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc7a020001e7a0dabb78cdfdb3",
+              "type": "reasoning",
+              "text": "Checking dark older turn."
+            },
+            {
+              "id": "prt_01a100fc7b020000c0e20837085a0742",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc7a020001e7a0dabb78cdfdb3",
+              "type": "text",
+              "text": "Confirmed dark older turn."
+            },
+            {
+              "id": "prt_01a100fc7baa00004d98388fb2932b87",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc7a020001e7a0dabb78cdfdb3",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fc813d0000f1fe66b3bb182312",
+            "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+            "role": "user",
+            "time": {
+              "created": 1791017910589
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fc813d0001c128b29aa545e73b",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc813d0000f1fe66b3bb182312",
+              "type": "text",
+              "text": "Cortex native dark newer."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fc813d00025a9639ae0f21ba59",
+            "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+            "role": "assistant",
+            "time": {
+              "created": 1791017910589,
+              "completed": 1791017911011
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fc81470000b2d987bda1c815ac",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc813d00025a9639ae0f21ba59",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fc81480000b1b8d8335d2458db",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc813d00025a9639ae0f21ba59",
+              "type": "reasoning",
+              "text": "Checking dark newer turn."
+            },
+            {
+              "id": "prt_01a100fc823e00009d62d4b1eb6a750c",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc813d00025a9639ae0f21ba59",
+              "type": "text",
+              "text": "Confirmed dark newer turn."
+            },
+            {
+              "id": "prt_01a100fc82e20000fe8041c97cdefdb3",
+              "sessionID": "ses_01a100fc71da0000be3e6c0332ff6354",
+              "messageID": "msg_01a100fc813d00025a9639ae0f21ba59",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "bot",
+      "theme": "light",
+      "alpha": {
+        "id": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+        "title": "Cortex native light Alpha first.",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "bot",
+        "botID": "bot_01a100fd2aca0000acda7b575776f2c2",
+        "time": {
+          "created": 1791017955323,
+          "updated": 1791017955323
+        }
+      },
+      "beta": {
+        "id": "ses_01a100fd33e400007d93537f8496b3a6",
+        "title": "",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "bot",
+        "botID": "bot_01a100fd2b0500000846a17ae9e245d6",
+        "time": {
+          "created": 1791017956324,
+          "updated": 1791017956324
+        }
+      },
+      "alphaBefore": [
+        {
+          "info": {
+            "id": "msg_01a100fd2ffe0000e69d7cc3fb96bf95",
+            "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+            "role": "user",
+            "time": {
+              "created": 1791017955326
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd2fff0000bfacb213dd2b3961",
+              "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+              "messageID": "msg_01a100fd2ffe0000e69d7cc3fb96bf95",
+              "type": "text",
+              "text": "Cortex native light Alpha first."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd2fff0001b988f6355f76221a",
+            "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+            "role": "assistant",
+            "time": {
+              "created": 1791017955327,
+              "completed": 1791017955856
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd30060000a7b6268285d79ac7",
+              "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+              "messageID": "msg_01a100fd2fff0001b988f6355f76221a",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd300600011b613669692a8b79",
+              "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+              "messageID": "msg_01a100fd2fff0001b988f6355f76221a",
+              "type": "reasoning",
+              "text": "Checking light Alpha first turn."
+            },
+            {
+              "id": "prt_01a100fd313c000039ccb72af4404ab0",
+              "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+              "messageID": "msg_01a100fd2fff0001b988f6355f76221a",
+              "type": "text",
+              "text": "Confirmed light Alpha first turn."
+            },
+            {
+              "id": "prt_01a100fd320f0000ad523a13a2a95f26",
+              "sessionID": "ses_01a100fd2ffb0000ffd0368d4dccc08c",
+              "messageID": "msg_01a100fd2fff0001b988f6355f76221a",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "betaBefore": [
+        {
+          "info": {
+            "id": "msg_01a100fd34230000cc196258d310edd7",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "user",
+            "time": {
+              "created": 1791017956387
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd342400003a9f0530a2e168ec",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd34230000cc196258d310edd7",
+              "type": "text",
+              "text": "Cortex native light Beta older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "assistant",
+            "time": {
+              "created": 1791017956389,
+              "completed": 1791017956916
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd342b000062b2285184018890",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd342b000115b19e1d46f4249b",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "reasoning",
+              "text": "Checking light Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd35630000c9000b2a3b0c254c",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "text",
+              "text": "Confirmed light Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd363300001b63ba81bc09bde6",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "betaAfter": [
+        {
+          "info": {
+            "id": "msg_01a100fd34230000cc196258d310edd7",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "user",
+            "time": {
+              "created": 1791017956387
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd342400003a9f0530a2e168ec",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd34230000cc196258d310edd7",
+              "type": "text",
+              "text": "Cortex native light Beta older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "assistant",
+            "time": {
+              "created": 1791017956389,
+              "completed": 1791017956916
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd342b000062b2285184018890",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd342b000115b19e1d46f4249b",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "reasoning",
+              "text": "Checking light Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd35630000c9000b2a3b0c254c",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "text",
+              "text": "Confirmed light Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd363300001b63ba81bc09bde6",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd342500003f4e3ed0fd36a1a9",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd3e6a00006899dcac94f72991",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "user",
+            "time": {
+              "created": 1791017959018
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd3e6a000154af528fbc5bd757",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd3e6a00006899dcac94f72991",
+              "type": "text",
+              "text": "Cortex native light Beta newer."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd3e6b000035db2a4feeb58af7",
+            "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+            "role": "assistant",
+            "time": {
+              "created": 1791017959019,
+              "completed": 1791017959547
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd3e720000a4e2aac38a9c28e6",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd3e6b000035db2a4feeb58af7",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd3e720001535cd4fbcc288180",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd3e6b000035db2a4feeb58af7",
+              "type": "reasoning",
+              "text": "Checking light Beta newer turn."
+            },
+            {
+              "id": "prt_01a100fd3fa60000fba751cf54d7a050",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd3e6b000035db2a4feeb58af7",
+              "type": "text",
+              "text": "Confirmed light Beta newer turn."
+            },
+            {
+              "id": "prt_01a100fd407b00000242f8b4a437b94e",
+              "sessionID": "ses_01a100fd33e400007d93537f8496b3a6",
+              "messageID": "msg_01a100fd3e6b000035db2a4feeb58af7",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "ownerSamples": [
+        {
+          "title": "Native Alpha light",
+          "users": [
+            "Cortex native light Alpha first."
+          ],
+          "answers": [
+            "Confirmed light Alpha first turn."
+          ]
+        },
+        {
+          "users": [],
+          "answers": []
+        },
+        {
+          "title": "Native Beta light",
+          "users": [],
+          "answers": []
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn."
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn."
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn.",
+            "Confirmed"
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn.",
+            "Confirmed light"
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn.",
+            "Confirmed light Beta"
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn.",
+            "Confirmed light Beta newer"
+          ]
+        },
+        {
+          "title": "Native Beta light",
+          "users": [
+            "Cortex native light Beta older.",
+            "Cortex native light Beta newer."
+          ],
+          "answers": [
+            "Confirmed light Beta older turn.",
+            "Confirmed light Beta newer turn."
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "bot",
+      "theme": "dark",
+      "alpha": {
+        "id": "ses_01a100fd7b9f0000bbb075971c232724",
+        "title": "Cortex native dark Alpha first.",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "bot",
+        "botID": "bot_01a100fd7649000047d1f20f449beebe",
+        "time": {
+          "created": 1791017974687,
+          "updated": 1791017974687
+        }
+      },
+      "beta": {
+        "id": "ses_01a100fd7f820000dbc00f8895a55d0e",
+        "title": "",
+        "agent": "build",
+        "model": {
+          "providerID": "fake",
+          "modelID": "reasoner"
+        },
+        "kind": "bot",
+        "botID": "bot_01a100fd76850000e9b57ad9bc422b57",
+        "time": {
+          "created": 1791017975682,
+          "updated": 1791017975682
+        }
+      },
+      "alphaBefore": [
+        {
+          "info": {
+            "id": "msg_01a100fd7ba10000d687d4b1e28131c1",
+            "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+            "role": "user",
+            "time": {
+              "created": 1791017974689
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7ba200008a481a5556608c6d",
+              "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+              "messageID": "msg_01a100fd7ba10000d687d4b1e28131c1",
+              "type": "text",
+              "text": "Cortex native dark Alpha first."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd7ba20001898a48452453960e",
+            "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+            "role": "assistant",
+            "time": {
+              "created": 1791017974690,
+              "completed": 1791017975213
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7ba700001eeff621998b564e",
+              "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+              "messageID": "msg_01a100fd7ba20001898a48452453960e",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd7ba80000b71bde94bcf4a117",
+              "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+              "messageID": "msg_01a100fd7ba20001898a48452453960e",
+              "type": "reasoning",
+              "text": "Checking dark Alpha first turn."
+            },
+            {
+              "id": "prt_01a100fd7cdb0000aa931d98db6c8689",
+              "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+              "messageID": "msg_01a100fd7ba20001898a48452453960e",
+              "type": "text",
+              "text": "Confirmed dark Alpha first turn."
+            },
+            {
+              "id": "prt_01a100fd7dad00004f5ff4f2ddbfde9d",
+              "sessionID": "ses_01a100fd7b9f0000bbb075971c232724",
+              "messageID": "msg_01a100fd7ba20001898a48452453960e",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "betaBefore": [
+        {
+          "info": {
+            "id": "msg_01a100fd7fc00000478c6e688c62b223",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "user",
+            "time": {
+              "created": 1791017975744
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7fc10000f3ad584056463b90",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc00000478c6e688c62b223",
+              "type": "text",
+              "text": "Cortex native dark Beta older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd7fc10001d222b497b33d3c27",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "assistant",
+            "time": {
+              "created": 1791017975745,
+              "completed": 1791017976276
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7fcc00000c40a742e07a865e",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd7fcc0001745bbd961c405219",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "reasoning",
+              "text": "Checking dark Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd81000000f203e581c669555d",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "text",
+              "text": "Confirmed dark Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd81d300005e534de1db78db16",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "betaAfter": [
+        {
+          "info": {
+            "id": "msg_01a100fd7fc00000478c6e688c62b223",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "user",
+            "time": {
+              "created": 1791017975744
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7fc10000f3ad584056463b90",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc00000478c6e688c62b223",
+              "type": "text",
+              "text": "Cortex native dark Beta older."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd7fc10001d222b497b33d3c27",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "assistant",
+            "time": {
+              "created": 1791017975745,
+              "completed": 1791017976276
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd7fcc00000c40a742e07a865e",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd7fcc0001745bbd961c405219",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "reasoning",
+              "text": "Checking dark Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd81000000f203e581c669555d",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "text",
+              "text": "Confirmed dark Beta older turn."
+            },
+            {
+              "id": "prt_01a100fd81d300005e534de1db78db16",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd7fc10001d222b497b33d3c27",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd89df00009581874702cdc0df",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "user",
+            "time": {
+              "created": 1791017978335
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 0,
+              "output": 0,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd89e0000087f76166c350af19",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd89df00009581874702cdc0df",
+              "type": "text",
+              "text": "Cortex native dark Beta newer."
+            }
+          ]
+        },
+        {
+          "info": {
+            "id": "msg_01a100fd89e00001f0ff471baec0a945",
+            "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+            "role": "assistant",
+            "time": {
+              "created": 1791017978336,
+              "completed": 1791017978862
+            },
+            "model": {
+              "providerID": "fake",
+              "modelID": "reasoner"
+            },
+            "agent": "build",
+            "usage": {
+              "input": 120,
+              "output": 40,
+              "reasoning": 0,
+              "cost": 0
+            }
+          },
+          "parts": [
+            {
+              "id": "prt_01a100fd89e700001891652a37bdda89",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd89e00001f0ff471baec0a945",
+              "type": "step-start"
+            },
+            {
+              "id": "prt_01a100fd89e700018a8cae893a10da75",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd89e00001f0ff471baec0a945",
+              "type": "reasoning",
+              "text": "Checking dark Beta newer turn."
+            },
+            {
+              "id": "prt_01a100fd8b1d000036c5b4c609526f89",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd89e00001f0ff471baec0a945",
+              "type": "text",
+              "text": "Confirmed dark Beta newer turn."
+            },
+            {
+              "id": "prt_01a100fd8bed000010cf3a5fc2fdfc28",
+              "sessionID": "ses_01a100fd7f820000dbc00f8895a55d0e",
+              "messageID": "msg_01a100fd89e00001f0ff471baec0a945",
+              "type": "step-finish",
+              "reason": "stop",
+              "usage": {
+                "input": 120,
+                "output": 40,
+                "reasoning": 0,
+                "cost": 0
+              }
+            }
+          ]
+        }
+      ],
+      "ownerSamples": [
+        {
+          "title": "Native Alpha dark",
+          "users": [
+            "Cortex native dark Alpha first."
+          ],
+          "answers": [
+            "Confirmed dark Alpha first turn."
+          ]
+        },
+        {
+          "users": [],
+          "answers": []
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [],
+          "answers": []
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn."
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn."
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn.",
+            "Confirmed"
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn.",
+            "Confirmed dark"
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn.",
+            "Confirmed dark Beta"
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn.",
+            "Confirmed dark Beta newer"
+          ]
+        },
+        {
+          "title": "Native Beta dark",
+          "users": [
+            "Cortex native dark Beta older.",
+            "Cortex native dark Beta newer."
+          ],
+          "answers": [
+            "Confirmed dark Beta older turn.",
+            "Confirmed dark Beta newer turn."
+          ]
+        }
+      ]
+    }
+  ],
+  "stateCalls": [
+    {
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3/messages",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fbb1fd00000c30b00d241119d3",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354/messages",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fc71da0000be3e6c0332ff6354",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/api/bots",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/bots",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2b0500000846a17ae9e245d6/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/prompt",
+      "method": "POST",
+      "status": 202
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2b0500000846a17ae9e245d6/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/bots",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd76850000e9b57ad9bc422b57/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/prompt",
+      "method": "POST",
+      "status": 202
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd76850000e9b57ad9bc422b57/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2b0500000846a17ae9e245d6/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd76850000e9b57ad9bc422b57/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd2ffb0000ffd0368d4dccc08c",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd33e400007d93537f8496b3a6",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7b9f0000bbb075971c232724",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e/abort",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a100fd7f820000dbc00f8895a55d0e",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2aca0000acda7b575776f2c2",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd2b0500000846a17ae9e245d6",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd7649000047d1f20f449beebe",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/bots/bot_01a100fd76850000e9b57ad9bc422b57",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "ownedBotSessionsListed:bot_01a100fd2aca0000acda7b575776f2c2": true,
+    "ownedBotSessionsListed:bot_01a100fd2b0500000846a17ae9e245d6": true,
+    "ownedBotSessionsListed:bot_01a100fd7649000047d1f20f449beebe": true,
+    "ownedBotSessionsListed:bot_01a100fd76850000e9b57ad9bc422b57": true,
+    "ownedSessionRemoved:ses_01a100fd2ffb0000ffd0368d4dccc08c": true,
+    "ownedSessionRemoved:ses_01a100fd33e400007d93537f8496b3a6": true,
+    "ownedSessionRemoved:ses_01a100fd7b9f0000bbb075971c232724": true,
+    "ownedSessionRemoved:ses_01a100fd7f820000dbc00f8895a55d0e": true,
+    "ownedBotRemoved:bot_01a100fd2aca0000acda7b575776f2c2": true,
+    "ownedBotRemoved:bot_01a100fd2b0500000846a17ae9e245d6": true,
+    "ownedBotRemoved:bot_01a100fd7649000047d1f20f449beebe": true,
+    "ownedBotRemoved:bot_01a100fd76850000e9b57ad9bc422b57": true,
+    "fixtureReceiptRead": true,
+    "providerRestoredKeyRemoved": true,
+    "appearanceRestored": true,
+    "initialRouteRestored": true
+  },
+  "installedBefore": {
+    "asarSHA256": "bbd6dbddd5103e63d076f0edfd8afe245da1c5b858fc4883d9bd06cc70bcfc0a",
+    "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+    "membersVerified": 90,
+    "pid": 56523,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-live-state-760c4a0",
+    "inspectorSHA256": "66b375031d82502ed0b657aa93a4e4ff599795e353eb251a48488f00421f4a3f",
+    "membersSHA256": "4163d8f5044dd5d7e906d45571f20a373acd892cdb8edc2a7eafa8621656cccb"
+  },
+  "backend": {
+    "protocol": "cortex-live-state-native-v2",
+    "root": "/private/tmp/opencode/desktop-live-state-760c4a0",
+    "runID": "c9500e72-1b56-4b77-b6ca-6b42c2be8a87",
+    "pid": 56520,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "209e5bcc36d3cf3883b0690ed736dfef2928db76fb8d5d51eee6b65c14466ec9"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-live-state-native-v2",
+    "root": "/private/tmp/opencode/desktop-live-state-760c4a0",
+    "runID": "c9500e72-1b56-4b77-b6ca-6b42c2be8a87",
+    "pid": 56520,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "209e5bcc36d3cf3883b0690ed736dfef2928db76fb8d5d51eee6b65c14466ec9",
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 7,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "scenario": "chat",
+        "theme": "light",
+        "owner": "chat",
+        "turn": "older",
+        "userTexts": [
+          "Cortex native light older."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light older turn.",
+        "answerText": "Confirmed light older turn.",
+        "completed": true
+      },
+      {
+        "scenario": "chat",
+        "theme": "light",
+        "owner": "chat",
+        "turn": "newer",
+        "userTexts": [
+          "Cortex native light older.",
+          "Cortex native light newer."
+        ],
+        "replayAnswers": [
+          "Confirmed light older turn."
+        ],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light newer turn.",
+        "answerText": "Confirmed light newer turn.",
+        "completed": true
+      },
+      {
+        "scenario": "chat",
+        "theme": "dark",
+        "owner": "chat",
+        "turn": "older",
+        "userTexts": [
+          "Cortex native dark older."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark older turn.",
+        "answerText": "Confirmed dark older turn.",
+        "completed": true
+      },
+      {
+        "scenario": "chat",
+        "theme": "dark",
+        "owner": "chat",
+        "turn": "newer",
+        "userTexts": [
+          "Cortex native dark older.",
+          "Cortex native dark newer."
+        ],
+        "replayAnswers": [
+          "Confirmed dark older turn."
+        ],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark newer turn.",
+        "answerText": "Confirmed dark newer turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "light",
+        "owner": "Alpha",
+        "turn": "first",
+        "userTexts": [
+          "Cortex native light Alpha first."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light Alpha first turn.",
+        "answerText": "Confirmed light Alpha first turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "light",
+        "owner": "Beta",
+        "turn": "older",
+        "userTexts": [
+          "Cortex native light Beta older."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light Beta older turn.",
+        "answerText": "Confirmed light Beta older turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "light",
+        "owner": "Beta",
+        "turn": "newer",
+        "userTexts": [
+          "Cortex native light Beta older.",
+          "Cortex native light Beta newer."
+        ],
+        "replayAnswers": [
+          "Confirmed light Beta older turn."
+        ],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking light Beta newer turn.",
+        "answerText": "Confirmed light Beta newer turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "dark",
+        "owner": "Alpha",
+        "turn": "first",
+        "userTexts": [
+          "Cortex native dark Alpha first."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark Alpha first turn.",
+        "answerText": "Confirmed dark Alpha first turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "dark",
+        "owner": "Beta",
+        "turn": "older",
+        "userTexts": [
+          "Cortex native dark Beta older."
+        ],
+        "replayAnswers": [],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark Beta older turn.",
+        "answerText": "Confirmed dark Beta older turn.",
+        "completed": true
+      },
+      {
+        "scenario": "bot",
+        "theme": "dark",
+        "owner": "Beta",
+        "turn": "newer",
+        "userTexts": [
+          "Cortex native dark Beta older.",
+          "Cortex native dark Beta newer."
+        ],
+        "replayAnswers": [
+          "Confirmed dark Beta older turn."
+        ],
+        "modelExact": true,
+        "authorizationExact": true,
+        "reasoningOptionFields": [],
+        "outputFields": [
+          "reasoning_content",
+          "content"
+        ],
+        "reasoningText": "Checking dark Beta newer turn.",
+        "answerText": "Confirmed dark Beta newer turn.",
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "installedAfter": {
+    "asarSHA256": "bbd6dbddd5103e63d076f0edfd8afe245da1c5b858fc4883d9bd06cc70bcfc0a",
+    "revision": "760c4a046ce454bc8b0ab2fd85c941fec321c3ea",
+    "membersVerified": 90,
+    "pid": 56523,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-live-state-760c4a0",
+    "inspectorSHA256": "66b375031d82502ed0b657aa93a4e4ff599795e353eb251a48488f00421f4a3f",
+    "membersSHA256": "4163d8f5044dd5d7e906d45571f20a373acd892cdb8edc2a7eafa8621656cccb"
+  },
+  "finishedAt": "2026-10-03T08:59:56.303Z",
+  "scope": "Ordinary installed local Chat, Bot owner navigation and native chrome, controlled loopback provider. No delayed RPC or injected installed handlers; exact races belong to separate Mac CI tests. Pixel acceptance remains coordinator-owned."
+}

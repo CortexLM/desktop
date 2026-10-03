@@ -1,0 +1,114 @@
+{
+  "verdict": "bounded artifact approval",
+  "fullSizeCaptureViewsReviewed": 22,
+  "fullSizeUniqueImagesReviewed": 20,
+  "fullSizeInventory": "fullsize-targets.json",
+  "contactSheetsReviewed": 17,
+  "contactImagesReviewed": 135,
+  "contacts": [
+    {
+      "path": "contacts/all-01.jpg",
+      "cells": 8,
+      "observation": "Approvals refusal and six positive Bot ownership states rendered; target views reviewed full-size."
+    },
+    {
+      "path": "contacts/all-02.jpg",
+      "cells": 8,
+      "observation": "Bot refused saves and preview shared state rendered, modal/toast states retained."
+    },
+    {
+      "path": "contacts/all-03.jpg",
+      "cells": 8,
+      "observation": "Code diff scroll/model/refused attachment states rendered."
+    },
+    {
+      "path": "contacts/all-04.jpg",
+      "cells": 8,
+      "observation": "Pending/refused Code, Work and Bot drafts rendered; expected toast stacks."
+    },
+    {
+      "path": "contacts/all-05.jpg",
+      "cells": 8,
+      "observation": "Work drafts and frozen history/capsule states rendered."
+    },
+    {
+      "path": "contacts/all-06.jpg",
+      "cells": 8,
+      "observation": "Image comparison, reasoning, upload, board/mascot states rendered."
+    },
+    {
+      "path": "contacts/all-07.jpg",
+      "cells": 8,
+      "observation": "Board/mascot, focus/theme and keyboard/Undo rendered."
+    },
+    {
+      "path": "contacts/all-08.jpg",
+      "cells": 8,
+      "observation": "Six unique Chat race views rendered; targets reviewed full-size; memory empty/loading visible."
+    },
+    {
+      "path": "contacts/all-09.jpg",
+      "cells": 8,
+      "observation": "Memory retained drafts and refused mutations rendered."
+    },
+    {
+      "path": "contacts/all-10.jpg",
+      "cells": 8,
+      "observation": "Memory dark refusals, light auth and wide auth rendered."
+    },
+    {
+      "path": "contacts/all-11.jpg",
+      "cells": 8,
+      "observation": "Auth/settings rendered; known email-step clipped decorative logo persists."
+    },
+    {
+      "path": "contacts/all-12.jpg",
+      "cells": 8,
+      "observation": "Eight-locale target continuation and Approvals layouts rendered; locale originals reviewed full-size."
+    },
+    {
+      "path": "contacts/all-13.jpg",
+      "cells": 8,
+      "observation": "Approvals 1024 and routine running/failed/refused states rendered."
+    },
+    {
+      "path": "contacts/all-14.jpg",
+      "cells": 8,
+      "observation": "Grouped Bot search and French Code terminal tails rendered."
+    },
+    {
+      "path": "contacts/all-15.jpg",
+      "cells": 8,
+      "observation": "Provider narrow/wide rows and attachment refusal drafts rendered."
+    },
+    {
+      "path": "contacts/all-16.jpg",
+      "cells": 8,
+      "observation": "Image-history refusal and Work/routine source states rendered."
+    },
+    {
+      "path": "contacts/all-17.jpg",
+      "cells": 7,
+      "observation": "Routine source refusal/editor/run and completed tasks rendered."
+    }
+  ],
+  "findings": [
+    {
+      "scope": "Bot/Chat target screenshots",
+      "result": "No remaining owner/history contradiction or target text clipping found."
+    },
+    {
+      "scope": "Locale targets",
+      "result": "All eight visible/legible. Raster and CDP records establish this local WenQuanYi environment only."
+    },
+    {
+      "scope": "Broader contacts",
+      "result": "No blank application capture. Known email-step decorative clipping, scroll tails and toast stacks persist; no whole-product design approval."
+    },
+    {
+      "scope": "Two light Chat comparisons",
+      "result": "Two pixels differ in sidebar selected-row corners, [65,433,325,434]; transcript region exact. Runtime cause unknown."
+    }
+  ],
+  "scopeLimit": "Recorded 103-case final local Electron run; independent code review, next CI provisioning and installed-native acceptance separate."
+}
