@@ -1,0 +1,184 @@
+{
+  "nativeDecode": "function decode() { [native code] }",
+  "versions": {
+    "electron": "44.5.1",
+    "chrome": "152.0.7977.130"
+  },
+  "observedRendererHttpRequests": [],
+  "fixtures": [
+    {
+      "name": "jpeg-control",
+      "bytes": 942,
+      "sha256": "eb973c00c78659584958681ad42df61ea1612e4f56c35c8e1d2843e926301885",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "jpeg-control",
+        "decoded": true,
+        "error": null,
+        "dimensions": [
+          240,
+          120
+        ]
+      }
+    },
+    {
+      "name": "webp-control",
+      "bytes": 624,
+      "sha256": "2cbfed53b8b864a45fe13aa3dc1496cc71612d4c6b41706ca6ad91e62de418cf",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "webp-control",
+        "decoded": true,
+        "error": null,
+        "dimensions": [
+          240,
+          120
+        ]
+      }
+    },
+    {
+      "name": "jpeg-no-quantization",
+      "bytes": 804,
+      "sha256": "f6c3384cca9ecace98c23a8ec9d092fbdd2cbd5841fc92426ab9c6a00179f430",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "jpeg-no-quantization",
+        "decoded": true,
+        "error": null,
+        "dimensions": [
+          240,
+          120
+        ]
+      }
+    },
+    {
+      "name": "jpeg-no-tables",
+      "bytes": 713,
+      "sha256": "542c7a3ada90af0c163aac8a5f9c82ead3c86d21fb103e24a89267aca9e9e8fe",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "jpeg-no-tables",
+        "decoded": true,
+        "error": null,
+        "dimensions": [
+          240,
+          120
+        ]
+      }
+    },
+    {
+      "name": "webp-header-only",
+      "bytes": 30,
+      "sha256": "b1ab638798a6b0b3f6adddb524063a24820b32c830d6e7289b1d5b9cdb94b4f3",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "webp-header-only",
+        "decoded": false,
+        "error": {
+          "name": "EncodingError",
+          "message": "The source image cannot be decoded."
+        },
+        "dimensions": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "webp-zero-payload",
+      "bytes": 142,
+      "sha256": "15cff958841354b55efe094f34be57c40b2b4af126067524933edd481708bec6",
+      "preflight": {
+        "ok": true,
+        "dimensions": [
+          240,
+          120
+        ],
+        "bytesIdentical": true
+      },
+      "native": {
+        "name": "webp-zero-payload",
+        "decoded": true,
+        "error": null,
+        "dimensions": [
+          240,
+          120
+        ]
+      }
+    }
+  ],
+  "priorPng": [
+    {
+      "mode": "original",
+      "decoded": true,
+      "dimensions": [
+        240,
+        120
+      ],
+      "fileBytes": 1101
+    },
+    {
+      "mode": "first-byte",
+      "decoded": true,
+      "dimensions": [
+        240,
+        120
+      ],
+      "fileBytes": 1101
+    },
+    {
+      "mode": "zero-idat",
+      "decoded": true,
+      "dimensions": [
+        240,
+        120
+      ],
+      "fileBytes": 1101
+    },
+    {
+      "mode": "invalid-deflate",
+      "decoded": true,
+      "dimensions": [
+        240,
+        120
+      ],
+      "fileBytes": 1101
+    }
+  ],
+  "scope": "Read-only existing diagnostics; all4 PNG mutations decoded true; only header-only WebP refused among6 later fixtures. No pixel integrity inference."
+}

@@ -1,0 +1,27 @@
+{
+  "captureDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "laterCommit": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "gitInputsMatched": 520,
+  "originalDirtyReceiptsPreserved": true,
+  "headerBindings": [
+    {
+      "receipt": "pinned-inputs.json",
+      "originalSHA256": "4112892a4cb9215ba1bfb37d2e5c977d9756dd7e1982f695dcb9c0ef6464d34a",
+      "boundSHA256": "cb91dc76a67376300da2c4900799505918bdadd9c42bfa599463f0b46a86712d",
+      "payloadUnchanged": true
+    },
+    {
+      "receipt": "renderer-inputs.json",
+      "originalSHA256": "fae7a66c7eec37edd7b521f1749938662b3427c545c7efd5b2ea4708b0df36ce",
+      "boundSHA256": "4f33461df85a7eb90e024c9e5fd538c02613a65d866d5211344755135427c2f2",
+      "payloadUnchanged": true
+    },
+    {
+      "receipt": "members.json",
+      "originalSHA256": "9c610cbde3caa906800641563b15ee06968579dd1b05b63ca27b5b14249c3d15",
+      "boundSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c",
+      "payloadUnchanged": true
+    }
+  ],
+  "scope": "Exact later Git/source attribution; no clean rebuild or new ASAR/package/CI/native execution."
+}

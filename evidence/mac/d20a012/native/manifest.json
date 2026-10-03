@@ -1,0 +1,3531 @@
+{
+  "status": "failed",
+  "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "asar": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+  "startedAt": "2026-10-03T22:36:07.516Z",
+  "invocation": {
+    "argv": [
+      "/tmp/opencode/files-native.mjs",
+      "/tmp/opencode/files-native-d20a012-a2",
+      "/tmp/opencode/desktop-files-native-d20a012-a2",
+      "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+      "d20a012fbb774aa9b348fe1913f85d3476430098",
+      "/tmp/opencode/files-mac-package-d20a012/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+    "nodeVersion": "v22.23.3"
+  },
+  "budget": {
+    "flowMs": 150000,
+    "cleanupMs": 45000,
+    "absoluteMs": 195000,
+    "rawOperationMs": 10000,
+    "captures": 4,
+    "nativeSamples": 8,
+    "originalBytes": 3145728,
+    "totalBytes": 12582912,
+    "manifestBytes": 409600,
+    "ipcCalls": 100,
+    "downloads": 1
+  },
+  "capturesRequested": 4,
+  "captures": [
+    {
+      "file": "files-fit-light.png",
+      "requestedAt": "2026-10-03T22:36:27.958Z",
+      "theme": "light",
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 9114,
+      "pid": 78150,
+      "active": true,
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1",
+        "translate": "0px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 65221,
+      "sha256": "f1152f2820297bf2d0764fbbc0687e39bd063f5e7da0eee55f68209506aeba8f",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "finishedAt": "2026-10-03T22:36:32.803Z"
+    },
+    {
+      "file": "files-zoom-light.png",
+      "requestedAt": "2026-10-03T22:36:41.556Z",
+      "theme": "light",
+      "native": true,
+      "active": true,
+      "id": 9114,
+      "pid": 78150,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−150% of Fit+Fit200%Drag to pan · scroll to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                801.65625,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 150% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1.5",
+        "translate": "0px -40px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 67717,
+      "sha256": "1dc88185b0787eab8ced5065044f17d8f2bdbdb3d2336ac80a96a92763841a6b",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−150% of Fit+Fit200%Drag to pan · scroll to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                801.65625,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 150% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "finishedAt": "2026-10-03T22:36:46.376Z"
+    },
+    {
+      "file": "files-fit-dark.png",
+      "requestedAt": "2026-10-03T22:36:58.317Z",
+      "theme": "dark",
+      "native": true,
+      "id": 9114,
+      "pid": 78150,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "osDark": true,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1",
+        "translate": "0px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(91, 155, 255) solid 2px",
+        "boxShadow": "rgba(255, 255, 255, 0.08) 0px 0px 0px 1px"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 65008,
+      "sha256": "8d88259afe1e4a5fe7e4e80a22defbaec01ca7e45b60511a3cfcbb14375fe78b",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−100% of Fit+Fit200%Scroll or + / − to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                828.109375,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 100% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "finishedAt": "2026-10-03T22:37:03.085Z"
+    },
+    {
+      "file": "files-zoom-dark.png",
+      "requestedAt": "2026-10-03T22:37:11.905Z",
+      "theme": "dark",
+      "native": true,
+      "pid": 78150,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "id": 9114,
+      "osDark": true,
+      "boxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−150% of Fit+Fit200%Drag to pan · scroll to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                801.65625,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 150% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "imageSample": {
+        "dimensions": [
+          120,
+          180
+        ],
+        "complete": true,
+        "protocol": "blob:",
+        "scale": "1.5",
+        "translate": "0px -40px",
+        "rgba": [
+          [
+            216,
+            76,
+            55,
+            255
+          ],
+          [
+            33,
+            116,
+            176,
+            255
+          ],
+          [
+            216,
+            76,
+            55,
+            255
+          ]
+        ]
+      },
+      "focus": {
+        "visible": true,
+        "outline": "rgb(91, 155, 255) solid 2px",
+        "boxShadow": "rgba(255, 255, 255, 0.08) 0px 0px 0px 1px"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 67501,
+      "sha256": "18cc5d71f8f06101dbc96596ae85fac5ebd72033c4eae155b95fc3c51f0d610f",
+      "pixels": [
+        960,
+        640
+      ],
+      "afterBoxes": [
+        {
+          "text": "Cortex native portrait.png",
+          "bounds": [
+            389,
+            64,
+            544.96875,
+            80
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                389,
+                63,
+                544.96875,
+                80
+              ],
+              "clip": [
+                389,
+                64,
+                545,
+                80
+              ],
+              "visible": false,
+              "measuredFilenameLeading": true
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "−150% of Fit+Fit200%Drag to pan · scroll to zoom",
+          "bounds": [
+            353,
+            100,
+            939,
+            132
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                362.828125,
+                105,
+                371.15625,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                387,
+                108,
+                466.203125,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                481.734375,
+                105,
+                490.671875,
+                126
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                516.203125,
+                108,
+                530.6875,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                556.6875,
+                108,
+                590.25,
+                124
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                801.65625,
+                109,
+                939,
+                123
+              ],
+              "clip": [
+                53,
+                44,
+                955,
+                635
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Cortex native portrait.png, zoom 150% of Fit",
+          "bounds": [
+            353,
+            144,
+            939,
+            475
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Image details",
+          "bounds": [
+            353,
+            487,
+            939,
+            619
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [
+            {
+              "bounds": [
+                367,
+                501,
+                442.5625,
+                517
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                528,
+                486.375,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                869.765625,
+                528,
+                925,
+                544
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                556,
+                405.671875,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                900.28125,
+                556,
+                925,
+                572
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                367,
+                584,
+                411.265625,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            },
+            {
+              "bounds": [
+                870.03125,
+                584,
+                925,
+                600
+              ],
+              "clip": [
+                353,
+                487,
+                939,
+                619
+              ],
+              "visible": true,
+              "measuredFilenameLeading": false
+            }
+          ],
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Download",
+          "bounds": [
+            912,
+            58,
+            940,
+            86
+          ],
+          "clip": [
+            53,
+            44,
+            955,
+            635
+          ],
+          "ink": [],
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "finishedAt": "2026-10-03T22:37:16.905Z"
+    }
+  ],
+  "nativeChecks": [
+    {
+      "stage": "light:files-fit:capture",
+      "theme": "light",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:36:27.900Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9114,
+          "pid": 78150,
+          "active": true
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "theme": "light",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:36:32.745Z",
+      "rows": [
+        {
+          "active": true,
+          "pid": 78150,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9114
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:files-zoom:capture",
+      "theme": "light",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:36:41.497Z",
+      "rows": [
+        {
+          "active": true,
+          "id": 9114,
+          "pid": 78150,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          }
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:files-zoom:capture",
+      "theme": "light",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:36:46.317Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 9114,
+          "active": true,
+          "pid": 78150
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "dark:files-fit:capture",
+      "theme": "dark",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:36:58.259Z",
+      "rows": [
+        {
+          "id": 9114,
+          "pid": 78150,
+          "active": true,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          }
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:files-fit:capture",
+      "theme": "dark",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:37:03.027Z",
+      "rows": [
+        {
+          "id": 9114,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "pid": 78150,
+          "active": true
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:files-zoom:capture",
+      "theme": "dark",
+      "point": "before",
+      "measuredAt": "2026-10-03T22:37:11.847Z",
+      "rows": [
+        {
+          "pid": 78150,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "id": 9114
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:files-zoom:capture",
+      "theme": "dark",
+      "point": "after",
+      "measuredAt": "2026-10-03T22:37:16.846Z",
+      "rows": [
+        {
+          "pid": 78150,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "id": 9114
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "light:files-fit:retained",
+      "theme": "light",
+      "keyboardPan": {
+        "before": {
+          "raw": "0px",
+          "x": 0,
+          "y": 0
+        },
+        "after": {
+          "raw": "0px -40px",
+          "x": 0,
+          "y": -40
+        },
+        "displacement": {
+          "x": 0,
+          "y": -40
+        }
+      }
+    },
+    {
+      "stage": "light:files-zoom:retained",
+      "exactTuple": true,
+      "open": "Enter",
+      "zoomInOutFit": true,
+      "keyboardPan": true,
+      "minimapRatio": 0.6666666666666666
+    },
+    {
+      "stage": "dark:files-fit:retained",
+      "theme": "dark",
+      "keyboardPan": {
+        "before": {
+          "raw": "0px",
+          "x": 0,
+          "y": 0
+        },
+        "after": {
+          "raw": "0px -40px",
+          "x": 0,
+          "y": -40
+        },
+        "displacement": {
+          "x": 0,
+          "y": -40
+        }
+      }
+    },
+    {
+      "stage": "dark:files-zoom:retained",
+      "exactTuple": true,
+      "open": "pointer",
+      "zoomInOutFit": true,
+      "keyboardPan": true,
+      "minimapRatio": 0.6666666666666666
+    }
+  ],
+  "calls": [
+    {
+      "stage": "fresh-profile",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers/fake/models",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e9245f0000b585f9ddc637fd84/prompt",
+      "method": "POST",
+      "status": 202,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e9245f0000b585f9ddc637fd84/messages",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 2
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103e9245f0000b585f9ddc637fd84",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:open-saved-image",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "dark:open-saved-image",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/sessions/ses_01a103e9245f0000b585f9ddc637fd84",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "dark:original-download",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "ownedSaveSheetCancelled": {
+      "diagnostic": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///var/tmp/opencode/files-native.mjs:209:275\n    at clean (file:///var/tmp/opencode/files-native.mjs:208:64)\n    at file:///var/tmp/opencode/files-native.mjs:209:52"
+    },
+    "ownedDownloadRemoved": true,
+    "ownedChatRemoved": true,
+    "fixtureKeyRemoved": true,
+    "providerValuesRestored": true,
+    "nativeAppearanceRestored": true,
+    "themePreferenceRestored": true,
+    "routeRestored": true,
+    "controlledListsRestored": true,
+    "controlledInferenceOnly": true,
+    "installedAfter": true
+  },
+  "helperHashes": {
+    "files-native.mjs": "e97be3e31f4e60975ce0d78009b284f7834084f31915079136abdb0fc1c15334",
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "fixture": {
+    "bytes": 393,
+    "width": 120,
+    "height": 180,
+    "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+    "rgb": [
+      [
+        216,
+        76,
+        55
+      ],
+      [
+        33,
+        116,
+        176
+      ],
+      [
+        216,
+        76,
+        55
+      ]
+    ]
+  },
+  "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c",
+  "memberCount": 90,
+  "rootHelperHashes": {
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "stage": "dark:original-download",
+  "installedBefore": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 78150,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a2",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "backend": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a2",
+    "runID": "495c983e-5822-4c69-8320-f26d1289862a",
+    "pid": 78145,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    }
+  },
+  "backendReceipt": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a2",
+    "runID": "495c983e-5822-4c69-8320-f26d1289862a",
+    "pid": 78145,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    },
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 3,
+      "inference": 1,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "imageSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+        "imageBytes": 393,
+        "modelExact": true,
+        "authorizationExact": true,
+        "messagesExact": true,
+        "toolsAbsent": true,
+        "httpStatus": 200,
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "playwrightVersion": "1.63.0",
+  "nativeDownloadOverrides": "none; connectOverCDP noDefaults:true",
+  "previous": {
+    "stored": null,
+    "pref": "system",
+    "theme": "dark",
+    "nativeDark": "true",
+    "hash": "#/home"
+  },
+  "session": {
+    "id": "ses_01a103e9245f0000b585f9ddc637fd84",
+    "title": "Native saved image",
+    "agent": "build",
+    "model": {
+      "providerID": "fake",
+      "modelID": "reasoner"
+    },
+    "kind": "chat",
+    "time": {
+      "created": 1791066973279,
+      "updated": 1791066973279
+    }
+  },
+  "savedImage": {
+    "sessionID": "ses_01a103e9245f0000b585f9ddc637fd84",
+    "messageID": "msg_01a103e924a10000eb02d6daa06a9bc5",
+    "partID": "prt_01a103e924a20000755b785b5e5ae65f",
+    "historySHA256": "b8eb2c50af916b6856326f10cc0fe55bc2b54d60771214b74c38d00f62c9b499",
+    "fileSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf"
+  },
+  "download": {
+    "directory": "/private/tmp/opencode/desktop-files-native-d20a012-a2/native-download",
+    "fresh": true,
+    "path": "/private/tmp/opencode/desktop-files-native-d20a012-a2/native-download/Cortex native portrait.png",
+    "requested": true,
+    "nativeSave": {
+      "status": 1,
+      "timedOut": false,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "base64": "",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 289,
+        "sha256": "5b8883fb71437d947c2b1fdf3d5ef64c086573257e0e008ce9440fbba1614ca6",
+        "base64": "b3duZXIsIDc4MTUwLCBuYW1lIG9mIGFwcGxpY2F0aW9uIHByb2Nlc3MgQ29ydGV4LCBmcm9udG1vc3Qgb2YgYXBwbGljYXRpb24gcHJvY2VzcyBDb3J0ZXgKc2hlZXQtY291bnQsIDEKODc0Ojg4NDogZXhlY3V0aW9uIGVycm9yOiBTeXN0ZW0gRXZlbnRzIGdvdCBhbiBlcnJvcjogQ2Fu4oCZdCBtYWtlIGl0ZW0gMSBvZiBlbnRpcmUgY29udGVudHMgb2Ygc2hlZXQgMSBvZiB3aW5kb3cgIkNvcnRleCIgb2YgYXBwbGljYXRpb24gcHJvY2VzcyAiQ29ydGV4IiBpbnRvIHR5cGUgc3BlY2lmaWVyLiAoLTE3MDApCg==",
+        "truncated": false
+      }
+    },
+    "cancelSample": {
+      "status": 1,
+      "timedOut": false,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "base64": "",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 289,
+        "sha256": "5b8883fb71437d947c2b1fdf3d5ef64c086573257e0e008ce9440fbba1614ca6",
+        "base64": "b3duZXIsIDc4MTUwLCBuYW1lIG9mIGFwcGxpY2F0aW9uIHByb2Nlc3MgQ29ydGV4LCBmcm9udG1vc3Qgb2YgYXBwbGljYXRpb24gcHJvY2VzcyBDb3J0ZXgKc2hlZXQtY291bnQsIDEKODc0Ojg4NDogZXhlY3V0aW9uIGVycm9yOiBTeXN0ZW0gRXZlbnRzIGdvdCBhbiBlcnJvcjogQ2Fu4oCZdCBtYWtlIGl0ZW0gMSBvZiBlbnRpcmUgY29udGVudHMgb2Ygc2hlZXQgMSBvZiB3aW5kb3cgIkNvcnRleCIgb2YgYXBwbGljYXRpb24gcHJvY2VzcyAiQ29ydGV4IiBpbnRvIHR5cGUgc3BlY2lmaWVyLiAoLTE3MDApCg==",
+        "truncated": false
+      }
+    },
+    "removal": {
+      "removed": false,
+      "absent": true,
+      "path": "/private/tmp/opencode/desktop-files-native-d20a012-a2/native-download/Cortex native portrait.png"
+    }
+  },
+  "failure": {
+    "stage": "dark:original-download",
+    "diagnostic": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///var/tmp/opencode/files-native.mjs:201:183"
+  },
+  "flowDurationMs": 74407,
+  "cleanupStartedAt": "2026-10-03T22:37:21.923Z",
+  "cleanupDeadline": "2026-10-03T22:38:06.923Z",
+  "providerDocumentRetained": true,
+  "installedAfter": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 78150,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a2",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "finishedAt": "2026-10-03T22:37:26.564Z",
+  "durationMs": 79048,
+  "scope": "Four native English saved-PNG Fit/zoom images; actual OS themes; exact Chat Open; one fixture inference; provider-disabled viewing; one candidate native Save-sheet download. Cleanup results determine removal/restoration. No other formats/restart/races/locale/long-name/full-product acceptance."
+}

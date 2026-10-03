@@ -1,0 +1,50 @@
+[
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/files-live-followup/baseline/files-live.spec.ts",
+    "sha256": "e28ddaece53de11cde6ed26581d085b2b002c2d3bf62ccb303f23e22938e327e",
+    "lines": 290,
+    "retained": "source/files-original8.ts.gz",
+    "scope": "baseline8 + initial-targeted8",
+    "provenance": "contemporaneous original"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/files-live-followup/baseline/rename-before.spec.ts",
+    "sha256": "0982831cc5fc8a569bdd0a08b5e13515cc3796de717283fb53ce6fd42ecdf1e6",
+    "lines": 312,
+    "retained": "source/files-rename9.ts.gz",
+    "scope": "rename-before1 only",
+    "provenance": "reconstructed original prefix + unchanged appended regression; matches author handoff"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/files-live-followup/baseline/viewer-before.spec.ts",
+    "sha256": "5ef6cf529cc6ad9be79d3417db9242efec1d434a479ba82a4b194c4b985f5740",
+    "lines": 373,
+    "retained": "source/files-viewer11.ts.gz",
+    "scope": "viewer-before2 only",
+    "provenance": "reconstructed original prefix + unchanged appended regressions; matches author handoff"
+  },
+  {
+    "source": "/tmp/opencode/build-files-corrected/files-live.spec.ts",
+    "sha256": "a7bd52dbc4577825bbaf2b50fff0de17801faa521ca98c6369c37b53e0f1e498",
+    "lines": 373,
+    "retained": "source/files-final11.ts.gz",
+    "scope": "full143 + corrected-targeted11",
+    "provenance": "frozen final"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/screens.spec.ts",
+    "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c",
+    "lines": 42,
+    "retained": "source/screens.ts.gz",
+    "scope": "426 render stdout",
+    "provenance": "current source"
+  },
+  {
+    "source": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+    "sha256": "59faac9327ee70fa71750953e089552b97b3507388f391bc22b1ff2434a55f62",
+    "lines": 379,
+    "retained": "source/navigation.ts.gz",
+    "scope": "intentional callback failures",
+    "provenance": "current source"
+  }
+]

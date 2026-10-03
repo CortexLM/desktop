@@ -1,0 +1,12 @@
+{
+  "originalTestSHA256": "e28ddaece53de11cde6ed26581d085b2b002c2d3bf62ccb303f23e22938e327e",
+  "renameNegativeSHA256": "0982831cc5fc8a569bdd0a08b5e13515cc3796de717283fb53ce6fd42ecdf1e6",
+  "viewerNegativeSHA256": "5ef6cf529cc6ad9be79d3417db9242efec1d434a479ba82a4b194c4b985f5740",
+  "finalTestSHA256": "a7bd52dbc4577825bbaf2b50fff0de17801faa521ca98c6369c37b53e0f1e498",
+  "baseline": "Eight first failures on old Activity build: absent Open, unsafe card count, missing live read/decode/view. Later assertions unreached.",
+  "collectorFailures": "Initial six/eight: supposedly corrupt PNG is natively accepted; disabling PATCH emits no model refresh event. Native-proven WebP and reload-before-new-draft correct test setup, without application codec/event changes.",
+  "strongerProof": "Pan compares pre-action values; provider GET asserts disabled after restart; empty attachments asserted before no-model setup reload.",
+  "applicationNegatives": "Rename: second editor appears (307). Viewer: Blob src changes on first sidebar toggle (325); long-name first light visible height zero (362). Later assertions/dark iteration unreached.",
+  "sourceSnapshots": "Rename/viewer negatives are explicitly reconstructed original-prefix plus unchanged suffix snapshots, not claimed contemporaneous copies.",
+  "finalCI": "All eleven final a7bd52 assertions execute on each OS; prior partial/negative runs do not inherit those results."
+}

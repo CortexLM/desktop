@@ -1,6 +1,9 @@
-# Saved local image viewing — in progress
+# Saved local image viewing — scoped delivery
 
-Uncommitted implementation follows application `9ba8e59` / documentary `d390cce`.
+Application `d20a012fbb774aa9b348fe1913f85d3476430098` is pushed;
+[CI 37153526225](https://github.com/CortexLM/desktop/actions/runs/37153526225) passes all three jobs.
+[Later commit binding](production/application-pin.json) verifies all 520 tested inputs;
+original dirty-base `d390cce` execution receipts remain unchanged.
 The existing Files image route reads saved local Chat attachments, using existing IPC,
 strict static-raster preflight and native decoding. Exact-ID Open protects Chat drafts;
 zoom/Fit/download operate on actual image bytes. [Contract](contract.md),
@@ -32,8 +35,34 @@ Full regression passes **143 cases / 426 render visits**, zero retries/skips/fla
 in 303.294 seconds. It executes the final eleven-case test source (`a7bd52db…`).
 Final [test-source review](e2e-accepted.md), [viewer review](viewer-accepted.md),
 [Chat guard review](chat-accepted.md) and [raster review](raster-accepted.md) approve
-their corrected sources. Independent image/preview reviews are active.
-No Files CI or installed-native acceptance claimed.
+their corrected sources. [Independent local image review](electron-local/README.md)
+accepts 195 candidate and 21 historical images, including 14 primary Files full-size views
+and 13 failure originals. [Frozen preview review](compare/README.md) accepts eight
+comparisons with one explicit Ask gap; uploaded/selected Chat previews are outside that run.
+The matching [Mac package](../mac/d20a012/package-review.md) is independently admitted:
+91 ASAR files/92 blocks, 90 members, 520 inputs; Mac/Linux ASAR bytes match.
+[CI image review](ci-d20a012/README.md) accepts 391 images/28 primary full-size Files views:
+143 cases/426 visits per OS, 278 units plus one optional skip. Sixteen Memory and sixteen
+auth-locale frames match Activity exactly; other image drift retains measured bounds.
+Installed-native evidence retains a separate [Save diagnostic](../mac/d20a012/save-diagnostic/README.md), which
+records real dialog behavior, a failed cancellation assumption and explicit recovery.
+The subsequent [first bounded native run](../mac/d20a012/initial-native/README.md) fails
+before capture on a one-pixel filename Range overrun; nine cleanup checks pass. A
+[pixel diagnostic](../mac/d20a012/filename-diagnostic/README.md) finds byte-identical
+normal/unclipped originals, resolving that exact measurement concern without an app change.
+The [corrected collector](../mac/d20a012/native/README.md) records four passing native
+Fit/zoom captures, then fails in its AppleScript Save step. A
+[manual native supplement](../mac/d20a012/manual-download/README.md) completes that pending
+download with all393 original bytes and metadata. Failed automation/unreached assertions
+remain explicit. Device restored and released. [Independent native review](../mac/d20a012/native-audit/README.md)
+accepts the bounded composite: four native views plus the original-byte manual supplement.
+The manual GUI sequence is coordinator-attested; no durable Save-dialog image or
+fully successful automated collector is claimed.
+
+[External readback at 21:28:51 UTC](owner-readback/REPORT.md) finds no new backend/SDK
+handoff or exact five-state import permission. Those gates do not block this local slice.
+[Documentary review](documentary-review.md) verifies these scoped claims and current links;
+its recorded source pins precede the final native-composite disposition.
 
 Prior Activity proofs retain their own source/build authority. This slice supplies no
 standalone file store, remote hydration, physical erasure or other-format support.

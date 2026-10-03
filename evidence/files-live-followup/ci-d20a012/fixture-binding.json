@@ -1,0 +1,59 @@
+{
+  "probe": {
+    "path": "../corrupt-fixture-probe.json",
+    "bytes": 25290,
+    "sha256": "8b9332fc1d501f32fa16aba9993794bc85dac777c1ef2cd5b3411bb8c9646f62"
+  },
+  "source": {
+    "path": "../corrupt-fixture-probe.mjs",
+    "bytes": 7245,
+    "sha256": "b70a49acc875b243f0872f476a41bf7e0609d9dc6e467390583fa03c181308ce"
+  },
+  "fixtures": [
+    {
+      "path": "../codec-fixtures/jpeg-control.jpg",
+      "bytes": 942,
+      "sha256": "eb973c00c78659584958681ad42df61ea1612e4f56c35c8e1d2843e926301885"
+    },
+    {
+      "path": "../codec-fixtures/webp-control.webp",
+      "bytes": 624,
+      "sha256": "2cbfed53b8b864a45fe13aa3dc1496cc71612d4c6b41706ca6ad91e62de418cf"
+    },
+    {
+      "path": "../codec-fixtures/jpeg-no-quantization.jpg",
+      "bytes": 804,
+      "sha256": "f6c3384cca9ecace98c23a8ec9d092fbdd2cbd5841fc92426ab9c6a00179f430"
+    },
+    {
+      "path": "../codec-fixtures/jpeg-no-tables.jpg",
+      "bytes": 713,
+      "sha256": "542c7a3ada90af0c163aac8a5f9c82ead3c86d21fb103e24a89267aca9e9e8fe"
+    },
+    {
+      "path": "../codec-fixtures/webp-header-only.webp",
+      "bytes": 30,
+      "sha256": "b1ab638798a6b0b3f6adddb524063a24820b32c830d6e7289b1d5b9cdb94b4f3"
+    },
+    {
+      "path": "../codec-fixtures/webp-zero-payload.webp",
+      "bytes": 142,
+      "sha256": "15cff958841354b55efe094f34be57c40b2b4af126067524933edd481708bec6"
+    }
+  ],
+  "rejectedSHA256": "b1ab638798a6b0b3f6adddb524063a24820b32c830d6e7289b1d5b9cdb94b4f3",
+  "rejectedBytes": 30,
+  "nativeResult": {
+    "name": "webp-header-only",
+    "decoded": false,
+    "error": {
+      "name": "EncodingError",
+      "message": "The source image cannot be decoded."
+    },
+    "dimensions": [
+      0,
+      0
+    ]
+  },
+  "scope": "Supplied earlier genuine Electron 44.5.1 Linux native probe/source/fixtures verified offline; no codec execution here. Final corrected CI test passes on Linux and macOS."
+}

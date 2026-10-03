@@ -1,0 +1,52 @@
+{
+  "rawReports": [
+    {
+      "source": "/tmp/opencode/files-ci-37153526225/artifacts/e2e-linux/test-results/e2e.json",
+      "retained": "e2e-linux-report.json.gz",
+      "rawBytes": 1820761,
+      "rawSHA256": "24ae7b50c3933eb1bd573ff50785042b90286dbf631e3fb7919aedc45853a4ab",
+      "gzipSHA256": "08b7253693defc885aec0476eaaebc354bc4c8b3e8091cc8b6b4cf5a29a4cb7e"
+    },
+    {
+      "source": "/tmp/opencode/files-ci-37153526225/artifacts/macos/test-results/e2e.json",
+      "retained": "macos-report.json.gz",
+      "rawBytes": 1812661,
+      "rawSHA256": "811f0be18f3cb1bc8e0276e7ec5b7786f1c26db39ab02dec0707ec366d469472",
+      "gzipSHA256": "7ab129e4ece337b6f573bb21efe9ab723d37a8b4a634fc60cfaa7a655607721e"
+    }
+  ],
+  "imageRetention": {
+    "9ba8e59 RGBA-exact canonical": 290,
+    "new lossless WebP": 101
+  },
+  "uniqueImages": 391,
+  "pngCopies": 1179,
+  "rawArchivesRetainedInRepository": false,
+  "archiveBindings": "downloads.json",
+  "canonicalReusesRequire": "Full-image decoded RGBA hash and bytes exact; prior retained SHA256 and dimensions verified. No tolerance.",
+  "originalInputHashes": [
+    {
+      "path": "/tmp/opencode/files-ci-37153526225/run.json",
+      "sha256": "250882d038d1681a716a7ec25e9fcb66a62879f5ae0188ffac4300b87eabc7a6"
+    },
+    {
+      "path": "/tmp/opencode/files-ci-37153526225/run.log",
+      "sha256": "cab2833da25c8b14d0685537fe8017daede9d5517d689f9fb661ad6052538b5b"
+    },
+    {
+      "path": "/tmp/opencode/files-ci-37153526225/artifacts.json",
+      "sha256": "0336c2d7674e39196e306d50035baaf70cd19e3f00a89a219bfb709634d47817"
+    },
+    {
+      "path": "/tmp/opencode/files-ci-37153526225/archive-bindings.json",
+      "sha256": "a346a94e06fac91e65c7814a71632df2f47a8476ee80578514abb871770b5182"
+    }
+  ],
+  "rawLog": {
+    "retained": "logs/run.log.gz",
+    "rawBytes": 280100,
+    "rawSHA256": "cab2833da25c8b14d0685537fe8017daede9d5517d689f9fb661ad6052538b5b",
+    "gzipSHA256": "ca29574899cf7e327a939dab7b3495c6c93224dc7665cfc57ed7b3eaf7f16b4e"
+  },
+  "collectorScope": "Supplied raw reports/logs/metadata retained; original PNG member hashes map to verified RGBA-exact lossless canonicals. Archives/HTML/smoke DB not duplicated; member hashes retained."
+}

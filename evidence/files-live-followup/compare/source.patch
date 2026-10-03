@@ -1,0 +1,461 @@
+--- 9ba8e59/packages/app/src/screens/chat/chat.css
++++ files/packages/app/src/screens/chat/chat.css
+@@ -423,4 +423,6 @@
+ .chat-mthink .chat-grow { display: flex; flex-direction: column; }
+ .chat-live-banner { width: 100%; max-width: 680px; margin-bottom: 10px; }
+ .chat-thumb { width: 160px; max-height: 160px; border-radius: 12px; object-fit: cover; box-shadow: var(--ring); }
++.chat-thumb-open { display: inline-flex; max-width: 100%; border-radius: 12px; }
++.chat-thumb-open .chat-thumb { max-width: 100%; }
+ .chat-mthink .switch { display: inline-block; }
+--- 9ba8e59/packages/app/src/screens/chat/live-chat.tsx
++++ files/packages/app/src/screens/chat/live-chat.tsx
+@@ -8,11 +8,12 @@
+ import { api } from "../../api";
+ import { useMessages, usePermissions, useProjects, useQuery } from "../../state/live";
+ import { toolName, toolTitle } from "../../state/tool-label";
+-import { useNav } from "../../shell/nav";
++import { navigation, readHash, useNav } from "../../shell/nav";
+ import { useT } from "../../i18n";
+ import { isPreview, useFixtures, usePreviewBot } from "../../preview";
+ import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
+-import { ModelComposer, useModels, type SendOptions } from "./model-composer";
++import { ModelComposer, useModels, type ComposerLeaveGuard, type SendOptions } from "./model-composer";
++import { readRaster } from "../files/raster";
+ 
+ const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
+   "provider_rate_limited", "provider_error", "provider_disabled", "provider_unsupported", "session_busy", "aborted", "tool_failed", "permission_rejected",
+@@ -196,11 +197,20 @@
+ 
+ const textOf = (m: MessageWithParts) => m.parts.filter((p): p is Extract<Part, { type: "text" }> => p.type === "text").map((p) => p.text).join("\n");
+ 
+-function FileThumb({ p }: { p: FilePart }) {
+-  const t = useT();
+-  const src = p.url ?? (p.data ? `data:${p.mime};base64,${p.data}` : undefined);
+-  if (p.mime.startsWith("image/") && src) return <img className="chat-thumb" src={src} alt={p.filename ?? t("chat.att.image")} />;
+-  return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
++function FileThumb({ p, onOpen, blocked }: { p: FilePart; onOpen?: () => void; blocked?: boolean }) {
++  const t = useT();
++  const { mime, data, url } = p;
++  const raster = React.useMemo(() => readRaster({ mime, data, url }), [mime, data, url]);
++  const [image, setImage] = React.useState<{ raster: typeof raster; src: string; ready: boolean } | null>(null);
++  React.useEffect(() => {
++    if (!raster.ok) { setImage(null); return; }
++    const src = URL.createObjectURL(new Blob([raster.value.bytes], { type: raster.value.mime }));
++    setImage({ raster, src, ready: false });
++    return () => URL.revokeObjectURL(src);
++  }, [raster]);
++  if (!image || image.raster !== raster || !raster.ok) return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
++  const thumbnail = <img className="chat-thumb" src={image.src} alt={p.filename ?? t("chat.att.image")} onLoad={() => setImage((current) => current?.src === image.src && !current.ready ? { ...current, ready: true } : current)} onError={() => { URL.revokeObjectURL(image.src); setImage((current) => current?.src === image.src ? null : current); }} />;
++  return onOpen ? <button type="button" className="chat-thumb-open" disabled={!image.ready} aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.image") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>{thumbnail}</button> : thumbnail;
+ }
+ 
+ function LiveReasoning({ text, live, secs }: { text: string; live: boolean; secs?: number }) {
+@@ -259,7 +269,7 @@
+ 
+ function LiveChat({ id }: { id: string }) {
+   const t = useT();
+-  const { go } = useNav();
++  const { go, params, route } = useNav();
+   const toast = useToast();
+   const session = useQuery(() => api.sessions.get(id), [id], (e) => e.type === "session.updated" && e.properties.session.id === id
+     || e.type === "session.deleted" && e.properties.sessionID === id || e.type === "project.deleted");
+@@ -272,6 +282,20 @@
+   const [projectDraft, setProjectDraft] = React.useState<{ value: string } | null>(null);
+   const [projectBusy, setProjectBusy] = React.useState(false);
+   const projectWrite = React.useRef(false);
++  const renameWrite = React.useRef(false);
++  const [renameBusy, setRenameBusy] = React.useState(false);
++  const composer = React.useRef<ComposerLeaveGuard>(null);
++  const opening = React.useRef(false);
++  const [leaving, setLeaving] = React.useState(false);
++  const atChat = React.useCallback(() => {
++    const hash = readHash();
++    return hash.route === "chat" && !hash.params.has("preview") && !hash.params.has("shot") && hash.params.getAll("id").length === 1 && hash.params.get("id") === id;
++  }, [id]);
++  React.useLayoutEffect(() => {
++    const sync = () => { if (opening.current && atChat()) { opening.current = false; setLeaving(false); composer.current?.resume(); } };
++    navigation.addEventListener("currententrychange", sync);
++    return () => navigation.removeEventListener("currententrychange", sync);
++  }, [atChat]);
+   const owner = React.useRef(false);
+   React.useLayoutEffect(() => { owner.current = true; return () => { owner.current = false; }; }, []);
+   const end = React.useRef<HTMLDivElement>(null);
+@@ -279,11 +303,27 @@
+   const open = !!last && last.info.role === "assistant" && !last.info.time.completed && !last.info.error;
+   const busy = status === "busy" || status === "retry" || open || (!!last && last.info.role === "user" && status !== "error");
+   const asks = perms.state === "ready" ? perms.data.filter((p) => p.sessionID === id) : [];
++  const attachmentBlocked = busy || renaming || renameBusy || !!projectDraft || projectBusy;
++  const attachment = (p: FilePart, m: MessageWithParts) => {
++    const valid = route === "chat" && !params.has("preview") && !params.has("shot") && params.getAll("id").length === 1
++      && session.state === "ready" && session.data.id === id && session.data.kind === "chat"
++      && m.info.sessionID === id && p.sessionID === id && p.messageID === m.info.id
++      && /^ses_[0-9a-f]{32,}$/.test(id) && /^msg_[0-9a-f]{32,}$/.test(m.info.id) && /^prt_[0-9a-f]{32,}$/.test(p.id);
++    return <FileThumb key={p.id} p={p} blocked={attachmentBlocked} onOpen={valid ? () => {
++      if (!owner.current || opening.current || !atChat()) return;
++      if (attachmentBlocked || projectWrite.current || renameWrite.current || !composer.current?.tryLeave()) {
++        toast.add({ title: t("files.image.finishDraft"), data: { icon: "info" } }); return;
++      }
++      opening.current = true; setLeaving(true);
++      try { go("file-image", { session: id, message: m.info.id, part: p.id }); }
++      catch { opening.current = false; setLeaving(false); composer.current?.resume(); }
++    } : undefined} />;
++  };
+   React.useEffect(() => { end.current?.scrollIntoView({ block: "end" }); }, [msgs, asks.length]);
+ 
+   const title = session.state === "ready" ? session.data.title || t("chat.untitled") : "";
+   const prompt = (parts: PromptPartInput[], o?: SendOptions) =>
+-    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning, ...(session.state === "ready" && !session.data.parentID ? { expectedProjectID: session.data.projectID ?? null } : {}) }).then(() => true, (e: { code?: string }) => {
++    opening.current ? Promise.resolve(false) : api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning, ...(session.state === "ready" && !session.data.parentID ? { expectedProjectID: session.data.projectID ?? null } : {}) }).then(() => true, (e: { code?: string }) => {
+       const k = errKey(e?.code);
+       toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
+       return false;
+@@ -293,6 +333,7 @@
+     if (u) prompt(u.parts.filter((p): p is Extract<Part, { type: "text" | "file" }> => p.type === "text" || p.type === "file"));
+   };
+   const remove = () => {
++    if (opening.current) return;
+     let undone = false;
+     toast.add({ title: t("chat.toast.deleted"), description: title, data: { undo: true, icon: "trash", onUndo: () => { undone = true; go("chat", { id }); } },
+       onClose: () => { if (!undone) api.sessions.delete(id).catch(() => {}); } });
+@@ -301,7 +342,7 @@
+   const movable = session.state === "ready" && session.data.kind === "chat" && !session.data.parentID;
+   const projectMissing = !!projectDraft?.value && projects.state === "ready" && !projects.data.some((p) => p.id === projectDraft.value);
+   const move = async () => {
+-    if (!owner.current || projectWrite.current || !projectDraft || !movable || projects.state !== "ready" || projectMissing) return;
++    if (!owner.current || opening.current || projectWrite.current || !projectDraft || !movable || projects.state !== "ready" || projectMissing) return;
+     const submitted = projectDraft;
+     projectWrite.current = true; setProjectBusy(true);
+     try {
+@@ -314,7 +355,7 @@
+   };
+ 
+   return (<>
+-    <div className="content-top">
++    <div className="content-top" inert={leaving}>
+       {projectDraft ? <form style={{ display: "flex", flex: 1, minWidth: 0, gap: 4 }} aria-busy={projectBusy || projects.state === "loading"} onSubmit={(e) => { e.preventDefault(); void move(); }}>
+         <select className="input" name="value" aria-label={t("chat.preview.project")} value={projectDraft.value} onChange={(e) => setProjectDraft({ value: e.target.value })} disabled={!movable || projects.state !== "ready"} autoFocus style={{ flex: 1, minWidth: 0 }}>
+           <option value="">{t("chat.preview.noProject")}</option>
+@@ -326,14 +367,14 @@
+       </form> : renaming
+         ? <input className="input pg-rename" autoFocus defaultValue={title} aria-label={t("chat.history.newName")}
+             onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); if (e.key === "Escape") setRenaming(false); }}
+-            onBlur={(e) => { const v = e.currentTarget.value.trim(); if (v && v !== title) api.sessions.update(id, { title: v }).then(session.reload, () => {}); setRenaming(false); }} />
++            onBlur={(e) => { const v = e.currentTarget.value.trim(); if (v && v !== title) { renameWrite.current = true; setRenameBusy(true); api.sessions.update(id, { title: v }).then(session.reload, () => {}).finally(() => { renameWrite.current = false; if (owner.current) setRenameBusy(false); }); } setRenaming(false); }} />
+         : <span className="title">{title}</span>}
+       <Pop trigger={<button className="ibtn" aria-label={t("chat.options")}><Icon name="chevron-down" size={12} /></button>}>
+-        <MItem icon="edit" onClick={() => { setProjectDraft(null); setRenaming(true); }}>{t("chat.menu.rename")}</MItem>
+-        {movable && <MItem icon="folder" onClick={() => { setRenaming(false); setProjectDraft({ value: session.data.projectID ?? "" }); projects.reload(); }}>{t("chat.menu.move")}</MItem>}<MSep />
++        <MItem icon="edit" onClick={() => { if (!opening.current && !renameWrite.current) { setProjectDraft(null); setRenaming(true); } }}>{t("chat.menu.rename")}</MItem>
++        {movable && <MItem icon="folder" onClick={() => { if (!opening.current) { setRenaming(false); setProjectDraft({ value: session.data.projectID ?? "" }); projects.reload(); } }}>{t("chat.menu.move")}</MItem>}<MSep />
+         <MItem icon="trash" danger onClick={remove}>{t("chat.menu.delete")}</MItem>
+       </Pop>
+-      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home", session.state === "ready" && session.data.projectID ? { project: session.data.projectID } : undefined)} />
++      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" disabled={leaving} onClick={() => { if (!opening.current) go("home", session.state === "ready" && session.data.projectID ? { project: session.data.projectID } : undefined); }} />
+     </div>
+     <div className="thread"><div className="thread-inner">
+       {session.state === "error" && <ErrorCard code={session.code === "not_found" ? "not_found" : "network"} />}
+@@ -345,7 +386,7 @@
+           const text = textOf(m);
+           return (
+             <div key={m.info.id} className="chat-ucol">
+-              {files.length > 0 && <div className="chat-ufiles">{files.map((p) => <FileThumb key={p.id} p={p} />)}</div>}
++              {files.length > 0 && <div className="chat-ufiles">{files.map((p) => attachment(p, m))}</div>}
+               {text && <div className="msg-user">{text}</div>}
+             </div>
+           );
+@@ -361,7 +402,7 @@
+             {visible.map((p) => {
+               if (p.type === "reasoning") return <LiveReasoning key={p.id} text={p.text} live={streaming && p === visible[visible.length - 1]} secs={secs} />;
+               if (p.type === "tool") return <ToolBlock key={p.id} p={p} />;
+-              if (p.type === "file") return <FileThumb key={p.id} p={p} />;
++              if (p.type === "file") return attachment(p, m);
+               if (p.type === "text") return <Paras key={p.id} text={p.text} caret={streaming && p === lastText} testId="assistant-text" />;
+               return null;
+             })}
+@@ -377,7 +418,7 @@
+     </div></div>
+     <div className="dock">
+       {(noModel || models.state === "error") && <NoProvider />}
+-      <ModelComposer placeholder={t("chat.reply")} live={models} busy={busy} onStop={() => api.sessions.abort(id).catch(() => {})} onNoModel={() => setNoModel(true)}
++      <ModelComposer leaveGuard={composer} placeholder={t("chat.reply")} live={models} busy={busy} onStop={() => api.sessions.abort(id).catch(() => {})} onNoModel={() => setNoModel(true)}
+         onSend={(text, atts, o) => prompt(toParts(text, atts), o)} />
+       <span className="hint">{t("chat.hint")}</span>
+     </div>
+--- 9ba8e59/packages/app/src/screens/chat/model-composer.tsx
++++ files/packages/app/src/screens/chat/model-composer.tsx
+@@ -9,6 +9,7 @@
+ import { api } from "../../api";
+ import { useQuery } from "../../state/live";
+ import { isPreview } from "../../preview";
++import { useNav } from "../../shell/nav";
+ import { useI18n } from "../../i18n";
+ import { StopBtn } from "./shared";
+ 
+@@ -16,6 +17,7 @@
+ const THINK_KEY = "cortex.thinking";
+ export type SendOptions = { model: ModelRef; reasoning?: boolean };
+ export type LiveModels = ReturnType<typeof useModels>;
++export type ComposerLeaveGuard = { tryLeave: () => boolean; resume: () => void };
+ type ModelOptions = { initialModel?: ModelRef; allowKeyless?: boolean; strictSelection?: boolean };
+ 
+ /** Code also supports explicitly configured keyless endpoints and exact session selections. */
+@@ -49,14 +51,16 @@
+   busy?: boolean;
+   onStop?: () => void;
+   live?: LiveModels;
++  leaveGuard?: React.Ref<ComposerLeaveGuard>;
+ };
+ 
+ export function ModelComposer(p: Props) {
+-  if (isPreview()) return <Composer placeholder={p.placeholder} />;
++  const { params } = useNav();
++  if (p.leaveGuard ? params.has("preview") || params.has("shot") : isPreview()) return <Composer placeholder={p.placeholder} />;
+   return <LiveComposer {...p} />;
+ }
+ 
+-function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onNoModel, busy, onStop, live, initialModel, allowKeyless, strictSelection }: Props) {
++function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onNoModel, busy, onStop, live, initialModel, allowKeyless, strictSelection, leaveGuard }: Props) {
+   const { t, locale } = useI18n();
+   const toast = useToast();
+   const fmtCtx = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
+@@ -71,70 +75,81 @@
+   const [reading, setReading] = React.useState(false);
+   const [think, setThink] = React.useState(() => localStorage.getItem(THINK_KEY) !== "off");
+   const fileRef = React.useRef<HTMLInputElement>(null);
++  const locked = React.useRef(false), latest = React.useRef({ text, files, busy });
++  const [leaving, setLeaving] = React.useState(false);
++  latest.current = { text, files, busy };
++  React.useImperativeHandle(leaveGuard, () => ({
++    tryLeave: () => {
++      if (locked.current || latest.current.text.length || latest.current.files.length || latest.current.busy || reads.current || pending.current) return false;
++      locked.current = true; setLeaving(true); return true;
++    },
++    resume: () => { locked.current = false; setLeaving(false); },
++  }), []);
++  const disabled = submitting || leaving;
+   const caps = current?.capabilities;
+   const ph = placeholder ?? t("composer.placeholder");
+   const hasText = !!text.trim();
+-  const voice = () => toast.add({ title: t("system.unavailable"), description: t("chat.home.draftKept"), data: { icon: "mic" } });
+-  const setThinking = (v: boolean) => { localStorage.setItem(THINK_KEY, v ? "on" : "off"); setThink(v); };
++  const voice = () => { if (!locked.current && !pending.current) toast.add({ title: t("system.unavailable"), description: t("chat.home.draftKept"), data: { icon: "mic" } }); };
++  const setThinking = (v: boolean) => { if (locked.current || pending.current) return; localStorage.setItem(THINK_KEY, v ? "on" : "off"); setThink(v); };
+ 
+   const send = async () => {
+-    if (!text.trim() || busy || pending.current || reads.current) return;
++    if (locked.current || !latest.current.text.trim() || latest.current.busy || pending.current || reads.current) return;
+     const reasoning = caps?.reasoning ? think : undefined;
+     pending.current = true; setSubmitting(true);
+     try {
+       if (!current) { await onNoModel?.(); return; }
+-      if (await onSend(text.trim(), files, { model: { providerID: current.providerID, modelID: current.id }, reasoning })) {
+-        setText(""); setFiles([]);
++      if (await onSend(latest.current.text.trim(), latest.current.files, { model: { providerID: current.providerID, modelID: current.id }, reasoning })) {
++        latest.current.text = ""; latest.current.files = []; setText(""); setFiles([]);
+       }
+     } catch {
+       toast.add({ title: t("chat.err.generic.title"), description: t("chat.err.generic.body"), data: { icon: "alert-triangle" } });
+     } finally { pending.current = false; setSubmitting(false); }
+   };
+   const add = async (list: FileList | null) => {
+-    if (!list?.length) return;
++    if (locked.current || pending.current || !list?.length) return;
+     const chosen = [...list];
+     reads.current++; setReading(true);
+     try {
+       const results = await Promise.allSettled(chosen.map(readFile));
+-      setFiles((f) => [...f, ...results.flatMap((r) => r.status === "fulfilled" ? [r.value] : [])]);
++      latest.current.files = [...latest.current.files, ...results.flatMap((r) => r.status === "fulfilled" ? [r.value] : [])]; setFiles(latest.current.files);
+       results.forEach((r, i) => { if (r.status === "rejected") toast.add({ title: t("common.fileReadFailed", { name: chosen[i].name }), data: { icon: "alert-triangle" } }); });
+     } finally { reads.current--; setReading(reads.current > 0); }
+   };
+   const groups = [...new Set(models.map((m) => m.providerID))];
+ 
+   return (
+-    <div className="chat-box">
++    <div className="chat-box" inert={leaving}>
+       {files.length > 0 && <div className="chat-attach">{files.map((f, i) => (
+         <div key={i} className="chat-att">
+           {f.mime.startsWith("image/") ? <span className="chat-att-img" style={{ backgroundImage: `url(${f.dataUrl})` }} /> : <span className="chat-att-ic"><Icon name="file" /></span>}
+           <span className="chat-att-txt"><span className="ttl">{f.name}</span><span className="sub">{f.mime}</span></span>
+-          <IconBtn icon="close" label={t("chat.att.remove", { name: f.name })} disabled={submitting} size={16} className="chat-att-x" onClick={() => setFiles((x) => x.filter((_, k) => k !== i))} />
++          <IconBtn icon="close" label={t("chat.att.remove", { name: f.name })} disabled={disabled} size={16} className="chat-att-x" onClick={() => { if (!locked.current && !pending.current) { latest.current.files = latest.current.files.filter((_, k) => k !== i); setFiles(latest.current.files); } }} />
+         </div>
+       ))}</div>}
+       <form className="composer" data-has-text={hasText || undefined} aria-busy={submitting || undefined} onSubmit={(e) => { e.preventDefault(); void send(); }}>
+-        <input ref={fileRef} type="file" multiple hidden disabled={submitting} data-testid="attach-input" accept={caps?.imageInput ? undefined : "application/pdf,text/*"} onChange={(e) => { add(e.currentTarget.files); e.currentTarget.value = ""; }} />
++        <input ref={fileRef} type="file" multiple hidden disabled={disabled} data-testid="attach-input" accept={caps?.imageInput ? undefined : "application/pdf,text/*"} onChange={(e) => { add(e.currentTarget.files); e.currentTarget.value = ""; }} />
+         <Menu.Root>
+-          <Menu.Trigger render={<button type="button" className="ibtn round" disabled={submitting} aria-label={t("composer.add")}><Icon name="plus" /></button>} />
++          <Menu.Trigger render={<button type="button" className="ibtn round" disabled={disabled} aria-label={t("composer.add")}><Icon name="plus" /></button>} />
+           <Menu.Portal><Menu.Positioner sideOffset={6} side="top" align="start"><Menu.Popup className="popup">
+-            <Menu.Item className="mitem" onClick={() => fileRef.current?.click()}><Icon name="paperclip" /><span>{t("composer.addFiles")}</span></Menu.Item>
++            <Menu.Item className="mitem" disabled={disabled} onClick={() => { if (!locked.current && !pending.current) fileRef.current?.click(); }}><Icon name="paperclip" /><span>{t("composer.addFiles")}</span></Menu.Item>
+             {caps?.imageInput
+-              ? <Menu.Item className="mitem" onClick={() => { if (fileRef.current) { fileRef.current.accept = "image/*"; fileRef.current.click(); fileRef.current.accept = ""; } }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item>
++              ? <Menu.Item className="mitem" disabled={disabled} onClick={() => { if (!locked.current && !pending.current && fileRef.current) { fileRef.current.accept = "image/*"; fileRef.current.click(); fileRef.current.accept = ""; } }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item>
+               : <Tip label={t("chat.model.noImage")} side="right"><Menu.Item className="mitem" disabled aria-disabled style={{ opacity: 0.45 }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item></Tip>}
+           </Menu.Popup></Menu.Positioner></Menu.Portal>
+         </Menu.Root>
+-        <input value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} data-testid={inputTestId} />
++        <input value={text} disabled={disabled} onChange={(e) => { if (!locked.current && !pending.current) { latest.current.text = e.target.value; setText(e.target.value); } }} placeholder={ph} aria-label={ph} data-testid={inputTestId} />
+         <Menu.Root>
+-          <Menu.Trigger className="model" type="button" disabled={submitting} data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
++          <Menu.Trigger className="model" type="button" disabled={disabled} data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
+           <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 320, maxHeight: 420, overflow: "auto" }}>
+             {models.length === 0 && <div className="chat-mgroup">{t("chat.model.noneHint")}</div>}
+-            <Menu.RadioGroup value={current ? key(current) : ""} onValueChange={(v) => pick(v as string)}>
++            <Menu.RadioGroup value={current ? key(current) : ""} onValueChange={(v) => { if (!locked.current && !pending.current) pick(v as string); }}>
+               {groups.map((g) => (
+                 <React.Fragment key={g}>
+                   <div className="chat-mgroup">{g}</div>
+                   {models.filter((m) => m.providerID === g).map((m) => {
+                     const c = m.capabilities;
+                     return (
+-                      <Menu.RadioItem key={key(m)} value={key(m)} closeOnClick className="mitem" style={{ padding: "7px 10px" }} data-testid="model-option">
++                      <Menu.RadioItem key={key(m)} value={key(m)} disabled={disabled} closeOnClick className="mitem" style={{ padding: "7px 10px" }} data-testid="model-option">
+                         <span style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                           <span style={{ fontWeight: 500 }}>{m.name}</span>
+                           <span className="chat-mbadges">
+@@ -155,15 +170,15 @@
+             {caps?.reasoning && (
+               <div className="chat-mthink">
+                 <span className="chat-grow"><span style={{ fontWeight: 500 }}>{t("chat.model.thinking")}</span><span className="chat-meta">{t("chat.model.thinkingHint")}</span></span>
+-                <span data-testid="thinking-toggle"><Switch checked={think} onCheckedChange={setThinking} aria-label={t("chat.model.thinking")} /></span>
++                <span data-testid="thinking-toggle"><Switch checked={think} disabled={disabled} onCheckedChange={setThinking} aria-label={t("chat.model.thinking")} /></span>
+               </div>
+             )}
+           </Menu.Popup></Menu.Positioner></Menu.Portal>
+         </Menu.Root>
+-        <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" disabled={submitting} onClick={voice} />
+-        {busy ? <StopBtn onStop={onStop} /> : (
++        <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" disabled={disabled} onClick={voice} />
++        {busy ? <StopBtn onStop={() => { if (!locked.current) onStop?.(); }} /> : (
+           <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText ? "↵" : undefined}>
+-            <button type={hasText ? "submit" : "button"} onClick={hasText ? undefined : voice} className="send" disabled={submitting || reading} data-has-text={hasText ? "" : undefined} aria-label={hasText ? t("composer.send") : t("composer.voice")} data-testid="composer-send">
++            <button type={hasText ? "submit" : "button"} onClick={hasText ? undefined : voice} className="send" disabled={disabled || reading} data-has-text={hasText ? "" : undefined} aria-label={hasText ? t("composer.send") : t("composer.voice")} data-testid="composer-send">
+               <span className="swap"><Icon name="voice-wave" className="wave" /><Icon name="arrow-up" className="up" /></span>
+             </button>
+           </Tip>
+--- 9ba8e59/packages/app/src/screens/files/files.css
++++ files/packages/app/src/screens/files/files.css
+@@ -309,6 +309,19 @@
+ .medias-mini { position: absolute; right: 12px; bottom: 12px; width: 132px; aspect-ratio: 3 / 2; border-radius: 8px; overflow: hidden; background: var(--pop) center / cover; box-shadow: var(--shadow-float); }
+ .medias-mini i { position: absolute; border: 1.5px solid var(--on-solid); outline: 1px solid var(--solid); border-radius: 3px; }
+ .medias-exif { width: 240px; flex-shrink: 0; padding: 14px; display: flex; flex-direction: column; gap: 2px; overflow: auto; }
++.medias-image-live { flex: 1; min-height: 0; display: flex; flex-direction: column; }
++.medias-image-live .content-top { height: auto; min-height: 56px; padding-block: 12px; }
++.medias-image-live .medias-top .medias-name { white-space: normal; overflow-wrap: anywhere; max-height: 3lh; overflow: auto; }
++.medias-image-live .medias-col { gap: 12px; }
++.medias-image-live .medias-bar { flex-wrap: wrap; }
++.medias-image-live .medias-bar .medias-meta { white-space: normal; }
++.medias-image-live .medias-zoomv { min-width: 0; }
++.medias-image-live .medias-kv { flex-wrap: wrap; overflow-wrap: anywhere; }
++.medias-image-live .fichiers-state { min-height: 0; overflow: auto; }
++@container content (max-width: 760px) {
++  .medias-image-live .medias-imgrow { flex-direction: column; }
++  .medias-image-live .medias-exif { width: auto; max-height: 150px; }
++}
+ .medias-exif h3 { font-size: 12px; font-weight: 500; color: var(--t2); margin: 8px 0 4px; }
+ .medias-exif h3:first-child { margin-top: 0; }
+ .medias-kv { display: flex; justify-content: space-between; gap: 10px; min-height: 26px; align-items: center; font-size: 12px; }
+--- 9ba8e59/packages/app/src/screens/files/index.tsx
++++ files/packages/app/src/screens/files/index.tsx
+@@ -3,10 +3,11 @@
+ import type { ScreenDef } from "../../registry";
+ import { isPreview } from "../../preview";
+ import { FilePdf, FilePptx, FileDocx, FileXlsx, Upload } from "./docs";
+-import { ImageScreen, CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
++import { CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
++import { FileImage } from "./image";
+ import "./files.css";
+ 
+-// ponytail: there is no file store yet, so live viewers fall back to the upload drop state; route a stored file here once one exists.
++// ponytail: remaining formats await real readers; saved local Chat rasters use FileImage.
+ const viewer = (C: () => React.ReactNode) => () => (isPreview() ? <C /> : <Upload />);
+ const base = { mode: "Cortex" as const, group: "files.group" };
+ 
+@@ -22,7 +23,7 @@
+     ["data", "files.variant.data", "donnees"], ["range", "files.variant.range", "plage"], ["chart", "files.variant.chart", "graphique"], ["errors", "files.variant.importErrors", "erreurs"]] },
+   { ...base, id: "upload", name: "files.screen.upload", render: () => <Upload />, variants: [
+     ["empty", "files.variant.empty", "vide"], ["dragging", "files.variant.dragging", "glisser"], ["uploading", "files.variant.uploading", "encours"], ["done", "files.variant.done", "termine"], ["errors", "files.variant.errors", "erreurs"]] },
+-  { ...base, id: "file-image", name: "files.screen.file-image", render: viewer(ImageScreen), variants: [
++  { ...base, id: "file-image", name: "files.screen.file-image", render: () => <FileImage />, variants: [
+     ["view", "files.variant.view", "affichage"], ["zoom", "files.variant.zoom", "zoom"], ["compare", "files.variant.compare", "comparaison"]] },
+   { ...base, id: "file-code", name: "files.screen.file-code", render: viewer(CodeScreen), variants: [
+     ["view", "files.variant.view", "affichage"], ["diff", "files.variant.diff", "diff"]] },
+--- 9ba8e59/packages/app/src/screens/files/media.tsx
++++ files/packages/app/src/screens/files/media.tsx
+@@ -92,16 +92,25 @@
+ const ZOOMS = [0.5, 0.75, 1, 1.5, 2, 3, 4];
+ 
+ // Zoomable, pannable image (drag, wheel, keyboard).
+-function ZoomView({ src, alt, initZ = 1 }: { src: string; alt: string; initZ?: number }) {
++export function ZoomView({ src, alt, initZ = 1, dimensions }: { src: string; alt: string; initZ?: number; dimensions?: { width: number; height: number } }) {
+   const t = useT();
+   const [z, setZ] = React.useState(initZ);
+   const [p, setP] = React.useState(initZ > 1 ? { x: 120, y: 60 } : { x: 0, y: 0 });
+   const [drag, setDrag] = React.useState(false);
+   const start = React.useRef({ x: 0, y: 0, px: 0, py: 0 });
+   const ref = React.useRef<HTMLDivElement>(null);
++  const [pane, setPane] = React.useState({ width: 0, height: 0 });
++  const contained = () => {
++    const r = ref.current?.getBoundingClientRect();
++    if (!r || !dimensions) return null;
++    const factor = Math.min(Math.max(0, r.width - 32) / dimensions.width, Math.max(0, r.height - 32) / dimensions.height);
++    return { width: dimensions.width * factor, height: dimensions.height * factor, pane: r };
++  };
+   const bound = (q: { x: number; y: number }, zz = z) => {
+     const r = ref.current?.getBoundingClientRect(); if (!r || zz <= 1) return { x: 0, y: 0 };
+-    const mx = (r.width * (zz - 1)) / 2, my = (r.height * (zz - 1)) / 2;
++    const image = contained();
++    const mx = image ? Math.max(0, (image.width * zz - r.width + 32) / 2) : (r.width * (zz - 1)) / 2;
++    const my = image ? Math.max(0, (image.height * zz - r.height + 32) / 2) : (r.height * (zz - 1)) / 2;
+     return { x: clamp(q.x, -mx, mx), y: clamp(q.y, -my, my) };
+   };
+   const zoom = (n: number) => { const zz = clamp(n, 0.5, 4); setZ(zz); setP((q) => bound(q, zz)); };
+@@ -111,20 +120,33 @@
+     const f = (e: WheelEvent) => { e.preventDefault(); setZ((zz) => { const n = clamp(zz * (e.deltaY < 0 ? 1.1 : 0.9), 0.5, 4); setP((q) => bound(q, n)); return n; }); };
+     el.addEventListener("wheel", f, { passive: false }); return () => el.removeEventListener("wheel", f);
+   });
++  React.useLayoutEffect(() => {
++    const el = ref.current; if (!el || !dimensions) return;
++    const observer = new ResizeObserver(() => {
++      const r = el.getBoundingClientRect(); setPane({ width: r.width, height: r.height });
++      const factor = Math.min(Math.max(0, r.width - 32) / dimensions.width, Math.max(0, r.height - 32) / dimensions.height);
++      setP((q) => ({ x: clamp(q.x, -Math.max(0, (dimensions.width * factor * z - r.width + 32) / 2), Math.max(0, (dimensions.width * factor * z - r.width + 32) / 2)), y: clamp(q.y, -Math.max(0, (dimensions.height * factor * z - r.height + 32) / 2), Math.max(0, (dimensions.height * factor * z - r.height + 32) / 2)) }));
++    });
++    observer.observe(el); return () => observer.disconnect();
++  }, [dimensions, z]);
+   const r = ref.current?.getBoundingClientRect();
+   const vw = 100 / Math.max(z, 1), vx = r ? 50 - vw / 2 - (p.x / (r.width * z)) * 100 : 50 - vw / 2, vy = r ? 50 - vw / 2 - (p.y / (r.height * z)) * 100 : 50 - vw / 2;
++  const fitted = dimensions ? Math.min(Math.max(0, pane.width - 32) / dimensions.width, Math.max(0, pane.height - 32) / dimensions.height) : 0;
++  const iw = dimensions ? dimensions.width * fitted * z : 0, ih = dimensions ? dimensions.height * fitted * z : 0;
++  const miniWidth = iw ? Math.min(100, Math.max(0, pane.width - 32) / iw * 100) : 100, miniHeight = ih ? Math.min(100, Math.max(0, pane.height - 32) / ih * 100) : 100;
++  const pct = t("files.pct", { n: Math.round(z * 100) }), zoomLabel = dimensions ? t("files.image.fitScale", { pct }) : pct;
+   return (
+     <>
+       <div className="medias-bar">
+         <Tip label={t("files.zoom.out")} kbd="−"><button className="ibtn medias-zbtn" aria-label={t("files.zoom.out")} onClick={() => step(-1)} disabled={z <= 0.5}>−</button></Tip>
+-        <span className="medias-zoomv" aria-live="polite">{t("files.pct", { n: Math.round(z * 100) })}</span>
++        <span className="medias-zoomv" aria-live="polite">{zoomLabel}</span>
+         <Tip label={t("files.zoom.in")} kbd="+"><button className="ibtn medias-zbtn" aria-label={t("files.zoom.in")} onClick={() => step(1)} disabled={z >= 4}>+</button></Tip>
+         <button className="btn secondary" onClick={() => { setZ(1); setP({ x: 0, y: 0 }); }}>{t("files.image.fit")}</button>
+         <button className="btn secondary" onClick={() => zoom(2)}>{t("files.pct", { n: 200 })}</button>
+         <div className="medias-grow" />
+         <span className="medias-meta">{z > 1 ? t("files.image.panHint") : t("files.image.zoomHint")}</span>
+       </div>
+-      <div ref={ref} className="medias-view" tabIndex={0} role="img" aria-label={t("files.image.aria", { alt, pct: t("files.pct", { n: Math.round(z * 100) }) })} data-drag={drag || undefined}
++      <div ref={ref} className="medias-view" tabIndex={0} role="img" aria-label={t("files.image.aria", { alt, pct: zoomLabel })} data-drag={drag || undefined}
+         onPointerDown={(e) => { if (z <= 1) return; e.currentTarget.setPointerCapture(e.pointerId); start.current = { x: e.clientX, y: e.clientY, px: p.x, py: p.y }; setDrag(true); }}
+         onPointerMove={(e) => { if (drag) setP(bound({ x: start.current.px + e.clientX - start.current.x, y: start.current.py + e.clientY - start.current.y })); }}
+         onPointerUp={() => setDrag(false)} onPointerCancel={() => setDrag(false)}
+@@ -134,7 +156,7 @@
+           else if (e.key.startsWith("Arrow")) { e.preventDefault(); const d = 40; setP((q) => bound({ x: q.x + (e.key === "ArrowLeft" ? d : e.key === "ArrowRight" ? -d : 0), y: q.y + (e.key === "ArrowUp" ? d : e.key === "ArrowDown" ? -d : 0) })); }
+         }}>
+         <img src={src} alt="" style={{ translate: `${p.x}px ${p.y}px`, scale: String(z) }} />
+-        {z > 1 && <div className="medias-mini" style={{ backgroundImage: `url(${src})` }} aria-hidden><i style={{ left: `${vx}%`, top: `${vy}%`, width: `${vw}%`, height: `${vw}%` }} /></div>}
++        {z > 1 && <div className="medias-mini" style={{ backgroundImage: `url(${src})`, ...(dimensions ? { aspectRatio: `${dimensions.width} / ${dimensions.height}`, width: Math.min(132, 88 * dimensions.width / dimensions.height) } : {}) }} aria-hidden><i style={dimensions ? { left: `${clamp(50 - miniWidth / 2 - (iw ? p.x / iw * 100 : 0), 0, 100 - miniWidth)}%`, top: `${clamp(50 - miniHeight / 2 - (ih ? p.y / ih * 100 : 0), 0, 100 - miniHeight)}%`, width: `${miniWidth}%`, height: `${miniHeight}%` } : { left: `${vx}%`, top: `${vy}%`, width: `${vw}%`, height: `${vw}%` }} /></div>}
+       </div>
+     </>
+   );

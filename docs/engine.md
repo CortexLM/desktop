@@ -114,8 +114,9 @@ native decoding. APNG/animated WebP, ambiguous sources, unsupported or malformed
 are refused. Inclusive viewer ceilings: 50,000,000 base64-decoded file bytes, 40,000,000
 encoded pixels and 32,768 per dimension. File bytes remain compressed image data; complete
 history IPC, cumulative thumbnails and decoder overhead are not memory-bounded by this gate.
-CRC/compressed pixel correctness still requires native decoding. Displayed dimensions may
-differ from encoded dimensions through native orientation/density handling.
+Preflight does not verify CRCs or compressed pixels. Native decoding must succeed;
+permissive decoders may tolerate malformed pixel data. Displayed dimensions may differ
+from encoded dimensions through native orientation/density handling.
 
 Saved Chat thumbnails use the same preflight. Open preserves dirty/refused text, files,
 pending reads/submissions and header edits by refusing departure with accessible feedback.

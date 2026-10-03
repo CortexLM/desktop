@@ -1,0 +1,494 @@
+{
+  "status": "failed",
+  "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "asar": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+  "startedAt": "2026-10-03T22:08:22.992Z",
+  "invocation": {
+    "argv": [
+      "/tmp/opencode/files-native.mjs",
+      "/tmp/opencode/files-native-d20a012-a1",
+      "/tmp/opencode/desktop-files-native-d20a012-a1",
+      "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+      "d20a012fbb774aa9b348fe1913f85d3476430098",
+      "/tmp/opencode/files-mac-package-d20a012/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+    "nodeVersion": "v22.23.3"
+  },
+  "budget": {
+    "flowMs": 150000,
+    "cleanupMs": 45000,
+    "absoluteMs": 195000,
+    "rawOperationMs": 10000,
+    "captures": 4,
+    "nativeSamples": 8,
+    "originalBytes": 3145728,
+    "totalBytes": 12582912,
+    "manifestBytes": 409600,
+    "ipcCalls": 100,
+    "downloads": 1
+  },
+  "capturesRequested": 0,
+  "captures": [],
+  "nativeChecks": [],
+  "checks": [],
+  "calls": [
+    {
+      "stage": "fresh-profile",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers/fake/models",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103cfc0db00004fd41abead10f22a/prompt",
+      "method": "POST",
+      "status": 202,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103cfc0db00004fd41abead10f22a/messages",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 2
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103cfc0db00004fd41abead10f22a",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:open-saved-image",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/sessions/ses_01a103cfc0db00004fd41abead10f22a",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200,
+      "state": "returned"
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 1
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "state": "returned",
+      "count": 0
+    },
+    {
+      "stage": "light:files-fit:capture",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200,
+      "state": "returned"
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "ownedChatRemoved": true,
+    "fixtureKeyRemoved": true,
+    "providerValuesRestored": true,
+    "nativeAppearanceRestored": true,
+    "themePreferenceRestored": true,
+    "routeRestored": true,
+    "controlledListsRestored": true,
+    "controlledInferenceOnly": true,
+    "installedAfter": true
+  },
+  "helperHashes": {
+    "files-native.mjs": "9548b41317d5afd545dc086bf8b3ac463b3d477ade19a1075855202ffb05e009",
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "fixture": {
+    "bytes": 393,
+    "width": 120,
+    "height": 180,
+    "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+    "rgb": [
+      [
+        216,
+        76,
+        55
+      ],
+      [
+        33,
+        116,
+        176
+      ],
+      [
+        216,
+        76,
+        55
+      ]
+    ]
+  },
+  "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c",
+  "memberCount": 90,
+  "rootHelperHashes": {
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b"
+  },
+  "stage": "light:files-fit:capture",
+  "installedBefore": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 77172,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a1",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "backend": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a1",
+    "runID": "c3cfbedf-125b-40b6-a97f-caee0d245b2a",
+    "pid": 77167,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    }
+  },
+  "backendReceipt": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a1",
+    "runID": "c3cfbedf-125b-40b6-a97f-caee0d245b2a",
+    "pid": 77167,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    },
+    "counts": {
+      "catalog": 1,
+      "health": 2,
+      "receipt": 3,
+      "inference": 1,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "imageSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+        "imageBytes": 393,
+        "modelExact": true,
+        "authorizationExact": true,
+        "messagesExact": true,
+        "toolsAbsent": true,
+        "httpStatus": 200,
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "playwrightVersion": "1.63.0",
+  "nativeDownloadOverrides": "none; connectOverCDP noDefaults:true",
+  "previous": {
+    "stored": null,
+    "pref": "system",
+    "theme": "dark",
+    "nativeDark": "true",
+    "hash": "#/home"
+  },
+  "session": {
+    "id": "ses_01a103cfc0db00004fd41abead10f22a",
+    "title": "Native saved image",
+    "agent": "build",
+    "model": {
+      "providerID": "fake",
+      "modelID": "reasoner"
+    },
+    "kind": "chat",
+    "time": {
+      "created": 1791065309403,
+      "updated": 1791065309403
+    }
+  },
+  "savedImage": {
+    "sessionID": "ses_01a103cfc0db00004fd41abead10f22a",
+    "messageID": "msg_01a103cfc11d00005cb624d035aacf22",
+    "partID": "prt_01a103cfc11d00022a21d8eb770b85f1",
+    "historySHA256": "bf567b97fc0c41e0dddac81389419ef8dbd51c0d3bb57cb084fdc4237fd7db62",
+    "fileSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf"
+  },
+  "failedGeometry": [
+    {
+      "text": "Cortex native portrait.png",
+      "bounds": [
+        389,
+        64,
+        544.96875,
+        80
+      ],
+      "clip": [
+        53,
+        44,
+        955,
+        635
+      ],
+      "ink": [
+        {
+          "bounds": [
+            389,
+            63,
+            544.96875,
+            80
+          ],
+          "clip": [
+            389,
+            64,
+            545,
+            80
+          ],
+          "visible": false
+        }
+      ],
+      "visible": false,
+      "hit": true
+    }
+  ],
+  "failure": {
+    "stage": "light:files-fit:capture",
+    "diagnostic": "AssertionError [ERR_ASSERTION]: Files target clipped or covered\n    at measure (file:///var/tmp/opencode/files-native.mjs:179:317)\n    at async capture (file:///var/tmp/opencode/files-native.mjs:180:19)\n    at async file:///var/tmp/opencode/files-native.mjs:189:440"
+  },
+  "flowDurationMs": 17017,
+  "cleanupStartedAt": "2026-10-03T22:08:40.009Z",
+  "cleanupDeadline": "2026-10-03T22:09:25.009Z",
+  "providerDocumentRetained": true,
+  "installedAfter": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 77172,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-a1",
+    "inspectorSHA256": "7d4fdba05afe52d09a79e7775f2f1e0c234ab12ec28cda42e45be0474eae339b",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "finishedAt": "2026-10-03T22:08:43.647Z",
+  "durationMs": 20655,
+  "scope": "Four native English saved-PNG Fit/zoom images; actual OS themes; exact Chat Open; one fixture inference; provider-disabled viewing; one candidate native Save-sheet download. Cleanup results determine removal/restoration. No other formats/restart/races/locale/long-name/full-product acceptance."
+}

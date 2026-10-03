@@ -119,6 +119,13 @@ Cancellation checks inspect the durable event journal as well as the current mes
   `packages/app/src/screens/files/raster.test.ts` checks pure pre-decode encoding/container
   limits and filenames. Execution receipts remain source-scoped in
   [`evidence/files-live-followup/README.md`](../evidence/files-live-followup/README.md).
+  The matching CI executes all eleven Files cases on both OSes. Its downloaded-byte
+  assertions choose a deterministic native `will-download` path; installed Save-dialog
+  evidence is separate. The current installed composite retains four passing captures,
+  failed Save automation and a manual original-byte completion rather than claiming an
+  entirely successful collector. Independent review accepts that bounded composite;
+  the manual GUI sequence remains coordinator-attested. See
+  [`evidence/mac/d20a012/README.md`](../evidence/mac/d20a012/README.md).
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

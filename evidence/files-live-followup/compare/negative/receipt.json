@@ -1,0 +1,9 @@
+{
+  "status": "failed-before-capture",
+  "stage": "initial-gallery-request",
+  "error": "net::ERR_EMPTY_RESPONSE",
+  "port": 5432,
+  "creditedCaptures": 0,
+  "source": "first-attempt.log",
+  "cause": "Coordinator reports occupied-port launch refusal; this retained log independently establishes only an empty gallery response. No earlier image credit."
+}

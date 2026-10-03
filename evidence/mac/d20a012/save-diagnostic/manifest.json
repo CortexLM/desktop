@@ -1,0 +1,352 @@
+{
+  "status": "failed",
+  "scope": "AX shape only; no screenshots, Save action or acceptance claim",
+  "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "asar": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+  "startedAt": "2026-10-03T21:39:16.029Z",
+  "budget": {
+    "flowMs": 60000,
+    "absoluteMs": 100000,
+    "axNodes": 100,
+    "axBytes": 16384,
+    "axCalls": 5,
+    "ipcCalls": 80
+  },
+  "calls": [
+    {
+      "stage": "fresh-profile",
+      "route": "/api/bots",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/sessions",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/projects",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/tasks",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/plugins",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/permissions",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/connection",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers/fake",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/catalog/providers/fake/models",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "bodySHA256": "2048f0b14621bc71a0d7f52f3118b30068f72732a44cac29eb890c999a0a39ba",
+      "status": 200
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake/key",
+      "method": "PUT",
+      "bodySHA256": "f54c473871bc820a010cbd236b3b0ae5c3bd806e52ee0ddadf682f6cd3e9d9a1",
+      "status": 200
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions",
+      "method": "POST",
+      "bodySHA256": "566c1922b6386cc2b8d1ab9a011785888dc593433fdf2dff902c56774a4fd4a9",
+      "status": 201
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103b5117e000076b1e3b709911b79/prompt",
+      "method": "POST",
+      "bodySHA256": "8333a8f0abb3440aa30feb3dba94f8cbffc6f59c560baed24394acc6e69c358c",
+      "status": 202
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/sessions/ses_01a103b5117e000076b1e3b709911b79/messages",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "controlled-image",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "bodySHA256": "5acf3ff77b4420677b5923071f303facaba7a9273a346284a667a275df325146",
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/sessions/ses_01a103b5117e000076b1e3b709911b79",
+      "method": "DELETE",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "bodySHA256": "fed92ee71cde8698c4c55d23dece3ec36804a0f853b5eef9d491b72447433dab",
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/bots",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/sessions",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/projects",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/providers",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/tasks",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/plugins",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/permissions",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    },
+    {
+      "stage": "cancel",
+      "route": "/api/connection",
+      "method": "GET",
+      "bodySHA256": null,
+      "status": 200
+    }
+  ],
+  "ax": [
+    {
+      "stage": "save-inventory",
+      "op": "inspect-save",
+      "at": "2026-10-03T21:39:25.564Z",
+      "status": 0,
+      "bytes": 1401,
+      "sha256": "e87957c752af5bca640a04e33fdb43661f5ed9f78b73a5884447cdcafdecdb64",
+      "stdout": "{\"before\":{\"pid\":76250,\"name\":\"Cortex\",\"frontmost\":true,\"windows\":1,\"topSheets\":[1],\"nodes\":[{\"path\":\"w1/s1\",\"sheet\":\"w1/s1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0\",\"sheet\":\"w1/s1\",\"role\":\"AXSplitGroup\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/0\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Where:\",\"value\":\"Where:\",\"focused\":false},{\"path\":\"w1/s1/0/1\",\"sheet\":\"w1/s1\",\"role\":\"AXPopUpButton\",\"name\":\"Where:\",\"value\":\"Downloads\",\"focused\":false},{\"path\":\"w1/s1/0/2\",\"sheet\":\"w1/s1\",\"role\":\"AXDisclosureTriangle\",\"name\":null,\"value\":0,\"focused\":false},{\"path\":\"w1/s1/0/3\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Save As:\",\"value\":\"Save As:\",\"focused\":false},{\"path\":\"w1/s1/0/4\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\",\"focused\":true},{\"path\":\"w1/s1/0/5\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Tags:\",\"value\":\"Tags:\",\"focused\":false},{\"path\":\"w1/s1/0/6\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Tags:\",\"value\":\"\",\"focused\":false},{\"path\":\"w1/s1/0/7\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Cancel\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/8\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Save\",\"value\":null,\"focused\":false}],\"focus\":{\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\"},\"truncated\":false},\"after\":null,\"action\":\"none\",\"error\":null}\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "stage": "save-inventory",
+      "op": "go",
+      "at": "2026-10-03T21:39:27.350Z",
+      "status": 0,
+      "bytes": 1412,
+      "sha256": "4fb4dde06fc740d1b3f712246203757e1202564871c8676950c264a2c4bceef1",
+      "stdout": "{\"before\":{\"pid\":76250,\"name\":\"Cortex\",\"frontmost\":true,\"windows\":1,\"topSheets\":[1],\"nodes\":[{\"path\":\"w1/s1\",\"sheet\":\"w1/s1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0\",\"sheet\":\"w1/s1\",\"role\":\"AXSplitGroup\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/0\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Where:\",\"value\":\"Where:\",\"focused\":false},{\"path\":\"w1/s1/0/1\",\"sheet\":\"w1/s1\",\"role\":\"AXPopUpButton\",\"name\":\"Where:\",\"value\":\"Downloads\",\"focused\":false},{\"path\":\"w1/s1/0/2\",\"sheet\":\"w1/s1\",\"role\":\"AXDisclosureTriangle\",\"name\":null,\"value\":0,\"focused\":false},{\"path\":\"w1/s1/0/3\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Save As:\",\"value\":\"Save As:\",\"focused\":false},{\"path\":\"w1/s1/0/4\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\",\"focused\":true},{\"path\":\"w1/s1/0/5\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Tags:\",\"value\":\"Tags:\",\"focused\":false},{\"path\":\"w1/s1/0/6\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Tags:\",\"value\":\"\",\"focused\":false},{\"path\":\"w1/s1/0/7\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Cancel\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/8\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Save\",\"value\":null,\"focused\":false}],\"focus\":{\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\"},\"truncated\":false},\"after\":null,\"action\":\"Command+Shift+G\",\"error\":null}\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "stage": "folder-inventory",
+      "op": "inspect-folder",
+      "at": "2026-10-03T21:39:30.426Z",
+      "status": 0,
+      "bytes": 3195,
+      "sha256": "a36fc276b7fa74ae4884f2816ec4c1e186b6c14d54eea33b70c28fb4d98bae53",
+      "stdout": "{\"before\":{\"pid\":76250,\"name\":\"Cortex\",\"frontmost\":true,\"windows\":1,\"topSheets\":[1],\"nodes\":[{\"path\":\"w1/s1\",\"sheet\":\"w1/s1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0\",\"sheet\":\"w1/s1\",\"role\":\"AXSplitGroup\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/0\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Where:\",\"value\":\"Where:\",\"focused\":false},{\"path\":\"w1/s1/0/1\",\"sheet\":\"w1/s1\",\"role\":\"AXPopUpButton\",\"name\":\"Where:\",\"value\":\"Downloads\",\"focused\":false},{\"path\":\"w1/s1/0/2\",\"sheet\":\"w1/s1\",\"role\":\"AXDisclosureTriangle\",\"name\":null,\"value\":0,\"focused\":false},{\"path\":\"w1/s1/0/3\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Save As:\",\"value\":\"Save As:\",\"focused\":false},{\"path\":\"w1/s1/0/4\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\",\"focused\":false},{\"path\":\"w1/s1/0/5\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Tags:\",\"value\":\"Tags:\",\"focused\":false},{\"path\":\"w1/s1/0/6\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Tags:\",\"value\":\"\",\"focused\":false},{\"path\":\"w1/s1/0/7\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Cancel\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/8\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Save\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"/usr/libexec/sshd-keygen-wrapper\",\"value\":\"/usr/libexec/sshd-keygen-wrapper\",\"focused\":false},{\"path\":\"w1/s1/1/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXButton\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXTextField\",\"name\":null,\"value\":\"/usr/libexec/sshd-keygen-wrapper\",\"focused\":true},{\"path\":\"w1/s1/1/3\",\"sheet\":\"w1/s1/1\",\"role\":\"AXScrollArea\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXTable\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXRow\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXRow\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXColumn\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXCell\",\"name\":\"Go to:\",\"value\":null,\"focused\":true},{\"path\":\"w1/s1/1/3/0/1/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXCell\",\"name\":null,\"value\":null,\"focused\":true},{\"path\":\"w1/s1/1/3/0/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"Go to:\",\"value\":\"Go to:\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXList\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"usr\",\"value\":\"usr\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"libexec\",\"value\":\"libexec\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"sshd-keygen-wrapper\",\"value\":\"sshd-keygen-wrapper\",\"focused\":false}],\"focus\":{\"role\":\"AXTextField\",\"name\":null,\"value\":\"/usr/libexec/sshd-keygen-wrapper\"},\"truncated\":false},\"after\":null,\"action\":\"none\",\"error\":null}\n",
+      "stderr": "",
+      "truncated": false
+    },
+    {
+      "stage": "cancel",
+      "op": "cancel",
+      "at": "2026-10-03T21:39:33.511Z",
+      "status": 0,
+      "bytes": 3226,
+      "sha256": "7a8dfe84105c56620efdd44a7d806cfdd5890f6cae923e6010a7c506d2b983ac",
+      "stdout": "{\"before\":{\"pid\":76250,\"name\":\"Cortex\",\"frontmost\":true,\"windows\":1,\"topSheets\":[1],\"nodes\":[{\"path\":\"w1/s1\",\"sheet\":\"w1/s1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0\",\"sheet\":\"w1/s1\",\"role\":\"AXSplitGroup\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXSheet\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/0\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Where:\",\"value\":\"Where:\",\"focused\":false},{\"path\":\"w1/s1/0/1\",\"sheet\":\"w1/s1\",\"role\":\"AXPopUpButton\",\"name\":\"Where:\",\"value\":\"Downloads\",\"focused\":false},{\"path\":\"w1/s1/0/2\",\"sheet\":\"w1/s1\",\"role\":\"AXDisclosureTriangle\",\"name\":null,\"value\":0,\"focused\":false},{\"path\":\"w1/s1/0/3\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Save As:\",\"value\":\"Save As:\",\"focused\":false},{\"path\":\"w1/s1/0/4\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Save As:\",\"value\":\"Cortex native portrait.png\",\"focused\":false},{\"path\":\"w1/s1/0/5\",\"sheet\":\"w1/s1\",\"role\":\"AXStaticText\",\"name\":\"Tags:\",\"value\":\"Tags:\",\"focused\":false},{\"path\":\"w1/s1/0/6\",\"sheet\":\"w1/s1\",\"role\":\"AXTextField\",\"name\":\"Tags:\",\"value\":\"\",\"focused\":false},{\"path\":\"w1/s1/0/7\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Cancel\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/0/8\",\"sheet\":\"w1/s1\",\"role\":\"AXButton\",\"name\":\"Save\",\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"/usr/libexec/sshd-keygen-wrapper\",\"value\":\"/usr/libexec/sshd-keygen-wrapper\",\"focused\":false},{\"path\":\"w1/s1/1/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXButton\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXTextField\",\"name\":null,\"value\":\"/usr/libexec/sshd-keygen-wrapper\",\"focused\":true},{\"path\":\"w1/s1/1/3\",\"sheet\":\"w1/s1/1\",\"role\":\"AXScrollArea\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXTable\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXRow\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXRow\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXColumn\",\"name\":null,\"value\":null,\"focused\":null},{\"path\":\"w1/s1/1/3/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXCell\",\"name\":\"Go to:\",\"value\":null,\"focused\":true},{\"path\":\"w1/s1/1/3/0/1/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXCell\",\"name\":null,\"value\":null,\"focused\":true},{\"path\":\"w1/s1/1/3/0/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"Go to:\",\"value\":\"Go to:\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXList\",\"name\":null,\"value\":null,\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/0\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"usr\",\"value\":\"usr\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/1\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"libexec\",\"value\":\"libexec\",\"focused\":false},{\"path\":\"w1/s1/1/3/0/1/0/0/2\",\"sheet\":\"w1/s1/1\",\"role\":\"AXStaticText\",\"name\":\"sshd-keygen-wrapper\",\"value\":\"sshd-keygen-wrapper\",\"focused\":false}],\"focus\":{\"role\":\"AXTextField\",\"name\":null,\"value\":\"/usr/libexec/sshd-keygen-wrapper\"},\"truncated\":false},\"after\":null,\"action\":\"none\",\"error\":\"Error: Unknown Go to Folder focus\"}\n",
+      "stderr": "",
+      "truncated": false
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "nativeCancel": {
+      "diagnostic": "AssertionError [ERR_ASSERTION]: Error: Unknown Go to Folder focus\n    at ax (file:///var/tmp/opencode/files-save-diagnostic.mjs:46:376)\n    at file:///var/tmp/opencode/files-save-diagnostic.mjs:68:75\n    at clean (file:///var/tmp/opencode/files-save-diagnostic.mjs:67:95)\n    at file:///var/tmp/opencode/files-save-diagnostic.mjs:68:21"
+    },
+    "ownedChatRemoved": true,
+    "keyRemoved": true,
+    "providerDefaults": true,
+    "listsRestored": true,
+    "routeAndTheme": true,
+    "backendReceipt": true,
+    "installedAfter": true
+  },
+  "sources": {
+    "files-save-diagnostic.mjs": "89f1499b51fbc10cbb0959db7eaebb67bb2e0b073e07a4dc9e997d7a8f6099ca",
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "d7463d642ab0348e8bcebb58f18db9495fbc8594f0dfcdae657e6f9878d149c8"
+  },
+  "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c",
+  "rootHelperHashes": {
+    "files-native-backend.mjs": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "launch-files-native.py": "d7463d642ab0348e8bcebb58f18db9495fbc8594f0dfcdae657e6f9878d149c8"
+  },
+  "installed": {
+    "asarSHA256": "9eeffe464327d09642b8f7ac27facbbf7d54f3c776d3d507e19083b92c11c893",
+    "revision": "d20a012fbb774aa9b348fe1913f85d3476430098",
+    "membersVerified": 90,
+    "pid": 76250,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-save-probe-1",
+    "inspectorSHA256": "d7463d642ab0348e8bcebb58f18db9495fbc8594f0dfcdae657e6f9878d149c8",
+    "membersSHA256": "3d3406d4a184b0d8346c3b3ff9a241cc2a88bed0faf472015edc66b7c6a1e33c"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-files-native-v1",
+    "root": "/private/tmp/opencode/desktop-files-native-d20a012-save-probe-1",
+    "runID": "3a4968e1-549d-461c-a8aa-61b7020af340",
+    "pid": 76247,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "5c8239ef27f8d962b4a1cd5fcfb08e34c8ba4f3871f5242fe1043f73ef90476d",
+    "fixture": {
+      "bytes": 393,
+      "width": 120,
+      "height": 180,
+      "sha256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+      "rgb": [
+        [
+          216,
+          76,
+          55
+        ],
+        [
+          33,
+          116,
+          176
+        ],
+        [
+          216,
+          76,
+          55
+        ]
+      ]
+    },
+    "counts": {
+      "catalog": 1,
+      "health": 1,
+      "receipt": 2,
+      "inference": 1,
+      "errors": 0
+    },
+    "requests": [
+      {
+        "imageSHA256": "35d49e647469369311f7f223d9e340034f77a96cceee1f27f5ebff8bbe3174cf",
+        "imageBytes": 393,
+        "modelExact": true,
+        "authorizationExact": true,
+        "messagesExact": true,
+        "toolsAbsent": true,
+        "httpStatus": 200,
+        "completed": true
+      }
+    ],
+    "failures": []
+  },
+  "runID": "3a4968e1-549d-461c-a8aa-61b7020af340",
+  "backendPID": 76247,
+  "sessionID": "ses_01a103b5117e000076b1e3b709911b79",
+  "tuple": {
+    "session": "ses_01a103b5117e000076b1e3b709911b79",
+    "message": "msg_01a103b511c000003c2d1f3ea814a4fa",
+    "part": "prt_01a103b511c100019e9c530130fc6669"
+  },
+  "historySHA256": "99e2f3151faf44376d2260e8a6afb0001cbe72b2ce1fbb652e57ff07b8fe42b6",
+  "downloadRequested": true,
+  "flowMs": 14398,
+  "providerDocumentRetained": true,
+  "durationMs": 19609,
+  "finishedAt": "2026-10-03T21:39:35.638Z"
+}

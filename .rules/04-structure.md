@@ -57,7 +57,7 @@ const list = bots.state === "ready" && bots.data.length ? bots.data : fx.team;  
 ## 4.4 No screen standing in for another
 
 A screen that has no live wiring renders its preview only in preview, and an honest
-state in live mode (e.g. file viewers fall back to `upload`). Surfaces blocked on design
+state in live mode (e.g. unwired file formats fall back to `upload`). Surfaces blocked on design
 (Space, Scheduled, Plugins & skills) get **no** placeholder screen (`06-product.md`).
 
 ## 4.5 Screens and module hygiene

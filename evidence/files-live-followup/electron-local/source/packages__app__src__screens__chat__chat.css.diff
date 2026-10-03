@@ -1,0 +1,9 @@
+--- activity/packages/app/src/screens/chat/chat.css
++++ files/packages/app/src/screens/chat/chat.css
+@@ -423,4 +423,6 @@
+ .chat-mthink .chat-grow { display: flex; flex-direction: column; }
+ .chat-live-banner { width: 100%; max-width: 680px; margin-bottom: 10px; }
+ .chat-thumb { width: 160px; max-height: 160px; border-radius: 12px; object-fit: cover; box-shadow: var(--ring); }
++.chat-thumb-open { display: inline-flex; max-width: 100%; border-radius: 12px; }
++.chat-thumb-open .chat-thumb { max-width: 100%; }
+ .chat-mthink .switch { display: inline-block; }

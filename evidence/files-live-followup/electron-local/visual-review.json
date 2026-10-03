@@ -1,0 +1,18 @@
+{
+  "disposition": "PASS bounded retained candidate images",
+  "at": "2026-10-03T21:20:16.026218+00:00",
+  "contactSheets": 18,
+  "allUniqueImages": 216,
+  "candidateFullImages": 195,
+  "historicalOnlyImages": 21,
+  "fullsizePrimary": 14,
+  "fullsizeHistoricalFailures": 13,
+  "findings": [],
+  "scopeNotes": [
+    "14 primary originals:4 lifecycle/8 dark locales/2 long names;13 negative originals also viewed.",
+    "Geometry collector checks element boxes/ancestor clipping and scrollWidth; no Files text-Range geometry attachment exists.",
+    "Long names are fully present and keyboard-scrollable, not simultaneously visible.",
+    "Tooltip offset observed; no covered control in retained long-name frames.",
+    "No new capture, native/CI action or frozen comparator run."
+  ]
+}

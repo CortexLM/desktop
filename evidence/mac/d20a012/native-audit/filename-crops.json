@@ -1,0 +1,57 @@
+{
+  "scope": "Supplemental padded filename crops only; lossless full-size originals remain authority.",
+  "crops": [
+    {
+      "source": "../filename-diagnostic/filename-native.webp",
+      "crop": [
+        383,
+        58,
+        551,
+        86
+      ],
+      "rgbaSHA256": "5678c18549382854ec76779985db701cfc67e6727f2d27aba7ccfb8c7d80d95a"
+    },
+    {
+      "source": "../native/files-fit-light.webp",
+      "crop": [
+        383,
+        58,
+        551,
+        86
+      ],
+      "rgbaSHA256": "5678c18549382854ec76779985db701cfc67e6727f2d27aba7ccfb8c7d80d95a"
+    },
+    {
+      "source": "../native/files-zoom-light.webp",
+      "crop": [
+        383,
+        58,
+        551,
+        86
+      ],
+      "rgbaSHA256": "5678c18549382854ec76779985db701cfc67e6727f2d27aba7ccfb8c7d80d95a"
+    },
+    {
+      "source": "../native/files-fit-dark.webp",
+      "crop": [
+        383,
+        58,
+        551,
+        86
+      ],
+      "rgbaSHA256": "dd18867710d89177b94f864db8f3229e535687f24f79e2341a5ecd18cbd7c174"
+    },
+    {
+      "source": "../native/files-zoom-dark.webp",
+      "crop": [
+        383,
+        58,
+        551,
+        86
+      ],
+      "rgbaSHA256": "dd18867710d89177b94f864db8f3229e535687f24f79e2341a5ecd18cbd7c174"
+    }
+  ],
+  "allLightCropsEqual": true,
+  "darkFitZoomCropsEqual": true
+}

@@ -1,0 +1,40 @@
+{
+  "smoke": "process/window/renderer success",
+  "nativeDisplayCapture": "failed",
+  "nativeCaptureCause": "unknown; original error in logs/ci-scoped.log",
+  "nativeDisplayFile": false,
+  "diagnostics": [
+    {
+      "source": "/tmp/opencode/files-ci-37153526225/artifacts/macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+      "retained": "logs/ExcUserFault_Setup Assistant-2026-03-16-083243.ips.gz",
+      "rawBytes": 48034,
+      "rawSHA256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+      "gzipSHA256": "b51b4824f155dfe860b4b813e4bc08f2adcb46eabd6dec77c82b301dc00633f7",
+      "appName": "Setup Assistant",
+      "timestamp": "2026-03-16 08:32:43.00 -0700",
+      "simulated": true,
+      "exception": {
+        "codes": "0x600000000000001f, 0x0000000000000000",
+        "reason": 0,
+        "message": "namespc 31 reason_code 0x0000000000000000",
+        "subtype": "GUARD_TYPE_USER",
+        "type": "EXC_GUARD",
+        "rawCodes": [
+          6917529027641081887,
+          0
+        ],
+        "namespc": 31
+      },
+      "termination": {
+        "namespace": "WEBKIT",
+        "flags": 518,
+        "code": 0
+      }
+    }
+  ],
+  "cortexCrashDiagnosticInArtifact": false,
+  "crashFreeClaim": false,
+  "packageInspected": false,
+  "ciASARCompared": false,
+  "packageArtifactID": 11284474514
+}

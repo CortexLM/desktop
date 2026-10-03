@@ -1,0 +1,81 @@
+{
+  "head": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "checkout": "72b43406c8092c54c1683f8d0c53bed2e24b5923",
+  "headTree": "b17a4b9a71398b511253044a159ef0ebb558d4ef",
+  "checkoutTree": null,
+  "headCheckoutTreesEqual": null,
+  "checkoutObjectAvailable": false,
+  "checkoutProbeError": "fatal: Not a valid object name 72b43406c8092c54c1683f8d0c53bed2e24b5923",
+  "checkoutLogLines": [
+    {
+      "line": 92,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T21:00:01.2461577Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +72b43406c8092c54c1683f8d0c53bed2e24b5923:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 94,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T21:00:29.4281386Z  * [new ref]         72b43406c8092c54c1683f8d0c53bed2e24b5923 -> pull/36/merge"
+    },
+    {
+      "line": 210,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T21:00:32.7589161Z HEAD is now at 72b4340 Merge d20a012fbb774aa9b348fe1913f85d3476430098 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 213,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T21:00:32.7737737Z 72b43406c8092c54c1683f8d0c53bed2e24b5923"
+    },
+    {
+      "line": 518,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T21:00:07.9352715Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +72b43406c8092c54c1683f8d0c53bed2e24b5923:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 520,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T21:00:55.8809709Z  * [new ref]         72b43406c8092c54c1683f8d0c53bed2e24b5923 -> pull/36/merge"
+    },
+    {
+      "line": 632,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T21:00:58.8261356Z HEAD is now at 72b4340 Merge d20a012fbb774aa9b348fe1913f85d3476430098 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 635,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T21:00:58.8403500Z 72b43406c8092c54c1683f8d0c53bed2e24b5923"
+    },
+    {
+      "line": 1248,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T21:00:19.8068690Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +72b43406c8092c54c1683f8d0c53bed2e24b5923:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 1250,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T21:00:39.6515210Z  * [new ref]         72b43406c8092c54c1683f8d0c53bed2e24b5923 -> pull/36/merge"
+    },
+    {
+      "line": 1340,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T21:00:42.4675490Z HEAD is now at 72b4340 Merge d20a012fbb774aa9b348fe1913f85d3476430098 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 1343,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T21:00:42.4869070Z 72b43406c8092c54c1683f8d0c53bed2e24b5923"
+    }
+  ],
+  "inputs": 520,
+  "rendererInputs": 478,
+  "rendererComparatorFingerprint": "087587293bfb7c2ccf85176cece73982ae75db48318e1c381270caa5196a0d73",
+  "frozenBuildMembers": 90,
+  "frozenBuildFileSetAndBytesVerified": true,
+  "sourceInputsMatchApplicationCommit": true,
+  "frozenMainSHA256": "0b539fe42a98717d7121c7bf404cb4f9bf9930d6d451d909cda6824e75561e76",
+  "frozenPreloadSHA256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+  "ciASAROrMainCompared": false,
+  "scope": "Frozen local source/build verified against application commit; merge-tree proof requires coordinator receipt if object missing. Package/native proof remains separately owned."
+}

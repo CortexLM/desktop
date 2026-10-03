@@ -1,0 +1,1650 @@
+[
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "appearance-theme-light",
+    "imageID": "e2e-linux-002",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/appearance-theme-light.png",
+    "canonical": "images/f4c31756bb48926cec51088fb54268f0743455a2c1f5ea206dcaf1e690b55b52.webp",
+    "sha256": "f4c31756bb48926cec51088fb54268f0743455a2c1f5ea206dcaf1e690b55b52",
+    "rgbaSHA256": "91093df693d3ec52faa811841232f84d85bc663bdff22d35f75612084b66e26c",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Dark choice card border/shadow appearance differs; selected Light option and controls remain legible."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "bot-draft-kept-light",
+    "imageID": "e2e-linux-034",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/bot-draft-kept-light.png",
+    "canonical": "images/c0b81037b183ce7e773b78327d150cb017426a13c3e848807aed8a319cfc5a66.webp",
+    "sha256": "c0b81037b183ce7e773b78327d150cb017426a13c3e848807aed8a319cfc5a66",
+    "rgbaSHA256": "a1011f690b743988341b98c1eacf17c3e1393dc2d76f2d0e953fbffe44be1038",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "code-session-draft-kept-light",
+    "imageID": "e2e-linux-038",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/code-session-draft-kept-light.png",
+    "canonical": "images/79d925fd2d154abdd544f4f48740c5741005b7bc38ea3237fbe7ea54dcb523b1.webp",
+    "sha256": "79d925fd2d154abdd544f4f48740c5741005b7bc38ea3237fbe7ea54dcb523b1",
+    "rgbaSHA256": "997ae2a060f8d93e165242935ee8962f85d82ca9988d1c90c9c3a390cc347e10",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "work-draft-kept-dark",
+    "imageID": "e2e-linux-039",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/work-draft-kept-dark.png",
+    "canonical": "images/9ecaecbe0eb885a0a5280971df051451ab0614dbf7d9ffecfded3795d8277350.webp",
+    "sha256": "9ecaecbe0eb885a0a5280971df051451ab0614dbf7d9ffecfded3795d8277350",
+    "rgbaSHA256": "3a82fe145045cf9ca3a97b20980feff1cbcd68c65487993fe13c24b96d7d60ff",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "work-draft-kept-light",
+    "imageID": "e2e-linux-040",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/work-draft-kept-light.png",
+    "canonical": "images/6d1c27a3ea43d4a1581d4f4f363c055d258d8cbe3b4ffa655d970b01a5c2ab71.webp",
+    "sha256": "6d1c27a3ea43d4a1581d4f4f363c055d258d8cbe3b4ffa655d970b01a5c2ab71",
+    "rgbaSHA256": "b22171a3baf8b7abf7d3c5e3bc0704dd8b0b36e8b906edff52e500811bbb1cb0",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-fit-dark",
+    "imageID": "e2e-linux-043",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-fit-dark.png",
+    "canonical": "images/7503ccbfdbb35aa6f7fac71af206b2421b7f5fc9ba72a93f9b89cc689dbf5857.webp",
+    "sha256": "7503ccbfdbb35aa6f7fac71af206b2421b7f5fc9ba72a93f9b89cc689dbf5857",
+    "rgbaSHA256": "e27bb887056077b3c2eb821c73f3c0c8804a5535b728290b5bea05d5a1adfecc",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-fit-light",
+    "imageID": "e2e-linux-044",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-fit-light.png",
+    "canonical": "images/e1d17d7b40f0ec99734cd6827fa3b1f8ef4374913121fdefe6b6b4ed029cf070.webp",
+    "sha256": "e1d17d7b40f0ec99734cd6827fa3b1f8ef4374913121fdefe6b6b4ed029cf070",
+    "rgbaSHA256": "a2f9b66ba5e785bee001c6a407f8498d361f0d1167afe899c9713d36f2bcd0c5",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-de",
+    "imageID": "e2e-linux-045",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-de.png",
+    "canonical": "images/97cbc8285847d0e5178b049f4cd5b56c292e9eb4069bedbe3aebb2126ebc1142.webp",
+    "sha256": "97cbc8285847d0e5178b049f4cd5b56c292e9eb4069bedbe3aebb2126ebc1142",
+    "rgbaSHA256": "ece506dfb6aca36bd256cd60b856f50133c9985e0f45abe5715ae46bb4d2265b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-en",
+    "imageID": "e2e-linux-046",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-en.png",
+    "canonical": "images/3c5e8ffe15b63f890d2895b45523ae00f6941faea26ab31f373987296866b8b2.webp",
+    "sha256": "3c5e8ffe15b63f890d2895b45523ae00f6941faea26ab31f373987296866b8b2",
+    "rgbaSHA256": "f70b33e4643924a3ae54772077fe11c22e322f3af5e72d16143bc6e98aaa2fce",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-es",
+    "imageID": "e2e-linux-047",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-es.png",
+    "canonical": "images/ec11d88b6e69ddce33d2380d3dfb5ca5d58b4bab3d0f3a1efcb8d3f5f7206744.webp",
+    "sha256": "ec11d88b6e69ddce33d2380d3dfb5ca5d58b4bab3d0f3a1efcb8d3f5f7206744",
+    "rgbaSHA256": "87bca61b635686e17200dbd7a2ad3745d145bd4f61c77dd151a894f1de43837b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-fr",
+    "imageID": "e2e-linux-048",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-fr.png",
+    "canonical": "images/f16710dd57ccf63aed82187a26ed67922fbca90a1bd5a6c5a2bfd9bc4ec36077.webp",
+    "sha256": "f16710dd57ccf63aed82187a26ed67922fbca90a1bd5a6c5a2bfd9bc4ec36077",
+    "rgbaSHA256": "140deaa0d44ebb4a4850a6bff7732f4a2539f2df50de0dcd6089f9e28caadfe4",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-ja",
+    "imageID": "e2e-linux-049",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-ja.png",
+    "canonical": "images/5e92c5fd5c2bd6ee4ea5efd995a82230b7c75e31d045a38000624eb118077394.webp",
+    "sha256": "5e92c5fd5c2bd6ee4ea5efd995a82230b7c75e31d045a38000624eb118077394",
+    "rgbaSHA256": "07628bcff7b2d6148a13ab820a0e9d29829b25971453cdb7eb60ab3608be3571",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-ko",
+    "imageID": "e2e-linux-050",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-ko.png",
+    "canonical": "images/1a5036996cd9cda92aaf984b4fe25aba4d2b5d424e79afdbb1a595e8822974ea.webp",
+    "sha256": "1a5036996cd9cda92aaf984b4fe25aba4d2b5d424e79afdbb1a595e8822974ea",
+    "rgbaSHA256": "1eb7bd4f572cff02970f4183dd29532ba6b7e2f50377a7d8436510ed0a8ef500",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-pt-BR",
+    "imageID": "e2e-linux-051",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-pt-BR.png",
+    "canonical": "images/4e1de93ba97171d2189acddff1f749864c385a217c2cb99167c35e51688f99f6.webp",
+    "sha256": "4e1de93ba97171d2189acddff1f749864c385a217c2cb99167c35e51688f99f6",
+    "rgbaSHA256": "cf6a4199f19c3f65664255049c348c2ee662581ca4e0b0db65da411e8b25dba2",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-locale-zh-Hans",
+    "imageID": "e2e-linux-052",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-locale-zh-Hans.png",
+    "canonical": "images/c4b598840d86104229528c6a9a1a8a21967aab7d6162670146e12bb73671a754.webp",
+    "sha256": "c4b598840d86104229528c6a9a1a8a21967aab7d6162670146e12bb73671a754",
+    "rgbaSHA256": "0eb58ce6bb03de8151c45ed46a3c4ea1c34218e2b47d02602e5060771629db88",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-long-filename-dark",
+    "imageID": "e2e-linux-053",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-long-filename-dark.png",
+    "canonical": "images/08afebca246523e4a5a5d958dfbc8f26ae6f8575bd7d04de314607587dfcf1c6.webp",
+    "sha256": "08afebca246523e4a5a5d958dfbc8f26ae6f8575bd7d04de314607587dfcf1c6",
+    "rgbaSHA256": "bc26e5531c93626b68b3792c73a4b7ab7b5311c70ba503b8987c3d32de7d5a9f",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Bounded scrollable filename preserves visible image/control area; full text is intentionally not visible simultaneously. Keyboard reachability is asserted separately."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-long-filename-light",
+    "imageID": "e2e-linux-054",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-long-filename-light.png",
+    "canonical": "images/2be7c1ea4e2790a6608e82d3623f34d7c4b9c42885600f4cba7cb252a239819c.webp",
+    "sha256": "2be7c1ea4e2790a6608e82d3623f34d7c4b9c42885600f4cba7cb252a239819c",
+    "rgbaSHA256": "da4401c277d326189b00d6044f6858964548156d776582a9b419a56059bf5f72",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Bounded scrollable filename preserves visible image/control area; full text is intentionally not visible simultaneously. Keyboard reachability is asserted separately. Zoom out tooltip is present; image pixels and primary controls remain unobscured."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-portrait-dark",
+    "imageID": "e2e-linux-055",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-portrait-dark.png",
+    "canonical": "images/bcd012579a65aadca6cfd3048662efa471aeedf6b2aaf3ad56f792637c5cf76b.webp",
+    "sha256": "bcd012579a65aadca6cfd3048662efa471aeedf6b2aaf3ad56f792637c5cf76b",
+    "rgbaSHA256": "5a578e5c9d080ac542e7035a143a6e6bd9cd2ff00d7e09e60a1133f099654919",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "e2e-linux",
+    "view": "files-portrait-light",
+    "imageID": "e2e-linux-056",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/files-portrait-light.png",
+    "canonical": "images/771f185e9adf795dce6f085dc0a9470aabc30c728431c5d15f08272ae4fc3f4f.webp",
+    "sha256": "771f185e9adf795dce6f085dc0a9470aabc30c728431c5d15f08272ae4fc3f4f",
+    "rgbaSHA256": "29bdee37fd12057d81471397f86fbe514645385bd99120cc2563ab63a9fc26a8",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "image-compare-quarter-960-dark",
+    "imageID": "e2e-linux-063",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/image-compare-quarter-960-dark.png",
+    "canonical": "images/08e3f6a9031f0eaea6330329d271171f6c7d97df8f51cea8fdae32c49ef3daeb.webp",
+    "sha256": "08e3f6a9031f0eaea6330329d271171f6c7d97df8f51cea8fdae32c49ef3daeb",
+    "rgbaSHA256": "4a5eb8c5a581ad819570220e9a3aa874760a3717dc60bd71728cf3b40122ce10",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "kanban-dropped-1440-dark",
+    "imageID": "e2e-linux-065",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/kanban-dropped-1440-dark.png",
+    "canonical": "images/943def236b7649fca30bf00b55317994a3e004499c47ac10a1f5260d92db52cf.webp",
+    "sha256": "943def236b7649fca30bf00b55317994a3e004499c47ac10a1f5260d92db52cf",
+    "rgbaSHA256": "ca968bb90e6b00441d2d0dfe8e07058809036ebb8b09f27e7469b85b01ce12e3",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "kanban-dropped-1440-light",
+    "imageID": "e2e-linux-066",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/kanban-dropped-1440-light.png",
+    "canonical": "images/bcc66c444e5b53f43d784390b7d1209769444cfc67cc0ce5b02639ad8b95483c.webp",
+    "sha256": "bcc66c444e5b53f43d784390b7d1209769444cfc67cc0ce5b02639ad8b95483c",
+    "rgbaSHA256": "35709a7e59cf0b70bc9091080e7d8d26037cc0bac3b583e7007f84718857833e",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "mascot-paused-1440-dark",
+    "imageID": "e2e-linux-067",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/mascot-paused-1440-dark.png",
+    "canonical": "images/e5560da7049bad22b219d40c8bde8976a914d80f8d5acf23277a32d43c34763d.webp",
+    "sha256": "e5560da7049bad22b219d40c8bde8976a914d80f8d5acf23277a32d43c34763d",
+    "rgbaSHA256": "f1f71d7be23921cb592f3e6085e51e75e24a7ef1e2e71c977aa6d0f32d840384",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "reasoning-expanded-960-dark",
+    "imageID": "e2e-linux-069",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/reasoning-expanded-960-dark.png",
+    "canonical": "images/dc05d4658f732c8060bef421aaea6f59fe3a93cf5bec1568c3126951c94167c3.webp",
+    "sha256": "dc05d4658f732c8060bef421aaea6f59fe3a93cf5bec1568c3126951c94167c3",
+    "rgbaSHA256": "8ce235a71a1ca2b60e8e9e2ecf247d6c89058e6128e1f8fc13de186ac4596121",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "reasoning-expanded-960-light",
+    "imageID": "e2e-linux-070",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/reasoning-expanded-960-light.png",
+    "canonical": "images/c626f933ab3b78c4850de369f0592269b102dddedc166f0c16975fcd17fe350d.webp",
+    "sha256": "c626f933ab3b78c4850de369f0592269b102dddedc166f0c16975fcd17fe350d",
+    "rgbaSHA256": "f6f2fe2ccccee235367efc3a7bff4db220b513a3db40d3541950112aae3ee451",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Visible 5s/6s reasoning-step content and scrollbar position differ; current content/composer remain reachable. No timing cause attested."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "upload-drop-ready-960-dark",
+    "imageID": "e2e-linux-071",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/upload-drop-ready-960-dark.png",
+    "canonical": "images/10455e2da8342ed2ff88d9944eab0c4e96eda0fce3fcd5a03111e857cc1ca144.webp",
+    "sha256": "10455e2da8342ed2ff88d9944eab0c4e96eda0fce3fcd5a03111e857cc1ca144",
+    "rgbaSHA256": "483d382574b0da7c8abb51abb6b204aaf0930dee3238b32b37d6806d72c6f69e",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "frozen-focus-dark",
+    "imageID": "e2e-linux-073",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/frozen-focus-dark.png",
+    "canonical": "images/9b00eb2b8ae713224a7bb12bf1cfa23b0096d0690384bd06157e289a18d2f2d3.webp",
+    "sha256": "9b00eb2b8ae713224a7bb12bf1cfa23b0096d0690384bd06157e289a18d2f2d3",
+    "rgbaSHA256": "35ace42675186915c8ba213749193daa8819a0ed5af05e7e76d7e6d7a86a4865",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "frozen-theme-dark",
+    "imageID": "e2e-linux-074",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/frozen-theme-dark.png",
+    "canonical": "images/ba74e61c95634e0594c6008ef44c2137a31f8a2e4af16a526f2340337e36bee0.webp",
+    "sha256": "ba74e61c95634e0594c6008ef44c2137a31f8a2e4af16a526f2340337e36bee0",
+    "rgbaSHA256": "8b9ee45097582aa142c45f4fde88fa756e0eda1ba243f61ebf95c4a4989c432b",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "keyboard-dark",
+    "imageID": "e2e-linux-075",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/keyboard-dark.png",
+    "canonical": "images/8a52675626d50c61b8eabe2603448a1f3cbd0f70d0be721052553a326b6b84a8.webp",
+    "sha256": "8a52675626d50c61b8eabe2603448a1f3cbd0f70d0be721052553a326b6b84a8",
+    "rgbaSHA256": "ec593b5556bf0173b81bddceda08a7a72bef38ad14c2ffb0d08c2cc2d7a0ecce",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "undo-light",
+    "imageID": "e2e-linux-078",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/undo-light.png",
+    "canonical": "images/e499d20c1e4c2ad1319e77ba9810a5fec26df2d11bbd6e0cac3a48378db54a46.webp",
+    "sha256": "e499d20c1e4c2ad1319e77ba9810a5fec26df2d11bbd6e0cac3a48378db54a46",
+    "rgbaSHA256": "d7b213c04fb423ae363bcf5f7510f86bc668014847e24293d9881c18b8824b8b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "after-put-release",
+    "imageID": "e2e-linux-120",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/after-put-release.png",
+    "canonical": "images/dcc37b92e33e0b6800b958ec007560bfe006232a8adeb2e14bb77d6f890bb338.webp",
+    "sha256": "dcc37b92e33e0b6800b958ec007560bfe006232a8adeb2e14bb77d6f890bb338",
+    "rgbaSHA256": "ccf6f7441d53580ba6a5a6d84a6f421e3597462a4fd50f8a8888e2f8065fda2b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Save control background differs; label and retained replacement-key draft remain visible."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "remote-canonical-origin-sign-in",
+    "imageID": "e2e-linux-121",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/remote-canonical-origin-sign-in.png",
+    "canonical": "images/527db991b84c68c83c52dd7e872d4a52742627935abc6a150f5e90fbf841906f.webp",
+    "sha256": "527db991b84c68c83c52dd7e872d4a52742627935abc6a150f5e90fbf841906f",
+    "rgbaSHA256": "2490388ad81175a58f481db1a9d9c152c5558f051976b93a4b51af95cecc6f49",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Sign-in control background differs; label remains visible."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "approval-descriptions",
+    "imageID": "e2e-linux-140",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/approval-descriptions.png",
+    "canonical": "images/c990eb76598cd56cb207d8bd0625b65e09966f28f37fa8635bdab55231d5b6bc.webp",
+    "sha256": "c990eb76598cd56cb207d8bd0625b65e09966f28f37fa8635bdab55231d5b6bc",
+    "rgbaSHA256": "39ac5bcfe9b69baf8f9ec44898d64841a8472fcc8eb367c9c683d3aaa38fc48c",
+    "size": [
+      1024,
+      686
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-interrupted-dark",
+    "imageID": "e2e-linux-143",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-interrupted-dark.png",
+    "canonical": "images/0a2723117c6e4ee115059f562597be92e30c75581e284f4c234a405a4874385b.webp",
+    "sha256": "0a2723117c6e4ee115059f562597be92e30c75581e284f4c234a405a4874385b",
+    "rgbaSHA256": "2ccc2da1f898889154fa3acdb171cee57c7b9174f53293da87bae5c67d17bb4b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-interrupted-light",
+    "imageID": "e2e-linux-144",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-interrupted-light.png",
+    "canonical": "images/f1ab723ca7d67acc755238a3ab23894234eb5969cf45d07a5a2e66709da921d5.webp",
+    "sha256": "f1ab723ca7d67acc755238a3ab23894234eb5969cf45d07a5a2e66709da921d5",
+    "rgbaSHA256": "f90b521b90f985d1182838bd4a48c19b1f4c2ffdadd2e21ed9cfa9c4f1033d10",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-running-dark",
+    "imageID": "e2e-linux-145",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-running-dark.png",
+    "canonical": "images/a81e85b03594d70b0d5229e716ac45a6a678db2439d984a5f83d1d05c628f0cc.webp",
+    "sha256": "a81e85b03594d70b0d5229e716ac45a6a678db2439d984a5f83d1d05c628f0cc",
+    "rgbaSHA256": "a01bca341909aff0e0188aaefff8cca30557940ad5ff16e556fb6d10bc83cec5",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-running-light",
+    "imageID": "e2e-linux-146",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-running-light.png",
+    "canonical": "images/153a83a9a928a83360d1e2f7ef24a41b92ce1917a4fbdb520bce9e71c5650a5d.webp",
+    "sha256": "153a83a9a928a83360d1e2f7ef24a41b92ce1917a4fbdb520bce9e71c5650a5d",
+    "rgbaSHA256": "80caca1b5d3156dabb86ddca0ae04ef6ae06c9896fd5f801a29b2694a5c981bc",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "privacy-memory-off-dark",
+    "imageID": "e2e-linux-149",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/privacy-memory-off-dark.png",
+    "canonical": "images/0827b179f8b15c9e9fa73f369dfb361b6693b4f39f37212be74122ee7c9437d7.webp",
+    "sha256": "0827b179f8b15c9e9fa73f369dfb361b6693b4f39f37212be74122ee7c9437d7",
+    "rgbaSHA256": "cca7e6befe3c530b2a7d4523038a8918f68702024b3e80acb26182c4d2dda217",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "saved-memory-paused-dark",
+    "imageID": "e2e-linux-151",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/saved-memory-paused-dark.png",
+    "canonical": "images/084381c384b13abdfd8f2a7dbb48b93cd40cf72208c1260617fce45ec1d6d219.webp",
+    "sha256": "084381c384b13abdfd8f2a7dbb48b93cd40cf72208c1260617fce45ec1d6d219",
+    "rgbaSHA256": "65442c36e07d8237916f92d35ccaf6ada164b49956793f48c0a241fa4568f4c0",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "saved-memory-paused-light",
+    "imageID": "e2e-linux-152",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/saved-memory-paused-light.png",
+    "canonical": "images/0c3d82af951f64f973e05cfff412dc12d1ed9b4305f48baa2cc7401632bcabc5.webp",
+    "sha256": "0c3d82af951f64f973e05cfff412dc12d1ed9b4305f48baa2cc7401632bcabc5",
+    "rgbaSHA256": "52e248c13a7ba356be136dbcabcafefd2de1ba97af63a5717c806cf71ed1c9bd",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "chat-draft-kept-dark",
+    "imageID": "e2e-linux-161",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/chat-draft-kept-dark.png",
+    "canonical": "images/c9e5d22a68f4404306158187e3ce8f6927348ca9f4e714a75c7a556ad6529d57.webp",
+    "sha256": "c9e5d22a68f4404306158187e3ce8f6927348ca9f4e714a75c7a556ad6529d57",
+    "rgbaSHA256": "f4280dec2c5df1db0555c303acd991917e95373642b58d5935d60c9092bdadb1",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-de",
+    "imageID": "e2e-linux-173",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-de.png",
+    "canonical": "images/cf21aacf3e59dacc68ae7d3e85fd701d88a5d28107ff105c78bc9def2b0f841c.webp",
+    "sha256": "cf21aacf3e59dacc68ae7d3e85fd701d88a5d28107ff105c78bc9def2b0f841c",
+    "rgbaSHA256": "be32e96ad4c9520582053c7b31ff3bbc4b1fea73d32f5688867de23391387c08",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-en",
+    "imageID": "e2e-linux-174",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-en.png",
+    "canonical": "images/fab14bacdb131e9d2b60ce25d3520732908db7aebec761cde6357b5df09ace7f.webp",
+    "sha256": "fab14bacdb131e9d2b60ce25d3520732908db7aebec761cde6357b5df09ace7f",
+    "rgbaSHA256": "d4d14d4c4d7178f7a9c607a183b2a3e5aa13f3b62e397f63c57d38acc3a35923",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-es",
+    "imageID": "e2e-linux-175",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-es.png",
+    "canonical": "images/bbda4c5c30a146a0fa9c21dff1fc962a0684e3dc6935fd922c412d1f3eb85f5a.webp",
+    "sha256": "bbda4c5c30a146a0fa9c21dff1fc962a0684e3dc6935fd922c412d1f3eb85f5a",
+    "rgbaSHA256": "f26336b2e17d3bce073f18dee6d5b596c03a013c67b78a345927be61aebdb41a",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-fr",
+    "imageID": "e2e-linux-176",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-fr.png",
+    "canonical": "images/3695d121deef18030803869d2a706b9bfbe7587c89213828d77563498ec85027.webp",
+    "sha256": "3695d121deef18030803869d2a706b9bfbe7587c89213828d77563498ec85027",
+    "rgbaSHA256": "2401fd7373de7b5a4289b873b3d905d53d2837886926d9c4dd840666ace08a65",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-ja",
+    "imageID": "e2e-linux-177",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-ja.png",
+    "canonical": "images/072e58230a95e8f2da71d7cf704ae4b668fb3a35adfe9290034b000d049e31be.webp",
+    "sha256": "072e58230a95e8f2da71d7cf704ae4b668fb3a35adfe9290034b000d049e31be",
+    "rgbaSHA256": "ebac02b17825de2119716810748da5ac5ccab5302539003052926bf536820c3d",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-ko",
+    "imageID": "e2e-linux-178",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-ko.png",
+    "canonical": "images/3c010ca592a6a9defab86aa0132b6ffb6aa7f6377e602e72163b1974b64daa4d.webp",
+    "sha256": "3c010ca592a6a9defab86aa0132b6ffb6aa7f6377e602e72163b1974b64daa4d",
+    "rgbaSHA256": "04ebf3f9227536ae8cbb00e9bcbaa03d581a297ad7373106172811133d297f77",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-pt-BR",
+    "imageID": "e2e-linux-179",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-pt-BR.png",
+    "canonical": "images/aff69732d13d8a91a51bb7fcce816deefacb6d9f75252a76ca5e86bd34c0f32b.webp",
+    "sha256": "aff69732d13d8a91a51bb7fcce816deefacb6d9f75252a76ca5e86bd34c0f32b",
+    "rgbaSHA256": "a5590a6d9780735992db5c7bb0b23cae8bd3cfa9b9d21d2f0672c2bb59444ba1",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-zh-Hans",
+    "imageID": "e2e-linux-180",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-zh-Hans.png",
+    "canonical": "images/b543b0540dc6bb946aa8af0747119ced1cb5da75e7db1e08f4131d04ac17be36.webp",
+    "sha256": "b543b0540dc6bb946aa8af0747119ced1cb5da75e7db1e08f4131d04ac17be36",
+    "rgbaSHA256": "683cf27f4ee1400d2a35fd19712b26c0ac42f9bd85c16f4e1e0596b601ad6c96",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-dark",
+    "imageID": "e2e-linux-181",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-dark.png",
+    "canonical": "images/5a69d48e5910be40f4ceedc4389dc4b39409d20c5acfe25e9fb49f209dfd6fdd.webp",
+    "sha256": "5a69d48e5910be40f4ceedc4389dc4b39409d20c5acfe25e9fb49f209dfd6fdd",
+    "rgbaSHA256": "6c585afac854627894a0ce3128f9b00401b0e70ebcd02573eeffaafa596ca697",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-outcomes-light",
+    "imageID": "e2e-linux-182",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-outcomes-light.png",
+    "canonical": "images/0d0687fc6ff5782b1cd73aea7f28de4ee78451ef9ca87c5738121c9e7bd4fbf3.webp",
+    "sha256": "0d0687fc6ff5782b1cd73aea7f28de4ee78451ef9ca87c5738121c9e7bd4fbf3",
+    "rgbaSHA256": "26bcaf96bf93e4540eccbb949bec52b2d0297043e2225428a79b5c545db3bd20",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-reopened-dark",
+    "imageID": "e2e-linux-183",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-reopened-dark.png",
+    "canonical": "images/1647227dc93630ed54119ab9eca6fd89ce498d56a1581dcffcb4aa75d325fbec.webp",
+    "sha256": "1647227dc93630ed54119ab9eca6fd89ce498d56a1581dcffcb4aa75d325fbec",
+    "rgbaSHA256": "f651ac346f49727de72767c565076ecbeed60a1c8498069782bab5740d18b67c",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "activity-reopened-light",
+    "imageID": "e2e-linux-184",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/activity-reopened-light.png",
+    "canonical": "images/93b5768741ec599fa9aa5930663fb867206dbc9b2aad26fd6f50d8b5e4ae9f95.webp",
+    "sha256": "93b5768741ec599fa9aa5930663fb867206dbc9b2aad26fd6f50d8b5e4ae9f95",
+    "rgbaSHA256": "e5cdf9312817024ae48f3e756ca6018028c05f51c4ab45c320e4cc0b166f5908",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-source-run-dark",
+    "imageID": "e2e-linux-192",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-source-run-dark.png",
+    "canonical": "images/f0cca95f0acaa6d08bb1e32635eb54e2ee2fab91777b4e9e0ef2f7f25b2c0dd8.webp",
+    "sha256": "f0cca95f0acaa6d08bb1e32635eb54e2ee2fab91777b4e9e0ef2f7f25b2c0dd8",
+    "rgbaSHA256": "a9c72719df746ff81e74f090ce16f60a422d89f83fd7b5fa40e8cc8a3ad15348",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "e2e-linux",
+    "view": "routine-source-run-light",
+    "imageID": "e2e-linux-193",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/e2e-linux/routine-source-run-light.png",
+    "canonical": "images/41acb06f9ca6e1f238e43f5722e61bdddbec71915de35cfaa53364476011a3fa.webp",
+    "sha256": "41acb06f9ca6e1f238e43f5722e61bdddbec71915de35cfaa53364476011a3fa",
+    "rgbaSHA256": "33c83e40cd536d6f217e80713faa07f3bb8a7ff961c184fb645b64b1f211b346",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "bot-draft-kept-light",
+    "imageID": "macos-034",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/bot-draft-kept-light.png",
+    "canonical": "images/669e7f584323ab9c30a728c316538f98fc6b79e320e9a17f9920430d2aa3001d.webp",
+    "sha256": "669e7f584323ab9c30a728c316538f98fc6b79e320e9a17f9920430d2aa3001d",
+    "rgbaSHA256": "22593c2464ebeffb96561f44ab2e8c597e24314350fb7e532e5ecf00bf80a115",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "work-draft-kept-dark",
+    "imageID": "macos-039",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/work-draft-kept-dark.png",
+    "canonical": "images/e942d403366578933bb5690d60cdbf6c694e44753e29a26c62fb53a90992964b.webp",
+    "sha256": "e942d403366578933bb5690d60cdbf6c694e44753e29a26c62fb53a90992964b",
+    "rgbaSHA256": "fc19f07884949221ef28c5b846f1a18dfbb91cadc9a740129ec687ed0a109814",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "work-draft-kept-light",
+    "imageID": "macos-040",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/work-draft-kept-light.png",
+    "canonical": "images/78030e434d03227b43bf9e74b28a55e626e8f69b6a67a5752a83e78b578fa596.webp",
+    "sha256": "78030e434d03227b43bf9e74b28a55e626e8f69b6a67a5752a83e78b578fa596",
+    "rgbaSHA256": "3397a019861469f5e9edaf8a24a8b55dba6f56c6b6e34a78fe3b5f9d258b940f",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-fit-dark",
+    "imageID": "macos-043",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-fit-dark.png",
+    "canonical": "images/09ec38e21cd63f7621c54a8e42054bf266cee0642eae5a3d472cfe3b3cf34547.webp",
+    "sha256": "09ec38e21cd63f7621c54a8e42054bf266cee0642eae5a3d472cfe3b3cf34547",
+    "rgbaSHA256": "51f01b57fc77bdb51df16a081d3f848a4de9bf88650c0a07aeffe82f57751ea0",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-fit-light",
+    "imageID": "macos-044",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-fit-light.png",
+    "canonical": "images/74fc19a2cbd1e39789aeb5424a317211cbd6cb0c87dd421b95745568274d8986.webp",
+    "sha256": "74fc19a2cbd1e39789aeb5424a317211cbd6cb0c87dd421b95745568274d8986",
+    "rgbaSHA256": "ae26cdc09415752fd8e9ad26209707767a512b3104b92ea68c73685c79cc3102",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-de",
+    "imageID": "macos-045",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-de.png",
+    "canonical": "images/49403eeddcf74a08d9dec68a206f8c3694651ca46b805d888d0065c66d3ffeaa.webp",
+    "sha256": "49403eeddcf74a08d9dec68a206f8c3694651ca46b805d888d0065c66d3ffeaa",
+    "rgbaSHA256": "47ff7dafc7ceb1f9b57a9167c72b4ef23cdcb43b912ef8eb846cdcadb31197fd",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-en",
+    "imageID": "macos-046",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-en.png",
+    "canonical": "images/0822a9a09ee06f99e857ec8c46f08311a9c2e3bedf399bdab5fed1b848a6308a.webp",
+    "sha256": "0822a9a09ee06f99e857ec8c46f08311a9c2e3bedf399bdab5fed1b848a6308a",
+    "rgbaSHA256": "5408de207f19af09f7f1cf6dfd094249fb62a666cf41fa9eab2c8168507761e2",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-es",
+    "imageID": "macos-047",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-es.png",
+    "canonical": "images/c22b537a07fc39dff3a3ff4527b44ddfb78633dbe9b898096247e403b41ea6f3.webp",
+    "sha256": "c22b537a07fc39dff3a3ff4527b44ddfb78633dbe9b898096247e403b41ea6f3",
+    "rgbaSHA256": "bf293a7f60f83b02b7ee6cd9acc59797c820ab8f3aa66ed0580c664e3b2b2917",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-fr",
+    "imageID": "macos-048",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-fr.png",
+    "canonical": "images/6814e99f084e2281dcc9c9e6df206e6fb593808a0f87396641359c019604c8ca.webp",
+    "sha256": "6814e99f084e2281dcc9c9e6df206e6fb593808a0f87396641359c019604c8ca",
+    "rgbaSHA256": "8abf25f04cee8dbdc6d3dae3a99ce72bfda4cad1fc4720748bee15813b8303d1",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-ja",
+    "imageID": "macos-049",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-ja.png",
+    "canonical": "images/3eda6710de3671625fb46b6fa8e92632a4d83e9b38c211d845697f1052c8942f.webp",
+    "sha256": "3eda6710de3671625fb46b6fa8e92632a4d83e9b38c211d845697f1052c8942f",
+    "rgbaSHA256": "b1615ea8227c5f2803ff9650758fa8c9776f0a6533fb180fb1cb2e77bcf0fc17",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-ko",
+    "imageID": "macos-050",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-ko.png",
+    "canonical": "images/bd92775bcc68b9fcf92776600a27a4051e5e00df8e67c78c64a7f65b7a07948d.webp",
+    "sha256": "bd92775bcc68b9fcf92776600a27a4051e5e00df8e67c78c64a7f65b7a07948d",
+    "rgbaSHA256": "be0ab63a9a9addbc1872b4ed31e93e37b4426de98abdfeabced44d59b32c0777",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-pt-BR",
+    "imageID": "macos-051",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-pt-BR.png",
+    "canonical": "images/ccd0d9ad1bb5ad3bbfd23f688d2410d134b4d3d441aacc871caa289e0c877a36.webp",
+    "sha256": "ccd0d9ad1bb5ad3bbfd23f688d2410d134b4d3d441aacc871caa289e0c877a36",
+    "rgbaSHA256": "c6205eede69ad60ea1623ea9643f9b2f3441c603a93d8ee7c6d066a81f803406",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-locale-zh-Hans",
+    "imageID": "macos-052",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-locale-zh-Hans.png",
+    "canonical": "images/c1211bf1630d1afa514c097281eae7654d589f94ff0198970796d462a101578a.webp",
+    "sha256": "c1211bf1630d1afa514c097281eae7654d589f94ff0198970796d462a101578a",
+    "rgbaSHA256": "f69e5034c3ba924be97ac9a02de5ecc3bc9944ec93f4ef9d539394c4c218e493",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap. Dark-only locale frame; CJK glyphs visible. No native-speaker fluency claim."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-long-filename-dark",
+    "imageID": "macos-053",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-long-filename-dark.png",
+    "canonical": "images/cc76e4f2042c4a0d4fc64af977c099527a4bb166ab1b626a4dea64a9e8968237.webp",
+    "sha256": "cc76e4f2042c4a0d4fc64af977c099527a4bb166ab1b626a4dea64a9e8968237",
+    "rgbaSHA256": "945aaae2a80d1ce9aaa56a60ba9daf5af19e5a5bfa0fbcf0e3af398d2c35b80c",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Bounded scrollable filename preserves visible image/control area; full text is intentionally not visible simultaneously. Keyboard reachability is asserted separately."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-long-filename-light",
+    "imageID": "macos-054",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-long-filename-light.png",
+    "canonical": "images/d894098537d43d6565e818e1b5eca381cf11f5e387f1c756e27f7c27134c0757.webp",
+    "sha256": "d894098537d43d6565e818e1b5eca381cf11f5e387f1c756e27f7c27134c0757",
+    "rgbaSHA256": "8578971cd7085436dbcbfbb2a316479d1ed16d289f1ddbe7374f9b62f3983f5d",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Bounded scrollable filename preserves visible image/control area; full text is intentionally not visible simultaneously. Keyboard reachability is asserted separately. Zoom out tooltip is present; image pixels and primary controls remain unobscured."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-portrait-dark",
+    "imageID": "macos-055",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-portrait-dark.png",
+    "canonical": "images/f1e7d3835a978172ae79f751f3d779cee61b44614bf45cb8d8a54773fc0fd38c.webp",
+    "sha256": "f1e7d3835a978172ae79f751f3d779cee61b44614bf45cb8d8a54773fc0fd38c",
+    "rgbaSHA256": "b6c05e8b24b54b0948eed6c33435577a03ec2e8ca51185918771c2941a1c2b78",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "primary Files",
+    "os": "macos",
+    "view": "files-portrait-light",
+    "imageID": "macos-056",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/files-portrait-light.png",
+    "canonical": "images/dd6a84f31d7d878d8b8d9ef10e0bc68d5245c02dc45e983d26c0600624e98741.webp",
+    "sha256": "dd6a84f31d7d878d8b8d9ef10e0bc68d5245c02dc45e983d26c0600624e98741",
+    "rgbaSHA256": "c446d729cd9e759aa5657e47e4cd1c8401eeeb091db5711e447b2f38cdb6f0a4",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Actual solid-color fixture, metadata and controls visible; no new blocking clipping/overlap."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "frozen-chat-history-dark",
+    "imageID": "macos-057",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/frozen-chat-history-dark.png",
+    "canonical": "images/6e75a6741616f37e58b7ecc6e5d5356188e00e86f166c42696098caa69e627c9.webp",
+    "sha256": "6e75a6741616f37e58b7ecc6e5d5356188e00e86f166c42696098caa69e627c9",
+    "rgbaSHA256": "be8435f2281aba0006552105ecbdff9e0c79b146bfa6c5b4c1d226eb7f460f6b",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "frozen-chat-history-light",
+    "imageID": "macos-058",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/frozen-chat-history-light.png",
+    "canonical": "images/ac590945fa9fa3977783c450f11dcb16efc52cc53666bb1cbee3dda00040c17b.webp",
+    "sha256": "ac590945fa9fa3977783c450f11dcb16efc52cc53666bb1cbee3dda00040c17b",
+    "rgbaSHA256": "4484a91ac186837a4bf9a76fb3ce48a8ceacd5d07a8f12e7fef248d13f04b070",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "kanban-dropped-1440-dark",
+    "imageID": "macos-065",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/kanban-dropped-1440-dark.png",
+    "canonical": "images/88e5f5f7092da5fd2fad780e04c3f9cc5fbf1267086b2f47267695425addbea8.webp",
+    "sha256": "88e5f5f7092da5fd2fad780e04c3f9cc5fbf1267086b2f47267695425addbea8",
+    "rgbaSHA256": "443a3bbfe5c0623fdea08ca834b8d7d17d9de7ea046ad79df3d3f90ca74c061e",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "kanban-dropped-1440-light",
+    "imageID": "macos-066",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/kanban-dropped-1440-light.png",
+    "canonical": "images/76c1cc2c726db11c25e68884f1cbb2ab04f2f232ac8055d90575b00290e08187.webp",
+    "sha256": "76c1cc2c726db11c25e68884f1cbb2ab04f2f232ac8055d90575b00290e08187",
+    "rgbaSHA256": "f5b49f50050380543fe51556af51254321262655f12a6beac56672ae0a986b90",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "mascot-paused-1440-dark",
+    "imageID": "macos-067",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/mascot-paused-1440-dark.png",
+    "canonical": "images/4e604d5a84a581704589f0b73eafaca0bd3d36c132844e5071448173b91bb713.webp",
+    "sha256": "4e604d5a84a581704589f0b73eafaca0bd3d36c132844e5071448173b91bb713",
+    "rgbaSHA256": "81c4562cf20b35ae9d283dbf12056e8f5a528190f8ae7dacd27e804a1060dd4f",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "reasoning-expanded-960-light",
+    "imageID": "macos-070",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/reasoning-expanded-960-light.png",
+    "canonical": "images/7326be0f598bc80a8461eab3f968e61bf2bc97d48a2f1f7c2778632f721604eb.webp",
+    "sha256": "7326be0f598bc80a8461eab3f968e61bf2bc97d48a2f1f7c2778632f721604eb",
+    "rgbaSHA256": "e53c242a68059e75dc0e4aa7d450f3cc73143902045c2f2d1533316c7ced831e",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Visible 5s/6s reasoning-step content and scrollbar position differ; current content/composer remain reachable. No timing cause attested."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "upload-drop-ready-960-light",
+    "imageID": "macos-072",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/upload-drop-ready-960-light.png",
+    "canonical": "images/a284d3c4a3b0e0568d8863a36187496a406f2971ca730510ef94b8fb20224eb7.webp",
+    "sha256": "a284d3c4a3b0e0568d8863a36187496a406f2971ca730510ef94b8fb20224eb7",
+    "rgbaSHA256": "b3d89ba4caa34fbfa99f273b52caad2fc631ecb0b34cf6d37b0cbc5eabe5f266",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "frozen-focus-dark",
+    "imageID": "macos-073",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/frozen-focus-dark.png",
+    "canonical": "images/8dbef490255fe5eef60c86c142e474a73e9b9dad37f634e12d00d16842cba6d4.webp",
+    "sha256": "8dbef490255fe5eef60c86c142e474a73e9b9dad37f634e12d00d16842cba6d4",
+    "rgbaSHA256": "c0026999d1187d0e9a36604e0f9737c96b2b84b6e7216ed467b3a360e0f01f33",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "frozen-theme-dark",
+    "imageID": "macos-074",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/frozen-theme-dark.png",
+    "canonical": "images/b73e9ab20f181126e840e39171096fea3de00af1413de381643768aa566d69b2.webp",
+    "sha256": "b73e9ab20f181126e840e39171096fea3de00af1413de381643768aa566d69b2",
+    "rgbaSHA256": "cfff2f5efa807a81fbd89432f1acfc517e4dfd7acdcac79d6091c51ec0522829",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "project-instructions-dark",
+    "imageID": "macos-107",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/project-instructions-dark.png",
+    "canonical": "images/37a6bbaab76a9dc01dba0b677bafecc01c912930238e98032cf9b2b90d77b0aa.webp",
+    "sha256": "37a6bbaab76a9dc01dba0b677bafecc01c912930238e98032cf9b2b90d77b0aa",
+    "rgbaSHA256": "eb57bfb7bc63251ec875d67a1ba8ca3c69cc761e2547b3190ce22833a31b0139",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "remote-mfa-unavailable-light",
+    "imageID": "macos-134",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/remote-mfa-unavailable-light.png",
+    "canonical": "../../projects-followup/ci-8e3fd79/images/52a220a23d1cbfd1a090374140c7b7109e40bb1462113b02d6704a478b4de2d9.webp",
+    "sha256": "52a220a23d1cbfd1a090374140c7b7109e40bb1462113b02d6704a478b4de2d9",
+    "rgbaSHA256": "ec3eaada7443be3dfb672fd7223d3370de20605715c0e0b8492cff7f231b31d0",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Use another address background differs; unavailable text/actions remain legible."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-interrupted-dark",
+    "imageID": "macos-143",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-interrupted-dark.png",
+    "canonical": "images/6efc1837875d6f6a578db82ec7ebeaf1e77adbb162ef91f3930468a178f67fe3.webp",
+    "sha256": "6efc1837875d6f6a578db82ec7ebeaf1e77adbb162ef91f3930468a178f67fe3",
+    "rgbaSHA256": "9692fefdc4672e656ac2f3ecc75ca6e11a02047cf658db601b700d9048cc3bb9",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-interrupted-light",
+    "imageID": "macos-144",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-interrupted-light.png",
+    "canonical": "images/583579b9b3895f797197510193bf13faaafa3efe9d6c601c45e2519072da41f2.webp",
+    "sha256": "583579b9b3895f797197510193bf13faaafa3efe9d6c601c45e2519072da41f2",
+    "rgbaSHA256": "d6208d151f0f07ede0e8421895d052a1ff413c4d771b509d8685aa1780d13ce3",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-running-dark",
+    "imageID": "macos-145",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-running-dark.png",
+    "canonical": "images/17f42081b7a6ecf4c7a0b81decc392fadeb5b400dce0318b81789e09efbef07b.webp",
+    "sha256": "17f42081b7a6ecf4c7a0b81decc392fadeb5b400dce0318b81789e09efbef07b",
+    "rgbaSHA256": "c2fbfaf4a9a620375346642a87095d9551bb73c0a9ab30fd8233ae60ffc18e54",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-running-light",
+    "imageID": "macos-146",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-running-light.png",
+    "canonical": "images/bd0e3c61cbaaaa750133bcaef51593de5a68d8b2a1c2cbbba1a7b5d4230c05cf.webp",
+    "sha256": "bd0e3c61cbaaaa750133bcaef51593de5a68d8b2a1c2cbbba1a7b5d4230c05cf",
+    "rgbaSHA256": "5f5360a93065e280174fe7d72913c9e0a48549e275ef4c8c76c89875f371ff78",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "history-image-refusal-light",
+    "imageID": "macos-166",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/history-image-refusal-light.png",
+    "canonical": "images/86d97e2bd17e99da58f10bb4f870a03b04f13586ca6873378cfccfc11b75e67c.webp",
+    "sha256": "86d97e2bd17e99da58f10bb4f870a03b04f13586ca6873378cfccfc11b75e67c",
+    "rgbaSHA256": "e1bb2c43d4fbc5862cdcc684c6f3c6dc7009eac8d36c862d38df930cac368f56",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current full-size frame inspected; localized icon/edge/control-state differences retained. No blanket pixel-equivalence or root-cause claim."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-de",
+    "imageID": "macos-173",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-de.png",
+    "canonical": "images/1d94217009bc3b5a65cc5b298296dcf570236a5848c3f01c58f8fa8a09e9743a.webp",
+    "sha256": "1d94217009bc3b5a65cc5b298296dcf570236a5848c3f01c58f8fa8a09e9743a",
+    "rgbaSHA256": "547f5a1ca6170170a3e3aac3a4f72c2029de6dc3507b0f8566abedb041e5e401",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-en",
+    "imageID": "macos-174",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-en.png",
+    "canonical": "images/64d151db53eaddd872aee8fa3ed6a4be9da306613b4795b542234c756ae3f0e0.webp",
+    "sha256": "64d151db53eaddd872aee8fa3ed6a4be9da306613b4795b542234c756ae3f0e0",
+    "rgbaSHA256": "ee8966ef62736f8cc2287abd47f893ed4a6b564792aff9fcfba71ac2f6c206cd",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-es",
+    "imageID": "macos-175",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-es.png",
+    "canonical": "images/b4cc24e274a6117aa4ecb745aa075cb080f7320a28595bd11d462f2bfd34b8f5.webp",
+    "sha256": "b4cc24e274a6117aa4ecb745aa075cb080f7320a28595bd11d462f2bfd34b8f5",
+    "rgbaSHA256": "ce324418a9348de175eb90d65d37f9f0824635a80f06d16ae78a560815d93666",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-fr",
+    "imageID": "macos-176",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-fr.png",
+    "canonical": "images/128744a2ac3b12f0b03db383268b3b3d625ed2e0161bcc1769100f2c6673d017.webp",
+    "sha256": "128744a2ac3b12f0b03db383268b3b3d625ed2e0161bcc1769100f2c6673d017",
+    "rgbaSHA256": "b0fdfa4f50a4c01544fac26368b4ce252c2c4da691d0a756e510b50e8d091590",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-ja",
+    "imageID": "macos-177",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-ja.png",
+    "canonical": "images/37ab87ccb955df9f8f471347e8018cb7ddc40612f093ab450b857043ff14433f.webp",
+    "sha256": "37ab87ccb955df9f8f471347e8018cb7ddc40612f093ab450b857043ff14433f",
+    "rgbaSHA256": "161a77a8f34a18cd1479206deb1239b23b0f8a8d94fb262f1733be9cdc565237",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-ko",
+    "imageID": "macos-178",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-ko.png",
+    "canonical": "images/7d4e941520c4aadfd536d4318ee7ce237eb627e90d82828dc469a94eee60d087.webp",
+    "sha256": "7d4e941520c4aadfd536d4318ee7ce237eb627e90d82828dc469a94eee60d087",
+    "rgbaSHA256": "c721797cf48eb91ead8502911b3b668124dc7a0889fa93e2d476420faf54382c",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-pt-BR",
+    "imageID": "macos-179",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-pt-BR.png",
+    "canonical": "images/383485b6163fd6687e5372c21ed2554c749bb655b41b2ec7ebbbad880679b014.webp",
+    "sha256": "383485b6163fd6687e5372c21ed2554c749bb655b41b2ec7ebbbad880679b014",
+    "rgbaSHA256": "07a0e52959fe2f943fe4402a68d6eda0578251d977234e0a6f8123a55cdaf2b8",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-zh-Hans",
+    "imageID": "macos-180",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-zh-Hans.png",
+    "canonical": "images/b8b4cd18ec9955ee4851840c306c180758eb4d81565fe7cf4642115f63ca9458.webp",
+    "sha256": "b8b4cd18ec9955ee4851840c306c180758eb4d81565fe7cf4642115f63ca9458",
+    "rgbaSHA256": "9c4de42404955647403698fb2558fb1379294779db727401926f85cb7fe19b8f",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-dark",
+    "imageID": "macos-181",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-dark.png",
+    "canonical": "images/6cc29894a87ca0244534d24fd520d3b73be0506a766d5a76088f3e7a27595bbc.webp",
+    "sha256": "6cc29894a87ca0244534d24fd520d3b73be0506a766d5a76088f3e7a27595bbc",
+    "rgbaSHA256": "085bee4de834c7386e98d6a5bc97090b1496a6b21388babd5c79a037a43880d2",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-outcomes-light",
+    "imageID": "macos-182",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-outcomes-light.png",
+    "canonical": "images/0c9c3ca10303e01062fbf48cc68c4a211773a0fdb1f9cc4ed273a1b0b087e922.webp",
+    "sha256": "0c9c3ca10303e01062fbf48cc68c4a211773a0fdb1f9cc4ed273a1b0b087e922",
+    "rgbaSHA256": "5587df9c66a87cbd5e26c40e6a0bcbfd8df2eb0f2f41abe50180733b69fe1f59",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-reopened-dark",
+    "imageID": "macos-183",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-reopened-dark.png",
+    "canonical": "images/6d084428a17c20e08cb1f88150bff8eacbfae0f61880386ea6fec35c43e1808c.webp",
+    "sha256": "6d084428a17c20e08cb1f88150bff8eacbfae0f61880386ea6fec35c43e1808c",
+    "rgbaSHA256": "a0ed99dc4fd202f537efc7b1624479eebbad8163d8e5f158b62ddefc33ac5645",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "activity-reopened-light",
+    "imageID": "macos-184",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/activity-reopened-light.png",
+    "canonical": "images/c54a36d0e8307c5c68fd4a3830df9c8fc5fe72c125ce02f5c1a500b6640114a5.webp",
+    "sha256": "c54a36d0e8307c5c68fd4a3830df9c8fc5fe72c125ce02f5c1a500b6640114a5",
+    "rgbaSHA256": "33bef2bf9bc41a457b6bb6df7a436beb257c188172de03e9791d5561d493d3dc",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Timestamp-column pixels differ; outcomes, wrapping and controls remain legible. Exact changed pixels/bounds retained."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-source-run-dark",
+    "imageID": "macos-192",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-source-run-dark.png",
+    "canonical": "images/0ad566f49c3440c7072aa39d2e0be8a69091318dc2e0d17ef29f914c53ec1504.webp",
+    "sha256": "0ad566f49c3440c7072aa39d2e0be8a69091318dc2e0d17ef29f914c53ec1504",
+    "rgbaSHA256": "1684a5bc358bb484ed4e35178083fa990b9c85f375fc2572428c70754f58d776",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental drift",
+    "os": "macos",
+    "view": "routine-source-run-light",
+    "imageID": "macos-193",
+    "path": "/tmp/opencode/files-ci-audit/fullsize/macos/routine-source-run-light.png",
+    "canonical": "images/51e32c7da9ca0750372ad899dc0d160a231ac225f0657574db19b3bf5c867b71.webp",
+    "sha256": "51e32c7da9ca0750372ad899dc0d160a231ac225f0657574db19b3bf5c867b71",
+    "rgbaSHA256": "b8eddd638d7b344e166c4f4439bdf621239ccf86bd3ef9e3c792f2069170968c",
+    "size": [
+      960,
+      640
+    ],
+    "inspected": true,
+    "observation": "Current run timestamps differ; historical Failed/Running/Succeeded state remains legible. Other tiny edge differences retained without inferred cause."
+  },
+  {
+    "kind": "supplemental smoke",
+    "os": "macos",
+    "view": "smoke-renderer",
+    "imageID": "macos-196",
+    "path": "/tmp/opencode/files-ci-37153526225/artifacts/macos/out/smoke-renderer.png",
+    "canonical": "../../projects-followup/ci-8e3fd79/images/6c8b4d6b244be8de0a1cff52e774d180c020788b71c0b0a7506ca47a21d0e368.webp",
+    "sha256": "6c8b4d6b244be8de0a1cff52e774d180c020788b71c0b0a7506ca47a21d0e368",
+    "rgbaSHA256": "88726862cd54e6cb0f4c00f59f984bb189548e1cc15e535edd4f0ca72f6cb1bf",
+    "size": [
+      1440,
+      900
+    ],
+    "inspected": true,
+    "observation": "Empty local Chat home, No model and no seeded data; renderer screenshot only. Native display capture failed."
+  }
+]

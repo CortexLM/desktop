@@ -1,0 +1,87 @@
+{
+  "disposition": "Scoped static preview pass; existing frozen residuals retained",
+  "application": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "pairSheetsInspected": 3,
+  "fullSizePairsInspected": 8,
+  "additionalUnpairedFullSizeApps": 1,
+  "uniqueFullResolutionImages": 17,
+  "rows": [
+    {
+      "state": "chat-dark",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Readable French transcript, code block and composer align; two inherited French colon-space differences remain versus frozen. No new clipping or missing content observed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "chat-light",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Readable French transcript, code block and composer align; two inherited French colon-space differences remain versus frozen. No new clipping or missing content observed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~view-dark",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Fit photo, toolbar and right metadata column align; no new clipping, overlap or missing image observed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~view-light",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Fit photo, toolbar and right metadata column align; no new clipping, overlap or missing image observed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~zoom-dark",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "250% photo crop, Fit/zoom controls and bottom-right minimap align. Frozen pixel residuals remain; whole-frame perfection is not claimed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~zoom-light",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "250% photo crop, Fit/zoom controls and bottom-right minimap align. Frozen pixel residuals remain; whole-frame perfection is not claimed.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~compare-dark",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Comparison split, center handle and image placement align. Inherited French retouch-label spacing differences remain.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image~compare-light",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": true,
+      "finding": "Comparison split, center handle and image placement align. Inherited French retouch-label spacing differences remain.",
+      "newBlockingStaticRegression": false
+    },
+    {
+      "state": "file-image+ask-light",
+      "contactInspected": true,
+      "fullResolutionAppInspected": true,
+      "fullResolutionFrozenInspected": false,
+      "finding": "Preview Ask panel, response and narrowed photo/metadata layout readable. No matching frozen reference; no frozen fidelity acceptance.",
+      "newBlockingStaticRegression": false
+    }
+  ],
+  "gaps": [
+    "file-image+ask-light has no frozen reference",
+    "Uploaded/selected Chat preview states were not captured by --only file-image,chat"
+  ],
+  "nativeOrLiveAcceptance": false
+}

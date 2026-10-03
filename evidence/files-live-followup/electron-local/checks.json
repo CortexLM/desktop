@@ -1,0 +1,29 @@
+{
+  "units": {
+    "passed": 278,
+    "optionalSkip": 1,
+    "files": 25,
+    "rasterCasesIncluded": 18,
+    "localeCasesIncluded": 9,
+    "durationSeconds": 12.13,
+    "scope": "20:23 unit receipt follows filename correction; precedes later viewer/rename production corrections, no unit-rerun attribution to final build."
+  },
+  "rasterFocused": {
+    "passed": 18,
+    "durationMs": 442,
+    "newAssertion": "200,000 interior spaces returns a.png; count remains18"
+  },
+  "i18n": {
+    "files": 69,
+    "usedKeys": 2288,
+    "englishKeys": 3438,
+    "problems": 0
+  },
+  "typesLint": {
+    "correctedLogsNoDiagnostics": true,
+    "exit0Authority": "coordinator completed-run receipt; quiet logs have no exit marker"
+  },
+  "build": "production log,867 transformed modules",
+  "package": "Linux unsigned ASAR/smoke retained;SMOKE OK",
+  "auditExecutedApplicationChecks": false
+}

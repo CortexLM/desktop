@@ -1,0 +1,329 @@
+{
+  "priorApplication": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "currentDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "currentRendererFingerprint": "087587293bfb7c2ccf85176cece73982ae75db48318e1c381270caa5196a0d73",
+  "added": [
+    {
+      "path": "packages/app/src/screens/files/image.tsx",
+      "sha256": "1c367df802dc6a55bfd9ac68b295209bf5c91b8801a3527fb766e49800bdaba7"
+    },
+    {
+      "path": "packages/app/src/screens/files/raster.test.ts",
+      "sha256": "619ec5fe7d970224ef1309e862c24130a01bfda18aa6a0c4656e54c6ba38f031"
+    },
+    {
+      "path": "packages/app/src/screens/files/raster.ts",
+      "sha256": "3aaacb7094d26554ebb1e61973e026a05a4067fe0f13714ebca4f2f26388ced7"
+    }
+  ],
+  "changed": [
+    {
+      "path": "packages/app/src/screens/chat/chat.css",
+      "before": "cf4e8b7223110f47574748b95664ed04217adbfa31762bc5925ed79091005fec",
+      "after": "703d19a440aee2306c052ba5389d5484082586d45f788dd5a16ce7ed8963a9d9"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "before": "c5ea58ac346d4ade23ab7c4c4c0934edb8132e123eec9320f41983ca7c9b16e0",
+      "after": "caf59a61c91eb116c494b31d3a6e9ad68622dc6c1801e39242a09b28234a9d6d"
+    },
+    {
+      "path": "packages/app/src/screens/chat/model-composer.tsx",
+      "before": "cf9fde70480feddd3030f4c430038ede8869fb823a4808d22ec69b361e27b93a",
+      "after": "adae1965674288508772d5f3815a31df25aa43c648cdb176204a4fa917e348a3"
+    },
+    {
+      "path": "packages/app/src/screens/files/files.css",
+      "before": "6c8c504edca7622fe954f4d9413252fa8279a409c5188e787ae754c76e05b842",
+      "after": "621c4d879ea13fe5d4a8fe2b34931afd0dd910bdc64b1dba5c3953f41c6d5379"
+    },
+    {
+      "path": "packages/app/src/screens/files/index.tsx",
+      "before": "5b31e1c5be1d534bcbb19b017ebdc3417beb48189125909839d706ca1a4dde33",
+      "after": "9a4a311aab89488bae16530859efd8ca40ea5ae68c904f320e0af0e2a0655704"
+    },
+    {
+      "path": "packages/app/src/screens/files/media.tsx",
+      "before": "2abd71d902f483d46278b1d80733f79a01c20a9f996099cf5ebb15c899ebab1b",
+      "after": "6b545f9544152329a5a09ff4da13683209564cff09755379ba71c7513981fcca"
+    },
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "before": "0111d608d079fce5b4719006b4835d87544a943c33d2b2d23594e824be5f67d6",
+      "after": "2e37c0e650253c2ff0e14091dabecacb91e1eb98d822a8afb1e1a2a8df6ba852"
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "before": "b562d99dd24ff72852040cbb59f1e1555138fdcc2945b3bdc16de6b9ed564daa",
+      "after": "1c0420582b0b9e035d347bf1258bdd7e146a6cff4853ca69c05cc0b252e4fc69"
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "before": "1f005b9199f24124b2ed3e0bdc02fa40e3318180557333c66d52ec03b565afbe",
+      "after": "d4c7f6580100f0fffb3d2f67fdbb06366efa1d5edd7dee239ebf24594db09e93"
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "before": "727c3c8f95f065b0968683bd304315f7c8f483bb7bd2ea2f47994da4585212d8",
+      "after": "a7e43787fc346a65b3a9e8a2e80cabf57b0fa736b51c0def7159289288d78962"
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "before": "8e9211c4eff84ef47690071211291a39835c63b91666b3c5cd774e0c26240ffd",
+      "after": "79756a1a8984ad75fa3cb79fa49914b3ba11d67e0dd37a63def19eed1818ebcf"
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "before": "1a47d0627d83a3d496eae780e1414822d9b9734ab1ee65f65a5f9e74513de23a",
+      "after": "5576da23f6869961d9ec25944f7dfd172bf7ad663ec1d3406bc6b16602f1a5e1"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "before": "93fe9e5dbe81f24a65debd86921f2280f9d3f1748b6cae89a4db6a4888c81aa5",
+      "after": "6438f7a51a13983d5cc346f1c923aa82df75d8aa927c526aa30684fc3b321adb"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "before": "bca6c76df5919215e37438e63a28854d699b75a2e4eeaf0d30934c52187c5f7c",
+      "after": "ad018efb02e2b53d0c1f4d1b5a91c44237666f8a3e6fbf4be87fe51e893e223b"
+    }
+  ],
+  "unchangedPriorInputs": 503,
+  "PreviewChatFunctionByteExact": true,
+  "PreviewChatFunctionSHA256": "6d1e442bd52ceb864a0872921fa0e9159683a65642a5d0e5f294d22469d98f28",
+  "chatStatesSourceUnchanged": true,
+  "ImageScreenPassesNoDimensions": true,
+  "rasterTestListedBySourceFingerprintNotRuntimeImport": true,
+  "translationDelta": [
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "newKeys": [
+        "image.byteSize",
+        "image.details",
+        "image.dimensions",
+        "image.dimensionsValue",
+        "image.fileSize",
+        "image.finishDraft",
+        "image.fitScale",
+        "image.format",
+        "image.invalidText",
+        "image.invalidTitle",
+        "image.loadText",
+        "image.loadTitle",
+        "image.loading",
+        "image.tooLargeText",
+        "image.tooLargeTitle",
+        "image.unavailableText",
+        "image.unavailableTitle",
+        "image.unsupportedText",
+        "image.unsupportedTitle"
+      ],
+      "existingValuesUnchanged": true
+    }
+  ],
+  "membersSamePathAndBytes": 87,
+  "buildAdded": [
+    {
+      "path": "packages/app/dist/assets/index-BLpXbDn5.css",
+      "sha256": "6f9ee615b76e0301097d546b8fedc2bf386b306f766a628ae0485a0b165dbb78"
+    },
+    {
+      "path": "packages/app/dist/assets/index-DUOpTxRN.js",
+      "sha256": "41a9bd8ce4f12279d751424fec1c4d690b642619cd7d90173597b1f88c2f1741"
+    }
+  ],
+  "buildRemoved": [
+    {
+      "path": "packages/app/dist/assets/index-4g_J2ofQ.css",
+      "sha256": "9d9dc52f85eade46c37195f05c01de58997a3a79070bce4bfa2361d8f686f1d5"
+    },
+    {
+      "path": "packages/app/dist/assets/index-CvqF5wGz.js",
+      "sha256": "700fa84b40ddec7a8b3e65fb73db59281e24d118504c8c41955ac6e6b6dd7c73"
+    }
+  ],
+  "buildChanged": [
+    "packages/app/dist/index.html"
+  ],
+  "mainPreloadMapsByteExact": [
+    "packages/desktop/dist/main.cjs",
+    "packages/desktop/dist/main.cjs.map",
+    "packages/desktop/dist/preload.cjs",
+    "packages/desktop/dist/preload.cjs.map"
+  ]
+}

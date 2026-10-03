@@ -1,0 +1,29 @@
+{
+  "verdict": "scoped pass",
+  "run": 37153526225,
+  "application": "d20a012fbb774aa9b348fe1913f85d3476430098",
+  "checkout": "72b43406c8092c54c1683f8d0c53bed2e24b5923",
+  "tree": "b17a4b9a71398b511253044a159ef0ebb558d4ef",
+  "offlineOnly": true,
+  "noApplicationOrTestExecution": true,
+  "noNetworkOrDeviceUse": true,
+  "writeScope": [
+    "evidence/files-live-followup/ci-d20a012/**",
+    "/tmp/opencode/files-ci-audit/**"
+  ],
+  "sourceFileInputs": 520,
+  "rendererFileInputs": 478,
+  "frozenBuildMembers": 90,
+  "CIcasesPerOS": 143,
+  "renderVisitsPerOS": 426,
+  "units": 278,
+  "optionalUnitSkips": 1,
+  "CIartifactUniqueImages": 391,
+  "fullsizeFiles": 28,
+  "fullsizeDrift": 74,
+  "fullsizeSmoke": 1,
+  "contactSheets": 34,
+  "allObservedOriginalFailuresPreserved": true,
+  "nativePackageAdmission": "Separately owned; no CI ASAR/package inspection in this audit.",
+  "fullGoalComplete": false
+}

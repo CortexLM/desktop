@@ -1,0 +1,52 @@
+{
+  "runs": {
+    "full": {
+      "uniqueImages": 195,
+      "fileCopies": 394,
+      "inlinePNG": 4,
+      "pngAttachments": 201
+    },
+    "corrected-targeted": {
+      "uniqueImages": 14,
+      "fileCopies": 28,
+      "inlinePNG": 0,
+      "pngAttachments": 14
+    },
+    "rename-before": {
+      "uniqueImages": 1,
+      "fileCopies": 1,
+      "inlinePNG": 0,
+      "pngAttachments": 1
+    },
+    "viewer-before": {
+      "uniqueImages": 2,
+      "fileCopies": 2,
+      "inlinePNG": 0,
+      "pngAttachments": 2
+    },
+    "initial-targeted": {
+      "uniqueImages": 14,
+      "fileCopies": 26,
+      "inlinePNG": 0,
+      "pngAttachments": 14
+    },
+    "baseline": {
+      "uniqueImages": 8,
+      "fileCopies": 8,
+      "inlinePNG": 0,
+      "pngAttachments": 8
+    }
+  },
+  "union": {
+    "uniquePNG": 216,
+    "uniqueRGBA": 216,
+    "newLosslessWebP": 73,
+    "newImageBytes": 2062716,
+    "reuses": {
+      "../../work-activity-followup/ci-9ba8e59/images.jsonl": 117,
+      "../../work-activity-followup/electron-local/images.jsonl": 26
+    },
+    "contacts": 18,
+    "fullsizeTargets": 27
+  }
+}

@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:5432/#/gallery
+Call log:
+[2m  - navigating to "http://127.0.0.1:5432/#/gallery", waiting until "load"[22m
+
+    at main (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/scripts/compare-shots.mjs:171:24)
+    at async file:///root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/scripts/compare-shots.mjs:249:95 {
+  log: [
+    '  - navigating to "http://127.0.0.1:5432/#/gallery", waiting until "load"'
+  ],
+  name: 'Error'
+}
+
+Node.js v22.23.3

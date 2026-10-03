@@ -241,6 +241,28 @@ views and unchanged Memory/auth locale frames. Independent installed-native revi
 the bounded scope, excluding custom mascot fidelity because fixture values use existing
 fallbacks. The separate CI display-capture failure retains its unknown cause.
 
+[Saved local image viewing](files-live-followup/README.md) is pushed at `d20a012`.
+Static PNG/JPEG/WebP attachments use exact Chat/message/part identity, structural
+pre-decode limits, guarded draft-preserving Open, Fit/zoom and original download.
+Eight old-build cases fail at missing behavior; three later review regressions reproduce
+pending rename re-entry, unstable same-image ownership and hidden long-filename controls.
+Corrections pass eleven targeted cases, then 143 full Electron cases/426 visits, 278 units
+plus one optional skip, lint/types/i18n and Linux package/smoke. Test-only unreadable-fixture
+and provider-refresh corrections retain their initial failed receipts. Matching CI
+`37153526225` passes all three jobs; local review accepts 195 candidate images/14 primary
+full-size Files views, preview review eight comparisons/one Ask gap. Matching Mac package
+admission passes; CI review accepts 391 images/28 primary full-size Files views, with
+143 cases/426 visits per OS. Installed-native checks remain pending; a separate Save
+diagnostic preserves its failed cancellation assumption and manual recovery. The first
+bounded native run then fails before capture on a one-pixel filename text-Range overrun;
+a later byte-identical normal/unclipped pixel diagnostic resolves that measurement concern.
+The corrected collector records four passing native Fit/zoom captures, then fails at
+its AppleScript Save step. A separate manual native completion verifies the pending
+download's original bytes. Device restored/released; independent review accepts the bounded
+composite, keeping the failed automation and coordinator-attested GUI scope explicit. The 520
+committed inputs exactly match the tested build; prior Activity native acceptance remains
+separately scoped.
+
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
 `CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;

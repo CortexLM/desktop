@@ -1,0 +1,318 @@
+{
+  "baseline": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "originalDirtyBase": "d390cce590600cf5896fa19acf0ddd44d7057e2c",
+  "changedInputs": [
+    {
+      "path": "packages/app/src/screens/chat/chat.css",
+      "oldSHA256": "cf4e8b7223110f47574748b95664ed04217adbfa31762bc5925ed79091005fec",
+      "newSHA256": "703d19a440aee2306c052ba5389d5484082586d45f788dd5a16ce7ed8963a9d9"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "oldSHA256": "c5ea58ac346d4ade23ab7c4c4c0934edb8132e123eec9320f41983ca7c9b16e0",
+      "newSHA256": "caf59a61c91eb116c494b31d3a6e9ad68622dc6c1801e39242a09b28234a9d6d"
+    },
+    {
+      "path": "packages/app/src/screens/chat/model-composer.tsx",
+      "oldSHA256": "cf9fde70480feddd3030f4c430038ede8869fb823a4808d22ec69b361e27b93a",
+      "newSHA256": "adae1965674288508772d5f3815a31df25aa43c648cdb176204a4fa917e348a3"
+    },
+    {
+      "path": "packages/app/src/screens/files/files.css",
+      "oldSHA256": "6c8c504edca7622fe954f4d9413252fa8279a409c5188e787ae754c76e05b842",
+      "newSHA256": "621c4d879ea13fe5d4a8fe2b34931afd0dd910bdc64b1dba5c3953f41c6d5379"
+    },
+    {
+      "path": "packages/app/src/screens/files/image.tsx",
+      "oldSHA256": null,
+      "newSHA256": "1c367df802dc6a55bfd9ac68b295209bf5c91b8801a3527fb766e49800bdaba7"
+    },
+    {
+      "path": "packages/app/src/screens/files/index.tsx",
+      "oldSHA256": "5b31e1c5be1d534bcbb19b017ebdc3417beb48189125909839d706ca1a4dde33",
+      "newSHA256": "9a4a311aab89488bae16530859efd8ca40ea5ae68c904f320e0af0e2a0655704"
+    },
+    {
+      "path": "packages/app/src/screens/files/media.tsx",
+      "oldSHA256": "2abd71d902f483d46278b1d80733f79a01c20a9f996099cf5ebb15c899ebab1b",
+      "newSHA256": "6b545f9544152329a5a09ff4da13683209564cff09755379ba71c7513981fcca"
+    },
+    {
+      "path": "packages/app/src/screens/files/raster.test.ts",
+      "oldSHA256": null,
+      "newSHA256": "619ec5fe7d970224ef1309e862c24130a01bfda18aa6a0c4656e54c6ba38f031"
+    },
+    {
+      "path": "packages/app/src/screens/files/raster.ts",
+      "oldSHA256": null,
+      "newSHA256": "3aaacb7094d26554ebb1e61973e026a05a4067fe0f13714ebca4f2f26388ced7"
+    },
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "oldSHA256": "0111d608d079fce5b4719006b4835d87544a943c33d2b2d23594e824be5f67d6",
+      "newSHA256": "2e37c0e650253c2ff0e14091dabecacb91e1eb98d822a8afb1e1a2a8df6ba852"
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "oldSHA256": "b562d99dd24ff72852040cbb59f1e1555138fdcc2945b3bdc16de6b9ed564daa",
+      "newSHA256": "1c0420582b0b9e035d347bf1258bdd7e146a6cff4853ca69c05cc0b252e4fc69"
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "oldSHA256": "1f005b9199f24124b2ed3e0bdc02fa40e3318180557333c66d52ec03b565afbe",
+      "newSHA256": "d4c7f6580100f0fffb3d2f67fdbb06366efa1d5edd7dee239ebf24594db09e93"
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "oldSHA256": "727c3c8f95f065b0968683bd304315f7c8f483bb7bd2ea2f47994da4585212d8",
+      "newSHA256": "a7e43787fc346a65b3a9e8a2e80cabf57b0fa736b51c0def7159289288d78962"
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "oldSHA256": "8e9211c4eff84ef47690071211291a39835c63b91666b3c5cd774e0c26240ffd",
+      "newSHA256": "79756a1a8984ad75fa3cb79fa49914b3ba11d67e0dd37a63def19eed1818ebcf"
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "oldSHA256": "1a47d0627d83a3d496eae780e1414822d9b9734ab1ee65f65a5f9e74513de23a",
+      "newSHA256": "5576da23f6869961d9ec25944f7dfd172bf7ad663ec1d3406bc6b16602f1a5e1"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "oldSHA256": "93fe9e5dbe81f24a65debd86921f2280f9d3f1748b6cae89a4db6a4888c81aa5",
+      "newSHA256": "6438f7a51a13983d5cc346f1c923aa82df75d8aa927c526aa30684fc3b321adb"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "oldSHA256": "bca6c76df5919215e37438e63a28854d699b75a2e4eeaf0d30934c52187c5f7c",
+      "newSHA256": "ad018efb02e2b53d0c1f4d1b5a91c44237666f8a3e6fbf4be87fe51e893e223b"
+    }
+  ],
+  "addedInputs": [
+    "packages/app/src/screens/files/image.tsx",
+    "packages/app/src/screens/files/raster.test.ts",
+    "packages/app/src/screens/files/raster.ts"
+  ],
+  "engineMainPreloadInputsUnchanged": true,
+  "desktopMembersUnchanged": [
+    {
+      "path": "packages/desktop/dist/main.cjs",
+      "sha256": "0b539fe42a98717d7121c7bf404cb4f9bf9930d6d451d909cda6824e75561e76"
+    },
+    {
+      "path": "packages/desktop/dist/main.cjs.map",
+      "sha256": "94ae17436280cfc817d890f843a136355ce48253eb3c7b8b1f3daad3b9ea973a"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs",
+      "sha256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs.map",
+      "sha256": "714c9b87a962ce9db7ac4a00d0e8b9cf2f4e01fb68f679686db1243a508b3533"
+    }
+  ],
+  "catalogs": [
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "added": {
+        "image.finishDraft": "Schließe deinen aktuellen Entwurf ab oder leere ihn, bevor du einen Anhang öffnest.",
+        "image.loading": "Bild wird geladen",
+        "image.unavailableTitle": "Bild nicht verfügbar",
+        "image.unavailableText": "Dieser gespeicherte Chat-Anhang ist nicht mehr verfügbar. Kehre zum Gespräch zurück, um ein anderes Bild auszuwählen.",
+        "image.unsupportedTitle": "Dieses Bild kann hier nicht geöffnet werden",
+        "image.unsupportedText": "Hier lassen sich nur gespeicherte, nicht animierte Anhänge im Format PNG, JPEG oder WebP öffnen.",
+        "image.invalidTitle": "Das Bild konnte nicht geöffnet werden",
+        "image.invalidText": "Die gespeicherten Bilddaten sind unvollständig oder unlesbar. Kehre zum Gespräch zurück und hänge die Originaldatei erneut an.",
+        "image.tooLargeTitle": "Dieses Bild ist zu groß für die Anzeige",
+        "image.tooLargeText": "Verwende ein Bild mit höchstens 50 MB, 40 Millionen Pixeln und 32.768 Pixeln pro Seite.",
+        "image.loadTitle": "Das Bild konnte nicht geladen werden",
+        "image.loadText": "Versuche, diesen gespeicherten Anhang erneut zu laden.",
+        "image.fitScale": "{pct} der Größe bei „Einpassen“",
+        "image.details": "Bilddetails",
+        "image.dimensions": "Angezeigte Abmessungen",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "Format",
+        "image.fileSize": "Dateigröße",
+        "image.byteSize": "{n} Bytes"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "added": {
+        "image.finishDraft": "Finish or clear your current draft before opening an attachment.",
+        "image.loading": "Loading the image",
+        "image.unavailableTitle": "Image unavailable",
+        "image.unavailableText": "This saved Chat attachment is no longer available. Return to the conversation to choose another image.",
+        "image.unsupportedTitle": "This image cannot be opened here",
+        "image.unsupportedText": "Only saved, static PNG, JPEG and WebP attachments can be opened here.",
+        "image.invalidTitle": "The image could not be opened",
+        "image.invalidText": "The saved image data is incomplete or unreadable. Return to the conversation and attach the original file again.",
+        "image.tooLargeTitle": "This image is too large to display",
+        "image.tooLargeText": "Use an image up to 50 MB, 40 million pixels and 32,768 pixels on either side.",
+        "image.loadTitle": "The image could not be loaded",
+        "image.loadText": "Try loading this saved attachment again.",
+        "image.fitScale": "{pct} of Fit",
+        "image.details": "Image details",
+        "image.dimensions": "Displayed dimensions",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "Format",
+        "image.fileSize": "File size",
+        "image.byteSize": "{n} bytes"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "added": {
+        "image.finishDraft": "Termina o borra el borrador actual antes de abrir un archivo adjunto.",
+        "image.loading": "Cargando la imagen",
+        "image.unavailableTitle": "Imagen no disponible",
+        "image.unavailableText": "Este archivo adjunto guardado en el chat ya no está disponible. Vuelve a la conversación para elegir otra imagen.",
+        "image.unsupportedTitle": "Esta imagen no se puede abrir aquí",
+        "image.unsupportedText": "Aquí solo se pueden abrir archivos adjuntos guardados en formato PNG, JPEG o WebP sin animación.",
+        "image.invalidTitle": "No se pudo abrir la imagen",
+        "image.invalidText": "Los datos de la imagen guardada están incompletos o no se pueden leer. Vuelve a la conversación y adjunta de nuevo el archivo original.",
+        "image.tooLargeTitle": "Esta imagen es demasiado grande para mostrarse",
+        "image.tooLargeText": "Usa una imagen de hasta 50 MB, 40 millones de píxeles y 32.768 píxeles por lado.",
+        "image.loadTitle": "No se pudo cargar la imagen",
+        "image.loadText": "Intenta cargar de nuevo este archivo adjunto guardado.",
+        "image.fitScale": "{pct} del tamaño «Ajustar»",
+        "image.details": "Detalles de la imagen",
+        "image.dimensions": "Dimensiones mostradas",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "Formato",
+        "image.fileSize": "Tamaño del archivo",
+        "image.byteSize": "{n} bytes"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "added": {
+        "image.finishDraft": "Termine ou efface ton brouillon actuel avant d’ouvrir une pièce jointe.",
+        "image.loading": "Chargement de l’image",
+        "image.unavailableTitle": "Image indisponible",
+        "image.unavailableText": "La pièce jointe enregistrée pour cette conversation n’est plus disponible. Reviens à la conversation pour choisir une autre image.",
+        "image.unsupportedTitle": "Cette image ne peut pas être ouverte ici",
+        "image.unsupportedText": "Seules les pièces jointes enregistrées au format PNG, JPEG ou WebP, sans animation, peuvent être ouvertes ici.",
+        "image.invalidTitle": "Impossible d’ouvrir l’image",
+        "image.invalidText": "Les données de l’image enregistrée sont incomplètes ou illisibles. Reviens à la conversation et joins à nouveau le fichier original.",
+        "image.tooLargeTitle": "Cette image est trop grande pour être affichée",
+        "image.tooLargeText": "Utilise une image de 50 Mo maximum, avec au plus 40 millions de pixels et 32 768 pixels par côté.",
+        "image.loadTitle": "Impossible de charger l’image",
+        "image.loadText": "Réessaie de charger cette pièce jointe enregistrée.",
+        "image.fitScale": "{pct} de l’affichage « Ajuster »",
+        "image.details": "Détails de l’image",
+        "image.dimensions": "Dimensions affichées",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "Format",
+        "image.fileSize": "Taille du fichier",
+        "image.byteSize": "{n} octets"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "added": {
+        "image.finishDraft": "添付ファイルを開く前に、現在の下書きを完成させるか消去してください。",
+        "image.loading": "画像を読み込み中",
+        "image.unavailableTitle": "画像を利用できません",
+        "image.unavailableText": "保存されたチャットの添付ファイルは利用できなくなりました。会話に戻って別の画像を選んでください。",
+        "image.unsupportedTitle": "この画像はここでは開けません",
+        "image.unsupportedText": "ここで開けるのは、保存済みのPNG、JPEG、WebP形式の静止画像の添付ファイルのみです。",
+        "image.invalidTitle": "画像を開けませんでした",
+        "image.invalidText": "保存された画像データが不完全か、読み取れません。会話に戻り、元のファイルをもう一度添付してください。",
+        "image.tooLargeTitle": "画像が大きすぎて表示できません",
+        "image.tooLargeText": "50 MB以下、4,000万画素以下で、縦横それぞれ32,768ピクセル以下の画像を使用してください。",
+        "image.loadTitle": "画像を読み込めませんでした",
+        "image.loadText": "この保存済みの添付ファイルをもう一度読み込んでください。",
+        "image.fitScale": "全体表示の{pct}",
+        "image.details": "画像の詳細",
+        "image.dimensions": "表示寸法",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "形式",
+        "image.fileSize": "ファイルサイズ",
+        "image.byteSize": "{n}バイト"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "added": {
+        "image.finishDraft": "첨부 파일을 열기 전에 현재 초안을 완성하거나 지워 주세요.",
+        "image.loading": "이미지 불러오는 중",
+        "image.unavailableTitle": "이미지를 사용할 수 없습니다",
+        "image.unavailableText": "이 채팅에 저장된 첨부 파일을 더 이상 사용할 수 없습니다. 대화로 돌아가 다른 이미지를 선택해 주세요.",
+        "image.unsupportedTitle": "이 이미지는 여기서 열 수 없습니다",
+        "image.unsupportedText": "여기서는 저장된 PNG, JPEG, WebP 형식의 정지 이미지 첨부 파일만 열 수 있습니다.",
+        "image.invalidTitle": "이미지를 열지 못했습니다",
+        "image.invalidText": "저장된 이미지 데이터가 불완전하거나 읽을 수 없습니다. 대화로 돌아가 원본 파일을 다시 첨부해 주세요.",
+        "image.tooLargeTitle": "이미지가 너무 커서 표시할 수 없습니다",
+        "image.tooLargeText": "파일 크기 50 MB 이하, 총 4,000만 픽셀 이하이며 가로와 세로가 각각 32,768픽셀 이하인 이미지를 사용해 주세요.",
+        "image.loadTitle": "이미지를 불러오지 못했습니다",
+        "image.loadText": "저장된 이 첨부 파일을 다시 불러와 보세요.",
+        "image.fitScale": "맞춤 크기의 {pct}",
+        "image.details": "이미지 세부 정보",
+        "image.dimensions": "표시 크기",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "형식",
+        "image.fileSize": "파일 크기",
+        "image.byteSize": "{n}바이트"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "added": {
+        "image.finishDraft": "Conclua ou limpe o rascunho atual antes de abrir um anexo.",
+        "image.loading": "Carregando a imagem",
+        "image.unavailableTitle": "Imagem indisponível",
+        "image.unavailableText": "Este anexo salvo no chat não está mais disponível. Volte à conversa para escolher outra imagem.",
+        "image.unsupportedTitle": "Esta imagem não pode ser aberta aqui",
+        "image.unsupportedText": "Aqui só é possível abrir anexos salvos nos formatos PNG, JPEG e WebP sem animação.",
+        "image.invalidTitle": "Não foi possível abrir a imagem",
+        "image.invalidText": "Os dados da imagem salva estão incompletos ou ilegíveis. Volte à conversa e anexe o arquivo original novamente.",
+        "image.tooLargeTitle": "Esta imagem é grande demais para ser exibida",
+        "image.tooLargeText": "Use uma imagem de até 50 MB, 40 milhões de pixels e 32.768 pixels em cada lado.",
+        "image.loadTitle": "Não foi possível carregar a imagem",
+        "image.loadText": "Tente carregar este anexo salvo novamente.",
+        "image.fitScale": "{pct} do tamanho em “Ajustar”",
+        "image.details": "Detalhes da imagem",
+        "image.dimensions": "Dimensões exibidas",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "Formato",
+        "image.fileSize": "Tamanho do arquivo",
+        "image.byteSize": "{n} bytes"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "added": {
+        "image.finishDraft": "请先完成或清空当前草稿，再打开附件。",
+        "image.loading": "正在加载图片",
+        "image.unavailableTitle": "图片不可用",
+        "image.unavailableText": "此已保存的聊天附件已不可用。请返回对话，选择其他图片。",
+        "image.unsupportedTitle": "无法在此打开这张图片",
+        "image.unsupportedText": "这里只能打开已保存的 PNG、JPEG 和 WebP 静态图片附件。",
+        "image.invalidTitle": "无法打开图片",
+        "image.invalidText": "已保存的图片数据不完整或无法读取。请返回对话，重新附加原始文件。",
+        "image.tooLargeTitle": "图片过大，无法显示",
+        "image.tooLargeText": "请使用不超过 50 MB、总像素不超过 4000 万且宽高均不超过 32,768 像素的图片。",
+        "image.loadTitle": "无法加载图片",
+        "image.loadText": "请尝试重新加载此已保存的附件。",
+        "image.fitScale": "“适应”大小的 {pct}",
+        "image.details": "图片详情",
+        "image.dimensions": "显示尺寸",
+        "image.dimensionsValue": "{width} × {height}",
+        "image.format": "格式",
+        "image.fileSize": "文件大小",
+        "image.byteSize": "{n} 字节"
+      },
+      "previousValuesUnchanged": true
+    }
+  ],
+  "rasterUnitInDirectoryManifest": "raster.test.ts is covered by source-directory inventory; this does not imply runtime-bundle inclusion."
+}

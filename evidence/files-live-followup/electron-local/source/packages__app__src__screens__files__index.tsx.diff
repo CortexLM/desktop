@@ -1,0 +1,25 @@
+--- activity/packages/app/src/screens/files/index.tsx
++++ files/packages/app/src/screens/files/index.tsx
+@@ -3,10 +3,11 @@
+ import type { ScreenDef } from "../../registry";
+ import { isPreview } from "../../preview";
+ import { FilePdf, FilePptx, FileDocx, FileXlsx, Upload } from "./docs";
+-import { ImageScreen, CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
++import { CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
++import { FileImage } from "./image";
+ import "./files.css";
+ 
+-// ponytail: there is no file store yet, so live viewers fall back to the upload drop state; route a stored file here once one exists.
++// ponytail: remaining formats await real readers; saved local Chat rasters use FileImage.
+ const viewer = (C: () => React.ReactNode) => () => (isPreview() ? <C /> : <Upload />);
+ const base = { mode: "Cortex" as const, group: "files.group" };
+ 
+@@ -22,7 +23,7 @@
+     ["data", "files.variant.data", "donnees"], ["range", "files.variant.range", "plage"], ["chart", "files.variant.chart", "graphique"], ["errors", "files.variant.importErrors", "erreurs"]] },
+   { ...base, id: "upload", name: "files.screen.upload", render: () => <Upload />, variants: [
+     ["empty", "files.variant.empty", "vide"], ["dragging", "files.variant.dragging", "glisser"], ["uploading", "files.variant.uploading", "encours"], ["done", "files.variant.done", "termine"], ["errors", "files.variant.errors", "erreurs"]] },
+-  { ...base, id: "file-image", name: "files.screen.file-image", render: viewer(ImageScreen), variants: [
++  { ...base, id: "file-image", name: "files.screen.file-image", render: () => <FileImage />, variants: [
+     ["view", "files.variant.view", "affichage"], ["zoom", "files.variant.zoom", "zoom"], ["compare", "files.variant.compare", "comparaison"]] },
+   { ...base, id: "file-code", name: "files.screen.file-code", render: viewer(CodeScreen), variants: [
+     ["view", "files.variant.view", "affichage"], ["diff", "files.variant.diff", "diff"]] },

@@ -406,6 +406,22 @@ Memory locale and sixteen auth-locale frames match `96df66c`. Independent instal
 review accepts the bounded scope; fixture mascot fallbacks exclude custom appearance
 fidelity from that run. See
 [`evidence/work-activity-followup/README.md`](./evidence/work-activity-followup/README.md).
+Saved local images `d20a012` pass 143 local Electron cases/426 visits, eleven focused
+viewer cases, 278 units plus one optional skip, lint/types/i18n and Linux package/smoke.
+Eight old-build negatives and three later application regressions remain retained with
+their source pins; two test-fixture/setup corrections are distinguished from app defects.
+Matching CI `37153526225` passes all three jobs. Independent local review verifies 195
+candidate images/14 primary full-size Files views; preview review covers eight references
+and one explicit Ask gap. Matching Mac package admission passes. CI review verifies
+391 images/28 primary full-size Files views; sixteen Memory and sixteen auth-locale
+frames match Activity exactly. A filename pixel diagnostic resolves the first native
+Range-overrun failure: normal/unclipped captures are byte-identical. The corrected
+collector records four passing Fit/zoom captures, then fails at its AppleScript Save
+step. A manual native supplement completes that pending download with exact original
+bytes; failed automation and unreached assertions remain explicit. Device restoration
+and lease release pass. Independent review accepts this bounded composite, preserving
+the coordinator-attested manual GUI sequence and failed collector status. See
+[`evidence/files-live-followup/README.md`](./evidence/files-live-followup/README.md).
 
 ## CI, packaging and releases
 

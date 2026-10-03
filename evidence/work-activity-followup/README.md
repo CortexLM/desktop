@@ -8,6 +8,9 @@ per OS. Both complete CI suites execute the final strengthened behavior test.
 [Later commit binding](production/application-pin.json) verifies all 517 tested inputs.
 Original dirty-base `906987b` receipts remain; Memory's earlier tests/native package do
 not establish this new behavior.
+Documentary closure `d390cce` also passes [CI 37148540261](https://github.com/CortexLM/desktop/actions/runs/37148540261).
+All 517 committed package inputs remain identical to `9ba8e59`; subsequent uncommitted
+Files work is outside those receipts. [Documentary status](documentary-ci.json).
 
 The previous live Activity screen always rendered its empty state. This bounded delivery
 uses existing local session/Bot/history APIs and the incumbent timeline. It selects up to
