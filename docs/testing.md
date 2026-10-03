@@ -16,6 +16,8 @@ failures remain reported. The original macOS `749bc0c` failure is retained separ
 | `bun run typecheck` | `tsc -p tsconfig.json` | Includes tests and scripts |
 
 Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (as CI).
+Build with `NODE_ENV=production` or unset. Set `NODE_ENV=test` for test execution only:
+carrying it into Vite build retains development React/StrictMode and changes effect/read counts.
 
 ## Unit tests
 
@@ -24,6 +26,7 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `packages/schema/test/schema.test.ts` | contracts |
 | `packages/core/test/{catalog,capabilities,session,services,computer-use}.test.ts` | catalog cache/offline, capability gates, session loop, services, computer use |
 | `packages/protocol/test/protocol.test.ts` · `packages/server/test/server.test.ts` · `packages/client/test/client.test.ts` | routes, binding, client + SSE |
+| `packages/server/test/projects.test.ts` | Persistent Projects through the typed client/protocol, membership validation, instruction snapshots/budgets and atomic non-destructive deletion |
 | `packages/desktop/test/remote.test.ts` | SDK probe; real backend only with `CORTEX_TEST_BACKEND_URL` |
 | `packages/desktop/test/credentials.test.ts` | Credential round trips, restrictive permissions, corrupt-store refusal and failed-write preservation |
 | `packages/core/test/mcp.test.ts` | Main-only connection storage, legacy migration/refusal, metadata-write failure, pending reconnect/removal races and redirect-header refusal |
@@ -71,6 +74,13 @@ Cancellation checks inspect the durable event journal as well as the current mes
   light, currently **426 theme/state renders**. Checks theme selection, nonempty body,
   uncaught page errors and raw i18n keys in visible/accessibility/tooltip copy in preview;
   it does not exercise every control.
+- `tests/e2e/projects.spec.ts` — three real-IPC cases for local Projects: both themes create
+  same-name records with distinct IDs, reuse the first session after admission refusal,
+  edit instructions, move/detach chats and discover records through History/Search/Library/
+  sidebar. Two process restarts reuse both engine and renderer directories. Deletion preserves
+  transcripts and detaches membership. A separate held-response case checks duplicate writes,
+  newer drafts, stale-owner reads/saves, Back/Forward and a genuine protocol validation refusal.
+  These are test definitions; executed results are recorded separately for each source pin.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

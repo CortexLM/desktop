@@ -1,15 +1,16 @@
 import * as React from "react";
+import type { Project, Session } from "@cortex/schema";
 import { createPortal } from "react-dom";
 import { IconBtn, Tip, Row, Section, Segmented, ProgressCard, ModeSwitcher, type Mode } from "../kit/ui";
 import { Icon } from "../icons/Icon";
 import { Mascot, DEFAULT_MASCOT, type MascotConfig } from "../mascot/Mascot";
 import { SCREENS } from "../registry";
-import { NavCtx, go, navigation, type readHash, type Route } from "./nav";
+import { NavCtx, useNav, go, navigation, type readHash, type Route } from "./nav";
 import { VariantPicker, type Theme, type ThemePref } from "../App";
 import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
 import { platform } from "../api";
-import { useSessions, useBots } from "../state/live";
+import { useSessions, useBots, useProjects } from "../state/live";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
 
@@ -203,11 +204,13 @@ type ShellFx = {
 
 function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<string, string>) => void }) {
   const t = useT();
+  const { params } = useNav();
   const fx = useFixtures<ShellFx>("shell");
   const preview = isPreview();
   const previewBot = usePreviewBot();
   const bots = useBots();
   const sessions = useSessions("chat");
+  const projects = useProjects();
   const [open, setOpen] = React.useState(true);
   const start = previewChatStart();
   const firstBot = !preview && bots.state === "ready" ? bots.data[0] : undefined;
@@ -238,16 +241,41 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
           </React.Fragment>
         ) : <Row key={p.name} label={p.name} icon="folder" strong meta={p.meta} status={p.status} active={route === p.to} onClick={() => go(p.to)} />)}
       </div>
-    ) : (
+    ) : (<>
+      <div className="sb-group">
+        <Section title={t("shell.nav.projects")} action={<IconBtn icon="plus" label={t("shell.nav.newProject")} onClick={() => go("projects", { v: "create" })} />} />
+        {projects.state === "ready" && projects.data.map((p) => <ProjectRows key={p.id} project={p} sessions={sessions.state === "ready" ? sessions.data.filter((s) => !s.parentID && s.projectID === p.id) : []} />)}
+        {projects.state === "loading" && <div className="sb-empty thinking" role="status">{t("system.variant.loading")}</div>}
+        {projects.state === "error" && <Row label={t("common.retry")} icon="refresh" onClick={projects.reload} />}
+        {sessions.state === "loading" && <div className="sb-empty thinking" role="status">{t("system.variant.loading")}</div>}
+        {sessions.state === "error" && <div role="alert"><div className="sb-empty">{t("work.error.loadTitle")}</div><Row label={t("common.retry")} icon="refresh" onClick={sessions.reload} /></div>}
+        {projects.state === "ready" && !projects.data.length && <Row label={t("system.projects.title")} icon="folder" onClick={() => go("projects")} />}
+      </div>
       <div className="sb-group">
         <Section title={t("shell.nav.recents")} action={<IconBtn icon="plus" label={t("shell.nav.newChat")} onClick={() => go("home")} />} />
-        {sessions.state === "ready" && sessions.data.slice(0, 12).map((s) => (
-          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && new URLSearchParams(location.hash.split("?")[1]).get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
+        {sessions.state === "ready" && sessions.data.filter((s) => !s.parentID && !s.projectID).slice(0, 12).map((s) => (
+          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
         ))}
         {sessions.state === "ready" && !sessions.data.length && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
       </div>
-    )}
+    </>)}
   </>);
+}
+
+function ProjectRows({ project, sessions }: { project: Project; sessions: Session[] }) {
+  const t = useT();
+  const { go, route, params } = useNav();
+  const [open, setOpen] = React.useState(false);
+  const panel = React.useId();
+  return <>
+    <button className="row" data-strong aria-expanded={open} aria-controls={panel} data-active={route === "project" && params.get("id") === project.id || undefined} onClick={() => setOpen((value) => !value)}>
+      <Icon name={open ? "folder-open" : "folder"} className="ic" /><span className="label">{project.name}</span>
+    </button>
+    <div id={panel} className="fold" data-closed={!open || undefined} inert={!open}><div>
+      {sessions.map((s) => <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />)}
+      <Row label={t("system.seeAll")} child onClick={() => go("project", { id: project.id })} />
+    </div></div>
+  </>;
 }
 
 function CodeNav({ route, go }: { route: Route; go: (r: Route, p?: Record<string, string>) => void }) {

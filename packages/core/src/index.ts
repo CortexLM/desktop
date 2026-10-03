@@ -11,6 +11,7 @@ import { COMPUTER_USE_SERVER, computerUsePreset } from "./computer-use"
 import { McpService } from "./mcp"
 import { PermissionService } from "./permission"
 import { PluginRegistry, type PluginDirs } from "./plugin"
+import { ProjectService } from "./project"
 import { memoryCredentials, ProviderSettings, type Credentials } from "./provider"
 import { Scheduler } from "./scheduler"
 import { SessionService } from "./session"
@@ -54,6 +55,7 @@ export function createCore(opts: CoreOptions) {
   const plugins = new PluginRegistry(opts.plugins ?? {}, storage)
   const mcp = new McpService(bus, storage, opts.mcpCredentials ?? (memory ? memoryCredentials() : undefined))
   const bots = new BotService(storage)
+  const projects = new ProjectService(storage, bus)
   const permissionRules = {
     get: (): Rule[] => storage.getDoc<Rule[]>("settings", "permission") ?? [],
     set: (rules: unknown): Rule[] => {
@@ -71,11 +73,13 @@ export function createCore(opts: CoreOptions) {
     skills,
     plugins,
     mcp,
+    projects,
     fetch: opts.fetch,
     botContext: (id) => bots.context(id),
     rules: permissionRules.get,
     maxSteps: opts.maxSteps,
   })
+  projects.isBusy = (id) => sessions.isTreeBusy(id)
   const scheduler = new Scheduler(storage, bus, sessions)
   bots.scheduler = scheduler
   const space = new SpaceService(storage)
@@ -97,6 +101,7 @@ export function createCore(opts: CoreOptions) {
     sessions,
     remoteSessions,
     bots,
+    projects,
     scheduler,
     space,
     connection,
@@ -131,6 +136,7 @@ export * from "./llm"
 export * from "./mcp"
 export * from "./permission"
 export * from "./plugin"
+export * from "./project"
 export * from "./provider"
 export * from "./scheduler"
 export * from "./session"

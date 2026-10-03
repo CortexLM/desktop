@@ -3,7 +3,7 @@ import * as React from "react";
 import type { Session } from "@cortex/schema";
 import { Icon, IconBtn, Pop, MItem, MSep, useToast } from "../../kit/ui";
 import { api } from "../../api";
-import { useSessions } from "../../state/live";
+import { useSessions, useProjects } from "../../state/live";
 import { useNav } from "../../shell/nav";
 import { useT, useI18n } from "../../i18n";
 import { isPreview } from "../../preview";
@@ -25,35 +25,40 @@ function Search({ value, onChange, label }: { value: string; onChange: (v: strin
 
 /* ---------- Library ---------- */
 type Kind = "projects" | "files" | "images" | "links";
-type Item = { kind: Kind; title: string; desc: string; img: string; mono: string; who: string; when: string };
+type Item = { kind: Kind; title: string; desc: string; img: string; mono: string; who: string; when: string; id?: string; icon?: string; color?: string };
 const FILTERS = ["all", "projects", "files", "images", "links"] as const;
 const KIND_ICON: Record<Kind, string> = { projects: "folder", files: "file", images: "image", links: "link" };
 
 export function Library() {
   const t = useT();
   const fx = useFx();
+  const { go } = useNav();
+  const preview = isPreview();
+  const projects = useProjects();
   const [f, setF] = React.useState<(typeof FILTERS)[number]>("all");
   const [q, setQ] = React.useState("");
-  const items: Item[] = isPreview() ? fx.library : [];
+  const items: Item[] = preview ? fx.library : projects.state === "ready" ? projects.data.map((p) => ({ kind: "projects", title: p.name, desc: p.instructions, img: "", mono: "", who: "", when: "", id: p.id, icon: p.icon, color: p.color })) : [];
   const list = items.filter((it) => (f === "all" || it.kind === f) && norm(it.title + " " + it.desc).includes(norm(q)));
   return (<>
     <div className="content-top">
       <span className="title">{t("chat.screen.library")}</span><div className="spacer" />
       <Search value={q} onChange={setQ} label={t("chat.library.search")} />
-      <IconBtn icon="plus" label={t("chat.library.newProject")} />
+      <IconBtn icon="plus" label={t("chat.library.newProject")} onClick={() => go("projects", { v: "create" })} />
     </div>
     <div className="page">
       <div className="chips" role="group" aria-label={t("chat.library.filter")}>
         {FILTERS.map((c) => <button key={c} className="chip" aria-pressed={f === c} data-pressed={f === c || undefined} onClick={() => setF(c)}>{t(`chat.library.kind.${c}`)}</button>)}
       </div>
-      {list.length ? (
+      {!preview && projects.state === "loading" ? <div className="pg-empty thinking" role="status">{t("system.variant.loading")}</div>
+        : !preview && projects.state === "error" ? <div className="pg-empty" role="alert"><p>{t("work.error.loadText")}</p><button className="btn secondary" onClick={projects.reload}>{t("common.retry")}</button></div>
+        : list.length ? (
         <div className="grid" key={f}>
           {list.map((it, i) => (
-            <button key={it.title} className="card" style={css(i)}>
-              <div className="banner" style={{ backgroundImage: `url(/img/${it.img}.png)` }}><span className="tile">{it.mono}</span></div>
+            <button key={it.id ?? it.title} className="card" style={css(i)} onClick={it.kind === "projects" ? () => go("project", it.id ? { id: it.id } : undefined) : undefined}>
+              <div className="banner" style={it.img ? { backgroundImage: `url(/img/${it.img}.png)` } : undefined}><span className="tile" style={it.color ? { background: it.color } : undefined}>{it.icon ? <Icon name={it.icon} /> : it.mono}</span></div>
               <div className="body2">
                 <h3>{it.title}</h3><p>{it.desc}</p>
-                <div className="by"><Icon name={KIND_ICON[it.kind]} size={12} />{t("chat.library.by", { who: it.who, when: it.when })}</div>
+                <div className="by"><Icon name={KIND_ICON[it.kind]} size={12} />{preview ? t("chat.library.by", { who: it.who, when: it.when }) : t("chat.library.kind.projects")}</div>
               </div>
             </button>
           ))}
@@ -78,13 +83,15 @@ function useHistoryRows(): { rows: H[]; state: "loading" | "ready" | "error"; re
   const t = useT();
   const { locale } = useI18n();
   const fx = useFx();
+  const { params } = useNav();
+  const projectID = params.get("project");
   const q = useSessions("chat");
   if (isPreview()) return { rows: (fx.history as Omit<H, "order">[]).map((h, order) => ({ ...h, order })), state: "ready", reload: () => {} };
   if (q.state !== "ready") return { rows: [], state: q.state, reload: q.reload };
   const time = new Intl.DateTimeFormat(locale, { hour: "2-digit", minute: "2-digit" });
   const day = new Intl.DateTimeFormat(locale, { weekday: "long" });
   const date = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" });
-  const rows = [...q.data].sort((a: Session, b: Session) => b.time.updated - a.time.updated).map((s, order): H => {
+  const rows = q.data.filter((s) => !s.parentID && (!projectID || s.projectID === projectID)).sort((a: Session, b: Session) => b.time.updated - a.time.updated).map((s, order): H => {
     const g = dayGroup(s.time.updated, t);
     const when = g === t("chat.history.today") || g === t("chat.history.yesterday") ? time.format(s.time.updated) : g === t("chat.history.week") ? day.format(s.time.updated) : date.format(s.time.updated);
     return { id: s.id, title: s.title || t("chat.untitled"), sub: s.model.modelID, when, group: g, order };
@@ -94,7 +101,7 @@ function useHistoryRows(): { rows: H[]; state: "loading" | "ready" | "error"; re
 
 export function History() {
   const t = useT();
-  const { go } = useNav();
+  const { go, params } = useNav();
   const toast = useToast();
   const preview = isPreview();
   const src = useHistoryRows();
@@ -134,7 +141,7 @@ export function History() {
     <div className="content-top">
       <span className="title">{t("chat.screen.history")}</span><div className="spacer" />
       <Search value={q} onChange={setQ} label={t("chat.history.search")} />
-      <IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} />
+      <IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home", params.get("project") ? { project: params.get("project")! } : undefined)} />
     </div>
     <div className="page"><div className="pg-narrow">
       {groups.map(([g, xs]) => (

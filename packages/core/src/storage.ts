@@ -22,10 +22,12 @@ const MIGRATIONS: string[] = [
 ]
 
 /** Durable event types; everything else on the bus is live-only (deltas, status, asks). */
-export const DURABLE = new Set<Event["type"]>(["session.created", "session.updated", "session.deleted", "message.updated", "part.updated"])
+export const DURABLE = new Set<Event["type"]>(["session.created", "session.updated", "session.deleted", "message.updated", "part.updated", "project.deleted"])
 
 const aggregateOf = (e: Event): string => {
   switch (e.type) {
+    case "project.deleted":
+      return e.properties.projectID
     case "session.created":
     case "session.updated":
       return e.properties.session.id
@@ -87,6 +89,10 @@ export class Storage {
   private project(e: Event) {
     const db = this.db
     switch (e.type) {
+      case "project.deleted":
+        this.deleteDoc("project", e.properties.projectID)
+        db.prepare("UPDATE session SET data = json_remove(data, '$.projectID') WHERE json_extract(data, '$.projectID') = ?").run(e.properties.projectID)
+        return
       case "session.created":
       case "session.updated": {
         const s = e.properties.session

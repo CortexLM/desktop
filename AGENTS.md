@@ -85,6 +85,8 @@ handoff and main-only implementation sequence are tracked in [`docs/connection-m
 | `bun run pack` / `bun run dist:mac` | electron-builder, `--publish never` |
 
 If the host exports `NODE_ENV=production`, run tests with `NODE_ENV=test`.
+Build with `NODE_ENV=production` (or unset); `NODE_ENV=test` during Vite build retains
+development React and StrictMode effect replay, invalidating production-only capture assumptions.
 Full matrix and acceptance limits: [`docs/testing.md`](./docs/testing.md). E2E enumerates
 426 registered theme/state renders; CI inference flows use a local fake. A separate real
 image/reasoning exchange is recorded in `evidence/real-provider.json`; visual acceptance remains partial.
@@ -200,6 +202,14 @@ retry. Code's settled badge reads the latest persisted assistant error, preservi
 after reload; an active follow-up shows Running and a successful result returns Ready.
 Memory drafts clear only after accepted writes; refused/partial deletion retains surviving entries
 and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
+Projects persist in the local engine through `/api/projects`. Existing creation, instructions,
+Chat move/detach, sidebar, Library and Search use exact record IDs; names may duplicate.
+Project instructions enter each admitted Chat turn's model context and token budget.
+Deleting a Project atomically detaches its chats without deleting transcripts; busy linked
+roots/descendants refuse deletion and membership changes. Optional prompt `expectedProjectID`
+prevents a concurrent move/deletion from silently changing the requested context. Home retries
+reuse the first created session; failed writes retain drafts. Project files, sharing, assigned
+Bot, archive and metadata-editing UI remain unfinished. See [`docs/engine.md`](./docs/engine.md#local-projects).
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |
@@ -208,7 +218,7 @@ and reports failure. Pending mutations reject duplicate submissions and stale-ow
 | Bots (`bots`) | `bot`, `bot-new`, `bot-studio`, `bot-roster`, `bot-settings` | Bot CRUD, mascot, memory |
 | Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`… | Viewers are preview-only; live routes show `upload` |
 | Cortex Code (`code`) | `code`, `code-session`, `code-tasks`, `code-review`… | Home picks a folder (native dialog) and starts a `code` session |
-| System (`system`) | `settings`, `search`, `command`, `projects`, `login`, `about`… | Settings → **Providers & models** and **Connection** are live |
+| System (`system`) | `settings`, `search`, `command`, `projects`, `login`, `about`… | Settings → **Providers & models**, **Connection**, local Projects creation/instructions/Chat membership and discovery are live |
 
 **Blocked on design** — the engine has routes, the app has **no dedicated screen**:
 **Space** (`/api/space`), **Scheduled** (the standalone list; `/api/tasks` is used today

@@ -5,7 +5,7 @@ import { z } from "zod"
 z.config({ jitless: true })
 
 // ---------- ids ----------
-const PREFIX = { session: "ses", message: "msg", part: "prt", permission: "per", bot: "bot", memory: "mem", task: "tsk", run: "run", space: "spc" } as const
+const PREFIX = { session: "ses", message: "msg", part: "prt", permission: "per", bot: "bot", memory: "mem", task: "tsk", run: "run", space: "spc", project: "prj" } as const
 export type IdKind = keyof typeof PREFIX
 let lastTime = 0
 let counter = 0
@@ -135,6 +135,18 @@ export const ProviderConfig = z.object({
 })
 export type ProviderConfig = z.infer<typeof ProviderConfig>
 
+// ---------- projects ----------
+export const ProjectID = z.string().min(1).max(100)
+export const Project = z.object({
+  id: ProjectID,
+  name: z.string().trim().min(1).max(48),
+  icon: z.enum(["folder", "rocket", "calendar", "image", "mail", "globe", "code", "bolt"]),
+  color: z.enum(["#8448FF", "#1E7BFF", "#12B8A0", "#FF6A13", "#EE3A97", "#5F6B7E"]),
+  instructions: z.string().max(4000),
+  time: z.object({ created: z.number(), updated: z.number() }),
+})
+export type Project = z.infer<typeof Project>
+
 // ---------- sessions ----------
 export const ModelRef = z.object({ providerID: z.string(), modelID: z.string() })
 export type ModelRef = z.infer<typeof ModelRef>
@@ -148,6 +160,7 @@ export const Session = z.object({
   parentID: z.string().optional(),
   kind: SessionKind,
   botID: z.string().optional(),
+  projectID: ProjectID.optional(),
   time: z.object({ created: z.number(), updated: z.number() }),
 })
 export type Session = z.infer<typeof Session>
@@ -456,6 +469,15 @@ export const RemoteAuthInput = z.discriminatedUnion("action", [
 export type RemoteAuthInput = z.infer<typeof RemoteAuthInput>
 
 // ---------- request inputs ----------
+export const ProjectCreateInput = z.object({
+  name: Project.shape.name,
+  icon: Project.shape.icon.default("calendar"),
+  color: Project.shape.color.default("#8448FF"),
+  instructions: Project.shape.instructions.default(""),
+}).strict()
+export type ProjectCreateInput = z.input<typeof ProjectCreateInput>
+export const ProjectUpdateInput = Project.omit({ id: true, time: true }).partial().strict()
+export type ProjectUpdateInput = z.infer<typeof ProjectUpdateInput>
 export const SessionCreateInput = z.object({
   title: z.string().optional(),
   agent: z.string().optional(),
@@ -464,9 +486,10 @@ export const SessionCreateInput = z.object({
   parentID: z.string().optional(),
   kind: SessionKind.default("chat"),
   botID: z.string().optional(),
-})
+  projectID: ProjectID.optional(),
+}).strict()
 export type SessionCreateInput = z.input<typeof SessionCreateInput>
-export const SessionUpdateInput = z.object({ title: z.string().optional(), agent: z.string().optional(), model: ModelRef.optional() })
+export const SessionUpdateInput = z.object({ title: z.string().optional(), agent: z.string().optional(), model: ModelRef.optional(), projectID: ProjectID.nullable().optional() }).strict()
 export type SessionUpdateInput = z.infer<typeof SessionUpdateInput>
 export const PromptPartInput = z.discriminatedUnion("type", [
   z.object({ type: z.literal("text"), text: z.string() }),
@@ -475,6 +498,7 @@ export const PromptPartInput = z.discriminatedUnion("type", [
 export type PromptPartInput = z.infer<typeof PromptPartInput>
 export const PromptInput = z.object({
   parts: z.array(PromptPartInput).min(1),
+  expectedProjectID: ProjectID.nullable().optional(),
   agent: z.string().optional(),
   model: ModelRef.optional(),
   /** Extended thinking. Ignored (never sent) for models without the reasoning capability; defaults to on for them. */
@@ -516,6 +540,8 @@ export type SpaceUpdateInput = z.infer<typeof SpaceUpdateInput>
 const ev = <T extends string, P extends z.ZodRawShape>(type: T, properties: P) =>
   z.object({ type: z.literal(type), properties: z.object(properties) })
 export const Event = z.discriminatedUnion("type", [
+  ev("project.changed", { projectID: ProjectID }),
+  ev("project.deleted", { projectID: ProjectID }),
   ev("remote.session.changed", { sessionID: z.string(), epoch: RemoteEpoch }),
   ev("remote.session.removed", { sessionID: z.string(), epoch: RemoteEpoch }),
   ev("session.created", { session: Session }),

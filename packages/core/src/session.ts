@@ -4,6 +4,7 @@ import {
   newId,
   PromptInput,
   SessionCreateInput,
+  SessionUpdateInput,
   type Agent,
   type ErrorInfo,
   type Message,
@@ -12,7 +13,6 @@ import {
   type PermissionRule,
   type PromptPartInput,
   type Session,
-  type SessionUpdateInput,
   type ToolPart,
   type Usage,
 } from "@cortex/schema"
@@ -24,6 +24,7 @@ import { assertContextFits, assertInputSupported, callOptions, costOf, estimateT
 import type { McpService } from "./mcp"
 import { DEFAULT_RULES, type PermissionService } from "./permission"
 import type { ChatParams, PluginRegistry } from "./plugin"
+import type { ProjectService } from "./project"
 import { resolveModel, type ProviderSettings } from "./provider"
 import type { SkillService } from "./skill"
 import type { Storage } from "./storage"
@@ -48,6 +49,7 @@ export interface SessionDeps {
   skills: SkillService
   plugins: PluginRegistry
   mcp: McpService
+  projects: ProjectService
   fetch?: typeof fetch
   botContext?: (botID: string) => BotContext | undefined
   /** Global user permission rules (Settings), layered after defaults. */
@@ -76,9 +78,11 @@ export class SessionService {
       parentID: i.parentID,
       kind: i.kind,
       botID: i.botID,
+      ...(i.projectID === undefined ? {} : { projectID: i.projectID }),
       time: { created: now, updated: now },
     }
     if (!getAgent(s.agent)) throw new CortexError("invalid_request", `Unknown agent ${s.agent}`)
+    if (i.projectID !== undefined) this.assertProject(s, i.projectID)
     this.d.bus.publish("session.created", { session: s })
     return s
   }
@@ -87,12 +91,24 @@ export class SessionService {
     if (!s) throw new CortexError("not_found", `Unknown session ${id}`)
     return s
   }
-  list(filter?: { kind?: string; botID?: string; parentID?: string | null }) {
-    return this.d.storage.sessions(filter)
+  list(filter: { kind?: string; botID?: string; parentID?: string | null; projectID?: string } = {}) {
+    const { projectID, ...rest } = filter
+    if (projectID !== undefined) this.d.projects.get(projectID)
+    return this.d.storage.sessions(rest).filter((s) => projectID === undefined || s.projectID === projectID)
   }
-  update(id: string, patch: SessionUpdateInput): Session {
-    const s = { ...this.get(id), ...stripUndefined(patch) }
+  update(id: string, input: unknown): Session {
+    const { projectID, ...patch } = SessionUpdateInput.parse(input)
+    const current = this.get(id)
+    const s = { ...current, ...stripUndefined(patch) }
     if (!getAgent(s.agent)) throw new CortexError("invalid_request", `Unknown agent ${s.agent}`)
+    if (projectID !== undefined) {
+      if (projectID !== null) this.assertProject(s, projectID)
+      if (this.isTreeBusy(this.root(s).id)) throw new CortexError("session_busy", "Conversation has an active turn")
+      if (projectID === null) {
+        if (current.projectID === undefined && Object.values(patch).every((v) => v === undefined)) return current
+        delete s.projectID
+      } else s.projectID = projectID
+    }
     s.time = { ...s.time, updated: Date.now() }
     this.d.bus.publish("session.updated", { session: s })
     return s
@@ -111,6 +127,28 @@ export class SessionService {
   }
   isBusy(id: string) {
     return this.running.has(id)
+  }
+
+  isTreeBusy(id: string): boolean {
+    if (!this.running.size) return false
+    const parents = new Map(this.d.storage.sessions().map((s) => [s.id, s.parentID]))
+    for (const busyID of this.running.keys()) {
+      for (let current: string | undefined = busyID; current; current = parents.get(current)) {
+        if (current === id) return true
+      }
+    }
+    return false
+  }
+
+  private root(session: Session): Session {
+    while (session.parentID) session = this.get(session.parentID)
+    return session
+  }
+
+  private assertProject(session: Session, projectID: string) {
+    if (session.kind !== "chat" || session.parentID !== undefined || session.botID !== undefined)
+      throw new CortexError("invalid_request", "Only root chats can join a project")
+    this.d.projects.get(projectID)
   }
 
   async abort(id: string) {
@@ -135,13 +173,18 @@ export class SessionService {
     // Reserve before asynchronous validation; abort/delete must also see pending admission.
     this.running.set(sessionID, { controller, done })
     try {
+      // Resolve children at admission; a snapshot keeps later project edits out of this turn.
+      const projectID = this.root(session).projectID
+      if (p.expectedProjectID !== undefined && p.expectedProjectID !== (projectID ?? null))
+        throw new CortexError("conflict", "Conversation project changed")
+      const instructions = projectID ? this.d.projects.get(projectID).instructions : ""
       const model = await this.d.catalog.model(session.model.providerID, session.model.modelID)
       if (!model) throw new CortexError("model_not_found", `Unknown model ${session.model.providerID}/${session.model.modelID}`)
       const caps = capabilities(model)
       assertInputSupported(caps, p.parts)
       const history = this.d.storage.messages(sessionID)
       for (const m of history) if (m.info.role === "user") assertInputSupported(caps, m.parts.filter((part) => part.type === "file"))
-      assertContextFits(caps, estimateHistory(history, p.parts))
+      assertContextFits(caps, estimateHistory(history, p.parts) + estimateTokens([instructions]))
       const resolved = await resolveModel((await this.d.catalog.provider(session.model.providerID))!, model, this.d.providers, this.d.fetch)
       if (controller.signal.aborted) throw new CortexError("aborted", "Request aborted")
 
@@ -152,7 +195,7 @@ export class SessionService {
         const text = p.parts.find((x) => x.type === "text")?.text.trim()
         if (text) session = this.update(sessionID, { title: text.split("\n")[0]!.slice(0, 60) })
       }
-      void this.run(session, resolved, controller, p.reasoning ?? true)
+      void this.run(session, resolved, controller, p.reasoning ?? true, instructions)
         .catch(() => undefined)
         .finally(finish)
       return { messageID: user.id, done }
@@ -268,7 +311,7 @@ export class SessionService {
     return out
   }
 
-  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController, thinking = true) {
+  private async run(session: Session, resolved: Awaited<ReturnType<typeof resolveModel>>, controller: AbortController, thinking = true, instructions = "") {
     const { bus } = this.d
     const agent = getAgent(session.agent)!
     const bot = session.botID ? this.d.botContext?.(session.botID) : undefined
@@ -301,7 +344,7 @@ export class SessionService {
       put(p)
     }
     try {
-      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []), thinking)
+      const opts = callOptions(resolved.model, resolved.family, estimateHistory(history, []) + estimateTokens([instructions]), thinking)
       const params: ChatParams = { sessionID: session.id, agent: agent.name, model: session.model, maxOutputTokens: opts.maxOutputTokens, providerOptions: opts.providerOptions }
       await this.d.plugins.trigger("chat.params", params)
       const toolset = opts.useTools
@@ -310,7 +353,7 @@ export class SessionService {
             controller.abort()
           })
         : undefined
-      const system = [agent.prompt, bot?.system, session.directory ? `Working directory: ${session.directory}` : undefined].filter(Boolean).join("\n\n")
+      const system = [agent.prompt, bot?.system, instructions, session.directory ? `Working directory: ${session.directory}` : undefined].filter(Boolean).join("\n\n")
       const result = streamText({
         model: resolved.language,
         instructions: system,

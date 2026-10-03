@@ -1,0 +1,50 @@
+$ playwright test "tests/e2e/projects.spec.ts" "--workers=2" "--output=/tmp/opencode/projects-integrated/targeted-artifacts"
+
+Running 3 tests using 2 workers
+
+  ✓  1 tests/e2e/projects.spec.ts:73:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — dark (14.9s)
+  ✓  2 tests/e2e/projects.spec.ts:73:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — light (15.4s)
+  ✘  3 tests/e2e/projects.spec.ts:214:1 › Projects retain newer drafts and isolate late reads/writes across owners (18.6s)
+
+
+  1) tests/e2e/projects.spec.ts:214:1 › Projects retain newer drafts and isolate late reads/writes across owners
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('main').getByRole('alert')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('main').getByRole('alert') with timeout 15000ms
+      - waiting for locator('main').getByRole('alert')
+
+
+      308 |     });
+      309 |     await navigate(page, "#/library");
+    > 310 |     await expect(page.locator("main").getByRole("alert")).toBeVisible();
+          |                                                           ^
+      311 |     await expect(page.locator("main .card")).toHaveCount(0);
+      312 |     await page.locator("main").getByRole("button", { name: "Try again", exact: true }).click();
+      313 |     await expect(page.locator("main .card")).toHaveCount(2);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/projects.spec.ts:310:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/targeted-artifacts/projects-Projects-retain-n-d1ef4--reads-writes-across-owners/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/targeted-artifacts/projects-Projects-retain-n-d1ef4--reads-writes-across-owners/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/targeted-artifacts/projects-Projects-retain-n-d1ef4--reads-writes-across-owners/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/targeted-artifacts/projects-Projects-retain-n-d1ef4--reads-writes-across-owners/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/projects.spec.ts:214:1 › Projects retain newer drafts and isolate late reads/writes across owners
+  2 passed (34.3s)
+error: script "test:e2e" exited with code 1

@@ -199,6 +199,13 @@ specific dependencies, not a blanket blocker on this remaining local work.
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
 | Automated i18n audit | `99e3d04` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
+Local Projects implementation is now underway in the working tree: persistent records,
+instruction context, Chat membership and existing-screen discovery. Its dedicated protocol
+checks pass seven cases; integrated production validation passes 116 Electron cases/426
+render visits, 252 units plus one optional skip, lint/types/i18n and Linux package/smoke.
+Matching CI/native acceptance and independent local artifact audit remain pending.
+The [delivery ledger](projects-followup/README.md) separates this candidate from accepted `99e3d04`.
+
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
 `CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;

@@ -18,6 +18,9 @@ import {
   type PermissionReply,
   type PermissionRule,
   type Plugin,
+  type Project,
+  type ProjectCreateInput,
+  type ProjectUpdateInput,
   type PromptInput,
   type ProviderConfig,
   type ProviderSummary,
@@ -135,8 +138,15 @@ export function createClient(opts: ClientOptions) {
       return () => ctrl.abort()
     },
 
+    projects: {
+      list: () => get<Project[]>("/api/projects"),
+      create: (b: ProjectCreateInput) => post<Project>("/api/projects", b),
+      get: (id: string) => get<Project>(`/api/projects/${enc(id)}`),
+      update: (id: string, b: ProjectUpdateInput) => patch<Project>(`/api/projects/${enc(id)}`, b),
+      delete: (id: string) => del(`/api/projects/${enc(id)}`),
+    },
     sessions: {
-      list: (q: { kind?: Session["kind"]; botID?: string; parentID?: string } = {}) => get<Session[]>("/api/sessions", q),
+      list: (q: { kind?: Session["kind"]; botID?: string; parentID?: string; projectID?: string } = {}) => get<Session[]>("/api/sessions", q),
       create: (b: SessionCreateInput) => post<Session>("/api/sessions", b),
       get: (id: string) => get<Session>(`/api/sessions/${enc(id)}`),
       update: (id: string, b: SessionUpdateInput) => patch<Session>(`/api/sessions/${enc(id)}`, b),

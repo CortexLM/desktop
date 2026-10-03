@@ -17,7 +17,7 @@ Settings.
 | **Bots** | `screens/bots` | Teammates with a mascot (shape, colour, eyes, mouth, accessories), persona, memory and routines. Live: CRUD, memory, routines |
 | **Files** | `screens/files` | Document, media and code viewers. Viewers are preview-only; live mode shows `upload` |
 | **Cortex Code** | `screens/code` | Coding agent on a local folder. Live: home picks a folder with the native dialog and starts a `code` session with the `build` agent; session transcript |
-| **System** | `screens/system` | Settings, search, command palette, projects, memory, onboarding, login, about, offline/error/update states |
+| **System** | `screens/system` | Settings, search, command palette, projects, memory, onboarding, login, about, offline/error/update states. Projects persist locally; creation, instructions, Chat membership and discovery are wired. Project files/sharing/Bot/archive/metadata editing remain unavailable. |
 
 Settings sections (`screens/system/settings.tsx`): General, Appearance, **Providers &
 models** (live), **Connection** (live), Bot, Notifications, Privacy, Shortcuts, Account. See `docs/providers.md`, `docs/connection-modes.md`.

@@ -1,0 +1,434 @@
+$ playwright test "--workers=4" "--output=/tmp/opencode/projects-integrated/full-artifacts"
+(node:1226685) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 116 tests using 4 workers
+
+(node:1226813) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1226807) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    3 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — dark (1.7s)
+  ✓    4 tests/e2e/approvals-recovery.spec.ts:17:40 › Approvals list refusal stays unresolved until Retry succeeds — light (1.7s)
+  ✓    1 tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 light (2.6s)
+  ✓    2 tests/e2e/appearance-theme.spec.ts:10:49 › Appearance theme keyboard and rail synchronization — 960 dark (2.7s)
+  ✓    7 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 light (2.8s)
+  ✓    5 tests/e2e/bot-owner.spec.ts:34:40 › Bot route ownership replaces the selected session before displaying or sending — light (4.9s)
+  ✓    6 tests/e2e/bot-owner.spec.ts:34:40 › Bot route ownership replaces the selected session before displaying or sending — dark (5.0s)
+  ✓    9 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 960 dark (2.8s)
+  ✓   11 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 light (2.9s)
+  ✓   13 tests/e2e/bot-safety.spec.ts:30:3 › Bot Studio retains refused saves; accepted saves leave once — 1440 dark (2.9s)
+  ✓    8 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 light (9.8s)
+  ✓   15 tests/e2e/bot-safety.spec.ts:194:1 › Bot onboarding does not navigate after leaving preview (1.7s)
+  ✓   10 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 960 dark (9.3s)
+  ✓   16 tests/e2e/bot-safety.spec.ts:211:1 › Preview Bot locale reset and live-mode boundary (3.4s)
+  ✓   12 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 light (9.4s)
+  ✘   17 tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — light (2.9s)
+  ✓   19 tests/e2e/chrome.spec.ts:8:3 › native window chrome and en menu (1.4s)
+  ✓   20 tests/e2e/chrome.spec.ts:8:3 › native window chrome and fr menu (1.5s)
+  ✘   18 tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — dark (3.0s)
+(node:1254262) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   21 tests/e2e/chrome.spec.ts:42:1 › reduced-motion startup inherits themed text immediately (1.9s)
+  ✓   14 tests/e2e/bot-safety.spec.ts:102:3 › Preview Bot shares saved look, draft, pause and activity — 1440 dark (9.4s)
+  ✓   23 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — light (3.7s)
+  ✓   22 tests/e2e/code-diff-scroll.spec.ts:9:1 › Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible (5.1s)
+  ✓   24 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — light (5.0s)
+  ✓   25 tests/e2e/code-models.spec.ts:38:3 › Code sends the chosen model, restores session selection and refuses unavailable models — dark (4.8s)
+  ✓   27 tests/e2e/code-models.spec.ts:234:1 › Code keeps unsupported and missing session models instead of falling back (1.8s)
+  ✓   26 tests/e2e/code-models.spec.ts:148:3 › Code image refusal leaves attachment recovery controls reachable — dark (3.5s)
+  ✓   28 tests/e2e/code-models.spec.ts:257:40 › Code persisted provider failure stays Failed across reload and recovers after a successful follow-up — light (3.3s)
+  ✓   29 tests/e2e/code-models.spec.ts:257:40 › Code persisted provider failure stays Failed across reload and recovers after a successful follow-up — dark (3.3s)
+  ✓   32 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (light) (4.5s)
+  ✓   33 tests/e2e/components.spec.ts:63:40 › Components catalog: keyboard, clipboard and local demos at minimum window (dark) (4.3s)
+  ✓   34 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — light (3.3s)
+  ✓   36 tests/e2e/composer-safety.spec.ts:25:3 › Code keeps cancelled and no-model drafts, locks pending submits — dark (2.7s)
+  ✓   35 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — light (8.1s)
+  ✓   38 tests/e2e/engine.spec.ts:11:1 › MCP connection material stays in main across save, reload and removal (1.4s)
+  ✓   39 tests/e2e/engine.spec.ts:38:1 › models.dev catalog is listed and searchable through the bridge (1.6s)
+  ✓   40 tests/e2e/engine.spec.ts:52:1 › streamed exchange with a thinking- and image-capable model (2.4s)
+  ✓   37 tests/e2e/composer-safety.spec.ts:85:3 › Work and Bot drafts survive engine refusal; accepted sends clear once — dark (9.2s)
+  ✓   41 tests/e2e/engine.spec.ts:104:1 › an image is refused for a model without image input (1.6s)
+  ✓   43 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — light (6.3s)
+  ✓   42 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — light (7.1s)
+  ✓   45 tests/e2e/frozen-composer.spec.ts:147:3 › live composer capsule geometry, locale labels and attachment safety — dark (6.5s)
+  ✓   44 tests/e2e/frozen-composer.spec.ts:24:3 › frozen preview actions and same-URL Chat/Code history — dark (7.2s)
+  ✓   47 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 dark (11.3s)
+  ✓   46 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 960 light (11.8s)
+  ✓   48 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 light (13.6s)
+  ✓   49 tests/e2e/interaction-states.spec.ts:18:3 › frozen interaction end states — 1440 dark (14.0s)
+  ✓   50 tests/e2e/keyboard.spec.ts:4:1 › hidden navigation cannot receive focus; theme radios and Undo work from the keyboard (6.4s)
+  ✓   51 tests/e2e/keyboard.spec.ts:130:1 › frozen shell motion settles, latest tab wins and hidden menus close (9.9s)
+  ✘   52 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — light (17.5s)
+  ✘   53 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — light (17.5s)
+  ✓   30 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (light) (1.5m)
+  ✓   31 tests/e2e/components.spec.ts:4:40 › Components catalog: families, variants and three-preview ceiling (dark) (1.5m)
+  ✓   57 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 light (2.3s)
+  ✓   56 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light (2.7s)
+  ✓   59 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 light (2.4s)
+  ✓   58 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 light (2.5s)
+  ✓   61 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 dark (2.3s)
+  ✓   60 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 dark (2.9s)
+  ✓   62 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 dark (2.4s)
+  ✓   63 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 dark (2.5s)
+  ✘   54 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — dark (17.5s)
+  ✓   64 tests/e2e/navigation.spec.ts:4:1 › skipped native route and theme transitions preserve updates and report callback errors (3.7s)
+  ✓   65 tests/e2e/navigation.spec.ts:85:1 › Back cancels a pending tab choice even when its label matches an older request (4.6s)
+  ✓   67 tests/e2e/navigation.spec.ts:160:1 › a pending route commit preserves the outgoing Work tree and restores Bot activity (1.6s)
+  ✓   69 tests/e2e/navigation.spec.ts:316:1 › Work preview departure keeps its context until native live-Code navigation commits (1.9s)
+  ✓   66 tests/e2e/navigation.spec.ts:127:1 › a newer keyboard tab choice survives the previous route commit (3.7s)
+  ✘   55 tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — dark (17.5s)
+  ✓   72 tests/e2e/projects.spec.ts:214:1 › Projects retain newer drafts and isolate late reads/writes across owners (3.5s)
+  ✓   73 tests/e2e/provider-draft.spec.ts:44:40 › provider availability preserves an unsaved replacement key — 960 light (6.5s)
+  ✓   68 tests/e2e/navigation.spec.ts:199:1 › anchors, native menus and history preserve routes, variants and chat identities (15.6s)
+  ✓   70 tests/e2e/projects.spec.ts:73:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — light (14.6s)
+  ✓   71 tests/e2e/projects.spec.ts:73:40 › Projects persist through two restarts, route exact identities and preserve chats on deletion — dark (15.0s)
+  ✓   75 tests/e2e/provider-key-pending.spec.ts:29:40 › Provider key Save and Remove preserve edits made while their real response is pending — light (2.7s)
+  ✓   74 tests/e2e/provider-draft.spec.ts:44:40 › provider availability preserves an unsaved replacement key — 960 dark (6.5s)
+  ✓   76 tests/e2e/provider-key-pending.spec.ts:29:40 › Provider key Save and Remove preserve edits made while their real response is pending — dark (2.7s)
+  ✓   77 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 light (3.3s)
+  ✓   79 tests/e2e/remote-auth.spec.ts:135:3 › Email code sign-in retains refusal, submits once, reloads and signs out — 960 dark (3.1s)
+  ✓   81 tests/e2e/remote-auth.spec.ts:276:1 › Mode and origin changes reject late auth replies and never reuse another origin’s credentials (2.7s)
+  ✓   78 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 light (5.3s)
+  ✓   84 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 960×640 light (1.7s)
+  ✓   80 tests/e2e/remote-auth.spec.ts:200:3 › Unavailable continuations and cancelled codes stay private; restart clears login — 960 dark (6.3s)
+  ✓   85 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 960×640 dark (1.6s)
+  ✓   86 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 1024×686 light (1.6s)
+  ✓   87 tests/e2e/responsive.spec.ts:10:3 › Code approval descriptions stay clear of controls — 1024×686 dark (1.6s)
+  ✓   88 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 960 light (3.7s)
+  ✓   89 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 960 dark (3.7s)
+  ✓   90 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1024 light (3.7s)
+  ✓   91 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1024 dark (3.8s)
+  ✓   92 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1440 light (3.8s)
+  ✘   82 tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation (16.6s)
+  ✓   93 tests/e2e/responsive.spec.ts:56:3 › Work board columns and cards remain reachable — 1440 dark (3.6s)
+  ✓   94 tests/e2e/responsive.spec.ts:122:1 › preview navigation loads fixtures and catches startup URL changes (1.7s)
+(node:1232947) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   97 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — light (2.2s)
+  ✓   96 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — light (3.1s)
+  ✓   99 tests/e2e/routines.spec.ts:111:3 › Routine actions retain honest feedback when the engine refuses — dark (2.0s)
+  ✓   98 tests/e2e/routines.spec.ts:46:3 › Routine history reflects running, interruption and latest results — dark (3.1s)
+  ✓  101 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — light (2.9s)
+  ✓   95 tests/e2e/responsive.spec.ts:154:1 › review, diff, canvas and computer controls remain reachable in small desktop windows (9.7s)
+  ✓  103 tests/e2e/search-bots.spec.ts:93:1 › Search reports either source's real request refusal and retries both lists (2.0s)
+(node:1389199) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  102 tests/e2e/search-bots.spec.ts:26:40 › Search finds persisted Bots by name and persona, preserving grouped keyboard identity — dark (2.8s)
+  ✓  104 tests/e2e/terminal-copy.spec.ts:19:1 › French Code terminal localizes fresh shell notices without changing output or replay (4.6s)
+  ✓   83 tests/e2e/remote-auth.spec.ts:409:1 › Live sign-in copy stays readable across eight locales (42.3s)
+  ✓  105 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — light (16.1s)
+  ✓  107 tests/e2e/ui-flows.spec.ts:103:1 › streamed exchange with thinking and an image, driven from the composer (5.3s)
+  ✓  106 tests/e2e/ui-flows.spec.ts:19:40 › provider key save, reload and removal stay readable — dark (16.3s)
+  ✓  109 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — light (5.7s)
+  ✓  110 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — light (8.9s)
+  ✓  111 tests/e2e/work-routine-source.spec.ts:48:3 › Work task conversion preserves source context and only creates on confirmation — dark (5.9s)
+  ✓  108 tests/e2e/ui-flows.spec.ts:141:1 › rejected sends keep the draft and attachments; retry resends the image (16.1s)
+  ✓  113 tests/e2e/work-routine-source.spec.ts:252:1 › Routine source navigation ignores late source responses and late save completion (3.4s)
+  ✓  114 tests/e2e/work-routine-source.spec.ts:332:1 › Routine source waits for its Bot list and retains the draft through list failure and retry (2.5s)
+  ✓  112 tests/e2e/work-routine-source.spec.ts:151:3 › Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot — dark (8.9s)
+  ✓  115 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light (5.8s)
+  ✓  116 tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark (6.0s)
+rendered 426 screen states
+  ✓  100 tests/e2e/screens.spec.ts:10:1 › every design screen and state renders (2.4m)
+
+
+  1) tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — light
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Base UI: A component is changing the default open state of an uncontrolled Collapsible after being initialized. To suppress this warning opt to use a controlled Collapsible.",
+    + ]
+
+      60 |     await expect(page.getByTestId("composer-input")).toBeEditable(); await expect(page.getByTestId("composer-input")).toHaveValue("");
+      61 |     await expect(page.locator(".thread, [role=alert]")).toHaveCount(0); expect(await call<Session[]>("/api/sessions")).toEqual([]);
+    > 62 |     evidence.newChatRecovery = true; expect(fake.requests).toHaveLength(1); expect(errors).toEqual([]); expect(rendererHttp).toEqual([]);
+         |                                                                                            ^
+      63 |   } finally {
+      64 |     try { await test.info().attach("chat-missing-evidence", { body: JSON.stringify(evidence, null, 2), contentType: "application/json" }); }
+      65 |     finally { try { await app.close(); } finally { await fake.close(); } }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/chat-missing.spec.ts:62:92
+
+    attachment #1: deleted-chat-card (image/png) ───────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/attachments/deleted-chat-card-5fd4c273ffce50f631f7b918e880b2ef4127ba12.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — dark
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Base UI: A component is changing the default open state of an uncontrolled Collapsible after being initialized. To suppress this warning opt to use a controlled Collapsible.",
+    + ]
+
+      60 |     await expect(page.getByTestId("composer-input")).toBeEditable(); await expect(page.getByTestId("composer-input")).toHaveValue("");
+      61 |     await expect(page.locator(".thread, [role=alert]")).toHaveCount(0); expect(await call<Session[]>("/api/sessions")).toEqual([]);
+    > 62 |     evidence.newChatRecovery = true; expect(fake.requests).toHaveLength(1); expect(errors).toEqual([]); expect(rendererHttp).toEqual([]);
+         |                                                                                            ^
+      63 |   } finally {
+      64 |     try { await test.info().attach("chat-missing-evidence", { body: JSON.stringify(evidence, null, 2), contentType: "application/json" }); }
+      65 |     finally { try { await app.close(); } finally { await fake.close(); } }
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/chat-missing.spec.ts:62:92
+
+    attachment #1: deleted-chat-card (image/png) ───────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/attachments/deleted-chat-card-70615a9ef3bd3b2b3268ebaa278379734b57bc48.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — light
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.thread .msg-user')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.thread .msg-user') with timeout 15000ms
+      - waiting for locator('.thread .msg-user')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      118 |       expect(oldMessages[0].parts).toContainEqual(expect.objectContaining({ type: "text", text: OLDER }));
+      119 |       await test.info().attach("held-real-history", { body: held.body, contentType: "application/json" });
+    > 120 |       await expect(page.locator(".thread .msg-user")).toHaveCount(0);
+          |                                                       ^
+      121 |       if (action === "stream") {
+      122 |         await prompt(NEWER); await completed(4);
+      123 |         await expect.poll(() => probe.evaluate((p) => p.events.filter((e) => e.type === "session.status" && e.properties.status.type === "idle").length)).toBe(2);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/live-state.spec.ts:120:55
+
+    attachment #2: failure (image/png) ─────────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/failure-50b1ce31d4402f62c0a8dad63adee25e92c8126f.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — light
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.thread .msg-user')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.thread .msg-user') with timeout 15000ms
+      - waiting for locator('.thread .msg-user')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      118 |       expect(oldMessages[0].parts).toContainEqual(expect.objectContaining({ type: "text", text: OLDER }));
+      119 |       await test.info().attach("held-real-history", { body: held.body, contentType: "application/json" });
+    > 120 |       await expect(page.locator(".thread .msg-user")).toHaveCount(0);
+          |                                                       ^
+      121 |       if (action === "stream") {
+      122 |         await prompt(NEWER); await completed(4);
+      123 |         await expect.poll(() => probe.evaluate((p) => p.events.filter((e) => e.type === "session.status" && e.properties.status.type === "idle").length)).toBe(2);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/live-state.spec.ts:120:55
+
+    attachment #2: failure (image/png) ─────────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/failure-3864a5cdeb7695dee7c89fcf78b6d2b34ca601c5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — dark
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.thread .msg-user')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.thread .msg-user') with timeout 15000ms
+      - waiting for locator('.thread .msg-user')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      118 |       expect(oldMessages[0].parts).toContainEqual(expect.objectContaining({ type: "text", text: OLDER }));
+      119 |       await test.info().attach("held-real-history", { body: held.body, contentType: "application/json" });
+    > 120 |       await expect(page.locator(".thread .msg-user")).toHaveCount(0);
+          |                                                       ^
+      121 |       if (action === "stream") {
+      122 |         await prompt(NEWER); await completed(4);
+      123 |         await expect.poll(() => probe.evaluate((p) => p.events.filter((e) => e.type === "session.status" && e.properties.status.type === "idle").length)).toBe(2);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/live-state.spec.ts:120:55
+
+    attachment #2: failure (image/png) ─────────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/failure-764a751aa1772858907aca662f03b1a24ca9a46a.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — dark
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.thread .msg-user')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.thread .msg-user') with timeout 15000ms
+      - waiting for locator('.thread .msg-user')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      118 |       expect(oldMessages[0].parts).toContainEqual(expect.objectContaining({ type: "text", text: OLDER }));
+      119 |       await test.info().attach("held-real-history", { body: held.body, contentType: "application/json" });
+    > 120 |       await expect(page.locator(".thread .msg-user")).toHaveCount(0);
+          |                                                       ^
+      121 |       if (action === "stream") {
+      122 |         await prompt(NEWER); await completed(4);
+      123 |         await expect.poll(() => probe.evaluate((p) => p.events.filter((e) => e.type === "session.status" && e.properties.status.type === "idle").length)).toBe(2);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/live-state.spec.ts:120:55
+
+    attachment #2: failure (image/png) ─────────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/failure-38910e9b465ffd85d6c01f27f2621e25623a200f.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('connection-mode-local')
+    Expected: "true"
+    Received: ""
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('connection-mode-local') with timeout 15000ms
+      - waiting for getByTestId('connection-mode-local')
+        34 × locator resolved to <div role="radio" tabindex="0" aria-checked="false" class="li systeme-radio-row" data-testid="connection-mode-local">…</div>
+           - unexpected value "null"
+
+
+      360 |     await page.reload();
+      361 |     await expect.poll(() => app.evaluate(() => (globalThis as unknown as { authReadBarrier: ReadBarrier }).authReadBarrier.held?.path)).toBe("/api/connection");
+    > 362 |     for (const mode of ["local", "cloud", "selfhost"]) await expect(page.getByTestId(`connection-mode-${mode}`)).toHaveAttribute("aria-disabled", "true");
+          |                                                                                                                  ^
+      363 |     await page.getByTestId("connection-mode-selfhost").evaluate((row: HTMLElement) => {
+      364 |       row.click(); row.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+      365 |     });
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/remote-auth.spec.ts:362:114
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/projects-integrated/full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — light
+    tests/e2e/chat-missing.spec.ts:18:40 › Deleted Chat shows truthful missing-page recovery — dark
+    tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — light
+    tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — light
+    tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot erase a completed stream — dark
+    tests/e2e/live-state.spec.ts:34:3 › Late initial Chat history cannot revive a deleted session — dark
+    tests/e2e/remote-auth.spec.ts:319:1 › Initial connection and auth reads protect selection, canonical sign-in and cancellation
+  109 passed (5.4m)
+error: script "test:e2e" exited with code 1

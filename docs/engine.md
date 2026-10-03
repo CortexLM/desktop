@@ -46,9 +46,9 @@ and storage behavior in every connection mode. See [connection-modes.md](connect
 
 - `node:sqlite`, WAL. Append-only `event` table with transactional projections `session`,
   `message`, `part`; a JSON `doc` table holds config (providers, approvals, connection,
-  bots, tasks, space, settings).
+  bots, projects, tasks, space, settings).
 - The bus (`bus.ts`) commits durable events (`session.*`, `message.updated`,
-  `part.updated`) before listeners run. `part.delta`, `session.status`, `permission.*`,
+  `part.updated`, `project.deleted`) before listeners run. `part.delta`, `session.status`, `permission.*`,
   `mcp.status`, `task.run` are live-only.
 - Internal `publish(type, properties, "remote")` delivers live events without SQLite writes
   or local plugin callbacks. The source tag is a listener argument, never serialized into
@@ -100,6 +100,40 @@ Capability gates (`llm.ts`), from the catalog entry of the model:
 | model with `reasoning` | provider thinking options set (Anthropic budget, OpenAI effort, …) |
 | always | `maxOutputTokens` clamped to the model and remaining context |
 
+## Local Projects
+
+`GET/POST /api/projects`, `GET/PATCH/DELETE /api/projects/:id` persist local Project
+documents in the existing SQLite store. Names are trimmed to 1–48 characters; instructions
+are limited to 4000. Icon/color values are the existing creation-form choices. IDs and
+timestamps are engine-owned; duplicate names identify distinct projects.
+
+Only root Chat sessions can hold `projectID`. Session creation accepts it; session PATCH
+accepts an ID or `null` to detach; session listing accepts a `projectID` filter. Unknown
+projects refuse the write. Membership changes and project deletion refuse while a linked
+root or descendant is running, including asynchronous prompt admission. Children resolve
+their root's membership. Project instructions are snapshotted before asynchronous admission,
+included in the model's system context and token budget; later edits affect later turns.
+Optional `expectedProjectID` on a prompt (ID or null) verifies the caller's captured context
+before admission. A move/deletion mismatch refuses without persisting a message or invoking
+the provider; callers omitting the field retain the existing admission contract.
+
+Deletion preserves conversations: a single durable `project.deleted` event atomically
+deletes the Project document and removes linked sessions' `projectID` in the same
+transaction. Transcripts, models and session timestamps remain intact. Failed storage
+writes roll back the event and all projections. Create/update publish live `project.changed`
+after the document write; the renderer refreshes both project and membership lists on deletion.
+
+Existing Projects/Project, Library, Search and sidebar surfaces read real records. Project
+New chat carries its ID to Home; refused initial sends retain the draft and reuse the created
+session. Chat's existing Move selector assigns or detaches by ID. Instructions clear their
+editor only after an accepted unchanged draft; newer edits and refused writes remain editable.
+Detail ownership follows the committed Project ID, so late responses cannot affect another
+project. History's project filter lists only that project's root chats.
+
+Project file storage, sharing, assigned Bot, archive and a metadata-editing surface remain
+unfinished. The current UI reports unavailable actions; it does not seed collaborators,
+files or descriptions. Folder-scoped tool permissions and skills remain separate from Projects.
+
 ## Agents and tools
 
 Agents (`agent.ts`): `build` (default), `plan` (read-only; write/edit/bash denied),
@@ -140,9 +174,9 @@ asks even when no explicit permission reply was sent.
   Live Work completion comes from the latest persisted assistant message, not an idle process.
   Refused/empty and failed/interrupted tasks stay outside Done; transcript failures remain visible
   after reload. The board currently reads each root Bot session's history until a bulk summary exists.
-  Global Search reads saved Bot names/personas and session titles through the existing list routes.
+  Global Search reads saved Project names/instructions, Bot names/personas and session titles through list routes.
   Matching is case/accent-insensitive; opening a Bot carries its exact ID. Grouped keyboard navigation
-  follows visual order. Either list failure replaces results with retryable, localized error copy;
+  follows visual order. Any source-list failure replaces results with retryable, localized error copy;
   recently opened items remain session-only. This is not a transcript/full-text index.
 - Scheduler (`scheduler.ts`, `cron.ts`): `cron` (5-field), `daily`, `weekly`, `once`. A
   run creates a session and prompts it; history persisted. Missed runs are not

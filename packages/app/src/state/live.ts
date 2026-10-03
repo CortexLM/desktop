@@ -1,6 +1,6 @@
 // Live engine state for the renderer: one SSE subscription, small caches refreshed on events.
 import * as React from "react";
-import type { Event, Session, Bot, MessageWithParts, Permission } from "@cortex/schema";
+import type { Event, Session, Bot, Project, MessageWithParts, Permission } from "@cortex/schema";
 import { api } from "../api";
 
 type Listener = (e: Event) => void;
@@ -28,7 +28,8 @@ export function useQuery<T>(load: () => Promise<T>, deps: unknown[], when?: (e: 
 }
 
 export const useSessions = (kind?: Session["kind"]) =>
-  useQuery(() => api.sessions.list(kind ? { kind } : {}), [kind], (e) => e.type.startsWith("session."));
+  useQuery(() => api.sessions.list(kind ? { kind } : {}), [kind], (e) => e.type.startsWith("session.") || e.type === "project.deleted");
+export const useProjects = () => useQuery<Project[]>(() => api.projects.list(), [], (e) => e.type.startsWith("project."));
 export const useBots = () => useQuery<Bot[]>(() => api.bots.list(), [], () => false);
 export const usePermissions = () => useQuery<Permission[]>(() => api.permissions.list(), [], (e) => e.type.startsWith("permission.") || e.type === "session.status" || e.type === "session.deleted");
 

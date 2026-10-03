@@ -6,7 +6,7 @@ import { useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
-import { useSessions, useBots } from "../../state/live";
+import { useSessions, useBots, useProjects } from "../../state/live";
 import { Top, BotEmpty, Keys, Hl, useListNav, useFx, useBotCfg, useAgo, css, norm, setTheme, NB } from "./common";
 import type { Hit } from "./fixtures";
 
@@ -20,16 +20,18 @@ export function SearchScreen() {
   const ago = useAgo();
   const sessions = useSessions();
   const bots = useBots();
+  const projects = useProjects();
   const [v] = useVariant("results");
   const [q, setQ] = React.useState(() => (preview ? fx.search.q[v] ?? "" : ""));
   const [kind, setKind] = React.useState<(typeof KINDS)[number]>("all");
-  const loading = preview ? v === "loading" : sessions.state === "loading" || bots.state === "loading";
-  const sourceError = !preview && (sessions.state === "error" || bots.state === "error");
+  const loading = preview ? v === "loading" : sessions.state === "loading" || bots.state === "loading" || projects.state === "loading";
+  const sourceError = !preview && (sessions.state === "error" || bots.state === "error" || projects.state === "error");
   type SearchHit = Hit & { id?: string };
   const pool: SearchHit[] = preview ? fx.search.hits
     : [
       ...(sessions.state === "ready" ? sessions.data.map((s) => ({ kind: "chats" as const, icon: s.kind === "code" ? "code" : s.kind === "bot" ? "bot" : "compose", title: s.title || t("system.untitled"), sub: t(`system.search.kind.${s.kind}`), meta: ago(s.time.updated), to: s.kind === "code" ? "code-session" : "chat", id: s.id })) : []),
       ...(bots.state === "ready" ? bots.data.map((b) => ({ kind: "bots" as const, icon: "bot", title: b.name, sub: b.persona, meta: t("system.search.k.bots"), to: "bot", id: b.id })) : []),
+      ...(projects.state === "ready" ? projects.data.map((p) => ({ kind: "projects" as const, icon: p.icon, title: p.name, sub: p.instructions, meta: ago(p.time.updated), to: "project", id: p.id })) : []),
     ];
   const open = (h: SearchHit) => go(h.to, h.id ? { id: h.id } : undefined);
   const found = pool.filter((h) => (kind === "all" || h.kind === kind) && q.trim() && norm(h.title + " " + h.sub).includes(norm(q.trim())));
@@ -57,7 +59,7 @@ export function SearchScreen() {
           {[0, 1, 2, 3, 4].map((i) => <div key={i} className="systeme-skel-hit"><span className="skel" style={{ width: 32, height: 32, borderRadius: 10 }} /><span style={{ flex: 1, display: "grid", gap: 6 }}><span className="skel title" style={{ width: `${50 - i * 5}%` }} /><span className="skel line" style={{ width: `${80 - i * 7}%` }} /></span></div>)}
         </section>
         : sourceError ? <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}>
-          <button className="btn secondary" onClick={() => { sessions.reload(); bots.reload(); }}>{t("common.retry")}</button>
+          <button className="btn secondary" onClick={() => { sessions.reload(); bots.reload(); projects.reload(); }}>{t("common.retry")}</button>
         </BotEmpty>
         : recent ? <section className="systeme-recent">
           {recentQ.length > 0 && <h3 className="h3">{t("system.search.recentSearches")}</h3>}
@@ -105,7 +107,7 @@ function useCommands(): Cmd[] {
   const A = t("system.cmd.sec.actions"), G = t("system.cmd.sec.goto"), B = t("system.cmd.sec.bots"), R = t("system.cmd.sec.recent");
   const list: Cmd[] = [
     { id: "new", label: t("system.cmd.newChat"), icon: "compose", sec: A, kbd: "⌘N", to: "home" },
-    { id: "proj", label: t("system.cmd.newProject"), icon: "folder", sec: A, to: "projects" },
+    { id: "proj", label: t("system.cmd.newProject"), icon: "folder", sec: A, to: "projects", params: { v: "create" } },
     { id: "theme", label: t("system.cmd.theme"), icon: "sun", sec: A, sub: "theme" },
     { id: "model", label: t("system.cmd.model"), icon: "sparkle-free", sec: A, sub: "model" },
     { id: "upload", label: t("system.cmd.upload"), icon: "paperclip", sec: A, kbd: "⌘U", to: "upload" },

@@ -1,6 +1,10 @@
 // Projects grid, project detail and memory.
 import * as React from "react";
 import { Dialog } from "@base-ui/react/dialog";
+import { Radio } from "@base-ui/react/radio";
+import { RadioGroup } from "@base-ui/react/radio-group";
+import { Tabs } from "@base-ui/react/tabs";
+import type { Project } from "@cortex/schema";
 import { Icon, IconBtn, Switch, Pop, MItem, MSep, Tip, useToast } from "../../kit/ui";
 import { Mascot } from "../../mascot/Mascot";
 import { useNav } from "../../shell/nav";
@@ -8,12 +12,12 @@ import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
 import { api } from "../../api";
-import { useBots, useQuery } from "../../state/live";
+import { useBots, useProjects, useQuery, useSessions } from "../../state/live";
 import { Top, BotEmpty, useFx, useBotCfg, useAgo, css, norm, NB } from "./common";
 
 // Project tile palette (design swatches; the colour is the project's identity, not a UI colour).
-const PROJ_COLORS: [string, string][] = [["violet", "#8448FF"], ["blue", "#1E7BFF"], ["teal", "#12B8A0"], ["orange", "#FF6A13"], ["pink", "#EE3A97"], ["slate", "#5F6B7E"]];
-const PROJ_ICONS = ["folder", "rocket", "calendar", "image", "mail", "globe", "code", "bolt"];
+const PROJ_COLORS: [string, Project["color"]][] = [["violet", "#8448FF"], ["blue", "#1E7BFF"], ["teal", "#12B8A0"], ["orange", "#FF6A13"], ["pink", "#EE3A97"], ["slate", "#5F6B7E"]];
+const PROJ_ICONS = ["folder", "rocket", "calendar", "image", "mail", "globe", "code", "bolt"] as const;
 
 const Avs = ({ m, max = 3 }: { m: string[]; max?: number }) => {
   const t = useT();
@@ -22,33 +26,48 @@ const Avs = ({ m, max = 3 }: { m: string[]; max?: number }) => {
 
 function NewProjectDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
   const t = useT();
+  const { go } = useNav();
   const fx = useFx();
   const toast = useToast();
   const preview = isPreview();
   const [name, setName] = React.useState(preview ? fx.newProject.name : "");
-  const [icon, setIcon] = React.useState("calendar");
+  const [icon, setIcon] = React.useState<Project["icon"]>("calendar");
   const [color, setColor] = React.useState(PROJ_COLORS[0][1]);
   const [instr, setInstr] = React.useState(preview ? fx.newProject.instructions : "");
+  const [busy, setBusy] = React.useState(false);
+  const pending = React.useRef(false), mounted = React.useRef(false);
+  const draft = React.useRef({ name, icon, color, instructions: instr });
+  draft.current = { name, icon, color, instructions: instr };
+  React.useLayoutEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const create = async () => {
+    if (!name.trim() || pending.current || !mounted.current) return;
+    if (preview) { onOpenChange(false); toast.add({ title: t("system.projects.created"), description: name, data: { icon: "folder" } }); return; }
+    const captured = JSON.stringify(draft.current);
+    pending.current = true; setBusy(true);
+    try {
+      const p = await api.projects.create({ ...draft.current, name: name.trim() });
+      if (!mounted.current) return;
+      toast.add({ title: t("system.projects.created"), description: p.name, data: { icon: "folder" } });
+      if (JSON.stringify(draft.current) === captured) { onOpenChange(false); go("project", { id: p.id }); }
+    } catch { if (mounted.current) toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); }
+    finally { pending.current = false; if (mounted.current) setBusy(false); }
+  };
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={(next, event) => { if (pending.current) event.cancel(); else onOpenChange(next); }}>
       <Dialog.Portal>
         <Dialog.Backdrop className="backdrop" />
         <Dialog.Popup className="dialog systeme-dialog">
           <Dialog.Title>{t("system.projects.new")}</Dialog.Title>
           <Dialog.Description>{t("system.projects.newDesc")}</Dialog.Description>
           <div className="systeme-preview"><span className="systeme-tile" style={{ background: color }}><Icon name={icon} /></span><span><b style={{ fontWeight: 500 }}>{name || t("system.untitled")}</b><div className="sub" style={{ color: "var(--t2)" }}>{t("system.projects.emptyCounts")}</div></span></div>
-          <form onSubmit={(e) => {
-            e.preventDefault(); if (!name.trim()) return; onOpenChange(false);
-            // ponytail: projects have no engine route yet; live creation reports it honestly instead of faking a row.
-            toast.add(preview ? { title: t("system.projects.created"), description: name, data: { icon: "folder" } } : { title: t("system.unavailable"), description: t("system.projects.unavailable"), data: { icon: "alert-triangle" } });
-          }}>
+          <form aria-busy={busy} onSubmit={(e) => { e.preventDefault(); void create(); }}>
             <div className="field"><label htmlFor="systeme-pn">{t("system.projects.name")}</label><input id="systeme-pn" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={48} required /></div>
             <div className="field"><label id="systeme-pi">{t("system.projects.icon")}</label>
-              <div className="systeme-icons" role="radiogroup" aria-labelledby="systeme-pi">{PROJ_ICONS.map((x) => <button type="button" key={x} role="radio" aria-checked={icon === x} aria-label={t(`system.icon.${x}`)} className="systeme-icopt" onClick={() => setIcon(x)}><Icon name={x} /></button>)}</div></div>
+              <RadioGroup value={icon} onValueChange={setIcon} className="systeme-icons" aria-labelledby="systeme-pi">{PROJ_ICONS.map((x) => <Radio.Root nativeButton render={<button />} value={x} key={x} tabIndex={icon === x ? 0 : -1} aria-label={t(`system.icon.${x}`)} className="systeme-icopt"><Icon name={x} /></Radio.Root>)}</RadioGroup></div>
             <div className="field"><label id="systeme-pc">{t("system.projects.color")}</label>
-              <div className="systeme-colors" role="radiogroup" aria-labelledby="systeme-pc">{PROJ_COLORS.map(([l, c]) => <Tip key={c} label={t(`system.color.${l}`)}><button type="button" role="radio" aria-checked={color === c} aria-label={t(`system.color.${l}`)} className="systeme-color" style={{ background: c }} onClick={() => setColor(c)} /></Tip>)}</div></div>
-            <div className="field"><label htmlFor="systeme-pins">{t("system.projects.instructions")}</label><textarea id="systeme-pins" className="input" value={instr} onChange={(e) => setInstr(e.target.value)} /><span className="sub" style={{ color: "var(--t2)", fontSize: 11 }}>{t("system.projects.instructionsHint")}</span></div>
-            <div className="systeme-actions"><Dialog.Close className="btn secondary" type="button">{t("system.common.cancel")}</Dialog.Close><button className="btn primary" disabled={!name.trim()}>{t("system.projects.create")}</button></div>
+              <RadioGroup value={color} onValueChange={setColor} className="systeme-colors" aria-labelledby="systeme-pc">{PROJ_COLORS.map(([l, c]) => <Tip key={c} label={t(`system.color.${l}`)}><Radio.Root nativeButton render={<button />} value={c} tabIndex={color === c ? 0 : -1} aria-label={t(`system.color.${l}`)} className="systeme-color" style={{ background: c }} /></Tip>)}</RadioGroup></div>
+            <div className="field"><label htmlFor="systeme-pins">{t("system.projects.instructions")}</label><textarea id="systeme-pins" className="input" value={instr} onChange={(e) => setInstr(e.target.value)} maxLength={4000} /><span className="sub" style={{ color: "var(--t2)", fontSize: 11 }}>{t("system.projects.instructionsHint")}</span></div>
+            <div className="systeme-actions"><Dialog.Close className="btn secondary" type="button" disabled={busy}>{t("system.common.cancel")}</Dialog.Close><button className="btn primary" disabled={!name.trim() || busy}>{t("system.projects.create")}</button></div>
           </form>
         </Dialog.Popup>
       </Dialog.Portal>
@@ -57,14 +76,17 @@ function NewProjectDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
 }
 
 export function ProjectsScreen() {
+  return isPreview() ? <ProjectsPreview /> : <ProjectsLive />;
+}
+
+function ProjectsPreview() {
   const t = useT();
   const { go } = useNav();
   const fx = useFx();
   const [v] = useVariant("grid");
   const [open, setOpen] = React.useState(v === "create");
   React.useEffect(() => setOpen(v === "create"), [v]);
-  // Live: projects have no engine backing yet, so the honest state is the empty one.
-  const list = isPreview() && v !== "empty" ? fx.projects : [];
+  const list = v !== "empty" ? fx.projects : [];
   return (<>
     <Top title={t("system.projects.title")}><button className="btn primary" onClick={() => setOpen(true)}><Icon name="plus" />{t("system.projects.new")}</button></Top>
     {list.length ? (
@@ -88,15 +110,116 @@ export function ProjectsScreen() {
   </>);
 }
 
-/* ---------- Project ---------- */
-export function ProjectScreen() {
+function ProjectReadError({ reload }: { reload: () => void }) {
+  const t = useT();
+  return <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}><button className="btn secondary" onClick={reload}>{t("common.retry")}</button></BotEmpty>;
+}
+
+function ProjectsLive() {
   const t = useT();
   const { go } = useNav();
-  if (!isPreview()) return (<>
+  const projects = useProjects(), sessions = useSessions("chat");
+  const [v, setV] = useVariant("grid");
+  const [open, setOpen] = React.useState(v === "create");
+  React.useEffect(() => setOpen(v === "create"), [v]);
+  const close = (next: boolean) => { setOpen(next); if (!next && v === "create") setV("grid"); };
+  const chats = sessions.state === "ready" ? sessions.data.filter((s) => !s.parentID) : [];
+  return (<>
+    <Top title={t("system.projects.title")}><button className="btn primary" onClick={() => setOpen(true)}><Icon name="plus" />{t("system.projects.new")}</button></Top>
+    {projects.state === "error" || sessions.state === "error" ? <ProjectReadError reload={() => { projects.reload(); sessions.reload(); }} />
+      : projects.state === "loading" || sessions.state === "loading" ? <div className="thinking" role="status">{t("system.variant.loading")}</div>
+      : projects.data.length === 0 ? <BotEmpty title={t("system.projects.emptyTitle")} text={t("system.projects.emptyText")}><button className="btn primary" onClick={() => setOpen(true)}><Icon name="plus" />{t("system.projects.createOne")}</button></BotEmpty>
+      : <div className="page"><div className="systeme-pgrid">
+        {projects.data.map((p, i) => <button key={p.id} className="systeme-pcard" style={css(i)} onClick={() => go("project", { id: p.id })}>
+          <div className="systeme-cover"><span className="systeme-tile" style={{ background: p.color }}><Icon name={p.icon} /></span></div>
+          <div className="systeme-pbody"><h3>{p.name}</h3><div className="systeme-pfoot"><span><Icon name="compose" size={12} />{t("system.chats", { count: chats.filter((s) => s.projectID === p.id).length })}</span></div></div>
+        </button>)}
+        <button className="systeme-pnew" style={css(projects.data.length)} onClick={() => setOpen(true)}><Icon name="plus" size={20} />{t("system.projects.new")}</button>
+      </div></div>}
+    <NewProjectDialog key={String(open)} open={open} onOpenChange={close} />
+  </>);
+}
+
+/* ---------- Project ---------- */
+export function ProjectScreen() {
+  const { params } = useNav();
+  return isPreview() ? <ProjectPreview /> : <ProjectLive key={params.get("id") ?? ""} id={params.get("id") ?? ""} />;
+}
+
+function ProjectLive({ id }: { id: string }) {
+  const t = useT();
+  const { go } = useNav();
+  const toast = useToast(), ago = useAgo();
+  const savedVersion = React.useRef(0);
+  const project = useQuery(async () => {
+    const version = savedVersion.current;
+    return { value: await (id ? api.projects.get(id) : Promise.reject({ code: "not_found" })), version };
+  }, [id], (e) => (e.type === "project.changed" || e.type === "project.deleted") && e.properties.projectID === id);
+  const sessions = useSessions("chat");
+  const [v, setV] = useVariant("overview"), [draft, setDraft] = React.useState<string | null>(null);
+  const [accepted, setAccepted] = React.useState<Project | null>(null), [busy, setBusy] = React.useState(false);
+  const mounted = React.useRef(false), pending = React.useRef(false), currentDraft = React.useRef(draft);
+  currentDraft.current = draft;
+  React.useLayoutEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const save = async () => {
+    if (draft === null || pending.current || !mounted.current) return;
+    const captured = draft; pending.current = true; setBusy(true);
+    try {
+      const saved = await api.projects.update(id, { instructions: captured });
+      if (!mounted.current) return;
+      savedVersion.current++; setAccepted(saved); project.reload();
+      if (currentDraft.current === captured) setDraft(null);
+      toast.add({ title: t("system.project.saved"), data: { icon: "check-circle" } });
+    } catch { if (mounted.current) toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }); }
+    finally { pending.current = false; if (mounted.current) setBusy(false); }
+  };
+  const remove = async () => {
+    if (pending.current || !mounted.current) return;
+    pending.current = true; setBusy(true);
+    try { await api.projects.delete(id); if (mounted.current) go("projects"); }
+    catch (error) {
+      const busy = error instanceof Error && "code" in error && error.code === "session_busy";
+      if (mounted.current) toast.add({ title: busy ? t("chat.err.session_busy.title") : t("chat.err.generic.title"), description: busy ? t("chat.err.session_busy.body") : undefined, data: { icon: "alert-triangle" } });
+    }
+    finally { pending.current = false; if (mounted.current) setBusy(false); }
+  };
+  if (!id || project.state === "error" && project.code === "not_found") return (<>
     <Top title={t("system.projects.title")} />
     <BotEmpty title={t("system.project.missingTitle")} text={t("system.projects.emptyText")}><button className="btn secondary" onClick={() => go("projects")}>{t("system.project.myProjects")}</button></BotEmpty>
   </>);
-  return <ProjectPreview />;
+  if (project.state !== "ready") return <><Top title={t("system.projects.title")} />{project.state === "error" ? <ProjectReadError reload={project.reload} /> : <div className="thinking" role="status">{t("system.variant.loading")}</div>}</>;
+  // Acknowledged writes cover earlier reads; the next fresh read wins even with equal timestamps.
+  const p = accepted && project.data.version < savedVersion.current ? accepted : project.data.value;
+  const chats = sessions.state === "ready" ? sessions.data.filter((s) => !s.parentID && s.projectID === id) : [];
+  const tabs = ["overview", "files", "instructions", "sharing"], tab = tabs.includes(v) ? v : "overview";
+  const edit = () => { if (draft === null) setDraft(p.instructions); setV("instructions"); };
+  const unavailable = () => toast.add({ title: t("system.unavailable"), data: { icon: "alert-triangle" } });
+  return (<>
+    <Top title={t("system.projects.title")}><IconBtn icon="share" label={t("system.project.share")} onClick={() => setV("sharing")} /><Pop align="end" width={200} trigger={<IconBtn icon="more-dots" label={t("system.moreActions")} disabled={busy} />}><MItem icon="edit" onClick={unavailable}>{t("system.rename")}</MItem><MItem icon="archive" onClick={unavailable}>{t("system.archive")}</MItem><MSep /><MItem icon="trash" danger onClick={() => void remove()}>{t("system.project.delete")}</MItem></Pop></Top>
+    <div className="page"><Tabs.Root className="systeme-mid" value={tab} onValueChange={(value) => { if (typeof value === "string") setV(value); }}>
+      <div className="systeme-phead"><span className="systeme-tile" style={{ background: p.color }}><Icon name={p.icon} size={20} /></span>
+        <div className="systeme-grow"><h1>{p.name}</h1>{sessions.state === "ready" && <div className="sub">{t("system.chats", { count: chats.length })}</div>}</div>
+        <button className="btn primary" onClick={() => go("home", { project: id })}><Icon name="compose" />{t("system.cmd.newChat")}</button>
+      </div>
+      <Tabs.List className="systeme-tabs" aria-label={t("system.project.sections")}>{tabs.map((value) => <Tabs.Tab key={value} value={value} className="systeme-tab">{t(`system.project.tab.${value}`)}</Tabs.Tab>)}</Tabs.List>
+      <Tabs.Panel value="overview" className="systeme-rise"><div className="systeme-pcols"><div>
+        <div className="systeme-sec"><div className="systeme-sec-head"><h3 className="h3">{t("system.project.chats")}</h3><button className="systeme-sel" onClick={() => go("history", { project: id })}>{t("system.seeAll")}<Icon name="chevron-right" size={12} /></button></div>
+          {sessions.state === "error" ? <ProjectReadError reload={sessions.reload} /> : sessions.state === "loading" ? <div className="thinking" role="status">{t("system.variant.loading")}</div> : chats.length === 0 ? <div className="pg-empty">{t("shell.nav.noChats")}</div>
+            : <div className="list">{chats.slice(0, 4).map((s, i) => <button key={s.id} className="li systeme-rise" style={{ ...css(i), textAlign: "left", width: "100%" }} onClick={() => go("chat", { id: s.id })}><span className="li-ic"><Icon name="compose" /></span><span className="grow ttl">{s.title || t("shell.nav.untitled")}</span><span className="sub">{ago(s.time.updated)}</span></button>)}</div>}
+        </div>
+        <div className="systeme-sec"><h3 className="h3">{t("system.project.recentFiles")}</h3><div className="pg-empty">{t("system.unavailable")}</div></div>
+      </div><div className="systeme-card"><div className="systeme-sec-head"><h3 className="h3">{t("system.projects.instructions")}</h3><IconBtn icon="edit" label={t("system.project.editInstructions")} onClick={edit} /></div><p className="systeme-instr" style={{ display: "-webkit-box", WebkitLineClamp: 6, WebkitBoxOrient: "vertical", overflow: "hidden", fontSize: 12, lineHeight: "18px", color: "var(--t2)" }}>{p.instructions}</p></div></div></Tabs.Panel>
+      <Tabs.Panel value="instructions" className="systeme-rise"><div className="systeme-narrow" style={{ margin: 0 }}>
+        <p style={{ color: "var(--t2)", margin: "0 0 12px" }}>{t("system.projects.instructionsHint")}</p>
+        {draft !== null ? <>
+          <textarea className="input systeme-instr-edit" value={draft} onChange={(e) => setDraft(e.target.value)} aria-label={t("system.project.instructionsLabel")} autoFocus maxLength={4000} />
+          <div className="systeme-actions" style={{ justifyContent: "space-between" }}><span className="sub" style={{ color: "var(--t2)" }}>{t("system.project.chars", { n: draft.length, max: (4000).toLocaleString(t("system.numberLocale")) })}</span>
+            <span style={{ display: "flex", gap: 8 }}><button className="btn secondary" disabled={busy} onClick={() => setDraft(null)}>{t("system.common.cancel")}</button><button className="btn primary" disabled={busy} onClick={() => void save()}>{t("system.common.save")}</button></span></div>
+        </> : <div className="systeme-card"><div className="systeme-sec-head"><h3 className="h3">{t("system.project.instructionsLabel")}</h3><button className="btn secondary" onClick={edit}><Icon name="edit" />{t("system.edit")}</button></div><p className="systeme-instr">{p.instructions}</p></div>}
+      </div></Tabs.Panel>
+      {["files", "sharing"].map((value) => <Tabs.Panel key={value} value={value} className="systeme-rise"><div className="pg-empty">{t("system.unavailable")}</div></Tabs.Panel>)}
+    </Tabs.Root></div>
+  </>);
 }
 
 function ProjectPreview() {

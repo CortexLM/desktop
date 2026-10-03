@@ -6,7 +6,7 @@ import { Gel, Icon, IconBtn, Pop, MItem, MSep, useToast } from "../../kit/ui";
 import { Composer, startPreviewChat, previewChatStart, type ComposerAttachment } from "../../components/composer";
 import { Mascot } from "../../mascot/Mascot";
 import { api } from "../../api";
-import { useMessages, usePermissions, useQuery } from "../../state/live";
+import { useMessages, usePermissions, useProjects, useQuery } from "../../state/live";
 import { toolName, toolTitle } from "../../state/tool-label";
 import { useNav } from "../../shell/nav";
 import { useT } from "../../i18n";
@@ -54,29 +54,41 @@ function ErrorCard({ code, onRetry }: { code?: string; onRetry?: () => void }) {
 export function Home() {
   const t = useT();
   const fx = useFx();
-  const { go } = useNav();
+  const { go, params } = useNav();
   const toast = useToast();
   const models = useModels();
   const [noModel, setNoModel] = React.useState(false);
   const [sending, setSending] = React.useState(false);
   const [previewModel, setPreviewModel] = React.useState(t("composer.model.fast"));
   const preview = isPreview();
+  const projectID = params.get("project") ?? undefined;
+  const sessionID = React.useRef<string | null>(null);
+  const pending = React.useRef(false);
+  const owner = React.useRef(false);
+  React.useLayoutEffect(() => { owner.current = true; return () => { owner.current = false; }; }, []);
   const refresh = () => {
     if (!preview) models.reload();
     toast.add({ title: t("chat.home.refreshed"), description: t(preview ? "chat.home.refreshedPreview" : "chat.home.draftKept") });
   };
   const send = async (text: string, atts: ComposerAttachment[], o: SendOptions) => {
-    setSending(true);
+    if (!owner.current || pending.current) return false;
+    pending.current = true; setSending(true);
     try {
-      const s = await api.sessions.create({ kind: "chat", model: o.model });
-      await api.sessions.prompt(s.id, { parts: toParts(text, atts), model: o.model, reasoning: o.reasoning });
-      go("chat", { id: s.id });
+      if (!sessionID.current) {
+        const s = await api.sessions.create({ kind: "chat", model: o.model, projectID });
+        if (!owner.current) return false;
+        sessionID.current = s.id;
+      }
+      if (!owner.current) return false;
+      await api.sessions.prompt(sessionID.current, { parts: toParts(text, atts), model: o.model, reasoning: o.reasoning, expectedProjectID: projectID ?? null });
+      if (!owner.current) return false;
+      go("chat", { id: sessionID.current });
       return true;
     } catch (e) {
       const k = errKey((e as { code?: string })?.code);
-      toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
+      if (owner.current) toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
       return false;
-    } finally { setSending(false); }
+    } finally { pending.current = false; if (owner.current) setSending(false); }
   };
   return (<>
     <div className="content-top"><div className="spacer" /><IconBtn icon="refresh" label={t("chat.refresh")} onClick={refresh} /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} /></div>
@@ -249,12 +261,19 @@ function LiveChat({ id }: { id: string }) {
   const t = useT();
   const { go } = useNav();
   const toast = useToast();
-  const session = useQuery(() => api.sessions.get(id), [id], (e) => e.type === "session.updated");
+  const session = useQuery(() => api.sessions.get(id), [id], (e) => e.type === "session.updated" && e.properties.session.id === id
+    || e.type === "session.deleted" && e.properties.sessionID === id || e.type === "project.deleted");
+  const projects = useProjects();
   const { msgs, status } = useMessages(id);
   const perms = usePermissions();
   const models = useModels();
   const [noModel, setNoModel] = React.useState(false);
   const [renaming, setRenaming] = React.useState(false);
+  const [projectDraft, setProjectDraft] = React.useState<{ value: string } | null>(null);
+  const [projectBusy, setProjectBusy] = React.useState(false);
+  const projectWrite = React.useRef(false);
+  const owner = React.useRef(false);
+  React.useLayoutEffect(() => { owner.current = true; return () => { owner.current = false; }; }, []);
   const end = React.useRef<HTMLDivElement>(null);
   const last = msgs[msgs.length - 1];
   const open = !!last && last.info.role === "assistant" && !last.info.time.completed && !last.info.error;
@@ -264,7 +283,7 @@ function LiveChat({ id }: { id: string }) {
 
   const title = session.state === "ready" ? session.data.title || t("chat.untitled") : "";
   const prompt = (parts: PromptPartInput[], o?: SendOptions) =>
-    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning }).then(() => true, (e: { code?: string }) => {
+    api.sessions.prompt(id, { parts, model: o?.model, reasoning: o?.reasoning, ...(session.state === "ready" && !session.data.parentID ? { expectedProjectID: session.data.projectID ?? null } : {}) }).then(() => true, (e: { code?: string }) => {
       const k = errKey(e?.code);
       toast.add({ title: t(`chat.err.${k}.title`), description: t(`chat.err.${k}.body`), data: { icon: "alert-triangle" } });
       return false;
@@ -279,22 +298,47 @@ function LiveChat({ id }: { id: string }) {
       onClose: () => { if (!undone) api.sessions.delete(id).catch(() => {}); } });
     go("home");
   };
+  const movable = session.state === "ready" && session.data.kind === "chat" && !session.data.parentID;
+  const projectMissing = !!projectDraft?.value && projects.state === "ready" && !projects.data.some((p) => p.id === projectDraft.value);
+  const move = async () => {
+    if (!owner.current || projectWrite.current || !projectDraft || !movable || projects.state !== "ready" || projectMissing) return;
+    const submitted = projectDraft;
+    projectWrite.current = true; setProjectBusy(true);
+    try {
+      await api.sessions.update(id, { projectID: submitted.value || null });
+      if (owner.current) { session.reload(); setProjectDraft((current) => current === submitted ? null : current); }
+    } catch (e) {
+      const k = errKey((e as { code?: string })?.code);
+      if (owner.current) toast.add({ title: t(`chat.err.${k}.title`), description: k === "session_busy" ? t(`chat.err.${k}.body`) : undefined, data: { icon: "alert-triangle" } });
+    } finally { projectWrite.current = false; if (owner.current) setProjectBusy(false); }
+  };
 
   return (<>
     <div className="content-top">
-      {renaming
+      {projectDraft ? <form style={{ display: "flex", flex: 1, minWidth: 0, gap: 4 }} aria-busy={projectBusy || projects.state === "loading"} onSubmit={(e) => { e.preventDefault(); void move(); }}>
+        <select className="input" name="value" aria-label={t("chat.preview.project")} value={projectDraft.value} onChange={(e) => setProjectDraft({ value: e.target.value })} disabled={!movable || projects.state !== "ready"} autoFocus style={{ flex: 1, minWidth: 0 }}>
+          <option value="">{t("chat.preview.noProject")}</option>
+          {projectDraft.value && (projects.state !== "ready" || projectMissing) && <option value={projectDraft.value} disabled>{t(projectMissing ? "system.project.missingTitle" : "system.variant.loading")}</option>}
+          {projects.state === "ready" && projects.data.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+        </select>
+        <button className="btn secondary" type="submit" disabled={projectBusy || !movable || projects.state !== "ready" || projectMissing}>{t("common.save")}</button>
+        <IconBtn type="button" icon="close" label={t("common.cancel")} onClick={() => setProjectDraft(null)} />
+      </form> : renaming
         ? <input className="input pg-rename" autoFocus defaultValue={title} aria-label={t("chat.history.newName")}
             onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); if (e.key === "Escape") setRenaming(false); }}
             onBlur={(e) => { const v = e.currentTarget.value.trim(); if (v && v !== title) api.sessions.update(id, { title: v }).then(session.reload, () => {}); setRenaming(false); }} />
         : <span className="title">{title}</span>}
       <Pop trigger={<button className="ibtn" aria-label={t("chat.options")}><Icon name="chevron-down" size={12} /></button>}>
-        <MItem icon="edit" onClick={() => setRenaming(true)}>{t("chat.menu.rename")}</MItem><MSep />
+        <MItem icon="edit" onClick={() => { setProjectDraft(null); setRenaming(true); }}>{t("chat.menu.rename")}</MItem>
+        {movable && <MItem icon="folder" onClick={() => { setRenaming(false); setProjectDraft({ value: session.data.projectID ?? "" }); projects.reload(); }}>{t("chat.menu.move")}</MItem>}<MSep />
         <MItem icon="trash" danger onClick={remove}>{t("chat.menu.delete")}</MItem>
       </Pop>
-      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} />
+      <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home", session.state === "ready" && session.data.projectID ? { project: session.data.projectID } : undefined)} />
     </div>
     <div className="thread"><div className="thread-inner">
       {session.state === "error" && <ErrorCard code={session.code === "not_found" ? "not_found" : "network"} />}
+      {projectDraft && projects.state === "loading" && <div className="thinking" role="status">{t("system.variant.loading")}</div>}
+      {projectDraft && projects.state === "error" && <ErrorCard code="network" onRetry={projects.reload} />}
       {msgs.map((m, mi) => {
         if (m.info.role === "user") {
           const files = m.parts.filter((p): p is FilePart => p.type === "file");

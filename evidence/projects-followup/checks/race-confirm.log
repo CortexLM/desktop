@@ -1,0 +1,7 @@
+$ playwright test "tests/e2e/projects.spec.ts" -g "newer drafts" "--workers=1" "--output=/tmp/opencode/projects-integrated/race-confirm-artifacts"
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/e2e/projects.spec.ts:214:1 › Projects retain newer drafts and isolate late reads/writes across owners (3.5s)
+
+  1 passed (4.3s)
