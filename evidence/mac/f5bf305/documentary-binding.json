@@ -1,0 +1,34 @@
+{
+  "applicationRevision": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "documentaryRevision": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "changes": [
+    "docs/testing.md",
+    "evidence/STATUS.md",
+    "evidence/remote-chat-foundation/README.md",
+    "evidence/remote-chat-foundation/SHA256SUMS",
+    "evidence/remote-chat-foundation/electron-final/README.md",
+    "evidence/remote-chat-foundation/electron-final/SHA256SUMS",
+    "evidence/remote-chat-foundation/electron-final/cases.jsonl",
+    "evidence/remote-chat-foundation/electron-final/images.jsonl",
+    "evidence/remote-chat-foundation/electron-final/images/cc2b306fa2973da16f1d8d1ad52e5f5aa72a6941024fa3a160fe4a14282a70db.png",
+    "evidence/remote-chat-foundation/electron-final/provenance.json",
+    "evidence/remote-chat-foundation/electron-final/review.json",
+    "evidence/remote-chat-foundation/electron-final/summary.json",
+    "evidence/remote-chat-foundation/integrated/application-pin.json",
+    "evidence/remote-chat-foundation/integrated/pinned-inputs-final.json",
+    "evidence/remote-chat-foundation/owner-gates/README.md",
+    "evidence/remote-chat-foundation/owner-gates/SHA256SUMS",
+    "evidence/remote-chat-foundation/owner-gates/g2-comments.http",
+    "evidence/remote-chat-foundation/owner-gates/g2-comments.http.gz",
+    "evidence/remote-chat-foundation/owner-gates/g3-comments.http",
+    "evidence/remote-chat-foundation/owner-gates/g3-comments.http.gz",
+    "evidence/remote-chat-foundation/owner-gates/http-retention.json"
+  ],
+  "runtimeInputsUnchanged": true,
+  "watchingCI": 37105137365,
+  "supersededCI": {
+    "run": 37105080871,
+    "conclusion": "cancelled",
+    "reason": "concurrency replacement by documentary push; no pass claimed"
+  }
+}

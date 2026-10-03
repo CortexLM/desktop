@@ -1,0 +1,61 @@
+{
+  "expectedE2ECasesPerOS": 97,
+  "expectedUnitPasses": 245,
+  "expectedUnitOptionalSkips": 1,
+  "expectedUnitFiles": 22,
+  "unitDeltaSince7885736": {
+    "packages/core/test/bus.test.ts": 2,
+    "packages/core/test/remote-sessions.test.ts": 18,
+    "packages/desktop/test/remote-chat.test.ts": 21,
+    "packages/desktop/test/remote-core.test.ts": 3
+  },
+  "expectedRegisteredRendersPerOS": 426,
+  "localeCase": {
+    "cases": 1,
+    "primaryStates": 48,
+    "totalMeasurements": 80,
+    "locales": [
+      "en",
+      "fr",
+      "es",
+      "de",
+      "ja",
+      "zh-Hans",
+      "pt-BR",
+      "ko"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "keyboardStops": 144,
+    "textRows": 384,
+    "newSuccessCapturesPerOS": 8,
+    "captureTheme": "dark",
+    "captureState": "code_sent",
+    "captureNames": [
+      "remote-locale-en.png",
+      "remote-locale-fr.png",
+      "remote-locale-es.png",
+      "remote-locale-de.png",
+      "remote-locale-ja.png",
+      "remote-locale-zh-Hans.png",
+      "remote-locale-pt-BR.png",
+      "remote-locale-ko.png"
+    ],
+    "geometryAttachment": "auth-locale-geometry",
+    "fullResolutionReview": "All eight per OS; actual geometry/deltas must be reviewed independently per OS"
+  },
+  "workflow": {
+    "unitJobOnly": "checks",
+    "linuxElectron": "e2e",
+    "macElectronPackageSmoke": "macos",
+    "sameRefConcurrencyCancelsPrior": true
+  },
+  "limits": [
+    "These are expected counts, not results for the running CI.",
+    "48 locale states and 426 gallery visits are internal to individual cases, not added E2E cases.",
+    "Mac auth uses the changed RemoteSession and creates its private binding after sign-in, but does not call the new remote core Chat/upload/replay/history methods.",
+    "Linux checks run real SDK/native-loopback-HTTP core integration tests; no macOS private remote HTTP/core test execution is established by this workflow."
+  ]
+}

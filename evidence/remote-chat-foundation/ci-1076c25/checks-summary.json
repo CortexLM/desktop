@@ -1,0 +1,139 @@
+{
+  "lint": "passed",
+  "typecheck": "passed",
+  "unitPassed": 245,
+  "unitSkipped": 1,
+  "unitFiles": 22,
+  "unitFileCounts": [
+    {
+      "path": "packages/desktop/test/remote-chat.test.ts",
+      "tests": 21,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/remote-sessions.test.ts",
+      "tests": 18,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/remote-session.test.ts",
+      "tests": 8,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/services.test.ts",
+      "tests": 15,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/session.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/remote-core.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/mcp.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/runtime-copy.test.ts",
+      "tests": 34,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/remote.test.ts",
+      "tests": 45,
+      "skipped": 1
+    },
+    {
+      "path": "packages/core/test/connection.test.ts",
+      "tests": 5,
+      "skipped": 0
+    },
+    {
+      "path": "packages/desktop/test/credentials.test.ts",
+      "tests": 23,
+      "skipped": 0
+    },
+    {
+      "path": "packages/server/test/server.test.ts",
+      "tests": 7,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/bus.test.ts",
+      "tests": 2,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/capabilities.test.ts",
+      "tests": 11,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/scheduler.test.ts",
+      "tests": 4,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/audit-i18n.test.ts",
+      "tests": 1,
+      "skipped": 0
+    },
+    {
+      "path": "packages/client/test/client.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/catalog.test.ts",
+      "tests": 6,
+      "skipped": 0
+    },
+    {
+      "path": "packages/core/test/computer-use.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "tests/unit/locales.test.ts",
+      "tests": 9,
+      "skipped": 0
+    },
+    {
+      "path": "packages/schema/test/schema.test.ts",
+      "tests": 3,
+      "skipped": 0
+    },
+    {
+      "path": "packages/protocol/test/protocol.test.ts",
+      "tests": 3,
+      "skipped": 0
+    }
+  ],
+  "optionalSkip": "lists models from a real backend, guarded by CORTEX_TEST_BACKEND_URL",
+  "i18n": {
+    "files": 65,
+    "usedKeys": 2272,
+    "englishKeys": 3405,
+    "problems": 0
+  },
+  "newPrivateCoreHTTPProofJob": "Linux checks only",
+  "macOSPrivateCoreHTTPProof": false,
+  "versionsFromLogs": {
+    "0_E2E (Playwright + Electron, Linux).txt": [
+      "22.22.0"
+    ],
+    "1_Lint, typecheck, unit tests, i18n audit.txt": [
+      "22.23.3"
+    ],
+    "2_macOS build, package, launch.txt": [
+      "22.22.3"
+    ]
+  }
+}

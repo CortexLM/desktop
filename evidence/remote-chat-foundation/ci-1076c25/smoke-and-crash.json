@@ -1,0 +1,43 @@
+{
+  "package": "unsigned arm64, successful job step",
+  "smoke": "process/window/renderer successful; native display capture failed",
+  "nativeDisplayFile": false,
+  "diagnostics": [
+    {
+      "original": "/var/tmp/opencode/remote-ci-1076c25/macos/out/ExcUserFault_Setup Assistant-2026-03-16-083243.ips",
+      "retained": "logs/ExcUserFault_Setup Assistant-2026-03-16-083243.ips.gz",
+      "rawSHA256": "384ea4db6324dc5b8ab6a0fd5a4594b620e76ec694e0f0bb75495595824f90dd",
+      "rawBytes": 48034,
+      "gzipSHA256": "b51b4824f155dfe860b4b813e4bc08f2adcb46eabd6dec77c82b301dc00633f7",
+      "appName": "Setup Assistant",
+      "timestamp": "2026-03-16 08:32:43.00 -0700",
+      "simulated": true,
+      "exception": "EXC_GUARD",
+      "terminationNamespace": "WEBKIT"
+    }
+  ],
+  "cortexCrashDiagnosticInArtifact": false,
+  "crashFreeClaim": false,
+  "packageArtifact": {
+    "id": 11267761992,
+    "node_id": "MDg6QXJ0aWZhY3QxMTI2Nzc2MTk5Mg==",
+    "name": "cortex-mac-arm64-zip",
+    "size_in_bytes": 144676617,
+    "url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11267761992",
+    "archive_download_url": "https://api.github.com/repos/CortexLM/desktop/actions/artifacts/11267761992/zip",
+    "expired": false,
+    "digest": "sha256:d3d05506cd42d69a5fa5214372cf4d55a700bfe6488a8a7b14001360e282f3f5",
+    "created_at": "2026-10-03T07:15:44Z",
+    "updated_at": "2026-10-03T07:15:44Z",
+    "expires_at": "2026-10-10T07:15:40Z",
+    "workflow_run": {
+      "id": 37105137365,
+      "repository_id": 1336933474,
+      "head_repository_id": 1336933474,
+      "head_branch": "goal/desktop-rewrite",
+      "head_sha": "1076c2584941cf054efffaf709a149b4195bc1c4"
+    }
+  },
+  "packageDownloaded": false,
+  "ciMainOrASARCompared": false
+}

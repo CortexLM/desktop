@@ -1,0 +1,48 @@
+[
+  {
+    "url": "https://api.github.com/repos/CortexLM/backend/issues/comments/5966461570",
+    "html_url": "https://github.com/CortexLM/backend/pull/447#issuecomment-5966461570",
+    "issue_url": "https://api.github.com/repos/CortexLM/backend/issues/447",
+    "id": 5966461570,
+    "node_id": "IC_kwDOUDgm-s8AAAABY6D6gg",
+    "user": {
+      "login": "echobt",
+      "id": 154886644,
+      "node_id": "U_kgDOCTth9A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/154886644?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/echobt",
+      "html_url": "https://github.com/echobt",
+      "followers_url": "https://api.github.com/users/echobt/followers",
+      "following_url": "https://api.github.com/users/echobt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/echobt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/echobt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/echobt/subscriptions",
+      "organizations_url": "https://api.github.com/users/echobt/orgs",
+      "repos_url": "https://api.github.com/users/echobt/repos",
+      "events_url": "https://api.github.com/users/echobt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/echobt/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-03T06:43:55Z",
+    "updated_at": "2026-10-03T06:43:55Z",
+    "body": "G1 actual SDK→core review found a remaining streaming-observability blocker in admitted SDK0.3.5. `@cortex/api-types` `readStream` already reports malformed JSON, failed validation and unknown events via optional `onDiscardedFrame`; SDK `ResumeOptions`/`turnStream` do not expose/forward that callback (`src/stream.ts:171–182`). Valid text, then a malformed known frame or future structured event, then `done/stop` therefore appears fully delivered to desktop. Two real-SDK consumer probes reproduce this silent partial-transcript success.\n\nG3 request: expose/forward the existing typed `onDiscardedFrame` callback for turn streams (or an equally precise sanitized incomplete-projection signal), propagate consumer callback failures, add exact-package regression receipts. No second parser or locally modified archive is proposed. Please publish a new immutable consumer-admitted package with source/archive hashes; do not overwrite adopted0.3.5.\n\nUntil admitted delivery, desktop must mark remote projections limited; `done(stop)` alone cannot certify a complete view. Source-pinned repro/report: desktop `evidence/remote-chat-foundation/core-projection-initial.md` (pending next commit), working reproduction `/tmp/opencode/remote-core-projection-review/projection.test.ts` cases for invalid known/future structured frames. No public remote UI or real inference claim.\n\nSeparate G2 usage contract correction is consumer-side: backend may emit `reasoning_tokens:null`; desktop now preserves this as unknown/omitted, not zero. Numeric duplicate-cursor ambiguity remains G2 follow-up https://github.com/CortexLM/backend/pull/446#issuecomment-5966307621. Neither issue is solved by fresh-key resend.",
+    "author_association": "MEMBER",
+    "reactions": {
+      "url": "https://api.github.com/repos/CortexLM/backend/issues/comments/5966461570/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  }
+]

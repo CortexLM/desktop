@@ -1,0 +1,47 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "sha256": "5daf1215067f335ce04fd4ce012911e0f58686f53fc1cd5ba578b7e823f88874",
+    "gitBlob": "864e36efa34d7efd1b4198d504703eb87698729f"
+  },
+  {
+    "path": "playwright.config.ts",
+    "sha256": "71d48d4d40ea1950d9f95d1e3fef79704984d3faf21592793d0860b26b71d707",
+    "gitBlob": "daaa65b2f9f9e45abd4b300c8ed076679b8a38a6"
+  },
+  {
+    "path": "vitest.config.ts",
+    "sha256": "de0a5a71c628fb277bfaefa1323d213eb2a5b24ae87ac2a5ea6f45fd30f09964",
+    "gitBlob": "717bead17588fd69532a9b42420b2c5920599bbc"
+  },
+  {
+    "path": "packages/desktop/build.mjs",
+    "sha256": "b3d2e78cf3b2b1461427f555e68442e6c190a501238f41817367dbfedb3e5e76",
+    "gitBlob": "d7b1631e8c035e52acb6760686cb6fcfc98ecfe2"
+  },
+  {
+    "path": "tests/e2e/screens.spec.ts",
+    "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c",
+    "gitBlob": "f3a0cfce1a1afcca3755d341e32442debe5aa3b8"
+  },
+  {
+    "path": "tests/e2e/fixtures.ts",
+    "sha256": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03",
+    "gitBlob": "d23a732e7252e3fb0f4a9c16f7f3468790b33760"
+  },
+  {
+    "path": "packages/desktop/test/remote-session.test.ts",
+    "sha256": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4",
+    "gitBlob": "ef8782b0de66d166cc984d5e2921233fe3bad7e1"
+  },
+  {
+    "path": "packages/desktop/test/remote.test.ts",
+    "sha256": "c7a9b3ffcc6da477552ab83ff73fb207b866e975893178158a0b3f131ab56bc4",
+    "gitBlob": "2145ee0e557a9a816e1020184b653ecf8743926f"
+  },
+  {
+    "path": "scripts/compare-shots.mjs",
+    "sha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+    "gitBlob": "cd03f92a69fe7b2db6a823efcfa887256847f168"
+  }
+]

@@ -83,7 +83,17 @@ corrected build. This is distinct from the earlier 97-case full run. Current mai
 21 transport cases, core has 18 projection cases, the actual SDK/core boundary has three
 integration cases. [Final artifact review](electron-final/README.md) verifies all 18 images,
 14 source pins, 90 build members and embedded main source-map contents. Three exact pixel
-drifts retain their unisolated causes. New-revision CI and installed-Mac proof remain pending.
+drifts retain their unisolated causes. [CI 37105137365](https://github.com/CortexLM/desktop/actions/runs/37105137365)
+passes all three jobs at documentary `1076c25`. [Matching installed authentication](../mac/f5bf305/README.md)
+passes six English captures and 48 native locale states/144 Tab stops with 16 further
+captures; every native image is reviewed full-size. All use the exact new ASAR. Earlier run
+`37105080871` was cancelled by the documentary push.
+
+[Completed CI artifact review](ci-1076c25/README.md) verifies 97 cases/426 render checks
+per OS, 245 units plus one optional skip, 248 unique PNGs and 54 full-size originals.
+Linux Japanese/Korean/Simplified Chinese captures show missing glyphs despite passing
+geometry; visual acceptance fails for those images. All eight macOS locale captures
+render glyphs. Font-environment diagnosis remains separate; native CI capture also fails.
 
 Review scopes remain pinned: initial security reproduction, final signature/expiry checks,
 DTO 403/history correction, then the admission-disposition getter. Older reports' line

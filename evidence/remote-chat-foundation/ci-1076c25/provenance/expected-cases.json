@@ -1,0 +1,394 @@
+{
+  "expectedCasesPerOS": 97,
+  "basis": "96 prior SDK035 case identities plus one appended locale case; no test execution in this intake",
+  "cases": [
+    {
+      "file": "approvals-recovery.spec.ts",
+      "title": "Approvals list refusal stays unresolved until Retry succeeds \u2014 light"
+    },
+    {
+      "file": "approvals-recovery.spec.ts",
+      "title": "Approvals list refusal stays unresolved until Retry succeeds \u2014 dark"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 960 light"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 960 light"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 960 dark"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 960 dark"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 1440 light"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 1440 light"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot Studio retains refused saves; accepted saves leave once \u2014 1440 dark"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot shares saved look, draft, pause and activity \u2014 1440 dark"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Bot onboarding does not navigate after leaving preview"
+    },
+    {
+      "file": "bot-safety.spec.ts",
+      "title": "Preview Bot locale reset and live-mode boundary"
+    },
+    {
+      "file": "chrome.spec.ts",
+      "title": "native window chrome and en menu"
+    },
+    {
+      "file": "chrome.spec.ts",
+      "title": "native window chrome and fr menu"
+    },
+    {
+      "file": "chrome.spec.ts",
+      "title": "reduced-motion startup inherits themed text immediately"
+    },
+    {
+      "file": "code-diff-scroll.spec.ts",
+      "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible"
+    },
+    {
+      "file": "code-models.spec.ts",
+      "title": "Code sends the chosen model, restores session selection and refuses unavailable models \u2014 light"
+    },
+    {
+      "file": "code-models.spec.ts",
+      "title": "Code image refusal leaves attachment recovery controls reachable \u2014 light"
+    },
+    {
+      "file": "code-models.spec.ts",
+      "title": "Code sends the chosen model, restores session selection and refuses unavailable models \u2014 dark"
+    },
+    {
+      "file": "code-models.spec.ts",
+      "title": "Code image refusal leaves attachment recovery controls reachable \u2014 dark"
+    },
+    {
+      "file": "code-models.spec.ts",
+      "title": "Code keeps unsupported and missing session models instead of falling back"
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: families, variants and three-preview ceiling (light)"
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: families, variants and three-preview ceiling (dark)"
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: keyboard, clipboard and local demos at minimum window (light)"
+    },
+    {
+      "file": "components.spec.ts",
+      "title": "Components catalog: keyboard, clipboard and local demos at minimum window (dark)"
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Code keeps cancelled and no-model drafts, locks pending submits \u2014 light"
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Work and Bot drafts survive engine refusal; accepted sends clear once \u2014 light"
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Code keeps cancelled and no-model drafts, locks pending submits \u2014 dark"
+    },
+    {
+      "file": "composer-safety.spec.ts",
+      "title": "Work and Bot drafts survive engine refusal; accepted sends clear once \u2014 dark"
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "MCP connection material stays in main across save, reload and removal"
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "models.dev catalog is listed and searchable through the bridge"
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "streamed exchange with a thinking- and image-capable model"
+    },
+    {
+      "file": "engine.spec.ts",
+      "title": "an image is refused for a model without image input"
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "frozen preview actions and same-URL Chat/Code history \u2014 light"
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "live composer capsule geometry, locale labels and attachment safety \u2014 light"
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "frozen preview actions and same-URL Chat/Code history \u2014 dark"
+    },
+    {
+      "file": "frozen-composer.spec.ts",
+      "title": "live composer capsule geometry, locale labels and attachment safety \u2014 dark"
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 960 light"
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 960 dark"
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 1440 light"
+    },
+    {
+      "file": "interaction-states.spec.ts",
+      "title": "frozen interaction end states \u2014 1440 dark"
+    },
+    {
+      "file": "keyboard.spec.ts",
+      "title": "hidden navigation cannot receive focus; theme radios and Undo work from the keyboard"
+    },
+    {
+      "file": "keyboard.spec.ts",
+      "title": "frozen shell motion settles, latest tab wins and hidden menus close"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory read races keep drafts and rows bound to accepted ownership \u2014 960 light"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory retains refused drafts and accepts one owned write \u2014 960 light"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory wipe waits for failures, partial writes and accepted retry \u2014 960 light"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Memory single-entry deletion keeps refused rows and reports only accepted writes \u2014 960 light"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory read races keep drafts and rows bound to accepted ownership \u2014 960 dark"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory retains refused drafts and accepts one owned write \u2014 960 dark"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Bot memory wipe waits for failures, partial writes and accepted retry \u2014 960 dark"
+    },
+    {
+      "file": "memory-safety.spec.ts",
+      "title": "Memory single-entry deletion keeps refused rows and reports only accepted writes \u2014 960 dark"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "skipped native route and theme transitions preserve updates and report callback errors"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Back cancels a pending tab choice even when its label matches an older request"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a newer keyboard tab choice survives the previous route commit"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a pending route commit preserves the outgoing Work tree and restores Bot activity"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "anchors, native menus and history preserve routes, variants and chat identities"
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Work preview departure keeps its context until native live-Code navigation commits"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 light"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 light"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 dark"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 dark"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Mode and origin changes reject late auth replies and never reuse another origin\u2019s credentials"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Initial connection and auth reads protect selection, canonical sign-in and cancellation"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 light"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Code approval descriptions stay clear of controls \u2014 960\u00d7640 dark"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 light"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 dark"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 960 light"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 960 dark"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 1024 light"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 1024 dark"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 1440 light"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "Work board columns and cards remain reachable \u2014 1440 dark"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "preview navigation loads fixtures and catches startup URL changes"
+    },
+    {
+      "file": "responsive.spec.ts",
+      "title": "review, diff, canvas and computer controls remain reachable in small desktop windows"
+    },
+    {
+      "file": "routines.spec.ts",
+      "title": "Routine history reflects running, interruption and latest results \u2014 light"
+    },
+    {
+      "file": "routines.spec.ts",
+      "title": "Routine actions retain honest feedback when the engine refuses \u2014 light"
+    },
+    {
+      "file": "routines.spec.ts",
+      "title": "Routine history reflects running, interruption and latest results \u2014 dark"
+    },
+    {
+      "file": "routines.spec.ts",
+      "title": "Routine actions retain honest feedback when the engine refuses \u2014 dark"
+    },
+    {
+      "file": "screens.spec.ts",
+      "title": "every design screen and state renders"
+    },
+    {
+      "file": "search-bots.spec.ts",
+      "title": "Search finds persisted Bots by name and persona, preserving grouped keyboard identity \u2014 light"
+    },
+    {
+      "file": "search-bots.spec.ts",
+      "title": "Search finds persisted Bots by name and persona, preserving grouped keyboard identity \u2014 dark"
+    },
+    {
+      "file": "search-bots.spec.ts",
+      "title": "Search reports either source's real request refusal and retries both lists"
+    },
+    {
+      "file": "terminal-copy.spec.ts",
+      "title": "French Code terminal localizes fresh shell notices without changing output or replay"
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "provider key save, reload and removal stay readable \u2014 light"
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "provider key save, reload and removal stay readable \u2014 dark"
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "streamed exchange with thinking and an image, driven from the composer"
+    },
+    {
+      "file": "ui-flows.spec.ts",
+      "title": "rejected sends keep the draft and attachments; retry resends the image"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Work task conversion preserves source context and only creates on confirmation \u2014 light"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot \u2014 light"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Work task conversion preserves source context and only creates on confirmation \u2014 dark"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Work routine source rejects missing tasks and attachments; reassignment uses the selected Bot \u2014 dark"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Routine source navigation ignores late source responses and late save completion"
+    },
+    {
+      "file": "work-routine-source.spec.ts",
+      "title": "Routine source waits for its Bot list and retains the draft through list failure and retry"
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 light"
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark"
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Live sign-in copy stays readable across eight locales"
+    }
+  ]
+}

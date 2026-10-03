@@ -1,0 +1,105 @@
+{
+  "verifiedAt": "2026-10-03T07:15:14.368333+00:00",
+  "application": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "documentary": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "commits": [
+    {
+      "revision": "f5bf305473db12fddfddcda890a01794f02f578f",
+      "tree": "cf877d57c2a8dc46d11965c68d7baed72e862a02",
+      "commitObjectSHA256": "ac6148d32a8a606f6302f51388d20dc6553ebaaa6b0e17964affb59d3b0c0b00"
+    },
+    {
+      "revision": "1076c2584941cf054efffaf709a149b4195bc1c4",
+      "tree": "138c4e5c5104fc30f887d28c340d1f3a744cb74d",
+      "commitObjectSHA256": "c0abe3c06a6854a0ed2103e42e00c702ed2eae7ee5a520a69ac6485ccc0025aa"
+    }
+  ],
+  "documentaryParentIsApplication": true,
+  "wholeTreesEqual": false,
+  "documentaryChangedPaths": [
+    "docs/testing.md",
+    "evidence/STATUS.md",
+    "evidence/remote-chat-foundation/README.md",
+    "evidence/remote-chat-foundation/SHA256SUMS",
+    "evidence/remote-chat-foundation/electron-final/README.md",
+    "evidence/remote-chat-foundation/electron-final/SHA256SUMS",
+    "evidence/remote-chat-foundation/electron-final/cases.jsonl",
+    "evidence/remote-chat-foundation/electron-final/images.jsonl",
+    "evidence/remote-chat-foundation/electron-final/images/cc2b306fa2973da16f1d8d1ad52e5f5aa72a6941024fa3a160fe4a14282a70db.png",
+    "evidence/remote-chat-foundation/electron-final/provenance.json",
+    "evidence/remote-chat-foundation/electron-final/review.json",
+    "evidence/remote-chat-foundation/electron-final/summary.json",
+    "evidence/remote-chat-foundation/integrated/application-pin.json",
+    "evidence/remote-chat-foundation/integrated/pinned-inputs-final.json",
+    "evidence/remote-chat-foundation/owner-gates/README.md",
+    "evidence/remote-chat-foundation/owner-gates/SHA256SUMS",
+    "evidence/remote-chat-foundation/owner-gates/g2-comments.http",
+    "evidence/remote-chat-foundation/owner-gates/g2-comments.http.gz",
+    "evidence/remote-chat-foundation/owner-gates/g3-comments.http",
+    "evidence/remote-chat-foundation/owner-gates/g3-comments.http.gz",
+    "evidence/remote-chat-foundation/owner-gates/http-retention.json"
+  ],
+  "allChangesDocumentary": true,
+  "pinnedInputCount": 514,
+  "allPinnedInputsMatchBothCommits": true,
+  "rendererInputCount": 473,
+  "rendererFingerprint": "5361c34082a62dfb944d47fc27b11695d3f9826870bb928f74670ba778cc3d9b",
+  "rendererFingerprintAlgorithm": "SHA256(sorted relative-path:SHA256 joined by LF, no final LF)",
+  "rendererNulFingerprint": "fb6220f8df77bdee09241fb2084417d3e3cc4924c8a1a4fbfa19200e09e96acb",
+  "rendererNulFingerprintAlgorithm": "sha256(sorted path + NUL + file-sha256 + newline)",
+  "buildMemberCount": 90,
+  "allFrozenMembersMatch": true,
+  "mainSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+  "mainMapSHA256": "831431b289084fa3efb3d4c8fea110356a25e64e7bd2b304fa05efd7b6decc02",
+  "mainSourceSHA256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+  "finalSourceReceiptPinsMatch": 14,
+  "mainMapRuntimePinsMatch": 8,
+  "mainMapWorkspaceSourcesMatch": 32,
+  "sdk035CompiledSourcesMatch": 16,
+  "sourceMapEntries": 980,
+  "unchangedSourceGroups": [
+    {
+      "path": "packages/app",
+      "files": 172,
+      "unchangedSince": "78857365a509d78af10ebdda5b52348a2e50e961"
+    },
+    {
+      "path": "packages/i18n",
+      "files": 297,
+      "unchangedSince": "78857365a509d78af10ebdda5b52348a2e50e961"
+    },
+    {
+      "path": "packages/client",
+      "files": 3,
+      "unchangedSince": "78857365a509d78af10ebdda5b52348a2e50e961"
+    }
+  ],
+  "rendererInputDeltaSince7885736": [
+    "packages/schema/src/index.ts"
+  ],
+  "schemaDeltaGroups": 2,
+  "schemaAddedLines": 68,
+  "manifestReceipts": [
+    {
+      "source": "/tmp/opencode/build-remote-final/members.json",
+      "retained": "frozen-members.json",
+      "bytes": 13851,
+      "sha256": "2c61108618990000b1bf6bab3857533aca9ed6ccd671e0fffdf025843da4f441"
+    },
+    {
+      "source": "/tmp/opencode/build-remote-final/renderer-inputs.json",
+      "retained": "frozen-renderer-inputs.json",
+      "bytes": 73721,
+      "sha256": "ac52f5c53fb3d65ef348dfd51575f698698c7a2399a6d09a9db892ec04f2ab46"
+    },
+    {
+      "source": "/tmp/opencode/build-remote-final/pinned-inputs.json",
+      "retained": "frozen-pinned-inputs.json",
+      "bytes": 78938,
+      "sha256": "90829d2273ec886601ddf8b51e445bde4850301f4fca4b7b24423ae34c0cd753"
+    }
+  ],
+  "upstreamOrCIArtifactDownloads": 0,
+  "buildsOrApplicationTestsRun": false,
+  "workingTreeSourceUsedForBinding": false
+}

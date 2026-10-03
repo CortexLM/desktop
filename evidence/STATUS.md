@@ -42,11 +42,24 @@ Actual SDK-to-core HTTP checks confirm ephemeral projection and account cleanup.
 discard observability and backend image-history hydration remain explicit limits, with
 owner follow-ups; public remote routes/UI remain pending.
 Internal implementation `f5bf305` is pushed. Final local image review verifies 18 full-size
-originals and embedded source bindings. New-revision CI and installed-Mac checks are pending;
-the earlier green `7885736` artifact cannot establish acceptance of this main/core delta.
+originals and embedded source bindings. CI `37105137365` passes at documentary `1076c25`;
+installed locale image review passes its scope. Matching `f5bf305` passes six English captures
+plus a 48-state/eight-locale native sweep with 16 captures and 144 Tab stops. The earlier green `7885736` artifact
+cannot establish acceptance of this main/core delta.
+Completed [CI image review](remote-chat-foundation/ci-1076c25/README.md) retains missing-glyph
+failures in Linux Japanese/Korean/Simplified Chinese despite passing geometry. macOS's
+eight sampled locale captures render glyphs. [Controlled font diagnosis](linux-glyph-followup/README.md)
+reproduces the failure when CJK fallback is unavailable; historical runner inventory is absent.
+CI provisioning/raster-sentinel correction and new artifact verification remain pending.
 The [06:18–06:22 owner readback](remote-chat-foundation/owner-gates/README.md) finds no new
 named G1 import permission or G2 resolution. Later requests separately name unique replay
 cursors, historical-image hydration and SDK discarded-frame notification.
+The [07:44/07:48 readback](remote-chat-foundation/owner-readback-0743/README.md) likewise
+finds no new G2/G3 reply, immutable delivery or named design permission.
+The uncommitted [transcript correction](live-state-followup/README.md) has four reproduced
+negative cases, then 101 passing Electron cases and 245 units plus one skip on its first
+corrected build. Independent review approves reconciliation and identifies a separate Bot
+route-owner defect; that correction is being paired with its own regression.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -118,12 +131,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `7885736` CI passes lint/types and 201 units plus one optional backend skip; independent artifact review verifies the same source tree. |
-| Every design screen plus provider/image/reasoning flows | Partial: `7885736` CI passes 96 cases/426 renders per OS, including six real-SDK/controlled-HTTP auth cases. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `7885736` package/renderer smoke passes; matching installed ASAR and all 90 build members verified. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus and window actions. Matching `ffc118a`: 28 changed-scope native captures/assertions, independently reviewed. Matching `7885736`: eight new-SDK/layout captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| Lint, types, units | `1076c25` CI/application `f5bf305` passes lint/types and 245 units plus one optional backend skip; independent artifact review verifies checkout/source binding. |
+| Every design screen plus provider/image/reasoning flows | Partial: `1076c25` CI passes 97 cases/426 renders per OS, including seven auth cases. Linux CJK screenshots contain missing glyphs. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `1076c25` package/renderer smoke passes; installed `f5bf305` ASAR, 90 build members and resources verified. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 changed-scope captures; `7885736`: eight SDK/layout captures. Matching `f5bf305`: six English auth plus sixteen locale captures, 48 state assertions/144 Tab stops. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Later auth/correction run is 54/70, maximum 0.067419%, sixteen Settings gaps; final committed Code subset 18/18, max 0.061786%. Narrow Approvals preserves all eight wide images exactly. Historical reference/scheduling outliers and source pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `7885736` CI: 64 files, 2,272 used keys, 3,405 English keys, zero findings. Eight-locale shell annotations, 48 auth states and 16 Approvals views have runtime checks. Translation semantics remain author-reviewed; exhaustive dynamic-copy/layout acceptance remains unproven. |
+| Automated i18n audit | `1076c25` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Eight-locale shell annotations, 48 auth states and 16 Approvals views have runtime checks. Linux CJK glyph failures prove geometry alone insufficient. Translation semantics remain author-reviewed; exhaustive dynamic-copy/layout acceptance remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot

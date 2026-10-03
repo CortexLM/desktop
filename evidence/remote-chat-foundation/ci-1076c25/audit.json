@@ -1,0 +1,352 @@
+{
+  "run": 37105137365,
+  "completedAt": "2026-10-03T07:40:07.716837+00:00",
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "application": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "checkout": "d74251813ecd9aa67e7125c32d138214e27778cf",
+  "checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "unitPassed": 245,
+    "unitSkipped": 1,
+    "unitFiles": 22,
+    "unitFileCounts": [
+      {
+        "path": "packages/desktop/test/remote-chat.test.ts",
+        "tests": 21,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/remote-sessions.test.ts",
+        "tests": 18,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-session.test.ts",
+        "tests": 8,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/services.test.ts",
+        "tests": 15,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/session.test.ts",
+        "tests": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote-core.test.ts",
+        "tests": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/mcp.test.ts",
+        "tests": 11,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/runtime-copy.test.ts",
+        "tests": 34,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/remote.test.ts",
+        "tests": 45,
+        "skipped": 1
+      },
+      {
+        "path": "packages/core/test/connection.test.ts",
+        "tests": 5,
+        "skipped": 0
+      },
+      {
+        "path": "packages/desktop/test/credentials.test.ts",
+        "tests": 23,
+        "skipped": 0
+      },
+      {
+        "path": "packages/server/test/server.test.ts",
+        "tests": 7,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/bus.test.ts",
+        "tests": 2,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/capabilities.test.ts",
+        "tests": 11,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/scheduler.test.ts",
+        "tests": 4,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/audit-i18n.test.ts",
+        "tests": 1,
+        "skipped": 0
+      },
+      {
+        "path": "packages/client/test/client.test.ts",
+        "tests": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/catalog.test.ts",
+        "tests": 6,
+        "skipped": 0
+      },
+      {
+        "path": "packages/core/test/computer-use.test.ts",
+        "tests": 3,
+        "skipped": 0
+      },
+      {
+        "path": "tests/unit/locales.test.ts",
+        "tests": 9,
+        "skipped": 0
+      },
+      {
+        "path": "packages/schema/test/schema.test.ts",
+        "tests": 3,
+        "skipped": 0
+      },
+      {
+        "path": "packages/protocol/test/protocol.test.ts",
+        "tests": 3,
+        "skipped": 0
+      }
+    ],
+    "optionalSkip": "lists models from a real backend, guarded by CORTEX_TEST_BACKEND_URL",
+    "i18n": {
+      "files": 65,
+      "usedKeys": 2272,
+      "englishKeys": 3405,
+      "problems": 0
+    },
+    "newPrivateCoreHTTPProofJob": "Linux checks only",
+    "macOSPrivateCoreHTTPProof": false,
+    "versionsFromLogs": {
+      "0_E2E (Playwright + Electron, Linux).txt": [
+        "22.22.0"
+      ],
+      "1_Lint, typecheck, unit tests, i18n audit.txt": [
+        "22.23.3"
+      ],
+      "2_macOS build, package, launch.txt": [
+        "22.22.3"
+      ]
+    }
+  },
+  "e2e": {
+    "e2e-linux": {
+      "cases": 97,
+      "attempts": 97,
+      "passed": 97,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 4,
+      "startTime": "2026-10-03T07:05:56.801Z",
+      "durationMs": 202747.101,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "pngFiles": 365,
+      "uniquePNGs": 123,
+      "pngCopyDistribution": {
+        "3": 117,
+        "1": 4,
+        "5": 2
+      },
+      "reportSHA256": "c33b6c29e033d7f5294fa39ba4e07b797f187a6d3bd7dad62b8f6e38404b50a0",
+      "noMainBundleOrASARInArtifact": true
+    },
+    "macos": {
+      "cases": 97,
+      "attempts": 97,
+      "passed": 97,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "unexpected": 0,
+      "runnerErrors": 0,
+      "registeredRenderVisits": 426,
+      "workers": 1,
+      "startTime": "2026-10-03T07:05:46.461Z",
+      "durationMs": 562182.466,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 7,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "pngFiles": 367,
+      "uniquePNGs": 125,
+      "pngCopyDistribution": {
+        "1": 5,
+        "3": 119,
+        "5": 1
+      },
+      "reportSHA256": "fc227f1159074d1b13f739f7e4a29198e1e9d1ad6da9e1359e7fb481fb22ae59",
+      "noMainBundleOrASARInArtifact": true
+    }
+  },
+  "localeMeasurements": {
+    "e2e-linux": {
+      "measurementRecords": 80,
+      "primaryStates": 48,
+      "stateCounts": {
+        "option-unavailable": 16,
+        "send-failed": 16,
+        "code_sent": 16,
+        "signed_in": 16,
+        "mfa_enrollment": 16
+      },
+      "copyRows": 384,
+      "keyboardStops": 144,
+      "reachableStops": 144,
+      "allRecordedOpacitiesPass": true,
+      "localeCaptures": 8,
+      "scope": "48 primary state visits inside one Electron case; 8 dark wrong-code captures. Geometry flags do not detect missing glyphs. Zero page/console/backend errors and renderer HTTP enforced by passing pinned assertions, not standalone attached arrays.",
+      "geometryReadableFlagsTrue": 384,
+      "visualGlyphReview": {
+        "passedLocales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "pt-BR"
+        ],
+        "failedLocales": [
+          "ja",
+          "ko",
+          "zh-Hans"
+        ],
+        "scope": "Dark wrong-code success captures inspected at full resolution; language accuracy not certified."
+      }
+    },
+    "macos": {
+      "measurementRecords": 80,
+      "primaryStates": 48,
+      "stateCounts": {
+        "option-unavailable": 16,
+        "send-failed": 16,
+        "code_sent": 16,
+        "signed_in": 16,
+        "mfa_enrollment": 16
+      },
+      "copyRows": 384,
+      "keyboardStops": 144,
+      "reachableStops": 144,
+      "allRecordedOpacitiesPass": true,
+      "localeCaptures": 8,
+      "scope": "48 primary state visits inside one Electron case; 8 dark wrong-code captures. Geometry flags do not detect missing glyphs. Zero page/console/backend errors and renderer HTTP enforced by passing pinned assertions, not standalone attached arrays.",
+      "geometryReadableFlagsTrue": 384,
+      "visualGlyphReview": {
+        "passedLocales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "ja",
+          "zh-Hans",
+          "pt-BR",
+          "ko"
+        ],
+        "failedLocales": [],
+        "scope": "Dark wrong-code success captures inspected at full resolution; language accuracy not certified."
+      }
+    }
+  },
+  "visual": {
+    "uniquePNGs": 248,
+    "pngCopies": 732,
+    "contactSheetsReviewed": 22,
+    "fullSizeReviewed": 54,
+    "losslessWebPs": 54,
+    "linuxMissingGlyphLocales": [
+      "ja",
+      "ko",
+      "zh-Hans"
+    ],
+    "visualAcceptance": "partial"
+  },
+  "binding": {
+    "headCheckoutTreeEqual": true,
+    "all514InputsMatchApplicationAndDocumentaryHead": true,
+    "rendererInputs": 473,
+    "frozenLocalBuildMembers": 90,
+    "CI_ASAR_orMainCompared": false
+  },
+  "nativeDisplayCapture": "failed",
+  "privateRemoteCoreHTTPTests": "Linux checks only",
+  "macRemoteCoreHTTPProof": false,
+  "realCloudAccountOrInference": false,
+  "cancelledPriorRun": 37105080871,
+  "cancelledPriorRunClaim": "Preserved incomplete; coordinator-reported normal push concurrency, not a test failure.",
+  "noApplicationBuildTestMacRerunOrCommit": true,
+  "packageArtifactDownloaded": false,
+  "runnableVerification": "python3 /var/tmp/opencode/remote-ci-1076c25/finalize.py",
+  "helpers": [
+    {
+      "path": "/var/tmp/opencode/remote-ci-1076c25/collect.py",
+      "sha256": "cf9872eaee1181d52ab07acaf9a46602519ea08e44cd407912f930f63bfd2980"
+    },
+    {
+      "path": "/var/tmp/opencode/remote-ci-1076c25/audit.py",
+      "sha256": "e5e1d80b277e0b0cef669bf2e301769fe6735778edd65779f811487005c032c8"
+    },
+    {
+      "path": "/var/tmp/opencode/remote-ci-1076c25/finalize.py",
+      "sha256": "4d0592d068ca8055b40db891975eb75edcdd457e842ce8f22f31e4a70aa3bf8e"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "reviewedAt": "2026-10-03T07:40:07.710337+00:00",
+  "ciConclusion": "success",
+  "localeVisualConclusion": "partial: Linux three-locale missing-glyph failure retained",
+  "missingGlyphs": {
+    "os": "Linux CI",
+    "state": "dark wrong-code refusal at 960x640",
+    "locales": [
+      "ja",
+      "ko",
+      "zh-Hans"
+    ],
+    "images": [
+      {
+        "path": "images/e2e-linux/remote-locale-ja.webp",
+        "originalPNG_SHA256": "5a54cdae3f7d3022d66f56c3b3244f2d8871662a494e48e4d66dd3118dd2f754",
+        "rgbaSHA256": "0107af868ba6050091cd8985770dc04b40b22229b391112e621af54e367e0da1"
+      },
+      {
+        "path": "images/e2e-linux/remote-locale-ko.webp",
+        "originalPNG_SHA256": "ce1dc3a0b32633fc57d96179ac152333fec8f4168c897d2c71c793a7f29e6362",
+        "rgbaSHA256": "d5df041cea46a62a2e91381df7959e87f69cc4ff5229c948dd0154d96803f50f"
+      },
+      {
+        "path": "images/e2e-linux/remote-locale-zh-Hans.webp",
+        "originalPNG_SHA256": "29a4c520a23041f2ea2d6ca3334f98ed5d797a930a53168719283e40868e3e71",
+        "rgbaSHA256": "19a6a203d16af35a944845e9cb27f10c12df1cda1bbe2fc6722567777df47fb7"
+      }
+    ],
+    "observed": "Headings, sidebar, error copy and buttons show missing-glyph boxes; ASCII email/digits remain visible.",
+    "assertionBlindSpot": "Geometry readable flags only validate text ranges, clipping and opacity; they do not establish rendered glyph availability.",
+    "cause": "Not isolated; artifact has no font inventory. No app/font/environment change or rerun made."
+  },
+  "macLocaleOriginals": "All eight inspected full-size; glyphs, wrong-code digits and focused Cancel visible.",
+  "linuxOtherLocaleOriginals": "en/fr/es/de/pt-BR inspected full-size; sampled glyphs visible.",
+  "geometryDifferenceCounts": {
+    "linuxVsPriorFinal": 920,
+    "macVsCurrentLinux": 1258,
+    "linuxChangedByLocale": {
+      "ja": 392,
+      "zh-Hans": 204,
+      "ko": 324
+    }
+  },
+  "otherObservations": [
+    "English auth/refusal/unavailable copy readable; button-fill/input-focus drifts retained with unknown causes.",
+    "Email-step decorative logo remains clipped; canonical-origin field is horizontally scrolled.",
+    "Narrow approval text avoids controls; French terminal suffix and actual diff tails visible.",
+    "Contact sheets retain stacked Code toasts and preview-toast/transcript overlap.",
+    "All images are renderer captures; packaged native display capture failed."
+  ],
+  "translationAccuracyCertified": false,
+  "wholeProductVisualAcceptance": false
+}
