@@ -1,0 +1,24 @@
+{
+  "negativeReceipts": [
+    {
+      "phase": "before",
+      "originalReceipt": "../baseline/integrity/before.json.gz",
+      "sha256": "4d4fc4f468c0e16104aea872b88b546c076b32262a9557d1191ffa1738bb5c87",
+      "distMembers": 90,
+      "nonMarkdownInputs": 512
+    },
+    {
+      "phase": "after",
+      "originalReceipt": "../baseline/integrity/after.json.gz",
+      "sha256": "acf6253451117048400d9882701646c6d97ecab2e84d93edb150baa1968ec5d7",
+      "distMembers": 90,
+      "nonMarkdownInputs": 512
+    }
+  ],
+  "negativeScopeNotExpanded": true,
+  "currentFrozenInputsVerified": 514,
+  "initialCandidateSettingsSHA256": "39feb0661746031372023c54196a23398de32df2d0e2be4b10e862e5857b220c",
+  "finalSettingsSHA256": "4f0b4f911195eb7e5a12dc22ff9e940f0cd67190ce9eb44ae7c99d6054c80461",
+  "onlyCandidateCorrection": "Selected-card onClick calls setTheme(x) when pref === x; other clicks retain onValueChange.",
+  "candidateTestAndContextSourcesUnchanged": true
+}

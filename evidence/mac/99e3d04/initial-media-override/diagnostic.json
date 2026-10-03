@@ -1,0 +1,30 @@
+{
+  "scope": "One diagnostic: CDP default media override versus actual OS source; zero captures",
+  "checks": [
+    {
+      "osDark": true,
+      "dark": true,
+      "theme": "dark",
+      "selected": "System"
+    },
+    {
+      "osDark": false,
+      "dark": false,
+      "theme": "light",
+      "selected": "System"
+    },
+    {
+      "osDark": true,
+      "dark": true,
+      "theme": "dark",
+      "selected": "System"
+    }
+  ],
+  "beforeClearingOverride": {
+    "dark": false,
+    "theme": "light",
+    "selected": "System"
+  },
+  "status": "passed",
+  "restoredAppearance": "true"
+}

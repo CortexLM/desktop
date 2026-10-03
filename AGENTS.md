@@ -331,6 +331,11 @@ An initial collector self-clipping failure is retained separately from its corre
 fresh-profile confirmation. CI artifact review covers 296 images/28 full-size views;
 the later input-only collector refinement is separately marked unexecuted. See
 [`evidence/provider-draft-followup/README.md`](./evidence/provider-draft-followup/README.md).
+Appearance correction `99e3d04` passes 113 Electron cases per OS in CI `37124432902`;
+artifact review covers 300 images/20 full-size targets. Two matching installed captures and
+47 state/focus checks verify native System appearance, arrows, Space and Tab. The initial
+collector's CDP media override failure remains separate from its corrected confirmation.
+See [`evidence/appearance-theme-followup/README.md`](./evidence/appearance-theme-followup/README.md).
 
 ## CI, packaging and releases
 

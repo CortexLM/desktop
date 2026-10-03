@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "scope": "Offline package/source provenance only; no installed/native execution",
+  "application": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "prior": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "artifactID": 11274389994,
+  "workflowRunID": 37124432902,
+  "outerBytes": 144676973,
+  "archiveSHA256": {
+    "artifact.zip": "4ab14b8e8657b1620a9306833ffc291b11823c3ca4e4d9888754653fe9b676e2",
+    "Cortex.zip": "3ac93b98a28db6c5ca6eaf1b9f2e8df82e06b814a74411168804bc82316746a4",
+    "app.asar": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae"
+  },
+  "asarFiles": 91,
+  "buildMembers": 90,
+  "verifiedFileIntegrity": 91,
+  "verifiedBlocks": 92,
+  "catalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "packageInputs": 514,
+  "rendererInputs": 473,
+  "rendererFingerprint": "474405faaf26dba6319cb1c139f0b32ef04adf2b7e600d6edee37f72b4fabf44",
+  "changedInputs": [
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "beforeSHA256": "b859cf9785ada768307e77a2546c02b80576b1491187b6ffa944c1673432eed6",
+      "afterSHA256": "4f0b4f911195eb7e5a12dc22ff9e940f0cd67190ce9eb44ae7c99d6054c80461",
+      "added": 8,
+      "removed": 7
+    },
+    {
+      "path": "packages/app/src/shell/nav.tsx",
+      "beforeSHA256": "ef41fdb8fea078bd7b1cfcb890584440dba293782d6ab5ac2a4a04316b3888fb",
+      "afterSHA256": "876682aef675ef9e0b1c5a3a59a49b00acbb1da84a7897f0dc17efa287579315",
+      "added": 3,
+      "removed": 2
+    },
+    {
+      "path": "packages/app/src/shell/shell.tsx",
+      "beforeSHA256": "249cd485e33aa9b693c026cceb71434e5794e8e6268aa17ff61b58784277ea13",
+      "afterSHA256": "880240350484738971849dbabdfe591cd90471afc08fa0ffca02ef6f78a6ae67",
+      "added": 1,
+      "removed": 1
+    }
+  ],
+  "lineDelta": {
+    "added": 12,
+    "removed": 10
+  },
+  "desktopMembersIdenticalTo37c22c2AndF5": 4,
+  "cssIdenticalTo37c22c2AndF5": true,
+  "mainWorkspaceSources": 32,
+  "preloadWorkspaceSources": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "linuxAsarBytesIdentical": true,
+  "inputArtifactsStableBeforeAfter": true,
+  "started": "2026-10-03T13:13:10.349997+00:00",
+  "finished": "2026-10-03T13:13:17.766558+00:00"
+}

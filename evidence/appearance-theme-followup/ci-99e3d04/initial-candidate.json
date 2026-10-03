@@ -1,0 +1,36 @@
+{
+  "originalReport": "../initial-candidate/targeted.json.gz",
+  "originalReportSHA256": "15e0c63576733b150f6bf6ddf4fd346373fbe0d214b0f6b289d9a482d1a723ae",
+  "failures": [
+    {
+      "theme": "light",
+      "failureLine": 34,
+      "initialStored": null,
+      "stagesReached": 1,
+      "originalError": {
+        "location": {
+          "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+          "column": 46,
+          "line": 34
+        },
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"light\",\u001b[39m\n\u001b[31m+   \"stored\": null,\u001b[39m\n\u001b[2m    \"theme\": \"light\",\u001b[22m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n\n  32 |       await radio(theme).click();\n  33 |       await expect(radio(theme)).toHaveAttribute(\"aria-checked\", \"true\");\n> 34 |       await expect.poll(() => applied(page)).toEqual({ theme, stored: theme });\n     |                                              ^\n  35 |       await record(\"main pointer selection\");\n  36 |     });\n  37 |     expect.soft(await main.getByRole(\"radio\").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), \"Appearance has exactly one Tab stop at its selected radio\").toEqual(theme === \"light\" ? [-1, 0, -1] : [-1, -1, 0]);\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:34:46\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:31:5"
+      }
+    },
+    {
+      "theme": "dark",
+      "failureLine": 34,
+      "initialStored": null,
+      "stagesReached": 1,
+      "originalError": {
+        "location": {
+          "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+          "column": 46,
+          "line": 34
+        },
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"dark\",\u001b[39m\n\u001b[31m+   \"stored\": null,\u001b[39m\n\u001b[2m    \"theme\": \"dark\",\u001b[22m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n\n  32 |       await radio(theme).click();\n  33 |       await expect(radio(theme)).toHaveAttribute(\"aria-checked\", \"true\");\n> 34 |       await expect.poll(() => applied(page)).toEqual({ theme, stored: theme });\n     |                                              ^\n  35 |       await record(\"main pointer selection\");\n  36 |     });\n  37 |     expect.soft(await main.getByRole(\"radio\").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), \"Appearance has exactly one Tab stop at its selected radio\").toEqual(theme === \"light\" ? [-1, 0, -1] : [-1, -1, 0]);\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:34:46\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:31:5"
+      }
+    }
+  ],
+  "otherKeyboardCasesPassed": 2,
+  "scope": "Selected-click persistence regression, separate from original 17 assertions; original evidence preserved."
+}

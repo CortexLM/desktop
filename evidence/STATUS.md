@@ -105,7 +105,12 @@ The [Appearance follow-up](appearance-theme-followup/README.md) reproduces two c
 keyboard and stale-theme assertions. The current three-file correction passes both unchanged
 cases plus the existing two keyboard cases, lint/types/i18n. Full 113-case local Electron and
 Linux package/smoke pass; final artifact audit verifies 149 images and two full-size Appearance
-views. Matching CI/native verification remains pending. Production source is not yet committed.
+views. Correction `99e3d04` is pushed; CI `37124432902` passes all three jobs. Its artifact
+audit verifies 113 cases/426 renders per OS, 300 images/20 full-size targets and unchanged
+sixteen locale images. Matching installed confirmation passes 47 state/focus checks and two
+native captures in both themes. The initial collector's CDP light-media override failure is
+retained; releasing that override restores actual OS-following behavior. Cleanup completes;
+independent native image/receipt audit passes the scoped Appearance checks.
 The [09:47 public/owner readback](terminal-state-followup/remote-prerequisites-0945/README.md)
 still finds `/v1/instance` 404, zero vision-capable Chat models, no new G2/G3 reply and
 no named G1 design permission. It establishes no account or inference acceptance.
@@ -178,14 +183,21 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 ## Full-objective acceptance audit
 
+The [current source-backed completion audit](appearance-theme-followup/completion-audit/README.md)
+maps thirteen requirement groups and all six proofs at `99e3d04`. Its then-pending CI status
+is superseded by run `37124432902` passing all three jobs and the separate matching
+artifact/native audits. Live Files/Projects, Work feeds, dedicated Code workflows, missing-surface lifecycle
+contracts and public remote integration remain delivery work. External owner inputs are
+specific dependencies, not a blanket blocker on this remaining local work.
+
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `37c22c2` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
-| Every design screen plus provider/image/reasoning flows | Partial: `37c22c2` CI passes 111 cases/426 renders per OS; 296 images/28 full-size views reviewed. All sixteen locale images match `2956564`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `37c22c2` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout; `f5bf305`: 22 auth/48 locale states/144 Tab stops; `760c4a0`: six Chat/Bot; `2956564`: six Chat/Code. Matching `37c22c2`: four provider-draft captures/eight UI actions pass, with collector scope qualified. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| Lint, types, units | `99e3d04` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
+| Every design screen plus provider/image/reasoning flows | Partial: `99e3d04` CI passes 113 cases/426 renders per OS; 300 images/20 full-size views reviewed. All sixteen locale images match `37c22c2`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `99e3d04` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 states/fourteen menus/window actions. Later scoped captures: `ffc118a`28, `7885736`8, `f5bf305`22, `760c4a0`6, `2956564`6, `37c22c2`4. Matching `99e3d04`: two Appearance captures/47 checks pass after collector-only media reset; independent native audit passes. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `37c22c2` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
+| Automated i18n audit | `99e3d04` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot

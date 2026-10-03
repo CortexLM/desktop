@@ -1,0 +1,4226 @@
+{
+  "status": "passed",
+  "revision": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "expectedAsar": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+  "membersSHA256": "3b996ff64590a75312b188ba83ca153338b1b4a683d6fd0b8ae7d20110f360e6",
+  "helperHashes": {
+    "appearance-theme-native.mjs": "9cffda47c56978f012f6a405abe5fcdb81e3a2678c796046536ceae000e883c1",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "startedAt": "2026-10-03T13:21:49.994Z",
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/appearance-theme-native.mjs",
+      "/tmp/opencode/appearance-theme-native-99e3d04-confirm",
+      "/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04-confirm",
+      "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+      "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+      "/tmp/opencode/mac-99e3d04/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "checks": [
+    {
+      "stage": "initial-hash-light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "CortexNew chatCreate your BotToolsWeb searchDocumentsImagesAutomationsRecentsYour chats will appear here.Getting started0 of 5SettingsGeneralAppearanceBotNotificationsPrivacyShortcutsAccountProvidersConnectionAppearanceThemeSystemLightDarkDisplayLanguageInterface and default repliesEnglishReduce motionAlso follows the system settingCompact sidebarHides section labels",
+        "mainRadio": false,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": null,
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "initial-selected-card-persists",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:main-pointer-system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:system-opposite-os",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "light:system-target-os",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:main-pointer-dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:rail-pointer-light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": false,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:external-Tab-entry",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:Tab-exit",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "English",
+        "mainRadio": false,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:arrows-start",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowRight:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowRight:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowRight:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowLeft:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowLeft:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowLeft:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowDown:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowDown:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowDown:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowUp:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowUp:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:ArrowUp:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "light:Space",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": false
+    },
+    {
+      "stage": "light:final-keyboard-selection",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:capture",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "dark:main-pointer-system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "dark:system-opposite-os",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    },
+    {
+      "stage": "dark:system-target-os",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:main-pointer-dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:rail-pointer-light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": false,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:external-Tab-entry",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:Tab-exit",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "English",
+        "mainRadio": false,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:arrows-start",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowRight:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowRight:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowRight:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowLeft:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowLeft:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowLeft:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowDown:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowDown:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowDown:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowUp:dark",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowUp:light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": true
+    },
+    {
+      "stage": "dark:ArrowUp:system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": true
+    },
+    {
+      "stage": "dark:Space",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    },
+    {
+      "stage": "dark:capture",
+      "pref": "dark",
+      "sameGroup": true,
+      "focus": {
+        "name": "Dark",
+        "mainRadio": true,
+        "focusVisible": true
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "dark",
+      "stored": "dark",
+      "hashTheme": "dark",
+      "osDark": true
+    }
+  ],
+  "captures": [
+    {
+      "file": "appearance-theme-light.png",
+      "theme": "light",
+      "native": true,
+      "id": 8824,
+      "pid": 63872,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "sha256": "0f07bea07abb10610e630c5680a991170f48d01e4007866f75ba9076f12d54e6",
+      "boxes": [
+        {
+          "text": "System",
+          "bounds": [
+            617,
+            180,
+            708.328125,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              623,
+              186,
+              702.328125,
+              262
+            ],
+            [
+              623,
+              262,
+              702.328125,
+              292
+            ],
+            [
+              653,
+              272,
+              695.203125,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Light",
+          "bounds": [
+            720.328125,
+            180,
+            811.65625,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              726.328125,
+              186,
+              805.65625,
+              262
+            ],
+            [
+              726.328125,
+              262,
+              805.65625,
+              292
+            ],
+            [
+              756.328125,
+              272,
+              784.4375,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Dark",
+          "bounds": [
+            823.65625,
+            180,
+            915,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              829.65625,
+              186,
+              909,
+              262
+            ],
+            [
+              829.65625,
+              262,
+              909,
+              292
+            ],
+            [
+              859.65625,
+              272,
+              886.625,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "System",
+          "bounds": [
+            623,
+            262,
+            702.328125,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              629,
+              272,
+              645,
+              288
+            ],
+            [
+              653,
+              272,
+              695.203125,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Light",
+          "bounds": [
+            726.328125,
+            262,
+            805.65625,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              732.328125,
+              272,
+              748.328125,
+              288
+            ],
+            [
+              756.328125,
+              272,
+              784.4375,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Dark",
+          "bounds": [
+            829.65625,
+            262,
+            909,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              835.65625,
+              272,
+              851.65625,
+              288
+            ],
+            [
+              859.65625,
+              272,
+              886.625,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "English",
+          "bounds": [
+            817.796875,
+            362,
+            901,
+            390
+          ],
+          "clip": [
+            617,
+            348,
+            915,
+            518
+          ],
+          "ink": [
+            [
+              827.796875,
+              368,
+              869,
+              384
+            ],
+            [
+              875,
+              368,
+              891,
+              384
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(59, 130, 246)",
+        "outlineOffset": "1px",
+        "boxShadow": "rgb(59, 130, 246) 0px 0px 0px 2px"
+      },
+      "state": {
+        "main": [
+          {
+            "name": "System",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Light",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "true",
+            "tabIndex": 0
+          },
+          {
+            "name": "Dark",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "false",
+            "tabIndex": -1
+          }
+        ],
+        "rail": [
+          {
+            "name": "System",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Light",
+            "checked": "true",
+            "tabIndex": 0
+          },
+          {
+            "name": "Dark",
+            "checked": "false",
+            "tabIndex": -1
+          }
+        ],
+        "hidden": [
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          },
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          },
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          }
+        ],
+        "theme": "light",
+        "stored": "light",
+        "hashTheme": "light",
+        "osDark": false
+      }
+    },
+    {
+      "file": "appearance-theme-dark.png",
+      "theme": "dark",
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "pid": 63872,
+      "active": true,
+      "id": 8824,
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "sha256": "0e0955739beaeff4ab36512b0238645c1b101e87496cc505980f080bdc8e4c7b",
+      "boxes": [
+        {
+          "text": "System",
+          "bounds": [
+            617,
+            180,
+            708.328125,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              623,
+              186,
+              702.328125,
+              262
+            ],
+            [
+              623,
+              262,
+              702.328125,
+              292
+            ],
+            [
+              653,
+              272,
+              695.203125,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Light",
+          "bounds": [
+            720.328125,
+            180,
+            811.65625,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              726.328125,
+              186,
+              805.65625,
+              262
+            ],
+            [
+              726.328125,
+              262,
+              805.65625,
+              292
+            ],
+            [
+              756.328125,
+              272,
+              784.4375,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Dark",
+          "bounds": [
+            823.65625,
+            180,
+            915,
+            298
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              829.65625,
+              186,
+              909,
+              262
+            ],
+            [
+              829.65625,
+              262,
+              909,
+              292
+            ],
+            [
+              859.65625,
+              272,
+              886.625,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "System",
+          "bounds": [
+            623,
+            262,
+            702.328125,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              629,
+              272,
+              645,
+              288
+            ],
+            [
+              653,
+              272,
+              695.203125,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Light",
+          "bounds": [
+            726.328125,
+            262,
+            805.65625,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              732.328125,
+              272,
+              748.328125,
+              288
+            ],
+            [
+              756.328125,
+              272,
+              784.4375,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Dark",
+          "bounds": [
+            829.65625,
+            262,
+            909,
+            292
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              835.65625,
+              272,
+              851.65625,
+              288
+            ],
+            [
+              859.65625,
+              272,
+              886.625,
+              288
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "English",
+          "bounds": [
+            817.796875,
+            362,
+            901,
+            390
+          ],
+          "clip": [
+            617,
+            348,
+            915,
+            518
+          ],
+          "ink": [
+            [
+              827.796875,
+              368,
+              869,
+              384
+            ],
+            [
+              875,
+              368,
+              891,
+              384
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(91, 155, 255)",
+        "outlineOffset": "1px",
+        "boxShadow": "rgb(91, 155, 255) 0px 0px 0px 2px"
+      },
+      "state": {
+        "main": [
+          {
+            "name": "System",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Light",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Dark",
+            "tag": "BUTTON",
+            "type": "button",
+            "checked": "true",
+            "tabIndex": 0
+          }
+        ],
+        "rail": [
+          {
+            "name": "System",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Light",
+            "checked": "false",
+            "tabIndex": -1
+          },
+          {
+            "name": "Dark",
+            "checked": "true",
+            "tabIndex": 0
+          }
+        ],
+        "hidden": [
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          },
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          },
+          {
+            "type": "radio",
+            "ariaHidden": "true",
+            "tabIndex": -1
+          }
+        ],
+        "theme": "dark",
+        "stored": "dark",
+        "hashTheme": "dark",
+        "osDark": true
+      }
+    }
+  ],
+  "engineReads": [
+    {
+      "route": "/api/connection",
+      "status": 200,
+      "body": {
+        "mode": "local",
+        "signedIn": false
+      }
+    },
+    {
+      "route": "/api/sessions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/bots",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/tasks",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/providers",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/plugins",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/permissions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/connection",
+      "status": 200,
+      "body": {
+        "mode": "local",
+        "signedIn": false
+      }
+    },
+    {
+      "route": "/api/sessions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/bots",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/tasks",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/providers",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/plugins",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/permissions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/connection",
+      "status": 200,
+      "body": {
+        "mode": "local",
+        "signedIn": false
+      }
+    },
+    {
+      "route": "/api/sessions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/bots",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/tasks",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/providers",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/plugins",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/permissions",
+      "status": 200,
+      "body": []
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "appearanceRestored": true,
+    "preferenceRestored": true,
+    "initialRouteRestored": true,
+    "engineUnchanged": true,
+    "zeroInference": true
+  },
+  "installedBefore": {
+    "asarSHA256": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+    "revision": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+    "membersVerified": 90,
+    "pid": 63872,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04-confirm",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "3b996ff64590a75312b188ba83ca153338b1b4a683d6fd0b8ae7d20110f360e6"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04-confirm",
+    "runID": "709bdf8b-61ff-46f3-8b55-1b0241d301a6",
+    "pid": 63869,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04-confirm",
+    "runID": "709bdf8b-61ff-46f3-8b55-1b0241d301a6",
+    "pid": 63869,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 0,
+      "health": 2,
+      "receipt": 5,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "previousPreference": {
+    "stored": null,
+    "theme": "dark",
+    "pref": "system"
+  },
+  "installedAfter": {
+    "asarSHA256": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+    "revision": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+    "membersVerified": 90,
+    "pid": 63872,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04-confirm",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "3b996ff64590a75312b188ba83ca153338b1b4a683d6fd0b8ae7d20110f360e6"
+  },
+  "finishedAt": "2026-10-03T13:23:10.911Z",
+  "durationMs": 80917,
+  "scope": "Installed English Settings Appearance, 960x640, two final theme captures; pointer synchronization, four arrows with wrap, Space, one Tab stop and OS-following System. No Home/End claim, API writes, provider keys or inference."
+}

@@ -1,0 +1,183 @@
+{
+  "originalReport": "../baseline/raw/results.json.gz",
+  "originalReportSHA256": "af9d30bd63977ee7b402bd31863d6c71bbdec6b6b61dd8434ea771468b8d3fc1",
+  "originalTest": "../baseline/appearance-theme.spec.ts",
+  "testSHA256": "2bff6928c640ef274363b00e3861027488fa1025d0087135a93ddbee061949ba",
+  "cases": [
+    {
+      "theme": "light",
+      "title": "Appearance theme keyboard and rail synchronization — 960 light",
+      "failedAssertions": 9,
+      "lines": [
+        37,
+        46,
+        47,
+        46,
+        47,
+        55,
+        65,
+        80,
+        80
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 187,
+            "line": 37
+          },
+          "message": "Error: Appearance has exactly one Tab stop at its selected radio\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[32m-   -1,\u001b[39m\n\u001b[2m    0,\u001b[22m\n\u001b[32m-   -1,\u001b[39m\n\u001b[31m+   0,\u001b[39m\n\u001b[31m+   0,\u001b[39m\n\u001b[2m  ]\u001b[22m\n\n  35 |       await record(\"main pointer selection\");\n  36 |     });\n> 37 |     expect.soft(await main.getByRole(\"radio\").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), \"Appearance has exactly one Tab stop at its selected radio\").toEqual(theme === \"light\" ? [-1, 0, -1] : [-1, -1, 0]);\n     |                                                                                                                                                                                           ^\n  38 |\n  39 |     for (const [key, next] of [[\"ArrowRight\", theme === \"light\" ? \"dark\" : \"system\"], [\"ArrowLeft\", theme === \"light\" ? \"system\" : \"light\"]] as const) {\n  40 |       await test.step(`${key} selects and focuses the adjacent theme`, async () => {\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:37:187"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 212,
+            "line": 46
+          },
+          "message": "Error: ArrowRight: adjacent radio is selected and focused\n\nArrowRight: adjacent radio is selected and focused\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"checked\": \"true\",\u001b[39m\n\u001b[32m-   \"focused\": true,\u001b[39m\n\u001b[31m+   \"checked\": \"false\",\u001b[39m\n\u001b[31m+   \"focused\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  44 |         await radio(theme).focus();\n  45 |         await page.keyboard.press(key);\n> 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n     |                                                                                                                                                                                                                    ^\n  47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n  48 |         await record(key);\n  49 |       });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:46:212\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 101,
+            "line": 47
+          },
+          "message": "Error: ArrowRight: selection is applied and saved\n\nArrowRight: selection is applied and saved\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"dark\",\u001b[39m\n\u001b[32m-   \"theme\": \"dark\",\u001b[39m\n\u001b[31m+   \"stored\": \"light\",\u001b[39m\n\u001b[31m+   \"theme\": \"light\",\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  45 |         await page.keyboard.press(key);\n  46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n> 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n     |                                                                                                     ^\n  48 |         await record(key);\n  49 |       });\n  50 |     }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:47:101\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 212,
+            "line": 46
+          },
+          "message": "Error: ArrowLeft: adjacent radio is selected and focused\n\nArrowLeft: adjacent radio is selected and focused\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"checked\": \"true\",\u001b[39m\n\u001b[32m-   \"focused\": true,\u001b[39m\n\u001b[31m+   \"checked\": \"false\",\u001b[39m\n\u001b[31m+   \"focused\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  44 |         await radio(theme).focus();\n  45 |         await page.keyboard.press(key);\n> 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n     |                                                                                                                                                                                                                    ^\n  47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n  48 |         await record(key);\n  49 |       });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:46:212\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 101,
+            "line": 47
+          },
+          "message": "Error: ArrowLeft: selection is applied and saved\n\nArrowLeft: selection is applied and saved\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"system\",\u001b[39m\n\u001b[31m+   \"stored\": \"light\",\u001b[39m\n\u001b[2m    \"theme\": \"light\",\u001b[22m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  45 |         await page.keyboard.press(key);\n  46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n> 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n     |                                                                                                     ^\n  48 |         await record(key);\n  49 |       });\n  50 |     }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:47:101\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 151,
+            "line": 55
+          },
+          "message": "Error: Tab exits Appearance's theme group to Language\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('button', { name: 'English', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Tab exits Appearance's theme group to Language getByRole('main').getByRole('button', { name: 'English', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('button', { name: 'English', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button tabindex=\"0\" type=\"button\" id=\"base-ui-_r_16_\" aria-haspopup=\"menu\" class=\"btn secondary\" aria-expanded=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n\n  53 |     await radio(theme).focus();\n  54 |     await page.keyboard.press(\"Tab\");\n> 55 |     await expect.soft(page.getByRole(\"main\").getByRole(\"button\", { name: \"English\", exact: true }), \"Tab exits Appearance's theme group to Language\").toBeFocused({ timeout: 1_000 });\n     |                                                                                                                                                       ^\n  56 |     await record(\"Tab after selected radio\");\n  57 |\n  58 |     const opposite = theme === \"light\" ? \"dark\" : \"light\";\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:55:151"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 95,
+            "line": 65
+          },
+          "message": "Error: Appearance follows the rail's explicit preference\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance follows the rail's explicit preference getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Dark', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  63 |       await expect(target).toHaveAttribute(\"aria-checked\", \"true\");\n  64 |       await expect.poll(() => applied(page)).toEqual({ theme: opposite, stored: opposite });\n> 65 |       await expect.soft(radio(opposite), \"Appearance follows the rail's explicit preference\").toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                               ^\n  66 |       await record(\"rail opposite selection\");\n  67 |       await page.evaluate(() => document.fonts.ready);\n  68 |       const path = test.info().outputPath(`appearance-theme-${opposite}.png`);\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:65:95\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:59:5"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 108,
+            "line": 80
+          },
+          "message": "Error: Appearance keeps System selected under light OS appearance\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance keeps System selected under light OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  78 |       await expect(system).toHaveAttribute(\"aria-checked\", \"true\");\n  79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: \"system\" });\n> 80 |       await expect.soft(radio(\"system\"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                                            ^\n  81 |       await record(`System under ${scheme} OS appearance`);\n  82 |     }\n  83 |     await page.reload();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:80:108"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 108,
+            "line": 80
+          },
+          "message": "Error: Appearance keeps System selected under dark OS appearance\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance keeps System selected under dark OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  78 |       await expect(system).toHaveAttribute(\"aria-checked\", \"true\");\n  79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: \"system\" });\n> 80 |       await expect.soft(radio(\"system\"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                                            ^\n  81 |       await record(`System under ${scheme} OS appearance`);\n  82 |     }\n  83 |     await page.reload();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:80:108"
+        }
+      ],
+      "observationStages": 9
+    },
+    {
+      "theme": "dark",
+      "title": "Appearance theme keyboard and rail synchronization — 960 dark",
+      "failedAssertions": 8,
+      "lines": [
+        37,
+        46,
+        47,
+        46,
+        47,
+        65,
+        80,
+        80
+      ],
+      "errors": [
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 187,
+            "line": 37
+          },
+          "message": "Error: Appearance has exactly one Tab stop at its selected radio\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[32m-   -1,\u001b[39m\n\u001b[32m-   -1,\u001b[39m\n\u001b[31m+   0,\u001b[39m\n\u001b[31m+   0,\u001b[39m\n\u001b[2m    0,\u001b[22m\n\u001b[2m  ]\u001b[22m\n\n  35 |       await record(\"main pointer selection\");\n  36 |     });\n> 37 |     expect.soft(await main.getByRole(\"radio\").evaluateAll((elements) => elements.map((el) => (el as HTMLElement).tabIndex)), \"Appearance has exactly one Tab stop at its selected radio\").toEqual(theme === \"light\" ? [-1, 0, -1] : [-1, -1, 0]);\n     |                                                                                                                                                                                           ^\n  38 |\n  39 |     for (const [key, next] of [[\"ArrowRight\", theme === \"light\" ? \"dark\" : \"system\"], [\"ArrowLeft\", theme === \"light\" ? \"system\" : \"light\"]] as const) {\n  40 |       await test.step(`${key} selects and focuses the adjacent theme`, async () => {\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:37:187"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 212,
+            "line": 46
+          },
+          "message": "Error: ArrowRight: adjacent radio is selected and focused\n\nArrowRight: adjacent radio is selected and focused\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"checked\": \"true\",\u001b[39m\n\u001b[32m-   \"focused\": true,\u001b[39m\n\u001b[31m+   \"checked\": \"false\",\u001b[39m\n\u001b[31m+   \"focused\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  44 |         await radio(theme).focus();\n  45 |         await page.keyboard.press(key);\n> 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n     |                                                                                                                                                                                                                    ^\n  47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n  48 |         await record(key);\n  49 |       });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:46:212\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 101,
+            "line": 47
+          },
+          "message": "Error: ArrowRight: selection is applied and saved\n\nArrowRight: selection is applied and saved\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"system\",\u001b[39m\n\u001b[31m+   \"stored\": \"dark\",\u001b[39m\n\u001b[2m    \"theme\": \"dark\",\u001b[22m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  45 |         await page.keyboard.press(key);\n  46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n> 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n     |                                                                                                     ^\n  48 |         await record(key);\n  49 |       });\n  50 |     }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:47:101\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 212,
+            "line": 46
+          },
+          "message": "Error: ArrowLeft: adjacent radio is selected and focused\n\nArrowLeft: adjacent radio is selected and focused\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"checked\": \"true\",\u001b[39m\n\u001b[32m-   \"focused\": true,\u001b[39m\n\u001b[31m+   \"checked\": \"false\",\u001b[39m\n\u001b[31m+   \"focused\": false,\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  44 |         await radio(theme).focus();\n  45 |         await page.keyboard.press(key);\n> 46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n     |                                                                                                                                                                                                                    ^\n  47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n  48 |         await record(key);\n  49 |       });\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:46:212\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 101,
+            "line": 47
+          },
+          "message": "Error: ArrowLeft: selection is applied and saved\n\nArrowLeft: selection is applied and saved\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \"stored\": \"light\",\u001b[39m\n\u001b[32m-   \"theme\": \"light\",\u001b[39m\n\u001b[31m+   \"stored\": \"dark\",\u001b[39m\n\u001b[31m+   \"theme\": \"dark\",\u001b[39m\n\u001b[2m  }\u001b[22m\n\nCall Log:\n- Timeout 1000ms exceeded while waiting on the predicate\n\n  45 |         await page.keyboard.press(key);\n  46 |         await soft.poll(() => radio(next).evaluate((el) => ({ checked: el.getAttribute(\"aria-checked\"), focused: el === document.activeElement })), { message: `${key}: adjacent radio is selected and focused` }).toEqual({ checked: \"true\", focused: true });\n> 47 |         await soft.poll(() => applied(page), { message: `${key}: selection is applied and saved` }).toEqual({ theme: next === \"system\" ? theme : next, stored: next });\n     |                                                                                                     ^\n  48 |         await record(key);\n  49 |       });\n  50 |     }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:47:101\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:40:7"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 95,
+            "line": 65
+          },
+          "message": "Error: Appearance follows the rail's explicit preference\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance follows the rail's explicit preference getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'Light', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  63 |       await expect(target).toHaveAttribute(\"aria-checked\", \"true\");\n  64 |       await expect.poll(() => applied(page)).toEqual({ theme: opposite, stored: opposite });\n> 65 |       await expect.soft(radio(opposite), \"Appearance follows the rail's explicit preference\").toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                               ^\n  66 |       await record(\"rail opposite selection\");\n  67 |       await page.evaluate(() => document.fonts.ready);\n  68 |       const path = test.info().outputPath(`appearance-theme-${opposite}.png`);\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:65:95\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:59:5"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 108,
+            "line": 80
+          },
+          "message": "Error: Appearance keeps System selected under light OS appearance\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance keeps System selected under light OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  78 |       await expect(system).toHaveAttribute(\"aria-checked\", \"true\");\n  79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: \"system\" });\n> 80 |       await expect.soft(radio(\"system\"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                                            ^\n  81 |       await record(`System under ${scheme} OS appearance`);\n  82 |     }\n  83 |     await page.reload();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:80:108"
+        },
+        {
+          "location": {
+            "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts",
+            "column": 108,
+            "line": 80
+          },
+          "message": "Error: Appearance keeps System selected under dark OS appearance\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1000ms\n\nCall log:\n\u001b[2m  - Appearance keeps System selected under dark OS appearance getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true }) with timeout 1000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio', { name: 'System', exact: true })\u001b[22m\n\u001b[2m    11 × locator resolved to <button role=\"radio\" class=\"pg-theme\" aria-checked=\"false\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  78 |       await expect(system).toHaveAttribute(\"aria-checked\", \"true\");\n  79 |       await expect.poll(() => applied(page)).toEqual({ theme: scheme, stored: \"system\" });\n> 80 |       await expect.soft(radio(\"system\"), `Appearance keeps System selected under ${scheme} OS appearance`).toHaveAttribute(\"aria-checked\", \"true\", { timeout: 1_000 });\n     |                                                                                                            ^\n  81 |       await record(`System under ${scheme} OS appearance`);\n  82 |     }\n  83 |     await page.reload();\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/appearance-theme.spec.ts:80:108"
+        }
+      ],
+      "observationStages": 9
+    }
+  ],
+  "failedAssertions": 17,
+  "initialHashMismatch": "Observed only; not counted as a failed assertion."
+}

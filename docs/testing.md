@@ -380,9 +380,15 @@ separate rail tests. The original two cases fail 17 assertions before correction
 unchanged regression and both existing keyboard tests pass against the shared shell preference
 and Base UI implementation. Clicking an already-selected card still saves a hash-derived
 preference; the initial candidate's refusal to save that click is retained as a separate failure.
-The corrected full local suite passes 113 Electron cases and Linux package/smoke. A separate
+Correction `99e3d04` passes the full 113-case local Electron suite and Linux package/smoke;
+CI `37124432902` passes all three jobs. A separate
 screenshot-free preview check verifies focus/node continuity, external rail Tab entry and
 System/reload without persisting preview preferences; CI/native acceptance is source-specific.
+Matching installed `99e3d04` passes 47 state/focus checks and two 960×640 native captures:
+real OS-following System, arrows/wrap, Space, Tab and shared selection. The original collector
+failure from CDP's default light-media override is retained; the corrected collector clears
+emulation and verifies actual OS changes. Cleanup and independent native image/receipt audit
+pass within that scope; the frozen Appearance reference gap remains explicit.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

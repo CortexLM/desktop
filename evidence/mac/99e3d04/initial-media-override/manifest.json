@@ -1,0 +1,380 @@
+{
+  "status": "failed",
+  "revision": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+  "expectedAsar": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+  "membersSHA256": "3b996ff64590a75312b188ba83ca153338b1b4a683d6fd0b8ae7d20110f360e6",
+  "helperHashes": {
+    "appearance-theme-native.mjs": "230f312d902a00facc696264617629d94c20103fcdde164fadf67654d545daed",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "startedAt": "2026-10-03T13:14:17.595Z",
+  "invocation": {
+    "execPath": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "nodeVersion": "v22.23.3",
+    "argv": [
+      "/tmp/opencode/appearance-theme-native.mjs",
+      "/tmp/opencode/appearance-theme-native-99e3d04",
+      "/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04",
+      "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+      "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+      "/tmp/opencode/mac-99e3d04/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite"
+  },
+  "checks": [
+    {
+      "stage": "initial-hash-light",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "CortexNew chatCreate your BotToolsWeb searchDocumentsImagesAutomationsRecentsYour chats will appear here.Getting started0 of 5SettingsGeneralAppearanceBotNotificationsPrivacyShortcutsAccountProvidersConnectionAppearanceThemeSystemLightDarkDisplayLanguageInterface and default repliesEnglishReduce motionAlso follows the system settingCompact sidebarHides section labels",
+        "mainRadio": false,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": null,
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "initial-selected-card-persists",
+      "pref": "light",
+      "sameGroup": true,
+      "focus": {
+        "name": "Light",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "light",
+      "hashTheme": "light",
+      "osDark": false
+    },
+    {
+      "stage": "light:main-pointer-system",
+      "pref": "system",
+      "sameGroup": true,
+      "focus": {
+        "name": "System",
+        "mainRadio": true,
+        "focusVisible": false
+      },
+      "main": [
+        {
+          "name": "System",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "tag": "BUTTON",
+          "type": "button",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1
+        }
+      ],
+      "hidden": [
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        },
+        {
+          "type": "radio",
+          "ariaHidden": "true",
+          "tabIndex": -1
+        }
+      ],
+      "theme": "light",
+      "stored": "system",
+      "hashTheme": "system",
+      "osDark": false
+    }
+  ],
+  "captures": [],
+  "engineReads": [
+    {
+      "route": "/api/connection",
+      "status": 200,
+      "body": {
+        "mode": "local",
+        "signedIn": false
+      }
+    },
+    {
+      "route": "/api/sessions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/bots",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/tasks",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/providers",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/plugins",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/permissions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/connection",
+      "status": 200,
+      "body": {
+        "mode": "local",
+        "signedIn": false
+      }
+    },
+    {
+      "route": "/api/sessions",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/bots",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/tasks",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/providers",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/plugins",
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/permissions",
+      "status": 200,
+      "body": []
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "appearanceRestored": true,
+    "preferenceRestored": true,
+    "initialRouteRestored": true,
+    "engineUnchanged": true,
+    "zeroInference": true
+  },
+  "installedBefore": {
+    "asarSHA256": "f0b5f9ee60b8170d69bdd7bc04fa636a44f3360bc90082d41437097b1c902aae",
+    "revision": "99e3d04a8dab6b51b6cf23bcdae0365624492e0f",
+    "membersVerified": 90,
+    "pid": 63525,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "3b996ff64590a75312b188ba83ca153338b1b4a683d6fd0b8ae7d20110f360e6"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04",
+    "runID": "610b1256-b868-4a72-95b1-a3e4d9ee7ae6",
+    "pid": 63522,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-appearance-theme-99e3d04",
+    "runID": "610b1256-b868-4a72-95b1-a3e4d9ee7ae6",
+    "pid": 63522,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 0,
+      "health": 2,
+      "receipt": 2,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "previousPreference": {
+    "stored": null,
+    "theme": "light",
+    "pref": "system"
+  },
+  "failure": {
+    "stage": "light:system-opposite-os",
+    "diagnostic": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 2\n+ Received  + 2\n\n@@ -38,11 +38,11 @@\n        \"tabIndex\": -1,\n        \"tag\": \"BUTTON\",\n        \"type\": \"button\",\n      },\n    ],\n-   \"osDark\": true,\n+   \"osDark\": false,\n    \"rail\": Array [\n      Object {\n        \"checked\": \"true\",\n        \"name\": \"System\",\n        \"tabIndex\": 0,\n@@ -57,7 +57,7 @@\n        \"name\": \"Dark\",\n        \"tabIndex\": -1,\n      },\n    ],\n    \"stored\": \"system\",\n-   \"theme\": \"dark\",\n+   \"theme\": \"light\",\n  }\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate\n    at captureRawStack (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/playwright-core@1.63.0/node_modules/playwright-core/lib/coreBundle.js:8588:17)\n    at callMatcherAsStep (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/playwright@1.63.0/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toEqual (/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/playwright@1.63.0/node_modules/playwright/lib/matchers/expect.js:13302:23)\n    at check (/var/tmp/opencode/appearance-theme-native.mjs:52:33)\n    at /var/tmp/opencode/appearance-theme-native.mjs:63:149"
+  },
+  "finishedAt": "2026-10-03T13:14:48.590Z",
+  "durationMs": 30995,
+  "scope": "Installed English Settings Appearance, 960x640, two final theme captures; pointer synchronization, four arrows with wrap, Space, one Tab stop and OS-following System. No Home/End claim, API writes, provider keys or inference."
+}
