@@ -80,7 +80,13 @@ Cancellation checks inspect the durable event journal as well as the current mes
   sidebar. Two process restarts reuse both engine and renderer directories. Deletion preserves
   transcripts and detaches membership. A separate held-response case checks duplicate writes,
   newer drafts, stale-owner reads/saves, Back/Forward and a genuine protocol validation refusal.
+  Two additional minimum-window cases cover accepted 48-character unbroken names and
+  4000-character instructions in creation, detail, Instructions, Projects and Library.
   These are test definitions; executed results are recorded separately for each source pin.
+  The long-input baseline fails in both themes before four native CSS wrapping rules;
+  the unchanged regression and the final 118-case local suite pass afterward. Matching
+  correction CI/native acceptance remains separately tracked in
+  [`evidence/projects-followup/wrapping/README.md`](../evidence/projects-followup/wrapping/README.md).
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

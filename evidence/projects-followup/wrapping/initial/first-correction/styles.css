@@ -264,7 +264,7 @@ html[data-vt="theme"]::view-transition-group(content), html[data-vt="theme"]::vi
   transform: translateY(calc(var(--toast-index) * -6px)) scale(calc(1 - var(--toast-index) * .05)); z-index: calc(100 - var(--toast-index));
   transition: transform 460ms var(--ease-spring), opacity 300ms; }
 .toast[data-starting-style], .toast[data-ending-style] { transform: translateY(140%); opacity: 0; }
-.toast .t-body { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 12px; }
+.toast .t-body { flex: 1; font-size: 12px; }
 .toast .t-title { font-weight: 500; }
 .toast .t-desc { opacity: .7; font-size: 11px; }
 .toast button.undo { height: 28px; padding: 0 10px; border-radius: 8px; background: color-mix(in srgb, var(--on-solid) 14%, transparent); font-weight: 500; position: relative; overflow: hidden; transition: scale 220ms var(--ease-spring); }

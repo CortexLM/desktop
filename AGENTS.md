@@ -204,6 +204,7 @@ Memory drafts clear only after accepted writes; refused/partial deletion retains
 and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
 Projects persist in the local engine through `/api/projects`. Existing creation, instructions,
 Chat move/detach, sidebar, Library and Search use exact record IDs; names may duplicate.
+Accepted long names and unbroken instructions wrap inside Project and Library surfaces.
 Project instructions enter each admitted Chat turn's model context and token budget.
 Deleting a Project atomically detaches its chats without deleting transcripts; busy linked
 roots/descendants refuse deletion and membership changes. Optional prompt `expectedProjectID`
