@@ -1,0 +1,3102 @@
+{
+  "status": "passed",
+  "before": {
+    "count": 90,
+    "matched": true
+  },
+  "startedAt": "2026-10-03T05:50:45.241Z",
+  "scriptSHA256": "6e7869d11ec9b7972a209ef9d7d56f9c28d61fe7fc6758440a02d96492e8efd3",
+  "views": [
+    {
+      "locale": "fr",
+      "theme": "light",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Recevoir un code",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GContinuer avec Google",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AContinuer avec Apple",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MContinuer avec Microsoft",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "SSO entreprise",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Conditions",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 675.75,
+            "right": 730.828125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Politique de confidentialité",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 568.859375,
+            "right": 705.921875,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Annuler",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 616.65625,
+            "right": 660.34375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "fr",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Recevoir un code",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GContinuer avec Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AContinuer avec Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MContinuer avec Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "SSO entreprise",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Conditions",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 675.75,
+              "right": 730.828125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Politique de confidentialité",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 568.859375,
+              "right": 705.921875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Annuler",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 616.65625,
+              "right": 660.34375,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "fr-light-initial.png",
+        "sha256": "6438fd86e434d910eb15e81bff41d44c23371f9e51431b137c4d5b3fb6048a82"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "fr",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Recevoir un code",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GContinuer avec Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AContinuer avec Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MContinuer avec Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "SSO entreprise",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Conditions",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 675.75,
+              "right": 730.828125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Politique de confidentialité",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 568.859375,
+              "right": 705.921875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Annuler",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 616.65625,
+              "right": 660.34375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "fr-light-cancel-focused.png",
+        "sha256": "7d048065cf9174f6a7e63da5a71f76870cebde184e6c42d2ce58d6832b42d4f2"
+      },
+      "cancelNavigatedHome": true
+    },
+    {
+      "locale": "fr",
+      "theme": "dark",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Recevoir un code",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GContinuer avec Google",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AContinuer avec Apple",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MContinuer avec Microsoft",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "SSO entreprise",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Conditions",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 675.75,
+            "right": 730.828125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Politique de confidentialité",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 568.859375,
+            "right": 705.921875,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Annuler",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 616.65625,
+            "right": 660.34375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "fr",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Recevoir un code",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GContinuer avec Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AContinuer avec Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MContinuer avec Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "SSO entreprise",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Conditions",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 675.75,
+              "right": 730.828125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Politique de confidentialité",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 568.859375,
+              "right": 705.921875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Annuler",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 616.65625,
+              "right": 660.34375,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "fr-dark-initial.png",
+        "sha256": "dba90555ef9e07bf64156c0aba9e0d1b0e0eac70c47152f68dc681c1c7630a41"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "fr",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Recevoir un code",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GContinuer avec Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AContinuer avec Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MContinuer avec Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "SSO entreprise",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Conditions",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 675.75,
+              "right": 730.828125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Politique de confidentialité",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 568.859375,
+              "right": 705.921875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Annuler",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 616.65625,
+              "right": 660.34375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "fr-dark-cancel-focused.png",
+        "sha256": "0fc3e98c3e5884a473c2dc641629098da3d8171ec560bdb536aca2eb7d1ef1c3"
+      },
+      "cancelNavigatedHome": true
+    },
+    {
+      "locale": "de",
+      "theme": "light",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Code anfordern",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GWeiter mit Google",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AWeiter mit Apple",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MWeiter mit Microsoft",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Unternehmens-SSO",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Nutzungsbedingungen",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 660.015625,
+            "right": 777.0625,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Datenschutzrichtlinie",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 582.40625,
+            "right": 692.375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Abbrechen",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 608.0625,
+            "right": 668.9375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "de",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Code anfordern",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GWeiter mit Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AWeiter mit Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MWeiter mit Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Unternehmens-SSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Nutzungsbedingungen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 660.015625,
+              "right": 777.0625,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Datenschutzrichtlinie",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 582.40625,
+              "right": 692.375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Abbrechen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 608.0625,
+              "right": 668.9375,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "de-light-initial.png",
+        "sha256": "4ec577eddfc770b909c495d16ba652cc0cc94e2aa00918dfbf06e874c1d66276"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "de",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Code anfordern",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GWeiter mit Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AWeiter mit Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MWeiter mit Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Unternehmens-SSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Nutzungsbedingungen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 660.015625,
+              "right": 777.0625,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Datenschutzrichtlinie",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 582.40625,
+              "right": 692.375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Abbrechen",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 608.0625,
+              "right": 668.9375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "de-light-cancel-focused.png",
+        "sha256": "328925f0b93ebba20cac739fa71c936c0afe3c382baf2de1c566c573e2dc8b04"
+      },
+      "cancelNavigatedHome": true
+    },
+    {
+      "locale": "de",
+      "theme": "dark",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Code anfordern",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GWeiter mit Google",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AWeiter mit Apple",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MWeiter mit Microsoft",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Unternehmens-SSO",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Nutzungsbedingungen",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 660.015625,
+            "right": 777.0625,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Datenschutzrichtlinie",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 582.40625,
+            "right": 692.375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "Abbrechen",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 608.0625,
+            "right": 668.9375,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "de",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Code anfordern",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GWeiter mit Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AWeiter mit Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MWeiter mit Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Unternehmens-SSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Nutzungsbedingungen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 660.015625,
+              "right": 777.0625,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Datenschutzrichtlinie",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 582.40625,
+              "right": 692.375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Abbrechen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 608.0625,
+              "right": 668.9375,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "de-dark-initial.png",
+        "sha256": "bd40f38660d7b99dcb25718e3bf22eb8e2bb8b0ca257a7f795932b7859503bca"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "de",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Code anfordern",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GWeiter mit Google",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AWeiter mit Apple",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MWeiter mit Microsoft",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Unternehmens-SSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Nutzungsbedingungen",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 660.015625,
+              "right": 777.0625,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Datenschutzrichtlinie",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 582.40625,
+              "right": 692.375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "Abbrechen",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 608.0625,
+              "right": 668.9375,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "de-dark-cancel-focused.png",
+        "sha256": "6c9e60f5473ba493fd2489dd74278c64e6e51320361fc66059175bfe46f5bc05"
+      },
+      "cancelNavigatedHome": true
+    },
+    {
+      "locale": "ja",
+      "theme": "light",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "コードを取得",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GGoogleで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AAppleで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MMicrosoftで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "会社のSSO",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "利用規約",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 722.546875,
+            "right": 766.546875,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "プライバシーポリシー",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 576.96875,
+            "right": 689.03125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "キャンセル",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 607.796875,
+            "right": 669.203125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "ja",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "コードを取得",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GGoogleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AAppleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MMicrosoftで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "会社のSSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "利用規約",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 722.546875,
+              "right": 766.546875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "プライバシーポリシー",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 576.96875,
+              "right": 689.03125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "キャンセル",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 607.796875,
+              "right": 669.203125,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "ja-light-initial.png",
+        "sha256": "31b1291ec4e16a90d74cb05d0e41a60f3111fd5e2877d05c20c7366326eb15e2"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "ja",
+        "theme": "light",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "コードを取得",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GGoogleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AAppleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MMicrosoftで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "会社のSSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "利用規約",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 722.546875,
+              "right": 766.546875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "プライバシーポリシー",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 576.96875,
+              "right": 689.03125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "キャンセル",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 607.796875,
+              "right": 669.203125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "ja-light-cancel-focused.png",
+        "sha256": "2759a5a0ea9f09e297f941d4131a4f7e27cfeb996e6b20f0c5413d09bf41ac02"
+      },
+      "cancelNavigatedHome": true
+    },
+    {
+      "locale": "ja",
+      "theme": "dark",
+      "status": "passed",
+      "keyboard": [
+        {
+          "text": "",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 220,
+            "bottom": 260,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "コードを取得",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 272,
+            "bottom": 316,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 44
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "GGoogleで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 364,
+            "bottom": 404,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "AAppleで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 412,
+            "bottom": 452,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "MMicrosoftで続ける",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 460,
+            "bottom": 500,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "会社のSSO",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 508,
+            "bottom": 548,
+            "left": 458.5,
+            "right": 818.5,
+            "height": 40
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "利用規約",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 566,
+            "bottom": 582,
+            "left": 722.546875,
+            "right": 766.546875,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "プライバシーポリシー",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 582,
+            "bottom": 598,
+            "left": 576.96875,
+            "right": 689.03125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        },
+        {
+          "text": "キャンセル",
+          "label": null,
+          "focused": true,
+          "enabled": true,
+          "rect": {
+            "top": 619,
+            "bottom": 635,
+            "left": 607.796875,
+            "right": 669.203125,
+            "height": 16
+          },
+          "visible": true,
+          "textVisible": true,
+          "hit": true
+        }
+      ],
+      "initial": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "ja",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 0,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 62,
+            "bottom": 106,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 220,
+              "bottom": 260,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "コードを取得",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 272,
+              "bottom": 316,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GGoogleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 364,
+              "bottom": 404,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AAppleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 412,
+              "bottom": 452,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MMicrosoftで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 460,
+              "bottom": 500,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "会社のSSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 508,
+              "bottom": 548,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "利用規約",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 566,
+              "bottom": 582,
+              "left": 722.546875,
+              "right": 766.546875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "プライバシーポリシー",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 582,
+              "bottom": 598,
+              "left": 576.96875,
+              "right": 689.03125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "キャンセル",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 625,
+              "bottom": 641,
+              "left": 607.796875,
+              "right": 669.203125,
+              "height": 16
+            },
+            "visible": false,
+            "textVisible": false,
+            "hit": true
+          }
+        ]
+      },
+      "initialCapture": {
+        "file": "ja-dark-initial.png",
+        "sha256": "570fb355f24457f0a656d10ad43effd1d8181e766dea3b5694fd37ba5d00740e"
+      },
+      "afterTab": {
+        "viewport": [
+          960,
+          640
+        ],
+        "lang": "ja",
+        "theme": "dark",
+        "center": {
+          "top": 100,
+          "bottom": 635,
+          "scrollTop": 6,
+          "scrollHeight": 597,
+          "clientHeight": 535
+        },
+        "logo": {
+          "text": "",
+          "label": null,
+          "focused": false,
+          "enabled": true,
+          "rect": {
+            "top": 56,
+            "bottom": 100,
+            "left": 616.5,
+            "right": 660.5,
+            "height": 44
+          },
+          "visible": false,
+          "textVisible": true,
+          "hit": false
+        },
+        "controls": [
+          {
+            "text": "",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 214,
+              "bottom": 254,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "コードを取得",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 266,
+              "bottom": 310,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 44
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "GGoogleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 358,
+              "bottom": 398,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "AAppleで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 406,
+              "bottom": 446,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "MMicrosoftで続ける",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 454,
+              "bottom": 494,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "会社のSSO",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 502,
+              "bottom": 542,
+              "left": 458.5,
+              "right": 818.5,
+              "height": 40
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "利用規約",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 560,
+              "bottom": 576,
+              "left": 722.546875,
+              "right": 766.546875,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "プライバシーポリシー",
+            "label": null,
+            "focused": false,
+            "enabled": true,
+            "rect": {
+              "top": 576,
+              "bottom": 592,
+              "left": 576.96875,
+              "right": 689.03125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          },
+          {
+            "text": "キャンセル",
+            "label": null,
+            "focused": true,
+            "enabled": true,
+            "rect": {
+              "top": 619,
+              "bottom": 635,
+              "left": 607.796875,
+              "right": 669.203125,
+              "height": 16
+            },
+            "visible": true,
+            "textVisible": true,
+            "hit": true
+          }
+        ]
+      },
+      "afterCapture": {
+        "file": "ja-dark-cancel-focused.png",
+        "sha256": "73ae93da2dcb86d561bd7cbb6772716575a6928dd4f0ae31d77760085002d1be"
+      },
+      "cancelNavigatedHome": true
+    }
+  ],
+  "errors": [],
+  "rendererHttp": [],
+  "after": {
+    "count": 90,
+    "matched": true
+  },
+  "finishedAt": "2026-10-03T05:50:54.321Z"
+}

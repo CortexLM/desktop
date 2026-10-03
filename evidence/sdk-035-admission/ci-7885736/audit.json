@@ -1,0 +1,183 @@
+{
+  "completedAt": "2026-10-03T05:15:06.686624+00:00",
+  "run": 37097480122,
+  "head": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "checkout": "83ca246c73ca185adae5fb657b54893193be637c",
+  "tree": "67dd35f563da6a8efcd72d658734199c0c9ce481",
+  "checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "unitFilesPassed": 18,
+    "unitsPassed": 201,
+    "unitsSkipped": 1,
+    "optionalSkip": "lists models from a real backend (CORTEX_TEST_BACKEND_URL)",
+    "i18n": {
+      "files": 64,
+      "usedKeys": 2272,
+      "englishKeys": 3405,
+      "problems": 0
+    }
+  },
+  "e2e": {
+    "e2e-linux": {
+      "tests": 96,
+      "attempts": 96,
+      "passed": 96,
+      "failed": 0,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "runnerErrors": 0,
+      "renders": 426,
+      "workers": 4,
+      "durationMs": 196738.372,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 6,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "addedCases": [
+        "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 dark",
+        "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 light",
+        "Code approval descriptions stay clear of controls \u2014 960\u00d7640 dark",
+        "Code approval descriptions stay clear of controls \u2014 960\u00d7640 light"
+      ],
+      "removedCases": [],
+      "artifactFiles": 343,
+      "pngCopies": 341,
+      "uniquePNGs": 115,
+      "copyDistribution": {
+        "1": 4,
+        "3": 109,
+        "5": 2
+      },
+      "reportSHA256": "ffad540ac189504742bc2f922ff2e102547f9d68cf9bab7ecf57bc50c87cf23c"
+    },
+    "macos": {
+      "tests": 96,
+      "attempts": 96,
+      "passed": 96,
+      "failed": 0,
+      "retries": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "runnerErrors": 0,
+      "renders": 426,
+      "workers": 1,
+      "durationMs": 546449.3080000001,
+      "caseFiles": {
+        "approvals-recovery.spec.ts": 2,
+        "bot-safety.spec.ts": 10,
+        "chrome.spec.ts": 3,
+        "code-diff-scroll.spec.ts": 1,
+        "code-models.spec.ts": 5,
+        "components.spec.ts": 4,
+        "composer-safety.spec.ts": 4,
+        "engine.spec.ts": 4,
+        "frozen-composer.spec.ts": 4,
+        "interaction-states.spec.ts": 4,
+        "keyboard.spec.ts": 2,
+        "memory-safety.spec.ts": 8,
+        "navigation.spec.ts": 6,
+        "remote-auth.spec.ts": 6,
+        "responsive.spec.ts": 12,
+        "routines.spec.ts": 4,
+        "screens.spec.ts": 1,
+        "search-bots.spec.ts": 3,
+        "terminal-copy.spec.ts": 1,
+        "ui-flows.spec.ts": 4,
+        "work-routine-source.spec.ts": 6,
+        "work-scroll.spec.ts": 2
+      },
+      "addedCases": [
+        "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 dark",
+        "Code approval descriptions stay clear of controls \u2014 1024\u00d7686 light",
+        "Code approval descriptions stay clear of controls \u2014 960\u00d7640 dark",
+        "Code approval descriptions stay clear of controls \u2014 960\u00d7640 light"
+      ],
+      "removedCases": [],
+      "artifactFiles": 347,
+      "pngCopies": 342,
+      "uniquePNGs": 116,
+      "copyDistribution": {
+        "1": 5,
+        "3": 109,
+        "5": 2
+      },
+      "reportSHA256": "605da368b18e37c229d31d1a5ab671ebe4f670153d888b910a4a0e6d0e9ce304"
+    }
+  },
+  "sdk": {
+    "version": "0.3.5",
+    "peerVersion": "0.2.0",
+    "sdkSHA256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+    "sdkSHA512Integrity": "sha512-09LLUxPEVrQylARmoqdvXvOM0z4fDQT1OHNhsrtcYfGFZdrN+6Lh0ps5D/4p34z3Z2GljB2nWHqWFBFXRid2cA==",
+    "sdkMembers": 59,
+    "peerSHA256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+    "peerMembers": 81,
+    "pinnedManifestAndFrozenLockAgree": true,
+    "allThreeFrozenInstallsPassed": true,
+    "mainAuthSourceUnchanged": true,
+    "evidence": "Pinned package manifest, lock integrity, tarball package version/member hashes, identical checkout tree and successful frozen CI installs followed by real SDK unit/Electron cases.",
+    "limit": "Test artifacts contain no node_modules inventory, runtime SDK-version print or packaged ASAR. This is the checkout/frozen-install dependency chain, not an independent installed-member attestation.",
+    "upstreamSchemaReference": "c8f6a7f0257858306a885c71202c13420f40725f",
+    "upstreamSchemaVerification": "Reference from pinned vendor README; no upstream network test or schema re-audit."
+  },
+  "images": {
+    "uniquePNGs": 231,
+    "pngCopies": 683,
+    "contactSheetsInspected": 20,
+    "fullResolutionOriginals": 37,
+    "rgbaExactWebPs": 37,
+    "comparablePriorTargets": 29,
+    "rgbaIdenticalPriorTargets": 23
+  },
+  "sourcePins": 45,
+  "nativeDisplayCapture": "failed",
+  "authScope": "Controlled loopback HTTP; real SDK/engine, no credentialed Cortex Cloud account or remote inference.",
+  "sourceDeltaGzip": {
+    "originalSHA256": "badab801c4e9eac71a7b65f7ef2f44fa3d9f98288e9442db5b1fb66341c803d7",
+    "retainedSHA256": "69b8cf496d9f7c8a1cb1e933e6b4253cdb7cbb44168474d053c2db052b62527f",
+    "lossless": true
+  },
+  "applicationPackageDownloaded": false,
+  "applicationTestsBuildsOrRerunsStarted": false,
+  "macAccess": false,
+  "upstreamNetworkTests": false,
+  "commitCreated": false,
+  "reproduce": "python3 /var/tmp/opencode/ci-7885736-review/finalize.py",
+  "scripts": [
+    {
+      "path": "/var/tmp/opencode/ci-7885736-review/collect.py",
+      "sha256": "f02613eb58f98345091ffea0fdabdaa5dede1244cac5c4e351937f1ed61d433d"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-7885736-review/audit.py",
+      "sha256": "ea6d51138f4ea98cf0b68146e06679b4a0f5169eb3e9f542950ff26efd0f0f27"
+    },
+    {
+      "path": "/var/tmp/opencode/ci-7885736-review/finalize.py",
+      "sha256": "ccf0c74fedb5987a2ca9bdae4022da8cebbfaf887253f1e9c443b236b86593c4"
+    }
+  ],
+  "whitespaceCheck": "All retained UTF-8 text checked for trailing whitespace and git diff --no-index --check diagnostics; originals are retained losslessly in gzip."
+}

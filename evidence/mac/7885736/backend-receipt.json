@@ -1,0 +1,26 @@
+{
+  "protocol": "cortex-remote-auth-native-v1",
+  "runID": "7636aea1-9b54-4740-9b26-bdbc59cf361b",
+  "root": "/private/tmp/opencode/desktop-remote-auth-7885736",
+  "platform": "darwin",
+  "port": 9457,
+  "startedAt": "2026-10-03T05:05:36.200Z",
+  "scriptSHA256": "22b6d8cb958db2c7d749b737329f169894435d995ca67e6e929cd96eec79ee65",
+  "counts": {
+    "email": 6,
+    "code": 8,
+    "finishedCode": 8,
+    "wrongCode": 2,
+    "session": 2,
+    "enrollment": 2,
+    "logout": 0,
+    "abortedReply": 2,
+    "discovery": 0,
+    "inspections": 10,
+    "inspectionsPassed": 10,
+    "errors": 0
+  },
+  "holdCode": false,
+  "held": 0,
+  "freshRequestsCredentialFree": true
+}

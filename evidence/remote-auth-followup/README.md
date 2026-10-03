@@ -3,7 +3,8 @@
 Application `ffc118a2e58df66f430f3078e00f6e931dd910cf` is pushed. [CI 37094538845](https://github.com/CortexLM/desktop/actions/runs/37094538845)
 passes all three jobs. [Matching installed proof](../mac/ffc118a/README.md) passes six native
 auth captures plus Code/terminal/recovery/Work assertions, 28 captures total; independent
-artifact/native reviews are underway. Earlier green CI `37091082338` at
+[artifact](ci-ffc118a/README.md) and [native](../mac/ffc118a/review.md) reviews pass their scope.
+Earlier green CI `37091082338` at
 `b0e6d78` covers recovery/transition/SDK intake, not this authentication delta.
 
 ## Scope
@@ -33,8 +34,8 @@ finds no blocker in the stated process-lifetime scope.
 
 [Full integrated Electron suite](e2e-full.log): **90 passed, 426 renders**. Linux package/smoke
 passes. These precede the newly identified native preview-departure/long-terminal corrections,
-tracked under [installed recovery](../mac/b0e6d78/README.md). Changed-revision CI and installed-Mac
-authentication proof remain pending.
+tracked under [installed recovery](../mac/b0e6d78/README.md). The later `ffc118a` CI and matching
+installed-Mac authentication/correction proof above complete those scoped follow-ups.
 
 The [native-discovered corrections](../live-recovery-followup/native-corrections/README.md)
 now pass 26 targeted Electron cases after rebuilding, including all six auth cases again.
@@ -51,6 +52,11 @@ crops remain byte-identical to the intermediate app. Historical scores and sourc
 
 Owner follow-up supplies source-backed validation bounds for existing turn/model payloads;
 it does not add stable `/me` identity or complete history. The SDK 0.3.4 attempts remain failed
-after their Node 20.9 verification processes hung. The owner has now delivered immutable 0.3.5
-with the single-read authentication correction; desktop admission is underway. Current adoption
-stays the exact 0.3.1 pair until verified.
+after their Node 20.9 verification processes hung. Immutable 0.3.5 passes exact-package admission
+and is adopted at `7885736`; [its receipt](../sdk-035-admission/README.md) keeps the new pair's
+checks and real unauthenticated discovery distinct from the earlier installed 0.3.1 evidence.
+
+The [narrow Approvals follow-up](narrow-approvals-compare/README.md) verifies eight wide states
+byte-identical to the earlier app, including both 258,000-pixel defaults regions against the
+frozen reference. Four new narrow geometry/keyboard cases fail before the fix and pass after;
+the later integrated new-SDK run retains all four positive screenshots.

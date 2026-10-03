@@ -1,0 +1,45 @@
+{
+  "primaryContactFramesReviewed": 48,
+  "primaryContactSheets": [
+    "contact-wrong-code-light.jpg",
+    "contact-wrong-code-dark.jpg",
+    "contact-signed-in-light.jpg",
+    "contact-signed-in-dark.jpg",
+    "contact-unavailable-enrollment-light.jpg",
+    "contact-unavailable-enrollment-dark.jpg"
+  ],
+  "primaryFullSizeReviewed": [
+    "screens/auth-de-light-wrong-code.png",
+    "screens/auth-de-dark-wrong-code.png",
+    "screens/auth-fr-light-wrong-code.png",
+    "screens/auth-fr-dark-wrong-code.png",
+    "screens/auth-pt-BR-light-wrong-code.png",
+    "screens/auth-pt-BR-dark-wrong-code.png",
+    "screens/auth-ja-light-wrong-code.png",
+    "screens/auth-ja-dark-wrong-code.png",
+    "screens/auth-zh-Hans-light-wrong-code.png",
+    "screens/auth-zh-Hans-dark-wrong-code.png",
+    "screens/auth-ko-light-wrong-code.png",
+    "screens/auth-ko-dark-wrong-code.png",
+    "screens/auth-de-dark-signed-in.png",
+    "screens/auth-fr-light-signed-in.png",
+    "screens/auth-pt-BR-dark-signed-in.png",
+    "screens/auth-ja-light-unavailable-enrollment.png",
+    "screens/auth-zh-Hans-dark-unavailable-enrollment.png",
+    "screens/auth-ko-light-unavailable-enrollment.png"
+  ],
+  "primaryFullSizeCount": 18,
+  "followupContactFramesReviewed": 12,
+  "followupContactSheets": [
+    "email-reachability/contact-initial.jpg",
+    "email-reachability/contact-after.jpg"
+  ],
+  "followupFullSizeReviewed": [
+    "email-reachability/fr-light-initial.png",
+    "email-reachability/fr-light-cancel-focused.png"
+  ],
+  "findings": [
+    "Primary states: complete localized copy, distinct controls, visible wrong-code retention; no layout failure seen in the reviewed views.",
+    "Email-step initial logo clipping retained. French/German/Japanese Cancel clips 6px initially; recorded real Tab auto-scroll makes full label/control reachable, Enter opens Home."
+  ]
+}

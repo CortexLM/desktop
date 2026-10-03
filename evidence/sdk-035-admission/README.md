@@ -70,6 +70,14 @@ Repository source, dependencies, lockfile and archived0.3.1 pair checked unchang
 
 ## Coordinator intake and integrated checks
 
+Adopted in `78857365a509d78af10ebdda5b52348a2e50e961`.
+[CI 37097480122](https://github.com/CortexLM/desktop/actions/runs/37097480122) passes all three jobs;
+[Artifact review](ci-7885736/README.md) verifies 96 cases/426 renders per OS, zero retries,
+201 unit passes plus one optional skip, and 37 full-resolution originals from 231 unique PNGs.
+[New-pair installed verification](../mac/7885736/README.md)
+passes six sign-in and two narrow Approvals captures. The original read-only admission statement
+above describes the earlier handoff, before this authorized intake.
+
 [Authorized intake](intake/README.md) applies the exact SDK archive and unchanged peer;
 52 actual-root probe/auth cases pass with one optional backend skip. The lockfile delta is
 SDK-only. Historical archive bytes remain unchanged.
@@ -78,9 +86,27 @@ Integrated checks pass: lint/types/i18n, **201 Node 22 units + one optional skip
 Electron auth/approval-layout cases, rebuilt Linux package/smoke and all 90 embedded members.
 The four narrow approval screenshots show separated labels/descriptions and reachable controls.
 The earlier [28 installed captures](../mac/ffc118a/README.md) remain pinned to SDK 0.3.1;
-changed-pair CI/native checks are pending.
+changed-pair CI and eight installed captures now pass; [independent native review](../mac/7885736/review.md)
+verifies all images and packaged source bindings. A separate [eight-locale layout check](approvals-locales/README.md)
+passes all 16 theme/locale views at 960×640 with exact text geometry and real Tab traversal;
+Linux fonts and two corrected rows only, not all-surface translation/native acceptance.
+The separate [live-auth locale check](auth-locales/README.md) passes all 48 wrong-code,
+signed-in and unavailable-continuation views, plus all seven new auth keys, with private
+state checks and 144 Tab stops. French/German/Japanese email Cancel initially clips 6px;
+six follow-ups prove Tab reveals it and Enter returns Home. Both original clipping and
+Linux-only scope remain explicit.
+One [repository regression](auth-locale-regression/README.md) now repeats the 48 primary
+states and 144 Tab stops through the existing E2E suite. Its initial focused run passes on
+the frozen `7885736` build; next-revision CI remains separate.
 
 A separate real `https://api.cortex.foundation` SDK probe passes on 0.3.5 and returns three
 model IDs. [Log](integrated/real-probe.log): one selected case passed; 44 cases excluded by
 the explicit test-name filter, not retried failures. This is unauthenticated discovery,
 not a real sign-in, streamed response or inference proof.
+The consumer commit, archive hashes and real discovery receipt were returned to the SDK owner
+in [G3 #447](https://github.com/CortexLM/backend/pull/447#issuecomment-5965633627).
+
+Later [public contract readback](public-cloud-readback.json), 05:35 UTC: `/v1/instance` is 404,
+two `kind:chat` models declare reasoning but no vision, the third is an image-generation card.
+The probe's documented 404-only legacy fallback explains reachability. This metadata does
+not supply a vision-capable Chat model or authenticated transport acceptance.

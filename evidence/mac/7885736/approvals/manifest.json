@@ -1,0 +1,1094 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-03T05:09:05.516Z",
+  "expectedAsar": "8bab83a00e049d7f3706b7179b2343be25f39e9b603d360e3f58cf506c9f6d49",
+  "expectedSource": "78857365a509d78af10ebdda5b52348a2e50e961",
+  "sourceBinding": "Coordinator-supplied immutable artifact receipt; source not inferred from runtime metadata",
+  "scriptSHA256": "f286c9423d24f13b1f7d0e6cecb71f6a0ffdce61078769080f64797a5f371d6c",
+  "captures": [
+    {
+      "file": "approvals-960x640-light.png",
+      "native": true,
+      "theme": "light",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "window": {
+        "id": 8349,
+        "active": true,
+        "pid": 49500,
+        "bounds": {
+          "X": 0,
+          "Height": 640,
+          "Y": 30,
+          "Width": 960
+        }
+      },
+      "expectedAsar": "8bab83a00e049d7f3706b7179b2343be25f39e9b603d360e3f58cf506c9f6d49",
+      "expectedSource": "78857365a509d78af10ebdda5b52348a2e50e961",
+      "sha256": "c73b5a599e3d117b56b3a38bc71d97fbf73b854fdfc15570bd587dd65246179e",
+      "after": {
+        "viewport": [
+          960,
+          640
+        ],
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "fonts": "loaded",
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "rect": {
+              "x": 357,
+              "y": 64,
+              "width": 128.25,
+              "height": 16,
+              "right": 485.25,
+              "bottom": 80
+            },
+            "boxes": [
+              {
+                "x": 357,
+                "y": 63,
+                "width": 128.25,
+                "height": 17,
+                "right": 485.25,
+                "bottom": 80
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          },
+          {
+            "text": "Approvals",
+            "rect": {
+              "x": 617,
+              "y": 110,
+              "width": 298,
+              "height": 26,
+              "right": 915,
+              "bottom": 136
+            },
+            "boxes": [
+              {
+                "x": 617,
+                "y": 110,
+                "width": 91.875,
+                "height": 26,
+                "right": 708.875,
+                "bottom": 136
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 166,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 182
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 165,
+                  "width": 85.421875,
+                  "height": 17,
+                  "right": 716.421875,
+                  "bottom": 182
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 184,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 200
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 184,
+                  "width": 145.421875,
+                  "height": 16,
+                  "right": 776.421875,
+                  "bottom": 200
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 798.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 901,
+                "bottom": 197
+              },
+              "boxes": [
+                {
+                  "x": 798.984375,
+                  "y": 169,
+                  "width": 102.015625,
+                  "height": 28,
+                  "right": 901,
+                  "bottom": 197
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 166,
+              "width": 155.984375,
+              "height": 34,
+              "right": 786.984375,
+              "bottom": 200
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 225,
+                "width": 224,
+                "height": 32,
+                "right": 855,
+                "bottom": 257
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 224,
+                  "width": 182.40625,
+                  "height": 17,
+                  "right": 813.40625,
+                  "bottom": 241
+                },
+                {
+                  "x": 631,
+                  "y": 240,
+                  "width": 44.53125,
+                  "height": 17,
+                  "right": 675.53125,
+                  "bottom": 257
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 259,
+                "width": 224,
+                "height": 16,
+                "right": 855,
+                "bottom": 275
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 259,
+                  "width": 170.734375,
+                  "height": 16,
+                  "right": 801.734375,
+                  "bottom": 275
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 867,
+                "y": 240,
+                "width": 34,
+                "height": 20,
+                "right": 901,
+                "bottom": 260
+              },
+              "boxes": [
+                {
+                  "x": 867,
+                  "y": 240,
+                  "width": 34,
+                  "height": 20,
+                  "right": 901,
+                  "bottom": 260
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 225,
+              "width": 224,
+              "height": 50,
+              "right": 855,
+              "bottom": 275
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          }
+        ],
+        "ready": true
+      }
+    },
+    {
+      "file": "approvals-960x640-dark.png",
+      "native": true,
+      "theme": "dark",
+      "pixels": [
+        960,
+        640
+      ],
+      "viewport": [
+        960,
+        640
+      ],
+      "window": {
+        "pid": 49500,
+        "id": 8349,
+        "bounds": {
+          "X": 0,
+          "Height": 640,
+          "Y": 30,
+          "Width": 960
+        },
+        "active": true
+      },
+      "expectedAsar": "8bab83a00e049d7f3706b7179b2343be25f39e9b603d360e3f58cf506c9f6d49",
+      "expectedSource": "78857365a509d78af10ebdda5b52348a2e50e961",
+      "sha256": "4316ca54388fd683e5811b3f8babc57eb7f95feaaa99912bb55acd3842b4d6a9",
+      "after": {
+        "viewport": [
+          960,
+          640
+        ],
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "fonts": "loaded",
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "rect": {
+              "x": 357,
+              "y": 64,
+              "width": 128.25,
+              "height": 16,
+              "right": 485.25,
+              "bottom": 80
+            },
+            "boxes": [
+              {
+                "x": 357,
+                "y": 63,
+                "width": 128.25,
+                "height": 17,
+                "right": 485.25,
+                "bottom": 80
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          },
+          {
+            "text": "Approvals",
+            "rect": {
+              "x": 617,
+              "y": 110,
+              "width": 298,
+              "height": 26,
+              "right": 915,
+              "bottom": 136
+            },
+            "boxes": [
+              {
+                "x": 617,
+                "y": 110,
+                "width": 91.875,
+                "height": 26,
+                "right": 708.875,
+                "bottom": 136
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 166,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 182
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 165,
+                  "width": 85.421875,
+                  "height": 17,
+                  "right": 716.421875,
+                  "bottom": 182
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 184,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 200
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 184,
+                  "width": 145.421875,
+                  "height": 16,
+                  "right": 776.421875,
+                  "bottom": 200
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 798.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 901,
+                "bottom": 197
+              },
+              "boxes": [
+                {
+                  "x": 798.984375,
+                  "y": 169,
+                  "width": 102.015625,
+                  "height": 28,
+                  "right": 901,
+                  "bottom": 197
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 166,
+              "width": 155.984375,
+              "height": 34,
+              "right": 786.984375,
+              "bottom": 200
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 225,
+                "width": 224,
+                "height": 32,
+                "right": 855,
+                "bottom": 257
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 224,
+                  "width": 182.40625,
+                  "height": 17,
+                  "right": 813.40625,
+                  "bottom": 241
+                },
+                {
+                  "x": 631,
+                  "y": 240,
+                  "width": 44.53125,
+                  "height": 17,
+                  "right": 675.53125,
+                  "bottom": 257
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 259,
+                "width": 224,
+                "height": 16,
+                "right": 855,
+                "bottom": 275
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 259,
+                  "width": 170.734375,
+                  "height": 16,
+                  "right": 801.734375,
+                  "bottom": 275
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 867,
+                "y": 240,
+                "width": 34,
+                "height": 20,
+                "right": 901,
+                "bottom": 260
+              },
+              "boxes": [
+                {
+                  "x": 867,
+                  "y": 240,
+                  "width": 34,
+                  "height": 20,
+                  "right": 901,
+                  "bottom": 260
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 225,
+              "width": 224,
+              "height": 50,
+              "right": 855,
+              "bottom": 275
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          }
+        ],
+        "ready": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "before": {
+        "viewport": [
+          960,
+          640
+        ],
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "fonts": "loaded",
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "rect": {
+              "x": 357,
+              "y": 64,
+              "width": 128.25,
+              "height": 16,
+              "right": 485.25,
+              "bottom": 80
+            },
+            "boxes": [
+              {
+                "x": 357,
+                "y": 63,
+                "width": 128.25,
+                "height": 17,
+                "right": 485.25,
+                "bottom": 80
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          },
+          {
+            "text": "Approvals",
+            "rect": {
+              "x": 617,
+              "y": 110,
+              "width": 298,
+              "height": 26,
+              "right": 915,
+              "bottom": 136
+            },
+            "boxes": [
+              {
+                "x": 617,
+                "y": 110,
+                "width": 91.875,
+                "height": 26,
+                "right": 708.875,
+                "bottom": 136
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 166,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 182
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 165,
+                  "width": 85.421875,
+                  "height": 17,
+                  "right": 716.421875,
+                  "bottom": 182
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 184,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 200
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 184,
+                  "width": 145.421875,
+                  "height": 16,
+                  "right": 776.421875,
+                  "bottom": 200
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 798.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 901,
+                "bottom": 197
+              },
+              "boxes": [
+                {
+                  "x": 798.984375,
+                  "y": 169,
+                  "width": 102.015625,
+                  "height": 28,
+                  "right": 901,
+                  "bottom": 197
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 166,
+              "width": 155.984375,
+              "height": 34,
+              "right": 786.984375,
+              "bottom": 200
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 225,
+                "width": 224,
+                "height": 32,
+                "right": 855,
+                "bottom": 257
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 224,
+                  "width": 182.40625,
+                  "height": 17,
+                  "right": 813.40625,
+                  "bottom": 241
+                },
+                {
+                  "x": 631,
+                  "y": 240,
+                  "width": 44.53125,
+                  "height": 17,
+                  "right": 675.53125,
+                  "bottom": 257
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 259,
+                "width": 224,
+                "height": 16,
+                "right": 855,
+                "bottom": 275
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 259,
+                  "width": 170.734375,
+                  "height": 16,
+                  "right": 801.734375,
+                  "bottom": 275
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 867,
+                "y": 240,
+                "width": 34,
+                "height": 20,
+                "right": 901,
+                "bottom": 260
+              },
+              "boxes": [
+                {
+                  "x": 867,
+                  "y": 240,
+                  "width": 34,
+                  "height": 20,
+                  "right": 901,
+                  "bottom": 260
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 225,
+              "width": 224,
+              "height": 50,
+              "right": 855,
+              "bottom": 275
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          }
+        ],
+        "ready": true
+      },
+      "window": {
+        "id": 8349,
+        "active": true,
+        "pid": 49500,
+        "bounds": {
+          "X": 0,
+          "Height": 640,
+          "Y": 30,
+          "Width": 960
+        }
+      },
+      "keyboard": "Usage, Tab to Deep code, Tab to Notify approvals; enabled and center-hit"
+    },
+    {
+      "theme": "dark",
+      "before": {
+        "viewport": [
+          960,
+          640
+        ],
+        "window": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "right": 960,
+          "bottom": 640
+        },
+        "fonts": "loaded",
+        "headings": [
+          {
+            "text": "Cortex Code settings",
+            "rect": {
+              "x": 357,
+              "y": 64,
+              "width": 128.25,
+              "height": 16,
+              "right": 485.25,
+              "bottom": 80
+            },
+            "boxes": [
+              {
+                "x": 357,
+                "y": 63,
+                "width": 128.25,
+                "height": 17,
+                "right": 485.25,
+                "bottom": 80
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          },
+          {
+            "text": "Approvals",
+            "rect": {
+              "x": 617,
+              "y": 110,
+              "width": 298,
+              "height": 26,
+              "right": 915,
+              "bottom": 136
+            },
+            "boxes": [
+              {
+                "x": 617,
+                "y": 110,
+                "width": 91.875,
+                "height": 26,
+                "right": 708.875,
+                "bottom": 136
+              }
+            ],
+            "opaque": true,
+            "visible": true,
+            "hit": true
+          }
+        ],
+        "rows": [
+          {
+            "title": "Default model",
+            "description": "For new tasks and reviews",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 166,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 182
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 165,
+                  "width": 85.421875,
+                  "height": 17,
+                  "right": 716.421875,
+                  "bottom": 182
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 184,
+                "width": 155.984375,
+                "height": 16,
+                "right": 786.984375,
+                "bottom": 200
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 184,
+                  "width": 145.421875,
+                  "height": 16,
+                  "right": 776.421875,
+                  "bottom": 200
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 798.984375,
+                "y": 169,
+                "width": 102.015625,
+                "height": 28,
+                "right": 901,
+                "bottom": 197
+              },
+              "boxes": [
+                {
+                  "x": 798.984375,
+                  "y": 169,
+                  "width": 102.015625,
+                  "height": 28,
+                  "right": 901,
+                  "bottom": 197
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 166,
+              "width": 155.984375,
+              "height": 34,
+              "right": 786.984375,
+              "bottom": 200
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          },
+          {
+            "title": "Notify me when an approval is waiting",
+            "description": "Desktop and phone notification",
+            "titlePaint": {
+              "rect": {
+                "x": 631,
+                "y": 225,
+                "width": 224,
+                "height": 32,
+                "right": 855,
+                "bottom": 257
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 224,
+                  "width": 182.40625,
+                  "height": 17,
+                  "right": 813.40625,
+                  "bottom": 241
+                },
+                {
+                  "x": 631,
+                  "y": 240,
+                  "width": 44.53125,
+                  "height": 17,
+                  "right": 675.53125,
+                  "bottom": 257
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "descriptionPaint": {
+              "rect": {
+                "x": 631,
+                "y": 259,
+                "width": 224,
+                "height": 16,
+                "right": 855,
+                "bottom": 275
+              },
+              "boxes": [
+                {
+                  "x": 631,
+                  "y": 259,
+                  "width": 170.734375,
+                  "height": 16,
+                  "right": 801.734375,
+                  "bottom": 275
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "control": {
+              "rect": {
+                "x": 867,
+                "y": 240,
+                "width": 34,
+                "height": 20,
+                "right": 901,
+                "bottom": 260
+              },
+              "boxes": [
+                {
+                  "x": 867,
+                  "y": 240,
+                  "width": 34,
+                  "height": 20,
+                  "right": 901,
+                  "bottom": 260
+                }
+              ],
+              "opaque": true,
+              "visible": true,
+              "hit": true
+            },
+            "allocated": {
+              "x": 631,
+              "y": 225,
+              "width": 224,
+              "height": 50,
+              "right": 855,
+              "bottom": 275
+            },
+            "below": true,
+            "fits": true,
+            "clear": true,
+            "ready": true
+          }
+        ],
+        "ready": true
+      },
+      "window": {
+        "pid": 49500,
+        "id": 8349,
+        "bounds": {
+          "X": 0,
+          "Height": 640,
+          "Y": 30,
+          "Width": 960
+        },
+        "active": true
+      },
+      "keyboard": "Usage, Tab to Deep code, Tab to Notify approvals; enabled and center-hit"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "cleanup": {
+    "ordinaryHomeEnglishDark": true
+  },
+  "installedBefore": {
+    "pids": [
+      49500
+    ],
+    "asarSHA256": "8bab83a00e049d7f3706b7179b2343be25f39e9b603d360e3f58cf506c9f6d49",
+    "executable": "/Applications/Cortex.app/Contents/MacOS/Cortex"
+  },
+  "finishedAt": "2026-10-03T05:09:27.127Z",
+  "scope": "Two installed preview-layout/Tab captures at measured 960x640; no live account, permission policy, SDK auth or inference claim"
+}

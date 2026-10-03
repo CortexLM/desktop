@@ -1,0 +1,40 @@
+0_Lint, typecheck, unit tests, i18n audit.txt
+2026-10-03T04:43:25.4343064Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +83ca246c73ca185adae5fb657b54893193be637c:refs/remotes/pull/36/merge
+2026-10-03T04:44:11.4758085Z  * [new ref]         83ca246c73ca185adae5fb657b54893193be637c -> pull/36/merge
+2026-10-03T04:44:12.9879585Z 83ca246c73ca185adae5fb657b54893193be637c
+2026-10-03T04:44:16.4206897Z ##[group]Run bun install --frozen-lockfile
+2026-10-03T04:44:16.4207152Z bun install --frozen-lockfile
+2026-10-03T04:45:04.1025904Z  Test Files  18 passed (18)
+2026-10-03T04:45:04.1041187Z       Tests  201 passed | 1 skipped (202)
+2026-10-03T04:45:05.1775045Z i18n audit: 64 files, 2272 keys used, 3405 keys in en, 0 problem(s)
+1_macOS build, package, launch.txt
+2026-10-03T04:43:44.1217750Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +83ca246c73ca185adae5fb657b54893193be637c:refs/remotes/pull/36/merge
+2026-10-03T04:44:18.1813300Z  * [new ref]         83ca246c73ca185adae5fb657b54893193be637c -> pull/36/merge
+2026-10-03T04:44:19.7277740Z 83ca246c73ca185adae5fb657b54893193be637c
+2026-10-03T04:44:20.7145350Z ##[group]Run bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T04:44:20.7145790Z bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T04:51:59.1727000Z rendered 426 screen states
+2026-10-03T04:53:31.8008820Z   96 passed (9.1m)
+2026-10-03T04:53:49.5430860Z window: Cortex cortex://app/index.html
+2026-10-03T04:53:59.8538700Z could not create image from display
+2026-10-03T04:53:59.8540840Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+2026-10-03T04:53:59.8541610Z could not create image from display
+2026-10-03T04:53:59.8544680Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+2026-10-03T04:53:59.8545860Z SMOKE OK
+2026-10-03T04:54:01.9191750Z SHA256 digest of uploaded artifact zip is d33dff81e8444a990318d5dfd780bb5e56842aadeda60339c82d3498f501dbb7
+2026-10-03T04:54:02.1934250Z Artifact macos.zip successfully finalized. Artifact ID 11265500428
+2026-10-03T04:54:02.1934820Z Artifact macos has been successfully uploaded! Final size is 24878140 bytes. Artifact ID is 11265500428
+2026-10-03T04:54:05.6409600Z SHA256 digest of uploaded artifact zip is bf69e3dd27b82526184f2358529df6f80589900499f03ff627fd80e07bcbd04e
+2026-10-03T04:54:05.9193780Z Artifact cortex-mac-arm64-zip.zip successfully finalized. Artifact ID 11265650279
+2026-10-03T04:54:05.9194440Z Artifact cortex-mac-arm64-zip has been successfully uploaded! Final size is 144641037 bytes. Artifact ID is 11265650279
+2_E2E (Playwright + Electron, Linux).txt
+2026-10-03T04:43:33.2304207Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +83ca246c73ca185adae5fb657b54893193be637c:refs/remotes/pull/36/merge
+2026-10-03T04:44:17.1935761Z  * [new ref]         83ca246c73ca185adae5fb657b54893193be637c -> pull/36/merge
+2026-10-03T04:44:19.0705257Z 83ca246c73ca185adae5fb657b54893193be637c
+2026-10-03T04:44:19.9145662Z ##[group]Run bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T04:44:19.9146039Z bun install --frozen-lockfile && node node_modules/electron/install.js
+2026-10-03T04:47:47.2966721Z rendered 426 screen states
+2026-10-03T04:47:47.3155800Z   96 passed (3.3m)
+2026-10-03T04:47:50.6619376Z SHA256 digest of uploaded artifact zip is b6810a8f0b48073803995fe3a00f9038b86c551fad3032468c6c2f78459ce527
+2026-10-03T04:47:51.1373459Z Artifact e2e-linux.zip successfully finalized. Artifact ID 11264664293
+2026-10-03T04:47:51.1374155Z Artifact e2e-linux has been successfully uploaded! Final size is 25630879 bytes. Artifact ID is 11264664293

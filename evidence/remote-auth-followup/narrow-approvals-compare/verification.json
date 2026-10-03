@@ -1,0 +1,146 @@
+{
+  "sourceRevisionContext": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "capturedFingerprint": "71772215cd57c34f683d85aa748e6039af25a187249d50863bc97bf3ff362ccd",
+  "sourceCount": 473,
+  "sourceBasis": "ffc118a Git blobs plus exactly lot-code.css/lot-code.tsx snapshot bytes; full recorded fingerprint matches.",
+  "captureBunLockSha256": "8f5b7dcfbf8e7d3a82f8dfc2b9b8327498fd474836cd34c13bc629b456791d8b",
+  "currentBunLockSha256AtReview": "dada4e8c730bd0514dd0506c7ee7b453ac1f698bd509561a8ad43367b796f8a6",
+  "currentRootFingerprintClaim": false,
+  "sourceDelta": {
+    "file": "source-delta.patch.gz",
+    "sha256": "522d9d2c7f4780e7427a5d4526189f0918e3a597e398d29f471b0960fae78b82",
+    "uncompressedSha256": "61280a1f862b717009ad6f5b80df50c950839605ff71fa992e3a2abe3874e1a1",
+    "losslessVerified": true
+  },
+  "originalImagesVerified": 24,
+  "referenceImagesCompared": 8,
+  "allFrozenImagesVerified": 410,
+  "frozenSourceFilesVerified": 106,
+  "comparatorSha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+  "reportSha256": "b621a712437b5a6a0b00db185baa0a51a47aea40665592f20e60024db4fcdfb2",
+  "provenanceSha256": "ff19f3e677b536ebdb0447be1cf33d20dbcc0b8ac1813a14f04e67a760023560",
+  "assets": [
+    {
+      "url": "http://127.0.0.1:5309/",
+      "sha256": "614cf4bee3f82bce9f4a671fd4b54143873e5680b9ae1b4f2e6b98ec5f5d5b70",
+      "bytes": 664,
+      "reviewSha256": "614cf4bee3f82bce9f4a671fd4b54143873e5680b9ae1b4f2e6b98ec5f5d5b70",
+      "reviewBytes": 664,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/bots-Dhnxap2k.js",
+      "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+      "bytes": 5242,
+      "reviewSha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+      "reviewBytes": 5242,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/chat-DPP7jha6.js",
+      "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+      "bytes": 21015,
+      "reviewSha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+      "reviewBytes": 21015,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/code-l1ImvW5S.js",
+      "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+      "bytes": 17357,
+      "reviewSha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+      "reviewBytes": 17357,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/files-DIk1qP8R.js",
+      "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+      "bytes": 23724,
+      "reviewSha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+      "reviewBytes": 23724,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/index-BLVQW-LL.css",
+      "sha256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+      "bytes": 205331,
+      "reviewSha256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+      "reviewBytes": 205331,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/index-C95KiWJP.js",
+      "sha256": "64217a30187c0f5b9ee452de97542add0ae11e37aa9dcaced7b5ef6f1664f3e7",
+      "bytes": 2440995,
+      "reviewSha256": "64217a30187c0f5b9ee452de97542add0ae11e37aa9dcaced7b5ef6f1664f3e7",
+      "reviewBytes": 2440995,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/shell-CYBsECV8.js",
+      "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+      "bytes": 1030,
+      "reviewSha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+      "reviewBytes": 1030,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/system-D9_n4Goj.js",
+      "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+      "bytes": 9120,
+      "reviewSha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+      "reviewBytes": 9120,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/work-CXx4q0-W.js",
+      "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+      "bytes": 14410,
+      "reviewSha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+      "reviewBytes": 14410,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/fonts/Geist-Variable.woff2",
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+      "bytes": 69652,
+      "reviewSha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+      "reviewBytes": 69652,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/fonts/GeistMono-Variable.woff2",
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+      "bytes": 71368,
+      "reviewSha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+      "reviewBytes": 71368,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/aube.png",
+      "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+      "bytes": 1405580,
+      "reviewSha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+      "reviewBytes": 1405580,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/crepuscule.png",
+      "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+      "bytes": 1405004,
+      "reviewSha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+      "reviewBytes": 1405004,
+      "matches": true
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/prairie.png",
+      "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+      "bytes": 1242519,
+      "reviewSha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+      "reviewBytes": 1242519,
+      "matches": true
+    }
+  ],
+  "assetFingerprint": "97caab987cdba834c05f3f8cdb21489e1b4ac636ebd326dcc58fe7cfa5c79682",
+  "ignoredPreviewApiErrors": 16
+}
