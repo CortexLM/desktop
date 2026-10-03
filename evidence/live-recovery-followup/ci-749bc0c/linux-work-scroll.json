@@ -1,0 +1,220 @@
+[
+  {
+    "title": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+    "status": "passed",
+    "steps": [
+      {
+        "title": "cold fonts finish at the actual bottom",
+        "duration": 315
+      },
+      {
+        "title": "warm-font remount still opens at the bottom",
+        "duration": 214
+      },
+      {
+        "title": "wheel intent before font readiness keeps the user's reading position",
+        "duration": 854
+      },
+      {
+        "title": "a new variant cancels the old pending bottom scroll",
+        "duration": 756
+      },
+      {
+        "title": "leaving the task cancels its pending scroll",
+        "duration": 651
+      }
+    ],
+    "metrics": {
+      "cold-fonts-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 409,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "warm-fonts-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "user-wheel-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 229,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 229,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 163,
+          "fonts": "loaded"
+        }
+      },
+      "variant-change-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+    "status": "passed",
+    "steps": [
+      {
+        "title": "cold fonts finish at the actual bottom",
+        "duration": 371
+      },
+      {
+        "title": "warm-font remount still opens at the bottom",
+        "duration": 183
+      },
+      {
+        "title": "wheel intent before font readiness keeps the user's reading position",
+        "duration": 838
+      },
+      {
+        "title": "a new variant cancels the old pending bottom scroll",
+        "duration": 445
+      },
+      {
+        "title": "leaving the task cancels its pending scroll",
+        "duration": 563
+      }
+    ],
+    "metrics": {
+      "cold-fonts-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 409,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "warm-fonts-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "user-wheel-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 229,
+          "height": 1068,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 229,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 163,
+          "fonts": "loaded"
+        }
+      },
+      "variant-change-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    "error": null
+  }
+]

@@ -47,10 +47,10 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
 | `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe |
 
-`vendor/` holds unmodified `@cortex/sdk` 0.2.0 and its optional peer `@cortex/api-types`
-0.1.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
-The corrected SDK-owner 0.3.1/0.2.0 handoff against schema blob `d6d46014` is under desktop
-admission review; the currently vendored pair does not make remote authentication live.
+`vendor/` holds unmodified `@cortex/sdk` 0.3.1 and its optional peer `@cortex/api-types`
+0.2.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
+The SDK-owner handoff against schema blob `d6d46014` passes scoped desktop admission;
+dependency adoption does not make remote authentication live. Earlier archives remain retained.
 Remote authentication/model routing/inference remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
@@ -146,6 +146,8 @@ Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme 
 one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
 Reduced motion disables CSS transitions entirely to avoid stale inherited theme colors;
 animations retain 1ms so completion hooks fire.
+Skipped native view transitions consume only the `ready` AbortError; route/theme updates
+still commit, while update-callback failures remain observable.
 Toast Undo remains an accessible action. See [`docs/testing.md`](./docs/testing.md).
 Work columns wrap within narrow content panes; transcript toasts anchor above the actual
 composer dock, including attachments and nested Work transcripts at every window width.

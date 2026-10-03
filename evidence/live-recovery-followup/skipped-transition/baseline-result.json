@@ -1,0 +1,49 @@
+{
+  "motion": false,
+  "route": "#/work-home?preview=&theme=dark",
+  "theme": "dark",
+  "records": [
+    {
+      "kind": "route",
+      "callbacks": 1,
+      "handled": false,
+      "rejected": null,
+      "caller": "Error\n    at document.startViewTransition (eval at evaluate (:311:30), <anonymous>:13:153)\n    at Navigation.n (cortex://app/assets/index-BiiO_bNG.js:202:82553)\n    at rh (cortex://app/assets/index-BiiO_bNG.js:120:65178)\n    at onChange (cortex://app/assets/index-BiiO_bNG.js:202:70100)\n    at r (cortex://app/assets/index-BiiO_bNG.js:120:53685)",
+      "native": true
+    },
+    {
+      "kind": "theme",
+      "callbacks": 1,
+      "handled": false,
+      "rejected": null,
+      "caller": "Error\n    at document.startViewTransition (eval at evaluate (:311:30), <anonymous>:13:153)\n    at _ (cortex://app/assets/index-BiiO_bNG.js:202:67403)\n    at onClick (cortex://app/assets/index-BiiO_bNG.js:202:74812)\n    at Jf (cortex://app/assets/index-BiiO_bNG.js:8:139351)\n    at cortex://app/assets/index-BiiO_bNG.js:8:144082\n    at xn (cortex://app/assets/index-BiiO_bNG.js:8:15195)\n    at ep (cortex://app/assets/index-BiiO_bNG.js:8:140578)\n    at wh (cortex://app/assets/index-BiiO_bNG.js:9:42621)\n    at Sh (cortex://app/assets/index-BiiO_bNG.js:9:42439)",
+      "native": true
+    }
+  ],
+  "unhandled": [
+    {
+      "source": "ready",
+      "kind": "route",
+      "name": "AbortError",
+      "message": "Transition was skipped"
+    },
+    {
+      "source": "ready",
+      "kind": "theme",
+      "name": "AbortError",
+      "message": "Transition was skipped"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AbortError",
+      "message": "Transition was skipped",
+      "stack": ""
+    },
+    {
+      "name": "AbortError",
+      "message": "Transition was skipped",
+      "stack": ""
+    }
+  ]
+}

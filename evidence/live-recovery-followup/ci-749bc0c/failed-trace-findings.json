@@ -1,0 +1,243 @@
+{
+  "completedSteps": [
+    {
+      "before": {
+        "type": "before",
+        "callId": "test.step@44",
+        "stepId": "test.step@44",
+        "startTime": 506951.566,
+        "class": "Test",
+        "method": "test.step",
+        "title": "cold fonts finish at the actual bottom",
+        "params": {},
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 78,
+            "column": 7
+          }
+        ]
+      },
+      "after": {
+        "type": "after",
+        "callId": "test.step@44",
+        "endTime": 507826.177,
+        "annotations": []
+      }
+    },
+    {
+      "before": {
+        "type": "before",
+        "callId": "test.step@65",
+        "stepId": "test.step@65",
+        "startTime": 507826.261,
+        "class": "Test",
+        "method": "test.step",
+        "title": "warm-font remount still opens at the bottom",
+        "params": {},
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 90,
+            "column": 7
+          }
+        ]
+      },
+      "after": {
+        "type": "after",
+        "callId": "test.step@65",
+        "endTime": 508331.279,
+        "annotations": []
+      }
+    },
+    {
+      "before": {
+        "type": "before",
+        "callId": "test.step@78",
+        "stepId": "test.step@78",
+        "startTime": 508331.38,
+        "class": "Test",
+        "method": "test.step",
+        "title": "wheel intent before font readiness keeps the user's reading position",
+        "params": {},
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 102,
+            "column": 7
+          }
+        ]
+      },
+      "after": {
+        "type": "after",
+        "callId": "test.step@78",
+        "endTime": 508873.337,
+        "annotations": []
+      }
+    },
+    {
+      "before": {
+        "type": "before",
+        "callId": "test.step@113",
+        "stepId": "test.step@113",
+        "startTime": 508873.461,
+        "class": "Test",
+        "method": "test.step",
+        "title": "a new variant cancels the old pending bottom scroll",
+        "params": {},
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 118,
+            "column": 7
+          }
+        ]
+      },
+      "after": {
+        "type": "after",
+        "callId": "test.step@113",
+        "endTime": 509410.005,
+        "annotations": []
+      }
+    },
+    {
+      "before": {
+        "type": "before",
+        "callId": "test.step@136",
+        "stepId": "test.step@136",
+        "startTime": 509410.09,
+        "class": "Test",
+        "method": "test.step",
+        "title": "leaving the task cancels its pending scroll",
+        "params": {},
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 129,
+            "column": 7
+          }
+        ]
+      },
+      "after": {
+        "type": "after",
+        "callId": "test.step@136",
+        "endTime": 509672.333,
+        "annotations": []
+      }
+    }
+  ],
+  "pollSamples": [
+    {
+      "sample": {
+        "type": "after",
+        "callId": "expect@95",
+        "endTime": 508560.717,
+        "annotations": [],
+        "error": {
+          "name": "",
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m100\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+          "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m100\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:107:9\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:102:7"
+        }
+      },
+      "parentBefore": {
+        "type": "before",
+        "callId": "expect@93",
+        "stepId": "expect@93",
+        "parentId": "test.step@78",
+        "startTime": 508554.525,
+        "class": "Test",
+        "method": "expect",
+        "title": "Expect \"poll toBeGreaterThan\"",
+        "params": {
+          "expected": "100"
+        },
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 107,
+            "column": 90
+          }
+        ]
+      },
+      "parentAfter": {
+        "type": "after",
+        "callId": "expect@93",
+        "endTime": 508672.986,
+        "annotations": []
+      },
+      "disposition": "Intermediate assertion-poll miss; parent poll passed within the same test attempt."
+    },
+    {
+      "sample": {
+        "type": "after",
+        "callId": "expect@110",
+        "endTime": 508761.827,
+        "annotations": [],
+        "error": {
+          "name": "",
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m180\u001b[39m\nReceived:   \u001b[31m230\u001b[39m",
+          "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m180\u001b[39m\nReceived:   \u001b[31m230\u001b[39m\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:115:9\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:102:7"
+        }
+      },
+      "parentBefore": {
+        "type": "before",
+        "callId": "expect@108",
+        "stepId": "expect@108",
+        "parentId": "test.step@78",
+        "startTime": 508757.158,
+        "class": "Test",
+        "method": "expect",
+        "title": "Expect \"poll toBeLessThan\"",
+        "params": {
+          "expected": "180"
+        },
+        "stack": [
+          {
+            "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+            "line": 115,
+            "column": 66
+          }
+        ]
+      },
+      "parentAfter": {
+        "type": "after",
+        "callId": "expect@108",
+        "endTime": 508873.323,
+        "annotations": []
+      },
+      "disposition": "Intermediate assertion-poll miss; parent poll passed within the same test attempt."
+    }
+  ],
+  "finalFailure": {
+    "before": {
+      "type": "before",
+      "callId": "expect@160",
+      "stepId": "expect@160",
+      "startTime": 509672.538,
+      "class": "Test",
+      "method": "expect",
+      "title": "Expect \"toEqual\"",
+      "params": {
+        "expected": "[]"
+      },
+      "stack": [
+        {
+          "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+          "line": 139,
+          "column": 22
+        }
+      ]
+    },
+    "after": {
+      "type": "after",
+      "callId": "expect@160",
+      "endTime": 509673.959,
+      "annotations": [],
+      "error": {
+        "name": "",
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:139:22"
+      }
+    }
+  }
+}

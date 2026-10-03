@@ -1,6 +1,9 @@
 # Live recovery corrections
 
-Recovery implementation and local checks pass. Changed-revision CI/native checks are pending;
+Recovery application `749bc0c035391d72aeafb4b5ce39cc0aa5342830` is pushed. Local checks pass;
+[CI 37088533094](https://github.com/CortexLM/desktop/actions/runs/37088533094) passes checks
+and Linux 83/83; macOS 82/83 exposes an unhandled skipped-view-transition rejection.
+Mac packaging/smoke did not run; matching installed-native checks remain pending;
 the earlier green CI and full native/reference refresh remain bound to `f9aca44`/`6d96535`.
 The full [source/product audit](../current-full-followup/completion-audit.md) retains broader
 unfinished live workflows; this batch addresses the concrete failures below.
@@ -89,3 +92,28 @@ before idle/deleted events and the existing query sequence guard rejects older l
   [captured renderer](packaged-linux.png). This receipt precedes commit assignment.
 - [Final memory images](memory-final/contact.jpg) cover all fourteen new captures in both
   themes. Changed application CI, macOS package and installed-native checks remain pending.
+- [Independent local artifact review](local-review/README.md) verifies the 83-case report,
+  all 92 unique attached images, 32 full-resolution selections and eight geometry attachments.
+  Its full-run pin still predates the separate final return-navigation correction.
+- [Final source-bound comparison](compare-final/README.md) covers 58 renders/42 references,
+  sixteen explicit Settings gaps, maximum 0.0638503% (rounded 0.06%). The final Done frames
+  retain 236/240 threshold mismatches but have zero transcript offset. This final run is
+  separate from the intermediate two-state 13/235 result and all historical raw captures.
+
+## Changed-revision CI failure
+
+At `749bc0c`, the dark macOS Work-scroll test passes its geometry/cancellation checks but
+collects `Transition was skipped` in the renderer-error assertion. The assertion remains
+intact. The scoped correction handles native `ready` AbortError only;
+[source review](skipped-transition/independent-review.md) approves it. After rebuilding,
+[seven Electron regressions](skipped-transition/test-after.log) pass: route/theme callbacks
+still commit and injected callback failures remain reported. The original macOS trigger
+is not established by its trace; real native skips reproduce both application call sites.
+Changed-revision CI remains pending.
+Earlier Mac `f9aca44` remains installed. Prepared recovery capture scripts have not run;
+the reserved Mac lease was released after the skipped-package result.
+
+[CI artifact review](ci-749bc0c/README.md) verifies 83 Linux passes, 82 macOS passes/one
+failure and zero retries, plus 185 unique PNGs/43 full-resolution selections. Its package
+steps are explicitly skipped. SDK 0.3.1/0.2.0 intake independently passes 44 probe cases plus
+one optional backend skip; new sign-in integration is separate work.

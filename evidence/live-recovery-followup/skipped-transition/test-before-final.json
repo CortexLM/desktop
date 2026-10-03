@@ -1,0 +1,205 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/navigation.spec.ts",
+      "--grep",
+      "skipped native route",
+      "--workers=1",
+      "--output=/tmp/opencode/skipped-transition-fix/test-before-final-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/skipped-transition-fix/test-before-final-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "skipped native route and theme transitions preserve updates and report callback errors",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3302,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"route\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"theme\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m  ]\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"route\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"theme\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m  ]\u001b[22m\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:63:34",
+                    "location": {
+                      "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                      "column": 34,
+                      "line": 63
+                    },
+                    "snippet": "  61 |     });\n  62 |     await test.info().attach(\"skipped-native-transitions\", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: \"application/json\" });\n> 63 |     expect.soft(skipped.records).toEqual([\"route\", \"theme\"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: \"AbortError\", native: true })));\n     |                                  ^\n  64 |     expect.soft(skipped.unhandled).toEqual([]);\n  65 |     expect.soft(errors).toEqual([]);\n  66 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                        "column": 34,
+                        "line": 63
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 4\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"route\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m    Object {\u001b[22m\n\u001b[2m      \"callbacks\": 1,\u001b[22m\n\u001b[2m      \"kind\": \"theme\",\u001b[22m\n\u001b[2m      \"native\": true,\u001b[22m\n\u001b[32m-     \"readyError\": \"AbortError\",\u001b[39m\n\u001b[32m-     \"readyHandled\": true,\u001b[39m\n\u001b[31m+     \"readyError\": null,\u001b[39m\n\u001b[31m+     \"readyHandled\": false,\u001b[39m\n\u001b[2m    },\u001b[22m\n\u001b[2m  ]\u001b[22m\n\n  61 |     });\n  62 |     await test.info().attach(\"skipped-native-transitions\", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: \"application/json\" });\n> 63 |     expect.soft(skipped.records).toEqual([\"route\", \"theme\"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: \"AbortError\", native: true })));\n     |                                  ^\n  64 |     expect.soft(skipped.unhandled).toEqual([]);\n  65 |     expect.soft(errors).toEqual([]);\n  66 |\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:63:34"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                        "column": 36,
+                        "line": 64
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 14\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"kind\": \"route\",\u001b[39m\n\u001b[31m+     \"message\": \"Transition was skipped\",\u001b[39m\n\u001b[31m+     \"name\": \"AbortError\",\u001b[39m\n\u001b[31m+     \"source\": \"ready\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"kind\": \"theme\",\u001b[39m\n\u001b[31m+     \"message\": \"Transition was skipped\",\u001b[39m\n\u001b[31m+     \"name\": \"AbortError\",\u001b[39m\n\u001b[31m+     \"source\": \"ready\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  62 |     await test.info().attach(\"skipped-native-transitions\", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: \"application/json\" });\n  63 |     expect.soft(skipped.records).toEqual([\"route\", \"theme\"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: \"AbortError\", native: true })));\n> 64 |     expect.soft(skipped.unhandled).toEqual([]);\n     |                                    ^\n  65 |     expect.soft(errors).toEqual([]);\n  66 |\n  67 |     // A skipped animation must still expose an asynchronously rejected update callback.\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:64:36"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                        "column": 25,
+                        "line": 65
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  63 |     expect.soft(skipped.records).toEqual([\"route\", \"theme\"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: \"AbortError\", native: true })));\n  64 |     expect.soft(skipped.unhandled).toEqual([]);\n> 65 |     expect.soft(errors).toEqual([]);\n     |                         ^\n  66 |\n  67 |     // A skipped animation must still expose an asynchronously rejected update callback.\n  68 |     await probe.evaluate((probe) => probe.fail());\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:65:25"
+                    },
+                    {
+                      "location": {
+                        "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                        "column": 20,
+                        "line": 79
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 0\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[2m    \"Native route callback failed\",\u001b[22m\n\u001b[2m    \"Native route callback failed\",\u001b[22m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[2m    \"Native theme callback failed\",\u001b[22m\n\u001b[2m  ]\u001b[22m\n\n  77 |     const failed = await probe.evaluate((probe) => probe.read());\n  78 |     await test.info().attach(\"native-callback-errors\", { body: JSON.stringify({ ...failed, errors }, null, 2), contentType: \"application/json\" });\n> 79 |     expect(errors).toEqual([\"Native route callback failed\", \"Native route callback failed\", \"Native theme callback failed\"]);\n     |                    ^\n  80 |     expect(failed.records.slice(2)).toEqual([\"route\", \"theme\"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: \"AbortError\", native: true })));\n  81 |     await probe.dispose();\n  82 |   } finally { await app.close(); }\n    at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts:79:20"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T02:30:17.613Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "skipped-native-transitions",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNvcmRzIjogWwogICAgewogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogZmFsc2UsCiAgICAgICJyZWFkeUVycm9yIjogbnVsbCwKICAgICAgIm5hdGl2ZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJraW5kIjogInRoZW1lIiwKICAgICAgImNhbGxiYWNrcyI6IDEsCiAgICAgICJyZWFkeUhhbmRsZWQiOiBmYWxzZSwKICAgICAgInJlYWR5RXJyb3IiOiBudWxsLAogICAgICAibmF0aXZlIjogdHJ1ZQogICAgfQogIF0sCiAgInVuaGFuZGxlZCI6IFsKICAgIHsKICAgICAgInNvdXJjZSI6ICJyZWFkeSIsCiAgICAgICJraW5kIjogInJvdXRlIiwKICAgICAgIm5hbWUiOiAiQWJvcnRFcnJvciIsCiAgICAgICJtZXNzYWdlIjogIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiCiAgICB9LAogICAgewogICAgICAic291cmNlIjogInJlYWR5IiwKICAgICAgImtpbmQiOiAidGhlbWUiLAogICAgICAibmFtZSI6ICJBYm9ydEVycm9yIiwKICAgICAgIm1lc3NhZ2UiOiAiVHJhbnNpdGlvbiB3YXMgc2tpcHBlZCIKICAgIH0KICBdLAogICJlcnJvcnMiOiBbCiAgICAiVHJhbnNpdGlvbiB3YXMgc2tpcHBlZCIsCiAgICAiVHJhbnNpdGlvbiB3YXMgc2tpcHBlZCIKICBdCn0="
+                    },
+                    {
+                      "name": "native-callback-errors",
+                      "contentType": "application/json",
+                      "body": "ewogICJyZWNvcmRzIjogWwogICAgewogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogZmFsc2UsCiAgICAgICJyZWFkeUVycm9yIjogbnVsbCwKICAgICAgIm5hdGl2ZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJraW5kIjogInRoZW1lIiwKICAgICAgImNhbGxiYWNrcyI6IDEsCiAgICAgICJyZWFkeUhhbmRsZWQiOiBmYWxzZSwKICAgICAgInJlYWR5RXJyb3IiOiBudWxsLAogICAgICAibmF0aXZlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImtpbmQiOiAicm91dGUiLAogICAgICAiY2FsbGJhY2tzIjogMSwKICAgICAgInJlYWR5SGFuZGxlZCI6IGZhbHNlLAogICAgICAicmVhZHlFcnJvciI6IG51bGwsCiAgICAgICJuYXRpdmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAia2luZCI6ICJ0aGVtZSIsCiAgICAgICJjYWxsYmFja3MiOiAxLAogICAgICAicmVhZHlIYW5kbGVkIjogZmFsc2UsCiAgICAgICJyZWFkeUVycm9yIjogbnVsbCwKICAgICAgIm5hdGl2ZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmhhbmRsZWQiOiBbCiAgICB7CiAgICAgICJzb3VyY2UiOiAicmVhZHkiLAogICAgICAia2luZCI6ICJyb3V0ZSIsCiAgICAgICJuYW1lIjogIkFib3J0RXJyb3IiLAogICAgICAibWVzc2FnZSI6ICJUcmFuc2l0aW9uIHdhcyBza2lwcGVkIgogICAgfSwKICAgIHsKICAgICAgInNvdXJjZSI6ICJyZWFkeSIsCiAgICAgICJraW5kIjogInRoZW1lIiwKICAgICAgIm5hbWUiOiAiQWJvcnRFcnJvciIsCiAgICAgICJtZXNzYWdlIjogIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiCiAgICB9LAogICAgewogICAgICAic291cmNlIjogInJlYWR5IiwKICAgICAgImtpbmQiOiAicm91dGUiLAogICAgICAibmFtZSI6ICJBYm9ydEVycm9yIiwKICAgICAgIm1lc3NhZ2UiOiAiVHJhbnNpdGlvbiB3YXMgc2tpcHBlZCIKICAgIH0sCiAgICB7CiAgICAgICJzb3VyY2UiOiAidXBkYXRlQ2FsbGJhY2tEb25lIiwKICAgICAgImtpbmQiOiAicm91dGUiLAogICAgICAibmFtZSI6ICJFcnJvciIsCiAgICAgICJtZXNzYWdlIjogIk5hdGl2ZSByb3V0ZSBjYWxsYmFjayBmYWlsZWQiCiAgICB9LAogICAgewogICAgICAic291cmNlIjogImZpbmlzaGVkIiwKICAgICAgImtpbmQiOiAicm91dGUiLAogICAgICAibmFtZSI6ICJFcnJvciIsCiAgICAgICJtZXNzYWdlIjogIk5hdGl2ZSByb3V0ZSBjYWxsYmFjayBmYWlsZWQiCiAgICB9LAogICAgewogICAgICAic291cmNlIjogInJlYWR5IiwKICAgICAgImtpbmQiOiAidGhlbWUiLAogICAgICAibmFtZSI6ICJBYm9ydEVycm9yIiwKICAgICAgIm1lc3NhZ2UiOiAiVHJhbnNpdGlvbiB3YXMgc2tpcHBlZCIKICAgIH0sCiAgICB7CiAgICAgICJzb3VyY2UiOiAidXBkYXRlQ2FsbGJhY2tEb25lIiwKICAgICAgImtpbmQiOiAidGhlbWUiLAogICAgICAibmFtZSI6ICJFcnJvciIsCiAgICAgICJtZXNzYWdlIjogIk5hdGl2ZSB0aGVtZSBjYWxsYmFjayBmYWlsZWQiCiAgICB9CiAgXSwKICAiZXJyb3JzIjogWwogICAgIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiLAogICAgIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiLAogICAgIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiLAogICAgIk5hdGl2ZSByb3V0ZSBjYWxsYmFjayBmYWlsZWQiLAogICAgIk5hdGl2ZSByb3V0ZSBjYWxsYmFjayBmYWlsZWQiLAogICAgIlRyYW5zaXRpb24gd2FzIHNraXBwZWQiLAogICAgIk5hdGl2ZSB0aGVtZSBjYWxsYmFjayBmYWlsZWQiCiAgXQp9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/opencode/skipped-transition-fix/test-before-final-artifacts/navigation-skipped-native--d30e8--and-report-callback-errors/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/navigation.spec.ts",
+                    "column": 34,
+                    "line": 63
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-bb16e7baac80c7313d28",
+          "file": "navigation.spec.ts",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T02:30:16.893Z",
+    "duration": 4145.247,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

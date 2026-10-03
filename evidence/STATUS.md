@@ -2,14 +2,19 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-G3 has since delivered corrected SDK 0.3.1/api-types 0.2.0 with green upstream CI; desktop
-admission is in progress. The old 0.3.0 HOLD remains. Current vendor/runtime remains probe-only.
+G3's corrected SDK 0.3.1/api-types 0.2.0 passes [scoped desktop admission](sdk-031-admission/README.md):
+immutable pins and OTP/local-login/Library contracts verified, dependency intake underway.
+Media-tail/screenshot defects reproduce; broader auth/identity/turn/history contracts remain
+incomplete. The old 0.3.0 HOLD remains. Current remote runtime is probe-only.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
 83 Electron cases/426 renders, followed by eight passing memory cases after the final
 return-navigation correction. Rebuilt Linux package/smoke and 90 member-byte checks pass.
-Changed-revision CI and installed-Mac proof remain pending; earlier captures retain their pins.
+Changed-revision CI `37088533094`: checks/Linux 83/83 pass; macOS 82/83 fails on
+`Transition was skipped` in Work's renderer-error assertion. Mac packaging/smoke skipped;
+The native-transition correction passes seven local Electron regressions and source review.
+Updated CI and installed-Mac proof remain pending. Earlier captures retain their pins.
 [Final-head CI 37082159189](https://github.com/CortexLM/desktop/actions/runs/37082159189)
 passes all three jobs at `6d96535`; application/package inputs match `f9aca44`.
 The [current installed-Mac full sweep](mac/f9aca44/full/README.md) adds 426 native images
@@ -65,7 +70,7 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 | Every design screen plus provider/image/reasoning flows | Partial: recovery local 83 cases/426 renders, eight final memory cases; earlier CI 70/70 per OS. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
 | Blacksmith macOS package/launch | Green `f9aca44` and `6d96535` CI; installed artifact remains the verified `f9aca44` package. Unsigned arm64 only. |
 | Installed Mac, every screen/theme/native chrome/menu | Current `f9aca44`: 426 registered-state native captures at 1024×686, fourteen native menus, minimize/fullscreen/Gallery/Chat readbacks. Ten Work/Search captures at 960×640; twelve earlier Code/routine images remain pinned. Absent surfaces and exhaustive live/minimum-window acceptance remain open. |
-| No unjustified reference gap | Unproven: original full run compares 410/431, mean 0.0379%, max 1.73%, 21 gaps. Separate corrected Work Done frames remove the 1px gap; 13/235 threshold mismatches remain. Original wallpaper/scroll scores retained; Providers lacks approved frozen imagery, new imports unauthorized. |
+| No unjustified reference gap | Unproven: original full run compares 410/431, mean 0.0379%, max 1.73%, 21 gaps. Final recovery scope 42/58, max 0.0638503%, sixteen Settings gaps; Done removes the 1px gap, retaining 236/240 mismatches. Earlier intermediate 13/235 frames and original wallpaper/scroll scores remain separate; new imports unauthorized. |
 | Automated i18n audit | Recovery local: 63 files, 2,269 used keys, 3,398 English keys, zero findings. Shell annotations receive eight-locale runtime coverage; unverified legacy records remain verbatim. Exhaustive dynamic-copy coverage remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment

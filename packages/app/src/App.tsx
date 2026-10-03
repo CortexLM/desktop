@@ -20,7 +20,10 @@ export default function App() {
     const f = (event: Event) => {
       const run = () => setH(readHash());
       // Keep screen transitions; snapshotting the gallery's hundreds of frames blocks input.
-      if (h.route !== "gallery" && readHash().route !== "gallery" && (event as Event & { navigationType: string }).navigationType !== "replace" && document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(run); else run();
+      if (h.route !== "gallery" && readHash().route !== "gallery" && (event as Event & { navigationType: string }).navigationType !== "replace" && document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        // Skipping the animation rejects ready; the route callback still commits.
+        void document.startViewTransition(run).ready.catch((error: unknown) => { if (!(error instanceof DOMException && error.name === "AbortError")) throw error; });
+      } else run();
     };
     navigation.addEventListener("currententrychange", f);
     // Catch navigation between the initial render and subscription.

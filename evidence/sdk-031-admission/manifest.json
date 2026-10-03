@@ -1,0 +1,104 @@
+{
+  "completed_at": "2026-10-03T02:19:56.114396+00:00",
+  "report_sha256": "f537948b61c654f676b86561bd3a4d3f2be1999ddf892df967542c7269df5027",
+  "source_pin": "ce05a6040ec05ac479d23dc2f701c8835a529663",
+  "public_backend_snapshots": [
+    {
+      "source": "server/src/api/self-host.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/self-host.ts",
+      "sha256": "ae8149caade028ee044dc398b134f75d8abb39e1c513b7eed049f782e62532bb"
+    },
+    {
+      "source": "server/src/api/conversations.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/conversations.ts",
+      "sha256": "4472959e8281074b1265c3842c59137ff0a4011f0d7177ce6beb9619bc445c82"
+    },
+    {
+      "source": "server/src/api/feedback.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/feedback.ts",
+      "sha256": "b4f214ebbf54a435acec950be68ac2f80b2773f74a3a4e5dbf453eecf54c0f5c"
+    },
+    {
+      "source": "server/src/api/auth.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/auth.ts",
+      "sha256": "5ec07aea7a01cfec2e71818b99b54c6fd46f5a44cdaed2a34dc27739d9103458"
+    },
+    {
+      "source": "server/src/api/code-sessions.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/code-sessions.ts",
+      "sha256": "d533f0227a0ae3a1946683651bb1cb20d3ec1f86a30d208d12620c6e90632ab6"
+    },
+    {
+      "source": "server/src/api/me.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/me.ts",
+      "sha256": "aee171e120722af5b40528f67474293e94ce29e137a7bc56f710ad99613cf8dc"
+    },
+    {
+      "source": "server/src/api/turns.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/turns.ts",
+      "sha256": "b1c46e874d027f50e610810dfc2940e05254f7c61570eb3dabef90b404cb04d8"
+    },
+    {
+      "source": "server/src/api/design/library.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/library.ts",
+      "sha256": "d00f512ed4313c1abc3c9324f872fbf80a037eb2a8111cdcc90f0cc583f8df4e"
+    },
+    {
+      "source": "server/src/http/principal.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/server/src/http/principal.ts",
+      "sha256": "1522f3860757f7a0b09cc4c94893ddf6f6c0f3fdd9d6b0c23d167400189eb668"
+    },
+    {
+      "source": "server/src/api/turns/replay.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/server/src/api/turns/replay.ts",
+      "sha256": "789ffc842d93cc1e9632294caf66d94e309200a823c7fcd8431045ad0d2545cf"
+    },
+    {
+      "source": "server/src/api/turns/generate.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/server/src/api/turns/generate.ts",
+      "sha256": "5048031d8d36ce0d4c3be8f54a0ed61ba6d87c22934ca9654ad6840fae21a095"
+    },
+    {
+      "source": "server/src/api/turns/create.ts",
+      "snapshot": "/tmp/opencode/desktop-sdk-031-readback/public-source/server/src/api/turns/create.ts",
+      "sha256": "ec10c3f0a4425dcf7425e2a252c7391b985fbb408d42c542d52ca4a304d87295"
+    }
+  ],
+  "typecheck": {
+    "compiler": "5.9.3",
+    "runtime": "Node 24.21.0",
+    "result": "PASS",
+    "expected_negative_cases": 9,
+    "declarations_checked": true
+  },
+  "checks": [
+    {
+      "file": "admission.json",
+      "sha256": "560476875e405649174ff8f2ab85e38925ba0a037dad324dce8ee0e2f8a67519"
+    },
+    {
+      "file": "remote-readback.json",
+      "sha256": "ea576ba772ad98aabbb3a3eff068e29b8d361d8b5c6508122ea47fbb9030de34"
+    },
+    {
+      "file": "consumer-signatures.mts",
+      "sha256": "e3a4ca0d65d6c88914ca213cc6abb4f7d311f37f456ca0cbc3d577d8f07dd8ea"
+    },
+    {
+      "file": "consumer-check.json",
+      "sha256": "fe27340e115210b5e1ffce4890973246b0b8eb5192cf0dba4ccc069071222e10"
+    },
+    {
+      "file": "environment-presence.json",
+      "sha256": "53b8257529f5d314c203c99ebde64f7df339b6b8850da67de31c14084d6cad9a"
+    },
+    {
+      "file": "pr447-once.json",
+      "sha256": "17e76f1b936b414843097ab170fe503d628606cbc2f0d0520288ac3040890d6b"
+    },
+    {
+      "file": "pr447-after-0032.json",
+      "sha256": "67237433df0b112cc02d9e5a71429fac387a84729cdd7d80d0ca16c2ce5d19a2"
+    }
+  ]
+}

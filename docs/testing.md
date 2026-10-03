@@ -1,5 +1,10 @@
 # Testing
 
+Native view-transition regression in `tests/e2e/navigation.spec.ts` forces real
+`skipTransition()` for route and theme updates with motion enabled. It verifies both
+callbacks still commit, expected `ready` AbortErrors are handled and async callback
+failures remain reported. The original macOS `749bc0c` failure is retained separately.
+
 ## Suites
 
 | Command | Scope | Notes |

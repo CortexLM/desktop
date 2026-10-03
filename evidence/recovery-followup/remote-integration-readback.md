@@ -12,8 +12,11 @@ Coordination records corrected SDK 0.3.1 / api-types 0.2.0 at
 SDK `d47fb53878385849d74822b22526838aa3f99a3cbccb96ec95324a419838d12e`,
 types `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877`.
 Upstream CI `37084973406` and CodeQL `37084973410` are reported successful. Independent
-desktop admission is checking the bytes, API surface and consumer concerns; vendored/runtime
-adoption has not occurred. SDK 0.3.0's earlier native-fetch/Node 22 HOLD remains preserved.
+desktop [admission](../sdk-031-admission/README.md) verifies these bytes and precise OTP/local-login/
+Library signatures. Consumer fixtures reproduce media-tail truncation and feedback screenshot
+serialization defects; generated turn bodies are `never`, broader identity/auth/history DTOs
+remain incomplete. Scoped dependency intake proceeds; authenticated routing is not delivered.
+SDK 0.3.0's earlier native-fetch/Node 22 HOLD remains preserved.
 The old probe/native receipts do not certify the newly delivered pair or authenticated inference.
 
 ## Earlier SDK observation — 3 October, 00:32 UTC

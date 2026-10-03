@@ -1,0 +1,229 @@
+[
+  {
+    "title": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+    "status": "passed",
+    "steps": [
+      {
+        "title": "cold fonts finish at the actual bottom",
+        "duration": 1132
+      },
+      {
+        "title": "warm-font remount still opens at the bottom",
+        "duration": 222
+      },
+      {
+        "title": "wheel intent before font readiness keeps the user's reading position",
+        "duration": 559
+      },
+      {
+        "title": "a new variant cancels the old pending bottom scroll",
+        "duration": 658
+      },
+      {
+        "title": "leaving the task cancels its pending scroll",
+        "duration": 300
+      }
+    ],
+    "metrics": {
+      "cold-fonts-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 410,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "warm-fonts-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "user-wheel-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 230,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 230,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 162,
+          "fonts": "loaded"
+        }
+      },
+      "variant-change-light": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+    "status": "failed",
+    "steps": [
+      {
+        "title": "cold fonts finish at the actual bottom",
+        "duration": 874
+      },
+      {
+        "title": "warm-font remount still opens at the bottom",
+        "duration": 505
+      },
+      {
+        "title": "wheel intent before font readiness keeps the user's reading position",
+        "duration": 542
+      },
+      {
+        "title": "a new variant cancels the old pending bottom scroll",
+        "duration": 536
+      },
+      {
+        "title": "leaving the task cancels its pending scroll",
+        "duration": 262
+      }
+    ],
+    "metrics": {
+      "cold-fonts-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 410,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "warm-fonts-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        },
+        "after": {
+          "top": 392,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      },
+      "user-wheel-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 230,
+          "height": 1069,
+          "viewport": 659,
+          "gap": 180,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 230,
+          "height": 1051,
+          "viewport": 659,
+          "gap": 162,
+          "fonts": "loaded"
+        }
+      },
+      "variant-change-dark": {
+        "requests": [
+          "cortex://app/fonts/Geist-Variable.woff2",
+          "cortex://app/fonts/GeistMono-Variable.woff2"
+        ],
+        "before": {
+          "top": 179,
+          "height": 786,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loading"
+        },
+        "after": {
+          "top": 162,
+          "height": 769,
+          "viewport": 607,
+          "gap": 0,
+          "fonts": "loaded"
+        }
+      }
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+      "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Transition was skipped\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts:139:22",
+      "location": {
+        "file": "/Users/runner/_work/desktop/desktop/tests/e2e/work-scroll.spec.ts",
+        "column": 22,
+        "line": 139
+      },
+      "snippet": "\u001b[0m \u001b[90m 137 |\u001b[39m         expect((\u001b[36mawait\u001b[39m metrics(page))\u001b[33m.\u001b[39mtop)\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 138 |\u001b[39m       })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 139 |\u001b[39m       expect(errors)\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 140 |\u001b[39m     } \u001b[36mfinally\u001b[39m {\n \u001b[90m 141 |\u001b[39m       release()\u001b[33m;\u001b[39m\n \u001b[90m 142 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39munrouteAll({ behavior\u001b[33m:\u001b[39m \u001b[32m\"wait\"\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+    }
+  }
+]

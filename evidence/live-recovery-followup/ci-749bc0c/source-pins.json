@@ -1,0 +1,44 @@
+{
+  "revision": "749bc0c035391d72aeafb4b5ce39cc0aa5342830",
+  "tree": "91ded82786a3995b1c834e5ffd142901206444a0",
+  "merge": "e12ef51a418176d17f96ec66ef3c5c2c541fc7f9",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "5daf1215067f335ce04fd4ce012911e0f58686f53fc1cd5ba578b7e823f88874"
+    },
+    {
+      "path": "packages/desktop/test/remote.test.ts",
+      "sha256": "c7a9b3ffcc6da477552ab83ff73fb207b866e975893178158a0b3f131ab56bc4"
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "71d48d4d40ea1950d9f95d1e3fef79704984d3faf21592793d0860b26b71d707"
+    },
+    {
+      "path": "tests/e2e/approvals-recovery.spec.ts",
+      "sha256": "e3c7c13502645f367e9e8e8c6a536c3a7d024e32e41090952b50a095a093c4d9"
+    },
+    {
+      "path": "tests/e2e/memory-safety.spec.ts",
+      "sha256": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a"
+    },
+    {
+      "path": "tests/e2e/screens.spec.ts",
+      "sha256": "f55899bf1861cbcd0c8e6c01fa7e87b52dc3a609c1e2268cfad3dbde659ba54c"
+    },
+    {
+      "path": "tests/e2e/terminal-copy.spec.ts",
+      "sha256": "8d150030d6b8f146ecf5d90f6a30f7e6f54a57cd14bd0b41e6cca3140401386c"
+    },
+    {
+      "path": "tests/e2e/ui-flows.spec.ts",
+      "sha256": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b"
+    },
+    {
+      "path": "tests/e2e/work-scroll.spec.ts",
+      "sha256": "0b2f0c3a9cd73e0e1e7484ea9c7a1f70cd3baf67a751ff627c9ee4b79698379b"
+    }
+  ],
+  "workingTreeApplicationRead": false
+}

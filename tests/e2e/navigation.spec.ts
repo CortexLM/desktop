@@ -1,6 +1,87 @@
 import { test, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 
+test("skipped native route and theme transitions preserve updates and report callback errors", async () => {
+  const { app, page } = await launch({ hash: "#/home?preview&theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  try {
+    await expect(page.locator(".home")).toBeVisible();
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    const probe = await page.evaluateHandle(() => {
+      const start = document.startViewTransition.bind(document);
+      const records: { kind: string; callbacks: number; readyHandled: boolean; readyError: string | null; transition: ViewTransition }[] = [];
+      const unhandled: { source: string; kind?: string; name: string; message: string }[] = [];
+      let failUpdates = false;
+      addEventListener("unhandledrejection", (event) => {
+        const record = records.find(({ transition }) => [transition.ready, transition.finished, transition.updateCallbackDone].includes(event.promise));
+        const source = record && (["ready", "finished", "updateCallbackDone"] as const).find((key) => record.transition[key] === event.promise);
+        unhandled.push({ source: source ?? "derived", kind: record?.kind, name: event.reason.name, message: event.reason.message });
+      });
+      document.startViewTransition = (update) => {
+        const kind = document.documentElement.dataset.vt === "theme" ? "theme" : "route";
+        const record = { kind, callbacks: 0, readyHandled: false, readyError: null as string | null };
+        const transition = start(async () => {
+          record.callbacks++;
+          await (typeof update === "function" ? update() : update?.update?.());
+          if (failUpdates) throw new Error(`Native ${kind} callback failed`);
+        });
+        records.push(Object.assign(record, { transition }));
+        // Observe application handlers without attaching our own rejection handler or replacing native promises.
+        const then = transition.ready.then.bind(transition.ready);
+        transition.ready.then = (resolve, reject) => {
+          record.readyHandled ||= typeof reject === "function";
+          return then(resolve, reject && ((error) => { record.readyError = error.name; return reject(error); }));
+        };
+        transition.skipTransition();
+        return transition;
+      };
+      return {
+        records, fail: () => { failUpdates = true; },
+        read: () => ({
+          records: records.map(({ transition, ...record }) => ({ ...record, native: transition instanceof ViewTransition })),
+          unhandled,
+        }),
+      };
+    });
+    const work = page.locator(".titlebar").getByRole("tab", { name: "Work", exact: true });
+    await work.click();
+    await expect(page.locator(".travail-filters")).toBeVisible();
+    await expect(work).toHaveAttribute("aria-selected", "true");
+    const dark = page.getByRole("radio", { name: "Dark", exact: true });
+    await dark.focus();
+    await dark.press("Space");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(page).toHaveURL(/#\/work-home\?.*theme=dark/);
+    await expect(page.locator("html")).not.toHaveAttribute("data-vt", "theme");
+    const skipped = await probe.evaluate(async (probe) => {
+      await Promise.all(probe.records.map(({ transition }) => transition.finished));
+      await new Promise(requestAnimationFrame);
+      return probe.read();
+    });
+    await test.info().attach("skipped-native-transitions", { body: JSON.stringify({ ...skipped, errors }, null, 2), contentType: "application/json" });
+    expect.soft(skipped.records).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+    expect.soft(skipped.unhandled).toEqual([]);
+    expect.soft(errors).toEqual([]);
+
+    // A skipped animation must still expose an asynchronously rejected update callback.
+    await probe.evaluate((probe) => probe.fail());
+    await page.locator(".titlebar").getByRole("tab", { name: "Chat", exact: true }).click();
+    await expect(page.locator(".home")).toBeVisible();
+    const light = page.getByRole("radio", { name: "Light", exact: true });
+    await light.focus();
+    await light.press("Space");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await expect(page.locator("html")).not.toHaveAttribute("data-vt", "theme");
+    await expect.poll(() => errors.length).toBeGreaterThanOrEqual(3);
+    const failed = await probe.evaluate((probe) => probe.read());
+    await test.info().attach("native-callback-errors", { body: JSON.stringify({ ...failed, errors }, null, 2), contentType: "application/json" });
+    expect(errors).toEqual(["Native route callback failed", "Native route callback failed", "Native theme callback failed"]);
+    expect(failed.records.slice(2)).toEqual(["route", "theme"].map((kind) => ({ kind, callbacks: 1, readyHandled: true, readyError: "AbortError", native: true })));
+    await probe.dispose();
+  } finally { await app.close(); }
+});
+
 test("Back cancels a pending tab choice even when its label matches an older request", async () => {
   const { app, page } = await launch({ hash: "#/home?preview&theme=light", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
   try {

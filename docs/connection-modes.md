@@ -74,8 +74,13 @@ preserves the PM report's 15:05 observation and earlier readbacks. In the
 **3 October 2026, 00:32 UTC snapshot**, PR #447 remained at `7633f7e2`, before the canonical
 package delivery. The later owner handoff supplies SDK **0.3.1** / api-types **0.2.0** at
 `ce05a6040ec05ac479d23dc2f701c8835a529663`, with successful upstream CI `37084973406`.
-Desktop admission is verifying its archive/source pins and consumer concerns; the installed
-0.2.0/0.1.0 pair remains probe-only. Earlier SDK 0.3.0 retains its Node 22 regression HOLD.
+The [desktop admission readback](../evidence/sdk-031-admission/README.md) verifies its exact
+archives, peer, schema and source pins. Precise OTP/MFA/local-login/Library contracts are
+admitted; scoped dependency intake is underway. Media-tail loss and feedback screenshot
+corruption reproduce in exact 0.3.1. Password/signup/refresh, stable account identity, Cloud
+models and history remain incomplete contracts; generated turn bodies are `never`.
+These block full remote-product admission, not the bounded verified paths. Earlier SDK 0.3.0
+retains its Node 22 regression HOLD. Existing remote calls remain probe-only.
 
 Delivery order:
 

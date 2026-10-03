@@ -1,0 +1,73 @@
+{
+  "sourceReport": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/test-results/e2e.json",
+  "reportSha256": "fc23dbf296d83323dcddd3c58c0c67eb9a99390ca41d47c96f1035652a34114a",
+  "logSha256": "5e25f47db93b1f6f66af830265b426a75c5d8db364a8b1911ec7e3a119fa1ca6",
+  "stats": {
+    "startTime": "2026-10-03T01:52:53.310Z",
+    "duration": 244844.42500000002,
+    "expected": 83,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "testCount": 83,
+  "resultCount": 83,
+  "passed": 83,
+  "resultStatuses": {
+    "passed": 83
+  },
+  "retryValues": {
+    "0": 83
+  },
+  "testErrorCount": 0,
+  "reportErrorCount": 0,
+  "stderrItemCount": 0,
+  "uploadedAttachmentCount": 100,
+  "uploadedPngCount": 92,
+  "uniqueUploadedPngs": 92,
+  "artifactPngFiles": 184,
+  "artifactUniquePngs": 92,
+  "unmatchedArtifactPngs": [],
+  "selectedFullSizeCount": 32,
+  "selectedFullSizeBytes": 2013117,
+  "screenCase": [
+    {
+      "file": "screens.spec.ts",
+      "title": "every design screen and state renders",
+      "ok": true,
+      "test": {
+        "timeout": 1800000,
+        "annotations": [],
+        "expectedStatus": "passed",
+        "projectId": "",
+        "projectName": "",
+        "results": [
+          {
+            "workerIndex": 2,
+            "parallelIndex": 2,
+            "status": "passed",
+            "duration": 139250,
+            "errors": [],
+            "stdout": [
+              {
+                "text": "rendered 426 screen states\n"
+              }
+            ],
+            "stderr": [],
+            "retry": 0,
+            "startTime": "2026-10-03T01:54:38.794Z",
+            "annotations": [],
+            "attachments": []
+          }
+        ],
+        "status": "expected"
+      }
+    }
+  ],
+  "headAtReview": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "pinScope": "Uncommitted integrated build described by coordinator; full 83-case run predates the last team.tsx forgotten.clear removal. Current source hashes are review-time pins, not reconstructed full-run build pins.",
+  "memoryReturnRuns": "Separate coordinator-owned evidence; not read, copied or merged here.",
+  "contactSheetsInspected": 8,
+  "uniqueImagesContactInspected": 92,
+  "uniqueImagesFullSizeInspected": 32
+}

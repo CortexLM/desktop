@@ -43,7 +43,9 @@ export function Shell({ hash }: { hash: ReturnType<typeof readHash> }) {
     const v = resolve(p);
     if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) return setThemeState(v);
     document.documentElement.dataset.vt = "theme";
-    document.startViewTransition(() => setThemeState(v)).finished.finally(() => delete document.documentElement.dataset.vt).catch(() => {});
+    const transition = document.startViewTransition(() => setThemeState(v));
+    void transition.ready.catch((error: unknown) => { if (!(error instanceof DOMException && error.name === "AbortError")) throw error; });
+    transition.finished.finally(() => delete document.documentElement.dataset.vt).catch(() => {});
   };
   React.useEffect(() => {
     if (initialTheme && initialTheme !== pref) { setPref(initialTheme); setThemeState(resolve(initialTheme)); }
