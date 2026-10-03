@@ -1,0 +1,262 @@
+[
+  {
+    "path": "0_macOS build, package, launch.txt",
+    "bytes": 59188,
+    "sha256": "2db8abc9a558fbd6881c679768a48cf83d00b3f11f2181e0a15b3095f9f0b7f9"
+  },
+  {
+    "path": "macOS build, package, launch/system.txt",
+    "bytes": 493,
+    "sha256": "81e53f3387ba1c2da7c4eedc010821acf39f50e1a408c92976c195f1aac11b7a"
+  },
+  {
+    "path": "macOS build, package, launch/1_Set up job.txt",
+    "bytes": 1495,
+    "sha256": "7831f98d7fdad75b7e12acd5ed83138f20096ed30c971003cd97ec607a7d7efc"
+  },
+  {
+    "path": "macOS build, package, launch/2_Set up runner.txt",
+    "bytes": 2176,
+    "sha256": "3be4763f5cc5f83ec8bff4a452091d1cfb86839efce28226eb190e09638c43bf"
+  },
+  {
+    "path": "macOS build, package, launch/3_Run actions_checkout@v4.txt",
+    "bytes": 10387,
+    "sha256": "26a8c0538985c405b783378e658b755989314b107925a702b232624e9cef1fff"
+  },
+  {
+    "path": "macOS build, package, launch/4_Run actions_setup-node@v4.txt",
+    "bytes": 1152,
+    "sha256": "fbf4816cd0d1f830f29d602c6a130a0a39d73941bdc774d1736fd86ba236498e"
+  },
+  {
+    "path": "macOS build, package, launch/5_Run oven-sh_setup-bun@v2.txt",
+    "bytes": 1233,
+    "sha256": "b6405e75767c325fd49768403e7b04a7182b1ecb039fe1af10824172b71a25e4"
+  },
+  {
+    "path": "macOS build, package, launch/6_Run bun install --frozen-lockfile && node node_modules_electron_install.js.txt",
+    "bytes": 2313,
+    "sha256": "a2cff0f1cb0e3844914eba15f2ef0610452c78418638bd759df60f8bca610c2e"
+  },
+  {
+    "path": "macOS build, package, launch/7_Run bun run build.txt",
+    "bytes": 7048,
+    "sha256": "72de20408aa1a6957cfe5da17a172d7a6caf07352c09612e3c6cd31f6b4d991c"
+  },
+  {
+    "path": "macOS build, package, launch/8_E2E on macOS (source build).txt",
+    "bytes": 19130,
+    "sha256": "f9f220851b875978d4fa7f2e9097d76abbb8cde86662b746378e296fd8f114e4"
+  },
+  {
+    "path": "macOS build, package, launch/9_Package (unsigned, arm64).txt",
+    "bytes": 3332,
+    "sha256": "5e2ddcab9f06f7643d6020fb608e5eae0385e2386fa0acfa8683c0d8823ea218"
+  },
+  {
+    "path": "macOS build, package, launch/10_Packaged smoke test.txt",
+    "bytes": 1094,
+    "sha256": "b2f3d8b9635645670382ba35cd1004a5a4eea0b623475f8d7db00221239a507d"
+  },
+  {
+    "path": "macOS build, package, launch/11_Crash logs.txt",
+    "bytes": 585,
+    "sha256": "4f7c05f6a1ce94a3adb44f99fef03d927ca31da8dad8cc80d0d9343dba0f401b"
+  },
+  {
+    "path": "macOS build, package, launch/12_Run actions_upload-artifact@v4.txt",
+    "bytes": 2615,
+    "sha256": "3072a2e5dd21305a7435892344c1f89f03cc336cf8f89ac20461afde74981883"
+  },
+  {
+    "path": "macOS build, package, launch/13_Run actions_upload-artifact@v4.txt",
+    "bytes": 3173,
+    "sha256": "5809ea5e620d077575b9bdfa4ceb914beefc31dc6cce0812ce19cce83029f0fe"
+  },
+  {
+    "path": "macOS build, package, launch/23_Post Run oven-sh_setup-bun@v2.txt",
+    "bytes": 50,
+    "sha256": "8959c32fec5fdd6273fb6d70d906a531da7d6f6a573c2e2c94daadf2362ade47"
+  },
+  {
+    "path": "macOS build, package, launch/24_Post Run actions_setup-node@v4.txt",
+    "bytes": 305,
+    "sha256": "fbd327e93464b6019d8662aea35acec79352a4a2ad00938f8cb669bc66c49578"
+  },
+  {
+    "path": "macOS build, package, launch/25_Post Run actions_checkout@v4.txt",
+    "bytes": 1937,
+    "sha256": "b42fb56afc9151f83927a38fb60c7af002f0b9118d375e04f4af2aada17e8f3c"
+  },
+  {
+    "path": "macOS build, package, launch/26_Complete runner.txt",
+    "bytes": 815,
+    "sha256": "a62a2aa6e339585a04a313aad5ec3b0982fc37bdeeed9c3bd59d18f3203b6127"
+  },
+  {
+    "path": "macOS build, package, launch/27_Complete job.txt",
+    "bytes": 399,
+    "sha256": "bb36b5c4257fec5f34f782dd0e76fb705d4121889051490995e7c0dcdab143b1"
+  },
+  {
+    "path": "1_E2E (Playwright + Electron, Linux).txt",
+    "bytes": 60140,
+    "sha256": "b5fa28d5393b2271f5a393273527993bcaabebf8ee3849e5356ba9ac638ecbc5"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/system.txt",
+    "bytes": 497,
+    "sha256": "3933e24707331a2cfda92f9ea3b44ad581ad36a3ebdf33b4bd5eccdceca02d80"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/1_Set up job.txt",
+    "bytes": 1506,
+    "sha256": "ddc95d3a854bf944ede0bc33badf7a168c588ea102fc86b74c7e675bce6c3377"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/2_Set up runner.txt",
+    "bytes": 2432,
+    "sha256": "5df1ad9cab4bc796039cca75f5567b4fbb2e8090f92de5775e54f4584618174c"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/3_Run actions_checkout@v4.txt",
+    "bytes": 12115,
+    "sha256": "ca0f6107786886815334347b9ead349c5bdf0bfba30702e304f2a0f15a46b5e3"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/4_Run actions_setup-node@v4.txt",
+    "bytes": 1142,
+    "sha256": "e497229754467f2e834c68df3faa50ce9fc49506cdbacafc3ba69edfb1e2a19d"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/5_Run oven-sh_setup-bun@v2.txt",
+    "bytes": 1195,
+    "sha256": "5c885c8c376e9fd1271dd01b9506f47cbaf99f640ed66afd4b5bb39b6d5decb6"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/6_Run bun install --frozen-lockfile && node node_modules_electron_install.js.txt",
+    "bytes": 2321,
+    "sha256": "f65eea5ccf833fe6935085fcc727039916bc1382bec7ba5b2c69ac57df8e34a7"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/7_Run sudo apt-get update.txt",
+    "bytes": 6454,
+    "sha256": "7f02f9311af01963c25f338ea47baa07fc4d8c7a4e7cd3469986fa54956a7340"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/8_Run bun run build.txt",
+    "bytes": 7053,
+    "sha256": "79f096469910647e988a12095a215715b5a6f0575b95b878eec366cbe5132abe"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/9_Run xvfb-run -a -s -screen 0 1920x1080x24 bun run teste2e.txt",
+    "bytes": 19908,
+    "sha256": "8a57d4054358790852314052411ebb36c312e12c5266f37c96b9736a121fc045"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/10_Run actions_upload-artifact@v4.txt",
+    "bytes": 2635,
+    "sha256": "ddb03a0cdb3acd8ed34528ba57b08b625885c880517c7963f0b991c185264aff"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/17_Post Run oven-sh_setup-bun@v2.txt",
+    "bytes": 50,
+    "sha256": "8057cdd21e86f95d8eadcb36bc90c6688dbeffaa9386295f3e9d8ff5538e805a"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/18_Post Run actions_setup-node@v4.txt",
+    "bytes": 306,
+    "sha256": "068f1d37f276b36b9007ef904b6f9658e385702d3c8ba7568d0323007a61bf35"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/19_Post Run actions_checkout@v4.txt",
+    "bytes": 1765,
+    "sha256": "b6eedb0fe1ec26b116c524725f55812c79a683ca1435a5e8632397fb4cd35f40"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/20_Complete runner.txt",
+    "bytes": 901,
+    "sha256": "6a0e3b341d6e830b3531b0e589e3543f6b8334f46ae2c2004ba77a65bda57913"
+  },
+  {
+    "path": "E2E (Playwright + Electron, Linux)/21_Complete job.txt",
+    "bytes": 399,
+    "sha256": "83e4b6f0e58d68667b12757e001edb17d10f2b3a2990894131578ae721e745f6"
+  },
+  {
+    "path": "2_Lint, typecheck, unit tests, i18n audit.txt",
+    "bytes": 30046,
+    "sha256": "e1844d474023b09949dced938e1bee579ef52d5ed6c12728063a2444e62791aa"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/system.txt",
+    "bytes": 569,
+    "sha256": "6790fd655ad94a60a398348cfb121e211a8961cc9f8f056dac5860e3d17127c3"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/1_Set up job.txt",
+    "bytes": 2143,
+    "sha256": "00db2b9b497cc13b0cbea335d37677a3fa10c709872f1aa18cd4bee9bca5d1eb"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/2_Run actions_checkout@v4.txt",
+    "bytes": 12015,
+    "sha256": "5c526433771d4cfeea3ddef176241488fde51816bbeb41a1a541fa6d3a6c8795"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/3_Run actions_setup-node@v4.txt",
+    "bytes": 902,
+    "sha256": "a1d45465d7e69132590f3c70b9a50d55bb637c52dc94b50a2fb0d82df90aadee"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/4_Run oven-sh_setup-bun@v2.txt",
+    "bytes": 1033,
+    "sha256": "dcd0f95cd82c069825843b3ad96e066ec16d97ddc11a5be4ca3240cb12a4ea89"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/5_Run bun install --frozen-lockfile.txt",
+    "bytes": 1996,
+    "sha256": "a3dd73d4c052767d07d415a20a5561537a2a25f1cde3ed1b0c215007ac561fe9"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/6_Run bun run lint.txt",
+    "bytes": 271,
+    "sha256": "89431983d011e7cd878b58d8bc310cc7e1a73b698b46d309f9dccdbe03fa969b"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/7_Run bun run typecheck.txt",
+    "bytes": 272,
+    "sha256": "522378606de47e3607175d4eeebb93f57c4f96820e173f3ca10ccc04cf1a9ad6"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/8_Run bun run test.txt",
+    "bytes": 8637,
+    "sha256": "a3fb6db217738aa63cf15d3ea40a9125df1ef223c44333411c8530dcd9e51e9a"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/9_Run bun run auditi18n.txt",
+    "bytes": 378,
+    "sha256": "5c89581b5af76e1289047300035da9a8a4580650e0b843f534c8fa501a324725"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/16_Post Run oven-sh_setup-bun@v2.txt",
+    "bytes": 50,
+    "sha256": "d114bcd4200a2a17356ae56f7661b3075969fcb4d828b15f71c1e823e3431a3e"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/17_Post Run actions_setup-node@v4.txt",
+    "bytes": 305,
+    "sha256": "5972f3bafc4c040869ff109ea8ddf14d4fd6c0a7c8d8be5dfcbbffd2ba895830"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/18_Post Run actions_checkout@v4.txt",
+    "bytes": 1709,
+    "sha256": "100e9d09d68e1b70863fd94b495651ddc87852da2119f646dc12a3d01602e438"
+  },
+  {
+    "path": "Lint, typecheck, unit tests, i18n audit/19_Complete job.txt",
+    "bytes": 371,
+    "sha256": "651caf1e4d206863e6f05c6f35db70737a08e0832d5a61ca3c7e5789775362a8"
+  }
+]

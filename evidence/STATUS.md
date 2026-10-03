@@ -84,10 +84,19 @@ recovered status colors in both themes, with zero renderer errors and completed 
 four admission IDs and the matching process/package identity.
 Documentary `10a57be` also passes CI `37116570186`; all 514 package inputs match `2956564`.
 The [provider-draft follow-up](provider-draft-followup/README.md) reproduces four Electron
-cases/eight draft-loss assertions in existing Settings controls. Its three-line uncommitted
-correction passes those cases unchanged, lint/types, 245 units plus one optional skip and
-i18n. Full 111-case local Electron and Linux package/smoke pass; final artifact audit and
-subsequent source-matched CI/native checks remain pending.
+cases/eight draft-loss assertions in existing Settings controls. Three-line correction `37c22c2`
+passes those cases unchanged, lint/types, 245 units plus one optional skip and
+i18n. Full 111-case local Electron and Linux package/smoke pass; final local artifact audit
+verifies 147 images/six full-size correction views. CI `37118586276` passes all three jobs;
+its [artifact audit](provider-draft-followup/ci-37c22c2/README.md) verifies 111 cases/426 renders
+per OS, 296 images/28 full-size views and sixteen locale images unchanged from `2956564`.
+Matching installed `37c22c2` passes four native captures
+and eight UI writes/action checks in both themes after a documented collector-only correction.
+Initial collector failure is retained; cleanup completes and the Mac lease is released.
+[Independent native audit](mac/37c22c2/native/README.md) verifies all four originals and
+the executed collector/package identity, with eight UI writes and seven cleanup checks.
+The executed collector's broader self-clipping exemption is qualified; a narrower input-only
+version is separately prepared, unexecuted. Required fixed-state text is visible in all four images.
 The [09:47 public/owner readback](terminal-state-followup/remote-prerequisites-0945/README.md)
 still finds `/v1/instance` 404, zero vision-capable Chat models, no new G2/G3 reply and
 no named G1 design permission. It establishes no account or inference acceptance.
@@ -162,12 +171,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `2956564` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
-| Every design screen plus provider/image/reasoning flows | Partial: `2956564` CI passes 107 cases/426 renders per OS; 284 images/28 full-size views reviewed. All sixteen locale images match `760c4a0`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `2956564` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout captures; `f5bf305`: 22 auth captures/48 locale states/144 Tab stops; `760c4a0`: six Chat/Bot captures. Matching `2956564`: six missing-Chat/failed-Code/recovery captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| Lint, types, units | `37c22c2` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
+| Every design screen plus provider/image/reasoning flows | Partial: `37c22c2` CI passes 111 cases/426 renders per OS; 296 images/28 full-size views reviewed. All sixteen locale images match `2956564`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `37c22c2` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout; `f5bf305`: 22 auth/48 locale states/144 Tab stops; `760c4a0`: six Chat/Bot; `2956564`: six Chat/Code. Matching `37c22c2`: four provider-draft captures/eight UI actions pass, with collector scope qualified. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `2956564` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
+| Automated i18n audit | `37c22c2` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot

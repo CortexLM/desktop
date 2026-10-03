@@ -1,0 +1,74 @@
+[
+  {
+    "case": 68,
+    "theme": "light",
+    "file": "provider-draft.spec.ts",
+    "failureLines": [
+      99,
+      99
+    ],
+    "baselineDraftPreserved": [
+      false,
+      false
+    ],
+    "finalDraftPreserved": [
+      true,
+      true
+    ],
+    "finalErrors": []
+  },
+  {
+    "case": 69,
+    "theme": "dark",
+    "file": "provider-draft.spec.ts",
+    "failureLines": [
+      99,
+      99
+    ],
+    "baselineDraftPreserved": [
+      false,
+      false
+    ],
+    "finalDraftPreserved": [
+      true,
+      true
+    ],
+    "finalErrors": []
+  },
+  {
+    "case": 70,
+    "theme": "light",
+    "file": "provider-key-pending.spec.ts",
+    "failureLines": [
+      84,
+      101
+    ],
+    "baselineDraftLengths": [
+      0,
+      0
+    ],
+    "finalDraftLengths": [
+      20,
+      20
+    ],
+    "finalErrors": []
+  },
+  {
+    "case": 71,
+    "theme": "dark",
+    "file": "provider-key-pending.spec.ts",
+    "failureLines": [
+      84,
+      101
+    ],
+    "baselineDraftLengths": [
+      0,
+      0
+    ],
+    "finalDraftLengths": [
+      20,
+      20
+    ],
+    "finalErrors": []
+  }
+]

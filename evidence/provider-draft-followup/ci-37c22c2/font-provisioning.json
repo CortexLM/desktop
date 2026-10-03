@@ -1,0 +1,124 @@
+{
+  "packageVersion": "1:20230817+repack1-3",
+  "fontconfigVersion": "2.15.0-1.1ubuntu2",
+  "packagePreviouslyUnselectedInThisRun": true,
+  "inventoryPatterns": 87,
+  "inventoryFiles": 61,
+  "matchedPlatformFonts": [
+    {
+      "locale": "ja",
+      "theme": "light",
+      "platformFont": {
+        "familyName": "Noto Sans CJK JP",
+        "postScriptName": "NotoSansCJKjp-Regular",
+        "isCustomFont": false,
+        "glyphCount": 12
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "0",
+          "family": "Noto Sans CJK JP",
+          "postscript": "NotoSansCJKjp-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    },
+    {
+      "locale": "ja",
+      "theme": "dark",
+      "platformFont": {
+        "familyName": "Noto Sans CJK JP",
+        "postScriptName": "NotoSansCJKjp-Regular",
+        "isCustomFont": false,
+        "glyphCount": 12
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "0",
+          "family": "Noto Sans CJK JP",
+          "postscript": "NotoSansCJKjp-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    },
+    {
+      "locale": "zh-Hans",
+      "theme": "light",
+      "platformFont": {
+        "familyName": "Noto Sans CJK JP",
+        "postScriptName": "NotoSansCJKjp-Regular",
+        "isCustomFont": false,
+        "glyphCount": 6
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "0",
+          "family": "Noto Sans CJK JP",
+          "postscript": "NotoSansCJKjp-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    },
+    {
+      "locale": "zh-Hans",
+      "theme": "dark",
+      "platformFont": {
+        "familyName": "Noto Sans CJK JP",
+        "postScriptName": "NotoSansCJKjp-Regular",
+        "isCustomFont": false,
+        "glyphCount": 6
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "0",
+          "family": "Noto Sans CJK JP",
+          "postscript": "NotoSansCJKjp-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    },
+    {
+      "locale": "ko",
+      "theme": "light",
+      "platformFont": {
+        "familyName": "Noto Sans CJK KR",
+        "postScriptName": "NotoSansCJKkr-Regular",
+        "isCustomFont": false,
+        "glyphCount": 9
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "1",
+          "family": "Noto Sans CJK KR",
+          "postscript": "NotoSansCJKkr-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    },
+    {
+      "locale": "ko",
+      "theme": "dark",
+      "platformFont": {
+        "familyName": "Noto Sans CJK KR",
+        "postScriptName": "NotoSansCJKkr-Regular",
+        "isCustomFont": false,
+        "glyphCount": 9
+      },
+      "inventoryMatches": [
+        {
+          "file": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "index": "1",
+          "family": "Noto Sans CJK KR",
+          "postscript": "NotoSansCJKkr-Regular"
+        }
+      ],
+      "headingAndSentinelCharactersCovered": true
+    }
+  ],
+  "scope": "Current CI provisioning, raster and actual-heading font evidence. Historical CI1076 lacked inventory; its package-versus-configuration cause remains unknown. CI295 already verifies Noto provisioning. JP font selected for Chinese is recorded, not relabeled SC."
+}

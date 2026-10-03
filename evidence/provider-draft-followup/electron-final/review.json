@@ -1,0 +1,438 @@
+{
+  "result": "bounded artifact approval",
+  "scope": "Local final Electron artifacts only",
+  "contactReview": [
+    {
+      "path": "contacts/all-01.jpg",
+      "sha256": "9e86c882991a765a45b724ab0bd8c4113b5bf886876cf8569c7e46f84fd781ac",
+      "images": [
+        "image-001",
+        "image-002",
+        "image-003",
+        "image-004",
+        "image-005",
+        "image-006",
+        "image-007",
+        "image-008"
+      ],
+      "finding": "Approvals recovery plus six Bot ownership frames; held/released/follow-up states remain coherent."
+    },
+    {
+      "path": "contacts/all-02.jpg",
+      "sha256": "2afe05076dcda7732ce2d60adc0288ec9c0fcf79846a399a42a2b3fc47fbbf56",
+      "images": [
+        "image-009",
+        "image-010",
+        "image-011",
+        "image-012",
+        "image-013",
+        "image-014",
+        "image-015",
+        "image-016"
+      ],
+      "finding": "Bot save refusal and preview appearance frames in both sizes/themes; toast/modal states remain visible."
+    },
+    {
+      "path": "contacts/all-03.jpg",
+      "sha256": "9da764a5a87580931d2f77f61fb741b7444e78dcfa33ab330e0136df34ee7cc7",
+      "images": [
+        "image-017",
+        "image-018",
+        "image-019",
+        "image-020",
+        "image-021",
+        "image-022",
+        "image-023",
+        "image-024"
+      ],
+      "finding": "Missing Chat, Code diff scroll, model and attachment-refusal states; no blank app frame."
+    },
+    {
+      "path": "contacts/all-04.jpg",
+      "sha256": "d171267fb95e7afab9e0f1ea9e29e7bd077671fb97510025acec44ac85d249d9",
+      "images": [
+        "image-025",
+        "image-026",
+        "image-027",
+        "image-028",
+        "image-029",
+        "image-030",
+        "image-031",
+        "image-032"
+      ],
+      "finding": "Code failure/recovery and draft refusal; Failed/Ready badge agrees with visible current banner/result."
+    },
+    {
+      "path": "contacts/all-05.jpg",
+      "sha256": "d3b08c85194898a00a52510021d9509471a41043c6381cb50a85c1a0e87b84a5",
+      "images": [
+        "image-033",
+        "image-034",
+        "image-035",
+        "image-036",
+        "image-037",
+        "image-038",
+        "image-039",
+        "image-040"
+      ],
+      "finding": "Code/Bot/Work draft refusals; retained drafts and error toasts remain visible."
+    },
+    {
+      "path": "contacts/all-06.jpg",
+      "sha256": "c5b2c4be7d52a1d0b2bb5c69ae7b3f56d9f6fdc068f69bc8615f8b69f6bace91",
+      "images": [
+        "image-041",
+        "image-042",
+        "image-043",
+        "image-044",
+        "image-045",
+        "image-046",
+        "image-047",
+        "image-048"
+      ],
+      "finding": "Frozen composer/history, image comparison and expanded reasoning; content populated."
+    },
+    {
+      "path": "contacts/all-07.jpg",
+      "sha256": "6da6cacbce08de462eb60bfaddb8dfe7667f19a68d71dfa1ebf35efea534f2e2",
+      "images": [
+        "image-049",
+        "image-050",
+        "image-051",
+        "image-052",
+        "image-053",
+        "image-054",
+        "image-055",
+        "image-056"
+      ],
+      "finding": "Upload/image/reasoning plus kanban/mascot preview; measured differences remain qualified."
+    },
+    {
+      "path": "contacts/all-08.jpg",
+      "sha256": "e8bcb42d6c28793196144f4fb026347e1459fe1b59a550fe1ea45ef737151354",
+      "images": [
+        "image-057",
+        "image-058",
+        "image-059",
+        "image-060",
+        "image-061",
+        "image-062",
+        "image-063",
+        "image-064"
+      ],
+      "finding": "Keyboard focus/Undo, frozen shell and light transcript history frames remain coherent."
+    },
+    {
+      "path": "contacts/all-09.jpg",
+      "sha256": "51f81650c4c74d18c99772a0f8113a6138c7e9e54fb24a5a9c0c5f7423388ad5",
+      "images": [
+        "image-065",
+        "image-066",
+        "image-067",
+        "image-068",
+        "image-069",
+        "image-070",
+        "image-071",
+        "image-072"
+      ],
+      "finding": "Deleted/streamed Chat dark frames and memory pending/refused states; no visible revived history."
+    },
+    {
+      "path": "contacts/all-10.jpg",
+      "sha256": "ad17d3efb7a436c62a440ffeef14451728fb6b8bbc48f742272db2fe96e54119",
+      "images": [
+        "image-073",
+        "image-074",
+        "image-075",
+        "image-076",
+        "image-077",
+        "image-078",
+        "image-079",
+        "image-080"
+      ],
+      "finding": "Memory wipe and partial/refused states preserve remaining rows and recovery messaging."
+    },
+    {
+      "path": "contacts/all-11.jpg",
+      "sha256": "094ce015a9daaa35c0362bed20a53611fc48cd8afd4bc466dd9872c9b77ea57f",
+      "images": [
+        "image-081",
+        "image-082",
+        "image-083",
+        "image-084",
+        "image-085",
+        "image-086",
+        "image-087",
+        "image-088"
+      ],
+      "finding": "Six new provider targets: masked draft retained beside stored hint/absence; Enable crop and lower-model toast overlap visible."
+    },
+    {
+      "path": "contacts/all-12.jpg",
+      "sha256": "6ee24a96c5aab5e8ad30b9a53e8ece9c04fa784acaad3faf4bb5e13a82fabe27",
+      "images": [
+        "image-089",
+        "image-090",
+        "image-091",
+        "image-092",
+        "image-093",
+        "image-094",
+        "image-095",
+        "image-096"
+      ],
+      "finding": "Ordinary controlled auth refusal/signed-in/unavailable and canonical-origin views remain populated."
+    },
+    {
+      "path": "contacts/all-13.jpg",
+      "sha256": "9c154daa9ad2cd773d6e7f16e7489ef7f7bd081967fc99625fbe03fdb648ab72",
+      "images": [
+        "image-097",
+        "image-098",
+        "image-099",
+        "image-100",
+        "image-101",
+        "image-102",
+        "image-103",
+        "image-104"
+      ],
+      "finding": "Auth initial reads plus Latin/Japanese/Korean locale views; known decorative-logo clipping retains its scope."
+    },
+    {
+      "path": "contacts/all-14.jpg",
+      "sha256": "87b4e117b23abc06999b63d640684e4176c949103b71f72f52193d42b82d0e39",
+      "images": [
+        "image-105",
+        "image-106",
+        "image-107",
+        "image-108",
+        "image-109",
+        "image-110",
+        "image-111",
+        "image-112"
+      ],
+      "finding": "Portuguese/Chinese locale, narrow Approvals and routine states; sampled glyphs distinguishable at contact scale."
+    },
+    {
+      "path": "contacts/all-15.jpg",
+      "sha256": "8c429700251ebf02c90ebdf11a129dc5250ef8615b7bc3bf3b6a354a7e125742",
+      "images": [
+        "image-113",
+        "image-114",
+        "image-115",
+        "image-116",
+        "image-117",
+        "image-118",
+        "image-119",
+        "image-120"
+      ],
+      "finding": "Routine/refusal, Bot search and French terminal views retain meaningful labels and output."
+    },
+    {
+      "path": "contacts/all-16.jpg",
+      "sha256": "a2c907c0c963f46680ec52e9d7b2e186387c5bb9cc6a4052557a42be81cbafd2",
+      "images": [
+        "image-121",
+        "image-122",
+        "image-123",
+        "image-124",
+        "image-125",
+        "image-126",
+        "image-127",
+        "image-128"
+      ],
+      "finding": "Terminal widths and provider key rows; scrollport crops remain expected limitations of captures."
+    },
+    {
+      "path": "contacts/all-17.jpg",
+      "sha256": "82f355936da9aa62e0160134a728095fe1049a1c6fd5ff8937d115f8d839042a",
+      "images": [
+        "image-129",
+        "image-130",
+        "image-131",
+        "image-132",
+        "image-133",
+        "image-134",
+        "image-135",
+        "image-136"
+      ],
+      "finding": "Provider dark rows and image/history refusal drafts; existing toasts cover some background transcript."
+    },
+    {
+      "path": "contacts/all-18.jpg",
+      "sha256": "7906b5f9dee973109af6a992d8a4319df7a38e210c075e8041d24dab208049e8",
+      "images": [
+        "image-137",
+        "image-138",
+        "image-139",
+        "image-140",
+        "image-141",
+        "image-142",
+        "image-143",
+        "image-144"
+      ],
+      "finding": "Work routine conversion/editor/run/refusal states; no new target-state contradiction."
+    },
+    {
+      "path": "contacts/all-19.jpg",
+      "sha256": "83e4eb8cfbce4a3942aaf44738e28ccd089abdca3afa53b77bca232f2dd7c8d7",
+      "images": [
+        "image-145",
+        "image-146",
+        "image-147"
+      ],
+      "finding": "Work refusal/list-unavailable views; three-cell final sheet intentionally incomplete."
+    }
+  ],
+  "fullSizeReview": [
+    {
+      "case": 68,
+      "file": "provider-draft.spec.ts",
+      "title": "provider availability preserves an unsaved replacement key — 960 light",
+      "name": "provider-draft-light",
+      "image": "image-083",
+      "sha256": "bba44faf9eaec43cb02584296fd3e8c2512455e6469ebf3fb2cea5bd7805b018",
+      "canonical": "../integrated/targeted-images/bba44faf9eaec43cb02584296fd3e8c2512455e6469ebf3fb2cea5bd7805b018.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-draft-provider-av-c7b41-replacement-key-—-960-light/attachments/provider-draft-light-579d78665e489cdaa396e799863c228d2e4ba1f3.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Off badge, saved1111 and nonempty masked draft readable; lower Enable row partly clipped by viewport."
+    },
+    {
+      "case": 69,
+      "file": "provider-draft.spec.ts",
+      "title": "provider availability preserves an unsaved replacement key — 960 dark",
+      "name": "provider-draft-dark",
+      "image": "image-084",
+      "sha256": "e41de31f6a344bfba1270a7c2c91beff4bf382e8df737ad15c189f51d84b02e5",
+      "canonical": "../integrated/targeted-images/e41de31f6a344bfba1270a7c2c91beff4bf382e8df737ad15c189f51d84b02e5.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-draft-provider-av-bab6b--replacement-key-—-960-dark/attachments/provider-draft-dark-0bc8e32eec00be276bb21e14c660171345bc7257.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Off badge, saved1111 and nonempty masked draft readable; lower Enable row partly clipped by viewport."
+    },
+    {
+      "case": 70,
+      "file": "provider-key-pending.spec.ts",
+      "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+      "name": "after-delete-release",
+      "image": "image-085",
+      "sha256": "f158d9e4c2c541a14010a7f4ec55c2bc632fdc4bebbe922f7853d6bb7392664a",
+      "canonical": "images/f158d9e4c2c541a14010a7f4ec55c2bc632fdc4bebbe922f7853d6bb7392664a.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-f3799-response-is-pending-—-light/attachments/after-delete-release-df5315509b349177ae88c3cde1ed823b330075dc.png",
+      "targetedOriginalPNGEqual": false,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": false,
+        "changedPixels": 1,
+        "differenceBounds": [
+          954,
+          620,
+          955,
+          621
+        ],
+        "cause": "unknown"
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "No saved-key hint, nonempty focused masked draft and key-removed toast visible; lower model list partially covered."
+    },
+    {
+      "case": 70,
+      "file": "provider-key-pending.spec.ts",
+      "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+      "name": "after-put-release",
+      "image": "image-086",
+      "sha256": "05bdf66c12f868ed4e25fc6eacb3b30c88cde4c82d6bae9ebac2d03d4aa5ff22",
+      "canonical": "../integrated/targeted-images/05bdf66c12f868ed4e25fc6eacb3b30c88cde4c82d6bae9ebac2d03d4aa5ff22.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-f3799-response-is-pending-—-light/attachments/after-put-release-bc90c304244308262bcbc95e7c5a0c97fb8e63fc.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Saved2222 and focused nonempty masked draft visible; key-saved toast overlaps lower model list."
+    },
+    {
+      "case": 71,
+      "file": "provider-key-pending.spec.ts",
+      "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+      "name": "after-delete-release",
+      "image": "image-087",
+      "sha256": "aa1931d3bc8a6dffa2bd7c498345c0ff801913f1fa2b27da86c13c082d8f48d9",
+      "canonical": "../integrated/targeted-images/aa1931d3bc8a6dffa2bd7c498345c0ff801913f1fa2b27da86c13c082d8f48d9.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-12b0d--response-is-pending-—-dark/attachments/after-delete-release-e1e7b6c943e53f3bf5328b9c3bcefcdde01f0f74.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "No saved-key hint, nonempty focused masked draft and key-removed toast visible; lower model list partially covered."
+    },
+    {
+      "case": 71,
+      "file": "provider-key-pending.spec.ts",
+      "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+      "name": "after-put-release",
+      "image": "image-088",
+      "sha256": "cf5041f9fe375b2992d20f11623c5f6582fc1ebaffb676a4c98d4e051ea66e76",
+      "canonical": "../integrated/targeted-images/cf5041f9fe375b2992d20f11623c5f6582fc1ebaffb676a4c98d4e051ea66e76.webp",
+      "original": "/tmp/opencode/provider-draft-integrated/e2e-full-artifacts/provider-key-pending-Provi-12b0d--response-is-pending-—-dark/attachments/after-put-release-04e7e5410218a9d32650b89d3fa577bdc5427f03.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Saved2222 and focused nonempty masked draft visible; key-saved toast overlaps lower model list."
+    }
+  ],
+  "qualifications": [
+    "Assertions identify fixture B/C/D; masked screenshots cannot independently identify the input value.",
+    "All 147 images received contact review; only the six new targets received full-size review in this audit.",
+    "No all-controls/minimum-window geometry acceptance; Enable crop, narrow text ellipsis and toast overlap remain visible.",
+    "Five target PNGs exact to earlier targeted run; one edge pixel differs in light DELETE, cause unknown.",
+    "Earlier CI/native evidence remains separately pinned; local glyph results use WenQuanYi Zen Hei."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "recordedAt": "2026-10-03T11:36:19.518920+00:00",
+  "applicationRevision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "initialLaunchExitCode": 1,
+  "assertion": "Coordinator must quit prior Cortex first",
+  "effect": "Launcher refused before starting fixture/app helpers because ordinary Cortex was still running",
+  "recovery": "Quit ordinary Cortex via GUI AppleScript; unchanged launcher then succeeded with fresh confirmation root",
+  "driverChangedOnly": "Ancestor clipping excludes the measured element itself",
+  "sourceChanged": false
+}

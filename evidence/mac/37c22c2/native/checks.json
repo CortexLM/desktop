@@ -1,0 +1,631 @@
+{
+  "status": "passed",
+  "revision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "startedAt": "2026-10-03T11:35:59.406Z",
+  "finishedAt": "2026-10-03T11:37:33.606Z",
+  "durationMs": 94200,
+  "durationSeconds": 94.2,
+  "installedBeforeAfterExact": true,
+  "identity": {
+    "asarSHA256": "d1e6987ac728723b5c9b1132aa532fc63c3db55d863c9b264c48fdc631eea1f7",
+    "revision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+    "membersVerified": 90,
+    "pid": 60977,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2-confirm",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "d1236d99e1dab70eb5dce10e32660910ade8fc896ff21ff3ad8faae4477d3348"
+  },
+  "windowID": 8728,
+  "windowBounds": {
+    "X": 0,
+    "Height": 640,
+    "Y": 30,
+    "Width": 960
+  },
+  "captures": 4,
+  "actionChecks": 8,
+  "uiMutations": {
+    "PUT": 4,
+    "PATCH": 4
+  },
+  "themes": [
+    {
+      "theme": "light",
+      "checks": [
+        {
+          "stage": "save-A",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftEmpty": true
+        },
+        {
+          "stage": "disable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": false,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "enable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "save-B",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "2222"
+          },
+          "draftEmpty": true
+        }
+      ],
+      "observation": {
+        "requests": [
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": false,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "2222",
+            "keyEchoAbsent": true
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "checks": [
+        {
+          "stage": "save-A",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftEmpty": true
+        },
+        {
+          "stage": "disable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": false,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "enable",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "1111"
+          },
+          "draftPreserved": true,
+          "noExtraPUT": true
+        },
+        {
+          "stage": "save-B",
+          "stored": {
+            "providerID": "fake",
+            "enabled": true,
+            "hasKey": true,
+            "keyHint": "2222"
+          },
+          "draftEmpty": true
+        }
+      ],
+      "observation": {
+        "requests": [
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/providers/fake"
+          },
+          {
+            "method": "PUT",
+            "path": "/api/providers/fake/key"
+          }
+        ],
+        "responses": [
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": false,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "1111",
+            "keyEchoAbsent": true
+          },
+          {
+            "status": 200,
+            "fields": [
+              "enabled",
+              "hasKey",
+              "keyHint",
+              "providerID"
+            ],
+            "enabled": true,
+            "hasKey": true,
+            "providerID": "fake",
+            "keyHint": "2222",
+            "keyEchoAbsent": true
+          }
+        ]
+      }
+    }
+  ],
+  "directStateCalls": 25,
+  "directReads": 23,
+  "directActionWrites": 0,
+  "directCleanupWrites": [
+    {
+      "route": "/api/providers/fake/key",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/providers/fake",
+      "method": "PATCH",
+      "status": 200
+    }
+  ],
+  "providerID": "fake",
+  "restoredProvider": {
+    "providerID": "fake",
+    "enabled": true,
+    "hasKey": false
+  },
+  "engineEmpty": {
+    "assertedByExecutedDriver": [
+      "sessions",
+      "bots",
+      "tasks",
+      "permissions"
+    ],
+    "rawListPayloadsRetained": false
+  },
+  "inferenceRequests": 0,
+  "pageErrors": 0,
+  "consoleErrors": 0,
+  "rendererHttp": 0,
+  "unexpectedDialogs": 0,
+  "fixtureErrors": 0,
+  "backendRunID": "7bfc4fd1-b8a3-48f3-9d00-5e0c16f4d6ca",
+  "helperHashes": {
+    "provider-draft-native.mjs": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "driverCleanup": {
+    "observationRetained": true,
+    "providerRestoredKeyRemoved": true,
+    "providerDetailReset": true,
+    "localEngineEmpty": true,
+    "zeroInference": true,
+    "appearanceRestored": true,
+    "initialRouteRestored": true
+  },
+  "collectorCorrection": {
+    "changedLines": [
+      63
+    ],
+    "originalSHA256": "0125e457b2cd05ba2be8aa1344b6c6e5a0c15dbb7efdecab2af32a2add170d30",
+    "correctedSHA256": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73",
+    "exactTwoGuardsOnly": true,
+    "historicalTargets": [
+      {
+        "tag": "DIV",
+        "text": "API key",
+        "bounds": [
+          631,
+          314,
+          901,
+          330
+        ],
+        "effectiveClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "visible": true,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      },
+      {
+        "tag": "DIV",
+        "text": "Saved \u00b7 1111",
+        "bounds": [
+          631,
+          330,
+          901,
+          346
+        ],
+        "effectiveClip": [
+          631,
+          330,
+          901,
+          346
+        ],
+        "visible": true,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      },
+      {
+        "tag": "INPUT",
+        "text": "[password input]",
+        "bounds": [
+          631,
+          358,
+          831,
+          392
+        ],
+        "effectiveClip": [
+          632,
+          359,
+          830,
+          391
+        ],
+        "visible": false,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Save",
+        "bounds": [
+          843,
+          361,
+          890.71875,
+          389
+        ],
+        "effectiveClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "visible": true,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      },
+      {
+        "tag": "DIV",
+        "text": "Enable",
+        "bounds": [
+          631,
+          417,
+          855,
+          433
+        ],
+        "effectiveClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "visible": true,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      },
+      {
+        "tag": "SPAN",
+        "text": "",
+        "bounds": [
+          867,
+          423,
+          901,
+          443
+        ],
+        "effectiveClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "visible": true,
+        "hit": true,
+        "ancestorOnlyClip": [
+          617,
+          302,
+          915,
+          518
+        ],
+        "borderAndInkWithinAncestors": true
+      }
+    ],
+    "scope": "Border containment uses ancestors; self-clipped text needs its own ink check. Historical hint ink fits its own box; both current hints reviewed in full-size images."
+  },
+  "initialFailure": {
+    "file": "../initial-geometry/manifest.json",
+    "durationMs": 24388,
+    "captures": 0,
+    "actionChecks": 3,
+    "pid": 60572,
+    "root": "/private/tmp/opencode/desktop-terminal-state-provider-draft-37c22c2",
+    "backendRunID": "66b0778a-668d-46f0-a4b2-23c819f0016d"
+  },
+  "confirmationFreshIdentity": true,
+  "preconditionReceipt": "../confirmation-precondition.json",
+  "packageAudit": {
+    "file": "../package-review.md",
+    "buildMembers": 90,
+    "asarFiles": 91,
+    "integrityBlocks": 92,
+    "resources": 105,
+    "packageInputs": 514,
+    "rendererInputs": 473
+  },
+  "references": [
+    {
+      "file": "../members.json",
+      "sha256": "d1236d99e1dab70eb5dce10e32660910ade8fc896ff21ff3ad8faae4477d3348"
+    },
+    {
+      "file": "../package.json",
+      "sha256": "8d8f91c5e77622e0f86e3bdceb27d48b32151bcba0c5293bf4842d55cc98df14"
+    },
+    {
+      "file": "../package-review.md",
+      "sha256": "456ddb6c144e8b18a0e96c310fc46f6b3e4a2947572a54db2cc645871be325d6"
+    },
+    {
+      "file": "../package-audit/summary.json",
+      "sha256": "0a7e0cb95fb83fe5b68e21cb6eeeaad0de58f6d5a3a8df2fa04634d6b6fdbf8a"
+    },
+    {
+      "file": "../package-audit/review-receipt.json",
+      "sha256": "a78f943877d6e4fe33d6bdcb505047b2a659d03af678b7608c7342279f0739bd"
+    },
+    {
+      "file": "../package-audit/integrity.json",
+      "sha256": "bca15924980c8e71ea637e8fe45fbf47d9b2f940b5090750802621642333e0e7"
+    },
+    {
+      "file": "../package-audit/source-hashes.json",
+      "sha256": "b6511ae813eee71e3bd3ab8f6705dfab221b943db0b609674fbe3af09d8362ed"
+    },
+    {
+      "file": "../harness-review.md",
+      "sha256": "c3b1ac86168f81dbfbef3d984591773651eb7590c8319a69ca1b6beb43f0dcd7"
+    },
+    {
+      "file": "../installed.json",
+      "sha256": "913af6027dfe4d6f1409b45f09be2bfaaf634cfa32c1d44e454a5460c60e40c1"
+    },
+    {
+      "file": "../binding.json",
+      "sha256": "0c94610d7e39a31fc17029914284bfc60e609f2572ebfbca0fa9de58acaa3896"
+    },
+    {
+      "file": "../launch.json",
+      "sha256": "7939784235fe9ccf8f77dcbde98a71810686e3a29b52d0ac598be4badc4086b8"
+    },
+    {
+      "file": "../backend-receipt.json",
+      "sha256": "e397736a730dd13a00896391d3f1e32174ba0cf79d858e340dfeec38fbed5b5f"
+    },
+    {
+      "file": "../cleanup.json",
+      "sha256": "fd91598a40f4b0cc4ba2bf9c79633a796f8ab89d0421474fd8ac50fe3440ad97"
+    },
+    {
+      "file": "../ports-closed.json",
+      "sha256": "a4eafbda097fdeefe8276221befbe8652b65a9206fcd6c15670126f02c2896f1"
+    },
+    {
+      "file": "../scripts/hashes.json",
+      "sha256": "4c395a24cbf66f0631030e99c09fa623c8473bc95d94c19c81fa43bd9fd93fd1"
+    },
+    {
+      "file": "../scripts/cleanup-terminal-state-native.py",
+      "sha256": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+    },
+    {
+      "file": "../scripts/install-recovery-mac.py",
+      "sha256": "6bf25b6d861e73ae9c306b96515674c4f773790d3f61382b58a2dcc37eb120d9"
+    },
+    {
+      "file": "../scripts/launch-terminal-state-native.py",
+      "sha256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257"
+    },
+    {
+      "file": "../scripts/provider-draft-native-runbook.md",
+      "sha256": "d38e7fc4850875e8b2ac339c7024da8ed9dde92773f3a3e27a0778ce8c05498b"
+    },
+    {
+      "file": "../scripts/provider-draft-native.mjs",
+      "sha256": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73"
+    },
+    {
+      "file": "../scripts/terminal-state-native-backend.mjs",
+      "sha256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+    },
+    {
+      "file": "../collector-correction.json",
+      "sha256": "e6d0cbbd91aa335aa52812226a17f631aec268ccdc3104e2139d80c13626db1e"
+    },
+    {
+      "file": "../confirmation-precondition.json",
+      "sha256": "a4cf28ed54c28e173188172cde1e97912a213fe8a74e7ba50414c2bc1954d25a"
+    },
+    {
+      "file": "../initial-geometry/SHA256SUMS",
+      "sha256": "cbd67159e0cd487e3f21799a78cafeb85c1094f328c3779ee197787077404539"
+    },
+    {
+      "file": "../confirmation-driver.mjs",
+      "sha256": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73"
+    },
+    {
+      "file": "../geometry-review.md",
+      "sha256": "3a9044d75bd25735d624f553341778c3979ecfe5a3026266d3e687eaa1f3a2d0"
+    },
+    {
+      "file": "../geometry-final-review.md",
+      "sha256": "d39bde3e86c9c2d720cd2b97bfcc6566de9c72da2b4f8d7eb8de63874b75501e"
+    }
+  ],
+  "originalManifestSHA256": "5cec3c94d6b158d0a75c434ecfe36125465b5e0938a12c6dfb118b6b0d0863b3",
+  "originalLogSHA256": "d8d57fcc2f8ccc51086916633c348eaa8422f6cf0eedfd64481109023d76a85b",
+  "scope": "Installed English Settings, 960x640, light/dark, key-form/Enable targets; ordinary successful sequential actions."
+}

@@ -323,6 +323,12 @@ Terminal-state correction `2956564` passes 107 Electron cases per OS in CI `3711
 six matching native Chat/Code captures verify missing-page copy and persisted failure/recovery.
 CI artifact review covers 284 images/28 full-size target views; all sixteen locale images
 match `760c4a0`. See [`evidence/terminal-state-followup/README.md`](./evidence/terminal-state-followup/README.md).
+Provider-draft correction `37c22c2` passes 111 Electron cases per OS in CI `37118586276`;
+four matching native Settings captures verify draft retention and explicit-save clearing.
+An initial collector self-clipping failure is retained separately from its corrected
+fresh-profile confirmation. CI artifact review covers 296 images/28 full-size views;
+the later input-only collector refinement is separately marked unexecuted. See
+[`evidence/provider-draft-followup/README.md`](./evidence/provider-draft-followup/README.md).
 
 ## CI, packaging and releases
 

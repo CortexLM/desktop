@@ -1,0 +1,26 @@
+{
+  "verifiedAt": "2026-10-03T11:53:09.755291+00:00",
+  "applicationRevision": "37c22c2fcff92fb76b10ffc97ec0643ac325d62f",
+  "ciRun": 37118586276,
+  "ciCanonicalImagesSHA256AndRGBA": 296,
+  "nativeConfirmation": {
+    "captures": 4,
+    "uiWrites": 8,
+    "durationSeconds": 94.2,
+    "driverSHA256": "c84743eeed5d8a5cda6f873269fcd0a247d8fcf467962fa6e6e7001bd9c0ad73",
+    "knownStateImagesReviewed": 4,
+    "initialCollectorFailureRetained": true,
+    "laterInputOnlyDriverExecuted": false
+  },
+  "applicationTestingConfigDelta": false,
+  "mainRevision": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+  "finalNativeAudit": {
+    "verifiedAt": "2026-10-03T12:04:23.345280+00:00",
+    "report": "../mac/37c22c2/native/README.md",
+    "manifestSHA256": "5cec3c94d6b158d0a75c434ecfe36125465b5e0938a12c6dfb118b6b0d0863b3",
+    "independentFullSizeImages": 4,
+    "rgbaExactImages": 4,
+    "uiWrites": 8,
+    "cleanupChecks": 7
+  }
+}

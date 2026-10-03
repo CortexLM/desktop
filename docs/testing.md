@@ -358,9 +358,19 @@ Provider-draft regressions exercise real Settings writes in both themes:
 `provider-key-pending.spec.ts` holds completed real PUT/DELETE replies, types a newer draft,
 then releases the unchanged response. Stored key state and newer draft remain independent;
 oversized-key refusal preserves input, while ordinary accepted Save/Remove clears it.
-The three-line provider correction passes all four unchanged cases within 111 local
+Three-line provider correction `37c22c2` passes all four unchanged cases within 111 local
 Electron cases, plus lint/types, 245 units/one optional skip, i18n and Linux package/smoke.
-Changed-source CI and installed checks remain separate proof boundaries.
+CI `37118586276` passes all three jobs; artifact audit verifies 111 cases/426 renders per OS,
+296 images/28 full-size views and sixteen locale images unchanged from `2956564`.
+Final local image review covers 147 images/six full-size correction views.
+Matching installed `37c22c2` confirms ordinary Enable/Save behavior through eight UI writes
+and four native captures in both themes. Its initial self-clipping collector failure is
+retained; a collector-only correction passes on a fresh profile, with cleanup complete.
+Independent native review verifies the four originals, source/package identity and eight
+UI writes; the scoped receipts live in `evidence/mac/37c22c2/native/`.
+That executed collector checks ancestor clipping; later review narrows its exemption to
+inputs so text self-clipping remains enforced. The stronger version is unexecuted and is
+not substituted for the recorded four-image result.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

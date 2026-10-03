@@ -1,0 +1,134 @@
+[
+  {
+    "os": "e2e-linux",
+    "theme": "light",
+    "alphaSessionID": "ses_01a10172be420000c2eb2666deb25733",
+    "betaSessionID": "ses_01a10172ba080000dd70113aaca5e5b5",
+    "heldStatus": 200,
+    "heldSessionID": "ses_01a10172ba080000dd70113aaca5e5b5",
+    "whileHeld": {
+      "users": [],
+      "answers": []
+    },
+    "afterRelease": [
+      "Beta saved request"
+    ],
+    "actualPostPaths": [
+      "/api/sessions/ses_01a10172ba080000dd70113aaca5e5b5/prompt"
+    ],
+    "alphaUsers": [
+      "Alpha first request"
+    ],
+    "betaUsers": [
+      "Beta saved request",
+      "Intended for Beta after navigation"
+    ],
+    "alphaMessages": 2,
+    "betaMessages": 4,
+    "completedAssistants": 3,
+    "domSamples": 13,
+    "betaSamples": 11,
+    "noObservedAlphaUnderBeta": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "e2e-linux",
+    "theme": "dark",
+    "alphaSessionID": "ses_01a10172be9e00007a2c0ed83677829c",
+    "betaSessionID": "ses_01a10172ba6e0000857e9481e65dfc1e",
+    "heldStatus": 200,
+    "heldSessionID": "ses_01a10172ba6e0000857e9481e65dfc1e",
+    "whileHeld": {
+      "users": [],
+      "answers": []
+    },
+    "afterRelease": [
+      "Beta saved request"
+    ],
+    "actualPostPaths": [
+      "/api/sessions/ses_01a10172ba6e0000857e9481e65dfc1e/prompt"
+    ],
+    "alphaUsers": [
+      "Alpha first request"
+    ],
+    "betaUsers": [
+      "Beta saved request",
+      "Intended for Beta after navigation"
+    ],
+    "alphaMessages": 2,
+    "betaMessages": 4,
+    "completedAssistants": 3,
+    "domSamples": 13,
+    "betaSamples": 11,
+    "noObservedAlphaUnderBeta": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "theme": "light",
+    "alphaSessionID": "ses_01a10172a7390000674481130607262c",
+    "betaSessionID": "ses_01a10172a3680000b52cdf8cadcf7131",
+    "heldStatus": 200,
+    "heldSessionID": "ses_01a10172a3680000b52cdf8cadcf7131",
+    "whileHeld": {
+      "users": [],
+      "answers": []
+    },
+    "afterRelease": [
+      "Beta saved request"
+    ],
+    "actualPostPaths": [
+      "/api/sessions/ses_01a10172a3680000b52cdf8cadcf7131/prompt"
+    ],
+    "alphaUsers": [
+      "Alpha first request"
+    ],
+    "betaUsers": [
+      "Beta saved request",
+      "Intended for Beta after navigation"
+    ],
+    "alphaMessages": 2,
+    "betaMessages": 4,
+    "completedAssistants": 3,
+    "domSamples": 13,
+    "betaSamples": 11,
+    "noObservedAlphaUnderBeta": true,
+    "errors": [],
+    "rendererHttp": []
+  },
+  {
+    "os": "macos",
+    "theme": "dark",
+    "alphaSessionID": "ses_01a10172b72b00001464d94587a4a888",
+    "betaSessionID": "ses_01a10172b35c000003e960e3bd210efb",
+    "heldStatus": 200,
+    "heldSessionID": "ses_01a10172b35c000003e960e3bd210efb",
+    "whileHeld": {
+      "users": [],
+      "answers": []
+    },
+    "afterRelease": [
+      "Beta saved request"
+    ],
+    "actualPostPaths": [
+      "/api/sessions/ses_01a10172b35c000003e960e3bd210efb/prompt"
+    ],
+    "alphaUsers": [
+      "Alpha first request"
+    ],
+    "betaUsers": [
+      "Beta saved request",
+      "Intended for Beta after navigation"
+    ],
+    "alphaMessages": 2,
+    "betaMessages": 4,
+    "completedAssistants": 3,
+    "domSamples": 13,
+    "betaSamples": 11,
+    "noObservedAlphaUnderBeta": true,
+    "errors": [],
+    "rendererHttp": []
+  }
+]
