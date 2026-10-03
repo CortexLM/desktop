@@ -1,0 +1,13 @@
+
+Running 8 tests using 4 workers
+
+  ✓  2 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 light (2.2s)
+  ✓  3 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 light (2.2s)
+  ✓  4 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 light (2.2s)
+  ✓  1 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light (2.4s)
+  ✓  6 tests/e2e/memory-safety.spec.ts:190:3 › Bot memory retains refused drafts and accepts one owned write — 960 dark (2.1s)
+  ✓  7 tests/e2e/memory-safety.spec.ts:263:3 › Bot memory wipe waits for failures, partial writes and accepted retry — 960 dark (2.3s)
+  ✓  5 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 dark (2.4s)
+  ✓  8 tests/e2e/memory-safety.spec.ts:331:3 › Memory single-entry deletion keeps refused rows and reports only accepted writes — 960 dark (2.3s)
+
+  8 passed (5.4s)

@@ -1,0 +1,504 @@
+{
+  "rendered": 431,
+  "compared": 410,
+  "referenceGaps": 21,
+  "meanDiffPct": 0.0379,
+  "maxDiffPct": 1.73,
+  "fullCaptureDirectory": "/tmp/opencode/current-full-compare-6d96535",
+  "retention": "Full PNG hashes remain in report.json; selected lossless WebP triplets and every app state in contact sheets are committed.",
+  "retained": [
+    {
+      "state": "bot-studio-dark",
+      "kind": "app",
+      "file": "selected/bot-studio-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-dark.app.png",
+      "sourceSha256": "a1647397ee7266f7ec20be6b8b837d8ba30f24bd39062a728ff8a6766ba13c66",
+      "sha256": "65adb02ffa1ab7d099a5aab201a082ef68e615882b270bc6cf311578cf6f93cc"
+    },
+    {
+      "state": "bot-studio-dark",
+      "kind": "design",
+      "file": "selected/bot-studio-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-dark.design.png",
+      "sourceSha256": "066929593f663ee3fec9a2f51e5991f3075beac241eeb4e4fceecb9263cc0f33",
+      "sha256": "668471f6c94367d0fb97032582013fd017490c97791c63f785990ea4596f4a92"
+    },
+    {
+      "state": "bot-studio-dark",
+      "kind": "diff",
+      "file": "selected/bot-studio-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-dark.diff.png",
+      "sourceSha256": "c6d02a45dfbd177272b23c6f4ec53443de898bff1fc2479f63e0997c9b938f4c",
+      "sha256": "456d04f7aa3864b75ca1253b95ffdcfcbedbcad944de44394c3bfbbe2dcb267f"
+    },
+    {
+      "state": "bot-studio-light",
+      "kind": "app",
+      "file": "selected/bot-studio-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-light.app.png",
+      "sourceSha256": "e9f859830f9ad25934824b4af76cbd47de16ad72d7d7641058f8fe2b62270f48",
+      "sha256": "3a89e9a97d1a6107ad4c1e90744331452e34bcdf17d1b3f79a9f372b41ebbd1e"
+    },
+    {
+      "state": "bot-studio-light",
+      "kind": "design",
+      "file": "selected/bot-studio-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-light.design.png",
+      "sourceSha256": "cfc867bf1e5e561dcc366410cb4ceb884f2253b1da3689cd102754e9ef03b0e9",
+      "sha256": "5a703320f04c43542cb404e0197cd893ea6ff93dac7a153a02a1c302ada1808f"
+    },
+    {
+      "state": "bot-studio-light",
+      "kind": "diff",
+      "file": "selected/bot-studio-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-studio-light.diff.png",
+      "sourceSha256": "11395805c78b4f2c1e807030ca8cc26d314761170feada4a44745873b2d7e960",
+      "sha256": "87f82d6c1fdc9b631c81ccacf50775ffc625fc6ba8f10c7b99b7732ab3c7a2c8"
+    },
+    {
+      "state": "home-dark",
+      "kind": "app",
+      "file": "selected/home-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-dark.app.png",
+      "sourceSha256": "948f7700844c80c977551023a9556e281d818d2dc2da4a8a751915e4d74287dc",
+      "sha256": "bcb24937e0a8de22c8dc92df9c91982652ec8cdd57a15cd035dfd4fd17eb224e"
+    },
+    {
+      "state": "home-dark",
+      "kind": "design",
+      "file": "selected/home-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-dark.design.png",
+      "sourceSha256": "dcad4f6aeba27aa7ced225a42c8420d5f00f28c0575e5bb86b4f8b10545bc190",
+      "sha256": "73ad1283ef723c8302b3da653ab2161f204e6ab7647f879b043601f6bc11eeab"
+    },
+    {
+      "state": "home-dark",
+      "kind": "diff",
+      "file": "selected/home-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-dark.diff.png",
+      "sourceSha256": "c7fef66a360744bd675d9b71ec71456851d7e129d9c39052d6a9322f21b683ec",
+      "sha256": "20a0cb936c415cfc9c99035f909c30fd1da91258442c5ed9b40130268929cb43"
+    },
+    {
+      "state": "home-light",
+      "kind": "app",
+      "file": "selected/home-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-light.app.png",
+      "sourceSha256": "9b430933625c5827d26c1717a7cd2635f686c056ffe102cf0253092ea2d76c89",
+      "sha256": "c321c6ec6c5cfd0e9176e72dc6c90b619caf446a6ee00e5f33641d82d5329c9f"
+    },
+    {
+      "state": "home-light",
+      "kind": "design",
+      "file": "selected/home-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-light.design.png",
+      "sourceSha256": "94a423d1b913938e83207f62d3092c5b6dd5cb898bf960ee35db48fe37df9b6a",
+      "sha256": "92d70737e64a838e2a0f91dcd72b31b1bac3d20d673c6a92428471f94ca885b0"
+    },
+    {
+      "state": "home-light",
+      "kind": "diff",
+      "file": "selected/home-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/home-light.diff.png",
+      "sourceSha256": "97830aa938c6c508c2a423fdf990d4e1c0434125f9dbb7a27cbc2b7990cbb332",
+      "sha256": "b0398aa013201ba0113770f5068415bf2db37bb09abae3c3548bdb0605c567a6"
+    },
+    {
+      "state": "chat-dark",
+      "kind": "app",
+      "file": "selected/chat-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.app.png",
+      "sourceSha256": "2b09c40b2465c80b24adfb8788ba2285bc7902f16005429ad4ecd43b5dc3efcd",
+      "sha256": "e64cad014debaefc475469a465ade9cc68c56eb2246093ccfe5b2a4fe7cf4f7b"
+    },
+    {
+      "state": "chat-dark",
+      "kind": "design",
+      "file": "selected/chat-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.design.png",
+      "sourceSha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+      "sha256": "b2d43571bce7ac6cdef4095e363f9981f296d75e68b90a37ef813232f7d71ea9"
+    },
+    {
+      "state": "chat-dark",
+      "kind": "diff",
+      "file": "selected/chat-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.diff.png",
+      "sourceSha256": "b2ffe918a6c38d5470a6b5dee805ea7af9ac9974790371d67ae853ec07843b43",
+      "sha256": "edda41eefd8bee6d70f9e327b0af05469f6d91ee810995c6d81f4536198990fa"
+    },
+    {
+      "state": "chat-light",
+      "kind": "app",
+      "file": "selected/chat-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.app.png",
+      "sourceSha256": "8e152e7229d598f07969dc8c26df001a3bd6c17c94a214235c91d8786977218c",
+      "sha256": "1aec39044da26e0dab7e775a38e0718e7e9ec9885165bd88fac6c2f03548d958"
+    },
+    {
+      "state": "chat-light",
+      "kind": "design",
+      "file": "selected/chat-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.design.png",
+      "sourceSha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "sha256": "13755b397d5f87c284856c236e47427bc014f9ff13f9e0fe8c58f95414d3420b"
+    },
+    {
+      "state": "chat-light",
+      "kind": "diff",
+      "file": "selected/chat-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.diff.png",
+      "sourceSha256": "1e299dea91da4c79bd6736b547fe515b968c823dc265d78eb70070018951b14b",
+      "sha256": "f78ebe2810eba1777d18e5da7e5b80ffb06452d1cc7b67bc344a5ebdf8cd4f78"
+    },
+    {
+      "state": "chat-states~long-dark",
+      "kind": "app",
+      "file": "selected/chat-states~long-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-states~long-dark.app.png",
+      "sourceSha256": "e73fd8907d524e78a7ca5337cf46b2682eb900ac43ef341c1d17592e42d4e39d",
+      "sha256": "df809bcad0a8445f8359bc396716181e5dd5c08f781d167b72e399033725f91f"
+    },
+    {
+      "state": "chat-states~long-dark",
+      "kind": "design",
+      "file": "selected/chat-states~long-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-states~long-dark.design.png",
+      "sourceSha256": "9c49e3f3734214e85c8cc38a04d9c5ad445ee483d61e009a88e2d0bcd95b026d",
+      "sha256": "770e353c888bc4dbf79167e29f2a8c8db3d12674abdf2f5f27881d05a8980004"
+    },
+    {
+      "state": "chat-states~long-dark",
+      "kind": "diff",
+      "file": "selected/chat-states~long-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-states~long-dark.diff.png",
+      "sourceSha256": "be0194818655d706b9f07f2abf547766a4bac981aecd25e0e8fb2b445b31fa5f",
+      "sha256": "7db38176a9cb9eca53851e1d638aa85b511ecd67cabf6bda47d9720fa6e521e2"
+    },
+    {
+      "state": "code-dark",
+      "kind": "app",
+      "file": "selected/code-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-dark.app.png",
+      "sourceSha256": "25f5259b474f5e49ab92220679c003dd8790a5a829a07c9e7404a14368c8124e",
+      "sha256": "405e18be945fc08cd53d342215c0bb27fdc9febb66231f19190824de4f53a4a5"
+    },
+    {
+      "state": "code-dark",
+      "kind": "design",
+      "file": "selected/code-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-dark.design.png",
+      "sourceSha256": "ef9056b496929751cc104a88e2a7859b4a59cbaa3bf0589bde9564f38c5e5475",
+      "sha256": "bf70806f8e3c1422cb80bb9ff15ef464b24f3623b66343ba48b26290fbc02008"
+    },
+    {
+      "state": "code-dark",
+      "kind": "diff",
+      "file": "selected/code-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-dark.diff.png",
+      "sourceSha256": "03e4840cc7805b6ee78f6f72491c13cb210ca4683a6d897fe04417765d3e15d2",
+      "sha256": "2a569cbd2e8ce91d2ab22ef23a82604af3affa76ae4c186a9fd214f19ff0cf58"
+    },
+    {
+      "state": "code-light",
+      "kind": "app",
+      "file": "selected/code-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-light.app.png",
+      "sourceSha256": "f8bdfb335af1fb995bb7ec8b387e0930ef063a288a4d1a689dfa5f20d94b5614",
+      "sha256": "229102604c25f85d3da7e9c058a45df14f9505c7889fcc7a4a046c51ffaf590b"
+    },
+    {
+      "state": "code-light",
+      "kind": "design",
+      "file": "selected/code-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-light.design.png",
+      "sourceSha256": "2745626edd1fe6a3a080bc71565932922102260f4b4b093cd0cc2d9f67a7fda9",
+      "sha256": "953d3813c2377d3a8e26b15f46cf42c3162d022629b95ce529157d1836b373c9"
+    },
+    {
+      "state": "code-light",
+      "kind": "diff",
+      "file": "selected/code-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-light.diff.png",
+      "sourceSha256": "65b40785f24805f64aa891ddb2cb3eadd6535a14088244ac380997824fc9b706",
+      "sha256": "705b45b74c1418b24f48f2b27c38db297a9a735941fa7ec0dbfeff1016fc6102"
+    },
+    {
+      "state": "code-session-dark",
+      "kind": "app",
+      "file": "selected/code-session-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.app.png",
+      "sourceSha256": "3a9fbafc308186e39b30ef02208ade9b602b56d198a670ed99c067d599201e2f",
+      "sha256": "1bbb4b97a81d6bf56b45455750bd814713fd2b20cd976d24d80ecfe43be5edb7"
+    },
+    {
+      "state": "code-session-dark",
+      "kind": "design",
+      "file": "selected/code-session-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.design.png",
+      "sourceSha256": "604c56e769866e7a9389bf1e0becb482412645dc0d8229f6ce52184d48fd784f",
+      "sha256": "588e6295960c1ce71523f4f147a578263deec282335278e12f3d1d6e975c1521"
+    },
+    {
+      "state": "code-session-dark",
+      "kind": "diff",
+      "file": "selected/code-session-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.diff.png",
+      "sourceSha256": "ac004b43a1f8550da1110326d3980302f7a2e89cc86f31a4587f285f6f2b2833",
+      "sha256": "a5d99214a6d7b399c837d902df19ea16cae24df1c0ec1d5ceec2a41583dfb16d"
+    },
+    {
+      "state": "code-session-light",
+      "kind": "app",
+      "file": "selected/code-session-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.app.png",
+      "sourceSha256": "284d53afe02e3aaab238da82e84fab3a5e83d1cc1cc22758bffd53ddb68302da",
+      "sha256": "5c328508cb8a04d915d16d6f1cf765d74e8f9270af1f0ce99661689b48989d40"
+    },
+    {
+      "state": "code-session-light",
+      "kind": "design",
+      "file": "selected/code-session-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.design.png",
+      "sourceSha256": "0a6bc9f2b8d5231b77b988a1e910c7485686f858e9d88dc6e4a60f68482cef74",
+      "sha256": "47b5df6fe96a0b5339abd2445efacd22bd398bd0bc4516fe543a2514c37e0d00"
+    },
+    {
+      "state": "code-session-light",
+      "kind": "diff",
+      "file": "selected/code-session-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.diff.png",
+      "sourceSha256": "da53204a3ec39143fbe7616d38d93b0faf5973ff91e22065445d49feeda36670",
+      "sha256": "1a55484282f04400d1c134ec7c5fb276aaf408c25d84758a11d81b798a99e76f"
+    },
+    {
+      "state": "file-xlsx~range-dark",
+      "kind": "app",
+      "file": "selected/file-xlsx~range-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-dark.app.png",
+      "sourceSha256": "37cf2bdd2cbb3784a4b6fdf96dfaa7130fb14966cb1b1e85370dda9e206950b7",
+      "sha256": "f4670354ddd5fb3a26cbae0343dd2edbc238a92f15ff8cc0c01c0cc07ea91431"
+    },
+    {
+      "state": "file-xlsx~range-dark",
+      "kind": "design",
+      "file": "selected/file-xlsx~range-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-dark.design.png",
+      "sourceSha256": "aa67dc9471460bfbf2a61d12a8dc5145b5bccea91957e47e6b9755d8ec9d285b",
+      "sha256": "2d1e5a8c7b44bb1acf27f18bfbf320bb09c93f62066358e2e75f9abbae1e753d"
+    },
+    {
+      "state": "file-xlsx~range-dark",
+      "kind": "diff",
+      "file": "selected/file-xlsx~range-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-dark.diff.png",
+      "sourceSha256": "36be20ea3f5beeaeaaa0b112021573f0de1469fe3eb6ca3cd0144906ed5ab3e1",
+      "sha256": "ae01d22b0bbbe07b76a1db223c34f1a5fb736bc2d0d56fbc09e536549890ddd9"
+    },
+    {
+      "state": "file-xlsx~range-light",
+      "kind": "app",
+      "file": "selected/file-xlsx~range-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-light.app.png",
+      "sourceSha256": "d9b34588f025c391b8b6f2d17fdbbb48f874d465de443dae6ef510d8d6a96f51",
+      "sha256": "73d70b195c86b290636697e56c7882cb28896d8a9ccca6347a544fae57e6cefc"
+    },
+    {
+      "state": "file-xlsx~range-light",
+      "kind": "design",
+      "file": "selected/file-xlsx~range-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-light.design.png",
+      "sourceSha256": "439cccc585a35bf39bd41338cf3d57acda4c50391b4c0428c023ccc1b4961bfd",
+      "sha256": "b41953f24f238fe25e13b5893f0a7506f5b62987ebb376c0bca47ae837869523"
+    },
+    {
+      "state": "file-xlsx~range-light",
+      "kind": "diff",
+      "file": "selected/file-xlsx~range-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~range-light.diff.png",
+      "sourceSha256": "86d504ef7d08828e8a34a8835d5df9f4214e9927acdda9796ed8288ef66a0a9e",
+      "sha256": "2d60a9098f849fbb6e34f0599534ea67b39a082bc5406bf6e631210cefd33fb5"
+    },
+    {
+      "state": "file-xlsx~chart-dark",
+      "kind": "app",
+      "file": "selected/file-xlsx~chart-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-dark.app.png",
+      "sourceSha256": "c32f968c71235275207940ec242186eaaf05cb8e41ab180fbf70d6a97a01c786",
+      "sha256": "71acb62a93937969c1d9df1b1c595fffedda83308bab701334318cc248929947"
+    },
+    {
+      "state": "file-xlsx~chart-dark",
+      "kind": "design",
+      "file": "selected/file-xlsx~chart-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-dark.design.png",
+      "sourceSha256": "22b3b72f7d71357c7abdef664cc6a8c4c984b541d865435091ebd774bc00981b",
+      "sha256": "04fea4eefbe6f70004e4bd117500e6afade3c1a48870485e85e91a2e84212d74"
+    },
+    {
+      "state": "file-xlsx~chart-dark",
+      "kind": "diff",
+      "file": "selected/file-xlsx~chart-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-dark.diff.png",
+      "sourceSha256": "8b24ffa0fe0ade90c548d89a6e26742835f34b6c411e95c535396eecd31a6307",
+      "sha256": "e96c4416352d8ecae3234c034e0dc5096ca329013147c321ee8f4ee93df68d02"
+    },
+    {
+      "state": "file-xlsx~chart-light",
+      "kind": "app",
+      "file": "selected/file-xlsx~chart-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-light.app.png",
+      "sourceSha256": "b9fe63da352d20e92c532d5c1795bf135364de9bb35855962cba3d127e542f29",
+      "sha256": "30dca00570f3c12c795b63222e15e507ef70474674900deaae05e261792110e9"
+    },
+    {
+      "state": "file-xlsx~chart-light",
+      "kind": "design",
+      "file": "selected/file-xlsx~chart-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-light.design.png",
+      "sourceSha256": "e2d96c872085a5d370ce1d16fa5b4cf1d089ce80a7dc58be424289da11726a3b",
+      "sha256": "77a340df6a8774407ae943bf6b0d99ba3160dece73fff6ef5c8648ef1417e5e3"
+    },
+    {
+      "state": "file-xlsx~chart-light",
+      "kind": "diff",
+      "file": "selected/file-xlsx~chart-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/file-xlsx~chart-light.diff.png",
+      "sourceSha256": "c443ad22c08ea27fd76cb2fbd097ca3b54042f9624958346dc987f5ee5c6e28b",
+      "sha256": "7d1f27d8450cf2a23f0dfbecbbcd93b19a0332050cc7deb6e848684aa77137e3"
+    },
+    {
+      "state": "upload~uploading-dark",
+      "kind": "app",
+      "file": "selected/upload~uploading-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/upload~uploading-dark.app.png",
+      "sourceSha256": "8620a9152a28188ec94330b29fe739be9c50f3766f1e1ae75170ad25009eb25c",
+      "sha256": "3d3a2c309b3fc0649a5ad9bdd3d91f03a6082f4950cb12f1398ba7240e0ef369"
+    },
+    {
+      "state": "upload~uploading-dark",
+      "kind": "design",
+      "file": "selected/upload~uploading-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/upload~uploading-dark.design.png",
+      "sourceSha256": "a00a219e82571ae50e19aeb18fbd6fe0d7c824b48f9f63119ab3b9fba1b9aa1e",
+      "sha256": "93c44457879b7cfd4d6a18df86153bac5b6dccbc4c088afb5c4dea2f9ba52b20"
+    },
+    {
+      "state": "upload~uploading-dark",
+      "kind": "diff",
+      "file": "selected/upload~uploading-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/upload~uploading-dark.diff.png",
+      "sourceSha256": "fb25d208246f4e1f14f246f293e66a27e8c4baa94fa092c68d6a6dd4240a4108",
+      "sha256": "a21dd80b5af65bc99a60b04ec96879606d98f308544a6de16f627ce5ef73aa72"
+    },
+    {
+      "state": "components-dark",
+      "kind": "app",
+      "file": "selected/components-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-dark.app.png",
+      "sourceSha256": "92d762e0cd35667b823989c8707a5ac37fe6c959086809804aeb9dae3691ac66",
+      "sha256": "3854ba4a40f33b24f08b72de76e9369e2223cf3097ee25e957adee5ab2ca0caa"
+    },
+    {
+      "state": "components-dark",
+      "kind": "design",
+      "file": "selected/components-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-dark.design.png",
+      "sourceSha256": "ea53874cd57bcbdd5905fd6fcec009bdde6bdce3250a69b8873afed94b3fa763",
+      "sha256": "dce52b81ac6d9f7c5561b1b32e098cd9d3eb55f9f470306990a481790b0a6152"
+    },
+    {
+      "state": "components-dark",
+      "kind": "diff",
+      "file": "selected/components-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-dark.diff.png",
+      "sourceSha256": "32866c9fbb76599699e8e35ad78aa819d86b3ae162e38e029b92cbb77d652a84",
+      "sha256": "297dd99826dc44924a6dc8b556ce30af7334caeef180728dcdaaabacfb8644b0"
+    },
+    {
+      "state": "components-light",
+      "kind": "app",
+      "file": "selected/components-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-light.app.png",
+      "sourceSha256": "fb934d6b1c51e355ac7bba8c45c332fa7c726769ba8c5d6e768b1260cd1ce739",
+      "sha256": "2d0230b49df429a87a278f72740f3a029c8780673c847ae0970fec56907f047e"
+    },
+    {
+      "state": "components-light",
+      "kind": "design",
+      "file": "selected/components-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-light.design.png",
+      "sourceSha256": "cada06b445fd7c123d35ff5042d1cfb52c53e017a600cadbefac73fd2fdb326c",
+      "sha256": "053002952e508eb9ab6b16b903de845625926b2995509bfe9c8efe09cd6f5155"
+    },
+    {
+      "state": "components-light",
+      "kind": "diff",
+      "file": "selected/components-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/components-light.diff.png",
+      "sourceSha256": "c9d95fb4600eb113f99d702eba8517a7c0704e8c7d2538fdb875ebf02c1c009e",
+      "sha256": "8096c0fccc00677e6ee98ee7f8b2686580f2e45c4d0bc8ea0a556cd9663f49cb"
+    },
+    {
+      "state": "work-task~done-dark",
+      "kind": "app",
+      "file": "selected/work-task~done-dark.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.app.png",
+      "sourceSha256": "d8eb0a8707461efac6b549397a8c15bcece7d9607c0d13cef84e34822c1b32e5",
+      "sha256": "f9a3f9fe1a22dba789ce5f33d20f2b4fc5632c7ab838a9b699e682717df5b759"
+    },
+    {
+      "state": "work-task~done-dark",
+      "kind": "design",
+      "file": "selected/work-task~done-dark.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.design.png",
+      "sourceSha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "sha256": "df45b8a89d4962edcc5b272baaa87a5d721675a420de3fb16e4cbc17021f1036"
+    },
+    {
+      "state": "work-task~done-dark",
+      "kind": "diff",
+      "file": "selected/work-task~done-dark.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.diff.png",
+      "sourceSha256": "ea0d95969eb51d200030193cebb465bacc6ca2b224abe71d6401c567638fc24f",
+      "sha256": "ad8406f517433f57601dead907732c5c40cb25fb955741d79da3e5ae78e8307c"
+    },
+    {
+      "state": "work-task~done-light",
+      "kind": "app",
+      "file": "selected/work-task~done-light.app.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.app.png",
+      "sourceSha256": "52cadbd5ca4090cc89a64e7c3184e9858724bdb29ce60ca0b1e88141f1334fe8",
+      "sha256": "093c6809868613d74e02c690911b5b15b0939a4431f368bb99f5557e321e75b8"
+    },
+    {
+      "state": "work-task~done-light",
+      "kind": "design",
+      "file": "selected/work-task~done-light.design.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.design.png",
+      "sourceSha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "sha256": "cf0138934cbe7e657d238a3b6aca1810bc5832daf3f58e32a80d5950bbb7c73b"
+    },
+    {
+      "state": "work-task~done-light",
+      "kind": "diff",
+      "file": "selected/work-task~done-light.diff.webp",
+      "sourcePng": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.diff.png",
+      "sourceSha256": "11f8130019d42b35fb46dcfa2d028c870b72a88f1943c9a0435d642b85a57717",
+      "sha256": "70a48261b9bfbe5b5c0a82eb196f09c179d9fe3f6b8928fa41e189b234c1ff56"
+    }
+  ],
+  "contactSheets": [
+    "contact-01.jpg",
+    "contact-02.jpg",
+    "contact-03.jpg",
+    "contact-04.jpg",
+    "contact-05.jpg",
+    "contact-06.jpg",
+    "contact-07.jpg",
+    "contact-08.jpg",
+    "contact-09.jpg",
+    "contact-10.jpg",
+    "contact-11.jpg"
+  ]
+}

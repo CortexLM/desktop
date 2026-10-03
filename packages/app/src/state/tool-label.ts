@@ -1,6 +1,22 @@
 import type { T } from "@cortex/i18n";
 import type { ToolPart } from "@cortex/schema";
 
+export function bashOutput(t: T, p: ToolPart): string {
+  const s = p.state;
+  if (s.status === "error") return t("chat.err.tool_failed.body");
+  if (s.status !== "completed") return "";
+  const { outputLength, truncated, exit } = s.metadata ?? {};
+  // ponytail: legacy/unrecognized records stay verbatim; migrate only with a verified raw-output boundary.
+  if (p.tool !== "bash" || typeof outputLength !== "number" || !Number.isSafeInteger(outputLength) || outputLength < 0 || outputLength > s.output.length
+    || typeof truncated !== "number" || !Number.isSafeInteger(truncated) || truncated < 0
+    || !(exit === null || typeof exit === "string" || typeof exit === "number" && Number.isSafeInteger(exit))) return s.output;
+  const suffix = (truncated ? `\n… [truncated ${truncated} characters]` : "") + (exit ? `\n[exit code ${exit}]` : "");
+  if (s.output.slice(outputLength) !== suffix) return s.output;
+  return s.output.slice(0, outputLength)
+    + (truncated ? `\n… [${t("code.terminal.truncated", { count: truncated })}]` : "")
+    + (exit ? `\n[${typeof exit === "number" ? t("code.terminal.exitCode", { code: exit }) : t("chat.err.tool_failed.body")}]` : "");
+}
+
 const NAMES: Record<string, string> = {
   bash: "bots.set.tool.bash", write: "bots.set.tool.write", edit: "bots.set.tool.edit", webfetch: "bots.set.tool.webfetch",
   read: "common.tool.read", list: "common.tool.list", glob: "common.tool.glob", grep: "common.tool.grep",

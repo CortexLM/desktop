@@ -1,0 +1,38 @@
+{
+  "observedAt": "2026-10-03T00:43:08.973565+00:00",
+  "run": 37082159189,
+  "archives": [
+    {
+      "archive": "logs.zip",
+      "bytes": 86361,
+      "sha256": "036fdd994a6535d4e96848e7e5f84c5679f3e0f29cbc72ae3216ae2ddf713ba9",
+      "apiDigest": null,
+      "files": 52,
+      "destination": "logs"
+    },
+    {
+      "archive": "macos.zip",
+      "bytes": 17660714,
+      "sha256": "32925247073758b0580979c93fbee34b433c0a6ef0fc2d9720f7af373296cc9f",
+      "apiDigest": "sha256:32925247073758b0580979c93fbee34b433c0a6ef0fc2d9720f7af373296cc9f",
+      "files": 231,
+      "destination": "macos"
+    },
+    {
+      "archive": "cortex-mac-arm64-zip.zip",
+      "bytes": 144612538,
+      "sha256": "138aaed250c7fc01843ab6b9a85fc1974d59cd78b2c528452726c8b7ab4a2141",
+      "apiDigest": "sha256:138aaed250c7fc01843ab6b9a85fc1974d59cd78b2c528452726c8b7ab4a2141",
+      "files": 1,
+      "destination": "cortex-mac-arm64-zip"
+    },
+    {
+      "archive": "e2e-linux.zip",
+      "bytes": 18259808,
+      "sha256": "8a7947649ca40232293d3e2cb33c3ef0491b10226a76195619f84c70f0d0d4b8",
+      "apiDigest": "sha256:8a7947649ca40232293d3e2cb33c3ef0491b10226a76195619f84c70f0d0d4b8",
+      "files": 227,
+      "destination": "e2e-linux"
+    }
+  ]
+}

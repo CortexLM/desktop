@@ -65,6 +65,10 @@ Rules `(tool, pattern, allow|ask|deny)`, last match wins, default ask. Order: de
 Replies: `once`, `always` (saved per project directory), `reject` (stops the loop and
 cancels the session's other pending asks). Computer-use input tools never save `always`
 ([computer-use.md](./computer-use.md)).
+The live approval list distinguishes read failure from an empty list and offers Retry;
+a failed read cannot claim outstanding requests were handled.
+Permission views also refresh when sessions change status or are deleted, removing cancelled
+asks even when no explicit permission reply was sent.
 
 ## Bots, scheduler, space, connection
 
@@ -72,6 +76,10 @@ cancels the session's other pending asks). Computer-use input tools never save `
   as reference data, routines = scheduled tasks with `botID`.
   Bot Studio leaves its editor only after an accepted save; rejected writes retain the
   draft and confirmation dialog. Pending saves lock editing and duplicate submissions.
+  Memory Add likewise keeps its exact editable draft on refusal and clears it only after
+  persistence. Bot-wide deletion waits for every request to settle, refreshes survivors and
+  reports success only if every delete succeeded. Single-entry Bot/System deletion reports
+  failures and keeps pending/refused rows; pending/stale-owner responses cannot overwrite newer UI.
   Preview Bot appearance, activity and unsaved studio drafts share renderer-only state
   during navigation. They reset on reload, locale changes or leaving preview; they never
   create or update engine Bots. Preview onboarding saves into that same temporary state.

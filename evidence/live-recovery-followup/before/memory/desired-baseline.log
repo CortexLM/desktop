@@ -1,0 +1,44 @@
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/memory-safety.spec.ts:68:3 › Bot memory retains refused drafts and accepts one owned write — 960 light
+  1) tests/e2e/memory-safety.spec.ts:68:3 › Bot memory retains refused drafts and accepts one owned write — 960 light
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByPlaceholder('New memory…', { exact: true })
+    Expected: "  Keep my exact memory draft.  "
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByPlaceholder('New memory…', { exact: true }) with timeout 15000ms
+      - waiting for getByPlaceholder('New memory…', { exact: true })
+
+
+      87 |       await expect(page.getByText("Couldn’t save. Try again.", { exact: true })).toBeVisible();
+      88 |       expect(await requests(app)).toEqual([{ method: "POST", id: "add", status: 404, code: "not_found" }]);
+    > 89 |       await expect(input).toHaveValue(draft);
+         |                           ^
+      90 |       await expect(input).toBeEditable();
+      91 |       await capture(page, `memory-add-refused-${theme}`);
+      92 |
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:89:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/desired-baseline/memory-safety-Bot-memory-r-b0177-one-owned-write-—-960-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/memory-live-repro/desired-baseline/memory-safety-Bot-memory-r-b0177-one-owned-write-—-960-light/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-live-repro/desired-baseline/memory-safety-Bot-memory-r-b0177-one-owned-write-—-960-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/memory-live-repro/desired-baseline/memory-safety-Bot-memory-r-b0177-one-owned-write-—-960-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    tests/e2e/memory-safety.spec.ts:68:3 › Bot memory retains refused drafts and accepts one owned write — 960 light

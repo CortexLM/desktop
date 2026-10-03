@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/terminal-copy-repro/vitest.config.mjs",
+    "--configLoader",
+    "native",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/terminal-copy-repro/negative/vitest.json"
+  ],
+  "exit": 1
+}

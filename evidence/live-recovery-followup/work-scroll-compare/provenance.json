@@ -1,0 +1,202 @@
+{
+  "method": "Scoped manual browser capture using unchanged comparator reference/asset helpers; no renderer build",
+  "startedAt": "2026-10-03T01:45:54.756Z",
+  "completedAt": "2026-10-03T01:46:03.100Z",
+  "counts": {
+    "captured": 2,
+    "compared": 2,
+    "referenceGaps": 0,
+    "pngs": 6
+  },
+  "clock": {
+    "mode": "fixed",
+    "source": "caller",
+    "time": "2026-10-02T12:09:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "render": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 2,
+    "locale": "fr-FR",
+    "catalogLocale": "fr",
+    "pixelmatchThreshold": 0.15
+  },
+  "reference": {
+    "root": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674",
+    "shots": "/root/cortex-ui-freezes/2026-10-02-7b388e2d9674/shots",
+    "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "sourceFileCount": 106,
+    "freezeSha256": "f05453f8776c681217a3e386d4e04e59908e0fad2170745ad58b63ecaedc7253",
+    "manifestSha256": "3e215fb4b16115a89d12010a7432cb81f174b1b8292c02981aa18dc56f28bfa1",
+    "registrySha256": "a1f8e68bb0431fde8056ff150d5c2b003838dc7f2173706d0faa8a640f2faac5",
+    "coverageSha256": "71519590059226b8c3c9cc9328864b2106abe5449085837f77728a649c7e993c",
+    "motionIndexSha256": "1d291913221ad1b97511b52630e5af7bc0a63e581c4fc3a8c87c6a3e04471d79"
+  },
+  "workSource": {
+    "file": "packages/app/src/screens/work/home.tsx",
+    "sha256": "f20599c58871783afba2024f88aa8902b2e9f355baeb6af35f2a473a70e056d6",
+    "snapshot": {
+      "file": "work-home-source.tsx",
+      "sha256": "f20599c58871783afba2024f88aa8902b2e9f355baeb6af35f2a473a70e056d6",
+      "bytes": 37455
+    },
+    "checkedBeforeAfter": true
+  },
+  "repositoryHeadAtReview": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "sourceProvenance": "Only the accepted Work source was pinned and checked. Concurrent integrated sources were not fingerprinted; served assets do not attest a source-to-build mapping.",
+  "captureScriptSha256": "6a694aab336c0ab4fe2ccae47b28d22e45908d823e6323f586210468bdc27f7f",
+  "comparatorHelperSha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+  "servedAssets": {
+    "sha256": "a98dce1277e2c85cd916da4815a85bdfccee4dd404f82da863bf46895a0d01aa",
+    "files": [
+      {
+        "url": "http://127.0.0.1:5309/",
+        "sha256": "1126c6e4e38c0824fd125c0819cb0c073c32e8d64635e091957c4708bb9708d1",
+        "bytes": 664
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/bots-Dhnxap2k.js",
+        "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+        "bytes": 5242
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/chat-DPP7jha6.js",
+        "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+        "bytes": 21015
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/code-l1ImvW5S.js",
+        "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+        "bytes": 17357
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/files-DIk1qP8R.js",
+        "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+        "bytes": 23724
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/index-Bo4UCD38.css",
+        "sha256": "66b5535728e44c658157393b4350e21624c56597d27ed3a5887aaf6b50a2fca5",
+        "bytes": 205080
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/index-C_HRHk6M.js",
+        "sha256": "6422ab129f0223ba155a7b18c616a9e2b266b33a0895f205f186a3abc1e7dc41",
+        "bytes": 2428493
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/shell-CYBsECV8.js",
+        "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+        "bytes": 1030
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/system-D9_n4Goj.js",
+        "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+        "bytes": 9120
+      },
+      {
+        "url": "http://127.0.0.1:5309/assets/work-CXx4q0-W.js",
+        "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+        "bytes": 14410
+      },
+      {
+        "url": "http://127.0.0.1:5309/fonts/Geist-Variable.woff2",
+        "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+        "bytes": 69652
+      },
+      {
+        "url": "http://127.0.0.1:5309/fonts/GeistMono-Variable.woff2",
+        "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+        "bytes": 71368
+      },
+      {
+        "url": "http://127.0.0.1:5309/gel/automatisations.png",
+        "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+        "bytes": 77526
+      },
+      {
+        "url": "http://127.0.0.1:5309/gel/documents.png",
+        "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+        "bytes": 75789
+      },
+      {
+        "url": "http://127.0.0.1:5309/gel/images.png",
+        "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+        "bytes": 77289
+      },
+      {
+        "url": "http://127.0.0.1:5309/gel/recherche-web.png",
+        "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+        "bytes": 81327
+      },
+      {
+        "url": "http://127.0.0.1:5309/img/crepuscule.png",
+        "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+        "bytes": 1405004
+      },
+      {
+        "url": "http://127.0.0.1:5309/img/lagon.png",
+        "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+        "bytes": 1246039
+      },
+      {
+        "url": "http://127.0.0.1:5309/img/prairie.png",
+        "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+        "bytes": 1242519
+      }
+    ],
+    "recheckedAfterCapture": true,
+    "httpCache": "disabled via context.route"
+  },
+  "report": {
+    "file": "report.json",
+    "sha256": "ee8d46f39b3c904b39b39ff97fb750c1fa5088ab762926cb356ff3be6d51e223",
+    "bytes": 8250
+  },
+  "errors": [],
+  "ignoredPreviewApiErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/bots"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/events"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/sessions?kind=chat"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/bots"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/bots"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/events"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/sessions?kind=chat"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:5309/api/bots"
+    }
+  ],
+  "limits": [
+    "Two Work Done browser-preview frames only; no native/CI/live-engine or motion acceptance.",
+    "No independent source-review approval: numerical post-fix verification of this executor's correction.",
+    "Fixed caller Date/UTC does not attest original reference mount time/timezone; timers remain real.",
+    "Original raw report, images and scores remain untouched. No residual or acceptance threshold waived.",
+    "This initially integrated build predates ongoing memory-race/permission-status integration per coordinator; no whole-tree source/build attestation claimed."
+  ]
+}

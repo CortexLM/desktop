@@ -71,16 +71,19 @@ Settings → **Connection** (`#/settings?section=connection`, in `settings.tsx`)
 Remote authentication, remote model selection and Cortex inference remain an active delivery
 goal. The [current SDK handoff readback](../evidence/recovery-followup/remote-integration-readback.md)
 preserves the PM report's 15:05 observation and earlier readbacks. In the
-**2 October 2026, 23:42 UTC snapshot**, PR #447 remains at `7633f7e2`; G3's canonical
-versioned pair and owner checks remain undelivered. Desktop's unchanged 0.2.0/0.1.0 pair remains
-probe-only; local generated edits are not a package release.
+**3 October 2026, 00:32 UTC snapshot**, PR #447 remained at `7633f7e2`, before the canonical
+package delivery. The later owner handoff supplies SDK **0.3.1** / api-types **0.2.0** at
+`ce05a6040ec05ac479d23dc2f701c8835a529663`, with successful upstream CI `37084973406`.
+Desktop admission is verifying its archive/source pins and consumer concerns; the installed
+0.2.0/0.1.0 pair remains probe-only. Earlier SDK 0.3.0 retains its Node 22 regression HOLD.
 
 Delivery order:
 
 1. Consume G3's versioned pair with source commit, canonical schema pin, archive hashes and
    targeted runtime receipts. `vendor/` and `packages/desktop/package.json` must agree on both
    packages. G2's five typed auth/upload bodies are already delivered at `d6d46014`; SDK
-   regeneration, public `Problem` reconciliation and runtime fixes remain G3-owned.
+    regeneration, public `Problem` reconciliation and runtime receipts remain G3-owned and
+    are now supplied by the corrected 0.3.1 handoff, subject to desktop admission checks.
 2. Implement session acquisition and continuations in Electron main. Keep bearer/cookie/pending
    state origin/account-bound; replace the authenticated client on identity changes rather than
    repointing it. Expose validated, sanitized state through schema/protocol/client contracts;

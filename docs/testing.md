@@ -24,7 +24,7 @@ Linux headless E2E: `xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e` (
 | `packages/core/test/mcp.test.ts` | Main-only connection storage, legacy migration/refusal, metadata-write failure, pending reconnect/removal races and redirect-header refusal |
 | `packages/core/test/scheduler.test.ts` | Interrupted routine outcomes, duplicate admission, file-backed restart recovery and deleted-history preservation; server tests verify route conflict responses |
 | `tests/unit/locales.test.ts` · `tests/unit/audit-i18n.test.ts` | locale parity, Node source-stamp exclusion, audit behaviour |
-| `tests/unit/runtime-copy.test.ts` | mascot accessible names and structured tool titles/error copy across eight locales |
+| `tests/unit/runtime-copy.test.ts` | mascot names/tool labels plus metadata-bound shell annotations across eight locales; raw output, legacy records and model replay remain intact |
 
 The static Code render fixture includes the real model composer: translator, typed session model,
 empty catalog and read-only browser preferences. It restores stubbed globals after each test;
@@ -132,6 +132,13 @@ Cancellation checks inspect the durable event journal as well as the current mes
   stale source navigation and late-save completion without replacing engine responses.
   A real Bot-list refusal plus held retry verifies disabled Create, editable retained instructions,
   localized recovery and correct-Bot persistence after the list returns.
+- `tests/e2e/approvals-recovery.spec.ts` — both themes at 960×640: a real list-request refusal
+  shows recovery rather than claiming pending permissions are handled. Retry restores the
+  still-pending engine permission; aborting that session verifies both actual engine removal
+  and refresh of the visible list through the existing session-status event.
+- `tests/e2e/work-scroll.spec.ts` — both themes: held real font responses verify the Work
+  initial bottom position after reflow, warm-font reentry, user-wheel ownership and cancellation
+  on variant change/departure. Font/layout diagnostics remain distinct from frozen pixel scores.
 - `tests/e2e/frozen-composer.spec.ts` — both themes at 960×640: preview menus, selected-model
   handoff, same-URL personal/fixture history, refresh, edit/pin/delete/Undo and honest Code
   demonstrations. Live composer checks all eight locale labels, capsule geometry, reduced
@@ -149,6 +156,15 @@ Cancellation checks inspect the durable event journal as well as the current mes
   Work task previews publish their activity to the sidebar, then restore prior background activity;
   an explicit pause, saved appearance and draft survive this temporary activity.
   Saved-look toasts must leave every Chat composer control reachable at both window sizes.
+- `tests/e2e/memory-safety.spec.ts` — both themes at 960×640: real refused Add retains exact
+  drafts; pending Enter/blur submits once; stale Bot responses cannot clear newer drafts. Real
+  missing-entry deletions verify single/bulk refusal, partial batch settlement, surviving entries
+  and accepted retry/reload. System Memory keeps rows pending/refused and reports accepted-only success.
+  Held owner/list reads also cover initial Add gating, cross-owner privacy, return navigation
+  after accepted deletion and load-refusal recovery without duplicate writes.
+- `tests/e2e/terminal-copy.spec.ts` — French live Code, real approved shell commands through a
+  controlled provider: localized exit/truncation annotations, preserved stdout lookalikes,
+  unchanged model replay and identical persisted messages after reload.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.
@@ -167,7 +183,8 @@ models.dev unless `CORTEX_CATALOG_URL` overrides it. No real-provider chat, thin
 image-inference proof is recorded by these tests.
 Provider key save/reload/removal checks use a deterministic catalog, both themes and
 960/1024/1440 widths. Text ranges and hit testing reject clipped/covered key labels and saved
-hints; the wide row stays inline. This regression first failed in both themes at 960px.
+  hints; model rows also require complete name/context/cost/badge text through range geometry
+  and hit testing. The wide key row stays inline. Both regressions first failed in both themes at 960px.
 
 ### Real-provider verification
 
@@ -221,6 +238,9 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   the same artifact launched through LaunchServices rendered dark menus and entered fullscreen.
   Inspect native menu pixels and accessibility state; an OS preference or filename is not proof.
   Stop the helper and close debug ports after verification.
+  The [current full installed sweep](../evidence/mac/f9aca44/full/README.md) records 426
+  native states at 1024×686, fourteen menus and accessibility-confirmed window actions
+  on package `f9aca44`; it retains the failed initial minimize attempt separately.
 - `scripts/dev-smoke.mjs` — quick local launch + screenshot of the built app.
 
 The recorded `evidence/compare/report.json` contains **431 renders**: 426 registered

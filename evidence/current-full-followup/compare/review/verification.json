@@ -1,0 +1,238 @@
+{
+  "reportSha256": "75451933436da845d7b57b06be97e6341a5019f8ac63c34a9860fcb24376414c",
+  "provenanceSha256": "b398fb276074ef9eea8b939c5c48e4435c8e446fdfef8812b1a91f680de8c145",
+  "imageCountVerified": 1251,
+  "imageKinds": {
+    "app": 431,
+    "design": 410,
+    "diff": 410
+  },
+  "imageDimensions": [
+    2880,
+    1800
+  ],
+  "referenceImagesVerified": 410,
+  "sourcePinsVerified": {
+    "6d965358bb5e02473df6be7e97ecfdb07650c0b8": {
+      "count": 473,
+      "sha256": "5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f"
+    },
+    "f9aca44": {
+      "count": 473,
+      "sha256": "5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f"
+    }
+  },
+  "referenceSource": {
+    "count": 106,
+    "sha256": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768"
+  },
+  "servedAssetLedgerEntries": 35,
+  "servedAssetLedgerFingerprint": "47d652c68f8313e58716da0336c5ef812047807f0fa539d233ef7338af21dbd1",
+  "ignoredPreviewApiErrors": 1793,
+  "meanOfRoundedPercentages": 0.037853658536585365,
+  "gaps": [
+    "settings~appearance-dark",
+    "settings~appearance-light",
+    "settings~providers-dark",
+    "settings~providers-light",
+    "settings~connection-dark",
+    "settings~connection-light",
+    "settings~bot-dark",
+    "settings~bot-light",
+    "settings~notifications-dark",
+    "settings~notifications-light",
+    "settings~privacy-dark",
+    "settings~privacy-light",
+    "settings~shortcuts-dark",
+    "settings~shortcuts-light",
+    "settings~account-dark",
+    "settings~account-light",
+    "home+menu-dark",
+    "history-menu-dark",
+    "home+menu-light",
+    "history-menu-light",
+    "file-image+ask-light"
+  ],
+  "outliers": [
+    {
+      "name": "chat-states~long-dark",
+      "diffPct": 1.73
+    },
+    {
+      "name": "components-dark",
+      "diffPct": 1.2
+    },
+    {
+      "name": "components-light",
+      "diffPct": 1.2
+    },
+    {
+      "name": "upload~uploading-dark",
+      "diffPct": 0.48
+    },
+    {
+      "name": "work-task~done-light",
+      "diffPct": 0.45
+    },
+    {
+      "name": "work-task~done-dark",
+      "diffPct": 0.42
+    },
+    {
+      "name": "file-xlsx~range-light",
+      "diffPct": 0.18
+    },
+    {
+      "name": "file-xlsx~chart-light",
+      "diffPct": 0.18
+    },
+    {
+      "name": "file-xlsx~range-dark",
+      "diffPct": 0.17
+    },
+    {
+      "name": "file-xlsx~chart-dark",
+      "diffPct": 0.17
+    },
+    {
+      "name": "chat-dark",
+      "diffPct": 0.15
+    },
+    {
+      "name": "chat-light",
+      "diffPct": 0.15
+    },
+    {
+      "name": "file-xlsx~data-dark",
+      "diffPct": 0.14
+    },
+    {
+      "name": "file-xlsx~data-light",
+      "diffPct": 0.14
+    },
+    {
+      "name": "chat-states~searching-light",
+      "diffPct": 0.13
+    },
+    {
+      "name": "voice~talking-dark",
+      "diffPct": 0.13
+    },
+    {
+      "name": "file-xlsx~errors-dark",
+      "diffPct": 0.13
+    },
+    {
+      "name": "file-xlsx~errors-light",
+      "diffPct": 0.13
+    },
+    {
+      "name": "pricing~compare-light",
+      "diffPct": 0.13
+    },
+    {
+      "name": "bot-roster~limit-dark",
+      "diffPct": 0.12
+    },
+    {
+      "name": "chat-states~searching-dark",
+      "diffPct": 0.11
+    },
+    {
+      "name": "voice~talking-light",
+      "diffPct": 0.11
+    },
+    {
+      "name": "upload~uploading-light",
+      "diffPct": 0.11
+    },
+    {
+      "name": "pricing~compare-dark",
+      "diffPct": 0.11
+    },
+    {
+      "name": "code-tasks~attempts-light",
+      "diffPct": 0.1
+    },
+    {
+      "name": "upload~done-light",
+      "diffPct": 0.1
+    },
+    {
+      "name": "pricing~plans-light",
+      "diffPct": 0.1
+    },
+    {
+      "name": "bot-roster~team-dark",
+      "diffPct": 0.09
+    },
+    {
+      "name": "voice~listening-light",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-tasks~attempts-dark",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-terminal~failed-light",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-env~list-dark",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-env~list-light",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-env~booting-light",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-env~error-light",
+      "diffPct": 0.09
+    },
+    {
+      "name": "upload~done-dark",
+      "diffPct": 0.09
+    },
+    {
+      "name": "pricing~plans-dark",
+      "diffPct": 0.09
+    },
+    {
+      "name": "code-terminal~failed-dark",
+      "diffPct": 0.08
+    },
+    {
+      "name": "code-env~error-dark",
+      "diffPct": 0.08
+    },
+    {
+      "name": "code-pr~draft-light",
+      "diffPct": 0.08
+    },
+    {
+      "name": "bot-light",
+      "diffPct": 0.07
+    },
+    {
+      "name": "bot-roster~templates-dark",
+      "diffPct": 0.07
+    },
+    {
+      "name": "bot-roster~templates-light",
+      "diffPct": 0.07
+    },
+    {
+      "name": "bot-roster~limit-light",
+      "diffPct": 0.07
+    },
+    {
+      "name": "voice~listening-dark",
+      "diffPct": 0.07
+    }
+  ]
+}

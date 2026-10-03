@@ -137,14 +137,25 @@ export function BotSettings() {
   const date = useDate();
   const id = params.get("id");
   const bot = bots.state === "ready" ? (id ? bots.data.find((b) => b.id === id) : bots.data[0]) : undefined;
-  const memQ = useQuery<MemoryEntry[]>(() => (bot && !preview ? api.bots.memory.list(bot.id) : Promise.resolve([])), [bot?.id]);
+  const memQ = useQuery<{ botID: string; entries: MemoryEntry[] | null } | null>(() => (bot && !preview
+    ? api.bots.memory.list(bot.id).then((entries) => ({ botID: bot.id, entries })).catch(() => ({ botID: bot.id, entries: null }))
+    : Promise.resolve(null)), [bot?.id]);
   const [v, setV] = useVariant("general");
   const [on, setOn] = React.useState(true);
   const [rules, setRules] = React.useState<Record<string, Act>>(() => Object.fromEntries((S?.rules ?? []).map((r) => [r[1], r[3]])));
   const [mem, setMem] = React.useState<string[]>(S?.memory ?? []);
   const [draft, setDraft] = React.useState<string | null>(null);
+  const memoryWrite = React.useRef<symbol | null>(null);
+  // Memory IDs are global: keep accepted deletions excluded when returning to a cached owner.
+  const forgotten = React.useRef(new Set<string>());
+  const [memoryBusy, setMemoryBusy] = React.useState(false);
   const [budget, setBudget] = React.useState(40);
   const [persona, setPersona] = React.useState("");
+  // Same-screen Bot navigation must invalidate the previous owner's in-flight UI updates.
+  React.useLayoutEffect(() => {
+    memoryWrite.current = null; setMemoryBusy(false); setDraft(null);
+    return () => { memoryWrite.current = null; };
+  }, [bot?.id, preview]);
   React.useEffect(() => { if (bot) setPersona(bot.persona); }, [bot?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const name = preview ? main?.cfg.name ?? "" : bot?.name ?? "";
   const cfg = preview ? main!.cfg : bot ? toConfig(bot) : { name: "", ...DEFAULT_MASCOT };
@@ -155,10 +166,34 @@ export function BotSettings() {
   const update = (b: Parameters<typeof api.bots.update>[1]) => bot && api.bots.update(bot.id, b).then(bots.reload, () => toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } }));
   const liveRules: Record<string, Act> = Object.fromEntries((bot?.permission ?? []).filter((r) => r.pattern === "*").map((r) => [r.tool, r.action]));
   const setLiveRule = (tool: string, action: Act) => { const rest = (bot?.permission ?? []).filter((r) => !(r.tool === tool && r.pattern === "*")); update({ permission: [...rest, { tool, pattern: "*", action } as PermissionRule] }); };
-  const liveMem = memQ.state === "ready" ? memQ.data : [];
+  const memory = memQ.state === "ready" && memQ.data?.botID === bot?.id ? memQ.data : null;
+  const liveMem = memory?.entries?.filter((e) => !forgotten.current.has(e.id)) ?? [];
   const forget = (m: string) => { const i = mem.indexOf(m); setMem((xs) => xs.filter((x) => x !== m)); toast.add({ title: t("bots.toastForgotten"), description: m, data: { icon: "trash", undo: true, onUndo: () => setMem((xs) => [...xs.slice(0, i), m, ...xs.slice(i)]) } }); };
-  const forgetLive = (e: MemoryEntry) => bot && api.bots.memory.delete(bot.id, e.id).then(() => { memQ.reload(); toast.add({ title: t("bots.toastForgotten"), description: e.content, data: { icon: "trash" } }); }, () => {});
-  const addLive = (content: string) => { setDraft(null); if (bot && content.trim()) api.bots.memory.add(bot.id, content.trim()).then(memQ.reload, () => toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } })); };
+  const forgetLive = async (entries: MemoryEntry[], all = false) => {
+    if (!bot || memoryWrite.current) return;
+    entries = entries.filter((e) => e.botID === bot.id && !forgotten.current.has(e.id));
+    if (!entries.length) return;
+    const request = Symbol(); memoryWrite.current = request; setMemoryBusy(true);
+    try {
+      const results = await Promise.allSettled(entries.map((e) => api.bots.memory.delete(bot.id, e.id)));
+      if (memoryWrite.current !== request) return;
+      // Retire accepted IDs before unlocking; a delayed refresh cannot make them actionable again.
+      results.forEach((r, i) => { if (r.status === "fulfilled") forgotten.current.add(entries[i].id); });
+      memQ.reload();
+      const failed = results.some((r) => r.status === "rejected");
+      toast.add({ title: t(failed ? "system.memory.forgetFailed" : all ? "bots.set.toastWiped" : "bots.toastForgotten"), description: failed || all ? undefined : entries[0].content, data: { icon: failed ? "alert-triangle" : "trash" } });
+    } finally { if (memoryWrite.current === request) { memoryWrite.current = null; setMemoryBusy(false); } }
+  };
+  const addLive = async (content: string) => {
+    if (!bot || memoryWrite.current || !content.trim()) return;
+    const request = Symbol(); memoryWrite.current = request; setMemoryBusy(true);
+    try {
+      await api.bots.memory.add(bot.id, content.trim());
+      if (memoryWrite.current === request) { setDraft(null); memQ.reload(); }
+    } catch {
+      if (memoryWrite.current === request) toast.add({ title: t("work.error.save"), data: { icon: "alert-triangle" } });
+    } finally { if (memoryWrite.current === request) { memoryWrite.current = null; setMemoryBusy(false); } }
+  };
   const memCount = preview ? mem.length : liveMem.length;
   const tri = (label: string, value: Act | undefined, onPick: (a: Act) => void) => (
     <span className="travail-tri" role="radiogroup" aria-label={label}>{(["allow", "ask", "deny"] as Act[]).map((o) => <button key={o} role="radio" data-v={o} aria-checked={value === o} onClick={() => onPick(o)}>{t(`bots.set.rule.${o}`)}</button>)}</span>
@@ -201,20 +236,21 @@ export function BotSettings() {
           </>}
         </>}
         {v === "memory" && <>
-          <h3 className="h3" style={{ display: "flex" }}><span style={{ flex: 1 }}>{t("bots.set.remembers", { name })}<span className="travail-count">{memCount}</span></span><button className="btn secondary" style={{ height: 24, padding: "0 8px", fontSize: 11 }} onClick={() => (preview ? setMem((m) => [...m, ""]) : setDraft(""))}><Icon name="plus" size={16} />{t("bots.set.add")}</button></h3>
+          <h3 className="h3" style={{ display: "flex" }}><span style={{ flex: 1 }}>{t("bots.set.remembers", { name })}{(preview || memory?.entries) && <span className="travail-count">{memCount}</span>}</span><button className="btn secondary" style={{ height: 24, padding: "0 8px", fontSize: 11 }} disabled={!preview && (!bot || !memory?.entries || memoryBusy || draft !== null)} onClick={() => { if (preview) setMem((m) => [...m, ""]); else if (bot && memory?.entries && !memoryWrite.current) setDraft(""); }}><Icon name="plus" size={16} />{t("bots.set.add")}</button></h3>
           {preview ? (mem.length ? <div className="list">{mem.map((m, i) => (
             <div key={i} className="li" style={{ padding: "6px 8px 6px 14px" }}><input className="travail-mem-in" aria-label={t("bots.set.memoryN", { n: i + 1 })} value={m} placeholder={t("bots.set.newMemory")} autoFocus={!m} onChange={(e) => setMem((xs) => xs.map((x, j) => (j === i ? e.target.value : x)))} />
               <IconBtn icon="trash" label={t("bots.forget")} onClick={() => forget(m)} /></div>))}</div>
             : <Empty state="idle" title={t("bots.set.memEmptyTitle")} text={t("bots.set.memEmptyText", { name })} />)
-          : (liveMem.length || draft !== null ? <div className="list">{liveMem.map((m, i) => (
+          : bots.state === "error" || memory?.entries === null ? <Empty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}><button className="btn secondary" onClick={bots.state === "error" ? bots.reload : memQ.reload}>{t("common.retry")}</button></Empty>
+          : !memory?.entries ? null : (liveMem.length || draft !== null ? <div className="list">{liveMem.map((m, i) => (
             <div key={m.id} className="li" style={{ padding: "6px 8px 6px 14px" }}><input className="travail-mem-in" aria-label={t("bots.set.memoryN", { n: i + 1 })} value={m.content} readOnly />
-              <IconBtn icon="trash" label={t("bots.forget")} onClick={() => forgetLive(m)} /></div>))}
-            {draft !== null && <div className="li" style={{ padding: "6px 8px 6px 14px" }}><input className="travail-mem-in" aria-label={t("bots.set.memoryN", { n: liveMem.length + 1 })} value={draft} placeholder={t("bots.set.newMemory")} autoFocus onChange={(e) => setDraft(e.target.value)} onBlur={() => addLive(draft)} onKeyDown={(e) => { if (e.key === "Enter") addLive(draft); if (e.key === "Escape") setDraft(null); }} /></div>}
+              <IconBtn icon="trash" label={t("bots.forget")} disabled={memoryBusy} onClick={() => forgetLive([m])} /></div>))}
+            {draft !== null && <div className="li" style={{ padding: "6px 8px 6px 14px" }}><input className="travail-mem-in" aria-label={t("bots.set.memoryN", { n: liveMem.length + 1 })} value={draft} placeholder={t("bots.set.newMemory")} autoFocus readOnly={memoryBusy} aria-busy={memoryBusy} onChange={(e) => { if (!memoryWrite.current) setDraft(e.target.value); }} onBlur={() => addLive(draft)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); void addLive(draft); } if (e.key === "Escape" && !memoryWrite.current) setDraft(null); }} /></div>}
           </div> : <Empty cfg={cfg} state="idle" title={t("bots.set.memEmptyTitle")} text={t("bots.set.memEmptyText", { name })} />)}
           <div className="list" style={{ marginTop: 24 }}>{preview && <label className="li"><span className="grow"><div className="ttl">{t("bots.set.learn")}</div><div className="sub">{t("bots.set.learnSub", { name })}</div></span><Switch defaultChecked aria-label={t("bots.set.learn")} /></label>}
-            <div className="li"><span className="grow"><div className="ttl">{t("bots.set.forgetAll")}</div><div className="sub">{t("bots.set.forgetAllSub", { count: memCount })}</div></span><button className="btn secondary pg-danger" disabled={!memCount} onClick={() => {
+            <div className="li"><span className="grow"><div className="ttl">{t("bots.set.forgetAll")}</div><div className="sub">{t("bots.set.forgetAllSub", { count: memCount })}</div></span><button className="btn secondary pg-danger" disabled={!memCount || (!preview && memoryBusy)} onClick={() => {
               if (preview) { const old = mem; setMem([]); toast.add({ title: t("bots.set.toastWiped"), data: { icon: "trash", undo: true, onUndo: () => setMem(old) } }); return; }
-              if (bot && confirm(t("bots.set.forgetAllSub", { count: memCount }))) Promise.all(liveMem.map((m) => api.bots.memory.delete(bot.id, m.id))).finally(() => { memQ.reload(); toast.add({ title: t("bots.set.toastWiped"), data: { icon: "trash" } }); });
+              if (bot && !memoryWrite.current && confirm(t("bots.set.forgetAllSub", { count: memCount }))) void forgetLive(liveMem, true);
             }}>{t("bots.set.forgetAll")}</button></div></div>
         </>}
         {v === "usage" && preview && <>

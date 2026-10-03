@@ -1,0 +1,311 @@
+{
+  "started": "2026-10-03T00:56:26.242Z",
+  "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "cases": [
+    {
+      "name": "Bot memory Add loses refused draft",
+      "draft": "Keep this unsaved memory after the engine refuses it.",
+      "removedBot": {
+        "status": 200,
+        "body": {
+          "ok": true
+        }
+      },
+      "persistedBot": {
+        "status": 404,
+        "body": {
+          "error": {
+            "code": "not_found",
+            "message": "Unknown bot bot_01a0ff432bd500005f2b1b8c1876e34f"
+          }
+        }
+      },
+      "observed": {
+        "draftClosedAfterRefusal": true,
+        "reopenedDraft": "",
+        "saveErrorVisible": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988987328,
+          "completedAt": 1790988987329,
+          "status": 200,
+          "responseBody": "[]"
+        },
+        {
+          "method": "POST",
+          "url": "cortex://local/api/bots",
+          "body": "{\"name\":\"Memory acceptance check\",\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"}}",
+          "startedAt": 1790988987346,
+          "completedAt": 1790988987351,
+          "status": 201,
+          "responseBody": "{\"id\":\"bot_01a0ff432bd500005f2b1b8c1876e34f\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988987349,\"updated\":1790988987349},\"memory\":[],\"routines\":[]}"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988987382,
+          "completedAt": 1790988987383,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff432bd500005f2b1b8c1876e34f\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988987349,\"updated\":1790988987349},\"memory\":[],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988987383,
+          "completedAt": 1790988987384,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff432bd500005f2b1b8c1876e34f\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988987349,\"updated\":1790988987349},\"memory\":[],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988987384,
+          "completedAt": 1790988987385,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff432bd500005f2b1b8c1876e34f\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988987349,\"updated\":1790988987349},\"memory\":[],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff432bd500005f2b1b8c1876e34f/memory",
+          "startedAt": 1790988987390,
+          "completedAt": 1790988987391,
+          "status": 200,
+          "responseBody": "[]"
+        },
+        {
+          "method": "DELETE",
+          "url": "cortex://local/api/bots/bot_01a0ff432bd500005f2b1b8c1876e34f",
+          "body": "",
+          "startedAt": 1790988987664,
+          "completedAt": 1790988987665,
+          "status": 200,
+          "responseBody": "{\"ok\":true}"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988987678,
+          "completedAt": 1790988987679,
+          "status": 200,
+          "responseBody": "[]"
+        },
+        {
+          "method": "POST",
+          "url": "cortex://local/api/bots/bot_01a0ff432bd500005f2b1b8c1876e34f/memory",
+          "body": "{\"content\":\"Keep this unsaved memory after the engine refuses it.\"}",
+          "startedAt": 1790988987680,
+          "completedAt": 1790988987683,
+          "status": 404,
+          "responseBody": "{\"error\":{\"code\":\"not_found\",\"message\":\"Unknown bot bot_01a0ff432bd500005f2b1b8c1876e34f\"}}"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff432bd500005f2b1b8c1876e34f",
+          "startedAt": 1790988987868,
+          "completedAt": 1790988987869,
+          "status": 404,
+          "responseBody": "{\"error\":{\"code\":\"not_found\",\"message\":\"Unknown bot bot_01a0ff432bd500005f2b1b8c1876e34f\"}}"
+        }
+      ],
+      "pageErrors": [],
+      "isolation": {
+        "directory": "/tmp/opencode/memory-live-repro/bot-add-tcm8jI",
+        "window": {
+          "version": "0.0",
+          "userData": "/var/tmp/opencode/memory-live-repro/bot-add-tcm8jI/renderer",
+          "home": "/tmp/opencode/memory-live-repro/bot-add-tcm8jI/home",
+          "title": "Cortex",
+          "bounds": {
+            "x": 0,
+            "y": 50,
+            "width": 1440,
+            "height": 900
+          },
+          "electron": "44.5.1"
+        }
+      }
+    },
+    {
+      "name": "Bot Forget everything falsely reports Memory erased",
+      "refusal": "Separate SQLite BEGIN IMMEDIATE writer lock; unmodified engine busy_timeout = 5000",
+      "originalMemory": {
+        "id": "mem_01a0ff4332e00000240353d29b696c01",
+        "botID": "bot_01a0ff4332d100002ee857d51f804f14",
+        "content": "This stored memory must survive a refused deletion.",
+        "time": 1790988989152
+      },
+      "persistedAfterRefusal": [
+        {
+          "id": "mem_01a0ff4332e00000240353d29b696c01",
+          "botID": "bot_01a0ff4332d100002ee857d51f804f14",
+          "content": "This stored memory must survive a refused deletion.",
+          "time": 1790988989152
+        }
+      ],
+      "observed": {
+        "successToastAfterRefusal": "Memory erased",
+        "originalEntryRemainedVisible": true,
+        "originalEntrySurvivedReload": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988989063,
+          "completedAt": 1790988989063,
+          "status": 200,
+          "responseBody": "[]"
+        },
+        {
+          "method": "POST",
+          "url": "cortex://local/api/bots",
+          "body": "{\"name\":\"Memory acceptance check\",\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"}}",
+          "startedAt": 1790988989133,
+          "completedAt": 1790988989140,
+          "status": 201,
+          "responseBody": "{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[],\"routines\":[]}"
+        },
+        {
+          "method": "POST",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory",
+          "body": "{\"content\":\"This stored memory must survive a refused deletion.\"}",
+          "startedAt": 1790988989150,
+          "completedAt": 1790988989152,
+          "status": 201,
+          "responseBody": "{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988989189,
+          "completedAt": 1790988989190,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988989191,
+          "completedAt": 1790988989191,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988989191,
+          "completedAt": 1790988989192,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory",
+          "startedAt": 1790988989196,
+          "completedAt": 1790988989197,
+          "status": 200,
+          "responseBody": "[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}]"
+        },
+        {
+          "method": "DELETE",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory/mem_01a0ff4332e00000240353d29b696c01",
+          "body": "",
+          "startedAt": 1790988989428,
+          "completedAt": 1790988994436,
+          "status": 500,
+          "responseBody": "{\"error\":{\"code\":\"internal\",\"message\":\"Internal error\"}}"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory",
+          "startedAt": 1790988994440,
+          "completedAt": 1790988994441,
+          "status": 200,
+          "responseBody": "[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory",
+          "startedAt": 1790988994498,
+          "completedAt": 1790988994500,
+          "status": 200,
+          "responseBody": "[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988994964,
+          "completedAt": 1790988994965,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/sessions?kind=chat",
+          "startedAt": 1790988994967,
+          "completedAt": 1790988994968,
+          "status": 200,
+          "responseBody": "[]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988994968,
+          "completedAt": 1790988994968,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988994968,
+          "completedAt": 1790988994968,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots",
+          "startedAt": 1790988994968,
+          "completedAt": 1790988994969,
+          "status": 200,
+          "responseBody": "[{\"id\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"name\":\"Memory acceptance check\",\"persona\":\"\",\"mascot\":{\"shape\":\"pebble\",\"color\":\"meadow\",\"eyes\":\"round\",\"mouth\":\"smile\",\"accessories\":[]},\"model\":{\"providerID\":\"test\",\"modelID\":\"test\"},\"tools\":{},\"permission\":[],\"time\":{\"created\":1790988989137,\"updated\":1790988989137},\"memory\":[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}],\"routines\":[]}]"
+        },
+        {
+          "method": "GET",
+          "url": "cortex://local/api/bots/bot_01a0ff4332d100002ee857d51f804f14/memory",
+          "startedAt": 1790988995018,
+          "completedAt": 1790988995018,
+          "status": 200,
+          "responseBody": "[{\"id\":\"mem_01a0ff4332e00000240353d29b696c01\",\"botID\":\"bot_01a0ff4332d100002ee857d51f804f14\",\"content\":\"This stored memory must survive a refused deletion.\",\"time\":1790988989152}]"
+        }
+      ],
+      "pageErrors": [
+        "Internal error"
+      ],
+      "isolation": {
+        "directory": "/tmp/opencode/memory-live-repro/bot-wipe-K3Bhbp",
+        "window": {
+          "version": "0.0",
+          "userData": "/var/tmp/opencode/memory-live-repro/bot-wipe-K3Bhbp/renderer",
+          "home": "/tmp/opencode/memory-live-repro/bot-wipe-K3Bhbp/home",
+          "title": "Cortex",
+          "bounds": {
+            "x": 0,
+            "y": 50,
+            "width": 1440,
+            "height": 900
+          },
+          "electron": "44.5.1"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "head": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "gitBefore": "M AGENTS.md\n M docs/testing.md\n M evidence/STATUS.md\n?? evidence/current-full-followup/\n?? evidence/mac/f9aca44/full/",
+  "sourceDeltaFromF9aca44": ""
+}

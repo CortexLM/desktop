@@ -1,0 +1,25 @@
+{
+  "id": "lookalike",
+  "sessionID": "session",
+  "messageID": "message",
+  "type": "tool",
+  "callID": "lookalike",
+  "tool": "bash",
+  "state": {
+    "status": "completed",
+    "input": {
+      "command": "'/usr/bin/node' '/tmp/opencode/terminal-copy-repro/commands/lookalike.cjs'"
+    },
+    "output": "<tag>&\"'\t\r\n[exit code 7]\n… [truncated 9 characters]\nstderr\r\n\n[exit code 7]",
+    "title": "'/usr/bin/node' '/tmp/opencode/terminal-copy-repro/commands/lookalike.cjs'",
+    "metadata": {
+      "exit": 7,
+      "outputLength": 60,
+      "truncated": 0
+    },
+    "time": {
+      "start": 0,
+      "end": 1
+    }
+  }
+}

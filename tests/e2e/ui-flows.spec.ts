@@ -1,4 +1,4 @@
-// Real UI flows: provider key entry in Settings, then a streamed chat exchange from the composer.
+// Real UI flows: readable provider/model settings, then a streamed exchange from the composer.
 import { test, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 import { startFakeProvider } from "./fake-provider";
@@ -71,6 +71,20 @@ for (const theme of ["light", "dark"]) test(`provider key save, reload and remov
         }
         return issues;
       }, width), { message: `${width}px ${theme}: key label, saved hint and controls remain readable` }).toEqual([]);
+      const model = page.getByTestId("model-row").filter({ has: page.locator('[data-cap="reasoning"]') }).first();
+      await model.scrollIntoViewIfNeeded();
+      await expect.poll(() => model.evaluate((el) => {
+        const issues: string[] = [], row = el.getBoundingClientRect();
+        for (const text of el.querySelectorAll(".ttl, .sub, .badge")) {
+          const box = text.getBoundingClientRect(), range = document.createRange();
+          range.selectNodeContents(text);
+          const rects = Array.from(range.getClientRects());
+          if (!rects.length || !rects.every((r) => r.width > 0 && r.left >= box.left - 1 && r.right <= box.right + 1
+            && r.top >= box.top - 1 && r.bottom <= box.bottom + 1 && r.left >= row.left && r.right <= row.right
+            && text.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)))) issues.push(`${text.textContent}: model information is clipped or covered`);
+        }
+        return issues;
+      }), { message: `${width}px ${theme}: model context, cost and capabilities remain readable` }).toEqual([]);
       const shot = test.info().outputPath(`provider-key-${width}-${theme}.png`);
       await page.screenshot({ path: shot, animations: "disabled" });
       await test.info().attach(`provider-key-${width}-${theme}`, { path: shot, contentType: "image/png" });

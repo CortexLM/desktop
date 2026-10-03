@@ -202,21 +202,39 @@ export function MemoryScreen() {
   const [v, setV] = useVariant("list");
   const bots = useBots();
   const bot = !preview && bots.state === "ready" ? bots.data[0] : undefined;
-  const live = useQuery(() => (bot ? api.bots.memory.list(bot.id) : Promise.resolve([])), [bot?.id]);
+  const live = useQuery(() => (bot ? api.bots.memory.list(bot.id).then((entries) => ({ botID: bot.id, entries })) : Promise.resolve(null)), [bot?.id]);
   const fromFx = (): Mem[] => fx.memory.items.map((m) => ({ id: String(m.id), theme: m.theme, text: m.text, src: m.src }));
   const [items, setItems] = React.useState<Mem[]>(preview && v !== "empty" ? fromFx() : []);
   const [on, setOn] = React.useState(v !== "off");
   const [q, setQ] = React.useState("");
   const [edit, setEdit] = React.useState<string | null>(null);
+  const deleting = React.useRef(new Set<string>());
+  const [pending, setPending] = React.useState<string[]>([]);
+  React.useLayoutEffect(() => {
+    deleting.current = new Set(); setPending([]);
+    return () => { deleting.current = new Set(); };
+  }, [bot?.id, preview]);
   React.useEffect(() => { if (!preview) return; setOn(v !== "off"); setItems(v === "empty" ? [] : fromFx()); }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
+  const memories = live.state === "ready" && live.data?.botID === bot?.id ? live.data?.entries : undefined;
   React.useEffect(() => {
-    if (!preview && live.state === "ready" && bot) setItems(live.data.map((m) => ({ id: m.id, theme: bot.name, text: m.content, src: t("system.memory.learned", { when: ago(m.time) }) })));
-  }, [live.state]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!preview && memories && bot) setItems(memories.map((m) => ({ id: m.id, theme: bot.name, text: m.content, src: t("system.memory.learned", { when: ago(m.time) }) })));
+  }, [memories, bot?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const shown = items.filter((m) => norm(m.text).includes(norm(q)));
   const themes = [...new Set(shown.map((m) => m.theme))];
   const forget = (m: Mem) => {
+    if (!preview) {
+      if (!bot || deleting.current.has(m.id)) return;
+      const request = deleting.current; request.add(m.id); setPending([...request]);
+      api.bots.memory.delete(bot.id, m.id).then(() => {
+        if (deleting.current !== request) return;
+        setItems((xs) => xs.filter((x) => x.id !== m.id));
+        toast.add({ title: t("system.memory.forgotten"), description: m.text, data: { icon: "trash" } });
+      }, () => {
+        if (deleting.current === request) toast.add({ title: t("system.memory.forgetFailed"), data: { icon: "alert-triangle" } });
+      }).finally(() => { if (deleting.current === request) { request.delete(m.id); setPending([...request]); } });
+      return;
+    }
     setItems((xs) => xs.filter((x) => x.id !== m.id));
-    if (!preview && bot) { api.bots.memory.delete(bot.id, m.id).catch(() => { setItems((xs) => [...xs, m]); toast.add({ title: t("system.memory.forgetFailed"), data: { icon: "alert-triangle" } }); }); toast.add({ title: t("system.memory.forgotten"), description: m.text, data: { icon: "trash" } }); return; }
     toast.add({ title: t("system.memory.forgotten"), description: m.text, data: { icon: "trash", undo: true, onUndo: () => setItems((xs) => (xs.some((x) => x.id === m.id) ? xs : [...xs, m])) } });
   };
   let n = 0;
@@ -228,7 +246,7 @@ export function MemoryScreen() {
         if (!preview) { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = fx.memory?.exportFile ?? "memory.json"; a.click(); }
         toast.add({ title: t("system.memory.exported"), description: t("system.memory.exportedDesc", { count: items.length }), data: { icon: "download" } });
       }} />
-      <Pop align="end" width={220} trigger={<IconBtn icon="more-dots" label={t("system.moreActions")} />}><MItem icon="settings">{t("system.memory.privacy")}</MItem><MSep /><MItem icon="trash" danger onClick={() => (preview || !bot ? setItems([]) : items.forEach(forget))}>{t("system.memory.forgetAll")}</MItem></Pop>
+      <Pop align="end" width={220} trigger={<IconBtn icon="more-dots" label={t("system.moreActions")} />}><MItem icon="settings">{t("system.memory.privacy")}</MItem><MSep /><MItem icon="trash" danger onClick={() => (preview ? setItems([]) : items.forEach(forget))}>{t("system.memory.forgetAll")}</MItem></Pop>
     </Top>
     <div className="page"><div className="systeme-narrow">
       <div className="systeme-memoff">
@@ -237,7 +255,8 @@ export function MemoryScreen() {
         <Switch checked={on} onCheckedChange={(x) => { setOn(x); if (preview) setV(x ? "list" : "off"); }} aria-label={t("system.memory.toggle")} />
       </div>
       {!on && <div className="banner warn" style={{ margin: "0 0 16px" }}><Icon name="pause" /><span>{t("system.memory.paused")}</span><span className="grow">{t("system.memory.pausedText", { count: items.length })}</span></div>}
-      {!preview && live.state === "loading" && bot ? null : items.length === 0 ? (
+      {!preview && (bots.state === "error" || live.state === "error") ? <BotEmpty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}><button className="btn secondary" onClick={bots.state === "error" ? bots.reload : live.reload}>{t("common.retry")}</button></BotEmpty>
+      : !preview && (bots.state === "loading" || bot && !memories) ? null : items.length === 0 ? (
         <BotEmpty state={on ? "idle" : "asleep"} title={t("system.memory.emptyTitle")} text={t("system.memory.emptyText", { q1: `«${NB}`, q2: `${NB}»` })} />
       ) : (
         <div className={on ? undefined : "systeme-faded"}>
@@ -253,7 +272,7 @@ export function MemoryScreen() {
                       : m.text}
                     <div className="sub">{m.src}</div>
                   </span>
-                  <span className="systeme-mem-act">{preview && <IconBtn icon="edit" label={t("system.edit")} onClick={() => setEdit(m.id)} />}<IconBtn icon="trash" label={t("system.memory.forget")} onClick={() => forget(m)} /></span>
+                  <span className="systeme-mem-act">{preview && <IconBtn icon="edit" label={t("system.edit")} onClick={() => setEdit(m.id)} />}<IconBtn icon="trash" label={t("system.memory.forget")} disabled={!preview && pending.includes(m.id)} onClick={() => forget(m)} /></span>
                 </div>))}</div>
             </section>))}
           {!shown.length && <div className="pg-empty">{t("system.memory.noMatch", { q: `${NB}${q}${NB}` })}</div>}

@@ -1,0 +1,59 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light (16.9s)
+
+
+  1) tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.pg-panel input[readonly]')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.pg-panel input[readonly]') with timeout 15000ms
+      - waiting for locator('.pg-panel input[readonly]')
+        34 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      152 |       await show(page, `bot-settings?id=${b.id}&v=memory`, theme);
+      153 |       await expect.poll(() => heldReads(app, bPath)).toBe(2);
+    > 154 |       await expect(rows).toHaveCount(0);
+          |                          ^
+      155 |       await expect(wipe).toBeDisabled();
+      156 |       await wipe.evaluate((el: HTMLButtonElement) => el.click());
+      157 |       expect(await requests(app)).toEqual([{ method: "DELETE", id: bMemory.id, status: 200 }]);
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/memory-safety.spec.ts:154:26
+
+    attachment #1: memory-owner-loading-light (image/png) ──────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-owner-loading-light-fe3fd79c2305b90053c0b879d8b68666b8c3cedf.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: memory-owner-read-pending-light (image/png) ─────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-owner-read-pending-light-9fc7fd412478e8af0a85479a4b8eace4f0d65436.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: memory-deleted-refresh-pending-light (image/png) ────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/attachments/memory-deleted-refresh-pending-light-b6a6581812e89ee30592aa957d8af51376dc737d.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/error-context.md
+
+    attachment #6: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/memory-return-before/memory-safety-Bot-memory-r-9339f-epted-ownership-—-960-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/memory-safety.spec.ts:94:3 › Bot memory read races keep drafts and rows bound to accepted ownership — 960 light

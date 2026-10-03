@@ -3,6 +3,8 @@
 Application `f9aca44476fcebd0699c09c9e3f7eebcd5151a2a` is pushed; [CI 37080136101](https://github.com/CortexLM/desktop/actions/runs/37080136101)
 passes all jobs; [independent artifact review](ci/README.md) and [installed-Mac proof](../mac/f9aca44/README.md)
 pass within their recorded scope.
+Later `6d96535` [full-proof refresh](../current-full-followup/README.md) verifies unchanged
+application/package inputs, a complete native screen/menu sweep and full fixed-clock comparison.
 Initial integrated local checks pass. Work source review
 found an enabled-but-inert Create action when the Bot list fails; correction is implemented,
 with rebuild, thirteen scoped cases and Linux package/smoke passing.

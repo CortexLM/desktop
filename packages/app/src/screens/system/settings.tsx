@@ -146,7 +146,7 @@ function ModelRow({ m, onClick }: { m: Model; onClick?: () => void }) {
   const usd = (n: number) => new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: n < 1 ? 2 : 0 }).format(n);
   const Tag = onClick ? "button" : "div";
   return (
-    <Tag className="li" data-testid="model-row" data-model-id={m.id} onClick={onClick} style={onClick ? { width: "100%", textAlign: "left" } : undefined}>
+    <Tag className="li systeme-model" data-testid="model-row" data-model-id={m.id} onClick={onClick} style={onClick ? { width: "100%", textAlign: "left" } : undefined}>
       <span className="grow"><div className="ttl">{m.name}</div><div className="sub">{m.context ? t("system.providers.context", { n: ctx }) : m.id}{(m.input || m.output) ? ` · ${t("system.providers.cost", { in: usd(m.input), out: usd(m.output) })}` : ""}</div></span>
       {m.reasoning && <span className="badge run" data-cap="reasoning">{t("system.providers.cap.reasoning")}</span>}
       {m.image && <span className="badge ok" data-cap="image">{t("system.providers.cap.image")}</span>}

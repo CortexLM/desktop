@@ -2,6 +2,22 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
+G3 has since delivered corrected SDK 0.3.1/api-types 0.2.0 with green upstream CI; desktop
+admission is in progress. The old 0.3.0 HOLD remains. Current vendor/runtime remains probe-only.
+The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
+memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
+Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
+83 Electron cases/426 renders, followed by eight passing memory cases after the final
+return-navigation correction. Rebuilt Linux package/smoke and 90 member-byte checks pass.
+Changed-revision CI and installed-Mac proof remain pending; earlier captures retain their pins.
+[Final-head CI 37082159189](https://github.com/CortexLM/desktop/actions/runs/37082159189)
+passes all three jobs at `6d96535`; application/package inputs match `f9aca44`.
+The [current installed-Mac full sweep](mac/f9aca44/full/README.md) adds 426 native images
+at 1024×686, fourteen light/dark menus and native window/navigation readbacks.
+[Full fixed-clock comparison](current-full-followup/compare/README.md): 431 renders,
+410 references, 21 gaps, mean 0.0379%, maximum 1.73%. Independent CI/comparison reviews verify
+artifact/source/image bindings. Work's 1px gap is reproduced as font reflow/scroll anchoring;
+its new correction is separate from those original images. Full native review is being consolidated.
 The [Work conversion/Bot search batch](live-actions-followup/README.md) passes 178 Node 22 unit
 tests plus one optional backend skip, an initial 69-case Electron suite/426 renders and twelve
 final targeted cases after original-request text-fragment preservation. Lint/types/i18n and Linux
@@ -45,12 +61,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | Green `f9aca44` CI: lint/types, 178 units plus one optional backend skip. Earlier eight fixture failures retained. |
-| Every design screen plus provider/image/reasoning flows | Partial: current CI 70/70 per OS, 426 renders. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | Green `f9aca44` CI; matching installed artifact verified. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Ten current Work/Search captures at 960×640, both themes; twelve earlier Code/routine images remain pinned. No fresh all-screen/menu sweep. |
-| No unjustified reference gap | Unproven: Work/Search 32/32 plus corrected editor 8/8; clock-controlled Work 16/16 max 0.45%. Original 8.19% clock-wallpaper outlier retained. Historical full comparison keeps 21 gaps; Providers lacks an approved frozen image, new imports unauthorized. |
-| Automated i18n audit | Current local scope: 63 files, 2,267 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
+| Lint, types, units | Recovery local lint/types and 188 units plus one optional backend skip pass; changed-revision CI pending. Earlier green `6d96535` CI has 178 units. |
+| Every design screen plus provider/image/reasoning flows | Partial: recovery local 83 cases/426 renders, eight final memory cases; earlier CI 70/70 per OS. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | Green `f9aca44` and `6d96535` CI; installed artifact remains the verified `f9aca44` package. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Current `f9aca44`: 426 registered-state native captures at 1024×686, fourteen native menus, minimize/fullscreen/Gallery/Chat readbacks. Ten Work/Search captures at 960×640; twelve earlier Code/routine images remain pinned. Absent surfaces and exhaustive live/minimum-window acceptance remain open. |
+| No unjustified reference gap | Unproven: original full run compares 410/431, mean 0.0379%, max 1.73%, 21 gaps. Separate corrected Work Done frames remove the 1px gap; 13/235 threshold mismatches remain. Original wallpaper/scroll scores retained; Providers lacks approved frozen imagery, new imports unauthorized. |
+| Automated i18n audit | Recovery local: 63 files, 2,269 used keys, 3,398 English keys, zero findings. Shell annotations receive eight-locale runtime coverage; unverified legacy records remain verbatim. Exhaustive dynamic-copy coverage remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no `CORTEX_REAL_BASE_URL`, `CORTEX_REAL_API_KEY` or `CORTEX_TEST_BACKEND_URL`.
@@ -209,7 +225,7 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
 - **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
   call locally configured providers. Remote auth, model selection and inference routing remain
   active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-    at 23:42 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+    at 3 October 00:32 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.
@@ -222,7 +238,12 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   regenerated package and runtime fixes before authenticated remote integration.
 - **Interaction coverage:** several ported surfaces remain preview-only; projects, sign-in,
   billing, updater and file viewers do not become live features merely by rendering in the gallery.
-- **Responsive acceptance:** the full native sweep at 1024×685 and comparisons at 1440×900 do not
+  The [current product-surface audit](current-full-followup/completion-audit.md) also records
+  unwired voice/research/image-generation, dedicated Code review/environment workflows,
+  Work feeds and memory/preferences controls. Memory write recovery does not wire the
+  separate memory-enable policy. Preview rendering and local tool execution do not establish
+  those broader workflows.
+- **Responsive acceptance:** the current full native sweep at 1024×686 (earlier 1024×685) and comparisons at 1440×900 do not
   prove every control usable at the 960×640 minimum. Targeted Code/Canvas/Work clipping
   regressions are fixed and pass at 960/1024×640 in both themes; exhaustive coverage remains open.
 - **Release:** signing/notarization and Windows CI are not configured. Unsigned test builds

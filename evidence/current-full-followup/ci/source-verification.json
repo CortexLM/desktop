@@ -1,0 +1,28 @@
+{
+  "head": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "application": "f9aca44476fcebd0699c09c9e3f7eebcd5151a2a",
+  "merge": "3b733db499868a2917d9ed7cdb311d9312a28bdd",
+  "base": "9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d",
+  "tree": "eba03a02a764cc9999010bc01af4bbe537042115",
+  "unchangedInputPaths": [
+    "packages",
+    "tests",
+    "skills",
+    "vendor",
+    ".github/workflows",
+    "package.json",
+    "bun.lock",
+    "playwright.config.ts",
+    "vitest.config.ts",
+    "electron-builder.yml",
+    "tsconfig.json",
+    "scripts/smoke.mjs",
+    "eslint.config.mjs"
+  ],
+  "rendererFiles": 473,
+  "rendererFingerprint": "5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f",
+  "scriptDelta": [
+    "scripts/compare-shots.mjs",
+    "scripts/compare-shots.test.mjs"
+  ]
+}

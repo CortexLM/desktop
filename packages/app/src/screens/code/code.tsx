@@ -8,7 +8,7 @@ import { useT } from "../../i18n";
 import { isPreview, useFixtures } from "../../preview";
 import { api } from "../../api";
 import { useSessions, useMessages, usePermissions, useQuery } from "../../state/live";
-import { toolName, toolTitle } from "../../state/tool-label";
+import { bashOutput, toolName, toolTitle } from "../../state/tool-label";
 import { ModelComposer, type SendOptions } from "../chat/model-composer";
 import { TestIdComposer, basename, useAgo } from "./parts";
 import type { CodeFx } from "./fixtures";
@@ -271,7 +271,7 @@ function SessionLive() {
             </div>
           )) : <div className="empty"><Icon name="diff" size={20} /><p>{t("code.session.noChanges")}</p></div>
         ) : runs.length ? (
-          <pre className="term" key="t">{runs.map((p) => `$ ${inputOf(p).command}\n${p.state.status === "completed" ? p.state.output : p.state.status === "error" ? t("chat.err.tool_failed.body") : ""}`).join("\n\n")}</pre>
+          <pre className="term" key="t">{runs.map((p) => `$ ${inputOf(p).command}\n${bashOutput(t, p)}`).join("\n\n")}</pre>
         ) : <div className="empty"><Icon name="terminal" size={20} /><p>{t("code.session.noCommands")}</p></div>}
       </div>
     </div>

@@ -1,0 +1,24 @@
+{
+  "applicationRevision": "f9aca44476fcebd0699c09c9e3f7eebcd5151a2a",
+  "installedASAR": "23decdd0596b89e8e83284b62f6e7f0eb5314b081ccf178f7dde31c8ac04af77",
+  "launchMethod": "LaunchServices through authorized GUI session",
+  "initialAttempt": {
+    "method": "AppleScript click of Minimize item without explicitly opening its menu",
+    "observedAXMinimized": false,
+    "result": "AssertionError; no successful native action claimed",
+    "cause": "Not established"
+  },
+  "followup": {
+    "method": "mac-computer coordinate clicks after menu screenshots",
+    "minimized": true,
+    "restored": false,
+    "fullscreen": true,
+    "fullscreenSize": [1024, 768],
+    "exitedFullscreen": false,
+    "restoredSize": [1024, 686],
+    "stateReadback": "System Events AXMinimized and AXFullScreen",
+    "gallery": "Native Help > Design Gallery; corrected DOM readback in gallery-verified.json",
+    "return": "Native Go > Chat; URL readback in native-go.json"
+  },
+  "captureLimits": "Minimized desktop screenshot is not retained; it exposed unrelated applications. Native action images contain Cortex only. Initial gallery.json counts iframe[src], which is not the gallery's loading mechanism; gallery-verified.json separately checks loaded contentWindow URLs and the actual gallery scroll container."
+}

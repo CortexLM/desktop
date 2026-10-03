@@ -2,6 +2,8 @@
 
 The key entry row wraps its controls when the Settings pane is narrow, keeping the label and
 saved last-four hint readable at the minimum window width. Key material remains write-only.
+Model rows also wrap their capability badges below the name, context and cost when the pane
+is narrow, preserving complete metadata instead of clipping it behind an ellipsis.
 
 Live Cortex Code uses the configured-model chooser for new tasks and follow-ups, including reasoning
 controls and file attachments. Reopening a task starts with its persisted session model. A missing,

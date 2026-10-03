@@ -1,0 +1,300 @@
+[
+  {
+    "name": "work-task~done-dark",
+    "url": "http://127.0.0.1:5309/?capture=work-scroll-corrected-dark#/work-task?theme=dark&shot&v=done",
+    "capturedAt": "2026-10-03T01:45:57.558Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "caller",
+      "time": "2026-10-02T12:09:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "work-task",
+      "variant": "termine",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:25.696Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "consoleErrors": [],
+      "file": "work-task~termine-dark.png"
+    },
+    "geometry": {
+      "fonts": "loaded",
+      "top": 392,
+      "height": 1051,
+      "viewport": 659,
+      "bottomGap": 0,
+      "rectangles": {
+        ".thread": {
+          "x": 377,
+          "y": 130,
+          "width": 1017,
+          "height": 659,
+          "top": 130,
+          "right": 1394,
+          "bottom": 789,
+          "left": 377
+        },
+        ".thread-inner": {
+          "x": 545.5,
+          "y": -258,
+          "width": 680,
+          "height": 1031,
+          "top": -258,
+          "right": 1225.5,
+          "bottom": 773,
+          "left": 545.5
+        },
+        ".travail-steps": {
+          "x": 545.5,
+          "y": 275,
+          "width": 680,
+          "height": 216,
+          "top": 275,
+          "right": 1225.5,
+          "bottom": 491,
+          "left": 545.5
+        },
+        ".travail-recap": {
+          "x": 559.5,
+          "y": 563,
+          "width": 652,
+          "height": 60,
+          "top": 563,
+          "right": 1211.5,
+          "bottom": 623,
+          "left": 559.5
+        },
+        ".dock": {
+          "x": 377,
+          "y": 789,
+          "width": 1017,
+          "height": 76,
+          "top": 789,
+          "right": 1394,
+          "bottom": 865,
+          "left": 377
+        },
+        ".composer": {
+          "x": 545.5,
+          "y": 797,
+          "width": 680,
+          "height": 52,
+          "top": 797,
+          "right": 1225.5,
+          "bottom": 849,
+          "left": 545.5
+        }
+      }
+    },
+    "differentPixels": 13,
+    "diffPct": 0,
+    "rawDiffPct": 0.0002507716049382716,
+    "unshiftedTranscriptRegion": {
+      "rectangle": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "pixels": 1303400,
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0
+    },
+    "original": {
+      "report": "/tmp/opencode/current-full-compare-6d96535/report.json",
+      "diffPct": 0.42,
+      "files": {
+        "app": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.app.png",
+          "sha256": "d8eb0a8707461efac6b549397a8c15bcece7d9607c0d13cef84e34822c1b32e5",
+          "bytes": 755290
+        },
+        "design": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.design.png",
+          "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+          "bytes": 755958
+        },
+        "diff": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.diff.png",
+          "sha256": "ea0d95969eb51d200030193cebb465bacc6ca2b224abe71d6401c567638fc24f",
+          "bytes": 324045
+        }
+      }
+    },
+    "files": {
+      "app": {
+        "file": "work-task~done-dark.app.png",
+        "sha256": "245e6e16551e6196937d57ccbb4ba2536a9270366bbd75cf03fccbc6d8d91402",
+        "bytes": 755917
+      },
+      "design": {
+        "file": "work-task~done-dark.design.png",
+        "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+        "bytes": 755958
+      },
+      "diff": {
+        "file": "work-task~done-dark.diff.png",
+        "sha256": "8fb75d339ad617266df3dc389a94930e8af72c7823b0b5b85a51c4522b86d0b6",
+        "bytes": 299040
+      }
+    }
+  },
+  {
+    "name": "work-task~done-light",
+    "url": "http://127.0.0.1:5309/?capture=work-scroll-corrected-light#/work-task?theme=light&shot&v=done",
+    "capturedAt": "2026-10-03T01:46:01.394Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "caller",
+      "time": "2026-10-02T12:09:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "work-task",
+      "variant": "termine",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:09:27.979Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "consoleErrors": [],
+      "file": "work-task~termine-light.png"
+    },
+    "geometry": {
+      "fonts": "loaded",
+      "top": 392,
+      "height": 1051,
+      "viewport": 659,
+      "bottomGap": 0,
+      "rectangles": {
+        ".thread": {
+          "x": 377,
+          "y": 130,
+          "width": 1017,
+          "height": 659,
+          "top": 130,
+          "right": 1394,
+          "bottom": 789,
+          "left": 377
+        },
+        ".thread-inner": {
+          "x": 545.5,
+          "y": -258,
+          "width": 680,
+          "height": 1031,
+          "top": -258,
+          "right": 1225.5,
+          "bottom": 773,
+          "left": 545.5
+        },
+        ".travail-steps": {
+          "x": 545.5,
+          "y": 275,
+          "width": 680,
+          "height": 216,
+          "top": 275,
+          "right": 1225.5,
+          "bottom": 491,
+          "left": 545.5
+        },
+        ".travail-recap": {
+          "x": 559.5,
+          "y": 563,
+          "width": 652,
+          "height": 60,
+          "top": 563,
+          "right": 1211.5,
+          "bottom": 623,
+          "left": 559.5
+        },
+        ".dock": {
+          "x": 377,
+          "y": 789,
+          "width": 1017,
+          "height": 76,
+          "top": 789,
+          "right": 1394,
+          "bottom": 865,
+          "left": 377
+        },
+        ".composer": {
+          "x": 545.5,
+          "y": 797,
+          "width": 680,
+          "height": 52,
+          "top": 797,
+          "right": 1225.5,
+          "bottom": 849,
+          "left": 545.5
+        }
+      }
+    },
+    "differentPixels": 235,
+    "diffPct": 0,
+    "rawDiffPct": 0.004533179012345679,
+    "unshiftedTranscriptRegion": {
+      "rectangle": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "pixels": 1303400,
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0
+    },
+    "original": {
+      "report": "/tmp/opencode/current-full-compare-6d96535/report.json",
+      "diffPct": 0.45,
+      "files": {
+        "app": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.app.png",
+          "sha256": "52cadbd5ca4090cc89a64e7c3184e9858724bdb29ce60ca0b1e88141f1334fe8",
+          "bytes": 744478
+        },
+        "design": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.design.png",
+          "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+          "bytes": 745244
+        },
+        "diff": {
+          "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.diff.png",
+          "sha256": "11f8130019d42b35fb46dcfa2d028c870b72a88f1943c9a0435d642b85a57717",
+          "bytes": 307612
+        }
+      }
+    },
+    "files": {
+      "app": {
+        "file": "work-task~done-light.app.png",
+        "sha256": "a3af0857ab46bae6b90bd4cf474e46a4114b38071fe2722c69f6ca9b605dd9df",
+        "bytes": 744143
+      },
+      "design": {
+        "file": "work-task~done-light.design.png",
+        "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+        "bytes": 745244
+      },
+      "diff": {
+        "file": "work-task~done-light.diff.png",
+        "sha256": "48135f1edeea56b3a990f284b86798dd40746dae7398029d6d7fa7e223ed2c95",
+        "bytes": 314318
+      }
+    }
+  }
+]

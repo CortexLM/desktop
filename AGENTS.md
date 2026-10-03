@@ -49,8 +49,8 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 
 `vendor/` holds unmodified `@cortex/sdk` 0.2.0 and its optional peer `@cortex/api-types`
 0.1.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
-These packages await SDK-owner regeneration against backend schema blob `d6d46014`;
-the newly typed auth/upload contract does not make desktop remote authentication live.
+The corrected SDK-owner 0.3.1/0.2.0 handoff against schema blob `d6d46014` is under desktop
+admission review; the currently vendored pair does not make remote authentication live.
 Remote authentication/model routing/inference remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
@@ -154,6 +154,8 @@ at most three thumbnails mount. Bot Studio keeps refused saves editable; preview
 activity and drafts share temporary renderer state, cleared on reload, locale change or exit.
 Work preview task activity temporarily updates the sidebar Bot; leaving restores its prior
 activity while preserving an explicit pause and saved appearance.
+Work end-state previews settle their initial bottom scroll after fonts load; user input or
+departure cancels that delayed adjustment.
 Live Work marks Done only after a persisted successful assistant completion; refused,
 failed, interrupted and unread tasks remain outside Done, including after reload.
 Routine history likewise keeps active runs Running and interruptions Failed; an active routine
@@ -166,6 +168,11 @@ Bot, and keyboard order follows visible category groups. Failed source lists off
 Live Work's **Turn into a routine** opens the existing editor with the original text request,
 assigned Bot and execution context. Only Create writes a routine; file-dependent histories refuse
 conversion. Re-saving with the same Bot preserves the model, agent and folder.
+Failed approval-list reads show recovery with Retry instead of claiming pending requests
+have been handled.
+Permission views refresh on session status/deletion so cancelled asks disappear without a reply.
+Memory drafts clear only after accepted writes; refused/partial deletion retains surviving entries
+and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
 
 | Area | Screens (ids) | Live engine wiring today |
 | --- | --- | --- |
@@ -202,6 +209,7 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
   discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
   The key row wraps within narrow Settings panes so its label and saved last-four hint stay readable.
+  Model rows likewise wrap capability badges below their name/context/cost when space is narrow.
   Chat retains drafts/attachments when the engine rejects a send; retry includes the original
   files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
   Code/Work/Bot text drafts also wait for accepted sends; missing models, cancelled folder
@@ -212,6 +220,8 @@ Cortex Cloud sign-in has no engine route yet: the live login submit says it is u
   `en fr es de ja zh-Hans pt-BR ko`. Translation review limits and source-stamp exclusion:
   [`docs/i18n.md`](./docs/i18n.md). Runtime labels localize mascot states, built-in tool names,
   todo counts and duration/model formatting; raw tool errors never become terminal UI copy.
+  New shell results carry exact output-boundary metadata for localized exit/truncation annotations.
+  Command output and unverifiable legacy records remain verbatim; model replay retains its original text.
   Untitled sessions store an empty title for the renderer's localized fallback.
 
 ## Design reference
@@ -251,6 +261,12 @@ frozen comparisons are retained in [`evidence/live-behavior-followup/README.md`]
 Work conversion/Search correction `f9aca44` passes 70 Electron cases per OS and installed-Mac
 context/Retry/identity checks with ten native captures. Separate fixed-clock comparisons retain
 the original night/day wallpaper outliers; see [`evidence/live-actions-followup/README.md`](./evidence/live-actions-followup/README.md).
+At documentary/comparator `6d96535`, CI 37082159189 also passes. A fresh installed `f9aca44`
+sweep captures 426 registered states at 1024×686, fourteen native menus and native window actions;
+see [`evidence/mac/f9aca44/full/README.md`](./evidence/mac/f9aca44/full/README.md).
+A full fixed-clock comparison at that pin covers 410 references/21 explicit gaps. Its bounded
+diagnostic reproduces Work's 1px font-readiness/scroll-anchoring offset; historical images keep
+their original scores and scheduling limits. See [`evidence/current-full-followup/compare/README.md`](./evidence/current-full-followup/compare/README.md).
 
 ## CI, packaging and releases
 

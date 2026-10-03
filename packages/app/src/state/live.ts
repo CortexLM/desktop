@@ -30,7 +30,7 @@ export function useQuery<T>(load: () => Promise<T>, deps: unknown[], when?: (e: 
 export const useSessions = (kind?: Session["kind"]) =>
   useQuery(() => api.sessions.list(kind ? { kind } : {}), [kind], (e) => e.type.startsWith("session."));
 export const useBots = () => useQuery<Bot[]>(() => api.bots.list(), [], () => false);
-export const usePermissions = () => useQuery<Permission[]>(() => api.permissions.list(), [], (e) => e.type.startsWith("permission."));
+export const usePermissions = () => useQuery<Permission[]>(() => api.permissions.list(), [], (e) => e.type.startsWith("permission.") || e.type === "session.status" || e.type === "session.deleted");
 
 /** Messages of one session with streaming deltas applied in place. */
 export function useMessages(sessionID: string | undefined) {

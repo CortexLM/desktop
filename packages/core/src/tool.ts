@@ -174,7 +174,8 @@ const bash = defineTool({
       )
       child.stdin?.end()
     })
-    return { title: description ?? command, output: truncate(out) + (code ? `\n[exit code ${code}]` : ""), metadata: { exit: code } }
+    // UTF-16 units, matching slice: retained command output and omitted count; output stays model-facing English.
+    return { title: description ?? command, output: truncate(out) + (code ? `\n[exit code ${code}]` : ""), metadata: { exit: code, outputLength: Math.min(out.length, MAX_OUTPUT), truncated: Math.max(0, out.length - MAX_OUTPUT) } }
   },
 })
 

@@ -1,0 +1,72 @@
+
+Running 2 tests using 1 worker
+
+[1/2] tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light
+  1) tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light › cold fonts finish at the actual bottom
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      85 |         expect(after.fonts).toBe("loaded");
+      86 |         expect(after.height).not.toBe(before.height);
+    > 87 |         expect.soft(after.gap).toBe(0);
+         |                                ^
+      88 |       });
+      89 |
+      90 |       await test.step("warm-font remount still opens at the bottom", async () => {
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-scroll.spec.ts:87:32
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-scroll.spec.ts:78:7
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-0b14f-g-back-user-control-—-light/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-0b14f-g-back-user-control-—-light/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-0b14f-g-back-user-control-—-light/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-0b14f-g-back-user-control-—-light/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[2/2] tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark
+  2) tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark › cold fonts finish at the actual bottom
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      85 |         expect(after.fonts).toBe("loaded");
+      86 |         expect(after.height).not.toBe(before.height);
+    > 87 |         expect.soft(after.gap).toBe(0);
+         |                                ^
+      88 |       });
+      89 |
+      90 |       await test.step("warm-font remount still opens at the bottom", async () => {
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-scroll.spec.ts:87:32
+        at /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e/work-scroll.spec.ts:78:7
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/error-context.md
+
+    attachment #7: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../../tmp/opencode/work-scroll-fix/baseline-first-frame-results/work-scroll-Work-initial-s-7206c-ng-back-user-control-—-dark/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2 failed
+    tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — light
+    tests/e2e/work-scroll.spec.ts:12:3 › Work initial scroll settles after fonts without taking back user control — dark

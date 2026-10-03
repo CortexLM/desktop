@@ -1,0 +1,25 @@
+{
+  "id": "exit7",
+  "sessionID": "session",
+  "messageID": "message",
+  "type": "tool",
+  "callID": "exit7",
+  "tool": "bash",
+  "state": {
+    "status": "completed",
+    "input": {
+      "command": "exit 7"
+    },
+    "output": "\n[exit code 7]",
+    "title": "exit 7",
+    "metadata": {
+      "exit": 7,
+      "outputLength": 0,
+      "truncated": 0
+    },
+    "time": {
+      "start": 0,
+      "end": 1
+    }
+  }
+}

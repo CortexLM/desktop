@@ -1,0 +1,41 @@
+{
+  "url": "cortex://app/index.html#/work-task?shot&theme=light&v=done",
+  "requests": [
+    "cortex://app/fonts/Geist-Variable.woff2",
+    "cortex://app/fonts/GeistMono-Variable.woff2"
+  ],
+  "before": {
+    "fontStatus": "loading",
+    "scrollTop": 350,
+    "scrollHeight": 1069,
+    "clientHeight": 719,
+    "gap": 0,
+    "faces": [
+      {
+        "family": "Geist",
+        "status": "loading"
+      },
+      {
+        "family": "Geist Mono",
+        "status": "loading"
+      }
+    ]
+  },
+  "after": {
+    "fontStatus": "loaded",
+    "scrollTop": 332,
+    "scrollHeight": 1051,
+    "clientHeight": 719,
+    "gap": 0,
+    "faces": [
+      {
+        "family": "Geist",
+        "status": "loaded"
+      },
+      {
+        "family": "Geist Mono",
+        "status": "loaded"
+      }
+    ]
+  }
+}

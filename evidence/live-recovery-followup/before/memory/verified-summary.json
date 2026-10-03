@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-03T00:59:43.111Z",
+  "observedRunStartedAt": "2026-10-03T00:56:26.242Z",
+  "headAtRun": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "completedProductCases": 2,
+  "runtimeAssertions": "passed for both Bot cases",
+  "harnessExit": "Observed full process exited 1 after optional System Memory setup and cleanup failure; not a passing suite",
+  "optionalSystemMemory": "No runtime finding claimed; source-only review retained in report",
+  "electron": "44.5.1",
+  "engineResponses": {
+    "add": 404,
+    "deletion": 500,
+    "deletionMilliseconds": 5008
+  },
+  "persistedDatabaseReadOnlyCheck": "passed",
+  "distFilesHashed": 90,
+  "distUnchanged": true,
+  "gitCurrent": "M AGENTS.md\n M docs/testing.md\n M evidence/STATUS.md\n?? evidence/current-full-followup/\n?? evidence/mac/f9aca44/full/\n?? tests/e2e/approvals-recovery.spec.ts"
+}

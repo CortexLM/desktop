@@ -4,7 +4,28 @@
 Current prerequisite: G3's corrected, versioned SDK/api-types pair. G2's five typed auth/upload
 bodies are delivered. Desktop session acquisition, remote prompt routing and proof remain G1-owned.
 
-## Current SDK observation — 23:42 UTC
+## New owner handoff — 3 October, after 00:32 UTC
+
+Coordination records corrected SDK 0.3.1 / api-types 0.2.0 at
+`ce05a6040ec05ac479d23dc2f701c8835a529663`, immutable directory
+`/root/cortex-goals/releases/sdk-0.3.1-ce05a6040ec0/`. Owner-reported archive hashes:
+SDK `d47fb53878385849d74822b22526838aa3f99a3cbccb96ec95324a419838d12e`,
+types `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877`.
+Upstream CI `37084973406` and CodeQL `37084973410` are reported successful. Independent
+desktop admission is checking the bytes, API surface and consumer concerns; vendored/runtime
+adoption has not occurred. SDK 0.3.0's earlier native-fetch/Node 22 HOLD remains preserved.
+The old probe/native receipts do not certify the newly delivered pair or authenticated inference.
+
+## Earlier SDK observation — 3 October, 00:32 UTC
+
+At 00:32:21–22 UTC, one PR #447 metadata/comments query records the unchanged head
+`7633f7e2fa4df197a3bd19e5316943be20ec6722`, last updated 2 October 16:45:11 UTC, with
+zero returned comments created/updated since 23:42. The checked coordination/design tails
+announce no canonical versioned SDK/api-types pair or named G1 source/state import permission.
+Attachment/Studio scoped confirmations remain valid; package assembly is not import authorization.
+No old archive/hash/build/native checks were replayed for this owner readback.
+
+## Earlier SDK observation — 23:42 UTC
 
 At 23:42:53 UTC, one metadata/comments query again records PR #447 at
 `7633f7e2fa4df197a3bd19e5316943be20ec6722`, with zero returned comments since 22:53.

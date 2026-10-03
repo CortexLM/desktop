@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Unit | `bun run test` (Vitest; `packages/*/test`, `tests/unit`, `packages/app/src/**/*.test.{ts,tsx}`) | Engine services, protocol, server, client, remote probe, locale parity, i18n audit |
 | E2E | `bun run build && bun run test:e2e` (Playwright `_electron`, `tests/e2e`) | The built Electron app: IPC bridge, catalog, streaming, capability refusals |
-| i18n | `bun run audit:i18n` | No literal copy in `packages/app/src` / `packages/desktop/src`; every `t()` key exists in English |
+| i18n | `bun run audit:i18n` | Checks recognized literal-copy sinks in renderer/main and direct literal `t()` keys against English; dynamic/runtime copy needs separate coverage |
 | Types | `bun run typecheck` | `strict` holds across packages, tests, scripts |
 | Lint | `bun run lint` | `eslint packages scripts tests` |
 | Packaged launch | `bun run pack && node scripts/smoke.mjs linux` (or `mac`) | The packaged binary opens a window and stays up |

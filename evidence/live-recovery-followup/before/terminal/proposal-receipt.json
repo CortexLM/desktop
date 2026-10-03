@@ -1,0 +1,38 @@
+[
+  {
+    "id": "exit7",
+    "exit": 7,
+    "outputLength": 0,
+    "truncated": 0,
+    "permissionCalls": 1,
+    "outputExact": true,
+    "modelReplayExact": true
+  },
+  {
+    "id": "large",
+    "exit": 0,
+    "outputLength": 50000,
+    "truncated": 17,
+    "permissionCalls": 1,
+    "outputExact": true,
+    "modelReplayExact": true
+  },
+  {
+    "id": "lookalike",
+    "exit": 7,
+    "outputLength": 60,
+    "truncated": 0,
+    "permissionCalls": 1,
+    "outputExact": true,
+    "modelReplayExact": true
+  },
+  {
+    "id": "unicode-boundary",
+    "exit": 7,
+    "outputLength": 50000,
+    "truncated": 16,
+    "permissionCalls": 1,
+    "outputExact": true,
+    "modelReplayExact": true
+  }
+]

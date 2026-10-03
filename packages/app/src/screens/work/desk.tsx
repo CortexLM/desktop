@@ -103,7 +103,9 @@ function ApprovalsLive() {
   const left = list.filter((a) => !gone[a.id]).length;
   return (<>
     <Top title={t("work.toApprove")}><button className="btn secondary" style={{ height: 28 }} onClick={() => go("bot-settings", "permissions")}><Icon name="shield-check" size={16} />{t("work.appr.rules")}</button></Top>
-    {perms.state === "loading" ? null : !left ? <Empty state="done" title={t("work.appr.emptyTitle")} text={t("work.appr.emptyText")} /> : (
+    {perms.state === "loading" ? null : perms.state === "error" ? <Empty state="blocked" title={t("work.error.loadTitle")} text={t("work.error.loadText")}>
+      <button className="btn secondary" onClick={perms.reload}>{t("common.retry")}</button>
+    </Empty> : !left ? <Empty state="done" title={t("work.appr.emptyTitle")} text={t("work.appr.emptyText")} /> : (
       <div className="page"><div className="travail-narrow">
         <p className="travail-lede" style={{ marginTop: 6 }}>{t("work.appr.lede", { count: left })}</p>
         {list.map((p, i) => { const b = botOf(p); return (
