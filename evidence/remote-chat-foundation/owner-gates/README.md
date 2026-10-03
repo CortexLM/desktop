@@ -40,3 +40,7 @@ Baseline: `/tmp/opencode/completion-gates-7885736.md` (04:49 UTC). Local sources
 
 - Raw captures: `/tmp/opencode/remote-gates-current/{coordination-tail.md,design-requests.md,g2-comments.http,g2-comments.json,g3-comments.http,g3-comments.json}`. `receipts.json` and `g3-receipt.json` retain hashes, response dates, headers and absent pagination links; `SHA256SUMS` covers retained files.
 - Scope: one-shot readback only. No repository/app edits, Mac session, build, application test, CI request/rerun, owner post, public Cloud probe, credential search or authentication. No conclusion about replies after the recorded observation times.
+
+Coordinator retention: original CRLF HTTP bytes are preserved in `g2-comments.http.gz` and
+`g3-comments.http.gz`. The readable `.http` copies normalize line endings/trailing whitespace;
+`http-retention.json` binds both forms. Earlier receipt hashes name the lossless originals.

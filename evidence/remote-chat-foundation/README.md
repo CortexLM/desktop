@@ -1,6 +1,6 @@
 # Remote Chat foundation — internal implementation
 
-This batch follows application `7885736` and documentary `7a0b552`. The installed `7885736`
+Application `f5bf305473db12fddfddcda890a01794f02f578f` follows `7885736` and documentary `7a0b552`. The installed `7885736`
 evidence does not include these main/core changes. Local checks below bind their source hashes;
 changed-revision CI and native acceptance are recorded separately.
 
@@ -81,8 +81,9 @@ auth/engine cases pass with zero retries/skips, including all 48 locale states. 
 packaged smoke passes; [all 90 members](integrated/linux-package-final.json) match the
 corrected build. This is distinct from the earlier 97-case full run. Current main has
 21 transport cases, core has 18 projection cases, the actual SDK/core boundary has three
-integration cases. Final artifact review, next-revision CI and installed-Mac proof remain
-separate gates.
+integration cases. [Final artifact review](electron-final/README.md) verifies all 18 images,
+14 source pins, 90 build members and embedded main source-map contents. Three exact pixel
+drifts retain their unisolated causes. New-revision CI and installed-Mac proof remain pending.
 
 Review scopes remain pinned: initial security reproduction, final signature/expiry checks,
 DTO 403/history correction, then the admission-disposition getter. Older reports' line

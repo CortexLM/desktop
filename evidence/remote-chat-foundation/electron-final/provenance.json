@@ -1,0 +1,135 @@
+{
+  "before": {
+    "checkedAt": "2026-10-03T06:57:22.358314+00:00",
+    "buildMembersMatched": 90,
+    "sourceFilesMatched": 14,
+    "buildReceiptSHA256": "86802723e928fc5ed0039dcf77f3d73a4afab8854b9c055316c0096816e26af7",
+    "sourceReceiptSHA256": "8ecdce2c18a2586ad2a2321bd3784d97211cfb5a306c213e7a731cb1bb22ff3a"
+  },
+  "historicalInputs": [
+    {
+      "path": "../integrated/source-final.json",
+      "sha256": "8ecdce2c18a2586ad2a2321bd3784d97211cfb5a306c213e7a731cb1bb22ff3a"
+    },
+    {
+      "path": "../integrated/build-final.json",
+      "sha256": "86802723e928fc5ed0039dcf77f3d73a4afab8854b9c055316c0096816e26af7"
+    },
+    {
+      "path": "../integrated/e2e-final-targeted.json.gz",
+      "sha256": "f8c5425225399b819c88049c3d334d018db6e9b6bfc670bf9e4c3fcc353fa9b5",
+      "rawSHA256": "1c6b69562dbf66353c5af5721c38f6a0dea3f0721c8e8f615511b87aff60676b",
+      "rawBytes": 306943
+    },
+    {
+      "path": "../integrated/e2e-final-targeted.log.gz",
+      "sha256": "005159e7f35ae5b4d91306baa86f342ec7a5e845496b79fcd30866685cfd4af6",
+      "rawSHA256": "9168b949a1f216067db98bf67577f76370b6cab633e5a409783ad80a74f54f40",
+      "rawBytes": 1503
+    }
+  ],
+  "sourceMap": {
+    "path": "packages/desktop/dist/main.cjs.map",
+    "sha256": "831431b289084fa3efb3d4c8fea110356a25e64e7bd2b304fa05efd7b6decc02",
+    "mainBundleSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+    "mainNamesThisMap": true,
+    "totalEntries": 980,
+    "boundRuntimeSources": [
+      {
+        "path": "packages/core/src/bus.ts",
+        "sourcesContentSHA256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/core/src/connection.ts",
+        "sourcesContentSHA256": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/core/src/index.ts",
+        "sourcesContentSHA256": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/core/src/remote-sessions.ts",
+        "sourcesContentSHA256": "72bd7be91cf5ad99734a58300617da17e4bb782a631da3acbbbdfb8ca049decb",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/desktop/src/main.ts",
+        "sourcesContentSHA256": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/desktop/src/remote-chat.ts",
+        "sourcesContentSHA256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/desktop/src/remote-session.ts",
+        "sourcesContentSHA256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+        "matchesPinnedAndCurrent": true
+      },
+      {
+        "path": "packages/schema/src/index.ts",
+        "sourcesContentSHA256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361",
+        "matchesPinnedAndCurrent": true
+      }
+    ],
+    "scope": "The build-pinned map embeds source bytes equal to final pins/current files; this back-binds a later source receipt without relying on file timestamps."
+  },
+  "rendererInputsUnchangedFrom7885736": {
+    "app": 172,
+    "i18n": 297,
+    "client": 3
+  },
+  "schemaDifferenceFromInitial": {
+    "removeToolInterrupted": false,
+    "removeUnsupportedTransport": true,
+    "reproducesInitialSHA256": "09fa14a9a35a9f1479c50ab841cacba9c6f2074e10e366e8bdf628b493e87161"
+  },
+  "buildDifferenceFromInitial": {
+    "unchangedMembers": 86,
+    "changedOrNew": [
+      {
+        "path": "packages/app/dist/assets/index-CxOxyGGT.js",
+        "sha256": "fde16bd59354782c6552821f623a6a42dcb210275c0e2cda1d05ce59535f896d",
+        "initialSHA256": null
+      },
+      {
+        "path": "packages/app/dist/index.html",
+        "sha256": "aa1797aa2c72ec744fea027ed9cff3a08f239eba399e4aa86e441ebb7cc3f1ec",
+        "initialSHA256": "3111a4c0bda792ee3044ae4bd92e843c84e91f9131c011e6c459bb50c04b9757"
+      },
+      {
+        "path": "packages/desktop/dist/main.cjs",
+        "sha256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+        "initialSHA256": "700c14956d913d50ab2213e8d75720520d3dbc76d10500a1777eb7a79a197a25"
+      },
+      {
+        "path": "packages/desktop/dist/main.cjs.map",
+        "sha256": "831431b289084fa3efb3d4c8fea110356a25e64e7bd2b304fa05efd7b6decc02",
+        "initialSHA256": "044cfeb1cb7e7d06aca3bb37fa5883e93077c45f8c685f21bf1f8fb40ebe6501"
+      }
+    ],
+    "removed": [
+      "packages/app/dist/assets/index-DjrlTNct.js"
+    ],
+    "htmlChangeOnlyEntryName": true
+  },
+  "package": {
+    "receipt": "../integrated/linux-package-final.json",
+    "receiptSHA256": "3eeca62ed71e9b8658eb7378ac6b9bf6ccf1495135de1d247c522d5f9b961b80",
+    "asarSHA256": "d34d6d8609045f56851a6004f5c7bb185108cd743732ff8b79d6e3689df7f14c",
+    "membersMatchFinalBuild": 90,
+    "scope": "Coordinator receipt compared; no independent package extraction or launch."
+  },
+  "after": {
+    "checkedAt": "2026-10-03T07:02:58.910886+00:00",
+    "buildMembersMatched": 90,
+    "sourceFilesMatched": 14,
+    "buildReceiptSHA256": "86802723e928fc5ed0039dcf77f3d73a4afab8854b9c055316c0096816e26af7",
+    "sourceReceiptSHA256": "8ecdce2c18a2586ad2a2321bd3784d97211cfb5a306c213e7a731cb1bb22ff3a"
+  },
+  "auditSourceAndBuildStable": true
+}

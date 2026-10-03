@@ -41,6 +41,9 @@ cases, lint/types/i18n and Linux package/smoke. Later independent-review correct
 Actual SDK-to-core HTTP checks confirm ephemeral projection and account cleanup. SDK frame
 discard observability and backend image-history hydration remain explicit limits, with
 owner follow-ups; public remote routes/UI remain pending.
+Internal implementation `f5bf305` is pushed. Final local image review verifies 18 full-size
+originals and embedded source bindings. New-revision CI and installed-Mac checks are pending;
+the earlier green `7885736` artifact cannot establish acceptance of this main/core delta.
 The [06:18–06:22 owner readback](remote-chat-foundation/owner-gates/README.md) finds no new
 named G1 import permission or G2 resolution. Later requests separately name unique replay
 cursors, historical-image hydration and SDK discarded-frame notification.

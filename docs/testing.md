@@ -312,6 +312,10 @@ Internal remote-foundation checks live in `packages/desktop/test/remote-chat.tes
 account expiry/cancellation, fixed POST replay, process-only projection and remote event privacy.
 They establish no renderer dispatch or real-account inference. The foundation's
 [review/evidence](../evidence/remote-chat-foundation/README.md) is distinct from installed `7885736`.
+Internal foundation `f5bf305` passes 245 units plus one optional backend skip, an initial
+97-case Electron suite, then eleven rebuilt auth/engine cases after review corrections.
+Linux package/smoke and 90 member checks pass; final full-size image review covers all 18
+targeted PNGs. New-revision CI/native proof remains pending.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log
