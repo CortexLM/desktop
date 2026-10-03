@@ -1,0 +1,44 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+(node:2150338) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150401) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150385) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150356) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150344) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150371) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150363) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150350) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150399) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150337) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2150377) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/core/test/computer-use.test.ts (3 tests) 48ms
+ ✓ packages/core/test/bus.test.ts (2 tests) 30ms
+ ✓ packages/core/test/connection.test.ts (5 tests) 85ms
+ ✓ packages/core/test/mcp.test.ts (11 tests) 123ms
+ ✓ packages/client/test/client.test.ts (3 tests) 132ms
+ ✓ packages/core/test/scheduler.test.ts (4 tests) 159ms
+ ✓ packages/core/test/capabilities.test.ts (11 tests) 145ms
+ ✓ packages/server/test/server.test.ts (7 tests) 202ms
+ ✓ packages/core/test/services.test.ts (15 tests) 319ms
+ ✓ packages/core/test/catalog.test.ts (6 tests) 404ms
+   ✓ catalog (6)
+     ✓ live: fetches models.dev (skipped offline) 373ms
+ ✓ packages/core/test/session.test.ts (11 tests) 6302ms
+   ✓ session runner (fake OpenAI-compatible SSE) (11)
+     ✓ surfaces provider errors with a neutral code 6012ms
+
+ Test Files  11 passed (11)
+      Tests  78 passed (78)
+   Start at  05:33:22
+   Duration  7.08s (tests 56%, import 33%, transform 10%)

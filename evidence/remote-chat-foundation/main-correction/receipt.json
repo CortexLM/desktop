@@ -1,0 +1,33 @@
+{
+  "completed_at": "2026-10-03T05:48:26.546810+00:00",
+  "result": "PASS; uncommitted bounded correction",
+  "files": {
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/src/remote-chat.ts": "6d58248c5e1546b20de74cc001d1c8f4eeb17ecff4259c619507b9c6069f49bc",
+    "packages/desktop/test/remote-chat.test.ts": "9615fd288de59bba95981ef86aa023a407c5c8d1edd1de09fd37db934b8b4cb0"
+  },
+  "public_binding_types_unchanged": true,
+  "private_signature_change": "createRemoteChatBinding(client, origin, epoch, signal, check)",
+  "tests": {
+    "runtime": "Node22.23.3",
+    "passed": 24,
+    "failed": 0,
+    "existing_auth": 8,
+    "remote_chat": 16,
+    "new_cases": 5
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "dist_files_unchanged": 90,
+  "previous_report_tests_and_failures": "all original manifest hashes verified",
+  "input_readback_sha256": "07bec31afe8e4d3d17981d13ff7a3ae0c9170ae0f54370edfc7651e0d5d94411",
+  "trap_report_sha256": "692316f0a3b9286cae32b7fe89caa5fc3e7177d3f06871889bbce40ccceabc27",
+  "checks": [
+    "canonical origin instance404 fallback only",
+    "malformed/403/500 and noncanonical404 refuse",
+    "equal IDs A and B both consumed; one cursor1 acknowledgement",
+    "event and cursor observer throw keep acknowledged cursor1",
+    "same original body/path/key on replay"
+  ],
+  "scope": "same three files only; no core/schema/renderer/dependency/dist changes or real backend call"
+}

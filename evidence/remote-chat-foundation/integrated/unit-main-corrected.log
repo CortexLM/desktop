@@ -1,0 +1,63 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+ ✓ tests/unit/audit-i18n.test.ts (1 test) 209ms
+ ✓ packages/desktop/test/credentials.test.ts (23 tests) 47ms
+ ✓ packages/schema/test/schema.test.ts (3 tests) 19ms
+ ✓ packages/protocol/test/protocol.test.ts (3 tests) 41ms
+(node:2194709) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194827) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194710) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194743) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194749) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194779) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194773) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194785) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194798) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194792) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194716) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194812) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2194771) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/unit/locales.test.ts (9 tests) 350ms
+ ✓ packages/core/test/computer-use.test.ts (3 tests) 47ms
+ ✓ packages/core/test/bus.test.ts (2 tests) 28ms
+ ✓ packages/core/test/mcp.test.ts (11 tests) 133ms
+ ✓ packages/core/test/connection.test.ts (5 tests) 81ms
+ ✓ packages/client/test/client.test.ts (3 tests) 127ms
+ ✓ packages/core/test/scheduler.test.ts (4 tests) 190ms
+ ✓ packages/core/test/capabilities.test.ts (11 tests) 166ms
+ ✓ packages/server/test/server.test.ts (7 tests) 252ms
+ ✓ packages/core/test/services.test.ts (15 tests) 362ms
+ ✓ packages/core/test/catalog.test.ts (6 tests) 414ms
+   ✓ catalog (6)
+     ✓ live: fetches models.dev (skipped offline) 383ms
+ ✓ tests/unit/runtime-copy.test.ts (34 tests) 3576ms
+ ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5175ms
+   ✓ remote backend through the Cortex SDK (45)
+     ✓ times out a model listing whose JSON body never completes 5003ms
+ ✓ packages/core/test/session.test.ts (11 tests) 6357ms
+   ✓ session runner (fake OpenAI-compatible SSE) (11)
+     ✓ surfaces provider errors with a neutral code 6015ms
+ ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10316ms
+   ✓ process-lifetime remote authentication (8)
+     ✓ rejects duplicate requests and times out an unfinished native authentication body 10014ms
+ ✓ packages/desktop/test/remote-chat.test.ts (17 tests) 10793ms
+   ✓ private remote Chat binding (17)
+     ✓ enforces the real JSON deadline while an SSE body has its separate idle deadline 10056ms
+
+ Test Files  20 passed (20)
+      Tests  220 passed | 1 skipped (221)
+   Start at  06:00:11
+   Duration  11.83s (tests 76%, import 14%, transform 10%)

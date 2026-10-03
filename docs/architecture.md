@@ -27,7 +27,11 @@ Connection selection does not change this data path: all prompts still reach the
 `SessionService`, models.dev catalog and provider settings. The vendored SDK powers the
 main-process remote probe and process-lifetime `RemoteSession`. Core's injected `RemoteAuth`
 host exposes only validated status, active `signedIn` and email; main owns cookies, tokens
-and pending continuations. Remote model/prompt/history transport remains pending.
+and pending continuations. Its private Chat binding provides model/upload/turn/history
+transport under the same account epoch. Core's internal `remoteSessions` service projects
+those streams in process-only Maps, with separate remote views and identifier-only events.
+Main supplies one shared owner for auth and Chat. Remote publication skips persistence
+and local plugin delivery; public routes and renderer dispatch remain pending.
 See [connection-modes.md](./connection-modes.md).
 
 ## Packages

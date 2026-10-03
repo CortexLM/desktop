@@ -1,0 +1,122 @@
+{
+  "result": "PASS; uncommitted correction",
+  "report": "report.md",
+  "files": [
+    {
+      "path": "before/hashes.json",
+      "sha256": "1122e8150bcbd6975d5e7e1b3b1503cca9481a7759ad3021f4c48c37478a203c"
+    },
+    {
+      "path": "before/packages/desktop/src/remote-chat.ts",
+      "sha256": "2658a9aa5011e52c992998c1779c661c336e535239f697699baefbb73159baa7"
+    },
+    {
+      "path": "before/packages/desktop/src/remote-session.ts",
+      "sha256": "1d664a0b8159a55eddb29ffe6a6e59b6a155b3010f9a79deba507ebc55d241f9"
+    },
+    {
+      "path": "before/packages/desktop/test/remote-chat.test.ts",
+      "sha256": "7cdc8d41ed9b83b60c9b0e1e9328f7e43ab8608af954fab49aea99774339271e"
+    },
+    {
+      "path": "before/report.md",
+      "sha256": "5c6c4cde30716ae53c961bef64ca85c811a4b450ef2dfe3f701316d11d3247e5"
+    },
+    {
+      "path": "before/source-hashes.json",
+      "sha256": "49129e2b596e5d682941403421978f3bc9fb18da9d99274ea16afe470dc55287"
+    },
+    {
+      "path": "before/tests-corrected.json",
+      "sha256": "3486e0e4ee5e5513ead3d718bce244e5ff0086791098810682b319f98cecfe1d"
+    },
+    {
+      "path": "correction-focused.json",
+      "sha256": "d6a0c3a6fcd28cc5bc27f9beb0e9341374d995c3fe6a462c77b1e8c0a63d7edf"
+    },
+    {
+      "path": "correction-focused.log",
+      "sha256": "2647cde1304f331982790427dab24e7c83772d4fb5c7885a98e10285cd6a0cee"
+    },
+    {
+      "path": "correction-lint.json",
+      "sha256": "7de30bf7a2ff39891bac487032a6bb3ec01ac2b661a071d4a70b24af53ba0ba5"
+    },
+    {
+      "path": "correction-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "correction-typecheck.json",
+      "sha256": "ee5b4a8eb1ccd7dc63f740629454ad1691bca785b6032e393de0fcb2c50c1f75"
+    },
+    {
+      "path": "correction-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "correction.diff",
+      "sha256": "8c928c0ac91da28f2505a0cbd516d3d4f2595ebcab442e731ce2d036cf2d59e9"
+    },
+    {
+      "path": "high-bit-before.command.json",
+      "sha256": "86eff92674bb34bc402b61de5364d470d34ad7bb1904f156631aa1b856283b44"
+    },
+    {
+      "path": "high-bit-before.json",
+      "sha256": "9289c3e06a706006a03eb92c5f334d33e5c96e9b195538142e1d39a6cdb9eb42"
+    },
+    {
+      "path": "high-bit-before.log",
+      "sha256": "496ccf3d23251a15af799a194ac63936e7607e62a06e9391b1b09b5a549f9bbe"
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "38214cb9c89ae540048d5a3a67c7e22e17bad28446e250cc9d169ad864cc44e7"
+    },
+    {
+      "path": "report.md",
+      "sha256": "60319ef7d10ba1d7d8192032ab7a8f95a5444f379ed340a732bc9fe57fdb12d8"
+    },
+    {
+      "path": "security-corrected-focused.command.json",
+      "sha256": "539210685adecc2227c9340f08d0e92603a3dfa67c97341b6f6398582525f34c"
+    },
+    {
+      "path": "security-corrected-focused.log",
+      "sha256": "c7b93ed603c06cefbab11db7d14d45edb4d35cc16140046a92827dc0f794d827"
+    },
+    {
+      "path": "security-corrected-lint.command.json",
+      "sha256": "b0fe13c20bfd6b16b02827bd0c4ece51ddb2f6b1a820f043eb0233d15c071f09"
+    },
+    {
+      "path": "security-corrected-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "security-corrected-receipt.json",
+      "sha256": "bfef77b034dc0f6c7a05fd507f6251e5e89ea95e050c8a5cbbf8c842ba9782e3"
+    },
+    {
+      "path": "security-corrected-tests.json",
+      "sha256": "d2ab9cc610cdcac7439c1488bcac217d7dc15853865990d27b93f465b7600b86"
+    },
+    {
+      "path": "security-corrected-typecheck.command.json",
+      "sha256": "ef2f17cf00aa4dfbc4a290d335afcaa71ad24f670844def4360db446e85e5ca2"
+    },
+    {
+      "path": "security-corrected-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "security-corrected.diff",
+      "sha256": "6cb66f0732510d3f2a4bdf9ddaae62f96c00248ee68bd65d724806ca2298af91"
+    },
+    {
+      "path": "tests.json",
+      "sha256": "4ee71bdc86fbacee146c323f3c2f659ecf2c55e838492f6eb97e013d61918554"
+    }
+  ]
+}

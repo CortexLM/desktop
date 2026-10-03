@@ -9,6 +9,39 @@ closes MCP and storage. The optional `remoteAuth` host owns process-local creden
 
 Service table and file map: [`packages/core/README.md`](../packages/core/README.md).
 
+## Internal remote sessions
+
+`core.remoteSessions` uses the optional main-only `remoteChat` host; desktop supplies the
+same owner as `remoteAuth`. It has no public route or renderer caller yet. Models, selected
+effort, uploaded file IDs, local/remote message aliases and snapshots stay in process-only
+Maps. No local provider, tool, permission or plugin executes from a remote event.
+
+`models()` returns a catalogue and epoch; `create()` requires that current epoch/model.
+`upload()` binds acknowledged file IDs to the process-only session. `prompt()` reserves one
+turn across the binding and acknowledges a local user ID only after validated backend
+headers. Refusal retains the caller's draft; uncertain admission retains the original
+delivery handle. `resume()` reuses that handle; `detach()` closes delivery, not generation.
+Repeated admission is idempotent. Numeric backend cursor ambiguity makes every resumed
+projection explicitly partial, even if the backend eventually reports `stop`.
+
+Remote views preserve reported text, reasoning, usage, notice copy and tool statuses.
+Unknown usage is absent. Tool results, generated media, unsupported actions and structured
+metadata receive explicit partial markers; raw payloads and actionable URLs never enter
+the projection. Only confirmed `stop` with a complete projection sets successful completion.
+The current SDK host always reports a limited projection because discarded frames are not
+observable; its terminal results therefore never set `complete:true`. Backend `null` reasoning
+usage remains unknown, not zero. Image-bearing conversation follow-ups refuse until the
+backend preserves historical pixels, including when its current model supports vision.
+Known-history reads retain the latest-100/text-and-attachments limitations and never replace
+richer live reasoning or guess user-message aliases. Origin/account loss and `close()`
+clear records immediately; late reads, events and settlements cannot restore them.
+Recovery settles dangling tool statuses to interrupted. Concurrent session uploads refuse;
+detachment rechecks ownership after synchronous change notifications.
+
+`remote.session.changed` / `remote.session.removed` carry only `{sessionID,epoch}`, tagged
+remote for live bus delivery. Existing local session routes keep their original execution
+and storage behavior in every connection mode. See [connection-modes.md](connection-modes.md).
+
 ## Storage and events
 
 - `node:sqlite`, WAL. Append-only `event` table with transactional projections `session`,
@@ -17,6 +50,10 @@ Service table and file map: [`packages/core/README.md`](../packages/core/README.
 - The bus (`bus.ts`) commits durable events (`session.*`, `message.updated`,
   `part.updated`) before listeners run. `part.delta`, `session.status`, `permission.*`,
   `mcp.status`, `task.run` are live-only.
+- Internal `publish(type, properties, "remote")` delivers live events without SQLite writes
+  or local plugin callbacks. The source tag is a listener argument, never serialized into
+  an event. Existing calls default to local. This is a remote-transport prerequisite;
+  current prompt routes still use local sessions.
 - `GET /api/events` is the SSE stream of the bus. The renderer keeps one subscription
   (`packages/app/src/state/live.ts`).
 - New record IDs retain the prefix/time/counter format with a 64-bit Web Crypto random

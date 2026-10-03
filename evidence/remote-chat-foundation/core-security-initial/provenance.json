@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-core-security-review/vitest.config.mjs",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-core-security-review/probes.json"
+  ],
+  "nodeVersion": "v22.23.3",
+  "exitCode": 1,
+  "before": {
+    "packages/core/src/remote-sessions.ts": "8e3e53995063042b7174d639541b2b5b55675355bea51baa79a2c3ac378fe72a",
+    "packages/core/src/index.ts": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+    "packages/core/src/connection.ts": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+    "packages/schema/src/index.ts": "09fa14a9a35a9f1479c50ab841cacba9c6f2074e10e366e8bdf628b493e87161",
+    "packages/desktop/src/main.ts": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+    "packages/core/test/remote-sessions.test.ts": "015283402921cc55e168b51e636abe444ad1fc9703cc4cd0883ce724fcfda120",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/src/remote-chat.ts": "733860681cb7d1681460d0b4820bd020f76c6d54aaa0ebd86afdbf7a22a1a725"
+  },
+  "after": {
+    "packages/core/src/remote-sessions.ts": "8e3e53995063042b7174d639541b2b5b55675355bea51baa79a2c3ac378fe72a",
+    "packages/core/src/index.ts": "f95a508dc024fbbd2f4b5c4bab77fb4ee5efd06294801fd5de31c5abd19386bd",
+    "packages/core/src/connection.ts": "2dabb6fec133d599733a6c6961ed52532dd4fde9c0356543507d78c9f973015b",
+    "packages/schema/src/index.ts": "09fa14a9a35a9f1479c50ab841cacba9c6f2074e10e366e8bdf628b493e87161",
+    "packages/desktop/src/main.ts": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+    "packages/core/test/remote-sessions.test.ts": "015283402921cc55e168b51e636abe444ad1fc9703cc4cd0883ce724fcfda120",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/src/remote-chat.ts": "733860681cb7d1681460d0b4820bd020f76c6d54aaa0ebd86afdbf7a22a1a725"
+  }
+}

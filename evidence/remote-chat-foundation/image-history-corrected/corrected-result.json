@@ -1,0 +1,59 @@
+{
+  "runtime": "v22.23.3",
+  "sdk": "0.3.5",
+  "originalVision": true,
+  "refreshedVision": false,
+  "restoredVision": true,
+  "sameEpoch": true,
+  "sameBinding": true,
+  "uploadedPngSHA256": "c414cd0e204de974f73753c7e28d7638e7b3691bb8b1a2bab6b25bb7fed7ce77",
+  "uploadBytesExact": true,
+  "admittedProjectionPreserved": true,
+  "firstOutcome": {
+    "state": "settled",
+    "complete": false,
+    "partial": true,
+    "finishReason": "stop"
+  },
+  "transportMarker": {
+    "id": "prt_01a10088054d0000812c0c2cfafa416d",
+    "type": "unsupported",
+    "kind": "transport",
+    "blocking": false
+  },
+  "followup": {
+    "accepted": false,
+    "code": "model_no_image_input"
+  },
+  "explicitImageControl": {
+    "accepted": false,
+    "code": "model_no_image_input"
+  },
+  "postsAfterVisionLoss": 1,
+  "stateAfterVisionLoss": "ready",
+  "restoredVisionFollowup": {
+    "accepted": false,
+    "code": "provider_unsupported"
+  },
+  "stateAfterRestoration": "ready",
+  "posts": [
+    {
+      "path": "/v1/conversations/turns",
+      "body": {
+        "message": "Describe the image",
+        "model_slug": "fixture-vision",
+        "reasoning_effort": "high",
+        "attachment_ids": [
+          "lbf_01h45ytscbeewvwm6xr90nbxp4"
+        ]
+      }
+    }
+  ],
+  "sqliteCounts": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "Actual desktop core + main RemoteSession + SDK/native HTTP against controlled loopback; no real account, backend execution or inference."
+}

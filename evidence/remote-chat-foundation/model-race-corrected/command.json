@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-model-race-review/vitest.config.mjs",
+    "--configLoader",
+    "runner",
+    "--outputFile.json=/tmp/opencode/remote-model-race-review/corrected/tests.json"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 1.367,
+  "probe_source_unchanged": true,
+  "original_negative_files_preserved": true
+}

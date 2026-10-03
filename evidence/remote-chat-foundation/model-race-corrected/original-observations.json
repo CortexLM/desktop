@@ -1,0 +1,91 @@
+[
+  {
+    "latest": "vision-false",
+    "runtime": "v22.23.3",
+    "nativeFetch": true,
+    "newer": {
+      "outcome": "ready",
+      "vision": false
+    },
+    "older": {
+      "outcome": "ready",
+      "vision": true
+    },
+    "outcome": "admitted",
+    "disposition": "admitted",
+    "modelRequests": 3,
+    "turnRequests": 1,
+    "admitted": [
+      {
+        "conversationID": "cnv_01h45ytscbeewvwm6xr90nbxp4",
+        "assistantID": "msg_01h45ytscbeewvwm6xr90nbxp4"
+      }
+    ],
+    "turns": [
+      {
+        "message": "Describe the fixture",
+        "model_slug": "fixture",
+        "reasoning_effort": "high",
+        "attachment_ids": [
+          "lbf_01h45ytscbeewvwm6xr90nbxp4"
+        ]
+      }
+    ],
+    "requests": [
+      "POST /v1/auth/magic-auth",
+      "POST /v1/auth/magic-auth/verify",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/library",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/conversations/turns"
+    ]
+  },
+  {
+    "latest": "failed",
+    "runtime": "v22.23.3",
+    "nativeFetch": true,
+    "newer": {
+      "outcome": "provider_error"
+    },
+    "older": {
+      "outcome": "ready",
+      "vision": true
+    },
+    "outcome": "admitted",
+    "disposition": "admitted",
+    "modelRequests": 3,
+    "turnRequests": 1,
+    "admitted": [
+      {
+        "conversationID": "cnv_01h45ytscbeewvwm6xr90nbxp4",
+        "assistantID": "msg_01h45ytscbeewvwm6xr90nbxp4"
+      }
+    ],
+    "turns": [
+      {
+        "message": "Describe the fixture",
+        "model_slug": "fixture",
+        "reasoning_effort": "high",
+        "attachment_ids": [
+          "lbf_01h45ytscbeewvwm6xr90nbxp4"
+        ]
+      }
+    ],
+    "requests": [
+      "POST /v1/auth/magic-auth",
+      "POST /v1/auth/magic-auth/verify",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/library",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/conversations/turns"
+    ]
+  }
+]

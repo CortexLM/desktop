@@ -32,18 +32,67 @@ challenge/factor IDs and enrollment secrets stay in main, never SQLite, renderer
 `signedIn` derives from the active validated main session; persisted/renderer-supplied booleans
 cannot establish authentication. A pending account candidate may coexist with an active session.
 
-Sessions last until Cortex quits. Cloud refresh, persistent account identity and authenticated
-model/prompt/history transport remain pending. Main's typed actions cover email-code acquisition,
+Sessions last until Cortex quits. Cloud refresh and persistent account identity remain pending.
+Main's private Chat binding implements authenticated models/upload/turn/history transport;
+core's internal process-only projections consume it. Public routes and renderer dispatch
+remain pending. Main's typed actions cover email-code acquisition,
 operator local login, email verification and MFA challenge verification; only the existing email
 and six-digit-code screens are wired. Local password, email-verification and MFA/enrollment screens
 await approved integration; the UI reports unavailable rather than guessing continuation contracts.
-Operator bearer expiry is enforced when reading state. Cloud sign-out discards device-local state;
+Operator bearer expiry aborts active transport at its deadline and is checked on state/binding access.
+Cloud sign-out discards device-local state;
 server-side revocation is not claimed. Local operator logout uses its typed endpoint.
 
 Each auth candidate has a separate origin-pinned SDK client and in-memory cookie jar. A failed
 candidate preserves the active account. Successful promotion aborts the previous client;
 cancel/logout and accepted mode/origin changes invalidate pending work. Requests refuse redirects
 and foreign origins and have ten-second deadlines. Main shutdown clears all session material.
+
+## Private Chat transport
+
+`RemoteSession.bind(origin)` returns an internal account-epoch binding after validated sign-in.
+It exposes named model/upload/turn/history operations; no client, token, cookie or arbitrary
+URL/header access. Promotion replaces the epoch; logout, origin changes, local expiry and
+HTTP 401 abort its requests. A refused candidate preserves the active binding.
+
+The separate `remote-chat.ts` Fetch policy returns SSE immediately: ten seconds to headers,
+60 seconds idle, 16 MiB per delivery. JSON is bounded to ten seconds and 4 MiB; auth retains
+its existing ten-second/1 MiB policy. Only canonical Cloud permits an instance-404 legacy
+catalogue fallback. Self-host requires validated instance metadata and configured registry
+pages; auth-free operator mode remains unsupported. Unknown capabilities never imply vision.
+
+Uploads use raw PNG/JPEG/WebP/GIF bytes, signature/MIME checks and an explicit 8 MiB input/
+stored-image ceiling. Returned Library IDs remain private to the epoch. Turns validate
+50,000 Unicode code points, 20 owned images and explicit low/medium/high reasoning choices.
+An admitted image makes the conversation's vision requirement permanent for that epoch.
+Fresh follow-ups refuse lost vision; even with vision they remain unavailable while the
+pinned backend omits historical pixels. [G2 hydration request](https://github.com/CortexLM/backend/pull/446#issuecomment-5966488098)
+tracks this explicit ceiling. Replaying an existing delivery keeps its original attachments.
+Successful headers bind conversation and assistant IDs; missing/mismatched headers retain
+an ambiguous request. Reconnect repeats the original POST/body/key and acknowledged cursor.
+Admission callbacks repeat idempotently on each validated response, before its events, so
+consumer failure before accepting the first headers remains recoverable with the same handle.
+The current backend collapses Redis sub-sequences into one numeric SSE cursor, so replay can
+repeat a previously delivered same-ID frame. Resumed projections must remain explicitly
+partial; exact reconstruction awaits a [unique-cursor/history contract](https://github.com/CortexLM/backend/pull/446#issuecomment-5966307621).
+Detach closes delivery only; it does not cancel backend generation. One unresolved turn per
+binding is the current ceiling. Completion preserves terminal reasons and unfinished media.
+SDK 0.3.5 does not expose its parser's discarded-frame callback. Main therefore returns
+`projection:"limited"` on every terminal result; core adds a transport-limit marker and
+never certifies complete output from this SDK, including clean `stop` responses. The
+[G3 callback request](https://github.com/CortexLM/backend/pull/447#issuecomment-5966461570)
+is the upgrade gate. Unknown reasoning-token counts, including backend `null`, stay omitted.
+
+History reads only conversations admitted in that epoch: latest 100 active-path messages,
+text/attachments only, explicitly limited with reasoning/tools omitted. No account-wide list,
+durable identity, refresh or process-restart replay is claimed. Internal remote bus publication
+skips SQLite and local plugin callbacks. Core's internal `remoteSessions` validates epoch,
+model/effort, session-owned uploads and header-time admission, exposing cloned process-only
+views. Identity loss immediately removes them; late results remain invalid. It preserves
+plain safety/disclosure text, neutral tool status and explicit unsupported-output markers,
+never raw tool results or local execution. Known-history recovery marks unfinished tools
+interrupted without inventing a duration. These foundations have no public remote Chat
+route or UI caller yet; current Chat/Code/Work/Bot prompts retain local execution.
 
 ## Probe
 
@@ -118,6 +167,16 @@ precision and real authenticated inference remain separate gates.
 A separate SDK 0.3.5 discovery call to the real Cloud origin returns three models;
 [its receipt](../evidence/sdk-035-admission/integrated/real-probe.log) establishes reachability
 only. No account or inference credentials were supplied.
+Consumer adoption is `7885736`; [G3 readback](https://github.com/CortexLM/backend/pull/447#issuecomment-5965633627)
+records both archive hashes and the real discovery result. New-pair CI `37097480122` and
+eight matching installed sign-in/layout captures pass, separately from `ffc118a`'s SDK 0.3.1
+evidence. Neither controlled sign-in run establishes a real Cloud account.
+At the later [05:35 UTC public readback](../evidence/sdk-035-admission/public-cloud-readback.json),
+Cloud's `/v1/instance` returns 404; `/v1/models` returns two reasoning-capable Chat models,
+both declaring `supports_vision:false`, and one image-generation card. The earlier probe uses
+its 404-only legacy discovery path. A compatible instance deployment and an eligible
+vision-capable Chat model are still needed for real image+reasoning acceptance;
+[G2 follow-up](https://github.com/CortexLM/backend/pull/446#issuecomment-5966017500) records this boundary.
 
 G3's [source-backed DTO disposition](https://github.com/CortexLM/backend/pull/447#issuecomment-5964672516)
 permits narrow validation of existing Cloud model/turn fields, without claiming generated
@@ -129,7 +188,9 @@ The exact canonical DTO/identity/history follow-up is recorded on
 The [bounded next-phase contract](../evidence/remote-auth-followup/routing-contract/README.md)
 records explicit session-source/account-epoch isolation, ephemeral projection, authenticated
 stream policy, original-request replay and local-plugin exclusion. Its standalone assertions
-check examples; they are not an implemented or approved remote Chat path.
+check examples. The later [foundation implementation](../evidence/remote-chat-foundation/README.md)
+implements private transport, event isolation and process-only core projections; public
+routes and approved renderer integration remain pending.
 The append-only design request dated 3 October, “G1 remote Chat admission controls,” requests
 named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest
 bounded-history states. Existing local boolean reasoning and Stop controls cannot silently
@@ -140,8 +201,8 @@ Delivery order:
 1. Consume G3's versioned pair with source commit, canonical schema pin, archive hashes and
    targeted runtime receipts. `vendor/` and `packages/desktop/package.json` must agree on both
    packages. G2's five typed auth/upload bodies are already delivered at `d6d46014`; SDK
-    regeneration, public `Problem` reconciliation and runtime receipts remain G3-owned and
-    are now supplied by the corrected 0.3.1 handoff, subject to desktop admission checks.
+    regeneration, public `Problem` reconciliation and runtime receipts are G3-owned;
+    the corrected 0.3.5 pair is now admitted and adopted.
 2. Implement session acquisition and continuations in Electron main. Keep bearer/cookie/pending
    state origin/account-bound; replace the authenticated client on identity changes rather than
    repointing it. Expose validated, sanitized state through schema/protocol/client contracts;
@@ -157,16 +218,16 @@ Delivery order:
    provider inference and discovery probes are separate evidence. Then package the changed
    revision and capture its modified surfaces natively; retain the earlier Mac baselines.
 
-Run checks for the new dependency/application delta when it lands. Existing passing suites and
-native captures are not rerun for this documentary handoff update.
+Each application delta needs its own checks. The installed `7885736` evidence remains
+separate from the later remote transport/core implementation.
 
 ### Contract boundaries
 
 The current backend supports guest Chat, email OTP and self-host `none`/operator auth.
-Desktop transport must isolate token/cookie state by origin and account. SDK regeneration
-against canonical schema `d6d46014d1c436b96540529dca2a3005556ae920` remains owned by the
-SDK session. That backend pin supplies typed OTP/MFA/email continuations and raw-byte uploads;
-the admitted 0.3.1 pair now powers bounded process-lifetime sign-in. The existing backend turn input
+Desktop transport isolates token/cookie state by origin and account. SDK regeneration
+remains owner-controlled: admitted 0.3.5 uses screenshot-only successor schema `c8f6a7f0`,
+retaining the typed OTP/MFA/email and raw-upload contracts from `d6d46014`.
+The admitted 0.3.5 pair powers bounded process-lifetime sign-in. The existing backend turn input
 has reasoning effort `low|medium|high`, no disabled value; omission defaults a new conversation
 to `medium`, while ordinary follow-ups retain its stored effort.
 Cancelling the stream reader does not cancel backend generation. Supported reasoning-off

@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-chat-security-review/vitest.config.mjs",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-chat-security-review/corrected-probes.json"
+  ],
+  "nodeVersion": "v22.23.3",
+  "exitCode": 0,
+  "before": {
+    "packages/desktop/src/remote-chat.ts": "4b2674007b8e634b371bf30322b713c8ab9e00ba2309b6b833783a39fe1d8b12",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-chat.test.ts": "e65fb3817a36dbff50703a3182910f1c347d36bcfdb77c4e1c2c7db9a855160d",
+    "packages/desktop/test/remote-session.test.ts": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+  },
+  "after": {
+    "packages/desktop/src/remote-chat.ts": "4b2674007b8e634b371bf30322b713c8ab9e00ba2309b6b833783a39fe1d8b12",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-chat.test.ts": "e65fb3817a36dbff50703a3182910f1c347d36bcfdb77c4e1c2c7db9a855160d",
+    "packages/desktop/test/remote-session.test.ts": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+  },
+  "historicalBefore": {
+    "current-probes.json": "ab25168ee1efc8b55c11cb47dff4d5e3a78a8e204063411d7ab15d1e58528773",
+    "current-probes.log": "6695744fa57a4f18dfe871349ea54eea162355fb8834fde04892ccee947d4a2a",
+    "current-provenance.json": "07f02a953b2a5b28063b600a26610065b28eb77f064e1d35d08a85dfadda1ad0",
+    "probes.test.ts": "21a5b4dbf918689057f37212ec00650e9eff04c27895d8da0b473020eb6b0f29"
+  },
+  "historicalAfter": {
+    "current-probes.json": "ab25168ee1efc8b55c11cb47dff4d5e3a78a8e204063411d7ab15d1e58528773",
+    "current-probes.log": "6695744fa57a4f18dfe871349ea54eea162355fb8834fde04892ccee947d4a2a",
+    "current-provenance.json": "07f02a953b2a5b28063b600a26610065b28eb77f064e1d35d08a85dfadda1ad0",
+    "probes.test.ts": "21a5b4dbf918689057f37212ec00650e9eff04c27895d8da0b473020eb6b0f29"
+  }
+}

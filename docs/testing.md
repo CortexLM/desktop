@@ -181,6 +181,8 @@ Cancellation checks inspect the durable event journal as well as the current mes
   and 1024×686, both themes: exact text geometry below labels, no overlap with controls,
   keyboard reachability. DOCX Comments and narrow side-by-side source remain scrollable;
   initial offscreen content alone is not an unreachable-control failure.
+  The separate `7885736` [eight-locale check](../evidence/sdk-035-admission/approvals-locales/README.md)
+  verifies these two rows at 960×640 in both themes, including actual glyph fonts and Tab access.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.
@@ -289,7 +291,27 @@ release, publish or signing jobs exist.
 The workflow describes configured checks, not the latest result. Use the PR's run and
 uploaded artifacts for revision-specific evidence; there is no Windows CI job.
 
+`ffc118a` CI `37094538845` passes 92 Electron cases/426 renders per OS and 201 units plus
+one optional backend skip. Its 28 installed-Mac assertions/captures bind the same artifact;
+CI's native display capture still fails, so renderer smoke and installed pixels remain
+separate proofs. SDK 0.3.5/narrow-Approvals revision `7885736` passes CI `37097480122` and
+eight matching installed sign-in/layout captures; it is tracked independently in
+[`evidence/sdk-035-admission/README.md`](../evidence/sdk-035-admission/README.md).
+Its separate eight-locale sign-in check covers 48 live SDK/controlled-HTTP states and seven
+new auth keys. Six email-step follow-ups retain the initial 6px Cancel clip while proving
+keyboard scrolling and activation. This is Linux layout/accessibility evidence, not native
+font or translation-semantic acceptance.
+`tests/e2e/remote-auth.spec.ts` registers this 48-state locale sweep as one case, asserting
+painted text, clipping ancestors, keyboard order and main-only credentials on every state.
+
 ## Acceptance gaps
+
+Internal remote-foundation checks live in `packages/desktop/test/remote-chat.test.ts`,
+`packages/desktop/test/remote-core.test.ts`, `packages/core/test/remote-sessions.test.ts` and
+`packages/core/test/bus.test.ts`: real SDK/native HTTP admission, raw upload ownership,
+account expiry/cancellation, fixed POST replay, process-only projection and remote event privacy.
+They establish no renderer dispatch or real-account inference. The foundation's
+[review/evidence](../evidence/remote-chat-foundation/README.md) is distinct from installed `7885736`.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

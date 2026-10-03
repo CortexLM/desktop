@@ -1,0 +1,75 @@
+{
+  "scope": "Initial integrated main/core build; historical receipt before further independent corrections",
+  "stats": {
+    "startTime": "2026-10-03T06:30:33.561Z",
+    "duration": 261449.339,
+    "expected": 97,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "registeredCases": 97,
+  "results": 97,
+  "attemptsPerCase": 1,
+  "registeredRenderChecks": 426,
+  "registeredRenderPNGs": 0,
+  "workers": 4,
+  "playwrightVersion": "1.63.0",
+  "pngFiles": 242,
+  "pngAttachments": 125,
+  "inlinePngAttachments": 4,
+  "uniqueFilePNGs": 119,
+  "uniquePNGsIncludingInline": 123,
+  "contactSheets": 16,
+  "selectionReferences": 18,
+  "raw": [
+    {
+      "file": "e2e.json.gz",
+      "rawBytes": 989021,
+      "rawSHA256": "107bfe86a25123fa06f15b490e49ba81536a63ef7f269605d45d8f3b67ad86ad",
+      "gzipSHA256": "f27b8792faf3f0db17223d0f71444a7938def9a7d905dfda9be7c2705a4980a7"
+    },
+    {
+      "file": "e2e.log.gz",
+      "rawBytes": 13588,
+      "rawSHA256": "1f33d154a0cd2274ce55c1e02bf7a762376471c23ffa8c362c416e92a2b4a934",
+      "gzipSHA256": "b58a8d35406c0b30271568b94daea290b16b57e5c2d3dc2f129333865700d8a2"
+    }
+  ],
+  "localeRegression": {
+    "case": 64,
+    "durationMs": 38318,
+    "primaryStates": 48,
+    "allMeasuredStates": 80,
+    "stateCounts": {
+      "option-unavailable": 16,
+      "send-failed": 16,
+      "code_sent": 16,
+      "signed_in": 16,
+      "mfa_enrollment": 16
+    },
+    "tabStops": 144,
+    "textMeasurements": 384,
+    "allMeasuredTextReadable": true,
+    "allRecordedFocusControlsReachable": true,
+    "opacityPredicatesPass": true,
+    "zeroPageConsoleFixtureErrorsAndRendererHTTP": "Enforced by passing final assertions in hash-pinned case; no standalone arrays attached.",
+    "newAuthKeys": [
+      "auth.failed",
+      "auth.sendFailed",
+      "auth.optionUnavailable",
+      "auth.signedIn",
+      "auth.sessionOnly",
+      "auth.settings",
+      "auth.continuationUnavailable"
+    ]
+  },
+  "imageUniformityCandidates": [],
+  "sourceRoot": "/tmp/opencode/remote-chat-integrated",
+  "reviewStatus": "complete",
+  "selectedOriginalPNGs": 18,
+  "newCanonicalPNGs": 2,
+  "reusedCanonicalPNGs": 16,
+  "contactImagesReviewed": 123,
+  "fullSizeImagesReviewed": 19
+}

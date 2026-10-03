@@ -53,6 +53,12 @@ The SDK-owner handoff against schema blob `c8f6a7f0` passes scoped desktop admis
 earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.
 The new SDK fixes media-terminal delivery, raw screenshot upload, generated turn-body typing
 and native auth response cloning. Precise account/history contracts remain incomplete.
+An internal `RemoteSession.bind(origin)` supplies epoch-owned model discovery, raw image
+upload, streamed turns/replay and limited known-history reads. Core's `remoteSessions` service
+keeps projections in memory, admits local user IDs only after backend headers and marks
+resumed/unsupported output partial. SDK 0.3.5 hides discarded-frame notifications, so its
+projection always remains limited. Fresh image-history follow-ups refuse pending backend
+pixel hydration. It has no public route or renderer caller yet.
 Remote model routing/inference and continuation screens remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
@@ -284,6 +290,9 @@ CI `37094538845` passes all three jobs. Matching installed checks pass 28 native
 across auth, Code, terminal, recovery and Work; controlled fixtures establish no real Cloud
 account or remote-inference acceptance. See
 [`evidence/remote-auth-followup/README.md`](./evidence/remote-auth-followup/README.md).
+SDK 0.3.5 and narrow Approvals correction `7885736` pass CI `37097480122`; the matching
+installed artifact passes six sign-in and two minimum-window Approvals captures.
+See [`evidence/sdk-035-admission/README.md`](./evidence/sdk-035-admission/README.md).
 
 ## CI, packaging and releases
 
@@ -315,3 +324,5 @@ Prompt admission reserves the session before asynchronous catalog/key lookup; co
 receive `session_busy`. Refusals release it; abort/delete prevent pending admission from writing
 a late prompt or starting inference.
 Model capability gates include attachments replayed from history, including text-only follow-ups.
+The bus's internal remote source skips SQLite persistence and local plugin event hooks;
+ordinary live subscribers still receive the unchanged event. Existing publishers default local.

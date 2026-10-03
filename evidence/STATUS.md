@@ -3,7 +3,7 @@
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
 G3's SDK 0.3.5/api-types 0.2.0 passes [scoped desktop admission](sdk-035-admission/README.md);
-exact dependency intake is uncommitted. Media-tail/raw-screenshot/turn-body/auth-clone corrections
+exact dependency intake is pushed at `7885736`. Media-tail/raw-screenshot/turn-body/auth-clone corrections
 pass consumer checks. Broader auth/identity/history contracts remain incomplete. Historical
 0.3.0 HOLD, 0.3.1 defects and failed 0.3.4 attempts remain. [Bounded sign-in implementation](remote-auth-followup/README.md)
 is pushed at `ffc118a`: 201 units plus one optional skip, 90 Electron cases/426 renders including six
@@ -16,11 +16,34 @@ at `ffc118a`; [artifact review](remote-auth-followup/ci-ffc118a/README.md) verif
 passes 28 native captures/assertions across sign-in, Code, terminal, recovery and Work;
 independent review verifies all 31 retained pairs and inspects all 28 positives full-size.
 Real Cloud authentication/inference remain unproven.
+The [05:35 UTC public readback](sdk-035-admission/public-cloud-readback.json) finds `/v1/instance`
+missing (404) and no Chat model declaring vision support. Model discovery alone cannot close
+the requested real image/reasoning gate; [G2 follow-up](https://github.com/CortexLM/backend/pull/446#issuecomment-5966017500)
+records the deployed prerequisites.
 Later [0.3.2/0.3.3 readback](sdk-next-readback/README.md) verifies consumer corrections;
 the final 0.3.5 replacement passes 34 runtime/eight unchanged main-service cases and dependency
 intake checks (52 passes/one optional skip). Integrated lint/types/i18n, 201 units plus one
 skip, ten targeted Electron cases and Linux package/smoke pass. A separate unauthenticated
-Cloud probe returns three models. New-pair CI/installed proof remains pending.
+Cloud probe returns three models. [New-pair CI 37097480122](https://github.com/CortexLM/desktop/actions/runs/37097480122)
+passes all three jobs; [artifact review](sdk-035-admission/ci-7885736/README.md) verifies 96 cases/OS,
+426 renders/OS, zero retries and 37 full-resolution originals from 231 unique PNGs.
+[Matching installed checks](mac/7885736/README.md)
+pass six new-SDK sign-in and two narrow Approvals captures, both themes at 960×640;
+independent review verifies all eight images and embedded sources. The corrected two-row
+layout also passes 16 Linux theme/locale views across all eight locales.
+The same pinned build passes 48 live-auth locale/theme/state views and six email Cancel
+keyboard-recovery cases; initial 6px clipping remains documented. The current
+[remote transport foundation](remote-chat-foundation/README.md) is under integration review,
+separate from these installed/committed-source checks.
+Its initial combined core/main tree passes 239 units plus one optional skip, 97 Electron
+cases, lint/types/i18n and Linux package/smoke. Later independent-review corrections pass
+245 units plus one skip, eleven rebuilt auth/engine cases and new Linux package/smoke.
+Actual SDK-to-core HTTP checks confirm ephemeral projection and account cleanup. SDK frame
+discard observability and backend image-history hydration remain explicit limits, with
+owner follow-ups; public remote routes/UI remain pending.
+The [06:18–06:22 owner readback](remote-chat-foundation/owner-gates/README.md) finds no new
+named G1 import permission or G2 resolution. Later requests separately name unique replay
+cursors, historical-image hydration and SDK discarded-frame notification.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -33,7 +56,8 @@ Updated [CI 37091082338](https://github.com/CortexLM/desktop/actions/runs/370910
 at recovery/transition `b0e6d78`; independent review verifies 84 cases/OS and 185 unique images.
 [Installed recovery](mac/b0e6d78/README.md) passes twelve recovery/two Work cases but exposes
 a preview-departure crash and unreachable long terminal output. Corrections pass 26 targeted
-Electron cases after rebuild, lint/types/i18n and Linux package/smoke; updated CI/native pending.
+Electron cases after rebuild, lint/types/i18n and Linux package/smoke; later `ffc118a`
+CI/native proof above verifies the corrections.
 Failed native attempts remain retained. Pristine build matches all 90 installed members.
 Earlier captures retain their pins; later `ffc118a` sign-in is outside that CI/package.
 [Final-head CI 37082159189](https://github.com/CortexLM/desktop/actions/runs/37082159189)
@@ -47,7 +71,7 @@ its new correction is separate from those original images. The [full native revi
 is complete: 74 full-resolution states/all 61 families, fourteen menus. Later runtime readback
 proves DOCX Comments and narrow split source reachable by wheel/keyboard. The confirmed
 Code Approvals text overlap has a scoped correction: four negative/positive geometry cases,
-source review pass; new-revision CI/native pending. Wide source-line ellipsis remains inherited.
+source review, `7885736` CI and native checks pass. Wide source-line ellipsis remains inherited.
 The [Work conversion/Bot search batch](live-actions-followup/README.md) passes 178 Node 22 unit
 tests plus one optional backend skip, an initial 69-case Electron suite/426 renders and twelve
 final targeted cases after original-request text-fragment preservation. Lint/types/i18n and Linux
@@ -91,15 +115,17 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | Recovery local lint/types and 188 units plus one optional backend skip pass; changed-revision CI pending. Earlier green `6d96535` CI has 178 units. |
-| Every design screen plus provider/image/reasoning flows | Partial: recovery local 83 cases/426 renders, eight final memory cases; earlier CI 70/70 per OS. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | Green `f9aca44` and `6d96535` CI; installed artifact remains the verified `f9aca44` package. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Current `f9aca44`: 426 registered-state native captures at 1024×686, fourteen native menus, minimize/fullscreen/Gallery/Chat readbacks. Ten Work/Search captures at 960×640; twelve earlier Code/routine images remain pinned. Absent surfaces and exhaustive live/minimum-window acceptance remain open. |
-| No unjustified reference gap | Unproven: original full run compares 410/431, mean 0.0379%, max 1.73%, 21 gaps. Final recovery scope 42/58, max 0.0638503%, sixteen Settings gaps; Done removes the 1px gap, retaining 236/240 mismatches. Earlier intermediate 13/235 frames and original wallpaper/scroll scores remain separate; new imports unauthorized. |
-| Automated i18n audit | Recovery local: 63 files, 2,269 used keys, 3,398 English keys, zero findings. Shell annotations receive eight-locale runtime coverage; unverified legacy records remain verbatim. Exhaustive dynamic-copy coverage remains unproven. |
+| Lint, types, units | `7885736` CI passes lint/types and 201 units plus one optional backend skip; independent artifact review verifies the same source tree. |
+| Every design screen plus provider/image/reasoning flows | Partial: `7885736` CI passes 96 cases/426 renders per OS, including six real-SDK/controlled-HTTP auth cases. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `7885736` package/renderer smoke passes; matching installed ASAR and all 90 build members verified. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus and window actions. Matching `ffc118a`: 28 changed-scope native captures/assertions, independently reviewed. Matching `7885736`: eight new-SDK/layout captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Later auth/correction run is 54/70, maximum 0.067419%, sixteen Settings gaps; final committed Code subset 18/18, max 0.061786%. Narrow Approvals preserves all eight wide images exactly. Historical reference/scheduling outliers and source pins remain distinct; new imports unauthorized. |
+| Automated i18n audit | `7885736` CI: 64 files, 2,272 used keys, 3,405 English keys, zero findings. Eight-locale shell annotations, 48 auth states and 16 Approvals views have runtime checks. Translation semantics remain author-reviewed; exhaustive dynamic-copy/layout acceptance remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
-check still has no `CORTEX_REAL_BASE_URL`, `CORTEX_REAL_API_KEY` or `CORTEX_TEST_BACKEND_URL`.
+check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
+`CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;
+it does not supply account or inference credentials.
 
 ## Current MCP contract correction
 

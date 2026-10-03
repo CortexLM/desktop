@@ -27,7 +27,9 @@ checks readiness/instance metadata, then calls `client.models.list()` for Cloud 
 pins the origin, refuses redirects and cookie storage, and bounds the whole probe to five
 seconds. The probe supplies no auth token. Separate `RemoteSession` uses the SDK's typed
 email-code/local-login/continuation operations in main; session material lasts until process
-exit. The SDK does not yet route desktop prompts; see [connection-modes.md](../docs/connection-modes.md).
+exit. An internal account-epoch Chat binding supplies the process-only core service with
+models/uploads/streamed turns and bounded history. Public desktop prompts still use local
+providers; see [connection-modes.md](../docs/connection-modes.md).
 
 `packages/desktop/test/remote.test.ts` exercises the SDK against a local stub. Its optional
 real-backend case (`CORTEX_TEST_BACKEND_URL`) asserts reachability; the recorded
@@ -47,6 +49,12 @@ auth JSON is read once before identity replacement, removing the native response
 shutdown defect. Desktop's bounded auth transport remains necessary. Scoped Node 22 admission
 covers discovery, main-only authentication and consumer transport fixtures; real Cloud
 authentication/inference and packaged/native acceptance remain separate.
+
+SDK 0.3.5 hides the parser's discarded-frame notifications. Desktop conservatively marks
+every remote projection limited, even after `done(stop)`; [owner follow-up](https://github.com/CortexLM/backend/pull/447#issuecomment-5966461570)
+requests the existing callback. No archive modification or second consumer parser is used.
+The pinned backend also omits historical image pixels; fresh image-history follow-ups
+remain refused pending its separate hydration contract.
 
 The old 0.2.0/0.1.0 and 0.3.1 archives remain historical. SDK 0.3.0 remains on adoption hold for
 its Node 22 sign-in regression; the original owner artifacts/failures remain preserved, as do

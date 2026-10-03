@@ -1,0 +1,11 @@
+{
+  "scope": "Main adapter and bus before core-service delivery",
+  "source": {
+    "packages/core/src/bus.ts": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53",
+    "packages/core/src/index.ts": "74563a47c004cfe5c9cbe9d070b3ad7cc0e56143540e79e6675f231396641c6e",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/src/remote-chat.ts": "cb9f0d389f820ba8cbfc985bcc4c1543e1bce0dae5f3c84087ea85d928d770e0",
+    "packages/core/test/bus.test.ts": "8b48277d38f1a6a0d05e2505835852bf744fb27fc34b178d33cb060af7d05018",
+    "packages/desktop/test/remote-chat.test.ts": "9b288917a120ef214d41b14f8caf2d47343520bdbd833d834db128b751e70e24"
+  }
+}

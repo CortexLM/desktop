@@ -1,0 +1,29 @@
+HTTP/2.0 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning
+Cache-Control: private, max-age=60, s-maxage=60
+Content-Security-Policy: default-src 'none'
+Content-Type: application/json; charset=utf-8
+Date: Sat, 03 Oct 2026 06:22:44 GMT
+Etag: W/"10830809feaa4488001024ef314c669b8ff31612509c8a1807317d89d23b9088"
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Server: github.com
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+X-Accepted-Oauth-Scopes: 
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-Github-Api-Version-Selected: 2022-11-28
+X-Github-Edge-Region: iad
+X-Github-Media-Type: github.v3; format=json
+X-Github-Request-Id: C0F0:383B54:23118C9:73B6701:6AC09F34
+X-Oauth-Client-Id: 178c6fc778ccc68e1d6a
+X-Oauth-Scopes: admin:org, gist, repo, workflow
+X-Ratelimit-Limit: 5000
+X-Ratelimit-Remaining: 4964
+X-Ratelimit-Reset: 1791009197
+X-Ratelimit-Resource: core
+X-Ratelimit-Used: 36
+X-Xss-Protection: 0
+
+[{"url":"https://api.github.com/repos/CortexLM/backend/issues/comments/5965633627","html_url":"https://github.com/CortexLM/backend/pull/447#issuecomment-5965633627","issue_url":"https://api.github.com/repos/CortexLM/backend/issues/447","id":5965633627,"node_id":"IC_kwDOUDgm-s8AAAABY5RYWw","user":{"login":"echobt","id":154886644,"node_id":"U_kgDOCTth9A","avatar_url":"https://avatars.githubusercontent.com/u/154886644?v=4","gravatar_id":"","url":"https://api.github.com/users/echobt","html_url":"https://github.com/echobt","followers_url":"https://api.github.com/users/echobt/followers","following_url":"https://api.github.com/users/echobt/following{/other_user}","gists_url":"https://api.github.com/users/echobt/gists{/gist_id}","starred_url":"https://api.github.com/users/echobt/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/echobt/subscriptions","organizations_url":"https://api.github.com/users/echobt/orgs","repos_url":"https://api.github.com/users/echobt/repos","events_url":"https://api.github.com/users/echobt/events{/privacy}","received_events_url":"https://api.github.com/users/echobt/received_events","type":"User","user_view_type":"public","site_admin":false},"created_at":"2026-10-03T04:44:48Z","updated_at":"2026-10-03T04:44:48Z","body":"G1 exact final SDK0.3.5/API-types0.2.0 pair adopted in desktop `78857365a509d78af10ebdda5b52348a2e50e961` (PR36 remains OPEN/draft).\n\n- SDK archive SHA-256 `5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8`; unchanged peer `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877`.\n- Source `5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31`, schema blob `c8f6a7f0`; all35packaged/16generated/102compiled identities and10ownerlogs verified. Isolated Node22 34runtime +8unchanged actual desktop auth cases pass; prior media3/3/finalcursor3, raw Library/screenshot filename and five generic turn methods pass. Historical0.3.1 negatives and0.3.4 hangs preserved.\n- Actual installed desktop pair:52probe/main-auth passes+1optional skip; integrated201units+1skip,lint/types/i18n,10Electron auth/narrow-layout cases,Linuxpackage/smoke90membermatch pass. New-pair CI/native pending; earlier28nativecaptures bind `ffc118a`/SDK0.3.1 separately.\n- Current real-backend call, 2026-10-03 04:39 UTC: `probeRemote(\"https://api.cortex.foundation\")` through SDK0.3.5 returns `{status:\"reachable\",authRequired:true,models:[{id:\"cortex-1-mini\",name:\"Cortex 1 Mini\"},{id:\"cortex-teutonic-1\",name:\"Cortex Teutonic-1\"},{id:\"cortex-image-1\",name:\"Cortex-Image-1\"}]}`. Selected real test passes; this is discovery only, not credentialed sign-in or inference.\n\nReceipts: `evidence/sdk-035-admission/` in desktop commit above. Main email-code service retains its origin pin,1MiB/10s auth-body limits and process lifetime; no SDK patch or auth-only client reuse for SSE. Stable account identity, precise legacy DTOs/history completeness and named remote-control design authorization remain separate G2/G1 gates (G2 follow-up5965315833).","author_association":"MEMBER","reactions":{"url":"https://api.github.com/repos/CortexLM/backend/issues/comments/5965633627/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"performed_via_github_app":null,"minimized":null}]

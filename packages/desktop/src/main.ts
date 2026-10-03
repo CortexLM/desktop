@@ -21,13 +21,15 @@ protocol.registerSchemesAsPrivileged([{ scheme: "cortex", privileges: { standard
 let win: BrowserWindow | undefined;
 
 async function boot() {
+  const remote = new RemoteSession();
   const core = createCore({
     dataDir,
     credentials: fileCredentials(path.join(dataDir, "credentials.json"), safeStorage),
     mcpCredentials: fileCredentials(path.join(dataDir, "mcp-credentials.json"), safeStorage),
     catalogUrl: process.env.CORTEX_CATALOG_URL,
     remoteProbe: (url) => probeRemote(url),
-    remoteAuth: new RemoteSession(),
+    remoteAuth: remote,
+    remoteChat: remote,
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });

@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-chat-security-review/vitest.config.mjs",
+    "--reporter=verbose",
+    "--reporter=json",
+    "--outputFile.json=/tmp/opencode/remote-chat-security-review/current-probes.json"
+  ],
+  "nodeVersion": "v22.23.3",
+  "exitCode": 1,
+  "before": {
+    "packages/desktop/src/remote-chat.ts": "6d58248c5e1546b20de74cc001d1c8f4eeb17ecff4259c619507b9c6069f49bc",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-chat.test.ts": "985b6736a3e4547b93b503530026943c3718f87be1e0e5e903dc6cc8771d6dcc",
+    "packages/desktop/test/remote-session.test.ts": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+  },
+  "after": {
+    "packages/desktop/src/remote-chat.ts": "6d58248c5e1546b20de74cc001d1c8f4eeb17ecff4259c619507b9c6069f49bc",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/desktop/test/remote-chat.test.ts": "985b6736a3e4547b93b503530026943c3718f87be1e0e5e903dc6cc8771d6dcc",
+    "packages/desktop/test/remote-session.test.ts": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+  }
+}

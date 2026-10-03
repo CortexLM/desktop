@@ -1,0 +1,62 @@
+{
+  "completed_at": "2026-10-03T06:44:02.864094+00:00",
+  "verdict": "PASS \u2014 scoped model-discovery race resolved",
+  "report": "/tmp/opencode/remote-model-race-review.md",
+  "report_sha256": "68186ac1499b495a16bd6c6f0ebdacd4090e73947777a939308c9d608443ca07",
+  "previous_manifest_sha256": "70bc65e883f4b14ecd5ac535c5350c5ca8a5f4eaa148d4e4ce5391261a62c644",
+  "original_negative_files_preserved": true,
+  "probe_unchanged": true,
+  "source_pins": {
+    "packages/desktop/src/remote-chat.ts": "43372f6b8c115cdb13cf4fc00d5d4fffacbfc3e18ba69ee41a6f6311ed53259f",
+    "packages/desktop/src/remote-session.ts": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+    "packages/core/src/remote-sessions.ts": "5d14e25bd6732b80c2139ac66c1e8de77b9d4240f11bc3deaf3b8d3462a6e559",
+    "packages/desktop/package.json": "10cec19edd7ddd59fe5a52bf72abd98a3228f64647a6f5ceaf2583a95dbcc4dd"
+  },
+  "counts": {
+    "passed": 2,
+    "failed": 0,
+    "turn_posts": 0
+  },
+  "files": [
+    {
+      "path": "command.json",
+      "sha256": "9858da7eeee8f1bfbed47ccabd2333f8c70f18199021299df2836b4c4cbb4919"
+    },
+    {
+      "path": "observations.json",
+      "sha256": "049bba2e173b7644441670918227226ca63c9c09c8aec815267a99f37e4f1143"
+    },
+    {
+      "path": "original-observations.json",
+      "sha256": "cebf3a41f9cc18416364a0e0a06df9071aeb64901d2e15333c273f1728a3d9b2"
+    },
+    {
+      "path": "probes.log",
+      "sha256": "6a4f7b925e21e5d64980481a6be5814409ffeceaa8e64cd4b4c91fc027fd7f6e"
+    },
+    {
+      "path": "provenance-before.json",
+      "sha256": "cb2bda926c065df107bb10251dbb85c1fc4d6bb20b6ca799e86da7224c5ea717"
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "efb2248b672c42f9e966082bbc4b12ed65cc82e00316055f752af11a23221fa3"
+    },
+    {
+      "path": "report-before.md",
+      "sha256": "3e940bf4871b35b8accdc31df926a660ab0e8bd955272ee90a0535040aea987b"
+    },
+    {
+      "path": "source/packages/desktop/src/remote-chat.ts",
+      "sha256": "43372f6b8c115cdb13cf4fc00d5d4fffacbfc3e18ba69ee41a6f6311ed53259f"
+    },
+    {
+      "path": "source/packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6"
+    },
+    {
+      "path": "tests.json",
+      "sha256": "8108ac2d9f26b148e3c049175cc232cae564e816c7afa9c35878afa31fb1327f"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "sourcePin": "../integrated/source-core.json",
+  "sourcePinSHA256": "0815c70b1f7169a0edbfd48ff12830e59aa2e64dd8fdb31b30b4c817f375f393",
+  "buildPin": "../integrated/build-core.json",
+  "buildPinSHA256": "d5f414ca6d2dcd6ef11d93b3f1ef9d09304f797af3233ba25e9b5f56dab10082",
+  "checkedAt": "2026-10-03T06:43:23.355737+00:00",
+  "currentDistMembersMatchedAtAudit": 90,
+  "currentPinnedSourceFilesMatchedAtAudit": 9,
+  "sourceChangedDuringIndependentReviews": [
+    {
+      "path": "packages/core/src/remote-sessions.ts",
+      "pinnedSHA256": "8e3e53995063042b7174d639541b2b5b55675355bea51baa79a2c3ac378fe72a",
+      "currentSHA256": "5d14e25bd6732b80c2139ac66c1e8de77b9d4240f11bc3deaf3b8d3462a6e559"
+    },
+    {
+      "path": "packages/desktop/src/remote-chat.ts",
+      "pinnedSHA256": "733860681cb7d1681460d0b4820bd020f76c6d54aaa0ebd86afdbf7a22a1a725",
+      "currentSHA256": "43372f6b8c115cdb13cf4fc00d5d4fffacbfc3e18ba69ee41a6f6311ed53259f"
+    },
+    {
+      "path": "packages/core/test/remote-sessions.test.ts",
+      "pinnedSHA256": "015283402921cc55e168b51e636abe444ad1fc9703cc4cd0883ce724fcfda120",
+      "currentSHA256": "3bfec1e8d9a56326564d587453d7e2d8b50d14f8d3414f89aa361d67887fff2d"
+    },
+    {
+      "path": "packages/desktop/test/remote-chat.test.ts",
+      "pinnedSHA256": "927d58c9185c7c3fd697f69fac0eb9d8185fbadc41006f3f678a0d20db889f5e",
+      "currentSHA256": "49b78be0fa2e907d9947372a70c916ebe8aa114b2ac556567195cd0d990af350"
+    }
+  ],
+  "testSourceSHA256": "7973cd05ffb32367de7afa8254e4d0002bd91a27b64df8fec645b44f24684062",
+  "preexistingSixCasesUnchanged": true,
+  "onlyCleanupChangedSinceStandaloneRun": true,
+  "appSourceComparedTo7885736": {
+    "app": 172,
+    "client": 3,
+    "i18n": 297,
+    "schema": 3
+  },
+  "changedComparedSource": [
+    {
+      "path": "packages/schema/src/index.ts",
+      "priorSHA256": "e184483c0e9ad99eb99585282fb4e7d526df3851212fa197fc5bc66110e9236b",
+      "currentSHA256": "09fa14a9a35a9f1479c50ab841cacba9c6f2074e10e366e8bdf628b493e87161"
+    }
+  ],
+  "buildComparedTo7885736": {
+    "unchanged": 86,
+    "added": [
+      {
+        "path": "packages/app/dist/assets/index-DjrlTNct.js",
+        "sha256": "61a3d091c7d554c5748dfddea1935041799da36760bb1a43a7c7c246421182f5"
+      }
+    ],
+    "removed": [
+      {
+        "path": "packages/app/dist/assets/index-C95KiWJP.js",
+        "sha256": "64217a30187c0f5b9ee452de97542add0ae11e37aa9dcaced7b5ef6f1664f3e7"
+      }
+    ],
+    "changed": [
+      {
+        "path": "packages/app/dist/index.html",
+        "priorSHA256": "614cf4bee3f82bce9f4a671fd4b54143873e5680b9ae1b4f2e6b98ec5f5d5b70",
+        "sha256": "3111a4c0bda792ee3044ae4bd92e843c84e91f9131c011e6c459bb50c04b9757"
+      },
+      {
+        "path": "packages/desktop/dist/main.cjs",
+        "priorSHA256": "4912494c0c464dbcb1f209adc91aa37d42877ccfa0af0c4716c7b0b07d643db5",
+        "sha256": "700c14956d913d50ab2213e8d75720520d3dbc76d10500a1777eb7a79a197a25"
+      },
+      {
+        "path": "packages/desktop/dist/main.cjs.map",
+        "priorSHA256": "b66791f26ff8c5705d340ffabfc7653f1df0b457a2a9c0a0c5502f23c448b449",
+        "sha256": "044cfeb1cb7e7d06aca3bb37fa5883e93077c45f8c685f21bf1f8fb40ebe6501"
+      }
+    ]
+  },
+  "htmlDifferenceOnlyEntrypointName": true,
+  "packageReceipt": "../integrated/linux-package-initial.json",
+  "packageReceiptSHA256": "71aff7113914d17fd89a49a883c778835a2ada9aeb3c8d25cc8e64b0225d99b4",
+  "packageASAR": "6e7c23bf44fc45c9eb2dc290343fe43d63a588ef9b8fd9e29782da869de3cba0",
+  "packageReceiptMembersMatchBuild": true,
+  "limitation": "Historical source/build receipts plus current-file hash verification; no app execution or independent ASAR extraction in this audit."
+}

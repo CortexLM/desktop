@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/remote-model-race-review/vitest.config.mjs",
+    "--configLoader",
+    "runner"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "exit_code": 1,
+  "seconds": 1.417,
+  "expected": "two failing stale-catalogue regression assertions if bug is present"
+}

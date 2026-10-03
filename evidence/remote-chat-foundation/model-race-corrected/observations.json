@@ -1,0 +1,61 @@
+[
+  {
+    "latest": "vision-false",
+    "runtime": "v22.23.3",
+    "nativeFetch": true,
+    "newer": {
+      "outcome": "ready",
+      "vision": false
+    },
+    "older": {
+      "outcome": "aborted"
+    },
+    "outcome": "model_no_image_input",
+    "disposition": "refused",
+    "modelRequests": 3,
+    "turnRequests": 0,
+    "admitted": [],
+    "turns": [],
+    "requests": [
+      "POST /v1/auth/magic-auth",
+      "POST /v1/auth/magic-auth/verify",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/library",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "GET /v1/instance",
+      "GET /v1/models"
+    ]
+  },
+  {
+    "latest": "failed",
+    "runtime": "v22.23.3",
+    "nativeFetch": true,
+    "newer": {
+      "outcome": "provider_error"
+    },
+    "older": {
+      "outcome": "aborted"
+    },
+    "outcome": "provider_error",
+    "disposition": "refused",
+    "modelRequests": 4,
+    "turnRequests": 0,
+    "admitted": [],
+    "turns": [],
+    "requests": [
+      "POST /v1/auth/magic-auth",
+      "POST /v1/auth/magic-auth/verify",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "POST /v1/library",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "GET /v1/instance",
+      "GET /v1/models",
+      "GET /v1/instance",
+      "GET /v1/models"
+    ]
+  }
+]

@@ -1,0 +1,112 @@
+{
+  "completed_at": "2026-10-03T05:35:06.019921+00:00",
+  "result": "PASS \u2014 main-only adapter implemented, uncommitted",
+  "report": {
+    "path": "/tmp/opencode/remote-chat-main-implementation.md",
+    "sha256": "5c6c4cde30716ae53c961bef64ca85c811a4b450ef2dfe3f701316d11d3247e5"
+  },
+  "source": {
+    "packages/desktop/src/remote-session.ts": "1d664a0b8159a55eddb29ffe6a6e59b6a155b3010f9a79deba507ebc55d241f9",
+    "packages/desktop/src/remote-chat.ts": "2658a9aa5011e52c992998c1779c661c336e535239f697699baefbb73159baa7",
+    "packages/desktop/test/remote-chat.test.ts": "7cdc8d41ed9b83b60c9b0e1e9328f7e43ab8608af954fab49aea99774339271e"
+  },
+  "tests": {
+    "native_runtime": "Node22.23.3",
+    "new_transport": 11,
+    "existing_auth": 8,
+    "passed": 19,
+    "failed": 0
+  },
+  "unchanged_dist_files": 90,
+  "scope": "No source changes outside three assigned files; no public routing/inference claim",
+  "files": [
+    {
+      "path": "before.json",
+      "sha256": "cb4871b57c313c9a44f4dda508cc6e1cf3114de96b948ca33460b1b2bd60b9ec"
+    },
+    {
+      "path": "check.py",
+      "sha256": "c5baa58d36f60894e6e559ff4de9ff24b120d565f9ac294da41a15dc9d85570b"
+    },
+    {
+      "path": "focused-corrected.json",
+      "sha256": "d7b3ac82fdf1adfb6fed282d021ba310670cbee3a830d46b9411b4a3e568f429"
+    },
+    {
+      "path": "focused-corrected.log",
+      "sha256": "3faf69bea3e4aa3bc2631f35841570c911885a456a2d83d432160555c247ff4f"
+    },
+    {
+      "path": "focused.json",
+      "sha256": "07c229ad60dabb80b530766e825491366209bf3d2cc36e2479d64275e7ecd3e3"
+    },
+    {
+      "path": "focused.log",
+      "sha256": "eb1c127c082be165b8338f4babe923b1213b9e9ee2caa151b7c1150cf8c7823e"
+    },
+    {
+      "path": "lint-corrected.json",
+      "sha256": "ac32d91694681ebf224ee663562967be097060298214d0fdcbb32a6eeb7d81f2"
+    },
+    {
+      "path": "lint-corrected.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "lint.json",
+      "sha256": "e51ebeb32033c9388d7f30795b957b93bb73e295b41b41c75ff33b5dad08acd4"
+    },
+    {
+      "path": "lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "remote-session.diff",
+      "sha256": "3ecfd6c0d3e625f78525f544046b647f2224fcf3eb57d3442aee4ae637297909"
+    },
+    {
+      "path": "source-hashes.json",
+      "sha256": "49129e2b596e5d682941403421978f3bc9fb18da9d99274ea16afe470dc55287"
+    },
+    {
+      "path": "status-after.txt",
+      "sha256": "c40d814066abeb43cf09c9868b465ee7f006a275194339de0c9f46ec471b1a70"
+    },
+    {
+      "path": "status-before.txt",
+      "sha256": "5583c605000f66923e3b4d8af555fa9fdc784d4a925a6ec5c61910342cf5d1c2"
+    },
+    {
+      "path": "tests-corrected.json",
+      "sha256": "3486e0e4ee5e5513ead3d718bce244e5ff0086791098810682b319f98cecfe1d"
+    },
+    {
+      "path": "tests-final.json",
+      "sha256": "47b211a2f06fb1c45a58c6f45a634c2b4cdb313df7a27b20e1754d25411737a6"
+    },
+    {
+      "path": "tests-initial.json",
+      "sha256": "cf2e4a42c6115fa8b215c1a91ec9e417a8028456c61d4371387648b0bbd09a55"
+    },
+    {
+      "path": "tests-second.json",
+      "sha256": "ec3e03a8016ee6c6b91842d3ff30d938c8d3e42f53ea0f74cf7dbd9284f2a1ce"
+    },
+    {
+      "path": "typecheck-corrected.json",
+      "sha256": "9d06879f1f95d35094ee597deb5bb59579c8053343ec525dee1e62a0f007d1ae"
+    },
+    {
+      "path": "typecheck-corrected.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "typecheck.json",
+      "sha256": "e1d496abfc92b34c9050e72e626c42238bfc8e72a1ee24d6ce32763efbea1731"
+    },
+    {
+      "path": "typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

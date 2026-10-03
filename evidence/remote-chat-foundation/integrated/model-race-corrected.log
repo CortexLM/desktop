@@ -1,0 +1,10 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+(node:2412819) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ packages/desktop/test/remote-chat.test.ts (20 tests | 18 skipped) 118ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 18 skipped (20)
+   Start at  06:41:58
+   Duration  993ms (import 43%, transform 42%, tests 14%, worker 1%)

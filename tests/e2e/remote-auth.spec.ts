@@ -405,3 +405,97 @@ test("Initial connection and auth reads protect selection, canonical sign-in and
     expect(errors).toEqual([]); expect(backend.errors).toEqual([]);
   } finally { await releaseRead().catch(() => {}); backend.release(); await app.close(); await backend.close(); }
 });
+
+test("Live sign-in copy stays readable across eight locales", async () => {
+  test.setTimeout(180_000);
+  const backend = await authBackend("locale-layout");
+  const { app, page } = await launch({ hash: "#/login?theme=light", locale: "en", env })
+    .catch(async (error) => { await backend.close(); throw error; });
+  const errors: string[] = [], rendererHttp: string[] = [], measurements: unknown[] = [];
+  watch(page, errors, rendererHttp);
+  page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
+  const geometry = (selector: string) => page.locator(selector).evaluateAll((elements) => elements.map((el) => {
+    const r = el.getBoundingClientRect(), boxes: DOMRect[] = [], walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) if (node.textContent?.trim() && !node.parentElement?.closest("svg")) {
+      const range = document.createRange(); range.selectNodeContents(node);
+      boxes.push(...Array.from(range.getClientRects()).filter((box) => box.width && box.height));
+    }
+    let left = 0, top = 0, right = innerWidth, bottom = innerHeight, opacity = 1;
+    for (let ancestor: Element | null = el; ancestor; ancestor = ancestor.parentElement) {
+      const style = getComputedStyle(ancestor), bounds = ancestor.getBoundingClientRect();
+      opacity *= style.visibility === "visible" && style.display !== "none" ? Number(style.opacity) : 0;
+      if (/^(auto|scroll|hidden|clip)$/.test(style.overflowX)) { left = Math.max(left, bounds.left + ancestor.clientLeft); right = Math.min(right, bounds.left + ancestor.clientLeft + ancestor.clientWidth); }
+      if (/^(auto|scroll|hidden|clip)$/.test(style.overflowY)) { top = Math.max(top, bounds.top + ancestor.clientTop); bottom = Math.min(bottom, bounds.top + ancestor.clientTop + ancestor.clientHeight); }
+    }
+    const inside = (box: DOMRect) => box.left >= left - 0.5 && box.top >= top - 0.5 && box.right <= right + 0.5 && box.bottom <= bottom + 0.5;
+    return { text: el.textContent, opacity, bounds: [r.left, r.top, r.right, r.bottom], ink: boxes.map((b) => [b.left, b.top, b.right, b.bottom]),
+      readable: boxes.length > 0 && boxes.every((b) => inside(b) && b.left >= r.left - 0.5 && b.right <= r.right + 0.5),
+      reachable: inside(r) && el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)) };
+  }));
+  const readable = async (selector: string, opacity = 1) => {
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForFunction(() => document.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity).every((a) => a.playState === "finished"));
+    const rows = await geometry(selector);
+    expect(rows.length).toBeGreaterThan(0);
+    for (const row of rows) { expect(row.readable, row.text ?? selector).toBe(true); expect(row.opacity).toBeCloseTo(opacity); }
+    return rows;
+  };
+  try {
+    await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setContentSize(960, 640));
+    await page.emulateMedia({ reducedMotion: "reduce" }); await select(page, backend.origin);
+    for (const locale of ["en", "fr", "es", "de", "ja", "zh-Hans", "pt-BR", "ko"]) for (const theme of ["light", "dark"]) await test.step(`${locale} ${theme}`, async () => {
+      const catalog = (namespace: string) => JSON.parse(readFileSync(path.join(root, `packages/i18n/locales/${locale}/${namespace}.json`), "utf8")) as Record<string, string>;
+      const t = catalog("system"), common = catalog("common");
+      await submit(page, { action: "logout" });
+      await page.evaluate((locale) => localStorage.setItem("cortex.locale", locale), locale);
+      await show(page, "login", theme); await page.reload();
+      await expect(page.locator("html")).toHaveAttribute("lang", locale); await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      await expect.poll(() => page.evaluate(() => [innerWidth, innerHeight])).toEqual([960, 640]);
+      const email = page.getByRole("textbox", { name: t["login.email"], exact: true });
+      await expect(email).toBeEditable();
+      await page.locator(".systeme-providers button").first().click();
+      await expect(page.locator(".toast .t-desc")).toHaveText(t["auth.optionUnavailable"]);
+      measurements.push({ locale, theme, state: "option-unavailable", copy: await readable(".toast .t-desc", 0.7) });
+      await page.reload(); await email.fill("person@example.test"); backend.state.failSend = true;
+      const getCode = page.getByRole("button", { name: t["login.getCode"], exact: true });
+      await getCode.click(); await expect(page.locator(".systeme-login [role=alert]")).toHaveText(t["auth.sendFailed"]);
+      await page.locator(".systeme-login [role=alert]").scrollIntoViewIfNeeded();
+      measurements.push({ locale, theme, state: "send-failed", copy: await readable(".systeme-login [role=alert]") });
+      backend.state.failSend = false; await getCode.click();
+      const code = page.getByRole("textbox", { name: t["login.codeLabel"], exact: true });
+      const enter = async (value: string) => { await code.fill(value); await page.getByRole("button", { name: t["onb.continue"], exact: true }).click(); };
+      const view = async (status: "code_sent" | "signed_in" | "mfa_enrollment") => {
+        const wrong = status === "code_sent", signed = status === "signed_in";
+        await expect(page.locator(".systeme-login h1")).toHaveText(t[wrong ? "login.checkTitle" : signed ? "auth.signedIn" : "unavailable"]);
+        await expect(page.locator(".systeme-login .systeme-lead")).toHaveText(wrong ? `${t["login.checkLead"]} person@example.test.` : t[signed ? "auth.sessionOnly" : "auth.continuationUnavailable"]);
+        await expect(page.locator(".systeme-login button")).toHaveText(wrong ? [t["login.resend"], t["onb.continue"], t["login.otherEmail"], common.cancel] : signed ? [t["onb.continue"], t["auth.settings"]] : [t["login.otherEmail"], common.cancel]);
+        const copy = await readable(".systeme-login h1, .systeme-login .systeme-lead, .systeme-login [role=alert], .systeme-otp-meta, .systeme-login button, .systeme-cell");
+        const keyboard = [];
+        await page.locator(".content-top button").focus();
+        const controls = page.locator(".systeme-login input, .systeme-login button");
+        for (let i = 0; i < await controls.count(); i++) {
+          await page.keyboard.press("Tab"); await expect(controls.nth(i)).toBeFocused(); await expect(controls.nth(i)).toBeEnabled();
+          const control = (await geometry(".systeme-login input, .systeme-login button"))[i];
+          expect(control.reachable, control.text ?? status).toBe(true); keyboard.push(control);
+        }
+        expect(await authState(page)).toEqual({ status, signedIn: signed, email: status === "mfa_enrollment" ? "mfa@example.test" : "person@example.test" });
+        await privateStateStaysInMain(app, page, backend.privateValues, rendererHttp);
+        measurements.push({ locale, theme, state: status, copy, keyboard });
+      };
+      await enter(WRONG_CODE); await expect(page.locator(".systeme-login [role=alert]")).toHaveText(t["auth.failed"]);
+      await expect(code).toHaveValue(WRONG_CODE); await expect(code).toBeEditable(); await expect(page.locator(".systeme-cell")).toHaveText([...WRONG_CODE]);
+      await view("code_sent"); if (theme === "dark") await capture(page, `remote-locale-${locale}`);
+      await enter(CODE); await expect(page.locator(".systeme-login h1")).toHaveText(t["auth.signedIn"]);
+      await page.reload(); await view("signed_in");
+      await submit(page, { action: "logout" }); await submit(page, { action: "email", email: "mfa@example.test" }); await page.reload();
+      await enter(CODE); await expect(page.locator(".systeme-login .systeme-lead")).toHaveText(t["auth.continuationUnavailable"]);
+      await page.reload(); await view("mfa_enrollment");
+    });
+    expect(measurements).toHaveLength(80); expect(backend.count(CODE_PATH)).toBe(48);
+    expect(errors).toEqual([]); expect(backend.errors).toEqual([]); expect(rendererHttp).toEqual([]);
+  } catch (error) { await capture(page, "remote-locale-failure"); throw error; }
+  finally {
+    try { await test.info().attach("auth-locale-geometry", { body: JSON.stringify(measurements, null, 2), contentType: "application/json" }); }
+    finally { try { await app.close(); } finally { await backend.close(); } }
+  }
+});

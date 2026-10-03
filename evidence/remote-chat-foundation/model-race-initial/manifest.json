@@ -1,0 +1,46 @@
+{
+  "completed_at": "2026-10-03T06:40:25.740339+00:00",
+  "result": "CONFIRMED P2; two negative regression probes",
+  "report": "/tmp/opencode/remote-model-race-review.md",
+  "report_sha256": "3e940bf4871b35b8accdc31df926a660ab0e8bd955272ee90a0535040aea987b",
+  "tests": {
+    "passed": 0,
+    "failed": 2
+  },
+  "repository_edits": false,
+  "source_stable": true,
+  "files": [
+    {
+      "path": "command.json",
+      "sha256": "50c2f6b45fc0aadb86181f950fcd123230ad96593c38e11f38aaca9759cb1acb"
+    },
+    {
+      "path": "observations.json",
+      "sha256": "cebf3a41f9cc18416364a0e0a06df9071aeb64901d2e15333c273f1728a3d9b2"
+    },
+    {
+      "path": "probes.log",
+      "sha256": "c6694fa5462262da7d2dfd201306b3b672e22b58fd389e363909a4ccc806d8e7"
+    },
+    {
+      "path": "probes.test.ts",
+      "sha256": "7f6e77d4158e26b2a58767dc84b6528a6ec4234bf9ac68c0d9c9f66f756f441e"
+    },
+    {
+      "path": "provenance-before.json",
+      "sha256": "f122db3b563321346b21bf615d3ddb9037156e95e971abc4217025d2c0c66b8d"
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "afb1383cb5434d02593b4c121e640c6347402eefa7e988faa27ac370ba4fb9e4"
+    },
+    {
+      "path": "tests.json",
+      "sha256": "dfcbfc4a374ce10e7cbf679fb2c86a728163c919d42428ecad44ac5bb0459efc"
+    },
+    {
+      "path": "vitest.config.mjs",
+      "sha256": "a7fbb607313355a94be29957abb69b3410d6ecf4bf022b3ebb448e02c6653c3f"
+    }
+  ]
+}
