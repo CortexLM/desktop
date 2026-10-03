@@ -1,0 +1,84 @@
+{
+  "pathBase": "this directory",
+  "rawReportOriginalPathsPreserved": true,
+  "references": [
+    {
+      "case": "light",
+      "attachment": "deleted-chat-card",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/attachments/deleted-chat-card-56103297d9bff7f55343aa9aece15e84fbe764f6.png",
+      "originalSHA256": "2649257bdb41583c4ac5e51d82c531b15bc70738c1524cc7faa674b6c40cddea",
+      "retainedPath": "images/deleted-chat-light.webp",
+      "relation": "full-size decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "light",
+      "attachment": "chat-missing-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/0/tests/0/results/0/attachments/1",
+      "retainedPath": "evidence/light.json",
+      "relation": "all parsed JSON fields retained; raw base64 attachment preserved in report"
+    },
+    {
+      "case": "light",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/test-failed-1.png",
+      "originalSHA256": "6348d58162b414e4dd9f6b37a59763d4af7b95e6e3d2890dad63d6703730e247",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; post-recovery automatic Home screenshot is not the incorrect-card evidence"
+    },
+    {
+      "case": "light",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/error-context.md",
+      "originalSHA256": "fd76b15f2ff2674c2a0dbccc6ba9a35544b12b545632e19d86972ba36c0faf8b",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; errors and raw report retained"
+    },
+    {
+      "case": "light",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--0eaf9-ssing-page-recovery-—-light/trace.zip",
+      "originalSHA256": "9e848ff422c818ba17bcae595f68c47e997c8537a9aa809fc979a59b4e914378",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; errors and raw report retained"
+    },
+    {
+      "case": "dark",
+      "attachment": "deleted-chat-card",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/attachments/deleted-chat-card-3c4b4cf2d180edce56ab1854f7815cf8dcf97c25.png",
+      "originalSHA256": "f3aee5317dc110eb08c720e7ae672a62b18867a343c7323dab5cfbac0ce3f76d",
+      "retainedPath": "images/deleted-chat-dark.webp",
+      "relation": "full-size decoded-RGBA-identical lossless WebP"
+    },
+    {
+      "case": "dark",
+      "attachment": "chat-missing-evidence",
+      "originalReference": "raw/results.json.gz#suites/0/specs/1/tests/0/results/0/attachments/1",
+      "retainedPath": "evidence/dark.json",
+      "relation": "all parsed JSON fields retained; raw base64 attachment preserved in report"
+    },
+    {
+      "case": "dark",
+      "attachment": "screenshot",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/test-failed-1.png",
+      "originalSHA256": "e2ffe834631da46050c62699513d1dea610abc5934ee227380c213ab54ce9dc4",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; post-recovery automatic Home screenshot is not the incorrect-card evidence"
+    },
+    {
+      "case": "dark",
+      "attachment": "error-context",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/error-context.md",
+      "originalSHA256": "b03d87cbdcb0fa9ec24529eb56ddffe954ecf067c1b438de725014e0523bad0f",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; errors and raw report retained"
+    },
+    {
+      "case": "dark",
+      "attachment": "trace",
+      "originalPath": "/tmp/opencode/chat-missing-regression/baseline/artifacts/chat-missing-Deleted-Chat--a7b70-issing-page-recovery-—-dark/trace.zip",
+      "originalSHA256": "2c95cc04fb41c4acf311c71e0c8b5d14f7edc0be254ed472fd7f9663ecfa104d",
+      "retainedPath": null,
+      "relation": "omitted auxiliary artifact; errors and raw report retained"
+    }
+  ]
+}

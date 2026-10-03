@@ -193,6 +193,9 @@ the previous session's messages/status immediately. A midstream mount receives e
 live-only tokens when the final full part arrives, not from the initial stored snapshot.
 Selecting a different Bot remounts its live page so its draft, session selection and
 pending reads cannot cross to another Bot or send into the previous Bot's session.
+Deleted Chat links use the existing missing-page copy rather than promising retained-message
+retry. Code's settled badge reads the latest persisted assistant error, preserving Failed
+after reload; an active follow-up shows Running and a successful result returns Ready.
 Memory drafts clear only after accepted writes; refused/partial deletion retains surviving entries
 and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
 

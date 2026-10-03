@@ -69,6 +69,12 @@ verifies 103 cases/426 render checks per OS, 271 images/44 full-size views and t
 glyph checks per OS. [Matching installed checks](mac/760c4a0/README.md) pass six native
 Chat/Bot captures and ten controlled requests, with cleanup complete. Final local artifact
 review verifies 135 images, 22 full-size target views and all twelve Bot ownership assertions.
+Documentary `72d2926` also passes CI `37112451756`; all 514 package inputs match `760c4a0`.
+Two later [terminal-state defects](terminal-state-followup/README.md) have four reproduced
+Electron failures: deleted Chat's temporary retry copy and failed Code's Ready badge after
+reload. Minimal uncommitted corrections pass those four unchanged cases; final integrated
+107-case Electron suite, 245 units plus one optional skip, lint/types/i18n and Linux
+package/smoke pass. Final image audit and new-revision CI/native acceptance remain pending.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;

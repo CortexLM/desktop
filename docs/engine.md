@@ -69,6 +69,9 @@ part boundaries; a midstream mount cannot recover earlier live-only tokens until
 `part.updated` arrives.
 The live Bot page is keyed by its route Bot ID, resetting selected-session/draft/query
 state at that owner boundary before the new Bot's history resolves.
+Missing Chat reads use the existing localized missing-page copy. Code's settled badge
+derives failure from the latest assistant's persisted error as well as live status;
+the engine's final idle event therefore cannot relabel a failed result Ready.
 
 `POST /api/sessions` (`kind`: `chat` | `code` | `bot`, `model`, optional `agent`,
 `directory`) then `POST /api/sessions/:id/prompt`. The loop (`session.ts`) calls

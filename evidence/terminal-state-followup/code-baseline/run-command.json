@@ -1,0 +1,33 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x900x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/code-models.spec.ts",
+    "--grep",
+    "Code persisted provider failure stays Failed",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/tmp/opencode/code-failure-regression/negative/artifacts"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "head": "72d2926b284760d96462cc931777761eedf9e3c1",
+  "nodeVersion": "v22.23.3",
+  "NODE_ENV": "test",
+  "TMPDIR": "/tmp/opencode/code-failure-regression/negative/temp",
+  "CORTEX_RENDERER_URL": "unset",
+  "prefixBytes": 16474,
+  "prefixSHA256": "f3b578195e1b79a4d8436cf7738a62bab1d2d9f47cfb05dc63bae31ceaa428b1",
+  "sourceSHA256": {
+    "packages/app/src/screens/code/code.tsx": "65f25c7b534b9a8f8d032a6f67f9a794054c18a997a15de499f88ede8d8ccb89",
+    "packages/app/src/state/live.ts": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+    "tests/e2e/code-models.spec.ts": "ff1bc7e7e6d08f59d713f0c7fccfb79fa35c02b682a870b804988145ae107ff5",
+    "tests/e2e/fake-provider.ts": "2d6e794add17a55a7c70fa72b93f024129a2bd4c1b9bd3d055efca48a11c14ee",
+    "tests/e2e/fixtures.ts": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03"
+  }
+}

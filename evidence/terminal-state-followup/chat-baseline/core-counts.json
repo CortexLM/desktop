@@ -1,0 +1,43 @@
+{
+  "scope": "Copied post-run read-only SQLite count receipt; no database or credentials archived or reopened during retention",
+  "source": "/tmp/opencode/chat-missing-regression/baseline/retention.json",
+  "sourceSHA256": "b533338206495f3d50dcbb2d2a884ba6dbc0390e4d9c4eb4e4daebc88b4d54cd",
+  "cases": [
+    {
+      "theme": "light",
+      "databasePath": "/tmp/opencode/chat-missing-regression/baseline/temp/cortex-e2e-7G3FNO/cortex.db",
+      "databaseSHA256": "3e8849034ed0da837fcc67803d928e30b89993d8c7ee29ba0ce3cce9647a47d8",
+      "tableCounts": {
+        "session": 0,
+        "message": 0,
+        "part": 0,
+        "event": 14
+      },
+      "eventTypes": {
+        "message.updated": 4,
+        "part.updated": 7,
+        "session.created": 1,
+        "session.deleted": 1,
+        "session.updated": 1
+      }
+    },
+    {
+      "theme": "dark",
+      "databasePath": "/tmp/opencode/chat-missing-regression/baseline/temp/cortex-e2e-I6buiH/cortex.db",
+      "databaseSHA256": "8d039f803b323a9c4c6cf35953dd784f886ed6a61f3e492aa1b3e81868c6f8b4",
+      "tableCounts": {
+        "session": 0,
+        "message": 0,
+        "part": 0,
+        "event": 14
+      },
+      "eventTypes": {
+        "message.updated": 4,
+        "part.updated": 7,
+        "session.created": 1,
+        "session.deleted": 1,
+        "session.updated": 1
+      }
+    }
+  ]
+}

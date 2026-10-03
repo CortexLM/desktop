@@ -341,6 +341,14 @@ installed `760c4a0` passes six native Chat/Bot captures in both themes, checking
 history/reasoning, reload/Home/Back, deletion and Bot destination ownership through ten
 controlled fixture requests. Exact delayed-response races remain the separate CI tests.
 
+`tests/e2e/chat-missing.spec.ts` verifies real deleted-session/history 404s, existing
+missing-page copy and New chat recovery in both themes. The appended Code-model cases
+persist a real provider refusal, require Failed before/after reload, then submit a successful
+follow-up: Running takes priority, Ready returns and the prior failure remains in history.
+The combined terminal-state correction passes 107 local Electron cases with zero retries,
+including the four formerly failing cases, plus 245 units/one optional skip and Linux
+package/smoke. New-revision CI and installed checks remain separately required.
+
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log
   records backend model metadata, not remote-mode authentication or remote sessions.

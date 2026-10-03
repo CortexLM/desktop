@@ -42,7 +42,7 @@ function ErrorCard({ code, onRetry }: { code?: string; onRetry?: () => void }) {
   return (
     <div className="chat-err" role="alert">
       <Icon name="alert-triangle" />
-      <div className="chat-grow"><b>{t(`chat.err.${k}.title`)}</b><span>{t(`chat.err.${k}.body`)}</span></div>
+      <div className="chat-grow"><b>{code === "not_found" ? t("shell.notFound.title") : t(`chat.err.${k}.title`)}</b><span>{code === "not_found" ? t("shell.notFound.body") : t(`chat.err.${k}.body`)}</span></div>
       {code && PROVIDER_ERRORS.includes(code)
         ? <button className="btn secondary" onClick={() => go("settings", { section: "providers" })}>{t("chat.noProvider.cta")}</button>
         : onRetry && <button className="btn secondary" onClick={onRetry}><Icon name="refresh" size={16} />{t("common.retry")}</button>}
@@ -294,7 +294,7 @@ function LiveChat({ id }: { id: string }) {
       <div className="spacer" /><IconBtn icon="compose" label={t("chat.newChat")} kbd="⌘N" onClick={() => go("home")} />
     </div>
     <div className="thread"><div className="thread-inner">
-      {session.state === "error" && <ErrorCard code={session.code === "not_found" ? undefined : "network"} />}
+      {session.state === "error" && <ErrorCard code={session.code === "not_found" ? "not_found" : "network"} />}
       {msgs.map((m, mi) => {
         if (m.info.role === "user") {
           const files = m.parts.filter((p): p is FilePart => p.type === "file");

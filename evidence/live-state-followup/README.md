@@ -63,3 +63,7 @@ verifies all six full-size images and retained runtime assertions.
 
 [08:55 owner readback](owner-readback-0855/README.md) finds no new backend/SDK delivery
 or named design authorization. Local corrections do not resolve remote workflow gates.
+
+[Documentary CI `37112451756`](documentary-72d2926/README.md) also passes all three jobs
+at `72d2926`; all 514 package inputs match `760c4a0`. Detailed acceptance above remains
+bound to its inspected application run and installed artifact.

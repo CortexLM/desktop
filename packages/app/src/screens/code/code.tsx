@@ -225,6 +225,7 @@ function SessionLive() {
   const dels = edits.reduce((n, p) => n + toolDiff(p).filter((l) => l[0] === "-").length, 0);
   const busy = status === "busy" || status === "retry";
   const lastError = [...msgs].reverse().find((m) => m.info.role === "assistant")?.info.error;
+  const failed = status === "error" || (!!lastError && lastError.code !== "aborted");
   if (!id || session.state === "error") return <div className="empty"><h2>{t("code.session.missingTitle")}</h2><p>{t("code.session.missingBody")}</p><button className="btn primary" onClick={() => go("code")}><Icon name="compose" size={16} />{t("code.newTask")}</button></div>;
   const send = async (text: string, files: ComposerAttachment[], options: SendOptions) => {
     try { await api.sessions.prompt(id, toPrompt(text, files, options)); return true; }
@@ -248,7 +249,7 @@ function SessionLive() {
   return (<>
     <div className="content-top">
       <span className="title">{session.state === "ready" ? session.data.title || t("code.untitled") : ""}</span>
-      <span className={"badge " + (busy ? "run" : status === "error" ? "err" : "ok")} style={{ marginLeft: 8 }}>{busy && <span className="spin" />}{busy ? t("code.status.running") : status === "error" ? t("code.status.failed") : t("code.status.ready")}</span>
+      <span className={"badge " + (busy ? "run" : failed ? "err" : "ok")} style={{ marginLeft: 8 }}>{busy && <span className="spin" />}{busy ? t("code.status.running") : failed ? t("code.status.failed") : t("code.status.ready")}</span>
       <div className="spacer" />
       {busy && <button className="btn secondary" style={{ height: 28 }} data-testid="code-stop" onClick={() => void api.sessions.abort(id).catch(() => {})}><Icon name="stop" size={16} />{t("code.terminal.stop")}</button>}
     </div>
