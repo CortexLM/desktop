@@ -1,0 +1,16 @@
+19: :root, [data-theme="light"] {
+20:   color-scheme: light;
+21:   --hover-chrome: #e1e1e1;
+22:   --chrome: #ebebeb; --sidebar-bg: #f2f2f2; --content: #f9f9f9; --card: #ffffff; --pop: #ffffff;
+23:   --sel-rail: #e1e1e1; --sel-row: #e4e4e4; --hover: #eaeaea; --seg-track: #e1e1e1; --seg-thumb: #f5f5f5;
+24:   --split: #dedede; --subtle: #d9d9d9; --line: #e6e6e6;
+25:   --t1: #111111; --t2: #5e5e5e; --t3: #8a8a8a; --i1: #5c5c5c; --iA: #0f0f0f;
+26:   --field: #ffffff; --field-border: #e2e2e2; --solid: #111111; --on-solid: #ffffff;
+58: @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0s !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; } .thinking, .shimmer span { animation: none !important; color: var(--t2) !important; background: none !important; } }
+318: .btn { height: 32px; padding: 0 14px; border-radius: 10px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: scale var(--d-press) var(--ease-firm), background var(--d-micro), opacity var(--d-micro); }
+319: .btn:active { scale: .96; }
+320: .btn.primary { background: var(--solid); color: var(--on-solid); }
+321: .btn.secondary { background: var(--card); box-shadow: var(--ring); }
+322: .btn.secondary:hover { background: var(--hover); }
+323: .btn.big { height: 44px; border-radius: 22px; font-size: 13px; width: 100%; justify-content: center; }
+350: .btn:disabled { opacity: .4; }

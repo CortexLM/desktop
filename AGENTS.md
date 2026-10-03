@@ -311,6 +311,10 @@ Transcript/Bot correction `760c4a0` passes 103 Electron cases per OS in CI `3711
 six matching installed Chat/Bot captures pass in both themes. Its Linux CI verifies CJK
 fonts and glyph rasters; artifact review covers 271 images/44 full-size target views. See
 [`evidence/live-state-followup/README.md`](./evidence/live-state-followup/README.md).
+Terminal-state correction `2956564` passes 107 Electron cases per OS in CI `37113961621`;
+six matching native Chat/Code captures verify missing-page copy and persisted failure/recovery.
+CI artifact review covers 284 images/28 full-size target views; all sixteen locale images
+match `760c4a0`. See [`evidence/terminal-state-followup/README.md`](./evidence/terminal-state-followup/README.md).
 
 ## CI, packaging and releases
 

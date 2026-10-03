@@ -72,9 +72,19 @@ review verifies 135 images, 22 full-size target views and all twelve Bot ownersh
 Documentary `72d2926` also passes CI `37112451756`; all 514 package inputs match `760c4a0`.
 Two later [terminal-state defects](terminal-state-followup/README.md) have four reproduced
 Electron failures: deleted Chat's temporary retry copy and failed Code's Ready badge after
-reload. Minimal uncommitted corrections pass those four unchanged cases; final integrated
+reload. Correction `2956564` passes those four unchanged cases; final integrated
 107-case Electron suite, 245 units plus one optional skip, lint/types/i18n and Linux
-package/smoke pass. Final image audit and new-revision CI/native acceptance remain pending.
+package/smoke pass. Final local audit verifies 141 images and six full-size correction views.
+CI `37113961621` passes all three jobs; [artifact audit](terminal-state-followup/ci-2956564/README.md)
+verifies 107 cases/426 renders per OS, 284 images/28 full-size views, and all sixteen locale
+images pixel-exact to `760c4a0`. Matching installed
+`2956564` passes six native captures/checks, four real UI admissions and explicit failed/
+recovered status colors in both themes, with zero renderer errors and completed cleanup.
+[Independent native audit](mac/2956564/native/README.md) verifies all six full-size originals,
+four admission IDs and the matching process/package identity.
+The [09:47 public/owner readback](terminal-state-followup/remote-prerequisites-0945/README.md)
+still finds `/v1/instance` 404, zero vision-capable Chat models, no new G2/G3 reply and
+no named G1 design permission. It establishes no account or inference acceptance.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -146,12 +156,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `760c4a0` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies source/checkout binding. |
-| Every design screen plus provider/image/reasoning flows | Partial: `760c4a0` CI passes 103 cases/426 registered renders per OS; 271 images and 44 full-size views reviewed. Sampled Linux CJK glyphs now render; earlier failures remain retained. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `760c4a0` CI package/smoke passes; independently verified installed ASAR, 90 build members, 104 catalogs and skill. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout captures; `f5bf305`: 22 auth captures/48 locale states/144 Tab stops. Matching `760c4a0`: six Chat/Bot native captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| Lint, types, units | `2956564` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
+| Every design screen plus provider/image/reasoning flows | Partial: `2956564` CI passes 107 cases/426 renders per OS; 284 images/28 full-size views reviewed. All sixteen locale images match `760c4a0`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `2956564` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 state captures, fourteen menus/window actions. Later `ffc118a`: 28 captures; `7885736`: eight SDK/layout captures; `f5bf305`: 22 auth captures/48 locale states/144 Tab stops; `760c4a0`: six Chat/Bot captures. Matching `2956564`: six missing-Chat/failed-Code/recovery captures pass. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `760c4a0` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Locale E2E checks 48 auth states/144 Tab stops and twelve glyph rasters per OS; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive dynamic-copy/layout acceptance remain unproven. |
+| Automated i18n audit | `2956564` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
@@ -309,22 +319,26 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
    approved integration disposition remains pending. G4 Code options/worklog/full Bot-form requests remain
    distinct from these closures.
   iOS reviews of 38 new routes are assigned; no native acceptance follows.
-- **Active remote integration:** cloud/self-host mode selection and probes exist; sessions still
-  call locally configured providers. Remote auth, model selection and inference routing remain
-  active, unfinished deliverables. [Current SDK handoff](recovery-followup/remote-integration-readback.md)
-    at 3 October 00:32 UTC finds no new versioned pair; the PM heads retain their 15:05 scope.
+- **Active remote integration:** cloud/self-host mode selection, probes and main-only email-code
+  sign-in exist; sessions still call locally configured providers. Remote model selection,
+  inference routing and unsupported auth continuations remain unfinished.
+  [Historical SDK readback](recovery-followup/remote-integration-readback.md) at 3 October
+  00:32 UTC found no new pair; later SDK 0.3.5/API-types 0.2.0 admission supersedes that blocker.
   The [implementation sequence](../docs/connection-modes.md#active-remote-integration) covers
   main-only sessions, remote routing, exact-path proof and a revision-matched native package.
   A successful backend probe is not proof of a complete remote connection mode.
   Backend owner confirms no portable reasoning-off or Chat cancel operation. Remote effort/
-  detach/reconnect and password/MFA drafts await independent design acceptance; regenerated SDK
-  types remain requested. Legacy English session titles remain intact because
+  detach/reconnect and password/MFA drafts await named design integration permission.
+  Legacy English session titles remain intact because
   default and user-authored titles were stored indistinguishably.
-  G2's current immutable schema is `d6d46014` at backend `70a3056f` (422 operations);
-  its five auth/upload body omissions are corrected. Desktop still awaits the SDK owner's
-  regenerated package and runtime fixes before authenticated remote integration.
-- **Interaction coverage:** several ported surfaces remain preview-only; projects, sign-in,
-  billing, updater and file viewers do not become live features merely by rendering in the gallery.
+  Admitted SDK 0.3.5/API-types 0.2.0 targets successor schema `c8f6a7f0`.
+  G3 still owes a pinned pair exposing discarded-frame notifications; G2's unique replay
+  cursor/history, historical-image hydration and compatible vision deployment remain open.
+  Authorized account/OTP and actual remote image/reasoning proof are also outstanding.
+- **Interaction coverage:** several ported surfaces remain preview-only; projects, unsupported
+  sign-in continuations, billing, updater and file viewers do not become live merely by rendering
+  in the gallery. Main-only email-code sign-in is live; real Cloud account/inference acceptance
+  remains unproven.
   The [current product-surface audit](current-full-followup/completion-audit.md) also records
   unwired voice/research/image-generation, dedicated Code review/environment workflows,
   Work feeds and memory/preferences controls. Memory write recovery does not wire the

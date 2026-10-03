@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "slug": "cortex-1-mini",
+      "display_name": "Cortex 1 Mini",
+      "description": "Preview — the model Cortex is serving today.",
+      "context_tokens": 262144,
+      "max_output_tokens": 32768,
+      "supports_reasoning": true,
+      "supports_tools": true,
+      "supports_vision": false,
+      "is_preview": true,
+      "kind": "chat"
+    },
+    {
+      "slug": "cortex-teutonic-1",
+      "display_name": "Cortex Teutonic-1",
+      "description": "Preview (under active training).",
+      "context_tokens": 32768,
+      "max_output_tokens": 16384,
+      "supports_reasoning": true,
+      "supports_tools": true,
+      "supports_vision": false,
+      "is_preview": true,
+      "kind": "chat"
+    },
+    {
+      "slug": "cortex-image-1",
+      "display_name": "Cortex-Image-1",
+      "description": "Image generation for Cortex Chat. Built on NVIDIA Cosmos (OpenMDW).",
+      "context_tokens": 4096,
+      "max_output_tokens": 1024,
+      "supports_reasoning": false,
+      "supports_tools": false,
+      "supports_vision": false,
+      "is_preview": true,
+      "kind": "image",
+      "attribution": "Built on NVIDIA Cosmos",
+      "banner_url": "https://huggingface.co/CortexLM/Cortex-Mini-1-Preview/resolve/main/banner.jpg"
+    }
+  ],
+  "has_more": false
+}

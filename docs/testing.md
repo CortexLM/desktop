@@ -345,9 +345,13 @@ controlled fixture requests. Exact delayed-response races remain the separate CI
 missing-page copy and New chat recovery in both themes. The appended Code-model cases
 persist a real provider refusal, require Failed before/after reload, then submit a successful
 follow-up: Running takes priority, Ready returns and the prior failure remains in history.
-The combined terminal-state correction passes 107 local Electron cases with zero retries,
+Combined terminal-state correction `2956564` passes 107 local Electron cases with zero retries,
 including the four formerly failing cases, plus 245 units/one optional skip and Linux
-package/smoke. New-revision CI and installed checks remain separately required.
+package/smoke. CI `37113961621` passes all three jobs; artifact audit verifies 107 cases/426
+renders per OS, 284 images/28 full-size views and unchanged sixteen locale images. Matching
+installed checks pass six native captures in both themes: missing-link recovery, persisted
+401 failure after reload, Running then successful Ready. Four actual UI admissions and
+unchanged failed history are asserted; cleanup completes.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

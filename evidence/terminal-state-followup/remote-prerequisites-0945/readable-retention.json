@@ -1,0 +1,26 @@
+[
+  {
+    "file": "instance.headers.txt",
+    "originalSHA256": "44db2f836288ef1139dedda50da1596b50475f048ff3723320796215eee9c2a9",
+    "losslessOriginal": "instance.headers.txt.original.gz",
+    "normalizedSHA256": "64227220ad3327477034886c19a4fbff2f6a53de67cd0f8d23b664befbaeb848"
+  },
+  {
+    "file": "models.headers.txt",
+    "originalSHA256": "737a64c160c5c86157ad93fa52adc7af5a31418273dad48629710870027aa4e7",
+    "losslessOriginal": "models.headers.txt.original.gz",
+    "normalizedSHA256": "84cf78fee2f349122e141737588dc6e0b95541fda0a20a93bbaecde3d715b946"
+  },
+  {
+    "omittedDuplicate": "instance.headers.raw",
+    "losslessOriginal": "instance.headers.gz",
+    "originalSHA256": "06eaa3486d5484dfa90e917a8901c70ee146d0012bedbee6e85de52586447361",
+    "reason": "Exact bytes already retained compressed; readable normalized .headers.txt retained separately."
+  },
+  {
+    "omittedDuplicate": "models.headers.raw",
+    "losslessOriginal": "models.headers.gz",
+    "originalSHA256": "c406508e86e0f0dab2c922abbe44762cc6d2927e9a77f421a2d87c1ffbc8540d",
+    "reason": "Exact bytes already retained compressed; readable normalized .headers.txt retained separately."
+  }
+]

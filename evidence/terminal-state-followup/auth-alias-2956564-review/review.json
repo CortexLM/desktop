@@ -1,0 +1,245 @@
+{
+  "observedAt": "2026-10-03T10:25:09.773808+00:00",
+  "head": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "images": [
+    {
+      "name": "remote-mfa-unavailable-light",
+      "original": "/var/tmp/opencode/ci-2956564/macos/test-results/artifacts/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/remote-mfa-unavailable-light.png",
+      "canonical": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/terminal-state-followup/ci-2956564/images/45420ff6bda404aa5b700005e5c60811e4a138180584eb1e93aca0bb7a28f6bf.webp",
+      "pngSHA256": "41359fdbb9fe730dbf81e1037daf0b1e72d01b3d9d4274531183be139e9460f2",
+      "rgbaSHA256": "45420ff6bda404aa5b700005e5c60811e4a138180584eb1e93aca0bb7a28f6bf",
+      "canonicalSHA256": "592fc4a6d413a7270fabb63c46b3c620b9cd6ed3973418908073718972a30012",
+      "size": [
+        960,
+        640
+      ]
+    },
+    {
+      "name": "remote-verification-unavailable-light",
+      "original": "/var/tmp/opencode/ci-2956564/macos/test-results/artifacts/remote-auth-Unavailable-co-89071-rt-clears-login-—-960-light/remote-verification-unavailable-light.png",
+      "canonical": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/live-state-followup/ci-760c4a0/images/fd5a54c4e1c67cc4c9f22ce6e4692f2b86768e2b04cf10f046fa53f7a7fff345.webp",
+      "pngSHA256": "f335a20d87cd58cc2087303dcd14d1eaa20cc6c486b209c05ac5260347bfa968",
+      "rgbaSHA256": "fd5a54c4e1c67cc4c9f22ce6e4692f2b86768e2b04cf10f046fa53f7a7fff345",
+      "canonicalSHA256": "d2ab0fb78388f95a81eacf7d3b977d43aeccafc63f2449a2e9b9a1b2d949aa10",
+      "size": [
+        960,
+        640
+      ]
+    }
+  ],
+  "changedPixels": 15375,
+  "bounds": [
+    466,
+    392,
+    826,
+    436
+  ],
+  "samplePoint": [
+    500,
+    410
+  ],
+  "sampleRGBA": [
+    [
+      234,
+      234,
+      234,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ]
+  ],
+  "darkTextMaskThreshold": 100,
+  "darkTextMaskChangedPixels": 8,
+  "darkTextMaskBoundsBoth": [
+    118,
+    17,
+    242,
+    26
+  ],
+  "textCoreThreshold": 18,
+  "textCoreMasksIdentical": true,
+  "textCorePixels": 76,
+  "priorMacPNGHashes": [
+    "f335a20d87cd58cc2087303dcd14d1eaa20cc6c486b209c05ac5260347bfa968",
+    "f335a20d87cd58cc2087303dcd14d1eaa20cc6c486b209c05ac5260347bfa968"
+  ],
+  "sameVisibleText": [
+    "Not available yet",
+    "This sign-in step isn’t available in Cortex yet. Use another address or cancel.",
+    "Use another address",
+    "Cancel"
+  ],
+  "presentation": "Exact background colors match pinned secondary-button hover versus normal rules; no different semantic copy or disabled branch.",
+  "trigger": "Unknown: no pointer/:hover/computed-style record retained at these captures; no timing attribution.",
+  "case": {
+    "os": "macos",
+    "file": "remote-auth.spec.ts",
+    "title": "Unavailable continuations and cancelled codes stay private; restart clears login — 960 light",
+    "status": "passed",
+    "attempts": 1,
+    "retry": 0,
+    "durationMs": 3956,
+    "attachments": [
+      {
+        "name": "remote-mfa-unavailable-light",
+        "type": "image/png"
+      },
+      {
+        "name": "remote-verification-unavailable-light",
+        "type": "image/png"
+      },
+      {
+        "name": "remote-signed-in-1440-light",
+        "type": "image/png"
+      }
+    ]
+  },
+  "source": [
+    {
+      "path": "tests/e2e/remote-auth.spec.ts",
+      "sha256": "653016add38f51d766dfec52c205790de4b941c02739a993315c282469b1b0cb",
+      "ranges": [
+        [
+          9,
+          15
+        ],
+        [
+          43,
+          53
+        ],
+        [
+          98,
+          106
+        ],
+        [
+          200,
+          228
+        ]
+      ],
+      "retained": "tests__e2e__remote-auth.spec.ts.gz",
+      "excerpt": "tests__e2e__remote-auth.spec.ts.excerpt.txt"
+    },
+    {
+      "path": "packages/app/src/screens/system/account.tsx",
+      "sha256": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36",
+      "ranges": [
+        [
+          111,
+          116
+        ],
+        [
+          204,
+          212
+        ]
+      ],
+      "retained": "packages__app__src__screens__system__account.tsx.gz",
+      "excerpt": "packages__app__src__screens__system__account.tsx.excerpt.txt"
+    },
+    {
+      "path": "packages/app/src/kit/styles.css",
+      "sha256": "8f2caecacb1574f931e2113be8bd7cfef039fc0105a776ef5a66bc6e867cd730",
+      "ranges": [
+        [
+          19,
+          26
+        ],
+        [
+          58,
+          58
+        ],
+        [
+          318,
+          323
+        ],
+        [
+          350,
+          350
+        ]
+      ],
+      "retained": "packages__app__src__kit__styles.css.gz",
+      "excerpt": "packages__app__src__kit__styles.css.excerpt.txt"
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "sha256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e",
+      "ranges": [
+        [
+          185,
+          193
+        ]
+      ],
+      "retained": "packages__app__src__screens__system__system.css.gz",
+      "excerpt": "packages__app__src__screens__system__system.css.excerpt.txt"
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a",
+      "ranges": [
+        [
+          18,
+          18
+        ],
+        [
+          325,
+          325
+        ],
+        [
+          335,
+          335
+        ]
+      ],
+      "retained": "packages__i18n__locales__en__system.json.gz",
+      "excerpt": "packages__i18n__locales__en__system.json.excerpt.txt"
+    },
+    {
+      "path": "packages/i18n/locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5",
+      "ranges": [
+        [
+          1,
+          1
+        ]
+      ],
+      "retained": "packages__i18n__locales__en__common.json.gz",
+      "excerpt": "packages__i18n__locales__en__common.json.excerpt.txt"
+    },
+    {
+      "path": "packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6",
+      "ranges": [
+        [
+          10,
+          20
+        ],
+        [
+          88,
+          103
+        ],
+        [
+          166,
+          177
+        ]
+      ],
+      "retained": "packages__desktop__src__remote-session.ts.gz",
+      "excerpt": "packages__desktop__src__remote-session.ts.excerpt.txt"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/terminal-state-followup/ci-2956564/auth-alias-difference.json",
+      "sha256": "31908b2ecc5754d8322a926a988913bcaafc25bdc76660018146e851816a44e2"
+    },
+    {
+      "path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/terminal-state-followup/ci-2956564/images.json",
+      "sha256": "f5f36dc061043ba2480b75f1979b99f0b236e137928c173f19e05cd305946a88"
+    },
+    {
+      "path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/terminal-state-followup/ci-2956564/cases.json",
+      "sha256": "1c67bedf9e28b7b9e3620af55c334e61d5d306d3e64c0fd08ae671e11ce8ccfa"
+    }
+  ]
+}

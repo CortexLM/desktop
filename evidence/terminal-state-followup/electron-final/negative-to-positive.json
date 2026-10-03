@@ -1,0 +1,138 @@
+[
+  {
+    "file": "chat-missing.spec.ts",
+    "theme": "light",
+    "originalFailureLines": [
+      55,
+      56
+    ],
+    "testSHA256": "a9bdc8e86f3ede94f0b54dc6a5d8b45142a62b98ad9fd0af2515c96bddb3d994",
+    "baseline": {
+      "alert": {
+        "title": "Something went wrong.",
+        "body": "Your message is kept. Try again in a moment."
+      }
+    },
+    "final": {
+      "alert": {
+        "title": "Page not found",
+        "body": "This link goes nowhere, or the page has moved."
+      }
+    },
+    "finalErrors": []
+  },
+  {
+    "file": "chat-missing.spec.ts",
+    "theme": "dark",
+    "originalFailureLines": [
+      55,
+      56
+    ],
+    "testSHA256": "a9bdc8e86f3ede94f0b54dc6a5d8b45142a62b98ad9fd0af2515c96bddb3d994",
+    "baseline": {
+      "alert": {
+        "title": "Something went wrong.",
+        "body": "Your message is kept. Try again in a moment."
+      }
+    },
+    "final": {
+      "alert": {
+        "title": "Page not found",
+        "body": "This link goes nowhere, or the page has moved."
+      }
+    },
+    "finalErrors": []
+  },
+  {
+    "file": "code-models.spec.ts",
+    "theme": "light",
+    "originalFailureLines": [
+      327,
+      335
+    ],
+    "testSHA256": "ff1bc7e7e6d08f59d713f0c7fccfb79fa35c02b682a870b804988145ae107ff5",
+    "baseline": {
+      "initialBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "reloadedBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      }
+    },
+    "final": {
+      "initialBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "reloadedBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      }
+    },
+    "finalErrors": []
+  },
+  {
+    "file": "code-models.spec.ts",
+    "theme": "dark",
+    "originalFailureLines": [
+      327,
+      335
+    ],
+    "testSHA256": "ff1bc7e7e6d08f59d713f0c7fccfb79fa35c02b682a870b804988145ae107ff5",
+    "baseline": {
+      "initialBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "reloadedBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      }
+    },
+    "final": {
+      "initialBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "reloadedBadge": {
+        "text": "Failed",
+        "className": "badge err"
+      },
+      "runningBadge": {
+        "text": "Running",
+        "className": "badge run"
+      },
+      "recoveredBadge": {
+        "text": "Ready",
+        "className": "badge ok"
+      }
+    },
+    "finalErrors": []
+  }
+]

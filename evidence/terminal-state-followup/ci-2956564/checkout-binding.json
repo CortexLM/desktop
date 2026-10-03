@@ -1,0 +1,18 @@
+{
+  "head": "2956564fbe31f882014d74ff3a7f920e839fd634",
+  "checkout": "bb2e68fddc3e3b24d9916996a9d1a3e22aa4fd0e",
+  "tree": "6ab74e389cc439b5b651d21208aa0b2e68d8f095",
+  "headCheckoutTreesEqual": true,
+  "inputs": 514,
+  "rendererInputs": 473,
+  "rendererComparatorFingerprint": "e288e023805e998f276b224f10f63a5b448082d7a31174020b943f70815c028e",
+  "frozenBuildMembers": 90,
+  "frozenMainSHA256": "f0fc4522cde726dd8b88dcbb56f4116ba93dc87e1e9e29163502d25e522512c7",
+  "inputDeltaFrom760c4a0": [
+    "packages/app/src/screens/chat/live-chat.tsx",
+    "packages/app/src/screens/code/code.tsx"
+  ],
+  "originalSixRegressionTestsUnchanged": true,
+  "ciASAROrMainCompared": false,
+  "scope": "CI checkout matches source tree. Frozen local build receipt verified, not rebuilt. Test artifacts have no main bundle or ASAR; package/native receipt is coordinator-owned."
+}
