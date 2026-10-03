@@ -1,0 +1,786 @@
+{
+  "startedUTC": "2026-10-03T14:47:00.357982+00:00",
+  "finishedUTC": "2026-10-03T14:47:00.733736+00:00",
+  "commentCutoffUTC": "2026-10-03T12:07:00Z",
+  "github": [
+    {
+      "endpoint": "repos/CortexLM/backend/issues/446/comments",
+      "url": "https://github.com/CortexLM/backend/pull/446",
+      "observedStartUTC": "2026-10-03T14:47:00.358381+00:00",
+      "observedEndUTC": "2026-10-03T14:47:00.730621+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/446/comments",
+        "-f",
+        "since=2026-10-03T12:07:00Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr446-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    },
+    {
+      "endpoint": "repos/CortexLM/backend/issues/447/comments",
+      "url": "https://github.com/CortexLM/backend/pull/447",
+      "observedStartUTC": "2026-10-03T14:47:00.358885+00:00",
+      "observedEndUTC": "2026-10-03T14:47:00.692731+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/447/comments",
+        "-f",
+        "since=2026-10-03T12:07:00Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr447-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    }
+  ],
+  "publicGETs": [
+    {
+      "url": "https://api.cortex.foundation/v1/instance",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T14:47:00.359341+00:00",
+      "status": 404,
+      "contentType": "application/problem+json",
+      "responseDate": "Sat, 03 Oct 2026 14:47:00 GMT",
+      "bodyBytes": 219,
+      "bodyCapped": false,
+      "bodySHA256": "13196615c0092d40a672a1f4cec2686dba13f7b41d29fc5cd3d8e3390927c95b",
+      "rawFile": "public-instance.body",
+      "priorObservedUTC": "2026-10-03T12:07:12.987329+00:00",
+      "priorBodySHA256": "5036874df8db29f2f2525b9666c69ec4cb01e6d715a21a959213c2f5b444fdcd",
+      "sameBodyAs1207": false,
+      "observedEndUTC": "2026-10-03T14:47:00.622067+00:00"
+    },
+    {
+      "url": "https://api.cortex.foundation/v1/models",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T14:47:00.360107+00:00",
+      "status": 200,
+      "contentType": "application/json",
+      "responseDate": "Sat, 03 Oct 2026 14:47:00 GMT",
+      "bodyBytes": 995,
+      "bodyCapped": false,
+      "bodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "rawFile": "public-models.body",
+      "priorObservedUTC": "2026-10-03T12:07:13.238179+00:00",
+      "priorBodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "sameBodyAs1207": true,
+      "observedEndUTC": "2026-10-03T14:47:00.616221+00:00"
+    }
+  ],
+  "localAuthorities": [
+    {
+      "path": "/root/cortex-goals/COORDINATION.md",
+      "observedUTC": "2026-10-03T14:47:00.731672+00:00",
+      "mtimeUTC": "2026-10-03T14:45:07.671054+00:00",
+      "sha256": "5954be9ef54962d71c6961c1c11113b5070f456dfb806e5bcc34420e5f892631",
+      "bytes": 225551,
+      "lines": 404,
+      "relevantLines": [
+        {
+          "line": 35,
+          "text": "- 2026-10-01 [G2 Self-host] **OpenAPI contract \u2014 answers to G3 (and G4/G1)**. G3's proposal is ACCEPTED with the amendments below."
+        },
+        {
+          "line": 54,
+          "text": "- 2026-10-01 [G2 Self-host] **OpenAPI contract published.** PR https://github.com/CortexLM/backend/pull/446, branch `goal/self-host-providers`, commit `b412bde8c6bc221c2b7d784b0476e09a3a6b5bf7`. Schema: `openapi/cortex.openapi.json` (OpenAPI 3.1, all public routes, regenerate with `cd server && bun run openapi`, served at `GET /v1/openapi.json`). It is the contract for G1, G3 and G4. Registry/instance components match my earlier note, with these additions: `Instance.registry.enabled`; `RegistryModelPage.next_cursor`; a `configured` query filter; `POST /v1/auth/local/logout`. On Cortex Cloud, `/v1/providers` and `/v1/registry/models` return 404 (registry is self-host only). G4: `GET /v1/instance` \u2192 `auth.required` is live."
+        },
+        {
+          "line": 60,
+          "text": "- 2026-10-02 [G2 Self-host] Contract change on PR #446 (commit `5172d62f`). In `auth.mode=local`, `GET /v1/providers`, `/v1/providers/{id}` and `/v1/registry/models` now require the local bearer: the OpenAPI drops `security:[{}]` for them. They stay open in `none`. `GET /v1/instance` remains public. In `none` mode a `Host` that is not loopback or a configured origin gets a 403. `openapi/cortex.openapi.json` is regenerated."
+        },
+        {
+          "line": 68,
+          "text": "- 2026-10-02 [G1] CI fully green on `d40b5d7`: https://github.com/CortexLM/desktop/actions/runs/36957854761 \u2014 62 unit passes, one optional backend skip, 8 E2Es each on Linux/macOS (including native window/menu assertions), unsigned arm64 package + SMOKE OK. Real GPT-6 Astra Responses SSE through Electron bridge also passed: correct synthetic image answer, 9 text deltas, 1 reasoning delta, no tools; sanitized `evidence/real-provider.json` documents the transparent gateway model alias. 421 design-reference shots now compared (mean 0.04%, max 0.78%); five interaction shots included, ten Settings shots lack references. Remote Mac installed the same green CI artifact; refreshed full native capture sweep underway. Three missing designs still block full product delivery; cloud/self-host selection currently probes only, remote sessions/auth are not implemented and are now documented honestly."
+        },
+        {
+          "line": 71,
+          "text": "- 2026-10-02 [G2 \u2192 G4, G3] Confirmed by the assembled API tests: `auth.mode: \"none\"` returns a real operator account from `/v1/me`, with `is_guest: false`; Code/Bot membership gates accept it. Local sessions are intentionally bearer-only: keep the token in memory, sign in after reload/expiry; documented in `docs/self-host.md` and the pending `LocalSession` schema update. No browser token persistence or local refresh cookie is required. Pending #446 corrections add signed `iat` for the ten-minute export/deletion gate and preserve logout through signed `exp` after a TTL change. `Problem.mfa` now explicitly enumerates `reauth_required` in the pending OpenAPI update (the earlier d6cdbc6f note overstated the schema: that extension was permitted but not described). G4: local sign-in then retry remains the required handling. G3: regenerate once the next commit is posted."
+        },
+        {
+          "line": 72,
+          "text": "- 2026-10-02 [G2 \u2192 G3] OpenAPI audit correction in progress on #446: `noTimeout` was incorrectly treated as SSE. All 16 such routes now have explicit transport metadata in the worktree (turn streams versus named AgentEvent feeds versus RealtimeFrame; audio JSON/MP3, prepare JSON, WebSocket 101). 422 operationIds remain unchanged. Registry `configured` and `Problem.mfa` added; logout is 204. Legacy schemas remain a route inventory with partial field typing; do not claim a fully typed legacy contract from G2's schema alone. Known legacy media overrides are being finished before commit. G3 owns fuller legacy body/response typing and SDK regeneration."
+        },
+        {
+          "line": 73,
+          "text": "- 2026-10-02 [G2 Self-host / GPT-6 Astra] Pushed `22dd2b95` to #446. Integrated suite: **2368 pass, 0 fail**, typecheck/lint/OpenAPI drift/migration immutability/type contract green; Cloud binary smoke passes. Fresh production-config Podman Compose acceptance passes local/none authentication, registry, real Chat reasoning SSE and Bot send_to_user through an isolated provider fixture, OpenAPI, logout persistence across Redis crash, OpenBao restart. No external cloud credentials; temporary containers/volumes removed. Redis reconnection may require recreating API after outage (documented). Migration `0141` stores signed device-session expiry; `0142` admits computer provider `none` (live Compose found the previous tests masked this with mock/constraint removal). OpenBao interruption test: 4 pass. All received CodeRabbit/Cortex findings fixed or answered; new-head CI/review pending, no dismissal/bypass. G3: regenerate from this schema; 422 operationIds unchanged, legacy field typing remains partial. G4: `none` is confirmed member; `reauth_required` requires local password then retry. Product decision still open: unmetered self-host versus retained seeded Free quotas."
+        },
+        {
+          "line": 74,
+          "text": "- 2026-10-02 [G2 status] Latest head `684e2808`; application/schema code remains `22dd2b95`. Follow-ups only document API restart after vault-token replacement and distinguish an inert Python fixture from a credential. CI passed on `22dd2b95` and `9e70e994`; latest CI/CodeQL running. CodeRabbit resolved both previous actionable threads; fresh review explicitly requested after automatic pause. Cortex Security's latest reports still need triage/replies; not a green acceptance claim."
+        },
+        {
+          "line": 75,
+          "text": "- 2026-10-02 [G2 final follow-up] Pushed `dec8a1b9`: normalize pre-existing `none` computers before farm quota/wake routing; reject nonvision GUI actions before guest mutation; enforce documented alphanumeric DB passwords before URL construction; share request audit actor; configured-only registry snapshots (CodeRabbit nit). Independent delta review clean. Final scoped suite **312/0**, Python **5/0**, types/lint/contracts pass; fresh Compose acceptance repeated successfully. CI and CodeQL on `684e2808` passed with **zero open PR CodeQL alerts**; CodeRabbit reviewed it with no actionable defect, one nit now fixed. `dec8a1b9` checks/reviews pending. No schema changes after `22dd2b95`; G3 can consume that same schema. PR remains open; main untouched."
+        },
+        {
+          "line": 77,
+          "text": "- 2026-10-02 [G2 verification] `dec8a1b9` CI passed (run `36961668816`: complete Bun suite **2376/0**, 161 files), CodeQL passed (`36961668724`), zero open PR CodeQL alerts. Actual `cargo test --workspace` returns 101: no Cargo.toml; Bun is the repository gate. Additional documentation-only Compose startup used the shipped examples and live models.dev: 225 providers, cache and capability filters verified. Independent audit found two alternate-provider setup gaps; pending corrections document group-10001/mode-640 TOML and leave unused OpenAI key empty. A fresh Compose run with that secret-bearing alternative provider passed too. Latest CodeRabbit review found local-daemon normalization and selected-planner drift; fixes and reflection-result handling underway, acceptance remains pending. OpenAPI unchanged since `22dd2b95`: G3 regenerate from that contract; G4 local reauthentication remains as posted. PR #446 stays open; main untouched."
+        },
+        {
+          "line": 80,
+          "text": "- 2026-10-02 [G2 review corrections] Pushed `4fdadb8b` to #446: Bot carries selected model capabilities/provider slug through GUI helpers and parked approvals; optional reflection cannot misreport completed guest input; existing local-compute rows acquire the configured daemon URL. Provider-file permissions, unused-key defaults and OpenBao lifetime/rotation guidance corrected. Focused suites **105/0 + 50/0**, bootstrap **5/0**, typecheck/lint/contracts passed; alternate-provider production-config Compose startup passed with live metadata. Every finding through CodeRabbit `5388150421` and current Cortex Security review fixed or answered. Fresh CI `36964032625`, CodeQL `36964032627`, CodeRabbit and independent review pending. Schema blob unchanged since `22dd2b95` (`d3837ef436a5888b329aa0e5b3eb3bcc3f0b3b5d`). G3 regeneration reminder posted on #447; G4 reauthentication reminder posted on #445. No merge/deployment; main untouched. Quota product decision remains open."
+        },
+        {
+          "line": 81,
+          "text": "- 2026-10-02 [G2 acceptance hold] Independent review of `4fdadb8b` found a concurrent host-change race in computer normalization; minimal guarded write and real-transaction regression delegated, acceptance remains pending. Read-back confirms G3's remote schema is stale (`e8801c4d\u2026` versus current `d3837ef4\u2026`): both inventory 422 operations, but 18 response transport maps and `Problem`/`LocalSession`/`Instance` differ. Regeneration request on #447 remains required; no consumer code changed by G2."
+        },
+        {
+          "line": 82,
+          "text": "- 2026-10-02 [G2 concurrency fix] Pushed `3fece804`: row-lock current computer binding before normalization. Eight RLS-scoped transaction race cases failed before; route suite now **34/0**, typecheck/lint/contracts pass. Independent last-push review found no blockers or new row/advisory lock cycle. Prior `4fdadb8b` CI **2383/0**, CodeQL passed; latest CI `36964943530`, CodeQL `36964943543`, CodeRabbit running. New Cortex Security findings answered with source evidence; coverage still incomplete. Schema unchanged; consumer follow-ups and quota decision remain. #446 open, main untouched."
+        },
+        {
+          "line": 85,
+          "text": "- 2026-10-02 [G2 final evidence] Implementation head `3fece804` passed CI `36964943530`: clean-database migrations and complete Bun suite **2391/0**, 161 files; CodeQL `36964943543` passed, zero open PR alerts. CodeRabbit completed with no actionable comments. All findings through Cortex Security `5388345328` answered or fixed; its coverage remains incomplete. Independent Unicode boundary checks found no compaction defect. Comment-only `f282d9ab` corrects the stale claim that self-host is unmetered; independent last-push review found no blocker, pre-commit checks passed, CI `36966262269` / CodeQL `36966262233` pending. Criteria 1\u20135 have evidence with documented Podman/fixture limits. Literal `cargo test --workspace` remains exit 101 (no Cargo.toml); accepting the repository-native Bun gate is the remaining criterion decision. Seeded Free quotas remain documented, locally enforced; unlimited self-host is an optional product-policy decision. PR #446 stays open, main untouched."
+        },
+        {
+          "line": 86,
+          "text": "- 2026-10-02 [G2 consumer read-back] G3 #447 `7633f7e2` still uses schema blob `e8801c4d\u2026`, versus G2 `d3837ef4\u2026`; 18 transport maps plus `Problem`/`LocalSession`/`Instance` differ. G3 owns schema regeneration and reconciliation of its public `Problem` export. G4 #445 `f89b3b3c` / #448 `70d5bda2` still map `reauth_required` to null in `mfaRequirement`; export/deletion do not invoke local sign-in then retry. No completion acknowledgement after reminders on #447/#445. G1 acknowledged its vendored SDK0.2.0 integration is probe-only. Contract remains available at `openapi/cortex.openapi.json` (unchanged since `22dd2b95`); no consumer files modified by G2."
+        },
+        {
+          "line": 88,
+          "text": "- 2026-10-02 [G2 review follow-up] `f282d9ab` CI passed **2391/0** with successful fresh migrations; CodeQL and CodeRabbit passed. Cortex Security `5388430840` failed; five Bun SQL tagged-template findings remain false positives, other findings answered with source/caller evidence. One genuine bounded-pagination mismatch fixed in `73b934c7`: safe-integer registry cursors replace seven-digit ceiling; assembled-API regression covers 10000000 and rejects 9007199254740992. Self-host file **29/0**, types/lint/OpenAPI freshness/pre-commit checks passed; independent review found no blocker and committed blobs match its reviewed tree. Current CI `36994502277`, CodeQL `36994502238`, fresh review pending. Schema blob/operation IDs unchanged. No Cargo acceptance decision received. #446 remains open, main untouched."
+        },
+        {
+          "line": 89,
+          "text": "- 2026-10-02 [G4 resumed / GPT-6 Astra] Five bounded workers active: localized Code errors; remaining visible worklog/labels (exclusive catalog writer); screenshot fixture/coverage provenance; note-title regression test; G2 local `reauth_required` handling for export/deletion. G2 bearer-only reload behavior accepted as intentional; no refresh-cookie change requested. Latest #445 CI is green but CodeRabbit says skipped for this base branch; explicit review requested, skipped check not accepted as review. No missing-design layout work resumed."
+        },
+        {
+          "line": 91,
+          "text": "- 2026-10-02 [G1 correction checkpoint] Pushed `0e63f87` to draft desktop #36. Chat preserves refused drafts/files, waits for file reads, reports read errors and retries the selected historical prompt with attachments. Nine runtime-copy findings corrected across eight locales; old persisted English titles remain intact because defaults and user titles are indistinguishable. Self-host discovery now consumes configured registry pages (enrichment on/off), pins validated origins, refuses redirects/cookies, enforces a five-second deadline; renderer cannot assert signedIn. Local: 131 unit passes + optional skip, separate real-backend SDK discovery suite 45/45, 12 Linux Electron E2Es/426 renders, static copy audit zero findings, packaged smoke passes under Xvfb. CI https://github.com/CortexLM/desktop/actions/runs/36997513479 running. G2/G3 integration asks posted on #446/#447; password/MFA designs requested. Full goal remains incomplete."
+        },
+        {
+          "line": 92,
+          "text": "- 2026-10-02 [G2 \u2192 G1/G3 turn contract, verified at `73b934c7`] Reasoning accepts only `low|medium|high`; omitted/null means medium for a new conversation, ordinary follow-ups keep stored effort, regenerate accepts a per-request effort override. Self-host Low is literal `reasoning_effort: low`, **not Off**; models without verified reasoning receive no reasoning field. Cloud Mini's special low\u2192disabled mapping is not portable. No Chat generation-cancel route/WebSocket operation exists: aborting the SSE reader detaches delivery while generation/buffering/persistence continue. Code-only `POST /v1/code/sessions/{id}/cancel` must not be used for Chat; DELETE conversation is not cancellation. Remote Chat should expose detachment/reconnection, never claim generation stopped. Reconnect repeats the original POST/body with the **same Idempotency-Key** plus last SSE id in `Last-Event-ID`; that header alone does not identify a turn. `stream_expired` requires transcript reload. These two missing portable capabilities remain backend follow-ups, not invented SDK operations. Sources: `turns/create.ts`, `turns/replay.ts`, `turns/generate.ts`, `upstream.ts`, `code-sessions.ts`, `http/sse.ts`."
+        },
+        {
+          "line": 93,
+          "text": "- 2026-10-02 [G2 \u2192 G1/G4 discovery clarification] Choose model discovery from `instance.mode === \"self_host\"`, **not** `registry.enabled`. That flag controls remote metadata enrichment only. With it false, `/v1/registry/models?configured=true` still returns explicit operator model IDs (`source: unavailable`, capabilities false, metadata limits zero); an empty configured list supplies none. Local mode still requires its bearer. Verified in `Registry.load/operatorOnly/withOperator/models`; OpenAPI shape unchanged."
+        },
+        {
+          "line": 94,
+          "text": "- 2026-10-02 [G2 latest-head checks] `73b934c7` CI `36994502277` passed clean migrations and complete suite **2391/0**, 161 files; CodeQL `36994502238` passed, zero open PR alerts. All current Cortex Security `5390727230` findings answered; its check is neutral with incomplete coverage. CodeRabbit's successful status masked an automatic pause at prior head `f282d9ab`; explicit review of `73b934c7` requested in #446 comment `5950283065`, still pending actual latest-diff coverage. Independent exact-tree review passed. PR evidence updated, worktree clean; no full-completion claim while that review and literal Cargo criterion remain unsettled."
+        },
+        {
+          "line": 95,
+          "text": "- 2026-10-02 [G2 acceptance decision] User explicitly accepted `cd server && bun test` as criterion 6 in place of `cargo test --workspace`; this Bun/TypeScript checkout has no Cargo workspace. Existing Cargo exit 101 remains historical evidence, no longer an unresolved decision. Literal Docker Compose verification now runs inside an isolated Docker Engine container (no production credentials). A carry-over CodeRabbit architecture concern about cross-origin mutation in `none` mode is being reproduced and corrected if confirmed; acceptance is not yet final."
+        },
+        {
+          "line": 96,
+          "text": "- 2026-10-02 [G2 \u2192 G4 review correction] CodeRabbit finding `4164849387` on #445 recommends `/v1/auth/password` for local sign-in. That recommendation conflicts with the published contract: `POST /v1/auth/local` is registered; `/v1/auth/password` is Cortex-login-only and returns 404 in local mode. Keep `/v1/auth/local`, including the `reauth_required` retry flow. G2 schema remains `d3837ef4\u2026`."
+        },
+        {
+          "line": 102,
+          "text": "- 2026-10-02 [G2 origin fix and Docker evidence] Pushed `4e960c10` to #446. Reproduced `none` cross-origin deletion via form/text POST (204, deletion + DSAR persisted); minimal HTTP guard now refuses invalid/unconfigured browser origins before mutation. Exact `cors_allowed_origins`/`public_web_origin` origins and no-Origin CLI remain supported. Targeted tests **46/0**, types/lint/pre-commit passed; independent exact-tree review found no blocker. Literal Docker Engine29.8.2/Compose5.5.1, in an isolated rootful container, started shipped Compose/examples: 140 migrations, API healthy, live models.dev225/cache/filters, OpenAPI422. Rebuilt runtime inputs match `4e960c10`: gated reasoning SSE, Bot user-voice tool, pre-inference image refusal, local logout, none-mode access/origin refusals all pass; PostgreSQL confirms no deletion/DSAR mutations. No paid inference/live-farm claim. CodeRabbit completed actual `73b934c7` coverage; latest CI36999855513/CodeQL36999855510 and explicit review5951103149 pending. G1/G4 configure the frontend origin in `none`; schema blob `d3837ef4\u2026` unchanged. Bun acceptance is user-approved; main untouched."
+        },
+        {
+          "line": 103,
+          "text": "- 2026-10-02 [G2 current-head CI] `4e960c10` CI36999855513 attempt1 passed: Test job110814831090 applied **140 migrations** to a clean database, then **2395 pass / 0 fail**, 162 files. Typecheck/lint, every image target/smoke, Web/contracts/docs/Helm/scripts passed. CodeQL36999855510 passed; zero open PR CodeQL alerts. Docker fixture/stack/volumes/isolated daemon and generated configuration cleaned up. Explicit latest CodeRabbit review pending; independent final consumer/evidence read-back running. No merge/deploy; #446 open."
+        },
+        {
+          "line": 105,
+          "text": "- 2026-10-02 [G2 review and consumer read-back] CodeRabbit explicitly reviewed all six `4e960c10` files (run f6da6d9f-0459-4de8-9a76-36608bfc1f4f), no actionable comments; all130 threads paged, zero unresolved CodeRabbit threads. Cortex Security5391168904 remains changes-requested; six new findings answered, two grounding error-detail findings under targeted triage. Low orphan-token issuance/installation gap acknowledged with existing manual accessor-revocation recovery; no automatic-reconciliation claim. Independent acceptance review found no unsupported six-criterion evidence. Fresh11:20UTC consumer heads unchanged: G3#4477633f7e2 still stale schema/types; G4#445f89b3b3c/#44870d5bda2 still lacks local reauth retry. Existing handoff requests remain pending; no consumer completion claim."
+        },
+        {
+          "line": 106,
+          "text": "- 2026-10-02 [G2 grounding disclosure confirmed] Cortex Security4165224548/4165224554 reproduced through assembled API: malformed grounding completion text enters tool errors, subsequent model/realtime and approved-action HTTP output. Guest input remains unexecuted. Two-catch fixed-copy correction and direct/approved click/drag regressions underway; no claim that `4e960c10` contains this fix yet. Source/tests remain G2-owned; OpenAPI unchanged."
+        },
+        {
+          "line": 107,
+          "text": "- 2026-10-02 [G2 grounding fix pushed] `e86df940` replaces both raw grounding exception details with fixed product copy, no raw logging. Four direct/approved click/drag regressions fail before correction; scoped Bot/computer/Cloud farm-turn suites **120/0**, 736 assertions; types/lint/pre-commit passed. No canary reaches model/realtime/HTTP, no guest input on refusal. Findings4165224548/4165224554 answered with commit. CI37002467771, CodeQL37002467753, explicit CodeRabbit5951624421 and independent final review pending. Prior Docker evidence remains pinned `4e960c10`; OpenAPI blob unchanged. Main untouched, #446 open."
+        },
+        {
+          "line": 109,
+          "text": "- 2026-10-02 [G2 latest verification] `e86df940` CI37002467771 attempt1 passed **2399/0**,162files after140 clean migrations; all required jobs passed. CodeQL37002467753 passed, zero open PR alerts. Independent grounding-fix review passed and five committed blobs match. Latest CodeRabbit/Cortex review pending. G4#445 `8f366a51` read back: reauth_required handling, local modal, one bounded retry and preserved deletion Idempotency-Key are present; G4's acknowledged consumer gap is corrected in source. G3 regeneration still pending at last read; schema blob d3837ef4 unchanged. Literal Docker proof remains4e960c10; only two fixed-error catches/tests/docs changed afterward."
+        },
+        {
+          "line": 110,
+          "text": "- 2026-10-02 [G2 completion audit] Existing tests cover local/none and ordinary Cloud but lack the self_host.enabled=true/auth_mode=cortex combination. A focused optional-Cortex-login integration regression is being added using local identity/JWT/provider fixtures; no new infrastructure secret is needed for that proof. Criterion6 remains pending that final mode check plus its CI/review. Runtime/API contract unchanged unless the test finds a defect."
+        },
+        {
+          "line": 111,
+          "text": "- 2026-10-02 [G2 review disposition] Actual CodeRabbit review e86df940 complete, runcd078e6b-b619-4d5d-a33b-d2cfaa68312c, no actionable comments. All142 threads paged:0unresolved CodeRabbit,0unanswered Cortex findings. Cortex Security5391389090 remains changes-requested/neutral incomplete coverage, not a security pass. Independent triage confirmed no downstream identity confusion from the shared revocation-handle field; media children inherit environment, acknowledged defense-in-depth without a demonstrated remote token disclosure. Existing orphan-token interruption risk remains documented/operator-recoverable. Optional Cortex-mode test and explicit Compose credential-forwarding docs in progress."
+        },
+        {
+          "line": 112,
+          "text": "- 2026-10-02 [G2 Cortex mode regression] Added `server/test/api/self-host/cortex-auth.test.ts` (blob8681989\u2026): 69 assertions cover enabled self-host `auth_mode=cortex`, real RS256/JWKS verification, guest/password/OAuth, registry authorization, operator routing, capability limits and billing exclusion. Focused test passes; integrated focused suites119/0,988 assertions, types/lint pass. Docs now explain protected `[auth]` TOML or explicitly forwarded Compose env; arbitrary `.env.selfhost` keys are not passed to API. Commit/CI pending; main untouched."
+        },
+        {
+          "line": 113,
+          "text": "- 2026-10-02 [G2 all-mode test pushed] `d1c7d539` pushed to #446: optional Cortex-login combination test + operator setup docs only, no runtime change after e86df940. Pre-commit passed. Latest CI37005033351,CodeQL37005033272,explicit CodeRabbit5951994239 running; independent test review pending. OpenAPI blobd3837ef4 and422operationIds unchanged, contract remains G1/G3/G4 source. No merge/deploy/main push."
+        },
+        {
+          "line": 114,
+          "text": "- 2026-10-02 [G2 \u2192 G1/G3/G4 canonical contract] Immutable schema: https://github.com/CortexLM/backend/blob/d1c7d539d61c2240a90b2358ba5422632e7690f5/openapi/cortex.openapi.json ; blob `d3837ef436a5888b329aa0e5b3eb3bcc3f0b3b5d`, served unchanged by `GET /v1/openapi.json`,422 unique operationIds. Mode discovery `GET /v1/instance`; local login/logout `POST /v1/auth/local` and `/logout`; provider discovery `GET /v1/providers` and `/{id}`; registry `GET /v1/registry/models` filters `provider,reasoning,image,tools,min_context,q,configured`. Self-host discovery uses instance.mode even when registry enrichment is disabled. G4's local reauth correction8f366a51 is source-confirmed. G3 regenerate transport maps plus Problem/LocalSession/Instance from this blob. Independent latest test/docs review found no blockers; all four committed blobs match. Latest CI/review pending, no completion inferred yet."
+        },
+        {
+          "line": 115,
+          "text": "- 2026-10-02 [G2 final-mode CI] `d1c7d539` CI37005033351 attempt1 passed **2400/0**,163files; Test job110831193035 verifies140 clean migrations, new optional Cortex-login case, local/none and existing Cloud regressions. CodeQL37005033272 passed;0open PR alerts. Typecheck/lint, contracts/docs/Web/Docker targets+smokes/Helm/script jobs green. User-approved Bun criterion6 runtime evidence now covers each mode. Independent exact-tree review passed. Latest CodeRabbit/Cortex read-back remains pending; main untouched, #446 open."
+        },
+        {
+          "line": 116,
+          "text": "- 2026-10-02 [G2 final review disposition] CodeRabbit exact-head d1c7d539 review runb22a8d44-d9a2-47fd-8ae1-b2ca7a2e7d53: no actionable comments. All147 review threads paged;0 unresolved CodeRabbit and0 unanswered Cortex findings. Cortex Security5391579774/check remains failed; source-evidenced responses cover every finding, with genuine grounding disclosure fixed earlier and orphan-token/media inheritance risks explicitly retained. PR remains BLOCKED by that separate review policy; no dismissal/bypass. Full six runtime criteria supported by Docker4e960c10, runtime fix e86df940, mode test/docs d1c7d539 and CI2400/0."
+        },
+        {
+          "line": 117,
+          "text": "- 2026-10-02 [G2 \u2192 G4 computer-provider type] Final contract review found `ComputerWire.provider` in resources.ts at8f366a51 omits `none`. Migration0142/server intentionally use it for self-host Bot without compute; `live:false,offline_reason:compute_not_configured` already drives the unavailable UI. Add `none` to the static union; no runtime parser/rendering rejection identified. Requested on#445 comment5952265401; G2 preserves G4 ownership."
+        },
+        {
+          "line": 118,
+          "text": "- 2026-10-02 [G2 review acknowledgement/recovery follow-up] Cortex Security comment5952385335 explicitly agrees findings on d1c7d539 are addressed/false positives; it is an answer, not a review, and does not alter the FAILED check. Final audit now narrows the retained interrupted OpenBao token-installation concern: reuse or refuse a pending issued token instead of overwriting it on restart. Read-only targeted analysis underway; any correction stays G2-owned with recovery regressions. Fresh G3#447 head remains7633f7e2; G4#445 nowdbc29faa still omits none from the static provider union."
+        },
+        {
+          "line": 119,
+          "text": "- 2026-10-02 [G2 pending-token reproduction] Real isolated OpenBao2.7.0 reproduced failed chown after issuance: only token.tmp remained; restart minted a different token, and both credentials remained valid after root revocation. Minimal recovery delegated for script/bootstrap tests: validate/adopt complete pending token, refuse ambiguous/invalid/outage state, never silently remint over it. Coordinator owns docs and real runtime verification; residual server-issued-before-full-response loss stays explicit targeted operator recovery. No production credentials or services used."
+        },
+        {
+          "line": 121,
+          "text": "- 2026-10-02 [G1 frozen-source integration] Independently recomputed106source files and fingerprint7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768. Own desktop worktree only: shell vertical-theme/mode feedback, capsule geometry, sidebar details and interrupted segmented motion integrating; Components and composer/preview behavior have disjoint terminal workers. Comparison harness worker pins source/image hashes and rejects mixed freeze provenance. Five draft/keyboard Electron regressions pass; motion/navigation checks pass after a test-selector correction. Home final reviews acknowledged as scoped, not global approval. Existing0e63f87native and08533daCI proofs remain revision-pinned; newbatch uncommitted. G3 SDK handoff against schema blobd3837ef4 still required; live missing-surface drafts not imported."
+        },
+        {
+          "line": 129,
+          "text": "- 2026-10-02 [G2 interrupted-token recovery pushed] `3e00c85137c0d1517b5cb35ec3cf07cd01814143` on open#446 validates/adopts complete token.tmp before reminting; empty/invalid/privileged/conflicting pending files and lookup outages preserve credentials and refuse. Twelve stdlib tests pass; three regression methods fail on prior script (six failures). Real OpenBao2.7.0 probe verifies same token/accessor, bootstrap-root403, transit round-trip, admin403,0400 UID/GID10001, sealed root-free recovery and cleanup. Script SHA256 `3f2f8c9ac001c4f131cbc178ffd4aa4e6c3f544a395becf7d7a0ddc5af17ee34`; all five committed blobs match independent review. Pre-commit passed. CI37009992319/CodeQL37009992449/explicit CodeRabbit5952895680 pending. No main/merge/deploy. Server/OpenAPI unchanged from d1c7d539; blobd3837ef4 remains G1/G3/G4 contract. Fresh consumers: G3#4477633f7e2 still differs; G4#44587fcbd77 still omits none, owner follow-up acknowledged. Residual issuance-before-complete-response still needs targeted operator recovery."
+        },
+        {
+          "line": 130,
+          "text": "- 2026-10-02 [G2 final contract assertion/CI] `b7597747b0c6765c36545f57b76644d064579f31` adds one assertion requiring every operationId be nonempty/whitespace-free; runtime/schema identical to3e00c851. OpenAPI10/0,1496assertions; pre-commit typecheck and independent exact-blob review passed. CI37011149554 attempt1 passed **2400/0**,163files,140clean migrations; bootstrap12/0, all required CI jobs green. CodeQL37011149612 passed. Cortex review5392096537 remains changes-requested/neutral incomplete; all154threads paged,0unresolved CodeRabbit,0unanswered Cortex. New reviewer null/type/fixture/SQL/locking/budget claims source-answered; single-missing-ID test gap fixed. Latest CodeRabbit5953127812 pending. Fresh literal Docker startup at3e00c851 in progress. No consumer/main/merge/deploy changes."
+        },
+        {
+          "line": 131,
+          "text": "- 2026-10-02 [G2 six criteria verified / final delivery] Open #446 head `b7597747b0c6765c36545f57b76644d064579f31`. Fresh Docker29.8.2/Compose5.5.1 startup at runtime3e00c851 passes:140migrations,healthyAPI,localmember,publicinstance,registry401/200,225liveproviders,500filteredcachedmodels. All516runtimeinputs match finalhead; container-byte comparisons506API/494migratorfiles. OpenSSL generated secrets; Python replaced placeholders only. Eightcontainers/sevenvolumes/bothnetworks/daemon/secrets/checkout removed. Evidence `/tmp/opencode/selfhost-docker-3e00c851-BLW6hU/evidence.json`,SHA256`c3941f344eef141b2f2dc4d3484fc02ca062ce05e1056f3e6e0c1b6990830bb8`. Independent acceptance audit supports allsixcriteria. CodeRabbit completed explicit run`eed528bb-8b46-4f69-843c-8e59af06139a` through finalhead,0actionable; AGENTS similarityskip independentlyreviewed. ExactheadCI2400/0+12bootstrap,140cleanmigrations;CodeQLpassed. All172threads paged:0unresolvedCodeRabbit,0unansweredCortex. Cortex latest5392204214 remains changes-requested/neutral-incomplete; source-backed18replies and reconciliationrequest5953604885, no bypass. PR staysOPEN/BLOCKED. Final consolidatedevidence `/tmp/opencode/selfhost-acceptance-b7597747.json`.13:32UTCconsumerreadback: G4#aace26bf now includes provider`none`; prior localreauth correction confirmed; G3#4477633f7e2 still requires canonicalblobd3837ef4 regeneration. G1/G3/G4 contract unchanged422operations. Runtimecriteria complete; no missing runtime access/decision. Main untouched; no merge/deploy."
+        },
+        {
+          "line": 132,
+          "text": "- 2026-10-02 [G2 review-context limitation] Cortex reply5953607855 says the supplied diff ends at config/self-host.toml:24, omits the referenced code/thread replies and cannot confirm or deny their dispositions. It explicitly does not change review/merge status. Review5392204214 staysCHANGES_REQUESTED,checkneutral-incomplete; source-backed172-thread disposition and independent source reviews remain evidence, not reviewer approval. Final PR description narrows optionalCortex69-assertion proof to guest/password routes and OAuth authorization redirect, not callback exchange. G4 source corrections acknowledged on#445comment5953738839; G3 regeneration remains consumer-owned. No new runtime change/check needed."
+        },
+        {
+          "line": 133,
+          "text": "- 2026-10-02 [G2 continuation / precise review input] Rechecked clean b7597747, remote branch identical, main c9e25ac0 unchanged; current CI/CodeQL latest attempts remain successful. Rehashed all516Dockerinputs, same published422operation schema. Independent criteria2\u20134 audit confirms older gatedSSE/none-mode evidence applies: only two later API grounding catches changed and currentCI covers them; no extra smoke needed. Live main rules require12statuschecks, allpass, plus resolvedthreads; Cortex157threads remainunresolved, allanswered. Reviewer question input is clipped at2000characters and diff at24000 (security-core/ask.ts); five direct-source questions5954127299/5954127905/5954128434/5954128924/5954129361 each fit<1900chars, covering all6blocking+5major claims without changingruntime/reviewpolicy. G3 freshmachinecomparison:422IDsunchanged,28operationmetadatadeltas,13schemas; prior18countwastransportmaps only. Exact handoff#447comment5954152705 + `/tmp/opencode/selfhost-g3-contract-delta-final.json`; consumerhead7633f7e2stillstale, publicProblem re-exportalsoneedsownerreconciliation. G4aace26bf corrections remainpresent. PR remainsopen; no main/merge/deploy."
+        },
+        {
+          "line": 134,
+          "text": "- 2026-10-02 [G2 reviewer source confirmation] Bounded-source answers landed:5954132297 confirms constant-column SQL falsepositive;5954137634 confirms other quoted SQLpositions parameterized;5954134611 rejects changed80kceiling/missingtrimguard claims;5954163374 confirms no argvcredentials and existing command-scopedPGPASSWORD. Nine matchingthreads explicitly resolved with evidence-linkedreplies;148Cortexthreads remain, independent historicaldisposition audit underway. Review5392204214 remainsCHANGES_REQUESTED; answers/resolutions are notapproval, no check/policy/dismissal changes. Fixturequestion reply unreceived after bounded5minwait. Branch/runtimeunchanged, allsixobjectivecriteria remainverified."
+        },
+        {
+          "line": 135,
+          "text": "- 2026-10-02 [G2 current handler contract check] Direct invocation of current registeredGET/v1/openapi.json returned200/application-json and bytes identical to committedblobd3837ef4;422uniqueoperations, sixselfhostroutes,Problem.mfa=reauth_required,publicinstance andbodyless204logout allasserted. Proof `/tmp/opencode/selfhost-current-openapi-check.log`. This is assembledhandler evidence, not anotherDocker/socket claim. Eightlocale existingproblemheading/body coverage checked; no frontend/SDK/designfiles changed. LatestCI/CodeQL remainattempt1success, finalreviewblobs unchanged."
+        },
+        {
+          "line": 142,
+          "text": "- 2026-10-02 [G4 budget mapping correction] CurrentHEAD resources.ts645 already PATCHes /v1/spend-budget, matching registered spend-consent.ts259. Earlier route-mismatch audit item withdrawn after direct check. Five request-contract tests added (0/null/omitted cap and pause/resume); no runtime change. Settings reads embedded budget through /v1/spend-consents."
+        },
+        {
+          "line": 143,
+          "text": "- 2026-10-02 [coordinator independent PM readback] `/root/cortex-goals/CONTRACT-READBACK-2026-10-02-PM.md` and its saved-artifact checker verified. Remote pointage15:05UTC only: G1dc7f529CIthenrunning, G2b7597747, G37633f7e2, G46d7830b5, foundation70d5bda. G3 localdf4aca18 has canonicalblobd3837ef4 but generated/publicProblem edits uncommitted at observation; runtime UUID/since and reentrant401 refresh still unresolved. Five OTP/MFA/email/library requestBody schemas absent even canonically; ownership request sentG2/G3. Native baseline5ced8aa is historical; web156images are fixture-driven and served-build source unattested. Exact owner actions delivered without resetting worktrees, repeating CI or modifying main."
+        },
+        {
+          "line": 145,
+          "text": "- 2026-10-02 [G2 typed authentication/upload contract ownership] PM readback confirms five omitted request bodies in canonical d3837ef4: POST /v1/auth/magic-auth, /v1/auth/magic-auth/verify, /v1/auth/mfa/verify, /v1/auth/verify-email, /v1/library. G2 owns the bounded emitter/schema/tests/documentation correction on goal/self-host-providers; independent source-contract mapping delegated. Existing handlers define the contract, including continuation responses and upload media. G3 retains runtime/generated/public-Problem ownership; wait for the new immutable schema pin before final SDK pack. Current b7597747 runtime acceptance and CI remain historical evidence for that source; new contract checks and exact-head CI follow the change. No main/merge/deploy."
+        },
+        {
+          "line": 146,
+          "text": "- 2026-10-02 [G2 review reconciliation read-back] All 172 threads paged after independent source audits, corrected actual-base provenance c9e25ac0 and evidence-linked resolutions: eight unresolved Cortex discussions remain (4161925267,4162614443,4162707004,4162707021,4162707028,4162893873,4162893875,4165400583). These retain environment/host-runtime secret exposure and token-lifetime policy concerns. 149 Cortex discussions resolved as fixed, invalid or bounded existing behavior/test scope; 15 other threads were already resolved. G4 provider-none correction is confirmed in its owning PR, with stack integration still required. Whole review remains changes-requested; no approval, dismissal, check/policy change, merge or deploy."
+        },
+        {
+          "line": 147,
+          "text": "- 2026-10-02 [G2 canonical five-route SDK contract delivered \u2192 G1/G3/G4] Open#446 now `70a3056f7223a7eb9257d984848d4d33fee7ec12`. Consume `openapi/cortex.openapi.json` blob **`d6d46014d1c436b96540529dca2a3005556ae920`**, SHA256 **`93806bd0f31a0499b6bded99a25b319a90cd5afc011b70021ba921ed12107724`**, superseding d3837ef4. Same422operations/IDs; exactly5operation changes+10newcomponents. Auth magic send204; magic/email verify200 four-state status union; MFA verify200session-only; refreshcookie only on session, noJSONrefresh. Library POST takes raw bytes (Blob/File in generated client), requiredfilenamequery, optionalconversation_id/project_id; returns200metadata, no multipart/envelope. Prefer octet-stream header; HeyAPI0.99.0 chooses wildcard header unless overridden but preserves bytes. Local fullBun2407/0,163files,17317assertions; OpenAPI12/0/1612; behavioral37/0/341; strict/lint/hook pass; independent review no blocker. Scratch HeyAPI generation+positive/negativeTSconsumer+fiveHTTPserializer probes pass without editing G3. Realbinary smoke19checks passes with local identity/model fixtures and explicit filesystem storage (initial missingfixtureconfig then unavailableS3 starts refused; no freshS3Dockerclaim). Of516Docker runtimeinputs515unchanged; onlyOpenAPIemitter changed. CI37033900976 and CodeQL37033901114 started; oldhead CI not reassigned. G3 owns finalregen/pack/publicProblem/runtime; pin this schema first. No main/merge/deploy."
+        },
+        {
+          "line": 148,
+          "text": "- 2026-10-02 [G2 exact-head contract CI] `70a3056f` CI37033900976 attempt1 **SUCCESS**; Test110927239683 verifies140cleanmigrations then **2407/0**,163files,17309assertions. Bootstrap12/0; all required Actions jobs pass. CodeQL37033901114 **SUCCESS**, zeroopenPRalerts. CodeRabbitreviewpending; eight retained discussions remain lastreconciled count, no approval inferred. Handoff #447comment5956723860 and #445comment5956724154 names immutableblobd6d46014. Evidence `/tmp/opencode/selfhost-acceptance-70a3056f.json` verified against pushedcommit/schema/logcounts; priorDocker evidence remains accurately source-bound. Main c9e25ac0 unchanged."
+        },
+        {
+          "line": 149,
+          "text": "- 2026-10-02 [G2 required reviews / source handoff] CodeRabbit `c4c68dc0-beda-46f4-b495-7859f781b9d9` explicitly reviewed b7597747..70a3056f: noactionablecomments, **SUCCESS**. All12requiredstatuschecks nowpass. Independentlast-pushreview binds8committedblobs, approvesfive-routecorrectiononly; report `/tmp/opencode/selfhost-70a3056f-last-push-review.md`. G1directhandoff desktop#36comment5956826430; G3CIconfirmation backend#447comment5956979013. LatestCortexreview5394251443 at70a3056f remainschanges-requested with15findings/0of5coverage;10newdiscussions onunchangedpaths raisedpagedcountto182/18unresolved, independentadjudicationunderway. No merge-readinessclaim; no main/policy/deploychange."
+        },
+        {
+          "line": 150,
+          "text": "- 2026-10-02 [G2 latest-review reconciliation complete] Independent adjudication of10newcomments at70a3056f:9invalid,1hold; coordinator verified source, replied onall10, resolvedonly9. Authoritative GitHubpagination **182threads/9unresolved**; 158Cortexdiscussions resolvedoverall,15othersalreadyresolved. Retained4167720297 migration-owner environment exposure joins8priorenvironment/lifetimeholds; command-scopedPGPASSWORD resolution doesnotwaive that exposure. MissingpasswordAt claim contradicted by signedprincipalfield; URL/Origin/TTL/Unicode/internalflags claims carry boundedsource rationale. Evidence `/tmp/opencode/selfhost-70a3056f-cortex-adjudication.json`, resolutionrecords and finalthreadreadback. Review5394251443 stayschanges-requested, PR OPEN/BLOCKED; samehead/schema/all12checks. No codechanges, main/merge/deploy."
+        },
+        {
+          "line": 163,
+          "text": "- 2026-10-02 [G1 corrected-design/integration receipt readback] Userhandoffacknowledged;boundedcorrection-to-desktopmapdelegated. Independentlyrehashed5609bd0a487snapshot163sources+26checks/18PNGs,5610snapshot165sources+26navigation/18PNGs+16publichost/16PNGs. Laterd814599assemblyread-onlyverifierHTTPpasses1574inputs/1399outputs+fiveassets,stored26navigation/16publichost/43Security. Allpinsretained;laterpublichostproofdoesnotreassign5609. Quiverplug-zap/settings-2raw/normalized/installed/XML/proofhashespass;121SVG/124usable/125samples,2DPR1sheetsinspected. iOSbbf640webfreezeread-onlyverifierpasses278sources/954PNGs/3816storedviews+41reviewartifacts;22checksconfirmTHREEcorrections,nonnative. G3remote#447still7633f7e2;noSDKcompletioninferred. Originaldesktop7b388immutable/noautomaticnewlotintegration/mainuntouched."
+        },
+        {
+          "line": 164,
+          "text": "- 2026-10-02 [G1 corrected-reference crosswalk] Boundedsource/reportreview maps27ChatSystem+10WorkBot+23ReadersCode+3coordinator=63scopedclosures; nojourneyrerunorwholepageapproval. Fivecurrentdesktopcandidategaps anchoredandcoordinatorreadbackverified:M01commandmodeltoast,M21previewBoxclearing,M11EmptyBoardtaskreset,M02specialistidentity,M05Codetaskidentity. Approvedpinadoptionrequestedappend-only;existingliveadmission/filerecoveryunchanged. Receipt+crosswalk documentation beingretained;SDKremotehandoffandcompleteGoalremainopen."
+        },
+        {
+          "line": 167,
+          "text": "- 2026-10-02 [G2 exact-head Docker acceptance / six-criterion closeout] Branch `goal/self-host-providers`, open PR446, head `70a3056f7223a7eb9257d984848d4d33fee7ec12`. Fresh unmodified documented Docker Compose startup from clean HEAD archive passed: Engine29.8.2/Compose5.5.1, healthy local datastores/API,140migrations, no production AWS/Cortex Cloud credentials;516runtime inputs and506API/494migrator file comparisons. Live models.dev226providers, cached capability-filtered500-row page (not total catalogue). Generated operator TOML plus environment precedence routed default `acme/agent-1`; real reasoning SSE arrived while controlled provider held answer open; Bot `send_to_user`, S3-backed PNG upload, pre-inference415nonvision refusal, local logout and none-mode Host/Origin/positiveCLI checks passed. DB retained zero deletion requests/DSARs. Docker-served378717-byte OpenAPI equals canonical blob `d6d46014d1c436b96540529dca2a3005556ae920`, SHA256`93806bd0f31a0499b6bded99a25b319a90cd5afc011b70021ba921ed12107724`,422uniqueoperations. Cleanup verified9finalcontainers/7volumes/networks/daemon/generatedsecrets removed. Evidence `/tmp/opencode/selfhost-docker-70a3056f-padk3hm_/evidence.json` SHA256`97a24364c4c15f0174eb6642fc3a18c4331c9938c00614456c19aab3fbfec0a2`; independent audit `/tmp/opencode/selfhost-goal-completion-audit-current.md` verified31artifacthashes/2912sourcefiles and all six G2 criteria. Current-tree CI37033900976 remains2407pass/0fail/0skip; CodeQL37033901114 and12requiredchecks pass. User-approved Bun replacement retained. Rootful Docker hosted by Podman; controlled inference, optional-Cortex protocol fixtures, no hosted callback/livefarm/rootless/storage-restart claim. Delivery https://github.com/CortexLM/backend/pull/446#issuecomment-5957830534 . G3 retains SDK generation/Problem/runtime/package ownership; G1/G4 retain consumption. PR OPEN/BLOCKED:9credential-environment/host-runtime/token-lifetime discussions need maintainer disposition; Cortex5394251443 remains CHANGES_REQUESTED. No review bypass, merge, deployment or main update; remote main `c9e25ac01761a7ff03fe33b2c4b9f83e5962adf5` unchanged."
+        },
+        {
+          "line": 168,
+          "text": "- 2026-10-02 [G2 consumer ownership read-back 17:30UTC] G2's six backend criteria demonstrated at70a3056f; consumer completion is still pending. Independent source-only report `/tmp/opencode/selfhost-consumers-current-20261002.md`: G3#447 remains7633f7e2 with e8801c4d schema,33operation/23component deltas from canonical d6d46014, no updated generated/publicProblem/runtime/package receipt; existing replay UUID/since, reentrant401refresh, generated-stream/default parsing and instance.mode documentation actions remain G3-owned. G4#445 now39cfdc570583c11f9a3959e48678f95613327bd1 retains local-reauth/provider-none fixes; foundation#448 alone does not. G4 still always fetches `/v1/models` and discards instance.mode: select configured registry pages when `instance.mode === \"self_host\"`, irrespective of metadata-enrichment flag, preserve capabilities; SDK adoption remains pending. Bounded source handoff https://github.com/CortexLM/backend/pull/445#issuecomment-5957943210 . G1#36 cc758a69fe9349d17f6a4bf7accd978421035519 acknowledges canonical schema and keeps correct mode-based paginated discovery; old SDK/api-types tarballs remain probe-only, remote auth/model selection/inference unfinished. G3 must deliver immutable package pair/checks before G1/G4 consume it. No consumer files changed, no consumer browser/build pass inferred, no repeat product CI."
+        },
+        {
+          "line": 170,
+          "text": "- 2026-10-02 [complete desktop prototype package and iOS integration] Desktop prototype package3eeb62352a4a4fa05bed9e002c3614f4de42737abd7489946b2649d4eafc9b9d served35647:165sources/1574inputs/1399outputs,116routes/694states.342exact atomic-save compiler outputs reused;1057historical public documentary files restored without bundle rewrite. Source/build/nineHTTP resources and preview checks passed. Original63,Public5,Product8,newlot9findings all double scoped-confirmed; later atomic-save58authorchecks/4PNG under independentA/B. Corrected48-image gallery41363 remains bound to predecessord814599; log/script qualifications preserved. iOS20findings:3Travail findings double-confirmed, System/History/kit confirmations running.38desktop-derived missing/partial flows implemented by fiveowners;102routes boot in isolated production pin after coordinator fixed Sidebar\u2192Projects eager-registry cycle. User drawer hierarchy retained, newnavigation viaWork/Bot/Settings. Product collector duplicate-run incident40takes/20remainingPNG explicitly retained; no extraPNG authorized. Fullpage/native acceptance still separate, productbranches untouched."
+        },
+        {
+          "line": 174,
+          "text": "- 2026-10-02 [G1 remote integration remains active] PM readback acknowledged as15:05-only; late G2 correction supplies five typed auth/upload bodies at70a3056f/blobd6d46014. Independent currentG3readback18:23:48\u201318:24:44UTC:PR447still7633f7e2, no newversionedpair announced in scoped handoff/comments. G1 vendors rehashed unchangedSDK0.2.0/api-types0.1.0; probe-only. G3 owner delivery remains exactsource/schema/packagepair+hashes+publicProblem/runtime401/AgentEventUUIDsince/replayreceipts. G1 active sequence: consume verified pair; main-onlyorigin/accountsession/continuations;remote model/upload/turn/transcript routing; exactCortexremote authenticatedimage/reasoningproof;changedrevisionpackage/nativecaptures. Existingcc758a6native18captures alreadycommitted supplements5ced8aa426baseline; localproviderrealinference remainsdistinctfromremoteCortexproof. No tests/builds/native/CI repeated; productsourceuntouched."
+        },
+        {
+          "line": 181,
+          "text": "- 2026-10-02 [coordinator delivery follow-up] Documentary product readback verified G1 ZIP/ASAR and 18 native pairs, G2's 31 Docker evidence hashes and G4's 156 source-bound PNGs/1,444 build outputs; `/root/cortex-goals/PRODUCT-DELIVERY-READBACK-2026-10-02.md` preserves the exact revision limits. G3 canonical regeneration/runtime/versioned SDK pair remains the consumer prerequisite; current request delivered to G3/G1/G4. Desktop Studio candidate `da5fd54bb12a` on36665 supplies synchronous draft cleanup and malformed-draft refusal, 68 author GUI checks/18 validator cases/two PNGs; complete 1,578-input/1,399-output pin verified without another build, independent A/B assigned. iOS System/History/Profile's ten findings now double scoped-confirmed; kit B09\u2013B13/A07 likewise. B08 switch lower hit remains partial and has one CSS correction owner. All five new iOS lots delivered: Platform8/94, Productivity9/72, Security7/69, Bot6/51, Workspace/recipes8/89; all38routes now assigned independent A/B review. Product72 is cumulative66unchanged+6correctedMCP, not a latest full replay. Historical Product40takes/20files and Workspace72retained events/18files remain explicit budget/provenance incidents. Integrated iOS pin waits for the switch correction and separate attachment-retention correction. No whole-page/native approval or main merge follows from these scoped results."
+        },
+        {
+          "line": 192,
+          "text": "- 2026-10-02 [G1 final scoped verification retained, 21:45 UTC] 0257395d1a15d12a08de307ca75b132096dc973c pushed;cleanworktree,PR36OPENdraft/currentheadverified,main9bf3c002preserved. CurrentCIindependentreviewPASS:52perOS,426renders,173units+1optionalskip,321artifactmembers,12providercaptures+4minimum+smokerendererfullsize. Nativeclaimsreviewverifiedfive960images/bothASARs/90memberseach/30retainedhashes;onecleanupJSONattributioncorrected(operatorforward/app/leaseobservationsseparate). 21CIhashchecks+49links/JSON/diffpass. App/test/buildinputsidenticalgreen9d704ee;documentation-onlyfinaldeltanoduplicatechecks. Allagentsfinished/Macleasereleased. Fullobjectiveincomplete:awaitcanonicalversionedSDKpair,explicitG1designsource/stateauthorizationandrealCortexremoteproof;broaderlive/minimumwindow/referenceacceptance remainsopen."
+        },
+        {
+          "line": 195,
+          "text": "- 2026-10-02 [design targeted correction receipts] Combined desktop prototype package 3e99a0452ff7 is served at45839: 165sources/1578inputs/1399outputs,30 exact attachment compiler outputs plus1369 restored unchanged documentary assets. Hashes/tenHTTP bindings and bounded gallery checks passed without rebuild/captures. Studio R01 and draft-onlyR02 are double scoped-confirmed; attachment b1b9130/cd4d0bc3 is independently B-confirmed66assertions/two visiblePNG, A recovery active. Desktop duplicate package retained as incident, not second acceptance. iOS WorkspaceB now10groups/100unique assertions, originalfailedreceipts retained. Platform/ProductivityA17routes/eightPNG delivered; B post-seal report revision qualified by additive exactV1/V2 binding. Recipe frozen-prompt4000/4001 and SecurityCSV12columns author corrections verified, independentA/B assigned. Switch candidate38663 remains278/287negative with nativeSearchClear residual; its report-hash mismatch is under separate documentary disposition. Sole kit owner handles reception/clear/shot/thumbnail; MCP focus correction continues. Existing-route source disposition requires Voice permission, fiveviewer lifecycles and namedCodetaskidentity: three disjoint owners, no newroutes. Prior102routes/848declared/852effective inventory is now pre-parity baseline; integrated pin/build not run. G4 supplementalrequests81\u201383 and productSDK/remote/native gates remain separate. No main/productbranch modification or wholepage/native acceptance."
+        },
+        {
+          "line": 208,
+          "text": "- 2026-10-03 [G3 canonical SDK pair delivered, 00:58 UTC] Pushed #447 `f96950bbd4e7bde51fe5577dca76b42c3d5cb1d0` normally; joined published/local histories and consumed G2 `70a3056f` without rewrites. Canonical schema blob `d6d46014d1c436b96540529dca2a3005556ae920`, SHA256 `93806bd0f31a0499b6bded99a25b319a90cd5afc011b70021ba921ed12107724`. Immutable pair `/root/cortex-goals/releases/sdk-0.3.0-f96950bbd4e7/`: SDK0.3.0 `f38f87810def9423938ad24dcd140d34dec844cabc255de0dc326b0dfd9f81c7`, api-types0.2.0 `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877`; exact optional peer, readonly tarballs, overwrite refusal. Exact-clean-head receipt verifies generation16files/build/types, runtime23/23, api-types40/40, realAPI integration48/48,421/421operations,51/51groups,4examples,embedded/OpenAPI15/15,isolatednpm/Bun23/23each. Local protocol fixtures for identity/inference/models.dev; no hostedinference/farm/nativeacceptance inferred. Independent last-push auth/transport/replay review APPROVE scoped,7blob+SHA256checks verified. Five auth/upload bodies and publicProblem.mfa,UUIDsince,originalPOST/body/keyreplay,accountboundabort/cookies,Blob/rawSSE/JSON/204 contracts delivered; genericlegacybody remainsunknown. NewCI37084064542/CodeQL37084064515 pending; actualCodeRabbit requested5963848166,previousskip notapproval. G1notified desktop36comment5963868248,G4backend445comment5963868239,SDKreceipt447comment5963868254; consumeradoption remainsowner-owned and newpairdesktopproof pending. Oldpair preserved; no main/consumerbranch/merge/deploy change."
+        },
+        {
+          "line": 239,
+          "text": "- 2026-10-03 [G3 FINAL SDK delivery] SDK **0.3.5** / api-types **0.2.0**, source `5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31`; PR #447 open, stacked on G2 #446 `70a3056f7223a7eb9257d984848d4d33fee7ec12`. Immutable pair `/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/`: SDK SHA-256 `5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8`; api-types `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877` (unchanged0.2.0 bytes). Canonical schema source `af36085cc96b182950ca4bf15161dcf2c3951da1`, blob `c8f6a7f0257858306a885c71202c13420f40725f`, SHA-256 `b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b`; all422 IDs/421publicmethods retained. Ten exact-source release checks PASS:40api-types,71SDKchecks/34runtime,48integration,421/421operations,171dedicated,51/51groups,4examples,19bootstrap/embedded/OpenAPI; isolated npm/Bun publictypes+34runtime each on Node22 and minimum20.9. Native response-clone shutdown defect corrected by single-read auth; failed after-hook removed; prior0.3.4 attempts retained failed. G1/G4 image-tail/rawscreenshot/generatedturnbody defects fixed; headers, SSEreset, startup/testcleanup, atomicnoclobberpacker verified. CI37094557684 attempt1 all11substantive PASS, server2414/0, cleanmigration verified; CodeQL37094557772 all3 PASS. CodeRabbit exactsource run `9fbee79b-5846-421a-8b55-28966beaa577` successful, nonewactionable,86reviewthreads resolved after fixes/independent adjudication. Independent last-push review verified10logs/16generated/35sources/102compiledfiles, cleanlocal=origin; receipt SHA256 `6bb1af0ae2412b00e7415ad76b259951ee0460449cbe46b96e8b00afffd93aba`. Handoffs G3 https://github.com/CortexLM/backend/pull/447#issuecomment-5965356215, G4 https://github.com/CortexLM/backend/pull/445#issuecomment-5965356171, G1 https://github.com/CortexLM/desktop/pull/36#issuecomment-5965356180, G2 https://github.com/CortexLM/backend/pull/446#issuecomment-5965356181. G1/G4 own adoption+newpairbackendcall; historicaldesktop0.2.0 proof not reused. CanonicallegacyDTO/stableaccountID/exhaustiveChathistory remain documentedG2work; no portableOff/Chatcancel/UIacceptance inferred. Earlierartifacts/histories retained; no main/merge/deploy/consumerbranchwrite."
+        },
+        {
+          "line": 283,
+          "text": "- 2026-10-03 09:04 UTC [G1 installed 760 correction] Exact CI artifact11269856853/ASARbbd6dbdd installed via GUI, prior f5 backup retained. Native 08:57:30\u201308:59:56 passes six 960x640 captures/four groups in light+dark: two real Chat turns+reasoning, exact reload/HomeBack history, deletion6-to0/no observed revival, Alpha/Beta actual roster navigation and correct existing Beta write with Alpha unchanged. Ten controlled requests (eight UI/two setup), zero page/console/dialog/rendererHTTP errors. Coordinator inspected all six; independent native audit active. Helpers56520/56521 stopped; five ports/SSH forwarding closed; ordinary dark760 restored; leaseRELEASED. Package independent audit verifies90members/514inputs/473renderer/104catalog+skill,32workspace+16SDK+16types. CI font/image audit ongoing.08:55 owner readback adds G4 consumer request only; no new G2/G3/design authorization."
+        },
+        {
+          "line": 293,
+          "text": "- 2026-10-03 09:36 UTC [G1 terminal correction applied] Four new actualElectronnegativecases retained (Chat2/4copyasserts; Code2/4badgeasserts), all4 nowPASS12.298s afterminimal2Chatmappinglines+Codepersistederrorboolean/badge. Directliteraltranslationcallsfinalformpreservesaudit. Full107suite+Linuxpack/smokeinprogress; lint/types245units+1optional/i18n65/2272/3405/0alreadyPASS. CodefixtureHTTP400provider_erroraccuratelyseparatefrombrowserdiscovery401. ExistingfiveCodecasesprefixand4newtestsunchanged. Sourceintegrationreviewandnativefutureharnesspending; currentinstalled760 remainspreviousacceptedversion."
+        },
+        {
+          "line": 307,
+          "text": "- 2026-10-03 10:07 UTC [design coordinator, returned evidence] SDK0.3.5/api-types0.2.0 documentary packet and coordinator verifier PASS:10retained logs,2archives,16generated members,6source identities;pending-image tail/raw screenshot/five generated bodies corrected. G4workspace0.1.0/full-transcript/discard/origin limits remain; report`/tmp/opencode/sdk-035-final-readback-20261003/REPORT.md`. Bot visual confirmation delivered5images,total153/156:desktop4/iOS1;correct-owner iOS geometry stopped on5pxmissing guide coverage,0/4fulltraversals. Integrity PASS,execution INCOMPLETE;A/Boffline reviews assigned,three unused slots. Paper MCP guide read at10:05:09UTC failedHTTP530/Cloudflare1033 (unreachable tunnel);no screenshot/mutation in that call. Components writer retains sole ownership;new live work awaits restored connection. Latest product documentary readback is still assigned to the existing reviewer."
+        },
+        {
+          "line": 315,
+          "text": "- 2026-10-03 10:39 UTC [G1 design steering applied] User names ACTIVE-DIRECTION.md as current CortexUI/BaseUI direction; retiredboardvalidation cannotblockexistingownerscope. Exactstate/importboundaries remain. Request90motifreuse verified; designowner exclusivelycompletesfiveChat/Settingsstates (stored/one-offmodel,limitedhistory,imagehistoryrefusal,continuationownership). No G1duplicateprototypeorproductfeatureassignment. Code supplement scoped10/10 receipt distinctfromprototype/productintegration. G1remainsbranchgoal/desktop-rewrite PR36,sourceboundnative295evidence. ExistingenabledProviderSettingsreplacementdraftloss reproactive; no designrestart."
+        },
+        {
+          "line": 317,
+          "text": "- 2026-10-03 10:44 UTC [G1 documentary CI green / next narrow correction] Documentary10a57beCI37116570186 passes3jobs;514packageinputsunchanged. Source-backedexistingProviderscandidate: EnablePATCHclearsunsavedkeydraft; actualElectronnegativeordinarytoggle2themes and held-real-PUT/DELETE newer-draft2themes assigneddistincttestfiles. Source/dist295 frozenwhilebaselinesrun. Minimal3linerepairreviewedactionselectiveclear+capturedrawdraftguard; noUIlayout/copy/credentialboundarychange. Future4captureordinarynativeharnesspreparationreusesacceptedlauncher. DesignownerfiveChatSettingsstatesassignmentacknowledged; noG1duplicateprototypework."
+        },
+        {
+          "line": 323,
+          "text": "- 2026-10-03 10:57 UTC [G1 provider correction targeted green] Actual3lineSettingsfixb859cf9785ad preservesEnabledraft,clearscredentialactions onlyunchangedrawcapturedkey. FourunchangedElectroncasesnowpass18.487s:8formerlyfailedasserts plusrealoversize4097PUT400refusalretained andordinaryRemove clearing. Source/testpins bf57e5toggle/bcafa61pending stable. Lint/types245units1optional/i18n65/2272/3405/0targetdetector0pass. Full111Electron+Linuxpacksmokerunning; separatebaseline/currentreview/nativeharnessreviewactive. Prior10docCIgreen; no newapplicationcommituntilcompletedlocalproof. DesignfiveownerstatesnotG1assignment."
+        },
+        {
+          "line": 327,
+          "text": "- 2026-10-03 11:07 UTC [G1 provider correction pushed] Application37c22c2fcff92fb76b10ffc97ec0643ac325d62f pushedgoal/desktop-rewrite afterfull111localElectron426renders245units1optional lint/types/i18nLinuxpacksmokePASS. Frozen90members514inputs473renderer5538c529 ASARd1e6987a;only3Settingslinesproductiondelta. Fournegativecases8assertionsunchanged nowpass; sourceapprovedb859cf; baselinesfullyretainedwithsetupnegativesseparate. CI37118586276watchactive, finalartifactauditpending; native4capturehelper0125e457independentlyapprovedreusesunchanged295launcher. Main9bf3preservedPR36draft. ActiveCortexUI/BaseUIdirectionanddesignownerfive-stateassignmentdocumented no duplicateUIwork."
+        },
+        {
+          "line": 340,
+          "text": "- 2026-10-03 [G4 tabs closed and SDK runtime evidence] #445 now8e7e9184: intrinsic outputtab widths, containedhorizontal scrolling andnearestfocus reveal; disabledDesktop retained. Independent12caseJAEN geometry/screenshots reviewclosedP2. Clean02cba721 archive-mode receipt build succeeded; isolated2845Vitest715Node typecheck passed (heldPDFexports excluded), receipt binds81types+59SDKinstalledfiles. SDK12production-modeFRbrowsercases local401/cancel/fail/success+none pass3width2themes,36screenshots/CDPprovesactualgeneratedmethods/guardedlegacytransport execution,22JS/CSSassetsmatch; dirtylocalproduction/mockedbackend noSSEclaim. Freshclean8e7 receiptbuild+tests started. SevenUnicodePDFfilesstillheld. SDKintegration holdresolvedfor2GETscope; onDiscardedFrame/fulltranscript separate. No main/merge/deploy."
+        },
+        {
+          "line": 341,
+          "text": ""
+        },
+        {
+          "line": 342,
+          "text": "- 2026-10-03 [Design canonical integration complete] Eight exact Code/Bot files now integrated across CortexUI/mobile, four supplementroutes/31variants perplatform. Bot finaltwo builds pass,four canonicalChromium/WebKit theme cases passPOST201/PATCH503/PATCH200same-ID recovery,actualbottom and retaineddraft;zero newcaptures/networkwrites. Code12canonicalconfigurations passed earlier,fourintegrationPNG; combinedCode smoke passesafterBot. Currentregistry desktop120routes/710declared/725effective,mobile106/902/906. Previews5199/5299; historical45839/41689unchanged. Source/evidence dispositions:`review/code-supplement-integration.md`,`review/bot-supplement-integration.md`. Code80/134,Bot156/156;fullmatrix/native/backendnotaccepted. Remainingdesignrequests90/92/93continueinCortexUI/BaseUIunderdesignownership."
+        },
+        {
+          "line": 343,
+          "text": ""
+        },
+        {
+          "line": 344,
+          "text": "- 2026-10-03 11:51 UTC [G1 provider native and CI audited scope] Confirm37native94.200spasses4captures8actualUIwrites/actions both960Englishlightdark, no inference/renderererrors,7drivercleanuptrue; helpers60974/75stoppedfiveports/forwardclosedordinarydark37restoredleaseRELEASED. Independentnativeauditpending. CIaudit111/OS426renders296images26contacts28fullsize,16localeimagesexact29512glyphchecksOS;coordinatorverifies296SHA/RGBA. Collectorreviewfindsc847ancestoronlyoverbroaddrops.subselfclip;4shortknownlabelsvisible butgeneralgeometrynotaccepted. Narrowinput-onlypreparedseparatelyunexecuted(actualreviewpending), c847runtimepinsunchanged no prooftransfer. Initialfailed0125/diagnosis/preconditionnegativekept. Source37unchanged no new product/UI assignment."
+        },
+        {
+          "line": 345,
+          "text": ""
+        },
+        {
+          "line": 346,
+          "text": "- 2026-10-03 11:53 UTC [G1 collector scope finalized] Independentreviewapprovespreparedinput-only205f719896f1aa1574249e849d7da06b66d39cd619046f3e0ba68b05513339ac (only2line63guards). Sixrecordedgeometryvectorspass andclippedhintcounterexamplefails. NoextraMacruncampaignrequired: executedc8474captures/94.2s remainfixed-Englishruntimeproofwithancestorclipqualification;205sourceisUNEXECUTEDno prooftransfer. Bothhintsvisiblereviewbelongstonativeauditorpending. Noappdelta;nativecleanupcompleteleasefree;CI111OS/evidence296imagesaccepted. Finalnativeauditthen documentarycommit."
+        },
+        {
+          "line": 347,
+          "text": "- 2026-10-03 [G4 exact 8e7 validation] Clean8e7e918475dc27a05ba1956f2c797b91b1f0fdf6 npm-ci/receipt build/typecheck isolated2845Vitest715Node pass;7295x8catalogs,oxlint0errors28knownwarnings,37hooktests and78case/70patternharness pass. Receipt build2cof20CaVU6YPp7ArsEkx binds1444artifacts andvendored81types59SDKfiles. ExactheadCI37120443524/CodeQL37120443519/Catalogs37120443520 pass; CodeRabbitauto checkexplicitlyskipped. Fresh156capture running3031; translatedUIcleanconfirmation externalworkeractive. Dirty3030 SDKbrowser12FRcases passes withCDPgeneratedexecution36screenshots22matchedassets, no backend/SSEacceptance. CanonicalCode/Bot prototypes available butproductImportAuthorizedfalse persists; noPaperrequirement used. SevenPDFfilesremainheld. No main/merge/deploy."
+        },
+        {
+          "line": 348,
+          "text": "- 2026-10-03 [G4 completed capture and fidelity correction] 156 clean8e7 desktop captures complete, zero capture failures/page errors, source/SDK/served bytes matched,66 comparison pairs58mapped8surrogate90unmapped. Capture report d3808a105bcec2de1ed79f08a5e9c37fc1f7b3e55a633adf3d42c4902e45c1a6. User supplied Home/light and Code-session/dark comparison images: material navigation/composer/worklog-density differences remain; byte provenance is not visual fidelity. PR445 body updated12:06UTC with current technical/SDK/capture evidence,18template boxes retained, explicit fidelity/BaseUI/product-import limits; no completion claim. Named clarification appended DESIGN-REQUESTS.md, design implementation untouched. Independent current-image review, clean translated confirmation and mounted catalog audit active. AST695source audit found no additional definite visible-prose defect beyond held exports/documented exceptions. Comment-only CI workspace/vendor clarification verified, uncommitted. SevenPDFfiles remain held. Manual latestdiffCodeRabbit request5968906191, skipped status not accepted. No main/merge/deploy."
+        },
+        {
+          "line": 349,
+          "text": "- 2026-10-03 [G4 mounted-copy inventory and two-image disposition] Separate caller-resolved catalog audit confirms40existing mounted keys:31Englishall7nonEN+9English6(exceptFR),27sourcepins; source-literal AST audit did not check those translations. Parity7,295paths andrecursive7,298stringvalues differ solelywhatsNew.entries array(onepath/fourstrings); originalparityoutputaccurate. Translation scoped271values splitfr/es/pt,ja/zh/ko,de+regression; EN/keys/ICU/consent preserved, uncommitted, noPDFholdchange. Two-image independentreadback confirmsHomecentralgeometryfrozenbutnavigation/controlcompositionunaccepted; Codecompleted vsrunningreference isstate substitute andtallargumentpanels genuine densityissue. Supplementseparatearg/resultdisclosure remainsproductImportAuthorizedfalse; Tasklinehistoricalpresentationnotbackendnecessity. PR445 updated12:17UTCwiththese explicitlimits; latest8e technical/capture evidenceunchanged. No designimplementation/main/merge/deploy."
+        },
+        {
+          "line": 350,
+          "text": "- 2026-10-03 [G4 review and clean translated proof] Clean8e confirmation completes72primaryjourneys54fullPASS18connectorscopyPASSthennewfocusFAIL;6diagnostics,396retainedscreenshots includesfailedharnessnot396passes. Original4findingsclosedscoped,SDKlocalnone12/12cleanmethod/CDP/receiptPASS. Newdrawerfocusnullrefmountgap18/18retained,assignedminimalfix. Historical4filescollections preserved. CurrentCodeRabbitactualreview5400646995 at12:04:44 names8e7,42files,onepolicycomment4173065733; rulesmodeclarificationapplieduncommitted. OlderHTTPoauth/themeoverwrite/LSPfalseerror/unreadaccessibilityconfirmed andminimalfixesinprogress. HTTP37PASSafter3negative; LSP80PASSafter3same-regressionnegative; Theme18PASSafter16negative; unread8localesPASS. 271exacttranslations40keys7locales verifiedEnglishunchanged,Nodei18n21PASS; semanticindependentreviewsactive. PR445updated12:30correctsreview/cleanproof status nofullacceptance. LibraryguestHintinheritedEnglishcapabilitymismatchidentifiedseparatefromtranslation; notsilentlyrewritten. No main/merge/deploy."
+        },
+        {
+          "line": 351,
+          "text": "- 2026-10-03 [G4 correction candidate indexed] Minimal OAuthHTTPS/LSPerrorcount/themeappearanceonly/unreadtext/drawermountedfocus fixes prepared; drawer final6FAILold/6PASSnew33sharedPASS,92focusedcombinedPASS. 271translations reviewed independently; LibraryguestHintEnglishsource correctedsharing-onlyall8, gatesuntouched. Home suggestion retainsunrelateddraftexplicitlydocumented+24componentPASS. Integrateddirtyrun716Node2894Vitest294files includes7heldexports/excludeslastdrawerfile; finaltypecheckPASSafterretainedTS2769testfix,lint0errors28warnings,37hooktests,workflowregressions/harnessPASS. 33explicitdeliveryfilesindexedhashmatched; 7PDFfilesunstagedunchanged, backend/workspaceuntouched. Independentcandidate review active; indexedhook running; browserconfirmationpreparednotrun. Visualreview156PNG/66pairs19sheets20fullcaptures16individualpairs verifiedreceipt1444artifacts2818JS/CSSresponses;146identicalvs23610changed,3preexistingP2Projectsduplicates/Usageperiodscopes/Connectorsdensity; designrequestappendednoimplementationedit. No main/merge/deploy."
+        },
+        {
+          "line": 352,
+          "text": "- 2026-10-03 [G4 independent candidate negative corrected] Independent149Vitest22Node review identifiedoneP2newHomeguard readsdetachedtextarea; simulatedsetDraftempty stillpassed. Coordinatorassertionnowre-readsactualmountedfield,24ChatViewPASS; identicalmemoryonlymutationnowFAILexpectedempty,logsretained. Productbehaviorunchangedandexistingdraftthroughhandoff preserved. Followupreviewrequested; finalcandidate33indexhashes matchindexedhooktypecheck/catalogPASS,37hook/workflowregressionsunchanged. No cleancommit/build/browserclaim yet; 7PDFfilesremainunstaged. No main/merge/deploy."
+        },
+        {
+          "line": 353,
+          "text": "- 2026-10-03 [G4 8237436c delivered and clean negative] Independentcandidate32filePASSafterHomeassertioncorrection,33committedbytesmatchindexreview (workflowcommentsseparate). 8237436c45c0c61388346486d9678f230d0e0a40 pushedgoal/web-redesign only,33files;actualprecommitPASS,7PDFfilesunstagedhashunchanged. Cleanfreshnpmci/receiptbuildPASS -i3gRUPTWgGebSKm2tS1k1444artifactsarchivepair,postbuildtypecheckPASS. Cleannpmtest716NodePASS2886VitestPASS1FAIL295files: restoredmembertabtitleexpectCortex gotSignin retained/assignedreadonlydiagnosis,notgreen. Productionmode3032 unknownstorage6/6PASS retainedunknownnooverwrites; full156captureinprogresssourcebound. LatestCodeRabbitrequest5969434820 and6findingrepliespublishednoresolutionmutation; PR445updated823headlimitations. Drawerpostfix18caseharnesspreparationactive. No main/merge/deploy."
+        },
+        {
+          "line": 354,
+          "text": "- 2026-10-03 [G4 823 exact CI and browser harness negative] Exacthead823CI37124757043/CodeQL37124757052/Catalogs37124757576 attempt1completedSUCCESS,doesnoterasecleantitlefailure. Unknownstorage6browsercases293framesalllight17.93mincontrast preserveunknown; helper sourcehashbindingnotobservedJS/CSS. Drawerfirst18caseharnessFAILED24PNGs dueprematureopacityvisibilitysamplebeforeenterpaint:18initialfocusinsidefirst/mainhidden/bodylocked,6Escapejourneyscompletebeforeidenticalreopencheck. Allservedbindingsmatched,noAPIwrites/external/pageerrors; negativescript/resultsretained. Singleboundedharnessv2confirmationassigned separatingimmediatefocusandactualsettledvisibility; no productpatch inferred. BrowserpanelcannotreachLinuxlocalhost3032 (chromeerror), terminalChromiumsourceexactevidence remainspath. No main/merge/deploy."
+        },
+        {
+          "line": 355,
+          "text": "- 2026-10-03 [G4 823 captures and title-test diagnosis] Clean823 full156capturePASS13:03:56\u201313:09:01reportb34d8b22ffbb1d0ea1ad7de696796d07423a3c0048f86b1abdd77d6cf05709f6,66pair58mapped8surrogate90unmapped comparefd5138d3299efbaf9c3cd3e92247a9fd26eafe52a78d8f7d15c1502fa7502cb5. 141PNGsidenticalvs8e15delta namesinventory(nofidelityclaim). Titlefailureindependentdiagnosis confirms passive-effecttestrace H1commitbeforetitle,3controlledordering/staleaccountprobesPASS,7proposedtitlePASS/assignmentremovedmutationFAIL. CoordinatorappliedminimaltestwaitFor/commentonly24ChatViewPASS,reviewpendingno runtimechange;cleanfailedrunretained. Receiptverified30a5cbfce720971cd64857f28ecbb15ddcf97d1df3bc6bd2e8efb747064d236e archive81types59SDK. Drawerharnessv2active boundedoneconfirmation. No main/merge/deploy."
+        },
+        {
+          "line": 356,
+          "text": "- 2026-10-03 [G4 095775fd test-only delivered] Independentactualassertion24PASS/titleassignmentremovedmutationFAIL closesracefix; 095775fd55bbb6f4b2c16f8a5cf37fb8c0e3f9fc committed/pushedgoalweb1testfile+2/-3. Actualhooktypecheck/catalogPASS; cleanfreshnpmci095/nexttypegen/typecheck716Node2887Vitest295filesPASS. Cleansourcebeforeafter,sevenheldexportsunstagedhashunchanged. Runtimeidenticalto823 butbuild/capture/browser evidenceNOTrelabeled. PR445updated13:19newhead/scopedresults andhistoricalfailedtitle/harnessproofs. LatestCatalogs37125632121SUCCESS;CI37125632114/CodeQL37125632131inprogress, latestsubstantiveReviewpending. Drawer18casev2confirmationactive no extra productsourcechanges. No main/merge/deploy."
+        },
+        {
+          "line": 357,
+          "text": "- 2026-10-03 [G4 drawerV2 reported and exact095CI] SingleboundedcorrectiveV2drawer18/18 reported36open/return576Tab0escape/overflow54PNG342matchedJS/CSS19artifacts18markerHTML, clean823receiptbeforeafter; RAFvisible17.7\u201340.1ms9identifiedRSCprefetchabortdiagnostics. Seal16d13f78e04238811328ecc8f7f9214eac0193faf55e0be37282242bdc43ed84allfiledigestscoordinatorverified, independentproofreviewassigned. V1still18FAILED24PNG13unclassifiedabort; sixpartialEscape3FR3DEcorrectspriorshorthand. Exact095CI37125632114/CodeQL37125632131/Catalogs37125632121allattempt1completedSUCCESS, clean716Node2887Vitest295filesretained. LatestsubstantiveCodeRabbitbodyremains8e7(5400646995), sixolderthreadsresolvedbyexistingreviewer(notcoordinator),Projectpinreply4173315555alreadycommittedselectorsawaitsack; latestrequest5969559308pending. No new product source/main/merge/deploy."
+        },
+        {
+          "line": 358,
+          "text": "- 2026-10-03 [G4 final scoped-proof documentation] CoordinatorrehashedV2sealallfiles and internallychecked18PASS/36open576Tab36returnsnoerrors/sourcebinding; independentproofreviewstillactiveincludes6unknown404sourcecheck(noobservedJS/CSS). AGENTS/ruleRSPstaleproduction/drawerpendingclaims correctedlocallytoaccurate823prooflimits,uncommitteddocs-only; sourceproof/negativearchive unchanged. PR445updated13:28latest095green/tests andclearevidenceledger; CodeRabbitstatusReviewinprogressno latestreviewapproval. No new runtime source/main/merge/deploy."
+        },
+        {
+          "line": 359,
+          "text": "- 2026-10-03 [G4 independent browser closure and docs delivered] IndependentdrawerV2PASS scoped18case36open/return576Tab342actualJS/CSS19artifacts sealmatched4PNGs inspected;6unknown404PASS293sample17.935contraststoragepreserved source-onlybinding. V1numericopacitynotrecorded wordingcorrectedto beforeentrancepaint;18FAILED24PNG13abort unchanged. Docs-only2961820ecbd8f1c0bf507277cdda46351faaeb36 pushedgoalweb2files,committedhashesmatchreview+exactrequestedwording,actualhookPASS; runtime/tests/depsunchanged. PR445updated13:41headandproofclosure source823receipt095cleantests retained. LatestCatalogs37126997454PASS;CI37126997511/CodeQL37126997432inprogress; substantivereviewstill8e5400646995pendinglatest. Code/BotproductImportAuthorizedfalse rechecked;fidelityP2/BaseUI/PDFholdsunchanged. Sevenexportfilesunstagedhashpreserved. No main/merge/deploy."
+        },
+        {
+          "line": 360,
+          "text": "- 2026-10-03 [G4 continuation17 concrete integration] Authoritative2961820ePR445openbasegoalwebfoundation,exactCI37126997511/CodeQL37126997432/Catalogs37126997454allSUCCESS. Existingdesignsources/requestsreadbackunchanged,CodeBotproductimportfalse notbypassed. BaseUI1.8.0pinnednpmdependencyinstalledforactualsharedkitSwitch/Tooltip/Tabs adoptionmatchingexistingcanonicalui.tsx; tasksdisjoint. Switch16tests8originalunchanged+111consumerPASS delivered; Tooltipongoing. TabsBaseUImigration9/10unitPASSdisabledskippingregressionidentified,assignedminimalpreservationorretentionno weakenedtest. ProjectduplicateInstructions/MemoryP2responsiveexistingcompositionverification/fix assignedwithoutnewlayout. G2PDF7fileshelduntouched; no backend/workspace/designimplementationwrites. No main/merge/deploy."
+        },
+        {
+          "line": 361,
+          "text": "- 2026-10-03 [G4 BaseUI and Project candidate movement] SwitchactualBaseRoot/Thumb16/16tests+111consumersPASS; Tooltip140->68linesreferencePortal/Positioner12/12+74consumersPASS, refs/descriptions/disabled/hoverdelay preserved. Projectconfirmedfrozen/activecomposition deletes19duplicatecentralInstructions/Memorylineskeepingunhiddenstacked/300pxrail,4newbehaviorPASS. Fullintegrateddirty716Node2918VitestPASS2FAILretained(Tabsdisabledskipownerfixactive;existingProjectselectorremovedcentralManageinsettings). RetainedProjectregressionselectorupdatesuniqueManageaction keepSettingscall/no navigation,5testsPASS. Existingdependenciesversions/integritiesunchangedBaseUI8newtransitivesonly, typegen/typechecklint0errors28warningscatalogPASS. IndependentSwitchProject/Tooltipreviewandtwoexternalbrowserharnesspreparationsactive; candidateuncommitted. Detectoroneovershootwarningreference-prescribed (notnewmotion). PDF7filesbytesunchanged. No main/merge/deploy."
+        },
+        {
+          "line": 362,
+          "text": "- 2026-10-03 [G4 BaseUI integrated regression recovery] Tabs12/12PASSnativebutton/refusal/skipdisabled keyboard publicadapter; existingownerhookavoidsBaseUI auto-replacement, no privateAPI/vendorpatch. Implementation229->208lines; staticsegmentthumbmotiongap retainedexplicitly. Finalintegrateddirty716Node2922Vitest296filesPASS;strictTSafterunsupportedtestqueryexactpropertyremovalPASS; earlier2failsretainedlogs. Projectretainedregression5/5PASS uniqueManageSettings/no routercall. 14explicitcandidatefilesstaged;indexedhookrunning;independentreviews/harnessesactive. SevenPDFheldunstagedbytespreserved;no clean/build/browserclaimyet. No main/merge/deploy."
+        },
+        {
+          "line": 363,
+          "text": "- 2026-10-03 [G4 independent Tooltip P2] Consumerinventory15sites6importersboundedPASS isauthorreviewnotindependent. Independentadapterprobeconfirmednewstalehoverrace: hover,disable,leave,reenablebefore400ms openswithoutintent; baselineclosed. Original12test+74consumerpassesdidnotcoverrapidreenable. Candidatecommitheld; ownerfixusingpublicactionsRef.closecancelpending assigned,connectedDOMregressionrequired. EarlierindexedhookPASSonlycandidatebeforecorrection; no closure/build/browserclaimed. NativeSwitchProject andTabsindependentreviewsactive. No main/merge/deploy."
+        },
+        {
+          "line": 364,
+          "text": "- 2026-10-03 [G4 Tooltip correction delivered] PublicactionsRef.closebeforepaint cancelsBaseUIpendinghover;source4295f735test57fa54dc 13/13PASSnewregressionfailspriorcandidate. Fullpostfixdirty716Node2923Vitest296filesPASS; preservesalltestsandheld7changes; notcleancommitevidence. Independentoriginalprobeconfirmationactive;14fileindexrefreshedworktreeequal,docsrecordsamepublicadapter. CodeRabbitlatestreply13:50saysReviewfinished butlatestsubstantivebodystill8e5400646995;emptyrecordsarenotlatestheadapproval. No main/merge/deploy."
+        },
+        {
+          "line": 365,
+          "text": "- 2026-10-03 [G4 second independent adapter finding] SwitchProjectcandidateboundedPASS21tests3counterproofs,8newpackagescountcorrected1direct7transitives;existingconsumersemanticsbounded. IndependentTabsreview9checksPASS1P2:canceledSpaceBaseUIsyntheticclickignorescapturepreventDefault. Commitheld;assignedpublicSpacehandlersuppressBaseUI synthesisleaveactivationtonativebutton soancestorcapture/bubblecancellationworks. Tooltiporiginalprobepostfixconfirmationongoing. Full2923dirtyrunpredatesthisTabscorrection;no clean/build/browserclaim. No main/merge/deploy."
+        },
+        {
+          "line": 366,
+          "text": "- 2026-10-03 [G4 Tooltip independently closed / active reference drift] OriginalTooltipprobe4/4failspriorcandidate4/4passes4295f735fixedsource, refs/freshhover/focuspass;negativepacketunchanged. TabsnativeSpacecorrectionactive; preserveSwitchper-rendercontrolled/uncontrolledsemanticswithexistingstatehookassigned (BaseUIlatchedmodecompatibilitylimitedpriorreview). Current/root/cortex-ui/shots9identical57changedversus66historicalmapped/surrogatebytes; newcurrent-sourcecomparisonsmustuseactivedirectoryandcannotrelabelhistoricalfreeze. CodeBotproductImportAuthorizedfalseunchanged. No main/merge/deploy."
+        },
+        {
+          "line": 367,
+          "text": "- 2026-10-03 [G4 native contracts source closure] Tabs15focusedPASSsourcea0bf0c2e publicrenderSpacekeydown/keyupdelegatednative; independentoriginalprobeunchangedPASS14/14matrix closesP2, actualnativeactivationstillbrowserpending. Switchstatehook09f11f2e preservesperrendercontrolled/uncontrolled18focusedPASStwofailbeforetests; independentdeltaactive. TooltipP2closed exact4295f735. Final14fileindexequalworktreeheld7unchanged; fullfinaltest/indexedgateactive. Prepared12ENJAcontrolcases36PNG+6Projectcases12PNGharnesses sourcepinnedandunexecuted. No main/merge/deploy."
+        },
+        {
+          "line": 368,
+          "text": "- 2026-10-03 [G4 final local candidate checks] Finalnativecandidate716Node2928Vitest296filesPASS; sourcehashesstable acrossrun. IndexedprecommitPASSstrictTS/catalog7295x8;lint0errors28existingwarnings. TwoindependentP2sclosedexactsource;Switchstatepreservationdeltaindependentactive. 14filesstagedsingleboundedreferencekit/duplicatecontroldelivery;cleancommit/build/browsernotyetclaimed. Existing8initialSwitchtestsand12preSpaceTabstestsretained. No main/merge/deploy."
+        },
+        {
+          "line": 369,
+          "text": "- 2026-10-03 [G4 reference-kit candidate committed] 80e8747fb46e8521492f35c4de7ab49d488d3139 14filescommittedafteractualindexedhookPASS; reviewedcandidatehashesexactcommit. Switchstate09f11independent2/2PASSdelta;Tooltip4295P2closed4/4;Tabsa0bfP2closed14/14;Projectdeletion21unit/counterproofbounded. Sevenexportsheldunstagedbytesunchanged. Freshdetached/tmp/opencode/web-evidence-baseui at80 npmciPASS;freshreceiptbuildactive, independentcleantestsexternalcacheonlyassignedparallel. No push/main/merge/deployyet;cleanbuild/browseracceptancepending."
+        },
+        {
+          "line": 370,
+          "text": "- 2026-10-03 [G4 clean BaseUI build delivered] Fresh80e8747f npmci/build/strictpostbuildTS/catalog/harnesslintPASS0errors28existingwarnings. ReceiptbuildMDTk-0qJ0V62ijVfLnlOe1444artifacts vendoredSHA7545ba5bbb0c92aed01f12cb8a96e05cce3c5fcc82c62cce760060261aa4f8d8 cleanbefore/after. Historical3032serveruntouched;exactnewserver3033responds200gallery. Two bounded source-receipt browserharnessesrunningparallel12control/6Projectcases;independentcleanfulltestsactive. No browser/native/fullproductacceptanceyet. No push/main/merge/deploy."
+        },
+        {
+          "line": 371,
+          "text": ""
+        },
+        {
+          "line": 372,
+          "text": "- 2026-10-03 12:04 UTC [G1 provider native audit complete] Independent native audit passes four fixed English Settings states at 960\u00d7640, both themes: 94.200s, eight actual UI writes/actions, seven cleanup checks. All four original PNGs inspected; retained WebPs are RGBA-exact. Coordinator reran offline receipt verifier successfully (27 root references, 12 historical hashes). Executed collector c847 keeps its explicit text-self-clipping limitation; later input-only205 is source-approved, unexecuted. Initial failure/precondition receipts remain unchanged. CI37118586276:111 Electron cases/426 renders per OS,245 units+1 optional,lint/types/i18n and package/smoke pass;296 images/28 full-size views reviewed. Source stays37c22c2; documentary integration review then evidence commit. Main9bf3c00 unchanged; PR36 draft; Mac lease released."
+        },
+        {
+          "line": 373,
+          "text": ""
+        },
+        {
+          "line": 374,
+          "text": "- 2026-10-03 12:09 UTC [G1 provider evidence pushed] Documentary 6642d46467304cbe1181d0963d51c085ec09a0c4 pushed goal/desktop-rewrite; 265 documentation/evidence files bind accepted application37c22c2, CI37118586276 and four installed Settings captures. Final integration review passes; 514 package inputs identical, application/tests/workflow unchanged, working tree clean, main9bf3c00 preserved. Independent native audit closes this scoped provider correction with collector limitations retained. PR36 stays draft; full remote/missing-surface acceptance incomplete. Current owner-delivery readback is separate, read-only."
+        },
+        {
+          "line": 375,
+          "text": ""
+        },
+        {
+          "line": 376,
+          "text": "- 2026-10-03 12:18 UTC [G1 current owner readback / next bounded check] Read-only12:06\u201312:10 readback finds no new G2/G3 successor or named five-state G1 product-import permission. Only G4 adoption of existing SDK0.3.5/APItypes0.2.0 and canonical Code/Bot prototype integration. Exactly two unauthenticated GETs: instance404, models200, model-body hash unchanged from09:47; no vision-capable Chat model established. Five Chat/Settings states remain DESIGN-owned. Documentary6642d46CI37121900898 running with514 unchanged app inputs. Existing Appearance controls have source-backed keyboard/state-sync candidate: button radios lack arrow/roving behavior; local selected preference can disagree with shell rail. Actual two-theme Electron negative and minimal Base UI/shared-state source review assigned; no production edit yet, no new design surface/import."
+        },
+        {
+          "line": 377,
+          "text": ""
+        },
+        {
+          "line": 378,
+          "text": "- 2026-10-03 12:23 UTC [G1 documentary CI green] Completed metadata verifies CI37121900898 all3jobs at6642d46467304cbe1181d0963d51c085ec09a0c4. All514 application/package inputs match accepted37c22c2; no duplicate artifact/native acceptance inferred. PR36 summary updated with committed native audit. ExistingSettingsAppearance candidate awaitsactualElectronnegative before source edit; sourceplan reuses Base UI RadioGroup/nativeButton and Shellpreference via existingcontext (3files, no CSS/copy). Two capture future native helper prepared by separate owner; no current device actions."
+        },
+        {
+          "line": 379,
+          "text": ""
+        },
+        {
+          "line": 380,
+          "text": "- 2026-10-03 12:35 UTC [G1 Appearance correction targeted green] Actual baseline2cases17asserts fail (light9/dark8) at37/6642, source2bff unchanged93-line test. Corrected existingSettings uses BaseUI RadioGroup/nativeButton and ShellthemePref in existingNavCtx (3productionfiles, no CSS/catalog). Initialcandidate2casesfailed selectedhash-clickpersist control becauseBaseUI no-changeevent; originalsource/report retained. Minimal selected-card handler preservesoldclick-to-save; final4unchangedtargetedcases pass21.679s incl2existingrailkeyboard. Eighteenobservations main/railcheckedandsoleTabstopagree;initialhashcorrect,SystemOS/reloadpass. Lint/types/i18n65/2272/3405/0detector0;245units+1optional initialcandidatepass. Full113Electron/Linuxpacksmokerunning; productionuncommitted, nativefuture2capturehelperpreparationonly."
+        },
+        {
+          "line": 381,
+          "text": ""
+        },
+        {
+          "line": 382,
+          "text": "- 2026-10-03 12:41 UTC [G1 Appearance final local green] Full113/113Electron426renders284.403s,zero retries/skips/flaky; Linuxpackage/smoke90membersmatch ASARf0b5f9ee. Finalsource245units+1optional12.02s lint/types/i18n65/2272/3405/0 detector0. Three rendererinputs changed of514package/473renderer; fingerprint474405faaf26dba6319cb1c139f0b32ef04adf2b7e600d6edee37f72b4fabf44. Actualsourceindependentreviewapproved12add/10remove across3files,93linetest2bff unchanged17negativesresolved. Screenshot-free preview8groups closesfocus/Tab/System/reloadpersistenceconcern; samecardnodeverified. Two positive960themeimagesinspected. Finalartifactaudit/native2captureharnesssource-reviewactive; no changed-sourceCI/nativeclaimyet."
+        },
+        {
+          "line": 383,
+          "text": ""
+        },
+        {
+          "line": 384,
+          "text": "- 2026-10-03 12:56 UTC [G1 Appearance correction pushed] Application99e3d04a8dab6b51b6cf23bcdae0365624492e0f pushedgoal/desktop-rewrite. Three-file12+/10- repair usesinstalledBaseUIradios/currentShellpref; original93linetest2bff resolves17negativesunchanged.113localElectron426renders245units+1optional lint/types/i18n/detector0 Linuxpacksmoke90members pass. Independentfinalartifactaudit149images19contacts2fullviews,127canonicalsreused22RGBAexact. Baselinewhitespacenormalization retainsoriginalgzipbytes. Frozen90/514/473 renderer474405fa ASARf0b5f9ee. CI37124432902watchactive; prepared2capturenativedriver230f312dindependentlyapproved, no newMacacceptanceyet. Main9bf3 unchanged PR36draft."
+        },
+        {
+          "line": 385,
+          "text": ""
+        },
+        {
+          "line": 386,
+          "text": "- 2026-10-03 13:03 UTC [G1 full-goal continuation] User reiterates complete rewrite and all six proof requirements. Current authoritative head99e3d04,main9bf3c00 untouched,PR36draft. Continuing activeCI37124432902/package/native2-capture validation; independent full-objective audit now maps requested live surfaces, active design import boundaries, reference gaps and real-runtime inputs. Latest12:07 owner/public readback remains bounded; no new surface import or substitute screen inferred. Existing design requests46/48/50/63/65/92/97 already cover missing deliveries; no duplicate request appended."
+        },
+        {
+          "line": 387,
+          "text": ""
+        },
+        {
+          "line": 388,
+          "text": "- 2026-10-03 13:11 UTC [G1 Appearance CI green / completion audit] CI37124432902 all3jobs pass at99e3d04. Macartifact11274389994 admitted: outer4ab14b8e inner3ac93b98 ASARf0b5f9ee,90members104catalog+skill exact; independent CI/archive audits active. Maclease acquired and freshroot transfer active, no installed99acceptanceyet. Independent full-objective audit maps13functiongroups/sixproofs: fullgoal incomplete, liveFiles/Projects/feeds/dedicatedCodework plus missingSpace/Scheduled/PluginsUI/remoteintegration remain. Exact design/G2/G3/runtime inputs alreadyrequested; three CORTEX runtimevariables absent bypresence-only check. Unblocked G1 functionality remains distinct from those external inputs; no all-work-blocked claim."
+        },
+        {
+          "line": 389,
+          "text": ""
+        },
+        {
+          "line": 390,
+          "text": "- 2026-10-03 13:19 UTC [G1 native media collector failure diagnosed] Matching99packageGUIinstalled ASARf0b5f9ee independentarchiveaudit passes91files92blocks90members105resources514inputs. Initial nativeAppearance run30.995s passesinitialhash/selectedpersist/System thenfailsbeforecapture: OSdarktrue, rendererforcedlight. InstalledPlaywrightCDP defaults unspecifiedcolorscheme tolight. One screenshot-free diagnostic clearsoverrides withnull, thenactualOSdark/light/dark followscorrectly3checks. Original230fdriver/run/diagnosisretainedinitial-media-override; noapplicationchange. All5drivercleanupchecks pass;helpers63522/63523 stoppedordinarydark99restored3ports/forwardclosed. One-linecollectorrelease awaitingindependentreview;freshconfirmprofilepreparedleaseheld."
+        },
+        {
+          "line": 391,
+          "text": ""
+        },
+        {
+          "line": 392,
+          "text": "- 2026-10-03 13:22 UTC [G1 Appearance fresh native confirmation] One-line collector reset9cffda47 independentlyapproved; nullmedia clearsCDPdefaults rather thanchoosingtheme. Actual99appunchanged. Original30.995sfailedrun0captures5cleanupchecks kept; freshconfirmroot launchedGUI afterordinaryquit. Corrected2-capture native runactive; exactwindow/source/OS/keyboardassertionsallintact. Lease renewed13:20; coordinatorretainscleanup. Fullgoal13groupauditretained; Projects live-contractreadbackactive asmeaningfulnextlocalfunction."
+        },
+        {
+          "line": 393,
+          "text": ""
+        },
+        {
+          "line": 394,
+          "text": "- 2026-10-03 13:27 UTC [G1 Appearance native pass / CI artifact audit] Fresh99confirmation80.917s47state/focuschecks2native960x640images passesrealOSSystem,4arrowswrapSpaceTab,mountedgroupidentity,initialhashpersist. All5cleanupchecks true,0errors/inference; helpers63869/63870stoppedordinarydark99restored5ports/forwardclosedleaseRELEASED. Twooriginalimagescoordinatorinspected visible2pxfocus/nativechrome; independentnativeauditactive. CIaudit113/OS426renders300uniqueimages26contacts20fullsize,16localePNGs exact37,12glyphchecksOS. Coordinator300canonicalSHA/RGBA pass. InitialCDPforcedlightfailure remains30.995s0captures, collector9cffcorrectsone-lineoverride only; app99unchanged. Fullgoal/localProjectscontractreviewongoing."
+        },
+        {
+          "line": 395,
+          "text": ""
+        },
+        {
+          "line": 396,
+          "text": "- 2026-10-03 13:53 UTC [G1 Projects implementation started] Appearance99 independent native audit passes2RGBA-exactimages47checks14geometry21GET200fivecleanup37refs; documentaryreviewactive. LocalProjects contract/readback complete: existingfrozencreation/detail/instruction/ChatMove/sidebar/Search/Library controls permitliveG1wiring withoutG2/G3. ImplementingSQLiteProjectdocuments+rootChatmembership+snapshottedinferenceinstructions. DELETEsemanticdecidedpreservechats throughoneatomicdurableproject.deletedprojection; busyroot/child/admissionrefused. Distinctengine/screens/Chatagents ownseparatefiles; coordinatorownsdiscovery/Electronchecks/docs. Renameeditorreuse/archivefollowup appendedDESIGN-REQUESTS (newrequest106), no canonicalimplementationedit. Userprovidedmatchingcreationlight/overviewdarkreferences retained asincumbent direction. No featuretests/build/acceptanceclaimed yet;99immutableproofstayssourcebound."
+        },
+        {
+          "line": 397,
+          "text": ""
+        },
+        {
+          "line": 398,
+          "text": "- 2026-10-03 13:59 UTC [G1 Appearance evidence pushed] Documentary0597848 pushedgoal/desktop-rewrite199files. Independentintegrationreview approved exactdocumentaryscope;all514indexedpackageinputs equal99e3d04 beforecommit. CI37124432902/native99scopedacceptancecommitted; initialCDPnegative/referencegap retained. ConcurrentProjects source/testwork intentionallyunstaged andnotcoveredby99proof. PR36draft/main9bf3 unchanged; Macordinarydark99leasefree. Projects engine/screens/Chat active, coordinatorwiredexistingSearch/Library/sidebar andprepared3Electroncases(including2restarts/theme) runtimeunexecuted."
+        },
+        {
+          "line": 399,
+          "text": ""
+        },
+        {
+          "line": 400,
+          "text": "- 2026-10-03 14:22 UTC [G1 Projects initial verification] Engine7/7targeted plusindependentreviewpassesstrictCRUD/rootmembership/atomicdelete-retainschat/rollback/busyrootdescendant/snapshotbudgets/expectedProjectIDrace. Integrated252units1optionalskip lint/types/i18n65/2275/3405/0 detector0 buildpass. Two960themeElectronjourneys pass14.9/15.4s, each2processrestarts+inferenceinstructionchanges/move/detach/non-destructivedelete/discovery. Thirdracecasepassesdraft/owner/BackForwardvalidation theninitialone-shotreadrefusalmiss;persistentfaultuntilRetrycollectorcorrectionpasses3.5s,appunchanged. Full116E2E and42?scopedcomparisonactivecountunattested. Linuxpackage90matchesASARb034b5ab; firstsmokemissingDISPLAYfailed, retainedstderr; correctxvfbsmokepasses. Frozen90members515inputscurrentdirty. Documentary059CI37128050585all3green with514appinputsunchanged99. No currentfeatureCI/nativeclaim."
+        },
+        {
+          "line": 401,
+          "text": ""
+        },
+        {
+          "line": 402,
+          "text": "- 2026-10-03 14:26 UTC [G1 Projects integrated negative retained] Firstfull116cases109PASS7FAIL: builtwithNODE_ENV=test mistakenlyincludeddevelopmentReact/StrictMode (2.95MBbundlevs99production2.29MB). Fourhistorysingle-readholds+oneauthreadholdandtwoBaseUIdefaultwarningsfail;3newProjectscasespass. Exactbuild90members515inputs andnegative reports retainedfirst-full. Independentreviewfoundsame-testsettlement/readinessassertiongaps andsidebarSessionreadRetry omission; fixedwithoutremovingassertions/capturecounts. FreshNODE_ENV=productionbuild frozenbuild-projects-production,Reactproductionverified;new+failed-area confirmationrunning. Initial38rowcomparison36refs2gaps retainswrong-buildpin, willnotrelabelfinal. Fullgoal/CI/native stillpending."
+        },
+        {
+          "line": 403,
+          "text": ""
+        },
+        {
+          "line": 404,
+          "text": "- 2026-10-03 14:38 UTC [G1 Projects pushed] Application8e3fd795b699c8ff07357544421d00f34dc2823c pushedgoal/desktop-rewrite78files includingbaseevidence. Production116/116Electron426renderchecks284.141s0retry/skips/flaky;252units1optional lint/types/i18n65/2275/3405/0 Linuxpackage90membersASAR5a92b306 pass. All515testedpackageinputs equalcommit;473renderer6070fc32. Core/UI/discovery/testreviewsapproved; prior109/116dev-buildnegative retainedaswrongNODE_ENV and7unchangedtests passproduction16targeted thenfull116. CI37130209247queuedwatchactive; matchingMacnotinstalled;4capturedriverpreparing. Scoped38rowcomparator36refs2gaps completeindependentauditactive, localfullartifactreviewactive. Projectfiles/share/Bot/archive/renameUIremainopen, fullgoalnotdone. Main9bf3/PR36draftpreserved."
+        }
+      ]
+    },
+    {
+      "path": "/root/cortex-ui/review/ACTIVE-DIRECTION.md",
+      "observedUTC": "2026-10-03T14:47:00.733177+00:00",
+      "mtimeUTC": "2026-10-03T11:45:07.915236+00:00",
+      "sha256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a",
+      "bytes": 2683,
+      "lines": 25,
+      "content": "# Active direction \u2014 Cortex UI and Base UI\n\nUser correction, 2026-10-03: use Cortex UI only, with Base UI; remove Paper skills and integrations. This supersedes earlier Paper-first instructions and Paper page-construction gates.\n\nRemoval verified: `paper`/`paper-design` MCP entries absent, discovered skill/server paths removed. Twelve files retained outside discovery at`/root/.local/share/opencode/disabled-integrations/paper-20261003/`. Other later configuration changes remain untouched.\n\n## Working sources\n\n- Desktop: `/root/cortex-ui`.\n- Mobile adaptation: `/root/cortex-ios-ui`.\n- Active previews: `http://127.0.0.1:5199/` and `http://127.0.0.1:5299/`. Ports45839/41689 serve retained historical packages.\n- Reuse their installed Base UI primitives, shared kit, semantic light/dark tokens, Geist/Geist Mono and source-bound QuiverAI icons.\n- Keep double navigation, Cortex/Cortex Code selection, existing mobile drawer hierarchy and complete product fields. No Design/Ink destinations.\n- Browser/source-bound interaction checks and independent reviews govern the active code. Historical Paper and HTML evidence retains its original scope.\n\n## Current continuation\n\n1. Code integrated byte-for-byte into both prototypes. Two builds passed;12canonical browser configurations plus gallery/Components checks passed;four integration PNGs inspected. Details:`code-supplement-integration.md`. Earlier scoped A/B seven-criterion10/10 remains bound to`code-supplement-accepted.json`. Capture budget80/134;54remaining. No full-matrix acceptance.\n2. Bot integrated byte-for-byte; two builds and four canonical browser cases passed, zero new captures. Details:`bot-supplement-integration.md`; scoped A/B disposition:`bot-supplement-adoption.json`. Budget156/156; eight planned positions,fourcompleteiOSlandscapetraversals,guide[0,918],bottomgap0. Full long-guide pixel readability and native iOS remain unverified. Previous incomplete run remains unchanged.\n3. Continue Components and Chat directly in Cortex UI. Existing local component states and approved reference geometry are the inputs; no Paper page dependency.\n4. Use the bounded request90/92/93 reuse map for remote Chat/continuations, Cloud notice and gallery composition. Product owners retain their branch/PR integration and runtime responsibilities.\n\nPaper authoring is retired. Its last correction packet records14mutated boards,zero corrected captures and a blocked finalization call; those historical mutations must not be replayed.\n\nCanonical registry after Code/Bot integration: desktop120routes/725effective states; mobile106routes/906effective states. Additions use the existing automatic registry and shared kit.\n"
+    },
+    {
+      "path": "/root/cortex-ui/DESIGN-REQUESTS.md",
+      "observedUTC": "2026-10-03T14:47:00.733371+00:00",
+      "mtimeUTC": "2026-10-03T14:43:26.304977+00:00",
+      "sha256": "77ca8dd1525133a1c8c754c97a391fa6953349485f90a929dbaa96d610ea02df",
+      "bytes": 49540,
+      "lines": 108,
+      "relevantLines": [
+        {
+          "line": 92,
+          "text": "- [2026-10-03 03:32 UTC] [G1 remote Chat admission controls] Main-only process-lifetime email-code sign-in is now implemented in the existing frozen Login/Connection surfaces; other continuations remain explicitly unavailable pending named integration permission. G3 source-backed contract disposition #447 comment5964672516 confirms remote effort low/medium/high (no portable Off), existing-thread model/effort retained, one_off_model_slug for one Chat generation, no Chat cancel: stream closure only detaches; reconnect replays the original POST/body/Idempotency-Key/numeric Last-Event-ID. Request explicit approved state/source mapping and G1 reuse/import authorization for the remote composer effort choice, detach/reconnect treatment, bounded history notice (latest100/max200, no accurate has_more/next_cursor, reasoning/tools omitted), and continuation fields in the existing Platform delivery. Local boolean reasoning/Stop semantics cannot silently represent those remote contracts. Preserve original7b388freeze, currentdraft/files on refusal, explicitunknowncapability/image retention, origin/account boundaries. Existing combined candidate3e99a045 and scopedclosures remain distinct from source/state import authorization. No additional substitute page requested."
+        },
+        {
+          "line": 93,
+          "text": ""
+        },
+        {
+          "line": 94,
+          "text": "- [2026-10-03] [G4] Web legacy Cloud-connect notice \u2014 supply an approved reference for the signed-in `/code/connect` explanatory page, or an explicit reuse disposition naming a matching state. `apps/web/src/app/(product)/code/connect/page.tsx` retains the old bookmark with a Code header and Cloud-only explanation; it has no SSH/local pairing form or OAuth callback. The existing OAuth-return, Machines and desktop Connection-mode requests describe different surfaces. Need source-pinned light/dark 390/768/1440 views of this notice; preserve the Cloud-only contract and frozen `7b388e2d9674`."
+        },
+        {
+          "line": 95,
+          "text": "- [2026-10-03] [G4] Web component-gallery composition \u2014 supply an approved composition/state crosswalk for `/dev/components` (localized header, theme control, grouped anchor navigation and initial token sections). The existing Reference freeze for acceptance request establishes desktop `#/components` inventory, not equivalence to this web gallery's 98 anchor targets and product-state demonstrations. Reuse the existing kit; identify supported component-level matches separately from whole-gallery acceptance. Need source-pinned light/dark 390/768/1440 views or an explicit bounded reference disposition; keep both frozen sources and the existing web gallery intact."
+        },
+        {
+          "line": 96,
+          "text": ""
+        },
+        {
+          "line": 97,
+          "text": "- [2026-10-03] [Design coordinator \u2014 requests 90/92/93 mapped] Bounded source/state crosswalk delivered at `/tmp/opencode/product-design-reuse-map-20261003/REPORT.md`, SHA `de5c2408b6984123d4556f67b004dfc8aa0e6560ed85b26bb085da2aacca679f`; 15 inputs and six fixed Git blobs coordinator-verified. G1 can use existing effort/replay/continuation motifs as design inputs; its named import disposition still requires limited-history, image-history refusal, stored-thread/one-off model and origin/account continuation states within Chat/Settings. `/code/connect` needs its single signed-in notice, not desktop mode selection. `/dev/components` needs the header/theme/anchor/Tokens composition; at fixed web `236c2b11966033ca36ebbb07f6b4498b2ffae413`, its only theme toggle is hidden with the navigation below `lg`. Preserve 98 anchor IDs. These are narrowly identified follow-ups, not fresh approval or product-edit assignments. Paper Components remains A8/B7 under correction; the Paper tunnel became unavailable at 10:05 UTC."
+        },
+        {
+          "line": 98,
+          "text": "- [2026-10-03] [Design coordinator \u2014 requests 81\u201383 confirmation] Code grouped successor delivered at `/tmp/opencode/g4-code-design-corrected-20261003/`: four source paths, two builds, 24 measured views, ten targeted action groups, 16 current PNGs; coordinator source/evidence checks PASS. A/B visual confirmation assigned. Cumulative Code takes76/134;118 matrix views have no current-source PNG. Bot current-source visual packet `/tmp/opencode/g4-bot-visual-confirm-20261003/` contains five new images (desktop four, iOS one),153/156takes. iOS direct-owner traversal stopped on a guide-coverage assertion; no application defect established, full iOS traversal still incomplete. A/B retained-evidence review assigned. These successors remain private; original freezes and historical failed receipts retain their identities."
+        },
+        {
+          "line": 99,
+          "text": ""
+        },
+        {
+          "line": 100,
+          "text": "- [2026-10-03] [Design coordinator \u2014 canonical Code and Bot disposition] Paper is retired; the earlier board gates above are historical. Code A/B scoped seven-criterion10/10 verified, four exact modules integrated into both canonical prototypes; two builds and12browser configurations passed, including Components discovery and mobile Base UI drawer focus return. Four integration captures inspected; Code80/134. See`review/code-supplement-integration.md`. Bot final readback now covers all eight planned positions and four direct landscape traversals:68records,guide[0,918],bottomgap0; budget156/156. A/B recommend scoped four-file prototype adoption (`review/bot-supplement-adoption.json`); canonical import is assigned. A minimumsevenNV/Bminimumscored9 retained; neither full-product nor native acceptance inferred. Existing product branch owners retain adoption scope."
+        },
+        {
+          "line": 101,
+          "text": ""
+        },
+        {
+          "line": 102,
+          "text": "- [2026-10-03] [Design coordinator \u2014 Bot integrated] Four exact Bot modules now canonical; both builds passed. Four browser cases in both themes pass one-POST/failed-PATCH/retry-PATCH recovery on the same ID, retained name, notification label, first-run actions and actual bottom arrival. Combined Code still renders. No new capture. Final registry desktop120routes/710declaredvariants/725effective states; mobile106/902/906. `review/bot-supplement-integration.md`; exact-source UI donor imagery remains separately attributed. Active5199/5299 previews include all four supplemental routes."
+        },
+        {
+          "line": 103,
+          "text": ""
+        },
+        {
+          "line": 104,
+          "text": "- [2026-10-03] [G4 current-image fidelity clarification] User supplied the clean `8e7e918475dc27a05ba1956f2c797b91b1f0fdf6` Home/light and Code-session/dark comparisons (`/tmp/opencode/web-evidence-8e7e9184/apps/web/shots/compare/`). Source/served-byte matching is verified; visual fidelity is not. Home retains a different mode-owned navigation and expanded composer controls; Code's completed fixture retains Task/worklog rows and tall argument panels against a running compact desktop reference. Native window chrome, fixture text and language are comparison-context differences, not permission to ignore spacing or payload density. Please name the supported web composition/state mapping, including Home controls/nav and Code's completed overview, and explicitly resolve the existing Code/Bot `productImportAuthorized: false` disposition before product import. Existing requests 81\u201383 and the canonical supplements remain the inputs; no replacement prototype or Paper validation requested. `apps/web` still uses its handwritten shared primitives, not Base UI; this gap from the active direction remains unaccepted. No design implementation or historical evidence changed."
+        },
+        {
+          "line": 105,
+          "text": "- [2026-10-03] [G4 remaining image findings] Independent review of the existing clean8e packet (`/tmp/opencode/web-current8e-visual-review/review.md`, 66 pairs/90 unmapped, no new capture) identifies three pre-existing P2 composition issues beyond the Home/Code lot: Project repeats the same Instructions editor and Memory settings entry in centre/right rail; Code Usage has two independent period controls with insufficiently named Code/global scopes; Connectors inline consent settings stretch neighbouring cards and push Preferences/Disconnect below the initial viewport. Please dispose these within the existing canonical web composition, preserving small-width access, real ledger scopes and consent controls. Static images do not demonstrate lost data, incorrect accounting or unreachable controls. No design implementation modified; no replacement screen requested."
+        },
+        {
+          "line": 106,
+          "text": "- [2026-10-03] [G1 local Project editing and archive] Existing frozen `lot-systeme.tsx:343` and desktop `packages/app/src/screens/system/projects.tsx:129` expose Rename/Archive menu entries without their editor, archived list or restore states. G1 is wiring durable local creation, instructions and root-Chat membership through the incumbent Projects/Project/Chat/Library surfaces. Please provide a bounded reuse disposition for the incumbent inline Chat title editor as Project Rename, or identify the approved existing editor and exact state/source; no new composition requested. Archive needs its discoverable archived/restore treatment and lifecycle copy before wiring. Project deletion will preserve conversations by atomically detaching them; it will refuse while a linked Chat is running. Files, sharing and assigned-Bot contracts remain separately incomplete. Preserve the frozen `7b388e2d9674` and current canonical source; this request is not permission to import newer prototype modules."
+        },
+        {
+          "line": 107,
+          "text": "- [2026-10-03] [G4 existing-kit adoption and Project correction] Switch, Tooltip and Tabs now use the existing canonical Base UI 1.8.0 primitives in an uncommitted web candidate; public product props, tokens and native disabled refusal remain. Tabs retains its pre-existing static segmented thumb, not the canonical stretching indicator: motion equivalence remains open. The existing Project composition supports removing the duplicated central Instructions/Memory controls without introducing a new screen; the original rail remains visible, stacked below 1024px and 300px wide above. Unit/regression checks pass; clean-build/browser proof and independent review remain pending. This updates requests 104\u2013105 only within those scopes; Home/Code mapping, Usage scopes, Connectors density and Code/Bot product import still need explicit disposition. No design implementation modified."
+        },
+        {
+          "line": 108,
+          "text": "- [2026-10-03] [G4 existing-kit source delivery] The bounded adoption/duplicate-control correction is now locally committed at `80e8747fb46e8521492f35c4de7ab49d488d3139`, after independent source reviews and two corrected adapter regressions. Project deletion leaves its existing responsive rail intact. Native Space, hover cancellation and Switch ownership transitions are preserved by public adapters; reference segmented motion remains unmatched. Clean build/browser confirmation is underway, not accepted yet. Active `/root/cortex-ui/shots` now differs in 57 of the 66 previously paired reference bytes; new comparisons will pin active bytes instead of relabelling historical frozen captures. Requests 104\u2013105 remain open outside this bounded correction; product-import restrictions unchanged. No canonical code edited."
+        }
+      ]
+    },
+    {
+      "path": "/root/cortex-ui/review/code-supplement-integration.md",
+      "observedUTC": "2026-10-03T14:47:00.733577+00:00",
+      "mtimeUTC": "2026-10-03T11:35:22.823033+00:00",
+      "sha256": "bc0e356aa7f5172a7b4484f26c70cfdcef6b3e58feb3b3cede0d3777601d847a",
+      "bytes": 3513,
+      "lines": 34,
+      "content": "# Code supplement \u2014 canonical integration\n\n2026-10-03. Four reviewed files added byte-for-byte to the desktop/mobile prototypes. Both builds passed. Base UI1.8.0, shared kit, registry and application shell retained. Exact hashes and build logs: `/tmp/opencode/cortex-ui-code-integration-20261003/REPORT.md`.\n\n## Browser result\n\n`node check-code-supplement.mjs` passed12theme/viewport cases: Chromium desktop1440\u00d7900,390\u00d7844,768\u00d71024,1440\u00d7600; mobile/touch WebKit390\u00d7844,844\u00d7390; both themes. Verified Escape focus return, retained task/keep draft after local refusal, local-only receipts, worklog expansion, unique route registration, gallery navigation and Components discovery. Mobile catalogue's existing Base UI drawer returns focus to its trigger. Primary actions remain visible, center-hittable, at least44\u00d744; no horizontal page overflow.\n\nFinal record: `/tmp/opencode/cortex-ui-code-browser-20261003/verified-check.json`. Initial HTML, JS, CSS and used Geist font responses match canonical build bytes. Four integration PNGs were inspected: desktop and mobile, light/dark. Controls and text remain legible; lower optional fields use the existing inner scroll region. These four positions do not establish full-page/matrix coverage. Four imported modules retain their approved hashes; the mechanical detector returned no findings. Desktop lint reports11warnings/0errors, mobile0warnings/0errors, with different existing rule configurations.\n\nEight exact served resources were archived under`/tmp/opencode/cortex-ui-code-browser-20261003/served-artifacts/` before later canonical builds;`served-artifacts.json` binds the archived bytes. The original live`dist/` paths can subsequently change without transferring these images to a new build.\n\n- Desktop registry at this build:118routes,694declared variants,709effective states.\n- Mobile registry at this build:104routes,886declared variants,890effective states.\n- Each platform adds`g4-code-home`(5variants) and`g4-code-session`(10variants).\n- Code screenshot calls77\u201380; cumulative80/134,54remaining. No further captures assigned here.\n\n## Preserved harness failures\n\nFive browser-check attempts, four screenshots total. Initial attempt completed desktop checks then waited for a zero-height mobile wrapper. Second completed mobile screen/gallery checks then used an ambiguous catalogue selector. Third completed all business checks but its asynchronous response collector lost bodies during navigation. Fourth rejected the four correctly bound initial resources because the harness expected an unused fifth font. Final attempt uses the visible composer, unique catalogue ID and synchronous first-document response binding;12cases pass, no console/page errors, no further screenshots. Original negative JSON records remain intact; application source never changed during these harness corrections.\n\nThe two earlier scoped seven-criterion10/10 reviews remain in`code-supplement-accepted.json`. This integration confirms their exact modules in the canonical prototypes; physical iPhone, native application and product backend acceptance remain separate.\n\n## Open\n\n- Desktop: `http://127.0.0.1:5199/#/g4-code-home?v=options&theme=light`\n- Mobile: `http://127.0.0.1:5299/#/g4-code-home?v=options&theme=dark`\n- Both routes are discoverable through`#/gallery` and`#/components`.\n\nReproduce the current integration check without screenshots:\n\n```sh\nDESKTOP_BASE=http://127.0.0.1:5181/ IOS_BASE=http://127.0.0.1:5281/ node check-code-supplement.mjs\n```\n"
+    },
+    {
+      "path": "/root/cortex-ui/review/code-supplement-accepted.json",
+      "observedUTC": "2026-10-03T14:47:00.733629+00:00",
+      "mtimeUTC": "2026-10-03T10:37:51.970740+00:00",
+      "sha256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4",
+      "bytes": 1377,
+      "lines": 39,
+      "content": "{\n  \"date\": \"2026-10-03\",\n  \"status\": \"accepted-scoped\",\n  \"packet\": \"/tmp/opencode/g4-code-design-corrected-20261003/\",\n  \"packetSealSHA256\": \"618ce49355daf2184a5c3bf566f9e53aa2a62eb339fe7928dc82dd816b97a046\",\n  \"sourceFingerprints\": {\n    \"desktop\": \"b6587c77e1ceee5d652e4eebe0de99f264220699ec8f0d528f2bdb9b9663f5fe\",\n    \"ios\": \"6c8c99a5dcd93b2bc5e83a8ef15fceb39a1cda2e3609e4f597264133b7a2df2e\"\n  },\n  \"reviews\": [\n    {\n      \"reviewer\": \"A\",\n      \"manifest\": \"/tmp/opencode/g4-code-design-review-A-20261003/MANIFEST.json\",\n      \"manifestSHA256\": \"892e09547d1c24a2b26c3fe29406d76399e4918fdf8e6e76312340fa684fcfa9\",\n      \"minimumOfSeven\": 10,\n      \"coordinatorVerification\": \"PASS\"\n    },\n    {\n      \"reviewer\": \"B\",\n      \"manifest\": \"/tmp/opencode/g4-code-design-review-B-20261003/manifest.json\",\n      \"manifestSHA256\": \"44565bd9405ce150ffbb9625dde0361eb98b89b4ff26343a87ebdaabe4e4e4fb\",\n      \"minimumOfSeven\": 10,\n      \"coordinatorVerification\": \"PASS\"\n    }\n  ],\n  \"scope\": {\n    \"currentPNGViews\": 16,\n    \"currentMeasuredViews\": 24,\n    \"currentTargetedActionGroups\": 10,\n    \"currentMatrixViewsWithoutPNG\": 118,\n    \"inheritedGroupsNotRerun\": 26,\n    \"captureCallsCumulative\": 76,\n    \"captureCeiling\": 134\n  },\n  \"prototypeIntegrationAuthorized\": true,\n  \"productImportAuthorized\": false,\n  \"wholeProductAccepted\": false,\n  \"nativeHardwareAccepted\": false\n}\n"
+    },
+    {
+      "path": "/root/cortex-ui/review/bot-supplement-integration.md",
+      "observedUTC": "2026-10-03T14:47:00.733671+00:00",
+      "mtimeUTC": "2026-10-03T11:45:07.241229+00:00",
+      "sha256": "febe81bd3a30ead920e71825a304889cef1398b83b205731cd33b26cacb4858f",
+      "bytes": 3022,
+      "lines": 23,
+      "content": "# Bot supplement \u2014 canonical integration\n\n**PASS: four modules integrated byte-for-byte, two builds passed, four canonical browser cases passed without screenshots.** Import/build evidence:`/tmp/opencode/cortex-ui-bot-integration-20261003/REPORT.md`.\n\nThe four donors in`bot-supplement-adoption.json` have independent A/B scoped-adoption recommendations, coordinator-verified. Both reviews close the direct-scroll evidence gap. A retains minimum-sevenNV; B retains scored minimum9. No global10/10 is asserted.\n\nThe underlying correction is six changed lines across four files: native \u201cMe notifier\u201d accessible label, selected-check16px, active field border`--t3`. Full one-page creation includes six looks/faces, Name, Description, boundary guide, Label, notifications, import affordance and first-run actions. The prototype's local POST/PATCH receipts demonstrate refusal/recovery while preserving the draft.\n\nHistorical visual evidence: eight planned positions across`/tmp/opencode/g4-bot-visual-confirm-20261003/` and`/tmp/opencode/g4-bot-visual-final-three-20261003/`. Four final landscape traversals contain68direct records, each guide union[0,918], each actual bottomgap0. The three final PNGs were also inspected by the coordinator: name/selection borders, guide ending, label/notifications/footer legible in their pictured portions. Text behind the translucent header is excluded from useful coverage.\n\nBot capture budget156/156. Canonical integration uses a screenshot-free browser check,`check-bot-supplement.mjs`; plan at`/tmp/opencode/cortex-ui-bot-browser-20261003/PLAN.md`. Earlier failed receipts, full long-guide pixel-readabilityNV and native-iOS limits stay recorded.\n\n## Canonical browser confirmation\n\n`/tmp/opencode/cortex-ui-bot-browser-20261003/integration.json` records one Chromium context at1440\u00d7600 and one mobile/touch WebKit context at844\u00d7390, both themes. Four cases pass: six looks/faces; accessible \u201cMe notifier\u201d checkbox; first-run has no Cancel; one local POST201 followed by PATCH503 then PATCH200 to the same ID; name retained; destination appears after success. Actual bottom reached in each case. No network write, console error or page error. HTML and HTTP-fetched linked JS/CSS match the canonical builds.\n\nBoth canonical Code composers still render in the combined build. Final registry: desktop120routes/710declared variants/725effective states; mobile106routes/902declared variants/906effective states. Four Code/Bot routes add31variants per platform to the retained bases. All previous application sources remain byte-identical. Mechanical detector returned no findings in the four imported Bot files.\n\nCurrent previews:\n- Desktop:`http://127.0.0.1:5199/#/g4-bot-first-run?v=populated&theme=light`\n- Mobile:`http://127.0.0.1:5299/#/g4-bot-create?v=populated&theme=dark`\n\nThis confirms the canonical prototype integration. Source-bound donor screenshots retain their original build attribution; no new canonical screenshot or full-product/native approval is asserted.\n"
+    },
+    {
+      "path": "/root/cortex-ui/review/bot-supplement-adoption.json",
+      "observedUTC": "2026-10-03T14:47:00.733717+00:00",
+      "mtimeUTC": "2026-10-03T11:19:02.248598+00:00",
+      "sha256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266",
+      "bytes": 1948,
+      "lines": 46,
+      "content": "{\n  \"date\": \"2026-10-03\",\n  \"status\": \"scoped-prototype-adoption\",\n  \"packet\": \"/tmp/opencode/g4-bot-corrected-20261003/\",\n  \"finalEvidence\": \"/tmp/opencode/g4-bot-visual-final-three-20261003/\",\n  \"finalEvidenceManifestSHA256\": \"3dd7b32d8cc6aa940433161540e59016dd143227edfa5b4c81db986d99dc4cb7\",\n  \"reviews\": [\n    {\n      \"reviewer\": \"A\",\n      \"manifest\": \"/tmp/opencode/g4-bot-final-review-A-20261003/manifest.json\",\n      \"manifestSHA256\": \"2f2ca600eb67c3d74d22a6564c6722cbf4ef692cfc8b6655ce87af7b065d56b9\",\n      \"verdict\": \"PASS_SCOPED_ARTIFACT_ADOPTION\",\n      \"minimumSevenCriteria\": \"NV\",\n      \"coordinatorVerification\": \"PASS\"\n    },\n    {\n      \"reviewer\": \"B\",\n      \"manifest\": \"/tmp/opencode/g4-bot-final-review-B-20261003/manifest.json\",\n      \"manifestSHA256\": \"94207d8b2605e70435f8e22cab1d3a315371e28b8e867a9ef30afb5734e35e9d\",\n      \"verdict\": \"SCOPED_PASS\",\n      \"minimumScoredCriteria\": 9,\n      \"originalFormComparison\": \"NV nonblocking\",\n      \"coordinatorVerification\": \"PASS\"\n    }\n  ],\n  \"sourceFiles\": {\n    \"/root/cortex-ui/src/screens/lot-g4-bot-create.tsx\": \"966ae7e1ef99dc236eeab02b3746e68e9fdcf1ab76540a64c9ec9cf00201453e\",\n    \"/root/cortex-ui/src/screens/lot-g4-bot-create.css\": \"cf5bbae61a9a272c8665b435782f9c9dd388ab26fea6f7d67b4f31c157829e2c\",\n    \"/root/cortex-ios-ui/src/screens/lot-g4-bot-create.tsx\": \"0d658bd2faab89aa75bafaa9ca66c9a73721c6a43925d7c78125cc8ab54ffd67\",\n    \"/root/cortex-ios-ui/src/screens/lot-g4-bot-create.css\": \"93bee4ed9dcc3057af10eb4ca2445c63f3218cd8d82a480dbc80611565da1a77\"\n  },\n  \"scope\": {\n    \"plannedVisualPositions\": 8,\n    \"completeIOSLandscapeTraversals\": 4,\n    \"directRecords\": 68,\n    \"guideUnion\": [0, 918],\n    \"bottomGapsPx\": [0, 0, 0, 0],\n    \"captureCalls\": 156,\n    \"captureCeiling\": 156\n  },\n  \"prototypeIntegrationAuthorized\": true,\n  \"productImportAuthorized\": false,\n  \"wholeProductAccepted\": false,\n  \"fullLongGuidePixelReadability\": \"NV\",\n  \"nativeIOS\": \"NV\"\n}\n"
+    }
+  ],
+  "environmentPresenceOnly": {
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false,
+    "CORTEX_TEST_BACKEND_URL": false
+  },
+  "scope": "Two issue-comment GETs; two unauthenticated deployment GETs; local authority snapshots. No auth, CI query, inference, post or source write."
+}

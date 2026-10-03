@@ -1,0 +1,28 @@
+{
+  "runs": {
+    "production-full": {
+      "pngFileCopies": 314,
+      "uniqueImages": 155,
+      "inlinePngAttachments": 4,
+      "pngAttachments": 161
+    },
+    "production-targeted": {
+      "pngFileCopies": 76,
+      "uniqueImages": 32,
+      "inlinePngAttachments": 0,
+      "pngAttachments": 38
+    }
+  },
+  "union": {
+    "uniquePngSHA256": 156,
+    "uniqueRGBA": 156,
+    "newLosslessWebP": 115,
+    "reusedCanonical": 41,
+    "contactSheets": 13,
+    "fullsizeTargets": 8,
+    "retainedNewImageBytes": 3434972,
+    "originalPngBytes": 11356733,
+    "jsonAttachments": 75,
+    "uniqueJsonAttachments": 51
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "auditStatus": "scoped-composite-evidence-accepted",
+  "applicationRevision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "scope": "Offline immutable receipts, source binding, original/retained pixel identity; manual image findings in REPORT.md",
+  "monolithicCollectorPassed": false,
+  "budgetFailurePreserved": true,
+  "package": {
+    "run": 37132419774,
+    "artifact": 11277523097,
+    "asarSHA256": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+    "members": 90,
+    "membersSHA256": "7516cb61de528e30b3ce4b3719c8f0cadb86401caf9b569dfd5f6985dd32257a",
+    "scope": "Prior independent package admission cross-bound; large archive not reopened"
+  },
+  "sourcePins": {
+    "pointer": "d5f261e5ea8ebb5ccb278a4a9cc4c4f4fe93679a300fe375ed087c10c986cc2c",
+    "beforePointer": "43f443aeca84688ef867eae89c629878f592e2bcd3601f17fef3be1ffdd57584",
+    "darkDeleteSupplement": "3a3c694f32edefa8259e9280a3b6fa32f5c772fb4072ac41011a2dbbc9ae3cb6",
+    "helpers": {
+      "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+      "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+      "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+    }
+  },
+  "identity": {
+    "sameInstalledPID": 67608,
+    "windowID": 8902,
+    "backendPID": 67602,
+    "runID": "d4067f70-c084-473c-91e8-fbe0e719c791",
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer"
+  },
+  "pointerRun": {
+    "status": "failed",
+    "durationMs": 128800,
+    "failureStage": "dark:delete-project-ui",
+    "captureRequests": 4,
+    "perCapturePasses": 4,
+    "cleanupChecks": 7,
+    "calls": {
+      "total": 45,
+      "methods": {
+        "DELETE": 3,
+        "GET": 40,
+        "POST": 2
+      },
+      "statuses": {
+        "200": 42,
+        "201": 2,
+        "404": 1
+      }
+    }
+  },
+  "frames": [
+    {
+      "file": "project-create-light.png",
+      "theme": "light",
+      "statusWithinFailedRun": "passed",
+      "originalBytes": 92047,
+      "webpBytes": 33608,
+      "rgbaSHA256": "349ce1a90e4d60f524101b2699d4e167d6d80d746287a17ae9beede1f2c8b98f",
+      "geometryTargets": 14,
+      "inkRectangles": 11,
+      "focus": {
+        "name": "Create project",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(59, 130, 246)",
+        "boxShadow": "none"
+      },
+      "pixelEquality": true
+    },
+    {
+      "file": "project-overview-light.png",
+      "theme": "light",
+      "statusWithinFailedRun": "passed",
+      "originalBytes": 73263,
+      "webpBytes": 24340,
+      "rgbaSHA256": "4521c9fadb0652065ae2003cc47778e6024f56a1cdf87e0f6626ecec12d1a078",
+      "geometryTargets": 14,
+      "inkRectangles": 23,
+      "focus": {
+        "name": "Overview",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(59, 130, 246)",
+        "boxShadow": "none"
+      },
+      "pixelEquality": true
+    },
+    {
+      "file": "project-create-dark.png",
+      "theme": "dark",
+      "statusWithinFailedRun": "passed",
+      "originalBytes": 90820,
+      "webpBytes": 32756,
+      "rgbaSHA256": "b22b5cdf6a4dca557a4b6e38723f901ad510f41deb955363e4023b1f62faf8f9",
+      "geometryTargets": 14,
+      "inkRectangles": 11,
+      "focus": {
+        "name": "Create project",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(91, 155, 255)",
+        "boxShadow": "none"
+      },
+      "pixelEquality": true
+    },
+    {
+      "file": "project-overview-dark.png",
+      "theme": "dark",
+      "statusWithinFailedRun": "passed",
+      "originalBytes": 72926,
+      "webpBytes": 24190,
+      "rgbaSHA256": "fbef764fbcb8cb1c06ad2a2714b0058ae9be44edb9c73ad2a146a3d4629c56ff",
+      "geometryTargets": 14,
+      "inkRectangles": 23,
+      "focus": {
+        "name": "Overview",
+        "visible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(91, 155, 255)",
+        "boxShadow": "none"
+      },
+      "pixelEquality": true
+    }
+  ],
+  "geometryTargets": 56,
+  "inkRectangles": 68,
+  "originalPNGBytes": 329056,
+  "longInputs": {
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "creationNameLength": 48,
+    "instructionsLength": 4000,
+    "widthTargets": 10,
+    "savedAndRenderedHashesMatch": true,
+    "reopenAndMetadataBasis": "Pinned sequential driver assertions completed before later captures; raw long bodies not retained"
+  },
+  "radioButtonSnapshots": 28,
+  "hiddenRadioInputs": 28,
+  "behaviors": {
+    "bothThemesCreateEditSidebarLinks": true,
+    "lightUIDelete": "pointer run",
+    "darkUIDelete": "separate supplement",
+    "chatRecordMinusProjectPreserved": true,
+    "emptyMessagesOnly": true,
+    "distinctControlledProjects": 3,
+    "directCallLogsExcludeUIWrites": true,
+    "supplementEmptyListsAndURLBasis": "Pinned successful driver assertions; returned list bodies and final URL not retained"
+  },
+  "supplement": {
+    "status": "passed",
+    "durationMs": 8840,
+    "budgetMs": 30000,
+    "captures": 0,
+    "cleanupChecks": 5,
+    "calls": {
+      "total": 14,
+      "methods": {
+        "DELETE": 2,
+        "GET": 11,
+        "POST": 1
+      },
+      "statuses": {
+        "200": 11,
+        "201": 1,
+        "404": 2
+      }
+    }
+  },
+  "earlierAttempts": [
+    {
+      "directory": "initial-screen-permission",
+      "status": "failed",
+      "durationMs": 29782,
+      "originals": 0,
+      "cleanupChecks": 5
+    },
+    {
+      "directory": "initial-toast-hover",
+      "status": "failed",
+      "durationMs": 47147,
+      "originals": 1,
+      "cleanupChecks": 6
+    }
+  ],
+  "imageOccurrences": 5,
+  "uniqueRGBAImages": 4,
+  "earlierCreatePixelDuplicate": true,
+  "backendInferenceRequests": 0,
+  "backendErrors": 0,
+  "restoration": {
+    "nativeDark": "true",
+    "ordinaryPID": 68197,
+    "isolatedArgumentsAbsent": true,
+    "portsClosed": {
+      "9444": true,
+      "9445": true,
+      "9456": true
+    },
+    "asarSHA256": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+    "localPortsClosed": {
+      "19444": true,
+      "19445": true
+    },
+    "preLeaseOSDark": "true",
+    "OSStateRestoredAfterSharedCleanup": true,
+    "ordinaryDarkWindowObserved": true,
+    "leaseReleased": true,
+    "leaseID": "ses_f0669b75affe0VbhvF4kgkRgyV",
+    "basis": "Retained coordinator receipt, cross-checked offline; no new device observation"
+  },
+  "privacy": {
+    "limitedSecretPatternMatches": 0,
+    "controlledRecordValuesVerified": true,
+    "manualScope": "Four original Cortex windows only"
+  },
+  "limits": [
+    "Original collector exceeded 120 seconds; no single passing complete run",
+    "No inference or nonempty transcript native proof",
+    "No native process restart/busy-refusal/race proof",
+    "No native persisted long-name/Library acceptance",
+    "No frozen-reference comparison or broader product completion"
+  ],
+  "execution": {
+    "mode": "offline",
+    "applicationLaunches": 0,
+    "applicationTests": 0,
+    "newCaptures": 0,
+    "networkRequests": 0,
+    "pillowVersion": "12.3.0"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-03T14:52:45.619922+00:00",
+  "observedHead": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "originalRun": {
+    "revision": "0597848cdbdec362e1441b44c67bf74c525feefa",
+    "dirty": true,
+    "manifest": "../production/pinned-inputs.json",
+    "manifestSHA256": "2a6a305943cb40aa5a3c7d8ea5c27ee88911547c0c936c1035eefbc2acc07fbc"
+  },
+  "laterCommitBinding": {
+    "revision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+    "checked": 515,
+    "matched": 515,
+    "mismatches": [],
+    "note": "Same tested input bytes bound later to a commit; original run remains dirty-base evidence."
+  },
+  "currentManifestArraysMatchOriginal": true,
+  "fileChecks": [
+    {
+      "manifest": "pinned-inputs",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 515,
+      "matches": 515,
+      "mismatches": []
+    },
+    {
+      "manifest": "renderer-inputs",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 473,
+      "matches": 473,
+      "mismatches": []
+    },
+    {
+      "manifest": "members",
+      "root": "/tmp/opencode/build-projects-production",
+      "count": 90,
+      "matches": 90,
+      "mismatches": []
+    },
+    {
+      "manifest": "members",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 90,
+      "matches": 90,
+      "mismatches": []
+    }
+  ],
+  "rendererFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+  "asarSHA256": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad",
+  "projectTest": {
+    "path": "tests/e2e/projects.spec.ts",
+    "sha256": "a2d30f707d733e1dff8302404f3b2f01860da7fcf491bf75dc031058c09d8c9d",
+    "lines": 363,
+    "matchesRecordedTest": true,
+    "commitMatches": true
+  }
+}

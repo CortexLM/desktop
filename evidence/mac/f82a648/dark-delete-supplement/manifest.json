@@ -1,0 +1,171 @@
+{
+  "status": "passed",
+  "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "asar": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+  "startedAt": "2026-10-03T15:53:48.112Z",
+  "sourceSHA256": "3a3c694f32edefa8259e9280a3b6fa32f5c772fb4072ac41011a2dbbc9ae3cb6",
+  "captures": 0,
+  "calls": [
+    {
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "route": "/api/projects/prj_01a10278ca5300005636c5c48541700a",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10278cbb90000b11e0f86be2e69f5",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions/ses_01a10278cbb90000b11e0f86be2e69f5/messages",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/projects/prj_01a10278ca5300005636c5c48541700a",
+      "method": "DELETE",
+      "status": 404
+    },
+    {
+      "route": "/api/sessions/ses_01a10278cbb90000b11e0f86be2e69f5",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "projectRemoved": true,
+    "sessionRemoved": true,
+    "engineEmpty": true,
+    "routeRestored": true,
+    "zeroInference": true
+  },
+  "installedBefore": {
+    "asarSHA256": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+    "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+    "membersVerified": 90,
+    "pid": 67608,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "7516cb61de528e30b3ce4b3719c8f0cadb86401caf9b569dfd5f6985dd32257a"
+  },
+  "nativeDark": "true",
+  "project": {
+    "id": "prj_01a10278ca5300005636c5c48541700a",
+    "name": "Native dark deletion",
+    "icon": "calendar",
+    "color": "#8448FF",
+    "instructions": "Keep this controlled context.",
+    "time": {
+      "created": 1791042832979,
+      "updated": 1791042832979
+    }
+  },
+  "chat": {
+    "id": "ses_01a10278cbb90000b11e0f86be2e69f5",
+    "title": "Native dark retained chat",
+    "agent": "build",
+    "model": {
+      "providerID": "native-project",
+      "modelID": "reasoner"
+    },
+    "kind": "chat",
+    "projectID": "prj_01a10278ca5300005636c5c48541700a",
+    "time": {
+      "created": 1791042833337,
+      "updated": 1791042833337
+    }
+  },
+  "detached": {
+    "id": "ses_01a10278cbb90000b11e0f86be2e69f5",
+    "title": "Native dark retained chat",
+    "agent": "build",
+    "model": {
+      "providerID": "native-project",
+      "modelID": "reasoner"
+    },
+    "kind": "chat",
+    "time": {
+      "created": 1791042833337,
+      "updated": 1791042833337
+    }
+  },
+  "darkUIDeletePreservesChat": true,
+  "installedAfter": {
+    "asarSHA256": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422",
+    "revision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+    "membersVerified": 90,
+    "pid": 67608,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "7516cb61de528e30b3ce4b3719c8f0cadb86401caf9b569dfd5f6985dd32257a"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-projects-f82a648-pointer",
+    "runID": "d4067f70-c084-473c-91e8-fbe0e719c791",
+    "pid": 67602,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 0,
+      "health": 2,
+      "receipt": 8,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "finishedAt": "2026-10-03T15:53:56.952Z",
+  "durationMs": 8840
+}

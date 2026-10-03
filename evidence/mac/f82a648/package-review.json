@@ -1,0 +1,139 @@
+{
+  "status": "approved",
+  "scope": "Offline package/source admission for installation; native verification remains separate",
+  "applicationRevision": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "baselineApplication": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "workflowRunID": 37132419774,
+  "artifactID": 11277523097,
+  "outerBytes": 144684376,
+  "archiveSHA256": {
+    "artifact.zip": "59ce110f29a436c1f8369231975d5477b28ffa9427d65b2702d04fe2ee150141",
+    "Cortex.zip": "0ee37b1a202c7b900310ea7ad1b0b67ef68d58b0709c9581398679677af9e3fa",
+    "app.asar": "a6d3c4f59d10b3d3fd16e7309441ebb6aff1dd670e11ff06a57362eca805f422"
+  },
+  "outerCRC": "passed",
+  "innerCRC": "passed",
+  "innerZipEntries": 697,
+  "safeFrameworkSymlinks": 14,
+  "asarFiles": 91,
+  "verifiedIntegrityBlocks": 92,
+  "asarContiguousPayload": true,
+  "asarLinks": 0,
+  "asarUnpackedEntries": 0,
+  "buildMembers": 90,
+  "completeBuildMemberSetMatches": true,
+  "rootPackageMatchesGit": true,
+  "rootPackageIdenticalToBaseline": true,
+  "catalogs": 104,
+  "localeCounts": {
+    "de": 13,
+    "en": 13,
+    "es": 13,
+    "fr": 13,
+    "ja": 13,
+    "ko": 13,
+    "pt-BR": 13,
+    "zh-Hans": 13
+  },
+  "skills": 1,
+  "extraLocaleOrSkillFiles": 0,
+  "resourceFixturesOrSourceStamps": 0,
+  "packageInputsMatchingGit": 515,
+  "packageInputPathSetIndependentlyEnumerated": true,
+  "rendererInputs": 473,
+  "rendererFingerprintAlgorithm": "sha256(LF-joined sorted path:sha256, no trailing LF)",
+  "rendererFingerprint": "2230ff6f2deeee6b9d2b7eff21e96f152c193e15dfa824080721b3d1853d4464",
+  "changedInputs": [
+    {
+      "path": "packages/app/src/kit/styles.css",
+      "beforeSHA256": "8f2caecacb1574f931e2113be8bd7cfef039fc0105a776ef5a66bc6e867cd730",
+      "afterSHA256": "1f728575e54ab195b0efa61c80043b5300264c98ff0210934c475f183c893be1",
+      "added": 2,
+      "removed": 2
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "beforeSHA256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e",
+      "afterSHA256": "f82f52986d0148715b3b596afde15018852a9e4821dac918237e249fb2f8ecbd",
+      "added": 2,
+      "removed": 0
+    }
+  ],
+  "sourceLineDelta": {
+    "added": 4,
+    "removed": 2
+  },
+  "desktopMembersIdenticalToBaseline": {
+    "packages/desktop/dist/main.cjs": "e838b642a59244b22296ab2f2506c4d02aa6d6b8fd59c9675f8ec655273203f7",
+    "packages/desktop/dist/main.cjs.map": "7915942f60203d21774e64948133b58555a30a4a2118ac9abd633d66e39af7d8",
+    "packages/desktop/dist/preload.cjs": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+    "packages/desktop/dist/preload.cjs.map": "714c9b87a962ce9db7ac4a00d0e8b9cf2f4e01fb68f679686db1243a508b3533"
+  },
+  "mainWorkspaceSourcesMatchingGit": 33,
+  "preloadWorkspaceSourcesMatchingGit": 1,
+  "sdkSources": 16,
+  "apiTypesSources": 16,
+  "otherEmbeddedDependencySourcesUnchanged": 915,
+  "dependencyPinsUnchanged": true,
+  "rendererDelta": {
+    "previousAssets": {
+      "css": "packages/app/dist/assets/index-BLVQW-LL.css",
+      "js": "packages/app/dist/assets/index-Cvqb1vYV.js"
+    },
+    "currentAssets": {
+      "css": "packages/app/dist/assets/index-BI2hVXPN.css",
+      "js": "packages/app/dist/assets/index-ddbTF0D4.js"
+    },
+    "renamedJSBytesIdentical": true,
+    "htmlChangesOnlyTwoAssetReferences": true,
+    "otherASARMembersIdentical": 88,
+    "cssBeforeBytes": 205331,
+    "cssAfterBytes": 205538,
+    "cssSHA256": "6531efe4f5e496773b489657e19d46ccc4b7e355cd39b5ea1cbd997b8de16e48",
+    "exactCSSReplacements": {
+      ".toast .t-body{flex:1;font-size:12px}": ".toast .t-body{overflow-wrap:anywhere;flex:1;min-width:0;font-size:12px}",
+      ".card .body2{padding:10px 14px 14px}": ".card .body2{overflow-wrap:anywhere;padding:10px 14px 14px}"
+    },
+    "exactCSSAdditions": [
+      ".systeme-pbody h3,.systeme-phead h1,.systeme-instr{overflow-wrap:anywhere}",
+      ".systeme-preview>span:last-child{overflow-wrap:anywhere;flex:1;min-width:0}"
+    ]
+  },
+  "productionRenderer": {
+    "path": "packages/app/dist/assets/index-ddbTF0D4.js",
+    "bytes": 2461373,
+    "sha256": "e0527034c7c35a2ccf680bb750d156cf0511f4edc20ece0e21a1a453bf31309d",
+    "presentMarkers": [
+      "Minified React error #",
+      "bundleType:0,version:`19.3.0`,rendererPackageName:`react-dom`"
+    ],
+    "absentDevelopmentMarkers": [
+      "act(...) is not supported",
+      "actQueue",
+      "_debugStack",
+      "__DEV__",
+      "You are calling ReactDOMClient.createRoot()"
+    ]
+  },
+  "linuxAsarBytesIdentical": true,
+  "originalDirtyReceiptsPreserved": true,
+  "originalDirtyBase": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "inputArtifactsStableBeforeAfter": true,
+  "executedBuilds": 0,
+  "executedApplicationTests": 0,
+  "nativeExecution": false,
+  "networkRequests": 0,
+  "earlierNegativeEvidence": "8e3fd79 archive and wrapping failures retain their original scope",
+  "startedUTC": "2026-10-03T15:33:09.926651+00:00",
+  "finishedUTC": "2026-10-03T15:33:17.046046+00:00",
+  "verifier": {
+    "path": "/tmp/opencode/projects-mac-wrap-audit/verify.py",
+    "sha256": "1549f5001dc9480eee7a8211c4723119ef476ca7745bc3e60560202be70d9a7a",
+    "helperSHA256": "fd4df3995a0a2ba32bc394bec6a94655dbed01412a4e07a17d1e56cf392cc6dc",
+    "asarReaderSHA256": "b1dc950239a29d1fbce49df67a1ba6b4dbe4d049a4c6bfc59520e0f6488c9710"
+  },
+  "detailReceipts": {
+    "integrity.json": "a237fbbea15a1078ebab2ec42db9e5b958fc12b8f88143a1251e848a9904f5be",
+    "source-hashes.json": "22c2be7cb34642af2fe3d1f2ea18658c02444ea7ff1fc70278790825811fe097"
+  }
+}

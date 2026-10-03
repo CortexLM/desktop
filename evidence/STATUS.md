@@ -186,30 +186,41 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 The [current source-backed completion audit](appearance-theme-followup/completion-audit/README.md)
 maps thirteen requirement groups and all six proofs at `99e3d04`. Its then-pending CI status
 is superseded by run `37124432902` passing all three jobs and the separate matching
-artifact/native audits. Live Files/Projects, Work feeds, dedicated Code workflows, missing-surface lifecycle
+artifact/native audits. Live Files, remaining Project features, Work feeds, dedicated Code workflows, missing-surface lifecycle
 contracts and public remote integration remain delivery work. External owner inputs are
 specific dependencies, not a blanket blocker on this remaining local work.
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `99e3d04` CI passes lint/types and 245 units plus one optional backend skip; independent artifact audit verifies checkout/source binding. |
-| Every design screen plus provider/image/reasoning flows | Partial: `99e3d04` CI passes 113 cases/426 renders per OS; 300 images/20 full-size views reviewed. All sixteen locale images match `37c22c2`; sampled CJK glyphs remain readable. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `99e3d04` CI package/smoke passes; independently verified package ASAR, 90 build members, 104 catalogs and skill. Matching installed checks are recorded separately. Native CI display capture remains a separate limitation. Unsigned arm64 only. |
+| Lint, types, units | `f82a648` CI passes lint/types/i18n and 252 units plus one optional backend skip. |
+| Every design screen plus provider/image/reasoning flows | Partial: `f82a648` CI passes 118 cases/426 visits per OS; 316 images/20 full-size Project views reviewed. Sixteen locale images match `8e3fd79`. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `f82a648` CI package/smoke passes; independent package admission verifies 90 members, 515 inputs, 104 catalogs and skill. Matching installed evidence is separate. Native CI display capture remains a limitation. Unsigned arm64 only. |
 | Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 states/fourteen menus/window actions. Later scoped captures: `ffc118a`28, `7885736`8, `f5bf305`22, `760c4a0`6, `2956564`6, `37c22c2`4. Matching `99e3d04`: two Appearance captures/47 checks pass after collector-only media reset; independent native audit passes. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `99e3d04` CI: 65 files, 2,272 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass; Linux Noto inventory/selection verified. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
+| Automated i18n audit | `8e3fd79` CI: 65 files, 2,275 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass. All sixteen auth panes match CI99; their sidebars differ. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
-Local Projects implementation is now underway in the working tree: persistent records,
-instruction context, Chat membership and existing-screen discovery. Its dedicated protocol
-checks pass seven cases; integrated production validation passes 116 Electron cases/426
-render visits, 252 units plus one optional skip, lint/types/i18n and Linux package/smoke.
-Matching CI/native acceptance and independent local artifact audit remain pending.
-The [delivery ledger](projects-followup/README.md) separates this candidate from accepted `99e3d04`.
+Local Projects ships on this branch at `8e3fd79`: persistent records, instruction context,
+Chat membership and existing-screen discovery. Its seven protocol cases, 252 units plus one
+optional skip and 116 local Electron cases/426 visits pass; CI `37130209247` passes all three
+jobs. Independent local artifacts cover 156 images/eight full-size Project views; the scoped
+comparison covers 36 references/two gaps. Package identity is verified separately.
+The subsequent `f82a648` correction wraps accepted long names/instructions and toast text:
+two regressions fail before four CSS rules, then pass unchanged. Its local 118-case suite,
+lint/types/i18n and Linux production package/smoke pass. CI `37132419774` passes all three jobs.
+Four installed native captures and a separate 8.840-second dark-deletion supplement pass;
+the original 128.800-second collector run remains failed for exceeding its 120-second budget.
+Independent native audit accepts the bounded composite; the [delivery ledger](projects-followup/README.md) preserves
+each source-bound proof and the earlier failures. Project files/sharing/Bot/archive/metadata
+editing remain unfinished.
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
 `CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;
 it does not supply account or inference credentials.
+The [14:47 UTC owner readback](projects-followup/owner-readback/REPORT.md) finds no new
+PR446/447 issue comments since 12:07 or named five-state product-import permission in its
+bounded inputs. Public instance remains 404; unchanged model metadata supplies no
+vision-plus-reasoning Chat model. These external gaps remain distinct from local delivery.
 
 ## Current MCP contract correction
 

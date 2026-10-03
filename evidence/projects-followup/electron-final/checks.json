@@ -1,0 +1,29 @@
+{
+  "unit": {
+    "source": "../checks/unit.log",
+    "passed": 252,
+    "optionalSkip": 1,
+    "filesPassed": 23,
+    "durationSeconds": 11.99
+  },
+  "lint": {
+    "source": "../production/lint-final.log",
+    "bytes": 0,
+    "exitCode": 0,
+    "exitCodeAuthority": "coordinator supplied; empty successful log contains no exit marker"
+  },
+  "typecheck": {
+    "source": "../production/typecheck-final.log",
+    "diagnostics": 0,
+    "exitCode": 0,
+    "exitCodeAuthority": "coordinator supplied"
+  },
+  "i18n": {
+    "files": 65,
+    "usedKeys": 2275,
+    "englishKeys": 3405,
+    "findings": 0,
+    "source": "../production/i18n.log"
+  },
+  "notRerun": true
+}

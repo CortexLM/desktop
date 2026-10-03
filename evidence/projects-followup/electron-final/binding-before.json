@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-03T14:46:06.445964+00:00",
+  "head": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "manifests": {
+    "pinned-inputs": {
+      "manifest": "/tmp/opencode/build-projects-production/pinned-inputs.json",
+      "sha256": "df856df3ac773d89b3b67eaa2d4bd10ae1d4f752a5c97ccb3953de282a782aa1",
+      "revision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+      "dirty": false,
+      "checks": [
+        {
+          "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+          "checked": 515,
+          "matched": 515,
+          "mismatches": []
+        }
+      ]
+    },
+    "renderer-inputs": {
+      "manifest": "/tmp/opencode/build-projects-production/renderer-inputs.json",
+      "sha256": "f1cefb0ec947f8478b8ae0ba62cd0382101b20e49d078169cdbb95b16d87c28e",
+      "revision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+      "dirty": false,
+      "checks": [
+        {
+          "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+          "checked": 473,
+          "matched": 473,
+          "mismatches": []
+        }
+      ],
+      "fingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+      "declaredFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+      "fingerprintMatches": true
+    },
+    "members": {
+      "manifest": "/tmp/opencode/build-projects-production/members.json",
+      "sha256": "dc0cce65ca74f133b4fffcddb33bfb511497b96aa775e4cde01a7911a9b2d8f6",
+      "revision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+      "dirty": false,
+      "checks": [
+        {
+          "root": "/tmp/opencode/build-projects-production",
+          "checked": 90,
+          "matched": 90,
+          "mismatches": []
+        },
+        {
+          "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+          "checked": 90,
+          "matched": 90,
+          "mismatches": []
+        }
+      ]
+    }
+  },
+  "asar": {
+    "path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/dist/linux-unpacked/resources/app.asar",
+    "expected": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad",
+    "actual": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad"
+  },
+  "testSource": {
+    "path": "tests/e2e/projects.spec.ts",
+    "sha256": "a2d30f707d733e1dff8302404f3b2f01860da7fcf491bf75dc031058c09d8c9d",
+    "lines": 363
+  }
+}

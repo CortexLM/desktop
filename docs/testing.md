@@ -85,7 +85,10 @@ Cancellation checks inspect the durable event journal as well as the current mes
   These are test definitions; executed results are recorded separately for each source pin.
   The long-input baseline fails in both themes before four native CSS wrapping rules;
   the unchanged regression and the final 118-case local suite pass afterward. Matching
-  correction CI/native acceptance remains separately tracked in
+  correction CI passes 118 cases per OS. Native composite evidence retains a collector
+  time-budget failure alongside four individually passing captures and a passing dark
+  deletion supplement. Independent native audit accepts that bounded composite, preserving
+  the failed collector status. Details are tracked in
   [`evidence/projects-followup/wrapping/README.md`](../evidence/projects-followup/wrapping/README.md).
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP

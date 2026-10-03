@@ -1,0 +1,194 @@
+{
+  "application": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "source": "provenance/projects.spec.ts.gz",
+  "cases": [
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 11102,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:15:13.437Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 10701,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:15:14.193Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 239,
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 2090,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:15:14.395Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 365,
+      "title": "Projects keep accepted unbroken names and instructions readable at minimum size — light",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 1049,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:15:16.494Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 365,
+      "title": "Projects keep accepted unbroken names and instructions readable at minimum size — dark",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 1019,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:15:17.549Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 12956,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:19:04.777Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 12596,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:19:17.739Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 239,
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 2613,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:19:30.340Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 365,
+      "title": "Projects keep accepted unbroken names and instructions readable at minimum size — light",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 1828,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:19:32.958Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 365,
+      "title": "Projects keep accepted unbroken names and instructions readable at minimum size — dark",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 1974,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T15:19:34.789Z"
+        }
+      ]
+    }
+  ],
+  "originalThreeCaseClaims": "../ci-8e3fd79/project-checks.json",
+  "originalPrefixExact": true,
+  "newAssertions": [
+    {
+      "lines": "365-391",
+      "claim": "Both themes at 960×640; accepted 48-W name/4000-W instruction; creation-preview containment and exact stored input."
+    },
+    {
+      "lines": "392-396",
+      "claim": "Overview and Instructions horizontal containment; selected Instructions tab; hard main-surface and viewport bounds before screenshot."
+    },
+    {
+      "lines": "397-404",
+      "claim": "Grid and Library accepted-name containment/text; exact original stored instructions; page errors empty."
+    }
+  ],
+  "newCaseConsoleListener": false,
+  "scope": "Five Projects cases per OS; original cases retain page/console error checks; new cases listen to page errors only. Geometry assertions are not a full text-node/vertical-readability proof."
+}

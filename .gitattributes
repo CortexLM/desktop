@@ -1,0 +1,4 @@
+# Preserve byte-exact signed commit and patch evidence, including blank context lines.
+evidence/projects-followup/ci-f82a648/provenance/checkout-commit.raw -whitespace
+evidence/projects-followup/ci-f82a648/provenance/wrapping.diff -whitespace
+evidence/projects-followup/wrapping/compare/source.patch -whitespace

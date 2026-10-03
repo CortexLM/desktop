@@ -1,0 +1,48 @@
+{
+  "production-full": {
+    "source": "/tmp/opencode/projects-integrated/production-full.json",
+    "sha256": "84095b438c35f0d78c699e7d288aec8620fe83e38cdd6332656e6200f6a7bda8",
+    "bytes": 1333400,
+    "retained": "../production/full.json.gz",
+    "retainedRawMatches": true,
+    "stats": {
+      "startTime": "2026-10-03T14:27:40.697Z",
+      "duration": 284141.15,
+      "expected": 116,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 116,
+    "attempts": 116,
+    "retryAttempts": 0,
+    "statuses": {
+      "expected": 116
+    },
+    "resultErrors": 0
+  },
+  "production-targeted": {
+    "source": "/tmp/opencode/projects-integrated/production-targeted.json",
+    "sha256": "b3a6278132f5f11263eab6dcd846a13b7bbdb3dd2e93c6b9a42bdf81e246735c",
+    "bytes": 438985,
+    "retained": "../production/targeted.json.gz",
+    "retainedRawMatches": true,
+    "stats": {
+      "startTime": "2026-10-03T14:25:54.531Z",
+      "duration": 56659.348,
+      "expected": 16,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 16,
+    "attempts": 16,
+    "retryAttempts": 0,
+    "statuses": {
+      "expected": 16
+    },
+    "resultErrors": 0
+  }
+}

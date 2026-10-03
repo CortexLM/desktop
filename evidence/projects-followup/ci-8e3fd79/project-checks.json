@@ -1,0 +1,143 @@
+{
+  "application": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "source": "provenance/projects.spec.ts.gz",
+  "cases": [
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 11543,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:39:15.428Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 11415,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:39:15.684Z"
+        }
+      ]
+    },
+    {
+      "os": "e2e-linux",
+      "file": "projects.spec.ts",
+      "line": 239,
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 2136,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:39:15.878Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — light",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 12971,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:43:22.093Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 75,
+      "title": "Projects persist through two restarts, route exact identities and preserve chats on deletion — dark",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 13196,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:43:35.070Z"
+        }
+      ]
+    },
+    {
+      "os": "macos",
+      "file": "projects.spec.ts",
+      "line": 239,
+      "title": "Projects retain newer drafts and isolate late reads/writes across owners",
+      "ok": true,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "duration": 2758,
+          "retry": 0,
+          "errors": [],
+          "startTime": "2026-10-03T14:43:48.270Z"
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "lines": "75-144",
+      "claim": "Empty state; exact-ID duplicate-name creation; Rocket arrow selection and Orange radio; genuine provider-disabled refusal retains draft, creates one reusable session, no model request until retry; first prompt includes amber instructions."
+    },
+    {
+      "lines": "146-174",
+      "claim": "First Electron restart retains both Projects/transcript; tabs use arrow focus; Cancel discards draft; Save persists revised instructions; next prompt includes revised context and excludes old instructions."
+    },
+    {
+      "lines": "175-203",
+      "claim": "Move/detach use exact IDs; project-filtered history; Search instructions and Library route exact record; sidebar child opens chat, See all opens exact project, Space collapse makes children inert."
+    },
+    {
+      "lines": "204-231",
+      "claim": "Delete detaches Chat without transcript loss; second restart retains surviving Project and detached messages; deleted route shows unavailable; subsequent prompt excludes all prior Project context; page/console errors empty."
+    },
+    {
+      "lines": "239-355",
+      "claim": "Real completed IPC responses delayed, not replaced: duplicate pending saves refused; newer draft retained; stale-owner writes/reads isolated; browser Back/Forward correct; real validation refusal retains draft; Library source-read failure offers successful Retry; page/console errors empty."
+    }
+  ],
+  "limits": [
+    "Three cases per OS; original 363-line source, before later long-input regression cases.",
+    "Controlled local fake inference; not real provider or Cloud acceptance.",
+    "Only 16 Project frames, 12 at 960×640 and four at 1440×900; saved instruction views, not screenshots of all intermediate states.",
+    "Coordinator later found accepted long unbroken text overflow outside original case coverage; correction pending separately.",
+    "File management/sharing/assigned Bot/archive/metadata editing remain unfinished."
+  ]
+}

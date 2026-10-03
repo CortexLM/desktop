@@ -347,6 +347,16 @@ artifact review covers 300 images/20 full-size targets. Two matching installed c
 47 state/focus checks verify native System appearance, arrows, Space and Tab. The initial
 collector's CDP media override failure remains separate from its corrected confirmation.
 See [`evidence/appearance-theme-followup/README.md`](./evidence/appearance-theme-followup/README.md).
+Local Projects `8e3fd79` passes CI `37130209247`: 116 Electron cases/426 visits per OS,
+252 units plus one optional skip. Independent review covers 311 CI images/32 full-size
+views, 36 frozen comparisons/two gaps and exact Mac package identity. That package remains
+archived after accepted long-input clipping was reproduced. Wrapping correction `f82a648`
+passes CI `37132419774`: 118 Electron cases/426 visits per OS and package/smoke. Its image
+audit covers 316 images/20 full-size Project views; sixteen locale frames match `8e3fd79`.
+Matching installed checks record four passing captures and a separate dark-deletion pass;
+the collector's time-budget failure stays explicit. Independent native audit accepts that
+bounded composite; cleanup restores the pre-lease OS appearance and releases the device.
+See [`evidence/projects-followup/README.md`](./evidence/projects-followup/README.md).
 
 ## CI, packaging and releases
 

@@ -1,0 +1,27 @@
+{
+  "reviewedAt": "2026-10-03T15:08:28.039102+00:00",
+  "application": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+  "uniqueImages": 311,
+  "pngCopies": 939,
+  "contactSheets": 26,
+  "allContactsInspected": true,
+  "fullsizeProjectViews": 16,
+  "fullsizeLocaleViews": 16,
+  "fullsizeViewsInspected": 32,
+  "observationScope": "All unique images at contact size; Project/auth-locale targets additionally opened as original full-size PNGs. No capture or app/test rerun.",
+  "targetObservations": {
+    "project-create": "New project dialog, Café preparation, Name/Icon/Color/Instructions labels, selected Rocket/Orange rings, amber instruction text, Cancel/Create project all visible at 960×640.",
+    "project-overview": "Café preparation, orange rocket, 1 chat, New chat, Overview/Files/Instructions/Sharing tabs, Prepare the project handoff, Not available yet and amber instructions visible; two same-name sidebar records remain distinct in the tested route.",
+    "project-instructions": "Instructions tab selected; Use the updated amber instructions., Edit and Instructions saved visible; toast clears the instruction card at 960×640.",
+    "projects-persisted": "At 1440×900, surviving Café preparation card shows orange rocket and 0 chats; New project tile/button visible; detached Prepare the project handoff remains in Recents.",
+    "remote-locale": "Dark refused-code state: localized heading, fixture email, six zero cells, resend/continue/other-address/error/cancel copy visible; Cancel focus ring visible. CJK views contain real glyphs, not tofu. Auth pane RGBA-exact to same-OS CI99."
+  },
+  "qualifications": [
+    "Contact-only non-targets do not establish full-resolution acceptance.",
+    "Historical decorative login logo clipping in email state, toast overlap/stacking, narrow Code composer truncation and scrollport cropping remain visible qualifications.",
+    "All 16 auth-locale captures have sidebar-only differences; complete auth panes x=337..959 are RGBA-exact to CI99. Translation accuracy and regional CJK glyph preference not reapproved.",
+    "49 comparable non-target aliases differ beyond sidebar; no blanket cause assigned.",
+    "Native CI capture failure persists, cause unknown; renderer captures do not prove traffic lights, native menus or installed package behavior.",
+    "Known long-input overflow at 8e3fd79 was found separately after this CI; correction/native verification remain pending."
+  ]
+}

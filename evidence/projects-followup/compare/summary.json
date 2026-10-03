@@ -1,0 +1,115 @@
+{
+  "scope": "Scoped settled browser-preview comparison; no live-engine/native acceptance.",
+  "rows": 38,
+  "comparisons": 36,
+  "gaps": [
+    "home+menu-dark",
+    "home+menu-light"
+  ],
+  "projectThemeStateRenders": 14,
+  "maximum": {
+    "name": "chat-light",
+    "pixels": 5184000,
+    "appRGBA": "ab58b7145e9568dd6f3a3b8eaeca80a2cae7ccac42ea2f0f0a48d1d8b0dce16e",
+    "designRGBA": "3438fb1834b436740464131375fd97838e76fb5359e5aaa8060b46e0064099a1",
+    "diffRGBA": "7b37f0998dee9fc013e56c56ce5b6875de4e227544927e4f6a292215e11e2b61",
+    "originalRoundedDiffPct": 0.15,
+    "pixelmatchChanged": 7833,
+    "exactPixelmatchPct": 0.15109953703703705,
+    "rawRGBAChanged": 20274,
+    "pixelmatchBounds": [
+      244,
+      95,
+      2425,
+      596
+    ],
+    "rawRegions": {
+      "header": 303,
+      "sidebar": 931,
+      "main": 18933,
+      "border": 107
+    },
+    "matchedRegions": {
+      "header": 60,
+      "sidebar": 72,
+      "main": 7701,
+      "border": 0
+    }
+  },
+  "projectMaximum": {
+    "name": "projects~empty-light",
+    "pixels": 5184000,
+    "appRGBA": "9f3ab7f575e987c38c71d9b5e2c83d4725a7722ea477fb62ee215fe97803dff6",
+    "designRGBA": "c38355160f6b46ab04406d55082321fc841285109369413c091d17c3f33c7c72",
+    "diffRGBA": "250ca68a9dd1bead809b75f6edecdcf1a78eecbc636c45b1c76886ecdc1ea3c8",
+    "originalRoundedDiffPct": 0.02,
+    "pixelmatchChanged": 985,
+    "exactPixelmatchPct": 0.019000771604938273,
+    "rawRGBAChanged": 19416,
+    "pixelmatchBounds": [
+      259,
+      94,
+      2728,
+      1672
+    ],
+    "rawRegions": {
+      "header": 1060,
+      "sidebar": 3006,
+      "main": 15243,
+      "border": 107
+    },
+    "matchedRegions": {
+      "header": 113,
+      "sidebar": 127,
+      "main": 745,
+      "border": 0
+    }
+  },
+  "exactMeanPct": 0.014065715020576134,
+  "roundedMeanPct": 0.013888888888888888,
+  "zeroThresholdRows": [
+    "projects~create-dark",
+    "projects~create-light"
+  ],
+  "zeroExactRGBARows": [],
+  "originalRoundedScoresPreserved": true,
+  "pairSheetsInspected": 3,
+  "gapSheetsInspected": 1,
+  "fullResolutionPairsInspected": 5,
+  "additionalDiffOriginalsInspected": 4,
+  "fullResolutionOriginalsInspected": 14,
+  "all38AppsRetained": true,
+  "newWebPs": 47,
+  "newWebPBytes": 22668462,
+  "canonicalReuseEntries": 12,
+  "hashOnlyDesignEntries": 20,
+  "currentCommitBinding": {
+    "comparatorDirtyBase": "0597848cdbdec362e1441b44c67bf74c525feefa",
+    "laterFrozenReceiptRevision": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+    "laterDirty": false,
+    "packageInputPayloadsEqual": true,
+    "buildMemberPayloadsEqual": true,
+    "all515InputsMatchLaterGit": true,
+    "originalProvenanceUnchanged": true
+  },
+  "reviewedAt": "2026-10-03T14:56:07.379425+00:00",
+  "originalAuthority": "Hash-verified frozen7b388 manifest; supplied inline images add no filename/hash authority.",
+  "auditHelpers": [
+    {
+      "path": "/tmp/opencode/projects-compare-review/pixels.mjs",
+      "sha256": "cb10ad7b4e00d3650c6f5ddb1c42044effb517b200d209e636bf509062fcc659"
+    },
+    {
+      "path": "/tmp/opencode/projects-compare-review/audit.py",
+      "sha256": "ce15de57d9758b261503aa35125d0a0154499dd92b2e52a9ddbbd09bee293288"
+    },
+    {
+      "path": "/tmp/opencode/projects-compare-review/regions.py",
+      "sha256": "02e48a0476ce818a16061808826ee6398b18ad85a9b9f0d991402446a2c29c21"
+    },
+    {
+      "path": "/tmp/opencode/projects-compare-review/finalize.py",
+      "sha256": "2f0176ad09f735171f3a597cac6e27cc3e26bc69d6114a61f98f70430a9eab82"
+    }
+  ]
+}

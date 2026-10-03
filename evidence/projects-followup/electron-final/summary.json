@@ -1,0 +1,113 @@
+{
+  "disposition": "PASS — bounded retained production Linux evidence",
+  "reports": {
+    "production-full": {
+      "source": "/tmp/opencode/projects-integrated/production-full.json",
+      "sha256": "84095b438c35f0d78c699e7d288aec8620fe83e38cdd6332656e6200f6a7bda8",
+      "bytes": 1333400,
+      "retained": "../production/full.json.gz",
+      "retainedRawMatches": true,
+      "stats": {
+        "startTime": "2026-10-03T14:27:40.697Z",
+        "duration": 284141.15,
+        "expected": 116,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "topLevelErrors": [],
+      "cases": 116,
+      "attempts": 116,
+      "retryAttempts": 0,
+      "statuses": {
+        "expected": 116
+      },
+      "resultErrors": 0
+    },
+    "production-targeted": {
+      "source": "/tmp/opencode/projects-integrated/production-targeted.json",
+      "sha256": "b3a6278132f5f11263eab6dcd846a13b7bbdb3dd2e93c6b9a42bdf81e246735c",
+      "bytes": 438985,
+      "retained": "../production/targeted.json.gz",
+      "retainedRawMatches": true,
+      "stats": {
+        "startTime": "2026-10-03T14:25:54.531Z",
+        "duration": 56659.348,
+        "expected": 16,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "topLevelErrors": [],
+      "cases": 16,
+      "attempts": 16,
+      "retryAttempts": 0,
+      "statuses": {
+        "expected": 16
+      },
+      "resultErrors": 0
+    }
+  },
+  "images": {
+    "runs": {
+      "production-full": {
+        "pngFileCopies": 314,
+        "uniqueImages": 155,
+        "inlinePngAttachments": 4,
+        "pngAttachments": 161
+      },
+      "production-targeted": {
+        "pngFileCopies": 76,
+        "uniqueImages": 32,
+        "inlinePngAttachments": 0,
+        "pngAttachments": 38
+      }
+    },
+    "union": {
+      "uniquePngSHA256": 156,
+      "uniqueRGBA": 156,
+      "newLosslessWebP": 115,
+      "reusedCanonical": 41,
+      "contactSheets": 13,
+      "fullsizeTargets": 8,
+      "retainedNewImageBytes": 3434972,
+      "originalPngBytes": 11356733,
+      "jsonAttachments": 75,
+      "uniqueJsonAttachments": 51
+    }
+  },
+  "binding": {
+    "originalDirtyBase": "0597848cdbdec362e1441b44c67bf74c525feefa",
+    "laterBoundCommit": "8e3fd795b699c8ff07357544421d00f34dc2823c",
+    "inputsMatched": 515,
+    "rendererInputsMatched": 473,
+    "buildMembersMatched": 90,
+    "asarBuildMembersMatched": 90,
+    "rendererFingerprint": "6070fc3282e019c04a29f6a2a68f36f029c56e7813c4aecd84cba46f071a5bb4",
+    "asarSHA256": "5a92b306afc07184af30404d3d04ae596554ea9800bf31e3a0e3f2fd5c74d9ad"
+  },
+  "registeredRenderVisits": 426,
+  "unexpectedReportOrObservedConsoleErrors": 0,
+  "intentionalNativeCallbackFaults": 3,
+  "visualReview": {
+    "contactsViewed": 13,
+    "uniqueImagesViewed": 156,
+    "fullsizeProjectsOriginalsViewed": 8,
+    "newVisualBlockers": 0
+  },
+  "unit": {
+    "source": "../checks/unit.log",
+    "passed": 252,
+    "optionalSkip": 1,
+    "filesPassed": 23,
+    "durationSeconds": 11.99
+  },
+  "i18n": {
+    "files": 65,
+    "usedKeys": 2275,
+    "englishKeys": 3405,
+    "findings": 0,
+    "source": "../production/i18n.log"
+  },
+  "scope": "Existing local artifacts only. No tests/build/capture/browser/network/CI/Mac run; no real auth/inference or full-product acceptance."
+}

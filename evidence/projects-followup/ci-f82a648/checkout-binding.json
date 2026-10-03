@@ -1,0 +1,86 @@
+{
+  "head": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "checkout": "2e52e4480ad36e955c8a62aa865bd777e96de252",
+  "headTree": "bac9586cccd8ee5dc152f86ac68e53c14a228b2b",
+  "checkoutTree": "bac9586cccd8ee5dc152f86ac68e53c14a228b2b",
+  "headCheckoutTreesEqual": true,
+  "checkoutObjectAvailable": false,
+  "checkoutProbeError": "fatal: Not a valid object name 2e52e4480ad36e955c8a62aa865bd777e96de252",
+  "checkoutLogLines": [
+    {
+      "line": 118,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T15:12:40.0975441Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2e52e4480ad36e955c8a62aa865bd777e96de252:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 120,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T15:13:29.5913568Z  * [new ref]         2e52e4480ad36e955c8a62aa865bd777e96de252 -> pull/36/merge"
+    },
+    {
+      "line": 227,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T15:13:31.8745870Z HEAD is now at 2e52e44 Merge f82a64800c0fffd6ebaa99e571a8af0fa4307095 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 230,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T15:13:31.8941109Z 2e52e4480ad36e955c8a62aa865bd777e96de252"
+    },
+    {
+      "line": 794,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T15:12:32.9968899Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2e52e4480ad36e955c8a62aa865bd777e96de252:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 796,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T15:13:09.6456676Z  * [new ref]         2e52e4480ad36e955c8a62aa865bd777e96de252 -> pull/36/merge"
+    },
+    {
+      "line": 906,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T15:13:12.3804183Z HEAD is now at 2e52e44 Merge f82a64800c0fffd6ebaa99e571a8af0fa4307095 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 909,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T15:13:12.3905025Z 2e52e4480ad36e955c8a62aa865bd777e96de252"
+    },
+    {
+      "line": 1208,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T15:12:50.9366760Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2e52e4480ad36e955c8a62aa865bd777e96de252:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 1210,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T15:13:21.6682700Z  * [new ref]         2e52e4480ad36e955c8a62aa865bd777e96de252 -> pull/36/merge"
+    },
+    {
+      "line": 1283,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T15:13:23.6940970Z HEAD is now at 2e52e44 Merge f82a64800c0fffd6ebaa99e571a8af0fa4307095 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 1286,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T15:13:23.7115640Z 2e52e4480ad36e955c8a62aa865bd777e96de252"
+    }
+  ],
+  "inputs": 515,
+  "rendererInputs": 473,
+  "rendererComparatorFingerprint": "2230ff6f2deeee6b9d2b7eff21e96f152c193e15dfa824080721b3d1853d4464",
+  "frozenBuildMembers": 90,
+  "frozenBuildFileSetAndBytesVerified": true,
+  "sourceInputsMatchApplicationCommit": true,
+  "frozenMainSHA256": "e838b642a59244b22296ab2f2506c4d02aa6d6b8fd59c9675f8ec655273203f7",
+  "frozenPreloadSHA256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+  "ciASAROrMainCompared": false,
+  "scope": "Exact CI checkout tree equals application tree. All frozen source/build receipts verified against this tree. CI ASAR/main equality and installed-native acceptance remain separately owned.",
+  "treeProof": "Coordinator GitHub git-commit API response; SHA256 checked, signed commit body reconstructed and Git object SHA1 independently reproduced offline.",
+  "apiResponseSHA256": "faaca17ac68cc5cb6ea3819fe152c8ce57392a731dade74035703f0129143be5",
+  "reconstructedCommitSHA1": "2e52e4480ad36e955c8a62aa865bd777e96de252",
+  "reconstructedCommitSHA256": "b2eeef11a5d347c2b9c66076e30b2f8d777aad1c2e3fe8dfc79a718382248e3f",
+  "signatureVerification": "API reports valid signature; GPG signature not independently revalidated."
+}

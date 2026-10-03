@@ -9,8 +9,8 @@ behavior assertions in a separate 3.5-second case (4.3 seconds overall).
 The first full suite used an incorrect build environment: `NODE_ENV=test` was set during
 Vite build, retaining development React and StrictMode effect replay. **109/116 cases pass**;
 four one-read history gates, one auth-read gate and two Base UI warning assertions fail.
-Its bundle was 2,947,956 bytes and contained development `act` diagnostics; the corrected
-production bundle is separately bound. Original tests and application assertions were not
+Its bundle was 3,098,968 bytes (2,947,956 decoded characters) and contained development `act`
+diagnostics; the corrected production bundle is separately bound. Original tests and application assertions were not
 weakened to hide these failures. Raw logs, artifacts and build receipts remain distinct.
 Earlier JSON reports were overwritten by the configured reporter path; retained logs and
 artifact directories establish their recorded scope, not an invented raw-report archive.

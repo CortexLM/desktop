@@ -1,0 +1,22 @@
+{
+  "initial": {
+    "run": "/tmp/opencode/projects-native-f82a648",
+    "status": "failed",
+    "durationMs": 29782,
+    "captureRequests": 1,
+    "retainedCaptures": 0,
+    "causeObserved": "Terminal screen-recording permission dialog; capture helper HTTP500",
+    "cleanupChecks": 5
+  },
+  "confirmation": {
+    "run": "/tmp/opencode/projects-native-f82a648-confirm",
+    "status": "failed",
+    "durationMs": 47147,
+    "captureRequests": 1,
+    "retainedCaptures": 1,
+    "causeObserved": "Creation toast intercepts Edit pointer click; pointer stays over toast and pauses dismissal",
+    "cleanupChecks": 6
+  },
+  "applicationUnchanged": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+  "collectorOriginalSHA256": "43f443aeca84688ef867eae89c629878f592e2bcd3601f17fef3be1ffdd57584"
+}

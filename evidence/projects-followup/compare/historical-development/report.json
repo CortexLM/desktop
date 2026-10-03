@@ -1,0 +1,1750 @@
+[
+  {
+    "name": "home-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:07.956Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:56:58.406Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "dcad4f6aeba27aa7ced225a42c8420d5f00f28c0575e5bb86b4f8b10545bc190",
+      "consoleErrors": [],
+      "file": "home-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-dark.app.png",
+        "sha256": "bc10482e3ad4e8abea44f1aa04a2242258db77f068585ca3c544c978b4be56f1",
+        "bytes": 665855
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-dark.design.png",
+        "sha256": "dcad4f6aeba27aa7ced225a42c8420d5f00f28c0575e5bb86b4f8b10545bc190",
+        "bytes": 667121
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-dark.diff.png",
+        "sha256": "5a03e28aabda7b8a146fed92bdec965d63eea62331d02ee53ce178f1777766c2",
+        "bytes": 215027
+      }
+    },
+    "ref": "home-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "home-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:11.307Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:00.362Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "94a423d1b913938e83207f62d3092c5b6dd5cb898bf960ee35db48fe37df9b6a",
+      "consoleErrors": [],
+      "file": "home-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-light.app.png",
+        "sha256": "9b430933625c5827d26c1717a7cd2635f686c056ffe102cf0253092ea2d76c89",
+        "bytes": 653375
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-light.design.png",
+        "sha256": "94a423d1b913938e83207f62d3092c5b6dd5cb898bf960ee35db48fe37df9b6a",
+        "bytes": 653429
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home-light.diff.png",
+        "sha256": "97830aa938c6c508c2a423fdf990d4e1c0434125f9dbb7a27cbc2b7990cbb332",
+        "bytes": 218942
+      }
+    },
+    "ref": "home-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "chat-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:14.642Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "chat",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:02.364Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+      "consoleErrors": [],
+      "file": "chat-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-dark.app.png",
+        "sha256": "a5d830c274db515eca49ccb7f113cddb564b1a04629fe09acf1075fd0b35a8a7",
+        "bytes": 715247
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-dark.design.png",
+        "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+        "bytes": 715778
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-dark.diff.png",
+        "sha256": "2cab6743f5affe543fd59b0c080d1d5e052bf23ed0a031aa7dcf03aba8622980",
+        "bytes": 298503
+      }
+    },
+    "ref": "chat-dark.png",
+    "diffPct": 0.15
+  },
+  {
+    "name": "chat-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:17.886Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "chat",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:04.511Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "consoleErrors": [],
+      "file": "chat-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-light.app.png",
+        "sha256": "16f7ae3211c2b906dc418bac4a5fcc8a247ffd630c2c9a5848de3f941a7837eb",
+        "bytes": 700472
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-light.design.png",
+        "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+        "bytes": 701019
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/chat-light.diff.png",
+        "sha256": "1e299dea91da4c79bd6736b547fe515b968c823dc265d78eb70070018951b14b",
+        "bytes": 303371
+      }
+    },
+    "ref": "chat-light.png",
+    "diffPct": 0.15
+  },
+  {
+    "name": "library-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:21.729Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "library",
+      "variant": "",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:20.153Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "9e5d21496e969bfbe8b245d1f66a808210047fc9651222dae57f503265cb46e6",
+      "consoleErrors": [],
+      "file": "library-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-dark.app.png",
+        "sha256": "fd04920764c962eeec33f81e970bc801fa387ca8695306276c2cf62388209a33",
+        "bytes": 2383380
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-dark.design.png",
+        "sha256": "9e5d21496e969bfbe8b245d1f66a808210047fc9651222dae57f503265cb46e6",
+        "bytes": 2384545
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-dark.diff.png",
+        "sha256": "fa4511425b61d240119aa0ba34413c42503e446eb86ae7c027fa7497404ada08",
+        "bytes": 801862
+      }
+    },
+    "ref": "library-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "library-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:25.862Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "library",
+      "variant": "",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T11:57:22.736Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "a8c989338ded68c400d4750fdee7b8ed63ee891d0b0c2f3b919f49d30af7789b",
+      "consoleErrors": [],
+      "file": "library-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-light.app.png",
+        "sha256": "d4498993f62847d096e32356908ff460295618c6d59199832b7df5388ee92d0d",
+        "bytes": 2376793
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-light.design.png",
+        "sha256": "a8c989338ded68c400d4750fdee7b8ed63ee891d0b0c2f3b919f49d30af7789b",
+        "bytes": 2377748
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/library-light.diff.png",
+        "sha256": "b6084669d58faf4a1e07ef81ddbebf63202fbbcb0826043e5a101b8756c4fc67",
+        "bytes": 819846
+      }
+    },
+    "ref": "library-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "search~results-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:29.405Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "resultats",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:24.975Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "940f262536fd8d95b9061a413ddab62c47aaf2f69d686d4705c42bbe0963b260",
+      "consoleErrors": [],
+      "file": "search~resultats-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-dark.app.png",
+        "sha256": "322f668fb0a3ba7dae81e3e82fa028551e09b92af35c1b6bb4f4d8078e62a4d1",
+        "bytes": 774749
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-dark.design.png",
+        "sha256": "940f262536fd8d95b9061a413ddab62c47aaf2f69d686d4705c42bbe0963b260",
+        "bytes": 775784
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-dark.diff.png",
+        "sha256": "4950442f1792ef4c6fa0908f1950d28e57f5ddc0155b10a1c76376b5fa82c419",
+        "bytes": 311184
+      }
+    },
+    "ref": "search~resultats-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "search~results-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:32.834Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "resultats",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:27.169Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "1a0a9ec06ca7c8b233780800186fbd7b6a04999b192503ce4cba1ab1f1895a6f",
+      "consoleErrors": [],
+      "file": "search~resultats-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-light.app.png",
+        "sha256": "3b0e67aa3524d145554505651d710ea2a304a879e965d896fe7e488fc3e036df",
+        "bytes": 762955
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-light.design.png",
+        "sha256": "1a0a9ec06ca7c8b233780800186fbd7b6a04999b192503ce4cba1ab1f1895a6f",
+        "bytes": 763984
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~results-light.diff.png",
+        "sha256": "c911a9339b715ed2c9dd34bc7dc85bf3dbb5fbe9c98cd903240ccf4f5b6734e1",
+        "bytes": 321196
+      }
+    },
+    "ref": "search~resultats-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "search~empty-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:36.123Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "vide",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:29.302Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3601e152e8777e4ae126661d03ac5125a156cef139ac9ff8736ed150b06a37a0",
+      "consoleErrors": [],
+      "file": "search~vide-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-dark.app.png",
+        "sha256": "a134b5fee7ff8aa276b36351b23b9637ea603e7d1a24a2c1cc3842cd0348d5de",
+        "bytes": 671892
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-dark.design.png",
+        "sha256": "3601e152e8777e4ae126661d03ac5125a156cef139ac9ff8736ed150b06a37a0",
+        "bytes": 674022
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-dark.diff.png",
+        "sha256": "9b83393a9e96ca1b51a9fd7839980786b1e3bc74010b02d89709bd3f8cb1f24f",
+        "bytes": 223384
+      }
+    },
+    "ref": "search~vide-dark.png",
+    "diffPct": 0.03
+  },
+  {
+    "name": "search~empty-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:39.497Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "vide",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:31.460Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "56470febc4ff7ec8f9e60f66c624fd7c318db9a0693e6142566aff6293a836cb",
+      "consoleErrors": [],
+      "file": "search~vide-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-light.app.png",
+        "sha256": "4e6a9893384f7454d1b89de0c4e0330f85a716329a4a4b6ba4e0c3e42711de2e",
+        "bytes": 658258
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-light.design.png",
+        "sha256": "56470febc4ff7ec8f9e60f66c624fd7c318db9a0693e6142566aff6293a836cb",
+        "bytes": 660057
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~empty-light.diff.png",
+        "sha256": "4b757a895eac4d9ba60ae9b812f0f2d5c55e9112fd94f04492327fc02a00afd4",
+        "bytes": 229406
+      }
+    },
+    "ref": "search~vide-light.png",
+    "diffPct": 0.03
+  },
+  {
+    "name": "search~loading-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:42.731Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "chargement",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:33.647Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "99280db82c0f5dc014268353d5d03a19825008b13f5dd971227417ca2f9d37d8",
+      "consoleErrors": [],
+      "file": "search~chargement-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-dark.app.png",
+        "sha256": "9e365dacebf8124d23ad5fd9ec985e4e2d6364a439276fb3d29a04b2c4a5bff1",
+        "bytes": 681587
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-dark.design.png",
+        "sha256": "99280db82c0f5dc014268353d5d03a19825008b13f5dd971227417ca2f9d37d8",
+        "bytes": 682410
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-dark.diff.png",
+        "sha256": "ef1a670a1ea4eaa1a79e1c740724f1c052a79c9e0a951027c3edab81223f7b91",
+        "bytes": 203871
+      }
+    },
+    "ref": "search~chargement-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "search~loading-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:46.053Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "chargement",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:35.777Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "a3c8b71d83ce9199404b40f7101d7f0bac90b8324c3871a8a564c3b76b87123e",
+      "consoleErrors": [],
+      "file": "search~chargement-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-light.app.png",
+        "sha256": "e35e6137ba1dbd9da8757a3545be9f49cc556d6f547626b8c719de100b129bb0",
+        "bytes": 667443
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-light.design.png",
+        "sha256": "a3c8b71d83ce9199404b40f7101d7f0bac90b8324c3871a8a564c3b76b87123e",
+        "bytes": 670766
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~loading-light.diff.png",
+        "sha256": "006f9d3c4a2ac86257559072d0343b7f3ef1cc3a548abcf7221febeb54096aeb",
+        "bytes": 205114
+      }
+    },
+    "ref": "search~chargement-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "search~recent-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:49.379Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "recentes",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:37.857Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "21be272f58fbd6e59cf2d28565c6d9a5cf031f9485549f2a951254337c677d12",
+      "consoleErrors": [],
+      "file": "search~recentes-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-dark.app.png",
+        "sha256": "7d208dd6c12379bcf1b6a888604c014760452862c1af32c39a030a7fe1fb1d6e",
+        "bytes": 711713
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-dark.design.png",
+        "sha256": "21be272f58fbd6e59cf2d28565c6d9a5cf031f9485549f2a951254337c677d12",
+        "bytes": 712680
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-dark.diff.png",
+        "sha256": "dca0dd9388131f455e8b76413ccad07cecb585127b6f86b4f973707893a6e951",
+        "bytes": 254646
+      }
+    },
+    "ref": "search~recentes-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "search~recent-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:52.634Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "search",
+      "variant": "recentes",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:40.066Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "7122935e2b05774c9aa7e00e2113b12aceefc4a93c21378dcbe6fa3544a38afb",
+      "consoleErrors": [],
+      "file": "search~recentes-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-light.app.png",
+        "sha256": "a90e1e41b4862e0ecba6a7ce7fdd1971a06ee100786e8d8f34b533b47b72c888",
+        "bytes": 697886
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-light.design.png",
+        "sha256": "7122935e2b05774c9aa7e00e2113b12aceefc4a93c21378dcbe6fa3544a38afb",
+        "bytes": 698746
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/search~recent-light.diff.png",
+        "sha256": "1254f76f4af091a6eead24cbe58e55cf7944cb908479080057855f42edaf1486",
+        "bytes": 261366
+      }
+    },
+    "ref": "search~recentes-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "command~open-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:55.821Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "ouverte",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:42.101Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "834387e5f9b5eadcf640f4357b398d0541cc61c722993b58f1b162ffa5fb1316",
+      "consoleErrors": [],
+      "file": "command~ouverte-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-dark.app.png",
+        "sha256": "eb6908f8b2975dc29086ca737a5a4a0882b8152b47657fbe3a98bfe45188a8f1",
+        "bytes": 632609
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-dark.design.png",
+        "sha256": "834387e5f9b5eadcf640f4357b398d0541cc61c722993b58f1b162ffa5fb1316",
+        "bytes": 634097
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-dark.diff.png",
+        "sha256": "bd7c943183ee7332e38eb100b122430434092495f9b61c7c0c8a74b52c8fe11c",
+        "bytes": 200855
+      }
+    },
+    "ref": "command~ouverte-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~open-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:20:58.987Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "ouverte",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:44.117Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "c5b06ee3bb2e1d35aafbfc8a8d2799ab30131d6a2d95bf4addfb0fc398598948",
+      "consoleErrors": [],
+      "file": "command~ouverte-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-light.app.png",
+        "sha256": "58a03fa96f72cd263c7f29f93ebeacbc397cc48372b941f0032eca1520999613",
+        "bytes": 619554
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-light.design.png",
+        "sha256": "c5b06ee3bb2e1d35aafbfc8a8d2799ab30131d6a2d95bf4addfb0fc398598948",
+        "bytes": 620823
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~open-light.diff.png",
+        "sha256": "d7a95d109f038e2aaa776542d3c3a66eeca850dcafb885fa5eabb38f8cfafafa",
+        "bytes": 214109
+      }
+    },
+    "ref": "command~ouverte-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~filtered-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:02.162Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "filtree",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:46.107Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "232e458240cd1f0e3dd8d062f05810805549aa88f9f7c3fedff1343afdfa921f",
+      "consoleErrors": [],
+      "file": "command~filtree-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-dark.app.png",
+        "sha256": "ac3c61937c74a764ddfdd8cfc1d20a4daaa0b540da20de977f6970d7a17d8695",
+        "bytes": 622702
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-dark.design.png",
+        "sha256": "232e458240cd1f0e3dd8d062f05810805549aa88f9f7c3fedff1343afdfa921f",
+        "bytes": 622686
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-dark.diff.png",
+        "sha256": "4cd91d41e4ff7e867468f565f395ec043c523c1d79cc52f7dc3387e16d51b7b5",
+        "bytes": 192709
+      }
+    },
+    "ref": "command~filtree-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~filtered-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:05.335Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "filtree",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:48.122Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3c268ca98d742e8b69aac14558d9be631038d23b0e91c05e3208c359ed9a482d",
+      "consoleErrors": [],
+      "file": "command~filtree-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-light.app.png",
+        "sha256": "7cc0ba3edc6a886b3c02fb263b77d32f70dbe6f3227556fd279d76b3d4e67b7e",
+        "bytes": 607586
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-light.design.png",
+        "sha256": "3c268ca98d742e8b69aac14558d9be631038d23b0e91c05e3208c359ed9a482d",
+        "bytes": 609827
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~filtered-light.diff.png",
+        "sha256": "0f69c631b198ea09a5a955e1d992879b7cc61c861fda4f89ceacb96149dc88c9",
+        "bytes": 204048
+      }
+    },
+    "ref": "command~filtree-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~submenu-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:08.632Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "sous-menu",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:50.160Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "2aefd17b26b08d84e86ff2cfb3990303fb91d3fb19553957d6218401fdd165b0",
+      "consoleErrors": [],
+      "file": "command~sous-menu-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-dark.app.png",
+        "sha256": "d438a5763d4eea2512f04692c010d1740e09bce7511d1a56a8ef9f77161f2628",
+        "bytes": 608318
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-dark.design.png",
+        "sha256": "2aefd17b26b08d84e86ff2cfb3990303fb91d3fb19553957d6218401fdd165b0",
+        "bytes": 611222
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-dark.diff.png",
+        "sha256": "61b6182ac1ed1932f032fef864ef6f25c8e12cb2fe120d2dda3648760ba9cfdb",
+        "bytes": 180254
+      }
+    },
+    "ref": "command~sous-menu-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~submenu-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:11.822Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "sous-menu",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:52.153Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "ae24fcc6d4185da87eab7bb45434432b3a1c4a8b04d2ad609e4611cb1f44f567",
+      "consoleErrors": [],
+      "file": "command~sous-menu-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-light.app.png",
+        "sha256": "8940fc291be7f095aa716cfbef62b0000af5958cb104da85df9058e2e3b7d785",
+        "bytes": 597920
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-light.design.png",
+        "sha256": "ae24fcc6d4185da87eab7bb45434432b3a1c4a8b04d2ad609e4611cb1f44f567",
+        "bytes": 600259
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~submenu-light.diff.png",
+        "sha256": "e098781a42e140a969fa8d39c6dd6ecbda5936f8d8e2e83713e5a02a52ee9d36",
+        "bytes": 192488
+      }
+    },
+    "ref": "command~sous-menu-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~none-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:14.942Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "aucun",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:54.128Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "e75e32ac08c1e53b6dd1dd31726f918d2e0d545ec5c678b2590c3180b591bb9f",
+      "consoleErrors": [],
+      "file": "command~aucun-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-dark.app.png",
+        "sha256": "82c29fb28aa9f6986fcb111b2e1fc6540e497b76e9205f3cb49132af40233812",
+        "bytes": 614549
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-dark.design.png",
+        "sha256": "e75e32ac08c1e53b6dd1dd31726f918d2e0d545ec5c678b2590c3180b591bb9f",
+        "bytes": 617331
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-dark.diff.png",
+        "sha256": "a371f8aafff419533564c5655bde1516155df463a630d56ff6981ea609780acb",
+        "bytes": 192973
+      }
+    },
+    "ref": "command~aucun-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "command~none-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:18.021Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "command",
+      "variant": "aucun",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:56.134Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "270b693ded8d1c68b54d171c171397e26ac9d377f90b5fcae8fca0f79d623413",
+      "consoleErrors": [],
+      "file": "command~aucun-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-light.app.png",
+        "sha256": "a72de154d6226fa4e848ab7bdbbdea01b96f6599059b8b01e4203ed1209bff0e",
+        "bytes": 602931
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-light.design.png",
+        "sha256": "270b693ded8d1c68b54d171c171397e26ac9d377f90b5fcae8fca0f79d623413",
+        "bytes": 605463
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/command~none-light.diff.png",
+        "sha256": "d359a65279c89863e672c65c1993cf9049a213709218911d78d32e7f326b2d86",
+        "bytes": 206236
+      }
+    },
+    "ref": "command~aucun-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "projects~grid-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:21.580Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "grille",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:05:58.610Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "b88d4b387b74f6a8d2526be99897c20144b52d322e47596bd52c3e8e6ff01929",
+      "consoleErrors": [],
+      "file": "projects~grille-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-dark.app.png",
+        "sha256": "8f1f278f168b28dbc05f3eb516b1d25e3131ad9fe469200999a7905c2f5b55ee",
+        "bytes": 1629493
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-dark.design.png",
+        "sha256": "b88d4b387b74f6a8d2526be99897c20144b52d322e47596bd52c3e8e6ff01929",
+        "bytes": 1630510
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-dark.diff.png",
+        "sha256": "b0dc5cdf787ead3c1c42277a6b54a5f8e17ede5117258dfe759f0a0a8e7308c5",
+        "bytes": 606137
+      }
+    },
+    "ref": "projects~grille-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "projects~grid-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:25.173Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "grille",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:00.954Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "6615f027ae66d541fb66e8a3dc365f14a7471e6e2c83239e84d3d8b601537a30",
+      "consoleErrors": [],
+      "file": "projects~grille-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-light.app.png",
+        "sha256": "a813f3561f5b3ad6fce2c4217e0402e4696a8cbcb501626227998ecc89db4b23",
+        "bytes": 1621606
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-light.design.png",
+        "sha256": "6615f027ae66d541fb66e8a3dc365f14a7471e6e2c83239e84d3d8b601537a30",
+        "bytes": 1621612
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~grid-light.diff.png",
+        "sha256": "78ff0bd6e33ff683d22e3dcc7273a6bc6fc24d8d2852292744a2cebb9fb6b64c",
+        "bytes": 621237
+      }
+    },
+    "ref": "projects~grille-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "projects~empty-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:28.270Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "vide",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:02.952Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3ec4965aaf47357510f6171eeecbf5e660af417c0e4b1824874bcb9915144f49",
+      "consoleErrors": [],
+      "file": "projects~vide-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-dark.app.png",
+        "sha256": "f2c8e9cbbbe8a688517bb1668751a1d38f36ed5ad07f0a51dca28d37ef86cae0",
+        "bytes": 649646
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-dark.design.png",
+        "sha256": "3ec4965aaf47357510f6171eeecbf5e660af417c0e4b1824874bcb9915144f49",
+        "bytes": 651888
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-dark.diff.png",
+        "sha256": "597041a7cd9c3e39ae06286070c618b2e3f52e47b8d2ff9041b6192cac7db50f",
+        "bytes": 202542
+      }
+    },
+    "ref": "projects~vide-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "projects~empty-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:31.405Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "vide",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:05.009Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "42abb22d783c3be01d747739712dd30a4dd676c8b57cc216a176ac3d579e3101",
+      "consoleErrors": [],
+      "file": "projects~vide-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-light.app.png",
+        "sha256": "8c9d31fef2e32673942bf49a61a7482a4790a2b69f70550defa26dce8cbae46f",
+        "bytes": 635962
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-light.design.png",
+        "sha256": "42abb22d783c3be01d747739712dd30a4dd676c8b57cc216a176ac3d579e3101",
+        "bytes": 638009
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~empty-light.diff.png",
+        "sha256": "837284b37f1baee935d77489dea518be530e3775a950153f2286f1c3c0bcdf81",
+        "bytes": 206333
+      }
+    },
+    "ref": "projects~vide-light.png",
+    "diffPct": 0.02
+  },
+  {
+    "name": "projects~create-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:35.294Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "creation",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:07.807Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "4d6387907c039c4461420b4101352559cf0736e631dc28cd60fdb41e54ec4c97",
+      "consoleErrors": [],
+      "file": "projects~creation-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-dark.app.png",
+        "sha256": "cf9a0bfef16172967240e7d28910f58b80171f071afec721d4cd85efdc849715",
+        "bytes": 669995
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-dark.design.png",
+        "sha256": "4d6387907c039c4461420b4101352559cf0736e631dc28cd60fdb41e54ec4c97",
+        "bytes": 675530
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-dark.diff.png",
+        "sha256": "4d5b839b9af644b852c6fba2b43bf1e038ba38bf9ec1d0e160dbc5cf7b47bb71",
+        "bytes": 229134
+      }
+    },
+    "ref": "projects~creation-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "projects~create-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:39.042Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "projects",
+      "variant": "creation",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:10.643Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "ccff155b6daafbacd1785b632973fdbaf213784c993634d40bba9ad7aeee1664",
+      "consoleErrors": [],
+      "file": "projects~creation-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-light.app.png",
+        "sha256": "7cf96f8b855c7985532a26a9778e40baafcd131b422c3a987a417f8e48a834ba",
+        "bytes": 682980
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-light.design.png",
+        "sha256": "ccff155b6daafbacd1785b632973fdbaf213784c993634d40bba9ad7aeee1664",
+        "bytes": 688998
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/projects~create-light.diff.png",
+        "sha256": "3aad8932a81ddc03f887b6640c9e7251dc78d331906484f0229c9cffa1b92683",
+        "bytes": 251258
+      }
+    },
+    "ref": "projects~creation-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "project~overview-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:42.440Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "apercu",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:12.862Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "9772c387f84af960cac4f03f8367d68d960757bd5bf40a1505e853016c99635b",
+      "consoleErrors": [],
+      "file": "project~apercu-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-dark.app.png",
+        "sha256": "6f6a45f5c07dd76458457028f995746c2e2c84555cad987cadefeb85af82469f",
+        "bytes": 792451
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-dark.design.png",
+        "sha256": "9772c387f84af960cac4f03f8367d68d960757bd5bf40a1505e853016c99635b",
+        "bytes": 793449
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-dark.diff.png",
+        "sha256": "ef0404597583bb5baae43087cb74b801bf2c1e7232fb1e721b22abaee9099016",
+        "bytes": 335919
+      }
+    },
+    "ref": "project~apercu-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "project~overview-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:45.864Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "apercu",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:15.071Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "0bb770e126012f9fa9100501477947e493108a6ebdecc1b45a0c7ccf9bbbe4d1",
+      "consoleErrors": [],
+      "file": "project~apercu-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-light.app.png",
+        "sha256": "07ad8cad269257f11e65b63d92030c993818478b770e799ed884f96855b3add0",
+        "bytes": 783670
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-light.design.png",
+        "sha256": "0bb770e126012f9fa9100501477947e493108a6ebdecc1b45a0c7ccf9bbbe4d1",
+        "bytes": 784521
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~overview-light.diff.png",
+        "sha256": "6b53f6585324d219f5c8002167958231acb8692d88964f536414fe3b8cd49c43",
+        "bytes": 353214
+      }
+    },
+    "ref": "project~apercu-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "project~files-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:49.276Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "fichiers",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:17.327Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "639e4a4a79934d392043d693933b65877fe04e575b6832e21e82df2727ed3214",
+      "consoleErrors": [],
+      "file": "project~fichiers-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-dark.app.png",
+        "sha256": "1d24cb870474fcf4ef3d96e52e89b5937416eb2aaf08d9a942fc2ffa15ebf272",
+        "bytes": 735045
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-dark.design.png",
+        "sha256": "639e4a4a79934d392043d693933b65877fe04e575b6832e21e82df2727ed3214",
+        "bytes": 735993
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-dark.diff.png",
+        "sha256": "e0e75cb4ead46553a75b3eb2dce16e11e24f9e53d91eaae853cca2a5ec00e9ea",
+        "bytes": 281346
+      }
+    },
+    "ref": "project~fichiers-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "project~files-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:52.680Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "fichiers",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:19.626Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "976157a5aafafcc4039344ebd0e50d9937d1c56bdfb53d14f294b58ef928ac27",
+      "consoleErrors": [],
+      "file": "project~fichiers-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-light.app.png",
+        "sha256": "7835a3d2477a367614be5554229507a711120d9d89c6d973a3ffb69cd680157d",
+        "bytes": 724013
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-light.design.png",
+        "sha256": "976157a5aafafcc4039344ebd0e50d9937d1c56bdfb53d14f294b58ef928ac27",
+        "bytes": 724829
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~files-light.diff.png",
+        "sha256": "d441ce3550736e9aad3b0a11f4bcca0b13afd9d1ea3d36676286399441111cf4",
+        "bytes": 291387
+      }
+    },
+    "ref": "project~fichiers-light.png",
+    "diffPct": 0
+  },
+  {
+    "name": "project~instructions-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:56.094Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "instructions",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:21.810Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "5cfadba9ff0b65671d4921c37202cbed865572e80206f638556af3f972841125",
+      "consoleErrors": [],
+      "file": "project~instructions-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-dark.app.png",
+        "sha256": "4316f77e24ffe090576553ab4806b4974d1de8b5adacc36fa8b2a12986a937ec",
+        "bytes": 700778
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-dark.design.png",
+        "sha256": "5cfadba9ff0b65671d4921c37202cbed865572e80206f638556af3f972841125",
+        "bytes": 701755
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-dark.diff.png",
+        "sha256": "0b31e0e07a2ee64ddcaba0b19af1ae651a7798bf708aa1cdbfab18573e9b4cde",
+        "bytes": 282708
+      }
+    },
+    "ref": "project~instructions-dark.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "project~instructions-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:21:59.435Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "instructions",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:23.948Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "3641d64f043fbe621bf413bc06434284b06f93ce0993d3078abfecd43dd850f8",
+      "consoleErrors": [],
+      "file": "project~instructions-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-light.app.png",
+        "sha256": "396c2547a8156c0ec3843d069f2088ba1055e2add7f1bd5af2abecdb9697e6b5",
+        "bytes": 688288
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-light.design.png",
+        "sha256": "3641d64f043fbe621bf413bc06434284b06f93ce0993d3078abfecd43dd850f8",
+        "bytes": 689154
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~instructions-light.diff.png",
+        "sha256": "65b123427701798ce189f4da3d159ae67a6127f4210db8bc6ecc6fc3d70a774e",
+        "bytes": 290907
+      }
+    },
+    "ref": "project~instructions-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "project~sharing-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:22:02.851Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "partage",
+      "theme": "dark",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:26.227Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "7ec5aa44133af114bf43090acae80468223f53523f961b66ca20c811f361ffa7",
+      "consoleErrors": [],
+      "file": "project~partage-dark.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-dark.app.png",
+        "sha256": "25b3733e901c0546d3fe29df228aef3fb469edceab4cb6249d25dd984a4ec093",
+        "bytes": 727306
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-dark.design.png",
+        "sha256": "7ec5aa44133af114bf43090acae80468223f53523f961b66ca20c811f361ffa7",
+        "bytes": 728356
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-dark.diff.png",
+        "sha256": "8e2238613a7bf72a1769432268c589fdc5c27ccde9bd9d53408c437b3aa46d59",
+        "bytes": 278076
+      }
+    },
+    "ref": "project~partage-dark.png",
+    "diffPct": 0
+  },
+  {
+    "name": "project~sharing-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:22:06.176Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "project",
+      "variant": "partage",
+      "theme": "light",
+      "interaction": null,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 2,
+      "capturedAt": "2026-10-02T12:06:28.513Z",
+      "sourceFingerprint": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+      "sha256": "36a4240582296012bbcfe46e4e5e460938e0224a63d22348bace5e6aa9799217",
+      "consoleErrors": [],
+      "file": "project~partage-light.png"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-light.app.png",
+        "sha256": "2ff78ffeb4d206c060d76f67166cf17f817a750e8a7975333ff2cefa136f2440",
+        "bytes": 716543
+      },
+      "design": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-light.design.png",
+        "sha256": "36a4240582296012bbcfe46e4e5e460938e0224a63d22348bace5e6aa9799217",
+        "bytes": 717474
+      },
+      "diff": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/project~sharing-light.diff.png",
+        "sha256": "d50351df1e57cd95f8ad13c41710b2f12865460cf313288c9c6111b458d57a36",
+        "bytes": 289366
+      }
+    },
+    "ref": "project~partage-light.png",
+    "diffPct": 0.01
+  },
+  {
+    "name": "home+menu-dark",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:22:09.489Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "dark",
+      "interaction": "menu",
+      "status": "no-design-shot",
+      "reason": "No matching frozen manifest record"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home+menu-dark.app.png",
+        "sha256": "d1e6a64bdffe604e531dea8ca56b0401a17e7e3208442a2bbf90d1ce7bd506d9",
+        "bytes": 683529
+      }
+    },
+    "status": "no-design-shot"
+  },
+  {
+    "name": "home+menu-light",
+    "run": "2026-10-03T14-20-05-067Z-ywVf00",
+    "capturedAt": "2026-10-03T14:22:11.953Z",
+    "clock": {
+      "mode": "fixed",
+      "source": "cli",
+      "time": "2026-10-02T12:00:00.000Z",
+      "timezone": "UTC",
+      "timers": "real"
+    },
+    "reference": {
+      "route": "home",
+      "variant": "",
+      "theme": "light",
+      "interaction": "menu",
+      "status": "no-design-shot",
+      "reason": "No matching frozen manifest record"
+    },
+    "files": {
+      "app": {
+        "file": "captures/2026-10-03T14-20-05-067Z-ywVf00/home+menu-light.app.png",
+        "sha256": "2cb87b40d2c4e0a2730fa7b0be2cf790aa44d86575231d31ab71414957de5f82",
+        "bytes": 668670
+      }
+    },
+    "status": "no-design-shot"
+  }
+]

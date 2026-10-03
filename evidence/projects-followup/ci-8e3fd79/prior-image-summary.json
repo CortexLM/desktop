@@ -1,0 +1,19 @@
+{
+  "os": {
+    "e2e-linux": {
+      "comparableAliases": 153,
+      "rgbaExact": 41,
+      "sidebarOnly": 86,
+      "otherDrift": 26
+    },
+    "macos": {
+      "comparableAliases": 153,
+      "rgbaExact": 40,
+      "sidebarOnly": 90,
+      "otherDrift": 23
+    }
+  },
+  "sidebarDisposition": "Project section/empty Projects link now precede Recents in live Cortex; expected source change. Only comparisons with exact content pixels receive sidebar-only disposition.",
+  "otherDriftDisposition": "49 same-OS alias comparisons have pixels outside the sidebar; individual causes remain unknown. Contact review is not full-resolution regression acceptance.",
+  "exactReuse": "Only full-image decoded RGBA equality permits prior canonical reuse; sidebar-only differences retain new lossless WebPs."
+}
