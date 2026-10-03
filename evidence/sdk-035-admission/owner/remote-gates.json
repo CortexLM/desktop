@@ -1,0 +1,39 @@
+{
+  "source_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "checked_at": "2026-10-03T03:54:40.264270+00:00",
+  "ci": {
+    "run_id": 37094557684,
+    "attempt": 1,
+    "url": "https://github.com/CortexLM/backend/actions/runs/37094557684",
+    "conclusion": "success",
+    "successful_jobs": 11,
+    "skipped_jobs": [
+      "Probe CodeQL CodeBuild x64"
+    ],
+    "ci-sdk.log": {
+      "sha256": "02775e942ce3241770d798a9a88e249dbb690e8064a951e627489a1043dde3fc",
+      "bytes": 212499
+    },
+    "ci-server.log": {
+      "sha256": "32bb9f061bff620ec78dd75695b51d6d6c493e601299ea84ccce01c0280e18f3",
+      "bytes": 655682
+    },
+    "server_test_counts": {
+      "pass": [
+        "2414"
+      ],
+      "fail": [
+        "0"
+      ]
+    }
+  },
+  "codeql": {
+    "run_id": 37094557772,
+    "attempt": 1,
+    "url": "https://github.com/CortexLM/backend/actions/runs/37094557772",
+    "conclusion": "success",
+    "successful_jobs": 3,
+    "skipped_jobs": []
+  },
+  "coderabbit": []
+}

@@ -32,3 +32,13 @@ captures, not independently reset fixtures. Clock and motion are ambient.
 This refresh establishes current registered-screen/native-menu capture coverage. It does
 not cover absent routes, every live interaction, continuous motion, every control at the
 960×640 minimum or whole-product design acceptance.
+
+[Independent retained-capture audit](independent-review.md) verifies all 426 exact RGBA
+pairs and fourteen menu hashes, inspects all eleven contact sheets and 74 full-resolution
+states across 61 families. It identifies DOCX Comments clipping and joined Code Approvals
+labels/descriptions; side-by-side diff's second column needs a runtime scrolling check.
+These findings remain scoped to the retained application and are not whole-product approval.
+Later [runtime readback](../../../remote-auth-followup/narrow-preview-readback/README.md)
+shows DOCX comments and narrow side-by-side source are reachable by wheel and keyboard.
+Only the Approvals text overlap requires the scoped narrow correction; inherited wide diff
+ellipsis remains a separate limitation. Initial captures are not relabeled or replaced.

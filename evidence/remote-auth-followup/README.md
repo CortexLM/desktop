@@ -1,7 +1,10 @@
 # Process-lifetime remote sign-in
 
-Implementation in progress, uncommitted. Earlier green CI `37091082338` at `b0e6d78`
-covers the recovery/transition/SDK-intake batch, not this authentication delta.
+Application `ffc118a2e58df66f430f3078e00f6e931dd910cf` is pushed. [CI 37094538845](https://github.com/CortexLM/desktop/actions/runs/37094538845)
+passes all three jobs. [Matching installed proof](../mac/ffc118a/README.md) passes six native
+auth captures plus Code/terminal/recovery/Work assertions, 28 captures total; independent
+artifact/native reviews are underway. Earlier green CI `37091082338` at
+`b0e6d78` covers recovery/transition/SDK intake, not this authentication delta.
 
 ## Scope
 
@@ -40,8 +43,14 @@ refresh status even when server revocation fails after main has already cleared 
 The later mixed-size Code correction passes eight final Electron cases including all six
 auth cases, lint/types and rebuilt Linux package/smoke. The main service now imports the
 public core export; its eight Node 22 tests pass after that boundary-only change.
+Final [renderer source pin](source-ffc118a.json) and [90 built members](build-ffc118a.json)
+bind the pushed revision, distinct from the earlier intermediate runtime-review fingerprint.
+[Reference review](compare/README.md) verifies 70 renders/54 references/16 Settings gaps;
+the final committed-source Code follow-up verifies 18/18, maximum 0.061786%. Checked right-pane
+crops remain byte-identical to the intermediate app. Historical scores and source pins remain intact.
 
 Owner follow-up supplies source-backed validation bounds for existing turn/model payloads;
-it does not add stable `/me` identity or complete history. The newer SDK 0.3.4 handoff remains
-incomplete after its Node 20.9 verification process hung. Current adoption stays the exact
-0.3.1 pair; no local dependency patch or inferred final-release approval.
+it does not add stable `/me` identity or complete history. The SDK 0.3.4 attempts remain failed
+after their Node 20.9 verification processes hung. The owner has now delivered immutable 0.3.5
+with the single-read authentication correction; desktop admission is underway. Current adoption
+stays the exact 0.3.1 pair until verified.

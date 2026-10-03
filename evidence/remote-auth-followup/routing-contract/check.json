@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "runtime": "v22.23.3",
+  "scope": "Contract assertions only; no auth, network, engine, SDK transport or repository implementation",
+  "assertions": [
+    "Cloud model boundary/type and Chat filtering",
+    "Unicode code-point 50000 ceiling",
+    "20-attachment count (ownership remains server check)",
+    "image-only payload allowed; boolean reasoning rejected",
+    "validated conversation/assistant headers",
+    "reasoning/text Event mapping; equal SSE IDs retained",
+    "length is truncated, raw error detail stripped",
+    "same remote ID separated by account epoch"
+  ]
+}

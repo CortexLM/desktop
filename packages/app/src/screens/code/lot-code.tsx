@@ -875,7 +875,7 @@ function SetApprovals() {
   const [allow, setAllowS] = React.useState(fx.allow);
   const setAllow = (a: string[], removed?: string) => { const p = allow; setAllowS(a); if (removed) toast.add({ title: t("code.settings.ruleRemoved"), description: removed, data: { icon: "trash", undo: true, onUndo: () => setAllowS(p) } }); };
   return (<>
-    <div className="list">
+    <div className="list code-approval-defaults">
       <div className="li"><span className="grow"><span className="ttl">{t("code.settings.defaultModel")}</span><span className="sub">{t("code.settings.defaultModelSub")}</span></span>
         <Pop align="end" width={220} trigger={<button className="btn secondary">{model}<Icon name="chevron-up-down" size={16} /></button>}>
           {models.map((m) => <MItem key={m} icon={m === model ? "check" : undefined} onClick={() => setModel(m)}>{m}</MItem>)}

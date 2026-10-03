@@ -339,6 +339,8 @@
 .code-head .code-meta { font-family: var(--font); }
 
 @media (max-width: 1200px) {
+  .code-approval-defaults .grow { display: flex; flex-direction: column; gap: 2px; }
+  .code-approval-defaults .sub { white-space: normal; }
   .code-main > .code-file { flex-shrink: 0; }
   .code-file .code-head > span:first-of-type { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .code-cmt { margin-left: 12px; }

@@ -1,0 +1,36 @@
+{
+  "version": "0.3.5",
+  "runtime": "v22.23.3",
+  "scope": "Exact packed bytes; bounded local Fetch fixtures; no upstream suite/build/native/network",
+  "results": [
+    {
+      "check": "Paired public error constructors",
+      "result": "PASS"
+    },
+    {
+      "check": "Same Library binary and filename fixture",
+      "result": "PASS",
+      "bytes": 10
+    },
+    {
+      "check": "Same screenshot File bytes, now required filename and metadata",
+      "result": "PASS",
+      "bytes": 10,
+      "previous031": "{}"
+    },
+    {
+      "check": "Identical three-frame post-done media fixture",
+      "result": "PASS",
+      "parserFrames": 3,
+      "helperFrames": 3,
+      "finalCursor": "3",
+      "previous031": 2
+    },
+    {
+      "check": "Five generated POST methods preserve JSON, identity headers, raw streams",
+      "result": "PASS",
+      "calls": 5,
+      "declarationStatus": "body accepted as unknown; separate positive TypeScript probe"
+    }
+  ]
+}

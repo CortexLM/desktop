@@ -1,0 +1,43 @@
+{
+  "status": "failed",
+  "startedAt": "2026-10-03T04:15:19.629Z",
+  "expectedAsar": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "scriptSHA256": "d614d9599310dfc389b61a8dc07825cc981fb39c18735b752b3d6cb886ea1d23",
+  "checks": [],
+  "captures": [],
+  "sessionIDs": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "providerRestored": true,
+    "originalRouteEnglishDark": true
+  },
+  "installedBefore": {
+    "processCount": 1,
+    "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+    "pid": 47638,
+    "isolatedEngine": true,
+    "isolatedRenderer": true,
+    "controlledCatalog": true,
+    "projectIsolated": true
+  },
+  "backend": {
+    "protocol": "cortex-code-viewport-native-v1",
+    "runID": "963c5600-0e2b-49e7-ac10-9e84af1f3d80",
+    "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+    "platform": "darwin",
+    "port": 9458,
+    "destinationsInitiallyAbsent": true,
+    "startedAt": "2026-10-03T04:15:08.301Z",
+    "scriptSHA256": "17be947e1c1fa3bf460a67717b3617b97817fb2399124db4581288f6a4c2737f"
+  },
+  "existingFixtureKeyPresent": false,
+  "failure": {
+    "stage": "light:preview-departure",
+    "sha256": "5ef0c40eb15c34b03b038bae89e94b4a0c503e4f3bd3b12c83da3ff4269b4be4"
+  },
+  "finishedAt": "2026-10-03T04:15:46.809Z",
+  "scope": "Future fixed installed artifact; ordinary same-document Work-preview departure, real main inference and approved writes, asymmetric native Code diff viewports. Controlled local model, not hosted inference. Native pixels/build provenance require coordinator review."
+}

@@ -1,0 +1,50 @@
+{
+  "completedAt": "2026-10-03T04:08:46.133197+00:00",
+  "originalRun": "2026-10-03T03-39-51-453Z-XhFJlD",
+  "all70ThumbnailsInspected": true,
+  "fullResolutionTriplets": 37,
+  "fullResolutionGapApps": 6,
+  "additionalPriorFullImage": "canvas~generation-light",
+  "totalFullResolutionImages": 118,
+  "sourceSnapshotReconstructedAndVerified": true,
+  "sourceFingerprint": "815a49910bce8e35d2a48e6a3f3f03162d8cbf56ca41c4f58b5d0947c6902614",
+  "currentOrFinalSourceClaim": false,
+  "referenceComparisonsRecomputed": 54,
+  "diffImageBuffersRecomputed": 54,
+  "originalImagesVerified": 178,
+  "losslessRgbaVerified": true,
+  "previousRunBindings": [
+    {
+      "root": "/tmp/opencode/live-recovery-final-compare",
+      "reportSha256": "56618b15b89ab081e3db2138e1b611c6fc66464ff0f46f39ae17fb1923c78f38",
+      "provenanceSha256": "a4f561c8e45c93583593a9e855c8c55e2074bc06ebc28d543a17f64733df817c"
+    },
+    {
+      "root": "/tmp/opencode/current-full-compare-6d96535",
+      "reportSha256": "75451933436da845d7b57b06be97e6341a5019f8ac63c34a9860fcb24376414c",
+      "provenanceSha256": "b398fb276074ef9eea8b939c5c48e4435c8e446fdfef8812b1a91f680de8c145"
+    }
+  ],
+  "knownLimits": [
+    "16 reference gaps remain explicit.",
+    "236 preview API failures recorded separately.",
+    "Real timers sample differing mascot/loading/stream frames.",
+    "Earlier source lacks final asymmetric-diff CSS.",
+    "No live/native/CI/sign-in acceptance from preview frames."
+  ],
+  "blockingNewLayoutShiftObserved": false,
+  "archivedSourceDelta": {
+    "file": "captured-source-delta.patch.gz",
+    "sha256": "5f95053270eec229daed924eb72cfec53a82d5a5a11188773d70b3d6da8eb976",
+    "bytes": 10013,
+    "encoding": "gzip",
+    "original": {
+      "name": "captured-source-delta.patch",
+      "sha256": "e6400c415a290fe8447cf4caa2c339bf665099ba5b11ac443eaebb0593a543fd",
+      "bytes": 35560
+    },
+    "losslessVerified": true,
+    "reason": "Preserve captured source delta verbatim without treating archived patch whitespace as repository source."
+  },
+  "offlineReviewAttempt": "First pixel pass hit 120-second tool timeout; longer pass completed without weakening checks."
+}

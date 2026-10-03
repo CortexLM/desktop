@@ -1,0 +1,11 @@
+pre-commit: git diff --cached --check
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/collect.test.mjs
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/integration/groups.test.mjs
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/integration/helpers.mjs
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/integration/selfhost.test.mjs
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/integration/streaming.test.mjs
+pre-commit: node --check /tmp/cortex-pre-commit-q1f7_30o/packages/sdk/test/runtime.test.mjs
+pre-commit: staged checks passed.
+[goal/typescript-sdk 5b7e9d1c] Read auth responses once and abort expired test streams
+ 12 files changed, 136 insertions(+), 44 deletions(-)
+ create mode 100644 packages/sdk/test/collect.test.mjs

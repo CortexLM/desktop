@@ -1,0 +1,18 @@
+{
+  "name": "main-service",
+  "command": [
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "/tmp/opencode/desktop-sdk-035-readback/vitest.config.mjs",
+    "--configLoader",
+    "runner"
+  ],
+  "cwd": "/tmp/opencode/desktop-sdk-035-readback",
+  "elapsed_seconds": 11.082,
+  "exit_code": 0,
+  "timed_out": false,
+  "runtime_binary": "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+  "log": "logs/main-service.log"
+}

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-10-03T04:31:17.453Z",
+  "installedASAR": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "captures": [
+    {
+      "file": "work-done-bottom-light.png",
+      "theme": "light",
+      "sha256": "a5b06324335e816622977fa713f82c387956b049df86c084be99107fdbdb4f8b",
+      "before": {
+        "top": 609,
+        "height": 1068,
+        "viewport": 459,
+        "gap": 0
+      },
+      "afterUserWheel": {
+        "top": 469,
+        "gap": 140
+      }
+    },
+    {
+      "file": "work-done-bottom-dark.png",
+      "theme": "dark",
+      "sha256": "829a6e9ecd9afc1181c983fb67016487cce6c5401d851257da11573815b38039",
+      "before": {
+        "top": 609,
+        "height": 1068,
+        "viewport": 459,
+        "gap": 0
+      },
+      "afterUserWheel": {
+        "top": 469,
+        "gap": 140
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Warm/ambient installed font readiness; deterministic cold-font ordering is exercised separately in committed Electron tests."
+}

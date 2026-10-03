@@ -47,10 +47,12 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 | `packages/app` | Renderer: React 19 + `@base-ui/react` + Vite 8 |
 | `packages/desktop` | Electron main + preload, credentials, menu, Cortex Cloud probe and process-lifetime sign-in |
 
-`vendor/` holds unmodified `@cortex/sdk` 0.3.1 and its optional peer `@cortex/api-types`
+`vendor/` holds unmodified `@cortex/sdk` 0.3.5 and its optional peer `@cortex/api-types`
 0.2.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
-The SDK-owner handoff against schema blob `d6d46014` passes scoped desktop admission;
+The SDK-owner handoff against schema blob `c8f6a7f0` passes scoped desktop admission;
 earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.
+The new SDK fixes media-terminal delivery, raw screenshot upload, generated turn-body typing
+and native auth response cloning. Precise account/history contracts remain incomplete.
 Remote model routing/inference and continuation screens remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
@@ -169,6 +171,8 @@ Live Cortex Code sends its selected catalog model and reasoning choice. Reopenin
 model; unavailable selections retain the draft instead of silently choosing another model.
 Code's right pane stays within the window; terminal output and individual diff bodies scroll
 independently, keeping diff headers visible even for long tool results.
+Preview Code Settings approval descriptions stack within narrow panes, staying clear of
+the model selector and notification switch; wide frozen-reference geometry is retained.
 Global Search matches saved Bot names and personas alongside session titles; results open the exact
 Bot, and keyboard order follows visible category groups. Failed source lists offer Retry.
 Live Work's **Turn into a routine** opens the existing editor with the original text request,
@@ -275,6 +279,11 @@ see [`evidence/mac/f9aca44/full/README.md`](./evidence/mac/f9aca44/full/README.m
 A full fixed-clock comparison at that pin covers 410 references/21 explicit gaps. Its bounded
 diagnostic reproduces Work's 1px font-readiness/scroll-anchoring offset; historical images keep
 their original scores and scheduling limits. See [`evidence/current-full-followup/compare/README.md`](./evidence/current-full-followup/compare/README.md).
+Main-only email-code sign-in and native-discovered preview/Code corrections ship at `ffc118a`;
+CI `37094538845` passes all three jobs. Matching installed checks pass 28 native captures
+across auth, Code, terminal, recovery and Work; controlled fixtures establish no real Cloud
+account or remote-inference acceptance. See
+[`evidence/remote-auth-followup/README.md`](./evidence/remote-auth-followup/README.md).
 
 ## CI, packaging and releases
 

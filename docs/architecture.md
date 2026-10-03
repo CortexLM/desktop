@@ -24,8 +24,10 @@ There is no listening socket in the app. `listen()` in `packages/server` is used
 `scripts/dev-api.ts` and tests.
 
 Connection selection does not change this data path: all prompts still reach the local
-`SessionService`, models.dev catalog and provider settings. The vendored SDK is used only
-by the main-process remote probe; no remote session/auth transport is wired.
+`SessionService`, models.dev catalog and provider settings. The vendored SDK powers the
+main-process remote probe and process-lifetime `RemoteSession`. Core's injected `RemoteAuth`
+host exposes only validated status, active `signedIn` and email; main owns cookies, tokens
+and pending continuations. Remote model/prompt/history transport remains pending.
 See [connection-modes.md](./connection-modes.md).
 
 ## Packages

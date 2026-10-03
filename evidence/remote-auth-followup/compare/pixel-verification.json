@@ -1,0 +1,3708 @@
+[
+  {
+    "name": "canvas~document-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 154,
+      "pixelmatchDifferentPixels": 2,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 6,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 296,
+    "rawDiffPct": 0.005709876543209876,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3510,
+        "pixelmatchDifferentPixels": 226
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 144,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1720,
+        "pixelmatchDifferentPixels": 70
+      }
+    }
+  },
+  {
+    "name": "canvas~document-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 208,
+      "pixelmatchDifferentPixels": 22,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 28,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 271,
+    "rawDiffPct": 0.005227623456790124,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3104,
+        "pixelmatchDifferentPixels": 173
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 122,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1646,
+        "pixelmatchDifferentPixels": 98
+      }
+    }
+  },
+  {
+    "name": "canvas~code-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 287,
+      "pixelmatchDifferentPixels": 60,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 42,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3181,
+    "rawDiffPct": 0.061361882716049386,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3510,
+        "pixelmatchDifferentPixels": 226
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6443,
+        "pixelmatchDifferentPixels": 2955
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 5234,
+        "pixelmatchDifferentPixels": 2914
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 42,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "canvas~code-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 257,
+      "pixelmatchDifferentPixels": 31,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 51,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2995,
+    "rawDiffPct": 0.05777391975308642,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3246,
+        "pixelmatchDifferentPixels": 189
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6274,
+        "pixelmatchDifferentPixels": 2806
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 5044,
+        "pixelmatchDifferentPixels": 2741
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 51,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "canvas~selection-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 213,
+      "pixelmatchDifferentPixels": 24,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 44,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 288,
+    "rawDiffPct": 0.005555555555555556,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3435,
+        "pixelmatchDifferentPixels": 192
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2222,
+        "pixelmatchDifferentPixels": 96
+      }
+    }
+  },
+  {
+    "name": "canvas~selection-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 53,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 12,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 287,
+    "rawDiffPct": 0.005536265432098765,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3101,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2122,
+        "pixelmatchDifferentPixels": 115
+      }
+    }
+  },
+  {
+    "name": "canvas~generation-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.02,
+    "previousApp": {
+      "exactDifferentPixels": 8,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 5,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 895,
+    "rawDiffPct": 0.01726466049382716,
+    "roundedDiffPct": 0.02,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3410,
+        "pixelmatchDifferentPixels": 169
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 141,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 14862,
+        "pixelmatchDifferentPixels": 726
+      }
+    }
+  },
+  {
+    "name": "canvas~generation-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 50053,
+      "pixelmatchDifferentPixels": 1058,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 49796,
+        "pixelmatchDifferentPixels": 987
+      }
+    },
+    "differentPixels": 1379,
+    "rawDiffPct": 0.02660108024691358,
+    "roundedDiffPct": 0.03,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3317,
+        "pixelmatchDifferentPixels": 242
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 117,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 52240,
+        "pixelmatchDifferentPixels": 1137
+      }
+    }
+  },
+  {
+    "name": "canvas~compare-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 158,
+      "pixelmatchDifferentPixels": 2,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 10,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 378,
+    "rawDiffPct": 0.007291666666666667,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3510,
+        "pixelmatchDifferentPixels": 226
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2962,
+        "pixelmatchDifferentPixels": 152
+      }
+    }
+  },
+  {
+    "name": "canvas~compare-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 182,
+      "pixelmatchDifferentPixels": 7,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 18,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 414,
+    "rawDiffPct": 0.00798611111111111,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3233,
+        "pixelmatchDifferentPixels": 197
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2863,
+        "pixelmatchDifferentPixels": 217
+      }
+    }
+  },
+  {
+    "name": "code-session-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 229,
+      "pixelmatchDifferentPixels": 3,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 66,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 230,
+    "rawDiffPct": 0.004436728395061728,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3930,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3947,
+        "pixelmatchDifferentPixels": 51
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 3555,
+        "pixelmatchDifferentPixels": 51
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 229,
+        "pixelmatchDifferentPixels": 3
+      }
+    }
+  },
+  {
+    "name": "code-session-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 249,
+      "pixelmatchDifferentPixels": 4,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 98,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 213,
+    "rawDiffPct": 0.004108796296296296,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3702,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3838,
+        "pixelmatchDifferentPixels": 29
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 3399,
+        "pixelmatchDifferentPixels": 29
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 249,
+        "pixelmatchDifferentPixels": 4
+      }
+    }
+  },
+  {
+    "name": "code-review~review-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 137,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 137,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2994,
+    "rawDiffPct": 0.05775462962962963,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 9313,
+        "pixelmatchDifferentPixels": 2815
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 8017,
+        "pixelmatchDifferentPixels": 2770
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 137,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-review~review-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 53,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 53,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3203,
+    "rawDiffPct": 0.061786265432098766,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 9419,
+        "pixelmatchDifferentPixels": 3019
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 8118,
+        "pixelmatchDifferentPixels": 2955
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 53,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-review~applied-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 454,
+      "pixelmatchDifferentPixels": 3,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 445,
+        "pixelmatchDifferentPixels": 3
+      }
+    },
+    "differentPixels": 409,
+    "rawDiffPct": 0.007889660493827161,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3666,
+        "pixelmatchDifferentPixels": 230
+      }
+    }
+  },
+  {
+    "name": "code-review~applied-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 534,
+      "pixelmatchDifferentPixels": 39,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 515,
+        "pixelmatchDifferentPixels": 39
+      }
+    },
+    "differentPixels": 431,
+    "rawDiffPct": 0.008314043209876543,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3443,
+        "pixelmatchDifferentPixels": 247
+      }
+    }
+  },
+  {
+    "name": "code-review~approved-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 812,
+      "pixelmatchDifferentPixels": 86,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 812,
+        "pixelmatchDifferentPixels": 86
+      }
+    },
+    "differentPixels": 482,
+    "rawDiffPct": 0.00929783950617284,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 149,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2708,
+        "pixelmatchDifferentPixels": 303
+      }
+    }
+  },
+  {
+    "name": "code-review~approved-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 849,
+      "pixelmatchDifferentPixels": 177,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 849,
+        "pixelmatchDifferentPixels": 177
+      }
+    },
+    "differentPixels": 550,
+    "rawDiffPct": 0.010609567901234568,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 123,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2690,
+        "pixelmatchDifferentPixels": 366
+      }
+    }
+  },
+  {
+    "name": "code-diff~unified-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 236,
+    "rawDiffPct": 0.004552469135802469,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1366,
+        "pixelmatchDifferentPixels": 57
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-diff~unified-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 246,
+    "rawDiffPct": 0.00474537037037037,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1341,
+        "pixelmatchDifferentPixels": 62
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-diff~split-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 241,
+    "rawDiffPct": 0.00464891975308642,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 144,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1698,
+        "pixelmatchDifferentPixels": 62
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-diff~split-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 257,
+    "rawDiffPct": 0.004957561728395061,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 119,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1692,
+        "pixelmatchDifferentPixels": 73
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-diff~comment-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 309,
+    "rawDiffPct": 0.005960648148148148,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2091,
+        "pixelmatchDifferentPixels": 130
+      }
+    }
+  },
+  {
+    "name": "code-diff~comment-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 348,
+    "rawDiffPct": 0.006712962962962963,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2042,
+        "pixelmatchDifferentPixels": 164
+      }
+    }
+  },
+  {
+    "name": "code-diff~conflict-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3292,
+    "rawDiffPct": 0.06350308641975308,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3888,
+        "pixelmatchDifferentPixels": 179
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 8506,
+        "pixelmatchDifferentPixels": 3113
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 6320,
+        "pixelmatchDifferentPixels": 3011
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "code-diff~conflict-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.07,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3495,
+    "rawDiffPct": 0.06741898148148148,
+    "roundedDiffPct": 0.07,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3665,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 8420,
+        "pixelmatchDifferentPixels": 3311
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 6289,
+        "pixelmatchDifferentPixels": 3155
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~email-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 144,
+      "pixelmatchDifferentPixels": 2,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 215,
+    "rawDiffPct": 0.004147376543209877,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3410,
+        "pixelmatchDifferentPixels": 170
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1308,
+        "pixelmatchDifferentPixels": 45
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~email-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 133,
+      "pixelmatchDifferentPixels": 14,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 224,
+    "rawDiffPct": 0.004320987654320987,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3062,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1284,
+        "pixelmatchDifferentPixels": 52
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~code-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.05,
+    "previousApp": {
+      "exactDifferentPixels": 349,
+      "pixelmatchDifferentPixels": 28,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 176,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2460,
+    "rawDiffPct": 0.047453703703703706,
+    "roundedDiffPct": 0.05,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3441,
+        "pixelmatchDifferentPixels": 197
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 7281,
+        "pixelmatchDifferentPixels": 2263
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 6072,
+        "pixelmatchDifferentPixels": 2222
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 176,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~code-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.05,
+    "previousApp": {
+      "exactDifferentPixels": 217,
+      "pixelmatchDifferentPixels": 5,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 176,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2542,
+    "rawDiffPct": 0.04903549382716049,
+    "roundedDiffPct": 0.05,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3192,
+        "pixelmatchDifferentPixels": 188
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 7345,
+        "pixelmatchDifferentPixels": 2354
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 6115,
+        "pixelmatchDifferentPixels": 2289
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 176,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~error-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.05,
+    "previousApp": {
+      "exactDifferentPixels": 170,
+      "pixelmatchDifferentPixels": 14,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2472,
+    "rawDiffPct": 0.047685185185185185,
+    "roundedDiffPct": 0.05,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3399,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 7700,
+        "pixelmatchDifferentPixels": 2288
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 5896,
+        "pixelmatchDifferentPixels": 2222
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~error-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.05,
+    "previousApp": {
+      "exactDifferentPixels": 128,
+      "pixelmatchDifferentPixels": 6,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 2566,
+    "rawDiffPct": 0.049498456790123456,
+    "roundedDiffPct": 0.05,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3104,
+        "pixelmatchDifferentPixels": 173
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 7725,
+        "pixelmatchDifferentPixels": 2393
+      }
+    },
+    "detailedRegions": {
+      "main": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 5939,
+        "pixelmatchDifferentPixels": 2289
+      },
+      "previousMain": {
+        "rectangle": [
+          754,
+          180,
+          2780,
+          1620
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "login~loading-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 1330,
+      "pixelmatchDifferentPixels": 49,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 1141,
+        "pixelmatchDifferentPixels": 18
+      }
+    },
+    "differentPixels": 261,
+    "rawDiffPct": 0.0050347222222222225,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3399,
+        "pixelmatchDifferentPixels": 185
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3038,
+        "pixelmatchDifferentPixels": 76
+      }
+    }
+  },
+  {
+    "name": "login~loading-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 1113,
+      "pixelmatchDifferentPixels": 5,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 972,
+        "pixelmatchDifferentPixels": 3
+      }
+    },
+    "differentPixels": 321,
+    "rawDiffPct": 0.00619212962962963,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3236,
+        "pixelmatchDifferentPixels": 200
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3020,
+        "pixelmatchDifferentPixels": 121
+      }
+    }
+  },
+  {
+    "name": "login~locked-dark",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.02,
+    "previousApp": {
+      "exactDifferentPixels": 120,
+      "pixelmatchDifferentPixels": 1,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1195,
+    "rawDiffPct": 0.023051697530864196,
+    "roundedDiffPct": 0.02,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3400,
+        "pixelmatchDifferentPixels": 184
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6900,
+        "pixelmatchDifferentPixels": 1011
+      }
+    }
+  },
+  {
+    "name": "login~locked-light",
+    "previousRun": "2026-10-03T00-32-36-779Z-Na13cV",
+    "previousDirectory": "/tmp/opencode/current-full-compare-6d96535",
+    "previousRoundedDiffPct": 0.03,
+    "previousApp": {
+      "exactDifferentPixels": 156,
+      "pixelmatchDifferentPixels": 9,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1364,
+    "rawDiffPct": 0.02631172839506173,
+    "roundedDiffPct": 0.03,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3233,
+        "pixelmatchDifferentPixels": 197
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6896,
+        "pixelmatchDifferentPixels": 1167
+      }
+    }
+  },
+  {
+    "name": "settings~general-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 222,
+      "pixelmatchDifferentPixels": 46,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3314,
+    "rawDiffPct": 0.06392746913580247,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3502,
+        "pixelmatchDifferentPixels": 189
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 2123,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 13540,
+        "pixelmatchDifferentPixels": 3125
+      }
+    }
+  },
+  {
+    "name": "settings~general-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.06,
+    "previousApp": {
+      "exactDifferentPixels": 137,
+      "pixelmatchDifferentPixels": 1,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 3152,
+    "rawDiffPct": 0.06080246913580247,
+    "roundedDiffPct": 0.06,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3256,
+        "pixelmatchDifferentPixels": 181
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 2099,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 13610,
+        "pixelmatchDifferentPixels": 2971
+      }
+    }
+  },
+  {
+    "name": "settings~appearance-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 138,
+      "pixelmatchDifferentPixels": 3,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~appearance-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 232,
+      "pixelmatchDifferentPixels": 50,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~providers-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 220,
+      "pixelmatchDifferentPixels": 39,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~providers-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 169,
+      "pixelmatchDifferentPixels": 17,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~connection-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 4153,
+      "pixelmatchDifferentPixels": 267,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~connection-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 228,
+      "pixelmatchDifferentPixels": 53,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~bot-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 5,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~bot-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 170,
+      "pixelmatchDifferentPixels": 10,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~notifications-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 241,
+      "pixelmatchDifferentPixels": 60,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~notifications-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 206,
+      "pixelmatchDifferentPixels": 31,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~privacy-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 138,
+      "pixelmatchDifferentPixels": 2,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~privacy-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~shortcuts-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 142,
+      "pixelmatchDifferentPixels": 2,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~shortcuts-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 193,
+      "pixelmatchDifferentPixels": 29,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~account-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 188,
+      "pixelmatchDifferentPixels": 31,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "settings~account-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": null,
+    "previousApp": {
+      "exactDifferentPixels": 193,
+      "pixelmatchDifferentPixels": 30,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    }
+  },
+  {
+    "name": "work-task~running-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 1175,
+      "pixelmatchDifferentPixels": 276,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 733,
+        "pixelmatchDifferentPixels": 184
+      }
+    },
+    "differentPixels": 283,
+    "rawDiffPct": 0.005459104938271605,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3314,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1991,
+        "pixelmatchDifferentPixels": 115
+      }
+    }
+  },
+  {
+    "name": "work-task~running-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 838,
+      "pixelmatchDifferentPixels": 80,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 496,
+        "pixelmatchDifferentPixels": 48
+      }
+    },
+    "differentPixels": 319,
+    "rawDiffPct": 0.006153549382716049,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3101,
+        "pixelmatchDifferentPixels": 177
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1804,
+        "pixelmatchDifferentPixels": 142
+      }
+    }
+  },
+  {
+    "name": "work-task~computer-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 567,
+      "pixelmatchDifferentPixels": 37,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 146,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 722,
+    "rawDiffPct": 0.01392746913580247,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3387,
+        "pixelmatchDifferentPixels": 185
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 4071,
+        "pixelmatchDifferentPixels": 537
+      }
+    }
+  },
+  {
+    "name": "work-task~computer-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 323,
+      "pixelmatchDifferentPixels": 14,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 12,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 717,
+    "rawDiffPct": 0.013831018518518519,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3123,
+        "pixelmatchDifferentPixels": 177
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3569,
+        "pixelmatchDifferentPixels": 540
+      }
+    }
+  },
+  {
+    "name": "work-task~takeover-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 130,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 329,
+    "rawDiffPct": 0.0063464506172839505,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3327,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2014,
+        "pixelmatchDifferentPixels": 161
+      }
+    }
+  },
+  {
+    "name": "work-task~takeover-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 157,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 15,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 265,
+    "rawDiffPct": 0.005111882716049383,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3118,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1973,
+        "pixelmatchDifferentPixels": 93
+      }
+    }
+  },
+  {
+    "name": "work-task~approval-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 214,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 144,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 353,
+    "rawDiffPct": 0.006809413580246913,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3270,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 149,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2758,
+        "pixelmatchDifferentPixels": 185
+      }
+    }
+  },
+  {
+    "name": "work-task~approval-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 422,
+      "pixelmatchDifferentPixels": 3,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 352,
+        "pixelmatchDifferentPixels": 3
+      }
+    },
+    "differentPixels": 388,
+    "rawDiffPct": 0.007484567901234568,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3102,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 123,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2879,
+        "pixelmatchDifferentPixels": 216
+      }
+    }
+  },
+  {
+    "name": "work-task~blocked-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.03,
+    "previousApp": {
+      "exactDifferentPixels": 1,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1808,
+    "rawDiffPct": 0.03487654320987654,
+    "roundedDiffPct": 0.03,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3267,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 144,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6654,
+        "pixelmatchDifferentPixels": 1640
+      }
+    }
+  },
+  {
+    "name": "work-task~blocked-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.04,
+    "previousApp": {
+      "exactDifferentPixels": 1,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1930,
+    "rawDiffPct": 0.03722993827160494,
+    "roundedDiffPct": 0.04,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3061,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 119,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 6566,
+        "pixelmatchDifferentPixels": 1758
+      }
+    }
+  },
+  {
+    "name": "work-task~done-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 143,
+      "pixelmatchDifferentPixels": 13,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 223,
+    "rawDiffPct": 0.004301697530864197,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3269,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1487,
+        "pixelmatchDifferentPixels": 55
+      }
+    },
+    "transcript": {
+      "rectangle": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0
+    }
+  },
+  {
+    "name": "work-task~done-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0,
+    "previousApp": {
+      "exactDifferentPixels": 139,
+      "pixelmatchDifferentPixels": 14,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 0,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 235,
+    "rawDiffPct": 0.004533179012345679,
+    "roundedDiffPct": 0,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3183,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 1467,
+        "pixelmatchDifferentPixels": 63
+      }
+    },
+    "transcript": {
+      "rectangle": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "exactDifferentPixels": 0,
+      "pixelmatchDifferentPixels": 0
+    }
+  },
+  {
+    "name": "work-task~failed-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.02,
+    "previousApp": {
+      "exactDifferentPixels": 205,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 204,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1076,
+    "rawDiffPct": 0.020756172839506173,
+    "roundedDiffPct": 0.02,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3269,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3597,
+        "pixelmatchDifferentPixels": 908
+      }
+    }
+  },
+  {
+    "name": "work-task~failed-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.02,
+    "previousApp": {
+      "exactDifferentPixels": 225,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 225,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 1114,
+    "rawDiffPct": 0.021489197530864198,
+    "roundedDiffPct": 0.02,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3060,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 3785,
+        "pixelmatchDifferentPixels": 942
+      }
+    }
+  },
+  {
+    "name": "work-task~paused-dark",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 133,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 126,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 301,
+    "rawDiffPct": 0.0058063271604938274,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3321,
+        "pixelmatchDifferentPixels": 168
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 139,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2151,
+        "pixelmatchDifferentPixels": 133
+      }
+    }
+  },
+  {
+    "name": "work-task~paused-light",
+    "previousRun": "2026-10-03T02-07-00-529Z-CfuM6e",
+    "previousDirectory": "/tmp/opencode/live-recovery-final-compare",
+    "previousRoundedDiffPct": 0.01,
+    "previousApp": {
+      "exactDifferentPixels": 191,
+      "pixelmatchDifferentPixels": 0,
+      "content": {
+        "rectangle": [
+          754,
+          260,
+          2780,
+          1560
+        ],
+        "exactDifferentPixels": 178,
+        "pixelmatchDifferentPixels": 0
+      }
+    },
+    "differentPixels": 336,
+    "rawDiffPct": 0.006481481481481481,
+    "roundedDiffPct": 0.01,
+    "regions": {
+      "leftShell": {
+        "rectangle": [
+          0,
+          0,
+          674,
+          1800
+        ],
+        "exactDifferentPixels": 3069,
+        "pixelmatchDifferentPixels": 172
+      },
+      "titlebar": {
+        "rectangle": [
+          674,
+          0,
+          2880,
+          88
+        ],
+        "exactDifferentPixels": 116,
+        "pixelmatchDifferentPixels": 0
+      },
+      "content": {
+        "rectangle": [
+          674,
+          88,
+          2880,
+          1800
+        ],
+        "exactDifferentPixels": 2216,
+        "pixelmatchDifferentPixels": 164
+      }
+    }
+  }
+]

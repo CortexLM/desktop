@@ -5,8 +5,9 @@ Cortex desktop: Chat, Work, Bots, Files and Cortex Code on a local agent engine.
 One Electron 44 app. The engine runs inside the app's main process, stores sessions and
 settings in local SQLite (`node:sqlite`), and talks to the model providers you configure.
 Provider keys use a separate main-process credential store. No account is needed.
-Cortex Cloud (`cortex.foundation`) and self-hosted settings currently save a preference
-and probe servers; prompts still use the local engine. Remote sign-in is not wired.
+Cortex Cloud (`cortex.foundation`) and self-hosted settings save a preference, probe servers
+and support email-code sign-in through main. Sign-in lasts until Cortex closes; prompts
+still use the local engine and configured providers.
 
 ## Quick start
 
@@ -39,7 +40,7 @@ packages/
   client/     typed fetch client + SSE parser
   i18n/       catalogs (locales/<locale>/<namespace>.json) and loaders
   app/        renderer: React 19, @base-ui/react, Vite 8
-  desktop/    Electron main + preload, credentials, menu, Cortex Cloud probe
+  desktop/    Electron main + preload, credentials, menu, remote probe and sign-in
 vendor/       @cortex/sdk and @cortex/api-types tarballs
 tests/        unit/ and e2e/ (Playwright + Electron)
 scripts/      i18n audit, translation, smoke test, design comparison, Mac capture
@@ -58,10 +59,10 @@ bun run build && bun run test:e2e
 ## Status
 
 - Live: Chat, Work tasks and approvals, Bots, Cortex Code on a local folder, Settings →
-  Providers & models; Connection selection and probing.
+  Providers & models; Connection selection, probing and process-lifetime email-code sign-in.
 - Preview only: file viewers and other screens without engine wiring (see `#/gallery`).
-- Not built yet (waiting on design): Space, Scheduled, Plugins & skills. Cortex Cloud
-  sign-in has no engine route yet.
+- Not built yet (waiting on design): Space, Scheduled, Plugins & skills, additional sign-in
+  continuation screens. Remote prompt routing remains pending.
 - Catalogs and preview fixtures exist for `en fr es de ja zh-Hans pt-BR ko`; builtin
   `summarize` ships in `skills/`.
 - E2E covers 426 registered theme/state renders and UI streaming through a **local fake

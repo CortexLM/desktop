@@ -1,0 +1,1616 @@
+{
+  "e2e-linux": [
+    {
+      "file": "code-diff-scroll.spec.ts",
+      "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+      "status": "passed",
+      "attachments": {
+        "diff-header-960-light-0": {
+          "header": {
+            "x": 713,
+            "y": 149,
+            "width": 226.984375,
+            "height": 32,
+            "top": 149,
+            "right": 939.984375,
+            "bottom": 181,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 70,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 218,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-light-1": {
+          "header": {
+            "x": 713,
+            "y": 233,
+            "width": 226.984375,
+            "height": 32,
+            "top": 233,
+            "right": 939.984375,
+            "bottom": 265,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 232,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 232,
+            "right": 940.984375,
+            "bottom": 419.5,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-light-2": {
+          "header": {
+            "x": 713,
+            "y": 434.5,
+            "width": 226.984375,
+            "height": 32,
+            "top": 434.5,
+            "right": 939.984375,
+            "bottom": 466.5,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 433.5,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 433.5,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-0": {
+          "header": {
+            "x": 713,
+            "y": 149,
+            "width": 226.984375,
+            "height": 32,
+            "top": 149,
+            "right": 939.984375,
+            "bottom": 181,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 70,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 218,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-1": {
+          "header": {
+            "x": 713,
+            "y": 233,
+            "width": 226.984375,
+            "height": 32,
+            "top": 233,
+            "right": 939.984375,
+            "bottom": 265,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 232,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 232,
+            "right": 940.984375,
+            "bottom": 419.5,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-2": {
+          "header": {
+            "x": 713,
+            "y": 434.5,
+            "width": 226.984375,
+            "height": 32,
+            "top": 434.5,
+            "right": 939.984375,
+            "bottom": 466.5,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 433.5,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 433.5,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-0": {
+          "header": {
+            "x": 863.6875,
+            "y": 149,
+            "width": 556.3125,
+            "height": 32,
+            "top": 149,
+            "right": 1420,
+            "bottom": 181,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 70,
+            "top": 148,
+            "right": 1421,
+            "bottom": 218,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-1": {
+          "header": {
+            "x": 863.6875,
+            "y": 233,
+            "width": 556.3125,
+            "height": 32,
+            "top": 233,
+            "right": 1420,
+            "bottom": 265,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 232,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 232,
+            "right": 1421,
+            "bottom": 549.5,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-2": {
+          "header": {
+            "x": 863.6875,
+            "y": 564.5,
+            "width": 556.3125,
+            "height": 32,
+            "top": 564.5,
+            "right": 1420,
+            "bottom": 596.5,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 563.5,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 563.5,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-0": {
+          "header": {
+            "x": 863.6875,
+            "y": 149,
+            "width": 556.3125,
+            "height": 32,
+            "top": 149,
+            "right": 1420,
+            "bottom": 181,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 70,
+            "top": 148,
+            "right": 1421,
+            "bottom": 218,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-1": {
+          "header": {
+            "x": 863.6875,
+            "y": 233,
+            "width": 556.3125,
+            "height": 32,
+            "top": 233,
+            "right": 1420,
+            "bottom": 265,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 232,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 232,
+            "right": 1421,
+            "bottom": 549.5,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-2": {
+          "header": {
+            "x": 863.6875,
+            "y": 564.5,
+            "width": 556.3125,
+            "height": 32,
+            "top": 564.5,
+            "right": 1420,
+            "bottom": 596.5,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 563.5,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 563.5,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        }
+      }
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "skipped native route and theme transitions preserve updates and report callback errors",
+      "status": "passed",
+      "attachments": {
+        "skipped-native-transitions": {
+          "records": [
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            }
+          ],
+          "unhandled": [],
+          "errors": []
+        },
+        "native-callback-errors": {
+          "records": [
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            }
+          ],
+          "unhandled": [
+            {
+              "source": "updateCallbackDone",
+              "kind": "route",
+              "name": "Error",
+              "message": "Native route callback failed"
+            },
+            {
+              "source": "finished",
+              "kind": "route",
+              "name": "Error",
+              "message": "Native route callback failed"
+            },
+            {
+              "source": "updateCallbackDone",
+              "kind": "theme",
+              "name": "Error",
+              "message": "Native theme callback failed"
+            }
+          ],
+          "errors": [
+            "Native route callback failed",
+            "Native route callback failed",
+            "Native theme callback failed"
+          ]
+        }
+      }
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Back cancels a pending tab choice even when its label matches an older request",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a newer keyboard tab choice survives the previous route commit",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a pending route commit preserves the outgoing Work tree and restores Bot activity",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "anchors, native menus and history preserve routes, variants and chat identities",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Work preview departure keeps its context until native live-Code navigation commits",
+      "status": "passed",
+      "attachments": {
+        "preview-departure-errors": {
+          "errors": [],
+          "url": "cortex://app/index.html#/code"
+        }
+      }
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 light",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 light",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 dark",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 dark",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Mode and origin changes reject late auth replies and never reuse another origin\u2019s credentials",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Initial connection and auth reads protect selection, canonical sign-in and cancellation",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "terminal-copy.spec.ts",
+      "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+      "status": "passed",
+      "attachments": {
+        "terminal-copy-fr-960-light-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 473,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-960-dark-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 473,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1024-light-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 292.984375,
+            "height": 473,
+            "top": 148,
+            "right": 1004.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1024-dark-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 292.984375,
+            "height": 473,
+            "top": 148,
+            "right": 1004.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1440-light-viewport": {
+          "clientHeight": 716,
+          "scrollHeight": 58964,
+          "scrollTop": 58248,
+          "pane": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 733,
+            "top": 148,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "tail": {
+            "x": 877.6875,
+            "y": 835,
+            "width": 158.40625,
+            "height": 16,
+            "top": 835,
+            "right": 1036.09375,
+            "bottom": 851,
+            "left": 877.6875
+          },
+          "viewportHeight": 900,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1440-dark-viewport": {
+          "clientHeight": 716,
+          "scrollHeight": 58964,
+          "scrollTop": 58248,
+          "pane": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 733,
+            "top": 148,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "tail": {
+            "x": 877.6875,
+            "y": 835,
+            "width": 158.40625,
+            "height": 16,
+            "top": 835,
+            "right": 1036.09375,
+            "bottom": 851,
+            "left": 877.6875
+          },
+          "viewportHeight": 900,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        }
+      }
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "status": "passed",
+      "attachments": {
+        "cold-fonts-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 409,
+            "height": 1068,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "warm-fonts-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "user-wheel-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 229,
+            "height": 1068,
+            "viewport": 659,
+            "gap": 180,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 229,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 163,
+            "fonts": "loaded"
+          }
+        },
+        "variant-change-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 179,
+            "height": 786,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 162,
+            "height": 769,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        }
+      }
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "status": "passed",
+      "attachments": {
+        "cold-fonts-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 409,
+            "height": 1068,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "warm-fonts-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "user-wheel-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 229,
+            "height": 1068,
+            "viewport": 659,
+            "gap": 180,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 229,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 163,
+            "fonts": "loaded"
+          }
+        },
+        "variant-change-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 179,
+            "height": 786,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 162,
+            "height": 769,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        }
+      }
+    }
+  ],
+  "macos": [
+    {
+      "file": "code-diff-scroll.spec.ts",
+      "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+      "status": "passed",
+      "attachments": {
+        "diff-header-960-light-0": {
+          "header": {
+            "x": 713,
+            "y": 149,
+            "width": 226.984375,
+            "height": 32,
+            "top": 149,
+            "right": 939.984375,
+            "bottom": 181,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 70,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 218,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-light-1": {
+          "header": {
+            "x": 713,
+            "y": 233,
+            "width": 226.984375,
+            "height": 32,
+            "top": 233,
+            "right": 939.984375,
+            "bottom": 265,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 232,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 232,
+            "right": 940.984375,
+            "bottom": 419.5,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-light-2": {
+          "header": {
+            "x": 713,
+            "y": 434.5,
+            "width": 226.984375,
+            "height": 32,
+            "top": 434.5,
+            "right": 939.984375,
+            "bottom": 466.5,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 433.5,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 433.5,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-0": {
+          "header": {
+            "x": 713,
+            "y": 149,
+            "width": 226.984375,
+            "height": 32,
+            "top": 149,
+            "right": 939.984375,
+            "bottom": 181,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 70,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 218,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-1": {
+          "header": {
+            "x": 713,
+            "y": 233,
+            "width": 226.984375,
+            "height": 32,
+            "top": 233,
+            "right": 939.984375,
+            "bottom": 265,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 232,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 232,
+            "right": 940.984375,
+            "bottom": 419.5,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-960-dark-2": {
+          "header": {
+            "x": 713,
+            "y": 434.5,
+            "width": 226.984375,
+            "height": 32,
+            "top": 434.5,
+            "right": 939.984375,
+            "bottom": 466.5,
+            "left": 713
+          },
+          "card": {
+            "x": 712,
+            "y": 433.5,
+            "width": 228.984375,
+            "height": 187.5,
+            "top": 433.5,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-0": {
+          "header": {
+            "x": 863.6875,
+            "y": 149,
+            "width": 556.3125,
+            "height": 32,
+            "top": 149,
+            "right": 1420,
+            "bottom": 181,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 70,
+            "top": 148,
+            "right": 1421,
+            "bottom": 218,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-1": {
+          "header": {
+            "x": 863.6875,
+            "y": 233,
+            "width": 556.3125,
+            "height": 32,
+            "top": 233,
+            "right": 1420,
+            "bottom": 265,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 232,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 232,
+            "right": 1421,
+            "bottom": 549.5,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-light-2": {
+          "header": {
+            "x": 863.6875,
+            "y": 564.5,
+            "width": 556.3125,
+            "height": 32,
+            "top": 564.5,
+            "right": 1420,
+            "bottom": 596.5,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 563.5,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 563.5,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-0": {
+          "header": {
+            "x": 863.6875,
+            "y": 149,
+            "width": 556.3125,
+            "height": 32,
+            "top": 149,
+            "right": 1420,
+            "bottom": 181,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 70,
+            "top": 148,
+            "right": 1421,
+            "bottom": 218,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-1": {
+          "header": {
+            "x": 863.6875,
+            "y": 233,
+            "width": 556.3125,
+            "height": 32,
+            "top": 233,
+            "right": 1420,
+            "bottom": 265,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 232,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 232,
+            "right": 1421,
+            "bottom": 549.5,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        },
+        "diff-header-1440-dark-2": {
+          "header": {
+            "x": 863.6875,
+            "y": 564.5,
+            "width": 556.3125,
+            "height": 32,
+            "top": 564.5,
+            "right": 1420,
+            "bottom": 596.5,
+            "left": 863.6875
+          },
+          "card": {
+            "x": 862.6875,
+            "y": 563.5,
+            "width": 558.3125,
+            "height": 317.5,
+            "top": 563.5,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "withinCard": true,
+          "hitTest": true
+        }
+      }
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "skipped native route and theme transitions preserve updates and report callback errors",
+      "status": "passed",
+      "attachments": {
+        "skipped-native-transitions": {
+          "records": [
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            }
+          ],
+          "unhandled": [],
+          "errors": []
+        },
+        "native-callback-errors": {
+          "records": [
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "route",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            },
+            {
+              "kind": "theme",
+              "callbacks": 1,
+              "readyHandled": true,
+              "readyError": "AbortError",
+              "native": true
+            }
+          ],
+          "unhandled": [
+            {
+              "source": "updateCallbackDone",
+              "kind": "route",
+              "name": "Error",
+              "message": "Native route callback failed"
+            },
+            {
+              "source": "finished",
+              "kind": "route",
+              "name": "Error",
+              "message": "Native route callback failed"
+            },
+            {
+              "source": "updateCallbackDone",
+              "kind": "theme",
+              "name": "Error",
+              "message": "Native theme callback failed"
+            }
+          ],
+          "errors": [
+            "Native route callback failed",
+            "Native route callback failed",
+            "Native theme callback failed"
+          ]
+        }
+      }
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Back cancels a pending tab choice even when its label matches an older request",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a newer keyboard tab choice survives the previous route commit",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "a pending route commit preserves the outgoing Work tree and restores Bot activity",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "anchors, native menus and history preserve routes, variants and chat identities",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "navigation.spec.ts",
+      "title": "Work preview departure keeps its context until native live-Code navigation commits",
+      "status": "passed",
+      "attachments": {
+        "preview-departure-errors": {
+          "errors": [],
+          "url": "cortex://app/index.html#/code"
+        }
+      }
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 light",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 light",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Email code sign-in retains refusal, submits once, reloads and signs out \u2014 960 dark",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Unavailable continuations and cancelled codes stay private; restart clears login \u2014 960 dark",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Mode and origin changes reject late auth replies and never reuse another origin\u2019s credentials",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "remote-auth.spec.ts",
+      "title": "Initial connection and auth reads protect selection, canonical sign-in and cancellation",
+      "status": "passed",
+      "attachments": {}
+    },
+    {
+      "file": "terminal-copy.spec.ts",
+      "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+      "status": "passed",
+      "attachments": {
+        "terminal-copy-fr-960-light-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 473,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-960-dark-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 228.984375,
+            "height": 473,
+            "top": 148,
+            "right": 940.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1024-light-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 292.984375,
+            "height": 473,
+            "top": 148,
+            "right": 1004.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1024-dark-viewport": {
+          "clientHeight": 456,
+          "scrollHeight": 58964,
+          "scrollTop": 58508,
+          "pane": {
+            "x": 712,
+            "y": 148,
+            "width": 292.984375,
+            "height": 473,
+            "top": 148,
+            "right": 1004.984375,
+            "bottom": 621,
+            "left": 712
+          },
+          "tail": {
+            "x": 727,
+            "y": 575,
+            "width": 158.40625,
+            "height": 16,
+            "top": 575,
+            "right": 885.40625,
+            "bottom": 591,
+            "left": 727
+          },
+          "viewportHeight": 640,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1440-light-viewport": {
+          "clientHeight": 716,
+          "scrollHeight": 58964,
+          "scrollTop": 58248,
+          "pane": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 733,
+            "top": 148,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "tail": {
+            "x": 877.6875,
+            "y": 835,
+            "width": 158.40625,
+            "height": 16,
+            "top": 835,
+            "right": 1036.09375,
+            "bottom": 851,
+            "left": 877.6875
+          },
+          "viewportHeight": 900,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        },
+        "terminal-copy-fr-1440-dark-viewport": {
+          "clientHeight": 716,
+          "scrollHeight": 58964,
+          "scrollTop": 58248,
+          "pane": {
+            "x": 862.6875,
+            "y": 148,
+            "width": 558.3125,
+            "height": 733,
+            "top": 148,
+            "right": 1421,
+            "bottom": 881,
+            "left": 862.6875
+          },
+          "tail": {
+            "x": 877.6875,
+            "y": 835,
+            "width": 158.40625,
+            "height": 16,
+            "top": 835,
+            "right": 1036.09375,
+            "bottom": 851,
+            "left": 877.6875
+          },
+          "viewportHeight": 900,
+          "bounded": true,
+          "scrollable": true,
+          "markerVisible": true
+        }
+      }
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 light",
+      "status": "passed",
+      "attachments": {
+        "cold-fonts-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 410,
+            "height": 1069,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "warm-fonts-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "user-wheel-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 230,
+            "height": 1069,
+            "viewport": 659,
+            "gap": 180,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 230,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 162,
+            "fonts": "loaded"
+          }
+        },
+        "variant-change-light": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 179,
+            "height": 786,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 162,
+            "height": 769,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        }
+      }
+    },
+    {
+      "file": "work-scroll.spec.ts",
+      "title": "Work initial scroll settles after fonts without taking back user control \u2014 dark",
+      "status": "passed",
+      "attachments": {
+        "cold-fonts-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 410,
+            "height": 1069,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "warm-fonts-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          },
+          "after": {
+            "top": 392,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        },
+        "user-wheel-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 230,
+            "height": 1069,
+            "viewport": 659,
+            "gap": 180,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 230,
+            "height": 1051,
+            "viewport": 659,
+            "gap": 162,
+            "fonts": "loaded"
+          }
+        },
+        "variant-change-dark": {
+          "requests": [
+            "cortex://app/fonts/Geist-Variable.woff2",
+            "cortex://app/fonts/GeistMono-Variable.woff2"
+          ],
+          "before": {
+            "top": 179,
+            "height": 786,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loading"
+          },
+          "after": {
+            "top": 162,
+            "height": 769,
+            "viewport": 607,
+            "gap": 0,
+            "fonts": "loaded"
+          }
+        }
+      }
+    }
+  ]
+}

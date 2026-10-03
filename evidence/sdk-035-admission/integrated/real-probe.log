@@ -1,0 +1,11 @@
+RUN  v5.0.3 /root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite
+
+stdout | packages/desktop/test/remote.test.ts > remote backend through the Cortex SDK > lists models from a real backend
+real backend: {"status":"reachable","authRequired":true,"models":[{"id":"cortex-1-mini","name":"Cortex 1 Mini"},{"id":"cortex-teutonic-1","name":"Cortex Teutonic-1"},{"id":"cortex-image-1","name":"Cortex-Image-1"}]}
+
+ ✓ packages/desktop/test/remote.test.ts (45 tests | 44 skipped) 302ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 44 skipped (45)
+   Start at  04:39:04
+   Duration  662ms (tests 57%, import 24%, transform 19%, worker 1%)

@@ -1,0 +1,586 @@
+{
+  "status": "passed",
+  "startedAt": "2026-10-03T04:19:53.287Z",
+  "expectedAsar": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "scriptSHA256": "fc515a3ac85d91ec82e6bc0e9448fe56e8aa43954b9e9182c5c8ca3a6ca8ab6e",
+  "checks": [
+    {
+      "name": "Work-done-preview-departs-to-live-Code",
+      "theme": "light",
+      "sameDocument": true,
+      "oldTreeDetached": true,
+      "fixtureControlsAbsent": true,
+      "engineListsUnchanged": true,
+      "nativeTransitionAvailable": true
+    },
+    {
+      "name": "two-real-write-approvals-and-exact-disk-bytes",
+      "theme": "light",
+      "approvals": 2,
+      "files": [
+        {
+          "file": "short-light.txt",
+          "exact": true,
+          "bytes": 11,
+          "lines": 1,
+          "sha256": "151e366e6dab0246b9e6c3b80af3c98a5cb0f8198f8e7dc60d3770daf86f9137"
+        },
+        {
+          "file": "long-light.txt",
+          "exact": true,
+          "bytes": 1344,
+          "lines": 161,
+          "sha256": "60e3df90f8efbf6d3ba6b70f82ac18388cec9426d9e9f9de1652dcf639630636"
+        }
+      ],
+      "providerRows": [
+        {
+          "index": 1,
+          "theme": "light",
+          "phase": "short",
+          "toolResultCount": 0,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        },
+        {
+          "index": 2,
+          "theme": "light",
+          "phase": "long",
+          "toolResultCount": 1,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        },
+        {
+          "index": 3,
+          "theme": "light",
+          "phase": "complete",
+          "toolResultCount": 2,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        }
+      ]
+    },
+    {
+      "name": "asymmetric-diffs-keep-headers-and-wheel-reveal-entire-tail",
+      "theme": "light",
+      "unequalLines": [
+        1,
+        161
+      ],
+      "bodyWheelScrolled": true,
+      "bothHeadersReadable": true,
+      "bothLastLinesFullyVisible": true
+    },
+    {
+      "name": "Work-done-preview-departs-to-live-Code",
+      "theme": "dark",
+      "sameDocument": true,
+      "oldTreeDetached": true,
+      "fixtureControlsAbsent": true,
+      "engineListsUnchanged": true,
+      "nativeTransitionAvailable": true
+    },
+    {
+      "name": "two-real-write-approvals-and-exact-disk-bytes",
+      "theme": "dark",
+      "approvals": 2,
+      "files": [
+        {
+          "file": "short-dark.txt",
+          "exact": true,
+          "bytes": 10,
+          "lines": 1,
+          "sha256": "3fec06cb1f71ea9cac34b9e7ea0831dc55ac6a17f18de8eadd04ecea8148968a"
+        },
+        {
+          "file": "long-dark.txt",
+          "exact": true,
+          "bytes": 1343,
+          "lines": 161,
+          "sha256": "a6dab0b44045ec68d35e153bf1e6e4970e046d96b09cea137c3cbd25e8f63890"
+        }
+      ],
+      "providerRows": [
+        {
+          "index": 4,
+          "theme": "dark",
+          "phase": "short",
+          "toolResultCount": 0,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        },
+        {
+          "index": 5,
+          "theme": "dark",
+          "phase": "long",
+          "toolResultCount": 1,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        },
+        {
+          "index": 6,
+          "theme": "dark",
+          "phase": "complete",
+          "toolResultCount": 2,
+          "modelExact": true,
+          "toolResultsExact": true,
+          "authorizationPresent": false
+        }
+      ]
+    },
+    {
+      "name": "asymmetric-diffs-keep-headers-and-wheel-reveal-entire-tail",
+      "theme": "dark",
+      "unequalLines": [
+        1,
+        161
+      ],
+      "bodyWheelScrolled": true,
+      "bothHeadersReadable": true,
+      "bothLastLinesFullyVisible": true
+    }
+  ],
+  "captures": [
+    {
+      "file": "preview-to-live-code-light.png",
+      "theme": "light",
+      "native": true,
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8228,
+      "pid": 47638,
+      "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+      "sha256": "67a720de9bb7afcf9791e5dab44b41a577278b20aacbd181782e0acec4d138fe",
+      "boxes": [
+        {
+          "x": 434,
+          "y": 302.5,
+          "width": 259.5625,
+          "height": 50,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 395,
+          "y": 365.5,
+          "width": 155,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 480.671875,
+          "y": 245.5,
+          "width": 330.65625,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        }
+      ],
+      "fontsLoaded": true,
+      "fullOpacityBeforeAndAfter": true
+    },
+    {
+      "file": "code-asymmetric-diffs-light.png",
+      "theme": "light",
+      "native": true,
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8228,
+      "pid": 47638,
+      "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+      "sha256": "ab5ca018adfd871d9d09e1148c1918e3be078a36966ae5d629ab51fa3dccc6f8",
+      "boxes": [
+        {
+          "x": 713,
+          "y": 149,
+          "width": 226.984375,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 233,
+          "width": 226.984375,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 747,
+          "y": 156.5,
+          "width": 158.984375,
+          "height": 16,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 747,
+          "y": 240.5,
+          "width": 158.984375,
+          "height": 16,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 905.984375,
+          "y": 150.5,
+          "width": 28,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 905.984375,
+          "y": 234.5,
+          "width": 28,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 189,
+          "width": 226.984375,
+          "height": 20,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 592,
+          "width": 226.984375,
+          "height": 20,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        }
+      ],
+      "fontsLoaded": true,
+      "fullOpacityBeforeAndAfter": true
+    },
+    {
+      "file": "preview-to-live-code-dark.png",
+      "theme": "dark",
+      "native": true,
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8228,
+      "pid": 47638,
+      "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+      "sha256": "e538708c21f693c797f2cf66b9465559c00671f59114370871220e7b965210c2",
+      "boxes": [
+        {
+          "x": 434,
+          "y": 249.5,
+          "width": 259.5625,
+          "height": 50,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 395,
+          "y": 312.5,
+          "width": 155,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 480.671875,
+          "y": 192.5,
+          "width": 330.65625,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        }
+      ],
+      "fontsLoaded": true,
+      "fullOpacityBeforeAndAfter": true
+    },
+    {
+      "file": "code-asymmetric-diffs-dark.png",
+      "theme": "dark",
+      "native": true,
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8228,
+      "pid": 47638,
+      "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+      "sha256": "c1e7f2c05399f80a4be70c188c3db790441e4583bb84be1dde5174480a04bcbd",
+      "boxes": [
+        {
+          "x": 713,
+          "y": 149,
+          "width": 226.984375,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 233,
+          "width": 226.984375,
+          "height": 32,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 747,
+          "y": 156.5,
+          "width": 158.984375,
+          "height": 16,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 747,
+          "y": 240.5,
+          "width": 158.984375,
+          "height": 16,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 905.984375,
+          "y": 150.5,
+          "width": 28,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 905.984375,
+          "y": 234.5,
+          "width": 28,
+          "height": 28,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 189,
+          "width": 226.984375,
+          "height": 20,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        },
+        {
+          "x": 713,
+          "y": 592,
+          "width": 226.984375,
+          "height": 20,
+          "opaque": true,
+          "visible": true,
+          "textFits": true,
+          "hitTarget": true,
+          "ready": true
+        }
+      ],
+      "fontsLoaded": true,
+      "fullOpacityBeforeAndAfter": true
+    }
+  ],
+  "sessionIDs": [
+    "ses_01a0fffdb6ff00001c6e492de7cd6289",
+    "ses_01a0fffe66de0000d220100475fc0d0d"
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "rendererHttp": [],
+  "unexpectedDialogs": 0,
+  "cleanup": {
+    "providerRestored": true,
+    "originalRouteEnglishDark": true
+  },
+  "installedBefore": {
+    "processCount": 1,
+    "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+    "pid": 47638,
+    "isolatedEngine": true,
+    "isolatedRenderer": true,
+    "controlledCatalog": true,
+    "projectIsolated": true
+  },
+  "backend": {
+    "protocol": "cortex-code-viewport-native-v1",
+    "runID": "963c5600-0e2b-49e7-ac10-9e84af1f3d80",
+    "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+    "platform": "darwin",
+    "port": 9458,
+    "destinationsInitiallyAbsent": true,
+    "startedAt": "2026-10-03T04:15:08.301Z",
+    "scriptSHA256": "17be947e1c1fa3bf460a67717b3617b97817fb2399124db4581288f6a4c2737f"
+  },
+  "existingFixtureKeyPresent": false,
+  "backendReceipt": {
+    "protocol": "cortex-code-viewport-native-v1",
+    "runID": "963c5600-0e2b-49e7-ac10-9e84af1f3d80",
+    "project": "/private/tmp/opencode/desktop-recovery-ffc118a/project",
+    "platform": "darwin",
+    "port": 9458,
+    "destinationsInitiallyAbsent": true,
+    "startedAt": "2026-10-03T04:15:08.301Z",
+    "scriptSHA256": "17be947e1c1fa3bf460a67717b3617b97817fb2399124db4581288f6a4c2737f",
+    "requests": [
+      {
+        "index": 1,
+        "theme": "light",
+        "phase": "short",
+        "toolResultCount": 0,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      },
+      {
+        "index": 2,
+        "theme": "light",
+        "phase": "long",
+        "toolResultCount": 1,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      },
+      {
+        "index": 3,
+        "theme": "light",
+        "phase": "complete",
+        "toolResultCount": 2,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      },
+      {
+        "index": 4,
+        "theme": "dark",
+        "phase": "short",
+        "toolResultCount": 0,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      },
+      {
+        "index": 5,
+        "theme": "dark",
+        "phase": "long",
+        "toolResultCount": 1,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      },
+      {
+        "index": 6,
+        "theme": "dark",
+        "phase": "complete",
+        "toolResultCount": 2,
+        "modelExact": true,
+        "toolResultsExact": true,
+        "authorizationPresent": false
+      }
+    ],
+    "errors": 0
+  },
+  "installedAfter": {
+    "processCount": 1,
+    "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+    "pid": 47638,
+    "isolatedEngine": true,
+    "isolatedRenderer": true,
+    "controlledCatalog": true,
+    "projectIsolated": true
+  },
+  "finishedAt": "2026-10-03T04:21:32.039Z",
+  "scope": "Future fixed installed artifact; ordinary same-document Work-preview departure, real main inference and approved writes, asymmetric native Code diff viewports. Controlled local model, not hosted inference. Native pixels/build provenance require coordinator review."
+}

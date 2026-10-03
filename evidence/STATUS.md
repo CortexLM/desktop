@@ -2,15 +2,25 @@
 
 PR: https://github.com/CortexLM/desktop/pull/36 (`goal/desktop-rewrite`, draft).
 The full objective is **not complete**. Evidence below is scoped to implemented surfaces.
-G3's corrected SDK 0.3.1/api-types 0.2.0 passes [scoped desktop admission](sdk-031-admission/README.md):
-immutable pins and OTP/local-login/Library contracts verified, dependency intake `4fea24a` adopted.
-Media-tail/screenshot defects reproduce; broader auth/identity/turn/history contracts remain
-incomplete. The old 0.3.0 HOLD remains. [Bounded sign-in implementation](remote-auth-followup/README.md)
-is uncommitted: 201 units plus one optional skip, 90 Electron cases/426 renders including six
+G3's SDK 0.3.5/api-types 0.2.0 passes [scoped desktop admission](sdk-035-admission/README.md);
+exact dependency intake is uncommitted. Media-tail/raw-screenshot/turn-body/auth-clone corrections
+pass consumer checks. Broader auth/identity/history contracts remain incomplete. Historical
+0.3.0 HOLD, 0.3.1 defects and failed 0.3.4 attempts remain. [Bounded sign-in implementation](remote-auth-followup/README.md)
+is pushed at `ffc118a`: 201 units plus one optional skip, 90 Electron cases/426 renders including six
 controlled auth/read-barrier cases, lint/types/i18n and Linux package/smoke pass.
-Real Cloud authentication and remote inference remain unproven.
+Later preview/Code fixes pass 26 targeted cases, then eight final cases after asymmetric-diff
+correction. [CI 37094538845](https://github.com/CortexLM/desktop/actions/runs/37094538845) passes
+at `ffc118a`; [artifact review](remote-auth-followup/ci-ffc118a/README.md) verifies 92 cases/OS,
+201 units plus one optional skip, 224 unique PNGs/58 full-size originals.
+[Matching installed proof](mac/ffc118a/README.md)
+passes 28 native captures/assertions across sign-in, Code, terminal, recovery and Work;
+independent review verifies all 31 retained pairs and inspects all 28 positives full-size.
+Real Cloud authentication/inference remain unproven.
 Later [0.3.2/0.3.3 readback](sdk-next-readback/README.md) verifies consumer corrections;
-final replacement admission remains pending the owner cleanup/source handoff.
+the final 0.3.5 replacement passes 34 runtime/eight unchanged main-service cases and dependency
+intake checks (52 passes/one optional skip). Integrated lint/types/i18n, 201 units plus one
+skip, ten targeted Electron cases and Linux package/smoke pass. A separate unauthenticated
+Cloud probe returns three models. New-pair CI/installed proof remains pending.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;
@@ -18,14 +28,14 @@ Local checks: 188 units plus one optional backend skip; lint/types/i18n zero fin
 return-navigation correction. Rebuilt Linux package/smoke and 90 member-byte checks pass.
 Changed-revision CI `37088533094`: checks/Linux 83/83 pass; macOS 82/83 fails on
 `Transition was skipped` in Work's renderer-error assertion. Mac packaging/smoke skipped;
-The native-transition correction passes seven local Electron regressions and source review.
+the native-transition correction passes seven local Electron regressions and source review.
 Updated [CI 37091082338](https://github.com/CortexLM/desktop/actions/runs/37091082338) passes
 at recovery/transition `b0e6d78`; independent review verifies 84 cases/OS and 185 unique images.
 [Installed recovery](mac/b0e6d78/README.md) passes twelve recovery/two Work cases but exposes
 a preview-departure crash and unreachable long terminal output. Corrections pass 26 targeted
 Electron cases after rebuild, lint/types/i18n and Linux package/smoke; updated CI/native pending.
-failed native attempts remain retained. Pristine build matches all 90 installed members.
-Earlier captures retain their pins; uncommitted sign-in is outside that CI/package.
+Failed native attempts remain retained. Pristine build matches all 90 installed members.
+Earlier captures retain their pins; later `ffc118a` sign-in is outside that CI/package.
 [Final-head CI 37082159189](https://github.com/CortexLM/desktop/actions/runs/37082159189)
 passes all three jobs at `6d96535`; application/package inputs match `f9aca44`.
 The [current installed-Mac full sweep](mac/f9aca44/full/README.md) adds 426 native images
@@ -33,7 +43,11 @@ at 1024×686, fourteen light/dark menus and native window/navigation readbacks.
 [Full fixed-clock comparison](current-full-followup/compare/README.md): 431 renders,
 410 references, 21 gaps, mean 0.0379%, maximum 1.73%. Independent CI/comparison reviews verify
 artifact/source/image bindings. Work's 1px gap is reproduced as font reflow/scroll anchoring;
-its new correction is separate from those original images. Full native review is being consolidated.
+its new correction is separate from those original images. The [full native review](mac/f9aca44/full/independent-review.md)
+is complete: 74 full-resolution states/all 61 families, fourteen menus. Later runtime readback
+proves DOCX Comments and narrow split source reachable by wheel/keyboard. The confirmed
+Code Approvals text overlap has a scoped correction: four negative/positive geometry cases,
+source review pass; new-revision CI/native pending. Wide source-line ellipsis remains inherited.
 The [Work conversion/Bot search batch](live-actions-followup/README.md) passes 178 Node 22 unit
 tests plus one optional backend skip, an initial 69-case Electron suite/426 renders and twelve
 final targeted cases after original-request text-fragment preservation. Lint/types/i18n and Linux

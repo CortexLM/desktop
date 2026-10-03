@@ -6,6 +6,52 @@ async function reachable(control: Locator) {
   await control.click({ trial: true });
 }
 
+for (const size of [{ width: 960, height: 640 }, { width: 1024, height: 686 }]) for (const theme of ["light", "dark"]) {
+  test(`Code approval descriptions stay clear of controls — ${size.width}×${size.height} ${theme}`, async () => {
+    const { app, page } = await launch({ hash: `#/code-settings?theme=${theme}&shot&v=approvals`, locale: "en", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });
+    try {
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await app.evaluate(({ BrowserWindow }, size) => BrowserWindow.getAllWindows()[0].setContentSize(size.width, size.height), size);
+      await expect.poll(() => page.evaluate(() => ({ width: innerWidth, height: innerHeight }))).toEqual(size);
+      await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      await expect(page.locator(".window")).toHaveAttribute("data-sidebar", "shown");
+      const rows = page.locator(".pg-panel > .list").first().locator(":scope > .li");
+      await expect(rows).toHaveCount(2);
+      await expect(rows.locator(".ttl")).toHaveText(["Default model", "Notify me when an approval is waiting"]);
+      await expect(rows.locator(".sub")).toHaveText(["For new tasks and reviews", "Desktop and phone notification"]);
+      await page.evaluate(() => document.fonts.ready);
+      const geometry = await rows.evaluateAll((els) => els.map((el) => {
+        const title = el.querySelector(".ttl")!, description = el.querySelector(".sub")!;
+        const range = document.createRange();
+        range.selectNodeContents(title);
+        const titleBottom = range.getBoundingClientRect().bottom;
+        range.selectNodeContents(description);
+        const lines = [...range.getClientRects()];
+        const textBox = description.parentElement!.getBoundingClientRect(), control = el.querySelector("button, [role='switch']")!.getBoundingClientRect();
+        return { title: title.textContent, titleBottom, lines: lines.map((r) => ({ left: r.left, right: r.right, top: r.top, bottom: r.bottom })),
+          belowTitle: lines.length > 0 && lines.every((r) => r.top >= titleBottom),
+          fitsTextBox: lines.length > 0 && lines.every((r) => r.left >= textBox.left - 1 && r.right <= textBox.right + 1 && r.top >= textBox.top - 1 && r.bottom <= textBox.bottom + 1),
+          clearOfControl: lines.every((r) => r.right <= control.left || r.left >= control.right || r.bottom <= control.top || r.top >= control.bottom) };
+      }));
+      await test.info().attach("approval-description-geometry", { body: JSON.stringify(geometry, null, 2), contentType: "application/json" });
+      for (const row of geometry) {
+        expect.soft(row.belowTitle, `${row.title}: description below title`).toBe(true);
+        expect.soft(row.fitsTextBox, `${row.title}: complete description fits`).toBe(true);
+        expect.soft(row.clearOfControl, `${row.title}: description clear of control`).toBe(true);
+      }
+      await page.locator(".pg-nav").getByRole("button", { name: "Usage", exact: true }).focus();
+      for (const control of [rows.getByRole("button", { name: "Deep code", exact: true }), rows.getByRole("switch", { name: "Notify approvals", exact: true })]) {
+        await page.keyboard.press("Tab");
+        await expect(control).toBeFocused();
+        await reachable(control);
+      }
+      await test.info().attach("approval-descriptions", { body: await page.screenshot(), contentType: "image/png" });
+    } finally {
+      await app.close();
+    }
+  });
+}
+
 for (const width of [960, 1024, 1440]) for (const theme of ["light", "dark"]) {
   test(`Work board columns and cards remain reachable — ${width} ${theme}`, async () => {
     const { app, page } = await launch({ hash: `#/work-home?theme=${theme}&shot&v=board`, locale: "en", env: { CORTEX_CATALOG_URL: "data:application/json,{}" } });

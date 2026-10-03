@@ -1,0 +1,17 @@
+RUN  v5.0.3 /var/tmp/opencode/desktop-sdk-035-readback
+
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > pins requests, keeps SDK cookies private and establishes sign-in only after a verified code 54ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > retains the verified account on failed replacement and retains a rejected code for retry 22ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > keeps email-verification and MFA challenges private across their typed continuations 13ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > reports enrollment without returning or accepting presentation secrets 5ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > expires local sessions without a request and revokes a live local bearer through the typed logout 14ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > aborts held native replies on cancel, logout, origin replacement and clear without late identity or cookie commits 39ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > rejects duplicate requests and times out an unfinished native authentication body 10009ms
+ ✓ desktop/packages/desktop/test/remote-session.test.ts > process-lifetime remote authentication > rejects malformed origins, redirects, malformed success and raw failures without replacing a verified account 99ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  04:17:55
+   Duration  10.65s (tests 98%, transform 1%, import 1%)
+
+JSON report written to /tmp/opencode/desktop-sdk-035-readback/main-service.json

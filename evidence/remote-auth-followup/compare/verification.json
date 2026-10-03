@@ -1,0 +1,252 @@
+{
+  "sourceContext": "b0e6d78 plus captured uncommitted auth/preview/two-rule terminal CSS, before later minimum-height/overflow changes. Not current-source or future-commit acceptance.",
+  "capturedSourceFingerprint": "815a49910bce8e35d2a48e6a3f3f03162d8cbf56ca41c4f58b5d0947c6902614",
+  "capturedSourceFiles": 473,
+  "sourceReconstruction": "Only styles.css reconstructed by removing later :has overflow/comment and 70px minimum; all other snapshot bytes read as present and verified jointly against recorded full fingerprint.",
+  "changedSourceInputsFromHead": [
+    {
+      "file": "packages/app/src/App.tsx",
+      "baseSha256": "48364d76d0b6253807701e64e45f503a27d2c40083cdc477d6c70aa311753a83",
+      "capturedSha256": "b48dcc43f2142029197d451c749713dfd94c47742785ebb094900ca7517c6518"
+    },
+    {
+      "file": "packages/app/src/kit/styles.css",
+      "baseSha256": "e4176904cfe44976e41970d379d736b7c97998a94d9198ba5884c07c0b818611",
+      "capturedSha256": "2901fa56bc043aaaf6fb9a7fa39215069f791fbe511b2d1b63b19eb0e1d4496a"
+    },
+    {
+      "file": "packages/app/src/preview.tsx",
+      "baseSha256": "239b5d8f24ad14a6f71fcc655c866aa450c9776380f1226821b864789648f987",
+      "capturedSha256": "5734b59643af8811a75159c651ee23bf3c766b5abe5d428cbef34b8f70873629"
+    },
+    {
+      "file": "packages/app/src/screens/system/account.tsx",
+      "baseSha256": "211926b5b9e8d6d9d771cea8e87fa4242231cc5ea13b81fd45775ca441b6e7c7",
+      "capturedSha256": "7d6946caefc5f0333267c41fb472d321a8f62358023933c7e2fcd2c6674f0a36"
+    },
+    {
+      "file": "packages/app/src/screens/system/settings.tsx",
+      "baseSha256": "83684a1871d2a992327cc6b2bf2cc261c386ac856e41d0279292cad651707ac0",
+      "capturedSha256": "54e9b65e6f37710d6235e64f720e75f0ed03ec647cd1f0dd1bda63aca544285d"
+    },
+    {
+      "file": "packages/app/src/screens/work/home.tsx",
+      "baseSha256": "f20599c58871783afba2024f88aa8902b2e9f355baeb6af35f2a473a70e056d6",
+      "capturedSha256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8"
+    },
+    {
+      "file": "packages/client/src/index.ts",
+      "baseSha256": "b5f66f0da5f4e1ebc9e592fac69f0ae7dd06c80635c3ba9067b50efd1e813c4f",
+      "capturedSha256": "0faa61a96ffb009edd1fd6d321d38d805625eb385c9d912c7a184bc1467367e7"
+    },
+    {
+      "file": "packages/i18n/locales/de/system.json",
+      "baseSha256": "b287ccd3878e6e9a986993594d2a55be93d052e22e9563b3b6c9c9f49500b60a",
+      "capturedSha256": "cacaffee5a71bcca8b544f40a9d6fbbead5da1695ff2fdc0ba634c91e5b49e74"
+    },
+    {
+      "file": "packages/i18n/locales/en/system.json",
+      "baseSha256": "2a1d6086157045cfbb37c4c05224b8fa3885eb082869952f13e58b360229c3d1",
+      "capturedSha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a"
+    },
+    {
+      "file": "packages/i18n/locales/es/system.json",
+      "baseSha256": "d28a19c86e2b979a945d3d57d8dea5e840af5749abce6334c7d92f4e0d45a3b1",
+      "capturedSha256": "71c7a154c0cff9049ceeeb07696d701ec44ccf53160a5d3b3d4c96d7d54ff63b"
+    },
+    {
+      "file": "packages/i18n/locales/fr/system.json",
+      "baseSha256": "5fb4c5517a89ca2143cc05c793890fbae9aa5c0f1a37f363836bc8336ac3dac7",
+      "capturedSha256": "c63761c3053604f5fd206e3f09bc728c40015abf220c3cd0be777c6193309bdc"
+    },
+    {
+      "file": "packages/i18n/locales/ja/system.json",
+      "baseSha256": "2b34fea7d83082dfd452e5cadec13912c0f373df0584f6db67fb0f7edb2b5486",
+      "capturedSha256": "0b86eb32b546ac0e342bab729d9e3990a944fae9c02b694bf8d095475f0fbad7"
+    },
+    {
+      "file": "packages/i18n/locales/ko/system.json",
+      "baseSha256": "f0c15c084b6d6c035c28b4132254df493a6554167388db012754befe5e7517dd",
+      "capturedSha256": "c404abfe396c950ee8da904eb5d21d23a34fa090ace1bf5898426757efa93801"
+    },
+    {
+      "file": "packages/i18n/locales/pt-BR/system.json",
+      "baseSha256": "96d3857a879f81b1c94ec386cef3d541b1acdbea2fdc9c9e57ab27a68a1022ed",
+      "capturedSha256": "bb28de8fa8ee1028d7d2a717ed049bdeb0dca42a04e2c9d901b520bb39d2c82b"
+    },
+    {
+      "file": "packages/i18n/locales/zh-Hans/system.json",
+      "baseSha256": "17103df87e9e9df6301984cfce1453fdf32025f68e763e27435c1fdc5cf67c9f",
+      "capturedSha256": "3e95eeaf1470b830351ae8b36332f35cf6cf1ce44ca5e2de869bef1ccd874043"
+    },
+    {
+      "file": "packages/schema/src/index.ts",
+      "baseSha256": "5b4cce9526de9b7feb78884a1dbdd42d2b04eff9a25bf1903b52071da312fca9",
+      "capturedSha256": "e184483c0e9ad99eb99585282fb4e7d526df3851212fa197fc5bc66110e9236b"
+    }
+  ],
+  "comparatorSha256": "838bbacffef18907c15505745189b4ecd18590e71cc99256f93a8e50835eadc6",
+  "verifiedOriginalImages": 178,
+  "verifiedComparedReferences": 54,
+  "verifiedFrozenImages": 410,
+  "verifiedFrozenSourceFiles": 106,
+  "reportSha256": "b69c42e4605198c2e390fc021073ce3d75454d7b1c2f62dce3b50cfbb79fc3e1",
+  "provenanceSha256": "d41259b077bb8bf81cb2cfde02de690725f5eb8282c4c2e5b9f41cd25f12dc29",
+  "servedAssetFingerprint": "a015191c40da2f8720a2b2456ac3fbeed6511328b6227d8422422c3c0e92ca32",
+  "refetchedAssets": [
+    {
+      "url": "http://127.0.0.1:5309/",
+      "sha256": "37e79e43b03fd3e6742b79688124ff39ff8866db6e02cd39ede85d9196acb202",
+      "bytes": 664
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/bots-Dhnxap2k.js",
+      "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+      "bytes": 5242
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/chat-DPP7jha6.js",
+      "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+      "bytes": 21015
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/code-l1ImvW5S.js",
+      "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+      "bytes": 17357
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/files-DIk1qP8R.js",
+      "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+      "bytes": 23724
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/index-C5Sx34mw.css",
+      "sha256": "6a94564e234b0993ce9b2649dcd48e726c7d7c908204ac07656d73cdff88e2ae",
+      "bytes": 205159
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/index-DX68dAqy.js",
+      "sha256": "d768744b4132de58a1550a7967416a6edf0577d5e3b16b91a580f9e39dafc349",
+      "bytes": 2440972
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/shell-CYBsECV8.js",
+      "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+      "bytes": 1030
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/system-D9_n4Goj.js",
+      "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+      "bytes": 9120
+    },
+    {
+      "url": "http://127.0.0.1:5309/assets/work-CXx4q0-W.js",
+      "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+      "bytes": 14410
+    },
+    {
+      "url": "http://127.0.0.1:5309/fonts/Geist-Variable.woff2",
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+      "bytes": 69652
+    },
+    {
+      "url": "http://127.0.0.1:5309/fonts/GeistMono-Variable.woff2",
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+      "bytes": 71368
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/apparence.png",
+      "sha256": "7fb11eee005f003972d8cf3b5ab3dc214ff2a6faa227e7906a5d4a79d588a6e8",
+      "bytes": 76567
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/automatisations.png",
+      "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+      "bytes": 77526
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/bot.png",
+      "sha256": "88faf8abeaf30cece620e5c0bfe23129ce2bf3baa01ced547df8451c7ad1ee06",
+      "bytes": 74415
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/compte.png",
+      "sha256": "6221a290e83996717a2e9c249861ae8d8718b2557b96a690e627cb68381de9c7",
+      "bytes": 76045
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/confidentialite.png",
+      "sha256": "9921425f1f6b9bcf3106bc12d6960c8448ef35585a261f10f3f3d4ef89e5ef8c",
+      "bytes": 77897
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/documents.png",
+      "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+      "bytes": 75789
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/extensions.png",
+      "sha256": "5695bb8057b5b9e0f1a63e68bb8f2d49822a8b8b0721b55f207ec01477f5cb11",
+      "bytes": 82085
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/general.png",
+      "sha256": "24f0fd7e6efc55049250abdb81e4ec2c6cdb35e95547a6a7e190827e407cf503",
+      "bytes": 76614
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/images.png",
+      "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+      "bytes": 77289
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/modeles.png",
+      "sha256": "76b3ee444a4bc512062e4c9dded1e35dee628f154b11d5822c735fa2d9286e84",
+      "bytes": 76588
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/notifications.png",
+      "sha256": "bf0e25a5de8037ce0ecd4387206f4a835d41b1b79efb3d7673cc40dd9f7df164",
+      "bytes": 76154
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/raccourcis.png",
+      "sha256": "94e0844de2f5e29200f88dfe66976d81d0cf6b5c9aba7f72ad3a23ea6bff1998",
+      "bytes": 77630
+    },
+    {
+      "url": "http://127.0.0.1:5309/gel/recherche-web.png",
+      "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+      "bytes": 81327
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/aube.png",
+      "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+      "bytes": 1405580
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/crepuscule.png",
+      "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+      "bytes": 1405004
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/lagon.png",
+      "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+      "bytes": 1246039
+    },
+    {
+      "url": "http://127.0.0.1:5309/img/prairie.png",
+      "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+      "bytes": 1242519
+    }
+  ],
+  "previewTransportErrors": 236,
+  "counts": {
+    "registered": 426,
+    "optionalInteractions": 5,
+    "capturedThisRun": 70,
+    "retainedRows": 70,
+    "compared": 54,
+    "noDesignShot": 16
+  }
+}

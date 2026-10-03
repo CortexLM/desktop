@@ -1,0 +1,445 @@
+> @cortex/sdk@0.3.5 test
+> npm run build && node --test test/*.test.mjs
+
+
+> @cortex/sdk@0.3.5 build
+> tsc -p tsconfig.json
+
+TAP version 13
+# Subtest: SDK CI refuses each unavailable datastore before SQL and retains cleanup identities
+ok 1 - SDK CI refuses each unavailable datastore before SQL and retains cleanup identities
+  ---
+  duration_ms: 33.086928
+  type: 'test'
+  ...
+# Subtest: collection deadlines cancel silent SDK reads and reject partial results
+ok 2 - collection deadlines cancel silent SDK reads and reject partial results
+  ---
+  duration_ms: 87.609042
+  type: 'test'
+  ...
+# Subtest: collection returns a short SDK turn before its deadline
+ok 3 - collection returns a short SDK turn before its deadline
+  ---
+  duration_ms: 3.692749
+  type: 'test'
+  ...
+# Subtest: integration runner releases partial setup and reports teardown failures
+    # Subtest: {"fail":"stubs.start"}
+    ok 1 - {"fail":"stubs.start"}
+      ---
+      duration_ms: 3.310915
+      type: 'test'
+      ...
+    # Subtest: {"fail":"port.1"}
+    ok 2 - {"fail":"port.1"}
+      ---
+      duration_ms: 0.763728
+      type: 'test'
+      ...
+    # Subtest: {"fail":"run.remove"}
+    ok 3 - {"fail":"run.remove"}
+      ---
+      duration_ms: 0.861729
+      type: 'test'
+      ...
+    # Subtest: {"fail":"mkdir.1"}
+    ok 4 - {"fail":"mkdir.1"}
+      ---
+      duration_ms: 0.618076
+      type: 'test'
+      ...
+    # Subtest: {"fail":"write.1"}
+    ok 5 - {"fail":"write.1"}
+      ---
+      duration_ms: 0.546276
+      type: 'test'
+      ...
+    # Subtest: {"fail":"port.2"}
+    ok 6 - {"fail":"port.2"}
+      ---
+      duration_ms: 0.549826
+      type: 'test'
+      ...
+    # Subtest: {"fail":"mkdir.2"}
+    ok 7 - {"fail":"mkdir.2"}
+      ---
+      duration_ms: 0.728388
+      type: 'test'
+      ...
+    # Subtest: {"fail":"write.2"}
+    ok 8 - {"fail":"write.2"}
+      ---
+      duration_ms: 0.947359
+      type: 'test'
+      ...
+    # Subtest: {"fail":"backend.up"}
+    ok 9 - {"fail":"backend.up"}
+      ---
+      duration_ms: 0.865299
+      type: 'test'
+      ...
+    # Subtest: {"fail":"selfhost.up"}
+    ok 10 - {"fail":"selfhost.up"}
+      ---
+      duration_ms: 0.496296
+      type: 'test'
+      ...
+    # Subtest: {"fail":"selfhost.down"}
+    ok 11 - {"fail":"selfhost.down"}
+      ---
+      duration_ms: 0.560905
+      type: 'test'
+      ...
+    # Subtest: {"fail":"backend.down"}
+    ok 12 - {"fail":"backend.down"}
+      ---
+      duration_ms: 0.372864
+      type: 'test'
+      ...
+    # Subtest: {"fail":"stubs.close"}
+    ok 13 - {"fail":"stubs.close"}
+      ---
+      duration_ms: 0.295633
+      type: 'test'
+      ...
+    # Subtest: {"statusFailure":"selfhost.down"}
+    ok 14 - {"statusFailure":"selfhost.down"}
+      ---
+      duration_ms: 0.362214
+      type: 'test'
+      ...
+    # Subtest: {"statusFailure":"backend.down"}
+    ok 15 - {"statusFailure":"backend.down"}
+      ---
+      duration_ms: 0.314793
+      type: 'test'
+      ...
+    # Subtest: {"statusFailure":"database.drop"}
+    ok 16 - {"statusFailure":"database.drop"}
+      ---
+      duration_ms: 0.255722
+      type: 'test'
+      ...
+    # Subtest: {"fail":"stubs.close","statusFailure":"database.drop"}
+    ok 17 - {"fail":"stubs.close","statusFailure":"database.drop"}
+      ---
+      duration_ms: 0.288703
+      type: 'test'
+      ...
+    # Subtest: {}
+    ok 18 - {}
+      ---
+      duration_ms: 0.401694
+      type: 'test'
+      ...
+    # Subtest: {"testCode":2}
+    ok 19 - {"testCode":2}
+      ---
+      duration_ms: 0.397694
+      type: 'test'
+      ...
+    # Subtest: {"reportCode":3}
+    ok 20 - {"reportCode":3}
+      ---
+      duration_ms: 0.326823
+      type: 'test'
+      ...
+    # Subtest: {"filtered":true,"examples":true}
+    ok 21 - {"filtered":true,"examples":true}
+      ---
+      duration_ms: 1.225993
+      type: 'test'
+      ...
+    # Subtest: {"examples":true,"exampleCode":4}
+    ok 22 - {"examples":true,"exampleCode":4}
+      ---
+      duration_ms: 0.349674
+      type: 'test'
+      ...
+    # Subtest: {"testCode":2,"fail":"backend.down","expectedCode":2}
+    ok 23 - {"testCode":2,"fail":"backend.down","expectedCode":2}
+      ---
+      duration_ms: 0.282613
+      type: 'test'
+      ...
+    # Subtest: {"reportCode":3,"fail":"stubs.close","expectedCode":3}
+    ok 24 - {"reportCode":3,"fail":"stubs.close","expectedCode":3}
+      ---
+      duration_ms: 0.273403
+      type: 'test'
+      ...
+    # Subtest: {"examples":true,"exampleCode":4,"statusFailure":"database.drop","expectedCode":4}
+    ok 25 - {"examples":true,"exampleCode":4,"statusFailure":"database.drop","expectedCode":4}
+      ---
+      duration_ms: 0.256023
+      type: 'test'
+      ...
+    1..25
+ok 4 - integration runner releases partial setup and reports teardown failures
+  ---
+  duration_ms: 20.528956
+  type: 'test'
+  ...
+# Subtest: packer publishes without clobbering and restores its manifest and staging
+    # Subtest: success
+    ok 1 - success
+      ---
+      duration_ms: 19.158441
+      type: 'test'
+      ...
+    # Subtest: preexisting-types
+    ok 2 - preexisting-types
+      ---
+      duration_ms: 1.998452
+      type: 'test'
+      ...
+    # Subtest: preexisting-sdk
+    ok 3 - preexisting-sdk
+      ---
+      duration_ms: 1.602717
+      type: 'test'
+      ...
+    # Subtest: late-types
+    ok 4 - late-types
+      ---
+      duration_ms: 4.331986
+      type: 'test'
+      ...
+    # Subtest: late-sdk
+    ok 5 - late-sdk
+      ---
+      duration_ms: 5.296116
+      type: 'test'
+      ...
+    # Subtest: npm-types
+    ok 6 - npm-types
+      ---
+      duration_ms: 2.78909
+      type: 'test'
+      ...
+    # Subtest: npm-sdk
+    ok 7 - npm-sdk
+      ---
+      duration_ms: 3.413496
+      type: 'test'
+      ...
+    1..7
+ok 5 - packer publishes without clobbering and restores its manifest and staging
+  ---
+  duration_ms: 40.824529
+  type: 'test'
+  ...
+# Subtest: AgentEvent automatically reconnects with UUID since, preserving query parameters
+ok 6 - AgentEvent automatically reconnects with UUID since, preserving query parameters
+  ---
+  duration_ms: 25.620159
+  type: 'test'
+  ...
+# Subtest: turn replay retains original POST, bytes, key and numeric Last-Event-ID
+ok 7 - turn replay retains original POST, bytes, key and numeric Last-Event-ID
+  ---
+  duration_ms: 9.279607
+  type: 'test'
+  ...
+# Subtest: fresh invocation needs original key; invalid replay identity makes no request
+ok 8 - fresh invocation needs original key; invalid replay identity makes no request
+  ---
+  duration_ms: 0.88024
+  type: 'test'
+  ...
+# Subtest: stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+ok 9 - stream_expired followed by socket failure never starts another turn; caller reloads durable transcript
+  ---
+  duration_ms: 4.688999
+  type: 'test'
+  ...
+# Subtest: realtime advances fresh numeric sequence after room reset, never hello zero
+ok 10 - realtime advances fresh numeric sequence after room reset, never hello zero
+  ---
+  duration_ms: 3.599718
+  type: 'test'
+  ...
+# Subtest: refresh 401 through the same client rejects instead of waiting on itself
+ok 11 - refresh 401 through the same client rejects instead of waiting on itself
+  ---
+  duration_ms: 2.015862
+  type: 'test'
+  ...
+# Subtest: concurrent 401s share one successful refresh, null does not resend stale credentials
+ok 12 - concurrent 401s share one successful refresh, null does not resend stale credentials
+  ---
+  duration_ms: 4.068263
+  type: 'test'
+  ...
+# Subtest: embedded Fetch subscriptions and turns abort an idle response body
+ok 13 - embedded Fetch subscriptions and turns abort an idle response body
+  ---
+  duration_ms: 13.837146
+  type: 'test'
+  ...
+# Subtest: a terminal event ends an open socket and acknowledges its cursor
+ok 14 - a terminal event ends an open socket and acknowledges its cursor
+  ---
+  duration_ms: 3.343995
+  type: 'test'
+  ...
+# Subtest: turn done preserves same-chunk and delayed image completion before cancelling
+ok 15 - turn done preserves same-chunk and delayed image completion before cancelling
+  ---
+  duration_ms: 8.59288
+  type: 'test'
+  ...
+# Subtest: pending image IDs settle independently; error and EOF still finish a turn
+ok 16 - pending image IDs settle independently; error and EOF still finish a turn
+  ---
+  duration_ms: 3.998942
+  type: 'test'
+  ...
+# Subtest: reader and account cancellation reject an idle post-done image tail
+ok 17 - reader and account cancellation reject an idle post-done image tail
+  ---
+  duration_ms: 2.505176
+  type: 'test'
+  ...
+# Subtest: abort stops frames already buffered in the same chunk
+ok 18 - abort stops frames already buffered in the same chunk
+  ---
+  duration_ms: 4.136143
+  type: 'test'
+  ...
+# Subtest: a request and a turn replay never cross a changed token source
+ok 19 - a request and a turn replay never cross a changed token source
+  ---
+  duration_ms: 5.140084
+  type: 'test'
+  ...
+# Subtest: new sign-in aborts a late refresh before it can replace the new cookie
+ok 20 - new sign-in aborts a late refresh before it can replace the new cookie
+  ---
+  duration_ms: 2.772959
+  type: 'test'
+  ...
+# Subtest: adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+ok 21 - adopting a sign-in token preserves its refresh cookie; a rejected sign-in preserves the guest
+  ---
+  duration_ms: 3.701698
+  type: 'test'
+  ...
+# Subtest: a reactive request during refresh adopts the issued token and cookie
+ok 22 - a reactive request during refresh adopts the issued token and cookie
+  ---
+  duration_ms: 1.595846
+  type: 'test'
+  ...
+# Subtest: external refresh reconciles reactive token changes before replay
+ok 23 - external refresh reconciles reactive token changes before replay
+  ---
+  duration_ms: 1.086451
+  type: 'test'
+  ...
+# Subtest: external refresh can await another SDK call without waiting on itself
+ok 24 - external refresh can await another SDK call without waiting on itself
+  ---
+  duration_ms: 2.054181
+  type: 'test'
+  ...
+# Subtest: token removal refuses a private turn replay
+ok 25 - token removal refuses a private turn replay
+  ---
+  duration_ms: 2.714158
+  type: 'test'
+  ...
+# Subtest: successful sign-in invalidates a private request admitted during sign-in
+ok 26 - successful sign-in invalidates a private request admitted during sign-in
+  ---
+  duration_ms: 1.614828
+  type: 'test'
+  ...
+# Subtest: native Fetch sign-in remains readable without cloning after replacing account lifetime
+ok 27 - native Fetch sign-in remains readable without cloning after replacing account lifetime
+  ---
+  duration_ms: 26.57572
+  type: 'test'
+  ...
+# Subtest: auth JSON reads preserve original read errors and account abort reasons
+ok 28 - auth JSON reads preserve original read errors and account abort reasons
+  ---
+  duration_ms: 1.343354
+  type: 'test'
+  ...
+# Subtest: auth JSON accepts a bodyless 204 and refuses malformed JSON
+ok 29 - auth JSON accepts a bodyless 204 and refuses malformed JSON
+  ---
+  duration_ms: 1.670577
+  type: 'test'
+  ...
+# Subtest: successful logout clears an SDK-cached bearer
+ok 30 - successful logout clears an SDK-cached bearer
+  ---
+  duration_ms: 1.462136
+  type: 'test'
+  ...
+# Subtest: account abort cancels buffered turn frames and an idle embedded subscription
+ok 31 - account abort cancels buffered turn frames and an idle embedded subscription
+  ---
+  duration_ms: 9.806073
+  type: 'test'
+  ...
+# Subtest: generated OTP inputs, void acknowledgement, raw upload and public MFA error
+ok 32 - generated OTP inputs, void acknowledgement, raw upload and public MFA error
+  ---
+  duration_ms: 5.421167
+  type: 'test'
+  ...
+# Subtest: generated screenshot upload preserves File and Blob bytes and filename
+ok 33 - generated screenshot upload preserves File and Blob bytes and filename
+  ---
+  duration_ms: 1.948071
+  type: 'test'
+  ...
+# Subtest: generated methods preserve HeadersInit forms and explicit header removal
+ok 34 - generated methods preserve HeadersInit forms and explicit header removal
+  ---
+  duration_ms: 4.480808
+  type: 'test'
+  ...
+# Subtest: HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+ok 35 - HTTP media types match parsers; generated SSE returns before EOF; WS plain HTTP refuses
+  ---
+  duration_ms: 3.231434
+  type: 'test'
+  ...
+# Subtest: generated turn and edit methods accept legacy JSON bodies and return raw streams
+ok 36 - generated turn and edit methods accept legacy JSON bodies and return raw streams
+  ---
+  duration_ms: 3.680569
+  type: 'test'
+  ...
+# Subtest: binding an account signal keeps explicit credentials and replay headers
+ok 37 - binding an account signal keeps explicit credentials and replay headers
+  ---
+  duration_ms: 0.732178
+  type: 'test'
+  ...
+# Subtest: AgentEvent JSON methods preserve Headers and tuples and pin their transport
+ok 38 - AgentEvent JSON methods preserve Headers and tuples and pin their transport
+  ---
+  duration_ms: 0.96285
+  type: 'test'
+  ...
+# Subtest: low-level SSE removes a reset cursor without dropping the initial caller cursor
+ok 39 - low-level SSE removes a reset cursor without dropping the initial caller cursor
+  ---
+  duration_ms: 2.596668
+  type: 'test'
+  ...
+1..39
+# tests 71
+# suites 0
+# pass 71
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 317.3079

@@ -1,0 +1,34 @@
+✖ low-level SSE removes a reset cursor without dropping the initial caller cursor (20.296936ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.853087
+
+✖ failing tests:
+
+test at test/runtime.test.mjs:565:1
+✖ low-level SSE removes a reset cursor without dropping the initial caller cursor (20.296936ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      '5',
+      '7',
+  +   ''
+  -   null
+    ]
+
+      at TestContext.<anonymous> (file:///root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-sdk/packages/sdk/test/runtime.test.mjs:582:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '5', '7', '' ],
+    expected: [ '5', '7', null ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

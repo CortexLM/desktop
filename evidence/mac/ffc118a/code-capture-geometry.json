@@ -1,0 +1,872 @@
+[
+  {
+    "selector": "[data-testid=\"code-composer-input\"]",
+    "rect": {
+      "x": 434,
+      "y": 302.5,
+      "width": 293.28125,
+      "height": 50,
+      "top": 302.5,
+      "right": 727.28125,
+      "bottom": 352.5,
+      "left": 434
+    },
+    "textRect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "hit": true,
+    "parents": [
+      {
+        "tag": "INPUT",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "clip",
+        "rect": {
+          "x": 434,
+          "y": 302.5,
+          "width": 293.28125,
+          "height": 50,
+          "top": 302.5,
+          "right": 727.28125,
+          "bottom": 352.5,
+          "left": 434
+        },
+        "client": [
+          0,
+          0,
+          293,
+          50
+        ]
+      },
+      {
+        "tag": "FORM",
+        "cls": "composer",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 385,
+          "y": 301.5,
+          "width": 522,
+          "height": 52,
+          "top": 301.5,
+          "right": 907,
+          "bottom": 353.5,
+          "left": 385
+        },
+        "client": [
+          1,
+          1,
+          520,
+          50
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "chat-box",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 385,
+          "y": 301.5,
+          "width": 522,
+          "height": 52,
+          "top": 301.5,
+          "right": 907,
+          "bottom": 353.5,
+          "left": 385
+        },
+        "client": [
+          0,
+          0,
+          522,
+          52
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "home",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 100,
+          "width": 618,
+          "height": 535,
+          "top": 100,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          535
+        ]
+      },
+      {
+        "tag": "MAIN",
+        "cls": "content",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 44,
+          "width": 618,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "frame",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 53,
+          "y": 44,
+          "width": 902,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 53
+        },
+        "client": [
+          0,
+          0,
+          902,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "body",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 44,
+          "width": 960,
+          "height": 596,
+          "top": 44,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          596
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "window",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "desk",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "grid",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "BODY",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "HTML",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      }
+    ]
+  },
+  {
+    "selector": "[data-testid=\"code-pick-folder\"]",
+    "rect": {
+      "x": 395,
+      "y": 365.5,
+      "width": 155,
+      "height": 28,
+      "top": 365.5,
+      "right": 550,
+      "bottom": 393.5,
+      "left": 395
+    },
+    "textRect": {
+      "x": 403,
+      "y": 371.5,
+      "width": 139,
+      "height": 16,
+      "top": 371.5,
+      "right": 542,
+      "bottom": 387.5,
+      "left": 403
+    },
+    "hit": true,
+    "parents": [
+      {
+        "tag": "BUTTON",
+        "cls": "ctx",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 395,
+          "y": 365.5,
+          "width": 155,
+          "height": 28,
+          "top": 365.5,
+          "right": 550,
+          "bottom": 393.5,
+          "left": 395
+        },
+        "client": [
+          0,
+          0,
+          155,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "ctx-bar",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 385,
+          "y": 365.5,
+          "width": 522,
+          "height": 28,
+          "top": 365.5,
+          "right": 907,
+          "bottom": 393.5,
+          "left": 385
+        },
+        "client": [
+          0,
+          0,
+          522,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "home",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 100,
+          "width": 618,
+          "height": 535,
+          "top": 100,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          535
+        ]
+      },
+      {
+        "tag": "MAIN",
+        "cls": "content",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 44,
+          "width": 618,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "frame",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 53,
+          "y": 44,
+          "width": 902,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 53
+        },
+        "client": [
+          0,
+          0,
+          902,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "body",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 44,
+          "width": 960,
+          "height": 596,
+          "top": 44,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          596
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "window",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "desk",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "grid",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "BODY",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "HTML",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      }
+    ]
+  },
+  {
+    "selector": "main .home h1",
+    "rect": {
+      "x": 480.671875,
+      "y": 245.5,
+      "width": 330.65625,
+      "height": 32,
+      "top": 245.5,
+      "right": 811.328125,
+      "bottom": 277.5,
+      "left": 480.671875
+    },
+    "textRect": {
+      "x": 480.671875,
+      "y": 244.5,
+      "width": 330.65625,
+      "height": 34,
+      "top": 244.5,
+      "right": 811.328125,
+      "bottom": 278.5,
+      "left": 480.671875
+    },
+    "hit": true,
+    "parents": [
+      {
+        "tag": "H1",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 480.671875,
+          "y": 245.5,
+          "width": 330.65625,
+          "height": 32,
+          "top": 245.5,
+          "right": 811.328125,
+          "bottom": 277.5,
+          "left": 480.671875
+        },
+        "client": [
+          0,
+          0,
+          331,
+          32
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "home",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 100,
+          "width": 618,
+          "height": 535,
+          "top": 100,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          535
+        ]
+      },
+      {
+        "tag": "MAIN",
+        "cls": "content",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 337,
+          "y": 44,
+          "width": 618,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 337
+        },
+        "client": [
+          0,
+          0,
+          618,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "frame",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 53,
+          "y": 44,
+          "width": 902,
+          "height": 591,
+          "top": 44,
+          "right": 955,
+          "bottom": 635,
+          "left": 53
+        },
+        "client": [
+          0,
+          0,
+          902,
+          591
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "body",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 44,
+          "width": 960,
+          "height": 596,
+          "top": 44,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          596
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "window",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "overflow": "hidden",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "desk",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "grid",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "BODY",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      },
+      {
+        "tag": "HTML",
+        "cls": "",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "block",
+        "overflow": "visible",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 960,
+          "height": 640,
+          "top": 0,
+          "right": 960,
+          "bottom": 640,
+          "left": 0
+        },
+        "client": [
+          0,
+          0,
+          960,
+          640
+        ]
+      }
+    ]
+  }
+]

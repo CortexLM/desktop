@@ -1,0 +1,5 @@
+> @cortex/sdk@0.3.2 test:types
+> tsc --ignoreConfig --noEmit --strict --skipLibCheck --target ES2023 --module NodeNext --moduleResolution NodeNext test/types.ts
+
+test/types.ts(58,87): error TS2322: Type '{ message: string; }' is not assignable to type 'undefined'.
+test/types.ts(59,117): error TS2322: Type '{ message: string; }' is not assignable to type 'undefined'.

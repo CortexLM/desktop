@@ -1,0 +1,790 @@
+{
+  "startedAt": "2026-10-03T04:24:02.482Z",
+  "status": "failed",
+  "expectedASAR": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+  "priorF9ASAR": "23decdd0596b89e8e83284b62f6e7f0eb5314b081ccf178f7dde31c8ac04af77",
+  "scriptSHA256": "c3a6648d41cacf6d76b0a0beb0b209e37ab4f46c9ac4a49460526eaae5cc5d5b",
+  "sources": [
+    {
+      "path": "packages/app/src/screens/bots/team.tsx",
+      "sha256": "b41bb7e76f31cc133f793a7ce53887cd6ab7bbcb17273b5f8a0abe3d0e6081e1"
+    },
+    {
+      "path": "packages/app/src/screens/work/desk.tsx",
+      "sha256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99"
+    },
+    {
+      "path": "packages/app/src/screens/system/projects.tsx",
+      "sha256": "27fa94c6f85909f6a00ee2afaadc36f4b90bbb8557bd0b937f5f1edc092ede08"
+    },
+    {
+      "path": "packages/app/src/screens/system/settings.tsx",
+      "sha256": "54e9b65e6f37710d6235e64f720e75f0ed03ec647cd1f0dd1bda63aca544285d"
+    },
+    {
+      "path": "packages/app/src/screens/system/system.css",
+      "sha256": "99997698d23f177f27a3e632022bd6120297708cd414e829e0613d833bc3514e"
+    },
+    {
+      "path": "packages/app/src/api.ts",
+      "sha256": "9203cbf5c8a6b68fb64f99b8a8865cf702fac727e2cce59a1f466ef01bda6cc6"
+    },
+    {
+      "path": "packages/core/src/bot.ts",
+      "sha256": "3f99c03f2b6093735ec80571cdfb9651cd36a03e2ed46da06df87a202e13938d"
+    },
+    {
+      "path": "packages/protocol/src/index.ts",
+      "sha256": "8c91ead8ab678b0bfab39799bb03e0b4d60612632bfd5aa65f74bf8b21669e69"
+    },
+    {
+      "path": "packages/desktop/src/preload.ts",
+      "sha256": "0ee26bcbbb0523997202c60841682dec9519fccf521dfb8082e6e9f1191cef20"
+    },
+    {
+      "path": "tests/e2e/memory-safety.spec.ts",
+      "sha256": "d04b2a96257cc4bba2ea4108ed3d391dda798bd9699121f7aa4d15b61ada561a"
+    },
+    {
+      "path": "tests/e2e/approvals-recovery.spec.ts",
+      "sha256": "e3c7c13502645f367e9e8e8c6a536c3a7d024e32e41090952b50a095a093c4d9"
+    },
+    {
+      "path": "tests/e2e/ui-flows.spec.ts",
+      "sha256": "86483759ea299f97faa0e09d6210b37876d535af4486651e141f46650cccc36b"
+    },
+    {
+      "path": "packages/i18n/locales/en/bots.json",
+      "sha256": "53a5d35cf732010fbb7045e785821048fe7fb9ad8bc9c4b97dbdecb01f502490"
+    },
+    {
+      "path": "packages/i18n/locales/en/system.json",
+      "sha256": "18dff6afda09dc67df5091b5a2440fc1f6b3e1d439230cd9fda6967f6be7b10a"
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "sha256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9"
+    },
+    {
+      "path": "packages/i18n/locales/en/common.json",
+      "sha256": "69f0e0e8b334dfbc9b796b095acf6e8fe610becdb7d8a7aa6abb5489edc2f8c5"
+    },
+    {
+      "path": "packages/core/test/fixtures/catalog.json",
+      "sha256": "1c6fe3acb86c4da727ed66e7fc11880a7057a5d633fe762938e5a35d1d885206"
+    }
+  ],
+  "sourceAssertions": [
+    {
+      "name": "memory settles every delete and serializes mutations",
+      "passed": true
+    },
+    {
+      "name": "memory errors use accepted-write and failed-delete paths",
+      "passed": true
+    },
+    {
+      "name": "System memory retains refused rows and tracks pending deletes",
+      "passed": true
+    },
+    {
+      "name": "approval error branch offers Retry",
+      "passed": true
+    },
+    {
+      "name": "model rows expose real context/cost and capability selectors",
+      "passed": true
+    },
+    {
+      "name": "request text hook precedes real IPC request",
+      "passed": true
+    },
+    {
+      "name": "English labels match source",
+      "passed": true
+    },
+    {
+      "name": "deterministic fake fixture is loopback-only",
+      "passed": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "isolated-local-engine-and-catalog",
+      "fakeModels": 2,
+      "keyWriteAccepted": true,
+      "publicHintOnly": true
+    },
+    {
+      "name": "add-real-deleted-owner-404-retains-exact-draft",
+      "theme": "light",
+      "wire": {
+        "requests": [
+          {
+            "method": "POST",
+            "redirected": false,
+            "held": false,
+            "dispatched": true
+          }
+        ],
+        "responses": [
+          {
+            "status": 404,
+            "code": "not_found"
+          }
+        ],
+        "approvalRewrites": 0,
+        "pending": 0
+      }
+    },
+    {
+      "name": "duplicate-enter-blur-pending-one-accepted-write",
+      "theme": "light",
+      "held": {
+        "requests": [
+          {
+            "method": "POST",
+            "redirected": false,
+            "held": true,
+            "dispatched": false
+          }
+        ],
+        "responses": [],
+        "approvalRewrites": 0,
+        "pending": 1
+      },
+      "wire": {
+        "requests": [
+          {
+            "method": "POST",
+            "redirected": false,
+            "held": true,
+            "dispatched": true
+          }
+        ],
+        "responses": [
+          {
+            "status": 201
+          }
+        ],
+        "approvalRewrites": 0,
+        "pending": 0
+      },
+      "exactOwnerAndSinglePersistedEntry": true
+    },
+    {
+      "name": "bot-and-system-single-delete-real-404-retains-row-then-retry",
+      "theme": "light",
+      "refused": {
+        "requests": [
+          {
+            "method": "DELETE",
+            "redirected": true,
+            "held": false,
+            "dispatched": true
+          }
+        ],
+        "responses": [
+          {
+            "status": 404,
+            "code": "not_found"
+          }
+        ],
+        "approvalRewrites": 0,
+        "pending": 0
+      },
+      "systemRefused": {
+        "requests": [
+          {
+            "method": "DELETE",
+            "redirected": true,
+            "held": false,
+            "dispatched": true
+          }
+        ],
+        "responses": [
+          {
+            "status": 404,
+            "code": "not_found"
+          }
+        ],
+        "approvalRewrites": 0,
+        "pending": 0
+      },
+      "retry": {
+        "requests": [
+          {
+            "method": "DELETE",
+            "redirected": false,
+            "held": false,
+            "dispatched": true
+          }
+        ],
+        "responses": [
+          {
+            "status": 200
+          }
+        ],
+        "approvalRewrites": 0,
+        "pending": 0
+      }
+    }
+  ],
+  "captures": [
+    {
+      "file": "memory-add-refused-light.png",
+      "sha256": "96ee8fcaedfb03667aeddfad39be22f7ed0ff0559d25eeff212760a81aae0ac9",
+      "theme": "light",
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8267,
+      "controlCenters": [
+        {
+          "x": 625,
+          "y": 152,
+          "width": 282,
+          "height": 28,
+          "hit": true,
+          "opacity": 1,
+          "inputVisible": true
+        }
+      ],
+      "visibleBeforeAndAfter": true,
+      "native": true,
+      "toastHeldByPointer": true,
+      "nativeWindowChecks": [
+        0,
+        1
+      ],
+      "acceptedConfirmations": 0
+    },
+    {
+      "file": "memory-add-pending-light.png",
+      "sha256": "ed68eb79b096d648e0af933d50896948477ef398ef55eb2a7c5aebc1749ae1e5",
+      "theme": "light",
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8267,
+      "controlCenters": [
+        {
+          "x": 625,
+          "y": 152,
+          "width": 282,
+          "height": 28,
+          "hit": true,
+          "opacity": 1,
+          "inputVisible": true
+        },
+        {
+          "x": 856.375,
+          "y": 104,
+          "width": 58.625,
+          "height": 24,
+          "hit": true,
+          "opacity": 0.4,
+          "inputVisible": true
+        }
+      ],
+      "visibleBeforeAndAfter": true,
+      "native": true,
+      "toastHeldByPointer": false,
+      "nativeWindowChecks": [
+        2,
+        3
+      ],
+      "acceptedConfirmations": 0
+    },
+    {
+      "file": "memory-delete-refused-light.png",
+      "sha256": "857fe1c4df3b38e15d1ca880708ddd539c29e81de9490415f8b5e10760fa92d2",
+      "theme": "light",
+      "viewport": [
+        960,
+        640
+      ],
+      "pixels": [
+        960,
+        640
+      ],
+      "windowID": 8267,
+      "controlCenters": [
+        {
+          "x": 377,
+          "y": 226,
+          "width": 538,
+          "height": 60,
+          "hit": true,
+          "opacity": 1,
+          "inputVisible": true
+        },
+        {
+          "x": 873,
+          "y": 238,
+          "width": 28,
+          "height": 28,
+          "hit": true,
+          "opacity": 1,
+          "inputVisible": true
+        }
+      ],
+      "visibleBeforeAndAfter": true,
+      "native": true,
+      "toastHeldByPointer": true,
+      "nativeWindowChecks": [
+        4,
+        5
+      ],
+      "acceptedConfirmations": 0
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "unexpectedDialogs": 0,
+  "acceptedConfirmations": 1,
+  "nativeWindowChecks": [
+    {
+      "label": "memory-add-refused-light:before-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 171,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 12,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "memory-add-refused-light:after-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 160,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "memory-add-pending-light:before-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 163,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "memory-add-pending-light:after-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 157,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "memory-delete-refused-light:before-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 155,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "memory-delete-refused-light:after-capture",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 0,
+      "clear": true,
+      "consecutiveClear": 2,
+      "elapsedMs": 160,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [],
+        "cgLayerZeroWindowIDs": [
+          8267
+        ],
+        "clear": true,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 13,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 0,
+        "trusted": true
+      },
+      "polls": 2
+    },
+    {
+      "label": "light:partial-wipe:confirmation-1-accepted",
+      "pid": 48278,
+      "windowID": 8267,
+      "acceptedConfirmations": 1,
+      "clear": false,
+      "consecutiveClear": 0,
+      "elapsedMs": 10007,
+      "first": {
+        "axWindowCount": 1,
+        "blockers": [
+          {
+            "modal": false,
+            "modalKnown": false,
+            "role": "AXSheet",
+            "subrole": ""
+          }
+        ],
+        "cgLayerZeroWindowIDs": [
+          8267,
+          8281
+        ],
+        "clear": false,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 18,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 1,
+        "trusted": true
+      },
+      "last": {
+        "axWindowCount": 1,
+        "blockers": [
+          {
+            "modal": false,
+            "modalKnown": false,
+            "role": "AXSheet",
+            "subrole": ""
+          }
+        ],
+        "cgLayerZeroWindowIDs": [
+          8267,
+          8281
+        ],
+        "clear": false,
+        "errors": [],
+        "frontmost": true,
+        "nativeNodesVisited": 18,
+        "roots": [
+          {
+            "modal": false,
+            "modalKnown": true,
+            "role": "AXWindow",
+            "subrole": "AXStandardWindow"
+          }
+        ],
+        "sheetCount": 1,
+        "trusted": true
+      },
+      "polls": 87
+    }
+  ],
+  "limits": [
+    "English, one installed window, isolated synthetic data; no real-provider requests or remote-inference proof.",
+    "Approval recovery ends at a genuinely empty list; pending-permission coverage belongs to separate CI.",
+    "ASAR equality pins installed bytes; local source hashes alone do not attest build-to-source provenance.",
+    "No CSS, DOM content, response data, clocks or screenshot pixels are rewritten. Request routing/timing faults are explicit.",
+    "Native AX/CG checks bracket captures; stale compositor pixels still require review of every original, especially partial wipes."
+  ],
+  "catalogURLSHA256": "b975d97ebd77aa2d9535a9325e7d17dbe1ab0313a57256c2a78613f94af4fe7f",
+  "sourceRevision": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "sourceBinding": "Local file snapshots; coordinator supplies artifact/source build receipt separately.",
+  "installedBefore": {
+    "processCount": 1,
+    "asarSHA256": "62ddb71be7bcbd25c37a4519f7a0d982b1d93d4fada6d63dfc2e218add65fa8b",
+    "pid": 48278,
+    "catalogDataURL": true,
+    "catalogURLSHA256": "b975d97ebd77aa2d9535a9325e7d17dbe1ab0313a57256c2a78613f94af4fe7f",
+    "isolatedDataConfigured": true,
+    "isolatedProfileConfigured": true
+  },
+  "pagesObserved": 1,
+  "failure": {
+    "stage": "light:partial-wipe",
+    "kind": "AssertionError",
+    "messageSHA256": "7c22072565a59b9ae591e39a7becaabd32cbd4402def641e96cd3f1e1b756c77",
+    "wire": {
+      "requests": [
+        {
+          "method": "DELETE",
+          "redirected": true,
+          "held": false,
+          "dispatched": true
+        },
+        {
+          "method": "DELETE",
+          "redirected": false,
+          "held": true,
+          "dispatched": false
+        }
+      ],
+      "responses": [
+        {
+          "status": 404,
+          "code": "not_found"
+        }
+      ],
+      "pending": 1,
+      "approvalRewrites": 0
+    }
+  },
+  "requestHooksRestored": true,
+  "appearanceRestored": true,
+  "finishedAt": "2026-10-03T04:25:07.092Z"
+}

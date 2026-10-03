@@ -109,12 +109,27 @@ The [next-pair readback](../evidence/sdk-next-readback/README.md) confirms media
 corrections at 0.3.2 and usable generic turn bodies in the 0.3.3 candidate. The later 0.3.4
 owner release is incomplete after a Node 20.9 verification process failed to exit; no
 replacement is adopted from that incomplete handoff.
+G3 has since delivered immutable SDK 0.3.5 at `5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31`,
+correcting auth response cloning and retaining the consumer fixes. [Exact-package admission](../evidence/sdk-035-admission/README.md)
+passes 34 native Node 22 runtime cases, eight unchanged desktop auth cases and the prior
+media/upload/turn consumer reproductions. Dependency intake adopts this pair unmodified;
+52 probe/main-auth cases pass with one optional real-backend skip. Password/account/history
+precision and real authenticated inference remain separate gates.
+A separate SDK 0.3.5 discovery call to the real Cloud origin returns three models;
+[its receipt](../evidence/sdk-035-admission/integrated/real-probe.log) establishes reachability
+only. No account or inference credentials were supplied.
 
 G3's [source-backed DTO disposition](https://github.com/CortexLM/backend/pull/447#issuecomment-5964672516)
 permits narrow validation of existing Cloud model/turn fields, without claiming generated
 precision. `/me` has no public stable account ID; Chat history omits reasoning/tool blocks,
 caps list/window results and hardcodes `has_more:false`. Complete pagination/replay and durable
 cross-login identity need G2 contracts/server work. Current auth remains process-isolated.
+The exact canonical DTO/identity/history follow-up is recorded on
+[G2 #446](https://github.com/CortexLM/backend/pull/446#issuecomment-5965315833).
+The [bounded next-phase contract](../evidence/remote-auth-followup/routing-contract/README.md)
+records explicit session-source/account-epoch isolation, ephemeral projection, authenticated
+stream policy, original-request replay and local-plugin exclusion. Its standalone assertions
+check examples; they are not an implemented or approved remote Chat path.
 The append-only design request dated 3 October, “G1 remote Chat admission controls,” requests
 named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest
 bounded-history states. Existing local boolean reasoning and Stop controls cannot silently

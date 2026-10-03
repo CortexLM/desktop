@@ -177,6 +177,10 @@ Cancellation checks inspect the durable event journal as well as the current mes
 - `tests/e2e/code-diff-scroll.spec.ts` — three real approved writes produce one short and two
   long diff panes. Headers and short-card content stay visible; real wheel input reaches each
   long final line at 960/1440 in both themes.
+- `tests/e2e/responsive.spec.ts` also checks Code Settings approval descriptions at 960×640
+  and 1024×686, both themes: exact text geometry below labels, no overlap with controls,
+  keyboard reachability. DOCX Comments and narrow side-by-side source remain scrollable;
+  initial offscreen content alone is not an unreachable-control failure.
 - `tests/e2e/components.spec.ts` — 94 blocks, 31 real-screen families, all offered variants in both
   themes, inert thumbnails and a continuously checked three-iframe ceiling. Minimum-window checks
   exercise native clipboard, keyboard navigation, forms, palette, edits, Undo and motion filtering.

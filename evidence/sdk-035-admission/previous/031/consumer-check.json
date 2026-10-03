@@ -1,0 +1,26 @@
+{
+  "runtime": "v24.21.0",
+  "scope": "Exact 0.3.1 archive; local Fetch fixtures only; no server, build, suite replay or real credentials",
+  "results": [
+    {
+      "check": "Paired public error constructors",
+      "result": "PASS"
+    },
+    {
+      "check": "Library raw binary and filename",
+      "result": "PASS",
+      "bytes": 10
+    },
+    {
+      "check": "Generated feedback screenshot corrupts raw bytes",
+      "result": "REPRODUCED",
+      "observedBody": "{}"
+    },
+    {
+      "check": "streamTurn drops valid post-done image completion",
+      "result": "REPRODUCED",
+      "parserFrames": 3,
+      "helperFrames": 2
+    }
+  ]
+}

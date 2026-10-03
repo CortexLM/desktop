@@ -1,0 +1,5 @@
+The SDK is out of date with ../../../../../../../../../tmp/opencode/sdk-030-drift-probe.json:
+  differs: src/gen/index.ts
+  differs: src/gen/sdk.gen.ts
+  differs: src/gen/types.gen.ts
+Run: cd packages/sdk && npm run generate

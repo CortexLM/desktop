@@ -1,0 +1,253 @@
+> @cortex/api-types@0.2.0 test
+> tsc --build && node --test test/streaming.test.mjs test/client.test.mjs
+
+TAP version 13
+# Subtest: trimTrailingSlashes is linear and drops only trailing slashes
+ok 1 - trimTrailingSlashes is linear and drops only trailing slashes
+  ---
+  duration_ms: 1.465555
+  type: 'test'
+  ...
+# Subtest: the client requests against the trimmed base URL
+ok 2 - the client requests against the trimmed base URL
+  ---
+  duration_ms: 24.799101
+  type: 'test'
+  ...
+# Subtest: JSON stays on baseUrl while stream uses streamBaseUrl
+ok 3 - JSON stays on baseUrl while stream uses streamBaseUrl
+  ---
+  duration_ms: 7.024514
+  type: 'test'
+  ...
+# Subtest: a complete stream yields its events
+ok 4 - a complete stream yields its events
+  ---
+  duration_ms: 31.572563
+  type: 'test'
+  ...
+# Subtest: a pending exact-action consent with an omitted decision survives parsing
+ok 5 - a pending exact-action consent with an omitted decision survives parsing
+  ---
+  duration_ms: 1.89043
+  type: 'test'
+  ...
+# Subtest: optional data_dashboard fields survive parsing
+ok 6 - optional data_dashboard fields survive parsing
+  ---
+  duration_ms: 1.301094
+  type: 'test'
+  ...
+# Subtest: session-grant hints on permission_required are optional and survive parsing
+ok 7 - session-grant hints on permission_required are optional and survive parsing
+  ---
+  duration_ms: 1.088771
+  type: 'test'
+  ...
+# Subtest: a proposed file write carries the unified diff and is not session-grantable
+ok 8 - a proposed file write carries the unified diff and is not session-grantable
+  ---
+  duration_ms: 1.752198
+  type: 'test'
+  ...
+# Subtest: readSseJson yields a realtime frame without a terminal done
+ok 9 - readSseJson yields a realtime frame without a terminal done
+  ---
+  duration_ms: 0.96377
+  type: 'test'
+  ...
+# Subtest: an event is delivered while the body is still open
+ok 10 - an event is delivered while the body is still open
+  ---
+  duration_ms: 2.594208
+  type: 'test'
+  ...
+# Subtest: a stream cut mid-frame raises rather than reporting success
+ok 11 - a stream cut mid-frame raises rather than reporting success
+  ---
+  duration_ms: 1.393065
+  type: 'test'
+  ...
+# Subtest: a stream ending without a terminal event raises
+ok 12 - a stream ending without a terminal event raises
+  ---
+  duration_ms: 1.87987
+  type: 'test'
+  ...
+# Subtest: a malformed frame does not advance the resume cursor
+ok 13 - a malformed frame does not advance the resume cursor
+  ---
+  duration_ms: 1.460375
+  type: 'test'
+  ...
+# Subtest: abandoning iteration does not advance the resume cursor
+ok 14 - abandoning iteration does not advance the resume cursor
+  ---
+  duration_ms: 1.015461
+  type: 'test'
+  ...
+# Subtest: readStream cancels once after break, even when cancel succeeds
+ok 15 - readStream cancels once after break, even when cancel succeeds
+  ---
+  duration_ms: 0.908649
+  type: 'test'
+  ...
+# Subtest: readStream cancels once after break, even when cancel rejects
+ok 16 - readStream cancels once after break, even when cancel rejects
+  ---
+  duration_ms: 0.571526
+  type: 'test'
+  ...
+# Subtest: readStream does not cancel a normally completed source
+ok 17 - readStream does not cancel a normally completed source
+  ---
+  duration_ms: 0.609397
+  type: 'test'
+  ...
+# Subtest: readStream preserves a read error without canceling the errored source
+ok 18 - readStream preserves a read error without canceling the errored source
+  ---
+  duration_ms: 1.287464
+  type: 'test'
+  ...
+# Subtest: readStream preserves a callback error when cancellation rejects
+ok 19 - readStream preserves a callback error when cancellation rejects
+  ---
+  duration_ms: 0.89307
+  type: 'test'
+  ...
+# Subtest: readSseJson cancels once after break, even when cancel succeeds
+ok 20 - readSseJson cancels once after break, even when cancel succeeds
+  ---
+  duration_ms: 0.511405
+  type: 'test'
+  ...
+# Subtest: readSseJson cancels once after break, even when cancel rejects
+ok 21 - readSseJson cancels once after break, even when cancel rejects
+  ---
+  duration_ms: 0.657167
+  type: 'test'
+  ...
+# Subtest: readSseJson does not cancel a normally completed source
+ok 22 - readSseJson does not cancel a normally completed source
+  ---
+  duration_ms: 0.478545
+  type: 'test'
+  ...
+# Subtest: readSseJson preserves a read error without canceling the errored source
+ok 23 - readSseJson preserves a read error without canceling the errored source
+  ---
+  duration_ms: 0.635947
+  type: 'test'
+  ...
+# Subtest: readSseJson preserves a callback error when cancellation rejects
+ok 24 - readSseJson preserves a callback error when cancellation rejects
+  ---
+  duration_ms: 0.722548
+  type: 'test'
+  ...
+# Subtest: an event missing a required field is rejected
+ok 25 - an event missing a required field is rejected
+  ---
+  duration_ms: 0.812749
+  type: 'test'
+  ...
+# Subtest: a safety notice without referral resources is rejected
+ok 26 - a safety notice without referral resources is rejected
+  ---
+  duration_ms: 2.221073
+  type: 'test'
+  ...
+# Subtest: an unknown event type is ignored rather than yielded
+ok 27 - an unknown event type is ignored rather than yielded
+  ---
+  duration_ms: 0.611356
+  type: 'test'
+  ...
+# Subtest: a frame split across chunks is reassembled
+ok 28 - a frame split across chunks is reassembled
+  ---
+  duration_ms: 0.734578
+  type: 'test'
+  ...
+# Subtest: keep-alive comments are skipped
+ok 29 - keep-alive comments are skipped
+  ---
+  duration_ms: 0.147761
+  type: 'test'
+  ...
+# Subtest: a 2 KiB comment on a tiny text_delta still yields the JSON event
+ok 30 - a 2 KiB comment on a tiny text_delta still yields the JSON event
+  ---
+  duration_ms: 0.507106
+  type: 'test'
+  ...
+# Subtest: one space after the colon is stripped, and only one
+ok 31 - one space after the colon is stripped, and only one
+  ---
+  duration_ms: 0.115351
+  type: 'test'
+  ...
+# Subtest: multi-line data is joined with newlines
+ok 32 - multi-line data is joined with newlines
+  ---
+  duration_ms: 0.104451
+  type: 'test'
+  ...
+# Subtest: every event variant has a sample
+ok 33 - every event variant has a sample
+  ---
+  duration_ms: 0.114221
+  type: 'test'
+  ...
+# Subtest: every sample is accepted
+ok 34 - every sample is accepted
+  ---
+  duration_ms: 10.281108
+  type: 'test'
+  ...
+# Subtest: validators cover every required field
+ok 35 - validators cover every required field
+  ---
+  duration_ms: 20.582136
+  type: 'test'
+  ...
+# Subtest: a value outside a declared enum is rejected
+ok 36 - a value outside a declared enum is rejected
+  ---
+  duration_ms: 1.341234
+  type: 'test'
+  ...
+# Subtest: generated file quota metadata is typed before it reaches the card
+ok 37 - generated file quota metadata is typed before it reaches the card
+  ---
+  duration_ms: 1.353464
+  type: 'test'
+  ...
+# Subtest: a rejected frame does not advance the resume cursor
+ok 38 - a rejected frame does not advance the resume cursor
+  ---
+  duration_ms: 0.472285
+  type: 'test'
+  ...
+# Subtest: a research_plan frame with a valid scope is accepted
+ok 39 - a research_plan frame with a valid scope is accepted
+  ---
+  duration_ms: 0.612886
+  type: 'test'
+  ...
+# Subtest: a research_plan frame with a malformed scope is rejected
+ok 40 - a research_plan frame with a malformed scope is rejected
+  ---
+  duration_ms: 0.496355
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 205.707555

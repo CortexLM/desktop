@@ -1,0 +1,186 @@
+{
+  "source_sha": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "schema_source_sha": "af36085cc96b182950ca4bf15161dcf2c3951da1",
+  "schema_ancestor_sha": "70a3056f7223a7eb9257d984848d4d33fee7ec12",
+  "started_at": "2026-10-03T03:51:04.059364+00:00",
+  "checks": [
+    {
+      "name": "api-types",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "packages/api-types",
+      "started_at": "2026-10-03T03:51:04.170652+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/api-types.log",
+      "sha256": "7450a3c3a6f4d87bce410f46fc1b82b7e5327e6fe4c7d0d492d5d30e4682ac1c"
+    },
+    {
+      "name": "generation-drift",
+      "command": [
+        "npm",
+        "run",
+        "check-generated"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:04.686307+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/generation-drift.log",
+      "sha256": "a4a3a212d750d0275a565d364fc9587f83bfcc8b7b62a6dc1c61b93240505f76"
+    },
+    {
+      "name": "sdk-runtime-build",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:06.604801+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/sdk-runtime-build.log",
+      "sha256": "30e0dadaad1b949f57085535df3492e2141a4099ac3e44bbe0109aa105c5686c"
+    },
+    {
+      "name": "consumer-types",
+      "command": [
+        "npm",
+        "run",
+        "test:types"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:09.974978+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/consumer-types.log",
+      "sha256": "b0977b58db9dbebff02c1ccb9d032f378b10edaf3d21c5374c98502fe5f9327b"
+    },
+    {
+      "name": "node-minimum-runtime",
+      "command": [
+        "npx",
+        "--yes",
+        "--package=node@20.9.0",
+        "--",
+        "node",
+        "--test",
+        "test/runtime.test.mjs"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:10.992056+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/node-minimum-runtime.log",
+      "sha256": "93537c74b81350a901dd95079436eedadd40349ef59db0a54f88ec48588c6e73"
+    },
+    {
+      "name": "integration-examples",
+      "command": [
+        "npm",
+        "run",
+        "test:integration"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:11.908641+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/integration-examples.log",
+      "sha256": "8026a6b669a263efdbde8dc1c81fa4b1f52141636e0ae8545f7582492ba4fab7"
+    },
+    {
+      "name": "embedded-openapi",
+      "command": [
+        "bun",
+        "test",
+        "test/bootstrap.test.ts",
+        "test/embedded",
+        "test/http/openapi.test.ts"
+      ],
+      "cwd": "server",
+      "started_at": "2026-10-03T03:51:39.015857+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/embedded-openapi.log",
+      "sha256": "348f117bdc7fa5d13f34b1fbfe91a130a012e55c6d4f61b69716bf463e59424a"
+    },
+    {
+      "name": "pack",
+      "command": [
+        "npm",
+        "run",
+        "pack:vendor",
+        "--",
+        "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:40.032377+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/pack.log",
+      "sha256": "8f6ae8b9feee3f23a0939955f935f527f546cb2053c04ee298491619756ca598"
+    },
+    {
+      "name": "isolated-npm-bun",
+      "command": [
+        "node",
+        "test/package.mjs",
+        "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:44.404429+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/isolated-npm-bun.log",
+      "sha256": "e1c01fd97edb35db41455b0a367501ee56c3c9edcf1801ec32d850adfe33a9d1"
+    },
+    {
+      "name": "isolated-node-minimum",
+      "command": [
+        "npx",
+        "--yes",
+        "--package=node@20.9.0",
+        "--",
+        "node",
+        "test/package.mjs",
+        "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2"
+      ],
+      "cwd": "packages/sdk",
+      "started_at": "2026-10-03T03:51:47.274132+00:00",
+      "exit_code": 0,
+      "log": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/isolated-node-minimum.log",
+      "sha256": "a8a7c8aafaf5fd860685e93cf43b7219556a6e8b01b3b47a2219cddc589feb1d"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/cortex-api-types-0.2.0.tgz",
+      "sha256": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+      "bytes": 70243
+    },
+    {
+      "path": "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/cortex-sdk-0.3.5.tgz",
+      "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+      "bytes": 164809
+    }
+  ],
+  "runtime_versions": {
+    "node": "v22.23.3",
+    "npm": "11.19.0",
+    "bun": "1.4.2"
+  },
+  "schema_blob": "c8f6a7f0257858306a885c71202c13420f40725f",
+  "schema_sha256": "b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b",
+  "generated": {
+    "packages/sdk/src/gen/client/client.gen.ts": "cb33af8e8d6975409607a00861b3716321c779a6760657f988ca1222be74421b",
+    "packages/sdk/src/gen/client/index.ts": "acd2b749181050a8297f24ac3db4f3941ca0a66c049e5b984f29f0e98c8329f8",
+    "packages/sdk/src/gen/client/types.gen.ts": "8a353b3ee2450c26415ec2816491cf4e82262a87597180f1b97dd989c9102f96",
+    "packages/sdk/src/gen/client/utils.gen.ts": "0592284b1d0e16ec939ade4cafd92709d8173fadce3ecd879c864d012029cbeb",
+    "packages/sdk/src/gen/client.gen.ts": "8e6bddb1f7ead9498116c4ac92bf746868262170a3b48125c5dcb40e0311a255",
+    "packages/sdk/src/gen/core/auth.gen.ts": "4b4aca5bd9b2c43a112bb74617295278d84f86360ada71a8db57f09cd0c254f4",
+    "packages/sdk/src/gen/core/bodySerializer.gen.ts": "c9739bff031dce1781a56ab9072791d4bd52bd0896cc989d4ad1cd03f71b282b",
+    "packages/sdk/src/gen/core/params.gen.ts": "097c75f6e269c6c8680641091832a69b38e8828e8ee8465318d32a177593330f",
+    "packages/sdk/src/gen/core/pathSerializer.gen.ts": "6e80a19627d36fd2a9e8daee113713b2e047d107d42ead9b4a9ab344690b998c",
+    "packages/sdk/src/gen/core/queryKeySerializer.gen.ts": "adc570c9357a08624cce81dc503abd8d8ff60a76d25bd4d3a4afbe349d82d1f0",
+    "packages/sdk/src/gen/core/serverSentEvents.gen.ts": "ceaadbaa2088778e9a5393f00140b87d58701405e3a74a051ba053386112b558",
+    "packages/sdk/src/gen/core/types.gen.ts": "11742d13e9417ed7f71e78e6062873c83340beeae766666a04a3e56726bc3567",
+    "packages/sdk/src/gen/core/utils.gen.ts": "ef50364c77d213864515776ee4abaf2f3a1a309d106c2db000e2fc4b6080e78c",
+    "packages/sdk/src/gen/index.ts": "67c0d2091b9b6164f42ff1ea941273585ae3d3dc0bc76e2fd71354467645b5b4",
+    "packages/sdk/src/gen/sdk.gen.ts": "a39d91d20d270971df5b0ad1eee2da284f43b821ad489700217f7f4b10ba97ad",
+    "packages/sdk/src/gen/types.gen.ts": "dac1a8a77ecccc12ffabf464bbd0c18cd309bd65a3b62f98f9fbca4f93350222"
+  },
+  "completed_at": "2026-10-03T03:51:50.972074+00:00"
+}

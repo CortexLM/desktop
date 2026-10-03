@@ -1,0 +1,248 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/responsive.spec.ts",
+      "--grep",
+      "Code approval descriptions stay clear of controls",
+      "--workers=2",
+      "--retries=0",
+      "--reporter=list,json",
+      "--output=/tmp/opencode/narrow-approvals-fix/fixed-artifacts"
+    ],
+    "configFile": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/playwright.config.ts",
+    "rootDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/opencode/narrow-approvals-fix/fixed-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "responsive.spec.ts",
+      "file": "responsive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Code approval descriptions stay clear of controls — 960×640 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1502,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T04:24:30.760Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "approval-description-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ0aXRsZSI6ICJEZWZhdWx0IG1vZGVsIiwKICAgICJ0aXRsZUJvdHRvbSI6IDE4MiwKICAgICJsaW5lcyI6IFsKICAgICAgewogICAgICAgICJsZWZ0IjogNjMxLAogICAgICAgICJyaWdodCI6IDczMS42MDkzNzUsCiAgICAgICAgInRvcCI6IDE4NCwKICAgICAgICAiYm90dG9tIjogMjAwCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibGVmdCI6IDYzMSwKICAgICAgICAicmlnaHQiOiA2NzIuODEyNSwKICAgICAgICAidG9wIjogMjAwLAogICAgICAgICJib3R0b20iOiAyMTYKICAgICAgfQogICAgXSwKICAgICJiZWxvd1RpdGxlIjogdHJ1ZSwKICAgICJmaXRzVGV4dEJveCI6IHRydWUsCiAgICAiY2xlYXJPZkNvbnRyb2wiOiB0cnVlCiAgfSwKICB7CiAgICAidGl0bGUiOiAiTm90aWZ5IG1lIHdoZW4gYW4gYXBwcm92YWwgaXMgd2FpdGluZyIsCiAgICAidGl0bGVCb3R0b20iOiAyNzMsCiAgICAibGluZXMiOiBbCiAgICAgIHsKICAgICAgICAibGVmdCI6IDYzMSwKICAgICAgICAicmlnaHQiOiA4MDEuNzM0Mzc1LAogICAgICAgICJ0b3AiOiAyNzUsCiAgICAgICAgImJvdHRvbSI6IDI5MQogICAgICB9CiAgICBdLAogICAgImJlbG93VGl0bGUiOiB0cnVlLAogICAgImZpdHNUZXh0Qm94IjogdHJ1ZSwKICAgICJjbGVhck9mQ29udHJvbCI6IHRydWUKICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-0434ef7fb56ebe4c28e8",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Code approval descriptions stay clear of controls — 960×640 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1512,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T04:24:30.759Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "approval-description-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ0aXRsZSI6ICJEZWZhdWx0IG1vZGVsIiwKICAgICJ0aXRsZUJvdHRvbSI6IDE4MiwKICAgICJsaW5lcyI6IFsKICAgICAgewogICAgICAgICJsZWZ0IjogNjMxLAogICAgICAgICJyaWdodCI6IDczMS42MDkzNzUsCiAgICAgICAgInRvcCI6IDE4NCwKICAgICAgICAiYm90dG9tIjogMjAwCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibGVmdCI6IDYzMSwKICAgICAgICAicmlnaHQiOiA2NzIuODEyNSwKICAgICAgICAidG9wIjogMjAwLAogICAgICAgICJib3R0b20iOiAyMTYKICAgICAgfQogICAgXSwKICAgICJiZWxvd1RpdGxlIjogdHJ1ZSwKICAgICJmaXRzVGV4dEJveCI6IHRydWUsCiAgICAiY2xlYXJPZkNvbnRyb2wiOiB0cnVlCiAgfSwKICB7CiAgICAidGl0bGUiOiAiTm90aWZ5IG1lIHdoZW4gYW4gYXBwcm92YWwgaXMgd2FpdGluZyIsCiAgICAidGl0bGVCb3R0b20iOiAyNzMsCiAgICAibGluZXMiOiBbCiAgICAgIHsKICAgICAgICAibGVmdCI6IDYzMSwKICAgICAgICAicmlnaHQiOiA4MDEuNzM0Mzc1LAogICAgICAgICJ0b3AiOiAyNzUsCiAgICAgICAgImJvdHRvbSI6IDI5MQogICAgICB9CiAgICBdLAogICAgImJlbG93VGl0bGUiOiB0cnVlLAogICAgImZpdHNUZXh0Qm94IjogdHJ1ZSwKICAgICJjbGVhck9mQ29udHJvbCI6IHRydWUKICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-514e9f395e7bf71a2d4a",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Code approval descriptions stay clear of controls — 1024×686 light",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1539,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T04:24:32.314Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "approval-description-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ0aXRsZSI6ICJEZWZhdWx0IG1vZGVsIiwKICAgICJ0aXRsZUJvdHRvbSI6IDE4MiwKICAgICJsaW5lcyI6IFsKICAgICAgewogICAgICAgICJsZWZ0IjogNjMxLAogICAgICAgICJyaWdodCI6IDc3Ni40MjE4NzUsCiAgICAgICAgInRvcCI6IDE4NCwKICAgICAgICAiYm90dG9tIjogMjAwCiAgICAgIH0KICAgIF0sCiAgICAiYmVsb3dUaXRsZSI6IHRydWUsCiAgICAiZml0c1RleHRCb3giOiB0cnVlLAogICAgImNsZWFyT2ZDb250cm9sIjogdHJ1ZQogIH0sCiAgewogICAgInRpdGxlIjogIk5vdGlmeSBtZSB3aGVuIGFuIGFwcHJvdmFsIGlzIHdhaXRpbmciLAogICAgInRpdGxlQm90dG9tIjogMjQxLAogICAgImxpbmVzIjogWwogICAgICB7CiAgICAgICAgImxlZnQiOiA2MzEsCiAgICAgICAgInJpZ2h0IjogODAxLjczNDM3NSwKICAgICAgICAidG9wIjogMjQzLAogICAgICAgICJib3R0b20iOiAyNTkKICAgICAgfQogICAgXSwKICAgICJiZWxvd1RpdGxlIjogdHJ1ZSwKICAgICJmaXRzVGV4dEJveCI6IHRydWUsCiAgICAiY2xlYXJPZkNvbnRyb2wiOiB0cnVlCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-2ffb180662707c74dc85",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "Code approval descriptions stay clear of controls — 1024×686 dark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1476,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T04:24:32.321Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "approval-description-geometry",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJ0aXRsZSI6ICJEZWZhdWx0IG1vZGVsIiwKICAgICJ0aXRsZUJvdHRvbSI6IDE4MiwKICAgICJsaW5lcyI6IFsKICAgICAgewogICAgICAgICJsZWZ0IjogNjMxLAogICAgICAgICJyaWdodCI6IDc3Ni40MjE4NzUsCiAgICAgICAgInRvcCI6IDE4NCwKICAgICAgICAiYm90dG9tIjogMjAwCiAgICAgIH0KICAgIF0sCiAgICAiYmVsb3dUaXRsZSI6IHRydWUsCiAgICAiZml0c1RleHRCb3giOiB0cnVlLAogICAgImNsZWFyT2ZDb250cm9sIjogdHJ1ZQogIH0sCiAgewogICAgInRpdGxlIjogIk5vdGlmeSBtZSB3aGVuIGFuIGFwcHJvdmFsIGlzIHdhaXRpbmciLAogICAgInRpdGxlQm90dG9tIjogMjQxLAogICAgImxpbmVzIjogWwogICAgICB7CiAgICAgICAgImxlZnQiOiA2MzEsCiAgICAgICAgInJpZ2h0IjogODAxLjczNDM3NSwKICAgICAgICAidG9wIjogMjQzLAogICAgICAgICJib3R0b20iOiAyNTkKICAgICAgfQogICAgXSwKICAgICJiZWxvd1RpdGxlIjogdHJ1ZSwKICAgICJmaXRzVGV4dEJveCI6IHRydWUsCiAgICAiY2xlYXJPZkNvbnRyb2wiOiB0cnVlCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e0223b006feb3d306446-32a5c74924a5c429456e",
+          "file": "responsive.spec.ts",
+          "line": 10,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T04:24:30.086Z",
+    "duration": 3847.691,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

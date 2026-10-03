@@ -1,0 +1,239 @@
+{
+  "completed_at": "2026-10-03T04:35:59.695052+00:00",
+  "result": "PASS \u2014 authorized dependency-only intake; uncommitted",
+  "start_head": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "end_head": "ffc118a2e58df66f430f3078e00f6e931dd910cf",
+  "sdk_source": "5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31",
+  "runtime": "Node22.23.3",
+  "package_manager": "Bun1.4.2",
+  "typescript": "5.9.3",
+  "files": [
+    {
+      "path": "vendor/cortex-sdk-0.3.5.tgz",
+      "sha256": "5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8",
+      "bytes": 164809
+    },
+    {
+      "path": "packages/desktop/package.json",
+      "sha256": "10cec19edd7ddd59fe5a52bf72abd98a3228f64647a6f5ceaf2583a95dbcc4dd",
+      "bytes": 395
+    },
+    {
+      "path": "bun.lock",
+      "sha256": "dada4e8c730bd0514dd0506c7ee7b453ac1f698bd509561a8ad43367b796f8a6",
+      "bytes": 143415
+    },
+    {
+      "path": "vendor/README.md",
+      "sha256": "ddd49a8742b61b14b436d8f20fcb8a754251b146c76d95b471a0be64823bd138",
+      "bytes": 3593
+    }
+  ],
+  "resolved_pair": {
+    "result": "PASS",
+    "runtime": "v22.23.3",
+    "mainImporter": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/packages/desktop/src/remote-session.ts",
+    "sdk": {
+      "version": "0.3.5",
+      "entry": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/index.js"
+    },
+    "peer": {
+      "version": "0.2.0",
+      "entry": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/index.js"
+    },
+    "sdkUsesSamePeer": true,
+    "isolatedReadbackClientUsed": false
+  },
+  "lock_delta": "SDK file reference and SHA512 integrity; peer and all other entries unchanged",
+  "peer_archive_unchanged": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+  "unchanged_source_and_tests": {
+    "packages/desktop/src/main.ts": "449c9737cc04f49d1c8a5b91901cf0821028feb59fec93169f76dfadb200d38d",
+    "packages/desktop/src/remote-session.ts": "4c4229c388a4bed9373f450b0012dd08511d22cba7bfced4cd7ea3218c279566",
+    "packages/desktop/src/remote.ts": "9d08fb8acabc6dd2384acabee49d969c707258e676065b2639fb0b492ad34a51",
+    "packages/desktop/test/remote.test.ts": "c7a9b3ffcc6da477552ab83ff73fb207b866e975893178158a0b3f131ab56bc4",
+    "packages/desktop/test/remote-session.test.ts": "29c8e4a175495f1ee2c87a70d489f68167911d333aa9200114f59cb9fc50c0f4"
+  },
+  "historical_archives_preserved": {
+    "vendor/cortex-api-types-0.1.0.tgz": "6e97d4f92c5e098ac989589fc81ca70bed1abc018383994e397c49d61837b134",
+    "vendor/cortex-sdk-0.2.0.tgz": "536f57c026a7a8a1f04f1eb80b3f682f6becd514e789b998fcf28b86de7df9e7",
+    "vendor/cortex-api-types-0.2.0.tgz": "3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877",
+    "vendor/cortex-sdk-0.3.1.tgz": "d47fb53878385849d74822b22526838aa3f99a3cbccb96ec95324a419838d12e"
+  },
+  "historical_failure_receipts_preserved": {
+    "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/previous-f8782e5e6eb2-verification-failure.json": "ad2f673ebf21ab9bfa3b0c95cbbb86d92400506338a2e53b5820288c8cfe009d",
+    "/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/previous-466719b1efac-verification-failure.json": "5c158dfa3333ec21ad0f4f78a49c2789dc8fbf609b2f54be5c6322106d2867ef"
+  },
+  "focused_tests": {
+    "total": 53,
+    "pass": 52,
+    "skip": 1,
+    "fail": 0,
+    "skip_reason": "CORTEX_TEST_BACKEND_URL absent; optional real-backend case"
+  },
+  "checks": [
+    {
+      "name": "bun-frozen",
+      "command": [
+        "/root/.bun/bin/bun",
+        "install",
+        "--frozen-lockfile",
+        "--ignore-scripts"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 0.032,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/bun-frozen.log"
+    },
+    {
+      "name": "bun-install",
+      "command": [
+        "/root/.bun/bin/bun",
+        "install",
+        "--ignore-scripts"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 0.032,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/bun-install.log"
+    },
+    {
+      "name": "declarations-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "/tmp/opencode/desktop-sdk-035-intake/tsconfig.declarations.json"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 1.767,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/declarations-node22.log"
+    },
+    {
+      "name": "focused-lint-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "node_modules/eslint/bin/eslint.js",
+        "packages/desktop/src/remote.ts",
+        "packages/desktop/src/remote-session.ts",
+        "packages/desktop/test/remote.test.ts",
+        "packages/desktop/test/remote-session.test.ts"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 1.767,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/focused-lint-node22.log"
+    },
+    {
+      "name": "focused-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "packages/desktop/test/remote.test.ts",
+        "packages/desktop/test/remote-session.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile.json=/tmp/opencode/desktop-sdk-035-intake/focused.json"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 11.433,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/focused-node22.log"
+    },
+    {
+      "name": "resolution-esm-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "--experimental-import-meta-resolve",
+        "/tmp/opencode/desktop-sdk-035-intake/resolution.mjs"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 0.114,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/resolution-esm-node22.log"
+    },
+    {
+      "name": "resolution-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "/tmp/opencode/desktop-sdk-035-intake/resolution.mjs"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 0.064,
+      "exit_code": 1,
+      "timed_out": false,
+      "log": "logs/resolution-node22.log"
+    },
+    {
+      "name": "typecheck-node22",
+      "command": [
+        "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.json"
+      ],
+      "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "elapsed_seconds": 13.935,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/typecheck-node22.log"
+    }
+  ],
+  "diff_check": "PASS",
+  "declaration_resolution": {
+    "result": "PASS",
+    "typescript": "5.9.3",
+    "sdkFiles": [
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/auth.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/pathSerializer.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/bodySerializer.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/params.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/queryKeySerializer.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/types.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/core/serverSentEvents.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/utils.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/types.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/client.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/client/index.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/types.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/sdk.gen.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/stream.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/client.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/gen/index.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+sdk@..+..+vendor+cortex-sdk-0.3.5.tgz+d671d098d23e8aaa/node_modules/@cortex/sdk/dist/index.d.ts"
+    ],
+    "peerFiles": [
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/cli.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/admin-support.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/ids.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/streaming.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/client.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/errors.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/realtime.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/design.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/library.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/projects.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/science.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/bot.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/exports.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/feedback.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/support-automation.d.ts",
+      "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/node_modules/.bun/@cortex+api-types@..+..+vendor+cortex-api-types-0.2.0.tgz/node_modules/@cortex/api-types/dist/index.d.ts"
+    ],
+    "onlyRootInstalledDeclarations": true
+  },
+  "diagnostic_failure": {
+    "name": "resolution-node22",
+    "cause": "createRequire.resolve selected CommonJS condition; SDK exports ESM import only",
+    "correction": "import.meta.resolve with desktop main parent URL; passed in resolution-esm-node22",
+    "product_failure": false
+  },
+  "scope": "Four owned repo files only; old archives and main/probe/tests unchanged. No build/E2E/full suite/Mac/CI/commit/push. Coordinator owns AGENTS/docs and separate intake pin."
+}

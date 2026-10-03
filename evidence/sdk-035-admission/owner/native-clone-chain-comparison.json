@@ -1,0 +1,153 @@
+[
+  {
+    "variant": "baseline",
+    "case": 0,
+    "exit": 0,
+    "seconds": 3.67,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/baseline/chain-0.log"
+  },
+  {
+    "variant": "baseline",
+    "case": 1,
+    "exit": 124,
+    "seconds": 15.12,
+    "summary": [],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/baseline/chain-1.log"
+  },
+  {
+    "variant": "baseline",
+    "case": 2,
+    "exit": 0,
+    "seconds": 3.82,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/baseline/chain-2.log"
+  },
+  {
+    "variant": "single-read",
+    "case": 0,
+    "exit": 0,
+    "seconds": 3.67,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/single-read/chain-0.log"
+  },
+  {
+    "variant": "single-read",
+    "case": 1,
+    "exit": 0,
+    "seconds": 3.62,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/single-read/chain-1.log"
+  },
+  {
+    "variant": "single-read",
+    "case": 2,
+    "exit": 0,
+    "seconds": 3.57,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/single-read/chain-2.log"
+  },
+  {
+    "variant": "detach-then-clone",
+    "case": 0,
+    "exit": 0,
+    "seconds": 3.82,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/detach-then-clone/chain-0.log"
+  },
+  {
+    "variant": "detach-then-clone",
+    "case": 1,
+    "exit": 0,
+    "seconds": 3.67,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/detach-then-clone/chain-1.log"
+  },
+  {
+    "variant": "detach-then-clone",
+    "case": 2,
+    "exit": 0,
+    "seconds": 3.67,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/detach-then-clone/chain-2.log"
+  },
+  {
+    "variant": "request-no-clone",
+    "case": 0,
+    "exit": 0,
+    "seconds": 3.82,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/request-no-clone/chain-0.log"
+  },
+  {
+    "variant": "request-no-clone",
+    "case": 1,
+    "exit": 0,
+    "seconds": 3.82,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/request-no-clone/chain-1.log"
+  },
+  {
+    "variant": "request-no-clone",
+    "case": 2,
+    "exit": 0,
+    "seconds": 3.72,
+    "summary": [
+      "# pass 32",
+      "# fail 0",
+      "npm: packed pair imports, public types and runtime checks passed",
+      "bun: packed pair imports, public types and runtime checks passed"
+    ],
+    "log": "/tmp/opencode/sdk-034-clone-review-4htt8lsw/request-no-clone/chain-2.log"
+  }
+]

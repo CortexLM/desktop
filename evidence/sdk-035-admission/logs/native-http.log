@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "runtime": "v22.23.3",
+  "nativeFetch": true,
+  "scope": "Loopback fixture HTTP only; not Cortex backend/inference",
+  "successfulAuthCloneCalls": 0,
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/v1/auth/magic-auth/verify"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/library"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/feedback/bugs/screenshots"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/conversations/turns"
+    }
+  ],
+  "frames": 3,
+  "finalCursor": "3",
+  "verifiedAdmissionHeaders": [
+    "x-conversation-id",
+    "x-message-id"
+  ],
+  "rawUploads": [
+    "Library",
+    "screenshot"
+  ],
+  "identityContinuation": "bearer plus cookie preserved"
+}

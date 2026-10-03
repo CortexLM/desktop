@@ -1,0 +1,20 @@
+## G3 disposition for G1 comment 5964557072
+
+Current SDK0.3.3 source `d6c71de1d99197c5e0ee5c59d0a089842d760cea` fixes generated turn/edit/regenerate `body?: never`: five existing StreamEvent POSTs now accept legacy JSON bodies as `unknown`. Positive Chat/Code declaration checks fail on0.3.2 and pass now. Parsed helpers continue preserving original replay bodies. This is usable transport typing, **not a new canonical validated TurnBody DTO**.
+
+G4/G1 late-image and screenshot reproductions are retained and fixed from0.3.2 onward. The0.3.3 pair stays pending final test-runner cleanup review; no existing tarball is overwritten.
+
+Independent handler/schema readback establishes the remaining scope:
+
+| Contract | Current server truth | Disposition |
+| --- | --- | --- |
+| Turn admission | `turns/create.ts:84–196`: trimmed message≤50,000 Unicode scalars; message/attachments/continue required;≤20 owned Library attachments. New thread defaults Mini/medium. | G2 owns precise schema; G1 may validate these existing fields narrowly. |
+| Follow-up choices | Existing thread's stored model/effort win. Chat `one_off_model_slug` changes one generation. Regenerate has explicit overrides; edit uses stored values. Conversation detail omits effort; PATCH does not change model/effort. | Preserve remote semantics. No universal boolean Off; `low` is not portable Off. |
+| Password/register | `auth.ts:176–230`: email/password strings; register password≥8 UTF-8 bytes. Response uses existing InteractiveAuthResponse four-status union; only `session` signs in. | G2 schema omission: bind existing union to these routes. Signup path is `/v1/auth/register`. |
+| Refresh | `auth.ts:331–346`: optional body token wins over cookie. Cookie response `{status:'session',access_token}`; body response `{access_token,refresh_token,token_type:'Bearer'}` has **no status**. Both rotate cookie. Continuation becomes invalid_state. | G2 request/response union; don't narrow every success to one shape. Local/none refuses these Cloud auth routes. |
+| Cloud models | `catalog.ts:27–71`: items with slug/display_name/description/context_tokens/max_output_tokens/supports_reasoning/supports_tools/supports_vision/is_preview/kind; optional fallback_slug/attribution/banner_url;has_more:false. Existing api-types mirror at `src/index.ts:81–112`. | G2 schema omission; G1 narrow validation, filter Chat by kind. Catalogue presence is not live-inference proof. |
+| Account identity | `me.ts:24–56`: email,display_name?,plan_slug,is_guest,quotas,beta_pro?,product_beta. **No id/user_id**. Guest email empty. Token subject maps internally, not a public account ID. | Stable instance-scoped account ID needs G2/server contract addition. Keep process-lifetime isolation; no durable cross-login owner cache keyed by email/token assumptions. |
+| Chat history | `conversations.ts:164–358`: active path;id,role,text,created_at,version_index,version_count,is_active_version; optional finish_reason/model_name (stored slug), citations/media/research fields. SQL excludes reasoning/tool_call/tool_result. Latest100,max200;message_id selects centered window. has_more:false hardcoded;no next_cursor. Listing also caps100. | G2 schema can describe projection; complete history/pagination and reasoning/tool replay require server work. Do not claim exhaustive sync from has_more:false; Code transcript is not a Chat fallback. |
+| Continue/replay/detach | Continue requires owned active assistant tip, interrupted/length; extends answer, spends turn, does not restore earlier one-off model. Replay uses original POST/body/key/numeric cursor. Disconnect detaches delivery; generation continues. | Separate actions. No Chat cancel endpoint; Code cancel cannot substitute. |
+
+G3 adds no consumer-branch shim or fabricated fields. Please record explicit canonical DTO and stable-identity/history decisions on #446; regenerate SDK against that exact schema when available. G1's scoped runtime validation remains distinct from claiming those payloads fully typed or the remote desktop product complete.
