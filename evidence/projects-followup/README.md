@@ -1,5 +1,10 @@
 # Local Projects delivery
 
+Documentary `74579d5` preserves all 515 `f82a648` package inputs;
+[CI 37136181306](https://github.com/CortexLM/desktop/actions/runs/37136181306) passes
+all three jobs ([receipt](documentary-ci.json)). Installed acceptance remains bound to
+the admitted `f82a648` artifact below.
+
 Baseline application `99e3d04a8dab6b51b6cf23bcdae0365624492e0f`; documentary `0597848`
 preserves its package inputs. Current Projects delivery has **installed-native acceptance pending**. Seven targeted
 protocol/core cases and 252 integrated units pass, with one optional backend skip.

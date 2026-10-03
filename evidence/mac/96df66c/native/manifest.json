@@ -1,0 +1,1609 @@
+{
+  "status": "passed",
+  "revision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "asar": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+  "startedAt": "2026-10-03T17:55:48.422Z",
+  "invocation": {
+    "argv": [
+      "/tmp/opencode/memory-native-corrected.mjs",
+      "/tmp/opencode/memory-native-96df66c-a2",
+      "/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+      "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+      "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+      "/tmp/opencode/build-memory-final/members.json"
+    ],
+    "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+    "nodeVersion": "v22.23.3"
+  },
+  "budget": {
+    "captures": 4,
+    "originalBytes": 8388608,
+    "totalBytes": 33554432,
+    "flowMs": 120000,
+    "manifestBytes": 409600
+  },
+  "capturesRequested": 4,
+  "captures": [
+    {
+      "file": "memory-off-light.png",
+      "requestedAt": "2026-10-03T17:56:12.800Z",
+      "theme": "light",
+      "native": true,
+      "id": 8973,
+      "active": true,
+      "pid": 71055,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Memory turned off",
+          "bounds": [
+            439,
+            118,
+            851,
+            134
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              439,
+              117,
+              551.90625,
+              134
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved notes stay on this device. Bots stop using them in future turns; previous messages are unchanged.",
+          "bounds": [
+            439,
+            134,
+            819.140625,
+            166
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              439,
+              134,
+              819.140625,
+              150
+            ],
+            [
+              439,
+              150,
+              631.15625,
+              166
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Turn on memory",
+          "bounds": [
+            865,
+            132,
+            899,
+            152
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              867,
+              134,
+              883,
+              150
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved notes remain available to review, export or delete.",
+          "bounds": [
+            466.625,
+            208,
+            903,
+            224
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              466.625,
+              208,
+              773.578125,
+              224
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Keep the blue folder.this minute",
+          "bounds": [
+            391,
+            286,
+            861,
+            322
+          ],
+          "clip": [
+            377,
+            274,
+            915,
+            334
+          ],
+          "ink": [
+            [
+              391,
+              287,
+              512.640625,
+              304
+            ],
+            [
+              391,
+              308,
+              861,
+              322
+            ],
+            [
+              391,
+              308,
+              447.390625,
+              322
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Turn on memory",
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 72814,
+      "sha256": "422a7e667f1eed904cfad8c2270d7e06f60543bdfb304b5294649a3d510d4758",
+      "pixels": [
+        960,
+        640
+      ],
+      "finishedAt": "2026-10-03T17:56:16.596Z"
+    },
+    {
+      "file": "privacy-off-light.png",
+      "requestedAt": "2026-10-03T17:56:23.316Z",
+      "theme": "light",
+      "native": true,
+      "pid": 71055,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8973,
+      "osDark": false,
+      "boxes": [
+        {
+          "text": "Privacy",
+          "bounds": [
+            617,
+            110,
+            915,
+            136
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              617,
+              110,
+              684.515625,
+              136
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Privacy",
+          "bounds": [
+            377,
+            246,
+            577,
+            278
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              387,
+              254,
+              403,
+              270
+            ],
+            [
+              413,
+              254,
+              454.359375,
+              270
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Memory",
+          "bounds": [
+            631,
+            223,
+            855,
+            239
+          ],
+          "clip": [
+            617,
+            154,
+            915,
+            340
+          ],
+          "ink": [
+            [
+              631,
+              222,
+              680.65625,
+              239
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Allow Bots to use their saved notes in future turns.",
+          "bounds": [
+            631,
+            239,
+            855,
+            271
+          ],
+          "clip": [
+            631,
+            239,
+            855,
+            271
+          ],
+          "ink": [
+            [
+              631,
+              239,
+              837.484375,
+              255
+            ],
+            [
+              631,
+              255,
+              698.71875,
+              271
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Memory",
+          "bounds": [
+            867,
+            237,
+            901,
+            257
+          ],
+          "clip": [
+            617,
+            154,
+            915,
+            340
+          ],
+          "ink": [
+            [
+              869,
+              239,
+              885,
+              255
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Memory",
+        "visible": true,
+        "outline": "rgb(59, 130, 246) solid 2px",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 84771,
+      "sha256": "c7d319263a0a109b3f799f483c215e4742817a12ab216c6784b3991be6eeade2",
+      "pixels": [
+        960,
+        640
+      ],
+      "finishedAt": "2026-10-03T17:56:26.862Z"
+    },
+    {
+      "file": "memory-off-dark.png",
+      "requestedAt": "2026-10-03T17:56:37.167Z",
+      "theme": "dark",
+      "native": true,
+      "active": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "id": 8973,
+      "pid": 71055,
+      "osDark": true,
+      "boxes": [
+        {
+          "text": "Memory turned off",
+          "bounds": [
+            439,
+            118,
+            851,
+            134
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              439,
+              117,
+              551.90625,
+              134
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved notes stay on this device. Bots stop using them in future turns; previous messages are unchanged.",
+          "bounds": [
+            439,
+            134,
+            819.140625,
+            166
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              439,
+              134,
+              819.140625,
+              150
+            ],
+            [
+              439,
+              150,
+              631.15625,
+              166
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Turn on memory",
+          "bounds": [
+            865,
+            132,
+            899,
+            152
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              867,
+              134,
+              883,
+              150
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Saved notes remain available to review, export or delete.",
+          "bounds": [
+            466.625,
+            208,
+            903,
+            224
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              466.625,
+              208,
+              773.578125,
+              224
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Keep the blue folder.this minute",
+          "bounds": [
+            391,
+            286,
+            861,
+            322
+          ],
+          "clip": [
+            377,
+            274,
+            915,
+            334
+          ],
+          "ink": [
+            [
+              391,
+              287,
+              512.640625,
+              304
+            ],
+            [
+              391,
+              308,
+              861,
+              322
+            ],
+            [
+              391,
+              308,
+              447.390625,
+              322
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Turn on memory",
+        "visible": true,
+        "outline": "rgb(91, 155, 255) solid 2px",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 72398,
+      "sha256": "b842bacb8dc3dad05c21ca7fe76af1aaa21746afd12c59132dd41191ba8286ab",
+      "pixels": [
+        960,
+        640
+      ],
+      "finishedAt": "2026-10-03T17:56:40.694Z"
+    },
+    {
+      "file": "privacy-off-dark.png",
+      "requestedAt": "2026-10-03T17:56:47.434Z",
+      "theme": "dark",
+      "native": true,
+      "bounds": {
+        "X": 0,
+        "Height": 640,
+        "Y": 30,
+        "Width": 960
+      },
+      "active": true,
+      "id": 8973,
+      "pid": 71055,
+      "osDark": true,
+      "boxes": [
+        {
+          "text": "Privacy",
+          "bounds": [
+            617,
+            110,
+            915,
+            136
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              617,
+              110,
+              684.515625,
+              136
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Privacy",
+          "bounds": [
+            377,
+            246,
+            577,
+            278
+          ],
+          "clip": [
+            337,
+            100,
+            955,
+            635
+          ],
+          "ink": [
+            [
+              387,
+              254,
+              403,
+              270
+            ],
+            [
+              413,
+              254,
+              454.359375,
+              270
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Memory",
+          "bounds": [
+            631,
+            223,
+            855,
+            239
+          ],
+          "clip": [
+            617,
+            154,
+            915,
+            340
+          ],
+          "ink": [
+            [
+              631,
+              222,
+              680.65625,
+              239
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Allow Bots to use their saved notes in future turns.",
+          "bounds": [
+            631,
+            239,
+            855,
+            271
+          ],
+          "clip": [
+            631,
+            239,
+            855,
+            271
+          ],
+          "ink": [
+            [
+              631,
+              239,
+              837.484375,
+              255
+            ],
+            [
+              631,
+              255,
+              698.71875,
+              271
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        },
+        {
+          "text": "Memory",
+          "bounds": [
+            867,
+            237,
+            901,
+            257
+          ],
+          "clip": [
+            617,
+            154,
+            915,
+            340
+          ],
+          "ink": [
+            [
+              869,
+              239,
+              885,
+              255
+            ]
+          ],
+          "opacity": 1,
+          "visible": true,
+          "hit": true
+        }
+      ],
+      "focus": {
+        "name": "Memory",
+        "visible": true,
+        "outline": "rgb(91, 155, 255) solid 2px",
+        "boxShadow": "none"
+      },
+      "status": "passed",
+      "httpStatus": 200,
+      "bytes": 84535,
+      "sha256": "b4b097d3f4960d01fd1db4605580d6bc47246418174a22fe21260c1c3f0fd7a6",
+      "pixels": [
+        960,
+        640
+      ],
+      "finishedAt": "2026-10-03T17:56:50.943Z"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "light:memory",
+      "memoryEnabled": true,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:memory",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:memory",
+      "memoryEnabled": true,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:memory",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:privacy",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:privacy",
+      "memoryEnabled": true,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:privacy",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:paused-manual-access",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "light:paused-manual-access",
+      "forgetKeyboardFocusAndPointerHit": true,
+      "geometry": {
+        "text": "Forget",
+        "bounds": [
+          873,
+          286,
+          901,
+          314
+        ],
+        "clip": [
+          377,
+          274,
+          915,
+          334
+        ],
+        "ink": [
+          [
+            879,
+            292,
+            895,
+            308
+          ]
+        ],
+        "opacity": 1,
+        "visible": true,
+        "hit": true
+      }
+    },
+    {
+      "stage": "dark:memory",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:memory",
+      "memoryEnabled": true,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:memory",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:privacy",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:privacy",
+      "memoryEnabled": true,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:privacy",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "memoryEnabled": false,
+      "notesAndBotUnchanged": true
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "forgetKeyboardFocusAndPointerHit": true,
+      "geometry": {
+        "text": "Forget",
+        "bounds": [
+          873,
+          286,
+          901,
+          314
+        ],
+        "clip": [
+          377,
+          274,
+          915,
+          334
+        ],
+        "ink": [
+          [
+            879,
+            292,
+            895,
+            308
+          ]
+        ],
+        "opacity": 1,
+        "visible": true,
+        "hit": true
+      }
+    }
+  ],
+  "calls": [
+    {
+      "stage": "fresh-profile",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "fresh-profile",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "controlled-note",
+      "route": "/api/bots",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "stage": "controlled-note",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "POST",
+      "status": 201
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:paused-manual-access",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "light:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "light:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:memory",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:privacy",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408/memory",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "dark:paused-manual-access",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/settings",
+      "method": "PUT",
+      "status": 200
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/bots/bot_01a102e881000000d4be3f4c4deb4408",
+      "method": "DELETE",
+      "status": 200
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/bots",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/sessions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/projects",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/providers",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/plugins",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/permissions",
+      "method": "GET",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "stage": "flow-complete",
+      "route": "/api/connection",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "cleanup": {
+    "settingsValueRestored": true,
+    "ownedBotRemoved": true,
+    "nativeAppearanceRestored": true,
+    "themePreferenceRestored": true,
+    "routeRestored": true,
+    "controlledListsEmpty": true,
+    "zeroInference": true,
+    "installedAfter": true
+  },
+  "helperHashes": {
+    "memory-native-corrected.mjs": "d1eaeea3ae44d0b32fc0903e67c860a0d8c2444b93ab23a0a997f4c1f17c4b8e",
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "membersSHA256": "f44f9277131a1ad0ef9e1bb2b740b6750fe938c5d7c392cf0d534fa007a78358",
+  "memberCount": 90,
+  "rootHelperHashes": {
+    "terminal-state-native-backend.mjs": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "launch-terminal-state-native.py": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "cleanup-terminal-state-native.py": "c46f218f17bcda2ba031fe8f2959f9f8e18dda379a7edcd076b01be0c881c08a"
+  },
+  "stage": "flow-complete",
+  "installedBefore": {
+    "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+    "revision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+    "membersVerified": 90,
+    "pid": 71055,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "f44f9277131a1ad0ef9e1bb2b740b6750fe938c5d7c392cf0d534fa007a78358"
+  },
+  "backend": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+    "runID": "8a4872fd-3a8e-43fb-b7a2-4546901f637b",
+    "pid": 71052,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d"
+  },
+  "backendReceipt": {
+    "protocol": "cortex-terminal-state-native-v1",
+    "root": "/private/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+    "runID": "8a4872fd-3a8e-43fb-b7a2-4546901f637b",
+    "pid": 71052,
+    "platform": "darwin",
+    "port": 9456,
+    "scriptSHA256": "d22fcbe2287a7898452778ea58d665f0742f4a1d4d580ec7c237dc10cfc70d4d",
+    "counts": {
+      "catalog": 0,
+      "health": 2,
+      "receipt": 2,
+      "errors": 0
+    },
+    "requests": [],
+    "failures": []
+  },
+  "initialSettings": {
+    "memoryEnabled": true
+  },
+  "previous": {
+    "stored": null,
+    "pref": "system",
+    "theme": "dark",
+    "nativeDark": "true",
+    "hash": "#/home"
+  },
+  "bot": {
+    "id": "bot_01a102e881000000d4be3f4c4deb4408",
+    "name": "Native memory Bot",
+    "persona": "Use only the controlled notes.",
+    "mascot": {
+      "shape": "pebble",
+      "color": "meadow",
+      "eyes": "round",
+      "mouth": "smile",
+      "accessories": []
+    },
+    "model": {
+      "providerID": "native-memory",
+      "modelID": "unconfigured"
+    },
+    "tools": {},
+    "permission": [],
+    "time": {
+      "created": 1791050154240,
+      "updated": 1791050154240
+    },
+    "memory": [],
+    "routines": []
+  },
+  "note": {
+    "id": "mem_01a102e881460000c43d0953b2921bf1",
+    "botID": "bot_01a102e881000000d4be3f4c4deb4408",
+    "content": "Keep the blue folder.",
+    "time": 1791050154310
+  },
+  "nativeChecks": [
+    {
+      "stage": "light:memory-off:capture",
+      "theme": "light",
+      "measuredAt": "2026-10-03T17:56:12.395Z",
+      "rows": [
+        {
+          "id": 8973,
+          "active": true,
+          "pid": 71055,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          }
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:memory-off:capture",
+      "theme": "light",
+      "measuredAt": "2026-10-03T17:56:16.595Z",
+      "rows": [
+        {
+          "id": 8973,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "pid": 71055
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:privacy-off:capture",
+      "theme": "light",
+      "measuredAt": "2026-10-03T17:56:22.914Z",
+      "rows": [
+        {
+          "pid": 71055,
+          "active": true,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 8973
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "light:privacy-off:capture",
+      "theme": "light",
+      "measuredAt": "2026-10-03T17:56:26.861Z",
+      "rows": [
+        {
+          "pid": 71055,
+          "id": 8973,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "false\n"
+    },
+    {
+      "stage": "dark:memory-off:capture",
+      "theme": "dark",
+      "measuredAt": "2026-10-03T17:56:36.765Z",
+      "rows": [
+        {
+          "active": true,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "id": 8973,
+          "pid": 71055
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:memory-off:capture",
+      "theme": "dark",
+      "measuredAt": "2026-10-03T17:56:40.693Z",
+      "rows": [
+        {
+          "pid": 71055,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "id": 8973
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:privacy-off:capture",
+      "theme": "dark",
+      "measuredAt": "2026-10-03T17:56:47.031Z",
+      "rows": [
+        {
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          },
+          "active": true,
+          "id": 8973,
+          "pid": 71055
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    },
+    {
+      "stage": "dark:privacy-off:capture",
+      "theme": "dark",
+      "measuredAt": "2026-10-03T17:56:50.942Z",
+      "rows": [
+        {
+          "pid": 71055,
+          "active": true,
+          "id": 8973,
+          "bounds": {
+            "X": 0,
+            "Height": 640,
+            "Y": 30,
+            "Width": 960
+          }
+        }
+      ],
+      "appearanceStatus": 0,
+      "appearanceStdout": "true\n"
+    }
+  ],
+  "pausedForgetAccepted": true,
+  "settingsDocumentRetained": true,
+  "installedAfter": {
+    "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+    "revision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+    "membersVerified": 90,
+    "pid": 71055,
+    "processCount": 1,
+    "isolated": true,
+    "root": "/private/tmp/opencode/desktop-terminal-state-memory-96df66c-a2",
+    "inspectorSHA256": "4aec6651e6178bf890a299551497514f5159342a8f94db8972515c000fc10257",
+    "membersSHA256": "f44f9277131a1ad0ef9e1bb2b740b6750fe938c5d7c392cf0d534fa007a78358"
+  },
+  "finishedAt": "2026-10-03T17:56:57.068Z",
+  "durationMs": 68646,
+  "scope": "Four native English Memory/Privacy off-state images, UI switch synchronization, one controlled Bot/note, paused manual Forget. No inference, persistence restart, legacy migration, preview isolation, refusal/race or full-product acceptance. Settings value restored; isolated settings document retained."
+}

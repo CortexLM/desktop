@@ -1,0 +1,29 @@
+{
+  "runs": {
+    "final-full": {
+      "uniqueImages": 169,
+      "fileCopies": 342,
+      "inlineAttachments": 4,
+      "pngAttachments": 175
+    },
+    "boundary-targeted": {
+      "uniqueImages": 26,
+      "fileCopies": 52,
+      "inlineAttachments": 0,
+      "pngAttachments": 26
+    }
+  },
+  "union": {
+    "uniquePNG": 173,
+    "uniqueRGBA": 173,
+    "newLosslessWebP": 25,
+    "newImageBytes": 803438,
+    "reuse": {
+      "../../projects-followup/ci-f82a648/images.jsonl": 100,
+      "../../projects-followup/electron-final/images.jsonl": 22,
+      "../targeted-images/index.json": 26
+    },
+    "contactSheets": 15,
+    "fullsizeTargets": 12
+  }
+}

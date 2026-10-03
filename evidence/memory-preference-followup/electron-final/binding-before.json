@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-03T17:17:17.728332+00:00",
+  "observedHead": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "originalTestedBase": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "originalDirty": true,
+  "checks": [
+    {
+      "manifest": "../final/pinned-inputs.json",
+      "manifestSHA256": "8f9ee6c927012c440135ce0b9520e0c0c5aa94fc4bb59ea1ecd0a1a126f86313",
+      "root": "/tmp/opencode/build-memory-final/source",
+      "paths": 516,
+      "actualPathSetMatches": true,
+      "matched": 516,
+      "mismatches": [],
+      "pathSetAuthority": "complete frozen source tree"
+    },
+    {
+      "manifest": "../final/pinned-inputs.json",
+      "manifestSHA256": "8f9ee6c927012c440135ce0b9520e0c0c5aa94fc4bb59ea1ecd0a1a126f86313",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 516,
+      "actualPathSetMatches": true,
+      "matched": 516,
+      "mismatches": [],
+      "pathSetAuthority": "complete frozen source tree"
+    },
+    {
+      "manifest": "../final/renderer-inputs.json",
+      "manifestSHA256": "682f82f177563aefe442e1873a4ef84c4041fc8bd178001f58e80050dd8fa83c",
+      "root": "/tmp/opencode/build-memory-final/source",
+      "paths": 474,
+      "actualPathSetMatches": true,
+      "matched": 474,
+      "mismatches": [],
+      "pathSetAuthority": "complete declared renderer roots"
+    },
+    {
+      "manifest": "../final/renderer-inputs.json",
+      "manifestSHA256": "682f82f177563aefe442e1873a4ef84c4041fc8bd178001f58e80050dd8fa83c",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 474,
+      "actualPathSetMatches": true,
+      "matched": 474,
+      "mismatches": [],
+      "pathSetAuthority": "complete declared renderer roots"
+    },
+    {
+      "manifest": "../final/members.json",
+      "manifestSHA256": "81baaba0ce9353d56851ff69f52f48ff26a629542c422f16c308e63b5cf494cb",
+      "root": "/tmp/opencode/build-memory-final",
+      "paths": 90,
+      "actualPathSetMatches": true,
+      "matched": 90,
+      "mismatches": [],
+      "pathSetAuthority": "complete built dist trees"
+    },
+    {
+      "manifest": "../final/members.json",
+      "manifestSHA256": "81baaba0ce9353d56851ff69f52f48ff26a629542c422f16c308e63b5cf494cb",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "paths": 90,
+      "actualPathSetMatches": true,
+      "matched": 90,
+      "mismatches": [],
+      "pathSetAuthority": "complete built dist trees"
+    }
+  ],
+  "rendererFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44",
+  "laterCommitBinding": {
+    "revision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+    "matches": 516,
+    "total": 516,
+    "originalDirtyRunUnchanged": true
+  }
+}

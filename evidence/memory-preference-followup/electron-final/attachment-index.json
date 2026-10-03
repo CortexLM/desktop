@@ -1,0 +1,586 @@
+[
+  {
+    "run": "final-full",
+    "file": "appearance-theme.spec.ts",
+    "title": "Appearance theme keyboard and rail synchronization — 960 light",
+    "name": "appearance-theme-observations-light",
+    "sha256": "d3c0b11bab6f487e1632dc5c8c67590a04696427104f73dda081c447af23b767",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "appearance-theme.spec.ts",
+    "title": "Appearance theme keyboard and rail synchronization — 960 dark",
+    "name": "appearance-theme-observations-dark",
+    "sha256": "f688d1adab79fb932d41e392108c22115a5bc7fbbe9fa728782f6e1b6327c8f4",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "bot-owner.spec.ts",
+    "title": "Bot route ownership replaces the selected session before displaying or sending — light",
+    "name": "bot-owner-evidence",
+    "sha256": "f625c3ccb7c4c58d2d387d2dd0f1b833e5fce0640fb3220934b7061543396691",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "bot-owner.spec.ts",
+    "title": "Bot route ownership replaces the selected session before displaying or sending — dark",
+    "name": "bot-owner-evidence",
+    "sha256": "937d45485afcba31ab610e99f81fe7fb5529407b389e15b6ac6cfdb1ec32ce8f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "chat-missing.spec.ts",
+    "title": "Deleted Chat shows truthful missing-page recovery — light",
+    "name": "chat-missing-evidence",
+    "sha256": "e37b6a8202a1458b3869dcbcec6b91b123f45eae238fa40cdb3b4521036f1490",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "chat-missing.spec.ts",
+    "title": "Deleted Chat shows truthful missing-page recovery — dark",
+    "name": "chat-missing-evidence",
+    "sha256": "cfe29c621b2591b29bfc854295eb37e53ff568e6301f2c8834e5b41f4de09252",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-light-0",
+    "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-light-1",
+    "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-light-2",
+    "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-dark-0",
+    "sha256": "350b488f255e52d013de856221079f72daf6bdd31aeede628391e5649ded2d4d",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-dark-1",
+    "sha256": "6c0275792f871f35c3939bec573c0c8b06788241c43c996081f7de6e77837909",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-960-dark-2",
+    "sha256": "cd20316071f5de49f49b03228715b60365c6a0ead756811e7a17f92cf0041f37",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-light-0",
+    "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-light-1",
+    "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-light-2",
+    "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-dark-0",
+    "sha256": "428bb7ad9feafae3fd13997127e80c08d485b815940b06b5076dd901f4d16ee6",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-dark-1",
+    "sha256": "8214e50dbd1e14d0a16a3388e9d608dea0715467b8d1028ff0abf63a13f37c53",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-diff-scroll.spec.ts",
+    "title": "Unequal Code diff bodies wheel-scroll to real write tails while headers stay visible",
+    "name": "diff-header-1440-dark-2",
+    "sha256": "d53e158caa0c425a3392df389e83b215ef52cd8af2b7a6f6f8f3b64b56d0c555",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-models.spec.ts",
+    "title": "Code persisted provider failure stays Failed across reload and recovers after a successful follow-up — light",
+    "name": "code-failure-evidence",
+    "sha256": "320c9e8336f3086eda8a04f6817a2c7284ef09173a91778987e9afe67ee5f5cf",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "code-models.spec.ts",
+    "title": "Code persisted provider failure stays Failed across reload and recovers after a successful follow-up — dark",
+    "name": "code-failure-evidence",
+    "sha256": "c1fd29876770e2a22776b61af5ef34431ff82bec1c9d3bb6b8c7b68d1663715e",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "name": "held-real-history",
+    "sha256": "deb425618e0c471621152920908beb28c76cebbca4392f0aea954b2c5919444f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "name": "live-state-evidence",
+    "sha256": "f82a417a9bdd329a8911cbdee76c7248096ebaa16080501821b921eaa90741f9",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "name": "held-real-history",
+    "sha256": "fec9808d075e7c8b335b09024c980f73de15dc16bc4d1554480c4f0fd0b9ab49",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "name": "live-state-evidence",
+    "sha256": "407e738e39fa1f2db4dc04380b0818cccf77512e7302ecc3c895ebab417963df",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "name": "held-real-history",
+    "sha256": "c77182685451e38fb60a0d3c697c95e9638a6a9937437cdfe4e736a5726f6eda",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "name": "live-state-evidence",
+    "sha256": "bd82c210b87a3b6b4f4f0dd4e38c56968839596e50cd11e6c7523f73d3005d57",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "name": "held-real-history",
+    "sha256": "c600619dec3fef40886e9c2202a9ed55dc1d93eebe11b9a6147104d32a52ee85",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "name": "live-state-evidence",
+    "sha256": "0028a34457070baa9da85578087d45b8048bbbf3c5543d7baabaf65881dcce5f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "memory-localization.spec.ts",
+    "title": "Saved Bot memory copy remains readable in eight locales and both themes",
+    "name": "memory-locale-geometry",
+    "sha256": "d0bd3476b8ba4edb5a1a40b1a0daf30cb2b3aaeb348a2036ff47b774b593c39b",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "title": "skipped native route and theme transitions preserve updates and report callback errors",
+    "name": "skipped-native-transitions",
+    "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "title": "skipped native route and theme transitions preserve updates and report callback errors",
+    "name": "native-callback-errors",
+    "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "title": "Work preview departure keeps its context until native live-Code navigation commits",
+    "name": "preview-departure-errors",
+    "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "provider-draft.spec.ts",
+    "title": "provider availability preserves an unsaved replacement key — 960 light",
+    "name": "provider-draft-observation-light",
+    "sha256": "8b8da008dbb1b6b7fa4f86481474d33bc58b46653fa9e0ed06e020ba45b762c5",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "provider-draft.spec.ts",
+    "title": "provider availability preserves an unsaved replacement key — 960 dark",
+    "name": "provider-draft-observation-dark",
+    "sha256": "b72857e5faf50f67c8e0f1d0d536f933df732cf5ace9be6cc942a490560fd381",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — light",
+    "name": "provider-key-pending-evidence",
+    "sha256": "1a39a9777f094dabf070ee7d5da27d5b7ede2beab2493124c1946b5d70104cbf",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "provider-key-pending.spec.ts",
+    "title": "Provider key Save and Remove preserve edits made while their real response is pending — dark",
+    "name": "provider-key-pending-evidence",
+    "sha256": "e2312099a1e3783952514c347044ccf51c5e2b6f7b81d98c0684f20a4a9dfe67",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "remote-auth.spec.ts",
+    "title": "Live sign-in copy stays readable across eight locales",
+    "name": "auth-locale-geometry",
+    "sha256": "47d875371905e6ba43318c840086d7ce427dca55771c95dcdfd8f50cb57ba599",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "remote-auth.spec.ts",
+    "title": "Live sign-in copy stays readable across eight locales",
+    "name": "auth-locale-fonts",
+    "sha256": "5a2218362051a2a4804ede2c1f77cf57b0eb9cbbe628f8ede756fe4477f96c3e",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "responsive.spec.ts",
+    "title": "Code approval descriptions stay clear of controls — 960×640 light",
+    "name": "approval-description-geometry",
+    "sha256": "21e44f36838ee6cc7cc49a5683e3f5f29f3932751924702553bc2da8ce30593f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "responsive.spec.ts",
+    "title": "Code approval descriptions stay clear of controls — 960×640 dark",
+    "name": "approval-description-geometry",
+    "sha256": "21e44f36838ee6cc7cc49a5683e3f5f29f3932751924702553bc2da8ce30593f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "responsive.spec.ts",
+    "title": "Code approval descriptions stay clear of controls — 1024×686 light",
+    "name": "approval-description-geometry",
+    "sha256": "50ce2e416c71c228b7b4cbf07b0dd6ba8da139b90538841ca62f28d99df9bd6f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "responsive.spec.ts",
+    "title": "Code approval descriptions stay clear of controls — 1024×686 dark",
+    "name": "approval-description-geometry",
+    "sha256": "50ce2e416c71c228b7b4cbf07b0dd6ba8da139b90538841ca62f28d99df9bd6f",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "runtime-settings.spec.ts",
+    "title": "Memory pause persists across restart, preserves notes and gates future Bot context — light",
+    "name": "memory-context",
+    "sha256": "2294fd0c956d0795bf0047e3f84d266c14cdc0cd508d3276faa505fd59a87779",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "runtime-settings.spec.ts",
+    "title": "Memory pause persists across restart, preserves notes and gates future Bot context — dark",
+    "name": "memory-context",
+    "sha256": "5b528b67313b02ab2c8aab8dc0dd4f9b0926a67838cd1d0ea8a67e8d7ea1ff52",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "runtime-settings.spec.ts",
+    "title": "Settings reject duplicate pending writes, recover real refusals and ignore stale reads after events/navigation",
+    "name": "settings-real-responses",
+    "sha256": "38fa81e60052d6191de86155aba716929fc5652cf7a5e1e58edc9785ec99cf28",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "runtime-settings.spec.ts",
+    "title": "Cancelled preview navigation recovers held Memory reads and Privacy writes",
+    "name": "cancelled-preview-settings",
+    "sha256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-960-light-viewport",
+    "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-960-dark-viewport",
+    "sha256": "57aa780711fae68446e1442b078aca502746ac16f17d77f18520a90ecb4e49dc",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-1024-light-viewport",
+    "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-1024-dark-viewport",
+    "sha256": "74018101337d399425e16b0ca7c361afa8182362a964d33cd1bfa4a14bf1deb4",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-1440-light-viewport",
+    "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "terminal-copy.spec.ts",
+    "title": "French Code terminal localizes fresh shell notices without changing output or replay",
+    "name": "terminal-copy-fr-1440-dark-viewport",
+    "sha256": "b949a2100a39743616638138c274343801c7aa14b700715225ab2df0d0642c7e",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — light",
+    "name": "cold-fonts-light",
+    "sha256": "170ceed4b9f9ef5a3a2cd87685221c409506fc025ce2cb187bd520c0fe0ac919",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — light",
+    "name": "warm-fonts-light",
+    "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — light",
+    "name": "user-wheel-light",
+    "sha256": "f031e16cf8aacb024e629ee4ae0fc343c7959d85da917b26c1953527b8eff464",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — light",
+    "name": "variant-change-light",
+    "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — dark",
+    "name": "cold-fonts-dark",
+    "sha256": "170ceed4b9f9ef5a3a2cd87685221c409506fc025ce2cb187bd520c0fe0ac919",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — dark",
+    "name": "warm-fonts-dark",
+    "sha256": "41e41fb8d312eaf85d98fb964ce47b21d47efabb3eec3297f4c76c001e4a06aa",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — dark",
+    "name": "user-wheel-dark",
+    "sha256": "f031e16cf8aacb024e629ee4ae0fc343c7959d85da917b26c1953527b8eff464",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "final-full",
+    "file": "work-scroll.spec.ts",
+    "title": "Work initial scroll settles after fonts without taking back user control — dark",
+    "name": "variant-change-dark",
+    "sha256": "b7baf082c5e4df6e79f691871db8f39b5e838d597af786cfd147d3ed66034944",
+    "report": "../final/final-full.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "memory-localization.spec.ts",
+    "title": "Saved Bot memory copy remains readable in eight locales and both themes",
+    "name": "memory-locale-geometry",
+    "sha256": "d0bd3476b8ba4edb5a1a40b1a0daf30cb2b3aaeb348a2036ff47b774b593c39b",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "title": "skipped native route and theme transitions preserve updates and report callback errors",
+    "name": "skipped-native-transitions",
+    "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "title": "skipped native route and theme transitions preserve updates and report callback errors",
+    "name": "native-callback-errors",
+    "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "title": "Work preview departure keeps its context until native live-Code navigation commits",
+    "name": "preview-departure-errors",
+    "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "runtime-settings.spec.ts",
+    "title": "Memory pause persists across restart, preserves notes and gates future Bot context — light",
+    "name": "memory-context",
+    "sha256": "de42358cabcc3ca5deefdc40ab96f9d68e2c1b718ab49efef46d6195ef27438a",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "runtime-settings.spec.ts",
+    "title": "Memory pause persists across restart, preserves notes and gates future Bot context — dark",
+    "name": "memory-context",
+    "sha256": "3671153ecf1e46f2ffe962bd7508252c33ebd63037a0bfb0ff984f0686ac93e4",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "runtime-settings.spec.ts",
+    "title": "Settings reject duplicate pending writes, recover real refusals and ignore stale reads after events/navigation",
+    "name": "settings-real-responses",
+    "sha256": "38fa81e60052d6191de86155aba716929fc5652cf7a5e1e58edc9785ec99cf28",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "runtime-settings.spec.ts",
+    "title": "Cancelled preview navigation recovers held Memory reads and Privacy writes",
+    "name": "cancelled-preview-settings",
+    "sha256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2",
+    "report": "../final/boundary-targeted.json.gz"
+  },
+  {
+    "run": "navigation-baseline",
+    "file": "runtime-settings.spec.ts",
+    "title": "Cancelled preview navigation recovers held Memory reads and Privacy writes",
+    "name": "cancelled-preview-settings",
+    "sha256": "617f252263dad960489977f8df65be38417bdfb3f358f1aa204d6198d9f2ff47",
+    "report": "../navigation/navigation-baseline.json.gz"
+  }
+]

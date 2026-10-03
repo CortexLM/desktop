@@ -1,0 +1,118 @@
+{
+  "originalBehaviorBaseline": {
+    "path": "../baseline/receipt.json",
+    "bytes": 292,
+    "sha256": "2303932ac4931636a1178d611d4bfddffacd49acc8e3f750753252e9059319a7"
+  },
+  "originalBehavior": {
+    "application": "f82a64800c0fffd6ebaa99e571a8af0fa4307095",
+    "expected": "Privacy off survives navigation and Memory off survives reload",
+    "observations": {
+      "privacyOffSaved": "false",
+      "memoryAfterPrivacyOff": true,
+      "memoryAfterReload": true
+    },
+    "status": "reproduced"
+  },
+  "initialSelectorFailure": {
+    "path": "../baseline/initial-selector.log",
+    "bytes": 4268,
+    "sha256": "ec701a3af2446e6dba7d496bb2e637e12d051ed59b2431768284b938c16b6f7a"
+  },
+  "fiveCasePreAPIBaseline": "All five failed: two explicit GET /api/settings 404; one default-switch assertion; two missing PUT-gate waits. These do not independently prove five broken implemented behaviors.",
+  "lifecycleBaseline": {
+    "cases": 1,
+    "errors": 2,
+    "testSHA256": "a3749931aa28b459844b9c4ab24bb52d8762a079210a379de524416624acffe8",
+    "source": "historical-results.jsonl",
+    "observed": "GET accepted true leaves no control; PUT accepted false leaves checked/disabled true."
+  },
+  "sameLifecycleTestBytesInFinal": true,
+  "unchangedOriginal218Lines": true,
+  "finalCIBoundaryRecovery": [
+    {
+      "os": "e2e-linux",
+      "evidence": [
+        {
+          "method": "GET",
+          "actual": {
+            "memoryEnabled": true
+          },
+          "control": [
+            {
+              "checked": "true",
+              "disabled": false,
+              "visible": true
+            }
+          ],
+          "transitions": [
+            "cortex://app/index.html#/home?preview&theme=light",
+            "cortex://app/index.html#/memory?theme=light"
+          ]
+        },
+        {
+          "method": "PUT",
+          "actual": {
+            "memoryEnabled": false
+          },
+          "control": [
+            {
+              "checked": "false",
+              "disabled": false,
+              "visible": true
+            }
+          ],
+          "transitions": [
+            "cortex://app/index.html#/home?preview&theme=light",
+            "cortex://app/index.html#/settings?section=privacy&theme=light"
+          ]
+        }
+      ],
+      "attachmentSHA256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2"
+    },
+    {
+      "os": "macos",
+      "evidence": [
+        {
+          "method": "GET",
+          "actual": {
+            "memoryEnabled": true
+          },
+          "control": [
+            {
+              "checked": "true",
+              "disabled": false,
+              "visible": true
+            }
+          ],
+          "transitions": [
+            "cortex://app/index.html#/home?preview&theme=light",
+            "cortex://app/index.html#/memory?theme=light"
+          ]
+        },
+        {
+          "method": "PUT",
+          "actual": {
+            "memoryEnabled": false
+          },
+          "control": [
+            {
+              "checked": "false",
+              "disabled": false,
+              "visible": true
+            }
+          ],
+          "transitions": [
+            "cortex://app/index.html#/home?preview&theme=light",
+            "cortex://app/index.html#/settings?section=privacy&theme=light"
+          ]
+        }
+      ],
+      "attachmentSHA256": "29fec750b1c5c513dc614ed405582ca8efebbd9df702ed104758c1a60b4d53b2"
+    }
+  ],
+  "localTargetedCases": 21,
+  "localFinalFullCases": 125,
+  "initial124And14RemainHistorical": true,
+  "scope": "One deterministic held-navigation defect corrected; real IPC/settings persist. Controlled fake-provider requests prove prompt payload context, not real Cloud or model quality."
+}

@@ -1,0 +1,23 @@
+{
+  "captureDirtyBase": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "initialFingerprint": "30ec7f97fb1de75ba4dc66fa81a4dfba0e76cd16008bfa53600d7ca512b810fb",
+  "finalFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "changedSource": "packages/app/src/state/runtime-settings.ts",
+  "initialHookSHA256": "481982a480a648639a8361f5e2b2fd30c3c9edba853ef0d2887e7e3b421360b3",
+  "finalHookSHA256": "a441e7e520e803c49f1fb5a5755c8e2cb0efed9dcdb4f30ce284a789f44e8c00",
+  "addedLines": 18,
+  "removedLines": 10,
+  "other515InputsByteExact": true,
+  "allCSSAndCopyByteExact": true,
+  "buildMembers": 90,
+  "samePathAndBytes": 88,
+  "mainPreloadAndMapsByteExact": true,
+  "rendererJS": {
+    "initial": "packages/app/dist/assets/index-BIgOyEZ8.js",
+    "initialSHA256": "b153207ab22d861036f753c84c0b956490ae749439e5816814136df78cc42227",
+    "final": "packages/app/dist/assets/index-BtBW9d3M.js",
+    "finalSHA256": "af6bb76723b5de4f7774f476260362ad6d75651e118f2b02c18b0e740844d477"
+  },
+  "htmlDelta": "Renderer JS src filename only",
+  "previewObservation": "Initial permitted preview/shot/gallery guard retained. Final listener sync sees liveRoute false in a settled preview, clears owner then returns before UI resets or settings calls. This source observation plus captures establishes static preview scope, not the live race correction."
+}

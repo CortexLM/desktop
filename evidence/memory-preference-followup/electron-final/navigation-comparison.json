@@ -1,0 +1,116 @@
+[
+  {
+    "run": "final-full",
+    "phases": [
+      {
+        "method": "GET",
+        "actual": {
+          "memoryEnabled": true
+        },
+        "control": [
+          {
+            "checked": "true",
+            "disabled": false,
+            "visible": true
+          }
+        ],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/memory?theme=light"
+        ]
+      },
+      {
+        "method": "PUT",
+        "actual": {
+          "memoryEnabled": false
+        },
+        "control": [
+          {
+            "checked": "false",
+            "disabled": false,
+            "visible": true
+          }
+        ],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/settings?section=privacy&theme=light"
+        ]
+      }
+    ],
+    "realCalls": 8
+  },
+  {
+    "run": "boundary-targeted",
+    "phases": [
+      {
+        "method": "GET",
+        "actual": {
+          "memoryEnabled": true
+        },
+        "control": [
+          {
+            "checked": "true",
+            "disabled": false,
+            "visible": true
+          }
+        ],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/memory?theme=light"
+        ]
+      },
+      {
+        "method": "PUT",
+        "actual": {
+          "memoryEnabled": false
+        },
+        "control": [
+          {
+            "checked": "false",
+            "disabled": false,
+            "visible": true
+          }
+        ],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/settings?section=privacy&theme=light"
+        ]
+      }
+    ],
+    "realCalls": 8
+  },
+  {
+    "run": "navigation-baseline",
+    "phases": [
+      {
+        "method": "GET",
+        "actual": {
+          "memoryEnabled": true
+        },
+        "control": [],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/memory?theme=light"
+        ]
+      },
+      {
+        "method": "PUT",
+        "actual": {
+          "memoryEnabled": false
+        },
+        "control": [
+          {
+            "checked": "true",
+            "disabled": true,
+            "visible": true
+          }
+        ],
+        "transitions": [
+          "cortex://app/index.html#/home?preview&theme=light",
+          "cortex://app/index.html#/settings?section=privacy&theme=light"
+        ]
+      }
+    ],
+    "realCalls": 6
+  }
+]

@@ -1,0 +1,306 @@
+[
+  {
+    "run": "final-full",
+    "file": "appearance-theme.spec.ts",
+    "name": "appearance-theme-observations-light",
+    "sha256": "d3c0b11bab6f487e1632dc5c8c67590a04696427104f73dda081c447af23b767",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "appearance-theme.spec.ts",
+    "name": "appearance-theme-observations-dark",
+    "sha256": "f688d1adab79fb932d41e392108c22115a5bc7fbbe9fa728782f6e1b6327c8f4",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "bot-owner.spec.ts",
+    "name": "bot-owner-evidence",
+    "sha256": "f625c3ccb7c4c58d2d387d2dd0f1b833e5fce0640fb3220934b7061543396691",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "bot-owner.spec.ts",
+    "name": "bot-owner-evidence",
+    "sha256": "937d45485afcba31ab610e99f81fe7fb5529407b389e15b6ac6cfdb1ec32ce8f",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "chat-missing.spec.ts",
+    "name": "chat-missing-evidence",
+    "sha256": "e37b6a8202a1458b3869dcbcec6b91b123f45eae238fa40cdb3b4521036f1490",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "chat-missing.spec.ts",
+    "name": "chat-missing-evidence",
+    "sha256": "cfe29c621b2591b29bfc854295eb37e53ff568e6301f2c8834e5b41f4de09252",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "code-models.spec.ts",
+    "name": "code-failure-evidence",
+    "sha256": "320c9e8336f3086eda8a04f6817a2c7284ef09173a91778987e9afe67ee5f5cf",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "code-models.spec.ts",
+    "name": "code-failure-evidence",
+    "sha256": "c1fd29876770e2a22776b61af5ef34431ff82bec1c9d3bb6b8c7b68d1663715e",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "live-state.spec.ts",
+    "name": "live-state-errors",
+    "sha256": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "name": "skipped-native-transitions",
+    "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "unhandled": [],
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "name": "native-callback-errors",
+    "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "unhandled": [
+        {
+          "source": "updateCallbackDone",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "finished",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "updateCallbackDone",
+          "kind": "theme",
+          "name": "Error",
+          "message": "Native theme callback failed"
+        }
+      ],
+      "errors": [
+        "Native route callback failed",
+        "Native route callback failed",
+        "Native theme callback failed"
+      ]
+    },
+    "intentional": true
+  },
+  {
+    "run": "final-full",
+    "file": "navigation.spec.ts",
+    "name": "preview-departure-errors",
+    "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "provider-draft.spec.ts",
+    "name": "provider-draft-observation-light",
+    "sha256": "8b8da008dbb1b6b7fa4f86481474d33bc58b46653fa9e0ed06e020ba45b762c5",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "httpRequests": 0
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "provider-draft.spec.ts",
+    "name": "provider-draft-observation-dark",
+    "sha256": "b72857e5faf50f67c8e0f1d0d536f933df732cf5ace9be6cc942a490560fd381",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "httpRequests": 0
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "provider-key-pending.spec.ts",
+    "name": "provider-key-pending-evidence",
+    "sha256": "1a39a9777f094dabf070ee7d5da27d5b7ede2beab2493124c1946b5d70104cbf",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "final-full",
+    "file": "provider-key-pending.spec.ts",
+    "name": "provider-key-pending-evidence",
+    "sha256": "e2312099a1e3783952514c347044ccf51c5e2b6f7b81d98c0684f20a4a9dfe67",
+    "report": "../final/final-full.json.gz",
+    "fields": {
+      "errors": [],
+      "rendererHttp": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "name": "skipped-native-transitions",
+    "sha256": "80f621bdca8b5a01a4f1a32b88c92457a87f9cacee0cf962bc1003ca1a1681f4",
+    "report": "../final/boundary-targeted.json.gz",
+    "fields": {
+      "unhandled": [],
+      "errors": []
+    },
+    "intentional": false
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "name": "native-callback-errors",
+    "sha256": "f64a709ce8e81d59e0f1ea8f636137ef773fdfd138dd45db03fbcfc4e5218286",
+    "report": "../final/boundary-targeted.json.gz",
+    "fields": {
+      "unhandled": [
+        {
+          "source": "updateCallbackDone",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "finished",
+          "kind": "route",
+          "name": "Error",
+          "message": "Native route callback failed"
+        },
+        {
+          "source": "updateCallbackDone",
+          "kind": "theme",
+          "name": "Error",
+          "message": "Native theme callback failed"
+        }
+      ],
+      "errors": [
+        "Native route callback failed",
+        "Native route callback failed",
+        "Native theme callback failed"
+      ]
+    },
+    "intentional": true
+  },
+  {
+    "run": "boundary-targeted",
+    "file": "navigation.spec.ts",
+    "name": "preview-departure-errors",
+    "sha256": "04c2d340cfae02d5b14d54b8d839e8c8b92bb1f2a8b828d8425b84692bb93048",
+    "report": "../final/boundary-targeted.json.gz",
+    "fields": {
+      "errors": []
+    },
+    "intentional": false
+  }
+]

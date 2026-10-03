@@ -1,0 +1,64 @@
+{
+  "rawReports": [
+    {
+      "source": "/tmp/opencode/memory-ci-37139741944/artifacts/e2e-linux/test-results/e2e.json",
+      "retained": "e2e-linux-report.json.gz",
+      "rawBytes": 1611381,
+      "rawSHA256": "fd3f1ba4e7a5bdffe52b45261e23c1c46d09d1ea3290193dd4cbb63fa1f38d24",
+      "gzipSHA256": "a915e0f62bd1fccbaaa643d49d07a3ca364200b1519b46083827b9963ae7c584"
+    },
+    {
+      "source": "/tmp/opencode/memory-ci-37139741944/artifacts/macos/test-results/e2e.json",
+      "retained": "macos-report.json.gz",
+      "rawBytes": 1604065,
+      "rawSHA256": "aa3d0036e51c5cd1b12f3f1e6806157f41be0cbd9d78fbaef9c3437e474aeac3",
+      "gzipSHA256": "cb504b55715f3623e4310e84b395aeae689ad26c432b052a874822f29852fe17"
+    }
+  ],
+  "imageRetention": {
+    "f82a648 RGBA-exact canonical": 254,
+    "new lossless WebP": 76,
+    "local targeted RGBA-exact canonical": 9
+  },
+  "uniqueImages": 339,
+  "pngCopies": 1023,
+  "rawArchivesRetainedInRepository": false,
+  "archiveBindings": "downloads.json",
+  "canonicalReusesRequire": "Full-image decoded RGBA hash and bytes exact; prior retained SHA256 and dimensions verified. No tolerance.",
+  "originalInputHashes": [
+    {
+      "path": "/tmp/opencode/memory-ci-37139741944/run.json",
+      "sha256": "51dba751b9742c9d3da1bcb996d4aa8f5156e34d79fbd1d93dc90734aba52d53"
+    },
+    {
+      "path": "/tmp/opencode/memory-ci-37139741944/run.log",
+      "sha256": "78124317f1a5728304a14bf76ca0ad22a5a86824223686ce40fd37ec204dd792"
+    },
+    {
+      "path": "/tmp/opencode/memory-ci-37139741944/artifacts.json",
+      "sha256": "8da8084d72ea323a8f3492562ebb0e125b86bd58a9c22c0abe1723c5b0865192"
+    },
+    {
+      "path": "/tmp/opencode/memory-ci-37139741944/archive-bindings.json",
+      "sha256": "a0d4df6db54dffdc39a0a8b71bddb05e07af91c1746c988961815aab5aaa4d26"
+    }
+  ],
+  "rawLog": {
+    "source": "/tmp/opencode/memory-ci-37139741944/run.log",
+    "retained": "logs/run.log.gz",
+    "rawBytes": 268707,
+    "rawSHA256": "78124317f1a5728304a14bf76ca0ad22a5a86824223686ce40fd37ec204dd792",
+    "gzipSHA256": "16cd9ebbe368847d866a084b6b81d4e8f61523045ebe4c2d39f4b703ebfcf1cc"
+  },
+  "canonicalReusesByOS": {
+    "e2e-linux": {
+      "f82a648 RGBA-exact canonical": 122,
+      "new lossless WebP": 38,
+      "local targeted RGBA-exact canonical": 9
+    },
+    "macos": {
+      "f82a648 RGBA-exact canonical": 132,
+      "new lossless WebP": 38
+    }
+  }
+}

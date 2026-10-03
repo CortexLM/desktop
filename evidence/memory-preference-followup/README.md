@@ -1,7 +1,11 @@
 # Persistent saved Bot memory pause
 
-Implementation in progress after documentary `74579d5`, which preserves application
-`f82a648`. Projects' passing CI/native evidence does not establish this new behavior.
+Application `96df66ce727c42ddf647b2dcb4eeeff04fda4927` is pushed;
+[CI 37139741944](https://github.com/CortexLM/desktop/actions/runs/37139741944) passes
+all three jobs, including the unsigned macOS package/smoke.
+[Post-commit binding](final/application-pin.json) verifies all 516 tested package inputs.
+Original run receipts retain dirty base `74579d5`. Projects' earlier passing CI/native
+evidence does not establish this new behavior.
 
 The source-only [contract audit](source-contract.md) found two ineffective controls:
 Settings Privacy saves a renderer preference unused by inference; Memory resets its local
@@ -34,4 +38,26 @@ The corrected Linux package/smoke binds 90 members/516 inputs and renderer
 The coordinator inspected all 26 targeted-image contacts plus four full-size views;
 [lossless images](targeted-images/index.json) retain exact pixel identity. Final full-suite,
 **125/125 cases / 426 render visits**, passes in 293.095 seconds, zero retries/skips/flaky
-outcomes. CI, independent image audit and matching installed checks remain pending.
+outcomes. The [independent local artifact audit](electron-final/README.md) verifies
+173 unique frames, 12 full-size targets, all package inputs and actual model payloads.
+[Matching CI image review](ci-96df66c/README.md) verifies 125 cases/426 visits per OS,
+339 images/24 primary full-size targets and all sixteen auth-locale images exact to
+`f82a648`. Memory covers 64 states/112 text rows per OS. The CI native-display capture
+failure remains separate from its passing process/window/renderer smoke.
+[Independent installed-image review](../mac/96df66c/native-audit/README.md) accepts
+four native images, both-theme paused access and one dark-theme note deletion.
+
+[Independent macOS package admission](../mac/96df66c/package-review.md) verifies
+artifact `11279989876`, all 91 ASAR files/92 blocks, 90 build members, 104 catalogs and
+the bundled skill. Its ASAR exactly matches the tested Linux package. The first installed
+collector [stops before capture](../mac/96df66c/initial-native-probe/README.md); all eight
+cleanup checks pass. A separate appearance-readback diagnostic motivates a collector-only
+correction. The failed run retains its original status. The [fresh-profile corrected run](../mac/96df66c/README.md)
+passes four native captures/checks in 68.646 seconds, including paused-note deletion.
+All eight cleanup checks pass; the original OS appearance returns, five ports close,
+ordinary Cortex reopens and the Mac lease is released.
+
+[Independent preview comparison](compare/final/README.md) accepts 32 final captures:
+16 frozen references, 16 explicit Settings gaps. Initial and corrected-hook receipts stay
+separate; 28/32 main-content regions match exactly, remaining changes are within mascots.
+The maximum frozen difference is 0.063522%. This establishes preview preservation only.

@@ -1,0 +1,2909 @@
+{
+  "threshold": 0.15,
+  "pixelsPerFrame": 5184000,
+  "policy": "Full RGBA/raw and threshold counts separate. No mask modifies full-frame results; reference gaps have no frozen score.",
+  "rows": [
+    {
+      "name": "bot-settings~general-dark",
+      "initialAppSHA256": "543302508b693603484ad1b30ba055e8e92ee208fbe7c44a84f44e2b474ff050",
+      "finalAppSHA256": "91529524813e20f08e83522589044320ffd9a064c0f97df12473ea7c7fd19db3",
+      "initialRGBA": "f12695bbd9d5c14e0be5d51721b3f676c65a695e6b3980147c016ffb956259a3",
+      "finalRGBA": "05ff7f76a67795f31e034b314dc2c06678ede73c0c400ce32f1f79dadd474189",
+      "delta": {
+        "pixelmatch": {
+          "changed": 12,
+          "exactPct": 0.0002314814814814815,
+          "roundedPct": 0
+        },
+        "rawChanged": 783,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          358,
+          1507,
+          434
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 145,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              392,
+              268,
+              414
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 638,
+            "exactRGBA": false,
+            "bounds": [
+              1412,
+              358,
+              1507,
+              434
+            ]
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "9930847a184b452629fa1c7550339796462eac5d785614b3d52f64b95304a432",
+        "final": {
+          "changed": 1502,
+          "exactPct": 0.028973765432098765,
+          "roundedPct": 0.03
+        },
+        "initial": {
+          "changed": 1634,
+          "exactPct": 0.03152006172839506,
+          "roundedPct": 0.03
+        },
+        "raw": {
+          "rawChanged": 7257,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "bot-settings~general-light",
+      "initialAppSHA256": "ee30e6f7a228c4bef478808e5332b3bd8f189cd6edbea5a9aefe663cb3a8a2fb",
+      "finalAppSHA256": "e7ba11d86d5ea41d85979346ddc1d2b6a15511f7f9e14444d9ecce8601002e4c",
+      "initialRGBA": "ba295d23835bbca072e16a7be96e76fb9f538074ee8f4c1d603ab4ece451509a",
+      "finalRGBA": "b6c7b6185e5a18faeb1cfa73a63b778bdebb7db059133ddb3a9286c6235a064a",
+      "delta": {
+        "pixelmatch": {
+          "changed": 954,
+          "exactPct": 0.01840277777777778,
+          "roundedPct": 0.02
+        },
+        "rawChanged": 1983,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          362,
+          1510,
+          440
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 252,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 1731,
+            "exactRGBA": false,
+            "bounds": [
+              1410,
+              362,
+              1510,
+              440
+            ]
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "ca560407ee4d387020122d991c8727cdabe8dd44be4a88386b4df71fd0ed2a64",
+        "final": {
+          "changed": 242,
+          "exactPct": 0.00466820987654321,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 1067,
+          "exactPct": 0.020582561728395062,
+          "roundedPct": 0.02
+        },
+        "raw": {
+          "rawChanged": 5394,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "bot-settings~permissions-dark",
+      "initialAppSHA256": "3ad35b1d6d840115f1a805e0d36068211e17cbf7a2108008a99174f8fb0cb890",
+      "finalAppSHA256": "0de02820a8a17027e02ba62eb25147116e1828fea89a58db43ff43a3a087cf47",
+      "initialRGBA": "3c5a4aae9d6f38396f4af073a30a0493a6ca39cacf94a118ceebd1cb53352fae",
+      "finalRGBA": "9fd5793f904deecc4229896f6e782aa526bc97d419b3a2e62107408940a51dc8",
+      "delta": {
+        "pixelmatch": {
+          "changed": 71,
+          "exactPct": 0.0013695987654320989,
+          "roundedPct": 0
+        },
+        "rawChanged": 245,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 245,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "174bd2986a7a8ea1e59a4ef4eab23409955b16fe9351090a7e3ca706388a557f",
+        "final": {
+          "changed": 253,
+          "exactPct": 0.004880401234567901,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 332,
+          "exactPct": 0.006404320987654321,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 5505,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "bot-settings~permissions-light",
+      "initialAppSHA256": "d17fd4861448c0fedb2009d28de05dc71861e5ff0128688dbc99795a93a6e5fb",
+      "finalAppSHA256": "8fbde506985d3934a099172ec19105e105bbade951f5fd0f5e226f46265bee91",
+      "initialRGBA": "b814c5abddfa8061d1f6a62ac03b8c1dfd1550a7c92f5e5c16ce3c219a63db46",
+      "finalRGBA": "035a1d8f33e0c49b064def3c8b40bd1898a191749cc36a9a41cd6272d6a0086b",
+      "delta": {
+        "pixelmatch": {
+          "changed": 77,
+          "exactPct": 0.0014853395061728396,
+          "roundedPct": 0
+        },
+        "rawChanged": 264,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 264,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "2a6572e64a9eeab74a2c2113366e30529e4690a588f8642e9501d73e90c74bc3",
+        "final": {
+          "changed": 294,
+          "exactPct": 0.005671296296296297,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 351,
+          "exactPct": 0.0067708333333333336,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 5218,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "bot-settings~memory-dark",
+      "initialAppSHA256": "4d4248d1298c9988345e7cd3afb63b5dc9cc4e80bdb82f999db3332b8d284bad",
+      "finalAppSHA256": "7277404e057570d9db1b77016b86854b37dc9b0d5dd1e277c2008654f58bd2e5",
+      "initialRGBA": "9c267f83803fb1e61720f07d8c8985fbd75df2e75ccff4e0bbb6e3516bb6fa61",
+      "finalRGBA": "dd627fd57397e009da8ea22aa81838b478334d53ef815365e16b69f2a80b4c06",
+      "delta": {
+        "pixelmatch": {
+          "changed": 2,
+          "exactPct": 3.8580246913580246e-05,
+          "roundedPct": 0
+        },
+        "rawChanged": 145,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          395,
+          266,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 145,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              395,
+              266,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "d8badcd0eef8e6940710fe70a65898e62d81e97cd894ffee0f8bc26850d82b9e",
+        "final": {
+          "changed": 238,
+          "exactPct": 0.00459104938271605,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 239,
+          "exactPct": 0.0046103395061728395,
+          "roundedPct": 0
+        },
+        "raw": {
+          "rawChanged": 5015,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "bot-memory-panel",
+          "rect": [
+            1360,
+            250,
+            2710,
+            1160
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bot-settings~memory-light",
+      "initialAppSHA256": "43869e182d2426d08094001ec2a5fda869e6ddeface3aabc6fd1580721038a8e",
+      "finalAppSHA256": "64bd09db767f0ce6f06ff1183376822df39184cbc6ea36457b3186752c5f7645",
+      "initialRGBA": "d9816785e5534f7a2473dc41dc23bbbc233e2398d79c56195bcb28422d74a4db",
+      "finalRGBA": "6d87c7b90f26feaab88c9cb2a9e92318d5d35bca3ca29aa97cb9914ab649fc99",
+      "delta": {
+        "pixelmatch": {
+          "changed": 64,
+          "exactPct": 0.0012345679012345679,
+          "roundedPct": 0
+        },
+        "rawChanged": 241,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          392,
+          268,
+          415
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 241,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              392,
+              268,
+              415
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "2d66bc170d4d689ac21a55ab2d3bb398f547e8c59598bb9406b53f8fddea405b",
+        "final": {
+          "changed": 285,
+          "exactPct": 0.005497685185185185,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 356,
+          "exactPct": 0.006867283950617284,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 4891,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "bot-memory-panel",
+          "rect": [
+            1360,
+            250,
+            2710,
+            1160
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bot-settings~usage-dark",
+      "initialAppSHA256": "41641a4df3d8a6b2fac03921e210a2e10ea1ed97eaeed65dad6fed7c1ed6c437",
+      "finalAppSHA256": "1666d6e751f455496f3550721cba2c6d66dfec35530c62f97426b901a495ee53",
+      "initialRGBA": "df8a75aade9262b98aea36670725102cefb7e4ee5cf0b194c95ca39b68f99371",
+      "finalRGBA": "711f1b8348108c9180e5384e290d2aa2821e12eb66cde51b9aaa9d5c91014aa5",
+      "delta": {
+        "pixelmatch": {
+          "changed": 2,
+          "exactPct": 3.8580246913580246e-05,
+          "roundedPct": 0
+        },
+        "rawChanged": 142,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          395,
+          267,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 142,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              395,
+              267,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "e9d4da4e5bd2907e3bc38ac5ed18b0590a15e78bf87813c9f0571295f3f69df6",
+        "final": {
+          "changed": 390,
+          "exactPct": 0.007523148148148148,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 377,
+          "exactPct": 0.007272376543209877,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 5192,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "bot-settings~usage-light",
+      "initialAppSHA256": "bf80101f96474d567b49fb933bf12ef616d65ba12ccc57cb550458573163042f",
+      "finalAppSHA256": "227f4a0bd5eaebeb0c43a375612c784fde2507ebed506b707791cd38b13a2fca",
+      "initialRGBA": "bfd16c087b04c937dfea56511a433567d9a0d23bbafedc232528e7147c838f96",
+      "finalRGBA": "2ddd682584d212e651eb60a406916be5aa493257afeca6f6587231ed5e9cdec9",
+      "delta": {
+        "pixelmatch": {
+          "changed": 50,
+          "exactPct": 0.0009645061728395061,
+          "roundedPct": 0
+        },
+        "rawChanged": 238,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 238,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "a081630010fda697d0f35c83ae39aea822434e5796d7e570d295500229f800c0",
+        "final": {
+          "changed": 427,
+          "exactPct": 0.008236882716049382,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 458,
+          "exactPct": 0.008834876543209877,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 4952,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "memory~list-dark",
+      "initialAppSHA256": "772fa0896b220430221d0de2f492fbfea2529cbd0023ae12ff3e8a70a6d944bf",
+      "finalAppSHA256": "1fc8cb84e04a0ccc853df2550b68119906f4c294d260355c60f47f7aa31739a2",
+      "initialRGBA": "14530bb681938dc04e6aaab1197b4234724004c413fbcdc44cd8ef667d4157ed",
+      "finalRGBA": "315ec60fcfd90d5e24c5474b5089d3ba45cc6aa4f896566f1e4a13e129129a94",
+      "delta": {
+        "pixelmatch": {
+          "changed": 10,
+          "exactPct": 0.00019290123456790122,
+          "roundedPct": 0
+        },
+        "rawChanged": 158,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          392,
+          268,
+          414
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 158,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              392,
+              268,
+              414
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "d946f103e9e90b7b7c74d4dea1f53e969a619908e531883d461f509f70b1a20c",
+        "final": {
+          "changed": 244,
+          "exactPct": 0.0047067901234567906,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 260,
+          "exactPct": 0.005015432098765432,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 4812,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "memory~list-light",
+      "initialAppSHA256": "e8ab42d38d0b9dcb3c8de3d19f8a5c0aeb9e2d5901e508693fd33ce377afe88d",
+      "finalAppSHA256": "e4b5111c62d5f45891c486e2a81e5557917c041a7636d944ec2d1b4f81b70d60",
+      "initialRGBA": "f3c79829f2c8d736ea8bbb8d2f618db5b1a196652ee54a7844f1703906f94f73",
+      "finalRGBA": "632784947f30ee49aab9ba9dc08de499670109b9a0370a5f79427faf7b824f0a",
+      "delta": {
+        "pixelmatch": {
+          "changed": 82,
+          "exactPct": 0.0015817901234567902,
+          "roundedPct": 0
+        },
+        "rawChanged": 277,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          392,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 277,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              392,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "4f6fae9c3497fe269fac4f1d1da8ba82528186937a821ae4ac7bf2431a2c329b",
+        "final": {
+          "changed": 249,
+          "exactPct": 0.004803240740740741,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 228,
+          "exactPct": 0.004398148148148148,
+          "roundedPct": 0
+        },
+        "raw": {
+          "rawChanged": 4576,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "memory~off-dark",
+      "initialAppSHA256": "ccb81fbee97290b1da107c49ad082523298d424c7ae85cbe2037af5750e28700",
+      "finalAppSHA256": "d39305e6e685f3b44b2a8a3bd1973f4180e779fae87911bc4ac41548827ce8e1",
+      "initialRGBA": "ce4e3a4f79c22ba9e4607a28d241a1c24dbe82667cdfaf6fc684a64c54e25c88",
+      "finalRGBA": "de11a02763811d7eb3b6f64403b10360da72f9e485536c343ddd28aeda42e6be",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 4,
+        "exactRGBA": false,
+        "bounds": [
+          249,
+          404,
+          263,
+          414
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 4,
+            "exactRGBA": false,
+            "bounds": [
+              249,
+              404,
+              263,
+              414
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "8a505e503621bb74b2b08952dd84bea2d5bb79ef884c43c838e629f0aef828db",
+        "final": {
+          "changed": 278,
+          "exactPct": 0.0053626543209876545,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 278,
+          "exactPct": 0.0053626543209876545,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 5378,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "memory~off-light",
+      "initialAppSHA256": "36afc447b1dae57166165d3ff63aa5e8f7e4be6d05359eb0759bf4fcb49769fd",
+      "finalAppSHA256": "f93422588437d2729d5afcec2fb11770240ffbe064f259168bbe334ab7d7d354",
+      "initialRGBA": "ff48a3bd01f4d9aca6175123490b40bdc29dd18bdb7f1908fc17da602d7f6521",
+      "finalRGBA": "fe8f36d99c8ba73516ffec0e9c79ac34003879e17ca063c5f4718d43b7fe6494",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 5,
+        "exactRGBA": false,
+        "bounds": [
+          242,
+          400,
+          263,
+          408
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 5,
+            "exactRGBA": false,
+            "bounds": [
+              242,
+              400,
+              263,
+              408
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "6ecbfcc2871bcb35f382f039a98486886066225fe765d6f9edc8cd6739fca50f",
+        "final": {
+          "changed": 292,
+          "exactPct": 0.005632716049382716,
+          "roundedPct": 0.01
+        },
+        "initial": {
+          "changed": 292,
+          "exactPct": 0.005632716049382716,
+          "roundedPct": 0.01
+        },
+        "raw": {
+          "rawChanged": 5116,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "memory~empty-dark",
+      "initialAppSHA256": "02d3eb5c5fd6e54fa50b7aec38835646e927af413eb46331069ed86a4ec7f044",
+      "finalAppSHA256": "902e1d473f54d9abf7b662a1546fe7bdf4352f6c235ad295a5f9d082a97ae23c",
+      "initialRGBA": "ccbe673c214dfa4f61dfc266081ceab98e4bf4a118eabbd8b72d07c19b00b680",
+      "finalRGBA": "211ba2fb7fbeea8767b99e69a98cfe3bc3a6fa6cd6623b2284b2d57e5d324782",
+      "delta": {
+        "pixelmatch": {
+          "changed": 2,
+          "exactPct": 3.8580246913580246e-05,
+          "roundedPct": 0
+        },
+        "rawChanged": 269,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          395,
+          1831,
+          655
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 145,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              395,
+              266,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 124,
+            "exactRGBA": false,
+            "bounds": [
+              1713,
+              556,
+              1831,
+              655
+            ]
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "cb2ee3453cb4ee770a5319fca619942a5430f6a48ff0596ea92472a615c24e80",
+        "final": {
+          "changed": 228,
+          "exactPct": 0.004398148148148148,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 233,
+          "exactPct": 0.004494598765432099,
+          "roundedPct": 0
+        },
+        "raw": {
+          "rawChanged": 5231,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 124,
+            "exactRGBA": false,
+            "bounds": [
+              1713,
+              556,
+              1831,
+              655
+            ]
+          },
+          "versusFrozen": {
+            "rawChanged": 499,
+            "exactRGBA": false,
+            "bounds": [
+              1013,
+              276,
+              2508,
+              659
+            ]
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 57,
+            "exactRGBA": false,
+            "bounds": [
+              1013,
+              276,
+              2508,
+              390
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "memory~empty-light",
+      "initialAppSHA256": "b9ec5301fb071d63199e03d3a8ec81f24cfbacd42d2d015332583e7cb36632e0",
+      "finalAppSHA256": "4370cf1343c533e351d0b46ec1ee8699d85caa6f5c0e84f6a367188a553973c3",
+      "initialRGBA": "51c10128f18a73dbfadc690b14711bde4a125677d3c9cbe75400f559f6832606",
+      "finalRGBA": "5622e88a6efab74fadc022dac2713b5ee621034d0de0a4945b2f63151ead3154",
+      "delta": {
+        "pixelmatch": {
+          "changed": 1,
+          "exactPct": 1.9290123456790123e-05,
+          "roundedPct": 0
+        },
+        "rawChanged": 234,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          395,
+          1831,
+          655
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 142,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              395,
+              267,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 92,
+            "exactRGBA": false,
+            "bounds": [
+              1713,
+              558,
+              1831,
+              655
+            ]
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "0eeb0a2d2a653712b5934cf754fedfa060d64bf56fd22a1e46b0ec4fc79e2d22",
+        "final": {
+          "changed": 250,
+          "exactPct": 0.004822530864197531,
+          "roundedPct": 0
+        },
+        "initial": {
+          "changed": 254,
+          "exactPct": 0.004899691358024692,
+          "roundedPct": 0
+        },
+        "raw": {
+          "rawChanged": 5067,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": [
+        {
+          "name": "memory-panel",
+          "rect": [
+            1000,
+            250,
+            2545,
+            1690
+          ],
+          "versusInitial": {
+            "rawChanged": 92,
+            "exactRGBA": false,
+            "bounds": [
+              1713,
+              558,
+              1831,
+              655
+            ]
+          },
+          "versusFrozen": {
+            "rawChanged": 522,
+            "exactRGBA": false,
+            "bounds": [
+              1013,
+              277,
+              2508,
+              659
+            ]
+          }
+        },
+        {
+          "name": "memory-toggle-row",
+          "rect": [
+            1000,
+            250,
+            2545,
+            400
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": {
+            "rawChanged": 51,
+            "exactRGBA": false,
+            "bounds": [
+              1013,
+              277,
+              2508,
+              390
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "settings~general-dark",
+      "initialAppSHA256": "b9183b44b739cb008bff2b931002ef70d773ac49ffa0b348c98a8f15adb34641",
+      "finalAppSHA256": "4c851ceb25a136d0fa4a8f227ac1bf64d7f8cb8d1fb09e944ff1baa2b5b9987d",
+      "initialRGBA": "0052406e5d6b608ad1a893dc1e134fdc262973744a4bb173d95738b8e6793480",
+      "finalRGBA": "b10d4aa07ae6be1f5a64ec2d5644dfbe02cfd83f24d3798606de6bde32fec35a",
+      "delta": {
+        "pixelmatch": {
+          "changed": 1,
+          "exactPct": 1.9290123456790123e-05,
+          "roundedPct": 0
+        },
+        "rawChanged": 144,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          395,
+          266,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 144,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              395,
+              266,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "836227aa275246b7fb3b7f37ee28e5482e831546cfa4b8f71e83d33e19dda25e",
+        "final": {
+          "changed": 3293,
+          "exactPct": 0.06352237654320987,
+          "roundedPct": 0.06
+        },
+        "initial": {
+          "changed": 3294,
+          "exactPct": 0.06354166666666666,
+          "roundedPct": 0.06
+        },
+        "raw": {
+          "rawChanged": 18988,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2798,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "settings~general-light",
+      "initialAppSHA256": "3fc488c5fe26cd7d9e7b893d2aebedc809bc0eccb3c57226f06b7f1b5d8254c7",
+      "finalAppSHA256": "1e5f78dddf572d062f6b38a1028471360f43cd738a94b86728beed423f12d007",
+      "initialRGBA": "dd899dcdfa98a064a162bd71847cb2a19ff6c6afeb59db2bb56a8e14224c4cc8",
+      "finalRGBA": "41a964ff355515cb5097a6e2abf4aa680de40b5af36dea77c2a7e9a7a1ed7206",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 26,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          397,
+          267,
+          405
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 26,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              397,
+              267,
+              405
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "reference": {
+        "sha256": "ae95c1fd30cbfd37bd63fe06449ed5d949214725c4c77ac9933028b56a1eb1cc",
+        "final": {
+          "changed": 3143,
+          "exactPct": 0.06062885802469136,
+          "roundedPct": 0.06
+        },
+        "initial": {
+          "changed": 3143,
+          "exactPct": 0.06062885802469136,
+          "roundedPct": 0.06
+        },
+        "raw": {
+          "rawChanged": 18841,
+          "exactRGBA": false,
+          "bounds": [
+            52,
+            0,
+            2796,
+            1800
+          ]
+        }
+      },
+      "crops": []
+    },
+    {
+      "name": "settings~appearance-dark",
+      "initialAppSHA256": "19a7eef532a56632f082358a2dab5baab36b28791c961a9af7b598b5c526ee0d",
+      "finalAppSHA256": "a8a71df1e80f68101030aaaa734dfa53aad79023aa4102fc940db2807efd409c",
+      "initialRGBA": "f960934c6f09f2893523c7151a67bf5d815d73b1281c6e176d2e112442a56309",
+      "finalRGBA": "9d44bef5b9132306bbc30d81e8883c9e6a4749cfc13681b6b076e660b0b2caf7",
+      "delta": {
+        "pixelmatch": {
+          "changed": 31,
+          "exactPct": 0.0005979938271604939,
+          "roundedPct": 0
+        },
+        "rawChanged": 188,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          267,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 188,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              267,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~appearance-light",
+      "initialAppSHA256": "7ac395b9e05926bcf257ea6a1343491ce136604d2f6898f987426ec7d3b2fb9c",
+      "finalAppSHA256": "66b016881317fbf71ae7989ae5074de5e2a9c8281b1c98917351638c0ffa57a7",
+      "initialRGBA": "90a46c523af0d4f2a7ea27edf2ce8a271e80a75e49e236a40ada34b089f17af2",
+      "finalRGBA": "59ebededeffd5ac13122993f35d4dfb3a2fd3390ffbfa001ad481586079569c5",
+      "delta": {
+        "pixelmatch": {
+          "changed": 240,
+          "exactPct": 0.004629629629629629,
+          "roundedPct": 0
+        },
+        "rawChanged": 3968,
+        "exactRGBA": false,
+        "bounds": [
+          119,
+          92,
+          2601,
+          1697
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 1255,
+            "exactRGBA": false,
+            "bounds": [
+              2425,
+              92,
+              2601,
+              116
+            ]
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 2713,
+            "exactRGBA": false,
+            "bounds": [
+              119,
+              214,
+              710,
+              1697
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~providers-dark",
+      "initialAppSHA256": "8495a162d5270c8f7c810a4943f4a459f0e3620a3cde7fae0dc68dbeeaada70e",
+      "finalAppSHA256": "a3b51698ee521dbfaa89fc1b9b667ecaac562c0282d25faafc312c6c4505e002",
+      "initialRGBA": "4b0b6dcd3e1956f47e3e2c8868703f3557f528d7bf9356956d7090be8c580007",
+      "finalRGBA": "8667822064d1bcb37454b0d94175b327adca924075f499f37d5c462843ac0261",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 9,
+        "exactRGBA": false,
+        "bounds": [
+          248,
+          395,
+          266,
+          405
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 9,
+            "exactRGBA": false,
+            "bounds": [
+              248,
+              395,
+              266,
+              405
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~providers-light",
+      "initialAppSHA256": "a56e0cc829f1077e515cbbc87800aea77f9e5279ac1456276f8d63b83c9bf901",
+      "finalAppSHA256": "cdf2b5f9d9a2b3df41d185c8a7d0a57beb44b8bc5784c0c11219f1f5e9f63b46",
+      "initialRGBA": "4e1efde6511713ed104e30b369034655ce776343be1104f80c28c05d681f5684",
+      "finalRGBA": "8759f3ef05dd6d5ce1e621e782d9482aa422efb0a6bfc3cc5cfc90fe531323e2",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 98,
+        "exactRGBA": false,
+        "bounds": [
+          242,
+          392,
+          268,
+          414
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 98,
+            "exactRGBA": false,
+            "bounds": [
+              242,
+              392,
+              268,
+              414
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~connection-dark",
+      "initialAppSHA256": "c173aa2202c6eced493d2c910fe0597d1f53e61c1fd63e6b11de4e7f59f57619",
+      "finalAppSHA256": "e35044d1dbb9156b0660c5cd7bdaa1f70f724541b0275b8d8eb0588ffc19c3ee",
+      "initialRGBA": "ff9589c403a422c3b0cc3590850efb3233fb73215d8cf499b0c6087777d64574",
+      "finalRGBA": "9195c16f75403b4e993ef4c454172c75e9b248c05685561c6595a2f94f4262fa",
+      "delta": {
+        "pixelmatch": {
+          "changed": 266,
+          "exactPct": 0.005131172839506173,
+          "roundedPct": 0.01
+        },
+        "rawChanged": 4159,
+        "exactRGBA": false,
+        "bounds": [
+          119,
+          92,
+          2599,
+          1697
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 1305,
+            "exactRGBA": false,
+            "bounds": [
+              2429,
+              92,
+              2599,
+              113
+            ]
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 2854,
+            "exactRGBA": false,
+            "bounds": [
+              119,
+              214,
+              710,
+              1697
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~connection-light",
+      "initialAppSHA256": "9ef8df5d385c45865163b07c43930c8b89dd771012bc7e4b68bbea427464ad9f",
+      "finalAppSHA256": "82f8cc083477bb58d44eac6e80160607127f42aca22f7dcc96650ffaf74b4f5e",
+      "initialRGBA": "c36df91ad73d1bac809834cd91eb3559130e4a65b6e21be99e1de75c128876a9",
+      "finalRGBA": "2876f9256dbc2b92b58a08661cf6d13f9f699039fdb093b9192d2d491e19fd81",
+      "delta": {
+        "pixelmatch": {
+          "changed": 21,
+          "exactPct": 0.0004050925925925926,
+          "roundedPct": 0
+        },
+        "rawChanged": 183,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 183,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              415
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~bot-dark",
+      "initialAppSHA256": "b16129d8eadb10e2175e2a099534c8b0c9085cd5138b07d67f3f5f10668d7564",
+      "finalAppSHA256": "f2e35a1666da381c6eb506baabcf55e8e6108fa283b3579ce51e6b21da59c277",
+      "initialRGBA": "f96f3ad59eb276d96965d313bc6a1198f2288888effa5ce4f196d3196adfe402",
+      "finalRGBA": "f72ea97776dcf940b508c7259099378eaa3763ecaa82eb10fe9262bb3a689e26",
+      "delta": {
+        "pixelmatch": {
+          "changed": 71,
+          "exactPct": 0.0013695987654320989,
+          "roundedPct": 0
+        },
+        "rawChanged": 256,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          392,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 256,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              392,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~bot-light",
+      "initialAppSHA256": "3d3bc2e4bec18b5d561a799f8937fb40cac4b312da399d9209f743b668ebb58f",
+      "finalAppSHA256": "ea49b56fa8c299de4fde3155bd8959db81e19a688b3cfe338a7fa7c13147534e",
+      "initialRGBA": "c488e99c84060bc656686032f5db89e8eaa97e58f700c0d5b0006c5153b444dc",
+      "finalRGBA": "318df4d27e5e21a0158ea3d7841bd98d0c700684b22d6acf5bac0a8dba2a0815",
+      "delta": {
+        "pixelmatch": {
+          "changed": 47,
+          "exactPct": 0.0009066358024691358,
+          "roundedPct": 0
+        },
+        "rawChanged": 214,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 214,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              415
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~notifications-dark",
+      "initialAppSHA256": "1932744fabed40ef11b464cab39db8fa1398d33eb2f5ff7826b90162e9302dc1",
+      "finalAppSHA256": "2129268598cd8bc3a614cc419588077a0132932a6df79a8a64de6a1be8f41bb8",
+      "initialRGBA": "84bf6b099bf7437321fdebe0852ce66717d542ff57f8f2801bb870c847846580",
+      "finalRGBA": "abd1393814f1983e7847ee52ea4c06c3162ce199742aaf81045ff52a36e48f9c",
+      "delta": {
+        "pixelmatch": {
+          "changed": 54,
+          "exactPct": 0.0010416666666666667,
+          "roundedPct": 0
+        },
+        "rawChanged": 228,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 228,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              415
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~notifications-light",
+      "initialAppSHA256": "95bd6be2f570506836712a71f53260654b5caf023cbd4f804b8e6a7417e3b33f",
+      "finalAppSHA256": "e16d7228534f4b3a67a0145846c9bd56442dc0c5956dab948d5a1a22601da00b",
+      "initialRGBA": "4fdf9b91d5a6bac47026f74627bfcc7d0d756e684c75d185879cb8774d5c1122",
+      "finalRGBA": "96e8f07df36418eb9064c8becebffbd2f9c74ed9293a92291423dda26205f7b7",
+      "delta": {
+        "pixelmatch": {
+          "changed": 47,
+          "exactPct": 0.0009066358024691358,
+          "roundedPct": 0
+        },
+        "rawChanged": 215,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          415
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 215,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              415
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~privacy-dark",
+      "initialAppSHA256": "75b141b7728b90e45c9041c8f5129d162f003821f85e7dd667746604bedf485f",
+      "finalAppSHA256": "4ad57c80fbb2c18e8cb28a33bb09bb956b603a2bb19b54120b1b637a6611e011",
+      "initialRGBA": "a72d0447c28b415d2e062e610f0b6cda4ad58f9d59ab6347aa4df0561d270201",
+      "finalRGBA": "9fe0cb05756ae3f6f5352c1460de486cb3f734079bb2bb48af2b4711aa2cec64",
+      "delta": {
+        "pixelmatch": {
+          "changed": 205,
+          "exactPct": 0.0039544753086419755,
+          "roundedPct": 0
+        },
+        "rawChanged": 4378,
+        "exactRGBA": false,
+        "bounds": [
+          119,
+          92,
+          2601,
+          1697
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 1787,
+            "exactRGBA": false,
+            "bounds": [
+              2381,
+              92,
+              2601,
+              113
+            ]
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 2591,
+            "exactRGBA": false,
+            "bounds": [
+              119,
+              214,
+              710,
+              1697
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": [
+        {
+          "name": "privacy-panel",
+          "rect": [
+            1360,
+            270,
+            2680,
+            725
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": null
+        },
+        {
+          "name": "privacy-memory-row",
+          "rect": [
+            1360,
+            480,
+            2680,
+            597
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": null
+        }
+      ]
+    },
+    {
+      "name": "settings~privacy-light",
+      "initialAppSHA256": "bff45ad319ca9c33d843c2982f29cc9db11e40c301159e9c9dcea46ae27a0ed7",
+      "finalAppSHA256": "023e96fe1c93627ae5f0cac072f6ff5a3a0c5f23e8c0760a0911132737549e30",
+      "initialRGBA": "42d76c0d214abf50d95d60fc007f0fb92eb99cda4f74fc4caa19e3bd52cd4fae",
+      "finalRGBA": "d408e4cba14b08be2b094769a7a8ee7543f0ec68e4b246d5dd5e38e3998f620e",
+      "delta": {
+        "pixelmatch": {
+          "changed": 78,
+          "exactPct": 0.0015046296296296296,
+          "roundedPct": 0
+        },
+        "rawChanged": 265,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 265,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": [
+        {
+          "name": "privacy-panel",
+          "rect": [
+            1360,
+            270,
+            2680,
+            725
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": null
+        },
+        {
+          "name": "privacy-memory-row",
+          "rect": [
+            1360,
+            480,
+            2680,
+            597
+          ],
+          "versusInitial": {
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          "versusFrozen": null
+        }
+      ]
+    },
+    {
+      "name": "settings~shortcuts-dark",
+      "initialAppSHA256": "7ed383b945aac9e27989893f215da1ae69c7b4ca267d776a52850496dd131a25",
+      "finalAppSHA256": "cde1f477b6f9efc3ea7b96c54cf9ff5b78db18e18db9b2b357ce88b08d684995",
+      "initialRGBA": "2a8c82470b224977295fa83f46948b8bd2c11ad2d709e4257b0f24774fc85f38",
+      "finalRGBA": "bde9bb80ba62ca9263114585e4061409da567c2c2e75b017e5914c7fe432fa78",
+      "delta": {
+        "pixelmatch": {
+          "changed": 0,
+          "exactPct": 0,
+          "roundedPct": 0
+        },
+        "rawChanged": 19,
+        "exactRGBA": false,
+        "bounds": [
+          252,
+          397,
+          263,
+          403
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 19,
+            "exactRGBA": false,
+            "bounds": [
+              252,
+              397,
+              263,
+              403
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~shortcuts-light",
+      "initialAppSHA256": "f1133c34ffbee14d0f6fa3eafc419d72e77147bde51adf96550e930ab9afa673",
+      "finalAppSHA256": "a3562e4185dcb2f6cbe31c9f553e50f83d5616474fbad85d444068cde0c8142e",
+      "initialRGBA": "f4f53560ff207e6256445451cd415ec8cb2c62e8b57898f62416e2e3d3a299f9",
+      "finalRGBA": "c37fa2b81e754410563600a9096bb7a961fa8eff87c9d0d2d324dd2ea184a33f",
+      "delta": {
+        "pixelmatch": {
+          "changed": 246,
+          "exactPct": 0.00474537037037037,
+          "roundedPct": 0
+        },
+        "rawChanged": 3917,
+        "exactRGBA": false,
+        "bounds": [
+          119,
+          92,
+          2600,
+          1697
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 1263,
+            "exactRGBA": false,
+            "bounds": [
+              2427,
+              92,
+              2600,
+              113
+            ]
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 2654,
+            "exactRGBA": false,
+            "bounds": [
+              119,
+              214,
+              710,
+              1697
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~account-dark",
+      "initialAppSHA256": "0e617ff2053de9d9f85d50b42e1ff9d65d09ad4fcaa84d3eaf1be1a76f7e33c3",
+      "finalAppSHA256": "23e11e795d45c9f19836b047d80032ef6d4ac8bf5b38bb1297312832d995cfd5",
+      "initialRGBA": "15e7227d73e14b9430398d72765cf5c7b1fec36013b80af63d93468e8a43ec88",
+      "finalRGBA": "964e23180d14ebeacc8433ba98f0c6a7d8df7deef8f8444f45568ad92ded9978",
+      "delta": {
+        "pixelmatch": {
+          "changed": 8,
+          "exactPct": 0.00015432098765432098,
+          "roundedPct": 0
+        },
+        "rawChanged": 163,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          394,
+          267,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 163,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              394,
+              267,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    },
+    {
+      "name": "settings~account-light",
+      "initialAppSHA256": "f5fd6e576b765f74ddb440c1ee9b7e3caf94a7cbd0e329b7cba661984948fd84",
+      "finalAppSHA256": "977b61e6badd4e5d3c7c4c0f5ba8292ce51d8dbf0dd6251ff19c69f4f802e0da",
+      "initialRGBA": "20d1f75abca3b24a7fd2a73ff5707e8e75459b02b8afb0aa574cdf1e729aaa95",
+      "finalRGBA": "6e93f1a8aecfeaa375f7ea526a747c642cce296108676fce519f35c843cf2bf8",
+      "delta": {
+        "pixelmatch": {
+          "changed": 67,
+          "exactPct": 0.0012924382716049383,
+          "roundedPct": 0
+        },
+        "rawChanged": 246,
+        "exactRGBA": false,
+        "bounds": [
+          241,
+          393,
+          268,
+          416
+        ],
+        "regions": [
+          {
+            "name": "header",
+            "rect": [
+              0,
+              0,
+              2880,
+              150
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          },
+          {
+            "name": "sidebar",
+            "rect": [
+              0,
+              150,
+              754,
+              1800
+            ],
+            "rawChanged": 246,
+            "exactRGBA": false,
+            "bounds": [
+              241,
+              393,
+              268,
+              416
+            ]
+          },
+          {
+            "name": "content",
+            "rect": [
+              754,
+              150,
+              2880,
+              1800
+            ],
+            "rawChanged": 0,
+            "exactRGBA": true,
+            "bounds": null
+          }
+        ]
+      },
+      "status": "no-design-shot",
+      "crops": []
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "disposition": "PASS within retained production Linux artifact scope",
+  "originalDirtyBase": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "laterGitBinding": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "full": {
+    "raw": "/tmp/opencode/memory-preference/final-full.json",
+    "sha256": "e26bc26fb91da192ba9e05a8668afc45de61f414b5ff2264d561ee49d4e53ce8",
+    "bytes": 1400657,
+    "retained": "../final/final-full.json.gz",
+    "retainedSHA256": "3fc625be430b8f4bd2a4b5ab6dc262ed5544871040311470df69476ad9125c51",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T17:03:18.396Z",
+      "duration": 293094.633,
+      "expected": 125,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 125,
+    "attempts": 125,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 175,
+      "application/json": 64
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "targeted": {
+    "raw": "/tmp/opencode/memory-preference/boundary-targeted.json",
+    "sha256": "9598694f30ff61b1fb745139358ef82b295d6a1c06b20f73ed1129c454cf2649",
+    "bytes": 91589,
+    "retained": "../final/boundary-targeted.json.gz",
+    "retainedSHA256": "8f1f0a985706ef9433c97d091caebe718262e03bff1dc822f14a90a6c91ede7f",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T17:01:53.357Z",
+      "duration": 24173.827999999998,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "topLevelErrors": [],
+    "cases": 21,
+    "attempts": 21,
+    "retryAttempts": 0,
+    "resultErrors": 0,
+    "attachmentCounts": {
+      "image/png": 26,
+      "application/json": 8
+    }
+  },
+  "imageCounts": {
+    "runs": {
+      "final-full": {
+        "uniqueImages": 169,
+        "fileCopies": 342,
+        "inlineAttachments": 4,
+        "pngAttachments": 175
+      },
+      "boundary-targeted": {
+        "uniqueImages": 26,
+        "fileCopies": 52,
+        "inlineAttachments": 0,
+        "pngAttachments": 26
+      }
+    },
+    "union": {
+      "uniquePNG": 173,
+      "uniqueRGBA": 173,
+      "newLosslessWebP": 25,
+      "newImageBytes": 803438,
+      "reuse": {
+        "../../projects-followup/ci-f82a648/images.jsonl": 100,
+        "../../projects-followup/electron-final/images.jsonl": 22,
+        "../targeted-images/index.json": 26
+      },
+      "contactSheets": 15,
+      "fullsizeTargets": 12
+    }
+  },
+  "review": {
+    "contactsViewed": 15,
+    "uniqueFrames": 173,
+    "fullsizeTargets": 12,
+    "safetyPairs": 14,
+    "safetyExact": 5,
+    "newVisualBlockers": 0
+  },
+  "binding": {
+    "packageInputs": 516,
+    "rendererInputs": 474,
+    "distMembers": 90,
+    "asarMembers": 90,
+    "rendererFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+    "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44"
+  },
+  "errorScope": {
+    "unexpectedResultErrors": 0,
+    "stderrEntries": 0,
+    "nonemptyUnexpectedObservedErrorFields": 0,
+    "intentionalNativeCallbackErrorsPerNavigationRun": 3
+  },
+  "limitations": "Local retained artifacts only. CI/native and final renderer source-review disposition remain separate; no real account/Cloud inference or full-objective completion."
+}

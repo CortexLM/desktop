@@ -1,0 +1,180 @@
+{
+  "reviewedAt": "2026-10-03T17:08:16.497883+00:00",
+  "initialSourceFingerprint": "30ec7f97fb1de75ba4dc66fa81a4dfba0e76cd16008bfa53600d7ca512b810fb",
+  "contacts": [
+    {
+      "file": "contacts/pairs-01.jpg",
+      "sha256": "9d2c398cb941964923c74d4f96ed7b709672ff497e9d514fcdc29fbee3f3ce08",
+      "states": [
+        "bot-settings~general-dark",
+        "bot-settings~general-light",
+        "bot-settings~permissions-dark",
+        "bot-settings~permissions-light",
+        "bot-settings~memory-dark",
+        "bot-settings~memory-light",
+        "bot-settings~usage-dark",
+        "bot-settings~usage-light"
+      ],
+      "pairs": 8,
+      "kind": "frozen-app-pairs",
+      "inspected": true
+    },
+    {
+      "file": "contacts/pairs-02.jpg",
+      "sha256": "13bb13815de7c675e7651640f6357ef0c451eefeeec7c555d1a0517301401bd2",
+      "states": [
+        "memory~list-dark",
+        "memory~list-light",
+        "memory~off-dark",
+        "memory~off-light",
+        "memory~empty-dark",
+        "memory~empty-light",
+        "settings~general-dark",
+        "settings~general-light"
+      ],
+      "pairs": 8,
+      "kind": "frozen-app-pairs",
+      "inspected": true
+    },
+    {
+      "file": "contacts/gaps-01.jpg",
+      "sha256": "46094a79bab7e1b2699405adb06b4bca8b94388ed0104024613b9bfc1f3e884c",
+      "states": [
+        "settings~appearance-dark",
+        "settings~appearance-light",
+        "settings~providers-dark",
+        "settings~providers-light",
+        "settings~connection-dark",
+        "settings~connection-light",
+        "settings~bot-dark",
+        "settings~bot-light"
+      ],
+      "pairs": 0,
+      "kind": "explicit-gaps",
+      "inspected": true
+    },
+    {
+      "file": "contacts/gaps-02.jpg",
+      "sha256": "763f3298964311eb3b49b5b9e88f361343b2906f80fef6ed715a756a73332717",
+      "states": [
+        "settings~notifications-dark",
+        "settings~notifications-light",
+        "settings~privacy-dark",
+        "settings~privacy-light",
+        "settings~shortcuts-dark",
+        "settings~shortcuts-light",
+        "settings~account-dark",
+        "settings~account-light"
+      ],
+      "pairs": 0,
+      "kind": "explicit-gaps",
+      "inspected": true
+    }
+  ],
+  "fullResolutionOriginals": [
+    {
+      "state": "memory~off-dark",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/memory~off-dark.app.png",
+      "sha256": "ccb81fbee97290b1da107c49ad082523298d424c7ae85cbe2037af5750e28700",
+      "inspected": true
+    },
+    {
+      "state": "memory~off-dark",
+      "kind": "design",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/memory~off-dark.design.png",
+      "sha256": "8a505e503621bb74b2b08952dd84bea2d5bb79ef884c43c838e629f0aef828db",
+      "inspected": true
+    },
+    {
+      "state": "memory~off-light",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/memory~off-light.app.png",
+      "sha256": "36afc447b1dae57166165d3ff63aa5e8f7e4be6d05359eb0759bf4fcb49769fd",
+      "inspected": true
+    },
+    {
+      "state": "memory~off-light",
+      "kind": "design",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/memory~off-light.design.png",
+      "sha256": "6ecbfcc2871bcb35f382f039a98486886066225fe765d6f9edc8cd6739fca50f",
+      "inspected": true
+    },
+    {
+      "state": "bot-settings~memory-dark",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/bot-settings~memory-dark.app.png",
+      "sha256": "4d4248d1298c9988345e7cd3afb63b5dc9cc4e80bdb82f999db3332b8d284bad",
+      "inspected": true
+    },
+    {
+      "state": "bot-settings~memory-dark",
+      "kind": "design",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/bot-settings~memory-dark.design.png",
+      "sha256": "d8badcd0eef8e6940710fe70a65898e62d81e97cd894ffee0f8bc26850d82b9e",
+      "inspected": true
+    },
+    {
+      "state": "bot-settings~memory-light",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/bot-settings~memory-light.app.png",
+      "sha256": "43869e182d2426d08094001ec2a5fda869e6ddeface3aabc6fd1580721038a8e",
+      "inspected": true
+    },
+    {
+      "state": "bot-settings~memory-light",
+      "kind": "design",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/bot-settings~memory-light.design.png",
+      "sha256": "2d66bc170d4d689ac21a55ab2d3bb398f547e8c59598bb9406b53f8fddea405b",
+      "inspected": true
+    },
+    {
+      "state": "settings~general-dark",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/settings~general-dark.app.png",
+      "sha256": "b9183b44b739cb008bff2b931002ef70d773ac49ffa0b348c98a8f15adb34641",
+      "inspected": true
+    },
+    {
+      "state": "settings~general-dark",
+      "kind": "design",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/settings~general-dark.design.png",
+      "sha256": "836227aa275246b7fb3b7f37ee28e5482e831546cfa4b8f71e83d33e19dda25e",
+      "inspected": true
+    },
+    {
+      "state": "settings~privacy-dark",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/settings~privacy-dark.app.png",
+      "sha256": "75b141b7728b90e45c9041c8f5129d162f003821f85e7dd667746604bedf485f",
+      "inspected": true
+    },
+    {
+      "state": "settings~privacy-light",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/settings~privacy-light.app.png",
+      "sha256": "bff45ad319ca9c33d843c2982f29cc9db11e40c301159e9c9dcea46ae27a0ed7",
+      "inspected": true
+    },
+    {
+      "state": "settings~appearance-light",
+      "kind": "app",
+      "source": "/tmp/opencode/memory-preference/compare/captures/2026-10-03T16-48-23-931Z-fiXMeT/settings~appearance-light.app.png",
+      "sha256": "7ac395b9e05926bcf257ea6a1343491ce136604d2f6898f987426ec7d3b2fb9c",
+      "inspected": true
+    },
+    {
+      "state": "settings~appearance-light",
+      "kind": "historical-app",
+      "source": "/tmp/opencode/current-full-compare-6d96535/captures/2026-10-03T00-32-36-779Z-Na13cV/settings~appearance-light.app.png",
+      "sha256": "05051156aa01fbac3898fc0f215f741bd7a42dbfd06d5615ddd1f4f4be7dc0ac",
+      "inspected": true
+    }
+  ],
+  "memoryOff": "Both themes: disabled switch, disabled-state heading/body, yellow pause notice/count, faded grouped memory rows and search/export actions intact. The entire sampled Memory panel and switch row match frozen and historical RGBA exactly.",
+  "botMemory": "Both themes: five editable fixture notes, row dividers/trash controls, Add, learning switch and Forget all block remain aligned. Full sampled Bot-memory panel exactly matches frozen and historical RGBA.",
+  "privacy": "Both themes: three toggle rows, Memory enabled, title/body and selected navigation intact. Panel and Memory row exactly match historical app pixels. No frozen reference exists for either theme; fixture wording is not live capability evidence.",
+  "maximum": "Settings General dark has the largest frozen score: additional Providers/Connection navigation rows and state picker absent from frozen; right-hand controls match exactly. Header/sidebar raster residuals persist; whole frame is not exact.",
+  "historicalAppearance": "The larger prior-app delta in Appearance light is selection feedback: current blue outline/radio on Light, historical app on Dark while shell is light. This is not a frozen comparison. No Memory-regression cause inferred; frozen Appearance gap stays open.",
+  "scope": "Initial settled preview geometry only. Later route-race correction, new live copy, translations, state persistence, inference, keyboard/motion, native and CI outcomes are outside this receipt."
+}

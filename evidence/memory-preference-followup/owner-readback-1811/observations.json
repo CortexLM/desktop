@@ -1,0 +1,238 @@
+{
+  "startedUTC": "2026-10-03T18:11:13.262008+00:00",
+  "finishedUTC": "2026-10-03T18:11:13.604405+00:00",
+  "commentCutoffUTC": "2026-10-03T16:53:03Z",
+  "priorPacket": "/tmp/opencode/g1-owner-readback-1650",
+  "priorFilesSHA256": {
+    "/tmp/opencode/g1-owner-readback-1650/comparison.json": "251525f9d1d095b2f255125eeee10b5d572b34462af1cff35627d63a58350a42",
+    "/tmp/opencode/g1-owner-readback-1650/observations.json": "3c8e16a3a33fd39a97f956b43be14f28299ef067a9fe278b76987a0cc23ed0e9",
+    "/tmp/opencode/g1-owner-readback-1650/verify.py": "b20770eb5324ae01ddac274f51c3f75aa556cf5bf316c17cf2b79795122416b0",
+    "/tmp/opencode/g1-owner-readback-1650/pr446-comments.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "/tmp/opencode/g1-owner-readback-1650/readback.py": "7805a7525dba757d0fe769a5f09d32436fa2953fdcfacf82cc59a18310903402",
+    "/tmp/opencode/g1-owner-readback-1650/REPORT.md": "24c1291237dad690b2035cbbe33196ad0c447964e7f4c5468c6e34308e9be740",
+    "/tmp/opencode/g1-owner-readback-1650/pr447-comments.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "/tmp/opencode/g1-owner-readback-1650/public-models.body": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+    "/tmp/opencode/g1-owner-readback-1650/public-instance.body": "d3bf8dd7ed90da97b720b825ec0c922627190059915d1f9291d0d49805616ec8",
+    "/tmp/opencode/g1-owner-readback-1435/observations.json": "ccc86c31e53587bf8ca46702d2ad02ab0a3870325cde1edc3f9ea657133d8eee",
+    "/tmp/opencode/g1-owner-readback-1435/verify.py": "1171beb018154f8f37f43d2fecf44febd8e3927cb8c05da7c7a0beb60cd7b3f6",
+    "/tmp/opencode/g1-owner-readback-1435/pr446-comments.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "/tmp/opencode/g1-owner-readback-1435/readback.py": "dcbdaac3bc42a6803557a818f50f27aa2c407d74e6abf289e73afde28e3bdccd",
+    "/tmp/opencode/g1-owner-readback-1435/pins.json": "f4bc3a41d10b812276a6775f1397d88b8b52b8c7da1625d2f869b884e509ec4a",
+    "/tmp/opencode/g1-owner-readback-1435/REPORT.md": "770247ff20a4393b26da446ac9510088a4b2fec4e26351089c4068a3ee0b9854",
+    "/tmp/opencode/g1-owner-readback-1435/pr447-comments.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "/tmp/opencode/g1-owner-readback-1435/public-models.body": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+    "/tmp/opencode/g1-owner-readback-1435/public-instance.body": "13196615c0092d40a672a1f4cec2686dba13f7b41d29fc5cd3d8e3390927c95b"
+  },
+  "github": [
+    {
+      "endpoint": "repos/CortexLM/backend/issues/446/comments",
+      "url": "https://github.com/CortexLM/backend/pull/446",
+      "observedStartUTC": "2026-10-03T18:11:13.263377+00:00",
+      "observedEndUTC": "2026-10-03T18:11:13.595714+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/446/comments",
+        "-f",
+        "since=2026-10-03T16:53:03Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr446-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    },
+    {
+      "endpoint": "repos/CortexLM/backend/issues/447/comments",
+      "url": "https://github.com/CortexLM/backend/pull/447",
+      "observedStartUTC": "2026-10-03T18:11:13.263854+00:00",
+      "observedEndUTC": "2026-10-03T18:11:13.599682+00:00",
+      "command": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/CortexLM/backend/issues/447/comments",
+        "-f",
+        "since=2026-10-03T16:53:03Z",
+        "-f",
+        "per_page=100"
+      ],
+      "exitCode": 0,
+      "rawFile": "pr447-comments.json",
+      "rawSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "count": 0,
+      "morePagesPossible": false,
+      "comments": []
+    }
+  ],
+  "publicGETs": [
+    {
+      "url": "https://api.cortex.foundation/v1/instance",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T18:11:13.264610+00:00",
+      "status": 404,
+      "contentType": "application/problem+json",
+      "responseDate": "Sat, 03 Oct 2026 18:11:13 GMT",
+      "headersFile": "public-instance.headers.json",
+      "headersSHA256": "ca4aed7262c31fe6a08ed8ee831c1840028bf9e59d84eed10cbbbb71a1b6691a",
+      "headerEncoding": "JSON ordered name/value pairs; not wire-byte headers",
+      "excludedHeaderNames": [],
+      "bodyBytes": 219,
+      "bodyCapped": false,
+      "bodySHA256": "9817f388f566721421edca4e9ebda2b37c20f1f905a1425d33ee79171641441f",
+      "rawFile": "public-instance.body",
+      "priorObservedUTC": "2026-10-03T16:53:03.056976+00:00",
+      "priorBodySHA256": "d3bf8dd7ed90da97b720b825ec0c922627190059915d1f9291d0d49805616ec8",
+      "sameBodyAs1653": false,
+      "changedTopLevelFields": [
+        "request_id"
+      ],
+      "observedEndUTC": "2026-10-03T18:11:13.421908+00:00"
+    },
+    {
+      "url": "https://api.cortex.foundation/v1/models",
+      "method": "GET",
+      "authenticated": false,
+      "redirectsAllowed": false,
+      "attempts": 1,
+      "observedStartUTC": "2026-10-03T18:11:13.265281+00:00",
+      "status": 200,
+      "contentType": "application/json",
+      "responseDate": "Sat, 03 Oct 2026 18:11:13 GMT",
+      "headersFile": "public-models.headers.json",
+      "headersSHA256": "021f0546a8b7da18fee942354f880a11cd2799ef403bd6ed173e853329136d80",
+      "headerEncoding": "JSON ordered name/value pairs; not wire-byte headers",
+      "excludedHeaderNames": [],
+      "bodyBytes": 995,
+      "bodyCapped": false,
+      "bodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "rawFile": "public-models.body",
+      "priorObservedUTC": "2026-10-03T16:53:03.069254+00:00",
+      "priorBodySHA256": "d145822586d77fa2f394eef63b89cffbc2d11d0676f4e106b88c35d2805b68f3",
+      "sameBodyAs1653": true,
+      "changedTopLevelFields": [],
+      "models": [
+        {
+          "slug": "cortex-1-mini",
+          "kind": "chat",
+          "supports_vision": false,
+          "supports_reasoning": true
+        },
+        {
+          "slug": "cortex-teutonic-1",
+          "kind": "chat",
+          "supports_vision": false,
+          "supports_reasoning": true
+        },
+        {
+          "slug": "cortex-image-1",
+          "kind": "image",
+          "supports_vision": false,
+          "supports_reasoning": false
+        }
+      ],
+      "capabilities": {
+        "total": 3,
+        "chat": 2,
+        "visionChat": 0,
+        "reasoningChat": 2,
+        "eligibleVisionReasoningChat": 0,
+        "hasMore": false
+      },
+      "observedEndUTC": "2026-10-03T18:11:13.407021+00:00"
+    }
+  ],
+  "localPins": [
+    {
+      "path": "/root/cortex-goals/COORDINATION.md",
+      "observedUTC": "2026-10-03T18:11:13.601804+00:00",
+      "mtimeUTC": "2026-10-03T18:08:44.444606+00:00",
+      "sha256": "8132d984da55cafe2863afaa34368f77d9c512d1d1e2924f1dec909d444c2014",
+      "priorSHA256": "c31b186d5c1fd797c7a7e6b6887abc9ad3d796aa5b196def6ce793bbd257c5c0",
+      "sameBytesAs1653": false,
+      "bytes": 270785,
+      "lines": 486,
+      "latestG1": {
+        "line": 486,
+        "text": "- 2026-10-03 18:06 UTC [G1 Memory native confirmation] Correctedd1eaeea3collectorpassed68.646s4native960x640OSlight/darkcaptures20targets8nativeSamples15persistedstatechecks2pausedForgetfocus/hitchecks anddarkEnteractualnote deletion.70directIPCcalls66GET2POST1cleanupPUT1DELETE separateUIwrites9toggles1forget;0inference/rendererrors8cleanuppasses.Original20.330s0capturefailedrunretained,2launchpreflightrefusalsbeforeprofilecreationretained,appASARb55constant. Macordinary71358darkprelease restoredhelpersstopped5portsclosedleaseRELEASED. Independentnativeauditactive. CIaudit37139741944accepted339images30contacts24primary+11supplementalviews;125/426perOS260units1optional,64Memorylocalestates112textrowsperOS all16authframesexactf82. All516sourceinputsunchanged96df66c."
+      },
+      "latestG1TextSameAs1653": false,
+      "latestG2": {
+        "line": 168,
+        "text": "- 2026-10-02 [G2 consumer ownership read-back 17:30UTC] G2's six backend criteria demonstrated at70a3056f; consumer completion is still pending. Independent source-only report `/tmp/opencode/selfhost-consumers-current-20261002.md`: G3#447 remains7633f7e2 with e8801c4d schema,33operation/23component deltas from canonical d6d46014, no updated generated/publicProblem/runtime/package receipt; existing replay UUID/since, reentrant401refresh, generated-stream/default parsing and instance.mode documentation actions remain G3-owned. G4#445 now39cfdc570583c11f9a3959e48678f95613327bd1 retains local-reauth/provider-none fixes; foundation#448 alone does not. G4 still always fetches `/v1/models` and discards instance.mode: select configured registry pages when `instance.mode === \"self_host\"`, irrespective of metadata-enrichment flag, preserve capabilities; SDK adoption remains pending. Bounded source handoff https://github.com/CortexLM/backend/pull/445#issuecomment-5957943210 . G1#36 cc758a69fe9349d17f6a4bf7accd978421035519 acknowledges canonical schema and keeps correct mode-based paginated discovery; old SDK/api-types tarballs remain probe-only, remote auth/model selection/inference unfinished. G3 must deliver immutable package pair/checks before G1/G4 consume it. No consumer files changed, no consumer browser/build pass inferred, no repeat product CI."
+      },
+      "latestG2TextSameAs1653": true,
+      "latestG3": {
+        "line": 239,
+        "text": "- 2026-10-03 [G3 FINAL SDK delivery] SDK **0.3.5** / api-types **0.2.0**, source `5b7e9d1c3fa2bc89b1d74343ece0a014eaa65c31`; PR #447 open, stacked on G2 #446 `70a3056f7223a7eb9257d984848d4d33fee7ec12`. Immutable pair `/root/cortex-goals/releases/sdk-0.3.5-5b7e9d1c3fa2/`: SDK SHA-256 `5c75f212a2669bcd6f5110fe6e5c8862e1ca6eba85a118b350e0ce38694596b8`; api-types `3e7359d204246a011706c1f3d6b959dbd2ad6b8512011acdc509316db8802877` (unchanged0.2.0 bytes). Canonical schema source `af36085cc96b182950ca4bf15161dcf2c3951da1`, blob `c8f6a7f0257858306a885c71202c13420f40725f`, SHA-256 `b2495d1d8ec631d143c5dcc5d200aeb0d288f69beae31ba671b3a7856f663d5b`; all422 IDs/421publicmethods retained. Ten exact-source release checks PASS:40api-types,71SDKchecks/34runtime,48integration,421/421operations,171dedicated,51/51groups,4examples,19bootstrap/embedded/OpenAPI; isolated npm/Bun publictypes+34runtime each on Node22 and minimum20.9. Native response-clone shutdown defect corrected by single-read auth; failed after-hook removed; prior0.3.4 attempts retained failed. G1/G4 image-tail/rawscreenshot/generatedturnbody defects fixed; headers, SSEreset, startup/testcleanup, atomicnoclobberpacker verified. CI37094557684 attempt1 all11substantive PASS, server2414/0, cleanmigration verified; CodeQL37094557772 all3 PASS. CodeRabbit exactsource run `9fbee79b-5846-421a-8b55-28966beaa577` successful, nonewactionable,86reviewthreads resolved after fixes/independent adjudication. Independent last-push review verified10logs/16generated/35sources/102compiledfiles, cleanlocal=origin; receipt SHA256 `6bb1af0ae2412b00e7415ad76b259951ee0460449cbe46b96e8b00afffd93aba`. Handoffs G3 https://github.com/CortexLM/backend/pull/447#issuecomment-5965356215, G4 https://github.com/CortexLM/backend/pull/445#issuecomment-5965356171, G1 https://github.com/CortexLM/desktop/pull/36#issuecomment-5965356180, G2 https://github.com/CortexLM/backend/pull/446#issuecomment-5965356181. G1/G4 own adoption+newpairbackendcall; historicaldesktop0.2.0 proof not reused. CanonicallegacyDTO/stableaccountID/exhaustiveChathistory remain documentedG2work; no portableOff/Chatcancel/UIacceptance inferred. Earlierartifacts/histories retained; no main/merge/deploy/consumerbranchwrite."
+      },
+      "latestG3TextSameAs1653": true
+    },
+    {
+      "path": "/root/cortex-ui/review/ACTIVE-DIRECTION.md",
+      "observedUTC": "2026-10-03T18:11:13.602877+00:00",
+      "mtimeUTC": "2026-10-03T11:45:07.915236+00:00",
+      "sha256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a",
+      "priorSHA256": "8efe9828ff22fe7d501795858de2c4a584392c8f48e757f29392646858dfbe9a",
+      "sameBytesAs1653": true,
+      "bytes": 2683,
+      "lines": 25
+    },
+    {
+      "path": "/root/cortex-ui/DESIGN-REQUESTS.md",
+      "observedUTC": "2026-10-03T18:11:13.603187+00:00",
+      "mtimeUTC": "2026-10-03T16:29:40.016563+00:00",
+      "sha256": "6586f80d933b97441fa4fca1f752bc8d69cdba4c0c31a154ef0914804c44f218",
+      "priorSHA256": "6586f80d933b97441fa4fca1f752bc8d69cdba4c0c31a154ef0914804c44f218",
+      "sameBytesAs1653": true,
+      "bytes": 55052,
+      "lines": 115
+    },
+    {
+      "path": "/root/cortex-ui/review/code-supplement-accepted.json",
+      "observedUTC": "2026-10-03T18:11:13.603357+00:00",
+      "mtimeUTC": "2026-10-03T10:37:51.970740+00:00",
+      "sha256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4",
+      "priorSHA256": "2e783316e118c4dc96031ae1b2c480e47a3a058001bfed7c7f75b51fb3741fe4",
+      "sameBytesAs1653": true,
+      "bytes": 1377,
+      "lines": 39,
+      "prototypeIntegrationAuthorized": true,
+      "productImportAuthorized": false
+    },
+    {
+      "path": "/root/cortex-ui/review/bot-supplement-adoption.json",
+      "observedUTC": "2026-10-03T18:11:13.603467+00:00",
+      "mtimeUTC": "2026-10-03T11:19:02.248598+00:00",
+      "sha256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266",
+      "priorSHA256": "b148e7d93ef31d3d24e42bee695e1982cb6b9e05444c95d7c88e3ed3881af266",
+      "sameBytesAs1653": true,
+      "bytes": 1948,
+      "lines": 46,
+      "prototypeIntegrationAuthorized": true,
+      "productImportAuthorized": false
+    }
+  ],
+  "reviewMetadataScan": {
+    "directory": "/root/cortex-ui/review",
+    "scope": "Direct file mtimes only",
+    "sinceUTC": "2026-10-03T16:53:03Z",
+    "changedFiles": []
+  },
+  "environmentPresenceOnly": {
+    "CORTEX_REAL_BASE_URL": false,
+    "CORTEX_REAL_API_KEY": false,
+    "CORTEX_TEST_BACKEND_URL": false
+  },
+  "environmentPredicate": "name in os.environ; no values read or retained",
+  "scope": "Two issue-comment GETs; two unauthenticated public GETs; local document hashes. No account/auth/inference, G1 CI/native/app/source query, post or source write."
+}

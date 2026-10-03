@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-03T17:27:18.566798+00:00",
+  "observedHead": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "originalDirtyBase": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "laterCommitBinding": {
+    "revision": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+    "matched": 516,
+    "allExact": true
+  },
+  "checks": [
+    {
+      "manifest": "pinned-inputs",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 516,
+      "uniquePaths": 516,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    },
+    {
+      "manifest": "pinned-inputs",
+      "root": "/tmp/opencode/build-memory-final/source",
+      "count": 516,
+      "uniquePaths": 516,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    },
+    {
+      "manifest": "renderer-inputs",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 474,
+      "uniquePaths": 474,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    },
+    {
+      "manifest": "renderer-inputs",
+      "root": "/tmp/opencode/build-memory-final/source",
+      "count": 474,
+      "uniquePaths": 474,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    },
+    {
+      "manifest": "members",
+      "root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+      "count": 90,
+      "uniquePaths": 90,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    },
+    {
+      "manifest": "members",
+      "root": "/tmp/opencode/build-memory-final",
+      "count": 90,
+      "uniquePaths": 90,
+      "completePathSetMatches": true,
+      "allHashesMatch": true
+    }
+  ],
+  "rendererFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "asarSHA256": "b55bda25290eaf90c821c9a79806d2aecdba5a1bb291da71f6b1abc251a16c44"
+}

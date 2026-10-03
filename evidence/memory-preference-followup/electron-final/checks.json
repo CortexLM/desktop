@@ -1,0 +1,33 @@
+{
+  "units": {
+    "source": "../checks/units.log.gz",
+    "passed": 260,
+    "optionalSkipped": 1,
+    "files": 24,
+    "durationSeconds": 12.12,
+    "scope": "initial candidate, final engine/main byte-identical; not rerun by auditor"
+  },
+  "i18n": {
+    "source": "../checks/i18n.log.gz",
+    "files": 66,
+    "usedKeys": 2277,
+    "englishKeys": 3412,
+    "findings": 0
+  },
+  "lint": {
+    "source": "../final/lint-final.log.gz",
+    "diagnostics": 0,
+    "exit0Authority": "coordinator completion report; empty raw log has no exit marker"
+  },
+  "typecheck": {
+    "source": "../final/typecheck-final.log.gz",
+    "diagnostics": 0,
+    "exit0Authority": "coordinator completion report"
+  },
+  "smoke": {
+    "source": "../final/smoke-final.log.gz",
+    "reported": "SMOKE OK",
+    "asarMatches": true,
+    "scope": "retained Linux package launch receipt; not a fresh audit launch or OS crash inventory"
+  }
+}

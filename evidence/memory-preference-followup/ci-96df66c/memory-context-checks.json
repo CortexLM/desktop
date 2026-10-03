@@ -1,0 +1,84 @@
+{
+  "records": [
+    {
+      "os": "e2e-linux",
+      "theme": "light",
+      "requests": 4,
+      "enabledOwnNote": true,
+      "pausedNoSavedNotes": true,
+      "pausedPersonaRetained": true,
+      "resumedOwnNotesOnly": true,
+      "ordinaryChatNoSavedNotes": true,
+      "fullEvidence": "memory-observations.jsonl"
+    },
+    {
+      "os": "e2e-linux",
+      "theme": "dark",
+      "requests": 4,
+      "enabledOwnNote": true,
+      "pausedNoSavedNotes": true,
+      "pausedPersonaRetained": true,
+      "resumedOwnNotesOnly": true,
+      "ordinaryChatNoSavedNotes": true,
+      "fullEvidence": "memory-observations.jsonl"
+    },
+    {
+      "os": "macos",
+      "theme": "light",
+      "requests": 4,
+      "enabledOwnNote": true,
+      "pausedNoSavedNotes": true,
+      "pausedPersonaRetained": true,
+      "resumedOwnNotesOnly": true,
+      "ordinaryChatNoSavedNotes": true,
+      "fullEvidence": "memory-observations.jsonl"
+    },
+    {
+      "os": "macos",
+      "theme": "dark",
+      "requests": 4,
+      "enabledOwnNote": true,
+      "pausedNoSavedNotes": true,
+      "pausedPersonaRetained": true,
+      "resumedOwnNotesOnly": true,
+      "ordinaryChatNoSavedNotes": true,
+      "fullEvidence": "memory-observations.jsonl"
+    }
+  ],
+  "settingsResponses": [
+    {
+      "os": "e2e-linux",
+      "observedCalls": 24,
+      "methods": {
+        "PUT": 8,
+        "GET": 16
+      },
+      "statuses": {
+        "400": 1,
+        "200": 22,
+        "404": 1
+      },
+      "scope": "Controlled real validation refusal and missing read route, followed by accepted retry; held real responses for stale/event/navigation checks."
+    },
+    {
+      "os": "macos",
+      "observedCalls": 24,
+      "methods": {
+        "PUT": 8,
+        "GET": 16
+      },
+      "statuses": {
+        "400": 1,
+        "200": 22,
+        "404": 1
+      },
+      "scope": "Controlled real validation refusal and missing read route, followed by accepted retry; held real responses for stale/event/navigation checks."
+    }
+  ],
+  "sourceAssertions": "provenance/runtime-settings.spec.ts.gz",
+  "bounds": [
+    "Per-theme first Amber/Violet prompts use UI composers; resumed-Bot and ordinary-Chat probes use IPC.",
+    "Restart, note ID/time preservation, existing transcript equality, deletion focus and enabled export are assertions; export download content not exercised.",
+    "System Memory displays the first listed Bot only; no personal cross-Chat memory or automatic learning."
+  ]
+}

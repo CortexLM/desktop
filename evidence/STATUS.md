@@ -192,12 +192,12 @@ specific dependencies, not a blanket blocker on this remaining local work.
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | `f82a648` CI passes lint/types/i18n and 252 units plus one optional backend skip. |
-| Every design screen plus provider/image/reasoning flows | Partial: `f82a648` CI passes 118 cases/426 visits per OS; 316 images/20 full-size Project views reviewed. Sixteen locale images match `8e3fd79`. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | `f82a648` CI package/smoke passes; independent package admission verifies 90 members, 515 inputs, 104 catalogs and skill. Matching installed evidence is separate. Native CI display capture remains a limitation. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Historical `f9aca44`: 426 states/fourteen menus/window actions. Later scoped captures: `ffc118a`28, `7885736`8, `f5bf305`22, `760c4a0`6, `2956564`6, `37c22c2`4. Matching `99e3d04`: two Appearance captures/47 checks pass after collector-only media reset; independent native audit passes. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
+| Lint, types, units | `96df66c` CI passes lint/types/i18n and 260 units plus one optional backend skip. |
+| Every design screen plus provider/image/reasoning flows | Partial: `96df66c` CI passes 125 cases/426 visits per OS; independent review covers 339 images/24 primary full-size Memory views. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | `96df66c` CI package/smoke passes; independent package admission verifies 90 members, 516 inputs, 104 catalogs and skill. Matching installed evidence is separate. Native CI display capture remains a limitation. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Current `96df66c`: four Memory/Privacy captures, 15 settings checks, both-theme paused access and one dark deletion pass; independent audit accepts the scope. Earlier Projects composite and Appearance checks remain pinned. Historical full sweep stays `f9aca44`: 426 states/fourteen menus/window actions. Absent surfaces and exhaustive current live/minimum-window acceptance remain open. |
 | No unjustified reference gap | Unproven: original full run compares 410/431 with 21 gaps. Initial transcript correction adds 22/22 scoped references, maximum 0.15326003086419754%, preserving prior residuals. Historical clock/scheduling outliers, sixteen Settings reference gaps and separate correction pins remain distinct; new imports unauthorized. |
-| Automated i18n audit | `8e3fd79` CI: 65 files, 2,275 used keys, 3,405 English keys, zero findings. Per OS, 48 auth states/144 Tab stops and twelve glyph-weight checks pass. All sixteen auth panes match CI99; their sidebars differ. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
+| Automated i18n audit | `96df66c` CI: 66 files, 2,277 used keys, 3,412 English keys, zero findings; 64 Memory locale/theme states per OS pass. All sixteen auth-locale images match `f82a648`; 48 auth states/144 Tab stops and twelve glyph-weight checks per OS pass. Translation semantics, regional glyph-form preference and exhaustive layouts remain unproven. |
 
 Local Projects ships on this branch at `8e3fd79`: persistent records, instruction context,
 Chat membership and existing-screen discovery. Its seven protocol cases, 252 units plus one
@@ -215,10 +215,16 @@ editing remain unfinished.
 
 Documentary `74579d5` preserves all 515 `f82a648` package inputs and passes CI
 `37136181306`. The next [Memory preference delivery](memory-preference-followup/README.md)
-is uncommitted: 260 units/one optional skip, 21 final targeted Electron cases and a final
+is pushed at `96df66c`: 260 units/one optional skip, 21 final targeted Electron cases and a final
 125-case full suite pass. Independent review's canceled-preview owner race has two
 reproduced failures; the unchanged regression now passes after a one-hook correction.
-Initial 14-target/124-full receipts stay distinct. No Memory CI/native acceptance is claimed.
+Initial 14-target/124-full receipts stay distinct. CI `37139741944` passes all three
+jobs. Independent CI review verifies 339 images/24 primary full-size Memory views,
+all sixteen auth-locale frames exact to `f82a648`. Matching installed checks pass four
+native captures and paused-note deletion in 68.646 seconds. Cleanup completes and the
+Mac lease is released; independent native review accepts both-theme access and the single
+dark-theme deletion. The first collector's failed native assertion remains separate from
+the corrected confirmation.
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
@@ -232,6 +238,9 @@ The [16:53 UTC follow-up](memory-preference-followup/owner-readback/REPORT.md) c
 the same bounded disposition: no new owner comments or exact five-state import permission,
 unchanged models, absent credential inputs. New design-request entries concern prototype
 focus, lifecycle and supplied menus; they do not grant desktop product imports.
+The [18:11 UTC readback](memory-preference-followup/owner-readback-1811/REPORT.md)
+finds the same bounded prerequisites: no new comments, immutable successor or named
+five-state product-import permission; unchanged model bytes and absent credential inputs.
 
 ## Current MCP contract correction
 

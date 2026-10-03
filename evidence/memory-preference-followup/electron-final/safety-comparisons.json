@@ -1,0 +1,327 @@
+[
+  {
+    "name": "memory-owner-loading-light",
+    "imageID": "image-077",
+    "before": "../../projects-followup/ci-8e3fd79/images/d524b5cf94bb083fe7f31aafa11c2e6051391c29a9771613a551febdcf0c60a3.webp",
+    "beforeSHA256": "8602354d19342e3a078dadb8f30b6ab51d2ba8050b56bf213e6ac6990d265d4b",
+    "beforeRGBA": "f0c3a47463c81a703d39a2f26a36d393b748f3707f6d5d0e9cf09bf9cf82657e",
+    "after": "../targeted-images/memory-owner-loading-light.webp",
+    "afterRGBA": "f0c3a47463c81a703d39a2f26a36d393b748f3707f6d5d0e9cf09bf9cf82657e",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": true,
+    "differentPixels": 0,
+    "differenceBounds": null,
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-01.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Full decoded image RGBA-exact to f82 CI canonical."
+  },
+  {
+    "name": "memory-owner-read-pending-light",
+    "imageID": "image-078",
+    "before": "../../projects-followup/ci-8e3fd79/images/2d2d747a21d44aab753a1ae432483aac428670aa1133a0082401501e3193f422.webp",
+    "beforeSHA256": "a8e665f303d39c96e4ce10bdb039de2533b8086bd02c6595e1109c5c3fd71cc0",
+    "beforeRGBA": "78620993087b02701c1199d041c8c7593fd6630c539d14253200f7a44b0bb25c",
+    "after": "../targeted-images/memory-owner-read-pending-light.webp",
+    "afterRGBA": "78620993087b02701c1199d041c8c7593fd6630c539d14253200f7a44b0bb25c",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": true,
+    "differentPixels": 0,
+    "differenceBounds": null,
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-01.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Full decoded image RGBA-exact to f82 CI canonical."
+  },
+  {
+    "name": "memory-deleted-refresh-pending-light",
+    "imageID": "image-079",
+    "before": "../../projects-followup/ci-8e3fd79/images/9acc4fecb5b1ae019bbf5b21daca4359fed56b842e3611e50a6de477d5ac2660.webp",
+    "beforeSHA256": "432b91b14d37d6a51504fb1145c9ac17c2cc4025293bfa751531f103b1015dbb",
+    "beforeRGBA": "38af8a4f1e0261b46fbaa76c79192f018381715bf05d5581aacefa06174b6416",
+    "after": "../targeted-images/memory-deleted-refresh-pending-light.webp",
+    "afterRGBA": "2e8c70bdb16e775ac3153dcc309c07156b67f47d0eaef9c91729fe0d5d55a52b",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 18390,
+    "differenceBounds": [
+      616,
+      317,
+      916,
+      505
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-01.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Manual-add empty-state copy adds a line; downstream wipe row moves down. Controls remain contained; no exact-geometry claim."
+  },
+  {
+    "name": "memory-add-refused-light",
+    "imageID": "image-080",
+    "before": "../../projects-followup/ci-8e3fd79/images/c3552d04c49735a4d542640483f57aff276e16438178f67b7d40e598951e784b.webp",
+    "beforeSHA256": "7614b9348465e817f9a39b090ec8e8d909c9285d1cf7b17a7ef04feb94b2eaff",
+    "beforeRGBA": "c8787f711df255cd66bb021473eeb0ce4b5999516502aec80da2340805328601",
+    "after": "../targeted-images/memory-add-refused-light.webp",
+    "afterRGBA": "c8787f711df255cd66bb021473eeb0ce4b5999516502aec80da2340805328601",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": true,
+    "differentPixels": 0,
+    "differenceBounds": null,
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-01.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Full decoded image RGBA-exact to f82 CI canonical."
+  },
+  {
+    "name": "memory-wipe-refused-light",
+    "imageID": "image-081",
+    "before": "../../projects-followup/ci-f82a648/images/1d85711465d89d5d6a61ff6844a3f36c9ab912c32f5dce62cf6158651c1ec3ef.webp",
+    "beforeSHA256": "544edc8c2357e3cac96432613760643d70842c7bae93d30256a623a7251c9f2d",
+    "beforeRGBA": "9d320b03ce0a5dbd5b5ed206c6a7f4752a216378d19ac620ec24f14328c439f0",
+    "after": "../targeted-images/memory-wipe-refused-light.webp",
+    "afterRGBA": "181f580c0dbc6f0b9eb18d240afe8117b6a90294942852c4f38a452110e08cb9",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 28,
+    "differenceBounds": [
+      631,
+      145,
+      916,
+      252
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-02.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "12–28 pixel difference only; retained bounding box records rail/control raster variation. No visible layout change at reviewed scale; cause unassigned."
+  },
+  {
+    "name": "memory-wipe-partial-light",
+    "imageID": "image-082",
+    "before": "../../projects-followup/ci-8e3fd79/images/9484e3380b3dbaaacb338ad2c7138d193c56d85e535b6e47b85b4e424c3c9d69.webp",
+    "beforeSHA256": "8e9a0973a7b6ec8b858fd40b5ab3a994a67eec91a00ac610db14cf152cadc583",
+    "beforeRGBA": "9a5461855ec34255a7f943b64579e119191d670ef13b3943eaf4b108af7d431e",
+    "after": "../targeted-images/memory-wipe-partial-light.webp",
+    "afterRGBA": "9a5461855ec34255a7f943b64579e119191d670ef13b3943eaf4b108af7d431e",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": true,
+    "differentPixels": 0,
+    "differenceBounds": null,
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-02.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Full decoded image RGBA-exact to f82 CI canonical."
+  },
+  {
+    "name": "memory-single-refused-light",
+    "imageID": "image-083",
+    "before": "../../projects-followup/ci-8e3fd79/images/71155d2a5daeaa0e51b502e34f5a237df0356c88905c968d413be5c8684ba4a6.webp",
+    "beforeSHA256": "8252ba7d29186af539e7906bfe382468a8e43b46d17c0dcc1f5c38c6a452cbe8",
+    "beforeRGBA": "8e9db71519ce08ecf945d425ff06fb949b7944b47706538ab5b1a9b30ddcd42d",
+    "after": "../targeted-images/memory-single-refused-light.webp",
+    "afterRGBA": "8f6948d288321c6f6ad5efee473bec6a2da4e29497e5debd643d8d1faa7c54d5",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 36914,
+    "differenceBounds": [
+      376,
+      118,
+      916,
+      287
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-02.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Saved-Bot-specific title/description and neutral timestamp replace prior broad claims; title block/list reflow modestly, no clipping observed."
+  },
+  {
+    "name": "memory-owner-loading-dark",
+    "imageID": "image-084",
+    "before": "../../projects-followup/ci-f82a648/images/d149a4678b0aaf86f38ffcb0b3c601cbeb50e8a0e69591da008b5a5c44edf894.webp",
+    "beforeSHA256": "e407bc95c812984be1d90d9d686c5f194a05f25abd602df4422c43b6a6e5f1f3",
+    "beforeRGBA": "0cabb4794bbf34056f648cab9a668e4f4fd917947bf7c7f9b362c1c1f726a30f",
+    "after": "../targeted-images/memory-owner-loading-dark.webp",
+    "afterRGBA": "ab7b0f43e0ff8841f5200eac5c895fc4d8f48ce1dfd97091fb8f87030b32fe03",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 12,
+    "differenceBounds": [
+      17,
+      185,
+      44,
+      221
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-02.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "12–28 pixel difference only; retained bounding box records rail/control raster variation. No visible layout change at reviewed scale; cause unassigned."
+  },
+  {
+    "name": "memory-owner-read-pending-dark",
+    "imageID": "image-085",
+    "before": "../../projects-followup/ci-f82a648/images/e3b14d0f85eef05384e93b8f430779996f114963eeeeb399babaa1f95f3c1128.webp",
+    "beforeSHA256": "796493201cd1d7ba3ad5b10ac4cddee4616fcebf4303858d71332a3f2b36673f",
+    "beforeRGBA": "59c983937f0c05559d0cce638adceedc87bbd66eb00136417a60a78f119e1ec4",
+    "after": "../targeted-images/memory-owner-read-pending-dark.webp",
+    "afterRGBA": "3f81b2d10c862f9e989070708b781a5fc78e4357be9c3f00a14da21e862825ac",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 12,
+    "differenceBounds": [
+      17,
+      185,
+      44,
+      221
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-03.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "12–28 pixel difference only; retained bounding box records rail/control raster variation. No visible layout change at reviewed scale; cause unassigned."
+  },
+  {
+    "name": "memory-deleted-refresh-pending-dark",
+    "imageID": "image-086",
+    "before": "../../projects-followup/ci-f82a648/images/94ef31f4ea89ce7f575010e3ea34da169170cc17c165b60b4aa25ecbbfdfb7a3.webp",
+    "beforeSHA256": "7c9ebc76f6108ff4a2ad7055eb9f7338e2519687abbfd781b4f7efa519ff9723",
+    "beforeRGBA": "8b1d59cc44fba9c1a26e6b14e8cd80576c999bba19a9202402a685a847cbbc71",
+    "after": "../targeted-images/memory-deleted-refresh-pending-dark.webp",
+    "afterRGBA": "35b0181a2c3236f23b788defa46d3bf0a15ae98c8f88ff1900b44ddecc40c3a7",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 20576,
+    "differenceBounds": [
+      17,
+      185,
+      916,
+      505
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-03.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Manual-add empty-state copy adds a line; downstream wipe row moves down. Controls remain contained; no exact-geometry claim."
+  },
+  {
+    "name": "memory-add-refused-dark",
+    "imageID": "image-087",
+    "before": "../../projects-followup/ci-8e3fd79/images/a608b218b69cb260a39d15d908a1b2d3cf80c082cf53877a86fa3858d9f6aab7.webp",
+    "beforeSHA256": "88ea2984d8cfabd1044b1992e96bb03a3783ed7cacf92c77b03dbf02e54d65f3",
+    "beforeRGBA": "edc3fb1187e52ade7515f6d6ef8ed520c53553002cf97bd38853b6c129a90cb7",
+    "after": "../../projects-followup/electron-final/images/67f97e52b4cd362b1aa0632802402fc3fec72e53a2bda026554a1ba5e617c912.webp",
+    "afterRGBA": "6a54c2466956ccd0788dd3bb8366239231936d270daf628c8e08a86368cf76e6",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 12,
+    "differenceBounds": [
+      17,
+      185,
+      44,
+      221
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-03.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "12–28 pixel difference only; retained bounding box records rail/control raster variation. No visible layout change at reviewed scale; cause unassigned."
+  },
+  {
+    "name": "memory-wipe-refused-dark",
+    "imageID": "image-088",
+    "before": "../../projects-followup/ci-f82a648/images/edab16dbf2219675e0af430b56b92c7b1af9600d41b8c9b74b10fec3725cc214.webp",
+    "beforeSHA256": "8a609729e0c0be5f1cdd4e47323a12242ffd3a383af3e3205678229d322fb874",
+    "beforeRGBA": "e8bb82fa5dfb4ec37aaef5e0a3cb240c76c201af19f199f468d00b9a542233dc",
+    "after": "../../projects-followup/electron-final/images/4b85d3f8a87f69185993d415854ab20152345599335ec50ce50768c59dd7436b.webp",
+    "afterRGBA": "79102ee7fda123fe47f927b8096a7cb8da48cdb65c448a5ed38896b7bd994618",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 12,
+    "differenceBounds": [
+      17,
+      185,
+      44,
+      221
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-03.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "12–28 pixel difference only; retained bounding box records rail/control raster variation. No visible layout change at reviewed scale; cause unassigned."
+  },
+  {
+    "name": "memory-wipe-partial-dark",
+    "imageID": "image-089",
+    "before": "../../projects-followup/ci-8e3fd79/images/16e1cb29ff872f7469f8668ceed2a2845841615e8fa6cd533cec04f84fc3d495.webp",
+    "beforeSHA256": "ad3493462ee67987c04aa412651eba56c47619622719051d02f0f45489497f11",
+    "beforeRGBA": "41b07f9769af4e8d047dee8b8353a47b1755a9fe5719be4ef5762da5bc77656a",
+    "after": "../targeted-images/memory-wipe-partial-dark.webp",
+    "afterRGBA": "41b07f9769af4e8d047dee8b8353a47b1755a9fe5719be4ef5762da5bc77656a",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": true,
+    "differentPixels": 0,
+    "differenceBounds": null,
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-04.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Full decoded image RGBA-exact to f82 CI canonical."
+  },
+  {
+    "name": "memory-single-refused-dark",
+    "imageID": "image-090",
+    "before": "../../projects-followup/ci-8e3fd79/images/0ab1ae682cf3532f511d57baba5af34f5f16eb36c5265ef1ff22858d47f831b2.webp",
+    "beforeSHA256": "c66ce190107bafc5b2e6007402d79a7bbd0b9a015cc3d670c82d4c00ab8868bb",
+    "beforeRGBA": "95b3e10f3339c9ba9f6ed2128504e7306cff0db8b2b7f8f174817925ce79e6d9",
+    "after": "../targeted-images/memory-single-refused-dark.webp",
+    "afterRGBA": "cf05a730cd42d81d1d792e13d378028e0504d2ec3f6632bb79b42788ed25fe3d",
+    "size": [
+      960,
+      640
+    ],
+    "rgbaExact": false,
+    "differentPixels": 36951,
+    "differenceBounds": [
+      376,
+      118,
+      916,
+      287
+    ],
+    "viewed": true,
+    "comparisonSheet": "contacts/safety-before-after-04.jpg",
+    "reviewedAt": "2026-10-03T17:24:23.546627+00:00",
+    "observation": "Saved-Bot-specific title/description and neutral timestamp replace prior broad claims; title block/list reflow modestly, no clipping observed."
+  }
+]

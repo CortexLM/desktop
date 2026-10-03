@@ -1,0 +1,31 @@
+{
+  "verifiedAt": "2026-10-03T17:18:10.264410+00:00",
+  "captureDirtyBase": "74579d574646aff5dbd462247b4fd47a99dd2cdd",
+  "laterCommit": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "all516GitInputHashesMatchFinalFrozenSource": true,
+  "laterReceiptHeaderChangeOnly": [
+    {
+      "original": "binding/pinned-inputs.json",
+      "originalSHA256": "8f9ee6c927012c440135ce0b9520e0c0c5aa94fc4bb59ea1ecd0a1a126f86313",
+      "later": "binding/later-pinned-inputs.json",
+      "laterSHA256": "e2cba39e19bf5de5a47f1475c1086d5fc6edfa10c1ac3958361b0dc63bffc387",
+      "payloadUnchanged": true
+    },
+    {
+      "original": "binding/members.json",
+      "originalSHA256": "81baaba0ce9353d56851ff69f52f48ff26a629542c422f16c308e63b5cf494cb",
+      "later": "binding/later-members.json",
+      "laterSHA256": "f44f9277131a1ad0ef9e1bb2b740b6750fe938c5d7c392cf0d534fa007a78358",
+      "payloadUnchanged": true
+    },
+    {
+      "original": "binding/renderer-inputs.json",
+      "originalSHA256": "682f82f177563aefe442e1873a4ef84c4041fc8bd178001f58e80050dd8fa83c",
+      "later": "binding/later-renderer-inputs.json",
+      "laterSHA256": "cebd87737925fc560c5e9e7052bffd1b51894581f3ab290255695cdb32c0b840",
+      "payloadUnchanged": true
+    }
+  ],
+  "initialCandidateAttribution": "Initial30ec7f97 differs in runtime-settings.ts; never attributed to this final commit.",
+  "boundary": "Later source attribution, not a clean rebuild, CI, ASAR or native attestation. Original dirty receipts/report/provenance remain unchanged."
+}

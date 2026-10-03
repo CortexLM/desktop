@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-03T17:28:29.897637+00:00",
+  "command": "python3 evidence/memory-preference-followup/electron-final/verify.py --local",
+  "exitCode": 0,
+  "stdout": "PASS: 125/21 final cases; 426 visits; 173 exact canonical images; original failures retained; 516/474 source paths, 90 ASAR members and Git96 verified",
+  "verifierSHA256": "54daa57ae18ec1f55a4a0835fb0a792d891749a09903762f9c0e3afe8f49ed01",
+  "scope": "Offline retained artifact/source/pixel verification; no application execution.",
+  "fullsizeOriginalsInspected": 12,
+  "contactSheetsInspected": 15,
+  "comparisonSheetsInspected": 4,
+  "reviewedUniqueFinalImages": 173
+}

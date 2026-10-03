@@ -1,0 +1,101 @@
+{
+  "head": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "checkout": "348745898568d1c54293e9c5a8074adbec1a822a",
+  "headTree": "4883cea275b3d670292cb04515250e38cd2d26d1",
+  "checkoutTree": "4883cea275b3d670292cb04515250e38cd2d26d1",
+  "headCheckoutTreesEqual": true,
+  "checkoutObjectAvailable": false,
+  "checkoutProbeError": "fatal: Not a valid object name 348745898568d1c54293e9c5a8074adbec1a822a",
+  "checkoutLogLines": [
+    {
+      "line": 116,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T17:14:15.2578100Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +348745898568d1c54293e9c5a8074adbec1a822a:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 118,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T17:14:22.9701500Z  * [new ref]         348745898568d1c54293e9c5a8074adbec1a822a -> pull/36/merge"
+    },
+    {
+      "line": 201,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T17:14:25.3502760Z HEAD is now at 3487458 Merge 96df66ce727c42ddf647b2dcb4eeeff04fda4927 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 204,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T17:14:25.3658310Z 348745898568d1c54293e9c5a8074adbec1a822a"
+    },
+    {
+      "line": 773,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T17:13:57.4698507Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +348745898568d1c54293e9c5a8074adbec1a822a:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 775,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T17:14:10.6137193Z  * [new ref]         348745898568d1c54293e9c5a8074adbec1a822a -> pull/36/merge"
+    },
+    {
+      "line": 887,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T17:14:13.8508319Z HEAD is now at 3487458 Merge 96df66ce727c42ddf647b2dcb4eeeff04fda4927 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 890,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T17:14:14.0613784Z 348745898568d1c54293e9c5a8074adbec1a822a"
+    },
+    {
+      "line": 1194,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T17:14:04.9187118Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +348745898568d1c54293e9c5a8074adbec1a822a:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 1196,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T17:14:44.0186231Z  * [new ref]         348745898568d1c54293e9c5a8074adbec1a822a -> pull/36/merge"
+    },
+    {
+      "line": 1306,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T17:14:46.8074302Z HEAD is now at 3487458 Merge 96df66ce727c42ddf647b2dcb4eeeff04fda4927 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 1309,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T17:14:46.8213911Z 348745898568d1c54293e9c5a8074adbec1a822a"
+    }
+  ],
+  "inputs": 516,
+  "rendererInputs": 474,
+  "rendererComparatorFingerprint": "64a314be9950c61466f8beec1b1ef50aa7f5b60a7f67d67bc3deff805a5800ef",
+  "frozenBuildMembers": 90,
+  "frozenBuildFileSetAndBytesVerified": true,
+  "sourceInputsMatchApplicationCommit": true,
+  "frozenMainSHA256": "0b539fe42a98717d7121c7bf404cb4f9bf9930d6d451d909cda6824e75561e76",
+  "frozenPreloadSHA256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+  "ciASAROrMainCompared": false,
+  "scope": "Checkout/application tree equality accepted from verified coordinator readback. Frozen local source/build checked against application Git tree. CI package/native acceptance separately owned.",
+  "coordinatorReceiptSHA256": "400d86a21c5015549244593439d9e8a7be5d2cee84615f356a26bc9ef1d25325",
+  "treeProof": "Coordinator GitHub git-commit API readback; supplied receipt copied exactly. Checkout independently matches all three job logs and both reports; application tree independently read from Git.",
+  "proofBoundary": "Raw API response and signed commit object not supplied; no independent object reconstruction or signature validation claimed.",
+  "inputFileSetExact": true,
+  "inputSetRule": "All tracked packages/ and skills/ files except package test/ directories, plus bun.lock, electron-builder.yml, package.json, tsconfig.json.",
+  "rendererFileSetExact": true,
+  "rendererSourcePaths": [
+    "packages/app/src",
+    "packages/app/public",
+    "packages/app/index.html",
+    "packages/app/vite.config.ts",
+    "packages/app/package.json",
+    "packages/i18n/src",
+    "packages/i18n/locales",
+    "packages/client/src",
+    "packages/schema/src",
+    "package.json",
+    "bun.lock",
+    "tsconfig.json"
+  ]
+}

@@ -367,6 +367,16 @@ Matching installed checks record four passing captures and a separate dark-delet
 the collector's time-budget failure stays explicit. Independent native audit accepts that
 bounded composite; cleanup restores the pre-lease OS appearance and releases the device.
 See [`evidence/projects-followup/README.md`](./evidence/projects-followup/README.md).
+Memory preference `96df66c` passes CI `37139741944`: 125 Electron cases/426 render visits
+per OS, 260 units plus one optional skip, macOS package/smoke. Its local artifact review
+verifies 173 unique images/12 full-size Memory views; scoped preview comparison covers
+16 references/16 explicit Settings gaps. CI image review verifies 339 images/24 primary
+full-size Memory views; all sixteen auth-locale images match `f82a648`. Matching installed
+verification passes four native captures and paused manual access in both themes, with
+one dark-theme note deletion and cleanup complete. Independent native review accepts
+that bounded scope. The first collector's failed native assertion and separate
+conflicting-appearance diagnostic remain retained;
+see [`evidence/memory-preference-followup/README.md`](./evidence/memory-preference-followup/README.md).
 
 ## CI, packaging and releases
 

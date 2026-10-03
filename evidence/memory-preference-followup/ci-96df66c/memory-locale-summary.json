@@ -1,0 +1,36 @@
+{
+  "e2e-linux": {
+    "locales": 8,
+    "themes": 2,
+    "states": 64,
+    "statesByKind": {
+      "enabled": 16,
+      "paused": 16,
+      "privacy": 16,
+      "bot-empty": 16
+    },
+    "textRows": 112,
+    "allInkWithinViewportAndClippingAncestors": true,
+    "allHorizontalContentFits": true,
+    "pausedDarkScreenshots": 8,
+    "keyboard": "Space toggles Memory off in each locale/theme; Privacy reads persisted false.",
+    "glyphProof": "Memory dark captures inspected at full size; shared auth suite has 12 passing raster probes. No separate per-Memory-string glyph/contrast measurement."
+  },
+  "macos": {
+    "locales": 8,
+    "themes": 2,
+    "states": 64,
+    "statesByKind": {
+      "enabled": 16,
+      "paused": 16,
+      "privacy": 16,
+      "bot-empty": 16
+    },
+    "textRows": 112,
+    "allInkWithinViewportAndClippingAncestors": true,
+    "allHorizontalContentFits": true,
+    "pausedDarkScreenshots": 8,
+    "keyboard": "Space toggles Memory off in each locale/theme; Privacy reads persisted false.",
+    "glyphProof": "Memory dark captures inspected at full size; shared auth suite has 12 passing raster probes. No separate per-Memory-string glyph/contrast measurement."
+  }
+}

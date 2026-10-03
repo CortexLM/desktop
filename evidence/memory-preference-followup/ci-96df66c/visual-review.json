@@ -1,0 +1,35 @@
+{
+  "application": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "reviewedAt": "2026-10-03T17:56:14.510057+00:00",
+  "uniqueImages": 339,
+  "pngCopies": 1023,
+  "contactSheets": 30,
+  "allContactsInspected": true,
+  "primaryFullsizeMemoryViews": 24,
+  "supplementalFullsizeCurrentViews": 11,
+  "priorFullsizeComparisonViews": 3,
+  "historicalNavigationFullsizeViews": 1,
+  "authLocaleFullsizeInherited": 16,
+  "observations": {
+    "privacy-memory-off": "960×640, Memory switch off; Allow Bots to use their saved notes in future turns. wraps onto two lines. Privacy selection, heading and neighboring rows visible; their labels do not establish other toggle behavior.",
+    "saved-memory-paused": "960×640, Memory turned off/Paused explanations readable; Violet · 1 and VIOLET_SAVED_NOTE_842 remain legible at normal row opacity, plain this minute age, focused/visible trash action. Search/export/more remain in header; no toast obscures the note.",
+    "memory-paused": "960×640 dark empty Memory: switch thumb left with blue focus ring, retained-notes/future-turn explanation, pause banner and manual-only empty help visible. Notebook remains the fixture Bot name."
+  },
+  "localeObservations": {
+    "en": "English: two-line off explanation and empty help; single-line pause banner.",
+    "fr": "French: off explanation and empty help wrap to three lines; pause banner stays one line.",
+    "es": "Spanish: pause banner wraps to two lines; empty help stays inside its column.",
+    "de": "German: existing page title Speicher, off title Erinnerung deaktiviert, new help refers to Gedächtnis; these distinct terms remain visible, no native-language terminology approval.",
+    "pt-BR": "Portuguese: accents render; explanation and empty help wrap inside their columns.",
+    "ja": "Japanese glyphs visibly drawn, no replacement boxes observed; body/empty text wraps inside columns.",
+    "zh-Hans": "Simplified Chinese glyphs visibly drawn, no replacement boxes observed; final 存。 falls onto a short second help line. Linux/macOS line breaks differ.",
+    "ko": "Korean glyphs visibly drawn, no replacement boxes observed; words may break between syllables at line ends. Linux/macOS wrapping differs."
+  },
+  "qualifications": [
+    "Locale screenshots show dark paused empty Memory only; 64-state/112-text-row assertions per OS cover enabled/paused/Privacy/Bot-empty in both themes.",
+    "CJK glyphs visible in these six current Memory frames; font raster probes belong to the shared auth test, not every Memory character. No native-speaker/contrast certification.",
+    "Normal-opacity saved note remains manually manageable while paused; behavior proved by IPC/context and focus assertions, not screenshot alone.",
+    "Other frames retain toast overlap/stacks, decorative login-logo crop, Code input truncation and scrollport limits. Contact review is not full-size or frozen-reference approval.",
+    "Full goal remains incomplete; installed-native package/chrome/menu verification separately owned."
+  ]
+}
