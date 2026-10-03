@@ -1,0 +1,122 @@
+{
+  "head": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "checkout": "10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb",
+  "headTree": "d45d569a2526da17d64a16cd56a9b5bac073c968",
+  "checkoutTree": "d45d569a2526da17d64a16cd56a9b5bac073c968",
+  "headCheckoutTreesEqual": true,
+  "checkoutObjectAvailable": false,
+  "checkoutProbeError": "fatal: Not a valid object name 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb",
+  "checkoutLogLines": [
+    {
+      "line": 116,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T18:52:50.3433890Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 118,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T18:53:05.8425330Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge"
+    },
+    {
+      "line": 202,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T18:53:08.1814040Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 205,
+      "job": "macOS build, package, launch",
+      "text": "2026-10-03T18:53:08.1943920Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb"
+    },
+    {
+      "line": 781,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T18:52:32.7896354Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 783,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T18:52:53.8335577Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge"
+    },
+    {
+      "line": 897,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T18:52:57.1485644Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 900,
+      "job": "Lint, typecheck, unit tests, i18n audit",
+      "text": "2026-10-03T18:52:57.2083563Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb"
+    },
+    {
+      "line": 1204,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T18:52:39.3243290Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge"
+    },
+    {
+      "line": 1206,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T18:53:09.7998408Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge"
+    },
+    {
+      "line": 1316,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T18:53:12.4781225Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d"
+    },
+    {
+      "line": 1319,
+      "job": "E2E (Playwright + Electron, Linux)",
+      "text": "2026-10-03T18:53:12.4930604Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb"
+    }
+  ],
+  "inputs": 517,
+  "rendererInputs": 475,
+  "rendererComparatorFingerprint": "a4a815bac24ce5f509f813d06371b8a754908b4b472c3d786f1325dbed53b8df",
+  "frozenBuildMembers": 90,
+  "frozenBuildFileSetAndBytesVerified": true,
+  "sourceInputsMatchApplicationCommit": true,
+  "frozenMainSHA256": "0b539fe42a98717d7121c7bf404cb4f9bf9930d6d451d909cda6824e75561e76",
+  "frozenPreloadSHA256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0",
+  "ciASAROrMainCompared": false,
+  "scope": "Exact checkout/application tree equality; frozen source/build checked offline. Package/native admission remains separately owned.",
+  "reconstructedCheckoutSHA1": "10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb",
+  "reconstructedCheckoutSHA256": "4fa0336756bdcdc6b2a05c210328868dfba107685966ea2571dda7d49b89f8cc",
+  "localHeadObjectSHA1": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "coordinatorAPI": [
+    {
+      "path": "provenance/coordinator-checkout-binding.json",
+      "bytes": 397,
+      "sha256": "4c583fde2ec4986c040de53579cbf1fb2f6e2bbc3f61f8f273d2716662772f52"
+    },
+    {
+      "path": "provenance/coordinator-checkout-commit.json",
+      "bytes": 2832,
+      "sha256": "0e83eea0f37ecc629f1535abf8a7bd4303a233c7a99e0f50ab899ee13c9c84ab"
+    },
+    {
+      "path": "provenance/coordinator-head-commit.json",
+      "bytes": 1324,
+      "sha256": "fea2a3ad063a5e2dcd42fa3decb528af63e1a931fb42ec8593e548f968728df0"
+    }
+  ],
+  "treeProof": "Coordinator raw Git API payload independently reconstructs exact signed checkout object SHA1; head object/tree verified from local Git. All three checkout logs and both reports name that checkout.",
+  "signatureScope": "API reports valid checkout signature; GPG signature not independently verified. Application head is unsigned.",
+  "inputFileSetExact": true,
+  "rendererFileSetExact": true,
+  "rendererSourcePaths": [
+    "packages/app/src",
+    "packages/app/public",
+    "packages/app/index.html",
+    "packages/app/vite.config.ts",
+    "packages/app/package.json",
+    "packages/i18n/src",
+    "packages/i18n/locales",
+    "packages/client/src",
+    "packages/schema/src",
+    "package.json",
+    "bun.lock",
+    "tsconfig.json"
+  ],
+  "inputSetRule": "Tracked packages/ and skills/ excluding package test/ directories; bun.lock, electron-builder.yml, package.json, tsconfig.json.",
+  "historicalProductionSetsAndHashesExact": true,
+  "frozenMainAndPreloadExactTo96df66c": true
+}

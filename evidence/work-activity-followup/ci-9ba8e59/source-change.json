@@ -1,0 +1,27 @@
+{
+  "application": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "baseline": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "changedFiles": 14,
+  "addedLines": 556,
+  "removedLines": 13,
+  "existingE2EFilesExact": 33,
+  "newCases": 7,
+  "newBehaviorCases": 6,
+  "newLocaleCases": 1,
+  "engineIPCDependenciesWorkflowWorkersUnchanged": true,
+  "newEngineContractTests": 0,
+  "finalBehaviorLines": 211,
+  "finalBehaviorSHA256": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744",
+  "finalLocaleLines": 112,
+  "finalLocaleSHA256": "bfda7f43480e7f20e8101480950c28c5ea149b0f6f3bedf231d56c3ed7a5e087",
+  "localFullBehaviorSHA256": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+  "originalBehaviorSHA256": "0166d765dd10a8c332da09563af8c2418ea995cfd2ee07bcdd19b7438a347851",
+  "strongerFinalChecks": [
+    "pathname+search hold with recorded/asserted /api/sessions?kind=bot",
+    "Clear Bot filter before stale-response absence assertion",
+    "Assert immediate row retirement while its authoritative bot-list refresh remains held",
+    "Retain Activity-owned header and assert actual preview URL before late delivery/Back"
+  ],
+  "CIExecutesAllFinalAssertions": true,
+  "localFullDoesNotInheritLaterChecks": true
+}

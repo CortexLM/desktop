@@ -1,0 +1,148 @@
+116: macOS build, package, launch	Run actions/checkout@v4	2026-10-03T18:52:50.3433890Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge
+118: macOS build, package, launch	Run actions/checkout@v4	2026-10-03T18:53:05.8425330Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge
+202: macOS build, package, launch	Run actions/checkout@v4	2026-10-03T18:53:08.1814040Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+205: macOS build, package, launch	Run actions/checkout@v4	2026-10-03T18:53:08.1943920Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb
+497: macOS build, package, launch	E2E on macOS (source build)	2026-10-03T19:03:21.7669530Z rendered 426 screen states
+523: macOS build, package, launch	E2E on macOS (source build)	2026-10-03T19:05:17.9208130Z   132 passed (12.1m)
+538: macOS build, package, launch	Package (unsigned, arm64)	2026-10-03T19:05:19.7452840Z   • packaging       platform=darwin arch=arm64 electron=44.5.1 appOutDir=dist/mac-arm64
+554: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1331740Z ##[group]Run node scripts/smoke.mjs mac
+555: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1331980Z node scripts/smoke.mjs mac
+556: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1361920Z shell: /bin/bash -e {0}
+557: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1362070Z env:
+558: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1362210Z   CSC_IDENTITY_AUTO_DISCOVERY: false
+559: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1362380Z   BLACKSMITH_RUNNER_MESSAGE_WAIT_MS: 475
+560: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1362540Z   BLACKSMITH_RUNNER_ACQUIRE_JOB_MS: 830
+561: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:36.1362680Z ##[endgroup]
+562: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:37.2042660Z window: Cortex cortex://app/index.html
+563: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5403160Z could not create image from display
+564: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5409210Z screencapture failed: Command failed: screencapture -x out/smoke-screen.png
+565: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5410320Z could not create image from display
+566: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5410520Z
+567: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5412430Z renderer text: Chat | Work | Cortex | New chat | Create your Bot | Tools | Web search | Documents | Images | Automations | Projects | Projects | Recents | Your chats will appear here. | Getting started | 0 of 5 | What’s on today? | No model
+568: macOS build, package, launch	Packaged smoke test	2026-10-03T19:05:47.5413040Z SMOKE OK
+608: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:49.6098730Z SHA256 digest of uploaded artifact zip is e18c8210872a8e127c737b7b2a103650c62b6e2350e2a5642c61bfa517a6db8e
+610: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:49.8893380Z Artifact macos.zip successfully finalized. Artifact ID 11283070526
+611: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:49.8894000Z Artifact macos has been successfully uploaded! Final size is 38018345 bytes. Artifact ID is 11283070526
+653: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:53.4001700Z SHA256 digest of uploaded artifact zip is 775ddd8f7979fda1149a33474f3eaa4d22ce61e859ea87dc16a0b3bab85cc700
+655: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:53.6867450Z Artifact cortex-mac-arm64-zip.zip successfully finalized. Artifact ID 11282756070
+656: macOS build, package, launch	Run actions/upload-artifact@v4	2026-10-03T19:05:53.6868020Z Artifact cortex-mac-arm64-zip has been successfully uploaded! Final size is 144694495 bytes. Artifact ID is 11282756070
+781: Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-03T18:52:32.7896354Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge
+783: Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-03T18:52:53.8335577Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge
+897: Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-03T18:52:57.1485644Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+900: Lint, typecheck, unit tests, i18n audit	Run actions/checkout@v4	2026-10-03T18:52:57.2083563Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb
+969: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-03T18:53:01.8020206Z ##[group]Run bun run lint
+970: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-03T18:53:01.8020693Z bun run lint
+971: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-03T18:53:01.8090121Z shell: /usr/bin/bash -e {0}
+972: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-03T18:53:01.8090416Z ##[endgroup]
+973: Lint, typecheck, unit tests, i18n audit	Run bun run lint	2026-10-03T18:53:01.8349527Z $ eslint packages scripts tests
+974: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-03T18:53:12.9612677Z ##[group]Run bun run typecheck
+975: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-03T18:53:12.9613429Z bun run typecheck
+976: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-03T18:53:12.9694950Z shell: /usr/bin/bash -e {0}
+977: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-03T18:53:12.9695374Z ##[endgroup]
+978: Lint, typecheck, unit tests, i18n audit	Run bun run typecheck	2026-10-03T18:53:12.9825452Z $ tsc -p tsconfig.json
+979: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:32.7122480Z ##[group]Run bun run test
+980: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:32.7123396Z bun run test
+981: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:32.7214766Z shell: /usr/bin/bash -e {0}
+982: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:32.7215066Z ##[endgroup]
+983: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:32.7348610Z $ vitest run
+984: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:33.0613738Z
+985: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:33.0615678Z  RUN  v5.0.3 /home/runner/work/desktop/desktop
+986: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:33.0616686Z
+987: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:33.5441270Z (node:2185) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+988: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:33.5464194Z (Use `node --trace-warnings ...` to show where the warning was created)
+989: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:44.7747552Z  ✓ packages/desktop/test/remote-chat.test.ts (21 tests) 10810ms
+990: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:44.7751954Z    ✓ private remote Chat binding (21)
+991: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:44.7760266Z      ✓ enforces the real JSON deadline while an SSE body has its separate idle deadline 10046ms
+992: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:45.3115879Z (node:2195) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+993: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:45.3123517Z (Use `node --trace-warnings ...` to show where the warning was created)
+994: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:45.4757585Z  ✓ packages/core/test/remote-sessions.test.ts (18 tests) 116ms
+995: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:45.9522766Z (node:2203) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+996: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:45.9525641Z (Use `node --trace-warnings ...` to show where the warning was created)
+997: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:46.3090091Z  ✓ packages/server/test/projects.test.ts (7 tests) 354ms
+998: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:46.7844953Z (node:2211) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+999: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:46.7846762Z (Use `node --trace-warnings ...` to show where the warning was created)
+1000: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:47.0986955Z  ✓ packages/server/test/runtime-settings.test.ts (8 tests) 312ms
+1001: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:47.5623351Z (node:2219) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1002: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:47.5625085Z (Use `node --trace-warnings ...` to show where the warning was created)
+1003: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:57.8155099Z  ✓ packages/desktop/test/remote-session.test.ts (8 tests) 10250ms
+1004: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:57.8156581Z    ✓ process-lifetime remote authentication (8)
+1005: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:57.8163141Z      ✓ rejects duplicate requests and times out an unfinished native authentication body 10007ms
+1006: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:58.2835669Z (node:2229) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1007: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:58.2844614Z (Use `node --trace-warnings ...` to show where the warning was created)
+1008: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:58.5916549Z  ✓ packages/core/test/services.test.ts (15 tests) 306ms
+1009: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:59.0610764Z (node:2242) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1010: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:53:59.0612620Z (Use `node --trace-warnings ...` to show where the warning was created)
+1011: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:05.3632400Z  ✓ packages/core/test/session.test.ts (11 tests) 6300ms
+1012: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:05.3637821Z    ✓ session runner (fake OpenAI-compatible SSE) (11)
+1013: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:05.3646626Z      ✓ surfaces provider errors with a neutral code 6009ms
+1014: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:05.8377074Z (node:2256) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1015: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:05.8378894Z (Use `node --trace-warnings ...` to show where the warning was created)
+1016: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:06.0344096Z  ✓ packages/desktop/test/remote-core.test.ts (3 tests) 191ms
+1017: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:06.4741351Z (node:2264) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1018: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:06.4744959Z (Use `node --trace-warnings ...` to show where the warning was created)
+1019: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:06.5753795Z  ✓ packages/core/test/mcp.test.ts (11 tests) 97ms
+1020: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:10.7355246Z  ✓ tests/unit/runtime-copy.test.ts (34 tests) 3071ms
+1021: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.1725370Z  ✓ packages/desktop/test/remote.test.ts (45 tests | 1 skipped) 5184ms
+1022: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.1734294Z    ✓ remote backend through the Cortex SDK (45)
+1023: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.1735843Z      ✓ times out a model listing whose JSON body never completes 5002ms
+1024: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.6157510Z (node:2336) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1025: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.6159375Z (Use `node --trace-warnings ...` to show where the warning was created)
+1026: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.6745712Z  ✓ packages/core/test/connection.test.ts (5 tests) 56ms
+1027: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:16.8439665Z  ✓ packages/desktop/test/credentials.test.ts (23 tests) 35ms
+1028: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.2892056Z (node:2352) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1029: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.2894426Z (Use `node --trace-warnings ...` to show where the warning was created)
+1030: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.4745101Z  ✓ packages/server/test/server.test.ts (7 tests) 179ms
+1031: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.8786730Z (node:2360) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1032: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.8794333Z (Use `node --trace-warnings ...` to show where the warning was created)
+1033: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:17.9040618Z  ✓ packages/core/test/bus.test.ts (2 tests) 19ms
+1034: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:18.3364994Z (node:2367) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1035: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:18.3366868Z (Use `node --trace-warnings ...` to show where the warning was created)
+1036: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:18.4988364Z  ✓ packages/core/test/capabilities.test.ts (11 tests) 147ms
+1037: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:18.9245963Z (node:2375) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1038: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:18.9248030Z (Use `node --trace-warnings ...` to show where the warning was created)
+1039: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:19.0983241Z  ✓ packages/core/test/scheduler.test.ts (4 tests) 167ms
+1040: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:19.4773767Z  ✓ tests/unit/audit-i18n.test.ts (1 test) 244ms
+1041: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:19.9184141Z (node:2397) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1042: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:19.9189359Z (Use `node --trace-warnings ...` to show where the warning was created)
+1043: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.0382091Z  ✓ packages/client/test/client.test.ts (3 tests) 115ms
+1044: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.4653275Z (node:2405) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1045: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.4655543Z (Use `node --trace-warnings ...` to show where the warning was created)
+1046: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.8557503Z  ✓ packages/core/test/catalog.test.ts (6 tests) 388ms
+1047: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.8558848Z    ✓ catalog (6)
+1048: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:20.8564259Z      ✓ live: fetches models.dev (skipped offline) 362ms
+1049: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:21.2739273Z (node:2417) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+1050: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:21.2742290Z (Use `node --trace-warnings ...` to show where the warning was created)
+1051: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:21.3125988Z  ✓ packages/core/test/computer-use.test.ts (3 tests) 37ms
+1052: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:21.7987767Z  ✓ tests/unit/locales.test.ts (9 tests) 352ms
+1053: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.0111177Z  ✓ packages/schema/test/schema.test.ts (3 tests) 20ms
+1054: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2665092Z  ✓ packages/protocol/test/protocol.test.ts (3 tests) 46ms
+1055: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2724192Z
+1056: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2740522Z  Test Files  24 passed (24)
+1057: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2754672Z       Tests  260 passed | 1 skipped (261)
+1058: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2755912Z    Start at  18:53:33
+1059: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2757235Z    Duration  49.20s (tests 83%, import 14%, transform 3%)
+1060: Lint, typecheck, unit tests, i18n audit	Run bun run test	2026-10-03T18:54:22.2758134Z
+1061: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:22.3053413Z ##[group]Run bun run audit:i18n
+1062: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:22.3053774Z bun run audit:i18n
+1063: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:22.3115286Z shell: /usr/bin/bash -e {0}
+1064: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:22.3115570Z ##[endgroup]
+1065: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:22.3211732Z $ node scripts/audit-i18n.mjs
+1066: Lint, typecheck, unit tests, i18n audit	Run bun run audit:i18n	2026-10-03T18:54:24.0894543Z i18n audit: 67 files, 2279 keys used, 3419 keys in en, 0 problem(s)
+1204: E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-03T18:52:39.3243290Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb:refs/remotes/pull/36/merge
+1206: E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-03T18:53:09.7998408Z  * [new ref]         10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb -> pull/36/merge
+1316: E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-03T18:53:12.4781225Z HEAD is now at 10c98bd Merge 9ba8e59fbec8c1f38f93ace25414d4a3489aede3 into 9bf3c002c01f5f1a30cce6fbb9f3c6e4da195a3d
+1319: E2E (Playwright + Electron, Linux)	Run actions/checkout@v4	2026-10-03T18:53:12.4930604Z 10c98bdd34f4fe1e7ff38f8cf1c921bb52ef8cbb
+1402: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:17.4508260Z sudo apt-get install -y xvfb fonts-noto-cjk fontconfig
+1405: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:17.4509241Z dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv
+1436: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.0403575Z   fonts-noto-cjk-extra
+1440: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.0495591Z   fonts-noto-cjk
+1447: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.0705393Z Get:2 http://mirror.hetzner.com/ubuntu/packages noble/main amd64 fonts-noto-cjk all 1:20230817+repack1-3 [61.2 MB]
+1451: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.5179836Z Selecting previously unselected package fonts-noto-cjk.
+1474: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.6526346Z Preparing to unpack .../fonts-noto-cjk_1%3a20230817+repack1-3_all.deb ...
+1475: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:20.6593442Z Unpacking fonts-noto-cjk (1:20230817+repack1-3) ...
+1480: E2E (Playwright + Electron, Linux)	Run sudo apt-get update	2026-10-03T18:53:21.0525977Z Setting up fonts-noto-cjk (1:20230817+repack1-3) ...
+1732: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-03T18:57:12.3741448Z rendered 426 screen states
+1735: E2E (Playwright + Electron, Linux)	Run xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e	2026-10-03T18:57:12.3923234Z   132 passed (3.8m)
+1767: E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-03T18:57:16.4386786Z SHA256 digest of uploaded artifact zip is 2d48843a55cfa32e1a5e09437333ec13b316f687150e17122b92187b8f2e37bb
+1769: E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-03T18:57:16.9497085Z Artifact e2e-linux.zip successfully finalized. Artifact ID 11281234763
+1770: E2E (Playwright + Electron, Linux)	Run actions/upload-artifact@v4	2026-10-03T18:57:16.9497579Z Artifact e2e-linux has been successfully uploaded! Final size is 39215269 bytes. Artifact ID is 11281234763

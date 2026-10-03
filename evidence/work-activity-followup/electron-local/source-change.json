@@ -1,0 +1,197 @@
+{
+  "baseline": "96df66ce727c42ddf647b2dcb4eeeff04fda4927",
+  "dirtyBase": "906987b94c04c3c4566ecb33394584ff0e93074e",
+  "changedInputs": [
+    {
+      "path": "packages/app/src/screens/work/activity.tsx",
+      "oldSHA256": null,
+      "newSHA256": "ac08eb0411325df215cce7bcb16dae8b47f562621fd7ea87b1b74d59dc09d904"
+    },
+    {
+      "path": "packages/app/src/screens/work/desk.tsx",
+      "oldSHA256": "1fd2ca98a9416e8da406aa64f56ab4eecb1f934a741e785ae91888d30d82aa99",
+      "newSHA256": "0ca4769cfa95e122f61d1cf9f23093707c0265bc12d89a43aa83fa98c247d288"
+    },
+    {
+      "path": "packages/app/src/screens/work/home.tsx",
+      "oldSHA256": "61e37805bd9591619ce82e1e0e73af39fcf79b76ac0277bbf6b531a311cfd5b8",
+      "newSHA256": "b3d1f50d603e03bd3335f299c7f80f333a7d2dd66a34e625900baf9ec2a60079"
+    },
+    {
+      "path": "packages/app/src/screens/work/work.css",
+      "oldSHA256": "8e29cb494561ef4c29454b993a2e87f3e39e75087a6e80438caf16d936916577",
+      "newSHA256": "b030e5979a31fb9d5cebc2a38d6922766d34cf693c1ab5c2fafb9efa4f0be5c3"
+    },
+    {
+      "path": "packages/i18n/locales/de/work.json",
+      "oldSHA256": "761f1bd85943dbb35c6e911109a54364075574e1057a1f0238bd9f85783418b8",
+      "newSHA256": "1da59c3938f731a304ab1ba7cb7a3f91c010e503f6144f1640d050ccd77c8c0b"
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "oldSHA256": "b048e9d08538c76641f215503a3e7f43216fa4c4d9b4f41c4f3de4a6de41ade9",
+      "newSHA256": "fd6c0302aa80dbb6be7622661d0bfcb98244a387b5ba0c0b5fb51b25624d32f1"
+    },
+    {
+      "path": "packages/i18n/locales/es/work.json",
+      "oldSHA256": "4c2c062ecae0e8d8f76eb25f83311b6c21662a02a62450d6c293c3cb9dba750d",
+      "newSHA256": "b8527b5c6e3a209b5df9e85dbc0f8049c6f72628209d878260d8b7ce1153b3f6"
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.json",
+      "oldSHA256": "6222b8a078107384d90bd548698cebd55c4aeb57838c6bf4c009136887938594",
+      "newSHA256": "37eaeea2da379f6e0814c1a9becaa81956795db3c8610ee7701c6b01ad522166"
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.json",
+      "oldSHA256": "5da3b64d559fa175e5838817d8768b9d5fe268da61b1967da9ec61f29dd143ae",
+      "newSHA256": "80e16b51527c2250b469e44c68073b4a981882a8cd34077f81efdd1a3edf4912"
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.json",
+      "oldSHA256": "c95fa4561878607ef1072646c0cc1424b0db3862f37a4664ade8fe0d5bb58162",
+      "newSHA256": "7eb374d5539e078fa5d5722be37683c1462b0984167e2517736980efbda94d19"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.json",
+      "oldSHA256": "538dec7c6c96a26b27f957c02cc133e2293d653b871bb54baf14a2d085c32390",
+      "newSHA256": "0ad1c90db6d2ba47eb0f0d74a6dcd68f70aeb172c17f1a9c94d233bc61aa4ac9"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.json",
+      "oldSHA256": "ab97f698200005891346be581bf6f4cd960b1de1a793b79b199adf7269702415",
+      "newSHA256": "eba9d09db69b2daa3a613aaf158f0322bff428f2395e17d0ba5617307a2fad8a"
+    }
+  ],
+  "sourceCount": 517,
+  "rendererCount": 475,
+  "rendererFingerprint": "a4a815bac24ce5f509f813d06371b8a754908b4b472c3d786f1325dbed53b8df",
+  "desktopMembersUnchanged": [
+    {
+      "path": "packages/desktop/dist/main.cjs",
+      "sha256": "0b539fe42a98717d7121c7bf404cb4f9bf9930d6d451d909cda6824e75561e76"
+    },
+    {
+      "path": "packages/desktop/dist/main.cjs.map",
+      "sha256": "94ae17436280cfc817d890f843a136355ce48253eb3c7b8b1f3daad3b9ea973a"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs",
+      "sha256": "0c0dea24ae0345641c19ebc41af763ce8462f961a984fa530960a4b187831bb0"
+    },
+    {
+      "path": "packages/desktop/dist/preload.cjs.map",
+      "sha256": "714c9b87a962ce9db7ac4a00d0e8b9cf2f4e01fb68f679686db1243a508b3533"
+    }
+  ],
+  "engineInputsUnchanged": true,
+  "addedCatalogValues": 56,
+  "catalogs": [
+    {
+      "path": "packages/i18n/locales/de/work.json",
+      "added": {
+        "act.recentScope": "Die letzte beendete Antwort aus jeder von bis zu 40 zuletzt aktualisierten Bot-Unterhaltungen.",
+        "act.completed": "Abgeschlossen",
+        "act.failed": "Fehlgeschlagen",
+        "act.interrupted": "Unterbrochen",
+        "act.missingBot": "Bot nicht verfügbar",
+        "act.recentEmptyTitle": "Hier gibt es keine beendeten Antworten",
+        "act.recentEmptyText": "Beendete Bot-Antworten aus diesen kürzlich aktualisierten Unterhaltungen erscheinen hier."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/en/work.json",
+      "added": {
+        "act.recentScope": "The latest finished turn from each of up to 40 recently updated Bot conversations.",
+        "act.completed": "Completed",
+        "act.failed": "Failed",
+        "act.interrupted": "Interrupted",
+        "act.missingBot": "Unavailable Bot",
+        "act.recentEmptyTitle": "No finished turns here",
+        "act.recentEmptyText": "Finished Bot turns from these recent conversations will appear here."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/es/work.json",
+      "added": {
+        "act.recentScope": "La última respuesta finalizada de cada conversación con un Bot, hasta un máximo de 40 conversaciones actualizadas recientemente.",
+        "act.completed": "Completada",
+        "act.failed": "Fallida",
+        "act.interrupted": "Interrumpida",
+        "act.missingBot": "Bot no disponible",
+        "act.recentEmptyTitle": "No hay respuestas finalizadas aquí",
+        "act.recentEmptyText": "Aquí aparecerán las respuestas finalizadas de los Bots en estas conversaciones recientes."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/fr/work.json",
+      "added": {
+        "act.recentScope": "La dernière réponse terminée de chaque conversation avec un Bot, dans la limite de 40 conversations récemment mises à jour.",
+        "act.completed": "Terminée",
+        "act.failed": "Échec",
+        "act.interrupted": "Interrompue",
+        "act.missingBot": "Bot indisponible",
+        "act.recentEmptyTitle": "Aucune réponse terminée ici",
+        "act.recentEmptyText": "Les réponses terminées des Bots dans ces conversations récentes apparaîtront ici."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ja/work.json",
+      "added": {
+        "act.recentScope": "最近更新されたBotとの会話（最大40件）ごとに、最後に終了した回答を表示します。",
+        "act.completed": "完了",
+        "act.failed": "失敗",
+        "act.interrupted": "中断",
+        "act.missingBot": "利用できないBot",
+        "act.recentEmptyTitle": "終了した回答はここにはありません",
+        "act.recentEmptyText": "これらの最近更新された会話で終了したBotの回答がここに表示されます。"
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/ko/work.json",
+      "added": {
+        "act.recentScope": "최근 업데이트된 Bot 대화 최대 40개에서 마지막으로 종료된 답변을 하나씩 표시합니다.",
+        "act.completed": "완료",
+        "act.failed": "실패",
+        "act.interrupted": "중단됨",
+        "act.missingBot": "사용할 수 없는 Bot",
+        "act.recentEmptyTitle": "여기에는 종료된 답변이 없습니다",
+        "act.recentEmptyText": "최근 업데이트된 이 대화들에서 종료된 Bot 답변이 여기에 표시됩니다."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/work.json",
+      "added": {
+        "act.recentScope": "A última resposta encerrada de cada conversa com um Bot, entre até 40 conversas atualizadas recentemente.",
+        "act.completed": "Concluída",
+        "act.failed": "Falhou",
+        "act.interrupted": "Interrompida",
+        "act.missingBot": "Bot indisponível",
+        "act.recentEmptyTitle": "Nenhuma resposta encerrada aqui",
+        "act.recentEmptyText": "As respostas encerradas dos Bots nessas conversas recentes aparecerão aqui."
+      },
+      "previousValuesUnchanged": true
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/work.json",
+      "added": {
+        "act.recentScope": "显示最近更新的 Bot 对话（最多 40 个）中各自最后一条已结束的回复。",
+        "act.completed": "已完成",
+        "act.failed": "失败",
+        "act.interrupted": "已中断",
+        "act.missingBot": "Bot 不可用",
+        "act.recentEmptyTitle": "这里暂无已结束的回复",
+        "act.recentEmptyText": "这些近期更新的对话中已结束的 Bot 回复会显示在这里。"
+      },
+      "previousValuesUnchanged": true
+    }
+  ],
+  "activitySourceLines": 145,
+  "testBindingLimit": "JSON embeds case IDs/locations, not source SHA. Hash binding uses archived sources, coordinator receipts and unchanged declared case locations; final211-line test is not attributed to full132."
+}

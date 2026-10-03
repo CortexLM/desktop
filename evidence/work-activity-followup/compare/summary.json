@@ -1,0 +1,43 @@
+{
+  "disposition": "Scoped preview pass; inherited frozen residuals retained",
+  "captureDirtyBase": "906987b94c04c3c4566ecb33394584ff0e93074e",
+  "laterSourceCommit": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "rendererFingerprint": "a4a815bac24ce5f509f813d06371b8a754908b4b472c3d786f1325dbed53b8df",
+  "rows": 22,
+  "compared": 22,
+  "gapsThisScope": 0,
+  "routes": {
+    "activity": 6,
+    "work-task": 16
+  },
+  "maximum": {
+    "state": "work-task~blocked-light",
+    "changed": 1930,
+    "exactPct": 0.03722993827160494,
+    "originalRoundedPct": 0.04
+  },
+  "activityMaximum": {
+    "state": "activity~timeline-dark",
+    "exactPct": 0.03468364197530864
+  },
+  "meanExactPct": 0.015631137766554434,
+  "meanOriginalRoundedPct": 0.01681818181818182,
+  "fullFramesExactToFrozen": 0,
+  "zeroThresholdFrozen": 0,
+  "fullFramesExactToPrior6d96535": [
+    "work-task~blocked-light",
+    "work-task~paused-light"
+  ],
+  "pairSheetsInspected": 3,
+  "fullSizePairsInspected": 7,
+  "fullResolutionOriginalsInspected": 14,
+  "newWebPs": 27,
+  "canonicalReuses": 17,
+  "newWebPBytes": 14372412,
+  "sourceInputs": 517,
+  "rendererInputs": 475,
+  "buildMembers": 90,
+  "servedAssets": 19,
+  "referenceSourceFiles": 106,
+  "currentOriginalPNGs": 66
+}

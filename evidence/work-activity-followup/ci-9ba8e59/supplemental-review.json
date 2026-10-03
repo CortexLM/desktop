@@ -1,0 +1,65 @@
+{
+  "currentFullsize": [
+    {
+      "imageID": "e2e-linux-136",
+      "os": "e2e-linux",
+      "view": "privacy-memory-off-light",
+      "canonical": "images/73552f2b6b476055e7d37b7d8192f184dfd4fc3223566db51cb388aa840854d5.webp",
+      "sha256": "73552f2b6b476055e7d37b7d8192f184dfd4fc3223566db51cb388aa840854d5",
+      "rgbaSHA256": "4bb3de8f47f422ee055a1ca2872b58da9943fa2cbdb124ad7b1c5a0a1a20999a",
+      "inspected": true
+    },
+    {
+      "imageID": "e2e-linux-138",
+      "os": "e2e-linux",
+      "view": "saved-memory-paused-light",
+      "canonical": "images/061c48dfa7a272e5dae65fe93fe419f5fa857f768f6ca4976bbd1d5bdb935917.webp",
+      "sha256": "061c48dfa7a272e5dae65fe93fe419f5fa857f768f6ca4976bbd1d5bdb935917",
+      "rgbaSHA256": "e985ba85216558c1e47e6077adeefb16d64015d5973be335e5345277f4da07a9",
+      "inspected": true
+    },
+    {
+      "imageID": "macos-055",
+      "os": "macos",
+      "view": "reasoning-expanded-960-dark",
+      "canonical": "images/c04432cab2bb94c398b0f35e94885b4c49ae4ce7ef6f02effd0fc932ed813745.webp",
+      "sha256": "c04432cab2bb94c398b0f35e94885b4c49ae4ce7ef6f02effd0fc932ed813745",
+      "rgbaSHA256": "9709ea888dd97fe9ea077fe75db23309e2dbf97ef3e3a1dec21c9b342ba1cf0b",
+      "inspected": true
+    },
+    {
+      "imageID": "macos-056",
+      "os": "macos",
+      "view": "reasoning-expanded-960-light",
+      "canonical": "images/e59992d7d35ec4bb9250c35e9bc226db438ac09f549a9c424192883350766a14.webp",
+      "sha256": "e59992d7d35ec4bb9250c35e9bc226db438ac09f549a9c424192883350766a14",
+      "rgbaSHA256": "25b8a1c898ab19fe47f452aec3c7d7d607dcf6181e3554e15be906f3a243dffa",
+      "inspected": true
+    },
+    {
+      "imageID": "macos-120",
+      "os": "macos",
+      "view": "remote-mfa-unavailable-light",
+      "canonical": "images/0e19e47feaf9ff05f468c24299fa59473624887e0ce6c445c3691203709a9997.webp",
+      "sha256": "0e19e47feaf9ff05f468c24299fa59473624887e0ce6c445c3691203709a9997",
+      "rgbaSHA256": "e6df6e0b91cdb81033a5ddf21b3f85efd63116a02ee4aaa01d0d8549a4eadb32",
+      "inspected": true
+    }
+  ],
+  "historicalBaselineImages": [
+    {
+      "path": "../baseline/old-populated-light.png",
+      "bytes": 42969,
+      "sha256": "68c5dc49584bb20052ba87370346c1e70106490e36f2392fb02e8b3b6d1b83ae",
+      "inspected": true,
+      "observation": "Old populated-engine Activity still shows No activity yet empty screen; no recent-scope label or rows."
+    },
+    {
+      "path": "../baseline/old-populated-dark.png",
+      "bytes": 43070,
+      "sha256": "5f550b0319885e55b5d8bacd9d48425734d97aca95a74b9c855278231f419ad8",
+      "inspected": true,
+      "observation": "Old populated-engine Activity still shows No activity yet empty screen; no recent-scope label or rows."
+    }
+  ]
+}

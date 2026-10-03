@@ -1,0 +1,26 @@
+{
+  "run": 37145831654,
+  "applicationRevision": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "macOS build, package, launch",
+      "conclusion": "success",
+      "startedAt": "2026-10-03T18:52:46Z",
+      "completedAt": "2026-10-03T19:06:02Z"
+    },
+    {
+      "name": "Lint, typecheck, unit tests, i18n audit",
+      "conclusion": "success",
+      "startedAt": "2026-10-03T18:52:30Z",
+      "completedAt": "2026-10-03T18:54:26Z"
+    },
+    {
+      "name": "E2E (Playwright + Electron, Linux)",
+      "conclusion": "success",
+      "startedAt": "2026-10-03T18:52:36Z",
+      "completedAt": "2026-10-03T18:57:20Z"
+    }
+  ],
+  "scope": "CI status readback; detailed independent artifact review separate"
+}

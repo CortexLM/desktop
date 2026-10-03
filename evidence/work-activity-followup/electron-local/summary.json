@@ -1,0 +1,92 @@
+{
+  "disposition": "PASS bounded retained local artifact scope",
+  "originalDirtyBase": "906987b94c04c3c4566ecb33394584ff0e93074e",
+  "laterApplicationCommit": "9ba8e59fbec8c1f38f93ace25414d4a3489aede3",
+  "full": {
+    "raw": "/tmp/opencode/work-activity/full.json",
+    "sha256": "fc14ec77c1486e9a51ef00f134f655e0bbdef2833b96f092be15134f214be911",
+    "retained": "../checks/full.json.gz",
+    "retainedSHA256": "9f75b7054a055ed87936a7b8be2603b1c4d633631d431ba1c7a6dc80d0e94003",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:41:36.166Z",
+      "duration": 294848.924,
+      "expected": 132,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 132,
+    "attempts": 132,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 187,
+      "application/json": 66
+    },
+    "renderVisits": 426,
+    "renderStdout": "rendered 426 screen states\n"
+  },
+  "supplemental": {
+    "raw": "/tmp/opencode/work-activity/final-targeted.json",
+    "sha256": "a1eb3624b0ab8cfd24bcbec6133e8c0cc4c84301fe512fba98af1dc14db23fc6",
+    "retained": "../checks/final-targeted.json.gz",
+    "retainedSHA256": "d1b062a94833fb7c98d112e9d75218949ba0af394048ebdbfd098fb4db391462",
+    "rawExact": true,
+    "stats": {
+      "startTime": "2026-10-03T18:48:08.108Z",
+      "duration": 7286.332,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": 6,
+    "attempts": 6,
+    "retryAttempts": 0,
+    "topLevelErrors": [],
+    "resultErrors": 0,
+    "attachments": {
+      "image/png": 4,
+      "application/json": 1
+    }
+  },
+  "images": {
+    "runs": {
+      "full": {
+        "uniqueImages": 181,
+        "fileCopies": 366,
+        "inlinePNG": 4,
+        "pngAttachments": 187
+      },
+      "final-targeted": {
+        "uniqueImages": 4,
+        "fileCopies": 8,
+        "inlinePNG": 0,
+        "pngAttachments": 4
+      }
+    },
+    "union": {
+      "uniquePNG": 185,
+      "uniqueRGBA": 185,
+      "newLosslessWebP": 45,
+      "newImageBytes": 1378326,
+      "reuses": {
+        "../../memory-preference-followup/ci-96df66c/images.jsonl": 110,
+        "../../memory-preference-followup/electron-final/images.jsonl": 30
+      },
+      "contacts": 16,
+      "fullsizeTargets": 16
+    }
+  },
+  "sourceSeparation": {
+    "full132": "5740841a75bda4c688f5407122b870bda049698c1b5e80c6746ce55b82ba4af0",
+    "final6": "d98c9205c5dbddfe349a06a4271b4a2a1c135248cf84817705b6d81e11916744"
+  },
+  "unexpectedObservedErrorFields": 0,
+  "intentionalNavigationFaults": 3,
+  "fullsizeTargetsReviewed": 16,
+  "sourceReviewAndNativeCI": "separately owned; not certified here",
+  "fullGoal": "incomplete"
+}

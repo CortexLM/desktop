@@ -1,0 +1,42 @@
+[
+  {
+    "run": "full",
+    "measurements": 112,
+    "fragments": 304,
+    "inkRectangles": 366,
+    "groups": {
+      "act.recentScope": 16,
+      "act.recentEmptyTitle": 16,
+      "act.recentEmptyText": 16,
+      "scope": 16,
+      "outcome-0": 16,
+      "outcome-1": 16,
+      "outcome-2": 16
+    },
+    "allReportedBoundsPass": true
+  },
+  {
+    "run": "targeted",
+    "measurements": 112,
+    "fragments": 304,
+    "inkRectangles": 366,
+    "groups": {
+      "act.recentScope": 16,
+      "act.recentEmptyTitle": 16,
+      "act.recentEmptyText": 16,
+      "scope": 16,
+      "outcome-0": 16,
+      "outcome-1": 16,
+      "outcome-2": 16
+    },
+    "allReportedBoundsPass": true
+  },
+  {
+    "run": "locale-baseline",
+    "measurements": 0,
+    "fragments": 0,
+    "inkRectangles": 0,
+    "groups": {},
+    "allReportedBoundsPass": false
+  }
+]

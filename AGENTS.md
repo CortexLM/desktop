@@ -385,6 +385,17 @@ one dark-theme note deletion and cleanup complete. Independent native review acc
 that bounded scope. The first collector's failed native assertion and separate
 conflicting-appearance diagnostic remain retained;
 see [`evidence/memory-preference-followup/README.md`](./evidence/memory-preference-followup/README.md).
+Work Activity `9ba8e59` passes CI `37145831654`; local regression covers 132 Electron
+cases/426 visits, with six strengthened behavior cases separately bound to the same build.
+Local image review verifies 185 images/16 full-size Activity views; frozen comparison
+covers 22 references/zero gaps. Matching installed checks pass four native captures and
+twenty geometry targets, keyboard filters and exact Work links in both themes at 960×640.
+Three local fixture turns establish historical outcomes; they establish no remote inference.
+CI artifact review accepts 364 images/24 primary full-size Activity views; sixteen
+Memory locale and sixteen auth-locale frames match `96df66c`. Independent installed-native
+review accepts the bounded scope; fixture mascot fallbacks exclude custom appearance
+fidelity from that run. See
+[`evidence/work-activity-followup/README.md`](./evidence/work-activity-followup/README.md).
 
 ## CI, packaging and releases
 

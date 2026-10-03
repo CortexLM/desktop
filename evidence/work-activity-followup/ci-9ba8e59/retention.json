@@ -1,0 +1,62 @@
+{
+  "rawReports": [
+    {
+      "source": "/tmp/opencode/activity-ci-37145831654/artifacts/e2e-linux/test-results/e2e.json",
+      "retained": "e2e-linux-report.json.gz",
+      "rawBytes": 1803348,
+      "rawSHA256": "fbc2925e7aab17b88df4c96aeb82ddcce5d96581227b08cf80d0b4228b27599d",
+      "gzipSHA256": "96d4c583be3f3e7e21b5a9c7b074244572283006ef0761fe5030a24ba61e7e9b"
+    },
+    {
+      "source": "/tmp/opencode/activity-ci-37145831654/artifacts/macos/test-results/e2e.json",
+      "retained": "macos-report.json.gz",
+      "rawBytes": 1795452,
+      "rawSHA256": "26a24c29e40ce666a09becf6fde67b2049eb55fd499a2042ad9bb7c32cd4303d",
+      "gzipSHA256": "bc97e17075a2c04c78664800a4892588b7c75315160b39ace2079e29b65ce981"
+    }
+  ],
+  "imageRetention": {
+    "96df66c RGBA-exact canonical": 292,
+    "new lossless WebP": 72
+  },
+  "uniqueImages": 364,
+  "pngCopies": 1096,
+  "rawArchivesRetainedInRepository": false,
+  "archiveBindings": "downloads.json",
+  "canonicalReusesRequire": "Full-image decoded RGBA hash and bytes exact; prior retained SHA256 and dimensions verified. No tolerance.",
+  "originalInputHashes": [
+    {
+      "path": "/tmp/opencode/activity-ci-37145831654/run.json",
+      "sha256": "f9ba6b6a9ece1f0e7531b896a5e6619784aa59ea4d5c4f5081304cd77917c9c2"
+    },
+    {
+      "path": "/tmp/opencode/activity-ci-37145831654/run.log",
+      "sha256": "9a3a08b8e123acf75b55311183e8cf7f08d10d64597d5578073b4a31b7b33403"
+    },
+    {
+      "path": "/tmp/opencode/activity-ci-37145831654/artifacts.json",
+      "sha256": "891cf2e4aeb88fb5ad6874ae1d6b7d2a1c1b7482189513ed78b8fcc3865364db"
+    },
+    {
+      "path": "/tmp/opencode/activity-ci-37145831654/archive-bindings.json",
+      "sha256": "2dedac9b4b648fadfe6b8da69c6c27402ed1998b5b088ca50c528c93cbe59c5e"
+    }
+  ],
+  "rawLog": {
+    "retained": "logs/run.log.gz",
+    "rawBytes": 272644,
+    "rawSHA256": "9a3a08b8e123acf75b55311183e8cf7f08d10d64597d5578073b4a31b7b33403",
+    "gzipSHA256": "d94ba3042e66dc5ecc71abc2910a9aec137736d570408726ae012ae31ec794e4"
+  },
+  "canonicalReusesByOS": {
+    "e2e-linux": {
+      "96df66c RGBA-exact canonical": 139,
+      "new lossless WebP": 42
+    },
+    "macos": {
+      "96df66c RGBA-exact canonical": 153,
+      "new lossless WebP": 30
+    }
+  },
+  "localActivityCanonicalsUsed": false
+}

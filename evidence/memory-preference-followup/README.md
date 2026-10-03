@@ -6,6 +6,10 @@ all three jobs, including the unsigned macOS package/smoke.
 [Post-commit binding](final/application-pin.json) verifies all 516 tested package inputs.
 Original run receipts retain dirty base `74579d5`. Projects' earlier passing CI/native
 evidence does not establish this new behavior.
+Documentary `906987b` preserves all 516 application inputs and passes
+[CI 37143447582](https://github.com/CortexLM/desktop/actions/runs/37143447582)
+([receipt](documentary-ci.json)). Installed acceptance stays bound to the admitted
+`96df66c` artifact.
 
 The source-only [contract audit](source-contract.md) found two ineffective controls:
 Settings Privacy saves a renderer preference unused by inference; Memory resets its local

@@ -1,0 +1,65 @@
+--- memory96/packages/app/src/screens/work/desk.tsx
++++ activity/packages/app/src/screens/work/desk.tsx
+@@ -7,11 +7,13 @@
+ import { useVariant } from "../../registry";
+ import { useT } from "../../i18n";
+ import { isPreview, useFixtures } from "../../preview";
++import { useNav } from "../../shell/nav";
+ import { api } from "../../api";
+ import { usePermissions, useSessions, useBots } from "../../state/live";
+ import { toolName } from "../../state/tool-label";
+ import { css, NB, useGo, useMainBot, useDate, Top, Empty, TabBar, Mono, Check, BotFace, type BotsFx } from "./common";
+ import type { WorkFx, Msg, Conn } from "./fixtures";
++import { ActivityLive } from "./activity";
+ 
+ /* ====================================================================== */
+ /* 5. Inbox                                                               */
+@@ -229,8 +231,12 @@
+ const TYPES = ["all", "email", "routines", "tickets", "crm", "documents", "browsing", "errors"];
+ 
+ export function Activity() {
+-  const t = useT();
+-  const preview = isPreview();
++  const { params } = useNav();
++  return params.has("preview") || params.has("shot") ? <ActivityPreview /> : <ActivityLive />;
++}
++
++function ActivityPreview() {
++  const t = useT();
+   const fx = useFixtures<WorkFx>("work");
+   const fxb = useFixtures<BotsFx>("bots");
+   const main = useMainBot();
+@@ -239,19 +245,17 @@
+   const [type, setType] = React.useState(v === "filtered" ? "email" : "all");
+   React.useEffect(() => { setWho(v === "filtered" ? fxb.main?.name ?? "" : ""); setType(v === "filtered" ? "email" : "all"); }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
+   const name = (n: string) => (n === fxb.main?.name ? main?.cfg.name ?? n : n);
+-  // Live: the engine has no activity journal yet; the honest state is the empty one.
+-  const src = preview ? fx.activity ?? [] : [];
++  const src = fx.activity ?? [];
+   const days = src.map(([d, xs]) => [d, xs.filter((a) => (!who || a.bot === who) && (type === "all" || a.type === type))] as const).filter(([, xs]) => xs.length);
+   const clear = () => { setWho(""); setType("all"); };
+-  const botNames = preview ? [fxb.main?.name ?? "", ...(fxb.team ?? []).map((b) => b.cfg.name).filter((n) => fx.activityBots.includes(n))] : [];
++  const botNames = [fxb.main?.name ?? "", ...(fxb.team ?? []).map((b) => b.cfg.name).filter((n) => fx.activityBots.includes(n))];
+   return (<>
+     <Top title={t("work.activity")}>
+-      {preview && <Pop align="end" trigger={<button className="btn secondary" style={{ height: 28 }}>{!who ? <Icon name="bot" size={16} /> : <BotFace name={who} size={16} state="idle" />}{!who ? t("work.allBots") : name(who)}<Icon name="chevron-down" size={16} /></button>}>
++      <Pop align="end" trigger={<button className="btn secondary" style={{ height: 28 }}>{!who ? <Icon name="bot" size={16} /> : <BotFace name={who} size={16} state="idle" />}{!who ? t("work.allBots") : name(who)}<Icon name="chevron-down" size={16} /></button>}>
+         {["", ...botNames].map((n) => <MItem key={n || "all"} onClick={() => setWho(n)}>{!n ? t("work.allBots") : name(n)}</MItem>)}
+-      </Pop>}
+-      <IconBtn icon="download" label={t("work.act.export")} disabled={!preview} />
++      </Pop>
++      <IconBtn icon="download" label={t("work.act.export")} />
+     </Top>
+-    {!preview ? <Empty state="idle" title={t("work.act.liveEmptyTitle")} text={t("work.act.liveEmptyText")} /> :
+     <div className="page"><div className="travail-narrow">
+       <div className="travail-filters" role="group" aria-label={t("work.act.filterByType")}>
+         {TYPES.map((x) => <button key={x} className="chip" aria-pressed={type === x} data-pressed={type === x || undefined} onClick={() => setType(x)}>{t(`work.act.type.${x}`)}</button>)}
+@@ -272,7 +276,7 @@
+             </li>)}
+           </ol>
+         </section>))}
+-    </div></div>}
++    </div></div>
+   </>);
+ }
+ 

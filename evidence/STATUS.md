@@ -226,6 +226,21 @@ Mac lease is released; independent native review accepts both-theme access and t
 dark-theme deletion. The first collector's failed native assertion remains separate from
 the corrected confirmation.
 
+The next [Work Activity delivery](work-activity-followup/README.md) is pushed at
+`9ba8e59`: latest historical finished turns from up to 40 recently updated root Bot
+conversations, exact owner identity and source-error recovery. Local 132 cases/426 visits,
+260 units/one optional skip, lint/types/i18n and Linux package/smoke pass. Six final
+behavior cases strengthen query-owned deletion and canceled-preview proofs on the same
+application; the earlier full-suite test pin retains its scope. Independent image and
+preview audits pass their retained scopes: 185 local images/16 full-size Activity views,
+22 frozen comparisons/zero gaps. CI `37145831654` passes all three jobs. Matching native
+checks pass four captures/twenty targets, keyboard filters and exact Work links in both
+themes; cleanup restores the OS appearance and releases the device. Independent CI
+review verifies 132 cases/426 visits per OS, 364 images/24 primary full-size Activity
+views and unchanged Memory/auth locale frames. Independent installed-native review accepts
+the bounded scope, excluding custom mascot fidelity because fixture values use existing
+fallbacks. The separate CI display-capture failure retains its unknown cause.
+
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
 `CORTEX_TEST_BACKEND_URL=https://api.cortex.foundation` probe passes discovery only;

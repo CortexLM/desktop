@@ -1,0 +1,30 @@
+[
+  {
+    "os": "e2e-linux",
+    "calls": 43,
+    "statuses": {
+      "200": 37,
+      "404": 6
+    },
+    "refusedPaths": {
+      "/api/sessions": 2,
+      "/api/bots": 2,
+      "/api/sessions/ses_01a1031f775f0000bb4a0638f30e8e5d/messages": 2
+    },
+    "scope": "Real protocol missing-route responses, followed by accepted Retry. Full calls in activity-observations.jsonl."
+  },
+  {
+    "os": "macos",
+    "calls": 43,
+    "statuses": {
+      "200": 37,
+      "404": 6
+    },
+    "refusedPaths": {
+      "/api/sessions": 2,
+      "/api/bots": 2,
+      "/api/sessions/ses_01a10327684200008cbb74a62fbaae30/messages": 2
+    },
+    "scope": "Real protocol missing-route responses, followed by accepted Retry. Full calls in activity-observations.jsonl."
+  }
+]

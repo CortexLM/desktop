@@ -1,9 +1,15 @@
 # Recent Bot outcomes in Work Activity
 
-Implementation in progress after documentary `906987b`, whose application inputs remain
-`96df66c`. Memory's accepted tests/native package do not establish this new behavior.
+Application `9ba8e59fbec8c1f38f93ace25414d4a3489aede3` is pushed;
+[CI 37145831654](https://github.com/CortexLM/desktop/actions/runs/37145831654) passes all
+three jobs. [Independent artifact review](ci-9ba8e59/README.md) verifies 132 cases/426
+render visits per OS, 364 images/24 full-size Activity targets and 112 locale measurements
+per OS. Both complete CI suites execute the final strengthened behavior test.
+[Later commit binding](production/application-pin.json) verifies all 517 tested inputs.
+Original dirty-base `906987b` receipts remain; Memory's earlier tests/native package do
+not establish this new behavior.
 
-The existing live Activity screen always renders its empty state. The bounded delivery
+The previous live Activity screen always rendered its empty state. This bounded delivery
 uses existing local session/Bot/history APIs and the incumbent timeline. It selects up to
 40 recently updated root Bot conversations, then the last persisted finished assistant
 turn from each. A later unfinished turn does not erase an earlier outcome. Completion,
@@ -42,8 +48,25 @@ binds those stronger tests (`d98c9205…`) to the same application. Locale geome
 `bfda7f43…`, with all 112 measurements passing.
 
 [Renderer review](renderer-review.md) and [final test review](e2e-accepted.md) approve
-their source/receipt scopes. Independent image/comparison audits, CI and matching native
-verification remain pending. No final Activity acceptance claimed.
+their source/receipt scopes. [Independent preview comparison](compare/README.md) accepts
+22 references/zero gaps; maximum 0.037230% retains historical residuals. Activity event
+text/icons/times and Done transcript regions match the frozen reference exactly.
+[Independent local image audit](electron-local/README.md) accepts 185 unique images,
+16 full-size Activity originals and all 517 source inputs/90 build members.
+[Matching installed checks](../mac/9ba8e59/README.md) pass four native captures,
+twenty targets, keyboard filters and exact Work links in both OS themes at 960×640.
+Flow: 75.516 seconds; total with eleven cleanup checks: 78.716 seconds. Three local
+fixture turns; original appearance restored and Mac lease released.
+All sixteen Memory locale frames and sixteen auth-locale frames match `96df66c` exactly.
+Native CI display capture still fails with unknown cause; installed captures remain a
+separate proof. [Independent installed-native review](../mac/9ba8e59/native-audit/README.md)
+accepts the bounded four-image scope. Its fixture uses existing mascot color/eye fallbacks;
+custom appearance fidelity is not claimed by that run.
+
+[External-owner readback](owner-readback/REPORT.md) at 19:24:38 UTC finds no new
+SDK successor, backend contract/deployment handoff or five-state G1 import permission.
+Public instance discovery remains 404; no listed Chat model declares both vision and
+reasoning. Local delivery proceeds separately.
 
 Implementation details and limits: [contract](implementation-contract.md),
 [independent correction](contract-review.md), [copy review](copy-review.md),
