@@ -1,0 +1,12 @@
+{
+  "scope": "Transcript reconciliation, route-owned Bot state and CJK glyph regression",
+  "baseApplication": "f5bf305473db12fddfddcda890a01794f02f578f",
+  "source": {
+    "packages/app/src/state/live.ts": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+    "packages/app/src/screens/bots/bot.tsx": "f660ed2a4ab303bf55527ed8c9d8c4e535df786675790509f51a55c21409a6f1",
+    "tests/e2e/live-state.spec.ts": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710",
+    "tests/e2e/bot-owner.spec.ts": "21af3392fad947945861063d93625d6115675f288ff43273568ea1fe4c50cdff",
+    "tests/e2e/remote-auth.spec.ts": "653016add38f51d766dfec52c205790de4b941c02739a993315c282469b1b0cb",
+    ".github/workflows/ci.yml": "7d1fb3b18f9784ed295085dd96664e9f967f4eb12d3c4958bf183838e067e6c8"
+  }
+}

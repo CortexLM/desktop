@@ -34,6 +34,11 @@ Main supplies one shared owner for auth and Chat. Remote publication skips persi
 and local plugin delivery; public routes and renderer dispatch remain pending.
 See [connection-modes.md](./connection-modes.md).
 
+Local transcript state subscribes before loading history and reconciles messages/parts
+by ID. Session-owned snapshots prevent a delayed read from erasing streamed output or
+reviving deleted history. These renderer snapshots remain projections of the engine;
+they do not persist new session data in browser storage.
+
 ## Packages
 
 | Package | Depends on | Notes |

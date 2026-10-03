@@ -1,0 +1,830 @@
+[
+  {
+    "run": "races",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "theme": "light",
+    "action": "stream",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b32f2a0000f4a00a17ac350138",
+      "msg_01a100b33320000049f2cfd3b3bb4d31"
+    ],
+    "messageIDs": [
+      "msg_01a100b32f280000d898ffa6162b5967",
+      "msg_01a100b32f2a0000f4a00a17ac350138",
+      "msg_01a100b3331e00009d1cedebf94cfb22",
+      "msg_01a100b33320000049f2cfd3b3bb4d31"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "5a78200bde7f4fbf0d9ce2080a5dc57b9efb4e07116572ba165c60a796a15e35",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "6b7a37edd92045936fec146f28d31a7d70b1134000c4158d33de66c2c84153e8"
+    }
+  },
+  {
+    "run": "races",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "theme": "light",
+    "action": "delete",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b33cfe00006530fb44a473ce60"
+    ],
+    "messageIDs": [
+      "msg_01a100b33cfc0000c9ab652b22dd21de",
+      "msg_01a100b33cfe00006530fb44a473ce60"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "5a04c2539dcab211ff1d6411224f2d2f2616457dd43da74c06d5973f51deb0f3",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "75bc9d4057c1d28b46fabccef70b127a14d0b508ba695f714bdbf3131ba1cbea"
+    }
+  },
+  {
+    "run": "races",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "theme": "dark",
+    "action": "stream",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b34685000043e94935c1e16a46",
+      "msg_01a100b34a6a00019ead416ffdb8955f"
+    ],
+    "messageIDs": [
+      "msg_01a100b3468300009b710a560217c860",
+      "msg_01a100b34685000043e94935c1e16a46",
+      "msg_01a100b34a690000f9f031856460a802",
+      "msg_01a100b34a6a00019ead416ffdb8955f"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "073053a17101d85cf80fd040fe16b8f139feb5747b9a6493308b60c280578b6c",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "25317113e75a42b3c63352ae438064820e07f343408e8c71d97b32ecffd719c3"
+    }
+  },
+  {
+    "run": "races",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "theme": "dark",
+    "action": "delete",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b353f3000046c617f3635e82c4"
+    ],
+    "messageIDs": [
+      "msg_01a100b353f10000fda610b713cd3f84",
+      "msg_01a100b353f3000046c617f3635e82c4"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "459617df15791100075d3733641742c3a2bf7d1029a247bcc95b07728e28e77d",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "9eb32394d11cf66edf31ff7bd86c2aa0a4567478215f7d4c29e2b74bda0f2892"
+    }
+  },
+  {
+    "run": "e2e-full",
+    "title": "Late initial Chat history cannot erase a completed stream — light",
+    "theme": "light",
+    "action": "stream",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b558b9000014d71fbc8507d017",
+      "msg_01a100b55cbb0001b96e8e2817749b33"
+    ],
+    "messageIDs": [
+      "msg_01a100b558b700005e1839662ae047c9",
+      "msg_01a100b558b9000014d71fbc8507d017",
+      "msg_01a100b55cba000025983caa5085e3bb",
+      "msg_01a100b55cbb0001b96e8e2817749b33"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "237adf6c8b854447f5c7399c52be8bacb9c201ac0c78288301202aa6f488d1ec",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "3f12caeab51a5ccccf0aab1627072f9d887f86fb9f4edfcc66d3b11e0c50dd37"
+    }
+  },
+  {
+    "run": "e2e-full",
+    "title": "Late initial Chat history cannot revive a deleted session — light",
+    "theme": "light",
+    "action": "delete",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b565bf000038bd20cf299a60f4"
+    ],
+    "messageIDs": [
+      "msg_01a100b565bd00006984505f714d9ab3",
+      "msg_01a100b565bf000038bd20cf299a60f4"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "95e010636821b3f44c69d7f1f47a3338d6e13089baabb12cf99f7b5acabd65c7",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "562ff135dcc5b43c0674f6255e3813ffbe8bc63dabaae9e5bdd0c29d82c5846f"
+    }
+  },
+  {
+    "run": "e2e-full",
+    "title": "Late initial Chat history cannot erase a completed stream — dark",
+    "theme": "dark",
+    "action": "stream",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 8,
+      "part.updated": 14,
+      "session.status": 4,
+      "part.delta": 26,
+      "session.updated": 2
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b56a5f00000db4ea16952a1562",
+      "msg_01a100b56e4f000023ed9bb9b2e247cf"
+    ],
+    "messageIDs": [
+      "msg_01a100b56a5d0000b9ca5219d1030b4b",
+      "msg_01a100b56a5f00000db4ea16952a1562",
+      "msg_01a100b56e4e000039c66ec778e67f09",
+      "msg_01a100b56e4f000023ed9bb9b2e247cf"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": []
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          ""
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything "
+        ]
+      },
+      {
+        "phase": "setup",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "before-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      },
+      {
+        "phase": "after-release",
+        "users": [
+          "Earlier saved message must remain.",
+          "Newest streamed message must remain."
+        ],
+        "answers": [
+          "Hello from the streaming test provider. Everything works.",
+          "Hello from the streaming test provider. Everything works."
+        ]
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "e200d049f22bfcaa1e7c474871e52df46975718d553408f536e27bc9c1ce609a",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "bcba72b36dc9dcbd726a9d98c58984f801de0a30b786598f8dd73eeae02ee5d9"
+    }
+  },
+  {
+    "run": "e2e-full",
+    "title": "Late initial Chat history cannot revive a deleted session — dark",
+    "theme": "dark",
+    "action": "delete",
+    "heldMessages": 2,
+    "heldAssistantCompleted": true,
+    "eventCounts": {
+      "message.updated": 4,
+      "part.updated": 7,
+      "session.status": 2,
+      "part.delta": 13,
+      "session.updated": 1,
+      "session.deleted": 1
+    },
+    "completedAssistantIDs": [
+      "msg_01a100b56edc00005620b82e6f5979a1"
+    ],
+    "messageIDs": [
+      "msg_01a100b56ed9000056d3d20ce0610133",
+      "msg_01a100b56edc00005620b82e6f5979a1"
+    ],
+    "snapshots": [
+      {
+        "phase": "setup",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "before-release",
+        "users": [],
+        "answers": []
+      },
+      {
+        "phase": "after-release",
+        "users": [],
+        "answers": []
+      }
+    ],
+    "observedNoEraseOrRevival": true,
+    "pageConsoleErrors": 0,
+    "rendererHTTP": 0,
+    "rawDataAttachmentHashes": {
+      "held-real-history": "8a6073501e0100cfe0ceb1f3cf47aea0ec7c66cb78bc62a6703627f74877f050",
+      "live-state-errors": "8814abbdf39eb1bd2bf0769ae93fa4e5adccab218b463f5eabd9f1e292045938",
+      "live-state-evidence": "0ee95795f6781056c0c082a37a264080613cb2bd2e3936cffd2b5e6372bbf937"
+    }
+  }
+]

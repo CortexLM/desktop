@@ -303,6 +303,9 @@ keyboard scrolling and activation. This is Linux layout/accessibility evidence, 
 font or translation-semantic acceptance.
 `tests/e2e/remote-auth.spec.ts` registers this 48-state locale sweep as one case, asserting
 painted text, clipping ancestors, keyboard order and main-only credentials on every state.
+For Japanese, Korean and Chinese, it also compares two glyph rasters to each other and
+the unsupported-code-point raster at weights 400/500, attaching selected platform fonts.
+Linux CI installs CJK fonts and uploads `out/fonts/` package/fontconfig inventories.
 
 ## Acceptance gaps
 
@@ -315,7 +318,21 @@ They establish no renderer dispatch or real-account inference. The foundation's
 Internal foundation `f5bf305` passes 245 units plus one optional backend skip, an initial
 97-case Electron suite, then eleven rebuilt auth/engine cases after review corrections.
 Linux package/smoke and 90 member checks pass; final full-size image review covers all 18
-targeted PNGs. New-revision CI/native proof remains pending.
+targeted PNGs. CI `37105137365` passes 97 cases per OS and matching installed `f5bf305`
+passes six English auth captures. Its Linux CJK glyph failures remain explicitly open;
+see the [CI artifact audit](../evidence/remote-chat-foundation/ci-1076c25/README.md).
+Matching installed `f5bf305` additionally passes 48 locale/theme/auth states and 144 Tab
+stops with sixteen native wrong-code captures. Private-state and fixture request-count
+checks are real; the fixture supplies no production account or inference acceptance.
+
+`tests/e2e/live-state.spec.ts` delays one already-completed real history response while
+native IPC/SSE continue. Both themes require old history plus the newer completed turn,
+then separately prove deletion prevents even transient history revival. The original four
+failures on `f5bf305` remain separately pinned from the corrected renderer.
+`tests/e2e/bot-owner.spec.ts` holds a completed Bot session-list response after real roster
+navigation. Both themes assert the previous Bot stays absent during loading, then verify
+the next real prompt writes only to the selected Bot's session. Its two-case negative
+baseline records twelve ownership failures before the live-page owner correction.
 
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log

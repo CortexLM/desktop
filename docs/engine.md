@@ -61,6 +61,15 @@ and storage behavior in every connection mode. See [connection-modes.md](connect
 
 ## Sessions
 
+The renderer's `useMessages` subscribes before reading stored history, merging that snapshot
+with live message/part updates by ID. A late read cannot erase a newer turn or restore a
+deleted session. Completed parts/metadata remain authoritative over queued deltas or stale
+empty snapshots. Session ownership covers both messages and status. SQLite stores text at
+part boundaries; a midstream mount cannot recover earlier live-only tokens until the full
+`part.updated` arrives.
+The live Bot page is keyed by its route Bot ID, resetting selected-session/draft/query
+state at that owner boundary before the new Bot's history resolves.
+
 `POST /api/sessions` (`kind`: `chat` | `code` | `bot`, `model`, optional `agent`,
 `directory`) then `POST /api/sessions/:id/prompt`. The loop (`session.ts`) calls
 `streamText` with tools, up to 25 steps, streams deltas on the bus and persists full parts

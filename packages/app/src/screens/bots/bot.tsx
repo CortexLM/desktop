@@ -165,7 +165,8 @@ function SlideToActivate({ onDone }: { onDone: () => Promise<boolean> | boolean 
 /* Your Bot                                                               */
 /* ====================================================================== */
 export function BotPage() {
-  return isPreview() ? <BotPagePreview /> : <BotPageLive />;
+  const { params } = useNav();
+  return isPreview() ? <BotPagePreview /> : <BotPageLive key={params.get("id")} />;
 }
 
 function BotPagePreview() {

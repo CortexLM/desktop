@@ -187,6 +187,12 @@ conversion. Re-saving with the same Bot preserves the model, agent and folder.
 Failed approval-list reads show recovery with Retry instead of claiming pending requests
 have been handled.
 Permission views refresh on session status/deletion so cancelled asks disappear without a reply.
+Transcript snapshots merge with newer live messages by ID, preserving earlier history.
+Session deletion clears the transcript and invalidates pending reads; changing sessions hides
+the previous session's messages/status immediately. A midstream mount receives earlier
+live-only tokens when the final full part arrives, not from the initial stored snapshot.
+Selecting a different Bot remounts its live page so its draft, session selection and
+pending reads cannot cross to another Bot or send into the previous Bot's session.
 Memory drafts clear only after accepted writes; refused/partial deletion retains surviving entries
 and reports failure. Pending mutations reject duplicate submissions and stale-owner UI updates.
 
@@ -293,6 +299,11 @@ account or remote-inference acceptance. See
 SDK 0.3.5 and narrow Approvals correction `7885736` pass CI `37097480122`; the matching
 installed artifact passes six sign-in and two minimum-window Approvals captures.
 See [`evidence/sdk-035-admission/README.md`](./evidence/sdk-035-admission/README.md).
+Internal remote foundation `f5bf305` passes CI `37105137365` at documentary `1076c25`:
+97 Electron cases/426 render checks per OS, 245 units plus one optional skip. Matching Mac
+checks pass six English auth captures and 48 locale states/144 Tab stops with sixteen
+further native captures. Linux CJK images still show missing glyphs despite passing geometry;
+see [`evidence/remote-chat-foundation/README.md`](./evidence/remote-chat-foundation/README.md).
 
 ## CI, packaging and releases
 
@@ -303,6 +314,10 @@ See [`evidence/sdk-035-admission/README.md`](./evidence/sdk-035-admission/README
 | `checks` | `vars.CORTEX_LINUX_X64_RUNNER` (CodeBuild label pattern `codebuild-…-<run_id>-<attempt>`), else `ubuntu-latest` | lint, typecheck, test, audit:i18n |
 | `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e` under `xvfb-run` |
 | `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 package, `node scripts/smoke.mjs mac` |
+
+Linux E2E installs system CJK fallback fonts and retains a font/package inventory. Its auth
+locale test checks glyph rasters at weights 400/500; layout geometry alone can pass with
+missing glyphs. See [`docs/i18n.md`](./docs/i18n.md).
 
 **Release and signing are not configured.** The old build/publish workflows were removed;
 CI packages with `--publish never`, `-c.mac.identity=null`, `-c.mac.notarize=false`.

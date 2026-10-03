@@ -1,0 +1,149 @@
+{
+  "completed_at": "2026-10-03T08:01:25.401772+00:00",
+  "verdict": "Bounded source approval of useMessages; confirmed pre-existing P2 Bot owner integration defect",
+  "report_sha256": "c0d7de968d1aef2275dca258b50e9a675ce8554b0fa6accd5c378f7886367513",
+  "head": "1076c2584941cf054efffaf709a149b4195bc1c4",
+  "hook_sha256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34",
+  "source_stable_during_probe": true,
+  "repository_edits": false,
+  "isolated_browser_probe": {
+    "passed": 0,
+    "failed": 1,
+    "intended_assertion_failures": 4,
+    "page_errors": 0
+  },
+  "files": [
+    {
+      "path": "bot-owner-observation.json",
+      "sha256": "a9de5526d66988909abe99ae177f2a53484937ba896f1cee8c51d5500cc47651"
+    },
+    {
+      "path": "bot-owner-results.json",
+      "sha256": "75325ff35981f60f4d578f70a8bc4c2a15965da2ce3ba99e44d1d9f78856727a"
+    },
+    {
+      "path": "bot-owner.log",
+      "sha256": "c325f5413a74b53f2b33889f54398c3036e1f1cdccc0ade054621e0f3ae41a7a"
+    },
+    {
+      "path": "bot-owner.test.ts",
+      "sha256": "be594cb749bc80a8ba12f3a0bb00cf8317b62631fb95c925a1a2304615298744"
+    },
+    {
+      "path": "bot-wrong-owner.png",
+      "sha256": "8b7dcd7330d6cc07029250a9cac2a43b9c06c33933454b6fd923bfb9b19c09ef"
+    },
+    {
+      "path": "command.json",
+      "sha256": "3cf64e1e90e5ec89050bf1860d77c320b16b5d8776a195c791d077beacbfaa5b"
+    },
+    {
+      "path": "provenance-before.json",
+      "sha256": "f36c9655aa2d9ed5662ac50d623b39cae6fb77f399e3acbeea05f40c7daeb197"
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "2bdd69024aebc1c70b37835955320e4fbcd2e61da79f5efd147229546c12eecc"
+    },
+    {
+      "path": "setup-locator/bot-owner-results.json",
+      "sha256": "4a8746e8188ebcc388dba2330ba4944f630d340e24bd2183caa25faf0f2c398d"
+    },
+    {
+      "path": "setup-locator/bot-owner.log",
+      "sha256": "48f819c19441beacea10572ff81c146efe62893308afbb61887db63d12451b42"
+    },
+    {
+      "path": "setup-locator/bot-owner.test.ts",
+      "sha256": "653155e6f22f6b67676945b98727dd88a032693d49d38220b9b10c7ffb9488bb"
+    },
+    {
+      "path": "setup-locator/command.json",
+      "sha256": "d441a2670826898b7958c87e35f4bf2a52376790507f26587e693bfc443d4994"
+    },
+    {
+      "path": "setup-locator/provenance.json",
+      "sha256": "1b0b5776a26614a9824abb39e6ca9b67e512fe6068fca708fd200ad9177d1a59"
+    },
+    {
+      "path": "setup-locator/vitest.config.mjs",
+      "sha256": "99e891ffd551e34de2d2c3facec1d6822f6f56eabea4d029b2369a2991f6c547"
+    },
+    {
+      "path": "setup-timeout/bot-owner-results.json",
+      "sha256": "f71eab5fdbfa1fad584687eb757fc755142e827ffca0a13332f0d14fb2bb4590"
+    },
+    {
+      "path": "setup-timeout/bot-owner.log",
+      "sha256": "cd3df3d1260eb92d439e11fd381c366347d54faadfcb5e91f002c424c68cc728"
+    },
+    {
+      "path": "setup-timeout/bot-owner.test.ts",
+      "sha256": "cfcaa9e32ce353e012ab9a665c0fa4732e70bdefe27a52280c5e17bea3d048d9"
+    },
+    {
+      "path": "setup-timeout/command.json",
+      "sha256": "5eab6db78451b44cd3473532ae12913f16b4d1ddfcda728de2bb244a16393df5"
+    },
+    {
+      "path": "setup-timeout/provenance-before.json",
+      "sha256": "f36c9655aa2d9ed5662ac50d623b39cae6fb77f399e3acbeea05f40c7daeb197"
+    },
+    {
+      "path": "setup-timeout/provenance.json",
+      "sha256": "56d912bb45ec9b471f50b161b05ae692cfb73be9334d9e10239f6e854d79261c"
+    },
+    {
+      "path": "setup-timeout/vitest.config.mjs",
+      "sha256": "99e891ffd551e34de2d2c3facec1d6822f6f56eabea4d029b2369a2991f6c547"
+    },
+    {
+      "path": "source/packages/app/src/screens/bots/bot.tsx",
+      "sha256": "e721403221a1103b20752f91dffb4512ca021d629d57d3be3fd8153109105969"
+    },
+    {
+      "path": "source/packages/app/src/shell/shell.tsx",
+      "sha256": "249cd485e33aa9b693c026cceb71434e5794e8e6268aa17ff61b58784277ea13"
+    },
+    {
+      "path": "source/packages/app/src/state/live.ts",
+      "sha256": "fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34"
+    },
+    {
+      "path": "source/packages/client/src/index.ts",
+      "sha256": "0faa61a96ffb009edd1fd6d321d38d805625eb385c9d912c7a184bc1467367e7"
+    },
+    {
+      "path": "source/packages/core/src/bus.ts",
+      "sha256": "5e75b98b548cb4adc8f7eb98d23ee89bea86705c45eee485b494632a8ec0bb53"
+    },
+    {
+      "path": "source/packages/core/src/session.ts",
+      "sha256": "8bdaadc276264e3e755c73df44bd894b884826875a6e582149dccc69086b81d4"
+    },
+    {
+      "path": "source/packages/core/src/storage.ts",
+      "sha256": "1c56b82e24b89b68733e7cf5ba38a7d241f11f66e7a3857e0561ec3728bff255"
+    },
+    {
+      "path": "source/packages/desktop/src/remote-chat.ts",
+      "sha256": "a735975865341bec30fb1981165192f993fbd1235416a3271b947bfb15a4fad6"
+    },
+    {
+      "path": "source/packages/desktop/src/remote-session.ts",
+      "sha256": "2394cd1f9cf8852808168b4bff48aadbc51d76202524dccdbe63b40723d063d6"
+    },
+    {
+      "path": "source/packages/schema/src/index.ts",
+      "sha256": "0403846e16c38e7f06c077d7980a9c375898ba413f5aa5f93cf863d7229f5361"
+    },
+    {
+      "path": "source/tests/e2e/live-state.spec.ts",
+      "sha256": "842804966f6cd584834c728c92c495ccc52ece47bce2dcd128df912f98c83710"
+    },
+    {
+      "path": "vitest.config.mjs",
+      "sha256": "99e891ffd551e34de2d2c3facec1d6822f6f56eabea4d029b2369a2991f6c547"
+    }
+  ]
+}

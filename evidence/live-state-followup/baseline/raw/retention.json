@@ -1,0 +1,53 @@
+{
+  "gzipSettings": {
+    "compresslevel": 9,
+    "mtime": 0
+  },
+  "archives": [
+    {
+      "originalPaths": [
+        "/tmp/opencode/live-state-race/baseline-final/results.json"
+      ],
+      "retainedPath": "raw/results.json.gz",
+      "rawSHA256": "a0de240c7f5c0b53414546107df6fe0d4d3466a7eca99864ab43f986b3c1db0e",
+      "rawBytes": 129718,
+      "gzipSHA256": "4405151184579ba44a31aa2e8bd60ae43f04addd22767fa1096a5528ff3782b5",
+      "gzipBytes": 13156,
+      "exactRoundTrip": true
+    },
+    {
+      "originalPaths": [
+        "/tmp/opencode/live-state-race/baseline-final/run.log"
+      ],
+      "retainedPath": "raw/run.log.gz",
+      "rawSHA256": "26428917d091c1b20f8a0ce0a627cd6a71db8f53d5c7b740ce1117375d7c9d8c",
+      "rawBytes": 21318,
+      "gzipSHA256": "3df0b9e7b0c1ae831633d25862ca7daa9724623e0c501054d862e0921486a297",
+      "gzipBytes": 1848,
+      "exactRoundTrip": true
+    },
+    {
+      "originalPaths": [
+        "/tmp/opencode/live-state-race/baseline-final/integrity-before.json",
+        "/tmp/opencode/live-state-race/baseline-final/integrity-after.json"
+      ],
+      "retainedPath": "raw/integrity.json.gz",
+      "rawSHA256": "645bf00a47b7509dcac5ee0389e971b0a94b69398a74dd0060d81c92c512008a",
+      "rawBytes": 30430,
+      "gzipSHA256": "9d8b0bd3bdf73f6525ba104d40ba3aa38f89dca4c1458e27a017eae62a5468f1",
+      "gzipBytes": 5864,
+      "exactRoundTrip": true
+    },
+    {
+      "originalPaths": [
+        "/tmp/opencode/live-state-race/baseline-1/run.log"
+      ],
+      "retainedPath": "initial/run.log.gz",
+      "rawSHA256": "d9a1889edb7c8fcddb323f695aa4a58d39161fc6eaa564cd3b328d1a6d5321b7",
+      "rawBytes": 21282,
+      "gzipSHA256": "f5603a248bca06cdfec370b8d137ec43da0d240640472e565e656ece0aacd700",
+      "gzipBytes": 1833,
+      "exactRoundTrip": true
+    }
+  ]
+}

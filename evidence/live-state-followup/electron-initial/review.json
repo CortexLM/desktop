@@ -1,0 +1,323 @@
+{
+  "scope": "Initial source fde8193d44f8e943915b18a5b3dc074ef048dc1f37cd580f25db1f2bfab6ed34 only",
+  "verdict": "bounded evidence approval",
+  "contactSheetsReviewed": 17,
+  "fullSuiteUniqueImagesContactReviewed": 129,
+  "fullSizeCaptureViewsReviewed": 22,
+  "fullSizeUniqueImagesReviewed": 19,
+  "fullSize": [
+    {
+      "case": 44,
+      "title": "Late initial Chat history cannot erase a completed stream — light",
+      "name": "before-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/before-history-release-dfa11ee0fbb1bf9191a82a5d50f3eeeb4fe2e952.png",
+      "sha256": "ab99b52e1ee335612ff6d3b730220a367e5edc80169321a9d00f238b81c08180",
+      "canonical": "../baseline/images/stream-light-before.webp",
+      "image": "image-052",
+      "observation": "Before release: newest user message and completed answer visible; earlier saved snapshot still held."
+    },
+    {
+      "case": 44,
+      "title": "Late initial Chat history cannot erase a completed stream — light",
+      "name": "after-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-3f191--a-completed-stream-—-light/attachments/after-history-release-0dd2dd10456f8a314eabb748b7cb8f91fa759b8e.png",
+      "sha256": "d30497dbd191521d55de4aa9116897165ec2499070900548df5adb555450eddc",
+      "canonical": "images/d30497dbd191521d55de4aa9116897165ec2499070900548df5adb555450eddc.webp",
+      "image": "image-051",
+      "observation": "After release: earlier and newer user messages, two complete identical answers in order, contained above composer."
+    },
+    {
+      "case": 45,
+      "title": "Late initial Chat history cannot revive a deleted session — light",
+      "name": "before-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/before-history-release-8382d7c720a6305409aab8cac58d0fe66956bc59.png",
+      "sha256": "7527c1e21887550b2aadbdede78e30821b41776026525c7b1ba596713ce4e706",
+      "canonical": "images/7527c1e21887550b2aadbdede78e30821b41776026525c7b1ba596713ce4e706.webp",
+      "image": "image-053",
+      "observation": "Deleted session transcript empty; saved rows and sidebar session absent; same within-run pixels before/after release."
+    },
+    {
+      "case": 45,
+      "title": "Late initial Chat history cannot revive a deleted session — light",
+      "name": "after-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/attachments/after-history-release-3718245e4bcf55c5ce4dffe6ab142a7e962369ba.png",
+      "sha256": "7527c1e21887550b2aadbdede78e30821b41776026525c7b1ba596713ce4e706",
+      "canonical": "images/7527c1e21887550b2aadbdede78e30821b41776026525c7b1ba596713ce4e706.webp",
+      "image": "image-053",
+      "observation": "Deleted session transcript empty; saved rows and sidebar session absent; same within-run pixels before/after release."
+    },
+    {
+      "case": 46,
+      "title": "Late initial Chat history cannot erase a completed stream — dark",
+      "name": "before-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/before-history-release-49b89358f03bb00bf21c922145d943acd69e8a27.png",
+      "sha256": "696916295e6fa8bd4947e9c0ecfad6d401aa1b3a97a6a624541e1bd9a05a1f94",
+      "canonical": "../baseline/images/stream-dark-before.webp",
+      "image": "image-055",
+      "observation": "Before release: newest user message and completed answer visible; earlier saved snapshot still held."
+    },
+    {
+      "case": 46,
+      "title": "Late initial Chat history cannot erase a completed stream — dark",
+      "name": "after-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-c96a4-e-a-completed-stream-—-dark/attachments/after-history-release-69fdb7b6d6937d99bfc993b6eafe944d3145be58.png",
+      "sha256": "648512d98d97f67967196c2286f3a3dd93d747fb6c9379eace095f7ccb814f7a",
+      "canonical": "images/648512d98d97f67967196c2286f3a3dd93d747fb6c9379eace095f7ccb814f7a.webp",
+      "image": "image-054",
+      "observation": "After release: earlier and newer user messages, two complete identical answers in order, contained above composer."
+    },
+    {
+      "case": 47,
+      "title": "Late initial Chat history cannot revive a deleted session — dark",
+      "name": "before-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/before-history-release-395bdbf2018c53ac42b75afe816febc058911977.png",
+      "sha256": "31d50f5de67f3f8d318126e2ce4a2f131be3312071a25f6d5e89e1e5b29b971b",
+      "canonical": "../baseline/images/delete-dark-before.webp",
+      "image": "image-056",
+      "observation": "Deleted session transcript empty; saved rows and sidebar session absent; same within-run pixels before/after release."
+    },
+    {
+      "case": 47,
+      "title": "Late initial Chat history cannot revive a deleted session — dark",
+      "name": "after-history-release",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/live-state-Late-initial-Ch-4aaed-ve-a-deleted-session-—-dark/attachments/after-history-release-5474131f5f3dd13b89ee722b220108a4fb9efdde.png",
+      "sha256": "31d50f5de67f3f8d318126e2ce4a2f131be3312071a25f6d5e89e1e5b29b971b",
+      "canonical": "../baseline/images/delete-dark-before.webp",
+      "image": "image-056",
+      "observation": "Deleted session transcript empty; saved rows and sidebar session absent; same within-run pixels before/after release."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-en",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-en-b1419e1ee08e2592b1971f021a6a4c184a12a505.png",
+      "sha256": "96b84bbc6b0c61577c9323ff0275c4709eb970478eb1d28d26ee69dc53a296a0",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-en-3204830b9b38d488a6c5c7184d3b5574366cfe07.png",
+      "image": "image-082",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-fr",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-fr-dc6944f282bf67c9e3638b94b9affe16d4d6f080.png",
+      "sha256": "e4225f2cbffa63c5fd42da5a906440e22df5bb559a9809c3ae46cabf6b4546d2",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-fr-658e245cc05749976ebc68d328fcc6f833988550.png",
+      "image": "image-084",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-es",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-es-5dadde6164f53e2d33234707b3a5931281cd6fc5.png",
+      "sha256": "731137b67a00f3c32d3f366bea3a62505678ef80707ef773602d9098ca0b0652",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-es-550dc0c06d66fae6f61b64d2ccfff520404b13eb.png",
+      "image": "image-083",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-de",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-de-9bb20fa0ba7f6c8fa24e21e1d4f9ba368580652f.png",
+      "sha256": "9cca45efcf5bbbd22acffe6d189c466060e9b545c4431c3908de5d9c31838428",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-de-46bac225f48f430518e7e0280c5f6a3d619b3523.png",
+      "image": "image-081",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-ja",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-ja-778ee500a94f93933e3cca6243a02e050b144d67.png",
+      "sha256": "a85c9158ba263f46b2c4928d8d2eb25d1fddd9d8b67753312607d3cd46620093",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-ja-6eab3dda1c8c3f0509dca598a26dcf694ccc3a0e.png",
+      "image": "image-085",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-zh-Hans",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-zh-Hans-5e360f4ca48baa2b5de552699b6344034c3823f5.png",
+      "sha256": "ecc50090b560b0137dd1785537f6e77b93c5ac2521d15ddf3af249420785de57",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-zh-Hans-6665ec5fbdb966b3a9c2e3ea7455873327bb0fad.png",
+      "image": "image-088",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-pt-BR",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-pt-BR-52c0d3cbf6999bc440b9d8edeecd283f05567012.png",
+      "sha256": "63d05c8a5657174ec7713c289f7a5e5334c6c971355c036c0f9433d760ae6781",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-pt-BR-7a4ae6b46d9e91a9d622b9dbf777106fdb4e82d0.png",
+      "image": "image-087",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "case": 68,
+      "title": "Live sign-in copy stays readable across eight locales",
+      "name": "remote-locale-ko",
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-ko-4c6ea96dca613866f69daa2f0040c140268de28b.png",
+      "sha256": "35ca4ec3101394839494a261df75175c69255f1112e3b8a972e05edbe018ccab",
+      "canonical": "../../sdk-035-admission/auth-locale-regression/artifacts/remote-auth-Live-sign-in-c-76c09-adable-across-eight-locales/attachments/remote-locale-ko-73df3d6b3f780c845643395bb6f813f6b5e7f539.png",
+      "image": "image-086",
+      "observation": "Visible localized glyphs, six retained zero digits, readable refusal and focused Cancel; no missing-glyph boxes or control clipping."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/races-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/before-history-release.png",
+      "sha256": "ce54a41273528118a7ede2324fe089d323532f7f08156c13c424d0e137d8e63d",
+      "canonical": "../baseline/images/delete-light-before.webp",
+      "image": "image-130",
+      "observation": "Isolated light deletion remains empty; compared differing text raster pixels to full-run image."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/races-artifacts/live-state-Late-initial-Ch-f2900-e-a-deleted-session-—-light/after-history-release.png",
+      "sha256": "ce54a41273528118a7ede2324fe089d323532f7f08156c13c424d0e137d8e63d",
+      "canonical": "../baseline/images/delete-light-before.webp",
+      "image": "image-130",
+      "observation": "Isolated light deletion remains empty after release; no transcript revival."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/remote-code-refused-light.png",
+      "sha256": "15365d3e24dc3b3f59014587a3c92bfb0e82ab213492da4138eb076c61f5a11a",
+      "canonical": "../../remote-chat-foundation/electron-initial/images/15365d3e24dc3b3f59014587a3c92bfb0e82ab213492da4138eb076c61f5a11a.png",
+      "image": "image-071",
+      "observation": "Refusal/code/actions readable. 25 changed pixels from prior final limited to left shell."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Email-code-sig-755f5-s-and-signs-out-—-960-light/remote-signed-in-light.png",
+      "sha256": "3e20ef1385b264a9ecb5c6fac600e2d1a8813d40c33518f5c2897002c7e34542",
+      "canonical": "../../remote-chat-foundation/electron-initial/images/3e20ef1385b264a9ecb5c6fac600e2d1a8813d40c33518f5c2897002c7e34542.png",
+      "image": "image-072",
+      "observation": "Process-local limitation and both actions readable. Same 25-pixel left-shell difference."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/remote-canonical-origin-sign-in.png",
+      "sha256": "41d27e9fb6309fc2dc492eb272391c2731d0be5e85bc73fb0cd5ef8530423b22",
+      "canonical": "images/41d27e9fb6309fc2dc492eb272391c2731d0be5e85bc73fb0cd5ef8530423b22.webp",
+      "image": "image-078",
+      "observation": "Origin input/check/sign-in controls visible; 83 changed pixels in input bounds; runtime cause unknown."
+    },
+    {
+      "source": "/tmp/opencode/live-state-integrated/e2e-full-artifacts/remote-auth-Initial-connec-fcca5-al-sign-in-and-cancellation/remote-initial-auth-read-cancelled.png",
+      "sha256": "925f2e72e618617880ca722b409f3155ff7403a760e1adfdbac2dec152564dcd",
+      "canonical": "../../remote-auth-followup/read-races/remote-initial-auth-read-cancelled.png",
+      "image": "image-079",
+      "observation": "Known email-step decorative logo clipping persists; content/actions visible; byte-identical prior final image."
+    }
+  ],
+  "contactReview": [
+    {
+      "file": "contacts/all-01.jpg",
+      "cells": 8,
+      "observation": "Approvals refusal, Bot refused-save dialogs and preview appearance: rendered, no blank frames."
+    },
+    {
+      "file": "contacts/all-02.jpg",
+      "cells": 8,
+      "observation": "Bot wide state, independent Code diff scroll and Code model/refusal states rendered."
+    },
+    {
+      "file": "contacts/all-03.jpg",
+      "cells": 8,
+      "observation": "Code/Bot/Work drafts retained; toast stacks visible as captured, no universal full-visibility claim."
+    },
+    {
+      "file": "contacts/all-04.jpg",
+      "cells": 8,
+      "observation": "Refused drafts and frozen history controls rendered; viewport scroll limits retained."
+    },
+    {
+      "file": "contacts/all-05.jpg",
+      "cells": 8,
+      "observation": "Compare divider, reasoning and upload states rendered in both themes."
+    },
+    {
+      "file": "contacts/all-06.jpg",
+      "cells": 8,
+      "observation": "Board/mascot drag end states, focus mode and Undo controls rendered."
+    },
+    {
+      "file": "contacts/all-07.jpg",
+      "cells": 8,
+      "observation": "Race before/after target frames show restored earlier turn without losing newer; deleted transcript stays empty."
+    },
+    {
+      "file": "contacts/all-08.jpg",
+      "cells": 8,
+      "observation": "Memory loading/refusal/partial-delete states rendered."
+    },
+    {
+      "file": "contacts/all-09.jpg",
+      "cells": 8,
+      "observation": "Memory dark states and light auth targets readable."
+    },
+    {
+      "file": "contacts/all-10.jpg",
+      "cells": 8,
+      "observation": "Auth states and settings rendered; known email-step clipped decorative logo flagged for full-size confirmation."
+    },
+    {
+      "file": "contacts/all-11.jpg",
+      "cells": 8,
+      "observation": "All eight locale auth frames rendered with visible glyphs; full-size reviewed separately."
+    },
+    {
+      "file": "contacts/all-12.jpg",
+      "cells": 8,
+      "observation": "Approvals description layouts and routine states rendered."
+    },
+    {
+      "file": "contacts/all-13.jpg",
+      "cells": 8,
+      "observation": "Routine states, Bot search and French terminal scroll tails rendered."
+    },
+    {
+      "file": "contacts/all-14.jpg",
+      "cells": 8,
+      "observation": "Terminal/minimum-window provider layouts rendered; content can extend below scrollport."
+    },
+    {
+      "file": "contacts/all-15.jpg",
+      "cells": 8,
+      "observation": "Image refusal/draft retention and routine source editor/run states rendered."
+    },
+    {
+      "file": "contacts/all-16.jpg",
+      "cells": 8,
+      "observation": "Work task source and refused/missing source states rendered."
+    },
+    {
+      "file": "contacts/all-17.jpg",
+      "cells": 1,
+      "observation": "Routine source-list refusal rendered; rest of sheet intentionally empty."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "preserved limitation",
+      "detail": "Email-step top logo clipping matches earlier final bytes; no new fix claimed."
+    },
+    {
+      "kind": "measured difference",
+      "detail": "Isolated/full light deletion images differ by 3108 text-region pixels; both empty before/after. Runtime cause unknown."
+    },
+    {
+      "kind": "measured difference",
+      "detail": "Two ordinary light auth images differ by 25 left-shell pixels each; canonical settings differs by 83 input pixels. Runtime causes unknown."
+    },
+    {
+      "kind": "environment boundary",
+      "detail": "CJK glyphs visible in current local Linux images; previous Linux CI missing-glyph evidence remains unresolved, separate environment."
+    }
+  ],
+  "exclusions": [
+    "No implementation logic review",
+    "No build/test/Mac/CI execution",
+    "No universal visual acceptance of all 426 registry renders",
+    "No new CI/native acceptance for this uncommitted renderer delta"
+  ]
+}

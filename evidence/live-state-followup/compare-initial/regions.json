@@ -1,0 +1,280 @@
+{
+  "coordinateSpace": "2880x1800 image pixels; x2/y2 exclusive",
+  "scope": "Image-only regional diagnostics; original full-frame metrics unchanged; no acceptance threshold",
+  "rows": [
+    {
+      "state": "bot-dark",
+      "label": "Activity, routines and memory; excludes animated mascot strip",
+      "box": [
+        800,
+        640,
+        2760,
+        1560
+      ],
+      "pixels": 1803200,
+      "appRgbaSha256": "8a55d453af9854cfe5e9281d00e38cd0e8363612a8445cca4d535b2cb2bb0009",
+      "frozen": {
+        "rgbaSha256": "8a55d453af9854cfe5e9281d00e38cd0e8363612a8445cca4d535b2cb2bb0009",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "8a55d453af9854cfe5e9281d00e38cd0e8363612a8445cca4d535b2cb2bb0009",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "bot-light",
+      "label": "Activity, routines and memory; excludes animated mascot strip",
+      "box": [
+        800,
+        640,
+        2760,
+        1560
+      ],
+      "pixels": 1803200,
+      "appRgbaSha256": "680c0321a58badc2cf42e3df708087aca4255d3bff2329ee32e05a15be82e624",
+      "frozen": {
+        "rgbaSha256": "680c0321a58badc2cf42e3df708087aca4255d3bff2329ee32e05a15be82e624",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "680c0321a58badc2cf42e3df708087aca4255d3bff2329ee32e05a15be82e624",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "chat-dark",
+      "label": "Prose, code block and lower content; excludes assistant mascot",
+      "box": [
+        1140,
+        440,
+        2460,
+        1490
+      ],
+      "pixels": 1386000,
+      "appRgbaSha256": "9750978c935e68f9431c7e393613712c41fafc1a56e1810685880852cc8d0c71",
+      "frozen": {
+        "rgbaSha256": "ceb5154be5deb40d9a7f6de5369afdd7e7a6ac962ea8d88d2b6d5155e5ef03a5",
+        "exactPixels": 18788,
+        "pixelmatchPixels": 7556
+      },
+      "prior": {
+        "rgbaSha256": "9750978c935e68f9431c7e393613712c41fafc1a56e1810685880852cc8d0c71",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "chat-light",
+      "label": "Prose, code block and lower content; excludes assistant mascot",
+      "box": [
+        1140,
+        440,
+        2460,
+        1490
+      ],
+      "pixels": 1386000,
+      "appRgbaSha256": "938643e17acc324fce00a1acb9fb45c496554e984c6e4082bf8869c00831a105",
+      "frozen": {
+        "rgbaSha256": "491bb6122c6fc3d86f3dfb9e86ea49c93b6fd56da73e5107f41cde246bc58339",
+        "exactPixels": 18794,
+        "pixelmatchPixels": 7701
+      },
+      "prior": {
+        "rgbaSha256": "938643e17acc324fce00a1acb9fb45c496554e984c6e4082bf8869c00831a105",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "code-session-dark",
+      "label": "Right-side source diff pane",
+      "box": [
+        1700,
+        260,
+        2780,
+        1560
+      ],
+      "pixels": 1404000,
+      "appRgbaSha256": "13e42326374ce1aead04706ee69d79e3b6d84ba395eadac2bdc4540daa47bb14",
+      "frozen": {
+        "rgbaSha256": "13e42326374ce1aead04706ee69d79e3b6d84ba395eadac2bdc4540daa47bb14",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "13e42326374ce1aead04706ee69d79e3b6d84ba395eadac2bdc4540daa47bb14",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "code-session-dark",
+      "label": "Static left-side transcript rows",
+      "box": [
+        790,
+        275,
+        1660,
+        570
+      ],
+      "pixels": 256650,
+      "appRgbaSha256": "f435209fa2dc44fabccdcf4b0a5fca564a784e2fb3b89cd15894e9cb20afbc10",
+      "frozen": {
+        "rgbaSha256": "f435209fa2dc44fabccdcf4b0a5fca564a784e2fb3b89cd15894e9cb20afbc10",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "f435209fa2dc44fabccdcf4b0a5fca564a784e2fb3b89cd15894e9cb20afbc10",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "code-session-light",
+      "label": "Right-side source diff pane",
+      "box": [
+        1700,
+        260,
+        2780,
+        1560
+      ],
+      "pixels": 1404000,
+      "appRgbaSha256": "8775e2045dffc2f230fd26c8406c1ef34195a6afd75bd1982e89bc9594b2573e",
+      "frozen": {
+        "rgbaSha256": "8775e2045dffc2f230fd26c8406c1ef34195a6afd75bd1982e89bc9594b2573e",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "8775e2045dffc2f230fd26c8406c1ef34195a6afd75bd1982e89bc9594b2573e",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "code-session-light",
+      "label": "Static left-side transcript rows",
+      "box": [
+        790,
+        275,
+        1660,
+        570
+      ],
+      "pixels": 256650,
+      "appRgbaSha256": "2c1d90d15453b7d09e55c7c93cc3671dc5baecb50a2b3c30feb6a10df41bfb5d",
+      "frozen": {
+        "rgbaSha256": "2c1d90d15453b7d09e55c7c93cc3671dc5baecb50a2b3c30feb6a10df41bfb5d",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "2c1d90d15453b7d09e55c7c93cc3671dc5baecb50a2b3c30feb6a10df41bfb5d",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      }
+    },
+    {
+      "state": "work-task~done-dark",
+      "label": "Previously documented unshifted Done transcript rectangle",
+      "box": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "pixels": 1303400,
+      "appRgbaSha256": "ec69e23e69c01dba8235a64ac14d3eba2d56637c1c29cf45c155ff527dced557",
+      "frozen": {
+        "rgbaSha256": "ec69e23e69c01dba8235a64ac14d3eba2d56637c1c29cf45c155ff527dced557",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "af31eea573652b66e66a9dfa627a366a49fae0f125ca9bc2ce1103ead58ed4e8",
+        "exactPixels": 73324,
+        "pixelmatchPixels": 16265
+      },
+      "priorVerticalOffsetPixels": [
+        {
+          "dy": -2,
+          "exactRgba": false,
+          "pixelmatchPixels": 19157
+        },
+        {
+          "dy": -1,
+          "exactRgba": false,
+          "pixelmatchPixels": 21161
+        },
+        {
+          "dy": 0,
+          "exactRgba": false,
+          "pixelmatchPixels": 16265
+        },
+        {
+          "dy": 1,
+          "exactRgba": false,
+          "pixelmatchPixels": 5619
+        },
+        {
+          "dy": 2,
+          "exactRgba": true,
+          "pixelmatchPixels": 0
+        }
+      ]
+    },
+    {
+      "state": "work-task~done-light",
+      "label": "Previously documented unshifted Done transcript rectangle",
+      "box": [
+        1110,
+        510,
+        2440,
+        1490
+      ],
+      "pixels": 1303400,
+      "appRgbaSha256": "e6db71dc6a0dd801a11f217d465890929aad36d09aaa2dd5f98fe346be38cef4",
+      "frozen": {
+        "rgbaSha256": "e6db71dc6a0dd801a11f217d465890929aad36d09aaa2dd5f98fe346be38cef4",
+        "exactPixels": 0,
+        "pixelmatchPixels": 0
+      },
+      "prior": {
+        "rgbaSha256": "a4f38aae525a3e052592276baa510462d61ce1293b05e995c599d99c01b00a5f",
+        "exactPixels": 73545,
+        "pixelmatchPixels": 17463
+      },
+      "priorVerticalOffsetPixels": [
+        {
+          "dy": -2,
+          "exactRgba": false,
+          "pixelmatchPixels": 20232
+        },
+        {
+          "dy": -1,
+          "exactRgba": false,
+          "pixelmatchPixels": 22500
+        },
+        {
+          "dy": 0,
+          "exactRgba": false,
+          "pixelmatchPixels": 17463
+        },
+        {
+          "dy": 1,
+          "exactRgba": false,
+          "pixelmatchPixels": 6739
+        },
+        {
+          "dy": 2,
+          "exactRgba": true,
+          "pixelmatchPixels": 0
+        }
+      ]
+    }
+  ]
+}

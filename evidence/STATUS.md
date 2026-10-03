@@ -59,7 +59,9 @@ finds no new G2/G3 reply, immutable delivery or named design permission.
 The uncommitted [transcript correction](live-state-followup/README.md) has four reproduced
 negative cases, then 101 passing Electron cases and 245 units plus one skip on its first
 corrected build. Independent review approves reconciliation and identifies a separate Bot
-route-owner defect; that correction is being paired with its own regression.
+route-owner defect. The minimal owner key passes its two formerly failing cases; the final
+combined build passes 103 Electron cases, 245 units plus one optional skip, lint/types/i18n
+and Linux package/smoke. New source-pinned CI and installed acceptance remain pending.
 The [live-recovery batch](live-recovery-followup/README.md) corrects approval-list recovery,
 memory acceptance/races, terminal annotations, narrow model metadata and Work font readiness.
 Local checks: 188 units plus one optional backend skip; lint/types/i18n zero findings;

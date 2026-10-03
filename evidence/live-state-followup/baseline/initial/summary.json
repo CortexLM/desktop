@@ -1,0 +1,51 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T07:19:50.534Z",
+    "duration": 44898.333000000006,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "Late initial Chat history cannot erase a completed stream — light",
+      "status": "failed",
+      "durationMs": 18525,
+      "retry": 0,
+      "failureLine": 146,
+      "sameNegativeAssertion": true
+    },
+    {
+      "title": "Late initial Chat history cannot revive a deleted session — light",
+      "status": "failed",
+      "durationMs": 2614,
+      "retry": 0,
+      "failureLine": 150,
+      "sameNegativeAssertion": true
+    },
+    {
+      "title": "Late initial Chat history cannot erase a completed stream — dark",
+      "status": "failed",
+      "durationMs": 18564,
+      "retry": 0,
+      "failureLine": 146,
+      "sameNegativeAssertion": true
+    },
+    {
+      "title": "Late initial Chat history cannot revive a deleted session — dark",
+      "status": "failed",
+      "durationMs": 2659,
+      "retry": 0,
+      "failureLine": 150,
+      "sameNegativeAssertion": true
+    }
+  ],
+  "setupFailures": 0,
+  "lintFailure": "no-unsafe-finally at live-state.spec.ts:154:57",
+  "sourceSHA256": "4b786c24f106775a317f15b240dcc7daab85ac9a4a3480e1490cf31bd428d271",
+  "rawResultsSHA256": "2729481d886f47218616b9d30ab3b0300a0330cd7027b782f588f32031ecc352",
+  "rawResultsRetained": false,
+  "rawResultsOriginalPath": "/tmp/opencode/live-state-race/baseline-1/results.json",
+  "rawResultsScope": "summary extracted; initial duplicate images/traces/raw JSON not copied"
+}

@@ -1,0 +1,7 @@
+{
+  "event": "Post-capture verification initially compared the whole Latin card",
+  "result": "AssertionError: grid row height changed when adjacent Japanese text wrapped",
+  "correction": "Compare the unchanged Latin heading/error/Cancel content bounds [64,76,430,220]; retain both original captures",
+  "additionalBrowserCaptures": 0,
+  "applicationFailure": false
+}

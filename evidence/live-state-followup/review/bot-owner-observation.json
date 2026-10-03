@@ -1,0 +1,33 @@
+{
+  "node": "v22.23.3",
+  "transport": "real browser HTTP; real core/session/storage; fixture provider only",
+  "alpha": {
+    "botID": "bot_01a100c4c0bf00007eeb1902782ce70f",
+    "sessionID": "ses_01a100c4ca7900003922de278e9d950e",
+    "users": [
+      "Alpha first request",
+      "Intended for Beta after navigation"
+    ]
+  },
+  "beta": {
+    "botID": "bot_01a100c4c0c00000c8a11cfd18a82a5c",
+    "sessionID": "ses_01a100c4c0c00001c717f385cdfaf247",
+    "users": [
+      "Beta saved request"
+    ]
+  },
+  "whileHeld": {
+    "title": "Review Beta",
+    "users": [
+      "Alpha first request"
+    ],
+    "returned": false
+  },
+  "afterRelease": {
+    "title": "Review Beta",
+    "users": [
+      "Alpha first request"
+    ]
+  },
+  "errors": []
+}

@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "captures": 2,
+  "networkRequests": 0,
+  "browser": "Chrome/153.0.8010.12",
+  "latinControlPixelIdentical": true,
+  "latinControlBounds": [
+    64,
+    76,
+    430,
+    220
+  ],
+  "controlledCJKFallbackAbsenceCausesMissingGlyphs": true,
+  "weightsTested": [
+    400,
+    500
+  ],
+  "fontFaceSetCheckDetectsFailure": false,
+  "geometryDetectsFailure": false,
+  "positiveCDPGlyphCountDetectsFailure": false,
+  "rasterGateByEnvironment": {
+    "without-cjk": {
+      "en": true,
+      "ja": false,
+      "ko": false,
+      "zh-Hans": false
+    },
+    "with-system": {
+      "en": true,
+      "ja": true,
+      "ko": true,
+      "zh-Hans": true
+    }
+  },
+  "fontconfigGateExitCodes": {
+    "without-cjk": 1,
+    "with-system": 0
+  },
+  "fontFiles": [
+    {
+      "name": "Geist-Variable.woff2",
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+      "matchesFrozenBundle": true
+    },
+    {
+      "name": "GeistMono-Variable.woff2",
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+      "matchesFrozenBundle": true
+    }
+  ],
+  "historicalCIInstalledFontInventory": "absent",
+  "exactCIWholeHeadingPixelReproduction": false,
+  "historicalCIMissingPackageVersusConfiguration": "not directly distinguished",
+  "artifactsUnchanged": true,
+  "globalFontInstallOrCacheCommand": false,
+  "workflowEdited": false,
+  "applicationBuildOrElectronLaunch": false
+}

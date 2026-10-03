@@ -1,0 +1,2663 @@
+{
+  "pixelmatchThreshold": 0.15,
+  "acceptanceThreshold": null,
+  "clock": {
+    "mode": "fixed",
+    "source": "cli",
+    "time": "2026-10-02T12:09:00.000Z",
+    "timezone": "UTC",
+    "timers": "real"
+  },
+  "previousSourceRevision": "6d965358bb5e02473df6be7e97ecfdb07650c0b8",
+  "verifiedOriginalPngs": 132,
+  "currentPngs": 66,
+  "previousPngs": 66,
+  "exactToPrior": 2,
+  "byteIdenticalToPrior": 2,
+  "exactToFrozen": 0,
+  "pixelmatchZeroToFrozen": 0,
+  "maxFrozen": {
+    "name": "chat-light",
+    "frozen": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 7945,
+      "pixelmatchPct": 0.15326003086419754,
+      "exactRgbaPixels": 22761,
+      "exactRgbaPct": 0.4390625,
+      "exactBounds": {
+        "x1": 52,
+        "y1": 0,
+        "x2": 2795,
+        "y2": 1799
+      }
+    },
+    "priorFrozen": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 7904,
+      "pixelmatchPct": 0.15246913580246912,
+      "exactRgbaPixels": 22705,
+      "exactRgbaPct": 0.43798225308641975,
+      "exactBounds": {
+        "x1": 52,
+        "y1": 0,
+        "x2": 2795,
+        "y2": 1799
+      }
+    },
+    "previousApp": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 27,
+      "pixelmatchPct": 0.0005208333333333333,
+      "exactRgbaPixels": 210,
+      "exactRgbaPct": 0.004050925925925926,
+      "exactBounds": {
+        "x1": 241,
+        "y1": 393,
+        "x2": 1126,
+        "y2": 435
+      }
+    },
+    "pngByteIdenticalToPrior": false,
+    "previous": {
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.app.png",
+      "sha256": "8e152e7229d598f07969dc8c26df001a3bd6c17c94a214235c91d8786977218c",
+      "bytes": 700474
+    },
+    "previousCapturedAt": "2026-10-03T00:34:00.536Z"
+  },
+  "maxPrior": {
+    "name": "work-task~done-light",
+    "frozen": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 243,
+      "pixelmatchPct": 0.0046875,
+      "exactRgbaPixels": 4776,
+      "exactRgbaPct": 0.09212962962962963,
+      "exactBounds": {
+        "x1": 52,
+        "y1": 0,
+        "x2": 2795,
+        "y2": 1799
+      }
+    },
+    "priorFrozen": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 23123,
+      "pixelmatchPct": 0.446045524691358,
+      "exactRgbaPixels": 120402,
+      "exactRgbaPct": 2.3225694444444445,
+      "exactBounds": {
+        "x1": 52,
+        "y1": 0,
+        "x2": 2795,
+        "y2": 1799
+      }
+    },
+    "previousApp": {
+      "width": 2880,
+      "height": 1800,
+      "totalPixels": 5184000,
+      "pixelmatchPixels": 22896,
+      "pixelmatchPct": 0.44166666666666665,
+      "exactRgbaPixels": 115865,
+      "exactRgbaPct": 2.2350501543209877,
+      "exactBounds": {
+        "x1": 236,
+        "y1": 260,
+        "x2": 2454,
+        "y2": 1552
+      }
+    },
+    "pngByteIdenticalToPrior": false,
+    "previous": {
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.app.png",
+      "sha256": "52cadbd5ca4090cc89a64e7c3184e9858724bdb29ce60ca0b1e88141f1334fe8",
+      "bytes": 744478
+    },
+    "previousCapturedAt": "2026-10-03T00:52:29.506Z"
+  },
+  "servedAssets": [
+    {
+      "url": "http://127.0.0.1:5337/",
+      "sha256": "72a5d6ab937e99248fe97a40a61b5badf9c1c02f46ff93e7b2a430bb7a2152d8",
+      "bytes": 664,
+      "member": "packages/app/dist/index.html",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/bots-Dhnxap2k.js",
+      "sha256": "472f7870a1372c099a1913fd1f439e8497dfb47ba57ec4dbc2c48b54e431a2dd",
+      "bytes": 5242,
+      "member": "packages/app/dist/assets/bots-Dhnxap2k.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/chat-DPP7jha6.js",
+      "sha256": "6fc31d57f4cc8ff64b8c6f708ec31e4b7bbc99ab9f004307ed02a5d61f01c469",
+      "bytes": 21015,
+      "member": "packages/app/dist/assets/chat-DPP7jha6.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/code-l1ImvW5S.js",
+      "sha256": "b21a98aa82ac8bff27fbf930cde91d7108210ccc3e3cecee978ffd987cb6342d",
+      "bytes": 17357,
+      "member": "packages/app/dist/assets/code-l1ImvW5S.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/files-DIk1qP8R.js",
+      "sha256": "5320181b308c6ac2fe096cff72c639e630aa8df488d7268cef0892e08bea9843",
+      "bytes": 23724,
+      "member": "packages/app/dist/assets/files-DIk1qP8R.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/index-BLVQW-LL.css",
+      "sha256": "44540a26450648a7745ce4c75c36ec0b7a90d3e12f029dd4bdf9f74f2395ecbf",
+      "bytes": 205331,
+      "member": "packages/app/dist/assets/index-BLVQW-LL.css",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/index-Cu9ldSsB.js",
+      "sha256": "b8e6d2026bce40d4db71cedf75f808ae75f7963a8d851d9e86b9b5cb683679f1",
+      "bytes": 2445081,
+      "member": "packages/app/dist/assets/index-Cu9ldSsB.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/shell-CYBsECV8.js",
+      "sha256": "03ef195ca05a5dc15af65a82fc56d40d161cb420426be5f1fa1cac82db8d9365",
+      "bytes": 1030,
+      "member": "packages/app/dist/assets/shell-CYBsECV8.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/system-D9_n4Goj.js",
+      "sha256": "39bacc77f2cda2bd2b349df6cf7cc555a7273915c508b6ae4b9259e28a889026",
+      "bytes": 9120,
+      "member": "packages/app/dist/assets/system-D9_n4Goj.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/assets/work-CXx4q0-W.js",
+      "sha256": "bcbba512ee7c0aaa1903ac485c3e195c982137262c92024e076f0557cd86e367",
+      "bytes": 14410,
+      "member": "packages/app/dist/assets/work-CXx4q0-W.js",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/fonts/Geist-Variable.woff2",
+      "sha256": "a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8",
+      "bytes": 69652,
+      "member": "packages/app/dist/fonts/Geist-Variable.woff2",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/fonts/GeistMono-Variable.woff2",
+      "sha256": "fba8f577f38a2bbcbe818efa6348dd58f36303a10b8737c42fefad275be563ab",
+      "bytes": 71368,
+      "member": "packages/app/dist/fonts/GeistMono-Variable.woff2",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/gel/automatisations.png",
+      "sha256": "6b2d3e9f7ebd52a02640c57b796a7ca7e5ad9099021f45651933f8676e81781c",
+      "bytes": 77526,
+      "member": "packages/app/dist/gel/automatisations.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/gel/documents.png",
+      "sha256": "239f547be46bdaf6c94fda5ba53941c4a9d8e8376f55a71b763232b7d18fe885",
+      "bytes": 75789,
+      "member": "packages/app/dist/gel/documents.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/gel/images.png",
+      "sha256": "5723c419048c27c7863f29ffbe82bdca7f1be5dd585de5b8426704de771f0785",
+      "bytes": 77289,
+      "member": "packages/app/dist/gel/images.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/gel/recherche-web.png",
+      "sha256": "fc976ecaa29cfe2f47765bcc16bbdde5bae7dd3a775d791e4f12f0931929715d",
+      "bytes": 81327,
+      "member": "packages/app/dist/gel/recherche-web.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/img/aube.png",
+      "sha256": "2743b253211c84075187ea2f7ffaa3011d5b44daa6b368049dc3153427d16662",
+      "bytes": 1405580,
+      "member": "packages/app/dist/img/aube.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/img/crepuscule.png",
+      "sha256": "e723124b4ede2e2ad9f8f64d20b718a6854bd01df3c00ecac20cd936ae89d3aa",
+      "bytes": 1405004,
+      "member": "packages/app/dist/img/crepuscule.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/img/lagon.png",
+      "sha256": "f8f863d35c5ebc00e3a8946111577a3e79d3473e6d05adc153c8f992cbd7fbdd",
+      "bytes": 1246039,
+      "member": "packages/app/dist/img/lagon.png",
+      "matchesBuildManifest": true
+    },
+    {
+      "url": "http://127.0.0.1:5337/img/prairie.png",
+      "sha256": "ce9fd320c8c98ed73f40b3787366e09ff8c665d6930014b2b2d1c20da3801968",
+      "bytes": 1242519,
+      "member": "packages/app/dist/img/prairie.png",
+      "matchesBuildManifest": true
+    }
+  ],
+  "checked": [
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-dark.app.png",
+      "sha256": "71d2bd23c882cdb17b75355a64783847442a455694ee0852cc34db1553718761",
+      "bytes": 784869,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "bc847dd7764a2f2beb7698add11bee554911f3a7e94a23608e959e9e2452e486"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-dark.design.png",
+      "sha256": "a5b5df8e194416fdd7412562ea66473987c9725e3bfe809f8a78f34d77a07d60",
+      "bytes": 785367,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3df3fc69a62ff4de24f650c9b9943c9edb0f85942484ad350e18d9a1c669dba5"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-dark.diff.png",
+      "sha256": "e5dd406caa422497b475d2e4be70241bdd0569a0b446837d4dc552f1df97356c",
+      "bytes": 343527,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "a626eafc36d34dd095abf31e543e098de80eddd9a857fe3118c0388faf557669"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-dark.app.png",
+      "sha256": "c45ee2eb5a4bd6bb4cbe2482f470159b211dc97edf1da04ceb86d8201da646f6",
+      "bytes": 785063,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "c2e3842cd06ed09d9013e6e3954896a1402d8c4c460b050010a0641f7a111beb"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-dark.design.png",
+      "sha256": "a5b5df8e194416fdd7412562ea66473987c9725e3bfe809f8a78f34d77a07d60",
+      "bytes": 785367,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3df3fc69a62ff4de24f650c9b9943c9edb0f85942484ad350e18d9a1c669dba5"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-dark.diff.png",
+      "sha256": "5971a15c67a8627a0ba7766b08f89c166bb1b91d5cb67f6404508e4f6ef11edd",
+      "bytes": 342391,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "706b358f5b2affcc7e968c2e03d3733bfa09eaaa8169d0e7172fb5e27cf66b91"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-light.app.png",
+      "sha256": "c46f7d8e1d881ee7705c464481f0b02c8de167235a54e05208830896bef21fbc",
+      "bytes": 775895,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "41ee04e6f79569e396c9403d3733c15c5350a26ace4cadd2c0346294d61f94fe"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-light.design.png",
+      "sha256": "b0af71ed14fbaa03239c91c890d81ae05fbcff98fb200d50d17fda886cd81682",
+      "bytes": 776685,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "ff4cb23b17c988ca8920bf156eaf1487b5d3685fb7a4c732f8af8ef1528783b3"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/bot-light.diff.png",
+      "sha256": "8e9d106a29363c63011477b60a5f2e0c643e4a896770363f2b06414102451cf3",
+      "bytes": 357045,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "bb06e290110dcf241bfc8081c605767bd7bec5bfd0eee4d974c8b0d1d16854bc"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-light.app.png",
+      "sha256": "f3f370972349279c9ea306e36b534e88425dd434353a80af387e6bfefe6ff76b",
+      "bytes": 775965,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "8d23c4db66a2c6e4853793d666f6c3c5f05d50eae81675bd7d8946e0f7edae77"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-light.design.png",
+      "sha256": "b0af71ed14fbaa03239c91c890d81ae05fbcff98fb200d50d17fda886cd81682",
+      "bytes": 776685,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "ff4cb23b17c988ca8920bf156eaf1487b5d3685fb7a4c732f8af8ef1528783b3"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-light.diff.png",
+      "sha256": "d16aa4f870083f28677a87bc64c6542f1efbdefd0022b9a3bc6f45ad231214cd",
+      "bytes": 359386,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3bc4c3147402ceb4098b8d57b0334feb3b3c1d85c1852bf996be7fd647f56f0f"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-dark.app.png",
+      "sha256": "66e09b12bd458b8292a9108224149c41c7fcde610ec989763463c8de552587a6",
+      "bytes": 715219,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "98a902ca08b6cb7a76905b112fe1273821b3288dffb75068c1fa1042da8c3f7d"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-dark.design.png",
+      "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+      "bytes": 715778,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "7b7b9b80d3c865a4890e67619dd874998f6c1fa9a3608bcef950c98fd674bf93"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-dark.diff.png",
+      "sha256": "b67d39864425d90abb0180a697e03364957aa61643d7266521f747b379f193f8",
+      "bytes": 298400,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "30c43c15a84d9d1123607cdfd335a93b0635503ac5a855c4af05c2b449303d88"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.app.png",
+      "sha256": "2b09c40b2465c80b24adfb8788ba2285bc7902f16005429ad4ecd43b5dc3efcd",
+      "bytes": 715204,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "0c4719fbd6c6c57eb6ac3173d2de73670766c1b44a0b00f47c9d934b564ba73f"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.design.png",
+      "sha256": "8df08514fb95847abf2588a02c98b00888978588758c0f092cc56bb48dbabce8",
+      "bytes": 715778,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "7b7b9b80d3c865a4890e67619dd874998f6c1fa9a3608bcef950c98fd674bf93"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.diff.png",
+      "sha256": "b2ffe918a6c38d5470a6b5dee805ea7af9ac9974790371d67ae853ec07843b43",
+      "bytes": 298342,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "5259d2da502e102691d1c2635b7d1ae30398e2b02f5edcd4ceb42d2e5163a804"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-light.app.png",
+      "sha256": "d240ead23323656937f1219ced6af6aeb91a5d3f2ab43f63d76b892aa7e73e0b",
+      "bytes": 700440,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "7402a157fbd46df8097166b2b440e638673fa48501aabde07fc289d62c472b0b"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-light.design.png",
+      "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "bytes": 701019,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3438fb1834b436740464131375fd97838e76fb5359e5aaa8060b46e0064099a1"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/chat-light.diff.png",
+      "sha256": "a091afd67557909f74da365cb6d19f7d470f4649e995f46f954bfb905c31c572",
+      "bytes": 303457,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "2cf9342586b59cdb45a6cf62f55d6fe11a278dd5b87f7c5c8bc2628d3790169f"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.app.png",
+      "sha256": "8e152e7229d598f07969dc8c26df001a3bd6c17c94a214235c91d8786977218c",
+      "bytes": 700474,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "33d74b0b080cedd0252a09528ec101af98f97fe4301724ecc4d5624cff9ea668"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.design.png",
+      "sha256": "367f1215b83a7d80a89588a1bb90eda8d228beafec0a3fc75f3721c2dbd70957",
+      "bytes": 701019,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3438fb1834b436740464131375fd97838e76fb5359e5aaa8060b46e0064099a1"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.diff.png",
+      "sha256": "1e299dea91da4c79bd6736b547fe515b968c823dc265d78eb70070018951b14b",
+      "bytes": 303371,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "0b662de3972a76a4e6ae987c8c3f817d7bb01bfc7504eebc9fb2be1cc463dcf6"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-dark.app.png",
+      "sha256": "8efc75f1bc901a5fb140b80dd83d4e47ff98a017b56e0e6619ea5e926270df35",
+      "bytes": 760192,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "85a172f90729f16631d4bd1eaaa0ca6c8a0e84cf6ce5ccbaaa34248055f7b53e"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-dark.design.png",
+      "sha256": "604c56e769866e7a9389bf1e0becb482412645dc0d8229f6ce52184d48fd784f",
+      "bytes": 761078,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "69cc5bcf618483aee54e39aaa73786641a19618163607222c60e55edda3c32e9"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-dark.diff.png",
+      "sha256": "323f9785db158718cddbfcedd3f486ab868615a6c4d342d0c2c3d1b13ce36123",
+      "bytes": 318265,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "79c875a4d5f9b3f3e085875764943cc473d65762bd690f8b040c295d21920ea0"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.app.png",
+      "sha256": "3a9fbafc308186e39b30ef02208ade9b602b56d198a670ed99c067d599201e2f",
+      "bytes": 760179,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "f07cb428790bba1fd599067826aa30e90d98873ff82c35809342fb792e5bdb9e"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.design.png",
+      "sha256": "604c56e769866e7a9389bf1e0becb482412645dc0d8229f6ce52184d48fd784f",
+      "bytes": 761078,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "69cc5bcf618483aee54e39aaa73786641a19618163607222c60e55edda3c32e9"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.diff.png",
+      "sha256": "ac004b43a1f8550da1110326d3980302f7a2e89cc86f31a4587f285f6f2b2833",
+      "bytes": 318266,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "95fd727b77c6e0300e28b7d6b2a91ab17ea9af7b46fd00d787879820fd5e568e"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-light.app.png",
+      "sha256": "1f41128dc8151e428507b2b23110290894515fc4a2df02027b66c388c2012720",
+      "bytes": 746401,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "034c0cd92745118599c7a8f1ebf61a721d49789c508e566f6e48164f7400fa9a"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-light.design.png",
+      "sha256": "0a6bc9f2b8d5231b77b988a1e910c7485686f858e9d88dc6e4a60f68482cef74",
+      "bytes": 746621,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "422ba8688e4b954287953ac4b73f776118c37bdc63c48d9a983d47ac75a9efa8"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/code-session-light.diff.png",
+      "sha256": "c8241b9eefc91552d6320b01ca585a0035369997079a466e709a0c0f4679a5e4",
+      "bytes": 326210,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "92c285c7694e0fb9aba9323b7fc205106d975a056fde9701cd2177dcb1c7e6a4"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.app.png",
+      "sha256": "284d53afe02e3aaab238da82e84fab3a5e83d1cc1cc22758bffd53ddb68302da",
+      "bytes": 746430,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "5b4816839767346672a62cc4afc39cbdb8e52c2a2ba55c889ce8d48309d88289"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.design.png",
+      "sha256": "0a6bc9f2b8d5231b77b988a1e910c7485686f858e9d88dc6e4a60f68482cef74",
+      "bytes": 746621,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "422ba8688e4b954287953ac4b73f776118c37bdc63c48d9a983d47ac75a9efa8"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.diff.png",
+      "sha256": "da53204a3ec39143fbe7616d38d93b0faf5973ff91e22065445d49feeda36670",
+      "bytes": 326306,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "221946873a1791030a9aaba04d7a30e506384dfbd8f0335257775b9166c3267f"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-dark.app.png",
+      "sha256": "e49127faf17aaebee3ca504a4fe196139ce62e0552e8e615d5d12d3975ce8078",
+      "bytes": 791305,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "8c084a8ebd80ced0a9d21f82e356f0691d0edaa37247bd15e866562ddced3fda"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-dark.design.png",
+      "sha256": "2058f623dbc7e2b6d05095a66311defbac40a155e3dd2d19ac3cfdf866b5195c",
+      "bytes": 792675,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "892c72b701fd7d13a7d7a5728ab065e9e4c11721e823659c992e86c924037b3d"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-dark.diff.png",
+      "sha256": "99ec875974214b80a6830f2a1c8e66ef5900013b21a221cfd73ad834dd2f0a36",
+      "bytes": 369499,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "be9a4a330b74460660aa1084c722c409559128d6465da3657fc6f3c14bfb0212"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-dark.app.png",
+      "sha256": "e7651cd0f4a7e1f3d0efa8a67ab6e936ea4635234ceb584782d9808d9bdd3a41",
+      "bytes": 791431,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "8636da551c9e6ddfa7006aa434b01d07e5ca265fd2334ac87a6bde79463551d0"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-dark.design.png",
+      "sha256": "2058f623dbc7e2b6d05095a66311defbac40a155e3dd2d19ac3cfdf866b5195c",
+      "bytes": 792675,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "892c72b701fd7d13a7d7a5728ab065e9e4c11721e823659c992e86c924037b3d"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-dark.diff.png",
+      "sha256": "cc0e9b71c1ad748304163fdfab1302bf15188e1e5e818a2c75729e385e33fe3c",
+      "bytes": 368985,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "75b1c50f7a936adff3387f57459a5faa332a3806d9d234f297cd2d47ae40adac"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-light.app.png",
+      "sha256": "c6c7bb3378935569205f27eb305f9ca4fda221bda75994468f84803744e38101",
+      "bytes": 780080,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "cbeb06fcf0f687c1849087ce6fd1deea8566dcd0775a4d29efed932d28b93a26"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-light.design.png",
+      "sha256": "3c1ef5f8543e18ad6543c58c96f4d02b0d0083f6177a95d263d33908406239fa",
+      "bytes": 781105,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "33be4dac85a68fb27a9901c8a6ae45eb5f0b6772c56063caf5765952accd1ddd"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~running-light.diff.png",
+      "sha256": "282ec796ed7e8d81562d90c4175ede20271d55c4f1838053b9b1a05555241d6e",
+      "bytes": 379814,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "97eb1b90d01cbececc6cf77aa790d2ac2d92c625c128c27e3a086a01d51ff0cb"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-light.app.png",
+      "sha256": "f634db3786c97cbea1a35fac209236c21057b0e657f4320b1e7f51977a7a063e",
+      "bytes": 780096,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "29c45ee3c3fa5fb0d3e641119d31c3459c9690884cbb515f141661e07ea414a1"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-light.design.png",
+      "sha256": "3c1ef5f8543e18ad6543c58c96f4d02b0d0083f6177a95d263d33908406239fa",
+      "bytes": 781105,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "33be4dac85a68fb27a9901c8a6ae45eb5f0b6772c56063caf5765952accd1ddd"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-light.diff.png",
+      "sha256": "033b19adc9b631af09a441d9d04830803629a2ec3d95b175a1ed55bf187ac36c",
+      "bytes": 379877,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "e5913f9411cc023b7f3600752607e3be7106b1319bea129ba7ebe413deb12fcf"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-dark.app.png",
+      "sha256": "1771f844362c9af0d8ffcd2fcaa56731c0db85d1b802b56cfaaf3eaf0b9808ec",
+      "bytes": 1170442,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "fefb351804703bae598bf18adc7b82283c6d2bd1cac275d175c78f1a938b0c67"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-dark.design.png",
+      "sha256": "2e7e8afb0da648ffda0334b920b2c2d4708c05135ac44afe44b7094b8f902779",
+      "bytes": 1171888,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "b2e996cedffa3cd69848d5b2e41d89a2354b383451c211ce0db3f600dcbb20df"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-dark.diff.png",
+      "sha256": "f0a9e75b66feacc5ef1f750fe66c77ec183579413654cc3733809fd73d7890ba",
+      "bytes": 467966,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "5bbc9394f3b07bf85c98cd738df5b6d053f0e6c8552a8f02847e371d63d9f088"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-dark.app.png",
+      "sha256": "8498cefdc38adcd353604c5604b398a7eccb7aed07668a8d839df7ceb552eb0f",
+      "bytes": 1170347,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "b53865b5a9c0c1093a5e75cf85ff2bcebd0821197d6b7d3cc3c7b204626bd2c7"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-dark.design.png",
+      "sha256": "2e7e8afb0da648ffda0334b920b2c2d4708c05135ac44afe44b7094b8f902779",
+      "bytes": 1171888,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "b2e996cedffa3cd69848d5b2e41d89a2354b383451c211ce0db3f600dcbb20df"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-dark.diff.png",
+      "sha256": "09658eebd617b1ad03226ffd45de418b933cfb409f95d1424ed147b029a6ffef",
+      "bytes": 468002,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "ba82e404d64b5bbc8f4bff8234fa6126b017ebc79f5f3d47845d24768648dbb2"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-light.app.png",
+      "sha256": "9524790691a7259d4f4bac2c2b3395d15d22e6a3f6a15980ec29c3f94bba0c3c",
+      "bytes": 1162067,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dd5ca376a6bc7c10022e9ba6cf6111f184df0b9cad40eb91f96f50ba47b2a38d"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-light.design.png",
+      "sha256": "76f86dd9c8c1d3ad5eb16399107f9be310d245ab91935fd7ad56f54db3fea580",
+      "bytes": 1163540,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d76727516a85cc54fa87bb3ddc42c466e25f850c016952bb71e17180b98a97f0"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~computer-light.diff.png",
+      "sha256": "1d64ca787710797bfaa3c6a3e4c6931a1e381668b03d790313f98e5749a6a602",
+      "bytes": 480910,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dcb15142179c78a943f894dde8ad9bd86948683a92999d9bbcaab8db2cd9112b"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-light.app.png",
+      "sha256": "956ef53b17e90e5d319e3ea0e558a5de0ba6526a1397499ecf2be1fd4ca77c07",
+      "bytes": 1162160,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "5d04eb97b76db1841d63595f58f8c9ddb80339bda0e2e7c2660540675c878761"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-light.design.png",
+      "sha256": "76f86dd9c8c1d3ad5eb16399107f9be310d245ab91935fd7ad56f54db3fea580",
+      "bytes": 1163540,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d76727516a85cc54fa87bb3ddc42c466e25f850c016952bb71e17180b98a97f0"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-light.diff.png",
+      "sha256": "ebc916e40bb69d1e17e693b959da1f7debea6a525977400e5716041f8a600d9d",
+      "bytes": 480697,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "8ae1e81c2e5279b411788ec7b310aa52059f3b98c3db2c3c7c2e508c0a8083f8"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-dark.app.png",
+      "sha256": "b15f96e1f474dd702304238766d2fa809441956242b4ea94839245fce39c99d6",
+      "bytes": 1321581,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d8d9329e8acc6b6ad3249762f7ba24dd3fa72188e4fe0d3dd789173d64a94806"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-dark.design.png",
+      "sha256": "aa1f053a37df5e536bb945fc36b20d130f6fc59606c0e063c5f74188ac970b85",
+      "bytes": 1322754,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "e2947114905366a18abf8f1c2ef0adcde5e95595a847b2270b18b6538976053d"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-dark.diff.png",
+      "sha256": "1d76253a17944f235453c9fb7a13c1deab12b582209a7d1431b717ffcb43a155",
+      "bytes": 338707,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "a735bad61649ac9dd274f52c7a24e98c485eb55d29ab9ee3e238b39f149e1204"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-dark.app.png",
+      "sha256": "8a614be3674375e8dc7ec04e1f07f95b91a8e4c2d965ddcbfc61c87ed0f74ec5",
+      "bytes": 1321622,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "f6264f302fa042f32b9b58a3dc281cb76fc2beebf71c2281d68056ba32cdf2e9"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-dark.design.png",
+      "sha256": "aa1f053a37df5e536bb945fc36b20d130f6fc59606c0e063c5f74188ac970b85",
+      "bytes": 1322754,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "e2947114905366a18abf8f1c2ef0adcde5e95595a847b2270b18b6538976053d"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-dark.diff.png",
+      "sha256": "a871836b069f7122244477518c89664ccf40424f70722abdd02808dd257e58b3",
+      "bytes": 338725,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "2af650518dc3e06d7412e042e8cb1a5379591b467042f26f982e622c00eaa4a4"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-light.app.png",
+      "sha256": "c95832751981a27aa0e7b965fba2f2d3992c9a0b9496b45aa8eb1ef2d8b33de4",
+      "bytes": 1309857,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "ce937098be6aa6ec1391205787a9fb3f5569d08b9ae80eb9b4223ccdecf29100"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-light.design.png",
+      "sha256": "ab0ced8e68446bc4b7e5d7d6c7e11958657ff071c14a6761a055b73aa3737c5b",
+      "bytes": 1310938,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "954a70d9a67d0f96bc15bc8846cbd6b823fd077cc508eafb5cc79f17002c0b7e"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~takeover-light.diff.png",
+      "sha256": "f808d8b65e4f192c0c766fee87d7b1fe8bd81f7684f21b18f233b812a7d610dd",
+      "bytes": 346881,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "296ed0995905362312980571bc5641a4e5f5dddc32af46464bccd2d7bae009b5"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-light.app.png",
+      "sha256": "283a1e894bb309bfb85862eed166ba3ad883cff1418891a943d94d0f4bb8c498",
+      "bytes": 1309848,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "f9602e53969c425017e7aa5709d40aa29fafc6205b537fbba6391265a89b6d78"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-light.design.png",
+      "sha256": "ab0ced8e68446bc4b7e5d7d6c7e11958657ff071c14a6761a055b73aa3737c5b",
+      "bytes": 1310938,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "954a70d9a67d0f96bc15bc8846cbd6b823fd077cc508eafb5cc79f17002c0b7e"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-light.diff.png",
+      "sha256": "3aa1f6858da2486766ff7cb5771cd6ff43899f48a50a70c2bfcbccb9862481be",
+      "bytes": 346867,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "87ff21a12109f621444837f7619b4bfff095fe834c4e938b31cacfb22486d974"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-dark.app.png",
+      "sha256": "df59d8d5e2f14e397634d5d3da4d464f4c4d8f66f9c9d1ac51ebd29bf8ce9a24",
+      "bytes": 788908,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "f569623019627ea3e909ed3db82b25c86eb9201855e85d74fb20e790dd7cc8db"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-dark.design.png",
+      "sha256": "3bcd1c04850b8871bd3439c81e045a7d8fe355dbacc0286d1b60f7746512abc7",
+      "bytes": 790267,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "30819a0c7334011622e4b0538d0e018d8b9f871dad7e3bab2c848816b6aca768"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-dark.diff.png",
+      "sha256": "2b6d5d0532ec2cb22777fc36d91d8a30dd78b13cc12235e78b5d6ae91b64fc1b",
+      "bytes": 366098,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "24f02ba2bcf351ac4975af005213f1f61da6317b946453c71d26ab59ed801085"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-dark.app.png",
+      "sha256": "72988160ab18ed1c50bb40396642e98c4e40a46ca14d3e75686332741420d84d",
+      "bytes": 788908,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "7285dbcd39654c1340baa9cb1131f7e28a521d7fb9579c98fb89b282997ac691"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-dark.design.png",
+      "sha256": "3bcd1c04850b8871bd3439c81e045a7d8fe355dbacc0286d1b60f7746512abc7",
+      "bytes": 790267,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "30819a0c7334011622e4b0538d0e018d8b9f871dad7e3bab2c848816b6aca768"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-dark.diff.png",
+      "sha256": "753411b803e653ab6e0257680ad9a9daf1f93ef1b576db0c53814597dc50a180",
+      "bytes": 366094,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "53d740494f032767ae3d62108ad2b2346090e85998f1fea47a73120310bd6eef"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-light.app.png",
+      "sha256": "b1c8b1580e0de33752c2b2a69eeb516b27b2164b1dc27c8e44341ac8e2c202fd",
+      "bytes": 777014,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "6a51a2ce3b88f220659d448f43baa44c4a59c9f9b86a313fe1f1604dbc97aa88"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-light.design.png",
+      "sha256": "176c6ee9e1248c55e0b1176ba2fad94034b4d06ee6d8dd9f05bd3c45d89fd77c",
+      "bytes": 778160,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "de8c0873920064faed0841cf3c7e7b58c907d9d8681f30477467047818014a52"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~approval-light.diff.png",
+      "sha256": "5b29483d57ecccdec6e43f447738e4a5a5479a1210c586b6e6fc14ef57db2f83",
+      "bytes": 376363,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "75e59be1d3ad6a3f80620a1fc14c43bfc75a958f21c1293f82525ec797472942"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-light.app.png",
+      "sha256": "1f43b825f33191345ac185e0700a6a28487041ac9f009dd82a7dda2696b9f828",
+      "bytes": 777014,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "28d375b817707f087bfbaf0891d210cfab997f2dc0f9990527365cd2f09211c6"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-light.design.png",
+      "sha256": "176c6ee9e1248c55e0b1176ba2fad94034b4d06ee6d8dd9f05bd3c45d89fd77c",
+      "bytes": 778160,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "de8c0873920064faed0841cf3c7e7b58c907d9d8681f30477467047818014a52"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-light.diff.png",
+      "sha256": "5b29483d57ecccdec6e43f447738e4a5a5479a1210c586b6e6fc14ef57db2f83",
+      "bytes": 376363,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "75e59be1d3ad6a3f80620a1fc14c43bfc75a958f21c1293f82525ec797472942"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-dark.app.png",
+      "sha256": "8354efbafe614a7d9f850568bead24fa6d5f93bdfeff7476e6c48b5ce177d294",
+      "bytes": 760200,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "df9679597397e5b521c4a15495497abacb3d21ec358a5863b4b14f0435a785b0"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-dark.design.png",
+      "sha256": "15b066c4998e1059f03794fc1ed203a51d096df8493fedf46b10c070d52830ce",
+      "bytes": 761744,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dea17da28c67c1f241dab05a5cc48a93bffd19c48c40812f43b58a80002df850"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-dark.diff.png",
+      "sha256": "508a9ca373d26e243c920b010ca54d0cab9301c944f3b194213d26dfe6d6c1e1",
+      "bytes": 338123,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "1d64a5a7c67a1ecbebd274f828d91327e49e79f63f38b88fdc0f058f49e04912"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-dark.app.png",
+      "sha256": "8354efbafe614a7d9f850568bead24fa6d5f93bdfeff7476e6c48b5ce177d294",
+      "bytes": 760200,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "df9679597397e5b521c4a15495497abacb3d21ec358a5863b4b14f0435a785b0"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-dark.design.png",
+      "sha256": "15b066c4998e1059f03794fc1ed203a51d096df8493fedf46b10c070d52830ce",
+      "bytes": 761744,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dea17da28c67c1f241dab05a5cc48a93bffd19c48c40812f43b58a80002df850"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-dark.diff.png",
+      "sha256": "508a9ca373d26e243c920b010ca54d0cab9301c944f3b194213d26dfe6d6c1e1",
+      "bytes": 338123,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "1d64a5a7c67a1ecbebd274f828d91327e49e79f63f38b88fdc0f058f49e04912"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-light.app.png",
+      "sha256": "84dcc7616f7258a0a8354d612449300b5794c31b04feec241b899d6d6968ee5f",
+      "bytes": 746952,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "df17b020ad8bc451628726708ae5150b32686abd424263c5c3bf02c97ace9855"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-light.design.png",
+      "sha256": "b8281f05aaa7fb6731c60e11d46b77ce4212584df3068661db7f207ce16b6f1f",
+      "bytes": 748327,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "6ab99a3279b44af3fea54ba0de39d3450ac7c321774f6ba156d4a23ca064cf06"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~blocked-light.diff.png",
+      "sha256": "f12c6fae000f175ab618cebd626018322c0f2dbbf55f6faa5e70ed5bac0daad0",
+      "bytes": 349113,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "c7e39eb83d605d0bab750b9080d23c9df594a91ac89fa779925714ce6589b047"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-light.app.png",
+      "sha256": "820f067c5cf0c93344f1a492d28a35fbd0d50e62edba202d4b797b5af686dc04",
+      "bytes": 746951,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "fea4b77b2ad7175004c8526657853c5374dd91d64099837d6e146060ac8340be"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-light.design.png",
+      "sha256": "b8281f05aaa7fb6731c60e11d46b77ce4212584df3068661db7f207ce16b6f1f",
+      "bytes": 748327,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "6ab99a3279b44af3fea54ba0de39d3450ac7c321774f6ba156d4a23ca064cf06"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-light.diff.png",
+      "sha256": "f12c6fae000f175ab618cebd626018322c0f2dbbf55f6faa5e70ed5bac0daad0",
+      "bytes": 349113,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "c7e39eb83d605d0bab750b9080d23c9df594a91ac89fa779925714ce6589b047"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-dark.app.png",
+      "sha256": "bb15d6a87497c4c7e2f6423ffc9cf91835095bc378d6a9e9dbe9440883aae145",
+      "bytes": 754741,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "a960738e77c9c067ec425cad5d24bdc0cc57bba5410feae4fcd08036ec8c5898"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-dark.design.png",
+      "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "bytes": 755958,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "9b28733d14a090b8389fd1f3a2de5ec96c380de0f7b372f8b7dad6a8a468c74f"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-dark.diff.png",
+      "sha256": "472fbd3f747b83bcf4683f1bbf2660958217bfdebbd1b1cf5aa717d62e088860",
+      "bytes": 299804,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "45dbe4dfb788273e2a6c20905b26ff2571715dc27f3df622a24743c552f507a3"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.app.png",
+      "sha256": "d8eb0a8707461efac6b549397a8c15bcece7d9607c0d13cef84e34822c1b32e5",
+      "bytes": 755290,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "13557f8893a0068e5d30a8cbcb098a6485f46734c1039b8a89078a5b2c33e1a1"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.design.png",
+      "sha256": "52871588544e6658034f0ab67f7dbbe817b3649acb2fa19aa29a0c1cceef0341",
+      "bytes": 755958,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "9b28733d14a090b8389fd1f3a2de5ec96c380de0f7b372f8b7dad6a8a468c74f"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.diff.png",
+      "sha256": "ea0d95969eb51d200030193cebb465bacc6ca2b224abe71d6401c567638fc24f",
+      "bytes": 324045,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "e70e814f34889fef88349f25f17b75518c0af4c092346d80d721fc0e0bc2494f"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-light.app.png",
+      "sha256": "84b581f6a467d7f4980f8e11c3d139fce23127a60ef70a1689a5ef93fd15eb23",
+      "bytes": 744127,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "46b3f41cab454235ce1c2b2bc2606a486a02f566ab4159f266eb10a291b4d2cf"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-light.design.png",
+      "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "bytes": 745244,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d31673d8c4dc5882b97c1cb1139d8cf2adafd35450351dc059bcf9bd2dad66d3"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~done-light.diff.png",
+      "sha256": "3963eda703b149e576cd09443b880a2945153f3d4a8c123636fe08aa91e05e7e",
+      "bytes": 314354,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "3f3a7da333ecd615473e8f7084532f6b67f4e14dbf6f63003c5eece6ba37ee7a"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.app.png",
+      "sha256": "52cadbd5ca4090cc89a64e7c3184e9858724bdb29ce60ca0b1e88141f1334fe8",
+      "bytes": 744478,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "51144af57464ad67adb63c954284ff4376345a180eda6ce699ae53be7864fcdf"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.design.png",
+      "sha256": "4aa37ded3a69122b5a54036d1209395a4397cfc64945b7fd5b259a99614be317",
+      "bytes": 745244,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d31673d8c4dc5882b97c1cb1139d8cf2adafd35450351dc059bcf9bd2dad66d3"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.diff.png",
+      "sha256": "11f8130019d42b35fb46dcfa2d028c870b72a88f1943c9a0435d642b85a57717",
+      "bytes": 307612,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "7dcb8bcc6f67553f467dd1fc0b275ee2cb0dd6e789d483d2234efa332fdc9b97"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-dark.app.png",
+      "sha256": "8c8b6b42648a3993101b1c1b502da3ece9f2fb2ed865a32749b64614d79a7bd1",
+      "bytes": 780366,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "724dbbbaa55045851165946b5ab60b31fb7475fbf3f9627d0bdd5750c0166fc0"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-dark.design.png",
+      "sha256": "c79898e2d8a4966ba02482d72ffb03d79e3d9e09ff4fc3937410b490582726ba",
+      "bytes": 781402,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dcbc549136f61a36de02e98368fac1e64b12969d7a94d4a2de6c78545130b4d7"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-dark.diff.png",
+      "sha256": "5ec3dfd6a4f027af7b0342a76d787f1a4264e7dca10e320480ea6d1b62ea3015",
+      "bytes": 371747,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "6f3dd34c2ef32697dad99665f262a34dd6d22e474553281cf82fca76e302fa1d"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-dark.app.png",
+      "sha256": "841493bde2125e4262542398b510fa598350f0429d0c127725a5276e91f1aedc",
+      "bytes": 780400,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "5971edd16ad94da0262366b899ea9633f374f156e299081c76f92f847d390399"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-dark.design.png",
+      "sha256": "c79898e2d8a4966ba02482d72ffb03d79e3d9e09ff4fc3937410b490582726ba",
+      "bytes": 781402,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dcbc549136f61a36de02e98368fac1e64b12969d7a94d4a2de6c78545130b4d7"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-dark.diff.png",
+      "sha256": "8cc69b10e287839700a537daf4385015585b37ed72b92e0f85a9c99e94fcd2da",
+      "bytes": 371769,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "172a037f07750fc104a6d196756ed02a0e4767ca21bb44b6c1a5d8f602734e06"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-light.app.png",
+      "sha256": "1870ff31b1d338a5bdfb0bd6b72a1ad3576e1f0957d3a3a567478d7cfbbbe6c0",
+      "bytes": 768799,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "614fb01ed47aa279fc39e663981212323cdff553ec06b3d44f13e0db3077e61d"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-light.design.png",
+      "sha256": "aecd9d30e01fc4a4f9fc402975971a3625e1f5668a9a905f125c79b1c59002be",
+      "bytes": 769760,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "75381c33d08f8a1c36838b38a6b65c943c74029f57da03fc2d67451be832c4ca"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~failed-light.diff.png",
+      "sha256": "3939fa0edc0ca4ce5c650167031eee0109cde5c5592990e15ad61b63914060f6",
+      "bytes": 381823,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "b66dc381180076b8a489b4aa005ee92d2df872e0b2ec508592e47220b9b8929c"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-light.app.png",
+      "sha256": "1870ff31b1d338a5bdfb0bd6b72a1ad3576e1f0957d3a3a567478d7cfbbbe6c0",
+      "bytes": 768799,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "614fb01ed47aa279fc39e663981212323cdff553ec06b3d44f13e0db3077e61d"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-light.design.png",
+      "sha256": "aecd9d30e01fc4a4f9fc402975971a3625e1f5668a9a905f125c79b1c59002be",
+      "bytes": 769760,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "75381c33d08f8a1c36838b38a6b65c943c74029f57da03fc2d67451be832c4ca"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-light.diff.png",
+      "sha256": "3939fa0edc0ca4ce5c650167031eee0109cde5c5592990e15ad61b63914060f6",
+      "bytes": 381823,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "b66dc381180076b8a489b4aa005ee92d2df872e0b2ec508592e47220b9b8929c"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-dark.app.png",
+      "sha256": "714100548b92095b220bec90a0e49e302d91ea5cda70a4261101334f8aa2d043",
+      "bytes": 772539,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "13d44dbce2cba8f3a431e00e0fd317b520d57ff5adf6d6f71d6fd3364af45db9"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-dark.design.png",
+      "sha256": "8a846e283c87cb2fcb8b5d14f758ce331bb57561f265036ea092adff9a4c9df5",
+      "bytes": 773881,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d1624ba2ebe3ff884a0ecb05fd9454669d1737e7c5d73dd56671a3a61f7e3beb"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-dark.diff.png",
+      "sha256": "4a9769165e8c35b62b387df15dfaa46208ddddc7f5ab53501e6ba400752ed327",
+      "bytes": 356346,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "dbee638581b4d60159f36bc8559d4f76742649b797a76356e31167f8f7971042"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-dark.app.png",
+      "sha256": "398a612259b4e748b6f9dc62eda392a02dbe123f077321015501907bc35c60bf",
+      "bytes": 772564,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "96ff17100e860863b5b91d8a4ada7a98c903039b9d64b1f95b125d80e8d19e65"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-dark.design.png",
+      "sha256": "8a846e283c87cb2fcb8b5d14f758ce331bb57561f265036ea092adff9a4c9df5",
+      "bytes": 773881,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "d1624ba2ebe3ff884a0ecb05fd9454669d1737e7c5d73dd56671a3a61f7e3beb"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-dark.diff.png",
+      "sha256": "b5fe2d03c06abb9aed5f98b6c3356c4288a44f641048e51beda4f1aa0fa1122f",
+      "bytes": 356338,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "c8145ea096c212ca644e9aedf64bf4504c78a8b4d84e558f212748a077ad137f"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-light.app.png",
+      "sha256": "cf0f22c056bb211824e67faf248f65c42ffb36346e91a3bcc13d85b995249df2",
+      "bytes": 758292,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "a67b3fd1c4da3c94bc631f8c5c35ffb1d8a3460860e718494fe5688476f5a061"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-light.design.png",
+      "sha256": "5b8872b861b62b8f4ab0bb46a05e0a2c99ced45f6a0ebee296011fa0b585f809",
+      "bytes": 759553,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "22fe4dd1974dfde68960e96b75349589da507de6e566d4b66677f2773f7258bb"
+    },
+    {
+      "base": "/tmp/opencode/live-state-compare-initial",
+      "file": "captures/2026-10-03T07-54-59-214Z-QfwN38/work-task~paused-light.diff.png",
+      "sha256": "1113f64258227a71770f1370731bbdf0282575ca813eaddae8ebfc497f19304d",
+      "bytes": 367866,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "9aa80a0926fb228a23ecc9306557f2da3d0a28500302181452d9449ce7377a4d"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-light.app.png",
+      "sha256": "bfa7215b73baf7910ba53ac61d352f606511df8b7f364d4f148fc3a36d6fba6e",
+      "bytes": 758273,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "37960658d3e6053b47d6d14b690bc20747f244f09c7064f7944ec7b76216294f"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-light.design.png",
+      "sha256": "5b8872b861b62b8f4ab0bb46a05e0a2c99ced45f6a0ebee296011fa0b585f809",
+      "bytes": 759553,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "22fe4dd1974dfde68960e96b75349589da507de6e566d4b66677f2773f7258bb"
+    },
+    {
+      "base": "/tmp/opencode/current-full-compare-6d96535",
+      "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-light.diff.png",
+      "sha256": "81d2877cee39b5ab61cd2ba76fbed2fc9445064c7ab4a032f32c08fdafb6c74e",
+      "bytes": 368113,
+      "width": 2880,
+      "height": 1800,
+      "rgbaSha256": "f344370f7fb8d653fce10586e8fb889f12bd5e7202c11703d83533ff479d32e3"
+    }
+  ],
+  "rows": [
+    {
+      "name": "bot-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 2591,
+        "pixelmatchPct": 0.04998070987654321,
+        "exactRgbaPixels": 9964,
+        "exactRgbaPct": 0.1922067901234568,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 672,
+        "pixelmatchPct": 0.012962962962962963,
+        "exactRgbaPixels": 7904,
+        "exactRgbaPct": 0.15246913580246912,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1260,
+        "pixelmatchPct": 0.024305555555555556,
+        "exactRgbaPixels": 4791,
+        "exactRgbaPct": 0.09241898148148148,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 297,
+          "x2": 1529,
+          "y2": 610
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-dark.app.png",
+        "sha256": "c45ee2eb5a4bd6bb4cbe2482f470159b211dc97edf1da04ceb86d8201da646f6",
+        "bytes": 785063
+      },
+      "previousCapturedAt": "2026-10-03T00:32:46.471Z"
+    },
+    {
+      "name": "bot-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 727,
+        "pixelmatchPct": 0.014023919753086419,
+        "exactRgbaPixels": 7623,
+        "exactRgbaPct": 0.14704861111111112,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 3563,
+        "pixelmatchPct": 0.06873070987654321,
+        "exactRgbaPixels": 10759,
+        "exactRgbaPct": 0.20754243827160493,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 2232,
+        "pixelmatchPct": 0.043055555555555555,
+        "exactRgbaPixels": 5789,
+        "exactRgbaPct": 0.11167052469135802,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 292,
+          "x2": 1524,
+          "y2": 610
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/bot-light.app.png",
+        "sha256": "f3f370972349279c9ea306e36b534e88425dd434353a80af387e6bfefe6ff76b",
+        "bytes": 775965
+      },
+      "previousCapturedAt": "2026-10-03T00:32:49.943Z"
+    },
+    {
+      "name": "chat-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 7759,
+        "pixelmatchPct": 0.14967206790123458,
+        "exactRgbaPixels": 22910,
+        "exactRgbaPct": 0.4419367283950617,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 7762,
+        "pixelmatchPct": 0.14972993827160494,
+        "exactRgbaPixels": 22922,
+        "exactRgbaPct": 0.4421682098765432,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 3,
+        "pixelmatchPct": 0.00005787037037037037,
+        "exactRgbaPixels": 145,
+        "exactRgbaPct": 0.0027970679012345677,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 394,
+          "x2": 1125,
+          "y2": 418
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-dark.app.png",
+        "sha256": "2b09c40b2465c80b24adfb8788ba2285bc7902f16005429ad4ecd43b5dc3efcd",
+        "bytes": 715204
+      },
+      "previousCapturedAt": "2026-10-03T00:33:57.467Z"
+    },
+    {
+      "name": "chat-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 7945,
+        "pixelmatchPct": 0.15326003086419754,
+        "exactRgbaPixels": 22761,
+        "exactRgbaPct": 0.4390625,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 7904,
+        "pixelmatchPct": 0.15246913580246912,
+        "exactRgbaPixels": 22705,
+        "exactRgbaPct": 0.43798225308641975,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 27,
+        "pixelmatchPct": 0.0005208333333333333,
+        "exactRgbaPixels": 210,
+        "exactRgbaPct": 0.004050925925925926,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 393,
+          "x2": 1126,
+          "y2": 435
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/chat-light.app.png",
+        "sha256": "8e152e7229d598f07969dc8c26df001a3bd6c17c94a214235c91d8786977218c",
+        "bytes": 700474
+      },
+      "previousCapturedAt": "2026-10-03T00:34:00.536Z"
+    },
+    {
+      "name": "code-session-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 226,
+        "pixelmatchPct": 0.004359567901234568,
+        "exactRgbaPixels": 7992,
+        "exactRgbaPct": 0.15416666666666667,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 226,
+        "pixelmatchPct": 0.004359567901234568,
+        "exactRgbaPixels": 7988,
+        "exactRgbaPct": 0.1540895061728395,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 30,
+        "exactRgbaPct": 0.0005787037037037037,
+        "exactBounds": {
+          "x1": 798,
+          "y1": 594,
+          "x2": 1271,
+          "y2": 619
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-dark.app.png",
+        "sha256": "3a9fbafc308186e39b30ef02208ade9b602b56d198a670ed99c067d599201e2f",
+        "bytes": 760179
+      },
+      "previousCapturedAt": "2026-10-03T00:38:53.764Z"
+    },
+    {
+      "name": "code-session-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 216,
+        "pixelmatchPct": 0.004166666666666667,
+        "exactRgbaPixels": 7661,
+        "exactRgbaPct": 0.14778163580246914,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 200,
+        "pixelmatchPct": 0.0038580246913580245,
+        "exactRgbaPixels": 7285,
+        "exactRgbaPct": 0.14052854938271606,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 18,
+        "pixelmatchPct": 0.00034722222222222224,
+        "exactRgbaPixels": 3319,
+        "exactRgbaPct": 0.06402391975308643,
+        "exactBounds": {
+          "x1": 795,
+          "y1": 195,
+          "x2": 1282,
+          "y2": 619
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/code-session-light.app.png",
+        "sha256": "284d53afe02e3aaab238da82e84fab3a5e83d1cc1cc22758bffd53ddb68302da",
+        "bytes": 746430
+      },
+      "previousCapturedAt": "2026-10-03T00:38:56.894Z"
+    },
+    {
+      "name": "work-task~running-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 402,
+        "pixelmatchPct": 0.0077546296296296295,
+        "exactRgbaPixels": 5930,
+        "exactRgbaPct": 0.11439043209876543,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 279,
+        "pixelmatchPct": 0.005381944444444444,
+        "exactRgbaPixels": 5433,
+        "exactRgbaPct": 0.10480324074074074,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 128,
+        "pixelmatchPct": 0.0024691358024691358,
+        "exactRgbaPixels": 898,
+        "exactRgbaPct": 0.017322530864197532,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 195,
+          "x2": 1297,
+          "y2": 1535
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-dark.app.png",
+        "sha256": "e7651cd0f4a7e1f3d0efa8a67ab6e936ea4635234ceb584782d9808d9bdd3a41",
+        "bytes": 791431
+      },
+      "previousCapturedAt": "2026-10-03T00:51:52.284Z"
+    },
+    {
+      "name": "work-task~running-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 404,
+        "pixelmatchPct": 0.00779320987654321,
+        "exactRgbaPixels": 5628,
+        "exactRgbaPct": 0.10856481481481481,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 383,
+        "pixelmatchPct": 0.007388117283950617,
+        "exactRgbaPixels": 5555,
+        "exactRgbaPct": 0.10715663580246913,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 8,
+        "pixelmatchPct": 0.00015432098765432098,
+        "exactRgbaPixels": 653,
+        "exactRgbaPct": 0.01259645061728395,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 196,
+          "x2": 1296,
+          "y2": 1534
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~running-light.app.png",
+        "sha256": "f634db3786c97cbea1a35fac209236c21057b0e657f4320b1e7f51977a7a063e",
+        "bytes": 780096
+      },
+      "previousCapturedAt": "2026-10-03T00:51:55.547Z"
+    },
+    {
+      "name": "work-task~computer-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 735,
+        "pixelmatchPct": 0.014178240740740741,
+        "exactRgbaPixels": 7619,
+        "exactRgbaPct": 0.14697145061728395,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 744,
+        "pixelmatchPct": 0.014351851851851852,
+        "exactRgbaPixels": 7641,
+        "exactRgbaPct": 0.14739583333333334,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 9,
+        "pixelmatchPct": 0.00017361111111111112,
+        "exactRgbaPixels": 586,
+        "exactRgbaPct": 0.011304012345679012,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 196,
+          "x2": 1791,
+          "y2": 1695
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-dark.app.png",
+        "sha256": "8498cefdc38adcd353604c5604b398a7eccb7aed07668a8d839df7ceb552eb0f",
+        "bytes": 1170347
+      },
+      "previousCapturedAt": "2026-10-03T00:51:58.873Z"
+    },
+    {
+      "name": "work-task~computer-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 795,
+        "pixelmatchPct": 0.015335648148148149,
+        "exactRgbaPixels": 7466,
+        "exactRgbaPct": 0.14402006172839507,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 720,
+        "pixelmatchPct": 0.013888888888888888,
+        "exactRgbaPixels": 6977,
+        "exactRgbaPct": 0.1345871913580247,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 86,
+        "pixelmatchPct": 0.0016589506172839507,
+        "exactRgbaPixels": 963,
+        "exactRgbaPct": 0.01857638888888889,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 195,
+          "x2": 1803,
+          "y2": 1696
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~computer-light.app.png",
+        "sha256": "956ef53b17e90e5d319e3ea0e558a5de0ba6526a1397499ecf2be1fd4ca77c07",
+        "bytes": 1162160
+      },
+      "previousCapturedAt": "2026-10-03T00:52:02.314Z"
+    },
+    {
+      "name": "work-task~takeover-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 241,
+        "pixelmatchPct": 0.00464891975308642,
+        "exactRgbaPixels": 5318,
+        "exactRgbaPct": 0.10258487654320987,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 241,
+        "pixelmatchPct": 0.00464891975308642,
+        "exactRgbaPixels": 5475,
+        "exactRgbaPct": 0.10561342592592593,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 183,
+        "exactRgbaPct": 0.0035300925925925925,
+        "exactBounds": {
+          "x1": 242,
+          "y1": 395,
+          "x2": 831,
+          "y2": 1663
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-dark.app.png",
+        "sha256": "8a614be3674375e8dc7ec04e1f07f95b91a8e4c2d965ddcbfc61c87ed0f74ec5",
+        "bytes": 1321622
+      },
+      "previousCapturedAt": "2026-10-03T00:52:05.979Z"
+    },
+    {
+      "name": "work-task~takeover-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 265,
+        "pixelmatchPct": 0.005111882716049383,
+        "exactRgbaPixels": 5225,
+        "exactRgbaPct": 0.10079089506172839,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 265,
+        "pixelmatchPct": 0.005111882716049383,
+        "exactRgbaPixels": 5202,
+        "exactRgbaPct": 0.10034722222222223,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 194,
+        "exactRgbaPct": 0.003742283950617284,
+        "exactBounds": {
+          "x1": 242,
+          "y1": 311,
+          "x2": 2454,
+          "y2": 1663
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~takeover-light.app.png",
+        "sha256": "283a1e894bb309bfb85862eed166ba3ad883cff1418891a943d94d0f4bb8c498",
+        "bytes": 1309848
+      },
+      "previousCapturedAt": "2026-10-03T00:52:09.599Z"
+    },
+    {
+      "name": "work-task~approval-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 353,
+        "pixelmatchPct": 0.006809413580246913,
+        "exactRgbaPixels": 6317,
+        "exactRgbaPct": 0.1218557098765432,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 353,
+        "pixelmatchPct": 0.006809413580246913,
+        "exactRgbaPixels": 6180,
+        "exactRgbaPct": 0.11921296296296297,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 207,
+        "exactRgbaPct": 0.003993055555555555,
+        "exactBounds": {
+          "x1": 242,
+          "y1": 394,
+          "x2": 1152,
+          "y2": 1534
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-dark.app.png",
+        "sha256": "72988160ab18ed1c50bb40396642e98c4e40a46ca14d3e75686332741420d84d",
+        "bytes": 788908
+      },
+      "previousCapturedAt": "2026-10-03T00:52:12.875Z"
+    },
+    {
+      "name": "work-task~approval-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 382,
+        "pixelmatchPct": 0.007368827160493827,
+        "exactRgbaPixels": 6016,
+        "exactRgbaPct": 0.11604938271604938,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 382,
+        "pixelmatchPct": 0.007368827160493827,
+        "exactRgbaPixels": 6014,
+        "exactRgbaPct": 0.1160108024691358,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 3,
+        "exactRgbaPct": 0.00005787037037037037,
+        "exactBounds": {
+          "x1": 257,
+          "y1": 399,
+          "x2": 260,
+          "y2": 400
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~approval-light.app.png",
+        "sha256": "1f43b825f33191345ac185e0700a6a28487041ac9f009dd82a7dda2696b9f828",
+        "bytes": 777014
+      },
+      "previousCapturedAt": "2026-10-03T00:52:16.041Z"
+    },
+    {
+      "name": "work-task~blocked-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1808,
+        "pixelmatchPct": 0.03487654320987654,
+        "exactRgbaPixels": 10065,
+        "exactRgbaPct": 0.1941550925925926,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1808,
+        "pixelmatchPct": 0.03487654320987654,
+        "exactRgbaPixels": 10065,
+        "exactRgbaPct": 0.1941550925925926,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 0,
+        "exactRgbaPct": 0,
+        "exactBounds": null
+      },
+      "pngByteIdenticalToPrior": true,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-dark.app.png",
+        "sha256": "8354efbafe614a7d9f850568bead24fa6d5f93bdfeff7476e6c48b5ce177d294",
+        "bytes": 760200
+      },
+      "previousCapturedAt": "2026-10-03T00:52:19.530Z"
+    },
+    {
+      "name": "work-task~blocked-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1930,
+        "pixelmatchPct": 0.03722993827160494,
+        "exactRgbaPixels": 9745,
+        "exactRgbaPct": 0.18798225308641975,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1930,
+        "pixelmatchPct": 0.03722993827160494,
+        "exactRgbaPixels": 9746,
+        "exactRgbaPct": 0.18800154320987655,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 1,
+        "exactRgbaPct": 0.000019290123456790123,
+        "exactBounds": {
+          "x1": 253,
+          "y1": 402,
+          "x2": 253,
+          "y2": 402
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~blocked-light.app.png",
+        "sha256": "820f067c5cf0c93344f1a492d28a35fbd0d50e62edba202d4b797b5af686dc04",
+        "bytes": 746951
+      },
+      "previousCapturedAt": "2026-10-03T00:52:22.893Z"
+    },
+    {
+      "name": "work-task~done-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 223,
+        "pixelmatchPct": 0.004301697530864197,
+        "exactRgbaPixels": 5004,
+        "exactRgbaPct": 0.09652777777777778,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 21596,
+        "pixelmatchPct": 0.4165895061728395,
+        "exactRgbaPixels": 117785,
+        "exactRgbaPct": 2.2720871913580245,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 21373,
+        "pixelmatchPct": 0.4122878086419753,
+        "exactRgbaPixels": 112885,
+        "exactRgbaPct": 2.177565586419753,
+        "exactBounds": {
+          "x1": 236,
+          "y1": 260,
+          "x2": 2454,
+          "y2": 1552
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-dark.app.png",
+        "sha256": "d8eb0a8707461efac6b549397a8c15bcece7d9607c0d13cef84e34822c1b32e5",
+        "bytes": 755290
+      },
+      "previousCapturedAt": "2026-10-03T00:52:26.234Z"
+    },
+    {
+      "name": "work-task~done-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 243,
+        "pixelmatchPct": 0.0046875,
+        "exactRgbaPixels": 4776,
+        "exactRgbaPct": 0.09212962962962963,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 23123,
+        "pixelmatchPct": 0.446045524691358,
+        "exactRgbaPixels": 120402,
+        "exactRgbaPct": 2.3225694444444445,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 22896,
+        "pixelmatchPct": 0.44166666666666665,
+        "exactRgbaPixels": 115865,
+        "exactRgbaPct": 2.2350501543209877,
+        "exactBounds": {
+          "x1": 236,
+          "y1": 260,
+          "x2": 2454,
+          "y2": 1552
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~done-light.app.png",
+        "sha256": "52cadbd5ca4090cc89a64e7c3184e9858724bdb29ce60ca0b1e88141f1334fe8",
+        "bytes": 744478
+      },
+      "previousCapturedAt": "2026-10-03T00:52:29.506Z"
+    },
+    {
+      "name": "work-task~failed-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1076,
+        "pixelmatchPct": 0.020756172839506173,
+        "exactRgbaPixels": 7112,
+        "exactRgbaPct": 0.13719135802469135,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1076,
+        "pixelmatchPct": 0.020756172839506173,
+        "exactRgbaPixels": 7094,
+        "exactRgbaPct": 0.13684413580246912,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 154,
+        "exactRgbaPct": 0.002970679012345679,
+        "exactBounds": {
+          "x1": 258,
+          "y1": 400,
+          "x2": 1131,
+          "y2": 635
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-dark.app.png",
+        "sha256": "841493bde2125e4262542398b510fa598350f0429d0c127725a5276e91f1aedc",
+        "bytes": 780400
+      },
+      "previousCapturedAt": "2026-10-03T00:52:32.654Z"
+    },
+    {
+      "name": "work-task~failed-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1114,
+        "pixelmatchPct": 0.021489197530864198,
+        "exactRgbaPixels": 6914,
+        "exactRgbaPct": 0.13337191358024691,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 1114,
+        "pixelmatchPct": 0.021489197530864198,
+        "exactRgbaPixels": 6914,
+        "exactRgbaPct": 0.13337191358024691,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 0,
+        "exactRgbaPct": 0,
+        "exactBounds": null
+      },
+      "pngByteIdenticalToPrior": true,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~failed-light.app.png",
+        "sha256": "1870ff31b1d338a5bdfb0bd6b72a1ad3576e1f0957d3a3a567478d7cfbbbe6c0",
+        "bytes": 768799
+      },
+      "previousCapturedAt": "2026-10-03T00:52:35.811Z"
+    },
+    {
+      "name": "work-task~paused-dark",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 301,
+        "pixelmatchPct": 0.0058063271604938274,
+        "exactRgbaPixels": 5611,
+        "exactRgbaPct": 0.10823688271604938,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 301,
+        "pixelmatchPct": 0.0058063271604938274,
+        "exactRgbaPixels": 5552,
+        "exactRgbaPct": 0.10709876543209877,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2797,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 0,
+        "pixelmatchPct": 0,
+        "exactRgbaPixels": 205,
+        "exactRgbaPct": 0.0039544753086419755,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 395,
+          "x2": 1131,
+          "y2": 724
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-dark.app.png",
+        "sha256": "398a612259b4e748b6f9dc62eda392a02dbe123f077321015501907bc35c60bf",
+        "bytes": 772564
+      },
+      "previousCapturedAt": "2026-10-03T00:52:38.917Z"
+    },
+    {
+      "name": "work-task~paused-light",
+      "frozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 338,
+        "pixelmatchPct": 0.006520061728395062,
+        "exactRgbaPixels": 5452,
+        "exactRgbaPct": 0.10516975308641975,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "priorFrozen": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 336,
+        "pixelmatchPct": 0.006481481481481481,
+        "exactRgbaPixels": 5395,
+        "exactRgbaPct": 0.10407021604938271,
+        "exactBounds": {
+          "x1": 52,
+          "y1": 0,
+          "x2": 2795,
+          "y2": 1799
+        }
+      },
+      "previousApp": {
+        "width": 2880,
+        "height": 1800,
+        "totalPixels": 5184000,
+        "pixelmatchPixels": 3,
+        "pixelmatchPct": 0.00005787037037037037,
+        "exactRgbaPixels": 229,
+        "exactRgbaPct": 0.004417438271604938,
+        "exactBounds": {
+          "x1": 241,
+          "y1": 399,
+          "x2": 1131,
+          "y2": 723
+        }
+      },
+      "pngByteIdenticalToPrior": false,
+      "previous": {
+        "file": "captures/2026-10-03T00-32-36-779Z-Na13cV/work-task~paused-light.app.png",
+        "sha256": "bfa7215b73baf7910ba53ac61d352f606511df8b7f364d4f148fc3a36d6fba6e",
+        "bytes": 758273
+      },
+      "previousCapturedAt": "2026-10-03T00:52:42.139Z"
+    }
+  ]
+}
