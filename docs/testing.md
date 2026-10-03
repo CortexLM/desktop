@@ -353,6 +353,15 @@ installed checks pass six native captures in both themes: missing-link recovery,
 401 failure after reload, Running then successful Ready. Four actual UI admissions and
 unchanged failed history are asserted; cleanup completes.
 
+Provider-draft regressions exercise real Settings writes in both themes:
+`provider-draft.spec.ts` requires Enable PATCHes to preserve an unsaved replacement key.
+`provider-key-pending.spec.ts` holds completed real PUT/DELETE replies, types a newer draft,
+then releases the unchanged response. Stored key state and newer draft remain independent;
+oversized-key refusal preserves input, while ordinary accepted Save/Remove clears it.
+The three-line provider correction passes all four unchanged cases within 111 local
+Electron cases, plus lint/types, 245 units/one optional skip, i18n and Linux package/smoke.
+Changed-source CI and installed checks remain separate proof boundaries.
+
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log
   records backend model metadata, not remote-mode authentication or remote sessions.

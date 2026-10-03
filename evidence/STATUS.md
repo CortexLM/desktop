@@ -82,6 +82,12 @@ images pixel-exact to `760c4a0`. Matching installed
 recovered status colors in both themes, with zero renderer errors and completed cleanup.
 [Independent native audit](mac/2956564/native/README.md) verifies all six full-size originals,
 four admission IDs and the matching process/package identity.
+Documentary `10a57be` also passes CI `37116570186`; all 514 package inputs match `2956564`.
+The [provider-draft follow-up](provider-draft-followup/README.md) reproduces four Electron
+cases/eight draft-loss assertions in existing Settings controls. Its three-line uncommitted
+correction passes those cases unchanged, lint/types, 245 units plus one optional skip and
+i18n. Full 111-case local Electron and Linux package/smoke pass; final artifact audit and
+subsequent source-matched CI/native checks remain pending.
 The [09:47 public/owner readback](terminal-state-followup/remote-prerequisites-0945/README.md)
 still finds `/v1/instance` 404, zero vision-capable Chat models, no new G2/G3 reply and
 no named G1 design permission. It establishes no account or inference acceptance.
@@ -335,6 +341,12 @@ screenshots](followup/README.md). [Historical installed-Mac sweep](mac/0e63f87/R
   G3 still owes a pinned pair exposing discarded-frame notifications; G2's unique replay
   cursor/history, historical-image hydration and compatible vision deployment remain open.
   Authorized account/OTP and actual remote image/reasoning proof are also outstanding.
+  The later user direction names active Cortex UI/Base UI source, retiring board gates.
+  Request90 effort/replay motifs are reusable as design inputs; the design owner completes
+  stored-thread model, one-off model, limited history, image-history refusal and continuation
+  ownership. Exact import review and product/native/backend acceptance remain separate.
+  [Active-direction readback](recovery-followup/active-design-20261003/README.md) retains
+  the explicit owner assignment and scoped prototype-only Code acceptance.
 - **Interaction coverage:** several ported surfaces remain preview-only; projects, unsupported
   sign-in continuations, billing, updater and file viewers do not become live merely by rendering
   in the gallery. Main-only email-code sign-in is live; real Cloud account/inference acceptance

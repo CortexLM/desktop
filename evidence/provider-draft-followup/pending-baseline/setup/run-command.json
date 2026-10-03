@@ -1,0 +1,30 @@
+{
+  "command": [
+    "xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x900x24",
+    "/root/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/provider-key-pending.spec.ts",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/tmp/opencode/provider-key-pending-regression/negative/artifacts"
+  ],
+  "cwd": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite",
+  "head": "10a57be97ee9e9f9ea0c761784279ec8744b70d3",
+  "nodeVersion": "v22.23.3",
+  "NODE_ENV": "test",
+  "TMPDIR": "/tmp/opencode/provider-key-pending-regression/negative/temp",
+  "CORTEX_RENDERER_URL": "unset",
+  "sourceSHA256": {
+    "packages/app/src/screens/system/settings.tsx": "54e9b65e6f37710d6235e64f720e75f0ed03ec647cd1f0dd1bda63aca544285d",
+    "packages/app/src/api.ts": "9203cbf5c8a6b68fb64f99b8a8865cf702fac727e2cce59a1f466ef01bda6cc6",
+    "packages/desktop/src/main.ts": "d33d466e1a16b45ac124fb2c72b28a3ae632960e6575d0ebf4d90eb6f076396c",
+    "packages/core/src/provider.ts": "ded605cbdf58d2ed7352d302ac365067fcd6b33b4ab33bacc67af1de8a536e07",
+    "tests/e2e/provider-key-pending.spec.ts": "251ad5d6c33101bb54bf6964cae9ab493ba2126757bcdbba20bc01a1ca9dcc49",
+    "tests/e2e/fixtures.ts": "a9772c5fe4038dd4a260bf1d47d7a6f382ba40ea54eb4cde9ab2048223e2fe03"
+  }
+}

@@ -195,6 +195,11 @@ The append-only design request dated 3 October, “G1 remote Chat admission cont
 named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest
 bounded-history states. Existing local boolean reasoning and Stop controls cannot silently
 stand in for remote semantics. The current Platform package is still a separately pinned draft.
+The later user direction and request90 reuse map permit existing effort/replay motifs as
+design inputs. The design owner completes five narrow Chat/Settings states: stored-thread
+model, one-off model, limited history, image-history refusal and continuation ownership.
+Active work uses `/root/cortex-ui` and Base UI; retired board approval is not a dependency.
+Exact product-import permission and G1's backend/native verification remain separate.
 
 Delivery order:
 

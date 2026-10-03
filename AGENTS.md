@@ -236,6 +236,8 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 - **Providers** come from models.dev; keys are entered only in Settings → Providers & models.
   The key row wraps within narrow Settings panes so its label and saved last-four hint stay readable.
+  Enable changes preserve replacement-key drafts. Accepted key saves/removals clear only
+  the unchanged captured draft; edits made while a response is pending remain editable.
   Model rows likewise wrap capability badges below their name/context/cost when space is narrow.
   Chat retains drafts/attachments when the engine rejects a send; retry includes the original
   files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
@@ -252,6 +254,12 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   Untitled sessions store an empty title for the renderer's localized fallback.
 
 ## Design reference
+
+Active design direction: `/root/cortex-ui/review/ACTIVE-DIRECTION.md`, using Cortex UI's
+existing React/Base UI kit. Retired board approval is not a gate. Design owners complete
+the five pending remote Chat/Settings states; G1 keeps desktop branch/PR integration and
+native verification. Exact state/source import permission remains separate from prototype
+approval. Historical captures retain their recorded authority and scope.
 
 The UI is ported from a local design reference (a separate checkout, not in this repo).
 `ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs --shots <freeze>/shots

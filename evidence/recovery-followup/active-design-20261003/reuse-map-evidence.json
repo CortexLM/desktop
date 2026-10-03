@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-03",
+  "disposition": "proposal-only",
+  "product_import_authorized": false,
+  "new_visual_approval": false,
+  "distinct_input_files": 15,
+  "files": {
+    "R": {"path": "/root/cortex-ui/DESIGN-REQUESTS.md", "sha256": "4c28820a74aca640f68d45b7a753ee41dabe69da2f8e8d59ab9ffeece52b1e6d", "cited_lines": "81-93"},
+    "D": {"path": "/root/cortex-ui/review/desktop-retention-package.md", "sha256": "c38294ec1e8e202eb78fdb28c4bd8f1c7a144b3a53d15a5297d3d0da23d4ab9f", "cited_lines": "3-19"},
+    "P": {"path": "/var/tmp/opencode/desktop-retention-package-20261002/source/src/screens/lot-platform.tsx", "sha256": "b1b91301463b3563425cdcd8e0aa44b14aecdd4ce0eb705c5cc2e8a5d500a811", "cited_lines": "28-83,196-375,421-430", "manifest_entry_matches": true},
+    "L": {"path": "/root/cortex-ui/review/confirmation-status.md", "sha256": "3fe17c0d12486c150ead27e52a58d466b6e6f9d0a697172890807556ecb44415", "cited_lines": "3-20,36-63,101,107-121"},
+    "WN": {"path": "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-web/apps/web/src/app/(product)/code/connect/page.tsx", "sha256": "4e1c446566f8ca812681eb1e98f8cf613dac6a10821cd2ab501bd32bac903d29", "cited_lines": "11-28", "git_pin": "web", "equals_commit_blob": true},
+    "WG": {"path": "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-web/apps/web/src/app/dev/components/page.tsx", "sha256": "da5b70b231cbe6daca071af18fde2c9f4a33c87e09771361c6c823193c999f15", "cited_lines": "30-164,178-269", "git_pin": "web", "equals_commit_blob": true},
+    "GM": {"path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/evidence/recovery-followup/platform-contract-map.md", "sha256": "0b97c7bb5e741bc2e5b4193016178e999767d51e302ef7d42aa1cd52e6829b44", "cited_lines": "3-14,18-35", "git_pin": "desktop", "equals_commit_blob": true, "qualification": "Historical auth/SDK/attachment blockers superseded in part by GD and L; not current-product truth."},
+    "GD": {"path": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite/docs/connection-modes.md", "sha256": "b8c58c0d69e6f6f3bc71ac20ec367c0334b10d9bf8d1700b4d57d8209df491b6", "cited_lines": "126-139,181-197,224-256", "git_pin": "desktop", "equals_commit_blob": true},
+    "WT": {"path": "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-web/apps/web/src/app/dev/components/sections/tokens.tsx", "sha256": "5bae215f0eefd22238ca4a159ae06a5fd2586e5ed2e2ed8bc5f4b0ce360bdb84", "cited_lines": "125-258", "git_pin": "web", "equals_commit_blob": true},
+    "C": {"path": "/var/tmp/opencode/desktop-retention-package-20261002/source/src/screens/components.tsx", "sha256": "64c70086affc6b784f4499dc55e774bd7ca607b4a5cc1a5f847cc315c33036b9", "cited_lines": "28-32,160-260,726-794", "manifest_entry_matches": true},
+    "RC": {"path": "/tmp/opencode/desktop-g1-handoff-reconciliation-20261002/RECONCILIATION.md", "sha256": "cc9d7287c22a9f706e7eb12134fc3c2f268685a07e5b2b0fe7034c5077b6dd6a", "cited_lines": "40-104", "qualification": "Historical pins and qualifications; its large verifier was not replayed."},
+    "PA": {"path": "/tmp/opencode/paper-components-review-A-20261003/REPORT.md", "sha256": "8f2bc4d0354d60d8ee939b6cefa5dce44fc044300f34a775e35733fa80e567bb", "cited_lines": "3-20"},
+    "PB": {"path": "/tmp/opencode/paper-components-review-B-20261003/REPORT.md", "sha256": "dd5ffee0b40eac3b6a5b83241f97a7bebdea25884dc1274c91623b17d6ef4a33", "cited_lines": "3-21"},
+    "WF": {"path": "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-web/apps/web/src/components/code/page.tsx", "sha256": "9dda1dd686cc555db5331ea615d380c6f12f428f697033272c41daac6621b23e", "cited_lines": "49-75,94-126", "git_pin": "web", "equals_commit_blob": true},
+    "M": {"path": "/var/tmp/opencode/desktop-retention-package-20261002/manifest.json", "sha256": "b71d0839b46bc6e4785fa7226cc6d6ab4e99555d7cc3d2451beb3fabc83f4ea0", "fields_read": ["sourceFingerprint", "sources.src/screens/lot-platform.tsx", "sources.src/screens/components.tsx"]}
+  },
+  "pins": {
+    "prototype_fingerprint_recorded": "3e99a0452ff7ede092ff3af8fe11cd56bfe13fa5da7a6f18447b59bd5de4dd0a",
+    "prototype_origin_recorded_not_probed": "http://127.0.0.1:45839/",
+    "original_freeze_preserved": "7b388e2d967400d20bf5f2cc7cd44c56ba74859889908c220964f8d12abfc768",
+    "web": {"root": "/root/.local/share/opencode/worktree/77e7f3a6389915e58f4ac7433a96efadcf1c8c67/goal-web", "commit": "236c2b11966033ca36ebbb07f6b4498b2ffae413"},
+    "desktop": {"root": "/root/.local/share/opencode/worktree/b489da9add1907e124bad2dfd49e8423fbd978b1/goal-desktop-rewrite", "commit": "2956564fbe31f882014d74ff3a7f920e839fd634"},
+    "web_head_moved_during_review": true,
+    "whole_tree_rehash": false
+  },
+  "requests": [
+    {
+      "line": 90,
+      "owner": "G1",
+      "state_source": "P",
+      "approved_scoped": [
+        {"criterion": "B02 Models-to-picker empty/unknown propagation", "historical_source_sha256": "bc468efa99012f39e28eca5488bcd8e35caa4492ebcaba66fe11db252e79a068", "pin": "/tmp/opencode/fixes-new-product/delta/snapshot", "proof": ["L:47,55", "RC:41,55,69"]},
+        {"criterion": "Draft/attachment filename retention, capability refusal and recovery", "source_sha256": "b1b91301463b3563425cdcd8e0aa44b14aecdd4ce0eb705c5cc2e8a5d500a811", "proof": ["R:85", "L:117-121"], "binary_persistence_proven": false}
+      ],
+      "mere_draft": {
+        "remote-chat": ["live", "idle", "empty", "unknown", "detached", "reconnecting", "expired", "loaded", "offline", "error", "forbidden"],
+        "model-picker": ["ready", "open", "unknown", "no-images", "empty", "loading", "error", "offline", "forbidden"],
+        "remote-login_relevant": ["operator", "operator-none", "operator-success", "reauth-required", "cloud-email", "otp", "verify-email", "mfa-challenge", "mfa-enrollment", "sso", "loading", "network", "forbidden", "offline", "success", "session-expired", "logged-out"]
+      },
+      "missing_in_reviewed_prototype": ["Restored existing-thread model/effort state", "one_off_model_slug control and admission states", "Always-limited projection and bounded history notice", "Image-history follow-up refusal", "Production-bound continuation disposition", "Named G1 source/state import authorization"],
+      "constraints": ["low/medium/high only; Low is not Off", "Ordinary follow-up retains stored model and effort", "Reader closure detaches; no Chat cancel", "Replay original method/path/body/Idempotency-Key and numeric Last-Event-ID", "stream_expired reads history without creating a turn", "Latest 100/default, maximum 200; no accurate has_more/next_cursor; reasoning/tools omitted", "SDK 0.3.5 onDiscardedFrame unavailable: projection remains limited", "Fresh image-history follow-ups refused pending backend pixel hydration", "Retain drafts/files on refusal; origin/account ownership remains in main"],
+      "constraint_provenance": ["User brief and supplied desktop AGENTS.md", "R:90", "GD:181-197,224-256"],
+      "proposed_only_labels": ["remote-followup-stored", "remote-one-off", "remote-history-limited", "remote-image-history-refused", "auth-context-expired/refused"],
+      "new_product_navigation": false
+    },
+    {
+      "line": 92,
+      "owner": "G4",
+      "route": "/code/connect",
+      "state_source": "WN",
+      "shared_frame_source": "WF",
+      "mere_draft": ["Existing signed-in explanatory notice; visual acceptance unestablished"],
+      "approved_matching_state": null,
+      "rejected_equivalence": ["#/connection?v=cloud selects desktop connection mode", "Machines/pairing", "OAuth callback"],
+      "minimum_new_reference": "One signed-in notice state in existing Code chrome; light/dark at 390/768/1440 or explicit bounded reference disposition",
+      "new_product_navigation": false
+    },
+    {
+      "line": 93,
+      "owner": "G4",
+      "route": "/dev/components",
+      "state_sources": ["WG", "WT"],
+      "prototype_reference": "C",
+      "status": "mere-draft",
+      "nav_identifiers": {"unique": 98, "groups": 7, "items": 91, "all_dom_targets_reverified": false},
+      "initial_token_ids": ["tokens", "tokens-colour", "tokens-type", "tokens-space", "tokens-motion"],
+      "local_control_candidates": ["cmp-formulaires", "cmp-superpositions"],
+      "component_equivalence_limit": "Native/shared-control roles match; web primitive bodies and pixel/state equivalence not reviewed",
+      "responsive_source_observation": "WG places its only ThemeToggle inside hidden lg:flex GalleryNav",
+      "minimum_new_reference": "Header/theme/grouped-anchor/Tokens composition, anchor destination/focus and compact states; light/dark at 390/768/1440 or explicit bounded disposition",
+      "whole_gallery_approved": false,
+      "new_product_navigation": false
+    }
+  ],
+  "acceptance_boundaries": {
+    "retained_defect_closures": [63, 5, 8, 9],
+    "defect_closure_total": 85,
+    "whole_page_approval_inferred": false,
+    "paper_home_A_B_10": "User-supplied accepted context; PA/PB retain the Home gate",
+    "paper_components_reported_minima": {"A": 8, "B": 7},
+    "paper_components_correction": "Active owner work per brief; no anticipation of result",
+    "code_bot_supplements": "Independent private corrections for requests 81-83; no product-import permission",
+    "pending_campaign_absence_claims": false
+  },
+  "performed": ["15 bounded input-file reads/hashes", "Two prototype hashes matched their package manifest entries", "Six selected files matched immutable git-show blobs", "Static count of 98 unique NAV identifiers"],
+  "not_performed": ["delegation", "runtime", "browser", "Paper", "network", "image inspection or comparison", "product tests", "build", "PR", "SDK source audit", "large verifier replay"],
+  "write_scope": ["REPORT.md", "evidence.json"]
+}

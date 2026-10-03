@@ -218,10 +218,10 @@ function ProviderDetail({ p, cfg, onChange, toast }: { p: Prov; cfg?: ProviderCo
   const models = useQuery<Model[]>(() => (preview ? Promise.resolve(fx.models.map(fromFx(p.id))) : api.catalog.models(p.id).then((x) => x.map(fromInfo))), [p.id]);
   const [key, setKey] = React.useState("");
   const [busy, setBusy] = React.useState(false);
-  const run = (f: () => Promise<unknown>, ok: string, clearKey = true) => {
+  const run = (f: () => Promise<unknown>, ok: string) => {
     if (preview) return;
     setBusy(true);
-    f().then(() => { toast.add({ title: ok, data: { icon: "check-circle" } }); if (clearKey) setKey((current) => current === key ? "" : current); onChange(); }, () => toast.add({ title: t("system.providers.saveFailed"), data: { icon: "alert-triangle" } })).finally(() => setBusy(false));
+    f().then(() => { toast.add({ title: ok, data: { icon: "check-circle" } }); setKey(""); onChange(); }, () => toast.add({ title: t("system.providers.saveFailed"), data: { icon: "alert-triangle" } })).finally(() => setBusy(false));
   };
   return (<>
     <h3 className="h3" style={{ marginTop: 24 }}>{p.name}</h3>
@@ -234,7 +234,7 @@ function ProviderDetail({ p, cfg, onChange, toast }: { p: Prov; cfg?: ProviderCo
         </div>
       </form>
       {cfg?.hasKey && <div className="li"><span className="grow"><div className="ttl">{t("system.providers.enable")}</div><div className="sub">{t("system.providers.enableDesc")}</div></span>
-        <Switch checked={cfg.enabled} onCheckedChange={(x) => run(() => api.providers.update(p.id, { enabled: x }), x ? t("system.providers.enabled") : t("system.providers.disabled"), false)} aria-label={t("system.providers.enable")} /></div>}
+        <Switch checked={cfg.enabled} onCheckedChange={(x) => run(() => api.providers.update(p.id, { enabled: x }), x ? t("system.providers.enabled") : t("system.providers.disabled"))} aria-label={t("system.providers.enable")} /></div>}
       {cfg?.hasKey && <div className="li"><span className="grow"><div className="ttl">{t("system.providers.remove")}</div><div className="sub">{t("system.providers.removeDesc")}</div></span>
         <button className="btn secondary pg-danger" disabled={busy} onClick={() => run(() => api.providers.removeKey(p.id), t("system.providers.removed"))}>{t("system.remove")}</button></div>}
     </div>

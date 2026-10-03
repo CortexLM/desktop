@@ -1,0 +1,160 @@
+{
+  "theme": "light",
+  "stages": [
+    {
+      "stage": "after-disable",
+      "draftPreserved": false,
+      "draftEmpty": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": false,
+        "hasKey": true,
+        "keyHint": "1111"
+      }
+    },
+    {
+      "stage": "after-enable",
+      "draftPreserved": false,
+      "draftEmpty": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "1111"
+      }
+    },
+    {
+      "stage": "after-save",
+      "draftPreserved": false,
+      "draftEmpty": true,
+      "stored": {
+        "providerID": "fake",
+        "enabled": true,
+        "hasKey": true,
+        "keyHint": "2222"
+      }
+    }
+  ],
+  "preparations": [
+    {
+      "stage": "before-enable",
+      "refilled": true
+    },
+    {
+      "stage": "before-save",
+      "refilled": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/catalog/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/catalog/providers/fake/models",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/providers/fake/key",
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/providers/fake",
+      "enabled": false,
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers/fake",
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/providers/fake",
+      "enabled": true,
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers/fake",
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/providers/fake/key",
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/providers/fake",
+      "status": 200,
+      "responseFields": [
+        "enabled",
+        "hasKey",
+        "keyHint",
+        "providerID"
+      ]
+    }
+  ],
+  "httpRequests": 0
+}

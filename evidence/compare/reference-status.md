@@ -1,5 +1,16 @@
 # Frozen reference and historical comparison status
 
+## Active direction
+
+The 3 October user correction names `/root/cortex-ui/review/ACTIVE-DIRECTION.md` as the
+current design direction: Cortex UI with its existing Base UI/shared kit. Retired board
+approval no longer gates existing owner work. Historical freezes/captures below retain
+their source-specific meaning; they are not instructions to recreate boards.
+The request90 reuse map permits effort/replay motifs as design inputs. The design owner
+will complete stored-thread model, one-off model, limited history, image-history refusal
+and continuation ownership within Chat/Settings. Product import retains exact-state/source
+review; the Code supplement's scoped prototype acceptance does not authorize product import.
+
 ## Delivered source freeze
 
 The design owner delivered `/root/cortex-ui-freezes/2026-10-02-7b388e2d9674` on 2026-10-02.
