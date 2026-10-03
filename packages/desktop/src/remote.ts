@@ -69,7 +69,6 @@ export async function probeRemote(baseUrl: string, opts: { token?: string; fetch
     const cursors = new Set<string>();
     let cursor: string | undefined;
     for (;;) {
-      // SDK 0.2.0 omits configured from its query type; the SDK still forwards this query unchanged.
       const query = { configured: true, limit: 500, ...(cursor === undefined ? {} : { cursor }) };
       const page = RegistryModels.parse(await client.registry.models.list({ query }));
       models.push(...page.items.map(({ id, name }) => ({ id, name })));
