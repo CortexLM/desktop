@@ -1,0 +1,343 @@
+{
+  "result": "bounded artifact approval",
+  "scope": "Local final Electron artifact inspection only",
+  "contactReview": [
+    {
+      "path": "contacts/all-01.jpg",
+      "sha256": "f5ca70acc8dcc073c0a18c7562ac4a3e4b632e3051c75c311cee04054663f002",
+      "images": [
+        "image-001",
+        "image-002",
+        "image-003",
+        "image-004",
+        "image-005",
+        "image-006",
+        "image-007",
+        "image-008"
+      ],
+      "finding": "Appearance cards match rendered and rail theme; Approvals Retry and Bot ownership states populated."
+    },
+    {
+      "path": "contacts/all-02.jpg",
+      "sha256": "cbe80c85fb9fda78f79d30a4867509b39c22bef1cd89d2e2d8fd36750587026b",
+      "images": [
+        "image-009",
+        "image-010",
+        "image-011",
+        "image-012",
+        "image-013",
+        "image-014",
+        "image-015",
+        "image-016"
+      ],
+      "finding": "Bot held/released states, refused-save dialogs and shared-preview states remain coherent; toasts overlap background only."
+    },
+    {
+      "path": "contacts/all-03.jpg",
+      "sha256": "849c3e9c0298fc7d5f111b90e060269a23f6c71ea71c3843ef762da32985f776",
+      "images": [
+        "image-017",
+        "image-018",
+        "image-019",
+        "image-020",
+        "image-021",
+        "image-022",
+        "image-023",
+        "image-024"
+      ],
+      "finding": "Wide Bot previews, missing-Chat cards and independent Code diff scrollports remain visible."
+    },
+    {
+      "path": "contacts/all-04.jpg",
+      "sha256": "e4b81e89f15e4d7a81b11bcc2e0159e711ff355ae93f75051446109992b8b26c",
+      "images": [
+        "image-025",
+        "image-026",
+        "image-027",
+        "image-028",
+        "image-029",
+        "image-030",
+        "image-031",
+        "image-032"
+      ],
+      "finding": "Code model/refusal and persisted Failed/Ready states remain consistent with visible result banners."
+    },
+    {
+      "path": "contacts/all-05.jpg",
+      "sha256": "ebf75c3e0281418c0c4c4a501db8bb174c53f1476fb9274551673e681298e7fb",
+      "images": [
+        "image-033",
+        "image-034",
+        "image-035",
+        "image-036",
+        "image-037",
+        "image-038",
+        "image-039",
+        "image-040"
+      ],
+      "finding": "Code, Bot and Work draft-refusal views retain editable content and failure copy; stacked Code toasts remain visible."
+    },
+    {
+      "path": "contacts/all-06.jpg",
+      "sha256": "2bc309e756f572f00b5fe03e1ceaccb8d951ccbd7864b862730b65264cf8b7eb",
+      "images": [
+        "image-041",
+        "image-042",
+        "image-043",
+        "image-044",
+        "image-045",
+        "image-046",
+        "image-047",
+        "image-048"
+      ],
+      "finding": "Work refused drafts and frozen Chat/Code/history states remain populated in both themes."
+    },
+    {
+      "path": "contacts/all-07.jpg",
+      "sha256": "38c604154782e1fb0754c9f6be746e3b62580a9240dd190de53e9a929e3b7195",
+      "images": [
+        "image-049",
+        "image-050",
+        "image-051",
+        "image-052",
+        "image-053",
+        "image-054",
+        "image-055",
+        "image-056"
+      ],
+      "finding": "Image comparison, expanded reasoning, upload list and Work/mascot states remain coherent at contact scale."
+    },
+    {
+      "path": "contacts/all-08.jpg",
+      "sha256": "eeb2245d5c71bf50634bf816537d971cde3f0662f40424528b4b3c6e42b2e541",
+      "images": [
+        "image-057",
+        "image-058",
+        "image-059",
+        "image-060",
+        "image-061",
+        "image-062",
+        "image-063",
+        "image-064"
+      ],
+      "finding": "Work/mascot dark previews, focus mode, Undo and shell frames retain expected controls."
+    },
+    {
+      "path": "contacts/all-09.jpg",
+      "sha256": "cff80e4aa7e7b5ff747cfcddb82aac6481e695f11b618722a9b7cfd6a1ada95b",
+      "images": [
+        "image-065",
+        "image-066",
+        "image-067",
+        "image-068",
+        "image-069",
+        "image-070",
+        "image-071",
+        "image-072"
+      ],
+      "finding": "Chat held/released/deleted history and memory-owner states show their distinct empty, pending and retained-history states."
+    },
+    {
+      "path": "contacts/all-10.jpg",
+      "sha256": "a97b25798ae9a56e2e63bc851d4c3f72c6a96171d538baa19e506626fad09f3a",
+      "images": [
+        "image-073",
+        "image-074",
+        "image-075",
+        "image-076",
+        "image-077",
+        "image-078",
+        "image-079",
+        "image-080"
+      ],
+      "finding": "Memory pending, refused and partial operations preserve displayed owner context and surviving entries."
+    },
+    {
+      "path": "contacts/all-11.jpg",
+      "sha256": "0cfeb31767cd52f40c22a315d280bae79a3509dff236ff8e69e2c05b92465009",
+      "images": [
+        "image-081",
+        "image-082",
+        "image-083",
+        "image-084",
+        "image-085",
+        "image-086",
+        "image-087",
+        "image-088"
+      ],
+      "finding": "Memory refusals and provider draft cases retain recovery messages; lower provider rows and toast overlays retain prior capture limits."
+    },
+    {
+      "path": "contacts/all-12.jpg",
+      "sha256": "1c3056ad6ec1ecd9fd69cf09ea25bb93501f5c11456165e48114c54bddbf4d6e",
+      "images": [
+        "image-089",
+        "image-090",
+        "image-091",
+        "image-092",
+        "image-093",
+        "image-094",
+        "image-095",
+        "image-096"
+      ],
+      "finding": "Provider pending-write states and controlled auth refusal/signed-in/unavailable views remain coherent."
+    },
+    {
+      "path": "contacts/all-13.jpg",
+      "sha256": "e8ef585be237607a49c4a524f9cbfc00810ed5615bccc6a675a4d244ac9e9320",
+      "images": [
+        "image-097",
+        "image-098",
+        "image-099",
+        "image-100",
+        "image-101",
+        "image-102",
+        "image-103",
+        "image-104"
+      ],
+      "finding": "Controlled auth initial-read/canonical-origin views and Latin locale captures remain populated; contact review only."
+    },
+    {
+      "path": "contacts/all-14.jpg",
+      "sha256": "1da99eb940c1aaf63df7013d99796f933428a4ff72f118e1c8f99f37f4a16bcd",
+      "images": [
+        "image-105",
+        "image-106",
+        "image-107",
+        "image-108",
+        "image-109",
+        "image-110",
+        "image-111",
+        "image-112"
+      ],
+      "finding": "CJK/Portuguese auth samples and narrow approval descriptions remain visible; no all-locale Appearance claim."
+    },
+    {
+      "path": "contacts/all-15.jpg",
+      "sha256": "bca2dc1c2173b0dffe009ee3264a5c9594326743b18419cd6433b8746ca73472",
+      "images": [
+        "image-113",
+        "image-114",
+        "image-115",
+        "image-116",
+        "image-117",
+        "image-118",
+        "image-119",
+        "image-120"
+      ],
+      "finding": "Routine active/interrupted/refused states and Bot search views retain meaningful status and grouped results."
+    },
+    {
+      "path": "contacts/all-16.jpg",
+      "sha256": "98d9769c7d9974b73ad4553a391fd94b7b8befb47d57ddf8d3ebdeb52c5fb654",
+      "images": [
+        "image-121",
+        "image-122",
+        "image-123",
+        "image-124",
+        "image-125",
+        "image-126",
+        "image-127",
+        "image-128"
+      ],
+      "finding": "Terminal scrollports and provider Settings across widths remain populated; viewport crops are visible."
+    },
+    {
+      "path": "contacts/all-17.jpg",
+      "sha256": "383e954c72f9883e999c07a5033cc607c207702d80830ded254dd5c5202af01b",
+      "images": [
+        "image-129",
+        "image-130",
+        "image-131",
+        "image-132",
+        "image-133",
+        "image-134",
+        "image-135",
+        "image-136"
+      ],
+      "finding": "Provider rows and Chat image-refusal drafts remain visible; toast overlap with background transcript retained."
+    },
+    {
+      "path": "contacts/all-18.jpg",
+      "sha256": "ab11aee6f557fad145d43f558424d6c972d4830ec672f80fcec861c6983277d2",
+      "images": [
+        "image-137",
+        "image-138",
+        "image-139",
+        "image-140",
+        "image-141",
+        "image-142",
+        "image-143",
+        "image-144"
+      ],
+      "finding": "History-image refusal, routine editor/run/task and honest refusal/unavailable states remain coherent."
+    },
+    {
+      "path": "contacts/all-19.jpg",
+      "sha256": "16361017a8c91b942d92c05a051bbeebdee1449292b255ffc4912a569497161b",
+      "images": [
+        "image-145",
+        "image-146",
+        "image-147",
+        "image-148",
+        "image-149"
+      ],
+      "finding": "Routine run/task/refusal and missing-Bot-list states remain visible; five-image final sheet intentionally partial."
+    }
+  ],
+  "fullSizeReview": [
+    {
+      "case": 1,
+      "file": "appearance-theme.spec.ts",
+      "title": "Appearance theme keyboard and rail synchronization — 960 light",
+      "name": "appearance-theme-dark",
+      "image": "image-001",
+      "sha256": "797b6f01a79208db279341124f0190624ae01c81e37d0fc2bede40be483b6418",
+      "canonical": "../integrated/appearance-theme-dark.webp",
+      "original": "/tmp/opencode/appearance-theme-integrated/e2e-full-artifacts/appearance-theme-Appearanc-d4dec-synchronization-—-960-light/attachments/appearance-theme-dark-05f601d7372d55c34f29a0e60fcbed041d9a88b8.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Dark selected card and moon rail agree with dark surface; Light hover shadow remains; labels and controls fit."
+    },
+    {
+      "case": 2,
+      "file": "appearance-theme.spec.ts",
+      "title": "Appearance theme keyboard and rail synchronization — 960 dark",
+      "name": "appearance-theme-light",
+      "image": "image-002",
+      "sha256": "998c015324653094c4fc963693f888c654a87340f5242c22f0f696741781d8a9",
+      "canonical": "../integrated/appearance-theme-light.webp",
+      "original": "/tmp/opencode/appearance-theme-integrated/e2e-full-artifacts/appearance-theme-Appearanc-bb3ff--synchronization-—-960-dark/attachments/appearance-theme-light-55b3a9df6fd96a9ef743959c664df9d98711dec8.png",
+      "targetedOriginalPNGEqual": true,
+      "targetedPixelComparison": {
+        "sameSize": true,
+        "sameRGBA": true,
+        "changedPixels": 0,
+        "differenceBounds": null,
+        "cause": null
+      },
+      "size": [
+        960,
+        640
+      ],
+      "finding": "Light selected card and sun rail agree with light surface; Dark hover shadow remains; labels and controls fit."
+    }
+  ],
+  "qualifications": [
+    "All 149 images inspected at contact scale; only the two new Appearance originals inspected full-size in this audit.",
+    "Both Appearance PNGs exactly match targeted-confirm originals; existing RGBA-exact canonicals reused.",
+    "Historical full-run comparison retains 32 changed attachments with measured counts/bounds and unassigned causes.",
+    "Known provider-row viewport crops, transcript toast overlaps and text ellipsis remain visible.",
+    "English 960x640 Appearance approval is scoped; no all-locale Appearance, screen-reader, native-chrome or all-screen pixel parity claim."
+  ]
+}

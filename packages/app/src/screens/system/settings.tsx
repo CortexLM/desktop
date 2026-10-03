@@ -1,5 +1,7 @@
 // Settings: design sections plus Providers and Connection (built from the same primitives).
 import * as React from "react";
+import { Radio } from "@base-ui/react/radio";
+import { RadioGroup } from "@base-ui/react/radio-group";
 import { LOCALES, type Locale } from "@cortex/i18n";
 import { ConnectionUrl, type ModelInfo, type ProviderConfig, type ConnectionProbe } from "@cortex/schema";
 import { Icon, Gel, Switch, Pop, MItem, useToast } from "../../kit/ui";
@@ -9,10 +11,9 @@ import { useT, useI18n } from "../../i18n";
 import { isPreview } from "../../preview";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
-import { useFx, useBotCfg, norm, setTheme, currentThemePref, NB } from "./common";
+import { useFx, useBotCfg, norm, setTheme, NB } from "./common";
 import type { ModelFx, ProviderFx } from "./fixtures";
 
-type Pref = "system" | "light" | "dark";
 // [section id, gel icon]
 const SECTIONS: [string, string][] = [
   ["general", "general"], ["appearance", "apparence"], ["bot", "bot"], ["notifications", "notifications"],
@@ -75,18 +76,18 @@ export function SettingsScreen() {
 function Appearance() {
   const t = useT();
   const { locale, setLocale } = useI18n();
-  const [pref, setPref] = React.useState<Pref>(currentThemePref);
+  const { themePref: pref } = useNav();
   const native = (l: Locale) => { const n = new Intl.DisplayNames([l], { type: "language" }).of(l) ?? l; return n.charAt(0).toLocaleUpperCase(l) + n.slice(1); };
   return (<>
     <h3 className="h3">{t("system.theme.label")}</h3>
-    <div className="pg-themes" role="radiogroup" aria-label={t("system.theme.label")}>
+    <RadioGroup className="pg-themes" value={pref} onValueChange={setTheme} aria-label={t("system.theme.label")}>
       {(["system", "light", "dark"] as const).map((x) => (
-        <button key={x} role="radio" aria-checked={pref === x} className="pg-theme" data-on={pref === x || undefined} onClick={() => { setPref(x); setTheme(x); }}>
+        <Radio.Root key={x} value={x} nativeButton render={<button />} className="pg-theme" data-on={pref === x || undefined} tabIndex={pref === x ? 0 : -1} onClick={() => { if (pref === x) setTheme(x); }}>
           <span className="pg-prev" data-v={x}><i /><b /></span>
           <span className="pg-theme-l"><span className="radio" />{t(`system.theme.${x}`)}</span>
-        </button>
+        </Radio.Root>
       ))}
-    </div>
+    </RadioGroup>
     <h3 className="h3">{t("system.settings.display")}</h3>
     <div className="list">
       <div className="li"><span className="grow"><div className="ttl">{t("system.settings.language")}</div><div className="sub">{t("system.settings.languageDesc")}</div></span>

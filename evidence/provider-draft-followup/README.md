@@ -28,6 +28,8 @@ skips or flaky cases; Linux package/smoke passes and all 90 packaged build membe
 audit](electron-final/README.md) verifies 147 images, 19 contacts and six full-size correction
 views; all 90 build members and the committed source match. New-revision CI/installed proof
 remains separate.
+Documentary `6642d46` also passes [CI `37121900898`](documentary-6642d46/README.md);
+all 514 package inputs remain identical to the accepted application.
 [Native harness review](native-preparation/provider-draft-native-review.md) approves the
 prepared four-capture sequential Enable/Save check; it reuses the accepted launcher and
 fixture unchanged. No execution or new installed acceptance follows from preparation.

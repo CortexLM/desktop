@@ -1,0 +1,366 @@
+{
+  "theme": "light",
+  "stages": [
+    {
+      "stage": "fresh hash before pointer selection",
+      "theme": "light",
+      "stored": null,
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=light",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false"
+        },
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "main pointer selection",
+      "theme": "light",
+      "stored": "light",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=light",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": true
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false"
+        },
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "ArrowRight",
+      "theme": "dark",
+      "stored": "dark",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=dark",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": true
+        }
+      ],
+      "rail": [
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "false"
+        },
+        {
+          "name": "Dark",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "ArrowLeft",
+      "theme": "light",
+      "stored": "system",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=system",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": true
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "Tab after selected radio",
+      "theme": "light",
+      "stored": "light",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=light",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "System",
+          "checked": "false"
+        },
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "rail opposite selection",
+      "theme": "dark",
+      "stored": "dark",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=dark",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "false"
+        },
+        {
+          "name": "Dark",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "System under light OS appearance",
+      "theme": "light",
+      "stored": "system",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=system",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "System under dark OS appearance",
+      "theme": "dark",
+      "stored": "system",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=system",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "true"
+        }
+      ]
+    },
+    {
+      "stage": "reload with saved System preference",
+      "theme": "dark",
+      "stored": "system",
+      "url": "cortex://app/index.html#/settings?section=appearance&theme=system",
+      "appearance": [
+        {
+          "name": "System",
+          "checked": "true",
+          "tabIndex": 0,
+          "focused": false
+        },
+        {
+          "name": "Light",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        },
+        {
+          "name": "Dark",
+          "checked": "false",
+          "tabIndex": -1,
+          "focused": false
+        }
+      ],
+      "rail": [
+        {
+          "name": "Dark",
+          "checked": "false"
+        },
+        {
+          "name": "Light",
+          "checked": "false"
+        },
+        {
+          "name": "System",
+          "checked": "true"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

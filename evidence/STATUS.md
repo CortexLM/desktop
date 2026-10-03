@@ -97,6 +97,15 @@ Initial collector failure is retained; cleanup completes and the Mac lease is re
 the executed collector/package identity, with eight UI writes and seven cleanup checks.
 The executed collector's broader self-clipping exemption is qualified; a narrower input-only
 version is separately prepared, unexecuted. Required fixed-state text is visible in all four images.
+Documentary `6642d46` also passes [CI `37121900898`](provider-draft-followup/documentary-6642d46/README.md),
+with all 514 package inputs unchanged. The [12:06–12:10 owner readback](provider-draft-followup/owner-readback-1200/REPORT.md)
+finds only G4 adoption of the existing SDK pair; no new G2/G3 successor or named five-state
+G1 import permission. Public instance remains 404; model discovery still declares no vision-capable Chat model.
+The [Appearance follow-up](appearance-theme-followup/README.md) reproduces two cases/17
+keyboard and stale-theme assertions. The current three-file correction passes both unchanged
+cases plus the existing two keyboard cases, lint/types/i18n. Full 113-case local Electron and
+Linux package/smoke pass; final artifact audit verifies 149 images and two full-size Appearance
+views. Matching CI/native verification remains pending. Production source is not yet committed.
 The [09:47 public/owner readback](terminal-state-followup/remote-prerequisites-0945/README.md)
 still finds `/v1/instance` 404, zero vision-capable Chat models, no new G2/G3 reply and
 no named G1 design permission. It establishes no account or inference acceptance.

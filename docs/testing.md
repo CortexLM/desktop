@@ -372,6 +372,18 @@ That executed collector checks ancestor clipping; later review narrows its exemp
 inputs so text self-clipping remains enforced. The stronger version is unexecuted and is
 not substituted for the recorded four-image result.
 
+`tests/e2e/appearance-theme.spec.ts` exercises Settings Appearance's selected Tab stop,
+ArrowRight/ArrowLeft selection, Tab exit to Language and synchronization with the rail.
+Both light/dark cases also select System, change the emulated OS appearance and reload
+the saved preference. These cards use Base UI's arrow behavior; Home/End belongs to the
+separate rail tests. The original two cases fail 17 assertions before correction; the
+unchanged regression and both existing keyboard tests pass against the shared shell preference
+and Base UI implementation. Clicking an already-selected card still saves a hash-derived
+preference; the initial candidate's refusal to save that click is retained as a separate failure.
+The corrected full local suite passes 113 Electron cases and Linux package/smoke. A separate
+screenshot-free preview check verifies focus/node continuity, external rail Tab entry and
+System/reload without persisting preview preferences; CI/native acceptance is source-specific.
+
 - **Real providers:** CI bridge/UI inference tests use a local fake. The separate real
   inference evidence above uses a transparent test-only model alias. The SDK probe log
   records backend model metadata, not remote-mode authentication or remote sessions.

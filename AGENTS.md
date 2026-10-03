@@ -152,8 +152,10 @@ screen and its draft mounted until the new route commits.
 An earlier tab's route commit preserves a newer pending selection.
 Work preview/context lifetime follows that committed route snapshot through departure;
 the live commit clears preview mascot state before rendering live content.
-Hidden sidebar/focus-mode controls and collapsed project chats are inert. Theme radios use
-one Tab stop plus arrow/Home/End selection; reduced motion skips theme view transitions.
+Hidden sidebar/focus-mode controls and collapsed project chats are inert. Rail theme radios
+use one Tab stop plus arrow/Home/End selection. Settings Appearance uses Base UI radios
+with one selected Tab stop and arrow selection, reading the same shell preference so rail
+changes and System appearance remain synchronized. Reduced motion skips theme view transitions.
 Reduced motion disables CSS transitions entirely to avoid stale inherited theme colors;
 animations retain 1ms so completion hooks fire.
 Skipped native view transitions consume only the `ready` AbortError; route/theme updates
