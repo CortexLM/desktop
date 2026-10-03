@@ -199,6 +199,12 @@ the built Electron bridge and local engine path, not packaged/UI interaction acc
   Missing approved optional references remain explicit gaps. There is no pass/fail pixel threshold.
   Console errors or missing theme/content fail capture; absent preview API transport is recorded
   separately. `node scripts/compare-shots.test.mjs` checks provenance refusals without a browser.
+  Optional `--clock 2026-10-02T12:09:00Z --timezone UTC` pins browser Date before navigation while
+  timers keep running. Clock policy is recorded per capture/run and in provenance; incompatible
+  policies cannot merge. Without the option, wall clock/timezone remain ambient. Frozen manifests
+  omit their original browser timezone, so a supplied clock is an explicit comparison control,
+  not proof of the reference's original mount time. Earlier night/day Work wallpaper outliers stay
+  retained; a controlled rerun receives its own output directory.
 - `scripts/mac/capture.sh <routes-file> <out-dir>` — runs on a remote Mac, captures each
   route with native window chrome in light and dark. `scripts/mac/artifact-url.sh <run-id>
   <artifact>` prints a download URL for a CI artifact (needs `gh`).

@@ -6,10 +6,15 @@ The [Work conversion/Bot search batch](live-actions-followup/README.md) passes 1
 tests plus one optional backend skip, an initial 69-case Electron suite/426 renders and twelve
 final targeted cases after original-request text-fragment preservation. Lint/types/i18n and Linux
 packaged smoke pass. Independent review found an enabled Create while the Bot list is unavailable;
-the correction passes thirteen scoped cases plus rebuild/package/smoke. Updated CI/native
-verification remain pending. New 32-state comparison outliers (max 8.19%) are dominated by
+the correction passes thirteen scoped cases plus rebuild/package/smoke. [CI 37080136101](https://github.com/CortexLM/desktop/actions/runs/37080136101)
+passes all jobs at `f9aca44`; [artifact review](live-actions-followup/ci/README.md) and
+[installed-Mac proof](mac/f9aca44/README.md) pass: 70 cases per OS and ten targeted native captures.
+New 32-state comparison outliers (max 8.19%) are dominated by
 uncontrolled clock-selected Work wallpaper; [review](live-actions-followup/compare-review.md)
 preserves the original run and remaining residuals. Corrected editor comparison is 8/8, max 0.06%.
+[Controlled Work rerun](live-actions-followup/compare-clock/README.md) fixes browser Date/timezone
+explicitly: 16/16, computer/takeover 0.00–0.02%, remaining overall maximum 0.45%. Original capture
+timezone is not attested; historical ambient outliers remain intact.
 The [live-behavior correction](live-behavior-followup/README.md) wires Code model/reasoning choice
 and truthful routine outcomes. CI 37074187552 passes 61/61 Electron cases on Linux/macOS,
 426 renders and macOS package/smoke, but fails eight locale-render unit cases because their
@@ -40,12 +45,12 @@ captures with the sidebar hidden do not establish minimum-width correction accep
 
 | Requirement | Current disposition |
 | --- | --- |
-| Lint, types, units | Corrected CI passes at `93c1e78`: lint/types, 178 units plus one optional backend skip. Earlier eight fixture failures retained. |
-| Every design screen plus provider/image/reasoning flows | Partial: current CI 61/61 per OS, 426 renders. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
-| Blacksmith macOS package/launch | Green `93c1e78` CI; app inputs match `d635fcf`. Unsigned arm64 only. |
-| Installed Mac, every screen/theme/native chrome/menu | Current twelve Code/routine captures pass at 960×640, both themes. Earlier credential/provider and complete sweeps remain pinned; no fresh all-screen/menu sweep. |
-| No unjustified reference gap | Unproven: new scoped 10/10 comparisons max 0.05%; historical full comparison retains 21 gaps. Providers lacks an approved frozen image; new-surface imports remain unauthorized. |
-| Automated i18n audit | Current local scope: 63 files, 2,266 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
+| Lint, types, units | Green `f9aca44` CI: lint/types, 178 units plus one optional backend skip. Earlier eight fixture failures retained. |
+| Every design screen plus provider/image/reasoning flows | Partial: current CI 70/70 per OS, 426 renders. Missing surfaces, broader live interactions and authenticated Cortex inference remain unproven. |
+| Blacksmith macOS package/launch | Green `f9aca44` CI; matching installed artifact verified. Unsigned arm64 only. |
+| Installed Mac, every screen/theme/native chrome/menu | Ten current Work/Search captures at 960×640, both themes; twelve earlier Code/routine images remain pinned. No fresh all-screen/menu sweep. |
+| No unjustified reference gap | Unproven: Work/Search 32/32 plus corrected editor 8/8; clock-controlled Work 16/16 max 0.45%. Original 8.19% clock-wallpaper outlier retained. Historical full comparison keeps 21 gaps; Providers lacks an approved frozen image, new imports unauthorized. |
+| Automated i18n audit | Current local scope: 63 files, 2,267 used keys, 3,395 English keys, zero findings; exhaustive dynamic-copy coverage remains unproven. |
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no `CORTEX_REAL_BASE_URL`, `CORTEX_REAL_API_KEY` or `CORTEX_TEST_BACKEND_URL`.

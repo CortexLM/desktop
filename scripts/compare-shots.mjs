@@ -1,6 +1,7 @@
 /* global window, document, localStorage, location */
 // Frozen-reference comparison; explicit paths keep historical evidence intact.
 // node scripts/compare-shots.mjs --shots <freeze>/shots --out <new-directory> [--base http://localhost:5299/] [--only id,id] [--merge]
+// Optional: --clock <YYYY-MM-DDTHH:mm:ss[.sss]Z> [--timezone UTC] fixes browser Date only, not timers.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -86,16 +87,29 @@ export function referenceFor(job, screens, reference) {
   return { ...state, status: "no-design-shot", reason: "No matching frozen manifest record" };
 }
 
-export function readPrevious(out, reference, application, comparatorSha256) {
+// ponytail: frozen manifests omit browser timezone; use explicit overrides until capture metadata records it.
+export function captureClock(timestamp, timezone) {
+  assert(timestamp !== undefined || timezone === undefined, "--timezone requires --clock");
+  if (timestamp === undefined) return null;
+  const date = new Date(timestamp);
+  assert(typeof timestamp === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(timestamp) && Number.isFinite(date.getTime())
+    && date.toISOString() === (timestamp.length === 20 ? timestamp.replace("Z", ".000Z") : timestamp), "--clock must be a valid UTC ISO timestamp: YYYY-MM-DDTHH:mm:ss[.sss]Z");
+  return { mode: "fixed", source: "cli", time: date.toISOString(), timezone: new Intl.DateTimeFormat("en", { timeZone: timezone ?? "UTC" }).resolvedOptions().timeZone, timers: "real" };
+}
+
+export function readPrevious(out, reference, application, comparatorSha256, clock = null) {
   const provenance = json(path.join(out, "provenance.json")), report = json(path.join(out, "report.json"));
   assert.equal(provenance.version, 1, "Unsupported comparison provenance; choose a new --out");
   assert.deepEqual(provenance.reference, reference.provenance, "Cannot merge different frozen references; choose a new --out");
   assert.equal(provenance.application.sourceFingerprint, application.sourceFingerprint, "Cannot merge different application sources; choose a new --out");
+  assert.deepEqual(provenance.clock ?? null, clock, "Cannot merge different clock policies; choose a new --out");
   assert.equal(provenance.comparatorSha256, comparatorSha256, "Cannot merge different comparator versions; choose a new --out");
   assert.deepEqual(provenance.render, RENDER, "Cannot merge different render settings");
   assert.equal(provenance.reportSha256, fileInfo(path.join(out, "report.json")).sha256, "Previous report hash mismatch");
+  for (const run of provenance.runs) assert.deepEqual(run.clock ?? null, clock, `Previous run clock mismatch: ${run.id}`);
   for (const row of report) {
     assert(provenance.runs.some((run) => run.id === row.run), `Missing row provenance: ${row.name}`);
+    assert.deepEqual(row.clock ?? null, clock, `Previous row clock mismatch: ${row.name}`);
     for (const file of Object.values(row.files)) assert.equal(fileInfo(safeFile(out, file.file)).sha256, file.sha256, `Previous image hash mismatch: ${file.file}`);
   }
   return { report, runs: provenance.runs };
@@ -124,21 +138,22 @@ export function trackAssets(page) {
 }
 
 export async function main(args = process.argv.slice(2)) {
-  const { values } = parseArgs({ args, options: { shots: { type: "string" }, out: { type: "string" }, base: { type: "string", default: "http://localhost:5299/" }, only: { type: "string" }, merge: { type: "boolean" } } });
+  const { values } = parseArgs({ args, options: { shots: { type: "string" }, out: { type: "string" }, base: { type: "string", default: "http://localhost:5299/" }, only: { type: "string" }, merge: { type: "boolean" }, clock: { type: "string" }, timezone: { type: "string" } } });
   assert(values.shots && values.out, "Required: --shots <freeze>/shots --out <new-directory>");
+  const clock = captureClock(values.clock, values.timezone);
   const reference = readReference(values.shots), out = path.resolve(values.out), base = new URL(values.base);
   assert(["http:", "https:"].includes(base.protocol) && !base.username && !base.password && !base.search && !base.hash, "--base must be an HTTP(S) URL without credentials, query or fragment");
   assert(out !== reference.root && !out.startsWith(reference.root + path.sep), "Output must be outside the frozen reference");
   const application = { revision: execFileSync("git", ["rev-parse", "HEAD"], { cwd: REPO, encoding: "utf8" }).trim(), ...fingerprint(REPO, SOURCE_PATHS), sourcePaths: SOURCE_PATHS };
   const comparatorSha256 = fileInfo(fileURLToPath(import.meta.url)).sha256;
-  const previous = values.merge ? readPrevious(out, reference, application, comparatorSha256) : { report: [], runs: [] };
+  const previous = values.merge ? readPrevious(out, reference, application, comparatorSha256, clock) : { report: [], runs: [] };
   if (!values.merge) assert(!fs.existsSync(out) || fs.readdirSync(out).length === 0, "--out is not empty; choose a new directory or a provenance-compatible --merge");
   const only = values.only?.split(",").filter(Boolean);
   const { chromium } = await import("playwright");
   const browser = await chromium.launch();
   let stage;
   try {
-    const ctx = await browser.newContext({ viewport: RENDER.viewport, deviceScaleFactor: RENDER.deviceScaleFactor, locale: RENDER.locale });
+    const ctx = await browser.newContext({ viewport: RENDER.viewport, deviceScaleFactor: RENDER.deviceScaleFactor, locale: RENDER.locale, timezoneId: clock?.timezone });
     // Routing disables HTTP cache: Chromium's cached font responses can lack a CDP body despite HTTP 200.
     await ctx.route("**/*", (route) => route.continue());
     await ctx.addInitScript((locale) => localStorage.setItem("cortex.locale", locale), RENDER.catalogLocale);
@@ -152,6 +167,7 @@ export async function main(args = process.argv.slice(2)) {
       if (url && new URL(url, base).pathname.startsWith("/api/") && message.text().startsWith("Failed to load resource:")) ignoredPreviewApiErrors.push({ url, message: message.text() });
       else errors.push({ message: message.text(), location: message.location() });
     });
+    if (clock) await page.clock.setFixedTime(new Date(clock.time));
     assert((await page.goto(new URL("#/gallery", base).href))?.ok(), "Application server did not return HTTP 200");
     await page.waitForFunction(() => Array.isArray(window.__screens));
     const screens = await page.evaluate(() => window.__screens);
@@ -177,6 +193,7 @@ export async function main(args = process.argv.slice(2)) {
       const name = `${job.shot ?? `${job.route}${job.v ? "~" + job.v : ""}`}-${job.theme}`;
       const url = new URL(base); url.searchParams.set("capture", `${id}-${name}`); url.hash = `/${job.route}?theme=${job.theme}&shot${job.v ? "&v=" + job.v : ""}`;
       await drain();
+      if (clock) await page.clock.setFixedTime(new Date(clock.time));
       assert((await page.goto(url.href))?.ok(), `Application request failed: ${name}`);
       await page.waitForFunction(({ theme, hash }) => location.hash === hash && document.documentElement.dataset.theme === theme && !!document.querySelector("main.content")?.textContent.trim(), { theme: job.theme, hash: url.hash }, { timeout: 15_000 });
       await page.evaluate(() => document.fonts.ready);
@@ -190,7 +207,7 @@ export async function main(args = process.argv.slice(2)) {
       await page.waitForTimeout(1100);
       await drain();
       assert.deepEqual(errors, [], `Application console errors: ${name}`);
-      const image = await page.screenshot(), row = { name, run: id, capturedAt: new Date().toISOString(), reference: job.reference, files: { app: save(`${name}.app.png`, image) } };
+      const image = await page.screenshot(), row = { name, run: id, capturedAt: new Date().toISOString(), clock, reference: job.reference, files: { app: save(`${name}.app.png`, image) } };
       if (job.reference.status) Object.assign(row, { status: job.reference.status });
       else {
         const original = fs.readFileSync(path.join(reference.shots, job.reference.file));
@@ -209,14 +226,14 @@ export async function main(args = process.argv.slice(2)) {
     assert.deepEqual(readReference(reference.shots).provenance, reference.provenance, "Frozen reference changed during capture");
     assert.equal(fingerprint(REPO, SOURCE_PATHS).sourceFingerprint, application.sourceFingerprint, "Application sources changed during capture");
     const buildFiles = [...assets.values()].sort((a, b) => a.url.localeCompare(b.url));
-    const run = { id, capturedAt: new Date().toISOString(), applicationRevision: application.revision, baseUrl: base.href, jobCount: rows.length, only: only ?? null,
+    const run = { id, capturedAt: new Date().toISOString(), clock, applicationRevision: application.revision, baseUrl: base.href, jobCount: rows.length, only: only ?? null,
       build: { sha256: digest(buildFiles.map((file) => `${file.url}:${file.sha256}`).join("\n")), files: buildFiles, httpCache: "disabled via context.route" }, ignoredPreviewApiErrors };
     const next = new Map(rows.map((row) => [row.name, row]));
     const report = [...previous.report.map((row) => next.get(row.name) ?? row), ...rows.filter((row) => !previous.report.some((old) => old.name === row.name))];
     const text = JSON.stringify(report, null, 2) + "\n";
-    const provenance = { version: 1, capturedAt: run.capturedAt, reference: reference.provenance, application, comparatorSha256, render: RENDER,
+    const provenance = { version: 1, capturedAt: run.capturedAt, clock, reference: reference.provenance, application, comparatorSha256, render: RENDER,
       counts: { registered: registered.length, optionalInteractions: extras.length, capturedThisRun: rows.length, retainedRows: report.length, compared: report.filter((row) => row.diffPct !== undefined).length, noDesignShot: report.filter((row) => row.status === "no-design-shot").length },
-      runs: [...previous.runs, run], reportSha256: digest(text), limits: ["Browser preview fixtures, not native or live-engine acceptance.", "Settled frames, not motion or exhaustive interaction coverage.", "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.", "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.", "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."] };
+      runs: [...previous.runs, run], reportSha256: digest(text), limits: ["Browser preview fixtures, not native or live-engine acceptance.", "Settled frames, not motion or exhaustive interaction coverage.", clock ? "Browser Date/timezone are caller-selected overrides; reference capturedAt does not attest the original browser timezone or Date at mount. Timers remain real." : "Browser Date/timezone are ambient; captures are not wall-clock deterministic.", "Reference fingerprint covers src only, excluding public assets, configuration and dependencies.", "Working-tree source hash and served main-frame asset hashes are separate provenance; no build-to-source attestation.", "Missing reference states are explicit gaps, never comparisons; frozen coverage metadata does not establish application motion coverage or design approval."] };
     fs.mkdirSync(path.join(out, "captures"), { recursive: true }); fs.renameSync(stage, path.join(out, "captures", id)); stage = undefined;
     fs.writeFileSync(path.join(out, "report.json"), text);
     fs.writeFileSync(path.join(out, "provenance.json"), JSON.stringify(provenance, null, 2) + "\n");

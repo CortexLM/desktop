@@ -4,13 +4,24 @@ import { createHash } from "node:crypto";
 import { EventEmitter } from "node:events";
 import fs from "node:fs";
 import path from "node:path";
-import { fingerprint, main, readPrevious, readReference, referenceFor, trackAssets } from "./compare-shots.mjs";
+import { captureClock, fingerprint, main, readPrevious, readReference, referenceFor, trackAssets } from "./compare-shots.mjs";
 
 const root = fs.mkdtempSync("/tmp/opencode/cortex-compare-test-");
 const shots = path.join(root, "shots"), out = path.join(root, "output");
 const digest = (value) => createHash("sha256").update(value).digest("hex");
 const write = (file, value) => fs.writeFileSync(path.join(root, file), JSON.stringify(value));
 try {
+  const clock = captureClock("2026-10-02T12:09:07.118Z");
+  assert.deepEqual(clock, { mode: "fixed", source: "cli", time: "2026-10-02T12:09:07.118Z", timezone: "UTC", timers: "real" });
+  assert.equal(captureClock(), null);
+  assert.equal(captureClock("2026-10-02T12:09:00Z", "UTC").time, "2026-10-02T12:09:00.000Z");
+  assert.equal(captureClock(clock.time, "America/New_York").timezone, "America/New_York");
+  for (const invalid of ["", "yesterday", "2026-10-02", "2026-10-02T12:09:00", "2026-02-30T12:09:00Z", "2026-10-02T24:00:00Z"]) assert.throws(() => captureClock(invalid), /valid UTC ISO timestamp/);
+  assert.throws(() => captureClock(clock.time, "unknown/timezone"), /Invalid time zone/);
+  assert.throws(() => captureClock(undefined, "UTC"), /--timezone requires --clock/);
+  await assert.rejects(main(["--shots", shots, "--out", out, "--clock", "2026-02-30T12:09:00Z"]), /valid UTC ISO timestamp/);
+  assert(!fs.existsSync(out));
+
   const page = Object.assign(new EventEmitter(), { mainFrame: () => "main" });
   const { assets, drain } = trackAssets(page);
   const headers = Promise.withResolvers(), body = Promise.withResolvers(), started = Promise.withResolvers();
@@ -95,6 +106,27 @@ try {
   assert.throws(() => readPrevious(out, reference, { sourceFingerprint: "new-source" }, "comparator"), /Cannot merge different application sources/);
   write("output/provenance.json", { version: 1, reference: { ...reference.provenance, sourceFingerprint: "another-freeze" } });
   assert.throws(() => readPrevious(out, reference, {}, "comparator"), /Cannot merge different frozen references/);
+
+  const application = { sourceFingerprint: "same-source" };
+  const row = { name: "settings-light", run: "run", capturedAt: "2026-10-03T00:00:00Z", reference: { ...record }, files: { app: { file: "app.png", sha256: digest(image) } } };
+  fs.writeFileSync(path.join(out, "app.png"), image);
+  const provenance = { version: 1, reference: reference.provenance, application, comparatorSha256: "comparator", render: { viewport: record.viewport, deviceScaleFactor: 2, locale: "fr-FR", catalogLocale: "fr", pixelmatchThreshold: 0.15 }, runs: [{ id: "run" }] };
+  const savePrevious = () => {
+    write("output/report.json", [row]);
+    write("output/provenance.json", { ...provenance, reportSha256: digest(fs.readFileSync(path.join(out, "report.json"))) });
+  };
+  savePrevious();
+  assert.deepEqual(readPrevious(out, reference, application, "comparator"), { report: [row], runs: provenance.runs }, "Historical clockless reports remain readable without relabelling");
+  assert.throws(() => readPrevious(out, reference, application, "comparator", clock), /Cannot merge different clock policies/);
+  row.clock = clock; provenance.clock = clock; provenance.runs[0].clock = clock; savePrevious();
+  assert.deepEqual(readPrevious(out, reference, application, "comparator", clock), { report: [row], runs: provenance.runs });
+  for (const other of [null, { ...clock, time: "2026-10-02T23:45:00.000Z" }, { ...clock, timezone: "America/New_York" }, { ...clock, timers: "paused" }]) {
+    assert.throws(() => readPrevious(out, reference, application, "comparator", other), /Cannot merge different clock policies/);
+  }
+  delete row.clock; savePrevious();
+  assert.throws(() => readPrevious(out, reference, application, "comparator", clock), /Previous row clock mismatch/);
+  row.clock = clock; delete provenance.runs[0].clock; savePrevious();
+  assert.throws(() => readPrevious(out, reference, application, "comparator", clock), /Previous run clock mismatch/);
   console.log("compare-shots provenance checks passed");
 } finally {
   fs.rmSync(root, { recursive: true, force: true });

@@ -1,10 +1,13 @@
 # Work task conversion and saved Bot search
 
-Existing-screen delivery after `93c1e78`; initial integrated local checks pass. Work source review
+Application `f9aca44476fcebd0699c09c9e3f7eebcd5151a2a` is pushed; [CI 37080136101](https://github.com/CortexLM/desktop/actions/runs/37080136101)
+passes all jobs; [independent artifact review](ci/README.md) and [installed-Mac proof](../mac/f9aca44/README.md)
+pass within their recorded scope.
+Initial integrated local checks pass. Work source review
 found an enabled-but-inert Create action when the Bot list fails; correction is implemented,
 with rebuild, thirteen scoped cases and Linux package/smoke passing.
 The earlier Code/routine [green CI receipt](../live-behavior-followup/ci-93c1e78/README.md) does not
-verify these working-tree changes.
+verify this later application batch.
 
 ## Reproduced baselines
 
@@ -42,7 +45,7 @@ retained hashes in `retained-files.json`. Full traces remain in their original t
 ## Verification
 
 - [Initial full Electron](e2e-initial-full.log): **69/69**, 426 registered theme/state renders,
-  no retries/flaky/skips. It precedes only the final first-request text-fragment correction.
+  no retries/flaky/skips. It precedes the first-request text-fragment and Bot-list corrections.
 - [Targeted Electron before Bot-list correction](e2e-final.log): **12/12**, new Work/Search cases plus routine regressions,
   both themes at 960×640, no retries/flaky/skips. The source prompt fixture now has two text fragments.
 - [Node 22 units](units-node22.log): **178 pass, one optional real-backend skip**.
@@ -51,7 +54,10 @@ retained hashes in `retained-files.json`. Full traces remain in their original t
 - [Corrected Electron](e2e-corrected.log): **13/13**, including Bot-list refusal/held-retry recovery,
   no retries/flaky/skips. Corrected build/package/[smoke](smoke-corrected.log) pass; lint/types/i18n
   remain green. Nineteen corrected captures retained; the new unavailable-list image inspected.
-  The full suite now registers 70 cases; matching platform CI remains pending.
+  [Linux package receipt](linux-package.json) verifies all 90 embedded build members against the
+  corrected local build byte-for-byte.
+  Matching CI passes **70/70 per OS**, 426 renders, 178 units plus one optional backend skip,
+  lint/types/i18n and macOS package/smoke; twenty CI images independently inspected.
 - Eighteen final local PNGs retained; source editor and mixed Bot search captures inspected in both
   themes; all eighteen inspected on the retained contact sheet.
 - [Frozen comparison](compare/index.html): **32 renders/32 references, zero missing within this
@@ -65,8 +71,21 @@ retained hashes in `retained-files.json`. Full traces remain in their original t
   `compare/retained.json` binds original PNGs to pixel-identical lossless WebP copies.
 - [Corrected editor comparison](compare-corrected/index.html): **8/8, zero missing, max 0.06%**,
   after the Bot-list correction. Fingerprint `5f709c11d836948142b65c5c2b4fe0582bddbfc19f76dbe15cf6d2146a6bcf0f`;
-  historical Work outliers remain separate. Earlier comparison files/provenance are preserved.
-  Updated CI and installed-Mac verification remain pending.
+  this fingerprint matches committed `f9aca44`; historical Work outliers remain separate.
+  Earlier comparison files/provenance are preserved.
+- [Clock-controlled Work rerun](compare-clock/README.md): **16/16, zero missing**, same application,
+  explicit `2026-10-02T12:09:00Z`/UTC and real timers. Computer/takeover differences fall to
+  0.00–0.02%; overall max remains 0.45% at Done light. Original ambient outliers are preserved;
+  reference timezone/mount time remain unattested. Independent pixel review verifies a 1 CSS-pixel
+  transcript offset in Done light, without establishing its cause or waiving that residual.
+- Installed matching macOS artifact: **ten native captures**, both themes at 960×640, source
+  conversion/context, cancellation, Bot-list failure/Retry, routine execution and exact-ID Search.
+  Original scroll-edge images remain beside centered-scroll control proof. Helpers stopped,
+  ports/forwarder closed, ordinary app restored and Mac lease released.
+
+[Independent final review](final-review.md) verifies committed source identity, all three local
+Electron reports, 90 package members, retained image bindings and all nineteen corrected captures.
+Its one stale i18n-count finding is corrected in `evidence/STATUS.md`.
 
 Existing routes, localized copy and engine contracts; no new design source imported. Controlled
 provider responses prove routing/persistence, not real inference. Bounded owner readback at

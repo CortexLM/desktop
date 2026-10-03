@@ -220,6 +220,9 @@ The UI is ported from a local design reference (a separate checkout, not in this
 `ScreenDef.variants` carries the design variant id; `scripts/compare-shots.mjs --shots <freeze>/shots
 --out <new-directory>` pixel-diffs gallery states plus five interaction shots, validates frozen
 source/image hashes and records per-row provenance. Historical `evidence/compare/` stays revision-scoped.
+Optional comparator `--clock <UTC ISO> --timezone UTC` fixes browser Date while timers keep running;
+clock policy is recorded and incompatible merges refuse. Frozen browser timezone is not attested,
+so controlled reruns preserve earlier ambient-clock outliers as separate evidence.
 Theme values are CSS variables in `packages/app/src/kit/styles.css`. Targeted small-window
 regressions live in `tests/e2e/responsive.spec.ts`; full visual acceptance stays partial.
 The frozen reference `/root/cortex-ui-freezes/2026-10-02-7b388e2d9674` registers 205 states;
@@ -245,6 +248,9 @@ its overall CI fails eight Node 22 locale-render fixtures. Test-only `ea1c54b` c
 fixtures with no application delta; CI 37076113707 passes at documentary `93c1e78`.
 Twelve installed-Mac Code/routine captures and scoped
 frozen comparisons are retained in [`evidence/live-behavior-followup/README.md`](./evidence/live-behavior-followup/README.md).
+Work conversion/Search correction `f9aca44` passes 70 Electron cases per OS and installed-Mac
+context/Retry/identity checks with ten native captures. Separate fixed-clock comparisons retain
+the original night/day wallpaper outliers; see [`evidence/live-actions-followup/README.md`](./evidence/live-actions-followup/README.md).
 
 ## CI, packaging and releases
 
