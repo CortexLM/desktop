@@ -83,6 +83,7 @@ async function observe(app: ElectronApplication, page: Page) {
 
 for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes, exact same-name Bot identity and earlier turns through restart — ${theme}`, async () => {
   const launched = await start(theme), { fake, env, dataDir } = launched; let { app, page } = launched;
+  let intentionallyExited = false;
   const errors: string[] = [], setup = async () => { page.on("pageerror", (e) => errors.push(e.message)); await page.emulateMedia({ reducedMotion: "reduce" }); await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setContentSize(960, 640)); };
   try {
     await setup(); const a = await bot(page), b = await bot(page, "Twin", "#8448FF");
@@ -134,8 +135,10 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(child.pid), "/T", "/F"]);
     else child.kill("SIGKILL");
     const [exit] = await Promise.all([exited, closed]);
+    intentionallyExited = true;
     await test.info().attach("crash-parent-exit", { body: JSON.stringify({ pid: child.pid, code: exit[0], signal: exit[1], scope: "parent-only" }), contentType: "application/json" });
     app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/activity?theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
+    intentionallyExited = false;
     const restartLog: string[] = [];
     app.process().stderr?.on("data", (chunk: Buffer) => restartLog.push(chunk.toString()));
     const bootReceipt = () => app.evaluate(() => (globalThis as unknown as { cortexTestBoot?: { stage: string; errorName?: string } }).cortexTestBoot);
@@ -163,7 +166,7 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     await expect(row(page, interrupted.title)).toContainText(copy["act.interrupted"]); await expect(row(page, task.title)).toContainText(copy["act.completed"]);
     await capture(page, `activity-reopened-${theme}`); await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setContentSize(1440, 900));
     await row(page, failed.title).click(); await expect(page).toHaveURL(new RegExp(`id=${failed.id}`)); expect(errors).toEqual([]);
-  } finally { try { await app.close(); } finally { try { await fake.close(); } finally { fs.rmSync(dataDir, { recursive: true, force: true }); } } }
+  } finally { try { if (!intentionallyExited) await app.close(); } finally { try { await fake.close(); } finally { fs.rmSync(dataDir, { recursive: true, force: true }); } } }
 });
 
 test("Activity reads at most 40 eligible roots before Bot filtering and follows updated recency", async () => {
