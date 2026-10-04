@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { launch, root } from "./fixtures";
 import catalog from "../../packages/core/test/fixtures/catalog.json" with { type: "json" };
 import copy from "../../packages/i18n/locales/en/work.json" with { type: "json" };
@@ -111,6 +112,21 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     expect(newer.info.error).toBeDefined(); await expect(row(page, good.title)).toContainText(copy["act.failed"]); await expect(rows(page).first()).toContainText(good.title);
     const unfinished = await session(page, b.id, "Never finished"), saved = await messages(page, good.id), finishedText = await row(page, good.title).innerText();
     await prompt(page, good.id); await prompt(page, unfinished.id); await expect.poll(() => fake.held.size).toBe(2);
+    const profileReceipt = async () => {
+      const paths = await app.evaluate(({ app, safeStorage }) => ({
+        userData: app.getPath("userData"), sessionData: app.getPath("sessionData"),
+        encryptionAvailable: safeStorage.isEncryptionAvailable(),
+      }));
+      const stateFile = path.join(paths.sessionData, "Local State");
+      const state = fs.existsSync(stateFile) ? JSON.parse(fs.readFileSync(stateFile, "utf8")) : undefined;
+      const wrappedKey = state?.os_crypt?.encrypted_key;
+      const credentialsFile = path.join(dataDir, "credentials.json");
+      return { ...paths, stateExists: !!state,
+        wrappedKeyHash: typeof wrappedKey === "string" ? createHash("sha256").update(wrappedKey).digest("hex") : null,
+        credentialsHash: fs.existsSync(credentialsFile) ? createHash("sha256").update(fs.readFileSync(credentialsFile)).digest("hex") : null,
+      };
+    };
+    await test.info().attach("before-crash-profile", { body: JSON.stringify(await profileReceipt()), contentType: "application/json" });
     const closed = app.waitForEvent("close");
     if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(app.process().pid), "/T", "/F"]);
     else app.process().kill("SIGKILL");
@@ -122,6 +138,7 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
       page = await app.firstWindow();
     } catch (error) {
       await test.info().attach("restart-main-stderr", { body: restartLog.join(""), contentType: "text/plain" });
+      await test.info().attach("after-crash-profile", { body: JSON.stringify(await profileReceipt()), contentType: "application/json" });
       const windows = await app.evaluate(({ app, BrowserWindow }) => ({
         ready: app.isReady(), windows: BrowserWindow.getAllWindows().map((window) => ({
           id: window.id, visible: window.isVisible(), destroyed: window.isDestroyed(),
