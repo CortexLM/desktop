@@ -6,6 +6,15 @@ import { fileURLToPath } from "node:url";
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
+async function startupCleanupStep<T>(operation: Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([operation, new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error("Startup diagnostic/cleanup deadline exceeded")), 5000);
+    })]);
+  } finally { clearTimeout(timer); }
+}
+
 export async function launch(opts: { hash?: string; env?: Record<string, string>; locale?: string } = {}) {
   const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "cortex-e2e-"));
   const app = await electron.launch({
@@ -21,14 +30,20 @@ export async function launch(opts: { hash?: string; env?: Record<string, string>
     if (opts.locale) await page.evaluate((l) => localStorage.setItem("cortex.locale", l), opts.locale);
     return { app, page, dataDir };
   } catch (error) {
+    console.error("Electron fixture startup failed:", error);
     try {
-      const windows = await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().map((window) => ({
+      const windows = await startupCleanupStep(app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().map((window) => ({
         url: window.webContents.getURL(), loading: window.webContents.isLoading(),
         crashed: window.webContents.isCrashed(), visible: window.isVisible(),
-      })));
+      }))));
       await base.info().attach("startup-windows", { body: JSON.stringify(windows), contentType: "application/json" });
       await base.info().attach("startup-stderr", { body: startup.join(""), contentType: "text/plain" });
-    } finally { await app.close(); }
+    } catch (diagnosticError) {
+      console.error("Electron fixture diagnostics failed:", diagnosticError);
+    } finally {
+      try { await startupCleanupStep(app.close()); }
+      catch (closeError) { console.error("Electron fixture cleanup failed:", closeError); }
+    }
     throw error;
   }
 }
