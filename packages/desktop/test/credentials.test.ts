@@ -4,9 +4,12 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { fileCredentials, type Cipher } from "../src/credentials";
 
+const windowsHost = process.platform === "win32";
 let dir: string; let file: string; let cipher: Cipher;
 let credentials: ReturnType<typeof fileCredentials>;
 beforeEach(() => {
+  // Exercise the unchanged non-Windows format; Windows uses its own boundary suite.
+  vi.spyOn(process, "platform", "get").mockReturnValue("linux");
   dir = fs.mkdtempSync(path.join(os.tmpdir(), "cortex-credentials-"));
   file = path.join(dir, "credentials.json");
   cipher = {
@@ -29,7 +32,7 @@ describe("file credentials", () => {
     expect(fs.existsSync(path.dirname(file))).toBe(false);
     expect(credentials.set("provider", "test-key")).toBeUndefined();
     expect(credentials.get("provider")).toBe("test-key");
-    expect(fs.statSync(file).mode & 0o777).toBe(0o600);
+    if (!windowsHost) expect(fs.statSync(file).mode & 0o777).toBe(0o600);
   });
 
   it.each(["{", "null", "[]", '"invalid"', "1", "true", '{"other":false}', '{"other":null}', '{"other":{}}'])("rejects an invalid store without replacing it (%#)", (source) => {
@@ -96,7 +99,7 @@ describe("file credentials", () => {
       credentials.set("provider", "test-new");
       expect(fs.readFileSync(reader, "utf8")).toBe(before);
       expect(credentials.get("provider")).toBe("test-new");
-      expect(fs.statSync(file).mode & 0o777).toBe(0o600);
+      if (!windowsHost) expect(fs.statSync(file).mode & 0o777).toBe(0o600);
       expect(fs.readdirSync(dir)).toEqual(["credentials.json"]);
     } finally { fs.closeSync(reader); }
   });
@@ -123,7 +126,7 @@ describe("file credentials", () => {
     vi.spyOn(fs, "renameSync").mockImplementationOnce((temp, destination) => {
       expect(path.dirname(String(temp))).toBe(dir);
       expect(destination).toBe(file);
-      expect(fs.statSync(temp).mode & 0o777).toBe(0o600);
+      if (!windowsHost) expect(fs.statSync(temp).mode & 0o777).toBe(0o600);
       expect(fs.readFileSync(file, "utf8")).toBe(before);
       throw failure;
     });
@@ -162,6 +165,17 @@ describe("file credentials", () => {
     expect(fs.readFileSync(file, "utf8")).toBe(before);
     expect(credentials.get("provider")).toBe("test-old");
     expect(credentials.get("other")).toBeUndefined();
+    expect(fs.readdirSync(dir)).toEqual(["credentials.json"]);
+  });
+
+  it("preserves every ciphertext when legacy decryption fails", () => {
+    credentials.set("provider", "test-old");
+    credentials.set("other", "test-other");
+    const before = fs.readFileSync(file);
+    const failure = new Error("test decrypt failure");
+    vi.spyOn(cipher, "decryptString").mockImplementation(() => { throw failure; });
+    expect(() => fileCredentials(file, cipher).get("provider")).toThrow(failure);
+    expect(fs.readFileSync(file)).toEqual(before);
     expect(fs.readdirSync(dir)).toEqual(["credentials.json"]);
   });
 });

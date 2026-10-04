@@ -96,8 +96,17 @@ evaluation probes under the renderer's strict CSP; validation uses the interpret
 | --- | --- |
 | `cortex.db` | SQLite (WAL): event log, session/message/part projections, docs |
 | `cache/models.json` | Last good models.dev catalog |
-| `credentials.json` | Provider keys, `0600`, `safeStorage`-encrypted when available |
+| `credentials.json` | Provider keys; Windows x64 CurrentUser DPAPI with owner-only ACL, other platforms `0600` and `safeStorage` when available |
 | `mcp-credentials.json` | Complete MCP connection configurations, same main-only credential storage |
+
+Windows x64 uses the system Windows PowerShell 5.1 host to call CurrentUser DPAPI,
+avoiding Electron's unflushed first-profile encryption key. Secrets travel only in
+bounded anonymous pipes, never command arguments or plaintext files. Native host or
+policy failures refuse the operation. Legacy `e:`/`p:` records migrate on successful
+read to `d:` only after protection, owner ACL, fsync and atomic replacement succeed;
+failure preserves old bytes. A previously lost legacy key cannot be recovered by
+migration. Other platforms keep the existing encryption contract. See
+`evidence/auth-owner-followup/windows-dpapi-native-status.md` for bounded native checks.
 
 MCP SQLite documents hold name/type/enabled and an opaque connection reference. The host passes
 a separate `mcpCredentials` store to `createCore`; in-memory engines default to an in-memory store.

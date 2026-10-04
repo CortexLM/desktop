@@ -145,7 +145,9 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
   go to `shell.openExternal`. CSP lives in `packages/app/index.html`.
 - **Provider keys never cross to the renderer.** `PUT /api/providers/:id/key` is write-only;
   `ProviderConfig` carries `hasKey` + `keyHint` (last 4) only. Main stores keys in
-  `<dataDir>/credentials.json` (mode `0600`) encrypted with `safeStorage` when available.
+  `<dataDir>/credentials.json`: Windows x64 CurrentUser DPAPI via the system PowerShell
+  5.1 host with owner-only ACL; other platforms mode `0600`, `safeStorage` when available.
+  Windows legacy migration preserves original ciphertext on failure; no plaintext fallback.
   See [`.rules/01-security.md`](./.rules/01-security.md).
 - **MCP connection configuration is write-only.** Main stores command/arguments/environment/URL/
   headers in separate `mcp-credentials.json`; SQLite holds metadata and an opaque reference.
