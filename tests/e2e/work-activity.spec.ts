@@ -116,7 +116,22 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     else app.process().kill("SIGKILL");
     await closed;
     app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/activity?theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
-    page = await app.firstWindow(); await page.waitForFunction(() => "__bridgeFetch" in window); await setup();
+    const restartLog: string[] = [];
+    app.process().stderr?.on("data", (chunk: Buffer) => restartLog.push(chunk.toString()));
+    try {
+      page = await app.firstWindow();
+    } catch (error) {
+      await test.info().attach("restart-main-stderr", { body: restartLog.join(""), contentType: "text/plain" });
+      const windows = await app.evaluate(({ app, BrowserWindow }) => ({
+        ready: app.isReady(), windows: BrowserWindow.getAllWindows().map((window) => ({
+          id: window.id, visible: window.isVisible(), destroyed: window.isDestroyed(),
+          url: window.webContents.getURL(), loading: window.webContents.isLoading(),
+        })),
+      }));
+      await test.info().attach("restart-window-state", { body: JSON.stringify(windows), contentType: "application/json" });
+      throw error;
+    }
+    await page.waitForFunction(() => "__bridgeFetch" in window); await setup();
     await expect(rows(page)).toHaveCount(4); await expect(row(page, good.title)).toHaveText(finishedText, { useInnerText: true }); await expect(row(page, unfinished.title)).toHaveCount(0);
     expect((await messages(page, good.id)).slice(0, saved.length)).toEqual(saved); expect((await messages(page, good.id)).at(-1)?.info.time.completed).toBeUndefined();
     await expect(row(page, interrupted.title)).toContainText(copy["act.interrupted"]); await expect(row(page, task.title)).toContainText(copy["act.completed"]);

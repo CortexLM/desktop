@@ -9,9 +9,10 @@ remain required. No additional environment policy is imposed.
 
 The existing builder retains `verifyUpdateCodeSignature: true`. Its documented
 mandatory signing contract applies to **production** builds, not universally to
-staging. The current Windows workflow implements the signed path; coordinator/user
-selection between signed staging and explicitly unsigned test staging is pending.
-Certificate/publisher prerequisites below apply to the signed path only. The earlier
+staging. The coordinator now selects the signed Windows staging path after the
+signature question timed out with instructions to continue. No unsigned-test
+acceptance or signature-verification bypass is authorized. Certificate/publisher
+prerequisites below therefore apply to this delivery. The earlier
 operator audit's reviewer prerequisite is historical and superseded by this section.
 
 Only the coordinator orders merges and authorizes publication. No production
@@ -30,8 +31,7 @@ The coordinator reports all four variables below absent and all five staging sec
 names below absent. The existing `staging` environment has **no required reviewers**
 and **unrestricted deployment branches**. The earlier reviewer-presence preflight
 was removed because it imposed policy absent from the repository contract.
-Signed versus explicitly unsigned staging remains an acceptance decision; current
-implementation retains the signed path pending that decision. No policy or
+The coordinator subsequently selected signed staging for this delivery. No policy or
 environment configuration has been changed by this desktop session. The workflow
 also independently requires a main dispatch and exact main-ancestor SHA with CI.
 
@@ -50,7 +50,7 @@ Backend connectivity audit (coordinator-reported, not tested from Windows):
 - Software staging feeds return 404; isolated bucket-to-host mapping is unverified.
   Do not claim either feed availability or a downloadable signed installer.
 
-Outstanding operator checklist: decide signed versus unsigned staging; supply the four
+Outstanding operator checklist: supply the four
 variables and five restricted secrets; establish Windows VPN/DNS reachability;
 verify TLS trust without bypasses; provide staging account/model; provision isolated
 storage/serving mapping; authorize hosted signing/publication through the coordinator.
@@ -162,6 +162,32 @@ by the operator before any retry. Hosted R2 conditional-write support remains a
 staging acceptance check, not something established by local packaging.
 
 ## Local checks
+
+## Authorized operator commands
+
+Provision secrets directly through approved GitHub settings or secure input; never
+paste secret values into chat, command arguments or evidence. Required repository
+variable names are `CORTEX_STAGING_API_ORIGIN`, `STAGING_SOFTWARE_BUCKET`,
+`STAGING_FEED_ENABLED`, `STAGING_WINDOWS_PUBLISHER_NAME`. Required **staging
+environment** secret names are `STAGING_R2_ACCESS_KEY_ID`,
+`STAGING_R2_SECRET_ACCESS_KEY`, `STAGING_CLOUDFLARE_ACCOUNT_ID`,
+`STAGING_WINDOWS_CSC_LINK`, `STAGING_WINDOWS_CSC_KEY_PASSWORD`.
+
+After coordinator authorization, integration to main and exact-SHA successful CI:
+
+```sh
+# SHA must be the accepted full main commit; origin and signing config must exist.
+gh workflow run publish-staging.yml --repo CortexLM/desktop --ref main -f sha="$SHA" -f publish_feed=false
+# Only after explicit publication authorization and configured isolated storage:
+gh workflow run publish-staging.yml --repo CortexLM/desktop --ref main -f sha="$SHA" -f publish_feed=true
+```
+
+These commands are instructions, not executed receipts. Windows certificate absence
+blocks signed desktop delivery, not independent backend/web integration or staging
+owned by the coordinator. Neither that independent progress nor unsigned CI package
+smoke closes the complete signed Windows staging acceptance goal.
+
+### Local build commands
 
 ```sh
 CORTEX_RELEASE_CHANNEL=staging CORTEX_STAGING_API_ORIGIN=https://staging.example.test NODE_ENV=production bun run build
