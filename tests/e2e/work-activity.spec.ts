@@ -132,6 +132,9 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     const child = app.process(), closed = app.waitForEvent("close");
     // ponytail: the exact parent exit is observed; descendant handle settlement needs native evidence.
     const exited = once(child, "exit", { signal: AbortSignal.timeout(30_000) });
+    // Observe late rejections if the kill command throws; normal awaits still reject.
+    void exited.catch(() => {});
+    void closed.catch(() => {});
     if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(child.pid), "/T", "/F"]);
     else child.kill("SIGKILL");
     const [exit] = await Promise.all([exited, closed]);

@@ -37,6 +37,10 @@ export async function launch(opts: { hash?: string; env?: Record<string, string>
         crashed: window.webContents.isCrashed(), visible: window.isVisible(),
       }))));
       await base.info().attach("startup-windows", { body: JSON.stringify(windows), contentType: "application/json" });
+    } catch (diagnosticError) {
+      console.error("Electron fixture window diagnostics failed:", diagnosticError);
+    }
+    try {
       await base.info().attach("startup-stderr", { body: startup.join(""), contentType: "text/plain" });
     } catch (diagnosticError) {
       console.error("Electron fixture diagnostics failed:", diagnosticError);
