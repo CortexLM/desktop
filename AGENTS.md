@@ -507,9 +507,9 @@ is wired in main. Workflow configuration is not a passing run.
 CI, including Windows build/package/launch. It defines unsigned Linux x64 AppImage/deb
 and signed Windows x64 NSIS artifacts using a compiled staging API origin, distinct
 staging application identity and separate default profile. Windows signing requires
-protected environment approval, staging-only certificate credentials and exact
+existing environment protections, staging-only certificate credentials and exact
 publisher/valid Authenticode checks. Publishing additionally requires an enabled
-feed, environment reviewers, isolated staging bucket and distinct staging-only
+feed, explicit coordinator authorization, isolated staging bucket and distinct staging-only
 credentials. No production secret fallback is used. Hosted dispatch/storage mapping
 remain operator prerequisites; see [`docs/staging-release.md`](./docs/staging-release.md).
 

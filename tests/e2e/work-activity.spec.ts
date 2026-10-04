@@ -3,6 +3,7 @@ import type { Bot, MessageWithParts, ScheduledTask, Session } from "@cortex/sche
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
+import { execFileSync } from "node:child_process";
 import { launch, root } from "./fixtures";
 import catalog from "../../packages/core/test/fixtures/catalog.json" with { type: "json" };
 import copy from "../../packages/i18n/locales/en/work.json" with { type: "json" };
@@ -110,7 +111,10 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
     expect(newer.info.error).toBeDefined(); await expect(row(page, good.title)).toContainText(copy["act.failed"]); await expect(rows(page).first()).toContainText(good.title);
     const unfinished = await session(page, b.id, "Never finished"), saved = await messages(page, good.id), finishedText = await row(page, good.title).innerText();
     await prompt(page, good.id); await prompt(page, unfinished.id); await expect.poll(() => fake.held.size).toBe(2);
-    const closed = app.waitForEvent("close"); app.process().kill("SIGKILL"); await closed;
+    const closed = app.waitForEvent("close");
+    if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(app.process().pid), "/T", "/F"]);
+    else app.process().kill("SIGKILL");
+    await closed;
     app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/activity?theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
     page = await app.firstWindow(); await page.waitForFunction(() => "__bridgeFetch" in window); await setup();
     await expect(rows(page)).toHaveCount(4); await expect(row(page, good.title)).toHaveText(finishedText, { useInnerText: true }); await expect(row(page, unfinished.title)).toHaveCount(0);
