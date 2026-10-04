@@ -1,6 +1,17 @@
 import { test, expect } from "@playwright/test";
 import { launch } from "./fixtures";
 
+test("static protocol refuses encoded sibling traversal", async () => {
+  const { app } = await launch();
+  try {
+    const statuses = await app.evaluate(async ({ net }) => {
+      const urls = ["cortex://app/index.html", "cortex://app/..%2fdist-private%2fsecret.txt", "cortex://app/..%2f..%2fpackage.json"];
+      return Promise.all(urls.map(async (url) => (await net.fetch(url)).status));
+    });
+    expect(statuses).toEqual([200, 403, 403]);
+  } finally { await app.close(); }
+});
+
 for (const [locale, file, edit, newChat] of [
   ["en", "File", "Edit", "New Chat"],
   ["fr", "Fichier", "Édition", "Nouveau chat"],

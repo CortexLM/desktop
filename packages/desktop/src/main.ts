@@ -1,5 +1,6 @@
 // Electron main: hosts the local engine in-process and serves it to the renderer over IPC.
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { app, BrowserWindow, dialog, ipcMain, nativeTheme, protocol, net, safeStorage, shell } from "electron";
 import { createCore, findCuaDriver } from "@cortex/core";
 import { createServer } from "@cortex/server";
@@ -77,8 +78,9 @@ async function boot() {
   protocol.handle("cortex", (req) => {
     const u = new URL(req.url);
     const file = path.normalize(path.join(rendererDir, decodeURIComponent(u.pathname === "/" ? "/index.html" : u.pathname)));
-    if (!file.startsWith(rendererDir)) return new Response("", { status: 403 });
-    return net.fetch("file://" + file);
+    const relative = path.relative(rendererDir, file);
+    if (relative === ".." || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) return new Response("", { status: 403 });
+    return net.fetch(pathToFileURL(file).href);
   });
 
   app.on("before-quit", () => void core.close());

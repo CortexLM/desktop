@@ -59,8 +59,10 @@ export class PermissionService {
   async ask(i: AskInput): Promise<void> {
     const configured = evaluate(i.rules, i.tool, i.pattern)
     if (configured === "deny") throw new CortexError("permission_denied", `Tool ${i.tool} is denied for ${i.pattern}`)
-    if (configured === "allow") return
-    if (evaluate(this.saved(i.project), i.tool, i.pattern) === "allow") return
+    if (!isComputerUseInput(i.tool)) {
+      if (configured === "allow") return
+      if (evaluate(this.saved(i.project), i.tool, i.pattern) === "allow") return
+    }
     const info: Permission = {
       id: newId("permission"),
       sessionID: i.sessionID,
