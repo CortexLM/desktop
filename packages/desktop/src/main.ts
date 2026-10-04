@@ -20,6 +20,18 @@ if (typeof __CORTEX_RELEASE_CHANNEL__ !== "undefined" && __CORTEX_RELEASE_CHANNE
 const dataDir = process.env.CORTEX_DATA_DIR ?? path.join(app.getPath("userData"), "engine");
 const resources = app.isPackaged ? process.resourcesPath : path.resolve(__dirname, "../../..");
 const rendererDir = app.isPackaged ? path.join(process.resourcesPath, "app.asar", "packages/app/dist") : path.resolve(__dirname, "../../app/dist");
+const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
+// ponytail: main-only test snapshot covers startup; no renderer bridge or persistent diagnostics.
+const bootDiagnostic: { stage: string; errorName?: string } = { stage: "START" };
+function bootStage(stage: string) {
+  if (!testBase) return;
+  bootDiagnostic.stage = stage;
+  console.error("cortex:test:boot", JSON.stringify(bootDiagnostic));
+}
+if (testBase) {
+  Object.assign(globalThis, { cortexTestBoot: bootDiagnostic });
+  bootStage("START");
+}
 
 protocol.registerSchemesAsPrivileged([{ scheme: "cortex", privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true } }]);
 
@@ -38,10 +50,15 @@ async function boot() {
     skills: { builtin: path.join(resources, "skills"), personal: path.join(app.getPath("home"), ".cortex", "skills") },
     plugins: { personal: path.join(app.getPath("home"), ".cortex", "plugins") },
   });
+  bootStage("core-created");
   await core.start({ computerUse: findCuaDriver() });
+  bootStage("core-started");
   // Test hook: route one provider to a local endpoint (E2E streaming without network). Ignored in packaged builds.
-  const testBase = !app.isPackaged && process.env.CORTEX_TEST_PROVIDER_BASEURL;
-  if (testBase) { const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url }); }
+  if (testBase) {
+    bootStage("provider-update");
+    const [id, url] = testBase.split("="); await core.providers.update(id, { baseURL: url });
+    bootStage("provider-updated");
+  }
   const server = createServer(core);
 
   // Renderer → engine. Requests are rebuilt in main; only /api paths are routed.
@@ -106,10 +123,21 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
+  bootStage("app-ready");
   await boot();
+  bootStage("menu");
   const locale = resolveLocale([process.env.CORTEX_LOCALE ?? "", ...app.getPreferredSystemLanguages()]);
   buildMenu(createTranslator(locale, nodeCatalogs(path.join(resources, app.isPackaged ? "locales" : "packages/i18n/locales"))), () => win, APP_NAME);
+  bootStage("window");
   createWindow();
+  bootStage("ready");
   app.on("activate", () => { if (!BrowserWindow.getAllWindows().length) createWindow(); });
+}).catch((error: unknown) => {
+  if (testBase) {
+    const name = error instanceof Error ? error.name : "";
+    bootDiagnostic.errorName = ["Error", "TypeError", "RangeError", "SyntaxError", "ReferenceError", "AbortError", "TimeoutError"].includes(name) ? name : "UnknownError";
+    bootStage(bootDiagnostic.stage);
+  }
+  throw error;
 });
 app.on("window-all-closed", () => { if (process.platform !== "darwin") app.quit(); });

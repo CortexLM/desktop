@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import { execFileSync } from "node:child_process";
+import { once } from "node:events";
 import { createHash } from "node:crypto";
 import { launch, root } from "./fixtures";
 import catalog from "../../packages/core/test/fixtures/catalog.json" with { type: "json" };
@@ -127,16 +128,21 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
       };
     };
     await test.info().attach("before-crash-profile", { body: JSON.stringify(await profileReceipt()), contentType: "application/json" });
-    const closed = app.waitForEvent("close");
-    if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(app.process().pid), "/T", "/F"]);
-    else app.process().kill("SIGKILL");
-    await closed;
+    const child = app.process(), closed = app.waitForEvent("close");
+    // ponytail: the exact parent exit is observed; descendant handle settlement needs native evidence.
+    const exited = once(child, "exit", { signal: AbortSignal.timeout(30_000) });
+    if (process.platform === "win32") execFileSync("taskkill", ["/pid", String(child.pid), "/T", "/F"]);
+    else child.kill("SIGKILL");
+    const [exit] = await Promise.all([exited, closed]);
+    await test.info().attach("crash-parent-exit", { body: JSON.stringify({ pid: child.pid, code: exit[0], signal: exit[1], scope: "parent-only" }), contentType: "application/json" });
     app = await electron.launch({ args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])], env: { ...process.env, ...env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: `#/activity?theme=${theme}`, CORTEX_LOCALE: "en" } as Record<string, string> });
     const restartLog: string[] = [];
     app.process().stderr?.on("data", (chunk: Buffer) => restartLog.push(chunk.toString()));
+    const bootReceipt = () => app.evaluate(() => (globalThis as unknown as { cortexTestBoot?: { stage: string; errorName?: string } }).cortexTestBoot);
     try {
       page = await app.firstWindow();
     } catch (error) {
+      await test.info().attach("restart-boot-state", { body: JSON.stringify(await bootReceipt()), contentType: "application/json" });
       await test.info().attach("restart-main-stderr", { body: restartLog.join(""), contentType: "text/plain" });
       await test.info().attach("after-crash-profile", { body: JSON.stringify(await profileReceipt()), contentType: "application/json" });
       const windows = await app.evaluate(({ app, BrowserWindow }) => ({
@@ -148,6 +154,9 @@ for (const theme of ["light", "dark"]) test(`Activity persists finished outcomes
       await test.info().attach("restart-window-state", { body: JSON.stringify(windows), contentType: "application/json" });
       throw error;
     }
+    const boot = await bootReceipt();
+    await test.info().attach("restart-boot-state", { body: JSON.stringify(boot), contentType: "application/json" });
+    expect(boot).toEqual({ stage: "ready" });
     await page.waitForFunction(() => "__bridgeFetch" in window); await setup();
     await expect(rows(page)).toHaveCount(4); await expect(row(page, good.title)).toHaveText(finishedText, { useInnerText: true }); await expect(row(page, unfinished.title)).toHaveCount(0);
     expect((await messages(page, good.id)).slice(0, saved.length)).toEqual(saved); expect((await messages(page, good.id)).at(-1)?.info.time.completed).toBeUndefined();
