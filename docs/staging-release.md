@@ -10,6 +10,39 @@ checks against the accepted staging backend. A test-origin build is insufficient
 
 ## Operator configuration
 
+### Coordinator operator audit at `7104fc1`
+
+The coordinator reports all four variables below absent and all five staging secret
+names below absent. The existing `staging` environment has **no required reviewers**
+and **unrestricted deployment branches**. The workflow's required-reviewer check
+therefore blocks signing/publication. Requiring reviewers and staging certificate
+signing is stricter than the currently configured repository policy; it is an
+explicit proposed delivery prerequisite, not an existing protection or automatic
+approval. The coordinator/operator must approve and provision it. No policy or
+environment configuration has been changed by this desktop session. The workflow
+also independently requires a main dispatch and exact main-ancestor SHA with CI.
+
+Backend connectivity audit (coordinator-reported, not tested from Windows):
+
+- Internal ALB listens on 443; Amazon certificate for `api.staging.cortex.foundation`
+  is `ISSUED`, expires `2027-02-15`. This does not establish the served chain or
+  packaged Windows trust; do not assume a private CA import is required.
+- VPN provides routes for `10.2.0.0/16` and DNS `10.2.0.2`. The staging hosted-zone
+  list is empty; cross-account private DNS association is unknown. Resolve the
+  canonical hostname from the Windows device after connecting its approved VPN;
+  verify DNS association, route and firewall before testing TLS with hostname/SNI.
+- `https://api.staging.cortex.foundation` is the audited candidate origin, not yet
+  a verified usable desktop endpoint or configured build value. Backend owner must
+  confirm the deployed revision and Windows reachability before acceptance.
+- Software staging feeds return 404; isolated bucket-to-host mapping is unverified.
+  Do not claim either feed availability or a downloadable signed installer.
+
+Outstanding operator checklist: approve stricter reviewer/signing prerequisites;
+configure reviewers (and decide deployment-branch restrictions); supply the four
+variables and five restricted secrets; establish Windows VPN/DNS reachability;
+verify TLS trust without bypasses; provide staging account/model; provision isolated
+storage/serving mapping; authorize hosted signing/publication through the coordinator.
+
 Set repository variables before dispatch:
 
 | Variable | Required value |
