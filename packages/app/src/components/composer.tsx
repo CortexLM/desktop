@@ -7,6 +7,7 @@ import { IconBtn, Tip, Pop, MItem, useToast } from "../kit/ui";
 import { useT } from "../i18n";
 import { go, useNav } from "../shell/nav";
 import { isPreview } from "../preview";
+import { useSendEnter } from "../state/send-enter";
 
 /** Preview navigation stores the initial request in browser history, never in the engine. */
 export function startPreviewChat(route: "chat" | "code-session", text: string, model: string) {
@@ -38,6 +39,8 @@ export function Composer({ placeholder, onSend, models, initialModel, onModelCha
   const t = useT();
   const { go } = useNav();
   const toast = useToast();
+  const enter = useSendEnter();
+  const instructions = enter.value === null ? t("common.sendEnterUnavailable") : enter.value ? t("system.settings.t.general.enterDesc") : t("common.sendEnterOff");
   const list = models ?? [t("composer.model.fast"), t("composer.model.thinking"), t("composer.model.pro")];
   const hints = [t("composer.model.fastHint"), t("composer.model.thinkingHint"), t("composer.model.proHint")];
   const [text, setText] = React.useState("");
@@ -63,7 +66,10 @@ export function Composer({ placeholder, onSend, models, initialModel, onModelCha
         <MItem icon="globe" onClick={() => go("search-results")}>{t("composer.webSearch")}</MItem>
         <MItem icon="bot" onClick={() => go("bot")}>{t("composer.handToBot")}</MItem>
       </Pop>
-      <input data-testid={`${testId}-input`} value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} />
+      {enter.live
+        ? <textarea rows={1} {...enter.field} data-testid={`${testId}-input`} value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} aria-description={instructions} />
+        : <input data-testid={`${testId}-input`} value={text} disabled={submitting} onChange={(e) => setText(e.target.value)} placeholder={ph} aria-label={ph} />}
+      {enter.live && enter.value === null && <span className="composer-storage-error" role="status">{instructions}</span>}
       <Menu.Root>
         <Menu.Trigger className="model" type="button" disabled={submitting}>{model}<Icon name="chevron-down" size={12} /></Menu.Trigger>
         <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 220 }}>
@@ -78,7 +84,7 @@ export function Composer({ placeholder, onSend, models, initialModel, onModelCha
         </Menu.Popup></Menu.Positioner></Menu.Portal>
       </Menu.Root>
       <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" disabled={submitting} onClick={() => go("voice")} />
-      <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText ? "↵" : undefined}>
+      <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText && enter.value === true ? "↵" : undefined}>
         <button type={hasText ? "submit" : "button"} onClick={hasText ? undefined : () => go("voice")} data-testid={`${testId}-send`} className="send" disabled={disabled || submitting || (hasText && !onSend)} data-has-text={hasText ? "" : undefined} aria-label={hasText ? t("composer.send") : t("composer.voice")}>
           <span className="swap"><Icon name="voice-wave" className="wave" /><Icon name="arrow-up" className="up" /></span>
         </button>

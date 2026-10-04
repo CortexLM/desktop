@@ -60,8 +60,8 @@ it("projects main SDK delivery without persistence, local execution or private p
     unsubscribe = core.bus.subscribe((raw, source) => { seen.push({ raw, source }); });
     const counts = () => ["event", "session", "message", "part"].map((table) => core.storage.db.prepare(`SELECT count(*) AS n FROM ${table}`).get()!.n);
     const signIn = async (email: string) => {
-      await core.connection.authenticate({ action: "email", email });
-      await core.connection.authenticate({ action: "code", code: "123456" });
+      await core.connection.authenticate({ action: "email", email, owner: core.connection.auth().owner });
+      await core.connection.authenticate({ action: "code", code: "123456", owner: core.connection.auth().owner });
       expect(core.connection.auth().signedIn).toBe(true);
     };
     core.connection.set({ mode: "selfhost", url: origin, signedIn: false });
@@ -155,8 +155,8 @@ it.each([
   const core = createCore({ dataDir: ":memory:", credentials: memoryCredentials(), remoteAuth: remote, remoteChat: remote });
   try {
     core.connection.set({ mode: "selfhost", url: origin, signedIn: false });
-    await core.connection.authenticate({ action: "email", email: "owner@example.test" });
-    await core.connection.authenticate({ action: "code", code: "123456" });
+    await core.connection.authenticate({ action: "email", email: "owner@example.test", owner: core.connection.auth().owner });
+    await core.connection.authenticate({ action: "code", code: "123456", owner: core.connection.auth().owner });
     const { epoch } = await core.remoteSessions.models();
     const session = core.remoteSessions.create({ epoch, modelSlug: "fixture", effort: "high" });
     const admitted = await core.remoteSessions.prompt(session.id, { message: "Explain", attachmentIDs: [] });

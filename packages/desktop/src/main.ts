@@ -11,7 +11,11 @@ import { probeRemote } from "./remote";
 import { RemoteSession } from "./remote-session";
 
 const APP_NAME = "Cortex";
+declare const __CORTEX_RELEASE_CHANNEL__: string;
 app.setName(APP_NAME);
+if (typeof __CORTEX_RELEASE_CHANNEL__ !== "undefined" && __CORTEX_RELEASE_CHANNEL__ === "staging" && !app.commandLine.hasSwitch("user-data-dir")) {
+  app.setPath("userData", path.join(app.getPath("appData"), "Cortex-staging"));
+}
 const dataDir = process.env.CORTEX_DATA_DIR ?? path.join(app.getPath("userData"), "engine");
 const resources = app.isPackaged ? process.resourcesPath : path.resolve(__dirname, "../../..");
 const rendererDir = app.isPackaged ? path.join(process.resourcesPath, "app.asar", "packages/app/dist") : path.resolve(__dirname, "../../app/dist");

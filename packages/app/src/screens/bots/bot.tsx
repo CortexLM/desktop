@@ -297,7 +297,7 @@ function BotPageLive() {
         <section>
           <h3 className="h3">{t("bots.page.activity")}</h3>
           {shown.length ? <div className="thread-inner" style={{ gap: 12, marginBottom: 24 }} aria-live="polite">
-            {shown.map((m) => m.info.role === "user" ? <div key={m.info.id} className="msg-user">{textOf(m)}</div>
+            {shown.map((m) => m.info.role === "user" ? <div key={m.info.id} className="msg-user msg-user-live">{textOf(m)}</div>
               : <div key={m.info.id} className="msg-bot-row"><Mascot cfg={cfg} state="idle" size={24} /><div className="msg-bot">{textOf(m)}</div></div>)}
           </div> : <div className="list"><div className="li"><span className="grow sub">{t("bots.page.noActivity", { name: bot.name })}</span></div></div>}
           {myPerms.length > 0 && <>

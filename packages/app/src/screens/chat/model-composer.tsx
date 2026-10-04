@@ -8,10 +8,10 @@ import { IconBtn, Tip, Switch, useToast } from "../../kit/ui";
 import { Composer, type ComposerAttachment } from "../../components/composer";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
-import { isPreview } from "../../preview";
 import { useNav } from "../../shell/nav";
 import { useI18n } from "../../i18n";
 import { StopBtn } from "./shared";
+import { useSendEnter } from "../../state/send-enter";
 
 const MODEL_KEY = "cortex.model";
 const THINK_KEY = "cortex.thinking";
@@ -55,14 +55,16 @@ type Props = ModelOptions & {
 };
 
 export function ModelComposer(p: Props) {
-  const { params } = useNav();
-  if (p.leaveGuard ? params.has("preview") || params.has("shot") : isPreview()) return <Composer placeholder={p.placeholder} />;
+  const { params, route } = useNav();
+  if (route === "gallery" || params.has("preview") || params.has("shot")) return <Composer placeholder={p.placeholder} />;
   return <LiveComposer {...p} />;
 }
 
 function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onNoModel, busy, onStop, live, initialModel, allowKeyless, strictSelection, leaveGuard }: Props) {
   const { t, locale } = useI18n();
   const toast = useToast();
+  const enter = useSendEnter();
+  const instructions = enter.value === null ? t("common.sendEnterUnavailable") : enter.value ? t("system.settings.t.general.enterDesc") : t("common.sendEnterOff");
   const fmtCtx = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
   const fmtCost = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
   const own = useModels({ initialModel, allowKeyless, strictSelection });
@@ -137,7 +139,8 @@ function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onN
               : <Tip label={t("chat.model.noImage")} side="right"><Menu.Item className="mitem" disabled aria-disabled style={{ opacity: 0.45 }}><Icon name="image" /><span>{t("chat.model.attachImage")}</span></Menu.Item></Tip>}
           </Menu.Popup></Menu.Positioner></Menu.Portal>
         </Menu.Root>
-        <input value={text} disabled={disabled} onChange={(e) => { if (!locked.current && !pending.current) { latest.current.text = e.target.value; setText(e.target.value); } }} placeholder={ph} aria-label={ph} data-testid={inputTestId} />
+        <textarea rows={1} {...enter.field} value={text} disabled={disabled} onChange={(e) => { if (!locked.current && !pending.current) { latest.current.text = e.target.value; setText(e.target.value); } }} placeholder={ph} aria-label={ph} aria-description={instructions} data-testid={inputTestId} />
+        {enter.value === null && <span className="composer-storage-error" role="status">{instructions}</span>}
         <Menu.Root>
           <Menu.Trigger className="model" type="button" disabled={disabled} data-testid="model-trigger">{current?.name ?? t("chat.model.none")}<Icon name="chevron-down" size={12} /></Menu.Trigger>
           <Menu.Portal><Menu.Positioner sideOffset={6} align="end" side="top"><Menu.Popup className="popup" style={{ width: 320, maxHeight: 420, overflow: "auto" }}>
@@ -177,7 +180,7 @@ function LiveComposer({ placeholder, inputTestId = "composer-input", onSend, onN
         </Menu.Root>
         <IconBtn type="button" icon="mic" label={t("composer.dictate")} className="round" disabled={disabled} onClick={voice} />
         {busy ? <StopBtn onStop={() => { if (!locked.current) onStop?.(); }} /> : (
-          <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText ? "↵" : undefined}>
+          <Tip label={hasText ? t("composer.send") : t("composer.voice")} kbd={hasText && enter.value === true ? "↵" : undefined}>
             <button type={hasText ? "submit" : "button"} onClick={hasText ? undefined : voice} className="send" disabled={disabled || reading} data-has-text={hasText ? "" : undefined} aria-label={hasText ? t("composer.send") : t("composer.voice")} data-testid="composer-send">
               <span className="swap"><Icon name="voice-wave" className="wave" /><Icon name="arrow-up" className="up" /></span>
             </button>

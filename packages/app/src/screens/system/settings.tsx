@@ -12,6 +12,7 @@ import { isPreview } from "../../preview";
 import { api } from "../../api";
 import { useQuery } from "../../state/live";
 import { useRuntimeSettings } from "../../state/runtime-settings";
+import { useSendEnter } from "../../state/send-enter";
 import { useFx, useBotCfg, norm, setTheme, NB } from "./common";
 import type { ModelFx, ProviderFx } from "./fixtures";
 
@@ -42,6 +43,17 @@ function Toggle({ sec, id, def }: { sec: string; id: string; def: boolean }) {
   const [v, set] = usePref(`${sec}.${id}`, def);
   const title = t(`system.settings.t.${sec}.${id}`, { name: bot.name });
   return <label className="li"><span className="grow"><div className="ttl">{title}</div><div className="sub">{t(`system.settings.t.${sec}.${id}Desc`, { name: bot.name })}</div></span><Switch checked={v} onCheckedChange={set} aria-label={title} /></label>;
+}
+
+function EnterToggle() {
+  const t = useT();
+  const enter = useSendEnter();
+  const [failed, setFailed] = React.useState(false);
+  const title = t("system.settings.t.general.enter");
+  return <>
+    <label className="li"><span className="grow"><div className="ttl">{title}</div><div className="sub" style={{ whiteSpace: "normal" }}>{enter.value === null ? t("common.sendEnterUnavailable") : enter.value ? t("system.settings.t.general.enterDesc") : t("common.sendEnterOff")}</div></span><Switch checked={enter.value === true} onCheckedChange={(value) => setFailed(!enter.update(value))} aria-label={title} /></label>
+    {failed && <div className="li" role="alert">{t("system.providers.saveFailed")}</div>}
+  </>;
 }
 
 function MemoryToggle() {
@@ -86,7 +98,7 @@ export function SettingsScreen() {
           ))}
         </div>}
         {sec === "account" && <Account />}
-        {TOGGLES[sec] && sec !== "appearance" && <div className="list">{TOGGLES[sec].map(([id, d]) => sec === "privacy" && id === "memory" ? <MemoryToggle key={id} /> : <Toggle key={id} sec={sec} id={id} def={d} />)}</div>}
+        {TOGGLES[sec] && sec !== "appearance" && <div className="list">{TOGGLES[sec].map(([id, d]) => sec === "general" && id === "enter" ? <EnterToggle key={id} /> : sec === "privacy" && id === "memory" ? <MemoryToggle key={id} /> : <Toggle key={id} sec={sec} id={id} def={d} />)}</div>}
       </div>
     </div></div>
   </>);

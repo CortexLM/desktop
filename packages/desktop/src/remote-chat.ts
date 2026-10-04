@@ -1,6 +1,6 @@
 // Main-only, process-lifetime Chat. These narrow consumer contracts are not canonical backend DTOs.
 import { randomUUID } from "node:crypto";
-import { CLOUD_URL, CortexError } from "@cortex/core";
+import { PRODUCTION_CLOUD_URL, CortexError } from "@cortex/core";
 import type { CortexClient } from "@cortex/sdk";
 import { isId, type StreamEvent } from "@cortex/api-types";
 import { z } from "zod";
@@ -43,6 +43,7 @@ const Uploaded = z.object({
 const TurnInput = z.object({
   message: z.string().max(100000).trim().refine((v) => [...v].length <= 50000),
   modelSlug: Name, effort: Effort.optional(), attachmentIDs: z.array(FileID).max(20), conversationID: ConversationID.optional(),
+  oneOffModelSlug: Name.optional(),
 }).strict().refine((v) => !!v.message || v.attachmentIDs.length > 0)
   .refine((v) => new Set(v.attachmentIDs).size === v.attachmentIDs.length);
 const Admission = z.object({ conversationID: ConversationID, assistantID: MessageID });
@@ -249,7 +250,7 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
     try { instance = Instance.parse(await client.instance.list({ signal: s })); }
     catch (error) {
       // Only the canonical Cloud origin has an admitted legacy deployment without instance discovery.
-      if (origin !== CLOUD_URL || !(error instanceof InstanceNotFound)) throw error;
+      if (origin !== PRODUCTION_CLOUD_URL || !(error instanceof InstanceNotFound)) throw error;
     }
     guard(s);
     if (instance?.auth.mode === "none") throw new CortexError("provider_unsupported", "Remote operator mode is not available");
@@ -295,14 +296,17 @@ export function createRemoteChatBinding(client: CortexClient, origin: string, ep
         guard(delivery);
         const model = catalog?.get(ledger.input.modelSlug);
         if (!model) throw new CortexError("model_not_found", "The remote model is not available");
+        const effective = catalog?.get(ledger.input.oneOffModelSlug ?? ledger.input.modelSlug);
+        if (!effective) throw new CortexError("model_not_found", "The remote model is not available");
         const historyImages = !!ledger.input.conversationID && conversations.get(ledger.input.conversationID)?.needsVision;
-        if ((ledger.input.attachmentIDs.length || historyImages) && model.vision !== true) throw new CortexError("model_no_image_input", "The remote model cannot accept images");
+        if ((ledger.input.attachmentIDs.length || historyImages) && effective.vision !== true) throw new CortexError("model_no_image_input", "The remote model cannot accept images");
         // ponytail: pinned backend omits historical pixels; allow follow-ups after verified image hydration.
         if (historyImages) throw new CortexError("provider_unsupported", "Remote image history is not available");
         if ((model.reasoning === true) !== (ledger.input.effort !== undefined)) throw invalid();
       }
       ledger.requested = true;
-      const body = { message: ledger.input.message, model_slug: ledger.input.modelSlug, reasoning_effort: ledger.input.effort, attachment_ids: [...ledger.input.attachmentIDs] };
+      const body = { message: ledger.input.message, model_slug: ledger.input.modelSlug, reasoning_effort: ledger.input.effort, attachment_ids: [...ledger.input.attachmentIDs],
+        ...(ledger.input.oneOffModelSlug ? { one_off_model_slug: ledger.input.oneOffModelSlug } : {}) };
       for await (const event of client.streamTurn({ conversationId: ledger.input.conversationID, body, idempotencyKey: ledger.key }, {
         signal: delivery, maxReconnects: 0, lastEventId: ledger.cursor,
         onResponse(response) {

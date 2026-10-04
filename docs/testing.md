@@ -185,6 +185,12 @@ Cancellation checks inspect the durable event journal as well as the current mes
   popup menus render above notifications so model selection remains reachable.
   Live Work tests distinguish refused/empty tasks from successful, subsequently failed and aborted tasks,
   verifying both the board and transcript badges after reload.
+- `tests/e2e/send-enter.spec.ts` — persisted Enter preference, Shift+Enter and multiline
+  admission/history on both composer implementations; preview isolation, same-URL held
+  New Chat ownership, synthetic composition/modifier refusal, storage read/write refusal,
+  and Code/Bot drafts and transcripts in both themes. Synthetic composition events do not
+  establish installed IME behavior. Negative baseline and current scoped proof remain
+  separate in `evidence/enter-preference-followup/`.
 - `tests/e2e/code-models.spec.ts` — both themes at 960×640: actual configured model choice on new
   Code tasks and follow-ups, reasoning payload, keyless endpoints, folder cancellation and duplicate
   submission locking. Reopening uses the session model despite a different global preference;

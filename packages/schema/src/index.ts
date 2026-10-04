@@ -248,10 +248,28 @@ export const RemoteFile = z.object({
   byteSize: RemoteCount.positive().max(8 * 1024 * 1024), conversationID: remoteID("cnv").optional(),
 })
 export type RemoteFile = z.infer<typeof RemoteFile>
+export const RemoteUploadInput = z.object({
+  filename: RemoteFile.shape.filename,
+  oneOffModelSlug: RemoteName.optional(),
+  mime: RemoteFile.shape.contentType,
+  data: z.string().min(1).max(11184812).refine((text) => {
+    if (!text.length || text.length > 11184812) return false
+    const padding = text.endsWith("==") ? 2 : text.endsWith("=") ? 1 : 0
+    const length = text.length - padding, tail = length % 4
+    if (!length || tail === 1 || (padding && (text.length % 4 !== 0 || padding !== 4 - tail))) return false
+    if (Math.floor(length * 3 / 4) > 8 * 1024 * 1024 || /[^A-Za-z0-9+/]/.test(text.slice(0, length))) return false
+    const last = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf(text[length - 1])
+    return (tail !== 2 || (last & 15) === 0) && (tail !== 3 || (last & 3) === 0)
+  }),
+}).strict()
+export type RemoteUploadInput = z.infer<typeof RemoteUploadInput>
 export const RemoteSessionCreateInput = z.object({ epoch: RemoteEpoch, modelSlug: RemoteName, effort: RemoteEffort.optional() }).strict()
+export type RemoteSessionCreateInput = z.infer<typeof RemoteSessionCreateInput>
 export const RemotePromptInput = z.object({
   message: z.string().max(100000).trim().refine((v) => [...v].length <= 50000), attachmentIDs: z.array(remoteID("lbf")).max(20),
+  oneOffModelSlug: RemoteName.optional(),
 }).strict().refine((v) => !!v.message || v.attachmentIDs.length > 0).refine((v) => new Set(v.attachmentIDs).size === v.attachmentIDs.length)
+export type RemotePromptInput = z.infer<typeof RemotePromptInput>
 export const RemoteOutcome = z.object({
   state: RemoteDeliveryState, complete: z.boolean(), partial: z.boolean(), finishReason: RemoteFinish.optional(), errorCode: ErrorCode.optional(),
 })
@@ -455,20 +473,24 @@ export const ConnectionProbe = z.object({
   models: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
 })
 export type ConnectionProbe = z.infer<typeof ConnectionProbe>
+export const RemoteAuthOwner = z.object({ origin: ConnectionUrl, revision: z.uuid() })
+export type RemoteAuthOwner = z.infer<typeof RemoteAuthOwner>
 export const RemoteAuthState = z.object({
   status: z.enum(["signed_out", "code_sent", "signed_in", "verify_email", "mfa_challenge", "mfa_enrollment"]),
   signedIn: z.boolean(),
   email: z.string().email().optional(),
-})
+  owner: RemoteAuthOwner.nullable(),
+  candidate: z.uuid().optional(),
+}).refine((state) => state.owner !== null || (state.status === "signed_out" && !state.signedIn && state.candidate === undefined && state.email === undefined))
 export type RemoteAuthState = z.infer<typeof RemoteAuthState>
 export const RemoteAuthInput = z.discriminatedUnion("action", [
-  z.object({ action: z.literal("email"), email: z.string().email().max(254) }),
-  z.object({ action: z.literal("code"), code: z.string().length(6).regex(/^\d{6}$/) }),
-  z.object({ action: z.literal("local"), email: z.string().email().max(254), password: z.string().min(1).max(4096) }),
-  z.object({ action: z.literal("verify_email"), code: z.string().trim().min(1).max(128) }),
-  z.object({ action: z.literal("mfa"), code: z.string().length(6).regex(/^\d{6}$/) }),
+  z.object({ action: z.literal("email"), owner: RemoteAuthOwner, email: z.string().email().max(254) }),
+  z.object({ action: z.literal("code"), owner: RemoteAuthOwner, code: z.string().length(6).regex(/^\d{6}$/) }),
+  z.object({ action: z.literal("local"), owner: RemoteAuthOwner, email: z.string().email().max(254), password: z.string().min(1).max(4096) }),
+  z.object({ action: z.literal("verify_email"), owner: RemoteAuthOwner, code: z.string().trim().min(1).max(128) }),
+  z.object({ action: z.literal("mfa"), owner: RemoteAuthOwner, code: z.string().length(6).regex(/^\d{6}$/) }),
   z.object({ action: z.literal("logout") }),
-  z.object({ action: z.literal("cancel") }),
+  z.object({ action: z.literal("cancel"), origin: ConnectionUrl, candidate: z.uuid() }),
 ])
 export type RemoteAuthInput = z.infer<typeof RemoteAuthInput>
 

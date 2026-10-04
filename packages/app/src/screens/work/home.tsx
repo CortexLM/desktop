@@ -463,7 +463,7 @@ function WorkTaskLive({ id }: { id: string }) {
         {v === "failed" && <div className="banner err travail-banner" style={{ margin: "0 28px 8px" }}><Icon name="alert-triangle" size={16} /><span>{t("work.task.status.failed")}</span><span className="grow">{t("work.task.failedLive")}</span></div>}
         <div className="thread" ref={thread}><div className="thread-inner" style={{ gap: 16 }}>
           {msgs.map((m) => { const x = textOf(m); if (!x) return null; return m.info.role === "user"
-            ? <div key={m.info.id} className="msg-user">{x}</div>
+            ? <div key={m.info.id} className="msg-user msg-user-live">{x}</div>
             : <div key={m.info.id} className="msg-bot-row">{cfg && <Mascot cfg={cfg} state="idle" size={24} />}<div className="msg-bot">{x}</div></div>; })}
           {steps.length > 0 && <Steps steps={steps} defaultOpen={v === "running"} />}
         </div></div>

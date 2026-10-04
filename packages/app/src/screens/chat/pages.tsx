@@ -4,6 +4,7 @@ import type { Session } from "@cortex/schema";
 import { Icon, IconBtn, Pop, MItem, MSep, useToast } from "../../kit/ui";
 import { api } from "../../api";
 import { useSessions, useProjects } from "../../state/live";
+import { useRemoteSessions } from "../../state/remote-list";
 import { useNav } from "../../shell/nav";
 import { useT, useI18n } from "../../i18n";
 import { isPreview } from "../../preview";
@@ -105,6 +106,7 @@ export function History() {
   const toast = useToast();
   const preview = isPreview();
   const src = useHistoryRows();
+  const remote = useRemoteSessions(!params.has("project"));
   const [local, setLocal] = React.useState<Record<string, Partial<H>>>({});
   const [hidden, setHidden] = React.useState<Set<string>>(new Set());
   const [pins, setPins] = React.useState<Set<string>>(() => new Set(preview ? [] : JSON.parse(localStorage.getItem(PINS) ?? "[]")));
@@ -175,11 +177,37 @@ export function History() {
           </div>
         </section>
       ))}
-      {!groups.length && <div className="pg-empty">
+      {!groups.length && !(src.state === "ready" && !q && remote.state === "ready" && remote.data.length > 0) && <div className="pg-empty">
         {src.state === "loading" ? <span className="thinking">{t("chat.history.loading")}</span>
           : src.state === "error" ? <>{t("chat.history.error")} <button className="chat-link" onClick={src.reload}>{t("common.retry")}</button></>
           : q ? t("chat.history.noMatch", { q }) : t("chat.history.empty")}
       </div>}
+      {!preview && remote.state !== "hidden" && <section>
+        <h3 className="h3">{t("chat.remote.recents")}</h3>
+        {remote.state === "loading" && <div className="pg-empty thinking" role="status">{t("chat.history.loading")}</div>}
+        {remote.state === "error" && <div className="pg-empty" role="alert">
+          {t("chat.remote.unavailable")} <button className="chat-link" onClick={remote.reload}>{t("common.retry")}</button>
+        </div>}
+        {remote.state === "ready" && <>
+          <div className="list">
+            {remote.data.filter((s) => norm(s.title + " " + s.modelSlug).includes(norm(q))).map((s) => (
+              <div key={`${s.epoch}:${s.id}`} className="li pg-hrow" style={css(n++)} role="button" tabIndex={0}
+                onClick={() => go("chat", { source: "remote", epoch: s.epoch, id: s.id })}
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter" && e.key !== " ") return;
+                  e.preventDefault();
+                  go("chat", { source: "remote", epoch: s.epoch, id: s.id });
+                }}>
+                <span className="li-ic"><Icon name="compose" /></span>
+                <span className="grow"><div className="ttl">{s.title || t("chat.untitled")}</div><div className="sub">{s.modelSlug}</div></span>
+              </div>
+            ))}
+          </div>
+          {!remote.data.some((s) => norm(s.title + " " + s.modelSlug).includes(norm(q))) && <div className="pg-empty">
+            {q ? t("chat.history.noMatch", { q }) : t("chat.history.empty")}
+          </div>}
+        </>}
+      </section>}
     </div></div>
   </>);
 }

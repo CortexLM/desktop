@@ -27,18 +27,43 @@ neither the provider endpoint nor the model picker, and sends no prompts to that
 `probeRemote` accepts an optional token, but desktop main calls it without one. Authentication
 uses a separate `RemoteSession` (`packages/desktop/src/remote-session.ts`) injected into core's
 `RemoteAuth` host contract. Main validates every remote auth result; IPC returns only
-`{ status, signedIn, email? }`. Bearer tokens, cookie jars, pending authentication tokens,
+`{ status, signedIn, email?, owner, candidate? }`. `owner` is a main-issued origin and
+step revision; `candidate` scopes pending cancellation independently of step changes.
+Local/unavailable state has `owner: null`. These process-local identifiers are not
+backend credentials or durable account IDs. Bearer tokens, cookie jars, pending authentication tokens,
 challenge/factor IDs and enrollment secrets stay in main, never SQLite, renderer storage or events.
 `signedIn` derives from the active validated main session; persisted/renderer-supplied booleans
 cannot establish authentication. A pending account candidate may coexist with an active session.
 
+Ownership binding passes scoped review and 165 local Electron cases. Submissions carry the
+displayed step owner; Cancel carries the captured candidate identity, including during
+initial email dispatch. Cancel before the first state arrives only leaves the screen,
+without cancelling an unseen candidate. Stale forms must not borrow newer authority or
+automatically retry old codes. See `evidence/auth-owner-followup/renderer-contract.md`.
+
 Sessions last until Cortex quits. Cloud refresh and persistent account identity remain pending.
 Main's private Chat binding implements authenticated models/upload/turn/history transport;
-core's internal process-only projections consume it. Public routes and renderer dispatch
-remain pending. Main's typed actions cover email-code acquisition,
-operator local login, email verification and MFA challenge verification; only the existing email
-and six-digit-code screens are wired. Local password, email-verification and MFA/enrollment screens
-await approved integration; the UI reports unavailable rather than guessing continuation contracts.
+core's process-only projections consume it. Nine JSON routes under `/api/remote`
+expose models, sessions and admission/detach/resume/known-history operations through
+the typed `remoteSessions` client. A session-owned upload route carries strict base64
+JSON with an 8 MiB decoded limit; IPC strings/JSON parsing are not memory-bounded by it.
+Optional `oneOffModelSlug` reaches main as `one_off_model_slug`, preserving recorded
+model/effort and the original replay request. Renderer dispatch is implemented in
+the working tree: unprojected Home selects remote Chat for a signed-in remote
+connection; existing untagged Chat and project routes stay local. Explicit remote
+links carry source, epoch and session ID. Separate process-only sidebar/History
+lists never expose local rename/delete/pin actions on remote records.
+Scoped verification is in progress; no native or real-account acceptance is claimed.
+See `evidence/auth-owner-followup/remote-api-adapter.md` and
+`evidence/auth-owner-followup/remote-renderer-status.md`.
+Main's typed actions cover email-code acquisition,
+operator local login, email verification and MFA challenge verification. Existing Login now
+wires email-code, email verification (1–128 trimmed characters) and six-digit MFA challenge
+forms through the checked owner. Local password and MFA enrollment remain unavailable.
+The continuation forms pass fourteen targeted Electron cases and scoped source/visual review;
+expanded eight-language/two-theme keyboard verification also passes. Full local regression
+passes 169 Electron cases; native acceptance remains pending. See
+`evidence/auth-owner-followup/continuation-adoption-map.md`.
 Operator bearer expiry aborts active transport at its deadline and is checked on state/binding access.
 Cloud sign-out discards device-local state;
 server-side revocation is not claimed. Local operator logout uses its typed endpoint.
@@ -49,6 +74,21 @@ cancel/logout and accepted mode/origin changes invalidate pending work. Requests
 and foreign origins and have ten-second deadlines. Main shutdown clears all session material.
 
 ## Private Chat transport
+
+### Staging build routing
+
+Production builds keep `https://api.cortex.foundation`. To build a staging main
+bundle, set `CORTEX_RELEASE_CHANNEL=staging` and `CORTEX_STAGING_API_ORIGIN` to an
+explicit non-production HTTPS origin. Missing origin, credentials, paths, query or
+fragment, production host and unknown channels fail the build. Supplying a staging
+origin without the staging channel also fails. The origin is compiled into main,
+not read from renderer input or runtime environment; preload is unchanged.
+Staging uses `Cortex-staging` as its default user-data directory. An explicit
+`CORTEX_DATA_DIR` still selects the engine directory for controlled tests.
+Cloud selection uses the compiled origin, while local remains the initial mode.
+The production-only legacy discovery fallback is not extended to staging.
+These controls configure artifacts; they do not establish a deployed backend,
+available feed, signed release or auto-update support.
 
 `RemoteSession.bind(origin)` returns an internal account-epoch binding after validated sign-in.
 It exposes named model/upload/turn/history operations; no client, token, cookie or arbitrary
@@ -91,8 +131,13 @@ model/effort, session-owned uploads and header-time admission, exposing cloned p
 views. Identity loss immediately removes them; late results remain invalid. It preserves
 plain safety/disclosure text, neutral tool status and explicit unsupported-output markers,
 never raw tool results or local execution. Known-history recovery marks unfinished tools
-interrupted without inventing a duration. These foundations have no public remote Chat
-route or UI caller yet; current Chat/Code/Work/Bot prompts retain local execution.
+interrupted without inventing a duration. The `/api/remote` routes now have a scoped
+Chat renderer caller. Code, Work, Bot and local/project Chat retain local execution.
+Remote admission refusal retains the draft. Detach stops delivery, not backend work;
+resume reuses the original request, preserving a separately edited next draft.
+Historical-image follow-ups remain refused; an explicit new-chat action transfers
+the draft/files/one-off choice to a fresh owned record without altering old history.
+Drafts are not persisted across arbitrary navigation or process exit.
 
 ## Probe
 
@@ -189,8 +234,9 @@ The [bounded next-phase contract](../evidence/remote-auth-followup/routing-contr
 records explicit session-source/account-epoch isolation, ephemeral projection, authenticated
 stream policy, original-request replay and local-plugin exclusion. Its standalone assertions
 check examples. The later [foundation implementation](../evidence/remote-chat-foundation/README.md)
-implements private transport, event isolation and process-only core projections; public
-routes and approved renderer integration remain pending.
+implements private transport, event isolation and process-only core projections. That
+historical increment predates the public routes and current scoped renderer integration
+described above; its evidence does not establish acceptance of those later changes.
 
 The [23:23 UTC owner readback](../evidence/text-live-followup/owner-readback/REPORT.md)
 records G2's new hardening delivery `5bb7ff550acec822466853c248bd9bcebe8089a6`:
@@ -202,6 +248,15 @@ the admitted SDK0.3.5/API-types0.2.0 pair and `c8f6a7f0` schema pin. No discarde
 successor, precise account/history contract, historical-image hydration or exact five-state
 import permission appears in that readback. Public instance remains404; model metadata
 still supplies zero vision-capable Chat models.
+
+The [00:24 UTC successor readback](../evidence/text-live-followup/owner-readback-final/REPORT.md)
+independently verifies G2 `de3b9dd19baa4239ad5aba00da19b7955f053f37`, canonical blob
+`232505fc45ba2f506fa891383495592ea7f62de4`. All 422 operation shapes/IDs match the admitted
+G3 schema; only the VNC-description text differs. Canonical screenshot-schema reconciliation
+is therefore resolved, without a desktop data-shape change. The immutable discarded-frame
+SDK successor, precise identity/history, historical pixels and deployed compatibility
+remain pending. New named G4 web adoption grants do not authorize G1's five desktop states;
+the design owner explicitly retains their final named-source import decision.
 
 The append-only design request dated 3 October, “G1 remote Chat admission controls,” requests
 named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest

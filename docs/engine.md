@@ -9,6 +9,17 @@ closes MCP and storage. The optional `remoteAuth` host owns process-local creden
 
 Service table and file map: [`packages/core/README.md`](../packages/core/README.md).
 
+## Renderer keyboard preference
+
+Settings General's Send with Enter uses the existing device-local
+`cortex.pref.general.enter` key, not an engine setting. Live Chat, Work, Bot and Code
+message fields preserve internal newlines. Enabled Enter submits through the existing
+admission path; disabled Enter and Shift+Enter insert newlines. Explicit Send remains
+available. Composition, repeated and modified Enter do not submit.
+Missing preference defaults to enabled; malformed/unreadable storage uses newline-only
+behavior with an unavailable message. Writes publish only after accepted storage;
+preview controls remain temporary. This does not change prompt admission or permissions.
+
 ## Internal remote sessions
 
 `core.remoteSessions` uses the optional main-only `remoteChat` host; desktop supplies the

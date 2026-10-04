@@ -1,7 +1,7 @@
 import { z } from "zod"
 import {
   ErrorCode, newId, RemoteEpoch, RemoteFile, RemoteFinish, RemoteHistoryWindow, RemoteMessageView,
-  RemoteModel, RemoteNoticeText, RemotePart, RemotePromptInput, RemoteSessionCreateInput,
+  RemoteModel, RemoteNoticeText, RemotePart, RemotePromptInput, RemoteSessionCreateInput, RemoteUploadInput,
   type RemoteOutcome, type RemoteSessionView,
 } from "@cortex/schema"
 import type { Bus } from "./bus"
@@ -12,7 +12,7 @@ type Admission = { conversationID: string; assistantID: string }
 type Observer = { admitted(ids: Admission): void; event(event: unknown): void; cursor?(id: string): void }
 type HostResult = { admission: Admission; terminal: unknown; projection?: "limited" }
 type HostFile = { id: string; filename: string; contentType: string; byteSize: number; conversationID?: string }
-type HostTurn = { message: string; modelSlug: string; effort?: "low" | "medium" | "high"; attachmentIDs: string[]; conversationID?: string }
+type HostTurn = { message: string; modelSlug: string; oneOffModelSlug?: string; effort?: "low" | "medium" | "high"; attachmentIDs: string[]; conversationID?: string }
 export type CoreRemoteDelivery = {
   readonly admissionState: "pending" | "refused" | "uncertain" | "admitted"
   readonly completion: Promise<HostResult>
@@ -37,7 +37,7 @@ const AdmissionSchema = z.object({ conversationID: RemoteHistoryWindow.shape.con
 const Count = z.number().int().nonnegative().safe()
 const Duration = z.number().finite().nonnegative()
 const Text = z.string().max(16 * 1024 * 1024)
-const Upload = z.object({ body: z.instanceof(Blob).refine((b) => b.size > 0 && b.size <= 8 * 1024 * 1024), filename: RemoteFile.shape.filename }).strict()
+const Upload = z.object({ body: z.instanceof(Blob).refine((b) => b.size > 0 && b.size <= 8 * 1024 * 1024), filename: RemoteFile.shape.filename, oneOffModelSlug: RemoteUploadInput.shape.oneOffModelSlug }).strict()
 const Envelope = z.object({ type: z.string().min(1).max(100), message_id: AdmissionSchema.shape.assistantID.optional(), conversation_id: AdmissionSchema.shape.conversationID.optional() })
 const Terminal = z.discriminatedUnion("type", [
   z.object({ type: z.literal("done"), message_id: AdmissionSchema.shape.assistantID, finish_reason: RemoteFinish }),
@@ -149,7 +149,7 @@ export class RemoteSessionService {
   async upload(id: string, input: unknown): Promise<RemoteFile> {
     const record = this.record(id), value = parse(Upload, input, "invalid_request"), owner = record.owner
     if (this.pending || record.uploads) throw problem("session_busy")
-    if (owner.catalog?.get(record.view.modelSlug)?.vision !== true) throw problem("model_no_image_input")
+    if (owner.catalog?.get(value.oneOffModelSlug ?? record.view.modelSlug)?.vision !== true) throw problem("model_no_image_input")
     const conversationID = record.view.conversationID
     const body = value.body.slice(0, value.body.size, value.body.type)
     record.uploads++

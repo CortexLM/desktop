@@ -3,7 +3,9 @@ import { CortexError } from "./error"
 import type { Storage } from "./storage"
 
 const DEFAULT: ConnectionMode = { mode: "local", signedIn: false }
-export const CLOUD_URL = "https://api.cortex.foundation"
+declare const __CORTEX_CLOUD_ORIGIN__: string
+export const PRODUCTION_CLOUD_URL = "https://api.cortex.foundation"
+export const CLOUD_URL = typeof __CORTEX_CLOUD_ORIGIN__ === "undefined" ? PRODUCTION_CLOUD_URL : __CORTEX_CLOUD_ORIGIN__
 
 /** Host-provided probe (desktop main uses the Cortex SDK). Returns reachable/unreachable/incompatible and remote model ids. */
 export type RemoteProbe = (url: string) => Promise<{ status: "reachable" | "unreachable" | "incompatible"; authRequired?: boolean; models?: { id: string; name: string }[] }>
@@ -52,7 +54,7 @@ export class ConnectionService {
 
   auth(): RemoteAuthState {
     const url = origin(this.selection())
-    return url && this.remoteAuth ? RemoteAuthState.parse(this.remoteAuth.state(url)) : { status: "signed_out", signedIn: false }
+    return url && this.remoteAuth ? RemoteAuthState.parse(this.remoteAuth.state(url)) : { status: "signed_out", signedIn: false, owner: null }
   }
   async authenticate(input: unknown): Promise<RemoteAuthState> {
     const body = RemoteAuthInput.parse(input)

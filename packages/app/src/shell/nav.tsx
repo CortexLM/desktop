@@ -3,8 +3,8 @@ import type { Mode } from "../kit/ui";
 import type { ThemePref } from "../App";
 
 export type Route = string;
-export type Nav = { go: typeof go; route: Route; mode: Mode; params: URLSearchParams; themePref: ThemePref };
-export const NavCtx = React.createContext<Nav>({ go: () => {}, route: "home", mode: "Cortex", params: new URLSearchParams(), themePref: "system" });
+export type Nav = { go: typeof go; route: Route; mode: Mode; params: URLSearchParams; themePref: ThemePref; entryKey: string };
+export const NavCtx = React.createContext<Nav>({ go: () => {}, route: "home", mode: "Cortex", params: new URLSearchParams(), themePref: "system", entryKey: "" });
 export const useNav = () => React.useContext(NavCtx);
 
 // ponytail: Electron supplies Navigation; remove this narrow type when lib.dom declares it.

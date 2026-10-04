@@ -23,7 +23,9 @@ Settings sections (`screens/system/settings.tsx`): General, Appearance, **Provid
 models** (live), **Connection** (live), Bot, Notifications, Privacy, Shortcuts, Account.
 Privacy Memory and System Memory share the persisted engine preference for future use
 of saved Bot notes; manual note management remains available while paused. Other execution
-toggles in General, Bot, Notifications and Privacy remain unwired. See `docs/engine.md`,
+toggles in General, Bot, Notifications and Privacy remain unwired, except General's
+Send with Enter, which controls live multiline composers through a device-local preference.
+See `docs/engine.md`,
 `docs/providers.md`, `docs/connection-modes.md`.
 
 ## 6.2 Blocked on design — say so, build nothing

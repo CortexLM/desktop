@@ -51,6 +51,9 @@ external database. Details: [`docs/architecture.md`](./docs/architecture.md).
 0.2.0, used by the main-process remote probe ([`vendor/README.md`](./vendor/README.md)).
 The SDK-owner handoff against schema blob `c8f6a7f0` passes scoped desktop admission;
 earlier archives remain retained. Main owns email-code sign-in and sanitized authentication state.
+G2's later canonical schema `232505fc` reconciles the screenshot contract; its only delta
+from the admitted schema is VNC-description prose. SDK successor and exact desktop design
+import decisions remain separate. See [`docs/connection-modes.md`](./docs/connection-modes.md).
 The new SDK fixes media-terminal delivery, raw screenshot upload, generated turn-body typing
 and native auth response cloning. Precise account/history contracts remain incomplete.
 An internal `RemoteSession.bind(origin)` supplies epoch-owned model discovery, raw image
@@ -58,7 +61,13 @@ upload, streamed turns/replay and limited known-history reads. Core's `remoteSes
 keeps projections in memory, admits local user IDs only after backend headers and marks
 resumed/unsupported output partial. SDK 0.3.5 hides discarded-frame notifications, so its
 projection always remains limited. Fresh image-history follow-ups refuse pending backend
-pixel hydration. It has no public route or renderer caller yet.
+pixel hydration. Nine JSON routes under `/api/remote` expose the process-owned service
+through the typed client, plus a strict base64 upload route capped at 8 MiB before
+decoding. Optional one-off model selection reaches main without changing recorded
+model/effort or original-request replay. A scoped Chat renderer now calls these routes;
+full acceptance remains in progress as recorded below.
+The earlier adapter increment passed five adapter tests and 304 units, with scoped review approval; see
+`evidence/auth-owner-followup/remote-api-adapter.md`.
 Remote model routing/inference and continuation screens remain active delivery work; the dependency
 handoff and main-only implementation sequence are tracked in [`docs/connection-modes.md`](./docs/connection-modes.md#active-remote-integration).
 
@@ -105,6 +114,8 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 
 | Variable | Read in | Effect |
 | --- | --- | --- |
+| `CORTEX_RELEASE_CHANNEL` | `packages/desktop/build.mjs` | Build-time `production` (default) or `staging`; staging isolates default user data under `Cortex-staging` |
+| `CORTEX_STAGING_API_ORIGIN` | same | Required non-production HTTPS origin for staging; embedded in main only, invalid or ambiguous configuration fails build |
 | `CORTEX_DATA_DIR` | `packages/desktop/src/main.ts`, `scripts/dev-api.ts` | Engine data dir (default `<userData>/engine`) |
 | `CORTEX_CATALOG_URL` | same | Override `https://models.dev/api.json` |
 | `CORTEX_LOCALE` | `main.ts` | Force the native menu locale |
@@ -252,9 +263,25 @@ Its original captures and later scoped correction hashes are distinct; simulated
 diagnostics, streams and approvals establish no API availability.
 
 Email-code sign-in uses the main-only `RemoteSession`, exposed by `GET/POST /api/connection/auth`.
-Only sanitized status, active `signedIn` and email cross IPC; sessions expire on process exit.
-Local-password, email-verification and MFA/enrollment screens await approved integration;
-unsupported continuations say unavailable. Chat/model routing still uses local providers.
+Sanitized status, active `signedIn`, email and process-local ownership identifiers cross IPC;
+sessions expire on process exit. Submissions carry the displayed origin/revision; cancellation
+targets a distinct candidate identity, including initial dispatch. Ownerless initial-read Cancel
+leaves locally without clearing an unseen candidate. Ownership passes 165 local Electron cases;
+see `evidence/auth-owner-followup/renderer-contract.md`. Existing Login now supports email
+verification with 1–128 trimmed characters and six-digit MFA challenges. Fourteen targeted
+cases and eight-language/two-theme keyboard checks pass; expanded full regression passes
+169 Electron cases. Local password and MFA enrollment remain unavailable; no continuation expiry is
+inferred. See `evidence/auth-owner-followup/continuation-adoption-map.md`.
+Unprojected Home now routes signed-in remote connections through main's remote Chat
+service; explicit Chat links carry source/epoch/id. Existing local/project Chat,
+Code, Work and Bot retain local providers. Separate remote recents/History remain
+process-only. Detach/resume preserve the original request; historical-image refusal
+offers an explicit draft-preserving fresh Chat. Arbitrary navigation does not persist
+remote drafts. The final local regression passes 195 Electron cases; 316 units pass
+with one optional skip. Sixteen localized frames and scoped scroll/contrast checks
+are verified. The deferred auth-owner gate is approved and matching Linux package
+smoke passes. Installed-native and real-account acceptance remain separate. See
+`evidence/auth-owner-followup/remote-renderer-status.md`.
 
 - **No seeded data in live mode.** Fixtures live in
   `packages/i18n/locales/<locale>/fixtures/*.json` and are loaded only in preview
@@ -282,7 +309,7 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   IPC bounds are not supplied. Text verification is tracked separately in
   [`evidence/text-live-followup/README.md`](./evidence/text-live-followup/README.md).
 - **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
-  `selfhost` (URL). Prompts still use the local engine and provider settings; email-code auth
+  `selfhost` (URL). Local prompts use provider settings; remote Chat uses main-only transport. Email-code auth
   is process-local to main, `signedIn` derives from its active validated session. Backend URLs must be HTTP(S)
   origins without credentials, paths, queries or fragments; probes refuse redirects. Self-host
   discovery lists configured registry models. See [`docs/connection-modes.md`](./docs/connection-modes.md).
@@ -295,6 +322,14 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   files. Capability refusals never silently discard images. See [`docs/providers.md`](./docs/providers.md).
   Code/Work/Bot text drafts also wait for accepted sends; missing models, cancelled folder
   selection and engine refusals retain the draft.
+- **Keyboard preference**: General's Send with Enter controls live Chat/Work/Bot/Code
+  textareas through the existing device-local key. Shift+Enter inserts newlines; disabled
+  Enter does too. Composition/repeated/modified Enter never submits. Preview stays local
+  to its mounted state; failed storage writes retain the accepted setting and unreadable
+  storage uses explicit Send with visible feedback. Local verification passes 162 Electron
+  cases, 295 units plus one optional skip, types/lint/i18n and Linux package/smoke;
+  scoped source/visual review approves twelve images. Native IME and matching macOS/CI
+  acceptance remain open; earlier package evidence stays bound to `9e4c438`.
 - **Computer use** via Cua Driver is registered disabled; input actions always ask and
   "always" is never stored. See [`docs/computer-use.md`](./docs/computer-use.md).
 - **i18n**: English source; catalogs and preview fixtures exist for all eight locales:
@@ -433,18 +468,23 @@ bytes; failed automation and unreached assertions remain explicit. Device restor
 and lease release pass. Independent review accepts this bounded composite, preserving
 the coordinator-attested manual GUI sequence and failed collector status. See
 [`evidence/files-live-followup/README.md`](./evidence/files-live-followup/README.md).
-Documentary closure `f2c1bc8` passes CI`37160709132` with all520 application inputs
-unchanged. Saved text work has295 passing units plus one optional skip, clean lint/types/
+Documentary closure `f2c1bc8` passes CI `37160709132` with all 520 application inputs
+unchanged. Saved text work has 295 passing units plus one optional skip, clean lint/types/
 i18n and twenty passing targeted Electron cases (nine text, eleven image regressions).
-Full local regression passes152 cases/426 registered state visits in one worker, without
+Full local regression passes 152 cases/426 registered state visits in one worker, without
 skips/retries/flaky outcomes.
-Preview review accepts13 captures/12 references/one Ask gap, with four Code interiors
-pixel-exact to frozen. Local image review, matching CI and installed-native checks remain pending. See
+Preview review accepts 13 captures/12 references/one Ask gap, with four Code interiors
+pixel-exact to frozen. Independent local review accepts 217 frames/37 full-size occurrences,
+verifying 524 inputs and 90 build members. Application `9e4c438` passes matching CI `37164391845`;
+independent CI artifact review and Mac package admission pass their bounded scopes.
+The first installed text attempt fails in its SSH clipboard helper before captures;
+cleanup passes, and the same helper succeeds in a separate GUI-context diagnostic.
+Corrected collector execution and installed-native acceptance remain pending. See
 [`evidence/text-live-followup/README.md`](./evidence/text-live-followup/README.md).
 
 ## CI, packaging and releases
 
-`.github/workflows/ci.yml` is the only workflow:
+`.github/workflows/ci.yml` remains the required acceptance workflow:
 
 | Job | Runner | Runs |
 | --- | --- | --- |
@@ -457,10 +497,17 @@ X desktop. It installs CJK fallback fonts and retains a font/package inventory. 
 locale test checks glyph rasters at weights 400/500; layout geometry alone can pass with
 missing glyphs. See [`docs/i18n.md`](./docs/i18n.md).
 
-**Release and signing are not configured.** The old build/publish workflows were removed;
+**Production release and signing are not configured.** The old build/publish workflows were removed;
 CI packages with `--publish never`, `-c.mac.identity=null`, `-c.mac.notarize=false`.
 The old publish actions, `publish:` block and workflow README are removed. No auto-updater
 is wired in main; no Windows CI job exists. Workflow configuration is not a passing run.
+
+`publish-staging.yml` is an explicit main-only dispatch gated by exact-SHA successful
+CI. It builds unsigned Linux x64 AppImage/deb artifacts using a compiled staging API
+origin and separate default profile. Publishing additionally requires an enabled
+feed, environment reviewers, isolated staging bucket and distinct staging-only
+credentials. No production secret fallback is used. Hosted dispatch/storage mapping
+remain operator prerequisites; see [`docs/staging-release.md`](./docs/staging-release.md).
 
 electron-builder packs `packages/desktop/dist` + `packages/app/dist`, copies locales to
 `resources/locales` without source stamps or fixtures; `skills/summarize/SKILL.md` goes to

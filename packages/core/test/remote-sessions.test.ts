@@ -43,10 +43,11 @@ function setup() {
   const history = vi.fn<CoreRemoteBinding["history"]>()
   const turn = vi.fn<CoreRemoteBinding["turn"]>((_input, observer) => { const control = delivery(observer); controls.push(control); return control.handle })
   const make = () => { current = { epoch: `epoch-${++version}`, signal: signal.signal, models, upload, history, turn }; signedIn = true }
+  const owner = { origin: CLOUD_URL, revision: crypto.randomUUID() }
   const host: CoreRemoteHost & { state(): RemoteAuthState; authenticate(): Promise<RemoteAuthState>; clear(): void } = {
     bind: vi.fn((origin: string) => { if (!signedIn || origin !== CLOUD_URL) throw new CortexError("provider_auth_failed", "private host detail"); return current }),
-    state: () => ({ status: signedIn ? "signed_in" : "signed_out", signedIn }),
-    authenticate: async () => ({ status: "signed_out", signedIn: false }),
+    state: () => ({ status: signedIn ? "signed_in" : "signed_out", signedIn, owner }),
+    authenticate: async () => ({ status: "signed_out", signedIn: false, owner }),
     clear: vi.fn(() => { signedIn = false; signal.abort(); signal = new AbortController() }),
   }
   const network = vi.fn<typeof fetch>(() => { throw new Error("Unexpected local provider/network access") })
@@ -135,6 +136,70 @@ it("validates catalogue, epoch, effort and input before main; preserves the loca
   const before = vi.mocked(f.host.bind).mock.calls.length
   await expect(f.service.models()).rejects.toMatchObject({ code: "invalid_request" })
   expect(vi.mocked(f.host.bind).mock.calls).toHaveLength(before)
+})
+
+it("gates uploads on the selected one-off capability without changing the recorded model", async () => {
+  const f = setup()
+  f.models.mockResolvedValue([
+    { ...model, vision: false },
+    { ...model, slug: "vision", vision: true },
+    { ...model, slug: "unknown", vision: "unknown" },
+  ])
+  const session = await f.create()
+  const input = { body: new Blob(["image"], { type: "image/png" }), filename: "image.png" }
+  for (const oneOffModelSlug of [undefined, model.slug, "unknown", "missing"]) {
+    await expect(f.service.upload(session.id, { ...input, oneOffModelSlug }))
+      .rejects.toMatchObject({ code: "model_no_image_input" })
+  }
+  for (const oneOffModelSlug of ["", " ", "x".repeat(1025), null, 1]) {
+    await expect(f.service.upload(session.id, { ...input, oneOffModelSlug }))
+      .rejects.toMatchObject({ code: "invalid_request" })
+    await expect(f.service.prompt(session.id, { message: "text", attachmentIDs: [], oneOffModelSlug }))
+      .rejects.toMatchObject({ code: "invalid_request" })
+  }
+  expect(f.upload).not.toHaveBeenCalled()
+  expect(f.turn).not.toHaveBeenCalled()
+  const file = await f.service.upload(session.id, { ...input, oneOffModelSlug: " vision " })
+  expect(file.filename).toBe(input.filename)
+  expect(f.upload).toHaveBeenCalledTimes(1)
+  const uploaded = f.upload.mock.calls[0][0]
+  expect(uploaded).toEqual({ filename: input.filename, body: expect.any(Blob), conversationID: undefined })
+  expect(uploaded.body.type).toBe(input.body.type)
+  expect(await uploaded.body.text()).toBe(await input.body.text())
+  expect(f.service.get(session.id)).toEqual(session)
+  await expect(f.service.upload(session.id, input)).rejects.toMatchObject({ code: "model_no_image_input" })
+})
+
+it("keeps the one-off on the original delivery and omits it on the next ordinary turn", async () => {
+  const f = setup(), session = await f.create()
+  const draft = { message: "original", attachmentIDs: [] as string[], oneOffModelSlug: "alternate" }
+  const pending = f.service.prompt(session.id, draft), first = f.controls[0]
+  draft.oneOffModelSlug = "changed"
+  expect(f.turn.mock.calls[0][0]).toEqual({
+    message: "original", attachmentIDs: [], oneOffModelSlug: "alternate",
+    modelSlug: model.slug, effort: "high", conversationID: undefined,
+  })
+  first.admit()
+  const accepted = await pending
+  first.reject("admitted")
+  expect(await accepted.done).toMatchObject({ state: "uncertain" })
+  const replay = f.service.resume(session.id)
+  first.admit()
+  const resumed = await replay
+  expect(resumed.messageID).toBe(accepted.messageID)
+  first.emit(finish()); first.resolve(); await resumed.done
+  expect(first.handle.resume).toHaveBeenCalledTimes(1)
+  expect(f.turn).toHaveBeenCalledTimes(1)
+  expect(f.service.get(session.id)).toMatchObject({ modelSlug: model.slug, effort: "high" })
+  expect(f.service.get(session.id)).not.toHaveProperty("oneOffModelSlug")
+  const next = f.service.prompt(session.id, { message: "ordinary", attachmentIDs: [] })
+  expect(f.turn.mock.calls[1][0]).toEqual({
+    message: "ordinary", attachmentIDs: [], modelSlug: model.slug, effort: "high", conversationID: ids().conversationID,
+  })
+  const second = f.controls[1], admission = { ...ids(), assistantID: ids(2).assistantID }
+  second.admit(admission)
+  const ordinary = await next, terminal = { ...finish(), message_id: admission.assistantID }
+  second.emit(terminal); second.resolve(terminal, admission); await ordinary.done
 })
 
 it("owns uploaded file IDs per session and snapshots bytes/metadata without fetching caller URLs", async () => {

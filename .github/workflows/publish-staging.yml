@@ -1,0 +1,165 @@
+name: Publish staging feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Full lowercase 40-character commit SHA already on main with successful CI
+        required: true
+        type: string
+      publish_feed:
+        description: Publish to the approved isolated staging bucket after environment approval
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-staging-feed
+  cancel-in-progress: false
+
+env:
+  INPUT_SHA: ${{ inputs.sha }}
+  PUBLISH_FEED: ${{ inputs.publish_feed }}
+  STAGING_FEED_ENABLED: ${{ vars.STAGING_FEED_ENABLED }}
+  STAGING_SOFTWARE_BUCKET: ${{ vars.STAGING_SOFTWARE_BUCKET }}
+  CORTEX_STAGING_API_ORIGIN: ${{ vars.CORTEX_STAGING_API_ORIGIN }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Require main workflow dispatch and full SHA
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == refs/heads/main ]]
+          [[ "$INPUT_SHA" =~ ^[0-9a-f]{40}$ ]]
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify main ancestry and configuration
+        run: |
+          set -euo pipefail
+          git cat-file -e "$INPUT_SHA^{commit}"
+          git merge-base --is-ancestor "$INPUT_SHA" origin/main
+          node scripts/staging-config.mjs config
+      - name: Require successful existing CI at exactly this SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          RUN=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?head_sha=$INPUT_SHA&branch=main&event=push&per_page=100" \
+            --jq '.workflow_runs | sort_by(.id) | last | select(.status == "completed" and .conclusion == "success") | .id')
+          [[ "$RUN" =~ ^[0-9]+$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN" --jq '.head_sha' | \
+            (read -r SHA; [[ "$SHA" == "$INPUT_SHA" ]])
+          gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$RUN/jobs?filter=latest&per_page=100" \
+            --jq '.jobs[] | [.name, .conclusion] | @tsv' > ci-jobs.tsv
+          for NAME in 'Lint, typecheck, unit tests, i18n audit' 'E2E (Playwright + Electron, Linux)' 'macOS build, package, launch'; do
+            awk -F '\t' -v name="$NAME" '$1 == name && $2 == "success" { found=1 } END { exit !found }' ci-jobs.tsv
+          done
+          if [[ "$PUBLISH_FEED" == true ]]; then
+            gh api "repos/$GITHUB_REPOSITORY/environments/staging" \
+              --jq '[.protection_rules[] | select(.type == "required_reviewers" and (.reviewers | length) > 0)] | length' | \
+              (read -r COUNT; [[ "$COUNT" -gt 0 ]])
+          fi
+
+  package:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CORTEX_RELEASE_CHANNEL: staging
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select verified main commit without an input-controlled checkout action
+        run: |
+          set -euo pipefail
+          [[ "$INPUT_SHA" =~ ^[0-9a-f]{40}$ ]]
+          git cat-file -e "$INPUT_SHA^{commit}"
+          git merge-base --is-ancestor "$INPUT_SHA" origin/main
+          git switch --detach "$INPUT_SHA"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.2
+      # No environment, publication credentials, or dependency cache in this job.
+      - run: node scripts/staging-config.mjs config
+      - run: bun install --frozen-lockfile && node node_modules/electron/install.js
+      - run: bun run build
+        env:
+          NODE_ENV: production
+      - name: Build explicit unsigned Linux x64 installers and generic feed
+        run: bunx --no-install electron-builder --linux AppImage deb --x64 --publish never --config .staging-builder.json
+      - name: Prove feed references existing installers
+        run: node scripts/staging-config.mjs inventory dist
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: staging-linux-${{ inputs.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            dist/Cortex-${{ inputs.sha }}-x64.AppImage
+            dist/Cortex-${{ inputs.sha }}-x64.deb
+            dist/latest-linux.yml
+            dist/inventory.json
+
+  publish:
+    needs: [verify, package]
+    if: ${{ inputs.publish_feed }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    # Must have required reviewers; verify refuses publication without that protection.
+    environment: staging
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: scripts/staging-config.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: staging-linux-${{ inputs.sha }}
+          path: artifacts
+      - name: Revalidate publication configuration and exact artifact inventory
+        run: |
+          node scripts/staging-config.mjs config
+          node scripts/staging-config.mjs verify artifacts
+      - name: Publish immutable installers before mutable manifest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_R2_SECRET_ACCESS_KEY }}
+          STAGING_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.STAGING_CLOUDFLARE_ACCOUNT_ID }}
+          AWS_DEFAULT_REGION: auto
+          AWS_EC2_METADATA_DISABLED: 'true'
+        run: |
+          set -euo pipefail
+          [[ -n "$AWS_ACCESS_KEY_ID" && -n "$AWS_SECRET_ACCESS_KEY" ]]
+          [[ "$STAGING_CLOUDFLARE_ACCOUNT_ID" =~ ^[0-9a-f]{32}$ ]]
+          [[ "$STAGING_FEED_ENABLED" == true && "$STAGING_SOFTWARE_BUCKET" == cortex-software-staging ]]
+          ENDPOINT="https://${STAGING_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          for EXT in AppImage deb; do
+            FILE="Cortex-${INPUT_SHA}-x64.$EXT"
+            aws --endpoint-url "$ENDPOINT" s3api put-object \
+              --bucket "$STAGING_SOFTWARE_BUCKET" --key "staging/$FILE" --body "artifacts/$FILE" \
+              --if-none-match '*' --cache-control 'public,max-age=31536000,immutable'
+          done
+          aws --endpoint-url "$ENDPOINT" s3api put-object \
+            --bucket "$STAGING_SOFTWARE_BUCKET" --key staging/latest-linux.yml \
+            --body artifacts/latest-linux.yml --content-type application/yaml --cache-control no-cache

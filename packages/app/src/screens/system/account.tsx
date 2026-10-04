@@ -4,7 +4,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import type { RemoteAuthInput, RemoteAuthState } from "@cortex/schema";
 import { Icon, Switch, Segmented, Tip, useToast } from "../../kit/ui";
 import { Mascot } from "../../mascot/Mascot";
-import { useNav } from "../../shell/nav";
+import { navigation, readHash, useNav } from "../../shell/nav";
 import { useVariant } from "../../registry";
 import { useT } from "../../i18n";
 import { isPreview } from "../../preview";
@@ -104,7 +104,7 @@ function Otp({ value, onChange, err, disabled }: { value: string; onChange: (v: 
 
 export function LoginScreen() {
   const t = useT();
-  const { go } = useNav();
+  const { go, entryKey } = useNav();
   const toast = useToast();
   const fx = useFx();
   const bot = useBotCfg();
@@ -113,17 +113,28 @@ export function LoginScreen() {
   const [auth, setAuth] = React.useState<RemoteAuthState | null>(null);
   const [authError, setAuthError] = React.useState("");
   const request = React.useRef<symbol | null>(null);
-  const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "code_sent" ? "code" : auth && auth.status !== "signed_out" ? "unavailable" : "email";
+  const startedCandidate = React.useRef<{ origin: string; candidate: string } | null>(null);
+  const v = preview ? variant : auth?.status === "signed_in" ? "signed-in" : auth?.status === "code_sent" ? "code" : auth?.status === "verify_email" || auth?.status === "mfa_challenge" ? auth.status : auth && auth.status !== "signed_out" ? "unavailable" : "email";
   const seed = (x: string) => (preview ? (x === "error" ? fx.login.bad : x === "loading" ? fx.login.good : "") : "");
   const [email, setEmail] = React.useState(preview ? fx.login.email : "");
   const [code, setCode] = React.useState(seed(v));
   const [busy, setBusy] = React.useState(v === "loading");
+  React.useLayoutEffect(() => {
+    if (preview) return;
+    const changed = () => {
+      if (readHash().entryKey !== entryKey) request.current = null;
+      else setBusy(false);
+    };
+    navigation.addEventListener("currententrychange", changed);
+    return () => navigation.removeEventListener("currententrychange", changed);
+  }, [entryKey, preview]);
+  const continuationValid = v === "verify_email" ? code.trim().length >= 1 && code.trim().length <= 128 : /^\d{6}$/.test(code);
   React.useEffect(() => { if (preview) { setCode(seed(v)); setBusy(v === "loading"); } }, [v]); // eslint-disable-line react-hooks/exhaustive-deps
   const loadAuth = React.useCallback(() => {
     const owner = Symbol(); request.current = owner; setBusy(true); setAuthError("");
     api.connection.auth.get().then((state) => {
       if (request.current !== owner) return;
-      setAuth(state); setEmail(state.email ?? "");
+      setAuth(state); setEmail(state.email ?? ""); setCode("");
     }, () => { if (request.current === owner) setAuthError("system.auth.failed"); }).finally(() => {
       if (request.current === owner) { request.current = null; setBusy(false); }
     });
@@ -132,25 +143,52 @@ export function LoginScreen() {
     if (!preview) loadAuth();
     return () => { request.current = null; };
   }, [preview, loadAuth]);
-  const submit = async (input: RemoteAuthInput, leave = false) => {
+  type FormInput = RemoteAuthInput extends infer Input ? Input extends { action: string } ? Omit<Input, "owner" | "origin" | "candidate"> : never : never;
+  const submit = async (input: FormInput, leave = false) => {
+    if (!preview && readHash().entryKey !== entryKey) return;
     if (input.action !== "cancel" && (request.current || !auth)) return;
     const owner = Symbol(); request.current = owner; setBusy(true); setAuthError("");
     try {
+      if (input.action === "cancel") {
+        const target = startedCandidate.current ?? (auth?.owner && auth.candidate ? { origin: auth.owner.origin, candidate: auth.candidate } : null);
+        if (!target) { if (leave) go("home"); return; }
+        const state = await api.connection.auth.submit({ action: "cancel", ...target });
+        if (request.current !== owner) return;
+        startedCandidate.current = null;
+        setAuth(state); setCode("");
+        if (leave) go("home");
+        return;
+      }
+      let captured = auth;
       if (input.action === "email") {
         const connection = await api.connection.get();
         if (request.current !== owner) return;
-        if (connection.mode === "local") await api.connection.set({ mode: "cloud", signedIn: false });
+        if (connection.mode === "local") {
+          await api.connection.set({ mode: "cloud", signedIn: false });
+          if (request.current !== owner) return;
+        }
+        if (connection.mode === "local" || !captured?.owner) captured = await api.connection.auth.get();
         if (request.current !== owner) return;
       }
-      const localCancel = input.action === "cancel" && (await api.connection.get()).mode === "local";
+      if (!captured?.owner) { setAuthError("system.auth.failed"); return; }
+      if (input.action === "email" || input.action === "local") startedCandidate.current = { origin: captured.owner.origin, candidate: captured.owner.revision };
+      const state = await api.connection.auth.submit(input.action === "logout" ? input : { ...input, owner: captured.owner });
       if (request.current !== owner) return;
-      const state = localCancel ? { status: "signed_out" as const, signedIn: false } : await api.connection.auth.submit(input);
-      if (request.current !== owner) return;
+      startedCandidate.current = null;
       setAuth(state); setCode("");
       if (state.email) setEmail(state.email);
       if (leave) go("home");
     } catch {
-      if (request.current === owner) setAuthError(input.action === "email" ? "system.auth.sendFailed" : "system.auth.failed");
+      if (request.current === owner) {
+        setAuthError(input.action === "email" ? "system.auth.sendFailed" : "system.auth.failed");
+        const state = await api.connection.auth.get().catch(() => null);
+        if (request.current === owner && state) {
+          startedCandidate.current = null;
+          if (state.owner?.revision !== auth?.owner?.revision || state.owner?.origin !== auth?.owner?.origin) setCode("");
+          setAuth(state);
+          if (state.email) setEmail(state.email);
+        }
+      }
     } finally {
       if (request.current === owner) { request.current = null; setBusy(false); }
     }
@@ -195,6 +233,20 @@ export function LoginScreen() {
             <button className="btn primary big" disabled={code.length < 6 || busy} onClick={preview ? () => setV(code === fx.login?.good ? "loading" : "error") : undefined}>{busy ? <><span className="spin" />{t("system.login.signingIn")}</> : t("system.onb.continue")}</button>
           </form>
           <button className="systeme-textbtn" style={{ marginTop: 16, alignSelf: "center" }} onClick={() => { if (preview) setV("email"); else void submit({ action: "cancel" }); }}>{t("system.login.otherEmail")}</button>
+        </>}
+        {!preview && (v === "verify_email" || v === "mfa_challenge") && <>
+          <span className="systeme-logo" aria-hidden />
+          <h1>{t(v === "verify_email" ? "system.auth.verifyEmailTitle" : "system.auth.mfaTitle")}</h1>
+          <p className="systeme-lead">{t(v === "verify_email" ? "system.auth.verifyEmailLead" : "system.auth.mfaLead", { email: auth?.email ?? "" })}</p>
+          <form onSubmit={(e) => { e.preventDefault(); if (continuationValid) void submit({ action: v === "verify_email" ? "verify_email" : "mfa", code: v === "verify_email" ? code.trim() : code }); }}>
+            {v === "verify_email" ? <div className="field">
+              <label htmlFor="systeme-verification">{t("system.auth.verifyEmailCodeLabel")}</label>
+              <input id="systeme-verification" className="input" autoFocus autoComplete="one-time-code" required value={code} disabled={busy} aria-invalid={!!authError} aria-describedby="systeme-verification-hint" onChange={(e) => { setCode(e.target.value); setAuthError(""); }} />
+              <p id="systeme-verification-hint" className="systeme-lead">{t("system.auth.verifyEmailCodeHint")}</p>
+            </div> : <Otp value={code} onChange={(value) => { setCode(value); setAuthError(""); }} err={!!authError} disabled={busy} />}
+            <button className="btn primary big" disabled={busy || !continuationValid}>{busy && <span className="spin" />}{t("system.auth.verifyContinue")}</button>
+          </form>
+          <button className="btn secondary big" onClick={() => void submit({ action: "cancel" })}>{t("system.auth.restart")}</button>
         </>}
         {v === "signed-in" && <>
           <span className="systeme-logo" aria-hidden /><h1>{t("system.auth.signedIn")}</h1>

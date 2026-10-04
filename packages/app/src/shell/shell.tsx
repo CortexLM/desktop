@@ -11,6 +11,7 @@ import { useT } from "../i18n";
 import { isPreview, useFixtures, usePreviewBot } from "../preview";
 import { platform } from "../api";
 import { useSessions, useBots, useProjects } from "../state/live";
+import { useRemoteSessions } from "../state/remote-list";
 import { NotFound } from "./not-found";
 import { previewChatStart, startPreviewChat } from "../components/composer";
 
@@ -84,7 +85,7 @@ export function Shell({ hash, children }: { hash: ReturnType<typeof readHash>; c
   const work = route === "work-home" || route === "home";
 
   return (
-    <NavCtx.Provider value={{ go, route, mode, params, themePref: pref }}>
+    <NavCtx.Provider value={{ go, route, mode, params, themePref: pref, entryKey: hash.entryKey }}>
       <div className="desk" data-host={window.cortex ? "desktop" : "web"} data-platform={platform()} style={{ ["--wall" as string]: `url(/img/${theme === "dark" ? "crepuscule" : "prairie"}.png)` }}>
         <div className="window" data-sidebar={sidebar ? "shown" : "hidden"} data-focus={focus || undefined}>
           <div className="titlebar">
@@ -210,6 +211,7 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
   const previewBot = usePreviewBot();
   const bots = useBots();
   const sessions = useSessions("chat");
+  const remote = useRemoteSessions();
   const projects = useProjects();
   const [open, setOpen] = React.useState(true);
   const start = previewChatStart();
@@ -254,10 +256,21 @@ function CortexNav({ route, go }: { route: Route; go: (r: Route, p?: Record<stri
       <div className="sb-group">
         <Section title={t("shell.nav.recents")} action={<IconBtn icon="plus" label={t("shell.nav.newChat")} onClick={() => go("home")} />} />
         {sessions.state === "ready" && sessions.data.filter((s) => !s.parentID && !s.projectID).slice(0, 12).map((s) => (
-          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
+          <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("source") !== "remote" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />
         ))}
         {sessions.state === "ready" && !sessions.data.length && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
       </div>
+      {remote.state !== "hidden" && <div className="sb-group">
+        <Section title={t("chat.remote.recents")} />
+        {remote.state === "loading" && <div className="sb-empty thinking" role="status">{t("system.variant.loading")}</div>}
+        {remote.state === "error" && <div role="alert"><div className="sb-empty">{t("chat.remote.unavailable")}</div><Row label={t("common.retry")} icon="refresh" onClick={remote.reload} /></div>}
+        {remote.state === "ready" && remote.data.slice(0, 12).map((s) => (
+          <Row key={`${s.epoch}:${s.id}`} label={s.title || t("shell.nav.untitled")} child
+            active={route === "chat" && params.get("source") === "remote" && params.get("epoch") === s.epoch && params.get("id") === s.id}
+            onClick={() => go("chat", { source: "remote", epoch: s.epoch, id: s.id })} />
+        ))}
+        {remote.state === "ready" && !remote.data.length && <div className="sb-empty">{t("shell.nav.noChats")}</div>}
+      </div>}
     </>)}
   </>);
 }
@@ -272,7 +285,7 @@ function ProjectRows({ project, sessions }: { project: Project; sessions: Sessio
       <Icon name={open ? "folder-open" : "folder"} className="ic" /><span className="label">{project.name}</span>
     </button>
     <div id={panel} className="fold" data-closed={!open || undefined} inert={!open}><div>
-      {sessions.map((s) => <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />)}
+      {sessions.map((s) => <Row key={s.id} label={s.title || t("shell.nav.untitled")} child active={route === "chat" && params.get("source") !== "remote" && params.get("id") === s.id} onClick={() => go("chat", { id: s.id })} />)}
       <Row label={t("system.seeAll")} child onClick={() => go("project", { id: project.id })} />
     </div></div>
   </>;

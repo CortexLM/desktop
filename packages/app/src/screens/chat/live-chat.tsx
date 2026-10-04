@@ -15,6 +15,7 @@ import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
 import { ModelComposer, useModels, type ComposerLeaveGuard, type SendOptions } from "./model-composer";
 import { readRaster } from "../files/raster";
 import { isTextMime } from "../files/text-data";
+import { RemoteBoundary } from "./remote-chat";
 
 const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
   "provider_rate_limited", "provider_error", "provider_disabled", "provider_unsupported", "session_busy", "aborted", "tool_failed", "permission_rejected",
@@ -54,6 +55,12 @@ function ErrorCard({ code, onRetry }: { code?: string; onRetry?: () => void }) {
 
 /* ---------------------------------------------------------------- Home */
 export function Home() {
+  const { params, entryKey } = useNav();
+  if (isPreview() || params.has("project")) return <LocalHome />;
+  return <RemoteBoundary key={entryKey} local={<LocalHome />} />;
+}
+
+function LocalHome() {
   const t = useT();
   const fx = useFx();
   const { go, params } = useNav();
@@ -108,9 +115,10 @@ export function Home() {
 
 /* ---------------------------------------------------------------- Chat */
 export function Chat() {
-  const { params, go } = useNav();
+  const { params, go, entryKey } = useNav();
   const id = params.get("id");
   React.useEffect(() => { if (!id && !isPreview()) go("home"); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!isPreview() && params.has("source")) return <RemoteBoundary key={entryKey} explicit />;
   if (id) return <LiveChat key={id} id={id} />;
   const start = previewChatStart();
   return isPreview() ? <PreviewChat start={start} /> : null;
@@ -391,7 +399,7 @@ function LiveChat({ id }: { id: string }) {
           return (
             <div key={m.info.id} className="chat-ucol">
               {files.length > 0 && <div className="chat-ufiles">{files.map((p) => attachment(p, m))}</div>}
-              {text && <div className="msg-user">{text}</div>}
+              {text && <div className="msg-user msg-user-live">{text}</div>}
             </div>
           );
         }

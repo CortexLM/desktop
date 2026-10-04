@@ -26,6 +26,7 @@ type Pending =
   | { status: "verify_email"; token: string }
   | { status: "mfa_challenge" | "mfa_enrollment"; token: string; challengeID: string };
 type Identity = {
+  id: string;
   client: CortexClient;
   lifetime: AbortController;
   email: string;
@@ -48,6 +49,7 @@ const failure = (identity: Identity) => {
 // ponytail: persistence/refresh await admitted contracts; Cloud expiry is not inferred from unverified token claims.
 export class RemoteSession {
   #origin?: string;
+  #revision: string = crypto.randomUUID();
   #active?: Identity;
   #candidate?: Identity;
   #busy?: Identity;
@@ -73,7 +75,7 @@ export class RemoteSession {
   }
 
   #invalidate(identity: Identity): void {
-    if (this.#active === identity) this.#active = undefined;
+    if (this.#active === identity) { this.#active = undefined; this.#revision = crypto.randomUUID(); }
     identity.lifetime.abort(new CortexError("provider_auth_failed", "Remote sign-in is required"));
   }
 
@@ -90,15 +92,13 @@ export class RemoteSession {
     if (!parsed.success) throw new CortexError("invalid_request", "Invalid connection origin");
     const normalized = new URL(parsed.data).origin;
     if (normalized !== this.#origin) { this.clear(); this.#origin = normalized; }
-    if (this.#active?.expiresAt !== undefined && this.#active.expiresAt <= Date.now()) {
-      this.#active.lifetime.abort();
-      this.#active = undefined;
-    }
+    if (this.#active?.expiresAt !== undefined && this.#active.expiresAt <= Date.now()) this.#invalidate(this.#active);
     const candidate = this.#candidate;
-    if (candidate?.pending) return { status: candidate.pending.status, signedIn: !!this.#active, email: candidate.email };
+    const stamp = { owner: { origin: this.#origin!, revision: this.#revision }, ...(candidate ? { candidate: candidate.id } : {}) };
+    if (candidate?.pending) return { ...stamp, status: candidate.pending.status, signedIn: !!this.#active, email: candidate.email };
     return this.#active
-      ? { status: "signed_in", signedIn: true, email: this.#active.email }
-      : { status: "signed_out", signedIn: false };
+      ? { ...stamp, status: "signed_in", signedIn: true, email: this.#active.email }
+      : { ...stamp, status: "signed_out", signedIn: false };
   }
 
   async authenticate(origin: string, input: RemoteAuthInput): Promise<RemoteAuthState> {
@@ -106,14 +106,25 @@ export class RemoteSession {
     if (!parsed.success) throw new CortexError("invalid_request", "Invalid sign-in request");
     input = parsed.data;
     this.state(origin);
-    if (input.action === "cancel") { this.#cancelCandidate(); return this.state(origin); }
     if (input.action === "logout") return this.#logout(origin);
+    if (input.action === "cancel") {
+      if (new URL(input.origin).origin !== this.#origin) throw new CortexError("invalid_request", "Sign-in owner changed");
+      if (input.candidate === this.#candidate?.id) this.#cancelCandidate();
+      else if (input.candidate === this.#revision) this.#revision = crypto.randomUUID();
+      else throw new CortexError("invalid_request", "Sign-in owner changed");
+      return this.state(origin);
+    }
+    if (new URL(input.owner.origin).origin !== this.#origin || input.owner.revision !== this.#revision) {
+      throw new CortexError("invalid_request", "Sign-in owner changed");
+    }
     if (this.#busy) throw new CortexError("conflict", "Sign-in is already in progress");
 
     let candidate = this.#candidate;
     if (input.action === "email" || input.action === "local") {
+      // Starting a replacement consumes the current revision as its cancellation identity.
       this.#cancelCandidate();
-      candidate = this.#create(this.#origin!, input.email);
+      this.#revision = input.owner.revision;
+      candidate = this.#create(this.#origin!, input.email, input.owner.revision);
       this.#candidate = candidate;
     }
     if (!candidate || (input.action === "code" && candidate.pending?.status !== "code_sent")
@@ -123,6 +134,7 @@ export class RemoteSession {
     }
     this.#busy = candidate;
     candidate.responseStatus = 0;
+    const selectedOrigin = this.#origin;
     try {
       let result: z.infer<typeof Interactive> | z.infer<typeof LocalSession> | undefined;
       switch (input.action) {
@@ -153,6 +165,7 @@ export class RemoteSession {
           break;
       }
       candidate.lifetime.signal.throwIfAborted();
+      if (this.#candidate !== candidate || this.#origin !== selectedOrigin) throw new Error("Sign-in owner changed");
       if (result?.status === "session") {
         candidate.token = result.access_token;
         candidate.expiresAt = "expires_at" in result ? Date.parse(result.expires_at) : undefined;
@@ -173,6 +186,7 @@ export class RemoteSession {
       } else {
         candidate.pending = { status: "code_sent" };
       }
+      this.#revision = crypto.randomUUID();
       return this.state(origin);
     } catch {
       const error = failure(candidate);
@@ -190,18 +204,20 @@ export class RemoteSession {
     this.#active?.lifetime.abort();
     this.#busy = this.#candidate = this.#active = undefined;
     this.#origin = undefined;
+    this.#revision = crypto.randomUUID();
   }
 
   #cancelCandidate(): void {
     this.#candidate?.lifetime.abort();
     if (this.#busy === this.#candidate) this.#busy = undefined;
     this.#candidate = undefined;
+    this.#revision = crypto.randomUUID();
   }
 
-  #create(origin: string, email: string): Identity {
+  #create(origin: string, email: string, id: string): Identity {
     const lifetime = new AbortController();
     const identity: Identity = {
-      email, lifetime, responseStatus: 0,
+      id, email, lifetime, responseStatus: 0,
       client: createCortexClient({
         baseUrl: origin, cookieJar: true, auth: { token: () => identity.token, signal: lifetime.signal },
         fetch: async (request) => {

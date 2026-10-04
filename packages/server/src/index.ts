@@ -76,6 +76,26 @@ export function createServer(core: Core): Hono {
       await core.sessions.abort(params.id!)
     },
 
+    "remoteSession.models": () => core.remoteSessions.models(),
+    "remoteSession.list": () => core.remoteSessions.list(),
+    "remoteSession.create": ({ body }) => core.remoteSessions.create(body),
+    "remoteSession.get": ({ params }) => core.remoteSessions.get(params.id!),
+    "remoteSession.messages": ({ params }) => core.remoteSessions.messages(params.id!),
+    "remoteSession.upload": ({ params, body }) => core.remoteSessions.upload(params.id!, {
+      filename: body.filename, body: new Blob([Buffer.from(body.data, "base64")], { type: body.mime }),
+      oneOffModelSlug: body.oneOffModelSlug,
+    }),
+    "remoteSession.prompt": async ({ params, body }) => {
+      const { messageID } = await core.remoteSessions.prompt(params.id!, body)
+      return { messageID }
+    },
+    "remoteSession.detach": ({ params }) => core.remoteSessions.detach(params.id!),
+    "remoteSession.resume": async ({ params }) => {
+      const { messageID } = await core.remoteSessions.resume(params.id!)
+      return { messageID }
+    },
+    "remoteSession.history": ({ params }) => core.remoteSessions.history(params.id!),
+
     "permission.list": () => core.permissions.list(),
     "permission.rules.get": () => core.permissionRules.get(),
     "permission.rules.set": ({ body }) => core.permissionRules.set(body.rules),

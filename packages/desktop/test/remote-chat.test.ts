@@ -37,7 +37,7 @@ const observe = () => {
 };
 const signIn = async (transport?: typeof fetch, base = origin) => {
   const session = new RemoteSession({ fetch: transport }); sessions.push(session);
-  await session.authenticate(base, begin); await session.authenticate(base, code);
+  await session.authenticate(base, { ...begin, owner: session.state(base).owner! }); await session.authenticate(base, { ...code, owner: session.state(base).owner! });
   return session;
 };
 // Test-only routing: the SDK still sees canonical requests and responses; the socket stays loopback.
@@ -110,22 +110,106 @@ describe("private remote Chat binding", () => {
     expect(requests.at(-1)?.headers).toMatchObject({ authorization: "Bearer fixture-token", cookie: "cortex_rt=fixture-cookie" });
     models[0].slug = "mutated";
     routes.set("/v1/auth/magic-auth/verify", json({ detail: "fixture-secret" }, 401));
-    await session.authenticate(origin, { ...begin, email: "replacement@example.test" });
-    await expect(session.authenticate(origin, code)).rejects.toMatchObject({ code: "provider_auth_failed" });
+    await session.authenticate(origin, { ...begin, email: "replacement@example.test", owner: session.state(origin).owner! });
+    await expect(session.authenticate(origin, { ...code, owner: session.state(origin).owner! })).rejects.toMatchObject({ code: "provider_auth_failed" });
     expect(session.bind(origin)).toBe(binding);
     expect(binding.signal.aborted).toBe(false);
     await expect(binding.turn(prompt(), observe().observer).completion).resolves.toMatchObject({ terminal: done });
+  });
+
+  it("replays the exact one-off body and returns to the recorded model on the next ordinary turn", async () => {
+    routes.set("/v1/models", json({ items: [model, { ...model, slug: "alternate", supports_reasoning: false, supports_vision: false }], has_more: false }));
+    const binding = (await signIn()).bind(origin);
+    await binding.models();
+    const cursor = deferred(), o = observe();
+    routes.set("/v1/conversations/turns", (res) => {
+      headers(res); res.write(frame(7, { type: "text_delta", message_id: msg, delta: "partial" }));
+    });
+    const value = { ...prompt(), oneOffModelSlug: "alternate" };
+    const delivery = binding.turn(value, { ...o.observer, cursor(id) { o.observer.cursor?.(id); cursor.resolve(); } });
+    const detached = expect(delivery.completion).rejects.toMatchObject({ code: "aborted" });
+    await cursor.promise;
+    value.message = "edited draft"; value.oneOffModelSlug = "missing";
+    delivery.detach(); await detached;
+    routes.set("/v1/conversations/turns", (res) => { headers(res); res.end(frame(8, done)); });
+    await delivery.resume(o.observer);
+    const [first, replay] = turnRequests();
+    expect(first.path).toBe("/v1/conversations/turns");
+    expect(JSON.parse(first.bytes.toString())).toEqual({
+      message: prompt().message, model_slug: "fixture", reasoning_effort: "high",
+      attachment_ids: [], one_off_model_slug: "alternate",
+    });
+    expect(replay.path).toBe(first.path);
+    expect(replay.bytes).toEqual(first.bytes);
+    expect(replay.headers["idempotency-key"]).toBe(first.headers["idempotency-key"]);
+    expect(replay.headers["last-event-id"]).toBe("7");
+    expect(o.ids).toEqual(Array(2).fill({ conversationID: cnv, assistantID: msg }));
+    expect((await binding.history(cnv)).modelSlug).toBe("fixture");
+    for (const value of [
+      { ...prompt(), conversationID: cnv, modelSlug: "alternate", oneOffModelSlug: "fixture" },
+      { ...prompt(), conversationID: cnv, effort: "low" as const, oneOffModelSlug: "alternate" },
+      { ...prompt(), conversationID: cnv, effort: undefined, oneOffModelSlug: "alternate" },
+    ]) expect(() => binding.turn(value, observe().observer)).toThrow();
+    await binding.turn({ ...prompt(), message: "ordinary", conversationID: cnv }, observe().observer).completion;
+    expect(turnRequests()).toHaveLength(3);
+    expect(turnRequests()[2].path).toBe(`/v1/conversations/${cnv}/turns`);
+    expect(JSON.parse(turnRequests()[2].bytes.toString())).toEqual({
+      message: "ordinary", model_slug: "fixture", reasoning_effort: "high", attachment_ids: [],
+    });
+  });
+
+  it("validates one-off membership and image capability without replacing recorded effort validation", async () => {
+    routes.set("/v1/instance", json({ mode: "self_host", auth: { mode: "local", required: true } }));
+    const capabilities = { reasoning: true, image: false, tools: false, context_tokens: 8192, output_tokens: 1024 };
+    routes.set("/v1/registry/models", json({ items: [
+      { id: "fixture", name: "Recorded", configured: true, capabilities },
+      { id: "vision", name: "Vision", configured: true, capabilities: { ...capabilities, reasoning: false, image: true } },
+      { id: "unknown", name: "Unknown", configured: true, capabilities: { reasoning: false, image: false, tools: false, context_tokens: 0, output_tokens: 0 } },
+      { id: "plain", name: "Plain", configured: true, capabilities: { ...capabilities, reasoning: false } },
+    ], source: "cache", has_more: false }));
+    const binding = (await signIn()).bind(origin), file = await binding.upload(image());
+    for (const oneOffModelSlug of ["", " ", "x".repeat(1025)]) {
+      expect(() => binding.turn({ ...prompt(), oneOffModelSlug }, observe().observer)).toThrow();
+    }
+    for (const oneOffModelSlug of ["missing", "unknown", "plain"]) {
+      const delivery = binding.turn({ ...prompt(), attachmentIDs: [file.id], oneOffModelSlug }, observe().observer);
+      await expect(delivery.completion).rejects.toMatchObject({ code: oneOffModelSlug === "missing" ? "model_not_found" : "model_no_image_input" });
+      expect(delivery.admissionState).toBe("refused");
+    }
+    for (const value of [
+      { ...prompt(), modelSlug: "missing", oneOffModelSlug: "vision" },
+      { ...prompt(), effort: undefined, oneOffModelSlug: "vision" },
+    ]) {
+      const delivery = binding.turn(value, observe().observer);
+      await expect(delivery.completion).rejects.toMatchObject({ code: value.modelSlug === "missing" ? "model_not_found" : "invalid_request" });
+      expect(delivery.admissionState).toBe("refused");
+    }
+    const missing = binding.turn({ ...prompt(), oneOffModelSlug: "missing" }, observe().observer);
+    await expect(missing.completion).rejects.toMatchObject({ code: "model_not_found" });
+    expect(turnRequests()).toHaveLength(0);
+    await binding.turn({ ...prompt(), oneOffModelSlug: "unknown" }, observe().observer).completion;
+    expect(JSON.parse(turnRequests()[0].bytes.toString())).toEqual({
+      message: prompt().message, model_slug: "fixture", reasoning_effort: "high", attachment_ids: [], one_off_model_slug: "unknown",
+    });
+    await binding.turn({ ...prompt(), conversationID: cnv, attachmentIDs: [file.id], oneOffModelSlug: "vision" }, observe().observer).completion;
+    expect(JSON.parse(turnRequests()[1].bytes.toString())).toEqual({
+      message: prompt().message, model_slug: "fixture", reasoning_effort: "high", attachment_ids: [file.id], one_off_model_slug: "vision",
+    });
+    expect((await binding.history(cnv)).modelSlug).toBe("fixture");
   });
 
   it("retains admitted image requirements across text-only follow-ups and refuses missing history hydration", async () => {
     const binding = (await signIn()).bind(origin), file = await binding.upload(image());
     await binding.turn({ ...prompt(), attachmentIDs: [file.id] }, observe().observer).completion;
     for (const vision of [false, true]) {
-      routes.set("/v1/models", json({ items: [{ ...model, supports_vision: vision }], has_more: false }));
+      routes.set("/v1/models", json({ items: [{ ...model, supports_vision: vision }, { ...model, slug: "compatible" }], has_more: false }));
       await binding.models();
       const delivery = binding.turn({ ...prompt(), message: "What about the earlier image?", conversationID: cnv }, observe().observer);
       await expect(delivery.completion).rejects.toMatchObject({ code: vision ? "provider_unsupported" : "model_no_image_input" });
       expect(delivery.admissionState).toBe("refused");
+      const override = binding.turn({ ...prompt(), message: "Use another model", conversationID: cnv, oneOffModelSlug: "compatible" }, observe().observer);
+      await expect(override.completion).rejects.toMatchObject({ code: "provider_unsupported" });
+      expect(override.admissionState).toBe("refused");
       expect(turnRequests()).toHaveLength(1);
     }
   });
@@ -519,17 +603,17 @@ describe("private remote Chat binding", () => {
     routes.set("/v1/models", json({ detail: "fixture-secret" }, 401));
     await expect(first.models()).rejects.toMatchObject({ code: "provider_auth_failed" });
     expect(first.signal.aborted).toBe(true); expect(session.state(origin).signedIn).toBe(false);
-    await session.authenticate(origin, begin); await session.authenticate(origin, code);
+    await session.authenticate(origin, { ...begin, owner: session.state(origin).owner! }); await session.authenticate(origin, { ...code, owner: session.state(origin).owner! });
     const second = session.bind(origin); expect(second.epoch).not.toBe(first.epoch);
     await session.authenticate(origin, { action: "logout" }); expect(second.signal.aborted).toBe(true);
-    await session.authenticate(origin, begin); await session.authenticate(origin, code);
+    await session.authenticate(origin, { ...begin, owner: session.state(origin).owner! }); await session.authenticate(origin, { ...code, owner: session.state(origin).owner! });
     const third = session.bind(origin); session.state("https://other.example"); expect(third.signal.aborted).toBe(true);
     const now = Date.now(); const clock = vi.spyOn(Date, "now").mockReturnValue(now);
     routes.set("/v1/auth/local", json({ status: "session", access_token: "fixture-local", token_type: "Bearer", expires_at: new Date(now + 1000).toISOString() }));
-    await session.authenticate(origin, { action: "local", email: begin.email, password: "fixture" });
+    await session.authenticate(origin, { action: "local", email: begin.email, password: "fixture", owner: session.state(origin).owner! });
     const local = session.bind(origin); clock.mockReturnValue(now + 1000);
     await expect(local.models()).rejects.toMatchObject({ code: "provider_auth_failed" }); expect(local.signal.aborted).toBe(true); clock.mockRestore();
-    await session.authenticate(origin, { action: "local", email: begin.email, password: "fixture" });
+    await session.authenticate(origin, { action: "local", email: begin.email, password: "fixture", owner: session.state(origin).owner! });
     const loggingOut = session.bind(origin), arrived = deferred(); let reply!: http.ServerResponse;
     routes.set("/v1/auth/local/logout", (res) => { reply = res; arrived.resolve(); });
     const logout = session.authenticate(origin, { action: "logout" });
@@ -547,7 +631,7 @@ describe("private remote Chat binding", () => {
     });
     const stale = race.bind(origin), waiting = expect(stale.models()).rejects.toMatchObject({ code: "aborted" });
     await ready.promise;
-    await race.authenticate(origin, { ...begin, email: "new@example.test" }); await race.authenticate(origin, code);
+    await race.authenticate(origin, { ...begin, email: "new@example.test", owner: race.state(origin).owner! }); await race.authenticate(origin, { ...code, owner: race.state(origin).owner! });
     const replacement = race.bind(origin); release.resolve(); await waiting;
     expect(replacement.signal.aborted).toBe(false); expect(race.state(origin).email).toBe("new@example.test");
     routes.set("/v1/models", json({ items: [model], has_more: false }));
@@ -555,7 +639,7 @@ describe("private remote Chat binding", () => {
     routes.set("/v1/conversations/turns", (res) => { headers(res); res.write(frame(1, { type: "text_delta", message_id: msg, delta: "old" })); });
     const delivery = active.turn(prompt(), o.observer), stopped = expect(delivery.completion).rejects.toMatchObject({ code: "aborted" });
     await o.ready.promise;
-    await streaming.authenticate(origin, { ...begin, email: "new@example.test" }); await streaming.authenticate(origin, code);
+    await streaming.authenticate(origin, { ...begin, email: "new@example.test", owner: streaming.state(origin).owner! }); await streaming.authenticate(origin, { ...code, owner: streaming.state(origin).owner! });
     await stopped;
     expect(active.signal.aborted).toBe(true);
     await expect(delivery.resume(o.observer)).rejects.toMatchObject({ code: "aborted" });
