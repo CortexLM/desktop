@@ -2,6 +2,8 @@
 
 Application `d20a012fbb774aa9b348fe1913f85d3476430098` is pushed;
 [CI 37153526225](https://github.com/CortexLM/desktop/actions/runs/37153526225) passes all three jobs.
+Documentary closure `f2c1bc8` preserves all 520 application inputs and passes
+[CI 37160709132](https://github.com/CortexLM/desktop/actions/runs/37160709132).
 [Later commit binding](production/application-pin.json) verifies all 520 tested inputs;
 original dirty-base `d390cce` execution receipts remain unchanged.
 The existing Files image route reads saved local Chat attachments, using existing IPC,
@@ -63,6 +65,9 @@ fully successful automated collector is claimed.
 handoff or exact five-state import permission. Those gates do not block this local slice.
 [Documentary review](documentary-review.md) verifies these scoped claims and current links;
 its recorded source pins precede the final native-composite disposition.
+The [committed-closure review](committed-closure-review.md) found two stale status entries:
+the overview wording is corrected; the native composite summary is explicitly retained
+as a pre-review snapshot, with final acceptance in its independent audit.
 
 Prior Activity proofs retain their own source/build authority. This slice supplies no
 standalone file store, remote hydration, physical erasure or other-format support.

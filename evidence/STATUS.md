@@ -252,8 +252,8 @@ and provider-refresh corrections retain their initial failed receipts. Matching 
 `37153526225` passes all three jobs; local review accepts 195 candidate images/14 primary
 full-size Files views, preview review eight comparisons/one Ask gap. Matching Mac package
 admission passes; CI review accepts 391 images/28 primary full-size Files views, with
-143 cases/426 visits per OS. Installed-native checks remain pending; a separate Save
-diagnostic preserves its failed cancellation assumption and manual recovery. The first
+143 cases/426 visits per OS. Installed-native evidence retains a separate Save
+diagnostic with its failed cancellation assumption and manual recovery. The first
 bounded native run then fails before capture on a one-pixel filename text-Range overrun;
 a later byte-identical normal/unclipped pixel diagnostic resolves that measurement concern.
 The corrected collector records four passing native Fit/zoom captures, then fails at
@@ -262,6 +262,18 @@ download's original bytes. Device restored/released; independent review accepts 
 composite, keeping the failed automation and coordinator-attested GUI scope explicit. The 520
 committed inputs exactly match the tested build; prior Activity native acceptance remains
 separately scoped.
+
+Files documentary closure `f2c1bc8` passes all three jobs in CI`37160709132` with the
+same520 application inputs. [Saved text](text-live-followup/README.md) is the next local
+slice: strict UTF-8 plain text/Markdown source, guarded exact-ID Open, real Copy and
+original-byte Download. Initial295 units plus one optional skip, lint/types/i18n pass;
+twenty targeted Electron cases pass (nine text, eleven image regressions). The old build
+supplies seven initial plus two collector-corrected missing-behavior negatives. Current
+production bytes are frozen; full regression passes152 cases/426 visits in one worker without
+skips/retries/flaky outcomes. Preview review accepts13 captures/12 references/one Ask gap;
+local image review remains active. Linux package/
+smoke passes under Xvfb, with an earlier missing-DISPLAY invocation
+retained. Matching text CI and installed-native proof remain pending.
 
 All six together, all live modes and all requested surfaces are **not complete**. Latest environment
 check still has no supplied `CORTEX_REAL_BASE_URL` or `CORTEX_REAL_API_KEY`. A one-shot
@@ -278,6 +290,11 @@ focus, lifecycle and supplied menus; they do not grant desktop product imports.
 The [18:11 UTC readback](memory-preference-followup/owner-readback-1811/REPORT.md)
 finds the same bounded prerequisites: no new comments, immutable successor or named
 five-state product-import permission; unchanged model bytes and absent credential inputs.
+The [23:23 UTC readback](text-live-followup/owner-readback/REPORT.md) records G2 hardening
+delivery`5bb7ff55` and owner-reported schema`e971ba48`; G3 screenshot-schema reconciliation
+remains pending. No immutable SDK successor or exact five-state import permission arrives
+in that bounded read. Instance404, zero eligible vision/reasoning Chat models and absent
+credential inputs remain separate from the unblocked local text work.
 
 ## Current MCP contract correction
 

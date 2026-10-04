@@ -115,7 +115,7 @@ preview fixtures. Only visible gallery iframes load; offscreen previews unload t
 | `CORTEX_TEST_BACKEND_URL` | `packages/desktop/test/remote.test.ts` | Optional real backend for the SDK probe test |
 | `CUA_DRIVER_PATH` | `packages/core/src/computer-use.ts` | Path to the Cua Driver binary |
 | `PORT` | `scripts/dev-api.ts` | Dev engine port (default 5298) |
-| `E2E_WORKERS` | `playwright.config.ts` | Playwright workers (default 1 on macOS, 4 elsewhere) |
+| `E2E_WORKERS` | `playwright.config.ts` | Playwright workers (default 1 on macOS, 4 elsewhere; Linux CI uses 1 for shared native clipboard/focus) |
 
 `scripts/translate-locales.mjs` reads `TRANSLATE_BASE_URL`, `TRANSLATE_API_KEY`,
 `TRANSLATE_MODEL`; `scripts/verify-real-provider.mjs` reads `CORTEX_REAL_BASE_URL` and
@@ -235,7 +235,7 @@ Bot, archive and metadata-editing UI remain unfinished. See [`docs/engine.md`](.
 | Chat (`chat`) | `home`, `chat`, history, library, research, canvas, voice, image… | Chat home + transcript stream from the engine |
 | Work (`work`) | `work-home`, `work-task`, `automations`, `approvals`, `inbox`, `activity`… | Tasks handed to bots, permission approvals, bounded recent Bot-turn Activity |
 | Bots (`bots`) | `bot`, `bot-new`, `bot-studio`, `bot-roster`, `bot-settings` | Bot CRUD, mascot, memory |
-| Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`… | Saved local Chat static PNG/JPEG/WebP attachments open by exact IDs with Fit/zoom/original download; other viewers remain preview-only |
+| Files (`files`) | `upload`, `file-pdf`, `file-docx`, `file-xlsx`, `file-image`, `file-code`… | Saved local Chat static images and UTF-8 plain text/Markdown source open by exact IDs; Fit/zoom, Copy and original downloads are format-specific; remaining viewers stay preview-only |
 | Cortex Code (`code`) | `code`, `code-session`, `code-tasks`, `code-review`… | Home picks a folder (native dialog) and starts a `code` session |
 | System (`system`) | `settings`, `search`, `command`, `projects`, `login`, `about`… | Settings → **Providers & models**, **Connection**, local Projects creation/instructions/Chat membership and discovery are live |
 
@@ -268,8 +268,19 @@ unsupported continuations say unavailable. Chat/model routing still uses local p
   memory bound. Fit-relative zoom, displayed dimensions and byte size are real. Download
   revalidates the session and preserves original bytes/embedded metadata. Observed deletion
   clears owned pixels/URLs; journal bytes and dispatched downloads are not erased.
-  Standalone file storage, remote hydration and other live format readers remain unfinished.
+  Standalone file storage, remote hydration and remaining format readers remain unfinished.
   See [`docs/engine.md`](./docs/engine.md#saved-local-image-attachments).
+- **Saved text**: `file-code?session=…&message=…&part=…` reads exact local Chat
+  `text/plain` or `text/markdown` attachments. Strict inline base64 and fatal UTF-8 checks
+  precede escaped source display; empty files are valid. Inclusive limits are 5 MB,
+  50,000 CR/LF-logical rows and 100,000 UTF-16 units per row. Copy omits one leading BOM
+  and preserves decoded line endings; Download retains original bytes/BOM. Both actions
+  revalidate the session and share a pending fence. Clipboard refusal retains selectable
+  text; deletion/navigation reject stale results. Native scrolling uses two text nodes,
+  with no interpreted Markdown, inferred language, editor or minimap. Shared byte/name
+  helpers preserve raster acceptance. Model support, standalone storage and full-history
+  IPC bounds are not supplied. Text verification is tracked separately in
+  [`evidence/text-live-followup/README.md`](./evidence/text-live-followup/README.md).
 - **Connection modes**: `local` (default), `cloud` (`https://api.cortex.foundation`),
   `selfhost` (URL). Prompts still use the local engine and provider settings; email-code auth
   is process-local to main, `signedIn` derives from its active validated session. Backend URLs must be HTTP(S)
@@ -422,6 +433,14 @@ bytes; failed automation and unreached assertions remain explicit. Device restor
 and lease release pass. Independent review accepts this bounded composite, preserving
 the coordinator-attested manual GUI sequence and failed collector status. See
 [`evidence/files-live-followup/README.md`](./evidence/files-live-followup/README.md).
+Documentary closure `f2c1bc8` passes CI`37160709132` with all520 application inputs
+unchanged. Saved text work has295 passing units plus one optional skip, clean lint/types/
+i18n and twenty passing targeted Electron cases (nine text, eleven image regressions).
+Full local regression passes152 cases/426 registered state visits in one worker, without
+skips/retries/flaky outcomes.
+Preview review accepts13 captures/12 references/one Ask gap, with four Code interiors
+pixel-exact to frozen. Local image review, matching CI and installed-native checks remain pending. See
+[`evidence/text-live-followup/README.md`](./evidence/text-live-followup/README.md).
 
 ## CI, packaging and releases
 
@@ -433,7 +452,8 @@ the coordinator-attested manual GUI sequence and failed collector status. See
 | `e2e` | `blacksmith-4vcpu-ubuntu-2404` | build + `test:e2e` under `xvfb-run` |
 | `macos` | `blacksmith-6vcpu-macos-26` | build, E2E, unsigned arm64 package, `node scripts/smoke.mjs mac` |
 
-Linux E2E installs system CJK fallback fonts and retains a font/package inventory. Its auth
+Linux CI runs Electron serially because native clipboard and foreground focus share its
+X desktop. It installs CJK fallback fonts and retains a font/package inventory. Its auth
 locale test checks glyph rasters at weights 400/500; layout geometry alone can pass with
 missing glyphs. See [`docs/i18n.md`](./docs/i18n.md).
 

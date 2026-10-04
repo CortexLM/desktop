@@ -1,0 +1,92 @@
+{
+  "applicationBase": "f2c1bc828d2eb64fbe0792031c2e33de63c54957",
+  "dirty": true,
+  "unitPassed": 295,
+  "unitOptionalSkip": 1,
+  "unitFiles": 26,
+  "lint": "passed",
+  "typecheck": "passed at then-current test source",
+  "i18n": {
+    "files": 72,
+    "usedKeys": 2292,
+    "englishKeys": 3460,
+    "problems": 0
+  },
+  "productionBuild": "not yet; baseline distribution d20a012",
+  "files": [
+    {
+      "path": "packages/app/src/screens/files/bytes.ts",
+      "sha256": "8974b2992fc5657de9bd75234f19499aa2c9d43a5763f30d9017e22543339d2a"
+    },
+    {
+      "path": "packages/app/src/screens/files/text-data.ts",
+      "sha256": "2af68813641f15d10ce2f37e25516172f530187722ed6a24120621e7e52e12dc"
+    },
+    {
+      "path": "packages/app/src/screens/files/text-data.test.ts",
+      "sha256": "fd2b6a3d3d5c0b6f635584562744a1dc843c5eafa0bf0725aa779e0a29856e4b"
+    },
+    {
+      "path": "packages/app/src/screens/files/raster.ts",
+      "sha256": "76bd8d3dd214dd91e11183da7187dd2a653cddc91673aaf363dfbbe5c09e454d"
+    },
+    {
+      "path": "packages/app/src/screens/files/text.tsx",
+      "sha256": "7e26ead69a64cbf15d7f6ebbf7bf651980789639480d448e57a9f528d731475d"
+    },
+    {
+      "path": "packages/app/src/screens/files/files.css",
+      "sha256": "247cc3d9e34a01181bf871607cbe5fde28691d177e9d84846b09a39d080cd083"
+    },
+    {
+      "path": "packages/app/src/screens/files/index.tsx",
+      "sha256": "f33a232565478e175af9da31b5fdb9a183e6327641a13a08802c0d664747e228"
+    },
+    {
+      "path": "packages/app/src/screens/chat/live-chat.tsx",
+      "sha256": "e8622687ab5fa179fcc8fb26974895572169c70761a51d4f3ecdf4e1e8cc0e04"
+    },
+    {
+      "path": "packages/app/src/screens/chat/chat.css",
+      "sha256": "a6b3ce458c29b88048d242a864e085f05f3b68078c66a87f2499bb7f5b707a0e"
+    },
+    {
+      "path": "packages/i18n/locales/en/files.json",
+      "sha256": "af62c6f85efb5e26056f72283011320fa3a35446b9853c876f22557d1744ff99"
+    },
+    {
+      "path": "packages/i18n/locales/fr/files.json",
+      "sha256": "04a130b66553a6eb9a10a3a422308e3ef6b4040b4292531c37dabef16a8dc20f"
+    },
+    {
+      "path": "packages/i18n/locales/es/files.json",
+      "sha256": "e255ebee043e55e118c5a288bac05c9cff9144ca5bc4ea81adff665ed41024e7"
+    },
+    {
+      "path": "packages/i18n/locales/de/files.json",
+      "sha256": "6bf9a7ce1147b5ebd60ebd83b0417f0c1b6f2f87a95e78516a3ed3b062d0e4a4"
+    },
+    {
+      "path": "packages/i18n/locales/ja/files.json",
+      "sha256": "d407c141a357b2983ed548ac477dc2de31db7a3d9586cd1d5e66fc78eb6d749a"
+    },
+    {
+      "path": "packages/i18n/locales/zh-Hans/files.json",
+      "sha256": "98269c28636b1b2f6647774385f09fb80bd19a354bfd260dd10638575b515d17"
+    },
+    {
+      "path": "packages/i18n/locales/pt-BR/files.json",
+      "sha256": "056bda648bd88fde1ce81e04de5d1138a08c3f9451954049e4d3b3225bdd3422"
+    },
+    {
+      "path": "packages/i18n/locales/ko/files.json",
+      "sha256": "71047b3a046ec01a570ad7730f55306e1d6a3889f93c36237a6974d50c3ee15b"
+    }
+  ],
+  "finalSourceChecks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "testSHA256": "562625c19ee8bc95449ebc4459fe46a5b81dbaae818b5e0b951f42a9a20e5ae2",
+    "applicationStillMatchesInitial": true
+  }
+}

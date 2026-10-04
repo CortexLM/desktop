@@ -46,6 +46,8 @@ jobs:
           dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv
       - run: bun run build
       - run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:e2e
+        env:
+          E2E_WORKERS: 1 # Native clipboard and foreground focus are shared by the X desktop.
       - uses: actions/upload-artifact@v4
         if: always()
         with:

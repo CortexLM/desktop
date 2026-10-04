@@ -14,6 +14,7 @@ import { isPreview, useFixtures, usePreviewBot } from "../../preview";
 import { Actions, Att, BotRow, Paras, css, useBotCfg, useFx } from "./shared";
 import { ModelComposer, useModels, type ComposerLeaveGuard, type SendOptions } from "./model-composer";
 import { readRaster } from "../files/raster";
+import { isTextMime } from "../files/text-data";
 
 const KNOWN_ERRORS = ["model_no_image_input", "model_no_pdf_input", "context_window_exceeded", "model_not_found", "provider_key_missing", "provider_auth_failed",
   "provider_rate_limited", "provider_error", "provider_disabled", "provider_unsupported", "session_busy", "aborted", "tool_failed", "permission_rejected",
@@ -208,6 +209,9 @@ function FileThumb({ p, onOpen, blocked }: { p: FilePart; onOpen?: () => void; b
     setImage({ raster, src, ready: false });
     return () => URL.revokeObjectURL(src);
   }, [raster]);
+  if (isTextMime(mime) && onOpen) return <button type="button" className="chat-att chat-text-open" aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.file") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>
+    <span className="chat-att-ic" aria-hidden><Icon name="file-code" /></span><span className="chat-att-txt"><span className="ttl">{p.filename ?? t("chat.att.file")}</span><span className="sub">{t(mime.toLowerCase() === "text/markdown" ? "files.text.markdownSource" : "files.text.plainText")}</span></span>
+  </button>;
   if (!image || image.raster !== raster || !raster.ok) return <Att name={p.filename ?? t("chat.att.file")} meta={p.mime} />;
   const thumbnail = <img className="chat-thumb" src={image.src} alt={p.filename ?? t("chat.att.image")} onLoad={() => setImage((current) => current?.src === image.src && !current.ready ? { ...current, ready: true } : current)} onError={() => { URL.revokeObjectURL(image.src); setImage((current) => current?.src === image.src ? null : current); }} />;
   return onOpen ? <button type="button" className="chat-thumb-open" disabled={!image.ready} aria-label={t("files.upload.open", { name: p.filename ?? t("chat.att.image") })} onPointerDown={(e) => { if (blocked) e.preventDefault(); }} onClick={onOpen}>{thumbnail}</button> : thumbnail;
@@ -315,7 +319,7 @@ function LiveChat({ id }: { id: string }) {
         toast.add({ title: t("files.image.finishDraft"), data: { icon: "info" } }); return;
       }
       opening.current = true; setLeaving(true);
-      try { go("file-image", { session: id, message: m.info.id, part: p.id }); }
+      try { go(isTextMime(p.mime) ? "file-code" : "file-image", { session: id, message: m.info.id, part: p.id }); }
       catch { opening.current = false; setLeaving(false); composer.current?.resume(); }
     } : undefined} />;
   };

@@ -355,6 +355,21 @@
 .medias-minimap i[data-d="+"] { background: var(--green); opacity: .9; } .medias-minimap i[data-d="-"] { background: var(--red); opacity: .9; }
 .medias-minimap .medias-thumb { position: absolute; left: 2px; right: 2px; border-radius: 4px; background: var(--hover); box-shadow: var(--ring); pointer-events: none; transition: top var(--d-micro) linear; }
 
+.medias-text-live { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.medias-text-live .content-top { height: auto; min-height: 56px; padding-block: 12px; }
+.medias-text-live .medias-top .medias-name { white-space: normal; overflow-wrap: anywhere; max-height: 3lh; overflow: auto; }
+.medias-text-live .medias-body { min-width: 0; }
+.medias-text-live .medias-stage { min-height: 0; }
+.medias-text-live .medias-bar { flex-shrink: 0; flex-wrap: wrap; }
+.medias-text-live .medias-bar .medias-meta { white-space: normal; overflow-wrap: anywhere; }
+.medias-text-status:not(:empty) { flex-basis: 100%; }
+.medias-text-scroll { flex: 1; min-width: 0; min-height: 0; overflow: auto; display: flex; align-items: flex-start; border-radius: var(--r-card); background: var(--code-bg); box-shadow: var(--ring); outline-offset: 2px; }
+.medias-text-scroll pre { flex-shrink: 0; margin: 0; padding-block: 10px; font-family: var(--mono); font-size: 12px; line-height: 20px; white-space: pre; }
+.medias-text-gutter { min-width: 48px; padding-inline: 12px 14px; color: var(--t3); text-align: right; user-select: none; }
+.medias-text-source { padding-right: 14px; user-select: text; }
+.medias-text-empty { min-width: 0; margin: 10px 14px 10px 0; font-size: 12px; line-height: 20px; color: var(--t2); overflow-wrap: anywhere; }
+.medias-text-live .fichiers-state { min-height: 0; overflow: auto; }
+
 .medias-player { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .medias-wave { position: relative; height: 96px; display: flex; align-items: center; gap: 2px; cursor: pointer; border-radius: 8px; outline-offset: 4px; }
 .medias-wave i { flex: 1; min-width: 2px; border-radius: 2px; background: var(--subtle); transition: background var(--d-micro) linear; }

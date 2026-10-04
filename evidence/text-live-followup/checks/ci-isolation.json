@@ -1,0 +1,9 @@
+{
+  "command": "E2E_WORKERS=1 xvfb-run bun run test:e2e",
+  "reason": "NativeclipboardandforegroundfocusshareoneXdesktop",
+  "workflowDelta": "diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml\nindex f0e54b5..b672e65 100644\n--- a/.github/workflows/ci.yml\n+++ b/.github/workflows/ci.yml\n@@ -46,6 +46,8 @@ jobs:\n           dpkg-query -W -f='${Package}\\t${Version}\\t${Status}\\n' xvfb fonts-noto-cjk fontconfig > out/fonts/packages.tsv\n       - run: bun run build\n       - run: xvfb-run -a -s \"-screen 0 1920x1080x24\" bun run test:e2e\n+        env:\n+          E2E_WORKERS: 1 # Native clipboard and foreground focus are shared by the X desktop.\n       - uses: actions/upload-artifact@v4\n         if: always()\n         with:\n",
+  "applicationInputsStillMatch": 524,
+  "runnerUnchanged": "blacksmith-4vcpu-ubuntu-2404",
+  "macOSWorkerCountUnchanged": 1,
+  "yamlValidation": "Bun.YAML.parse passed; E2E_WORKERS numeric1; sameBlacksmithrunner"
+}

@@ -1,0 +1,16 @@
+# Saved local text — independent future-contract review
+**APPROVED as a bounded future implementation contract. No blocking P2 identified.** This is planning approval, not implementation authorization or runtime acceptance.
+- Reviewed all 40 contract lines against current Files tuple/loader/download boundaries, raster primitives, Chat attachment/leave guards and engine admission/model conversion.
+- Exactly-one-source, strict MIME/base64, pre-expansion 5,000,000-byte ceiling and explicit empty payload acceptance are coherent. Keep raster's nonempty requirement separate when sharing decoding primitives.
+- Fatal UTF-8 decoding, one leading BOM omitted from display/Copy, original BOM/bytes retained for download, and explicit control refusal are consistent. No ANSI detection or charset-parameter support is implied.
+- CRLF/CR/LF counting and trailing empty rows are explicitly defined; apply row/unit limits to the decoded display string before splitting. Empty and BOM-only files remain valid Ready states.
+- **Keep the renderer small:** one escaped `<pre>` text node plus one nonselectable, `aria-hidden` gutter string in the same scrollport. The 50,000-row ceiling does not require 50,000 React elements or preemptive virtualization; measure the specified upper-budget case later.
+- **Copy freshness is correct:** retain the fresh session GET and unchanged tuple/source-generation check before clipboard dispatch. `main.ts:19` registers secure `cortex`, but that alone proves neither permission nor activation after awaited IPC.
+- Later Copy proof must use the real Electron `navigator.clipboard.writeText` after that await and inspect actual clipboard content; cover held admission and denial. Do not remove revalidation or add a preload clipboard capability merely because other browsers differ.
+- Clipboard refusal must retain selectable text/manual-copy guidance; revalidation 404/deletion must still clear the owner. Keep those error paths distinct. Already-dispatched clipboard writes remain non-revocable as stated.
+- Original-byte Download with forced `.txt`/`.md`, bounded safe basename and independent URL lifetime is appropriate; rendered Markdown links/HTML and filename-derived execution remain excluded.
+- Engine storage precedes inference (`session.ts:194,218–225`); text FileParts remain generic SDK files (`:510–512`). Later fixtures must assert persisted admitted records and distinguish subsequent inference failure from admission refusal; viewer support proves no model compatibility.
+- Existing exact-ID Chat Open/leave/header guards suffice. Decode selected text in its viewer; an Open card needs no eager full-history text decoding or new draft store.
+- Contract33 permits narrow shared functions for actual common logic; avoid a generic owner/store framework. Preserve image-specific native decode/URL cleanup and rerun affected image regressions after any extraction.
+- Frozen `file-code` display/diff states supply existing visual reference only; live text does not inherit diff/Ask behavior or authorize changing-design-checkout imports/new surfaces.
+- Source-only review; only this report written. No application edits, tests/builds/runtime, network, CI/devices or delegation. Raster closure and later source-bound text proof remain separate prerequisites.

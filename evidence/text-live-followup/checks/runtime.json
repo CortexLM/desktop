@@ -1,0 +1,39 @@
+{
+  "baseRevision": "f2c1bc828d2eb64fbe0792031c2e33de63c54957",
+  "applicationUncommitted": true,
+  "testSHA256": "562625c19ee8bc95449ebc4459fe46a5b81dbaae818b5e0b951f42a9a20e5ae2",
+  "targeted": {
+    "startTime": "2026-10-03T23:47:59.123Z",
+    "duration": 84550.355,
+    "expected": 20,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "targetedScope": {
+    "text": 9,
+    "imageRegression": 11
+  },
+  "rendererFingerprint": "e19de38f6a5cd68b770c9a960bc9e9e62e5e88b27885602c3a6b8e6845354c4b",
+  "inputs": 524,
+  "rendererInputs": 482,
+  "buildMembers": 90,
+  "fullSuite": {
+    "stats": {
+      "startTime": "2026-10-03T23:50:00.825Z",
+      "duration": 1000318.039,
+      "expected": 152,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "workers": 1,
+    "topLevelErrors": [],
+    "registeredRenderVisits": 426,
+    "renderVisitSource": {
+      "log": "full-initial.log.gz",
+      "line": "rendered 426 screen states"
+    }
+  },
+  "linuxPackageASAR": "667bead37e35f27eeea26aea6018fadac525f7ef17faee161198dff44facb4b8"
+}

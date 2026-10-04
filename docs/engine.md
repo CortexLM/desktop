@@ -136,8 +136,50 @@ there is no renderer completion acknowledgement or success toast. Deletion is no
 with dispatch and cannot reliably cancel an already-dispatched download. The live-only
 event stream may miss deletions; re-entry/download revalidation bounds that limitation.
 Session deletion removes projections, not journal bytes: no secure-erasure claim.
-Standalone durable import, file inventory, remote hydration, other format readers and
+Standalone durable import, file inventory, remote hydration, remaining format readers and
 live image editing/sharing/Ask remain unfinished.
+
+## Saved local text attachments
+
+The existing `file-code` route reads saved local Chat `text/plain` and `text/markdown`
+parts by the same exact session/message/part tuple. Markdown is displayed as escaped
+source, without interpreting HTML, links or a filename-derived language. Viewing creates
+no session or prompt and requires no current provider or account. Other MIME types,
+charset parameters, ambiguous sources and external URLs are refused.
+
+`bytes.ts` shares canonical inline base64 decoding and bounded download basenames with
+the raster reader. Text accepts explicit empty payloads; images remain nonempty.
+`text-data.ts` requires fatal UTF-8 decoding, removes one initial BOM from display/Copy
+and preserves the original bytes for Download. C0 controls other than tab/CR/LF and DEL
+are refused as an unsupported-text policy, not a complete binary detector. Other Unicode
+is preserved; no automatic encoding detection or normalization is claimed.
+
+Inclusive limits are 5,000,000 original bytes, 50,000 logical rows and 100,000 UTF-16 units
+per row. Empty decoded text has zero rows; otherwise rows equal one plus the number of
+CRLF/CR/LF breaks, including a trailing empty row. Only visual line endings normalize to
+LF. Other Unicode separators and bidi characters are preserved; the logical count is
+not a guarantee about every visual Unicode line break. Two text nodes supply the source
+and nonselectable line gutter inside a keyboard-scrollable pane. These limits do not bound
+full-history IPC or total renderer memory.
+
+Chat Open uses the existing draft/read/submission/header guard. The committed tuple owns
+reads; actual departure, observed deletion and matching part updates clear text, metadata
+and actions. Returning before a deferred departure commits rereads the live owner.
+Layout changes retain the same owner. Source 404 is unavailable; other reads offer Retry.
+
+Copy and Download share a pending-action fence and freshly revalidate the session before
+dispatch. Copy writes the complete decoded text, preserving its original line endings
+apart from OS clipboard conventions. A clipboard refusal retains selectable text and
+manual-copy guidance; success is shown only after fulfillment for the same owner.
+Download dispatches the original bytes/BOM under a sanitized `.txt` or `.md` basename.
+Already-dispatched clipboard writes/downloads cannot be revoked; logical deletion does
+not erase journal bytes. Session revalidation is not atomic part freshness across missed
+events. No standalone import, editor, diff, sharing, Ask or rendered Markdown is supplied.
+
+The engine still forwards text attachments as generic SDK file parts. A stored attachment
+can remain after inference fails. Viewer validation does not establish provider support,
+prompt-text conversion or a complete attachment token budget. Verification is tracked in
+[`evidence/text-live-followup/README.md`](../evidence/text-live-followup/README.md).
 
 ## Local Projects
 

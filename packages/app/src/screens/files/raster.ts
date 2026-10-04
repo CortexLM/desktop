@@ -1,7 +1,8 @@
+import { attachmentFilename, readInlineBytes } from "./bytes";
+
 export type Raster = { bytes: Uint8Array<ArrayBuffer>; mime: "image/png" | "image/jpeg" | "image/webp"; width: number; height: number };
 type Reason = "unsupported" | "invalid" | "tooLarge";
 type Size = Pick<Raster, "width" | "height">;
-const MAX_BYTES = 50_000_000, BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const check = (ok: boolean, reason: Reason = "invalid") => { if (!ok) throw reason; };
 const tag = (b: Uint8Array, p: number) => String.fromCharCode(...b.subarray(p, p + 4));
 const u24 = (b: Uint8Array, p: number) => b[p] + b[p + 1] * 256 + b[p + 2] * 65536;
@@ -123,36 +124,14 @@ export function readRaster(input: { mime: string; data?: string; url?: string })
     check(!!input && typeof input.mime === "string");
     const mime = input.mime.toLowerCase() as Raster["mime"];
     check(["image/png", "image/jpeg", "image/webp"].includes(mime), "unsupported");
-    check((input.data !== undefined) !== (input.url !== undefined), "unsupported");
-    let payload = input.data;
-    if (input.url !== undefined) {
-      check(typeof input.url === "string");
-      const header = /^data:(image\/(?:png|jpeg|webp));base64,/i.exec(input.url);
-      check(!!header, "unsupported"); check(header![1].toLowerCase() === mime);
-      payload = input.url.slice(header![0].length);
-    }
-    check(typeof payload === "string");
-    const text = payload!;
-    check(text.length <= Math.ceil(MAX_BYTES / 3) * 4, "tooLarge");
-    const padding = text.endsWith("==") ? 2 : text.endsWith("=") ? 1 : 0, length = text.length - padding, tail = length % 4;
-    check(length > 0 && tail !== 1 && (!padding || text.length % 4 === 0 && padding === 4 - tail));
-    check(Math.floor(length * 3 / 4) <= MAX_BYTES, "tooLarge");
-    check(!/[^A-Za-z0-9+/]/.test(text.slice(0, length)));
-    const last = BASE64.indexOf(text[length - 1]);
-    check(tail !== 2 || (last & 15) === 0); check(tail !== 3 || (last & 3) === 0);
-    const raw = atob(text), bytes = new Uint8Array(raw.length);
-    for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+    // Preserve unsupported-header versus supported-MIME-mismatch reasons from raster preflight.
+    if (input.data === undefined && typeof input.url === "string") check(/^data:image\/(?:png|jpeg|webp);base64,/i.test(input.url), "unsupported");
+    const bytes = readInlineBytes(input, mime, 50_000_000);
     const dimensions = mime === "image/png" ? png(bytes) : mime === "image/jpeg" ? jpeg(bytes) : webp(bytes);
     return { ok: true, value: { bytes, mime, ...dimensions } };
   } catch (reason) { return { ok: false, reason: reason === "unsupported" || reason === "tooLarge" ? reason : "invalid" }; }
 }
 
 export function rasterFilename(name: string | undefined, mime: Raster["mime"]): string {
-  const original = typeof name === "string" ? name : "";
-  let stem = original.slice(Math.max(original.lastIndexOf("/"), original.lastIndexOf("\\")) + 1)
-    .replace(/[\p{Cc}\p{Cf}\p{Zl}\p{Zp}<>:"|?*]/gu, "").replace(/\.[^.]*$/, "").replace(/^[ .]+/, "");
-  // 60 code points plus the extension fit both 255-byte and 255-UTF-16-unit filename limits.
-  stem = Array.from(stem.slice(0, 120)).slice(0, 60).join("").replace(/[ .]+$/, "");
-  if (!stem || /^(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\.|$)/i.test(stem)) stem = "image";
-  return `${stem}.${mime === "image/jpeg" ? "jpg" : mime.slice(6)}`;
+  return attachmentFilename(name, mime === "image/jpeg" ? "jpg" : mime.slice(6), "image");
 }

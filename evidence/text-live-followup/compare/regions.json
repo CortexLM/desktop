@@ -1,0 +1,103 @@
+{
+  "policy": "Supplemental exact unshifted RGBA crops, original device pixels; not replacement whole-frame metrics.",
+  "rows": [
+    {
+      "name": "chat-dark",
+      "region": "chat-transcript-text-code",
+      "rect": [
+        1150,
+        430,
+        2460,
+        1080
+      ],
+      "rgbaSHA256": "39b71e33b6a6f27989ed45e82e772d649918ca186f0b6145c81bb5075cd4af51",
+      "design": {
+        "rawPixels": 18788,
+        "rgbaExact": false
+      },
+      "prior": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    },
+    {
+      "name": "chat-light",
+      "region": "chat-transcript-text-code",
+      "rect": [
+        1150,
+        430,
+        2460,
+        1080
+      ],
+      "rgbaSHA256": "aaf78ed95a41c3c0555f8ab08e30790426da878d47f94b9a30ad4bdffc3452b8",
+      "design": {
+        "rawPixels": 18794,
+        "rgbaExact": false
+      },
+      "prior": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    },
+    {
+      "name": "file-code~view-dark",
+      "region": "code-main-interior",
+      "rect": [
+        754,
+        150,
+        2790,
+        1690
+      ],
+      "rgbaSHA256": "0e46b6e612eb42e69a02683ce8dace68975d0f28654d4dbce20747ac1016350b",
+      "design": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    },
+    {
+      "name": "file-code~view-light",
+      "region": "code-main-interior",
+      "rect": [
+        754,
+        150,
+        2790,
+        1690
+      ],
+      "rgbaSHA256": "71ead742267108b3b48ff2714ff8d17d6a25ff8fce3945b7143c028103b2faa2",
+      "design": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    },
+    {
+      "name": "file-code~diff-dark",
+      "region": "code-main-interior",
+      "rect": [
+        754,
+        150,
+        2790,
+        1690
+      ],
+      "rgbaSHA256": "f964ffc93d8f7a9426887d751aecdd258cb295f6df51ccaad8da7c95c67934d2",
+      "design": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    },
+    {
+      "name": "file-code~diff-light",
+      "region": "code-main-interior",
+      "rect": [
+        754,
+        150,
+        2790,
+        1690
+      ],
+      "rgbaSHA256": "bdd448d395bd0e42978f845f9e7d512643a6b6621faf961103ed21a7f1d31051",
+      "design": {
+        "rawPixels": 0,
+        "rgbaExact": true
+      }
+    }
+  ]
+}

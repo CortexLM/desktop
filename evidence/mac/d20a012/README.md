@@ -40,3 +40,6 @@ appearance, stopped helpers/tunnel, five closed test ports, released lease.
 four passing native views, separately attributed original-byte delivery and restoration.
 Manual GUI steps remain coordinator-attested. The failed collector status and unreached
 assertions remain explicit; no fully passing automated native run claimed.
+
+`composite-summary.json` is the retained **pre-review snapshot**. Its pending field records
+that earlier point; the final disposition is [`native-audit/results.json`](native-audit/results.json).

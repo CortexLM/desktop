@@ -10,7 +10,7 @@ failures remain reported. The original macOS `749bc0c` failure is retained separ
 | Command | Scope | Notes |
 | --- | --- | --- |
 | `bun run test` | Vitest (`vitest.config.ts`): `packages/*/test/**/*.test.ts`, `tests/unit/**/*.test.ts`, `packages/app/src/**/*.test.{ts,tsx}` | Node environment, 20 s timeout. Prefix `NODE_ENV=test` if the host exports `production` |
-| `bun run test:e2e` | Playwright (`playwright.config.ts`), `tests/e2e` | Launches `packages/desktop/dist/main.cjs` via `_electron`; **run `bun run build` first**. Workers: `E2E_WORKERS` (default 1 on macOS, 4 elsewhere). Reports: `playwright-report/`, `test-results/` |
+| `bun run test:e2e` | Playwright (`playwright.config.ts`), `tests/e2e` | Launches `packages/desktop/dist/main.cjs` via `_electron`; **run `bun run build` first**. Workers: `E2E_WORKERS` (default 1 on macOS, 4 elsewhere; Linux CI explicitly uses 1). Reports: `playwright-report/`, `test-results/` |
 | `bun run audit:i18n` | `scripts/audit-i18n.mjs` | See [i18n.md](./i18n.md) |
 | `bun run lint` | `eslint packages scripts tests` | |
 | `bun run typecheck` | `tsc -p tsconfig.json` | Includes tests and scripts |
@@ -126,6 +126,17 @@ Cancellation checks inspect the durable event journal as well as the current mes
   entirely successful collector. Independent review accepts that bounded composite;
   the manual GUI sequence remains coordinator-attested. See
   [`evidence/mac/d20a012/README.md`](../evidence/mac/d20a012/README.md).
+- `tests/e2e/files-text.spec.ts` covers saved text identity, UTF-8/BOM/newline metadata,
+  literal markup, actual clipboard writes, original-byte downloads, provider-disabled
+  restart, invalid sources, Retry and stale read/action ownership. Draft and header
+  guards, canceled departure, bounded long content and locale geometry are source-scoped
+  to its execution receipts. `text-data.test.ts` covers empty files, fatal UTF-8, canonical
+  base64 and inclusive byte/row/line limits; raster tests preserve shared-helper behavior.
+  Current proof status: [`evidence/text-live-followup/README.md`](../evidence/text-live-followup/README.md).
+  Native clipboard ownership is global to the desktop: the local text acceptance run and
+  Linux CI use `E2E_WORKERS=1`; macOS already defaults to one worker. Sequential cases
+  within one file alone do not isolate it from other test files. Earlier parallel results
+  retain their original worker count and scope.
 - `tests/e2e/chrome.spec.ts` — native window title/minimum bounds, English/French menus,
   macOS traffic-light position `{x:20,y:15}` through Electron APIs; reload records CSP
   violations before application initialization, including forbidden evaluation probes.

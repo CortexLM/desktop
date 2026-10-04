@@ -3,11 +3,12 @@ import type * as React from "react";
 import type { ScreenDef } from "../../registry";
 import { isPreview } from "../../preview";
 import { FilePdf, FilePptx, FileDocx, FileXlsx, Upload } from "./docs";
-import { CodeScreen, AudioScreen, VideoScreen, ZipScreen } from "./media";
+import { AudioScreen, VideoScreen, ZipScreen } from "./media";
 import { FileImage } from "./image";
+import { FileText } from "./text";
 import "./files.css";
 
-// ponytail: remaining formats await real readers; saved local Chat rasters use FileImage.
+// ponytail: remaining formats await real readers; saved local Chat rasters and text have live viewers.
 const viewer = (C: () => React.ReactNode) => () => (isPreview() ? <C /> : <Upload />);
 const base = { mode: "Cortex" as const, group: "files.group" };
 
@@ -25,7 +26,7 @@ export const SCREENS: ScreenDef[] = [
     ["empty", "files.variant.empty", "vide"], ["dragging", "files.variant.dragging", "glisser"], ["uploading", "files.variant.uploading", "encours"], ["done", "files.variant.done", "termine"], ["errors", "files.variant.errors", "erreurs"]] },
   { ...base, id: "file-image", name: "files.screen.file-image", render: () => <FileImage />, variants: [
     ["view", "files.variant.view", "affichage"], ["zoom", "files.variant.zoom", "zoom"], ["compare", "files.variant.compare", "comparaison"]] },
-  { ...base, id: "file-code", name: "files.screen.file-code", render: viewer(CodeScreen), variants: [
+  { ...base, id: "file-code", name: "files.screen.file-code", render: () => <FileText />, variants: [
     ["view", "files.variant.view", "affichage"], ["diff", "files.variant.diff", "diff"]] },
   { ...base, id: "file-audio", name: "files.screen.file-audio", render: viewer(AudioScreen), variants: [
     ["playing", "files.variant.playing", "lecture"], ["transcribing", "files.variant.transcribing", "transcription"]] },

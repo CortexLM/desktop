@@ -191,6 +191,18 @@ stream policy, original-request replay and local-plugin exclusion. Its standalon
 check examples. The later [foundation implementation](../evidence/remote-chat-foundation/README.md)
 implements private transport, event isolation and process-only core projections; public
 routes and approved renderer integration remain pending.
+
+The [23:23 UTC owner readback](../evidence/text-live-followup/owner-readback/REPORT.md)
+records G2's new hardening delivery `5bb7ff550acec822466853c248bd9bcebe8089a6`:
+none-mode VNC Origin gating and restricted media-decoder child environments. Its owner
+reports schema blob `e971ba48b421eff329e537884aa87eca36340a97` with a VNC-description
+change; reconciliation with G3's later screenshot schema remains pending. These are
+retained owner claims, not desktop package admission or deployment proof. Desktop keeps
+the admitted SDK0.3.5/API-types0.2.0 pair and `c8f6a7f0` schema pin. No discarded-frame
+successor, precise account/history contract, historical-image hydration or exact five-state
+import permission appears in that readback. Public instance remains404; model metadata
+still supplies zero vision-capable Chat models.
+
 The append-only design request dated 3 October, “G1 remote Chat admission controls,” requests
 named reuse/import authorization for effort `low|medium|high`, detach/reconnect and honest
 bounded-history states. Existing local boolean reasoning and Stop controls cannot silently

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-03",
+  "status": "accepted-scoped",
+  "packet": "/tmp/opencode/g4-code-design-corrected-20261003/",
+  "packetSealSHA256": "618ce49355daf2184a5c3bf566f9e53aa2a62eb339fe7928dc82dd816b97a046",
+  "sourceFingerprints": {
+    "desktop": "b6587c77e1ceee5d652e4eebe0de99f264220699ec8f0d528f2bdb9b9663f5fe",
+    "ios": "6c8c99a5dcd93b2bc5e83a8ef15fceb39a1cda2e3609e4f597264133b7a2df2e"
+  },
+  "reviews": [
+    {
+      "reviewer": "A",
+      "manifest": "/tmp/opencode/g4-code-design-review-A-20261003/MANIFEST.json",
+      "manifestSHA256": "892e09547d1c24a2b26c3fe29406d76399e4918fdf8e6e76312340fa684fcfa9",
+      "minimumOfSeven": 10,
+      "coordinatorVerification": "PASS"
+    },
+    {
+      "reviewer": "B",
+      "manifest": "/tmp/opencode/g4-code-design-review-B-20261003/manifest.json",
+      "manifestSHA256": "44565bd9405ce150ffbb9625dde0361eb98b89b4ff26343a87ebdaabe4e4e4fb",
+      "minimumOfSeven": 10,
+      "coordinatorVerification": "PASS"
+    }
+  ],
+  "scope": {
+    "currentPNGViews": 16,
+    "currentMeasuredViews": 24,
+    "currentTargetedActionGroups": 10,
+    "currentMatrixViewsWithoutPNG": 118,
+    "inheritedGroupsNotRerun": 26,
+    "captureCallsCumulative": 76,
+    "captureCeiling": 134
+  },
+  "prototypeIntegrationAuthorized": true,
+  "productImportAuthorized": false,
+  "wholeProductAccepted": false,
+  "nativeHardwareAccepted": false
+}

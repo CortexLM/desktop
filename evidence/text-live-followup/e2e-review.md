@@ -1,0 +1,40 @@
+# Saved text — independent E2E source review
+**APPROVED within the pinned source scope; no remaining blocking P1/P2 finding.** Runtime results below are separately attributed.
+Only this report written. No delegation, source/test/build edits, tests/app/device/network/CI execution or runtime polling.
+
+## Source pins and known fixture correction
+- Released `tests/e2e/files-text.spec.ts`: 262 lines/nine cases; SHA-256 `1db7c1845446e5d7eaf62596f90bd11033cb3b8b4e713c20f41b68bd968eb9a8`.
+- Reviewed current spec: 262 lines/nine cases; SHA-256 `562625c19ee8bc95449ebc4459fe46a5b81dbaae818b5e0b951f42a9a20e5ae2`.
+- Independent byte comparison confirms the sole change is line 67's `.filter((item) => item.types.length > 0)` before `ClipboardItem` construction; all product assertions remain identical. Original source stays in `evidence/text-live-followup/baseline/files-text.spec.ts`.
+- Reviewed `packages/app/src/screens/files/text.tsx`: 142 lines; SHA-256 `7e26ead69a64cbf15d7f6ebbf7bf651980789639480d448e57a9f528d731475d`. Contract, prior boundary review, Chat/composer, engine admission, fixtures/config and Electron declarations also inspected.
+- Original baseline JSON/log independently read: nine failures, seven missing Open/view/read behavior, two earlier setup failures: `Failed to construct 'ClipboardItem': at least one MIME type is required.` Those two are collector defects, not product negatives.
+- Original baseline build receipt identifies unchanged `d20a012fbb774aa9b348fe1913f85d3476430098`, 90 members. JSON SHA-256 `9e538f959b148f9b60a42b6bd760f45462bedfb9be7cf8d92cc92afa4fc30e3a`; log `f65afe7df0e70e77fcddb349a65e22757ae5131fb134c3c83d6830e29d2f1779`.
+- Filtering zero-format entries preserves every returned nonempty item's advertised payloads; an empty saved set correctly restores via `clipboard.clear()`. Apply the same guard to native preparers using this extraction. This is available-format restoration, not proof of every native UTI/global clipboard flavor.
+
+## Behavioral assertion review
+- `:50–58,129–148`: real IPC creates/adopts persisted user records; assistant completion/error is separate from prompt admission. Duplicate names resolve exact session/message/part IDs; uppercase plain/raw and Markdown/data-URL sources are independently opened.
+- The mixed-newline fixture has exactly five CR/LF-logical rows. Full normalized `textContent`, zero child elements/interpreted nodes, absent execution marker, MIME/BOM/byte metadata, actual browser Copy input and original downloaded bytes are substantive assertions.
+- Provider-disabled reload/restart reopens the same saved source, checks preserved user FileParts and unchanged fake-provider request count. This proves the tested viewer lifecycle, not generic text-model support or equality of every session/history/provider record.
+- `:151–171`: empty raw/data-URL/BOM-only sources exercise Ready, clearing native Copy and zero/BOM original-byte downloads. Twelve refused sources check exact failure category and removed source/actions; malformed/cross-owner tuples and Code ownership check unavailable.
+- External-request listeners cover renderer viewing after engine fixture admission; they do not establish zero main-process/model-admission HTTP. Large data URLs can persist before subsequent model failure; viewer byte ceilings do not establish token-budget compatibility.
+- `:84–98,174–202`: holds occur after the original main handler returns genuine replies. Failure injection obtains a real validation-error reply through the existing handler; successful held reads retain actual payloads/status. No synthetic success replaces the engine.
+- Retry counts one target GET; held history cannot resurrect a deleted/replaced owner. Both Copy/Download are held across deletion and tuple changes, checking no clipboard dispatch/download. Deferred preview/Back verifies read reload and undispatched Copy with the old DOM owner retained.
+- `:204–215`: disabled controls, unchanged owner node and exact GET list test the pending-action fence through sidebar/focus/theme changes. Copy success invokes the original browser API, reads native text and checks exact pre-normalization browser input; denial alone is injected and selectable source remains.
+- `:218–233`: real FileReader completion is held, then resumed; typed/file/read/context-refused/submitting/no-model drafts and pending rename block Open. Real prompt/PATCH replies are delayed, not fabricated. Canceled Open/Back rearms the composer.
+- `:236–250`: exact 5,000,000-byte/50,000-row/100,000-unit input, bounded DOM, keyboard horizontal/vertical scrolling, full filename access and reachable controls cover both minimum-window themes. The five-second measurement is held-reply-release to DOM readiness, not startup/full-history latency or memory/per-frame performance.
+- `:253–262`: eight locales × two themes assert localized metadata/action names and exact source text; eight dark captures plus four lifecycle and two budget captures total fourteen. Font readiness/box containment do not establish glyph raster correctness, ink clipping or linguistic/visual acceptance.
+
+## Clipboard, cleanup and remaining scope
+- Installed Electron `44.5.1` declarations explicitly support async `clipboard.read/readText/write/writeText`, `ClipboardItem`, payload `getType` and synchronous `clear`; helpers await the relevant promises. No obsolete synchronous API assumption found.
+- Positive Copy uses `original.call(this, text)`; seeded native markers and exact recorded inputs prevent mocked-success acceptance. CR/LF normalization applies only to native clipboard observation, preserving the exact browser-string assertion.
+- `mode: "default"` makes this file sequential with independent failures; it does not serialize other files. `components.spec.ts:76–84` also focuses a window and writes the OS clipboard. One worker supplies uncontended acceptance; focus checks alone provide no cross-file lock.
+- Playwright still defaults to four Linux workers; coordinator subsequently configured `.github/workflows/ci.yml:48–50` with `E2E_WORKERS: 1`, independently confirmed in source. That configuration is not a passing CI run; no observed cross-file race is asserted here.
+- Lifecycle helpers close before page reload/app restart; registered cleanup is idempotent. Other teardown first changes the actual route, releases held transitions/IPC, settles tracked clipboard writes, restores hooks/clipboard and closes the isolated app/provider. No disposed-handle restart defect found.
+- `will-download` completion, `setSavePath`, filename and file-byte checks prove controlled downloads; installed native Save/cancel behavior remains separate. Restoration claims cover the formats returned by Electron, not unrelated concurrent clipboard owners.
+- Matching saved-user `part.updated` replacement is not exercised: no public mutation path exists. Read/deletion/tuple/preview combinations are selective, not a complete matrix; preview Download and same-tuple source replacement receive no new runtime claim.
+
+## Execution attribution
+- Author-reported targeted primitives remain **35 = 17 text + 18 raster**; reviewed test-source hashes match the earlier boundary approval. This reviewer reran neither unit nor Electron suites.
+- Coordinator reports corrected two-case old-build baseline: both now genuine missing error-UI/GET-hold negatives, **36.923s**, retained separately. Original nine-failure provenance remains unchanged; unreached assertions inherit no later proof.
+- Coordinator reports corrected-pin targeted run: **20/20 (nine text + eleven image), 84.550355s, zero retries/skips**, at `/tmp/opencode/files-text/targeted-initial.{json,log}` plus artifacts. Accepted as coordinator attribution, not independently executed or artifact-audited here.
+- Coordinator reports the same-pin 152-case full regression running serially; no full-suite/CI/native acceptance follows from this source approval. Later Linux packaging smoke success under Xvfb remains separate from the retained initial no-DISPLAY invocation failure.
