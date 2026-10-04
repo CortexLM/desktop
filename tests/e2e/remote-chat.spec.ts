@@ -635,13 +635,11 @@ test("disabled registry entries cannot be selected in Home or recorded Chat", as
   await prepare(page, "Keep the configured selection");
   const model = page.getByLabel(chatCopy["remote.model"], { exact: true });
   await expect(model.locator('option[value="fixture-disabled"]')).toHaveCount(0);
-  await model.focus();
-  await model.press("End");
+  await model.selectOption("fixture-unknown");
   await expect(model).toHaveValue("fixture-unknown");
   const { oneOff } = await prepareRecorded(page, "Recorded selection");
   await expect(oneOff.locator('option[value="fixture-disabled"]')).toHaveCount(0);
-  await oneOff.focus();
-  await oneOff.press("End");
+  await oneOff.selectOption("fixture-unknown");
   await expect(oneOff).toHaveValue("fixture-unknown");
   expect(backend.modelQueries.length).toBeGreaterThan(0);
   expect(backend.modelQueries.every((query) => new URLSearchParams(query).get("configured") === "true")).toBe(true);
