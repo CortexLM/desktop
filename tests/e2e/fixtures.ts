@@ -12,10 +12,25 @@ export async function launch(opts: { hash?: string; env?: Record<string, string>
     args: [path.join(root, "packages/desktop/dist/main.cjs"), `--user-data-dir=${path.join(dataDir, "renderer")}`, ...(process.platform === "linux" ? ["--no-sandbox"] : [])],
     env: { ...process.env, CORTEX_DATA_DIR: dataDir, CORTEX_START_HASH: opts.hash ?? "", CORTEX_LOCALE: opts.locale ?? "en", ...opts.env } as Record<string, string>,
   });
-  const page = await app.firstWindow();
-  await page.waitForFunction(() => "__bridgeFetch" in window, null, { timeout: 30_000 });
-  if (opts.locale) await page.evaluate((l) => localStorage.setItem("cortex.locale", l), opts.locale);
-  return { app, page, dataDir };
+  const startup: string[] = [];
+  app.process().stderr?.on("data", (chunk: Buffer) => startup.push(chunk.toString()));
+  try {
+    const page = await app.firstWindow();
+    page.on("pageerror", (error) => startup.push(`renderer: ${error.name}: ${error.message}`));
+    await page.waitForFunction(() => "__bridgeFetch" in window, null, { timeout: 30_000 });
+    if (opts.locale) await page.evaluate((l) => localStorage.setItem("cortex.locale", l), opts.locale);
+    return { app, page, dataDir };
+  } catch (error) {
+    try {
+      const windows = await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows().map((window) => ({
+        url: window.webContents.getURL(), loading: window.webContents.isLoading(),
+        crashed: window.webContents.isCrashed(), visible: window.isVisible(),
+      })));
+      await base.info().attach("startup-windows", { body: JSON.stringify(windows), contentType: "application/json" });
+      await base.info().attach("startup-stderr", { body: startup.join(""), contentType: "text/plain" });
+    } finally { await app.close(); }
+    throw error;
+  }
 }
 
 export const test = base.extend<{ app: ElectronApplication; page: Page }>({
