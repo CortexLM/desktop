@@ -67,7 +67,18 @@ async function move(page: Page, projectID: string) {
   await expect(page.getByRole("combobox", { name: "Chat project", exact: true })).toHaveCount(0);
 }
 async function completed(page: Page, id: string, count: number) {
-  await expect.poll(async () => (await request<MessageWithParts[]>(page, `/api/sessions/${id}/messages`)).filter((m) => m.info.role === "assistant" && m.info.time.completed && !m.info.error).length).toBe(count);
+  try {
+    await expect.poll(async () => (await request<MessageWithParts[]>(page, `/api/sessions/${id}/messages`)).filter((m) => m.info.role === "assistant" && m.info.time.completed && !m.info.error).length).toBe(count);
+  } catch (error) {
+    const messages = await request<MessageWithParts[]>(page, `/api/sessions/${id}/messages`);
+    await test.info().attach("project-incomplete-turns", {
+      body: JSON.stringify(messages.map(({ info, parts }) => ({
+        role: info.role, time: info.time, errorCode: info.error?.code,
+        partTypes: parts.map((part) => part.type),
+      }))), contentType: "application/json",
+    });
+    throw error;
+  }
   await expect(page.getByTestId("assistant-text")).toHaveCount(count);
   await expect(page.getByTestId("assistant-text").last()).toContainText("Hello from the streaming test provider.");
 }
